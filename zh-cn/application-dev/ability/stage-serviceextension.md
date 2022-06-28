@@ -10,11 +10,11 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 **表1** ServiceExtensionAbility中相关生命周期API功能介绍
 |接口名|描述|
 |:------|:------|
-|onCreate|首次调用startAbility、connectAbility时触发，开发者可以进行初始化操作。|
-|onRequest|每次调用startAbility都会触发，首次调用时startId为1，重复调用startAbility递增。|
-|onConnect|调用connectAbility触发，重复调用不会再次触发，除非调用disconnectAbility解除绑定后再调用；onConnect返回一个进程通信类RemoteObject。|
-|onDisconnect|调用disconnectAbility触发，Extension如果是用connectAbility拉起的，并且已经没有其他应用绑定这个Extension，则会触发onDestroy生命周期销毁组件。|
-|onDestroy|调用停止当前ability接口terminateSelf会触发。|
+|onCreate(want: Want): void|首次调用startAbility、connectAbility时触发，开发者可以进行初始化操作。|
+|onRequest(want: Want, startId: number): void|每次调用startAbility都会触发，首次调用时startId为1，重复调用startAbility递增。|
+|onConnect(want: Want): rpc.RemoteObject|调用connectAbility触发，重复调用不会再次触发，除非调用disconnectAbility解除绑定后再调用；onConnect返回一个进程通信类RemoteObject。|
+|onDisconnect(want: Want): void|调用disconnectAbility触发，Extension如果是用connectAbility拉起的，并且已经没有其他应用绑定这个Extension，则会触发onDestroy生命周期销毁组件。|
+|onDestroy(): void|调用停止当前ability接口terminateSelf会触发。|
 
 
 ## 约束与限制
