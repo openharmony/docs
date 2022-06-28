@@ -490,7 +490,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 this.context.terminateSelf((err) => {
-    console.log('terminateSelf result:' + JSON.stringfy(err));
+    console.log('terminateSelf result:' + JSON.stringify(err));
 });
 ```
 
@@ -512,9 +512,9 @@ terminateSelf(): Promise&lt;void&gt;
 
 ```js
 this.context.terminateSelf(want).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -740,7 +740,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void
     
 ```js
 this.context.setMissionLabel("test",(result) => {
-    console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+    console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
 });
 ```
 
@@ -769,9 +769,9 @@ setMissionLabel(label: string): Promise\<void>
     
 ```js
 this.context.setMissionLabel("test").then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
@@ -794,7 +794,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
     
 ```js
 this.context.requestPermissionsFromUser(permissions,(result) => {
-    console.log('requestPermissionsFromUserresult:' + JSON.stringfy(result));
+    console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
 });
 ```
 
@@ -823,9 +823,9 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
     
 ```js
 this.context.requestPermissionsFromUser(permissions).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
