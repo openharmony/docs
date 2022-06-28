@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;ImageAnimator&gt;** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
+The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
 
 
 ## Required Permissions
@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -37,29 +37,29 @@ ImageAnimator()
 | iterations | number | 1 | No | By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
 
 - AnimationStatus enums
-  | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | Initial | The animation is in the initial state. | 
-  | Running | The animation is being played. | 
-  | Paused | The animation is paused. | 
-  | Stopped | The animation is stopped. | 
+  | Initial | The animation is in the initial state. |
+  | Running | The animation is being played. |
+  | Paused | The animation is paused. |
+  | Stopped | The animation is stopped. |
 
 - FillMode enums
-    | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | None | After the playback is complete, the animation restores to the initial state. | 
-  | Forwards | After the playback is complete, the animation remains in the end state. | 
+  | None | After the playback is complete, the animation restores to the initial state. |
+  | Forwards | After the playback is complete, the animation remains in the end state. |
 
 
 ## Events
 
-| Name | Description | 
-| -------- | -------- |
-| onStart() =&gt; void | Triggered when the animation starts to play. | 
-| onPause() =&gt; void | Triggered when the animation playback is paused. | 
-| onRepeat() =&gt; void | Triggered when the animation playback is repeated. | 
-| onCancel() =&gt; void | Triggered when the animation playback is canceled. | 
-| onFinish() =&gt; void | Triggered when the animation playback is complete. | 
+| Name | Description |
+| -------- | -------- | -------- |
+| onStart() =&gt; void | Triggered when the animation starts to play. |
+| onPause() =&gt; void | Triggered when the animation playback is paused. |
+| onRepeat() =&gt; void | Triggered when the animation playback is repeated. |
+| onCancel() =&gt; void | Triggered when the animation playback is canceled. |
+| onFinish() =&gt; void | Triggered when the animation playback is complete. |
 
 
 ## Example
@@ -78,6 +78,7 @@ struct ImageAnimatorExample {
       ImageAnimator()
         .images([
           {
+            // The comment folder is at the same level as the pages folder.
             src: '/comment/bg1.jpg',
             duration: 500,
             width: 325,
