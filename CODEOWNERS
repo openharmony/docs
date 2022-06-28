@@ -218,6 +218,11 @@ zh-cn/application-dev/reference/apis/js-apis-huks.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-useriam-userauth.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-system-cipher.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-data-ability.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-data-DataShareResultSet.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-data-ValuesBucket.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-data-dataSharePredicates.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-distributed-data.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-preferences.md @ge-yafang
