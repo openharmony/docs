@@ -1,7 +1,7 @@
 # Burning
 
 
-Hi3516D V300 supports burning through the USB port, network port, and serial port. This document describes how to burn source code through the USB port. The operations are performed in Windows.
+Burning is the process of downloading compiled program files to a development board to provide a basis for subsequent debugging. With the one-click burning function of DevEco Device Tool, you can burn images on development boards quickly and efficiently.
 
 
 ### Importing Source Code
