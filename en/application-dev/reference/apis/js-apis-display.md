@@ -1,6 +1,8 @@
 # Display
+Provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -139,7 +141,7 @@ Obtains all the display objects.
 
   | Type                                           | Description                                                   |
   | ----------------------------------------------- | ------------------------------------------------------- |
-  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return an array containing all the display objects.|
+  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
 
 **Example**
 
@@ -163,7 +165,7 @@ Enables listening.
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
+  | type | string | Yes| Listening type. The available values are as follows:<br>- **add**: listening for whether a display is added<br>- **remove**: listening for whether a display is removed<br>- **change**: listening for whether a display is changed|
   | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 **Example**
@@ -186,7 +188,7 @@ Disables listening.
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Listening type. The available values are as follows:<br>-&nbsp;**add**: listening for whether a display is added<br>-&nbsp;**remove**: listening for whether a display is removed<br>-&nbsp;**change**: listening for whether a display is changed|
+  | type | string | Yes| Listening type. The available values are as follows:<br>- **add**: listening for whether a display is added<br>- **remove**: listening for whether a display is removed<br>- **change**: listening for whether a display is changed|
   | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
