@@ -239,7 +239,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 this.context.terminateSelf((err) => {
-    console.log('terminateSelf result:' + JSON.stringfy(err));
+    console.log('terminateSelf result:' + JSON.stringify(err));
 });
 ```
 
@@ -261,9 +261,9 @@ terminateSelf(): Promise&lt;void&gt;
 
 ```js
 this.context.terminateSelf(want).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
