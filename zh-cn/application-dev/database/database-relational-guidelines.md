@@ -17,10 +17,10 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-|getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;RdbStore&gt;):&nbsp;void | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。<br/>-&nbsp;callback：指定callback回调函数。返回一个RdbStore。 |
-|getRdbStore(config:&nbsp;StoreConfig,&nbsp;version:&nbsp;number):&nbsp;Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。 |
-|deleteRdbStore(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。 |
-| deleteRdbStore(name:&nbsp;string):&nbsp;Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。<br/>-&nbsp;name：数据库名称。 |
+|getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void| 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。<br/>-&nbsp;context：应用程序或功能的上下文。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。<br/>-&nbsp;callback：指定callback回调函数。返回一个RdbStore。 |
+|getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。<br/>-&nbsp;context：应用程序或功能的上下文。<br/>-&nbsp;config：与此RDB存储相关的数据库配置。<br/>-&nbsp;version：数据库版本。 |
+|deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt; ): void | 删除数据库，结果以callback形式返回。<br/>-&nbsp;context：应用程序或功能的上下文。<br/>-&nbsp;name：数据库名称。<br/>-&nbsp;callback：指定callback回调函数。 |
+| deleteRdbStore(context: Context, name: string): Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，结果以Promise形式返回。<br/>-&nbsp;context：应用程序或功能的上下文。<br/>-&nbsp;name：数据库名称。 |
 
 ### 数据库的增删改查
 
@@ -213,9 +213,12 @@
 ## 开发步骤
 
 1. 创建数据库。
-   1. 配置数据库相关信息，包括数据库的名称、存储模式、是否为只读模式等。
-   2. 初始化数据库表结构和相关数据。
-   3. 创建数据库。
+
+   (1) 配置数据库相关信息，包括数据库的名称、存储模式、是否为只读模式等。
+
+   (2) 初始化数据库表结构和相关数据。
+
+   (3) 创建数据库。
 
    示例代码如下：
 
@@ -224,15 +227,17 @@
    
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
-   data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
+   data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
        rdbStore.executeSql(CREATE_TABLE_TEST)
        console.info('create table done.')
    })
    ```
 
 2. 插入数据。
-   1. 构造要插入的数据，以ValuesBucket形式存储。
-   2. 调用关系型数据库提供的插入接口。
+
+   (1) 构造要插入的数据，以ValuesBucket形式存储。
+
+   (2) 调用关系型数据库提供的插入接口。
 
    示例代码如下：
 
@@ -243,9 +248,12 @@
    ```
 
 3. 查询数据。
-   1. 构造用于查询的谓词对象，设置查询条件。
-   2. 调用查询接口查询数据。
-   3. 调用结果集接口，返回查询结果。
+
+   (1) 构造用于查询的谓词对象，设置查询条件。
+
+   (2) 调用查询接口查询数据。
+
+   (3) 调用结果集接口，返回查询结果。
 
    示例代码如下：
 
@@ -265,17 +273,21 @@
    ```
 
 4. 设置分布式同步表。
-   
-    1.权限配置文件中增加以下配置：
+
+    (1) 权限配置文件中增加以下配置。    
+
     ```js
     "requestPermissions": 
         {
             "name": "ohos.permission.DISTRIBUTED_DATASYNC"
         }
     ```
-    2. 获取应用权限。
-    3. 数据库调用接口设置分布式同步列表。
-    4. 判断是否设置成功。
+
+    (2) 获取应用权限。
+
+    (3) 数据库调用接口设置分布式同步列表。
+
+    (4) 判断是否设置成功。
 
    示例代码如下：
 
@@ -293,9 +305,12 @@
     ```
 
 5. 分布式数据同步。
-    1. 构造用于同步分布式表的谓词对象，指定组网内的远程设备。
-    2. 调用同步数据的接口 。
-    3. 判断数据同步是否成功。
+
+    (1) 构造用于同步分布式表的谓词对象，指定组网内的远程设备。
+
+    (2) 调用同步数据的接口。
+
+    (3) 判断数据同步是否成功。
 
     示例代码如下：
 
@@ -314,8 +329,10 @@
     ```
 
 6. 分布式数据订阅。
-    1. 调用分布式数据订阅接口，注册数据库的观察者。
-    2. 当分布式数据库中的数据发生更改时，将调用回调。
+  
+    (1) 调用分布式数据订阅接口，注册数据库的观察者。
+
+    (2) 当分布式数据库中的数据发生更改时，将调用回调。
 
     示例代码如下：
 
@@ -333,8 +350,10 @@
     ```
 
 7. 跨设备查询。
-    1. 根据本地表名获取指定远程设备的分布式表名。
-    2. 调用结果集接口，返回查询结果。
+   
+    (1) 根据本地表名获取指定远程设备的分布式表名。
+
+    (2) 调用结果集接口，返回查询结果。
 
     示例代码如下：
 
@@ -342,9 +361,12 @@
     let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
     let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
     ```
+
 8. 数据库的备份和恢复。
-   1. 调用数据库的备份接口，备份当前数据库文件。
-   2. 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
+
+   (1) 调用数据库的备份接口，备份当前数据库文件。
+
+   (2) 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
    
    示例代码如下：
 
