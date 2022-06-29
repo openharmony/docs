@@ -1850,9 +1850,9 @@ audioRecorder.prepare();                                                  // pre
 | numberOfChannels      | number                                  | 否   | 音频采集声道数，默认值为2。                                  |
 | format<sup>(deprecated)</sup>                | [AudioOutputFormat](#audiooutputformat) | 否   | 音频输出封装格式，默认设置为MPEG_4。<br/>**说明：** 从API Version 8 开始废弃，建议使用fileFormat替代。                         |
 | location              | [Location](#location)                   | 否   | 音频采集的地理位置。                                         |
-| uri                   | string                                  | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![zh-cn_image_0000001164217678](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
-| audioEncoderMime<sup>8+</sup>      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。                                               |
-| fileFormat<sup>8+</sup>      | [ContainerFormatType](#containerformattype8)        | 否   | 音频编码格式。                                               |
+| uri                   | string                                  | 是   | 音频输出URI：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| audioEncoderMime<sup>8+</sup>      | [CodecMimeType](#codecmimetype8)        | 否   | 音频编码格式。           |
+| fileFormat<sup>8+</sup>      | [ContainerFormatType](#containerformattype8)        | 否   | 音频编码格式。         |
 
 ## AudioEncoder<sup>(deprecated)</sup>
 
