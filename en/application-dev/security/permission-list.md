@@ -1,8 +1,14 @@
 # Permission List
 
-The following lists the permissions defined by the system.
+On the basis of the [principles for app permission management](accesstoken-overview.md#basic-principles), apply for permissions for an app by following the procedure illustrated in the figure below.
 
-For details about the permission levels, permission authorization modes, and use of the ACL, see [Access Control Overview](accesstoken-overview.md). For details about permission usage examples, see [Access Control Development](accesstoken-guidelines.md).
+![](figures/permission-application-process.png)
+
+1. For details about the mapping between the app's ability privilege level (APL) and permission level, see [Permission Levels](accesstoken-overview.md#permission-levels).
+2. Permissions can be authorized by the user (user_grant) or the system (system_grant). For details, see [Permission Authorization Modes](accesstoken-overview.md#permission-authorization-modes).
+3. In principle, an app with a lower APL cannot apply for higher permissions by default. The Access Control List (ACL) makes low-level apps have high-level permissions. For details, see [ACL](accesstoken-overview.md#acl).
+
+The following lists the permissions defined by the system. For details about permission usage examples, see [Access Control Development](accesstoken-guidelines.md).
 
 | Permission                                                  | APL    | Authorization Mode    | Enable ACL| Description                                                    |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------------------------ |
@@ -129,3 +135,4 @@ For details about the permission levels, permission authorization modes, and use
 | ohos.permission.GET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | Allows an app to query default apps.                                      |
 | ohos.permission.SET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | Allows an app to set and reset default apps.                                |
 | ohos.permission.MANAGE_DISPOSED_APP_STATUS               | system_core  | system_grant | TRUE    | Allows an app to set and query the app handling state.                              |
+| ohos.permission.ACCESS_IDS                               | system_core  | system_grant | TRUE    | Allows an app to query the unique identifier of a device.                              |
