@@ -98,11 +98,9 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型获取默认应用信息，使用Promise形式返回结果。
 
 **需要权限：**
-
 ohos.permission.GET_DEFAULT_APPLICATION
 
 **系统能力：**
-
 SystemCapability.BundleManager.BundleFramework
 
 **参数：**
@@ -145,11 +143,9 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型获取默认应用信息，使用callback形式返回结果。
 
 **需要权限：**
-
 ohos.permission.GET_DEFAULT_APPLICATION
 
 **系统能力：**
-
 SystemCapability.BundleManager.BundleFramework
 
 **参数：**
