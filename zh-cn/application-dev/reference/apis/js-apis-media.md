@@ -1525,7 +1525,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [AudioRecorderConfig](#audiorecorderconfig) | 是   | 配置录音的相关参数，包括音频输出URI、[编码格式](#audioencoder)、采样率、声道数、[输出格式](#audiooutputformat)等。 |
+| config | [AudioRecorderConfig](#audiorecorderconfig) | 是   | 配置录音的相关参数，包括音频输出URI、编码格式、采样率、声道数、输出格式等。 |
 
 **示例：**
 
