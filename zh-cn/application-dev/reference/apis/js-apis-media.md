@@ -1801,7 +1801,7 @@ audioRecorder.prepare();                                                  // pre
 
 | 名称               | 类型                                   | 可读 | 可写 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| state<sup>8+</sup> | [VideoRecordState](#videorecordstate9) | 是   | 否   | 视频录制的状态。 |
+| state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | 是   | 否   | 视频录制的状态。 |
 
 ### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
 
