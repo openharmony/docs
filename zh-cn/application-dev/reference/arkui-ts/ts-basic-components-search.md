@@ -52,11 +52,11 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 Search组件的控制器，通过它操作Search组件。
 
-#### 导入对象
+### 导入对象
 ```
 controller: SearchController = new SearchController()
 ```
-#### caretPosition
+### caretPosition
 
 caretPosition(value: number): void
 
