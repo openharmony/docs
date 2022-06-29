@@ -1,5 +1,6 @@
 # 注入按键
 
+InputEventClient模块提供了注入按键能力。
 
 > **说明：**
 >
@@ -21,6 +22,8 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 injectEvent({KeyEvent: KeyEvent}): void
 
 注入按键，KeyEvent为注入按键的描述信息。
+
+此接口为系统接口。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
 
@@ -47,11 +50,13 @@ let res = inputEventClient.injectEvent({KeyEvent: keyEvent});
 
 注入按键的描述信息
 
+此接口为系统接口。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputSimulator
 
 | 参数              | 类型      | 必填   | 说明        |
 | --------------- | ------- | ---- | --------- |
 | isPressed       | boolean | 是    | 按键是否按下    |
-| keyCode         | Number  | 是    | 按键键值      |
-| keyDownDuration | boolean | 是    | 按键按下持续时间  |
-| isIntercepted   | Number  | 是    | 按键是否可以被拦截 |
+| keyCode         | number  | 是    | 按键键值      |
+| keyDownDuration | number | 是    | 按键按下持续时间  |
+| isIntercepted   | boolean  | 是    | 按键是否可以被拦截 |
