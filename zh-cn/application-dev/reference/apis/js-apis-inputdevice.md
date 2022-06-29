@@ -28,7 +28,7 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 | 参数       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件类型。  |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 是    | 可上报的输入设备事件。 |
+| listener | Callback&lt;[DeviceListener](#DeviceListener<sup>9+</sup>)&gt; | 是    | 可上报的输入设备事件。 |
 
 **示例**：
 
@@ -63,7 +63,7 @@ off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 | 参数       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件类型。  |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 否    | 可上报的输入设备事件。 |
+| listener | Callback&lt;[DeviceListener](#DeviceListener<sup>9+</sup>)&gt; | 否    | 可上报的输入设备事件。 |
 
 **示例**：
 
@@ -245,7 +245,7 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 | 参数       | 类型                                       | 必填   | 说明                                |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | deviceId | number                                   | 是    | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
-| callback | AsyncCallback&lt;[KeyboardType](#keyboardtype)&gt; | 是    | 回调函数，异步返回查询结果。                    |
+| callback | AsyncCallback&lt;[KeyboardType](#KeyboardType<sup>9+</sup>)&gt; | 是    | 回调函数，异步返回查询结果。                    |
 
 **示例**：
 
@@ -336,7 +336,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 | 名称                      | 参数类型                      | 说明       |
 | ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis                    | [AxisType](#axistype)     | 轴的类型。    |
+| axis                    | [AxisType](#AxisType<sup>9+</sup>)     | 轴的类型。    |
 | max                     | number                    | 轴的最大值。   |
 | min                     | number                    | 轴的最小值。   |
 | fuzz<sup>9+</sup>       | number                    | 轴的模糊值。   |
@@ -358,7 +358,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 | touchpad    | string | 表示输入设备是触摸板。 |
 | joystick    | string | 表示输入设备是操纵杆。 |
 
-## ChangeType
+## ChangedType
 
 定义监听设备热插拔事件。
 
