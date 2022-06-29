@@ -1439,7 +1439,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式异步返回结果。
 
-**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1468,7 +1468,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1498,7 +1498,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
 获取麦克风静音状态，使用callback方式异步返回结果。
 
-**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1526,7 +1526,7 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 
 获取麦克风静音状态，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1603,8 +1603,6 @@ on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
 设备更改。音频设备连接状态变化。
 
-此接口为系统接口，三方应用不支持调用。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
@@ -1653,8 +1651,6 @@ audioManager.off('deviceChange', (deviceChanged) => {
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）
-
-此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
