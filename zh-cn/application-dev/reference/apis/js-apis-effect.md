@@ -132,10 +132,11 @@ getMainColor(): Promise\<Color>;
 **示例：**
 
 ```js
-colorPicker.getMainColor().then(() => {
-    console.log('get main color succeeded.');  //符合条件则进入 
+colorPicker.getMainColor().then(color => {
+    console.log('get main color succeeded.')
+    console.info("color[ARGB]=" + color.alpha "," + color.red + "," + color.green + "," + color.blue);
 }).catch(error => {
-    console.log('get main color failed.');  //不符合条件则进入
+    console.log('get main color failed.');
 })
 ```
 
