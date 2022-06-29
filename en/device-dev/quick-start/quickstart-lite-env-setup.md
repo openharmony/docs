@@ -87,15 +87,19 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
        ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
 
-5. In the dialog box shown below, click **Next** to download and install the tools..
+5. In the dialog box shown below, click **Next** to download and install the tools.
 
    ![en-us_image_0000001239634067](figures/en-us_image_0000001239634067.png)
 
-6. Wait for the DevEco Device Tool setup wizard to automatically install DevEco Device Tool. After the installation is complete, click **Finish** to close the setup wizard.
+6. Read the user agreement and privacy statement carefully, select I accept the licenses, and click **Next**.
+
+   ![en-us_image_0000001307019009](figures/en-us_image_0000001307019009.png)
+   
+7. Wait for the DevEco Device Tool setup wizard to automatically install DevEco Device Tool. After the installation is complete, click **Finish** to close the setup wizard.
 
    ![en-us_image_0000001239650137](figures/en-us_image_0000001239650137.png)
 
-7. From Visual Studio Code, access the DevEco Device Tool page. Now you can conduct your development in DevEco Device Tool.
+8. From Visual Studio Code, access the DevEco Device Tool page. Now you can conduct your development in DevEco Device Tool.
 
    ![en-us_image_0000001225760456](figures/en-us_image_0000001225760456.png)
 
@@ -135,14 +139,16 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
 4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.0.0.401.sh** indicates the installation file name.
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-   > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
-
-   
    ```
    sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
-
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+   > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
+   > 
+   > During the installation, the page for agreeing to the user agreement and privacy statement is displayed. Read and agree to the user agreement and privacy statement.
+   > 
+   > If this page is not displayed and the installation exits, run the apt-get install whiptail command, then the installation command.
+   
    Wait until the "Deveco Device Tool successfully installed." message is displayed.
 
    ![en-us_image_0000001198722374](figures/en-us_image_0000001198722374.png)
@@ -208,32 +214,12 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    ![en-us_image_0000001215720398](figures/en-us_image_0000001215720398.png)
 
 5. In the displayed dialog box, select **Linux**, select **Continue**, and enter the password for logging in to the remote computer.
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > To eliminate the need for frequently entering the password for logging in to the remote computer, set an SSH public key.
 
    ![en-us_image_0000001215897530](figures/en-us_image_0000001215897530.png)
 
    After the connection is successful, the plug-in is automatically installed in the .vscode-server folder on the remote computer. After the installation is complete, reload Visual Studio Code in Windows as prompted. Then you can develop, compile, and burn source code in DevEco Device Tool on Windows.
-
-
-### Registering the Public Key for Accessing the Ubuntu Environment
-
-After the preceding operations are complete, you can remotely connect to the Ubuntu environment through Windows for development. However, you need to frequently enter the remote connection password. To eliminate this need, you can use the SSH public key.
-
-1. Open the Git bash CLI and run the following command to generate an SSH public key. During command execution, perform operations as prompted. Set **username** and **ip** to the user name and IP address you use for connecting to the Ubuntu system.
-   
-   ```
-   ssh-keygen -t rsa
-   ssh-copy-id -i ~/.ssh/id_rsa.pub username@ip
-   ```
-
-   ![en-us_image_0000001271532317](figures/en-us_image_0000001271532317.png)
-
-2. In Visual Studio Code, click the remote connection setting button and open the **config** file.
-
-   ![en-us_image_0000001226034634](figures/en-us_image_0000001226034634.png)
-
-3. In the **config** file, add the SSK key file information, as shown below. Then save the file.
-
-   ![en-us_image_0000001270356233](figures/en-us_image_0000001270356233.png)
 
 
 ## Obtaining Source Code
@@ -249,13 +235,13 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 3. Install the git client and git-lfs. (Skip this step if these tools have been installed in Installing Required Libraries and Tools. )
 
-     Update the software source:
-     
+   Update the software source:
+   
    ```
    sudo apt-get update
    ```
 
-     Run the following command to install the tools:
+   Run the following command to install the tools:
    
    ```
    sudo apt-get install git git-lfs
@@ -271,22 +257,32 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 5. Run the following commands to install the **repo** tool:
    
+   In this example, **~/bin** is used as an example installation directory. You can change the directory as needed.
+   
    ```
-   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o /usr/local/bin/repo  # If you do not have the access permission to this directory, download the tool to any other accessible directory and configure the directory to the environment variable.
-   chmod a+x /usr/local/bin/repo
+   mkdir ~/bin
+   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
+   chmod a+x ~/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
    ```
+6. Add the path of the **repo** tool to environment variables.
+
+   ```
+   vim ~/.bashrc               # Edit environment variables.
+   export PATH=~/bin:$PATH     # Add the path of the **repo** tool to the end of environment variables.
+   source ~/.bashrc            # Apply environment variables.
+   ```
 
 
-### Obtaining Source Code
+### Procedure
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 - **Obtaining OpenHarmony master code**
 
-    Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to Gitee.\)
-    
+  Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to Gitee.\)
+  
   ```
   repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
   repo sync -c
@@ -323,7 +319,7 @@ For details about the functions of the OpenHarmony compilation and building modu
 Perform the following steps in Ubuntu:
 
 
-### Install hb.
+### Installing hb
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > To install a proxy, see [Configuring the Proxy](../quick-start/quickstart-lite-reference.md#section6204129143010).
@@ -380,7 +376,7 @@ Perform the following steps in Ubuntu:
 > - If any issue occurs during the hb installation, see [FAQs](../quick-start/quickstart-lite-faq-hb.md) to troubleshoot.
 
 
-### Install LLVM. This step is only required for OpenHarmony_v1.x.
+### Installing LLVM (Only Required for OpenHarmony_v1.x)
 
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
 > When downloading source code under the OpenHarmony_v1.x branches or tags, perform the operation procedure described in this section to install LLVM 9.0.0.
