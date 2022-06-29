@@ -192,7 +192,7 @@ getVolumeByUuid(uuid: string): Promise<Volume>;
 
   | 参数名   | 类型   | 必填 | 说明 |
     | -------- | ------ | ---- | ---- |
-  | uuid | string | 是   | uuid |
+  | uuid | string | 是   | 卷uuid |
 
 - 返回值
 
@@ -221,7 +221,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback<Volume>): void;
 
   | 参数名    | 类型                                                 | 必填 | 说明                 |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | uuid | string                                                 | 是   | uuid                 |
+  | uuid | string                                                 | 是   | 卷uuid                 |
   | callback | callback:AsyncCallback&lt;[Volume](#volume)[]&gt;  | 是   | 获取卷信息之后的回调 |
 
 - 示例
@@ -245,14 +245,14 @@ getVolumeById(volumeId: string): Promise<Volume>;
 
 - 参数
 
-  | 参数名   | 类型   | 必填 | 说明 |
-      | -------- | ------ | ---- | ---- |
+  | 参数名    | 类型    | 必填  | 说明 |
+  | -------- | ------ | ---- | ---- |
   | volumeId | string | 是   | 卷id |
 
 - 返回值
 
   | 类型                               | 说明                       |
-      | ---------------------------------- | -------------------------- |
+  | ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷信息 |
 
 - 示例
@@ -449,11 +449,11 @@ partition(diskId: string, type: number, callback: AsyncCallback<boolean>): void;
 
 - 参数
 
-  | 参数名      | 类型                                     | 必填 | 说明              |
-      | -------- | ------------------------------------- | ---- | ---------------- |
-  | diskId   | string                                    | 是   | 卷所属的磁盘id            |
-  | type     | number                                    | 是   | 分区类型            |
-  | callback   | callback:AsyncCallback&lt;boolean&gt;   | 是   | 对磁盘进行分区  |
+  | 参数名      | 类型                                   | 必填 | 说明              |
+  | -------- | --------------------------------------- | ---- | ---------------- |
+  | diskId   | string                                  | 是   | 卷所属的磁盘id      |
+  | type     | number                                  | 是   | 分区类型           |
+  | callback | callback:AsyncCallback&lt;boolean&gt;   | 是   | 对磁盘进行分区      |
 
 - 示例
 
