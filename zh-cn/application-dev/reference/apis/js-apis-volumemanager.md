@@ -70,7 +70,7 @@ mount(volumeId: string): Promise&lt;boolean&gt;
 
 异步挂载指定卷，以promise方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -101,7 +101,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -127,7 +127,7 @@ unmount(volumeId: string): Promise&lt;boolean&gt;
 
 异步卸载指定卷，以promise方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -158,7 +158,7 @@ unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 异步卸载指定卷，以callback方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -294,7 +294,7 @@ setVolumeDescription(uuid: string, description: string): Promise<boolean>;
 
 异步通过uuid设置卷描述，以promise方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -325,7 +325,7 @@ function setVolumeDescription(uuid: string, description: string, callback: Async
 
 异步通过uuid设置卷描述，以callback方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -353,7 +353,7 @@ format(volumeId: string, fsType: string): Promise<boolean>;
 
 异步对指定卷进行格式化，以promise方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -384,7 +384,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback<boolean>): void
 
 异步对指定卷进行格式化，以callback方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -412,7 +412,7 @@ partition(diskId: string, type: number): Promise<boolean>;
 
 异步对磁盘进行分区，以promise方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
@@ -443,7 +443,7 @@ partition(diskId: string, type: number, callback: AsyncCallback<boolean>): void;
 
 异步对磁盘进行分区，以callback方式返回。
 
-**需要权限**：ohos.permission.STORAGE_MANAGER
+**需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
