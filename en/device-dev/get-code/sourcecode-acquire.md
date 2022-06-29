@@ -171,7 +171,6 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 | RELEASE-NOTES | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/master/en/release-notes/OpenHarmony-v3.0-LTS.md) | - |
 | **Source code of the Latest Release**| **Version Information**| **Site**| **SHA-256 Verification Code**|
 | Full code base (for mini, small, and standard systems)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz.sha256)|
-| Hi3516 standard system solution (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_hi3516.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_hi3516.tar.gz.sha256)|
 | RK3568 standard system solution (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256)|
 | Hi3861 solution (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz.sha256) |
 | Hi3516 solution-LiteOS (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256) |
