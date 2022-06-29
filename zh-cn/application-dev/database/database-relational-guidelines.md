@@ -225,7 +225,7 @@
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
    data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
-       rdbStore.executeSql(SQL_CREATE_TABLE)
+       rdbStore.executeSql(CREATE_TABLE_TEST)
        console.info('create table done.')
    })
    ```
