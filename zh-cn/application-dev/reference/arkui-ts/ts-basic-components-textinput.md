@@ -110,7 +110,6 @@ struct TextInputExample1 {
       TextArea({ placeholder: 'input your word' })
         .placeholderColor("rgb(0,0,225)")
         .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
-        .textAlign(TextAlign.Center)
         .caretColor(Color.Blue)
         .height(50)
         .fontSize(30)
