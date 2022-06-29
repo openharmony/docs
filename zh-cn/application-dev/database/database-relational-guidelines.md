@@ -91,7 +91,7 @@
 | RdbPredicates | endWrap():&nbsp;RdbPredicates | 向谓词添加右括号。<br/>-&nbsp;RdbPredicates：返回带有右括号的谓词。 |
 | RdbPredicates | or():&nbsp;RdbPredicates | 将或条件添加到谓词中。<br/>-&nbsp;RdbPredicates：返回带有或条件的谓词。 |
 | RdbPredicates | and():&nbsp;RdbPredicates | 向谓词添加和条件。<br/>-&nbsp;RdbPredicates：返回带有和条件的谓词。 |
-| RdbPredicates | contains(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicats | 配置谓词以匹配数据字段为String且value包含指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回带有包含条件的谓词。 |
+| RdbPredicates | contains(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为String且value包含指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回带有包含条件的谓词。 |
 | RdbPredicates | beginsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为String且值以指定字符串开头的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | endsWith(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为String且值以指定字符串结尾的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | isNull(field:&nbsp;string):&nbsp;RdbPredicates | 配置谓词以匹配值为null的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
