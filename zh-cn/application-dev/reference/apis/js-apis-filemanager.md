@@ -18,7 +18,7 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 以异步方法获取第一层相册，目录信息。使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -51,7 +51,7 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 
 以异步方法获取第一层相册，目录信息。使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
 
@@ -84,7 +84,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 以异步方法获取第二层相册，文件信息。使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -133,7 +133,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 以异步方法获取第二层相册，文件信息。使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
 
@@ -187,7 +187,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
 以异步方法创建文件到指定路径，返回文件uri。使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -230,7 +230,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 
 以异步方法创建文件到指定路径，返回文件uri。使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
 
@@ -269,7 +269,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 ## FileInfo
 文件信息类型，通过getRoot, listFile等接口返回的类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.FileManagerService。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileService。
 
 ### 属性
 
@@ -286,7 +286,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 
 设备类型，配置接口访问的设备类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.FileManagerService。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileService。
 
 ### 属性
 
