@@ -885,7 +885,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 
 **示例：** 
   ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -1898,7 +1898,6 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -1966,7 +1965,6 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2033,7 +2031,6 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2168,7 +2165,6 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }
