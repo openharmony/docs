@@ -1,5 +1,7 @@
 # HiAppEvent
 
+This module provides the application event logging functions, such as writing application events to the event file and managing the event logging configuration.
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -23,7 +25,7 @@ Writes event information to the event file of the current day. This API supports
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| eventName | string                    | Yes  | Application event name.<br>You need to customize the event name. It can contain a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter. |
+| eventName | string                    | Yes  | App event name.<br>You need to customize the event name. It can contain a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter. |
 | eventType | [EventType](#eventtype)   | Yes  | Application event type.                                              |
 | keyValues | object                    | Yes  | Parameter key-value pair. For a variable-length parameter, enter each pair of parameter name and value in sequence. For a JSON parameter, enter the parameter name as the key and parameter value as the value.<br>- A key must be a string, and a value must be a string, number, boolean, or Array (which can only be a string, number, or boolean).<br>- The number of event parameters must be less than or equal to 32.<br>- The parameter name can contain a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (\_).<br>- A string value can contain a maximum of 8*1024 characters.<br>- An array value can contain a maximum of 100 elements. Excess elements will be truncated. |
 | callback  | AsyncCallback&lt;void&gt; | No  | Callback used to process the received return value.<br>-&nbsp; Value **0** indicates that the event verification is successful, and the event will be written to the event file asynchronously. <br>-&nbsp; A value greater than **0** indicates that invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored. <br>-&nbsp; A value smaller than **0** indicates that the event verification fails, and the event will not be written to the event file. |
@@ -56,7 +58,7 @@ Writes event information to the event file of the current day. This API supports
 
 | Name   | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| eventName | string                  | Yes  | Application event name.<br>You need to customize the event name. It can contain a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter. |
+| eventName | string                  | Yes  | App event name.<br>You need to customize the event name. It can contain a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter. |
 | eventType | [EventType](#eventtype) | Yes  | Application event type.                                              |
 | keyValues | object                  | Yes  | Parameter key-value pair. For a variable-length parameter, enter each pair of parameter name and value in sequence. For a JSON parameter, enter the parameter name as the key and parameter value as the value.<br>- A key must be a string, and a value must be a string, number, boolean, or Array (which can only be a string, number, or boolean).<br>- The number of event parameters must be less than or equal to 32.<br>- The parameter name can contain a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (\_).<br>- A string value can contain a maximum of 8*1024 characters.<br>- An array value can contain a maximum of 100 elements. Excess elements will be truncated. |
 

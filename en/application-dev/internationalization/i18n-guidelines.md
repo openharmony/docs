@@ -17,7 +17,7 @@ APIs are provided to access the system language and region information.
 | ohos.i18n | isRTL(locale: string): boolean<sup>7+</sup> | Checks whether the locale uses a right-to-left (RTL) language. | 
 | ohos.i18n | is24HourClock(): boolean<sup>7+</sup> | Checks whether the system uses a 24-hour clock. | 
 | ohos.i18n | getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string | Obtains the localized display of a language. | 
-| ohos.i18n | getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string | Obtains the localized display of a country. | 
+| ohos.i18n | getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string | Obtains the localized display of a country name. | 
 
 
 ### How to Develop
@@ -70,7 +70,7 @@ APIs are provided to access the system language and region information.
    ```
 
 7. Obtain the localized display of a country.<br>
-    Call the **getDisplayCountry** method to obtain the localized display of a country. **country** indicates the country to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
+    Call the **getDisplayCountry** method to obtain the localized display of a country name. **country** indicates the country code (a two-letter code in compliance with ISO-3166, for example, CN), **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
      
    ```
    var country = "US";
