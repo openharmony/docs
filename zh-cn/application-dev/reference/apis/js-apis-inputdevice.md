@@ -285,10 +285,10 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称       | 参数类型                      | 说明                                |
-| -------- | ------------------------- | --------------------------------- |
-| type     | [ChangeType](#changetype) | 表示输入设备插入或者移除。                     |
-| deviceId | number                    | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
+| 名称       | 参数类型                        | 说明                                |
+| -------- | --------------------------- | --------------------------------- |
+| type     | [ChangedType](#changedtype) | 表示输入设备插入或者移除。                     |
+| deviceId | number                      | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
 
 ## InputDeviceData
 
