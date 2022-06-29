@@ -89,7 +89,7 @@
          onpaues='pauesCallback' onfinish='finishCallback' onerror='errorCallback'
          onseeking='seekingCallback' onseeked='seekedCallback' 
          ontimeupdate='timeupdateCallback'
-         style="object-fit:fit; width:80%; height:400px;"
+         style="object-fit:fill; width:80%; height:400px;"
          onclick="change_start_pause">
    </video>
 </div>
