@@ -134,7 +134,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 | owner    | string                | 是    | 要添加的应用帐号所有者包名。          |
 | authType | string                | 是    | 要添加的应用帐号鉴权类型。鉴权类型为自定义。  |
 | options  | {[key: string]: any}  | 是    | 鉴权所需要的可选项。可选项可根据自己需要设置。 |
-| callback | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。         |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。         |
 
 **示例：**
 
@@ -809,7 +809,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 应用帐号信息列表。 |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 应用帐号信息列表。 |
 
 **示例：**
 
@@ -835,7 +835,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -863,7 +863,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | owner    | string                                   | 是    | 应用包名称。    |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 应用帐号信息列表。 |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 应用帐号信息列表。 |
 
 **示例：**
 
@@ -896,7 +896,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -924,7 +924,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'change'                                 | 是    | 关于帐号更改事件，当帐号所有者更新帐号时，订阅者将收到通知。 |
 | owners   | Array&lt;string&gt;                      | 是    | 指示帐号的所有者。                      |
-| callback | Callback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 订阅指定帐号所有者的帐号变更事件的回调。           |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 订阅指定帐号所有者的帐号变更事件的回调。           |
 
 **示例：**
 
@@ -954,7 +954,7 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | 是    | 关于帐号更改事件。    |
-| callback | Callback<Array\<AppAccountInfo>> | 否    | 取消订阅帐号事件的回调。 |
+| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 取消订阅帐号事件的回调。 |
 
 **示例：**
 
@@ -990,7 +990,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 | owner    | string                | 是    | 要鉴权的应用帐号所有者包名。  |
 | authType | string                | 是    | 鉴权类型。           |
 | options  | {[key: string]: any}  | 是    | 鉴权所需的可选项。       |
-| callback | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。 |
 
 **示例：**
 
@@ -1446,7 +1446,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | sessionId | string                                   | 是    | 鉴权会话的标识。 |
-| callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | 是    | 查询结果的回调。 |
+| callback  | AsyncCallback&lt;[AuthenticatorCallback](#authenticatorcallback8)&gt; | 是    | 查询结果的回调。 |
 
 **示例：**
 
@@ -1487,7 +1487,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 | 类型                                   | 说明                    |
 | ------------------------------------ | --------------------- |
-| Promise&lt;AuthenticatorCallback&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;[AuthenticatorCallback](#authenticatorcallback8)&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -1522,7 +1522,7 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 | 参数名      | 类型                                     | 必填   | 说明          |
 | -------- | -------------------------------------- | ---- | ----------- |
 | owner    | string                                 | 是    | 应用帐号的所有者包名。 |
-| callback | AsyncCallback&lt;AuthenticatorInfo&gt; | 是    | 查询结果的回调。    |
+| callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | 是    | 查询结果的回调。    |
 
 **示例：**
 
@@ -1552,7 +1552,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 类型                               | 说明                    |
 | -------------------------------- | --------------------- |
-| Promise&lt;AuthenticatorInfo&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -1695,7 +1695,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 | -------------- | ------------------------- | ----- | --------------- |
 | name           | string                    | 是    | 应用帐户的名称。  |
 | owner          | string                    | 是    | 应用帐户的所有者。|
-| labels         | Array&lt;string&lt;       | 是    | 标签数组。       |
+| labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
 | callback       | AsyncCallback&lt;void&gt; | 是    | 检查结果的回调。  |
 
 **示例：**
@@ -1722,7 +1722,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 | -------------- | ------------------------- | ----- | --------------- |
 | name           | string                    | 是    | 应用帐户的名称。  |
 | owner          | string                    | 是    | 应用帐户的所有者。|
-| labels         | Array&lt;string&lt;       | 是    | 标签数组。       |
+| labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
 
 **参数：**
 
@@ -1754,7 +1754,7 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 | 参数名         | 类型                                 | 必填  | 说明             |
 | -------------- | ----------------------------------- | ----- | --------------- |
 | options        | SelectAccountsOptions               | 是    | 选择帐户的选项。  |
-| callback       | AsyncCallback&lt;AppAccountInfo&gt; | 是    | 选择结果的回调。  |
+| callback       | AsyncCallback&lt;[AppAccountInfo](#appaccountinfo)&gt; | 是    | 选择结果的回调。  |
 
 **示例：**
 
@@ -1781,13 +1781,13 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;void&gt;
 
 | 参数名         | 类型                       | 必填  | 说明             |
 | -------------- | ------------------------- | ----- | --------------- |
-| options        | SelectAccountsOptions     | 是    | 选择帐户的选项。  |
+| options        | [SelectAccountsOptions](#selectaccountsoptions9)     | 是    | 选择帐户的选项。  |
 
 **参数：**
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;AppAccountInfo&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -1817,7 +1817,7 @@ verifyCredential(name: string, owner: string, callback: AuthenticatorCallback): 
 | -------- | --------------------- | ----- | ----------------------- |
 | name     | string                | 是    | 应用帐户的名称。          |
 | owner    | string                | 是    | 应用帐户的所有者。        |
-| callback | AuthenticatorCallback | 是    | 认证器回调，返回验证结果。 |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，返回验证结果。 |
 
 **示例：**
 
@@ -1848,8 +1848,8 @@ verifyCredential(name: string, owner: string, options, callback: AuthenticatorCa
 | -------- | ----------------------- | ----- | ----------------------- |
 | name     | string                  | 是    | 应用帐户的名称。          |
 | owner    | string                  | 是    | 应用帐户的所有者。        |
-| options  | VerifyCredentialOptions | 是    | 验证凭据的选项。          |
-| callback | AuthenticatorCallback   | 是    | 认证器回调，返回验证结果。 |
+| options  | [VerifyCredentialOptions](#verifycredentialoptions9) | 是    | 验证凭据的选项。          |
+| callback | [AuthenticatorCallback](#authenticatorcallback8)   | 是    | 认证器回调，返回验证结果。 |
 
 **示例：**
 
@@ -1883,8 +1883,8 @@ setAuthenticatorProperties(owner: string, callback: AuthenticatorCallback): void
 | 参数名    | 类型                  | 必填  | 说明                     |
 | -------- | --------------------- | ----- | ----------------------- |
 | owner    | string                | 是    | 认证器的所有者。          |
-| options  | SetPropertiesOptions  | 是    | 设置属性的选项。          |
-| callback | AuthenticatorCallback | 是    | 认证器回调，返回设置结果。 |
+| options  | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的选项。          |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，返回设置结果。 |
 
 **示例：**
 
@@ -1914,8 +1914,8 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 | 参数名    | 类型                  | 必填  | 说明                     |
 | -------- | --------------------- | ----- | ----------------------- |
 | owner    | string                | 是    | 认证器的所有者。          |
-| options  | SetPropertiesOptions  | 是    | 设置属性的选项。          |
-| callback | AuthenticatorCallback | 是    | 认证器回调，返回设置结果。 |
+| options  | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的选项。          |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，返回设置结果。 |
 
 **示例：**
 
@@ -1977,7 +1977,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 | 参数名          | 类型                         | 必填  | 说明                |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;AppAccountInfo&gt; | 否    | 允许的帐号数组。      |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appAccountinfo)&gt; | 否    | 允许的帐号数组。      |
 | allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组。 |
 | requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识。    |
 
@@ -2160,7 +2160,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权请求方的包名。       |
 | options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
-| callback         | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
+| callback         | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。 |
 
 ### authenticate<sup>8+</sup>
 
@@ -2177,7 +2177,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权请求方的包名。       |
 | options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
-| callback         | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
+| callback         | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。 |
 
 ### verifyCredential<sup>9+</sup>
 
@@ -2188,11 +2188,11 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: Authe
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 接口名     | 类型                     | 必填   | 说明                        |
-| --------- | ------------------------ | -- -- | --------------------------- |
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | 是    | 应用帐号的名称。              |
-| options   | VerifyCredentialOptions  | 是    | 验证凭据的可选项。            |
-| callback  | AuthenticatorCallback    | 是    | 认证器回调，用于返回验证结果。 |
+| options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | 是    | 验证凭据的可选项。            |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8)    | 是    | 认证器回调，用于返回验证结果。 |
 
 ### setProperties<sup>9+</sup>
 
@@ -2203,10 +2203,10 @@ setProperties(options: SetPropertiesOptions, callback: AuthenticatorCallback): v
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 接口名     | 类型                  | 必填   | 说明                        |
-| --------- | --------------------- | -- -- | --------------------------- |
-| options   | SetPropertiesOptions  | 是    | 设置属性的可选项。            |
-| callback  | AuthenticatorCallback | 是    | 认证器回调，用于返回设置结果。 |
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
+| options   | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的可选项。            |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回设置结果。 |
 
 ### checkAccountLabels<sup>9+</sup>
 
@@ -2217,11 +2217,11 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: Authenti
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 接口名     | 类型                  | 必填   | 说明                        |
-| --------- | --------------------- | -- -- | --------------------------- |
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | 是    | 应用帐号的名称。              |
-| labels    | Array<string>         | 是    | 标签数组。                   |
-| callback  | AuthenticatorCallback | 是    | 认证器回调，用于返回检查结果。 |
+| labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回检查结果。 |
 
 ### isAccountRemovable<sup>9+</sup>
 
@@ -2232,10 +2232,10 @@ isAccountRemovable(name: string, callback: AuthenticatorCallback): void;
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
-| 接口名     | 类型                  | 必填   | 说明                        |
-| --------- | --------------------- | -- -- | --------------------------- |
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | 是    | 应用帐号的名称。              |
-| callback  | AuthenticatorCallback | 是    | 认证器回调，用于返回判断结果。 |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回判断结果。 |
 
 ### getRemoteObject<sup>9+</sup>
 
@@ -2277,7 +2277,7 @@ getRemoteObject(): rpc.RemoteObject;
           callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
       }
 
-      checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthenticatorCallback) {
+      checkAccountLabels(name: string, labels: Array<string>, callback: AuthenticatorCallback) {
           var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
@@ -2287,10 +2287,11 @@ getRemoteObject(): rpc.RemoteObject;
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
-
+  var authenticator = null;
   export default {
       onConnect(want) {
-          return new MyAuthenticator();
+          authenticator = new MyAuthenticator();
+          return authenticator.getRemoteObject();
       }
   }
   ```
