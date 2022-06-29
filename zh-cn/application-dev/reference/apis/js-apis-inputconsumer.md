@@ -31,7 +31,7 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听输入事件类型，只支持“key”。 |
 | keyOptions | [keyOptions](#keyOptions) | 是 | 组合键选项，用来指定组合键输入时应该符合的条件。 |
-| callback | Callback&lt;KeyOptions&gt; | 是 | 回调函数。当满足条件的按键输入产生时，回调到此函数，以传入的KeyOptions为入参。 |
+| callback | Callback&lt;[keyOptions](#keyOptions)&gt; | 是 | 回调函数。当满足条件的按键输入产生时，回调到此函数，以传入的KeyOptions为入参。 |
 
 **示例：** 
 
@@ -61,7 +61,7 @@ off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听输入事件类型，只支持“key”。 |
 | keyOptions | [keyOptions](#keyOptions) | 是 | 开始监听时传入的keyOptions。 |
-| callback | Callback&lt;KeyOptions&gt; | 是 | 开始监听时与KeyOption一同传入的回调函数&nbsp;。 |
+| callback | Callback&lt;[keyOptions](#keyOptions)&gt; | 是 | 开始监听时与KeyOption一同传入的回调函数&nbsp;。 |
 
 **示例：** 
 

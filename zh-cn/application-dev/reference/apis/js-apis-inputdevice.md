@@ -127,12 +127,6 @@ inputDevice.getDevice(1).then((inputDevice)=>{
 | name                 | string                                 | 输入设备的名字。                                 |
 | sources              | Array&lt;[SourceType](#sourcetype)&gt; | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
 | axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | 输入设备的轴信息。                                |
-| bus<sup>9+</sup>     | number                                 | 输入设备的总线类型。                               |
-| product<sup>9+</sup> | number                                 | 输入设备的产品信息。                               |
-| vendor<sup>9+</sup>  | number                                 | 输入设备的厂商信息。                               |
-| version<sup>9+</sup> | number                                 | 输入设备的版本信息。                               |
-| phys<sup>9+</sup>    | string                                 | 输入设备的物理地址。                               |
-| uniq<sup>9+</sup>    | string                                 | 输入设备的唯一标识。                               |
 
 ## AxisType<sup>9+</sup>
 
@@ -150,7 +144,6 @@ inputDevice.getDevice(1).then((inputDevice)=>{
 | axis   | [AxisType](#axistype)     | 轴的类型     |
 | max    | number                    | 轴上报的最大值  |
 | min    | number                    | 轴上报的最小值  |
-
 
 
 ## SourceType
