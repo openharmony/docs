@@ -1,7 +1,9 @@
 # 边框设置
 
 >  **说明：**
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br>
+>
+> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 > 从API Version 9开始，父节点的border显示在子节点内容之上。
 
 
@@ -18,11 +20,19 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| border | {<br/>width?:&nbsp;Length,<br/>color?:&nbsp;Color,<br/>radius?:&nbsp;Length,<br/>style?:&nbsp;BorderStyle<br/>} | - | 统一边框样式设置接口。 |
+| border | BorderOptions | - | 统一边框样式设置接口。 |
 | borderStyle | BorderStyle | &nbsp;BorderStyle.Solid | 设置元素的边框样式。 |
 | borderWidth | Length | 0 | 设置元素的边框宽度。 |
 | borderColor | Color | - | 设置元素的边框颜色。 |
 | borderRadius | Length | 0 | 设置元素的边框圆角半径。 |
+
+- BorderOptions属性说明
+  | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | width | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 边框宽度。 |
+  | color | [ResourceColor](../../ui/ts-types.md##resourcecolor类型8) | 'Black' | 否 | 边框颜色。 |
+  | radius | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 边框角度。 |
+  | style | BorderStyle | BorderStyle.Solid | 否 | 边框样式。 |
 
 
 - BorderStyle枚举说明
