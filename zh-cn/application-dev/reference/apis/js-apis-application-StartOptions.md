@@ -15,7 +15,7 @@ import StartOptions from '@ohos.application.StartOptions';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 可读 | 可写 | 参数类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- | -------- |

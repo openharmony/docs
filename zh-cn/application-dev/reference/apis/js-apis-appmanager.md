@@ -163,6 +163,8 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 获取有关运行进程的信息。
 
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -187,6 +189,8 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 获取有关运行进程的信息。
 
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -210,7 +214,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid<sup>8+</sup>     | 只读     | number               | 否   | 进程ID。                                |
-| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| processName<sup>8+</sup>  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames<sup>8+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
+| pid<sup>9+</sup>     | 只读     | number               | 否   | 进程ID。                                |
+| uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
+| processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
+| bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |

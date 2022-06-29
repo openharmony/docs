@@ -27,10 +27,11 @@ onPrepare(): void
 **示例：**
 
 ```js
-export default class UserTestRunner extends TestRunner {
+export default class UserTestRunner implements TestRunner {
     onPrepare() {
         console.log("Trigger onPrepare")
     }
+onRun(){}
 };
 ```
 
@@ -47,9 +48,10 @@ onRun(): void
 **示例：**
 
 ```js
-export default class UserTestRunner extends TestRunner {
-    onRun() {
-        console.log("Trigger onRun")
+export default class UserTestRunner implements TestRunner {
+    onPrepare() {
+       console.log("Trigger onRun")
     }
+onRun(){}
 };
 ```

@@ -24,9 +24,11 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 删除指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务不再保留有关该卡片的信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -52,9 +54,11 @@ deleteForm(formId: string): Promise&lt;void&gt;;
 
 删除指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务不再保留有关该卡片的信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -85,9 +89,11 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 释放指定的卡片。调用此方法后，应用程序将无法使用该卡片，但卡片管理器服务仍然保留有关该卡片的缓存信息和存储信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -113,9 +119,11 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 释放指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务保留有关该卡片的存储信息，可以选择是否保留缓存信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -142,9 +150,11 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;;
 
 释放指定的卡片。调用此方法后，应用程序将无法使用该卡片，卡片管理器服务保留有关该卡片的存储信息，可以选择是否保留缓存信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -176,9 +186,11 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 请求卡片更新。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -204,9 +216,11 @@ requestForm(formId: string): Promise&lt;void&gt;;
 
 请求卡片更新。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -237,9 +251,11 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 将指定的临时卡片转换为普通卡片。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -265,9 +281,11 @@ castTempForm(formId: string): Promise&lt;void&gt;;
 
 将指定的临时卡片转换为普通卡片。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -298,9 +316,11 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 向卡片框架发送通知以使指定的卡片可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -326,9 +346,11 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -359,9 +381,11 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 向卡片框架发送通知以使指定的卡片不可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -387,9 +411,11 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片不可见。该方法调用成功后，会调用onVisibilityChange通知卡片提供方。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -420,9 +446,11 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 向卡片框架发送通知以使指定的卡片可以更新。该方法调用成功后，卡片刷新状态设置为使能，卡片可以接收来自卡片提供方的更新。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -448,9 +476,11 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片可以更新。该方法调用成功后，卡片刷新状态设置为使能，卡片可以接收来自卡片提供方的更新。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -481,9 +511,11 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 向卡片框架发送通知以使指定的卡片不可以更新。该方法调用成功后，卡片刷新状态设置为去使能，卡片不可以接收来自卡片提供方的更新。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -509,9 +541,11 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 向卡片框架发送通知以使指定的卡片不可以更新。该方法调用成功后，卡片刷新状态设置为去使能，卡片不可以接收来自卡片提供方的更新。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -542,9 +576,9 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void;
 
 检查系统是否准备好。
 
-**系统能力：**
+**系统能力**：SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -569,9 +603,9 @@ isSystemReady(): Promise&lt;void&gt;;
 
 检查系统是否准备好。
 
-**系统能力：**
+**系统能力**：SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -596,9 +630,11 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 获取设备上所有应用提供的卡片信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -625,9 +661,11 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
 
 获取设备上所有应用提供的卡片信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -652,9 +690,11 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 获取设备上指定应用程序提供的卡片信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -682,9 +722,11 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 获取设备上指定应用程序提供的卡片信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -713,9 +755,11 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 获取设备上指定应用程序提供的卡片信息。
 
-**系统能力：**
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -746,9 +790,11 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 根据列表删除应用程序的无效卡片。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -776,9 +822,11 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
 
 根据列表删除应用程序的无效卡片。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -809,9 +857,11 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 获取卡片状态
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -848,6 +898,12 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;;
 
 获取卡片状态。
 
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -859,10 +915,6 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;;
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
 | Promise&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | Promise实例，用于返回卡片状态 |
-
-**系统能力：**
-
-SystemCapability.Ability.Form
 
 **示例：**
 
@@ -890,9 +942,9 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
 订阅卡片卸载事件。
 
-**系统能力：**
+**系统能力**：SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -916,9 +968,9 @@ off(type: "formUninstall", callback?: Callback&lt;string&gt;): void;
 
 取消订阅卡片卸载事件。
 
-**系统能力：**
+**系统能力**：SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -942,9 +994,11 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 通知卡片是否可见。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -971,9 +1025,11 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 通知卡片是否可见。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1005,9 +1061,11 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 通知卡片是否启用更新状态。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1034,9 +1092,11 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 通知卡片是否启用更新状态。
 
-**系统能力：**
+**需要权限**：ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
