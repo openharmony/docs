@@ -1,4 +1,4 @@
-# Creating a Source Code Project
+# Importing a Source Code Project
 
 
 After [setting up the Windows+Ubuntu hybrid development environment](../quick-start/quickstart-ide-standard-env-setup-win-ubuntu.md) and [obtaining source code](../quick-start/quickstart-ide-standard-sourcecode-acquire.md), perform the following steps to create a source code project in Windows:

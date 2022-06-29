@@ -11,13 +11,13 @@
 
           - [Obtaining Source Code](quick-start/quickstart-ide-lite-sourcecode-acquire.md)
 
-      - [Creating a Source Code Project](quick-start/quickstart-ide-lite-create-project.md)
+      - [Importing a Source Code Project](quick-start/quickstart-ide-lite-create-project.md)
 
       - Running a Hello World Program
 
           - Hi3861 Development Board
 
-              - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3861-application-framework.md)
+              - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3861-helloworld.md)
 
               - [Building](quick-start/quickstart-ide-lite-steps-hi3861-building.md)
 
@@ -31,7 +31,7 @@
 
           - Hi3516 Development Board
 
-              - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3516-application-framework.md)
+              - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3516-helloworld.md)
 
               - [Building](quick-start/quickstart-ide-lite-steps-hi3516-building.md)
 
@@ -57,7 +57,7 @@
 
               - [Setting Up the Hi3861 Development Board Environment](quick-start/quickstart-lite-steps-hi3861-setting.md)
 
-              - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3861-application-framework.md)
+              - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3861-helloworld.md)
 
               - [Building](quick-start/quickstart-lite-steps-hi3861-building.md)
 
@@ -73,7 +73,7 @@
 
               - [Setting Up the Hi3516 Development Board Environment](quick-start/quickstart-lite-steps-hi3516-setting.md)
 
-              - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3516-application-framework.md)
+              - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3516-helloworld.md)
 
               - [Building](quick-start/quickstart-lite-steps-hi3516-building.md)
 
@@ -109,7 +109,7 @@
 
           - [Obtaining Source Code](quick-start/quickstart-ide-standard-sourcecode-acquire.md)
 
-      - [Creating a Source Code Project](quick-start/quickstart-ide-standard-create-project.md)
+      - [Importing a Source Code Project](quick-start/quickstart-ide-standard-create-project.md)
 
       - Running a Hello World Program
 
@@ -723,28 +723,24 @@
 
     - Peripheral Driver Usage
 
-      - [LCD](driver/driver-peripherals-lcd-des.md)
-
-      - [Touchscreen](driver/driver-peripherals-touch-des.md)
-
-      - [Sensor](driver/driver-peripherals-sensor-des.md)
-
-      - [WLAN](driver/driver-peripherals-external-des.md)
-
       - [Audio](driver/driver-peripherals-audio-des.md)
-
-      - [USB](driver/driver-peripherals-usb-des.md)
-
       - [Camera](driver/driver-peripherals-camera-des.md)
-
-      - [Vibrator](driver/driver-peripherals-vibrator-des.md)
-
+      - [Face_auth](driver/driver-peripherals-face_auth-des.md)
+      - [LCD](driver/driver-peripherals-lcd-des.md)
       - [Light](driver/driver-peripherals-light-des.md)
+      - [Pin_auth](driver/driver-peripherals-pinauth-des.md)
+      - [Sensor](driver/driver-peripherals-sensor-des.md)
+      - [Touchscreen](driver/driver-peripherals-touch-des.md)
+      - [USB](driver/driver-peripherals-usb-des.md)
+      - [User_auth](driver/driver-peripherals-user-auth-des.md)
+      - [Vibrator](driver/driver-peripherals-vibrator-des.md)
+      - [WLAN](driver/driver-peripherals-external-des.md)
   - Compilation and Building
     - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
     - [Building the Standard System](subsystems/subsys-build-standard-large.md)
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
+    - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   - Graphics
     - [Graphics Overview](subsystems/subsys-graphics-overview.md)
