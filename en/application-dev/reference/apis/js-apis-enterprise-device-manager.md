@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager';
 ```
 
@@ -36,7 +36,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -50,7 +50,7 @@ enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDevice
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -84,7 +84,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -95,7 +95,7 @@ let enterpriseInfo = {
 }
 enterpriseDeviceManager.activateAdmin(wantTemp, enterpriseInfo, enterpriseDeviceManager.AdminType.ADMIN_TYPE_NORMAL)
 .then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -124,17 +124,17 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
-	bundleName: elementName.bundleName,
-	abilityName: elementName.abilityName,
+	bundleName: "bundleName",
+	abilityName: "abilityName",
 };
 enterpriseDeviceManager.deactivateAdmin(wantTemp, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -168,13 +168,13 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
 };
 enterpriseDeviceManager.deactivateAdmin(wantTemp).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -199,14 +199,14 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.deactivateSuperAdmin(bundleName, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -234,10 +234,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.deactivateSuperAdmin(bundleName).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -262,17 +262,17 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
-	bundleName: elementName.bundleName,
-	abilityName: elementName.abilityName,
+	bundleName: "bundleName",
+	abilityName: "abilityName",
 };
 enterpriseDeviceManager.isAdminAppActive(wantTemp, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -302,13 +302,13 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
 };
 enterpriseDeviceManager.isAdminAppActive(wantTemp).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -333,14 +333,14 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.isSuperAdmin(bundleName, (error, result) => {
     if (error != null) {
         console.log("error occurs" + error);
         return; 
     }
-    console.log(result);
+    console.log("result is " + result);
 });
 ```
 
@@ -370,10 +370,10 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let bundleName = "com.example.myapplication";
 enterpriseDeviceManager.isSuperAdmin(bundleName).then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -397,7 +397,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
@@ -436,7 +436,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "bundleName",
 	abilityName: "abilityName",
@@ -472,7 +472,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -483,7 +483,7 @@ let enterpriseInfo = {
 }
 enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 .then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -515,7 +515,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -526,7 +526,7 @@ let enterpriseInfo = {
 }
 enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 .then((result) => {
-	console.log(result);
+	console.log("result is " + result);
 }).catch(error => {
 	console.log("error occurs" + error);
 });
@@ -551,7 +551,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
@@ -591,7 +591,7 @@ SystemCapability.Customation.EnterpriseDeviceManager
 
 **Example**
 
-```
+```js
 let wantTemp = {
 	bundleName: "com.example.myapplication",
 	abilityName: "com.example.myapplication.MainAbility",
