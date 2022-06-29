@@ -91,3 +91,109 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, (err, 
  });
 ```
 
+## defaultAppMgr.getDefaultApplication
+
+getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
+
+以异步方法获取默认应用，使用Promise形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型     | 必填   | 描述                                      |
+| ----------- | ------ | ---- | --------------------------------------- |
+| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                           |
+| type  | userId | 否    | 用户id。                           |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<BundleInfo> | Promise形式返回默认应用信息。 |
+
+**示例：**
+
+```js
+defaultAppMgr.getDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
+.then((data) => {
+    console.info('Operation successful. bundleInfo : ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+});
+```
+
+## defaultAppMgr.setDefaultApplication
+
+setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
+
+以异步方法设置应用，使用Promise形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型     | 必填   | 描述                                      |
+| ----------- | ------ | ---- | --------------------------------------- |
+| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                           |
+| elementName  | ElementName | 是    | 组件信息。                           |
+| type  | userId | 否    | 用户id。                           |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回是否设置成功。 |
+
+**示例：**
+
+```js
+defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER，{
+            bundleName: "com.test.defaultApp",
+            moduleName: "module01",
+            abilityName: "IMAGE-USER"
+          })
+.then((data) => {
+    console.info('Operation successful.');
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+});
+```
+
+## defaultAppMgr.resetDefaultApplication
+
+resetDefaultApplication(type: string, userId?: number): Promise\<void>
+
+以异步方法重置应用，使用Promise形式返回结果。
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称          | 类型     | 必填   | 描述                                      |
+| ----------- | ------ | ---- | --------------------------------------- |
+| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                           |
+| type  | userId | 否    | 用户id。                           |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回是否重置成功。 |
+
+**示例：**
+
+```js
+defaultAppMgr.resetDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
+.then((data) => {
+    console.info('Operation successful.');
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+});
+```
