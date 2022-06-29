@@ -98,9 +98,9 @@ import window from '@ohos.window';
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
-## Orientation
+## Orientation<sup>9+</sup>
 
-显示方向属性枚举。
+窗口显示方向类型枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -112,11 +112,11 @@ import window from '@ohos.window';
 | PORTAIT_INVERTED                      | 3    | 表示反向竖屏显示模式。   |
 | LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。 |
 | AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。 |
-| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖屏旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横屏旋转模式。 |
+| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
 | AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
-| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖屏旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横屏旋转模式。 |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
 
 ## SystemBarRegionTint<sup>8+</sup>
@@ -1492,11 +1492,11 @@ promise.then((data)=> {
 });
 ```
 
-### setPreferredOrientation
+### setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的显示方向策略属性，使用callback异步回调。
+设置窗口的显示方向属性，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1504,13 +1504,14 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| Orientation         | [Orientation](#orientation)                 | 是   | 显示方向的属性。         |
+| Orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。         |
 | callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
 
 **示例：** 
 
 ```js
-windowClass.setPreferredOrientation(Orientation::UNSPECIFIED, (err, data) => {
+var orientation = window.Orientation.AUTO_ROTATION;
+windowClass.setPreferredOrientation(orientation, (err, data) => {
     if (err.code) {
         console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
         return;
@@ -1519,20 +1520,19 @@ windowClass.setPreferredOrientation(Orientation::UNSPECIFIED, (err, data) => {
 });
 ```
 
-
-### setPreferredOrientation
+### setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-设置窗口的显示方向策略属性，使用Promise异步回调。
-7
+设置窗口的显示方向属性，使用Promise异步回调。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| Orientation         | [Orientation](#orientation)                 | 是   | 显示方向的属性。       |
+| Orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。       |
 
 **返回值：** 
 
@@ -1543,7 +1543,8 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 **示例：** 
 
 ```js
-let promise = windowClass.setPreferredOrientation(Orientation);
+var orientation = window.Orientation.AUTO_ROTATION;
+let promise = windowClass.setPreferredOrientation(orientation);
 promise.then((data)=> {
     console.info('Succeeded in setting the window orientation. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
