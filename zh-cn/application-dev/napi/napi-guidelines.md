@@ -1,25 +1,25 @@
 # Native API在应用工程中的使用指导
 
-OpenHarmony的应用必须用js来桥接native。需要使用ace_napi仓中提供的napi接口来处理js交互。napi提供的接口名与三方Node.js一致，目前支持部分接口，符号表见仓下的该文件`libnapi.ndk.json`。
+OpenHarmony的应用必须用js来桥接native。需要使用[ace_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓中提供的napi接口来处理js交互。napi提供的接口名与三方Node.js一致，目前支持部分接口，符号表见仓下的该文件`libnapi.ndk.json`。
 
-## 开发流程：
+## 开发流程
 
 IDE中会包含使用Native API的默认工程，使用`File`->`New`->`Create Project`创建`Native C++`模板工程。创建后在`main`目录下会包含`cpp`目录，可以使用ace_napi仓下提供的napi接口进行开发。
 
 js侧通过`import`引入native侧包含处理js逻辑的so，如：`import hello from 'libhello.so'`，意为使用libhello.so的能力，native侧通过napi接口创建的js对象会给到应用js侧的`hello`对象。
 
-## 开发建议：
+## 开发建议
 
-### 1、注册建议
+### 1. 注册建议
 
 * nm_register_func对应的函数需要加上static，防止与其他so里的符号冲突。
 * 模块注册的入口，即使用\_\_attribute\_\_((constructor))修饰的函数的函数名需要确保不与其他模块重复。
-### 2、so命名规则
+### 2. so命名规则
 
 * 每个模块对应一个so
 * 如模块名为`hello`，则so的名字为`libhello.so`，`napi_module`中`nm_modname`字段应为`hello`，大小写与模块名保持一致，应用使用时写作：`import hello from 'libhello.so'`
 
-### 3、js对象线程限制
+### 3. js对象线程限制
 
 ark引擎会对js对象线程使用进行保护，不正确使用会引起应用crash。
 
@@ -46,7 +46,7 @@ napi_status napi_create_async_work(napi_env env,
 
 
 
-## 示例一，storage 模块——同步异步接口封装
+## 示例一 storage 模块——同步异步接口封装
 
 ### 模块简介
 
@@ -75,7 +75,7 @@ export default storage;
 
 ### 具体实现
 
-完整代码参见仓下路径：`sample/native_module_storage/`
+完整代码参见仓下路径：[OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓库`sample/native_module_storage/`
 
 #### 模块注册
 
@@ -288,7 +288,7 @@ export default {
 
 
 
-## 示例二，NetServer 模块——native与js对象绑定
+## 示例二 NetServer 模块——native与js对象绑定
 
 ### 模块简介
 
@@ -308,7 +308,7 @@ export class NetServer {
 
 ### 具体实现
 
-完整代码参见：`sample/native_module_netserver/`
+完整代码参见：[OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓库`sample/native_module_netserver/`
 
 #### 模块注册
 
@@ -487,7 +487,7 @@ export default {
 
 
 
-## 示例三，在非JS线程中回调JS接口
+## 示例三 在非JS线程中回调JS接口
 
 ### 模块简介
 
@@ -495,7 +495,7 @@ export default {
 
 ### 具体实现
 
-完整代码参见：`sample/native_module_callback/`
+完整代码参见：[OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master)仓库`sample/native_module_callback/`
 
 #### 模块注册
 
@@ -636,4 +636,3 @@ export default {
   }
 }
 ```
-
