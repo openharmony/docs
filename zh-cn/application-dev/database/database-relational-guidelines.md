@@ -222,16 +222,16 @@
 
    示例代码如下：
 
-   ```js
-   import data_rdb from '@ohos.data.rdb'
-   
-   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-   const STORE_CONFIG = {name: "rdbstore.db",}
-   data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-       rdbStore.executeSql(CREATE_TABLE_TEST)
-       console.info('create table done.')
-   })
-   ```
+    ```js
+    import data_rdb from '@ohos.data.rdb'
+
+    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+    const STORE_CONFIG = {name: "rdbstore.db",}
+    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+        rdbStore.executeSql(CREATE_TABLE_TEST)
+        console.info('create table done.')
+    })
+    ```
 
 2. 插入数据。
 
@@ -241,11 +241,11 @@
 
    示例代码如下：
 
-   ```js
-   var u8 = new Uint8Array([1, 2, 3])
-   const valueBucket = {"name": "Tom", "age": 18, "salary": 100.5, "blobType": u8,}
-   let insertPromise = rdbStore.insert("test", valueBucket)
-   ```
+    ```js
+    var u8 = new Uint8Array([1, 2, 3])
+    const valueBucket = {"name": "Tom", "age": 18, "salary": 100.5, "blobType": u8,}
+    let insertPromise = rdbStore.insert("test", valueBucket)
+    ```
 
 3. 查询数据。
 
@@ -257,19 +257,19 @@
 
    示例代码如下：
 
-   ```js
-   let predicates = new data_rdb.RdbPredicates("test");
-   predicates.equalTo("name", "Tom")
-   let promisequery = rdbStore.query(predicates)
-       promisequery.then((resultSet) => {
-       resultSet.goToFirstRow()
-       const id = resultSet.getLong(resultSet.getColumnIndex("id"))
-       const name = resultSet.getString(resultSet.getColumnIndex("name"))
-       const age = resultSet.getLong(resultSet.getColumnIndex("age"))
-       const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
-       const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
-       resultSet.close()
-   })
+    ```js
+    let predicates = new data_rdb.RdbPredicates("test");
+    predicates.equalTo("name", "Tom")
+    let promisequery = rdbStore.query(predicates)
+    promisequery.then((resultSet) => {
+        resultSet.goToFirstRow()
+        const id = resultSet.getLong(resultSet.getColumnIndex("id"))
+        const name = resultSet.getString(resultSet.getColumnIndex("name"))
+        const age = resultSet.getLong(resultSet.getColumnIndex("age"))
+        const salary = resultSet.getDouble(resultSet.getColumnIndex("salary"))
+        const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
+        resultSet.close()
+    })
    ```
 
 4. 设置分布式同步表。
@@ -317,7 +317,7 @@
     ```js
     let predicate = new data_rdb.RdbPredicates('test')
     predicate.inDevices(['12345678abcde'])
-    let promise = rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicate)
+    let promise = rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicate)
     promise.then((result) => {
         console.log('sync done.')
         for (let i = 0; i < result.length; i++) {
@@ -343,7 +343,7 @@
         }
     }
     try {
-        rdbStore.on('dataChange', rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+        rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
     } catch (err) {
         console.log('register observer failed')
     }
