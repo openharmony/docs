@@ -1,23 +1,20 @@
 # 性能打点
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 从API Version 8开始，该接口不再维护，推荐使用新接口[`@ohos.hiTraceMeter`](js-apis-hitracemeter.md)。
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
-```
+```js
 import bytrace from '@ohos.bytrace';
 ```
-
-
 
 ## bytrace.startTrace
 
 startTrace(name: string, taskId: number, expectedTime?: number): void
 
-标记一个预追踪耗时任务的开始，expectedTime是可选参数，标识该任务的期望耗时。
+标记一个时间片跟踪事件的开始。
 
 **系统能力：** SystemCapability.Developtools.Bytrace
 
@@ -25,26 +22,25 @@ startTrace(name: string, taskId: number, expectedTime?: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 要追踪的任务名称 |
+| name | string | 是 | 跟踪任务名称 |
 | taskId | number | 是 | 任务id |
-| expectedTime | number | 否 | 期望的耗时时间，单位：ms |
+| expectedTime | number | 否 | 期望的耗时时间（单位：ms），可选参数 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 如果有多个相同name的任务需要追踪或者对同一个任务要追踪多次，并且这些会同时被执行，则每次调用startTrace的taskId必须不一致。如果具有相同name的任务是串行执行的，则taskId可以相同。在下面bytrace.finishTrace的示例中会举例说明。
+> 如果有多个相同name的任务需要追踪或者对同一个任务要追踪多次，并且这些跟踪任务会同时被执行，则每次调用startTrace的taskId必须不一致。如果具有相同name的跟踪任务是串行执行的，则taskId可以相同。在下面bytrace.finishTrace的示例中会举例说明。
 
 **示例：**
 
-```
+```js
 bytrace.startTrace("myTestFunc", 1);
-bytrace.startTrace("myTestFunc", 1, 5); //从startTrace到finishTrace流程的耗时期望为5ms
+bytrace.startTrace("myTestFunc", 1, 5); // 从startTrace到finishTrace流程的期望耗时为5ms
 ```
-
 
 ## bytrace.finishTrace
 
 finishTrace(name: string, taskId: number): void
 
-标记一个预追踪耗时任务的结束。
+标记一个时间片跟踪事件的结束。
 
 **系统能力：** SystemCapability.Developtools.Bytrace
 
@@ -52,61 +48,60 @@ finishTrace(name: string, taskId: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 要追踪的任务名称 |
+| name | string | 是 | 跟踪任务名称 |
 | taskId | number | 是 | 任务id |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**<br>
 > finishTrace的name和taskId必须与流程开始的startTrace对应参数值一致。
 
 **示例：**
 
-```
+```js
 bytrace.finishTrace("myTestFunc", 1);
 ```
 
-```
-//追踪并行执行的同名任务
+```js
+// 跟踪并行执行的同名任务
 bytrace.startTrace("myTestFunc", 1);
-//业务流程...... 
-bytrace.startTrace("myTestFunc", 2);  //第二个追踪的任务开始，同时第一个追踪的同名任务还没结束，出现了并行执行，对应接口的taskId需要不同。
-//业务流程...... 
+// 业务流程...... 
+bytrace.startTrace("myTestFunc", 2);  // 第二个跟踪任务开始，同时第一个同名跟踪任务还没结束，出现了并行执行，对应接口的taskId需要不同
+// 业务流程...... 
 bytrace.finishTrace("myTestFunc", 1);
-//业务流程...... 
+// 业务流程...... 
 bytrace.finishTrace("myTestFunc", 2);
 ```
 
-```
-//追踪串行执行的同名任务
+```js
+// 跟踪串行执行的同名任务
 bytrace.startTrace("myTestFunc", 1);
-//业务流程...... 
-bytrace.finishTrace("myTestFunc", 1);  //第一个追踪的任务结束
-//业务流程...... 
-bytrace.startTrace("myTestFunc", 1);   //第二个追踪的同名任务开始，同名的待追踪任务串行执行。
-//业务流程...... 
+// 业务流程...... 
+bytrace.finishTrace("myTestFunc", 1);  // 第一个跟踪任务结束
+// 业务流程...... 
+bytrace.startTrace("myTestFunc", 1);   // 第二个跟踪任务开始，同名跟踪任务串行执行
+// 业务流程...... 
 bytrace.finishTrace("myTestFunc", 1);
 ```
-
 
 ## bytrace.traceByValue
 
 traceByValue(name: string, count: number): void
 
-用来标记一个预追踪的数值变量，该变量的数值会不断变化。
+标记预追踪耗时任务的数值变量，该变量的数值会不断变化。
 
 **系统能力：** SystemCapability.Developtools.Bytrace
 
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| name | string | 是 | 要追踪的数值变量名称 |
-| count | number | 是 | 变量的值 |
+| name | string | 是 | 数值变量的名称 |
+| count | number | 是 | 数值变量的值 |
 
 **示例：**
 
-```
+```js
 let traceCount = 3;
 bytrace.traceByValue("myTestCount", traceCount);
 traceCount = 4;
 bytrace.traceByValue("myTestCount", traceCount);
-//业务流程......
+// 业务流程......
 ```
