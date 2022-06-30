@@ -107,9 +107,9 @@ The  **i18n**  directory stores JSON files for various locales. A  **pages**  su
 
 JS UI framework
 
-[ace\_ace\_engine](https://gitee.com/openharmony/ace_ace_engine)
+[arkui\_ace\_engine](https://gitee.com/openharmony/arkui_ace_engine)
 
-[ace\_ace\_engine\_lite](https://gitee.com/openharmony/ace_engine_lite)
+[arkui\_ace\_engine\_lite](https://gitee.com/openharmony/arkui_ace_engine_lite)
 
 [ace\_napi](https://gitee.com/openharmony/ace_napi)
 
