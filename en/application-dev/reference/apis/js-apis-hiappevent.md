@@ -1,5 +1,7 @@
 # HiAppEvent
 
+This module provides the application event logging functions, such as writing application events to the event file and managing the event logging configuration.
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 

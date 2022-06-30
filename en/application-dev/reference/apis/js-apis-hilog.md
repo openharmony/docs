@@ -23,7 +23,7 @@ Checks whether logs are printable based on the specified service domain, log tag
 
 | Name| Type                 | Mandatory| Description                                                        |
 | ------ | --------------------- | ---- | ------------------------------------------------------------ |
-| domain | number                | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| domain | number                | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value within your application as required.|
 | tag    | string                | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
 | level  | [LogLevel](#loglevel) | Yes  | Log level.                                                  |
 
@@ -67,7 +67,7 @@ DEBUG logs are not recorded in official versions by default. They are available 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value within your application as required.|
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
 | args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -98,7 +98,7 @@ Prints INFO logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value within your application as required.|
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
 | args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -129,7 +129,7 @@ Prints WARN logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value within your application as required.|
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
 | args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -160,7 +160,7 @@ Prints ERROR logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value within your application as required.|
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
 | args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
@@ -191,7 +191,7 @@ Prints FATAL logs.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value as required.|
+| domain | number | Yes  | Service domain of logs. The value ranges from **0x0** to **0xFFFF**. You can define the value within your application as required.|
 | tag    | string | Yes  | Log tag in the string format. You are advised to use this parameter to identify a particular service behavior or the class holding the ongoing method.|
 | format | string | Yes  | Format string used to output logs in a specified format. It can contain several parameters, where the parameter type and privacy identifier are mandatory.<br>Parameters labeled **{public}** are public data and are displayed in plaintext; parameters labeled **{private}** (default value) are private data and are filtered by **<private>**.|
 | args   | any[]  | Yes  | Variable-length parameter list corresponding to the format string. The number and type of parameters must map to the identifier in the format string.|
