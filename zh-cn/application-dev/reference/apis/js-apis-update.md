@@ -18,11 +18,12 @@ import update from '@ohos.update'
 
 ## 权限列表
 
-无
+ohos.permission.UPDATE_SYSTEM
+ohos.permission.FACTORY_RESET
 
-## update.getUpdater
+## update.getOlineUpdater
 
-getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
+getOlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 获取本地升级Updater。
 
@@ -32,8 +33,7 @@ getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
 
 | 参数名         | 类型                          | 必填   | 说明   |
 | ----------- | --------------------------- | ---- | ---- |
-| upgradeFile | string                      | 是    | 升级文件 |
-| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型 |
+| upgradeInfo | UpgradeInfo                 | 是    | 升级数据 |
 
 **返回值：**
 
@@ -45,77 +45,115 @@ getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
 
 ```
 try {
-  let updater = update.getUpdater('/data/updater/updater.zip', 'OTA');
+  var upgradeInfo = {
+    upgradeApp: "com.hmos.ouc",
+    businessType: {
+      vendor: "public"
+      subType: 1;
+    }
+  }
+  let updater = update.getUpdater(upgradeInfo);
 } catch(error) {
   console.error(" Fail to get updater error: " + error);
 }
 ```
 
-## update.getUpdaterForOther
+## update.getRestorer
 
-getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+getRestorer(): Restoer
 
-获取升级对象给待升级设备。
+获取恢复出厂对象Restoer。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**参数：**
-
-| 参数名         | 类型                          | 必填   | 说明    |
-| ----------- | --------------------------- | ---- | ----- |
-| upgradeFile | string                      | 是    | 升级文件  |
-| device      | string                      | 是    | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型  |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| [Updater](#updater) | 升级对象 |
+| [Restorer](#restorer) | 恢复出厂对象 |
 
 **示例：**
 
 ```
 try {
-  let updater = update.getUpdaterForOther('/data/updater/updater.zip', '1234567890', 'OTA');
+  let restorer = update.getRestorer();
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
+  console.error(" Fail to get updater restorer: " + error);
 }
 ```
 
-## update.getUpdaterFromOther
+## update.getLocalUpdater
 
-getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateTypes): Updater
+getLocalUpdater(): LocalUpdater
 
-获取其它设备为本设备升级的Updater。
+获取本地升级的的LocalUpdater。
 
 **系统能力**：SystemCapability.Update.UpdateService
-
-**参数：**
-
-| 参数名         | 类型                          | 必填   | 说明    |
-| ----------- | --------------------------- | ---- | ----- |
-| upgradeFile | string                      | 是    | 升级文件  |
-| device      | string                      | 是    | 待升级设备 |
-| updateType  | [UpdateTypes](#updatetypes) | 是    | 升级类型  |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| [Updater](#updater) | 升级对象 |
+| [LocalUpdater](#localUpdater) | 本地升级对象 |
 
 **示例：**
 
 ```
 try {
-  let updater = update.getUpdaterFromOther('/data/updater/updater.zip', '1234567890', 'OTA');
+  let localUpdater = update.getLocalUpdater();
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
+  console.error(" Fail to get localUpdater error: " + error);
 }
 ```
 
 ## Updater
+
+### checkNewVersion
+
+checkNewVersion(callback: AsyncCallback\<CheckResult>): void
+
+检查新版本，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback\<[CheckResult](#checkResult)> | 否    | 回调返回新版本信息 |
+
+**示例：**
+
+```
+updater.checkNewVersion((err, result) => {
+  console.log("checkNewVersion success  " + result.isExsitNewVersion);
+});
+```
+
+### checkNewVersion
+
+checkNewVersion(): Promise\<CheckResult>
+
+检查新版本，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**返回值:**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[CheckResult](#checkResult)> | Promise函数返回新版本信息 |
+
+**示例:**
+
+```
+updater.checkNewVersion().then(value => {
+  console.log("checkNewVersion success  " + result.isExsitNewVersion);
+}).catch(err => {
+  console.log("checkNewVersion promise error: " + err.errorNum);
+});
+```
 
 ###  getNewVersionInfo
 
@@ -135,10 +173,8 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 ```
 updater.getNewVersionInfo((err, info) => {
-  console.log("getNewVersionInfo success  " + info.status);
-  console.log(`info versionName = ` + info.checkResults[0].versionName);
-  console.log(`info versionCode = ` + info.checkResults[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResults[0].verifyInfo);
+  console.log(`info versionName = ` + info.versionComponents[0].displayVersion);
+  console.log(`info versionCode = ` + info.versionComponents[0].innerVersion);
 });
 ```
 
@@ -168,11 +204,11 @@ updater.getNewVersionInfo().then(value => {
 });
 ```
 
-### checkNewVersion
+###  getCurrentVersionInfo
 
-checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
+getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
-检查新版本，使用callback方式作为异步方法。
+获取当前版本信息，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -180,202 +216,509 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | 否    | 回调返回新版本信息 |
+| callback | AsyncCallback<[CurrentVersionInfo](#currentVersionInfo)> | 否    | 回调返回当前版本信息 |
 
 **示例：**
 
 ```
-updater.checkNewVersion((err, info) => {
-  console.log("checkNewVersion success  " + info.status);
-  console.log(`info versionName = ` + info.checkResults[0].versionName);
-  console.log(`info versionCode = ` + info.checkResults[0].versionCode);
-  console.log(`info verifyInfo = ` + info.checkResults[0].verifyInfo);
+updater.getNewVersionInfo((err, info) => {
+  console.log(`info osVersion = ` + value.osVersion);
+  console.log(`info deviceName = ` + value.deviceName);
+  console.log(`info displayVersion = ` + value.versionComponents[0].displayVersion);
 });
 ```
 
-### checkNewVersion
+### getCurrentVersionInfo
 
-checkNewVersion(): Promise\<NewVersionInfo>
+getNewVersionInfo(): Promise\<CurrentVersionInfo>
 
-检查新版本，使用promise方式作为异步方法。
+获取当前版本信息，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
-**返回值:**
+**返回值：**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise函数返回新版本信息 |
+| Promise\<[CurrentVersionInfo](#currentVersionInfo)> | Promise，用于异步获取结果 |
 
-**示例:**
+**示例：**
 
 ```
-updater.checkNewVersion().then(value => {
-  console.log(`info versionName = ` + value.checkResults[0].versionName);
-  console.log(`info versionCode = ` + value.checkResults[0].versionCode);
-  console.log(`info verifyInfo = ` + value.checkResults[0].verifyInfo);
+updater.getCurrentVersionInfo().then(value => {
+  console.log(`info osVersion = ` + value.osVersion);
+  console.log(`info deviceName = ` + value.deviceName);
+  console.log(`info displayVersion = ` + value.versionComponents[0].displayVersion);
 }).catch(err => {
-  console.log("checkNewVersion promise error: " + err.code);
+  console.log("getNewVersionInfo promise error: " + err.errorNum);
 });
 ```
 
-### verifyUpdatePackage
+###  getTaskInfo
 
-verifyUpdatePackage(upgradeFile: string, certsFile: string): void
+getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
-升级前检查升级包是否有效。
+获取当前任务信息，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
 **参数：**
 
-| 参数名         | 类型     | 必填   | 说明        |
-| ----------- | ------ | ---- | --------- |
-| upgradeFile | string | 是    | 待校验的升级包路径 |
-| certsFile   | string | 是    | 证书路径      |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback<[TaskInfo](#taskInfo)> | 否    | 回调返回当前任务信息 |
 
 **示例：**
 
 ```
-updater.on("verifyProgress", callback => {
-  console.info('on verifyProgress ' + callback.percent);
+updater.getTaskInfo((err, info) => {
+  console.log(`getTaskInfo isexistTask= ` + info.existTask);
 });
-update.verifyUpdatePackage("XXX", "XXX");
 ```
 
-### rebootAndCleanUserData<sup>8+</sup>
+### getTaskInfo
 
-rebootAndCleanUserData(): Promise\<number>
+getTaskInfo(): Promise\<TaskInfo>
 
-重启设备并清除用户分区数据。
+获取当前版本信息，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
 **返回值：**
 
-| 类型               | 说明                  |
-| ---------------- | ------------------- |
-| Promise\<number> | Promise示例，用于异步获取结果。 |
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[TaskInfo](#taskInfo)> | Promise，用于异步获取结果 |
 
 **示例：**
 
 ```
-updater.rebootAndCleanUserData().then(result => {
-  console.log("rebootAndCleanUserData " + result);
+updater.getTaskInfo().then(value => {
+  console.log(`getTaskInfo isexistTask= ` + info.existTask);
 }).catch(err => {
-  console.info("rebootAndCleanUserData promise error: " + err.code);
+  console.log("getNewVersionInfo promise error: " + err.errorNum);
 });
 ```
 
-### rebootAndCleanUserData<sup>8+</sup>
+###  download
 
-rebootAndCleanUserData(callback: AsyncCallback\<number>): void
+download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions, callback: AsyncCallback\<void>): void
 
-重启设备并清除用户分区数据。
+下载新版本，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
 **参数：**
 
-| 参数名      | 类型       | 必填   | 说明                     |
-| -------- | -------- | ---- | ---------------------- |
-| callback | Function | 是    | AsyncCallback\<number> |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| downloadOptions | [DownloadOptions](#downloadOptions) | 是    | 下载选项 |
+| callback | AsyncCallback<void> | 否    | 下载执行回调 |
 
 **示例：**
 
 ```
-updater.rebootAndCleanUserData((err, result) => {
-  console.log("rebootAndCleanUserData ", result)
-});
-```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
 
-### applyNewVersion
-
-applyNewVersion(): Promise\<number>
-
-重启设备后安装升级包。
-
-**系统能力**：SystemCapability.Update.UpdateService
-
-**返回值：**
-
-| 类型               | 说明                  |
-| ---------------- | ------------------- |
-| Promise\<number> | Promise示例，用于异步获取结果。 |
-
-**示例：**
-
-```
-updater.applyNewVersion().then(result => {
-    console.log("appVewVersion ", result)
-}).catch(err => {
-    console.info("applyNewVersion promise error: " + err.code);
-});
-```
-
-### applyNewVersion
-
-applyNewVersion(callback: AsyncCallback\<number>): void
-
-重启设备后安装升级包。
-
-**系统能力**：SystemCapability.Update.UpdateService
-
-**参数：**
-
-| 参数名      | 类型       | 必填   | 说明                     |
-| -------- | -------- | ---- | ---------------------- |
-| callback | Function | 是    | AsyncCallback\<number> |
-
-**示例：**
-
-```
-updater.applyNewVersion((err, result) => {
-  console.log("applyNewVersion ", result)
+// 下载选项
+var downloadOptions = {
+  allowNetwork: 7, // 允许所有网络下载
+  order: 1 // 下载
+}
+updater.download(versionDigestInfo, downloadOptions, (err) => {
+  console.log(`download error $JSON.stringify(err)`);
 });
 ```
 
 ### download
 
-download(): void
+download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions): Promise\<void>
 
-下载新版本，并监听下载进程。
+下载新版本，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| downloadOptions | [DownloadOptions](#downloadOptions) | 是    | 下载选项 |
+
+**返回值：**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[void](#void)> | Promise，用于异步获取结果 |
 
 **示例：**
 
 ```
-updater.on("downloadProgress", progress => {
-  console.log("downloadProgress on" + progress);
-  console.log(`downloadProgress status: ` + progress.status);
-  console.log(`downloadProgress percent: ` + progress.percent);
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 下载选项
+var downloadOptions = {
+  allowNetwork: 7, // 允许所有网络下载
+  order: 1 // 下载
+}
+updater.download(versionDigestInfo, downloadOptions).then(void => {
+  console.log(`download start`);
+}).catch(err => {
+  console.log(`download error $JSON.stringify(err)`);
 });
-updater.download();
+```
+
+###  resumeDownload
+
+resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions, callback: AsyncCallback\<void>): void
+
+恢复下载新版本，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumeDownloadOptions) | 是    | 恢复下载选项 |
+| callback | AsyncCallback<void> | 否    | 下载执行回调 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 恢复下载选项
+var resumeDownloadOptions = {
+  allowNetwork: 7, // 允许所有网络下载
+}
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
+  console.log(`resumeDownload error $JSON.stringify(err)`);
+});
+```
+
+### resumeDownload
+
+resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions): Promise\<void>
+
+恢复下载新版本，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumeDownloadOptions) | 是    | 恢复下载选项 |
+
+**返回值：**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 恢复下载选项
+var resumeDownloadOptions = {
+  allowNetwork: 7, // 允许所有网络下载
+}
+updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
+  console.log(`resumeDownload start`);
+}).catch(err => {
+  console.log(`resumeDownload error $JSON.stringify(err)`);
+});
+```
+
+###  pauseDownload
+
+pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions, callback: AsyncCallback\<void>): void
+
+暂停下载新版本，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| pauseDownloadOptions | [PauseDownloadOptions](#pauseDownloadOptions) | 是    | 暂停下载选项 |
+| callback | AsyncCallback<void> | 否    | 下载执行回调 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 暂停下载选项
+var pauseDownloadOptions = {
+  isAllowAutoResume: true, // 允许自动恢复下载
+}
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
+  console.log(`pauseDownload error $JSON.stringify(err)`);
+});
+```
+
+### pauseDownload
+
+pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions): Promise\<void>
+
+恢复下载新版本，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| pauseDownloadOptions | [PauseDownloadOptions](#pauseDownloadOptions) | 是    | 暂停下载选项 |
+
+**返回值：**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 暂停下载选项
+var pauseDownloadOptions = {
+  isAllowAutoResume: true, // 允许自动恢复下载
+}
+updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
+  console.log(`pauseDownload start`);
+}).catch(err => {
+  console.log(`pauseDownload error $JSON.stringify(err)`);
+});
+```
+
+###  upgrade
+
+upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, callback: AsyncCallback\<void>): void
+
+更新新版本，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| upgradeOptions | [UpgradeOptions](#upgradeOptions) | 是    | 更新选项 |
+| callback | AsyncCallback<void> | 否    | 下载执行回调 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 安装选项
+var upgradeOptions = {
+  order: 2, // 安装指令
+}
+updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
+  console.log(`upgrade error $JSON.stringify(err)`);
+});
 ```
 
 ### upgrade
 
-upgrade():void
+upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): Promise\<void>
 
-启动升级。
+恢复下载新版本，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| upgradeOptions | [UpgradeOptions](#upgradeOptions) | 是    | 更新选项 |
+
+**返回值：**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[void](#void)> | Promise，用于异步获取结果 |
 
 **示例：**
 
 ```
-updater.on("upgradeProgress", progress => {
-  console.log("upgradeProgress on" + progress);
-  console.log(`upgradeProgress status: ` + progress.status);
-  console.log(`upgradeProgress percent: ` + progress.percent);
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 安装选项
+var upgradeOptions = {
+  order: 2, // 安装指令
+}
+updater.upgrade(versionDigestInfo, upgradeOptions).then(value => {
+  console.log(`upgrade start`);
+}).catch(err => {
+  console.log(`upgrade error $JSON.stringify(err)`);
 });
-updater.upgrade();
 ```
 
-### setUpdatePolicy
+###  clearError
 
-setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
+clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, callback: AsyncCallback\<void>): void
+
+清除异常状态，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| clearOptions | [ClearOptions](#clearOptions) | 是    | 清除选项 |
+| callback | AsyncCallback<void> | 否    | 下载执行回调 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 清除选项
+var clearOptions = {
+  status: 0,
+}
+updater.clearError(versionDigestInfo, clearOptions, (err) => {
+  console.log(`clearError error $JSON.stringify(err)`);
+});
+```
+
+### clearError
+
+clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Promise\<void>
+
+清除异常状态，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
+| clearOptions | [ClearOptions](#clearOptions) | 是    | 更新选项 |
+
+**返回值：**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "hashXXX"
+}
+
+// 清除选项
+var clearOptions = {
+  status: 0,
+}
+updater.clearError(versionDigestInfo, clearOptions).then(value => {
+  console.log(`clearError success`);
+}).catch(err => {
+  console.log(`clearError error $JSON.stringify(err)`);
+});
+```
+
+### getUpgradePolicy
+
+getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
+
+获取升级策略信息，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[UpgradePolicy](#upgradePolicy)> | 否    | 回调返回升级策略信息 |
+
+**示例：**
+
+```
+updater.getUpgradePolicy((err, policy) => {
+  console.log("getUpgradePolicy success");
+  console.log(`policy downloadStrategy = ` + policy.downloadStrategy);
+  console.log(`policy autoUpgradeStrategy = ` + policy.autoUpgradeStrategy);
+});
+```
+
+### getUpgradePolicy
+
+getUpgradePolicy(): Promise\<UpgradePolicy>
+
+获取升级策略，通过promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**返回值：**
+
+| 类型                                      | 说明                |
+| --------------------------------------- | ----------------- |
+| Promise\<[UpgradePolicy](#upgradePolicy)> | Promise函数返回升级策略信息 |
+
+**示例：**
+
+```
+updater.getUpgradePolicy().then(policy => {
+  console.log(`policy downloadStrategy = ` + policy.downloadStrategy);
+  console.log(`policy autoUpgradeStrategy = ` + policy.autoUpgradeStrategy);
+}).catch(err => {
+  console.log("getUpgradePolicy promise error $JSON.stringify(err)`);
+});
+```
+
+### setUpgradePolicy
+
+setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 
 设置升级策略，使用callback方式作为异步方法。
 
@@ -383,30 +726,22 @@ setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
 
 **参数：**
 
-| 参数名      | 类型                            | 必填   | 说明     |
-| -------- | ----------------------------- | ---- | ------ |
-| policy   | [UpdatePolicy](#updatepolicy) | 是    | 设置升级策略 |
-| callback | AsyncCallback\<number>        | 是    | 回调返回结果 |
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| policy | [UpgradePolicy](#upgradePolicy) | 是    | 设置升级策略 |
+| callback | AsyncCallback\<number> | 否    | 回调设置结果 |
 
 **示例：**
 
 ```
-// 设置策略
-let policy = {
-  autoDownload: false,
-  autoDownloadNet: true,
-  mode: 2,
-  autoUpgradeInterval: [ 2, 3 ],
-  autoUpgradeCondition: 2
-}
-updater.setUpdatePolicy(policy, (err, result) => {
-  console.log("setUpdatePolicy ", result)
+updater.setUpgradePolicy(versionDigestInfo, clearOptions, (value, err) => {
+  console.log(`setUpgradePolicy result: ` + value);
 });
 ```
 
-### setUpdatePolicy
+### setUpgradePolicy
 
-setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
+setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 
 设置升级策略，使用promise方式作为异步方法。
 
@@ -416,7 +751,7 @@ setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
 | 参数名    | 类型                            | 必填   | 说明     |
 | ------ | ----------------------------- | ---- | ------ |
-| policy | [UpdatePolicy](#updatepolicy) | 是    | 设置升级策略 |
+| policy | [UpgradePolicy](#upgradePolicy) | 是    | 设置升级策略 |
 
 **返回值：**
 
@@ -428,68 +763,281 @@ setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
 ```
 let policy = {
-  autoDownload: false,
-  autoDownloadNet: true,
-  mode: 2,
+  downloadStrategy: false,
+  autoUpgradeStrategy: false,
   autoUpgradeInterval: [ 2, 3 ],
-  autoUpgradeCondition: 2
 }
 updater.setUpdatePolicy(policy).then(result => 
   console.log("setUpdatePolicy ", result)
 ).catch(err => {
-  console.log("setUpdatePolicy promise error: " + err.code);
+  console.log("setUpdatePolicy promise error $JSON.stringify(err)`);
 });
 ```
 
-### getUpdatePolicy
+###  terminateUpgrade
 
-getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
+terminateUpgrade(callback: AsyncCallback\<void>): void
 
-获取升级策略信息，使用callback方式作为异步方法。
+清除异常状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明         |
-| -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[UpdatePolicy](#updatepolicy)> | 否    | 回调返回升级策略信息 |
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback<void> | 否    | 清除结果回调 |
 
 **示例：**
 
 ```
-updater.getUpdatePolicy((err, policy) => {
-  console.log("getUpdatePolicy success");
-  console.log(`policy autoDownload = ` + policy.autoDownload);
-  console.log(`policy autoDownloadNet = ` + policy.autoDownloadNet);
-  console.log(`policy mode = ` + policy.mode);
+updater.terminateUpgrade((err) => {
+  console.log(`terminateUpgrade error $JSON.stringify(err)`);
 });
 ```
 
-### getUpdatePolicy
+### terminateUpgrade
 
-getUpdatePolicy(): Promise\<UpdatePolicy>
+terminateUpgrade(): Promise\<void>
 
-获取升级策略，通过promise方式作为异步方法。
+清除异常状态，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
 **返回值：**
 
-| 类型                                      | 说明                |
-| --------------------------------------- | ----------------- |
-| Promise\<[UpdatePolicy](#updatepolicy)> | Promise函数返回升级策略信息 |
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<[void](#void)> | Promise，用于异步获取结果 |
 
 **示例：**
 
 ```
-updater.getUpdatePolicy().then(value => {
-  console.log(`info autoDownload = ` + value.autoDownload);
-  console.log(`info autoDownloadNet = ` + value.autoDownloadNet);
-  console.log(`info mode = ` + value.mode);
+updater.terminateUpgrade().then(value => {
+  console.log(`terminateUpgrade success`);
 }).catch(err => {
-  console.log("getUpdatePolicy promise error: " + err.code);
+  console.log(`terminateUpgrade error $JSON.stringify(err)`);
 });
+```
+
+## Resorer
+
+### factoryReset
+
+factoryReset(callback: AsyncCallback\<void>): void
+
+恢复出厂设置，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback\<[CheckResult](#checkResult)> | 否    | 回调返回新版本信息 |
+
+**示例：**
+
+```
+restorer.factoryReset((err) => {
+  console.log("factoryReset error $JSON.stringify(err)");
+});
+```
+
+### factoryReset
+
+factoryReset(): Promise\<void>
+
+检查新版本，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**返回值:**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<void> | Promise函数返回调用结果 |
+
+**示例:**
+
+```
+restorer.factoryReset().then(void => {
+  console.log("factoryReset success ");
+}).catch(err => {
+  console.log("factoryReset error $JSON.stringify(err)");
+});
+```
+
+## LocalUpdater
+
+### verifyUpgradePackage
+
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: AsyncCallback\<number>): void
+
+校验升级包，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| upgradeFile | [UpgradeFile](#upgradeFile) | 否    | 升级文件 |
+| certsFile | string | 否    | 校验文件路径 |
+| callback | AsyncCallback\<number> | 否    | 回调校验结果 |
+
+**示例：**
+
+```
+var upgradeFile = {
+  fileType: 1 // OTA包
+  filePath: "path" // 本地升级包路径
+}
+
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err) => {
+  console.log("factoryReset error $JSON.stringify(err)");
+});
+```
+
+### verifyUpgradePackage
+
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void>
+
+校验升级包，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**返回值:**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<void> | Promise函数返回调用结果 |
+
+**示例:**
+
+```
+var upgradeFile = {
+  fileType: 1 // OTA包
+  filePath: "path" // 本地升级包路径
+}
+updater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(number => {
+  console.log("verifyUpgradePackage result: " + number);
+}).catch(err => {
+  console.log("verifyUpgradePackage error $JSON.stringify(err)");
+});
+```
+
+### applyNewVersion
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradeFile)>, callback: AsyncCallback\<void>): void
+
+安装升级包，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| upgradeFile | Array<[UpgradeFile](#upgradeFile)> | 否    | 升级文件 |
+| callback | AsyncCallback\<void> | 否    | 回调安装结果 |
+
+**示例：**
+
+```
+var upgradeFiles = [{
+  fileType: 1 // OTA包
+  filePath: "path" // 本地升级包路径
+}]
+
+localUpdater.applyNewVersion(upgradeFiles, (err) => {
+  console.log("applyNewVersion error $JSON.stringify(err)");
+});
+```
+
+### applyNewVersion
+
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradeFile)>): Promise\<void>
+
+安装升级包，使用promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**返回值:**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<void> | Promise函数返回调用结果 |
+
+**示例:**
+
+```
+var upgradeFile = [{
+  fileType: 1 // OTA包
+  filePath: "path" // 本地升级包路径
+}]
+updater.applyNewVersion(upgradeFiles).then(void => {
+  console.log("applyNewVersion success");
+}).catch(err => {
+  console.log("applyNewVersion error $JSON.stringify(err)");
+});
+```
+
+### on
+on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
+
+注册事件监听，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
+| taskCallback | UpgradeTaskCallback | 是    | 事件回调 |
+
+**示例：**
+
+```
+var eventClassifyInfo = {
+  eventClassify: 0x01000000 // 订阅升级更新事件
+  extraInfo: ""
+}
+
+function onTaskUpdate(eventInfo): void {
+  console.log("on eventInfo id ", eventInfo.eventId);
+}
+
+localUpdater.on(eventClassifyInfo, onTaskUpdate);
+```
+
+### off
+off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
+
+取消注册事件监听，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
+| taskCallback | UpgradeTaskCallback | 否    | 事件回调 |
+
+**示例：**
+
+```
+var eventClassifyInfo = {
+  eventClassify: 0x01000000 // 订阅升级更新事件
+  extraInfo: ""
+}
+
+function onTaskUpdate(eventInfo): void {
+  console.log("on eventInfo id ", eventInfo.eventId);
+}
+
+localUpdater.off(eventClassifyInfo, onTaskUpdate);
 ```
 
 ## UpdateTypes
@@ -544,7 +1092,300 @@ updater.getUpdatePolicy().then(value => {
 | VERSION_STATUS_NONE | 1    | 没有检测到新版本 |
 | VERSION_STATUS_BUSY | 2    | 检测版本时忙   |
 
-## UpdatePolicy
+## BusinessVendor
+
+设备厂家。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| PUBLIC   | "public" | 开源  |
+
+## BusinessSubType
+
+升级类型。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| FIRWARE   | 1 | 固件  |
+
+## ComponentType
+
+升级包类型。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| OTA   | 1 | 固件  |
+
+## UpgradeAction
+
+升级方式。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| UPGRADE   | "upgrade" | 差分包  |
+| RECOVERY   | "recovery" | 修复包  |
+
+## EffectiveMode
+
+生效模式。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| COLD   | 1 | 冷升级  |
+| LIVE   | 2 | 热升级  |
+| LIVE_AND_COLD   | 3 | 冷升级  |
+
+## DescriptionType
+
+描述文件类型。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| CONTENT   | 0 | 内容  |
+| URI   | 1 | 链接  |
+
+## NetType
+
+网络类型。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| CELLULAR   | 1 | 数据网络  |
+| METERED_WIFI   | 2 | 热点WIFI  |
+| NOT_METERED_WIFI   | 4 | 非热点WIFI  |
+| WIFI   | 6 | WIFI  |
+| CELLULAR_AND_WIFI   | 7 | 数据网络和WIFI  |
+
+## UpgradeInfo
+
+## Order
+
+升级指令。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| DOWNLOAD   | 1 | 下载  |
+| INSTALL   | 2 | 安装  |
+| APPLY   | 4 | 生效  |
+| DOWNLOAD_AND_INSTALL   | 3 | 下载并安装  |
+| INSTALL_AND_APPLY   | 6 | 安装并生效  |
+
+## UpgradeStatus
+
+升级指令。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| WAITING_DOWNLOAD   | 20 | 待下载  |
+| DOWNLOADING   | 21 | 下载中  |
+| DOWNLOAD_PAUSE   | 22 | 下载暂停  |
+| DOWNLOAD_FAIL   | 23 | 下载失败  |
+| WAITING_INSTALL   | 30 | 待安装  |
+| UPDATING   | 31 | 更新中  |
+| WATING_APPLY   | 40 | 待生效  |
+| APPLYING   | 21 | 生效中  |
+| UPGRADE_SUCCESS   | 50 | 升级成功  |
+| UPGRADE_FAIL   | 51 | 升级失败  |
+
+## EventClassify
+
+事件类型。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| TASK   | 0x01000000 | 任务事件  |
+
+## EventId
+
+事件ID。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| EVENT_TASK_BASE   | 0x01000000 | 任务事件  |
+| EVENT_TASK_RECEVICE   | 0x01000001 | 任务事件  |
+| EVENT_TASK_CANCEL   | 0x01000010 | 任务事件  |
+| EVENT_DOWNLOAD_WAIT   | 0x01000011 | 任务事件  |
+| EVENT_DOWNLOAD_START   | 0x01000100 | 任务事件  |
+| EVENT_PROGRESS_UPDATE   | 0x01000101 | 任务事件  |
+| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | 任务事件  |
+| EVENT_DOWNLOAD_RESUME   | 0x01000111 | 任务事件  |
+| EVENT_DOWNLOAD_SUCCESS   | 0x01001000 | 任务事件  |
+| EVENT_DOWNLOAD_FAIL   | 0x01001001 | 任务事件  |
+| EVENT_UPGRADE_WAIT   | 0x01001010 | 任务事件  |
+| EVENT_UPGRADE_START   | 0x01001100 | 任务事件  |
+| EVENT_UPGRADE_UPDATE   | 0x01001101 | 任务事件  |
+| EVENT_APPLY_WAIT   | 0x01001110 | 任务事件  |
+| EVENT_APPLY_START   | 0x01001111 | 任务事件  |
+| EVENT_UPGRADE_SUCCESS   | 0x01010000 | 任务事件  |
+| EVENT_UPGRADE_FAIL   | 0x01010001 | 任务事件  |
+
+## UpgradeInfo
+
+升级数据。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| upgradeApp          | string                      | 是    | 调用方包名  |
+| businessType        | [BusinessType](#installmode) | 是    | 安装模式    |
+
+## BusinessType
+
+升级业务类型。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| vendor              | [BusinessVendor](#businessVendor)   | 是    | 设备厂家  |
+| subType             | [BusinessSubType](#businessSubType) | 是    | 类型    |
+
+## CheckResult
+
+搜包结果。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| isExistNewVersion              | bool   | 是    | 是否有新版本  |
+| newVersionInfo             | [NewVersionInfo](#newVersionInfo) | 否    | 版本数据    |
+
+## NewVersionInfo
+
+新版本数据。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| versionDigestInfo              | [VersionDigestInfo](#versionDigestInfo)   | 是    | 是否有新版本  |
+| versionComponents             | Array\<[VersionComponent](#vesionComponent)>  | 否    | 版本数据    |
+
+## VersionDigestInfo
+
+版本摘要。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| versionDigest              | string   | 是    | 版本摘要  |
+
+## VersionComponent
+
+升级包数据。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| componentType              | [ComponentType](#componentType)   | 是    | 升级包类型  |
+| upgradeAction              | [UpgradeAction](#upgradeAction)   | 是    | 升级方式  |
+| displayVersion              | string   | 是    | 显示版本号  |
+| innerVersion              | string   | 是    | 版本号  |
+| size              | number   | 是    | 升级包大小  |
+| effectiveMode              | [EffectiveMode](#effectiveMode)   | 是    | 生效模式  |
+| descriptionInfo              | [DescriptionInfo](#descriptionInfo)   | 是    | 描述文件信息  |
+
+## DescriptionInfo
+
+升级包描述文件。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| descriptionType              | [DescriptionType](#descriptionType)   | 是    | 描述文件类型  |
+| content              |  string  | 否    | 描述文件内容  |
+
+## CurrentVersionInfo
+
+当前版本信息。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| osVersion              | string   | 是    | 系统版本号  |
+| deviceName              | string   | 否    | 设备名  |
+| versionComponents              | Array\<[VersionComponent](#vesionComponent)>   | 否    | 版本数据  |
+
+## DownloadOptions
+
+下载条件。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| allowNetwork              | [NetType](#netType)   | 是    | 网络类型  |
+| order              | [Order](#order)   | 否    | 升级指令  |
+
+## ResumeDownloadOptions
+
+恢复下载条件。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| allowNetwork              | [NetType](#netType)   | 是    | 网络类型  |
+
+## PauseDownloadOptions
+
+暂停下载条件。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| isAllowAutoResume              | bool   | 是    | 是否允许自动恢复  |
+
+## UpgradeOptions
+
+升级条件。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| order              | [Order](#order)   | 否    | 升级指令  |
+
+## ClearOptions
+
+升级条件。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| status              | [UpgradeStatus](#upgradeStatus)   | 否    | 升级指令  |
+
+## UpgradePolicy
 
 升级策略。
 
@@ -552,9 +1393,90 @@ updater.getUpdatePolicy().then(value => {
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| autoDownload        | bool                        | 是    | 自动升级开关  |
-| installMode         | [InstallMode](#installmode) | 是    | 安装模式    |
-| autoUpgradeInterval | Array\<number>              | 是    | 自动升级时间段 |
+| downloadStrategy        | bool                        | 是    | 下载开关  |
+| autoUpgradeStrategy         | bool | 是    | 自动升级开关    |
+| autoUpgradePeriods | Array\<[UpgradePeriod](#upgradePeriod)>              | 是    | 自动升级时间段 |
+
+## UpgradePeriod
+
+升级时间段。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| start        | number                        | 是    | 开始时间  |
+| end         | number | 是    | 结束时间    |
+
+## TaskInfo
+
+任务数据。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| exisTask        | bool                        | 是    | 是否存在任务  |
+| taskBody         | [TaskBody](#taskinfo) | 是    | 任务体    |
+
+## EventInfo
+
+任务数据。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| eventId        |   [EventId](#eventId)    | 是    | 事件ID  |
+| taskBody         | [TaskBody](#taskinfo) | 是    | 任务体    |
+
+## TaskBody
+
+任务体。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| versionDigestInfo        |   [VersionDigestInfo](#versionDigestInfo)    | 是    | 版本摘要  |
+| status         | [UpgradeStatus](#upgradeStatus) | 是    | 状态    |
+| subStatus         | number | 否    | 子状态    |
+| progress         | number | 是    | 进度    |
+| installMode         | number | 是    | 安装模式    |
+| errorMessages         |  Array\<[ErrorMessage](#errorMessage)>  | 否    | 错误内容    |
+| versionComponets         | Array\<[VersionComponet](#versionComponet)> | 是    | 版本列表    |
+
+## ErrorMessage
+
+错误消息。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| errorCode        |   number   | 是    | 错误码  |
+| errorMessage         | string | 否    | 错误描述    |
+
+## UpgradeFile
+
+升级文件。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| fileType        |   ComponentType   | 是    | 文件类型  |
+| filePath         | string | 是    | 文件路径    |
+
+## UpgradeTaskCallback
+
+更新事件回调。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称              | 参数类型                                     | 必填   | 说明   |
+| --------------- | ---------------------------------------- | ---- | ---- |
+| function(eventInfo)          | function([EventInfo](#eventInfo))     | 是    | 事件信息回调 |
 
 ## NewVersionInfo
 
