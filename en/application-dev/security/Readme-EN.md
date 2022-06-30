@@ -11,5 +11,5 @@
   - [HUKS Overview](huks-overview.md)
   - [HUKS Development](huks-guidelines.md)
 - hapsigner  
+  - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)
-
