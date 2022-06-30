@@ -118,7 +118,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
    #include "hctest.h"
    ```
 
-   b) Use the ** LITE\_TEST\_SUIT** macro to define names of the subsystem, module, and test suite.
+   b) Use the **LITE\_TEST\_SUIT** macro to define names of the subsystem, module, and test suite.
 
    ```
    /** 
@@ -136,7 +136,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
 
    ​    The Setup and TearDown functions must exist, but function bodies can be empty.
 
-   d) Use the ** LITE\_TEST\_CASE** macro to write the test case.
+   d) Use the **LITE\_TEST\_CASE** macro to write the test case.
 
    ​    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
 
@@ -147,7 +147,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
    };
    ```
 
-   e) Use the ** RUN\_TEST\_SUITE** macro to register the test suite.
+   e) Use the **RUN\_TEST\_SUITE** macro to register the test suite.
 
    ```
    RUN_TEST_SUITE(IntTestSuite);
@@ -171,7 +171,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
 
 4.  Add build options to the **BUILD.gn** file in the **acts** directory.
 
-    You need to add the test module to the ** test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
+    You need to add the test module to the **test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
 
     ```
     lite_component("acts") {  
@@ -211,7 +211,7 @@ The log for each test suite starts with "Start to run test suite:"  and ends wit
 
 ### Developing Test Cases in C++ (for Standard and Small Systems)
 
-**Developing Test Cases for Small-System Devices** \(for the standard system, see the ** global/i18n\_standard directory**.\)
+**Developing Test Cases for Small-System Devices** \(for the standard system, see the **global/i18n\_standard directory**.\)
 
 The HCPPTest framework, an enhanced version based on the open-source framework Googletest, is used.
 
@@ -261,11 +261,11 @@ The HCPPTest framework, an enhanced version based on the open-source framework G
    };
    ```
 
-   c) Use the **HWTEST** or ** HWTEST\_F** macro to write the test case.
+   c) Use the **HWTEST** or **HWTEST\_F** macro to write the test case.
 
    ​    **HWTEST**: definition of common test cases, including the test suite name, test case name, and case annotation.
 
-   ​    ** HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
+   ​    **HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
 
    ​    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
 
@@ -303,7 +303,7 @@ The HCPPTest framework, an enhanced version based on the open-source framework G
 
 4.  Add build options to the **BUILD.gn** file in the **acts** directory.
 
-    Add the test module to the ** test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
+    Add the test module to the **test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
 
     ```
      lite_component("acts") {  
@@ -493,4 +493,4 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
 
 3.  View the test report.
 
-    Go to **acts\\reports\\**, obtain the current execution record, and open ** summary\_report.html** to view the test report.
+    Go to **acts\\reports\\**, obtain the current execution record, and open **summary\_report.html** to view the test report.
