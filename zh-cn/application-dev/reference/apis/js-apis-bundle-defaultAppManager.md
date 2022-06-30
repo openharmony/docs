@@ -14,8 +14,7 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager'
 
 应用类型
 
-**系统能力：**
-SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
 | 名称      | 类型     | 说明                                   |
 | -------- | -------- | -------------------------------------- |
@@ -34,8 +33,7 @@ isDefaultApplication(type: string): Promise\<boolean>
 
 以异步方法根据系统已定义的应用类型判断当前应用是否是该应用类型的默认应用，使用Promise形式返回结果。
 
-**系统能力：**
-SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
