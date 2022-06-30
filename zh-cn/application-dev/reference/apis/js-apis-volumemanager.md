@@ -349,7 +349,7 @@ function setVolumeDescription(uuid: string, description: string, callback: Async
 
 ## volumemanager.format
 
-format(volumeId: string, fsType: string): Promise<void>;
+format(volId: string): Promise<void>;
 
 异步对指定卷进行格式化，以promise方式返回。
 
@@ -378,7 +378,7 @@ format(volumeId: string, fsType: string): Promise<void>;
 
 ## volumemanager.format
 
-format(volumeId: string, fsType: string, callback: AsyncCallback<void>): void;
+format(volId: string, callback: AsyncCallback<void>): void;
 
 异步对指定卷进行格式化，以callback方式返回。
 
