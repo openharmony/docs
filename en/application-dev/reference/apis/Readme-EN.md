@@ -83,7 +83,6 @@
 - Media
 
   - [@ohos.multimedia.audio](js-apis-audio.md)
-  - [@ohos.multimedia.camera](js-apis-camera.md)
   - [@ohos.multimedia.image](js-apis-image.md)
   - [@ohos.multimedia.media](js-apis-media.md)
   - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)
