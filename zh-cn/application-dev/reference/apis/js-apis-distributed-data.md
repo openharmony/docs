@@ -4131,6 +4131,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
+| mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
 | query  |[Query](#querysup8sup)   | 是   |表示数据库的查询谓词条件  |
 | delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
@@ -4151,7 +4152,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, 1000);
+        kvStore.sync(devices, query, PULL_ONLY , 1000);
     });
 }catch(e) {
     console.log('Sync e' + e);
