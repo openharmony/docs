@@ -242,7 +242,8 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 })
 .then((data) => {
     console.info('Operation successful.');
-}).catch((error) => {
+})
+.catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 
@@ -253,7 +254,8 @@ defaultAppMgr.setDefaultApplication("image/png", {
 })
 .then((data) => {
     console.info('Operation successful.');
-}).catch((error) => {
+})
+.catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 });
 ```
