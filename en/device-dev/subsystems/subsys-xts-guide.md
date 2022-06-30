@@ -4,10 +4,10 @@
 
 The X test suite \(XTS\) subsystem contains a set of OpenHarmony compatibility test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.
 
-This subsystem contains the ACTS and  **tools**  software package.
+This subsystem contains the ACTS and **tools** software package.
 
--   The  **acts**  directory stores the source code and configuration files of ACTS test cases. The ACTS helps device vendors detect the software incompatibility as early as possible and ensures that the software is compatible to OpenHarmony during the entire development process.
--   The  **tools**  software package stores the test case development framework related to  **acts**.
+-   The **acts** directory stores the source code and configuration files of ACTS test cases. The ACTS helps device vendors detect the software incompatibility as early as possible and ensures that the software is compatible to OpenHarmony during the entire development process.
+-   The **tools** software package stores the test case development framework related to **acts**.
 
 ## System Types
 
@@ -45,195 +45,52 @@ Test cases for the mini system must be developed in C, and those for the small s
 
 ## Usage Guidelines
 
-**Table  1**  Test case levels
+**Table  1** Test case levels
 
-<a name="table12856113719456"></a>
-<table><thead align="left"><tr id="row88561737114517"><th class="cellrowborder" valign="top" width="33.333333333333336%" id="mcps1.2.4.1.1"><p id="p54711456452"><a name="p54711456452"></a><a name="p54711456452"></a>Level</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.283328332833285%" id="mcps1.2.4.1.2"><p id="p114834544518"><a name="p114834544518"></a><a name="p114834544518"></a>Definition</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.383338333833386%" id="mcps1.2.4.1.3"><p id="p348154574518"><a name="p348154574518"></a><a name="p348154574518"></a>Scope</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row78561137134514"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p17481345124512"><a name="p17481345124512"></a><a name="p17481345124512"></a>Level0</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.283328332833285%" headers="mcps1.2.4.1.2 "><p id="p1548945204514"><a name="p1548945204514"></a><a name="p1548945204514"></a>Smoke</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.383338333833386%" headers="mcps1.2.4.1.3 "><p id="p174824517456"><a name="p174824517456"></a><a name="p174824517456"></a>Verifies basic functionalities of key features and basic DFX attributes with the most common input. The pass result indicates that the features are runnable.</p>
-</td>
-</tr>
-<tr id="row28563372451"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p448445144512"><a name="p448445144512"></a><a name="p448445144512"></a>Level1</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.283328332833285%" headers="mcps1.2.4.1.2 "><p id="p44813452452"><a name="p44813452452"></a><a name="p44813452452"></a>Basic</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.383338333833386%" headers="mcps1.2.4.1.3 "><p id="p648184584514"><a name="p648184584514"></a><a name="p648184584514"></a>Verifies basic functionalities of key features and basic DFX attributes with common input. The pass result indicates that the features are testable.</p>
-</td>
-</tr>
-<tr id="row12856137204514"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p164834520453"><a name="p164834520453"></a><a name="p164834520453"></a>Level2</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.283328332833285%" headers="mcps1.2.4.1.2 "><p id="p148245184511"><a name="p148245184511"></a><a name="p148245184511"></a>Major</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.383338333833386%" headers="mcps1.2.4.1.3 "><p id="p348945124510"><a name="p348945124510"></a><a name="p348945124510"></a>Verifies basic functionalities of key features and basic DFX attributes with common input and errors. The pass result indicates that the features are functional and ready for beta testing.</p>
-</td>
-</tr>
-<tr id="row48571137204514"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p7481545184513"><a name="p7481545184513"></a><a name="p7481545184513"></a>Level3</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.283328332833285%" headers="mcps1.2.4.1.2 "><p id="p1748184514455"><a name="p1748184514455"></a><a name="p1748184514455"></a>Regular</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.383338333833386%" headers="mcps1.2.4.1.3 "><p id="p8481245104519"><a name="p8481245104519"></a><a name="p8481245104519"></a>Verifies functionalities of all key features, and all DFX attributes with common and uncommon input combinations or normal and abnormal preset conditions.</p>
-</td>
-</tr>
-<tr id="row14857133712451"><td class="cellrowborder" valign="top" width="33.333333333333336%" headers="mcps1.2.4.1.1 "><p id="p1248144515456"><a name="p1248144515456"></a><a name="p1248144515456"></a>Level4</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.283328332833285%" headers="mcps1.2.4.1.2 "><p id="p94804514519"><a name="p94804514519"></a><a name="p94804514519"></a>Rare</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.383338333833386%" headers="mcps1.2.4.1.3 "><p id="p1248445164516"><a name="p1248445164516"></a><a name="p1248445164516"></a>Verifies functionalities of key features under extremely abnormal presets and uncommon input combinations.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Level | Definition | Scope |
+| ----- | ----------- | ------- |
+| Level0 | Smoke | Verifies basic functionalities of key features and basic DFX attributes with the most common input. The pass result indicates that the features are runnable. |
+| Level1 | Basic | Verifies basic functionalities of key features and basic DFX attributes with common input. The pass result indicates that the features are testable. |
+| Level2 | Major | Verifies basic functionalities of key features and basic DFX attributes with common input and errors. The pass result indicates that the features are functional and ready for beta testing. |
+| Level3 | Regular | Verifies functionalities of all key features, and all DFX attributes with common and uncommon input combinations or normal and abnormal preset conditions. |
+| Level4 | Rare | Verifies functionalities of key features under extremely abnormal presets and uncommon input combinations. |
 
-**Table  2**  Test case granularities
 
-<a name="table1690733521014"></a>
-<table><thead align="left"><tr id="row9907143516105"><th class="cellrowborder" valign="top" width="19.591959195919593%" id="mcps1.2.4.1.1"><p id="p1141312416102"><a name="p1141312416102"></a><a name="p1141312416102"></a>Test Scale</p>
-</th>
-<th class="cellrowborder" valign="top" width="35.17351735173517%" id="mcps1.2.4.1.2"><p id="p34131416109"><a name="p34131416109"></a><a name="p34131416109"></a>Test Objects</p>
-</th>
-<th class="cellrowborder" valign="top" width="45.23452345234523%" id="mcps1.2.4.1.3"><p id="p12413141171010"><a name="p12413141171010"></a><a name="p12413141171010"></a>Test Environment</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row2907335181017"><td class="cellrowborder" valign="top" width="19.591959195919593%" headers="mcps1.2.4.1.1 "><p id="p6414134117109"><a name="p6414134117109"></a><a name="p6414134117109"></a>LargeTest</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.17351735173517%" headers="mcps1.2.4.1.2 "><p id="p20414104113101"><a name="p20414104113101"></a><a name="p20414104113101"></a>Service functionalities, all-scenario features, and mechanical power environment (MPE) and scenario-level DFX</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.23452345234523%" headers="mcps1.2.4.1.3 "><p id="p5414841121013"><a name="p5414841121013"></a><a name="p5414841121013"></a>Devices close to real devices</p>
-</td>
-</tr>
-<tr id="row10907635131015"><td class="cellrowborder" valign="top" width="19.591959195919593%" headers="mcps1.2.4.1.1 "><p id="p19414134117104"><a name="p19414134117104"></a><a name="p19414134117104"></a>MediumTest</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.17351735173517%" headers="mcps1.2.4.1.2 "><p id="p114141241141018"><a name="p114141241141018"></a><a name="p114141241141018"></a>Modules, subsystem functionalities after module integration, and DFX</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.23452345234523%" headers="mcps1.2.4.1.3 "><p id="p14414941111015"><a name="p14414941111015"></a><a name="p14414941111015"></a>Single device that is actually used. You can perform message simulation, but do not mock functions.</p>
-</td>
-</tr>
-<tr id="row1990713353100"><td class="cellrowborder" valign="top" width="19.591959195919593%" headers="mcps1.2.4.1.1 "><p id="p641414110109"><a name="p641414110109"></a><a name="p641414110109"></a>SmallTest</p>
-</td>
-<td class="cellrowborder" valign="top" width="35.17351735173517%" headers="mcps1.2.4.1.2 "><p id="p54141541181018"><a name="p54141541181018"></a><a name="p54141541181018"></a>Modules, classes, and functions</p>
-</td>
-<td class="cellrowborder" valign="top" width="45.23452345234523%" headers="mcps1.2.4.1.3 "><p id="p1841494131013"><a name="p1841494131013"></a><a name="p1841494131013"></a>Local PC. Use a large number of mocks to replace dependencies with other modules.</p>
-</td>
-</tr>
-</tbody>
-</table>
+**Table  2** Test case granularities
 
-**Table  3**  Test types
+| Test Scale | Test Objects | Test Environment |
+| ----- | ----------- | ------- |
+| LargeTest | Service functionalities, all-scenario features, and mechanical power environment (MPE) and scenario-level DFX | Devices close to real devices. |
+| MediumTest | Modules, subsystem functionalities after module integration, and DFX | Single device that is actually used. You can perform message simulation, but do not mock functions. |
+| SmallTest | Modules, classes, and functions | Local PC. Use a large number of mocks to replace dependencies with other modules. |
 
-<a name="table18811230124619"></a>
-<table><thead align="left"><tr id="row48163019466"><th class="cellrowborder" valign="top" width="19.040000000000003%" id="mcps1.2.3.1.1"><p id="p1791784418465"><a name="p1791784418465"></a><a name="p1791784418465"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="80.96%" id="mcps1.2.3.1.2"><p id="p2917164444614"><a name="p2917164444614"></a><a name="p2917164444614"></a>Definition</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row682630104615"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p1091784414469"><a name="p1091784414469"></a><a name="p1091784414469"></a>Function</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p16917344104618"><a name="p16917344104618"></a><a name="p16917344104618"></a>Tests the correctness of both service and platform functionalities provided by the tested object for end users or developers.</p>
-</td>
-</tr>
-<tr id="row1821930154611"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p591714474612"><a name="p591714474612"></a><a name="p591714474612"></a>Performance</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p15917154410463"><a name="p15917154410463"></a><a name="p15917154410463"></a>Tests the processing capability of the tested object under specific preset conditions and load models. The processing capability is measured by the service volume that can be processed in a unit time, for example, call per second, frame per second, or event processing volume per second.</p>
-</td>
-</tr>
-<tr id="row13821030104616"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p691711440467"><a name="p691711440467"></a><a name="p691711440467"></a>Power</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p159171544104616"><a name="p159171544104616"></a><a name="p159171544104616"></a>Tests the power consumption of the tested object in a certain period of time under specific preset conditions and load models.</p>
-</td>
-</tr>
-<tr id="row6821330114618"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p13917164454612"><a name="p13917164454612"></a><a name="p13917164454612"></a>Reliability</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p11917194416465"><a name="p11917194416465"></a><a name="p11917194416465"></a>Tests the service performance of the tested object under common and uncommon input conditions, or specified service volume pressure and long-term continuous running pressure. The test covers stability, pressure handling, fault injection, and Monkey test times.</p>
-</td>
-</tr>
-<tr id="row11821930184612"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p1691774474618"><a name="p1691774474618"></a><a name="p1691774474618"></a>Security</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><a name="ul112421652121513"></a><a name="ul112421652121513"></a><ul id="ul112421652121513"><li>Tests the capability of defending against security threats, including but not limited to unauthorized access, use, disclosure, damage, modification, and destruction, to ensure information confidentiality, integrity, and availability.</li><li>Tests the privacy protection capability to ensure that the collection, use, retention, disclosure, and disposal of users' private data comply with laws and regulations.</li><li>Tests the compliance with various security specifications, such as security design, security requirements, and security certification of the Ministry of Industry and Information Technology (MIIT).</li></ul>
-</td>
-</tr>
-<tr id="row16825307467"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p129188444462"><a name="p129188444462"></a><a name="p129188444462"></a>Global</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p179186444465"><a name="p179186444465"></a><a name="p179186444465"></a>Tests the internationalized data and localization capabilities of the tested object, including multi-language display, various input/output habits, time formats, and regional features, such as currency, time, and culture taboos.</p>
-</td>
-</tr>
-<tr id="row08211308464"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p191814447465"><a name="p191814447465"></a><a name="p191814447465"></a>Compatibility</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><a name="ul186961827111612"></a><a name="ul186961827111612"></a><ul id="ul186961827111612"><li>Tests backward compatibility of an application with its own data, the forward and backward compatibility with the system, and the compatibility with different user data, such as audio file content of the player and smart SMS messages.</li><li>Tests system backward compatibility with its own data and the compatibility of common applications in the ecosystem.</li><li>Tests software compatibility with related hardware.</li></ul>
-</td>
-</tr>
-<tr id="row1782730124618"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p13918144134614"><a name="p13918144134614"></a><a name="p13918144134614"></a>User</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p1291844494611"><a name="p1291844494611"></a><a name="p1291844494611"></a>Tests user experience of the object in real user scenarios. All conclusions and comments should come from the users, which are all subjective evaluation in this case.</p>
-</td>
-</tr>
-<tr id="row58243024617"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p1291884474614"><a name="p1291884474614"></a><a name="p1291884474614"></a>Standard</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p0918124424614"><a name="p0918124424614"></a><a name="p0918124424614"></a>Tests the compliance with industry and company-specific standards, protocols, and specifications. The standards here do not include any security standards that should be classified into the security test.</p>
-</td>
-</tr>
-<tr id="row382830124619"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p119181044164619"><a name="p119181044164619"></a><a name="p119181044164619"></a>Safety</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p1291818443468"><a name="p1291818443468"></a><a name="p1291818443468"></a>Tests the safety property of the tested object to avoid possible hazards to personal safety, health, and the object itself.</p>
-</td>
-</tr>
-<tr id="row1083153014465"><td class="cellrowborder" valign="top" width="19.040000000000003%" headers="mcps1.2.3.1.1 "><p id="p39187441469"><a name="p39187441469"></a><a name="p39187441469"></a>Resilience</p>
-</td>
-<td class="cellrowborder" valign="top" width="80.96%" headers="mcps1.2.3.1.2 "><p id="p891815444462"><a name="p891815444462"></a><a name="p891815444462"></a>Tests the resilience property of the tested object to ensure that it can withstand and maintain the defined running status (including downgrading) when being attacked, and recover from and adapt defense to the attacks to approach mission assurance.</p>
-</td>
-</tr>
-</tbody>
-</table>
+**Table  3** Test types
+
+| Type | Definition |
+| ----------- | ------- |
+| Function | Tests the correctness of both service and platform functionalities provided by the tested object for end users or developers. |
+| Performance | Tests the processing capability of the tested object under specific preset conditions and load models. The processing capability is measured by the service volume that can be processed in a unit time, for example, call per second, frame per second, or event processing volume per second. |
+| Power | Tests the power consumption of the tested object in a certain period of time under specific preset conditions and load models. |
+| Reliability | Tests the service performance of the tested object under common and uncommon input conditions, or specified service volume pressure and long-term continuous running pressure. The test covers stability, pressure handling, fault injection, and Monkey test times. |
+| Security | <ul><li>Tests the capability of defending against security threats, including but not limited to unauthorized access, use, disclosure, damage, modification, and destruction, to ensure information confidentiality, integrity, and availability.</li><li>Tests the privacy protection capability to ensure that the collection, use, retention, disclosure, and disposal of users' private data comply with laws and regulations.</li><li>Tests the compliance with various security specifications, such as security design, security requirements, and security certification of the Ministry of Industry and Information Technology (MIIT).</li></ul> |
+| Global | Tests the internationalized data and localization capabilities of the tested object, including multi-language display, various input/output habits, time formats, and regional features, such as currency, time, and culture taboos. |
+| Compatibility | <ul><li>Tests backward compatibility of an application with its own data, the forward and backward compatibility with the system, and the compatibility with different user data, such as audio file content of the player and smart SMS messages.</li><li>Tests system backward compatibility with its own data and the compatibility of common applications in the ecosystem.</li><li>Tests software compatibility with related hardware.</li></ul> |
+| User | Tests user experience of the object in real user scenarios. All conclusions and comments should come from the users, which are all subjective evaluation in this case. |
+| Standard  | Tests the compliance with industry and company-specific standards, protocols, and specifications. The standards here do not include any security standards that should be classified into the security test. |
+| Safety | Tests the safety property of the tested object to avoid possible hazards to personal safety, health, and the object itself. |
+| Resilience | Tests the resilience property of the tested object to ensure that it can withstand and maintain the defined running status (including downgrading) when being attacked, and recover from and adapt defense to the attacks to approach mission assurance. |
 
 ## Test Case Development Guidelines
 
 The test framework and programming language vary with the system type.
 
-**Table  4**  Test frameworks and test case languages for different systems
+**Table  4** Test frameworks and test case languages for different systems
 
-<a name="table4418343171415"></a>
-<table><thead align="left"><tr id="row34183435145"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p941874311148"><a name="p941874311148"></a><a name="p941874311148"></a>System</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p1841804341413"><a name="p1841804341413"></a><a name="p1841804341413"></a>Test Framework</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p2418104311148"><a name="p2418104311148"></a><a name="p2418104311148"></a>Language</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row8419164319148"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p7419194312143"><a name="p7419194312143"></a><a name="p7419194312143"></a>Mini</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p10419124312145"><a name="p10419124312145"></a><a name="p10419124312145"></a>HCTest</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p11419643191410"><a name="p11419643191410"></a><a name="p11419643191410"></a>C</p>
-</td>
-</tr>
-<tr id="row141915438147"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p441911436141"><a name="p441911436141"></a><a name="p441911436141"></a>Small</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p541916432142"><a name="p541916432142"></a><a name="p541916432142"></a>HCPPTest</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p54191643131416"><a name="p54191643131416"></a><a name="p54191643131416"></a>C++</p>
-</td>
-</tr>
-<tr id="row4419134341417"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p341964313143"><a name="p341964313143"></a><a name="p341964313143"></a>Standard</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p10419443171416"><a name="p10419443171416"></a><a name="p10419443171416"></a>HJSUnit and HCPPTest</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p9419143181414"><a name="p9419143181414"></a><a name="p9419143181414"></a>JavaScript and C++</p>
-</td>
-</tr>
-</tbody>
-</table>
+| System | Test Framework | Language |
+| ----- | ----------- | ------- |
+| Mini | HCTest | C |
+| Small | HCPPTest | C++ |
+| Standard | HJSUnit and HCPPTest | JavaScript and C++ |
 
 ### Developing Test Cases in C (for the Mini System\)
 
@@ -253,7 +110,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
     │ │ └── BUILD.gn
     ```
 
-2. Write the test case in the  **src**  directory.
+2. Write the test case in the **src** directory.
 
    a) Include the test framework header file.
 
@@ -261,10 +118,10 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
    #include "hctest.h"
    ```
 
-   b) Use the  **LITE\_TEST\_SUIT**  macro to define names of the subsystem, module, and test suite.
+   b) Use the **LITE\_TEST\_SUIT** macro to define names of the subsystem, module, and test suite.
 
    ```
-   /**  
+   /** 
    * @brief  Registers a test suite named IntTestSuite.
    * @param  test Subsystem name
    * @param  example Module name
@@ -279,7 +136,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
 
    ​    The Setup and TearDown functions must exist, but function bodies can be empty.
 
-   d) Use the  **LITE\_TEST\_CASE**  macro to write the test case.
+   d) Use the **LITE\_TEST\_CASE** macro to write the test case.
 
    ​    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
 
@@ -290,7 +147,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
    };
    ```
 
-   e) Use the  **RUN\_TEST\_SUITE**  macro to register the test suite.
+   e) Use the **RUN\_TEST\_SUITE** macro to register the test suite.
 
    ```
    RUN_TEST_SUITE(IntTestSuite);
@@ -298,7 +155,7 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
 
 3.  Create the configuration file \(**BUILD.gn**\) of the test module.
 
-    Create a **BUILD.gn**  \(example\) file in each test module directory, and specify the name of the built static library and its dependent header files and libraries. The format is as follows:
+    Create a **BUILD.gn** \(example\) file in each test module directory, and specify the name of the built static library and its dependent header files and libraries. The format is as follows:
 
     ```
     import("//test/xts/tools/lite/build/suite_lite.gni")
@@ -312,9 +169,9 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
     }
     ```
 
-4.  Add build options to the  **BUILD.gn**  file in the  **acts**  directory.
+4.  Add build options to the **BUILD.gn** file in the **acts** directory.
 
-    You need to add the test module to the  **test/xts/acts/build\_lite/BUILD.gn**  script in the  **acts**  directory.
+    You need to add the test module to the **test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
 
     ```
     lite_component("acts") {  
@@ -354,7 +211,7 @@ The log for each test suite starts with "Start to run test suite:"  and ends wit
 
 ### Developing Test Cases in C++ (for Standard and Small Systems)
 
-**Developing Test Cases for Small-System Devices**  \(for the standard system, see the  **global/i18n\_standard directory**.\)
+**Developing Test Cases for Small-System Devices** \(for the standard system, see the **global/i18n\_standard directory**.\)
 
 The HCPPTest framework, an enhanced version based on the open-source framework Googletest, is used.
 
@@ -374,7 +231,7 @@ The HCPPTest framework, an enhanced version based on the open-source framework G
 
    a) Include the test framework header file.
 
-   ​    The following statement includes  **gtest.h**.
+   ​    The following statement includes **gtest.h**.
 
    ```
    #include "gtest/gtest.h"
@@ -404,11 +261,11 @@ The HCPPTest framework, an enhanced version based on the open-source framework G
    };
    ```
 
-   c) Use the  **HWTEST**  or  **HWTEST\_F**  macro to write the test case.
+   c) Use the **HWTEST** or **HWTEST\_F** macro to write the test case.
 
-   ​     **HWTEST**: definition of common test cases, including the test suite name, test case name, and case annotation.
+   ​    **HWTEST**: definition of common test cases, including the test suite name, test case name, and case annotation.
 
-   ​     **HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
+   ​    **HWTEST\_F**: definition of SetUp and TearDown test cases, including the test suite name, test case name, and case annotation.
 
    ​    Three parameters are involved: test suite name, test case name, and test case properties \(including type, granularity, and level\).
 
@@ -420,7 +277,7 @@ The HCPPTest framework, an enhanced version based on the open-source framework G
 
 3.  Create a configuration file \(**BUILD.gn**\) of the test module.
 
-    Create a  **BUILD.gn**  file in each test module directory, and specify the name of the built static library and its dependent header files and libraries. Each test module is independently built into a  **.bin**  executable file, which can be directly pushed to the development board for testing.
+    Create a **BUILD.gn** file in each test module directory, and specify the name of the built static library and its dependent header files and libraries. Each test module is independently built into a **.bin** executable file, which can be directly pushed to the development board for testing.
 
     Example:
 
@@ -444,9 +301,9 @@ The HCPPTest framework, an enhanced version based on the open-source framework G
     
     ```
 
-4.  Add build options to the  **BUILD.gn**  file in the  **acts**  directory.
+4.  Add build options to the **BUILD.gn** file in the **acts** directory.
 
-    Add the test module to the  **test/xts/acts/build\_lite/BUILD.gn**  script in the  **acts**  directory.
+    Add the test module to the **test/xts/acts/build\_lite/BUILD.gn** script in the **acts** directory.
 
     ```
      lite_component("acts") {  
@@ -464,7 +321,7 @@ The HCPPTest framework, an enhanced version based on the open-source framework G
 
     Test suites are built along with the OS version. The ACTS is built together with the debug version.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE**<br/> The ACTS for the small system is independently built to an executable file \(.bin\) and archived in the **suites\\acts**  directory of the build result.
+    >![](../public_sys-resources/icon-note.gif) **NOTE**<br/> The ACTS for the small system is independently built to an executable file \(.bin\) and archived in the **suites\\acts** directory of the build result.
 
 
 ### Executing Test Cases in C++ (for Standard and Small Systems\)
@@ -478,9 +335,9 @@ Currently, test cases are shared by the NFS and mounted to the development board
 1.  Use a network cable or wireless network to connect the development board to your PC.
 2.  Configure the IP address, subnet mask, and gateway for the development board. Ensure that the development board and the PC are in the same network segment.
 3.  Install and register the NFS server on the PC and start the NFS service.
-4.  Run the  **mount**  command for the development board to ensure that the development board can access NFS shared files on the PC.
+4.  Run the **mount** command for the development board to ensure that the development board can access NFS shared files on the PC.
 
-    Format:  **mount** _NFS server IP address_**:/**_NFS shared directory_ **/**_development board directory_ **nfs**
+    Format: **mount** _NFS server IP address_**:/**_NFS shared directory_ **/**_development board directory_ **nfs**
 
     Example:
 
@@ -490,7 +347,7 @@ Currently, test cases are shared by the NFS and mounted to the development board
 
 **Executing Test Cases**
 
-Execute  **ActsDemoTest.bin**  to trigger test case execution, and analyze serial port logs generated after the execution is complete.
+Execute **ActsDemoTest.bin** to trigger test case execution, and analyze serial port logs generated after the execution is complete.
 
 ### Developing Test Cases in JavaScript (for the Standard System\)
 
@@ -500,71 +357,20 @@ The HJSUnit framework is used to support automated test of OpenHarmony apps that
 
 The test cases are developed with the JavaScript language and must meet the programming specifications of the language.
 
-**Table  5** 
+**Table  5** Basic syntax of test cases
 
-<a name="table13980103565212"></a>
-<table><thead align="left"><tr id="row1098093545218"><th class="cellrowborder" valign="top" width="17.92179217921792%" id="mcps1.2.4.1.1"><p id="p49811235135214"><a name="p49811235135214"></a><a name="p49811235135214"></a>Syntax</p>
-</th>
-<th class="cellrowborder" valign="top" width="68.88688868886888%" id="mcps1.2.4.1.2"><p id="p898183565220"><a name="p898183565220"></a><a name="p898183565220"></a>Description</p>
-</th>
-<th class="cellrowborder" valign="top" width="13.19131913191319%" id="mcps1.2.4.1.3"><p id="p17981143512526"><a name="p17981143512526"></a><a name="p17981143512526"></a>Mandatory</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1598183515528"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p139810358527"><a name="p139810358527"></a><a name="p139810358527"></a>beforeAll</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p198111352526"><a name="p198111352526"></a><a name="p198111352526"></a>Presets a test-suite-level action executed only once before all test cases are executed. You can pass the action function as the only parameter.</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p298114355529"><a name="p298114355529"></a><a name="p298114355529"></a>No</p>
-</td>
-</tr>
-<tr id="row11981103512529"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p20981135135215"><a name="p20981135135215"></a><a name="p20981135135215"></a>afterAll</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p39811935115217"><a name="p39811935115217"></a><a name="p39811935115217"></a>Presets a test-suite-level clear action executed only once after all test cases are executed. You can pass the clear function as the only parameter.</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p998110354527"><a name="p998110354527"></a><a name="p998110354527"></a>No</p>
-</td>
-</tr>
-<tr id="row1298116359526"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p898112359526"><a name="p898112359526"></a><a name="p898112359526"></a>beforeEach</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p149811335175215"><a name="p149811335175215"></a><a name="p149811335175215"></a>Presets a test-case-level action executed before each test case is executed. The number of execution times is the same as the number of test cases defined by <strong id="b32523248388"><a name="b32523248388"></a><a name="b32523248388"></a>it</strong>. You can pass the action function as the only parameter.</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p13981133585212"><a name="p13981133585212"></a><a name="p13981133585212"></a>No</p>
-</td>
-</tr>
-<tr id="row6982435115219"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p19982133517525"><a name="p19982133517525"></a><a name="p19982133517525"></a>afterEach</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p1398213575219"><a name="p1398213575219"></a><a name="p1398213575219"></a>Presets a test-case-level clear action executed after each test case is executed. The number of execution times is the same as the number of test cases defined by <strong id="b10590142313399"><a name="b10590142313399"></a><a name="b10590142313399"></a>it</strong>. You can pass the clear function as the only parameter.</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p159821535195219"><a name="p159821535195219"></a><a name="p159821535195219"></a>No</p>
-</td>
-</tr>
-<tr id="row16982143513521"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p598203510527"><a name="p598203510527"></a><a name="p598203510527"></a>describe</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p5982123595215"><a name="p5982123595215"></a><a name="p5982123595215"></a>Defines a test suite. You can pass two parameters: test suite name and test suite function. The <strong id="b7320205019400"><a name="b7320205019400"></a><a name="b7320205019400"></a>describe</strong> statement supports nesting. You can use <strong id="b138214222410"><a name="b138214222410"></a><a name="b138214222410"></a>beforeall</strong>, <strong id="b18677102314115"><a name="b18677102314115"></a><a name="b18677102314115"></a>beforeEach</strong>, <strong id="b1353142514113"><a name="b1353142514113"></a><a name="b1353142514113"></a>afterEach</strong>, and <strong id="b131041629204111"><a name="b131041629204111"></a><a name="b131041629204111"></a>afterAll</strong> in each <strong id="b590433484116"><a name="b590433484116"></a><a name="b590433484116"></a>describe</strong> statement.</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p898217352527"><a name="p898217352527"></a><a name="p898217352527"></a>Yes</p>
-</td>
-</tr>
-<tr id="row6982113518526"><td class="cellrowborder" valign="top" width="17.92179217921792%" headers="mcps1.2.4.1.1 "><p id="p17982123510526"><a name="p17982123510526"></a><a name="p17982123510526"></a>it</p>
-</td>
-<td class="cellrowborder" valign="top" width="68.88688868886888%" headers="mcps1.2.4.1.2 "><p id="p598211352522"><a name="p598211352522"></a><a name="p598211352522"></a>Defines a test case. You can pass three parameters: test case name, filter parameter, and test case function.</p>
-<p id="p5205769588"><a name="p5205769588"></a><a name="p5205769588"></a>Usage of the filter parameter:</p>
-<p id="p1545919528618"><a name="p1545919528618"></a><a name="p1545919528618"></a>The value of the filter parameter is a 32-bit integer. Setting different bits to <strong id="b045919521765"><a name="b045919521765"></a><a name="b045919521765"></a>1</strong> means different configurations:</p>
-<a name="ul6932113319395"></a><a name="ul6932113319395"></a><ul id="ul6932113319395"><li>bit 0: whether the filter parameter takes effect. <strong id="b1193293318395"><a name="b1193293318395"></a><a name="b1193293318395"></a>1</strong> means that the test case is used for the function test and other settings of the parameter do not take effect.</li><li>Bits 0-10: test case categories</li><li>Bits 16-18: test case scales</li><li>Bits 24-28: test levels</li></ul>
-<p id="p7965165151011"><a name="p7965165151011"></a><a name="p7965165151011"></a><strong id="b15148755145114"><a name="b15148755145114"></a><a name="b15148755145114"></a>Test case categories</strong>: Bits 0-10 indicate FUNCTION (function test), PERFORMANCE (performance test), POWER (power consumption test), RELIABILITY (reliability test), SECURITY (security compliance test), GLOBAL (integrity test), COMPATIBILITY (compatibility test), USER (user test), STANDARD (standard test), SAFETY (security feature test), and RESILIENCE (resilience test), respectively.</p>
-<p id="p199651555102"><a name="p199651555102"></a><a name="p199651555102"></a><strong id="b135908568519"><a name="b135908568519"></a><a name="b135908568519"></a>Test case scales</strong>: Bits 16-18 indicate SMALL (small-scale test), MEDIUM (medium-scale test), and LARGE (large-scale test), respectively.</p>
-<p id="p296545151020"><a name="p296545151020"></a><a name="p296545151020"></a><strong id="b12181058125111"><a name="b12181058125111"></a><a name="b12181058125111"></a>Test levels</strong>: Bits 24-28 indicate LEVEL0 (level-0 test), LEVEL1 (level-1 test), LEVEL2 (level-2 test), LEVEL3 (level-3 test), and LEVEL4 (level-4 test), respectively.</p>
-</td>
-<td class="cellrowborder" valign="top" width="13.19131913191319%" headers="mcps1.2.4.1.3 "><p id="p17601752115716"><a name="p17601752115716"></a><a name="p17601752115716"></a>Yes</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Syntax | Description | Mandatory |
+| ------- | ------------- | ------------ |
+| beforeAll | Presets a test-suite-level action executed only once before all test cases are executed. You can pass the action function as the only parameter. | No |
+| afterAll | Presets a test-suite-level clear action executed only once after all test cases are executed. You can pass the clear function as the only parameter. | No |
+| beforeEach | Presets a test-case-level action executed before each test case is executed. The number of execution times is the same as the number of test cases defined by it. You can pass the action function as the only parameter. | No |
+| afterEach | Presets a test-case-level clear action executed after each test case is executed. The number of execution times is the same as the number of test cases defined by it. You can pass the clear function as the only parameter. | No |
+| describe | Defines a test suite. You can pass two parameters: test suite name and test suite function. The describe statement supports nesting. You can use beforeall, beforeEach, afterEach, and afterAll in each describe statement. | Yes |
+| it | Defines a test case. You can pass three parameters: test case name, filter parameter, and test case function. <br>**Usage of the filter parameter:** <br>The value of the filter parameter is a 32-bit integer. Setting different bits to 1 means different configurations: <br><ul><li>Bit 0: whether the filter parameter takes effect. 1 means that the test case is used for the function test and other settings of the parameter do not take effect.</li><li>Bits 0-10: test case categories</li><li>Bits 16-18: test case scales</li><li>Bits 24-28: test levels</li></ul>**Test case categories**: Bits 0-10 indicate FUNCTION (function test), PERFORMANCE (performance test), POWER (power consumption test), RELIABILITY (reliability test), SECURITY (security compliance test), GLOBAL (integrity test), COMPATIBILITY (compatibility test), USER (user test), STANDARD (standard test), SAFETY (security feature test), and RESILIENCE (resilience test), respectively. <br>**Test case scales**: Bits 16-18 indicate SMALL (small-scale test), MEDIUM (medium-scale test), and LARGE (large-scale test), respectively. <br>**Test levels**: Bits 24-28 indicate LEVEL0 (level-0 test), LEVEL1 (level-1 test), LEVEL2 (level-2 test), LEVEL3 (level-3 test), and LEVEL4 (level-4 test), respectively. | Yes |
 
 Use the standard syntax of Jasmine to write test cases. The ES6 specification is supported.
 
-1.  Define the test case directory. The test cases are stored in the  **entry/src/main/js/test**  directory.
+1.  Define the test case directory. The test cases are stored in the **entry/src/main/js/test** directory.
 
     ```
     ├── BUILD.gn   
@@ -581,7 +387,7 @@ Use the standard syntax of Jasmine to write test cases. The ES6 specification is
     │ │ │ └── config.json              # HAP configuration file
     ```
 
-2.  Start the JS test framework and load test cases. The following is an example for  **index.js**.
+2.  Start the JS test framework and load test cases. The following is an example for **index.js**.
 
     ```
     // Start the JS test framework and load test cases.
@@ -640,7 +446,7 @@ Run the following command:
 
 Test case directory: **out/release/suites/acts/testcases**
 
-Test framework and test case directory: **out/release/suites/acts**  \(the test suite execution framework is compiled during the build process)
+Test framework and test case directory: **out/release/suites/acts** \(the test suite execution framework is compiled during the build process)
 
 
 ## Executing Test Cases in a Full Build (for Small and Standard Systems\)
@@ -649,7 +455,7 @@ Test framework and test case directory: **out/release/suites/acts**  \(the test 
 
 Install Python 3.7 or a later version on a Windows environment and ensure that the Windows environment is properly connected to the test device.
 
-**Test execution directory**  \(corresponding to the  **out/release/suites/acts**  directory generated in the build)
+**Test execution directory** \(corresponding to the **out/release/suites/acts** directory generated in the build)
 
 ```
 ├── testcase                       # Directory for storing test suite files
@@ -687,6 +493,4 @@ Install Python 3.7 or a later version on a Windows environment and ensure that t
 
 3.  View the test report.
 
-    Go to **acts\\reports\\**, obtain the current execution record, and open  **summary\_report.html**  to view the test report.
-
-
+    Go to **acts\\reports\\**, obtain the current execution record, and open **summary\_report.html** to view the test report.
