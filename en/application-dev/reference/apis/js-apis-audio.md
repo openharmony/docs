@@ -1325,7 +1325,7 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 **Example**
 
 ```
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err) => {
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
     if (err) {
         console.error('Failed to set the active status of the device. ${err.message}');
         return;
@@ -1359,7 +1359,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 
 
 ```
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(() => {
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
     console.log('Promise returned to indicate that the device is set to the active status.');
 });
 ```
@@ -1382,7 +1382,7 @@ Checks whether a device is active. This API uses an asynchronous callback to ret
 **Example**
 
 ```
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
     if (err) {
         console.error('Failed to obtain the active status of the device. ${err.message}');
         return;
@@ -1415,7 +1415,7 @@ Checks whether a device is active. This API uses a promise to return the result.
 **Example**
 
 ```
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) => {
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
     console.log('Promise returned to indicate that the active status of the device is obtained.' + value);
 });
 ```
@@ -1649,7 +1649,7 @@ var interAudioInterrupt = {
     contentType:0,
     pauseWhenDucked:true
 };
-this.audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
+audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
     if (InterruptAction.actionType === 0) {
         console.log("An event to gain the audio focus starts.");
         console.log("Focus gain event:" + JSON.stringify(InterruptAction));
@@ -1685,7 +1685,7 @@ var interAudioInterrupt = {
     contentType:0,
     pauseWhenDucked:true
 };
-this.audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
+audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
     if (InterruptAction.actionType === 0) {
         console.log("An event to release the audio focus starts.");
         console.log("Focus release event:" + JSON.stringify(InterruptAction));
@@ -1747,7 +1747,7 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```
-audioManager.setAudioScene(audio.AudioSceneMode.AUDIO_SCENE_PHONE_CALL).then(() => {
+audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
     console.log('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
     console.log('Failed to set the audio scene mode');
@@ -1906,6 +1906,7 @@ Obtains the renderer information of this **AudioRenderer** instance. This API us
 **Example**
 
 ```
+var resultFlag = true;
 audioRenderer.getRendererInfo().then((rendererInfo) => {
     console.log('Renderer GetRendererInfo:');
     console.log('Renderer content:' + rendererInfo.content);
@@ -2352,13 +2353,11 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 **Example**
 
 ```
-audioRenderer.getBufferSize((err, bufferSize) => {
+var bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
     if (err) {
         console.error('getBufferSize error');
     }
 });
-let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -2378,11 +2377,12 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 **Example**
 
 ```
-audioRenderer.getBufferSize().then((bufferSize) => {
-    let buf = new ArrayBuffer(bufferSize);
-    ss.readSync(buf);
+var bufferSize;
+await audioRenderer.getBufferSize().then(async function (data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize :SUCCESS '+data);
+    bufferSize=data;
 }).catch((err) => {
-    console.log('ERROR: '+err.message);
+    console.info('AudioFrameworkRenderLog: getBufferSize :ERROR : '+err.message);
 });
 ```
 
@@ -2507,7 +2507,9 @@ Subscribes to audio interruption events. This API uses a callback to get interru
 **Example**
 
 ```
-audioRenderer.on('interrupt', (interruptEvent) => {
+var isPlay;
+var started;
+audioRenderer.on('interrupt', async(interruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
         switch (interruptEvent.hintType) {
             case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
@@ -2520,14 +2522,33 @@ audioRenderer.on('interrupt', (interruptEvent) => {
                 break;
         }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-         switch (interruptEvent.hintType) {
+        switch (interruptEvent.hintType) {
             case audio.InterruptHint.INTERRUPT_HINT_RESUME:
                 console.log('Resume force paused renderer or ignore');
-                startRenderer();
+                await audioRenderer.start().then(async function () {
+                    console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
+                    started = true;
+                }).catch((err) => {
+                    console.info('AudioInterruptMusic: renderInstant start :ERROR : '+err.message);
+                    started = false;
+                });
+                if (started) {
+                    isPlay = true;
+                    console.info('AudioInterruptMusic Renderer started : isPlay : '+isPlay);
+                } else {
+                    console.error('AudioInterruptMusic Renderer start failed');
+                }
                 break;
             case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
                 console.log('Choose to pause or ignore');
-                pauseRenderer();
+                if (isPlay == true) {
+                    isPlay == false;
+                    console.info('AudioInterruptMusic: Media PAUSE : TRUE');
+                }
+                else {
+                    isPlay = true;
+                    console.info('AudioInterruptMusic: Media PLAY : TRUE');
+                }
                 break;
         }
     }
@@ -2988,7 +3009,7 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
     }
-};
+});
 ```
 
 
