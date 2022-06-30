@@ -198,11 +198,13 @@ onReconnect(want: Want): void;
   }
   ```
 
-## ServiceExtensionAbility.onReconnect
+## ServiceExtensionAbility.onConfigurationUpdated
 
 onConfigurationUpdated(config: Configuration): void;
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -213,7 +215,7 @@ onConfigurationUpdated(config: Configuration): void;
 **示例：**
     
   ```js
-  class myAbility extends Ability {
+  class ServiceExt extends ServiceExtension {
       onConfigurationUpdated(config) {
           console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
       }
@@ -226,7 +228,9 @@ dump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -237,7 +241,7 @@ dump(params: Array\<string>): Array\<string>;
 **示例：**
     
   ```js
-  class myAbility extends Ability {
+  class ServiceExt extends ServiceExtension {
       dump(params) {
           console.log('dump, params:' + JSON.stringify(params));
           return ["params"]

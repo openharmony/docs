@@ -9,11 +9,6 @@ AbilityContext模块提供允许访问特定于ability的资源的能力，包�
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。   
 > 本模块接口仅可在Stage模型下使用。
 
-## 导入模块
-
-```js
-import Ability from '@ohos.application.Ability'
-```
 ## 使用说明
 
 在使用AbilityContext的功能前，需要通过Ability子类实例获取。
@@ -27,7 +22,6 @@ class MainAbility extends Ability {
 }
 ```
 
-
 ## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -36,7 +30,7 @@ class MainAbility extends Ability {
 | -------- | -------- | -------- | -------- | -------- |
 | abilityInfo | AbilityInfo | 是 | 否 | Abilityinfo相关信息 |
 | currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前hap包的信息 |
-
+| config | [Configuration](js-apis-configuration.md) | 是 | 否 | 表示配置信息。 |
 
 ## AbilityContext.startAbility
 
@@ -45,6 +39,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 启动Ability。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -74,6 +70,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 启动Ability。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -107,6 +105,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 启动Ability。通过Promise返回结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -237,6 +237,128 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
   })
   ```
 
+## AbilityContext.startAbilityForResultWithAccount
+
+startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>): void;
+
+启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| callback | AsyncCallback\<AbilityResult\> | 是 | 启动Ability的回调函数，返回Ability结果。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.startAbilityWithAccount(want, accountId, (err, data) => {
+    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
+    console.log('---------- startAbilityWithAccount success, data:  -----------', data);
+  });
+  ```
+
+
+## AbilityContext.startAbilityForResultWithAccount
+
+startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+
+启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  var options = {
+    windowMode: 0,
+  };
+  this.context.startAbilityForResultWithAccount(want, accountId, options, (err) => {
+    console.log('---------- startAbilityForResultWithAccount fail, err:  -----------', err);
+  });
+  ```
+
+
+  ## AbilityContext.startAbilityForResultWithAccount
+
+startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
+
+启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;AbilityResult&gt; | 返回一个Promise，包含Ability结果。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  var options = {
+    windowMode: 0,
+  };
+  this.context.startAbilityForResultWithAccount(want, accountId, options)
+    .then((data) => {
+        console.log('---------- startAbilityForResultWithAccount success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- startAbilityForResultWithAccount fail, err:  -----------', err);
+    })
+  ```
+
 
 ## AbilityContext.terminateSelf
 
@@ -348,6 +470,149 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
   )
   ```
 
+## AbilityContext.connectAbility
+
+connectAbility(want: Want, options: ConnectOptions): number;
+
+使用AbilityInfo.AbilityType.SERVICE模板将当前能力连接到一个能力。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | 否 | 远端对象实例。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回Ability连接的结果code。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var options = {
+    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
+    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
+    onFailed(code) { console.log('----------- onFailed -----------') }
+  }
+  const result = this.context.connectAbility(want, options);
+  console.log('----------- connectAbilityResult: ------------', result);
+  ```
+
+
+## AbilityContext.connectAbilityWithAccount
+
+connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
+
+使用AbilityInfo.AbilityType.SERVICE模板和account将当前能力连接到一个能力。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | 否 | 远端对象实例。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回Ability连接的结果code。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  var options = {
+    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
+    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
+    onFailed(code) { console.log('----------- onFailed -----------') }
+  }
+  const result = this.context.connectAbilityWithAccount(want, accountId, options);
+  console.log('----------- connectAbilityResult: ------------', result);
+  ```
+
+## AbilityContext.disconnectAbility
+
+disconnectAbility(connection: number): Promise\<void>;
+
+已成功连接接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| connection | number | 是 | 连接的能力的数字代码。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | 返回执行结果。 |
+
+**示例：**
+    
+  ```js
+  var connectionNumber = 0;
+  this.context.disconnectAbility(connectionNumber).then((data) => {
+       console.log('disconnectAbility success, data: ', data);
+  }).catch((err) => {
+       console.log('disconnectAbility fail, err: ', err);
+  });
+  ```
+
+## AbilityContext.disconnectAbility
+
+disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
+
+已成功连接接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| connection | number | 是 | 连接的能力的数字代码。 |
+| callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+
+**示例：**
+
+  ```js
+    var connectionNumber = 0;
+    this.context.disconnectAbility(connectionNumber, (err) => {
+       console.log('---------- disconnectAbility fail, err: -----------', err);
+    });
+  ```
 
 ## AbilityContext.startAbilityByCall
 
@@ -390,6 +655,120 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   }
   ```
 
+## AbilityContext.startAbilityWithAccount
+
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
+
+根据account启动Ability（callback形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.startAbilityWithAccount(want, accountId, (err) => {
+    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
+  });
+  ```
+
+
+## AbilityContext.startAbilityWithAccount
+
+startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
+
+根据account启动Ability（callback形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  var options = {
+    windowMode: 0,
+  };
+  this.context.startAbilityWithAccount(want, accountId, options, (err) => {
+    console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
+  });
+  ```
+
+
+## AbilityContext.startAbilityWithAccount
+
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
+
+根据account启动Ability（Promise形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  var options = {
+    windowMode: 0,
+  };
+  this.context.startAbilityWithAccount(want, accountId, options)
+    .then((data) => {
+        console.log('---------- startAbilityWithAccount success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
+    })
+  ```
 
 ## AbilityContext.requestPermissionsFromUser
 
@@ -502,6 +881,117 @@ setMissionLabel(label: string): Promise&lt;void&gt;
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
   });
+  ```
+## AbilityContext.setMissionIcon
+
+setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
+
+设置当前ability的任务标签。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的能力图标。 |
+| callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
+
+**示例：**
+    
+  ```js
+    import image from '@ohos.multimedia.image'
+    var imagePixelMap;
+    var color = new ArrayBuffer(0);
+    var initializationOptions = {
+       size: {
+           height: 100,
+           width: 100
+       }
+    };
+    image.createPixelMap(color, initializationOptions)
+       .then((data) => {
+           imagePixelMap = data;
+       })
+       .catch((err) => {
+           console.log('--------- createPixelMap fail, err: ---------', err)
+       });
+    this.context.setMissionIcon(imagePixelMap, (err) => {
+       console.log('---------- setMissionIcon fail, err: -----------', err);
+    })
+  ```
+
+
+## AbilityContext.setMissionIcon
+
+setMissionIcon(icon: image.PixelMap): Promise\<void>;
+
+设置当前ability的任务标签。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的能力图标。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
+
+**示例：**
+    
+  ```js
+    import image from '@ohos.multimedia.image'
+    var imagePixelMap;
+    var color = new ArrayBuffer(0);
+    var initializationOptions = {
+      size: {
+          height: 100,
+          width: 100
+      }
+    };
+    image.createPixelMap(color, initializationOptions)
+      .then((data) => {
+          imagePixelMap = data;
+      })
+      .catch((err) => {
+          console.log('--------- createPixelMap fail, err: ---------', err)
+      });
+    this.context.setMissionIcon(imagePixelMap)
+      .then((data) => {
+          console.log('-------------- setMissionIcon success, data: -------------', data);
+      })
+      .catch((err) => {
+          console.log('-------------- setMissionIcon fail, err: -------------', err);
+      });
+  ```
+## AbilityContext.restoreWindowStage
+
+restoreWindowStage(localStorage: LocalStorage) : void;
+
+恢复ability中的window stage数据。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| localStorage | image.LocalStorage | 是 | 用于恢复window stage的存储数据。 |
+
+**示例：**
+
+  ```js
+    var storage = new LocalStorage();
+    this.context.restoreWindowStage(storage);
   ```
 
 ## AbilityContext.isTerminating

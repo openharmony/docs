@@ -14,8 +14,6 @@ TestRunner模块提供了框架测试的能力。包括准备单元测试环境�
 import TestRunner from '@ohos.application.testRunner'
 ```
 
-
-
 ## TestRunner.onPrepare
 
 onPrepare(): void
