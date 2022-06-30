@@ -7,7 +7,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [By](#by)：提供控件特征描述能力，用于控件筛选匹配查找。
 - [UiComponent](#uicomponent)：代表UI界面上的指定控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。
 - [UiDriver](#uidriver)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能能力。
-- [UiWINDOW](#uiwindow<sup>9+</sup>)：入口类，提供窗口属性获取，窗口拖动、调整窗口大小等能能力。
+- [UiWINDOW<sup>9+</sup>](#uiwindow9)：入口类，提供窗口属性获取，窗口拖动、调整窗口大小等能能力。
 
 >**说明：**
 >
@@ -29,7 +29,7 @@ By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多
 BY.text('123').type('button')
 ```
 
-### By.text
+### text
 
 text(txt: string, pattern?: MatchPattern): By
 
@@ -57,7 +57,7 @@ let by = BY.text('123') //使用静态构造器BY创建by对象，指定目标�
 ```
 
 
-### By.key
+### key
 
 key(key: string): By
 
@@ -84,7 +84,7 @@ let by = BY.key('123') //使用静态构造器BY创建by对象，指定目标控
 ```
 
 
-### By.id
+### id
 
 id(id: number): By
 
@@ -111,7 +111,7 @@ let by = BY.id(123) //使用静态构造器BY创建by对象，指定目标控件
 ```
 
 
-### By.type
+### type
 
 type(tp: string): By
 
@@ -138,7 +138,7 @@ let by = BY.type('button') //使用静态构造器BY创建by对象，指定目�
 ```
 
 
-### By.clickable
+### clickable
 
 clickable(b?: bool): By
 
@@ -164,7 +164,7 @@ clickable(b?: bool): By
 let by = BY.clickable(true) //使用静态构造器BY创建by对象，指定目标控件的可点击状态属性。
 ```
 
-### By.longClickable<sup>9+</sup>
+### longClickable<sup>9+</sup>
 
 longClickable(b?: bool): By
 
@@ -191,7 +191,7 @@ let by = BY.longClickable(true) //使用静态构造器BY创建by对象，指定
 ```
 
 
-### By.scrollable
+### scrollable
 
 scrollable(b?: bool): By
 
@@ -217,7 +217,7 @@ scrollable(b?: bool): By
 let by = BY.scrollable(true) //使用静态构造器BY创建by对象，指定目标控件的可滑动状态属性。
 ```
 
-### By.enabled
+### enabled
 
 enabled(b?: bool): By
 
@@ -243,7 +243,7 @@ enabled(b?: bool): By
 let by = BY.enabled(true) //使用静态构造器BY创建by对象，指定目标控件的使能状态属性。
 ```
 
-### By.focused
+### focused
 
 focused(b?: bool): By
 
@@ -269,7 +269,7 @@ focused(b?: bool): By
 let by = BY.focused(true) //使用静态构造器BY创建by对象，指定目标控件的获焦状态属性。
 ```
 
-### By.selected
+### selected
 
 selected(b?: bool): By
 
@@ -295,7 +295,7 @@ selected(b?: bool): By
 let by = BY.selected(true) //使用静态构造器BY创建by对象，指定目标控件的被选中状态属性。
 ```
 
-### By.checked<sup>9+</sup>
+### checked<sup>9+</sup>
 
 checked(b?: bool): By
 
@@ -321,7 +321,7 @@ checked(b?: bool): By
 let by = BY.checked(true) //使用静态构造器BY创建by对象，指定目标控件的被勾选状态属性
 ```
 
-### By.checkable<sup>9+</sup>
+### checkable<sup>9+</sup>
 
 checkable(b?: bool): By
 
@@ -347,7 +347,7 @@ checkable(b?: bool): By
 let by = BY.checkable(true) //使用静态构造器BY创建by对象，指定目标控件的能否被勾选状态属性。
 ```
 
-### By.isBefore
+### isBefore
 
 isBefore(by: By): By
 
@@ -373,7 +373,7 @@ isBefore(by: By): By
 let by = BY.isBefore(BY.text('123')) //使用静态构造器BY创建by对象，指定目标控件位于给出的特征属性控件之前。
 ```
 
-### By.isAfter
+### isAfter
 
 isAfter(by: By): By
 
@@ -446,7 +446,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.doubleClick
+### doubleClick
 
 doubleClick(): Promise\<void>
 
@@ -464,7 +464,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.longClick
+### longClick
 
 longClick(): Promise\<void>
 
@@ -482,7 +482,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getId
+### getId
 
 getId(): Promise\<number>
 
@@ -506,7 +506,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getKey
+### getKey
 
 getKey(): Promise\<string>
 
@@ -530,7 +530,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getText
+### getText
 
 getText(): Promise\<string>
 
@@ -554,7 +554,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getType
+### getType
 
 getType(): Promise\<string>
 
@@ -578,7 +578,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getBounds<sup>9+</sup>
+### getBounds<sup>9+</sup>
 
 getBounds(): Promise\<Rect>
 
@@ -602,7 +602,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getBoundsCenter<sup>9+</sup>
+### getBoundsCenter<sup>9+</sup>
 
 getBoundsCenter(): Promise\<Point>
 
@@ -626,7 +626,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isClickable
+### isClickable
 
 isClickable(): Promise\<bool>
 
@@ -655,7 +655,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isLongClickable<sup>9+</sup>
+### isLongClickable<sup>9+</sup>
 
 isLongClickable(): Promise\<bool> 
 
@@ -684,7 +684,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isChecked<sup>9+</sup>
+### isChecked<sup>9+</sup>
 
 isChecked(): Promise\<bool>
 
@@ -713,7 +713,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isCheckable<sup>9+</sup>
+### isCheckable<sup>9+</sup>
 
 isCheckable(): Promise\<bool>
 
@@ -742,7 +742,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isScrollable
+### isScrollable
 
 isScrollable(): Promise\<bool>
 
@@ -772,7 +772,7 @@ async function demo() {
 ```
 
 
-### UiComponent.isEnabled
+### isEnabled
 
 isEnabled(): Promise\<bool>
 
@@ -802,7 +802,7 @@ async function demo() {
 
 ```
 
-### UiComponent.isFocused
+### isFocused
 
 isFocused(): Promise\<bool>
 
@@ -831,7 +831,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isSelected
+### isSelected
 
 isSelected(): Promise\<bool>
 
@@ -860,7 +860,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.inputText
+### inputText
 
 inputText(text: string): Promise\<void>
 
@@ -884,7 +884,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.clearText<sup>9+</sup>
+### clearText<sup>9+</sup>
 
 clearText(): Promise\<void>
 
@@ -902,7 +902,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.scrollSearch
+### scrollSearch
 
 scrollSearch(by: By): Promise\<UiComponent>
 
@@ -932,11 +932,9 @@ async function demo() {
 }
 ```
 
-### UiComponent.scrollToTop<sup>9+</sup>
+### scrollToTop<sup>9+</sup>
 
-### UiComponent.scrollToTop<sup>9+</sup>
-
-scrollToTop(speed?: **number**): Promise\<void>
+scrollToTop(speed?: number): Promise\<void>
 
 在控件上滑动到顶部(适用于List等支持滑动的控件)。
 
@@ -958,9 +956,9 @@ async function demo() {
 }
 ```
 
-### UiComponent.scrollToBottom<sup>9+</sup>
+### scrollToBottom<sup>9+</sup>
 
-scrollToBottom(speed?: **number**): Promise\<void>
+scrollToBottom(speed?: number): Promise\<void>
 
 在控件上滑动到底部(适用于List等支持滑动的控件)。
 
@@ -982,7 +980,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.dragTo<sup>9+</sup>
+### dragTo<sup>9+</sup>
 
 dragTo(target: UiComponent): Promise\<void>
 
@@ -1012,7 +1010,7 @@ async function demo() {
 UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等API。
 该类提供的方法除UiDriver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await调用。
 
-### UiDriver.create
+### create
 
 static create(): UiDriver
 
@@ -1034,7 +1032,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.delayMs
+### delayMs
 
 delayMs(duration: number): Promise\<void>
 
@@ -1057,7 +1055,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.findComponent
+### findComponent
 
 findComponent(by: By): Promise\<UiComponent>
 
@@ -1086,7 +1084,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.findComponents
+### findComponents
 
 findComponents(by: By): Promise\<Array\<UiComponent>>
 
@@ -1115,7 +1113,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.findWindow<sup>9+</sup>
+### findWindow<sup>9+</sup>
 
 findWindow(filter: WindowFilter): Promise\<UiWindow>
 
@@ -1125,15 +1123,15 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 **参数：**
 
-| 参数名 | 类型         | 必填 | 说明             |
-| ------ | ------------ | ---- | ---------------- |
-| filter | WindowFilter | 是   | 目标窗口的属性。 |
+| 参数名 | 类型                           | 必填 | 说明             |
+| ------ | ------------------------------ | ---- | ---------------- |
+| filter | [WindowFilter](#windowfilter9) | 是   | 目标窗口的属性。 |
 
 **返回值：**
 
-| 类型               | 说明                                  |
-| ------------------ | ------------------------------------- |
-| Promise\<UiWindow> | 以Promise形式返回找到的目标窗口对象。 |
+| 类型                             | 说明                                  |
+| -------------------------------- | ------------------------------------- |
+| Promise\<[UiWindow](#uiwindow9)> | 以Promise形式返回找到的目标窗口对象。 |
 
 **示例：**
 
@@ -1144,7 +1142,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.waitForComponent<sup>9+</sup>
+### waitForComponent<sup>9+</sup>
 
 waitForComponent(by: By, time: number): Promise\<UiComponent>
 
@@ -1174,7 +1172,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.assertComponentExist   
+### assertComponentExist   
 
 assertComponentExist(by: By): Promise\<void>
 
@@ -1197,7 +1195,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.pressBack
+### pressBack
 
 pressBack(): Promise\<void>
 
@@ -1214,7 +1212,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.triggerKey
+### triggerKey
 
 triggerKey(keyCode: number): Promise\<void>
 
@@ -1237,7 +1235,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.click
+### click
 
 click(x: number, y: number): Promise\<void>
 
@@ -1261,7 +1259,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.doubleClick
+### doubleClick
 
 doubleClick(x: number, y: number): Promise\<void>
 
@@ -1285,7 +1283,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.longClick
+### longClick
 
 longClick(x: number, y: number): Promise\<void>
 
@@ -1309,7 +1307,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.swipe<sup>9+</sup>
+### swipe<sup>9+</sup>
 
 swipe(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
@@ -1336,7 +1334,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.drag<sup>9+</sup>
+### drag<sup>9+</sup>
 
 drag(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
@@ -1363,7 +1361,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.screenCap
+### screenCap
 
 screenCap(savePath: string): Promise\<bool>
 
@@ -1410,7 +1408,7 @@ UiTest中，UiWindow类代表了UI界面上的一个窗口，提供窗口属性�
 | focused    | bool     | 否   | 是   | 否   | 窗口是否获焦。             |
 | actived    | bool     | 否   | 是   | 否   | 窗口是否正与用户进行交互。 |
 
-### UiWindow.getBundleName<sup>9+</sup>
+### getBundleName<sup>9+</sup>
 
 getBundleName(): Promise\<string>
 
@@ -1433,7 +1431,7 @@ async function demo() {
     let name = await window.getBundleName()
 ```
 
-### UiWindow.getBounds<sup>9+</sup>
+### getBounds<sup>9+</sup>
 
 getBounds(): Promise\<Rect>
 
@@ -1457,7 +1455,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.getTitle<sup>9+</sup>
+### getTitle<sup>9+</sup>
 
 getTitle(): Promise\<string>
 
@@ -1481,7 +1479,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.getWindowMode<sup>9+</sup>
+### getWindowMode<sup>9+</sup>
 
 getWindowMode(): Promise\<WindowMode>
 
@@ -1505,7 +1503,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.isFocused<sup>9+</sup>
+### isFocused<sup>9+</sup>
 
 isFocused(): Promise\<bool>
 
@@ -1529,7 +1527,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.isActived<sup>9+</sup>
+### isActived<sup>9+</sup>
 
 isActived(): Promise\<bool>
 
@@ -1553,7 +1551,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.focus<sup>9+</sup>
+### focus<sup>9+</sup>
 
 focus(): Promise\<bool>
 
@@ -1577,7 +1575,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.moveTo<sup>9+</sup>
+### moveTo<sup>9+</sup>
 
 moveTo(x: number, y: number): Promise\<bool>;
 
@@ -1608,7 +1606,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.resize<sup>9+</sup>
+### resize<sup>9+</sup>
 
 resize(wide: number, height: number, direction: ResizeDirection): Promise\<bool>
 
@@ -1640,7 +1638,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.split<sup>9+</sup>
+### split<sup>9+</sup>
 
 split(): Promise\<bool>
 
@@ -1664,7 +1662,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.maximize<sup>9+</sup>
+### maximize<sup>9+</sup>
 
 maximize(): Promise\<bool>
 
@@ -1688,7 +1686,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.minimize<sup>9+</sup>
+### minimize<sup>9+</sup>
 
 minimize(): Promise\<bool>
 
@@ -1712,7 +1710,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.resume<sup>9+</sup>
+### resume<sup>9+</sup>
 
 resume(): Promise\<bool>
 
@@ -1736,7 +1734,7 @@ async function demo() {
 }
 ```
 
-### UiWindow.close<sup>9+</sup>
+### close<sup>9+</sup>
 
 close(): Promise\<bool>
 
