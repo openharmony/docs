@@ -4,8 +4,8 @@
 
 该模块提供以下图像效果相关的常用功能：
 
-- [Filter](#Filter)：效果链。
-- [ColorPicker](#ColorPicker)：智能取色器。
+- [Filter](#filter)：效果链。
+- [ColorPicker](#colorpicker)：智能取色器。
 
 > **说明：**
 > 
@@ -28,13 +28,13 @@ createEffect(source: image.PixelMap): Filter
 
 | 名称    | 类型               | 必填 | 说明     |
 | ------- | ----------------- | ---- | -------- |
-| source  | [image.PixelMap](js-apis-image#pixelmap7) | 是   | image模块创建的PixelMap实例。   |
+| source  | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   | image模块创建的PixelMap实例。   |
 
 **返回值：**
 
 | 类型                             | 说明           |
 | -------------------------------- | -------------- |
-| [Filter](#Filter) | 返回不带任何效果的Filter链表的头节点，失败时返回null。 |
+| [Filter](#filter) | 返回不带任何效果的Filter链表的头节点，失败时返回null。 |
 
 **示例：**
 
@@ -60,13 +60,13 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 | 名称     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image#pixelmap7) | 是   |  image模块创建的PixelMap实例 |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例 |
 
 **返回值：**
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promisse\<[ColorPicker](#ColorPicker)>  | Promise对象。返回当前创建的子窗口对象。 |
+| Promisse\<[ColorPicker](#colorpicker)>  | Promise对象。返回当前创建的子窗口对象。 |
 
 **示例：**
 
@@ -95,8 +95,8 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 | 名称     | 类型                | 必填 | 说明                       |
 | -------- | ------------------ | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image#pixelmap7) | 是  | BGRA_8888格式的颜色数组。  |
-| callback | AsyncCallback\<[ColorPicker](#ColorPicker)> | 是  | 回调函数，返回ColorPicker。 |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | BGRA_8888格式的颜色数组。  |
+| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数，返回ColorPicker。 |
 
 **示例：**
 
@@ -130,13 +130,13 @@ image.createPixelMap(color, opts, (pixelmap) => {
 
 ## ColorPicker
 
-取色类，用于从一张图像数据中获取它的主要颜色。在调用ColorPicker的方法前，需要先通过[createColorPicker](#effectKit.createColorPicker)创建一个ColorPicker实例。
+取色类，用于从一张图像数据中获取它的主要颜色。在调用ColorPicker的方法前，需要先通过[createColorPicker](#effectkitcreatecolorpicker)创建一个ColorPicker实例。
 
 ### getMainColor
 
 getMainColor(): Promise\<Color>
 
-读取图像主色的颜色值，结果写入Color里，使用Promise异步回调。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
@@ -144,7 +144,7 @@ getMainColor(): Promise\<Color>
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| Promise\<[Color](#Color)> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<[Color](#color)> | Promise实例，用于获取结果，失败时返回错误信息。 |
 
 **示例：**
 
@@ -161,7 +161,7 @@ colorPicker.getMainColor().then(color => {
 
 getMainColorSync(): Color
 
-读取图像主色的颜色值，结果写入[Color](#Color)里，使用同步方式返回。
+读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
@@ -169,7 +169,7 @@ getMainColorSync(): Color
 
 | 类型     | 说明                                  |
 | :------- | :----------------------------------- |
-| [Color](#Color)    | Color实例，用于获取结果，失败时返回null。 |
+| [Color](#color)    | Color实例，用于获取结果，失败时返回null。 |
 
 **示例：**
 
@@ -180,7 +180,7 @@ console.log('get main color =' + color)
 
 ## Filter
 
-图像效果类，用于将指定的效果添加到输入图像中。在调用Filter的方法前，需要先通过[createEffect](#effectKit.createEffect)创建一个Filter实例。
+图像效果类，用于将指定的效果添加到输入图像中。在调用Filter的方法前，需要先通过[createEffect](#effectkitcreateeffect)创建一个Filter实例。
 
 ### blur
 
@@ -200,7 +200,7 @@ blur(radius: number): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#Filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回效果链表头。 |
 
 **示例：**
 
@@ -236,7 +236,7 @@ brightness(bright: number): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [Filter](#Filter) | 返回效果链表头。 |
+| [Filter](#filter) | 返回效果链表头。 |
 
 **示例：**
 
@@ -295,7 +295,7 @@ getPixelMap(): image.PixelMap
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| [image.PixelMap](js-apis-image#pixelmap7) | 已添加链表效果的源图像的image.PixelMap。 |
+| [image.PixelMap](js-apis-image.md#pixelmap7) | 已添加链表效果的源图像的image.PixelMap。 |
 
 **示例：**
 
