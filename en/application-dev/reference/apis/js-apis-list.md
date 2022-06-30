@@ -364,10 +364,10 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.replaceAllElements((value, index) => {
+list.replaceAllElements((value: number, index: number) => {
   return value = 2 * value;
 });
-list.replaceAllElements((value, index) => {
+list.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
 ```
@@ -439,8 +439,8 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.sort((a, b) => a - b);
-list.sort((a, b) => b - a);
+list.sort((a: number, b: number) => a - b);
+list.sort((a: number, b: number) => b - a);
 ```
 
 ### getSubList
@@ -472,9 +472,9 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-let result = list.subList(2, 4);
-let result1 = list.subList(4, 3);
-let result2 = list.subList(2, 6);
+let result = list.getSubList(2, 4);
+let result1 = list.getSubList(4, 3);
+let result2 = list.getSubList(2, 6);
 ```
 
 ### clear
