@@ -825,6 +825,65 @@ updater.terminateUpgrade().then(value => {
 });
 ```
 
+
+### on
+on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
+
+注册事件监听，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
+| taskCallback | UpgradeTaskCallback | 是    | 事件回调 |
+
+**示例：**
+
+```
+var eventClassifyInfo = {
+  eventClassify: EventClassify.TASK // 订阅升级更新事件
+  extraInfo: ""
+}
+
+function onTaskUpdate(eventInfo): void {
+  console.log("on eventInfo id ", eventInfo.eventId);
+}
+
+localUpdater.on(eventClassifyInfo, onTaskUpdate);
+```
+
+### off
+off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
+
+取消注册事件监听，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
+| taskCallback | UpgradeTaskCallback | 否    | 事件回调 |
+
+**示例：**
+
+```
+var eventClassifyInfo = {
+  eventClassify: EventClassify.TASK // 订阅升级更新事件
+  extraInfo: ""
+}
+
+function onTaskUpdate(eventInfo): void {
+  console.log("on eventInfo id ", eventInfo.eventId);
+}
+
+localUpdater.off(eventClassifyInfo, onTaskUpdate);
+```
+
 ## Restorer
 
 ### factoryReset
@@ -1268,6 +1327,17 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | errorCode        |   number   | 是    | 错误码  |
 | errorMessage         | string | 是    | 错误描述    |
 
+## EventClassifyInfo
+
+事件信息。
+
+**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| eventClassify        |   EventClassify   | 是    | 事件类型  |
+| extraInfo         | string | 是    | 额外信息    |
+
 ## UpgradeFile
 
 升级文件。
@@ -1369,8 +1439,6 @@ onTaskUpdate(eventInfo: [EventInfo](#eventInfo)): void
 | NOT_METERED_WIFI   | 4 | 非热点WIFI  |
 | WIFI   | 6 | WIFI  |
 | CELLULAR_AND_WIFI   | 7 | 数据网络和WIFI  |
-
-## UpgradeInfo
 
 ## Order
 
