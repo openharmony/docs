@@ -79,7 +79,7 @@ setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt
   ```
 ## securityLabel.setSecurityLabelSync
 
-setSecurityLabelSync(path:string, dataLevel:string):void
+setSecurityLabelSync(path:string, type:dataLevel):void
 
 以同步方法设置数据标签。
 
