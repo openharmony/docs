@@ -9,6 +9,8 @@ ExtensionContext模块提供扩展的上下文的能力，包括允许访问特�
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
+Extension的上下文环境，继承自Context。
+
 ## 导入模块
 
 ```js
