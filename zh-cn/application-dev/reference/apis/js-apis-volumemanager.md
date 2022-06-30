@@ -198,7 +198,7 @@ getVolumeByUuid(uuid: string): Promise<Volume>;
 
   | 类型                               | 说明                       |
     | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷信息 |
+  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷信息 |
 
 - 示例
 
@@ -222,7 +222,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback<Volume>): void;
   | 参数名    | 类型                                                 | 必填 | 说明                 |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
   | uuid | string                                                 | 是   | 卷uuid                 |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)[]&gt;  | 是   | 获取卷信息之后的回调 |
+  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
 
 - 示例
 
@@ -235,7 +235,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback<Volume>): void;
 
 ## volumemanager.getVolumeById
 
-getVolumeById(volumeId: string): Promise<Volume>;
+getVolumeById(id: string): Promise<Volume>;
 
 异步通过卷id获得卷信息，以promise方式返回。
 
@@ -247,24 +247,24 @@ getVolumeById(volumeId: string): Promise<Volume>;
 
   | 参数名    | 类型    | 必填  | 说明 |
   | -------- | ------ | ---- | ---- |
-  | volumeId | string | 是   | 卷id |
+  | id | string | 是   | 卷id |
 
 - 返回值
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | 返回当前所有可获得的卷信息 |
+  | Promise&lt;[Volume](#volume)&gt; | 返回当前所有可获得的卷信息 |
 
 - 示例
 
   ```js
-  let volumeId = "";
-  let volume = await volumemanager.getVolumeById(volumeId);
+  let id = "";
+  let volume = await volumemanager.getVolumeById(id);
   ```
 
 ## volumemanager.getVolumeById
 
-getVolumeById(volumeId: string, callback: AsyncCallback<Volume>): void;
+getVolumeById(id: string, callback: AsyncCallback<Volume>): void;
 
 异步通过卷id获得卷信息，以callback方式返回。
 
@@ -276,21 +276,21 @@ getVolumeById(volumeId: string, callback: AsyncCallback<Volume>): void;
 
   | 参数名    | 类型                                                 | 必填 | 说明                 |
     | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | volumeId | string                                              | 是   | volumeId                 |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)[]&gt;  | 是   | 获取卷信息之后的回调 |
+  | id | string                                              | 是   | 卷id                 |
+  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
 
 - 示例
 
   ```js
-  let volumeId = "";
-  volumemanager.getVolumeById(volumeId, (error, volume) => {
+  let id = "";
+  volumemanager.getVolumeById(id, (error, volume) => {
       // do something    
   });
   ```
 
 ## volumemanager.setVolumeDescription
 
-setVolumeDescription(uuid: string, description: string): Promise<boolean>;
+setVolumeDescription(uuid: string, description: string): Promise<void>;
 
 异步通过uuid设置卷描述，以promise方式返回。
 
@@ -309,7 +309,7 @@ setVolumeDescription(uuid: string, description: string): Promise<boolean>;
 
   | 类型                    | 说明                       |
   | ---------------------- | -------------------------- |
-  | Promise&lt;boolean&gt; | 设置卷信息                  |
+  | Promise&lt;void&gt; | 设置卷信息                  |
 
 - 示例
 
@@ -321,7 +321,7 @@ setVolumeDescription(uuid: string, description: string): Promise<boolean>;
 
 ## volumemanager.setVolumeDescription
 
-function setVolumeDescription(uuid: string, description: string, callback: AsyncCallback<boolean>): void;
+function setVolumeDescription(uuid: string, description: string, callback: AsyncCallback<void>): void;
 
 异步通过uuid设置卷描述，以callback方式返回。
 
@@ -335,7 +335,7 @@ function setVolumeDescription(uuid: string, description: string, callback: Async
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | 是   | 卷uuid            |
   | description | string                                 | 是   | 卷描述            |
-  | callback   | callback:AsyncCallback&lt;boolean&gt;   | 是   | 设置卷描述之后的回调 |
+  | callback   | callback:AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
 
 - 示例
 
@@ -349,7 +349,7 @@ function setVolumeDescription(uuid: string, description: string, callback: Async
 
 ## volumemanager.format
 
-format(volumeId: string, fsType: string): Promise<boolean>;
+format(volumeId: string, fsType: string): Promise<void>;
 
 异步对指定卷进行格式化，以promise方式返回。
 
@@ -361,26 +361,24 @@ format(volumeId: string, fsType: string): Promise<boolean>;
 
   | 参数名       | 类型   | 必填 | 说明 |
   | ----------- | ------ | ---- | ---- |
-  | volumeId    | string | 是   | 卷id |
-  | fsType      | string | 是   | 文件系统类型 |
+  | volId    | string | 是   | 卷id |
 
 - 返回值
 
   | 类型                    | 说明                       |
     | --------------------- | ----------------------- |
-  | Promise&lt;boolean&gt; | 对指定卷进行格式化            |
+  | Promise&lt;void&gt; | 对指定卷进行格式化            |
 
 - 示例
 
   ```js
-  let volumeId = "";
-  let fsType = "";
-  let bool = await volumemanager.format(volumeId, fsType);
+  let volId = "";
+  let bool = await volumemanager.format(volId);
   ```
 
 ## volumemanager.format
 
-format(volumeId: string, fsType: string, callback: AsyncCallback<boolean>): void;
+format(volumeId: string, fsType: string, callback: AsyncCallback<void>): void;
 
 异步对指定卷进行格式化，以callback方式返回。
 
@@ -392,23 +390,21 @@ format(volumeId: string, fsType: string, callback: AsyncCallback<boolean>): void
 
   | 参数名      | 类型                                     | 必填 | 说明              |
     | -------- | --------------------------------------- | ---- | ---------------- |
-  | volumeId   | string                                  | 是   | 卷id            |
-  | fsType     | string                                  | 是   | 文件系统类型            |
-  | callback   | callback:AsyncCallback&lt;boolean&gt;   | 是   | 对指定卷进行格式化  |
+  | volId   | string                                  | 是   | 卷id            |
+  | callback   | callback:AsyncCallback&lt;void&gt;   | 是   | 对指定卷进行格式化  |
 
 - 示例
 
   ```js
-  let volumeId = "";
-  let fsType = "";
-  volumemanager.format(volumeId, fsType, (error, bool) => {
+  let volId = "";
+  volumemanager.format(volumeId, (error, bool) => {
       // do something    
   });
   ```
 
 ## volumemanager.partition
 
-partition(diskId: string, type: number): Promise<boolean>;
+partition(diskId: string, type: number): Promise<void>;
 
 异步对磁盘进行分区，以promise方式返回。
 
@@ -420,26 +416,26 @@ partition(diskId: string, type: number): Promise<boolean>;
 
   | 参数名       | 类型   | 必填 | 说明 |
     | ----------- | ------ | ---- | ---- |
-  | diskId    | string | 是   | 卷所属的磁盘id |
-  | type      | number | 是   | 分区类型    |
+  | volId    | string | 是   | 卷所属的磁盘id |
+  | fstype      | string | 是   | 分区类型    |
 
 - 返回值
 
   | 类型                      | 说明                       |
    | --------------------- | ----------------------- |
-  | Promise&lt;boolean&gt;   | 对磁盘进行分区              |
+  | Promise&lt;void&gt;   | 对磁盘进行分区              |
 
 - 示例
 
   ```js
-  let diskId = "";
-  let type = 0;
-  let bool = await volumemanager.partition(diskId, type);
+  let volId = "";
+  let fstype = "";
+  let bool = await volumemanager.partition(volId, fstype);
   ```
 
 ## volumemanager.partition
 
-partition(diskId: string, type: number, callback: AsyncCallback<boolean>): void;
+partition(diskId: string, type: number, callback: AsyncCallback<void>): void;
 
 异步对磁盘进行分区，以callback方式返回。
 
@@ -447,20 +443,22 @@ partition(diskId: string, type: number, callback: AsyncCallback<boolean>): void;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Volume
 
+
+
 - 参数
 
   | 参数名      | 类型                                   | 必填 | 说明              |
   | -------- | --------------------------------------- | ---- | ---------------- |
-  | diskId   | string                                  | 是   | 卷所属的磁盘id      |
-  | type     | number                                  | 是   | 分区类型           |
-  | callback | callback:AsyncCallback&lt;boolean&gt;   | 是   | 对磁盘进行分区      |
+  | volId   | string                                  | 是   | 卷所属的磁盘id      |
+  | fstype     | string                                  | 是   | 分区类型           |
+  | callback | callback:AsyncCallback&lt;void&gt;   | 是   | 对磁盘进行分区      |
 
 - 示例
 
   ```js
-  let diskId = "";
-  let type = 0;
-  volumemanager.format(diskId, type, (error, bool) => {
+  let volId = "";
+  let fstype = "";
+  volumemanager.format(volId, fstype, (error, bool) => {
       // do something    
   });
   ```
@@ -473,10 +471,9 @@ partition(diskId: string, type: number, callback: AsyncCallback<boolean>): void;
 
 | 名称         | 类型    | 说明                 |
 | ----------- | ------- | -------------------- |
-| id          | number  | 卷id                 |
+| id          | string  | 卷id                 |
 | uuid        | string  | 卷uuid               |
-| diskId      | string  | 卷diskId               |
 | description | string  | 卷相关描述           |
 | removable   | boolean | 是否为可移动存储设备 |
-| state       | int     | 当前卷状态           |
+| state       | number  | 当前卷状态           |
 | path        | string  | 卷的挂载地址         |
