@@ -1,6 +1,14 @@
-# Background Task Management
+# BackgroundTaskManager
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+This module provides background task management.
+
+If a service needs to be continued when the application or service module is running in the background (not visible to users), the application or service module can request a transient task or continuous task for delayed suspension based on the service type.
+
+If an application has a task that needs to be continued when the application is switched to the background and can be completed within a short period of time, the application can request a transient task. For example, if a user chooses to clear junk files in the **Files** application and exits the application, the application can request a transient task to complete the cleanup.
+
+If an application has a service that can be intuitively perceived by users and needs to run in the background for a long period of time (for example, music playback in the background), the application can request a continuous task.
+
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -26,7 +34,7 @@ The default duration of delayed suspension is 180000 when the battery level is h
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | Yes   | Reason for delayed transition to the suspended state.                    |
-| callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out. |
+| callback | Callback&lt;void&gt; | Yes   | Invoked when a delay is about to time out. Generally, this callback is used to notify the application 6 seconds before the delay times out.|
 
 **Return value**
 | Type                                   | Description       |
@@ -120,6 +128,7 @@ Cancels the suspension delay.
 
 **Example**
   ```js
+  let id = 1;
   backgroundTaskManager.cancelSuspendDelay(id);
   ```
 
@@ -187,16 +196,16 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Parameters**
 
-| Name       | Type                                 | Mandatory   | Description                      |
+| Name      | Type                                | Mandatory  | Description                     |
 | --------- | ---------------------------------- | ---- | ----------------------- |
-| context   | [Context](js-apis-Context.md)      | Yes    | Application context.               |
-| bgMode    | [BackgroundMode](#backgroundmode8) | Yes    | Background mode requested.             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes    | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked. |
+| context   | [Context](js-apis-Context.md)      | Yes   | Application context.              |
+| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.            |
+| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.|
 
 **Return value**
-| Type             | Description               |
+| Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 ```js
@@ -236,10 +245,10 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-| Name       | Type                            | Mandatory   | Description                      |
+| Name     | Type                           | Mandatory  | Description                    |
 | -------- | ----------------------------- | ---- | ---------------------- |
-| context   | [Context](js-apis-Context.md) | Yes    | Application context.              |
-| callback | AsyncCallback&lt;void&gt;     | Yes    | Callback used to return the result. |
+| context  | [Context](js-apis-Context.md) | Yes   | Application context.             |
+| callback | AsyncCallback&lt;void&gt;     | Yes   | Callback used to return the result.|
 
 **Example**
 ```js
@@ -267,14 +276,14 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-| Name       | Type                            | Mandatory   | Description        |
+| Name    | Type                           | Mandatory  | Description       |
 | ------- | ----------------------------- | ---- | --------- |
-| context | [Context](js-apis-Context.md) | Yes    | Application context. |
+| context | [Context](js-apis-Context.md) | Yes   | Application context.|
 
 **Return value**
-| Type             | Description               |
+| Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result. |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 ```js
@@ -305,14 +314,14 @@ Provides the information about the suspension delay.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| Name                 | Value| Description                        |
-| ----------------------- | ------ | ---------------------------- |
-| DATA_TRANSFER           | 1      | Data transfer.                    |
-| AUDIO_PLAYBACK          | 2      | Audio playback.                    |
-| AUDIO_RECORDING         | 3      | Audio recording.                        |
-| LOCATION                | 4      | Positioning and navigation.                    |
-| BLUETOOTH_INTERACTION   | 5      | Bluetooth-related task.                    |
-| MULTI_DEVICE_CONNECTION | 6      | Multi-device connection.                  |
-| WIFI_INTERACTION        | 7      | WLAN-related (reserved).        |
-| VOIP                    | 8      | Voice and video call (reserved).      |
-| TASK_KEEPING            | 9      | Computing task (effective only for specific devices).|
+| Name                 | Value| Description                                                        |
+| ----------------------- | ------ | ------------------------------------------------------------ |
+| DATA_TRANSFER           | 1      | Data transfer.                                                    |
+| AUDIO_PLAYBACK          | 2      | Audio playback.                                                    |
+| AUDIO_RECORDING         | 3      | Audio recording.                                                        |
+| LOCATION                | 4      | Positioning and navigation.                                                    |
+| BLUETOOTH_INTERACTION   | 5      | Bluetooth-related task.                                                    |
+| MULTI_DEVICE_CONNECTION | 6      | Multi-device connection.                                                  |
+| WIFI_INTERACTION        | 7      | WLAN-related.<br>This is a system API and cannot be called by third-party applications.|
+| VOIP                    | 8      | Audio and video calls.<br>This is a system API and cannot be called by third-party applications.|
+| TASK_KEEPING            | 9      | Computing task (effective only for specific devices).                                |

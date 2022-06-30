@@ -18,7 +18,7 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 以异步方法获取第一层相册，目录信息。使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -51,7 +51,7 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 
 以异步方法获取第一层相册，目录信息。使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
 
@@ -84,7 +84,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 以异步方法获取第二层相册，文件信息。使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -111,7 +111,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
   ```js
   // 获取目录下所有文件
   // 通过listFile、getRoot获取的文件uri
-  let media_path = file.path
+  let media_path = ""
   filemanager.listFile(media_path, "file")
   .then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
@@ -120,6 +120,9 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
           }
       }
   }).catch((err) => {
+
+
+    
       console.log(err)
   });
   ```
@@ -130,7 +133,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 以异步方法获取第二层相册，文件信息。使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
 
@@ -152,7 +155,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
   ```js
   // 通过listFile、getRoot获取的文件path
-  let fileInfos = await filemanager.getRoot(); 
+  let fileInfos = filemanager.getRoot(); 
   let media_path  = "";
   for (let i = 0; i < fileInfos.length; i++) {
 	if (fileInfos[i].name == "image_album") {
@@ -184,7 +187,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
 以异步方法创建文件到指定路径，返回文件uri。使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
   | 参数名 | 类型 | 必填 | 说明 |
@@ -197,7 +200,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
   | 类型 | 说明 |
   | --- | -- |
-  | Promise&lt;string&gt; | 文件uri |
+  | string | 文件uri |
 
 - 异常
   | 错误名称 | 错误类型 | 错误码 |说明 |
@@ -211,7 +214,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
   ```js
   // 创建文件，返回文件uri
-  let media_path = file.uri // 通过listFile、getRoot获取的文件uri
+  let media_path = "" // 通过listFile、getRoot获取的文件uri
   let name = "xxx.jpg" // 待保存文件的后缀
   filemanager.createFile(media_path, name).then((uri) => {
       // 返回uri给应用
@@ -227,7 +230,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 
 以异步方法创建文件到指定路径，返回文件uri。使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.FileManagerService
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数
 
@@ -252,19 +255,21 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   ```js
   // 创建文件，返回文件uri
   // 通过listFile、getRoot获取的文件uri
-  let media_path = file.path
+  let media_path = ""
   // 待保存文件的后缀
   let name = "xxx.jpg"
-  filemanager.createFile(media_path, name, (err, uri) => {
+  let dev = "";
+  filemanager.createFile(media_path, name,  { DevInfo: dev }, function(err, uri) {
       // 返回uri给应用
-      console.log("file uri:"+uri);
-  });
+    console.log("file uri:"+uri);
+    });
+
   ```
 
 ## FileInfo
 文件信息类型，通过getRoot, listFile等接口返回的类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.FileManagerService。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileService。
 
 ### 属性
 
@@ -281,7 +286,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 
 设备类型，配置接口访问的设备类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.FileManagerService。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileService。
 
 ### 属性
 

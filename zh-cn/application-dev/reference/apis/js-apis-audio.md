@@ -1,15 +1,17 @@
 # 音频管理
 
->  **说明：**
->  本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
->  API Version 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
+音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。 
 
 该模块提供以下音频相关的常用功能：
 
 - [AudioManager](#audiomanager)：音频管理。
 - [AudioRenderer](#audiorenderer8)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
 - [AudioCapturer](#audiocapturer8)：音频采集，用于录制PCM音频数据。
+
+>  **说明：**
+>  本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+>  API Version 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
 
 ## 导入模块
 
@@ -551,7 +553,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 音量改变时，应用接收的事件。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
@@ -626,8 +628,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 默认值 | 描述                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
 | AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
-| AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>系统接口，三方应用不支持调用。 |
-| AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>系统接口，三方应用不支持调用。 |
+| AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口，三方应用不支持调用。 |
+| AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
 ## AudioManager
@@ -639,6 +641,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置指定流的音量，使用callback方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -667,6 +671,8 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
 setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 设置指定流的音量，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1032,6 +1038,8 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 设置铃声模式，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
@@ -1058,6 +1066,8 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 设置铃声模式，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1139,6 +1149,8 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
@@ -1168,6 +1180,8 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 音频参数设置，使用Promise方式异步返回结果。
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1425,6 +1439,8 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
@@ -1451,6 +1467,8 @@ audioManager.setMicrophoneMute(true, (err) => {
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1480,6 +1498,8 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
 获取麦克风静音状态，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
@@ -1506,6 +1526,8 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 
 获取麦克风静音状态，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **返回值：**
@@ -1529,7 +1551,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 监听系统音量变化事件。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1556,7 +1578,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 监听铃声模式变化事件。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1698,7 +1720,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
 设置音频场景模式，使用callback方式异步返回结果。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1727,7 +1749,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 设置音频场景模式，使用Promise方式返回异步结果。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 

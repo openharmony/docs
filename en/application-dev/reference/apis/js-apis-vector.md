@@ -319,10 +319,10 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.replaceAllElements((value, index) => {
+vector.replaceAllElements((value: number, index: number) => {
   return value = 2 * value;
 });
-vector.replaceAllElements((value, index) => {
+vector.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
 ```
@@ -394,8 +394,8 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-vector.sort((a, b) => a - b);
-vector.sort((a, b) => b - a);
+vector.sort((a: number, b: number) => a - b);
+vector.sort((a: number, b: number) => b - a);
 vector.sort();
 ```
 
@@ -620,7 +620,7 @@ vector.add(2);
 vector.add(4);
 vector.add(5);
 vector.add(4);
-let result = vector.toSting();
+let result = vector.toString();
 ```
 
 ### copyToArray

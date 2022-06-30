@@ -2977,7 +2977,7 @@ readSync(): Dirent
   ```
 
 
-### close
+### close<sup>7+</sup>
 
 close(): Promise&lt;void&gt;
 
@@ -2994,7 +2994,7 @@ close(): Promise&lt;void&gt;
   ```
 
 
-  ### close
+  ### close<sup>7+</sup>
 
 close(callback: AsyncCallback&lt;void&gt;): void
 

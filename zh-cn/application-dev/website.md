@@ -366,6 +366,12 @@
 
     - [通知开发指导](notification/notification-guidelines.md)
 
+    - 后台代理提醒
+
+      - [后台代理提醒概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
+
+      - [后台代理提醒开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
+
     - [调试助手使用指导](notification/assistant-guidelines.md)
 
   - 窗口管理
@@ -495,12 +501,6 @@
       - [分布式数据对象概述](database/database-distributedobject-overview.md)
 
       - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
-
-  - 后台代理提醒
-
-    - [后台代理提醒概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-
-    - [后台代理提醒开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
 
   - 任务管理
 
@@ -924,8 +924,6 @@
         - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
 
         - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
-
-        - [PatternLock](reference/arkui-ts/ts-basic-components-patternlock.md)
 
         - [PluginComponent](reference/arkui-ts/ts-basic-components-plugincomponent.md)
 

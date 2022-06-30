@@ -1,11 +1,11 @@
 # ImageAnimator
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;ImageAnimator&gt;** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
+The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
 
 
 ## Required Permissions
@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -37,7 +37,7 @@ ImageAnimator()
 | iterations | number | 1 | No | By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
 
 - AnimationStatus enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | Initial | The animation is in the initial state. | 
   | Running | The animation is being played. | 
@@ -45,7 +45,7 @@ ImageAnimator()
   | Stopped | The animation is stopped. | 
 
 - FillMode enums
-    | Name | Description | 
+  | Name | Description | 
   | -------- | -------- |
   | None | After the playback is complete, the animation restores to the initial state. | 
   | Forwards | After the playback is complete, the animation remains in the end state. | 
@@ -78,6 +78,7 @@ struct ImageAnimatorExample {
       ImageAnimator()
         .images([
           {
+            // The comment folder is at the same level as the pages folder.
             src: '/comment/bg1.jpg',
             duration: 500,
             width: 325,

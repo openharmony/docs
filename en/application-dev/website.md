@@ -462,7 +462,6 @@
         - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
         - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
         - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
-        - [PatternLock](reference/arkui-ts/ts-basic-components-patternlock.md)
         - [PluginComponent](reference/arkui-ts/ts-basic-components-plugincomponent.md)
         - [Progress](reference/arkui-ts/ts-basic-components-progress.md)
         - [QRCode](reference/arkui-ts/ts-basic-components-qrcode.md)
@@ -706,7 +705,7 @@
         - [@ohos.usb](reference/apis/js-apis-usb.md)
         - [@ohos.vibrator](reference/apis/js-apis-vibrator.md)
     - Account Management
-      
+
         - [@ohos.account.appAccount](reference/apis/js-apis-appAccount.md)
         - [@ohos.account.distributedAccount](reference/apis/js-apis-distributed-account.md)
         - [@ohos.account.osAccount](reference/apis/js-apis-osAccount.md)

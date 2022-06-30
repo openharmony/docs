@@ -86,8 +86,8 @@ struct ProgressExample {
 
       Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
-        Progress({ value: 10, type: ProgressType.Capsule }).width(100)
-        Progress({ value: 20, total: 150, type: ProgressType.Capsule }).color(Color.Grey).value(50).width(100)
+        Progress({ value: 10, type: ProgressType.Capsule }).width(100).height(50)
+        Progress({ value: 20, total: 150, type: ProgressType.Capsule }).color(Color.Grey).value(50).width(100).height(50)
       }
     }.width('100%').margin({ top: 30 })
   }

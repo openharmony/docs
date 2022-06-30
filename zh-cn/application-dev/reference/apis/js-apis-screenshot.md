@@ -1,4 +1,5 @@
 # 屏幕截图
+本模块提供屏幕截图的能力，截取屏幕时支持设置截取的区域、大小等图像信息。
 
 >  **说明：**
 >
@@ -67,7 +68,7 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation， displayId四个参数，可以分别设置这四个参数。 |
-| callback | AsyncCallback&lt;image.PixelMap&gt;     | 是   | 回调返回一个PixelMap对象。                                   |
+| callback | AsyncCallback&lt;image.PixelMap&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
 
 **示例：**
 
@@ -113,7 +114,7 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 | 类型                          | 说明                                            |
 | ----------------------------- | ----------------------------------------------- |
-| Promise&lt;image.PixelMap&gt; | 以Promise形式返回结果，返回image.PixelMap对象。 |
+| Promise&lt;image.PixelMap&gt; | Promise对象。返回一个PixelMap对象。 |
 
 **示例：**
 

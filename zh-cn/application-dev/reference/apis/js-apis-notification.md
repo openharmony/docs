@@ -2525,12 +2525,12 @@ function onConsumeCallback(data) {
     let wantAgent = data.wantAgent;
     wantAgent .getWant(wantAgent)
         .then((data1) => {
-            console.log('===> getWant success want:' + JSON.stringfy(data1));
+            console.log('===> getWant success want:' + JSON.stringify(data1));
         })
         .catch((err) => {
-            console.error('===> getWant failed because' + JSON.stringfy(err));
+            console.error('===> getWant failed because' + JSON.stringify(err));
         });
-    console.info('===> onConsume callback req.wantAgent:' + JSON.stringfy(req.wantAgent));
+    console.info('===> onConsume callback req.wantAgent:' + JSON.stringify(req.wantAgent));
 };
 
 var subscriber = {

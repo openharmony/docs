@@ -208,7 +208,6 @@ export default class MainAbility extends Ability {
 The `Ability` class has the `context` attribute, which belongs to the `AbilityContext` class. The `AbilityContext` class has the `abilityInfo`, `currentHapModuleInfo`, and other attributes and the APIs used for starting abilities. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
 
 **Table 3** AbilityContext APIs
-
 |API|Description|
 |:------|:------|
 |startAbility(want: Want, callback: AsyncCallback\<void>): void|Starts an ability.|
@@ -249,7 +248,7 @@ var want = {
 context.startAbility(want).then((data) => {
     console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
 }).catch((error) => {
-    console.error("Failed to start remote ability with error: "+ JSON.stringify(error))
+    console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
 ```
 Obtain the ID of a specified device from `DeviceManager`. The sample code is as follows:
