@@ -2543,6 +2543,71 @@ promise.then((data)=> {
 });
 ```
 
+### setForbidSplitMove<sup>9+</sup>
+
+setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口在分屏模式下是否被禁止移动，使用callback异步回调。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名      | 类型                      | 必填 | 说明                 |
+| ----------- | ------------------------- | ---- | -------------------- |
+| isForbidSplitMove | boolean                   | 是   | 窗口在分屏模式下是否被禁止移动。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**示例：** 
+
+```js
+var isForbidSplitMove = true;
+windowClass.setForbidSplitMove(isForbidSplitMove, (err, data) => {
+    if (err.code) {
+        console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in forbidding window moving in split screen mode. Data:' + JSON.stringify(data));
+
+});
+```
+
+### setForbidSplitMove<sup>9+</sup>
+
+setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
+
+设置窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名      | 类型    | 必填 | 说明                 |
+| ----------- | ------- | ---- | -------------------- |
+| isForbidSplitMove | boolean | 是   | 窗口在分屏模式下是否被禁止移动。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：** 
+
+```js
+var isForbidSplitMove = true;
+let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+promise.then((data)=> {
+    console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+});
+```
+
 ## WindowStageEventType<sup>9+</sup>
 
 WindowStage生命周期。
