@@ -48,7 +48,6 @@
   - application/[ExtensionAbilityContext (ExtensionAbilityContext)](js-apis-extension-ability-context.md)
   - application/[ExtensionAbilityInfo (ExtensionAbilityInfo)](js-apis-extensionAbilityInfo.md)
   - application/[ServiceExtAbilityContext (ServiceExtAbilityContext)](js-apis-serviceExtAbilityContext.md)
-
 - 公共事件与通知
 
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
@@ -85,7 +84,6 @@
 - 媒体
 
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
-  - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
