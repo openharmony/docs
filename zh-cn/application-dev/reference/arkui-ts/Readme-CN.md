@@ -61,7 +61,6 @@
         - [LoadingProgress](ts-basic-components-loadingprogress.md)
         - [Marquee](ts-basic-components-marquee.md)
         - [Navigation](ts-basic-components-navigation.md)
-        - [PluginComponent](ts-basic-components-plugincomponent.md)
         - [Progress](ts-basic-components-progress.md)
         - [QRCode](ts-basic-components-qrcode.md)
         - [Radio](ts-basic-components-radio.md)
