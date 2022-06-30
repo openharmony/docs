@@ -1,39 +1,41 @@
 # Configuration Policy
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
-
 The configuration policy provides the capability of obtaining the custom configuration directory and file path based on the predefined custom configuration level.
+
+>  **NOTE**
+>
+>  The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+>  The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
 
-```
+```js
 import configPolicy from '@ohos.configPolicy';
 ```
 
 ## getOneCfgFile
 
-getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;): void
+getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 
 Obtains the path of a configuration file with the specified name and highest priority. This API uses an asynchronous callback to return the result.
-For example, if the **config.xml** file is stored in **/system/etc/config.xml** and **/sys-pod/etc/config.xml** (in ascending order of priority), then **/sys-pod/etc/config.xml** is returned.
+For example, if the **config.xml** file is stored in **/system/etc/config.xml** and **/sys_pod/etc/config.xml** (in ascending order of priority), then **/sys_pod/etc/config.xml** is returned.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | Yes| Name of the configuration file.|
-  | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the path of the configuration file.|
+| Name     | Type                         | Mandatory  | Description                   |
+| -------- | --------------------------- | ---- | --------------------- |
+| relPath  | string                      | Yes   | Name of the configuration file.                |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the path of the configuration file.|
 
 **Example**
-  ```
-  configPolicy.getOneCfgFile('config.xml', (error, value) => {
+  ```js
+  configPolicy.getOneCfgFile('etc/config.xml', (error, value) => {
       if (error == undefined) {
-          console.log(value);
+          console.log("value is " + value);
       } else {
-          console.log(error);
+          console.log("error occurs "+ error);
       }
   });
   ```
@@ -48,19 +50,19 @@ Obtains the path of a configuration file with the specified name and highest pri
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | Yes| Name of the configuration file.|
+| Name    | Type    | Mandatory  | Description   |
+| ------- | ------ | ---- | ----- |
+| relPath | string | Yes   | Name of the configuration file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;string&gt; | Promise used to return the path of the configuration file.|
+| Type                   | Description          |
+| --------------------- | ------------ |
+| Promise&lt;string&gt; | Promise used to return the path of the configuration file.|
 
 **Example**
-  ```
-  configPolicy.getOneCfgFile('config.xml').then(value => {
-      console.log(value);
+  ```js
+  configPolicy.getOneCfgFile('etc/config.xml').then(value => {
+      console.log("value is " + value);
   }).catch(error => {
       console.log("getOneCfgFile promise " + error);
   });
@@ -69,26 +71,25 @@ Obtains the path of a configuration file with the specified name and highest pri
 
 ## getCfgFiles
 
-getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
-Obtains all configuration files with the specified name and lists them in ascending order of priority. This API uses an asynchronous callback to return the result. For example, if the **config.xml** file is stored in **/system/etc/config.xml**
-and **/sys-pod/etc/config.xml**, then **/system/etc/config.xml, /sys-pod/etc/config.xml** is returned.
+Obtains all configuration files with the specified name and lists them in ascending order of priority. This API uses an asynchronous callback to return the result. For example, if the **config.xml** file is stored in **/system/etc/config.xml** and **/sys_pod/etc/config.xml**, then **/system/etc/config.xml, /sys_pod/etc/config.xml** is returned.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | Yes| Name of the configuration file.|
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the file list.|
+| Name     | Type                                      | Mandatory  | Description           |
+| -------- | ---------------------------------------- | ---- | ------------- |
+| relPath  | string                                   | Yes   | Name of the configuration file.        |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the file list.|
 
 **Example**
-  ```
-  configPolicy.getCfgFiles('config.xml', (error, value) => {
+  ```js
+  configPolicy.getCfgFiles('etc/config.xml', (error, value) => {
       if (error == undefined) {
-          console.log(value);
+          console.log("value is " + value);
       } else {
-          console.log(error);
+          console.log("error occurs "+ error);
       }
   });
   ```
@@ -103,19 +104,19 @@ Obtains all configuration files with the specified name and lists them in ascend
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | relPath | string | Yes| Name of the configuration file.|
+| Name    | Type    | Mandatory  | Description   |
+| ------- | ------ | ---- | ----- |
+| relPath | string | Yes   | Name of the configuration file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
+| Type                                | Description  |
+| ---------------------------------- | ---- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the file list.|
 
 **Example**
-  ```
-  configPolicy.getCfgFiles('config.xml').then(value => {
-      console.log(value);
+  ```js
+  configPolicy.getCfgFiles('etc/config.xml').then(value => {
+      console.log("value is " + value);
   }).catch(error => {
       console.log("getCfgFiles promise " + error);
   });
@@ -124,24 +125,24 @@ Obtains all configuration files with the specified name and lists them in ascend
 
 ## getCfgDirList
 
-getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
 Obtains the configuration level directory list. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes| Callback used to return the configuration level directory list.|
+| Name     | Type                                      | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the configuration level directory list.|
 
 **Example**
-  ```
+  ```js
   configPolicy.getCfgDirList((error, value) => {
       if (error == undefined) {
-          console.log(value);
+          console.log("value is " + value);
       } else {
-          console.log(error);
+          console.log("error occurs "+ error);
       }
   });
   ```
@@ -156,14 +157,14 @@ Obtains the configuration level directory list. This API uses a promise to retur
 **System capability**: SystemCapability.Customization.ConfigPolicy
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the configuration level directory list.|
+| Type                                | Description      |
+| ---------------------------------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the configuration level directory list.|
 
 **Example**
-  ```
+  ```js
   configPolicy.getCfgDirList().then(value => {
-      console.log(value);
+      console.log("value is " + value);
   }).catch(error => {
       console.log("getCfgDirList promise " + error);
   });
