@@ -2230,7 +2230,7 @@ try {
 
 ### delete<sup>9+</sup>
 
-delete(predicates: Predicates, callback: AsyncCallback&lt;void&gt;): void
+delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;): void
 
 从数据库中删除符合predicates条件的键值对，并通过callback方式返回，此方法为异步方法。
 
@@ -2246,10 +2246,11 @@ delete(predicates: Predicates, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
+import dataSharePredicates from './@ohos.data.dataSharePredicates';
 let kvStore;
 try {
-	let predicates = new dataShare.DataSharePredicates();
-	await kvStore.delete(predicates, function (err, data) {
+	let predicates = new dataSharePredicates.DataSharePredicates();
+	kvStore.delete(predicates, function (err, data) {
 		if (err == undefined) {
 			console.log('delete success');
 		} else {
@@ -2263,7 +2264,7 @@ try {
 
 ### delete<sup>9+</sup>
 
-delete(predicates: Predicates): Promise&lt;void&gt;
+delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 从数据库中删除符合predicates条件的键值对，并通过Promise方式返回，此方法为异步方法。
 
@@ -2285,15 +2286,28 @@ delete(predicates: Predicates): Promise&lt;void&gt;
 **示例：**
 
 ```js
+import dataSharePredicates from './@ohos.data.dataSharePredicates';
 let kvStore;
 try {
-	let predicates = new dataShare.DataSharePredicates();
+	let predicates = new dataSharePredicates.DataSharePredicates();
 	let arr = ["name"];
 	predicates.inKeys(arr);
 	kvStore.put("name", "bob").then((data) => {
 		console.log('put success' + JSON.stringify(data));
 		kvStore.delete(predicates).then((data) => {
-            
+			console.log('delete success');
+		}).catch((err) => {
+			console.log('delete fail' + JSON.stringify(err));
+		});
+	}) .catch((err) => {
+		console.log(' put fail' + err);
+	});
+}catch (e) {
+	console.log("An unexpected error occurred. Error:" + e);
+}
+
+```
+
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
@@ -2523,11 +2537,16 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 ```js
 let kvStore;
 try {
-    var arr = new Uint8Array([21,31]);
-    let entries = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                            {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                            {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
-    kvStore.putBatch(entries, async function (err,data) {
+    let v8Arr = [];
+    let arr = new Uint8Array([4,5,6,7]);
+    let vb1 = {key : "name_1", value : 32}
+    let vb2 = {key : "name_2", value : arr};
+    let vb3 = {key : "name_3", value : "lisi"};
+
+    v8Arr.push(vb1);
+    v8Arr.push(vb2);
+    v8Arr.push(vb3);
+    kvStore.putBatch(v8Arr, async function (err,data) {
                 console.log('putBatch success');
     }).catch((err) => {
         console.log('putBatch fail ' + JSON.stringify(err));
@@ -2562,12 +2581,17 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 ```js
 let kvStore;
 try {
-    var arr = new Uint8Array([21,31]);
-    let entries = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
-                            {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
-                            {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
-    kvStore.putBatch(entries).then(async (err) => {
-                console.log('putBatch success');
+    let v8Arr = [];
+    let arr = new Uint8Array([4,5,6,7]);
+    let vb1 = {key : "name_1", value : 32}
+    let vb2 = {key : "name_2", value : arr};
+    let vb3 = {key : "name_3", value : "lisi"};
+
+    v8Arr.push(vb1);
+    v8Arr.push(vb2);
+    v8Arr.push(vb3);
+    kvStore.putBatch(v8Arr).then(async (err) => {
+        console.log('putBatch success');
     }).catch((err) => {
         console.log('putBatch fail ' + JSON.stringify(err));
     });
@@ -3612,7 +3636,7 @@ try {
 
 ### getResultSet<sup>9+</sup> ###
 
-getResultSet(predicates: Predicates, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
+getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
 获取与指定Predicate对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
 
@@ -3628,15 +3652,16 @@ getResultSet(predicates: Predicates, callback: AsyncCallback&lt;KvStoreResultSet
 **示例：**
 
 ```js
+import dataSharePredicates from './@ohos.data.dataSharePredicates';
 let kvStore;
 try {
     let resultSet;
-    let predicates = new dataShare.DataSharePredicates();
+    let predicates = new dataSharePredicates.DataSharePredicates();
     predicates.prefixKey("batch_test_string_key");
-    await kvStore.getResultSet(predicates, async function (err, result) {
+    kvStore.getResultSet(predicates, async function (err, result) {
     console.log(' GetResultSet success');
     resultSet = result;
-    await kvStore.closeResultSet(resultSet, function (err, data) {
+    kvStore.closeResultSet(resultSet, function (err, data) {
         console.log(' closeResultSet success');
         })
     });
@@ -3646,7 +3671,7 @@ try {
 ```
 ### getResultSet<sup>9+</sup> ###
 
-getResultSet(predicates: Predicates): Promise&lt;KvStoreResultSet&gt;
+getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KvStoreResultSet&gt;
 
 获取与指定Predicate对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
 
@@ -3667,15 +3692,16 @@ getResultSet(predicates: Predicates): Promise&lt;KvStoreResultSet&gt;
 **示例：**
 
 ```js
+import dataSharePredicates from './@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let resultSet;
-        let predicates =  new dataShare.DataSharePredicates();
+    let predicates =  new dataSharePredicates.DataSharePredicates();
     predicates.prefixKey("batch_test_string_key");
-    await kvStore.getResultSet(predicates) .then((result) => {
+    kvStore.getResultSet(predicates) .then((result) => {
         console.log(' GetResultSet success');
         resultSet = result;
-        await kvStore.closeResultSet(resultSet, fun ction (err, data) {
+        kvStore.closeResultSet(resultSet, fun ction (err, data) {
             console.log(' closeResultSet success');
         })
     });
