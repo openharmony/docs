@@ -218,29 +218,31 @@ Example:
     	}
     	```
 	    The following test case templates are provided for your reference.
-	| Type | Description |
-    	| ------------ | ------------ |
-    	| HWTEST(A,B,C) | Use this template if the test case execution does not depend on setup or teardown. |
-    	| HWTEST_F(A,B,C) | Use this template if the test case execution (excluding parameters) depends on setup and teardown. |
-    	| HWTEST_P(A,B,C) | Use this template if the test case execution (including parameters) depends on setup and teardown. |
+
+	    | Type | Description |
+	    | ------------ | ------------ |
+	    | HWTEST(A,B,C) | Use this template if the test case execution does not depend on setup or teardown. |
+	    | HWTEST_F(A,B,C) | Use this template if the test case execution (excluding parameters) depends on setup and teardown. |
+	    | HWTEST_P(A,B,C) | Use this template if the test case execution (including parameters) depends on setup and teardown. |
 
 	    In the template names: 
-	- *A* indicates the test suite name.
-	- *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
-	- *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
+	    - *A* indicates the test suite name.
+	    - *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
+	    - *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
 
 	    Note the following:
 	    -  The expected result of each test case must have an assertion.
 	    -  The test case level must be specified.
 	    -  It is recommended that the test be implemented step by step according to the template.
 	    -  The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case type @**tc.type** can be any of the following:
-	| Test Case Type | Code |
-    	| ------------ | ------------ |
-    	| Function test | FUNC |
-    	| Performance test | PERF |
-    	| Reliability test | RELI |
-    	| Security test | SECU |
-    	| Fuzz test | FUZZ |
+
+	    | Test Case Type | Code |
+	    | ------------ | ---------- |
+	    | Function test | FUNC |
+	    | Performance test | PERF |
+ 	    | Reliability test | RELI |
+	    | Security test | SECU |
+	    | Fuzz test | FUZZ |
     
 
 **JavaScript Test Case Example**
