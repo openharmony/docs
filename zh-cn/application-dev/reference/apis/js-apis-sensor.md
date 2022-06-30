@@ -1349,8 +1349,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA，该权限为系统权限
-
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -1402,8 +1400,6 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 取消订阅传感器数据。
-
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1485,6 +1481,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
