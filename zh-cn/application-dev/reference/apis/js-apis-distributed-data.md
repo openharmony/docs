@@ -2227,6 +2227,73 @@ try {
     console.log("An unexpected error occurred. Error:" + e);
 }
 ```
+
+### delete<sup>9+</sup>
+
+delete(predicates: Predicates, callback: AsyncCallback&lt;void&gt;): void
+
+从数据库中删除符合predicates条件的键值对，并通过callback方式返回，此方法为异步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑|
+| callback  | AsyncCallback&lt;void&gt;  | 是    |回调函数。   |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+	let predicates = new dataShare.DataSharePredicates();
+	await kvStore.delete(predicates, function (err, data) {
+		if (err == undefined) {
+			console.log('delete success');
+		} else {
+			console.log('delete fail' + err);
+		}
+    });  
+} catch (e) {
+	console.log('An unexpected error occurred. Error:' + e);
+}
+```
+
+### delete<sup>9+</sup>
+
+delete(predicates: Predicates): Promise&lt;void&gt;
+
+从数据库中删除符合predicates条件的键值对，并通过Promise方式返回，此方法为异步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
+
+
+**返回值：**
+
+| 类型    | 说明       |
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise实例，用于异步处理。|
+
+**示例：**
+
+```js
+let kvStore;
+try {
+	let predicates = new dataShare.DataSharePredicates();
+	let arr = ["name"];
+	predicates.inKeys(arr);
+	kvStore.put("name", "bob").then((data) => {
+		console.log('put success' + JSON.stringify(data));
+		kvStore.delete(predicates).then((data) => {
+            
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
@@ -2302,6 +2369,36 @@ kvStore.on('dataChange', function (data) {
 kvStore.off('dataChange', function (data) {
     console.log("callback call data: " + data);
 });
+```
+
+### off('syncComplete')<sup>9+</sup>
+
+off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
+
+取消订阅数据变更通知，此方法为同步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| event  |string  | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。       |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 否    |用于向调用方发送同步结果的回调。    |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    const func = function (data) {
+        console.log('syncComplete ' + data)
+    };
+    kvStore.on('syncComplete', func);
+    kvStore.off('syncComplete', func);
+}catch(e) {
+    console.log('syncComplete e ' + e);
+}
 ```
 
 
@@ -2406,6 +2503,79 @@ try {
 }
 ```
 
+### putBatch<sup>9+</sup>
+
+putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
+  
+将值写入KvStore数据库，并通过callback方式返回，此方法为异步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| value   |Array[&lt;ValuesBucket&gt;]()[] | 是    |表示要插入的数据。  |
+| callback |Asyncallback&lt;void&gt; |是     |回调函数。 |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
+                            {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
+                            {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+    kvStore.putBatch(entries, async function (err,data) {
+                console.log('putBatch success');
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('putBatch e ' + JSON.stringify(e));
+}
+```
+
+### putBatch<sup>9+</sup>
+
+putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
+
+将valuesbucket类型的值写入KvStore数据库，并通过Promise方式返回，此方法为异步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| value  |Array&lt;[ValuesBucket&gt;](#)[] | 是    |表示要插入的数据。  |
+
+**返回值：**
+
+| 类型    | 说明       |
+| ------  | -------   |
+| Promise&lt;void&gt; |Promise实例，用于异步处理。|
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    var arr = new Uint8Array([21,31]);
+    let entries = new Array({"name": "roe11", "age": 21, "salary": 20.5, "blobType": u8,},
+                            {"name": "roe12", "age": 21, "salary": 20.5, "blobType": u8,},
+                            {"name": "roe13", "age": 21, "salary": 20.5, "blobType": u8,})
+    kvStore.putBatch(entries).then(async (err) => {
+                console.log('putBatch success');
+    }).catch((err) => {
+        console.log('putBatch fail ' + JSON.stringify(err));
+    });
+}catch(e) {
+    console.log('PutBatch e ' + JSON.stringify(e));
+}
+
+```
 
 ### deleteBatch<sup>8+</sup>
 
@@ -3440,6 +3610,79 @@ try {
 }
 ```
 
+### getResultSet<sup>9+</sup> ###
+
+getResultSet(predicates: Predicates, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
+
+获取与指定Predicate对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------   | ----  | ----------------------- |
+| predicates  | Predicates    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+try {
+    let resultSet;
+    let predicates = new dataShare.DataSharePredicates();
+    predicates.prefixKey("batch_test_string_key");
+    await kvStore.getResultSet(predicates, async function (err, result) {
+    console.log(' GetResultSet success');
+    resultSet = result;
+    await kvStore.closeResultSet(resultSet, function (err, data) {
+        console.log(' closeResultSet success');
+        })
+    });
+}catch(e) {
+    console.log('An unexpected error occurred. Error:' + e);
+}
+```
+### getResultSet<sup>9+</sup> ###
+
+getResultSet(predicates: Predicates): Promise&lt;KvStoreResultSet&gt;
+
+获取与指定Predicate对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------   | ----  | ----------------------- |
+| predicates  |[Predicates](#)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑            |
+
+**返回值：**
+
+| 类型    | 说明       |
+| ------  | -------   |
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise实例，用于获取异步返回结果。|
+
+**示例：**
+
+```js
+let kvStore;
+try {
+	let resultSet;
+        let predicates =  new dataShare.DataSharePredicates();
+    predicates.prefixKey("batch_test_string_key");
+    await kvStore.getResultSet(predicates) .then((result) => {
+        console.log(' GetResultSet success');
+        resultSet = result;
+        await kvStore.closeResultSet(resultSet, fun ction (err, data) {
+            console.log(' closeResultSet success');
+        })
+    });
+}catch(e) {
+	console.log('An unexpected error occurred. Error:' + e);
+}
+```
 ### closeResultSet<sup>8+</sup> ###
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
@@ -3769,8 +4012,61 @@ try {
 }
 ```
 
+### on('dataChange')<sup>9+</sup> ###
+
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
+
+订阅指定类型的数据变更通知，此方法为同步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
+| type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
+
+**示例：**
+
+```js
+let kvStore;
+kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
+    console.log("dataChange callback call data: " + JSON.stringify(data));
+});
+
+```
+
+### off('dataChange')<sup>9+</sup> ###
+
+off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
+
+取消订阅数据变更通知，此方法为同步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
+
+**示例：**
 
 ### sync
+```js
+let kvStore;
+kvStore.on('dataChange', function (data) {
+    console.log("callback call data: " + data);
+});
+kvStore.off('dataChange', function (data) {
+    console.log("callback call data: " + data);
+});
+```
+### sync<sup>7+</sup>
+
 
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
@@ -3793,6 +4089,47 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 ```js
 let kvStore;
 kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
+```
+
+### sync<sup>9+</sup>
+sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
+
+在手动同步方式下，触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+
+**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------   | ----  | ----------------------- |
+| deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
+| query  |[Query](#querysup8sup)   | 是   |表示数据库的查询谓词条件  |
+| delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
+
+**示例：**
+
+```js
+let kvstore;
+const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
+try {
+    kvStore.on('syncComplete', function (data) {
+        console.log('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
+        console.log('Sync put success');
+        const devices = ['deviceList'];
+        const mode = distributedData.SyncMode.PULL_ONLY;
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        kvStore.sync(devices, query, 1000);
+    });
+}catch(e) {
+    console.log('Sync e' + e);
+}
 ```
 
 ### setSyncParam<sup>8+</sup> ###
@@ -5062,6 +5399,48 @@ try {
 }
 ```
 
+### sync<sup>9+</sup> ###
+
+sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
+
+在手动同步方式下， 触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+
+**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------   | ----  | ----------------------- |
+| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
+| query            |[Query](#querysup8sup)  | 是    | 数据库的查询谓词条件 |
+| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
+
+**示例：**
+
+```js
+let kvstore;
+const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
+const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
+try {
+    kvStore.on('syncComplete', function (data) {
+        console.log('Sync dataChange');
+    });
+    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
+        console.log('Sync put success');
+        const devices = ['deviceList'];
+        const mode = distributedData.SyncMode.PULL_ONLY;
+        const query = new distributedData.Query();
+        query.prefixKey("batch_test");
+        query.deviceId('localDeviceId');
+        kvStore.sync(devices, query, 1000);
+    });
+}catch(e) {
+    console.log('Sync e' + e);
+}
+```
+
 ### on('syncComplete')<sup>8+</sup> ###
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
@@ -5126,6 +5505,59 @@ try {
 }catch(e) {
     console.log('syncComplete e ' + e);
 }
+```
+
+### on('dataChange')<sup>9+</sup> ###
+
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
+
+订阅指定类型的数据变更通知，此方法为同步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
+| type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
+
+**示例：**
+
+```js
+let kvStore;
+kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
+    console.log("dataChange callback call data: " + JSON.stringify(data));
+});
+```
+
+
+### off('dataChange')<sup>9+</sup> ###
+
+off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
+
+取消订阅数据变更通知，此方法为同步方法。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名  | 参数类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
+
+**示例：**
+
+```js
+let kvStore;
+kvStore.on('dataChange', function (data) {
+    console.log("callback call data: " + data);
+});
+kvStore.off('dataChange', function (data) {
+    console.log("callback call data: " + data);
+});
 ```
 
 ## SyncMode
