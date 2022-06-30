@@ -393,6 +393,107 @@ screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
   console.error('Failed to Set surface for the virtual screen.Cause:' + JSON.stringify(err));
 });
 ```
+
+## screen.isScreenRotationLocked
+isScreenRotationLocked(): Promise&lt;boolean&gt;
+
+查询当前自动转屏是否锁定，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+| 类型                   | 说明                                  |
+| ---------------------- | ------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回当前自动转屏是否处于锁定状态 |
+
+**示例：**
+```js
+screen.isScreenRotationLocked().then((isLocked) => {
+  console.info('Succeeded in getting screen rotation lock status. isLocked:'+ JSON.stringify(isLocked));
+}).catch((err) => {
+  console.error('Failed to get screen rotation lock status. Cause:' + JSON.stringify(err));
+});
+```
+
+## screen.isScreenRotationLocked
+isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
+
+查询当前自动转屏是否锁定，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名    | 类型                          | 必填 | 说明                                                         |
+| --------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当查询自动转屏锁定状态成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```js
+screen.isScreenRotationLocked((err, isLocked) => {
+  if (err.code) {
+    console.error('Failed to get screen rotation lock status. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in getting screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+});
+```
+
+## screen.setScreenRotationLocked
+setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
+
+设置自动转屏开关是否锁定，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| isLocked  | boolean | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定. |
+
+**返回值：**
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+```js
+var isLocked = false;
+screen.setScreenRotationLocked(isLocked).then((data) => {
+  console.info('Succeeded in setting whether to lock screen rotation');
+}).catch((err) => {
+  console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
+});
+```
+
+## screen.setScreenRotationLocked
+setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置自动转屏开关是否锁定，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名    | 类型                      | 必填 | 说明                                                         |
+| --------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| isLocked  | boolean                   | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定.                 |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置自动转屏是否锁定成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```js
+var isLocked = false;
+screen.setScreenRotationLocked(isLocked, (err, data) => {
+  if (err.code) {
+    console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in setting whether to lock screen rotation.');
+});
+```
+
 ## ExpandOption
 扩展屏幕的参数。
 
