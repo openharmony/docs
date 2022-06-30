@@ -18,11 +18,11 @@ hiperf list [event type]
 
 | Parameter | Description |
 | ----------- | ---------------- |
-| hw| Lists the hardware events supported by the performance monitoring unit (PMU). |
-| sw| Lists the software events supported. |
-| tp| Lists the tracepotint events supported. |
-| cache| Lists the cache events supported by the PMU. |
-| raw| Lists the raw PMU events supported. |
+| hw | Lists the hardware events supported by the performance monitoring unit (PMU). |
+| sw | Lists the software events supported. |
+| tp | Lists the tracepotint events supported. |
+| cache | Lists the cache events supported by the PMU. |
+| raw | Lists the raw PMU events supported. |
 
 
 ### Example<a name="section122129443486"></a>
@@ -60,8 +60,8 @@ hiperf stat [options]
 | ----------- | ---------------- |
 | -a | Collects the values of all threads and default performance counters of the system. |
 | -c | Specifies the IDs of the CPUs to monitor. Use commas (,) to separate multiple CPU IDs, for example **0,1,2**. |
-| -d ***<sec>*** | Specifies the monitoring period, in seconds. |
-| -i ***<ms>*** | Specifies the interval for printing the monitored events, in milliseconds. |
+| -d&nbsp;&lt;_sec_&gt; | Specifies the monitoring period, in seconds. |
+| -i&nbsp;&lt;_ms_&gt; | Specifies the interval for printing the monitored events, in milliseconds. |
 | -e | Specifies the events to monitor. You can run the **list** command to list all the events supported. **event:u** indicates an event in the user space, and **event:k** indicates an event in the kernel space. |
 | -g | Specifies a group of events to monitor. The events in the same group are monitored by the same PMU. |
 | --no-inherit | Leaves the sub-threads of the target thread or process not monitored. |
@@ -115,27 +115,27 @@ hiperf record [options]
 | -a | Samples all processes and threads in the system. |
 | --exclude-hiperf | Leaves the hiperf process not sampled. |
 | -c | Specifies the IDs of the CPUs to sample. |
-| --cpu-limit ***<percent>*** | Specifies the maximum percentage of CPU resources occupied by the sampling. |
-| -d ***<sec>*** | Specifies the sampling duration, in seconds. |
-| -f ***<freq>*** | Specifies how often a sampling event is triggered. The default value is 4000 times/second. <br>Note: <br>A higher value indicates heavier CPU load but more sampling data. |
-| --period ***<num>*** | Specifies the number of occurrence times of an event that triggers a sampling. That is, a sampling is performed once when the event occurs the specified number of times. |
+| --cpu-limit&nbsp;&lt;_percent_&gt; | Specifies the maximum percentage of CPU resources occupied by the sampling. |
+| -d&nbsp;&lt;sec&gt; | Specifies the sampling duration, in seconds. |
+| -f&nbsp;&lt;freq&gt; | Specifies how often a sampling event is triggered. The default value is 4000 times/second. <br>Note: <br>A higher value indicates heavier CPU load but more sampling data. |
+| --period&nbsp;&lt;_num_&gt; | Specifies the number of occurrence times of an event that triggers a sampling. That is, a sampling is performed once when the event occurs the specified number of times. |
 | -e | Specifies the events to monitor. You can run the list command to list all the events supported. **event:u** indicates an event in the user space, and **event:k** indicates an event in the kernel space. |
 | -g | Specifies a group of events to monitor. The events in the same group are monitored by the same PMU. |
 | --no-inherit | Leaves the sub-threads of the target thread or process not monitored. |
 | -p | Specifies the processes to monitor. |
 | -t | Specifies the threads to monitor. |
 | --offcpu | Monitors the CPU scheduling event, which is equivalent to the **--period 1 -e sched:sched_switch** event. |
-| -j ***<branch_filter1>***[***,branch_filter2***]... | Monitors the branch prediction events. Branch prediction tries to predict the next instruction to be executed if there are multiple if else conditions. |
-| -s / --call-stack ***<fp \| dwarf[,size]> *** | Sets the user stack unwinding mode, which can be **fp** or **dwarf**. If **dwarf** is used, you can specify the size of the user stack to be sampled. The default value is **65528**. |
+| -j&nbsp;&lt;_branch_filter1_&gt;[,_branch_filter2_]... | Monitors the branch prediction events. Branch prediction tries to predict the next instruction to be executed if there are multiple if else conditions. |
+| -s&nbsp;/&nbsp;--call-stack&nbsp;&lt;_fp&nbsp;\\|&nbsp;dwarf[,size]_&gt; | Sets the user stack unwinding mode, which can be **fp** or **dwarf**. If **dwarf** is used, you can specify the size of the user stack to be sampled. The default value is **65528**. |
 | --delay-unwind | Delays the stack unwinding till the sampling is complete. |
 | --disable-unwind | Disables stack unwinding. The user register and stack data is stored in **perf.data** for offline stack unwinding. |
 | --disable-callstack-expend | Disables the unwound call stack information from being combined or extended. |
-| --clockid ***<clock type>*** | Sets the clock source for the sampling data. The options are **monotonic**, **boottime**, and **realtime**. |
-| --symbol-dir ***<dir>*** | Specifies the directory of the symbol table. The specified symbol table will be preferentially used in stack unwinding. |
-| -m ***<mmap pages>*** | Specifies the cache size, in pages. The default value is **1024**. The parameter value must be a power of 2. The value range is [2 - 1024].<br>Note: <br>A higher value indicates a lower event loss rate but higher memory usage. |
-| --app ***<package name>*** | Specifies the bundle name of the target application to be sampled. The default timeout interval is 10 seconds. If the specified application does not exist, the hiperf process exits after 10 seconds. |
-| --data-limit ***<SIZE[K|M|G]> *** | Specifies the maximum size of the sampling result, in KB, MB, or GB. By default, there is no limit on the size. |
-| -o ***<output file name>*** | Specifies the name of the sampling result file. It is **/data/local/tmp/perf.data** by default. |
+| --clockid&nbsp;&lt;_clock&nbsp;type_&gt; | Sets the clock source for the sampling data. The options are **monotonic**, **boottime**, and **realtime**. |
+| --symbol-dir&nbsp;&lt;_dir_&gt; | Specifies the directory of the symbol table. The specified symbol table will be preferentially used in stack unwinding. |
+| -m&nbsp;&lt;_mmap&nbsp;pages_&gt; | Specifies the cache size, in pages. The default value is **1024**. The parameter value must be a power of 2. The value range is [2 - 1024].<br>Note: <br>A higher value indicates a lower event loss rate but higher memory usage. |
+| --app&nbsp;&lt;_package&nbsp;name_&gt; | Specifies the bundle name of the target application to be sampled. The default timeout interval is 10 seconds. If the specified application does not exist, the hiperf process exits after 10 seconds. |
+| --data-limit&nbsp;&lt;_SIZE[K\|M\|G]_&gt; | Specifies the maximum size of the sampling result, in KB, MB, or GB. By default, there is no limit on the size. |
+| -o&nbsp;&lt;_output&nbsp;file&nbsp;name_&gt; | Specifies the name of the sampling result file. It is **/data/local/tmp/perf.data** by default. |
 | -z | Saves the output file in .gzip format. |
 | --verbose | Displays detailed log information during sampling. |
 
@@ -203,17 +203,17 @@ hiperf report [option]
 
 | Parameter | Description |
 | ----------- | ---------------- |
-| --symbol-dir ***<dir>*** | Specifies the directory of the symbol table. |
-| --limit-percent ***<number>*** | Specifies the minimum percentage of the result to display. The result that is lower than the minimum percentage is not displayed. |
-| -s / --call-stack | Displays detailed call stack information. |
-| --call-stack-limit-percent ***<number>*** | Specifies the minimum percentage of the call stack to display. The call stack that is lower than the minimum percentage is not displayed. |
+| --symbol-dir&nbsp;&lt;_dir_&gt; | Specifies the directory of the symbol table. |
+| --limit-percent&nbsp;&lt;_number_&gt; | Specifies the minimum percentage of the result to display. The result that is lower than the minimum percentage is not displayed. |
+| -s&nbsp;/&nbsp;--call-stack | Displays detailed call stack information. |
+| --call-stack-limit-percent&nbsp;&lt;_number_&gt; | Specifies the minimum percentage of the call stack to display. The call stack that is lower than the minimum percentage is not displayed. |
 | --proto | Converts the **perf.data** file into the proto format. The default file name is **perf.proto**. |
 | --json | Converts the **perf.data** file into the JSON format. The default file name is **perf.json**. |
 | --branch | Displays the report based on the branch prediction result address instead of the IP address of the call stack. |
-| --***<keys>*** ***<keyname1>*** [***,keyname2***][,...] | Filters and displays reports based on the given keywords. keys can be comms, pids, and tids. For example, **--comms hiperf,hilog** displays only the records whose process or thread name is **hiperf** or **hilog**. |
-| --sort ***<key1>***[***,key2***][,...] | Sorts and displays information based on specified keywords, such as **pid**, **tid**, and **comm**. Multiple keywords can be specified. |
-| -i ***<filename>*** | Specifies the sampling data (**perf.data** by default). |
-| -o ***<filename>*** | Specifies the name of the report to output. |
+| --&lt;_keys_&gt;&nbsp;&lt;_keyname1_&gt;[,_keyname2_][,...] | Filters and displays reports based on the given keywords. keys can be comms, pids, and tids. For example, **--comms hiperf,hilog** displays only the records whose process or thread name is **hiperf** or **hilog**. |
+| --sort&nbsp;&lt;_key1_&gt;[,_key2_][,...] | Sorts and displays information based on specified keywords, such as **pid**, **tid**, and **comm**. Multiple keywords can be specified. |
+| -i&nbsp;&lt;_filename_&gt; | Specifies the sampling data (**perf.data** by default). |
+| -o&nbsp;&lt;_filename_&gt; | Specifies the name of the report to output. |
 
 
 ## Example<a name="section1197655116513"></a>
