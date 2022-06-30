@@ -2,10 +2,10 @@
 
 ## Basic Test Framework Environment
 
-|Environment|Operating System|Linux Extended Component|Python|Python Plug-ins|NFS Server|HDC|
-|------------|------------|------------|------------|------------|------------|------------|
-|Version|Ubuntu 18.04 or later|libreadline-dev|3.7.5 or later|- pySerial 3.3 or later<br>- Paramiko 2.7.1 or later<br>- Setuptools 40.8.0 or later<br>- rsa4.0 or later|haneWIN NFS Server 1.2.50 or later, or NFS v4 or later|  1.1.0 or later|
-|Description|Provides code build environment.|Plug-in used to read commands.|Language used by the test framework.|- pySerial: supports Python serial port communication. <br>- Paramiko: allows Python to use SSH. <br>- Setuptools: allows Python packages to be created and distributed easily. <br>- rsa: implements RSA encryption in Python.|Enables devices to be connected through the serial port.| A tool that enables devices to be connected through the HarmonyOS Device Connector (HDC).|
+| Environment | Operating System | Linux Extended Component | Python | Python Plug-ins | NFS Server | HDC | 
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | 
+| Version | Ubuntu 18.04 or later | libreadline-dev | 3.7.5 or later | - pySerial 3.3 or later<br>- Paramiko 2.7.1 or later<br>- Setuptools 40.8.0 or later<br>- rsa4.0 or later | haneWIN NFS Server 1.2.50 or later, or NFS v4 or later |  1.1.0 or later | 
+| Description | Provides code build environment. | Plug-in used to read commands. | Language used by the test framework. | - pySerial: supports Python serial port communication. <br>- Paramiko: allows Python to use SSH. <br>- Setuptools: allows Python packages to be created and distributed easily. <br>- rsa: implements RSA encryption in Python. | Enables devices to be connected through the serial port. | A tool that enables devices to be connected through the HarmonyOS Device Connector (HDC). | 
 
 ## Installation Process
 1. Run the following command to install the Linux extended component libreadline:
@@ -68,15 +68,14 @@
     nfs-kernel-server is already the newest version (1:1.3.4-2.1ubuntu5.3).
     0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
     ```
-7. Install the HDC tool if the device supports HDC connections. For details about the installation process, see:
-
-    https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README.md
+7. Install the HDC tool if the device supports HDC connections. For details about the installation process, see [Readme](https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README.md).
+    
 
 ## Checking the Environment
 
-| Check Item|Operation|Requirements|
-| --- | --- | --- |
-| Check whether Python is installed successfully.|Run the **python --version** command.|The Python version is 3.7.5 or later.|
-| Check whether Python plug-ins are successfully installed.|Go to the **test/developertest** directory and run **start.bat** or **start.sh**.| The **>>>** prompt is displayed.|
-|Check the NFS server status (for the devices that support only serial port output).|Log in to the development board through the serial port and run the **mount** command to mount the NFS.|The file directory can be mounted.|
-|Check whether the HDC tool is successfully installed.|Run the **hdc_std -v** command.|The HDC version is 1.1.0 or later.|
+ | Check Item | Operation | Expected Result | 
+ | --- | --- | --- | 
+ | Whether Python is successfully installed | Run the **python --version** command. | The Python version is 3.7.5 or later. | 
+ | Whether Python plug-ins are successfully installed | Go to the **test/developertest** directory and run **start.bat** or **start.sh**. | The **>>>** prompt is displayed. | 
+ | NFS server status (for the devices that support only serial port output) | Log in to the development board through the serial port and run the **mount** command to mount the NFS. | The file directory can be mounted. | 
+ | Whether HDC tool is successfully installed | Run the **hdc_std -v** command. | The HDC version is 1.1.0 or later. | 
