@@ -14,11 +14,11 @@ import display from '@ohos.display';
 
 ## DisplayState
 
-用于表示显示设备的状态。
+显示设备的状态枚举。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 默认值 | 说明 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | STATE_UNKNOWN | 0 | 表示显示设备状态未知。|
 | STATE_OFF | 1 | 表示显示设备状态为关闭。 |
@@ -56,7 +56,7 @@ import display from '@ohos.display';
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
-获取当前默认的display对象。
+获取当前默认的display对象，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -82,7 +82,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 getDefaultDisplay(): Promise&lt;Display&gt;
 
-获取当前默认的display对象。
+获取当前默认的display对象，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -103,11 +103,31 @@ getDefaultDisplay(): Promise&lt;Display&gt;
   });
   ```
 
+## display.getDefaultDisplaySync<sup>9+</sup>
+
+getDefaultDisplaySync(): Display
+
+获取当前默认的display对象。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                           | 说明                                           |
+| ------------------------------| ----------------------------------------------|
+| [Display](#display) | 返回默认的display对象。 |
+
+**示例：**
+
+```js
+var displayClass = display.getDefaultDisplaySync();
+```
+
 ## display.getAllDisplay
 
 getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
-获取当前所有的display对象。
+获取当前所有的display对象，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -133,7 +153,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
-获取当前所有的display对象。
+获取当前所有的display对象，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -158,15 +178,15 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
-开启监听。
+开启显示设备变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为"add"，表示监听增加显示设备。<br/>-&nbsp;type为"remove"，表示监听移除显示设备。<br/>-&nbsp;type为"change"，表示监听改变显示设备。 |
-  | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听事件。<br/>-&nbsp;type为"add"，表示增加显示设备事件。<br/>-&nbsp;type为"remove"，表示移除显示设备事件。<br/>-&nbsp;type为"change"，表示改变显示设备事件。 |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
   ```js
@@ -181,7 +201,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
-关闭监听。
+关闭显示设备变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
