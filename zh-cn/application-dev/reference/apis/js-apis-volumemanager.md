@@ -397,14 +397,14 @@ format(volId: string, callback: AsyncCallback<void>): void;
 
   ```js
   let volId = "";
-  volumemanager.format(volumeId, (error, bool) => {
+  volumemanager.format(volId, (error, bool) => {
       // do something    
   });
   ```
 
 ## volumemanager.partition
 
-partition(diskId: string, type: number): Promise<void>;
+partition(volId: string, fstype: string): Promise<void>;
 
 异步对磁盘进行分区，以promise方式返回。
 
@@ -435,7 +435,7 @@ partition(diskId: string, type: number): Promise<void>;
 
 ## volumemanager.partition
 
-partition(diskId: string, type: number, callback: AsyncCallback<void>): void;
+partition(volId: string, fstype : string, callback: AsyncCallback<void>): void;
 
 异步对磁盘进行分区，以callback方式返回。
 
