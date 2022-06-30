@@ -128,6 +128,7 @@ Cancels the suspension delay.
 
 **Example**
   ```js
+  let id = 1;
   backgroundTaskManager.cancelSuspendDelay(id);
   ```
 
@@ -313,14 +314,14 @@ Provides the information about the suspension delay.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| Name                 | Value| Description                        |
-| ----------------------- | ------ | ---------------------------- |
-| DATA_TRANSFER           | 1      | Data transfer.                    |
-| AUDIO_PLAYBACK          | 2      | Audio playback.                    |
-| AUDIO_RECORDING         | 3      | Audio recording.                        |
-| LOCATION                | 4      | Positioning and navigation.                    |
-| BLUETOOTH_INTERACTION   | 5      | Bluetooth-related task.                    |
-| MULTI_DEVICE_CONNECTION | 6      | Multi-device connection.                  |
-| WIFI_INTERACTION        | 7      | WLAN-related (reserved).        |
-| VOIP                    | 8      | Voice and video call (reserved).      |
-| TASK_KEEPING            | 9      | Computing task (effective only for specific devices).|
+| Name                 | Value| Description                                                        |
+| ----------------------- | ------ | ------------------------------------------------------------ |
+| DATA_TRANSFER           | 1      | Data transfer.                                                    |
+| AUDIO_PLAYBACK          | 2      | Audio playback.                                                    |
+| AUDIO_RECORDING         | 3      | Audio recording.                                                        |
+| LOCATION                | 4      | Positioning and navigation.                                                    |
+| BLUETOOTH_INTERACTION   | 5      | Bluetooth-related task.                                                    |
+| MULTI_DEVICE_CONNECTION | 6      | Multi-device connection.                                                  |
+| WIFI_INTERACTION        | 7      | WLAN-related.<br>This is a system API and cannot be called by third-party applications.|
+| VOIP                    | 8      | Audio and video calls.<br>This is a system API and cannot be called by third-party applications.|
+| TASK_KEEPING            | 9      | Computing task (effective only for specific devices).                                |
