@@ -218,9 +218,8 @@ Example:
     	}
     	```
 	    The following test case templates are provided for your reference.
-	
 	| Type | Description |
-    	| ------------| ------------|
+    	| ------------ | ------------ |
     	| HWTEST(A,B,C) | Use this template if the test case execution does not depend on setup or teardown. |
     	| HWTEST_F(A,B,C) | Use this template if the test case execution (excluding parameters) depends on setup and teardown. |
     	| HWTEST_P(A,B,C) | Use this template if the test case execution (including parameters) depends on setup and teardown. |
@@ -235,9 +234,8 @@ Example:
 	    -  The test case level must be specified.
 	    -  It is recommended that the test be implemented step by step according to the template.
 	    -  The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case type @**tc.type** can be any of the following:
-
 	| Test Case Type | Code |
-    	| ------------ |------------ |
+    	| ------------ | ------------ |
     	| Function test | FUNC |
     	| Performance test | PERF |
     	| Reliability test | RELI |
