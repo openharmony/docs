@@ -585,13 +585,12 @@ try {
 
 KVStore数据库类型枚举。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 | 名称  | 值 | 说明                    |
 | ---   | ----  | ----------------------- |
-| DEVICE_COLLABORATION  | 0 | 表示多设备协同数据库。   |
-| SINGLE_VERSION  | 1 | 表示单版本数据库。  |
-| MULTI_VERSION   | 2 | 表示多版本数据库。此类型当前不允许使用。  |
+| DEVICE_COLLABORATION  | 0 | 表示多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
+| SINGLE_VERSION  | 1 | 表示单版本数据库。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| MULTI_VERSION   | 2 | 表示多版本数据库。此类型当前不允许使用。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## SecurityLevel
