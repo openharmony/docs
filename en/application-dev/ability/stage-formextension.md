@@ -187,7 +187,7 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
   {
       "forms": [{
           "name": "widget",
-          "description": "This is a service widget.",
+          "description": "This is a widget.",
           "src": "./js/widget/pages/index/index",
           "window": {
               "autoDesignWidth": true,
@@ -252,7 +252,28 @@ Note that the **Want** passed by the widget host to the widget provider contains
 
 Data of a temporary widget is not persistently stored. If it is deleted from the Widget Manager due to exceptions, such as crash of the widget framework, the widget provider will not be notified of which widget is deleted, and still keeps the data. In light of this, the widget provider should implement data clearing. If the widget host successfully converts a temporary widget into a normal one, the widget provider should also process the widget ID and store the data persistently. This prevents the widget provider from deleting the widget data when clearing temporary widgets.
 
+### Updating Widget Data
+
+When a widget application initiates a data update upon a scheduled or periodic update, the application obtains the latest data and calls **updateForm** to update the widget. The code snippet is as follows:
+
+```javascript
+onUpdate(formId) {
+    // To support scheduled update, periodic update, or update requested by the widget host, override this method for widget data update.
+    console.log('FormAbility onUpdate');
+    let obj = {
+        "title": "titleOnUpdate",
+        "detail": "detailOnUpdate"
+    };
+    let formData = formBindingData.createFormBindingData(obj);
+    // Call the updateForm method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+    formProvider.updateForm(formId, formData).catch((error) => {
+        console.log('FormAbility updateForm, error:' + JSON.stringify(error));
+    });
+}
+```
+
 ### Developing the Widget UI Page
+
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**

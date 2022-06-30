@@ -131,8 +131,8 @@ You can also include **parameters** in the **want** parameter and set its value 
   },
   );
 ```
-### Starting a Remote Page Ability (Applying only to System Applications)
->Note: The **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications. Therefore, remote Page ability startup applies only to system applications.
+### Starting a Remote Page Ability
+>Note: This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
 
 **Modules to Import**
 
@@ -261,4 +261,5 @@ export default {
 ```
 ## Samples
 The following sample is provided to help you better understand how to develop a Page ability:
-- [`DMS`: Distributed Demo (eTS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+
+- [`DMS`: Distributed Demo (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
