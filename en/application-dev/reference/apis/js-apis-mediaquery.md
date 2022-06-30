@@ -23,17 +23,20 @@ matchMediaSync(condition: string): MediaQueryListener
 
 Sets the media query criteria and returns the corresponding listening handle.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
-| Name      | Type    | Mandatory  | Description        |
-| --------- | ------ | ---- | ---------- |
-| condition | string | Yes   | Matching condition of a media event.|
+| Name      | Type    | Mandatory  | Description                                      |
+| --------- | ------ | ---- | ---------------------------------------- |
+| condition | string | Yes   | Matching condition of a media event. For details, see "Syntax of Media Query Conditions" in [Media Query](../../ui/ui-ts-layout-mediaquery.md). |
 
 **Return value**
 | Type                | Description                    |
 | ------------------ | ---------------------- |
-| MediaQueryListener | Listening handle to a media event, which is used to register or unregister the listening callback.|
+| MediaQueryListener | Listening handle to a media event, which is used to register or deregister the listening callback.|
 
 **Example**
+
   ```js
 listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
   ```
@@ -43,6 +46,7 @@ listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for 
 
 Media query handle, including the first query result when the handle is applied for.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### Attributes
 
@@ -58,6 +62,8 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 
 Registers a callback with the corresponding query condition by using the handle. This callback is triggered when the media attributes change.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 | Name     | Type                              | Mandatory  | Description              |
 | -------- | -------------------------------- | ---- | ---------------- |
@@ -72,12 +78,15 @@ Registers a callback with the corresponding query condition by using the handle.
 
 off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
-Unregisters a callback with the corresponding query condition by using the handle, so that no callback is triggered when the media attributes change.
+Deregisters a callback with the corresponding query condition by using the handle, so that no callback is triggered when the media attributes change.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 | Name     | Type                              | Mandatory  | Description                           |
 | -------- | -------------------------------- | ---- | ----------------------------- |
 | type     | boolean                          | Yes   | Must enter the string **change**.             |
-| callback | Callback&lt;MediaQueryResult&gt; | No   | Callback to be unregistered. If the default value is used, all callbacks of the handle are unregistered.|
+| callback | Callback&lt;MediaQueryResult&gt; | No   | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
 
 **Example**
   ```js
@@ -92,7 +101,7 @@ Unregisters a callback with the corresponding query condition by using the handl
         }
     }
     listener.on('change', onPortrait) // Register a callback.
-    listener.off('change', onPortrait) // Unregister a callback.
+    listener.off('change', onPortrait) // Deregister a callback.
   ```
 
 
@@ -132,7 +141,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait.bind(this) //bind current js instance
+    portraitFunc = this.onPortrait.bind(this) // Bind the current JS instance.
     this.listener.on('change', portraitFunc)
   }
 
