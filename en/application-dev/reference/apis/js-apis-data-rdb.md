@@ -1204,7 +1204,7 @@ promise.then(async (ret) => {
 ```
 
 ### update<sup>9+</sup>
-update(table: string, values: ValuesBucket, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
+update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
 Updates data in the database based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
 
@@ -1215,19 +1215,19 @@ Updates data in the database based on the specified **DataSharePredicates** obje
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
-| predicates | DataSharePredicates | Yes|  Update conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes|  Update conditions specified by the **DataSharePredicates** object.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
 
 **Example**
 ```js
-import dataShare from '@ohos.data.dataShare'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 const valueBucket = {
     "NAME": "Rose",
     "AGE": 22,
     "SALARY": 200.5,
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
-let predicates = new dataShare.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
     if (err) {
@@ -1239,7 +1239,7 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 ```
 ### update<sup>9+</sup>
 
-update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Promise&lt;number&gt;
+update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 Updates data in the database based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
 
@@ -1250,7 +1250,7 @@ Updates data in the database based on the specified **DataSharePredicates** obje
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
-| predicates | DataSharePredicates | Yes| Update conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Update conditions specified by the **DataSharePredicates** object.|
 
 **Return value**
 | Type| Description|
@@ -1259,14 +1259,14 @@ Updates data in the database based on the specified **DataSharePredicates** obje
 
 **Example**
 ```js
-import dataShare from '@ohos.data.dataShare'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 const valueBucket = {
     "NAME": "Rose",
     "AGE": 22,
     "SALARY": 200.5,
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
-let predicates = new dataShare.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
 promise.then(async (ret) => {
@@ -1337,7 +1337,7 @@ promise.then((rows) => {
 
 ### delete<sup>9+</sup>
 
-delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
+delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
 
 Deletes data from the database based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
@@ -1348,13 +1348,13 @@ Deletes data from the database based on the specified **DataSharePredicates** ob
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| predicates | DataSharePredicates | Yes|  Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes|  Conditions specified by the **DataSharePredicates** object for deleting data.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
     if (err) {
@@ -1376,7 +1376,7 @@ Deletes data from the database based on the specified **DataSharePredicates** ob
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| predicates | DataSharePredicates | Yes| Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Conditions specified by the **DataSharePredicates** object for deleting data.|
 
 **Return value**
 | Type| Description|
@@ -1385,8 +1385,8 @@ Deletes data from the database based on the specified **DataSharePredicates** ob
 
 **Example**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.delete("EMPLOYEE", predicates)
 promise.then((rows) => {
@@ -1460,7 +1460,7 @@ Queries data in the database based on specified conditions. This API uses a prom
 
 ### query<sup>9+</sup>
 
-query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
+query(predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 Queries data in the database based on specified conditions. This API uses an asynchronous callback to return the result.
 
@@ -1469,14 +1469,14 @@ Queries data in the database based on specified conditions. This API uses an asy
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | DataSharePredicates | Yes| Query conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
     if (err) {
@@ -1490,7 +1490,7 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 
 ### query<sup>9+</sup>
 
-query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+query(predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 Queries data in the database based on specified conditions. This API uses a promise to return the result.
 
@@ -1499,7 +1499,7 @@ Queries data in the database based on specified conditions. This API uses a prom
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | DataSharePredicates | Yes| Query conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
 | columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
 
 **Return value**
@@ -1509,8 +1509,8 @@ Queries data in the database based on specified conditions. This API uses a prom
 
 **Example**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 let promise = rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
