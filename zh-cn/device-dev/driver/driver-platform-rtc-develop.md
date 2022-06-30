@@ -404,11 +404,11 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           struct RtcHost *host = NULL;
           struct RtcConfigInfo *rtcInfo = NULL;
           ...
-          host = RtcHostFromDevice(device);//这里有HdfDeviceObject到RtcHost的强制转化
+          host = RtcHostFromDevice(device);//这里是HdfDeviceObject到RtcHost的强制转化
           rtcInfo = OsalMemCalloc(sizeof(*rtcInfo));
           ...
           //HiRtcConfigData 会从设备配置树中读取属性填充rtcInfo 的supportAnaCtrl, supportLock, spiBaseAddr, regAddrLength, irq
-          //为HiRtcSwInit 和HiRtcSwInit 提供参数，...函数内部处理失败后内存释放等操作
+          //为HiRtcSwInit 和HiRtcSwInit 提供参数，当函数HiRtcSwInit和HiRtcSwInit内部执行失败后进行内存释放等操作
           if (HiRtcConfigData(rtcInfo, device->property) != 0) {
             ...
           }
@@ -446,8 +446,8 @@ RTC模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
             struct RtcHost *host = NULL;
             struct RtcConfigInfo *rtcInfo = NULL;
             ...
-            host = RtcHostFromDevice(device);            //这里有HdfDeviceObject到RtcHost的强制转化
-            rtcInfo = (struct RtcConfigInfo *)host->data;//这里有RtcHost到RtcConfigInfo的强制转化
+            host = RtcHostFromDevice(device);            //这里是HdfDeviceObject到RtcHost的强制转化
+            rtcInfo = (struct RtcConfigInfo *)host->data;//这里是RtcHost到RtcConfigInfo的强制转化
             if (rtcInfo != NULL) {
                 HiRtcSwExit(rtcInfo);
                 OsalMemFree(rtcInfo);                    //释放RtcConfigInfo
