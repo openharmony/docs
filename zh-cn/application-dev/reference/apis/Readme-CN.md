@@ -190,7 +190,7 @@
   - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient (注入按键)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)](js-apis-inputmonitor.md)
-  - [@ohos,multimodalInput.keyCode (键值)](js-apis-keycode.md)
+  - [@ohos.multimodalInput.keyCode (键值)](js-apis-keycode.md)
   - [@ohos.multimodalInput.keyEvent (按键输入事件)](js-apis-keyevent.md)
   - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](js-apis-mouseevent.md)
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
