@@ -7,7 +7,7 @@ The table below lists the APIs changes of the communication subsystem in OpenHar
 | Module| Class| Method/Attribute/Enumeration/Constant| Change Type|
 |---|---|---|---|
 | tagSession | TagSession | getMaxSendLength(): number; | Added|
-| tagSession | TagSession | sendData(data: number[]): Promise<number[]>;<br>sendData(data: number[], callback: AsyncCallback<number[]>): void; | Added|
+| tagSession | TagSession | sendData(data: number[]): Promise\<number[]>;<br>sendData(data: number[], callback: AsyncCallback\<number[]>): void; | Added|
 | tagSession | TagSession | getSendDataTimeout(): number; | Added|
 | tagSession | TagSession | setSendDataTimeout(timeout: number): boolean; | Added|
 | tagSession | TagSession | isTagConnected(): boolean; | Added|
@@ -25,11 +25,11 @@ The table below lists the APIs changes of the communication subsystem in OpenHar
 | ohos.wifiext | PowerModel | THROUGH_WALL = 2 | Added|
 | ohos.wifiext | PowerModel | GENERAL = 1 | Added|
 | ohos.wifiext | PowerModel | SLEEPING = 0 | Added|
-| ohos.wifiext | wifiext | function setPowerModel(model: PowerModel) : boolean | Added|
-| ohos.wifiext | wifiext | function getPowerModel (): Promise<PowerModel>;<br>function getPowerModel (callback: AsyncCallback<PowerModel>): void; | Added|
-| ohos.wifiext | wifiext | function getSupportedPowerModel(): Promise<Array<PowerModel>>;<br>function getSupportedPowerModel(callback: AsyncCallback<Array<PowerModel>>): void; | Added|
-| ohos.wifiext | wifiext | function disableHotspot(): boolean; | Added|
-| ohos.wifiext | wifiext | function enableHotspot(): boolean; | Added|
+| ohos.wifiext | wifiext | setPowerModel(model: PowerModel) : boolean | Added|
+| ohos.wifiext | wifiext | getPowerModel (): Promise\<PowerModel>;<br>getPowerModel (callback: AsyncCallback\<PowerModel>): void; | Added|
+| ohos.wifiext | wifiext | getSupportedPowerModel(): Promise\<Array\<PowerModel>>;<br>getSupportedPowerModel(callback: AsyncCallback\<Array\<PowerModel>>): void; | Added|
+| ohos.wifiext | wifiext | disableHotspot(): boolean; | Added|
+| ohos.wifiext | wifiext | enableHotspot(): boolean; | Added|
 | ohos.wifi | GroupOwnerBand | GO_BAND_5GHZ = 2 | Added|
 | ohos.wifi | GroupOwnerBand | GO_BAND_2GHZ = 1 | Added|
 | ohos.wifi | GroupOwnerBand | GO_BAND_AUTO = 0 | Added|
@@ -90,49 +90,49 @@ The table below lists the APIs changes of the communication subsystem in OpenHar
 | ohos.wifi | WifiLinkedInfo | ssid: string; | Added|
 | ohos.wifi | WifiScanInfo | channelWidth: number; | Added|
 | ohos.wifi | WifiScanInfo | capabilities: string; | Added|
-| ohos.wifi | wifi | function off(type: "p2pDiscoveryChange", callback?: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function on(type: "p2pDiscoveryChange", callback: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function off(type: "p2pPersistentGroupChange", callback?: Callback<void>): void; | Added|
-| ohos.wifi | wifi | function on(type: "p2pPersistentGroupChange", callback: Callback<void>): void; | Added|
-| ohos.wifi | wifi | function off(type: "p2pPeerDeviceChange", callback?: Callback<WifiP2pDevice[]>): void; | Added|
-| ohos.wifi | wifi | function on(type: "p2pPeerDeviceChange", callback: Callback<WifiP2pDevice[]>): void; | Added|
-| ohos.wifi | wifi | function off(type: "p2pDeviceChange", callback?: Callback<WifiP2pDevice>): void; | Added|
-| ohos.wifi | wifi | function on(type: "p2pDeviceChange", callback: Callback<WifiP2pDevice>): void; | Added|
-| ohos.wifi | wifi | function off(type: "p2pConnectionChange", callback?: Callback<WifiP2pLinkedInfo>): void; | Added|
-| ohos.wifi | wifi | function on(type: "p2pConnectionChange", callback: Callback<WifiP2pLinkedInfo>): void; | Added|
-| ohos.wifi | wifi | function off(type: "p2pStateChange", callback?: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function on(type: "p2pStateChange", callback: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function off(type: "hotspotStateChange", callback?: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function on(type: "hotspotStateChange", callback: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function off(type: "wifiRssiChange", callback?: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function on(type: "wifiRssiChange", callback: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function off(type: "wifiScanStateChange", callback?: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function on(type: "wifiScanStateChange", callback: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function off(type: "wifiConnectionChange", callback?: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function on(type: "wifiConnectionChange", callback: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function off(type: "wifiStateChange", callback?: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function on(type: "wifiStateChange", callback: Callback<number>): void; | Added|
-| ohos.wifi | wifi | function stopDiscoverDevices(): boolean; | Added|
-| ohos.wifi | wifi | function startDiscoverDevices(): boolean; | Added|
-| ohos.wifi | wifi | function p2pCancelConnect(): boolean; | Added|
-| ohos.wifi | wifi | function p2pConnect(config: WifiP2PConfig): boolean; | Added|
-| ohos.wifi | wifi | function removeGroup(): boolean; | Added|
-| ohos.wifi | wifi | function createGroup(config: WifiP2PConfig): boolean; | Added|
-| ohos.wifi | wifi | function getP2pPeerDevices(): Promise<WifiP2pDevice[]>;<br>function getP2pPeerDevices(callback: AsyncCallback<WifiP2pDevice[]>): void; | Added|
-| ohos.wifi | wifi | function getCurrentGroup(): Promise<WifiP2pGroupInfo>;<br>function getCurrentGroup(callback: AsyncCallback<WifiP2pGroupInfo>): void; | Added|
-| ohos.wifi | wifi | function getP2pLinkedInfo(): Promise<WifiP2pLinkedInfo>;<br>function getP2pLinkedInfo(callback: AsyncCallback<WifiP2pLinkedInfo>): void; | Added|
-| ohos.wifi | wifi | function getCountryCode(): string; | Added|
-| ohos.wifi | wifi | function getIpInfo(): IpInfo; | Added|
-| ohos.wifi | wifi | function isFeatureSupported(featureId: number): boolean; | Added|
-| ohos.wifi | wifi | function isConnected(): boolean; | Added|
-| ohos.wifi | wifi | function getLinkedInfo(): Promise<WifiLinkedInfo>;<br>function getLinkedInfo(callback: AsyncCallback<WifiLinkedInfo>): void; | Added|
-| ohos.wifi | wifi | function removeUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;<br>function removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void; | Added|
-| ohos.wifi | wifi | function addUntrustedConfig(config: WifiDeviceConfig): Promise<boolean>;<br>function addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback<boolean>): void; | Added|
+| ohos.wifi | wifi | off(type: "p2pDiscoveryChange", callback?: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | on(type: "p2pDiscoveryChange", callback: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | off(type: "p2pPersistentGroupChange", callback?: Callback\<void>): void; | Added|
+| ohos.wifi | wifi | on(type: "p2pPersistentGroupChange", callback: Callback\<void>): void; | Added|
+| ohos.wifi | wifi | off(type: "p2pPeerDeviceChange", callback?: Callback\<WifiP2pDevice[]>): void; | Added|
+| ohos.wifi | wifi | on(type: "p2pPeerDeviceChange", callback: Callback\<WifiP2pDevice[]>): void; | Added|
+| ohos.wifi | wifi | off(type: "p2pDeviceChange", callback?: Callback\<WifiP2pDevice>): void; | Added|
+| ohos.wifi | wifi | on(type: "p2pDeviceChange", callback: Callback\<WifiP2pDevice>): void; | Added|
+| ohos.wifi | wifi | off(type: "p2pConnectionChange", callback?: Callback\<WifiP2pLinkedInfo>): void; | Added|
+| ohos.wifi | wifi | on(type: "p2pConnectionChange", callback: Callback\<WifiP2pLinkedInfo>): void; | Added|
+| ohos.wifi | wifi | off(type: "p2pStateChange", callback?: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | on(type: "p2pStateChange", callback: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | off(type: "hotspotStateChange", callback?: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | on(type: "hotspotStateChange", callback: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | off(type: "wifiRssiChange", callback?: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | on(type: "wifiRssiChange", callback: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | off(type: "wifiScanStateChange", callback?: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | on(type: "wifiScanStateChange", callback: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | off(type: "wifiConnectionChange", callback?: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | on(type: "wifiConnectionChange", callback: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | off(type: "wifiStateChange", callback?: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | on(type: "wifiStateChange", callback: Callback\<number>): void; | Added|
+| ohos.wifi | wifi | stopDiscoverDevices(): boolean; | Added|
+| ohos.wifi | wifi | startDiscoverDevices(): boolean; | Added|
+| ohos.wifi | wifi | p2pCancelConnect(): boolean; | Added|
+| ohos.wifi | wifi | p2pConnect(config: WifiP2PConfig): boolean; | Added|
+| ohos.wifi | wifi | removeGroup(): boolean; | Added|
+| ohos.wifi | wifi | createGroup(config: WifiP2PConfig): boolean; | Added|
+| ohos.wifi | wifi | getP2pPeerDevices(): Promise\<WifiP2pDevice[]>;<br>getP2pPeerDevices(callback: AsyncCallback\<WifiP2pDevice[]>): void; | Added|
+| ohos.wifi | wifi | getCurrentGroup(): Promise\<WifiP2pGroupInfo>;<br>getCurrentGroup(callback: AsyncCallback\<WifiP2pGroupInfo>): void; | Added|
+| ohos.wifi | wifi | getP2pLinkedInfo(): Promise\<WifiP2pLinkedInfo>;<br>getP2pLinkedInfo(callback: AsyncCallback\<WifiP2pLinkedInfo>): void; | Added|
+| ohos.wifi | wifi | getCountryCode(): string; | Added|
+| ohos.wifi | wifi | getIpInfo(): IpInfo; | Added|
+| ohos.wifi | wifi | isFeatureSupported(featureId: number): boolean; | Added|
+| ohos.wifi | wifi | isConnected(): boolean; | Added|
+| ohos.wifi | wifi | getLinkedInfo(): Promise\<WifiLinkedInfo>;<br>getLinkedInfo(callback: AsyncCallback\<WifiLinkedInfo>): void; | Added|
+| ohos.wifi | wifi | removeUntrustedConfig(config: WifiDeviceConfig): Promise\<boolean>;<br>removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback\<boolean>): void; | Added|
+| ohos.wifi | wifi | addUntrustedConfig(config: WifiDeviceConfig): Promise\<boolean>;<br>addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback\<boolean>): void; | Added|
 | ohos.nfc.tag | TagInfo | supportedProfiles: number[]; | Added|
-| ohos.nfc.tag | tag | function getNfcVTag(tagInfo: TagInfo): NfcVTag | Added|
-| ohos.nfc.tag | tag | function getNfcFTag(tagInfo: TagInfo): NfcFTag | Added|
-| ohos.nfc.tag | tag | function getNfcBTag(tagInfo: TagInfo): NfcBTag | Added|
-| ohos.nfc.tag | tag | function getNfcATag(tagInfo: TagInfo): NfcATag | Added|
+| ohos.nfc.tag | tag | getNfcVTag(tagInfo: TagInfo): NfcVTag | Added|
+| ohos.nfc.tag | tag | getNfcFTag(tagInfo: TagInfo): NfcFTag | Added|
+| ohos.nfc.tag | tag | getNfcBTag(tagInfo: TagInfo): NfcBTag | Added|
+| ohos.nfc.tag | tag | getNfcATag(tagInfo: TagInfo): NfcATag | Added|
 | ohos.nfc.tag | tag | const MIFARE_ULTRALIGHT = 9; | Added|
 | ohos.nfc.tag | tag | const MIFARE_CLASSIC = 8; | Added|
 | ohos.nfc.tag | tag | const NDEF = 6; | Added|
@@ -141,33 +141,33 @@ The table below lists the APIs changes of the communication subsystem in OpenHar
 | ohos.nfc.tag | tag | const ISO_DEP = 3; | Added|
 | ohos.nfc.tag | tag | const NFC_B = 2; | Added|
 | ohos.nfc.tag | tag | const NFC_A = 1; | Added|
-| ohos.nfc.controller | nfcController | function getNfcState(): NfcState | Added|
-| ohos.nfc.controller | nfcController | function isNfcOpen(): boolean | Added|
-| ohos.nfc.controller | nfcController | function closeNfc(): boolean | Added|
-| ohos.nfc.controller | nfcController | function openNfc(): boolean | Added|
-| ohos.nfc.controller | nfcController | function off(type: "nfcStateChange", callback?: Callback<NfcState>): void | Added|
-| ohos.nfc.controller | nfcController | function on(type: "nfcStateChange", callback: Callback<NfcState>): void | Added|
-| ohos.nfc.controller | nfcController | function isNfcAvailable(): boolean | Added|
+| ohos.nfc.controller | nfcController | getNfcState(): NfcState | Added|
+| ohos.nfc.controller | nfcController | isNfcOpen(): boolean | Added|
+| ohos.nfc.controller | nfcController | closeNfc(): boolean | Added|
+| ohos.nfc.controller | nfcController | openNfc(): boolean | Added|
+| ohos.nfc.controller | nfcController | off(type: "nfcStateChange", callback?: Callback\<NfcState>): void | Added|
+| ohos.nfc.controller | nfcController | on(type: "nfcStateChange", callback: Callback\<NfcState>): void | Added|
+| ohos.nfc.controller | nfcController | isNfcAvailable(): boolean | Added|
 | ohos.nfc.controller | NfcState | STATE_TURNING_OFF = 4 | Added|
 | ohos.nfc.controller | NfcState | STATE_ON = 3 | Added|
 | ohos.nfc.controller | NfcState | STATE_TURNING_ON = 2 | Added|
 | ohos.nfc.controller | NfcState | STATE_OFF = 1 | Added|
 | ohos.nfc.cardEmulation | HceService | sendResponse(responseApdu: number[]): void; | Added|
-| ohos.nfc.cardEmulation | HceService | on(type: "hceCmd", callback: AsyncCallback<number[]>): void; | Added|
+| ohos.nfc.cardEmulation | HceService | on(type: "hceCmd", callback: AsyncCallback\<number[]>): void; | Added|
 | ohos.nfc.cardEmulation | HceService | stopHCE(): boolean; | Added|
 | ohos.nfc.cardEmulation | HceService | startHCE(aidList: string[]): boolean; | Added|
-| ohos.nfc.cardEmulation | cardEmulation | function isSupported(feature: number): boolean; | Added|
+| ohos.nfc.cardEmulation | cardEmulation | isSupported(feature: number): boolean; | Added|
 | ohos.nfc.cardEmulation | FeatureType | ESE = 2 | Added|
 | ohos.nfc.cardEmulation | FeatureType | UICC = 1 | Added|
 | ohos.nfc.cardEmulation | FeatureType | HCE = 0 | Added|
 | ohos.connectedTag | NfcRfType | NFC_RF_ENTER = 1 | Added|
 | ohos.connectedTag | NfcRfType | NFC_RF_LEAVE = 0 | Added|
-| ohos.connectedTag | connectedTag | function off(type: "notify", callback?:Callback<number>): void; | Added|
-| ohos.connectedTag | connectedTag | function on(type: "notify", callback: Callback<number>): void; | Added|
-| ohos.connectedTag | connectedTag | function writeNdefTag(data: string): Promise<void>;<br>function writeNdefTag(data: string, callback: AsyncCallback<void>): void; | Added|
-| ohos.connectedTag | connectedTag | function readNdefTag(): Promise<string>;<br>function readNdefTag(callback: AsyncCallback<string>): void; | Added|
-| ohos.connectedTag | connectedTag | function uninit(): boolean; | Added|
-| ohos.connectedTag | connectedTag | function init(): boolean; | Added|
+| ohos.connectedTag | connectedTag | off(type: "notify", callback?:Callback\<number>): void; | Added|
+| ohos.connectedTag | connectedTag | on(type: "notify", callback: Callback\<number>): void; | Added|
+| ohos.connectedTag | connectedTag | writeNdefTag(data: string): Promise\<void>;<br>writeNdefTag(data: string, callback: AsyncCallback\<void>): void; | Added|
+| ohos.connectedTag | connectedTag | readNdefTag(): Promise\<string>;<br>readNdefTag(callback: AsyncCallback\<string>): void; | Added|
+| ohos.connectedTag | connectedTag | uninit(): boolean; | Added|
+| ohos.connectedTag | connectedTag | init(): boolean; | Added|
 | ohos.bluetooth | ProfileId | PROFILE_HANDS_FREE_AUDIO_GATEWAY = 4 | Added|
 | ohos.bluetooth | ProfileId | PROFILE_A2DP_SOURCE = 1 | Added|
 | ohos.bluetooth | PlayingState | STATE_PLAYING | Added|
@@ -317,9 +317,9 @@ The table below lists the APIs changes of the communication subsystem in OpenHar
 | ohos.bluetooth | ServiceData | serviceUuid: string; | Added|
 | ohos.bluetooth | ManufactureData | manufactureValue: ArrayBuffer; | Added|
 | ohos.bluetooth | ManufactureData | manufactureId: number; | Added|
-| ohos.bluetooth | AdvertiseData | serviceData: Array<ServiceData>; | Added|
-| ohos.bluetooth | AdvertiseData | manufactureData: Array<ManufactureData>; | Added|
-| ohos.bluetooth | AdvertiseData | serviceUuids: Array<string>; | Added|
+| ohos.bluetooth | AdvertiseData | serviceData: Array\<ServiceData>; | Added|
+| ohos.bluetooth | AdvertiseData | manufactureData: Array\<ManufactureData>; | Added|
+| ohos.bluetooth | AdvertiseData | serviceUuids: Array\<string>; | Added|
 | ohos.bluetooth | AdvertiseSetting | connectable?: boolean; | Added|
 | ohos.bluetooth | AdvertiseSetting | txPower?: number; | Added|
 | ohos.bluetooth | AdvertiseSetting | interval?: number; | Added|
@@ -369,40 +369,40 @@ The table below lists the APIs changes of the communication subsystem in OpenHar
 | ohos.bluetooth | BLEDescriptor | descriptorUuid: string; | Added|
 | ohos.bluetooth | BLEDescriptor | characteristicUuid: string; | Added|
 | ohos.bluetooth | BLEDescriptor | serviceUuid: string; | Added|
-| ohos.bluetooth | BLECharacteristic | descriptors: Array<BLEDescriptor>; | Added|
+| ohos.bluetooth | BLECharacteristic | descriptors: Array\<BLEDescriptor>; | Added|
 | ohos.bluetooth | BLECharacteristic | characteristicValue: ArrayBuffer; | Added|
 | ohos.bluetooth | BLECharacteristic | characteristicUuid: string; | Added|
 | ohos.bluetooth | BLECharacteristic | serviceUuid: string; | Added|
-| ohos.bluetooth | GattService | includeServices?: Array<GattService>; | Added|
-| ohos.bluetooth | GattService | characteristics: Array<BLECharacteristic>; | Added|
+| ohos.bluetooth | GattService | includeServices?: Array\<GattService>; | Added|
+| ohos.bluetooth | GattService | characteristics: Array\<BLECharacteristic>; | Added|
 | ohos.bluetooth | GattService | isPrimary: boolean; | Added|
 | ohos.bluetooth | GattService | serviceUuid: string; | Added|
-| ohos.bluetooth | GattClientDevice | off(type: "BLEConnectionStateChange", callback?: Callback<BLEConnectChangedState>): void; | Added|
-| ohos.bluetooth | GattClientDevice | on(type: "BLEConnectionStateChange", callback: Callback<BLEConnectChangedState>): void; | Added|
-| ohos.bluetooth | GattClientDevice | off(type: "BLECharacteristicChange", callback?: Callback<BLECharacteristic>): void; | Added|
-| ohos.bluetooth | GattClientDevice | on(type: "BLECharacteristicChange", callback: Callback<BLECharacteristic>): void; | Added|
+| ohos.bluetooth | GattClientDevice | off(type: "BLEConnectionStateChange", callback?: Callback\<BLEConnectChangedState>): void; | Added|
+| ohos.bluetooth | GattClientDevice | on(type: "BLEConnectionStateChange", callback: Callback\<BLEConnectChangedState>): void; | Added|
+| ohos.bluetooth | GattClientDevice | off(type: "BLECharacteristicChange", callback?: Callback\<BLECharacteristic>): void; | Added|
+| ohos.bluetooth | GattClientDevice | on(type: "BLECharacteristicChange", callback: Callback\<BLECharacteristic>): void; | Added|
 | ohos.bluetooth | GattClientDevice | setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolean): boolean; | Added|
 | ohos.bluetooth | GattClientDevice | setBLEMtuSize(mtu: number): boolean; | Added|
-| ohos.bluetooth | GattClientDevice | getRssiValue(callback: AsyncCallback<number>): void;<br>getRssiValue(): Promise<number>; | Added|
+| ohos.bluetooth | GattClientDevice | getRssiValue(callback: AsyncCallback\<number>): void;<br>getRssiValue(): Promise\<number>; | Added|
 | ohos.bluetooth | GattClientDevice | writeDescriptorValue(descriptor: BLEDescriptor): boolean; | Added|
 | ohos.bluetooth | GattClientDevice | writeCharacteristicValue(characteristic: BLECharacteristic): boolean; | Added|
-| ohos.bluetooth | GattClientDevice | readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback<BLEDescriptor>): void;<br>readDescriptorValue(descriptor: BLEDescriptor): Promise<BLEDescriptor>; | Added|
-| ohos.bluetooth | GattClientDevice | readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback<BLECharacteristic>): void;<br>readCharacteristicValue(characteristic: BLECharacteristic): Promise<BLECharacteristic>; | Added|
-| ohos.bluetooth | GattClientDevice | getServices(callback: AsyncCallback<Array<GattService>>): void;<br>getServices(): Promise<Array<GattService>>; | Added|
-| ohos.bluetooth | GattClientDevice | getDeviceName(callback: AsyncCallback<string>): void;<br>getDeviceName(): Promise<string>; | Added|
+| ohos.bluetooth | GattClientDevice | readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback\<BLEDescriptor>): void;<br>readDescriptorValue(descriptor: BLEDescriptor): Promise\<BLEDescriptor>; | Added|
+| ohos.bluetooth | GattClientDevice | readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback\<BLECharacteristic>): void;<br>readCharacteristicValue(characteristic: BLECharacteristic): Promise\<BLECharacteristic>; | Added|
+| ohos.bluetooth | GattClientDevice | getServices(callback: AsyncCallback\<Array\<GattService>>): void;<br>getServices(): Promise\<Array\<GattService>>; | Added|
+| ohos.bluetooth | GattClientDevice | getDeviceName(callback: AsyncCallback\<string>): void;<br>getDeviceName(): Promise\<string>; | Added|
 | ohos.bluetooth | GattClientDevice | close(): boolean; | Added|
 | ohos.bluetooth | GattClientDevice | disconnect(): boolean; | Added|
 | ohos.bluetooth | GattClientDevice | connect(): boolean; | Added|
-| ohos.bluetooth | GattServer | off(type: "connectStateChange", callback?: Callback<BLEConnectChangedState>): void; | Added|
-| ohos.bluetooth | GattServer | on(type: "connectStateChange", callback: Callback<BLEConnectChangedState>): void; | Added|
-| ohos.bluetooth | GattServer | off(type: "descriptorWrite", callback?: Callback<DescriptorWriteReq>): void; | Added|
-| ohos.bluetooth | GattServer | on(type: "descriptorWrite", callback: Callback<DescriptorWriteReq>): void; | Added|
-| ohos.bluetooth | GattServer | off(type: "descriptorRead", callback?: Callback<DescriptorReadReq>): void; | Added|
-| ohos.bluetooth | GattServer | on(type: "descriptorRead", callback: Callback<DescriptorReadReq>): void; | Added|
-| ohos.bluetooth | GattServer | off(type: "characteristicWrite", callback?: Callback<CharacteristicWriteReq>): void; | Added|
-| ohos.bluetooth | GattServer | on(type: "characteristicWrite", callback: Callback<CharacteristicWriteReq>): void; | Added|
-| ohos.bluetooth | GattServer | off(type: "characteristicRead", callback?: Callback<CharacteristicReadReq>): void; | Added|
-| ohos.bluetooth | GattServer | on(type: "characteristicRead", callback: Callback<CharacteristicReadReq>): void; | Added|
+| ohos.bluetooth | GattServer | off(type: "connectStateChange", callback?: Callback\<BLEConnectChangedState>): void; | Added|
+| ohos.bluetooth | GattServer | on(type: "connectStateChange", callback: Callback\<BLEConnectChangedState>): void; | Added|
+| ohos.bluetooth | GattServer | off(type: "descriptorWrite", callback?: Callback\<DescriptorWriteReq>): void; | Added|
+| ohos.bluetooth | GattServer | on(type: "descriptorWrite", callback: Callback\<DescriptorWriteReq>): void; | Added|
+| ohos.bluetooth | GattServer | off(type: "descriptorRead", callback?: Callback\<DescriptorReadReq>): void; | Added|
+| ohos.bluetooth | GattServer | on(type: "descriptorRead", callback: Callback\<DescriptorReadReq>): void; | Added|
+| ohos.bluetooth | GattServer | off(type: "characteristicWrite", callback?: Callback\<CharacteristicWriteReq>): void; | Added|
+| ohos.bluetooth | GattServer | on(type: "characteristicWrite", callback: Callback\<CharacteristicWriteReq>): void; | Added|
+| ohos.bluetooth | GattServer | off(type: "characteristicRead", callback?: Callback\<CharacteristicReadReq>): void; | Added|
+| ohos.bluetooth | GattServer | on(type: "characteristicRead", callback: Callback\<CharacteristicReadReq>): void; | Added|
 | ohos.bluetooth | GattServer | sendResponse(serverResponse: ServerResponse): boolean; | Added|
 | ohos.bluetooth | GattServer | notifyCharacteristicChanged(deviceId: string, notifyCharacteristic: NotifyCharacteristic): boolean; | Added|
 | ohos.bluetooth | GattServer | close(): void; | Added|
@@ -410,54 +410,54 @@ The table below lists the APIs changes of the communication subsystem in OpenHar
 | ohos.bluetooth | GattServer | addService(service: GattService): boolean; | Added|
 | ohos.bluetooth | GattServer | stopAdvertising(): void; | Added|
 | ohos.bluetooth | GattServer | startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?: AdvertiseData): void; | Added|
-| ohos.bluetooth | BLE | function off(type: "BLEDeviceFind", callback?: Callback<Array<ScanResult>>): void; | Added|
-| ohos.bluetooth | BLE | function on(type: "BLEDeviceFind", callback: Callback<Array<ScanResult>>): void; | Added|
-| ohos.bluetooth | BLE | function stopBLEScan(): void; | Added|
-| ohos.bluetooth | BLE | function startBLEScan(filters: Array<ScanFilter>, options?: ScanOptions): void; | Added|
-| ohos.bluetooth | BLE | function getConnectedBLEDevices(): Array<string>; | Added|
-| ohos.bluetooth | BLE | function createGattClientDevice(deviceId: string): GattClientDevice; | Added|
-| ohos.bluetooth | BLE | function createGattServer(): GattServer; | Added|
-| ohos.bluetooth | HandsFreeAudioGatewayProfile | off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void; | Added|
-| ohos.bluetooth | HandsFreeAudioGatewayProfile | on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void; | Added|
+| ohos.bluetooth | BLE | off(type: "BLEDeviceFind", callback?: Callback\<Array\<ScanResult>>): void; | Added|
+| ohos.bluetooth | BLE | on(type: "BLEDeviceFind", callback: Callback\<Array\<ScanResult>>): void; | Added|
+| ohos.bluetooth | BLE | stopBLEScan(): void; | Added|
+| ohos.bluetooth | BLE | startBLEScan(filters: Array\<ScanFilter>, options?: ScanOptions): void; | Added|
+| ohos.bluetooth | BLE | getConnectedBLEDevices(): Array\<string>; | Added|
+| ohos.bluetooth | BLE | createGattClientDevice(deviceId: string): GattClientDevice; | Added|
+| ohos.bluetooth | BLE | createGattServer(): GattServer; | Added|
+| ohos.bluetooth | HandsFreeAudioGatewayProfile | off(type: "connectionStateChange", callback?: Callback\<StateChangeParam>): void; | Added|
+| ohos.bluetooth | HandsFreeAudioGatewayProfile | on(type: "connectionStateChange", callback: Callback\<StateChangeParam>): void; | Added|
 | ohos.bluetooth | HandsFreeAudioGatewayProfile | disconnect(device: string): boolean; | Added|
 | ohos.bluetooth | HandsFreeAudioGatewayProfile | connect(device: string): boolean; | Added|
 | ohos.bluetooth | A2dpSourceProfile | getPlayingState(device: string): PlayingState; | Added|
-| ohos.bluetooth | A2dpSourceProfile | off(type: "connectionStateChange", callback?: Callback<StateChangeParam>): void; | Added|
-| ohos.bluetooth | A2dpSourceProfile | on(type: "connectionStateChange", callback: Callback<StateChangeParam>): void; | Added|
+| ohos.bluetooth | A2dpSourceProfile | off(type: "connectionStateChange", callback?: Callback\<StateChangeParam>): void; | Added|
+| ohos.bluetooth | A2dpSourceProfile | on(type: "connectionStateChange", callback: Callback\<StateChangeParam>): void; | Added|
 | ohos.bluetooth | A2dpSourceProfile | disconnect(device: string): boolean; | Added|
 | ohos.bluetooth | A2dpSourceProfile | connect(device: string): boolean; | Added|
 | ohos.bluetooth | BaseProfile | getDeviceState(device: string): ProfileConnectionState; | Added|
-| ohos.bluetooth | BaseProfile | getConnectionDevices(): Array<string>; | Added|
-| ohos.bluetooth | bluetooth | function getProfile(profileId: ProfileId): A2dpSourceProfile \| HandsFreeAudioGatewayProfile; | Added|
-| ohos.bluetooth | bluetooth | function off(type: "sppRead", clientSocket: number, callback?: Callback<ArrayBuffer>): void; | Added|
-| ohos.bluetooth | bluetooth | function on(type: "sppRead", clientSocket: number, callback: Callback<ArrayBuffer>): void; | Added|
-| ohos.bluetooth | bluetooth | function sppWrite(clientSocket: number, data: ArrayBuffer): boolean; | Added|
-| ohos.bluetooth | bluetooth | function sppCloseClientSocket(socket: number): void; | Added|
-| ohos.bluetooth | bluetooth | function sppCloseServerSocket(socket: number): void; | Added|
-| ohos.bluetooth | bluetooth | function sppConnect(device: string, option: SppOption, callback: AsyncCallback<number>): void; | Added|
-| ohos.bluetooth | bluetooth | function sppAccept(serverSocket: number, callback: AsyncCallback<number>): void; | Added|
-| ohos.bluetooth | bluetooth | function sppListen(name: string, option: SppOption, callback: AsyncCallback<number>): void; | Added|
-| ohos.bluetooth | bluetooth | function off(type: "stateChange", callback?: Callback<BluetoothState>): void; | Added|
-| ohos.bluetooth | bluetooth | function on(type: "stateChange", callback: Callback<BluetoothState>): void; | Added|
-| ohos.bluetooth | bluetooth | function off(type: "pinRequired", callback?: Callback<PinRequiredParam>): void; | Added|
-| ohos.bluetooth | bluetooth | function on(type: "pinRequired", callback: Callback<PinRequiredParam>): void; | Added|
-| ohos.bluetooth | bluetooth | function off(type: "bondStateChange", callback?: Callback<BondStateParam>): void; | Added|
-| ohos.bluetooth | bluetooth | function on(type: "bondStateChange", callback: Callback<BondStateParam>): void; | Added|
-| ohos.bluetooth | bluetooth | function off(type: "bluetoothDeviceFind", callback?: Callback<Array<string>>): void; | Added|
-| ohos.bluetooth | bluetooth | function on(type: "bluetoothDeviceFind", callback: Callback<Array<string>>): void; | Added|
-| ohos.bluetooth | bluetooth | function stopBluetoothDiscovery(): boolean; | Added|
-| ohos.bluetooth | bluetooth | function startBluetoothDiscovery(): boolean; | Added|
-| ohos.bluetooth | bluetooth | function getBluetoothScanMode(): ScanMode; | Added|
-| ohos.bluetooth | bluetooth | function setBluetoothScanMode(mode: ScanMode, duration: number): boolean; | Added|
-| ohos.bluetooth | bluetooth | function setLocalName(name: string): boolean; | Added|
-| ohos.bluetooth | bluetooth | function setDevicePairingConfirmation(device: string, accept: boolean): boolean; | Added|
-| ohos.bluetooth | bluetooth | function getProfileConnState(profileId: ProfileId): ProfileConnectionState; | Added|
-| ohos.bluetooth | bluetooth | function getPairedDevices(): Array<string>; | Added|
-| ohos.bluetooth | bluetooth | function getLocalName(): string; | Added|
-| ohos.bluetooth | bluetooth | function disableBluetooth(): boolean; | Added|
-| ohos.bluetooth | bluetooth | function enableBluetooth(): boolean; | Added|
-| ohos.bluetooth | bluetooth | function getRemoteDeviceClass(deviceId: string): DeviceClass; | Added|
-| ohos.bluetooth | bluetooth | function getRemoteDeviceName(deviceId: string): string; | Added|
-| ohos.bluetooth | bluetooth | function pairDevice(deviceId: string): boolean; | Added|
-| ohos.bluetooth | bluetooth | function getBtConnectionState(): ProfileConnectionState; | Added|
-| ohos.bluetooth | bluetooth | function getState(): BluetoothState; | Added|
+| ohos.bluetooth | BaseProfile | getConnectionDevices(): Array\<string>; | Added|
+| ohos.bluetooth | bluetooth | getProfile(profileId: ProfileId): A2dpSourceProfile \| HandsFreeAudioGatewayProfile; | Added|
+| ohos.bluetooth | bluetooth | off(type: "sppRead", clientSocket: number, callback?: Callback\<ArrayBuffer>): void; | Added|
+| ohos.bluetooth | bluetooth | on(type: "sppRead", clientSocket: number, callback: Callback\<ArrayBuffer>): void; | Added|
+| ohos.bluetooth | bluetooth | sppWrite(clientSocket: number, data: ArrayBuffer): boolean; | Added|
+| ohos.bluetooth | bluetooth | sppCloseClientSocket(socket: number): void; | Added|
+| ohos.bluetooth | bluetooth | sppCloseServerSocket(socket: number): void; | Added|
+| ohos.bluetooth | bluetooth | sppConnect(device: string, option: SppOption, callback: AsyncCallback\<number>): void; | Added|
+| ohos.bluetooth | bluetooth | sppAccept(serverSocket: number, callback: AsyncCallback\<number>): void; | Added|
+| ohos.bluetooth | bluetooth | sppListen(name: string, option: SppOption, callback: AsyncCallback\<number>): void; | Added|
+| ohos.bluetooth | bluetooth | off(type: "stateChange", callback?: Callback\<BluetoothState>): void; | Added|
+| ohos.bluetooth | bluetooth | on(type: "stateChange", callback: Callback\<BluetoothState>): void; | Added|
+| ohos.bluetooth | bluetooth | off(type: "pinRequired", callback?: Callback\<PinRequiredParam>): void; | Added|
+| ohos.bluetooth | bluetooth | on(type: "pinRequired", callback: Callback\<PinRequiredParam>): void; | Added|
+| ohos.bluetooth | bluetooth | off(type: "bondStateChange", callback?: Callback\<BondStateParam>): void; | Added|
+| ohos.bluetooth | bluetooth | on(type: "bondStateChange", callback: Callback\<BondStateParam>): void; | Added|
+| ohos.bluetooth | bluetooth | off(type: "bluetoothDeviceFind", callback?: Callback\<Array\<string>>): void; | Added|
+| ohos.bluetooth | bluetooth | on(type: "bluetoothDeviceFind", callback: Callback\<Array\<string>>): void; | Added|
+| ohos.bluetooth | bluetooth | stopBluetoothDiscovery(): boolean; | Added|
+| ohos.bluetooth | bluetooth | startBluetoothDiscovery(): boolean; | Added|
+| ohos.bluetooth | bluetooth | getBluetoothScanMode(): ScanMode; | Added|
+| ohos.bluetooth | bluetooth | setBluetoothScanMode(mode: ScanMode, duration: number): boolean; | Added|
+| ohos.bluetooth | bluetooth | setLocalName(name: string): boolean; | Added|
+| ohos.bluetooth | bluetooth | setDevicePairingConfirmation(device: string, accept: boolean): boolean; | Added|
+| ohos.bluetooth | bluetooth | getProfileConnState(profileId: ProfileId): ProfileConnectionState; | Added|
+| ohos.bluetooth | bluetooth | getPairedDevices(): Array\<string>; | Added|
+| ohos.bluetooth | bluetooth | getLocalName(): string; | Added|
+| ohos.bluetooth | bluetooth | disableBluetooth(): boolean; | Added|
+| ohos.bluetooth | bluetooth | enableBluetooth(): boolean; | Added|
+| ohos.bluetooth | bluetooth | getRemoteDeviceClass(deviceId: string): DeviceClass; | Added|
+| ohos.bluetooth | bluetooth | getRemoteDeviceName(deviceId: string): string; | Added|
+| ohos.bluetooth | bluetooth | pairDevice(deviceId: string): boolean; | Added|
+| ohos.bluetooth | bluetooth | getBtConnectionState(): ProfileConnectionState; | Added|
+| ohos.bluetooth | bluetooth | getState(): BluetoothState; | Added|

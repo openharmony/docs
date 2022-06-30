@@ -5,7 +5,8 @@ LiteIPC is an OpenHarmony extension to the LiteOS(a) kernel which provides a mea
 
 ## API
 *Application-layer Interface*  
-//foundation/communication/ipc_lite/frameworks/liteipc/include/liteipc.h  
+//foundation/communication/ipc_lite/frameworks/liteipc/include/liteipc.h (mini and small systems)  
+//foundation/communication/ipc/ipc/native/c/ipc/src/liteos_a/include/lite_ipc.h (standard systems)  
 //foundation/communication/ipc_lite/interfaces/kits/liteipc_adapter.h  
 
 *Implementation*  
@@ -65,7 +66,7 @@ IpcContent
 
     Trying to reply to a message sent more than LITEIPC_TIMEOUT_NS nanoseconds ago (currently 5 seconds) returns with error **ETIME**.
 
-  The message is copied into memory allocated from the IPC memory area of the process for the recipient task specified by target.handle.  Returns with error **ENOMEM** if the memory cannot be allocated.   Special objects in offsets are then processed.  For each **OBJ_FD**, a file descriptor that refers to the specified file description is created for the recipient and the recipient's copy of the **OBJ_FD** is updated with the new file descriptor, discards the message and returns with error **EPERM** if the sender doesn't have permission to create the file descriptor, **EBADF** for a bad file descriptor, or **ESRCH** for other problem creating the file descriptor.  **OBJ_PTR** objects' data is copied into memory allocated from the recipient's IPC memory area, discards the message and returns with error **EINVAL** if unable to allocate enough memory.  **OBJ_SVC** objects grant the recipient access rights to the service specified by the object if the sender already has access and the service is set as an IPC task (see IPC_SET_IPC_THREAD), discards the message and returns with error **EACCES** if the sender doesn't have access or **EINVAL** if the service isn't running.  Access rights are not revokable, on error any access rights granted before the special object which caused the error will remain.  The message is then added to the tail end of the recipient's list of received messages, the recipient is woken and the scheduler is called.
+  The message is copied into memory allocated from the IPC memory area of the process for the recipient task specified by target.handle.  Returns with error **ENOMEM** if the memory cannot be allocated.   Special objects in offsets are then processed.  For each **OBJ_FD**, a file descriptor that refers to the specified file description is created for the recipient and the recipient's copy of the **OBJ_FD** is updated with the new file descriptor, discards the message and returns with error **EPERM** if the sender doesn't have permission to create the file descriptor, **EBADF** for a bad file descriptor, or **ESRCH** for other problem creating the file descriptor.  **OBJ_PTR** objects' data is copied into memory allocated from the recipient's IPC memory area, discards the message and returns with error **EINVAL** if unable to allocate enough memory.  **OBJ_SVC** objects grant the recipient access rights to the service specified by the object if the sender already has access, discards the message and returns with error **EACCES** if the sender doesn't have access or **EINVAL** if the service isn't running.  When handle = -1 and token = 1, the service handle of the sending task is substituted after first creating one if needed.  Access rights are not revokable, on error any access rights granted before the special object which caused the error will remain.  The message is then added to the tail end of the recipient's list of received messages, the recipient is woken and the scheduler is called.
 - The **BUFF_FREE** flag indicates a request to free the memory used by the buffToFree message so it can be used again later for receiving messages.  Returns with error **EFAULT** if buffToFree doesn't point to a received message.  Returns with error **EINVAL** if an invalid address.
 - The **RECV** flag indicates a request to receive a message.
   - If the **SEND** flag is set the task will wait for a message for up to LITEIPC_TIMEOUT_MS milliseconds (currently 5 seconds).  Returns with error **ETIME** on timeout.  Messages with a type of **MT_REQUEST** and **MT_REPLY** or **MT_FAILED_REPLY** type messages which don't match outMsg (matching timestamp or matching code and target.token depending on kernel configuration) are discarded (resets timer).  Sets inMsg to point at the received message and removes it from the list of received messages for **MT_REPLY** or **MT_DEATH_NOTIFY** type messages.  Note that receiving  a **MT_DEATH_NOTIFY** makes it impossible to receive the reply so send/receive requests shouldn't be used by services which might receive death notifications.  Discards the message and returns with error **ENOENT** without changing inMsg if the received message has type **MT_FAILED_REPLY**.
@@ -73,9 +74,11 @@ IpcContent
 
 For a single request the operations are processed in the order **SEND**->**BUFF_FREE**->**RECV** with **BUFF_FREE** being processed even if there was an error in **SEND**.  Error checking on buffToFree occurs before **SEND**, an error in buffToFree will abort the request without doing anything.
 
-The `IPC_SET_IPC_THREAD` request designates the current task as the IPC task for the current process.  It can only be performed once per process.  Returns the ID of the task set as IPC task on success, subsequent calls return with error **EINVAL**.  The IPC task receives the death notifications from IPC services the process has access rights to when those services terminate.  A service which has been set as IPC task can have access rights to itself distributed through special objects without using the CMS.
+The `IPC_SET_IPC_THREAD` request designates the current task as the IPC task for the current process.  It can only be performed once per process.  Returns the ID of the task set as IPC task on success, subsequent calls return with error **EINVAL**.  The IPC task receives the death notifications from IPC services the process has access rights to when those services terminate.
 
 IPC_SEND_RECV_MSG and IPC_SET_IPC_THREAD both return with error **EINVAL** if the CMS has not been set.
+
+The `IPC_GET_VERSION` request (standard systems API only) gets the version of the LiteIPC driver.  The argument to the request is a pointer to an IpcVersion structure.  The driverVersion member is set to the LiteIPC driver version, major version in the low 16 bits and minor version in the high 16 bits.
 
 ### Internal functions
 The first task to use the `IPC_SET_CMS` request sets itself as the system's CMS.  OpenHarmony assigns this role to the distributed scheduler's samgr.  Once set it cannot be changed.  Returns with error **EEXIST** if the CMS has already been set.  Messages are sent to the CMS by setting a recipient handle of 0.  The argument to the request specifies the maximum size of a message sent to the CMS.  Sending a message whose total size including IpcMsg data structure, data size, size of special object offsets, and data in any BuffPtr special objects exceeds the maximum size (currently 256 bytes) returns with error **EINVAL**.
@@ -83,14 +86,13 @@ The first task to use the `IPC_SET_CMS` request sets itself as the system's CMS.
 The `IPC_CMS_CMD` request provides various service related utility functions to the CMS.  It can only be used by the CMS, any other task making this request will get an **EACCES** error.  The argument to the request is a pointer to a CmsCmdContent structure.  The cmd member indicates the function to be performed.
 - **CMS_GEN_HANDLE** creates a service handle for the task specified by taskID member and stores the handle in the serviceHandle member.  The CMS always has access rights to any created IPC services.
 - **CMS_REMOVE_HANDLE** unregisters the service handle specified by the serviceHandle member.
-- **CMS_ADD_ACCESS** gives the task specified by the taskID member access rights to the service specified by the serviceHandle member.
+- **CMS_ADD_ACCESS** gives the process of the task specified by the taskID member access rights to the service specified by the serviceHandle member.
 
 LiteIPC includes utility functions for the kernel to manage the IPC system.  
 `OsLiteIpcInit` initializes the IPC system and must be called before it can be used.  
-`LiteIpcPoolInit` performs basic initialization of a ProcIpcInfo.  Called by the kernel on task creation to initialize the IPC variables in the task's control block.  
-`LiteIpcPoolReInit` initializes the IPC variables of a child task from it's parent's task.  Called by the kernel on the creation of child tasks for basic initialization.  
-`LiteIpcPoolDelete` removes a process' IPC memory pool allocated by memory mapping and all the process' access rights.  Called by the kernel on process deletion for automatic memory and IPC resource management.  
-`LiteIpcRemoveServiceHandle` deregisters a service, clearing out the service task's message list and the list of processes with access rights to the service and sending death notification messages to any services with a set IPC task which had access.  Death notification messages are only sent once, if there is an error in the send (**ENOMEM**) the recipient will not get the death notification.  Death notification messages set target.token to the sevice handle of the service which terminated.  Called by the kernel on task deletion for automatic IPC resource management.  
+`LiteIpcPoolReInit` creates and initializes the process control block IPC variables for a child process from its parent's process.  Called by the kernel on the creation of child processes for basic initialization.  
+`LiteIpcPoolDestroy` removes a process' IPC memory pool allocated by memory mapping and all the process' access rights.  Also responsible for freeing memory, used for per-process IPC variables, which the system dynamically allocates the first time a process opens `LITEIPC_DRIVER`.  Called by the kernel on process deletion for automatic memory and IPC resource management.  
+`LiteIpcRemoveServiceHandle` deregisters a service, clearing out the service task's message list and the list of processes with access rights to the service and sending death notification messages to any services with a set IPC task which had access.  Death notification messages are only sent once, if there is an error in the send (**ENOMEM**) the recipient will not get the death notification.  Death notification messages set target.token to the sevice handle of the service which terminated.  Also responsible for freeing memory, used for per-task IPC variables, which the system dynamically allocates the first time a task sends a valid message or initiates a request including **RECV**.  Called by the kernel on task deletion for automatic IPC resource management.
 
 ### Sample code
 1.  Initialization before we can use LiteIPC.
@@ -125,11 +127,8 @@ LiteIPC includes utility functions for the kernel to manage the IPC system.
     }
     ```
 
-3.  Set our IPC task and send a message to the wakeup service.
+3.  Send a message to the wakeup service.
     ```
-    // Set ourselves as IPC task so we can distribute access on our own
-    int myId = ioctl(fd, IPC_SET_IPC_THREAD, 0);
-
     struct {
         char summary[20];
         SpecialObj command;
@@ -153,9 +152,11 @@ LiteIPC includes utility functions for the kernel to manage the IPC system.
     wakeupData.command.type = OBJ_PTR;
     wakeupData.command.content.ptr.buffSz = sizeof(commandStr);
     wakeupData.command.content.ptr.buff = commandStr;
-    // Give the wakeup service access to send us requests.
+    // Automatically handle IPC service setup on ourselves and give the
+    // wakeup service access to send us requests.
     wakeupData.svc.type = OBJ_SVC;
-    wakeupData.svc.content.svc.handle = myId;
+    wakeupData.svc.content.svc.handle = -1;
+    wakeupData.svc.content.svc.token = 1;
     // Complete the message and send it.
     msg.data = &wakeupData;
     msg.dataSz = sizeof(wakeupData);

@@ -182,7 +182,7 @@
       - 内核调测
         - 内存调测
           - [内存信息统计](kernel/kernel-mini-memory-debug-mes.md)
-          - [内存泄漏检测](kernel/kernel-mini-imemory-debug-det.md)
+          - [内存泄漏检测](kernel/kernel-mini-memory-debug-det.md)
           - [踩内存检测](kernel/kernel-mini-memory-debug-cet.md)
         - [异常调测](kernel/kernel-mini-memory-exception.md)
         - [Trace调测](kernel/kernel-mini-memory-trace.md)

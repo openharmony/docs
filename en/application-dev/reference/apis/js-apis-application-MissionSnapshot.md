@@ -1,6 +1,5 @@
 # MissionSnapshot
 
-
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -10,7 +9,7 @@ Provides the snapshot of a mission.
 ## Modules to Import
 
 ```
-import abilitymanager from '@ohos.application.abilityManager';
+import missionManager from '@ohos.application.missionManager'
 import ElementName from '@ohos.bundle';
 import image from '@ohos.multimedia.image';
 ```

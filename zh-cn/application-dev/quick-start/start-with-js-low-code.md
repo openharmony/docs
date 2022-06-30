@@ -15,7 +15,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 - 直接创建一个支持低代码开发的新工程以进行开发。本文以此方式为例进行说明。
 
-- 在已有工程中，创建visual文件来进行开发。
+- 在已有工程中，创建visual文件来进行开发。此种方式的操作可参考[创建visual文件支持低代码开发](#构建第二个页面)。
 
 
 ## 创建新工程支持低代码开发
@@ -82,10 +82,15 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 ## 构建第二个页面
 
 1. 创建第二个页面。
-   在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; js &gt; MainAbility**”，右键点击“**pages**”文件夹，选择“**New &gt; Visual**”，命名为“**second**”，单击“**Finish**”，即完成第二个页面的创建。可以看到文件目录结构如下：
-
+   在“**Project**”窗口，打开“**entry > src > main > js > MainAbility**”，右键点击“**pages**”文件夹，选择“**New > Visual**”，命名为“**second**”，单击“**Finish**”，即完成第二个页面的创建。
+   新建visual文件的操作如下：
+   
+   <img src="figures/zh-cn_image_202206250937.png" alt="create-newVisual" style="zoom: 67%;" />
+   
+   可以看到文件目录结构如下：
+   
    ![zh-cn_image_0000001223882030](figures/zh-cn_image_0000001223882030.png)
-
+   
 2. [删除画布原有模板组件。](#delete_origin_content)
 
 3. [添加容器，设置Div容器的样式和属性。](#add_container)
@@ -103,7 +108,7 @@ OpenHarmony低代码开发方式具有丰富的UI界面编辑功能，通过可�
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过[页面路由router](../ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面uri找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
      在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。需同时处理js文件及visual文件。

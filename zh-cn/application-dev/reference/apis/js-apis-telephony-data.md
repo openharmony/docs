@@ -55,9 +55,71 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 ```js
 let promise = data.getDefaultCellularDataSlotId();
 promise.then((data) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.setDefaultCellularDataSlotId
+
+setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+
+设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| slotId   | number                | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>- -1：清除默认配置。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。当设置成功，err为undefined，否则为错误对象。                 |
+
+**示例：**
+
+```js
+data.setDefaultCellularDataSlotId(0,(err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.setDefaultCellularDataSlotId
+
+setDefaultCellularDataSlotId(slotId: number): Promise\<void\> 
+
+设置默认移动数据的SIM卡，使用Promise方式作为异步方法。 
+
+该接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| slotId | number | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>- -1：清除默认配置。 |
+
+**返回值：**
+
+| 类型           | 说明                            |
+| -------------- | ------------------------------- |
+| Promise<\void\> | 无返回结果的Promise对象。        |
+
+**示例：**
+
+```js
+let promise = data.setDefaultCellularDataSlotId(0);
+promise.then((data) => {
+    console.log(`setDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`setDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

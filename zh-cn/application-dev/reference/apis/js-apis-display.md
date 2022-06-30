@@ -1,6 +1,8 @@
 # 屏幕属性
+屏幕属性提供管理显示设备的一些基础能力，包括获取默认显示设备的信息，获取所有显示设备的信息以及监听显示设备的插拔行为。
 
 > **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -14,7 +16,7 @@ import display from '@ohos.display';
 
 用于表示显示设备的状态。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -31,7 +33,7 @@ import display from '@ohos.display';
 
 描述display对象的属性。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.WindowManager.WindowManager.Core。
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -61,7 +63,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调返回当前默认的display对象。 |
+  | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
 
 **示例：**
   ```js
@@ -88,7 +90,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
   | 类型                               | 说明                                           |
   | ---------------------------------- | ---------------------------------------------- |
-  | Promise&lt;[Display](#display)&gt; | 以Promise形式返回结果，返回默认的display对象。 |
+  | Promise&lt;[Display](#display)&gt; | Promise对象。返回当前默认的display对象。 |
 
 **示例：**
 
@@ -113,7 +115,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
   | 参数名   | 类型                                                 | 必填 | 说明                            |
   | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调返回当前所有的display对象。 |
+  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调函数。返回当前所有的display对象。 |
 
 **示例：**
 
@@ -139,7 +141,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
   | 类型                                            | 说明                                                    |
   | ----------------------------------------------- | ------------------------------------------------------- |
-  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | 以Promise形式返回结果，返回包含所有Display对象的Array。 |
+  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的display对象。 |
 
 **示例：**
 
@@ -164,7 +166,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为"add"，表示监听增加显示设备。<br/>-&nbsp;type为"remove"，表示监听移除显示设备。<br/>-&nbsp;type为"change"，表示监听改变显示设备。 |
-  | callback | Callback&lt;number&gt; | 是 | 回调返回监听到的显示设备的id。 |
+  | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
   ```js
@@ -187,7 +189,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为"add"，表示监听增加显示设备。<br/>-&nbsp;type为"remove"，表示监听移除显示设备。<br/>-&nbsp;type为"change"，表示监听改变显示设备。 |
-  | callback | Callback&lt;number&gt; | 否 | 回调返回监听到的显示设备的id。 |
+  | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
   ```js

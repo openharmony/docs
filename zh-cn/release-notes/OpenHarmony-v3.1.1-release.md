@@ -95,14 +95,14 @@ repo forall -c 'git lfs pull'
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 全量代码（标准、轻量和小型系统）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz.sha256) |
-| Hi3516标准系统解决方案（二进制）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz.sha256) |
-| RK3568标准系统解决方案（二进制）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256) |
-| Hi3861轻量系统解决方案（二进制）        | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz.sha256) |
-| Hi3516轻量系统解决方案-LiteOS（二进制） | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz.sha256) |
-| Hi3516轻量系统解决方案-Linux（二进制）  | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz.sha256) |
-| 标准系统SDK包（Mac）                    | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz.sha256) |
-| 标准系统SDK包（Windows\Linux）          | 3.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz.sha256) |
+| 全量代码（标准、轻量和小型系统）        | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/code-v3.1.1-Release.tar.gz.sha256) |
+| Hi3516标准系统解决方案（二进制）        | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_hi3516.tar.gz.sha256) |
+| RK3568标准系统解决方案（二进制）        | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256) |
+| Hi3861轻量系统解决方案（二进制）        | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-LiteOS（二进制） | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-Linux（二进制）  | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz.sha256) |
+| 标准系统SDK包（Mac）                    | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz.sha256) |
+| 标准系统SDK包（Windows\Linux）          | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz.sha256) |
 
 
 ## 更新说明
@@ -142,7 +142,7 @@ repo forall -c 'git lfs pull'
 
 ## 修复缺陷列表
 
-**表6** 修复缺陷ISSUE列表
+**表4** 修复缺陷ISSUE列表
 
 | ISSUE单                                                      | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -153,7 +153,7 @@ repo forall -c 'git lfs pull'
 
 ## 遗留缺陷列表
 
-**表7** 遗留缺陷列表
+**表5** 遗留缺陷列表
 
 | ISSUE                                                        | 问题描述                                                   | 影响                                              | 计划解决日期 |
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------- | ------------ |

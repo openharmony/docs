@@ -21,7 +21,7 @@ import inputMethod from '@ohos.inputMethod';
 | MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
 
 
-## InputMethodProperty<sup>8+</sup><a name="InputMethodProperty"></a>
+## InputMethodProperty<sup>8+</sup>
 
 输入法应用属性。
 
@@ -32,7 +32,7 @@ import inputMethod from '@ohos.inputMethod';
 | packageName | string | 是 | 否 | 包名。 |
 | methodId | string | 是 | 否 | Ability名。 |
 
-## inputMethod.getInputMethodController<a name="getInputMethodController"></a>
+## inputMethod.getInputMethodController
 
 getInputMethodController(): InputMethodController
 
@@ -47,11 +47,12 @@ getInputMethodController(): InputMethodController
     | [InputMethodController](#InputMethodController) | 回调返回当前客户端实例。 |
 
 **示例：**
-  ```js
+  
+```js
   var InputMethodController = inputMethod.getInputMethodController();
-  ```
+```
 
-## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
+## inputMethod.getInputMethodSetting<sup>8+</sup>
 
 getInputMethodSetting(): InputMethodSetting
 
@@ -67,11 +68,12 @@ getInputMethodSetting(): InputMethodSetting
 
 
 **示例：**
-  ```js
-  var InputMethodSetting = inputMethod.getInputMethodSetting();
-  ```
 
-## InputMethodController<a name="InputMethodController"></a>
+```js
+  var InputMethodSetting = inputMethod.getInputMethodSetting();
+```
+
+## InputMethodController
 
 下列API示例中都需使用[getInputMethodController](#getInputMethodController)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
@@ -92,7 +94,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
- InputMethodController.stopInput((error)=>{
+  InputMethodController.stopInput((error)=>{
      console.info('stopInput');
  });
 ```
@@ -115,11 +117,11 @@ stopInput(): Promise&lt;boolean&gt;
 
 
 ```js
- var isSuccess = InputMethodController.stopInput();
- console.info('stopInput isSuccess = ' + isSuccess);
+  var isSuccess = InputMethodController.stopInput();
+  console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-## InputMethodSetting<sup>8+</sup><a name="InputMethodSetting"></a>
+## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
@@ -137,14 +139,15 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
   | callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
 
 **示例：**
-  ```js
-   InputMethodSetting.listInputMethod((properties)=>{
-     for (var i = 0;i < properties.length; i++) {
-       var property = properties[i];
-       console.info(property.packageName + "/" + property.methodId);
-     }
+  
+```js
+  InputMethodSetting.listInputMethod((properties)=>{
+    for (var i = 0;i < properties.length; i++) {
+      var property = properties[i];
+      console.info(property.packageName + "/" + property.methodId);
+    }
   });
-  ```
+```
 
 ### listInputMethod
 
@@ -160,13 +163,14 @@ listInputMethod(): Array&lt;InputMethodProperty&gt;
   | Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
 
 **示例：**
-  ```js
-   var properties = InputMethodSetting.listInputMethod();
-   for (var i = 0;i < properties.length; i++) {
-     var property = properties[i];
-     console.info(property.packageName + "/" + property.methodId);
-   }
-  ```
+
+```js
+  var properties = InputMethodSetting.listInputMethod();
+  for (var i = 0;i < properties.length; i++) {
+    var property = properties[i];
+    console.info(property.packageName + "/" + property.methodId);
+  }
+```
 
 ### displayOptionalInputMethod
 
@@ -183,11 +187,12 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **示例：**
-  ```js
-   InputMethodSetting.displayOptionalInputMethod(()=>{
-     console.info('displayOptionalInputMethod is called');
-   });
-  ```
+
+```js
+  InputMethodSetting.displayOptionalInputMethod(()=>{
+    console.info('displayOptionalInputMethod is called');
+  });
+```
 
 ### displayOptionalInputMethod
 
@@ -204,6 +209,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 | Promise&lt;void&gt; | 回调函数。 |
 
 **示例：**
-    ```js
-     InputMethodSetting.displayOptionalInputMethod();
-    ```
+
+```js
+  InputMethodSetting.displayOptionalInputMethod();
+```

@@ -2,7 +2,7 @@
 
 The resource management module provides APIs to obtain information about the current device configuration (including the language, region, screen direction, and MCC/MNC) and device capability (including the device type and resolution).
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,31 +12,41 @@ The resource management module provides APIs to obtain information about the cur
 import resourceManager from '@ohos.resourceManager';
 ```
 
+## Usage
+
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its APIs without first importing the required bundle. This method, however, is not applicable to the FA model.
+
+```
+this.context.resourceManager;
+```
+
 ## resourceManager.getResourceManager
 
 getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
-Obtains the **ResourceManager** object of this application. This API uses a callback to return the result.
+Obtains the **ResourceManager** object of this application. This API uses an asynchronous callback to return the result.
+
+This API is used only in the FA model.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the **ResourceManager** object obtained.|
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       if (error != null) {
-          console.log("error occurs" + error);
+          console.log("error is " + error);
           return; 
       }
       mgr.getString(0x1000000, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   });
@@ -47,7 +57,9 @@ Obtains the **ResourceManager** object of this application. This API uses a call
 
 getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManager&gt;): void
 
-Obtains the **ResourceManager** object of an application. This API uses an asynchronous callback to return the result.
+Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses an asynchronous callback to return the result.
+
+This API is used only in the FA model.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -55,7 +67,7 @@ Obtains the **ResourceManager** object of an application. This API uses an async
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
 | bundleName | string                                   | Yes   | Bundle name of the target application.                |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the **ResourceManager** object obtained.|
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
@@ -70,25 +82,27 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 Obtains the **ResourceManager** object of this application. This API uses a promise to return the result.
 
+This API is used only in the FA model.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
 | Type                                      | Description               |
 | ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager().then(mgr => {
       mgr.getString(0x1000000, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   }).catch(error => {
-      console.log(error);
+      console.log("error is " + error);
   });
   ```
 
@@ -97,7 +111,9 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 
 getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
-Obtains the **ResourceManager** object of an application. This API uses a promise to return the result.
+Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses a promise to return the result.
+
+This API is used only in the FA model.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -109,7 +125,7 @@ Obtains the **ResourceManager** object of an application. This API uses a promis
 **Return value**
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object obtained.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result.|
 
 **Example**
   ```
@@ -129,8 +145,8 @@ Enumerates the screen directions.
 
 | Name                  | Default Value | Description  |
 | -------------------- | ---- | ---- |
-| DIRECTION_VERTICAL   | 0    | Portrait  |
-| DIRECTION_HORIZONTAL | 1    | Landscape  |
+| DIRECTION_VERTICAL   | 0    | Portrait.  |
+| DIRECTION_HORIZONTAL | 1    | Landscape.  |
 
 
 ## DeviceType
@@ -141,12 +157,12 @@ Enumerates the device types.
 
 | Name                  | Default Value | Description  |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | Phone  |
-| DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
-| DEVICE_TYPE_CAR      | 0x02 | Head unit  |
-| DEVICE_TYPE_PC       | 0x03 | PC  |
-| DEVICE_TYPE_TV       | 0x04 | TV  |
-| DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
+| DEVICE_TYPE_PHONE    | 0x00 | Phone.  |
+| DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
+| DEVICE_TYPE_CAR      | 0x02 | Head unit.  |
+| DEVICE_TYPE_PC       | 0x03 | PC.  |
+| DEVICE_TYPE_TV       | 0x04 | TV.  |
+| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
 
 
 ## ScreenDensity
@@ -182,8 +198,8 @@ Defines the device configuration.
   ```
 resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration((error, value) => {
-          console.log(value.direction);
-          console.log(value.locale);
+          let direction = value.direction;
+          let locale = value.locale;
       });
   });
   ```
@@ -205,8 +221,8 @@ Defines the device capability.
   ```
 resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability((error, value) => {
-          console.log(value.screenDensity);
-          console.log(value.deviceType);
+          let screenDensity = value.screenDensity;
+          let deviceType = value.deviceType;
       });
   });
   ```
@@ -227,7 +243,7 @@ Defines the descriptor information of the raw file.<br>
 
 Defines the capability of accessing application resources.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
@@ -245,16 +261,16 @@ Obtains the string corresponding to the specified resource ID. This API uses an 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the obtained string.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   });
@@ -277,15 +293,15 @@ Obtains the string corresponding to the specified resource ID. This API uses a p
 **Return value**
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the string obtained.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then(value => {
-          console.log(value);
+          let str = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getstring promise error is " + error);
       });
   });
   ```
@@ -295,7 +311,7 @@ Obtains the string corresponding to the specified resource ID. This API uses a p
 
 getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains the array of strings corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the string array corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -303,16 +319,16 @@ Obtains the array of strings corresponding to the specified resource ID. This AP
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Asynchronous callback used to return the obtained array of strings.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let strArray = value;
           }
       });
   });
@@ -323,7 +339,7 @@ Obtains the array of strings corresponding to the specified resource ID. This AP
 
 getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the array of strings corresponding to the specified resource ID. This API uses a promise to return the result.
+Obtains the string array corresponding to the specified resource ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -335,15 +351,15 @@ Obtains the array of strings corresponding to the specified resource ID. This AP
 **Return value**
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the array of strings obtained.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then(value => {
-          console.log(value);
+          let strArray = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getStringArray promise error is " + error);
       });
   });
   ```
@@ -361,16 +377,16 @@ Obtains the content of the media file corresponding to the specified resource ID
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the content of the media file obtained.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let media = value;
           }
       });
   });
@@ -393,15 +409,15 @@ Obtains the content of the media file corresponding to the specified resource ID
 **Return value**
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the content of the media file obtained.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then(value => {
-          console.log(value);
+          let media = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getMedia promise error is " + error);
       });
   });
   ```
@@ -419,16 +435,16 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the Base64 code of the image obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let media = value;
           }
       });
   });
@@ -451,15 +467,15 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 **Return value**
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the Base64 code of the image obtained.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then(value => {
-          console.log(value);
+          let media = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getMediaBase64 promise error is " + error);
       });
   });
   ```
@@ -476,16 +492,17 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                       |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Asynchronous callback used to return the obtained device configuration.|
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration((error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let direction = value.direction;
+              let locale = value.locale;
           }
       });
   });
@@ -503,15 +520,16 @@ Obtains the device configuration. This API uses a promise to return the result.
 **Return value**
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the device configuration.|
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration().then(value => {
-          console.log(value);
+          let direction = value.direction;
+          let locale = value.locale;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getConfiguration promise error is " + error);
       });
   });
   ```
@@ -528,16 +546,17 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                          |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Asynchronous callback used to return the obtained device capability.|
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability((error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let screenDensity = value.screenDensity;
+              let deviceType = value.deviceType;
           }
       });
   });
@@ -555,15 +574,16 @@ Obtains the device capability. This API uses a promise to return the result.
 **Return value**
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the obtained device capability.|
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability().then(value => {
-          console.log(value);
+          let screenDensity = value.screenDensity;
+          let deviceType = value.deviceType;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getDeviceCapability promise error is " + error);
       });
   });
   ```
@@ -582,16 +602,16 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Number that determines the plural or singular form.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the singular-plural string obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let str = value;
           }
       });
   });
@@ -615,15 +635,15 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 **Return value**
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the singular-plural string obtained.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
-          console.log(value);
+          let str = value;
       }).catch(error => {
-          console.log("getstring promise " + error);
+          console.log("getPluralString promise error is " + error);
       });
   });
   ```
@@ -632,7 +652,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of rawfile in the specified path. This API uses an asynchronous callback to return the result.
+Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -640,16 +660,16 @@ Obtains the content of rawfile in the specified path. This API uses an asynchron
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the raw file content, in byte arrays.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml", (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
-              console.log(value);
+              let rawFile = value;
           }
       });
   });
@@ -659,7 +679,7 @@ Obtains the content of rawfile in the specified path. This API uses an asynchron
 
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the raw file in the specified path. This API uses a promise to return the result.
+Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -671,15 +691,15 @@ Obtains the content of the raw file in the specified path. This API uses a promi
 **Return value**
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the raw file content, in byte arrays.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml").then(value => {
-          console.log(value);
+          let rawFile = value;
       }).catch(error => {
-          console.log("getrawfile promise " + error);
+          console.log("getRawFile promise error is " + error);
       });
   });
   ```
@@ -688,7 +708,7 @@ Obtains the content of the raw file in the specified path. This API uses a promi
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-Obtains the descriptor of the raw file in the specified path. This API uses an asynchronous callback to return the result.
+Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -696,14 +716,14 @@ Obtains the descriptor of the raw file in the specified path. This API uses an a
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Asynchronous callback used to return the raw file descriptor.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.xml", (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           } else {
               let fd = value.fd;
               let offset = value.offset;
@@ -717,7 +737,7 @@ Obtains the descriptor of the raw file in the specified path. This API uses an a
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-Obtains the descriptor of the raw file in the specified path. This API uses a promise to return the result.
+Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -729,7 +749,7 @@ Obtains the descriptor of the raw file in the specified path. This API uses a pr
 **Return value**
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the raw file descriptor.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result.|
 
 **Example**
   ```
@@ -739,7 +759,7 @@ Obtains the descriptor of the raw file in the specified path. This API uses a pr
           let offset = value.offset;
           let length = value.length;
       }).catch(error => {
-          console.log("getRawFileDescriptor promise " + error);
+          console.log("getRawFileDescriptor promise error is " + error);
       });
   });
   ```
@@ -748,7 +768,7 @@ Obtains the descriptor of the raw file in the specified path. This API uses a pr
 
 closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the descriptor of the raw file in the specified path. This API uses an asynchronous callback to return the result.
+Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -763,7 +783,7 @@ Closes the descriptor of the raw file in the specified path. This API uses an as
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml", (error, value) => {
           if (error != null) {
-              console.log(value);
+              console.log("error is " + error);
           }
       });
   });
@@ -773,7 +793,7 @@ Closes the descriptor of the raw file in the specified path. This API uses an as
 
 closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
-Closes the descriptor of the raw file in the specified path. This API uses a promise to return the result.
+Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -791,9 +811,9 @@ Closes the descriptor of the raw file in the specified path. This API uses a pro
   ```
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml").then(value => {
-          console.log(value);
+          let result = value;
       }).catch(error => {
-          console.log("closeRawFileDescriptor promise " + error);
+          console.log("closeRawFileDescriptor promise error is " + error);
       });
   });
   ```
@@ -809,10 +829,408 @@ Releases the created **resourceManager**.
 **Example**
   ```
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.release((error, value) => {
-          if (error != null) {
-              console.log(value);
-          }
-      });
+      mgr.release();
   });
+  ```
+
+### getStringByName<sup>9+</sup>
+
+getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the string corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resName  | string                      | Yes  | Resource name.       |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getStringByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let string = value;
+      }
+  });
+  ```
+
+### getStringByName<sup>9+</sup>
+
+getStringByName(resName: string): Promise&lt;string&gt;
+
+Obtains the string corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes  | Resource name.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Promise&lt;string&gt; | String corresponding to the resource name.|
+
+**Example**
+  ```
+  resourceManager.getStringByName("test").then(value => {
+      let string = value;
+  }).catch(error => {
+      console.log("getStringByName promise error is " + error);
+  });
+  ```
+
+### getStringArrayByName<sup>9+</sup>
+
+getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+Obtains the string array corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| resName  | string                                   | Yes   | Resource name.            |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Asynchronous callback used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getStringArrayByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let strArray = value;
+      }
+  });
+  ```
+
+### getStringArrayByName<sup>9+</sup>
+
+getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains the string array corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ------- | ------ | ---- | ----- |
+| resName | string | Yes  | Resource name.|
+
+**Return value**
+| Type                                | Description           |
+| ---------------------------------- | ------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getStringArrayByName("test").then(value => {
+      let strArray = value;
+  }).catch(error => {
+      console.log("getStringArrayByName promise error is " + error);
+  });
+  ```
+
+### getMediaByName<sup>9+</sup>
+
+getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                             | Mandatory  | Description                |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resName  | string                          | Yes   | Resource name.             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getMediaByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let media = value;
+      }
+  });
+  ```
+
+### getMediaByName<sup>9+</sup>
+
+getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
+
+Obtains the content of the media file corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| -----   | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+| Type                       | Description            |
+| ------------------------- | -------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getMediaByName("test").then(value => {
+      let media = value;
+  }).catch(error => {
+      console.log("getMediaByName promise error is " + error);
+  });
+  ```
+
+### getMediaBase64ByName<sup>9+</sup>
+
+getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the Base64 code of the image corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description                      |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resName  | string                      | Yes   | Resource name.                   |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getMediaBase64ByName("test", (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let media = value;
+      }
+  });
+  ```
+
+### getMediaBase64ByName<sup>9+</sup>
+
+getMediaBase64ByName(resName: string): Promise&lt;string&gt;
+
+Obtains the Base64 code of the image corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ------- | ------ | ---- | ----- |
+| resName | string | Yes  | Resource name.|
+
+**Return value**
+| Type                   | Description                  |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getMediaByName("test").then(value => {
+      let media = value;
+  }).catch(error => {
+      console.log("getMediaBase64ByName promise error is " + error);
+  });
+  ```
+
+### getPluralStringByName<sup>9+</sup>
+
+getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the plural string corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description                             |
+| -------- | --------------------------- | ---- | ------------------------------- |
+| resName  | string                      | Yes   | Resource name.                          |
+| num      | number                      | Yes   | Number that determines the plural or singular form.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getPluralStringByName("test", 1, (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let str = value;
+      }
+  });
+  ```
+
+### getPluralStringByName<sup>9+</sup>
+
+getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
+
+Obtains the plural string corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ------- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+| num     | number | Yes   | Number that determines the plural or singular form.  |
+
+**Return value**
+| Type                   | Description                       |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  resourceManager.getPluralStringByName("test", 1).then(value => {
+      let str = value;
+  }).catch(error => {
+      console.log("getPluralStringByName promise error is " + error);
+  });
+  ```
+
+### getStringSync<sup>9+</sup>
+
+getStringSync(resId: number): string
+
+Obtains the string corresponding to the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | String corresponding to the specified resource ID.|
+
+**Example**
+  ```
+  resourceManager.getStringSync($r('app.string.test').id);
+  ```
+
+### getStringByNameSync<sup>9+</sup>
+
+getStringByNameSync(resName: string): string
+
+Obtains the string corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | String corresponding to the resource name.|
+
+**Example**
+  ```
+  resourceManager.getStringByNameSync("test");
+  ```
+
+ ### getBoolean<sup>9+</sup>
+
+getBoolean(resId: number): boolean
+
+Obtains the Boolean result corresponding to the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| boolean | Boolean result corresponding to the specified resource ID.|
+
+**Example**
+  ```
+  resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+  ```
+
+### getBooleanByName<sup>9+</sup>
+
+getBooleanByName(resName: string): boolean
+
+Obtains the Boolean result corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ------- | ------ | ---- | ----- |
+| resName | string | Yes  | Resource name.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| boolean | Boolean result corresponding to the specified resource name.|
+
+**Example**
+  ```
+  resourceManager.getBooleanByName("boolean_test");
+  ```
+
+ ### getNumber<sup>9+</sup>
+
+getNumber(resId: number): number
+
+Obtains the integer or float value corresponding to the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| number | Integer or float value corresponding to the specified resource ID.|
+
+**Example**
+  ```
+  resourceManager.getNumber($r('app.integer.integer_test').id);
+  resourceManager.getNumber($r('app.float.float_test').id);
+  ```
+
+### getNumberByName<sup>9+</sup>
+
+getNumberByName(resName: string): number
+
+Obtains the integer or float value corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| number | Integer or float value corresponding to the specified resource name.|
+
+**Example**
+  ```
+  resourceManager.getNumberByName("integer_test");
+  resourceManager.getNumberByName("float_test");
   ```

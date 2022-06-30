@@ -6,12 +6,13 @@
 
 The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms. **application/BaseContext** is a common context base class. It uses the **stageMode** attribute to specify whether the context is used for the stage model.
 
-- FA Model
+- FA model
+  
 
-  Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
-
-- Stage Model
-
+   Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
+  
+- Stage model 
+  
   The stage model has the following types of contexts: **application/Context**, **application/ApplicationContext**, **application/AbilityStageContext**, **application/ExtensionContext**, **application/AbilityContext**, and **application/FormExtensionContext**. For details about these contexts and how to use them, see [Context in the Stage Model](#context-in-the-stage-model).
 
 ![contextIntroduction](figures/contextIntroduction.png)
@@ -37,6 +38,34 @@ export default {
     context.getBundleName((data, bundleName)=>{
       console.info("ability bundleName:" + bundleName)
     });
+    console.info('Application onCreate')
+  },
+  onDestroy() {
+    console.info('Application onDestroy')
+  },
+}
+```
+
+### Common Context-related Methods in the FA Model
+The following context-related methods are available in the FA model:
+```javascript
+setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCallback<void>): void
+setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise<void>;
+```
+The methods are used to set the display orientation of the current ability.
+
+**Example**
+```javascript
+import featureAbility from '@ohos.ability.featureAbility'
+import bundle from '../@ohos.bundle';
+
+export default {
+  onCreate() {
+    // Obtain the context and call related APIs.
+    let context = featureAbility.getContext();
+    context.setDisplayOrientation(bundle.DisplayOrientation.LANDSCAPE).then(() => {
+        console.log("Set display orientation.")
+    })
     console.info('Application onCreate')
   },
   onDestroy() {
@@ -195,7 +224,7 @@ export default class MainAbility extends Ability {
 
 ### application/FormExtensionContext
 
-For details, see [FormExtensionContext](/en/application-dev/reference/apis/js-apis-formextensioncontext.md).
+For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
 
 ## Common Incorrect Usage
 

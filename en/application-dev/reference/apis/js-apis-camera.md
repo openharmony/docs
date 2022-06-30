@@ -175,6 +175,17 @@ cameraManager.getCameras().then((cameraArray) => {
 })
 ```
 
+### Size
+
+Size parameters. This interface used to get supported size for Preview + Photo + Video.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name    | Default Value                                     | Mandatory| Description                               |
+| -------- | ------------------------------------------- | ---- | ----------------------------------- |
+| height | number                                      | Yes  | Desired height of the Preview + Photo + Video.                       |
+| width | number                                       | Yes  | Desired width of the Preview + Photo + Video.|
+
 ### createCameraInput
 
 createCameraInput(cameraId: string, callback: AsyncCallback<CameraInput\>): void
@@ -249,7 +260,7 @@ Creates a **CameraInput** instance with the specified camera position and camera
 **Example**
 
 ```
-cameraManager.createCameraInput(cameraPosition, cameraType, (err, cameraInput) => {
+cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED, (err, cameraInput) => {
     if (err) {
         console.error('Failed to create the CameraInput instance. ${err.message}');
         return;
@@ -282,7 +293,7 @@ Creates a **CameraInput** instance with the specified camera position and camera
 **Example**
 
 ```
-cameraManager.createCameraInput(cameraPosition, cameraType).then((cameraInput) => {
+cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED).then((cameraInput) => {
     console.log('Promise returned with the CameraInput instance.');
 })
 ```
@@ -305,7 +316,11 @@ Listens for camera status changes. This API uses a callback to return the camera
 **Example**
 
 ```
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
+    if (err) {
+        console.error('Failed to get cameraStatus callback. ${err.message}');
+        return;
+    }
     console.log('camera : ' + cameraStatusInfo.camera.cameraId);
     console.log('status: ' + cameraStatusInfo.status);
 })
@@ -327,14 +342,14 @@ After **[camera.getCameraManager](#cameragetcameramanager)** is called, a camera
 **Example**
 
 ```
-async function getCameraInfo() {
+async function getCameraInfo("cameraId") {
     var cameraManager = await camera.getCameraManager();
     var cameras = await cameraManager.getCameras();
     var cameraObj = cameras[0];
     var cameraId = cameraObj.cameraId;
     var cameraPosition = cameraObj.cameraPosition;
     var cameraType = cameraObj.cameraType;
-    var cameraId = cameraObj.connectionType;
+    var connectionType = cameraObj.connectionType;
 }
 
 ```
@@ -470,7 +485,7 @@ Checks whether a specified flash mode is supported. This API uses an asynchronou
 **Example**
 
 ```
-cameraInput.isFlashModeSupported(flashMode, (err, status) => {
+cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, (err, status) => {
     if (err) {
         console.error('Failed to check whether the flash mode is supported. ${err.message}');
         return;
@@ -502,7 +517,7 @@ Checks whether a specified flash mode is supported. This API uses a promise to r
 **Example**
 
 ```
-cameraInput.isFlashModeSupported(flashMode).then((status) => {
+cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO).then((status) => {
     console.log('Promise returned with flash mode support status.' + status);
 })
 ```
@@ -530,7 +545,7 @@ Before setting the parameters, do the following checks:
 **Example**
 
 ```
-cameraInput.setFlashMode(flashMode, (err) => {
+cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, (err) => {
     if (err) {
         console.error('Failed to set the flash mode  ${err.message}');
         return;
@@ -567,7 +582,7 @@ Before setting the parameters, do the following checks:
 **Example**
 
 ```
-cameraInput.setFlashMode(flashMode).then(() => {
+cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO).then(() => {
     console.log('Promise returned with the successful execution of setFlashMode.');
 })
 ```
@@ -638,7 +653,7 @@ Checks whether a specified focus mode is supported. This API uses an asynchronou
 **Example**
 
 ```
-cameraInput.isFocusModeSupported(afMode, (err, status) => {
+cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO, (err, status) => {
     if (err) {
         console.error('Failed to check whether the focus mode is supported. ${err.message}');
         return;
@@ -670,7 +685,7 @@ Checks whether a specified focus mode is supported. This API uses a promise to r
 **Example**
 
 ```
-cameraInput.isFocusModeSupported(afMode).then((status) => {
+cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO).then((status) => {
     console.log('Promise returned with focus mode support status.' + status);
 })
 ```
@@ -695,7 +710,7 @@ Before setting the focus mode, use **[isFocusModeSupported](#isfocusmodesupporte
 **Example**
 
 ```
-cameraInput.setFocusMode(afMode, (err) => {
+cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO, (err) => {
     if (err) {
         console.error('Failed to set the focus mode  ${err.message}');
         return;
@@ -729,7 +744,7 @@ Before setting the focus mode, use **[isFocusModeSupported](#isfocusmodesupporte
 **Example**
 
 ```
-cameraInput.setFocusMode(afMode).then(() => {
+cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO).then(() => {
     console.log('Promise returned with the successful execution of setFocusMode.');
 })
 ```
@@ -848,7 +863,7 @@ Sets a zoom ratio. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```
-cameraInput.setZoomRatio(zoomRatio, (err) => {
+cameraInput.setZoomRatio(1, (err) => {
     if (err) {
         console.error('Failed to set the zoom ratio value ${err.message}');
         return;
@@ -880,7 +895,7 @@ Sets a zoom ratio. This API uses a promise to return the result.
 **Example**
 
 ```
-cameraInput.setZoomRatio(zoomRatio).then(() => {
+cameraInput.setZoomRatio(1).then(() => {
     console.log('Promise returned with the successful execution of setZoomRatio.');
 })
 ```
@@ -950,7 +965,7 @@ Releases this **CameraInput** instance. This API uses an asynchronous callback t
 **Example**
 
 ```
-camera.release((err) => {
+cameraInput.release((err) => {
     if (err) {
         console.error('Failed to release the CameraInput instance ${err.message}');
         return;
@@ -1027,6 +1042,27 @@ cameraInput.on('error', (cameraInputError) => {
 })
 ```
 
+## CameraInputErrorCode
+
+Enumerates the CameraInput error code.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| ERROR_UNKNOWN       | -1      | Unknown error.|
+
+## CameraInputError
+
+Camera input error object which extends **Error** interface.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| code                | [CameraInputErrorCode](#camerainputerrorcode)     | Used to get error code in CameraInput on('error') callback|
 
 ## FlashMode
 
@@ -1836,6 +1872,28 @@ captureSession.on('error', (captureSessionError) => {
 })
 ```
 
+## CaptureSessionErrorCode
+
+Enumerates the CaptureSession error code.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| ERROR_UNKNOWN       | -1      | Unknown error.|
+
+## CaptureSessionError
+
+Capture session error object which extends **Error** interface.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| code                | [CaptureSessionErrorCode](#capturesessionerrorcode)     | Used to get error code in CaptureSession on('error') callback.|
+
 ## camera.createPreviewOutput
 
 createPreviewOutput(surfaceId: string, callback: AsyncCallback<PreviewOutput\>): void
@@ -1854,7 +1912,7 @@ Creates a **PreviewOutput** instance. This API uses an asynchronous callback to 
 **Example**
 
 ```
-camera.createPreviewOutput((surfaceId), (err, previewOutput) => {
+camera.createPreviewOutput(("surfaceId"), (err, previewOutput) => {
     if (err) {
         console.error('Failed to create the PreviewOutput instance. ${err.message}');
         return;
@@ -1886,7 +1944,7 @@ Creates a **PreviewOutput** instance. This API uses a promise to return the inst
 **Example**
 
 ```
-camera.createPreviewOutput(surfaceId).then((previewOutput) => {
+camera.createPreviewOutput("surfaceId").then((previewOutput) => {
     console.log('Promise returned with the PreviewOutput instance');
 })
 ```
@@ -2013,6 +2071,28 @@ previewOutput.on('error', (previewOutputError) => {
 })
 ```
 
+## PreviewOutputErrorCode
+
+Enumerates the PreviewOutput error code.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| ERROR_UNKNOWN       | -1      | Unknown error.|
+
+## PreviewOutputError
+
+Preview output error object which extends **Error** interface.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| code                | [PreviewOutputErrorCode](#previewoutputerrorcode)     | Used to get error code in PreviewOutput on('error') callback.|
+
 ## camera.createPhotoOutput
 
 createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput\>): void
@@ -2031,7 +2111,7 @@ Creates a **PhotoOutput** instance. This API uses an asynchronous callback to re
 **Example**
 
 ```
-camera.createPhotoOutput((surfaceId), (err, photoOutput) => {
+camera.createPhotoOutput(("surfaceId"), (err, photoOutput) => {
     if (err) {
         console.error('Failed to create the PhotoOutput instance. ${err.message}');
         return;
@@ -2063,7 +2143,7 @@ Creates a **PhotoOutput** instance. This API uses a promise to return the instan
 **Example**
 
 ```
-camera.createPhotoOutput(surfaceId).then((photoOutput) => {
+camera.createPhotoOutput("surfaceId").then((photoOutput) => {
     console.log('Promise returned with PhotoOutput instance');
 })
 ```
@@ -2260,7 +2340,7 @@ Listens for photo capture start events. This API uses a callback to return the e
 **Example**
 
 ```
-photoOutput.on('captureStart', (captureId) => {
+photoOutput.on('captureStart', (err, captureId) => {
     console.log('photo capture stated, captureId : ' + captureId);
 })
 ```
@@ -2336,6 +2416,50 @@ photoOutput.on('error', (photoOutputError) => {
 })
 ```
 
+### FrameShutterInfo
+
+Frame shutter callback info which provides **captureId** & **timestamp** parameteres & indicates the frame shutter event.
+
+**Parameteres**
+
+| Name    | Type                            | Mandatory| Description                                     |
+| :------- | :------------------------------- | :--- | :---------------------------------------- |
+| captureId     | number                           | Yes  | Capture id.|
+| timestamp | number | Yes  | Timestamp for frame.    
+
+### CaptureEndInfo
+
+Capture end info which provides **captureId** & **frameCount** parameteres & indicates the photo capture end event.
+
+**Parameteres**
+
+| Name    | Type                            | Mandatory| Description                                     |
+| :------- | :------------------------------- | :--- | :---------------------------------------- |
+| captureId     | number                           | Yes  | Capture id.|
+| frameCount | number | Yes  | Frame count.    
+
+## PhotoOutputErrorCode
+
+Enumerates the PhotoOutput error code.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| ERROR_UNKNOWN       | -1      | Unknown error.|
+
+## PhotoOutputError
+
+Photo output error object which extends **Error** interface.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| code                | [PhotoOutputErrorCode](#photooutputerrorcode)     | Used to get error code in PhotoOutput on('error') callback.|
+
 ## camera.createVideoOutput
 
 createVideoOutput(surfaceId: string, callback: AsyncCallback<VideoOutput\>): void
@@ -2354,7 +2478,7 @@ Creates a **VideoOutput** instance. This API uses an asynchronous callback to re
 **Example**
 
 ```
-camera.createVideoOutput((surfaceId), (err, videoOutput) => {
+camera.createVideoOutput(("surfaceId"), (err, videoOutput) => {
     if (err) {
         console.error('Failed to create the VideoOutput instance. ${err.message}');
         return;
@@ -2386,7 +2510,8 @@ Creates a **VideoOutput** instance. This API uses a promise to return the instan
 **Example**
 
 ```
-camera.createVideoOutput(surfaceId).then((videoOutput) => {
+camera.createVideoOutput("surfaceId"
+).then((videoOutput) => {
     console.log('Promise returned with the VideoOutput instance');
 })
 ```
@@ -2609,3 +2734,25 @@ videoOutput.on('error', (VideoOutputError) => {
     console.log('Video output error code: ' + VideoOutputError.code);
 })
 ```
+
+## VideoOutputErrorCode
+
+Enumerates the VideoOutput error code.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| ERROR_UNKNOWN       | -1      | Unknown error.|
+
+## VideoOutputError
+
+Photo output error object which extends **Error** interface.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name                  | Default Value| Description        |
+| ---------------------- | ------ | ------------ |
+| code                | [VideoOutputErrorCode](#videooutputerrorcode)     | Used to get error code in VideoOutput on('error') callback.|

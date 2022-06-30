@@ -1,6 +1,6 @@
 # Input Method Framework
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 
 
@@ -48,9 +48,9 @@ Obtains an [InputMethodController](#InputMethodController) instance.
 
 **Example**
 
-```
-var InputMethodController = inputMethod.getInputMethodController();
-```
+  ```js
+  var InputMethodController = inputMethod.getInputMethodController();
+  ```
 
 ## inputMethod.getInputMethodSetting<sup>8+</sup><a name="getInputMethodSetting"></a>
 
@@ -140,18 +140,18 @@ Obtains the list of installed input methods. This API uses an asynchronous callb
 
 **Example**
 
-```js
- InputMethodSetting.listInputMethod((properties)=>{
-   for (var i = 0;i < properties.length; i++) {
-     var property = properties[i];
-     console.info(property.packageName + "/" + property.methodId);
-   }
-});
-```
+  ```js
+   InputMethodSetting.listInputMethod((properties)=>{
+     for (var i = 0;i < properties.length; i++) {
+       var property = properties[i];
+       console.info(property.packageName + "/" + property.methodId);
+     }
+  });
+  ```
 
 ### listInputMethod
 
-listInputMethod(): Array&lt;InputMethodProperty&gt;
+listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 Obtains the list of installed input methods. This API uses an asynchronous callback to return the result.
 

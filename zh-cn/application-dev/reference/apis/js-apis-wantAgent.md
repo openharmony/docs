@@ -1,8 +1,10 @@
 # WantAgent模块
 
->**说明：**
->
->本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+WantAgent模块提供了触发、取消、比较WantAgent实例和获取bundle名称的能力，包括创建WantAgent实例、获取实例的用户ID、获取want信息等。
+
+> **说明：**
+> 
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 
 ## 导入模块
 
@@ -418,6 +420,8 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                            |
@@ -489,6 +493,8 @@ getWant(agent: WantAgent): Promise\<Want\>
 获取WantAgent对象的want（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -993,7 +999,7 @@ getOperationType(agent: WantAgent): Promise\<number>;
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number> | 以Promise形式返回获取optionType的结果。 |
+| Promise\<number> | 以Promise形式返回获取operationType的结果。 |
 
 **示例：**
 

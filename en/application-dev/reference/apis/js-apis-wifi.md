@@ -1,6 +1,6 @@
 # WLAN
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,13 +16,11 @@ isWifiActive(): boolean
 
 Checks whether the WLAN is activated.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | boolean | Returns **true** if the WLAN is activated; returns **false** otherwise.|
@@ -34,13 +32,11 @@ scan(): boolean
 
 Starts a scan for WLAN.
 
-- Required permissions:
-  ohos.permission.SET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | boolean | Returns **true** if the scan is successful; returns **false** otherwise.|
@@ -52,13 +48,11 @@ getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 
 Obtains the scan result. This method uses a promise to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO, ohos.permission.GET_WIFI_PEERS_MAC, or ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO, ohos.permission.GET_WIFI_PEERS_MAC, or ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the scan result, which is a list of hotspots detected.|
@@ -70,18 +64,16 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 
 Obtains the scan result. This method uses an asynchronous callback to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO, ohos.permission.GET_WIFI_PEERS_MAC, or ohos.permission.LOCATION
+**Required permissions**: at least one of ohos.permission.GET_WIFI_INFO, ohos.permission.GET_WIFI_PEERS_MAC, and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result, which is a list of hotspots detected.|
 
-- Example
+**Example**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -160,18 +152,18 @@ addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 Adds untrusted WLAN configuration. This method uses a promise to return the result.
 
-- Required permissions:
+**Required permissions**:
   ohos.permission.SET_WIFI_INFO
 
-- System capability:
+**System capability**:
   SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | Yes| WLAN configuration to add.|
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the operation result. The value **true** indicates that the operation is successful; **false** indicates the opposite.|
@@ -182,7 +174,7 @@ Represents the WLAN configuration.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| Hotspot service set identifier (SSID), in UTF-8 format.|
+| ssid | string | Read only| Hotspot SSID, in UTF-8 format.|
 | bssid | string | Read only| BSSID of the hotspot.|
 | preSharedKey | string | Read only| Private key of the hotspot.|
 | isHiddenSsid | boolean | Read only| Whether to hide the network.|
@@ -195,13 +187,11 @@ addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&
 
 Adds untrusted WLAN configuration. This method uses an asynchronous callback to return the result.
 
-- Required permissions:
-  ohos.permission.SET_WIFI_INFO
+**Required permissions**: ohos.permission.SET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | Yes| WLAN configuration to add.|
@@ -214,18 +204,16 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 Removes untrusted WLAN configuration. This method uses a promise to return the result.
 
-- Required permissions:
-  ohos.permission.SET_WIFI_INFO
+**Required permissions**: ohos.permission.SET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | Yes| WLAN configuration to remove.|
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the operation result. The value **true** indicates that the operation is successful; **false** indicates the opposite.|
@@ -237,13 +225,11 @@ removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
 
 Removes untrusted WLAN configuration. This method uses an asynchronous callback to return the result.
 
-- Required permissions:
-  ohos.permission.SET_WIFI_INFO
+**Required permissions**: ohos.permission.SET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#WifiDeviceConfig) | Yes| WLAN configuration to remove.|
@@ -256,19 +242,17 @@ getSignalLevel(rssi: number, band: number): number
 
 Obtains the WLAN signal strength.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- **Parameters**
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | rssi | number | Yes| Signal strength of the hotspot, in dBm.|
   | band | number | Yes| Frequency band of the WLAN AP.|
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | number | Signal strength obtained. The value range is [0,&nbsp;4].|
@@ -280,13 +264,11 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 Obtains WLAN connection information. This method uses a promise to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;[WifiLinkedInfo](#WifiLinkedInfo)&gt; | Promise used to return the WLAN connection information obtained.|
@@ -298,18 +280,16 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 Obtains WLAN connection information. This method uses a callback to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#WifiLinkedInfo)&gt; | Yes| Callback invoked to return the WLAN connection information obtained.|
 
-- Example
+**Example**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -342,7 +322,7 @@ Represents the WLAN connection information.
 | linkSpeed | number | Read only| Speed of the WLAN AP.|
 | frequency | number | Read only| Frequency of the WLAN AP.|
 | isHidden | boolean | Read only| Whether the WLAN AP is hidden.|
-| isRestricted | boolean | Read only| Whether data volume is restricted at the WLAN AP.|
+| isRestricted | boolean | Read only| Whether to restrict data volume at the WLAN AP.|
 | macAddress | string | Read only| MAC address of the device.|
 | ipAddress | number | Read only| IP address of the device that sets up the WLAN connection.|
 | connState | [ConnState](#ConnState) | Read only| WLAN connection state.|
@@ -370,13 +350,11 @@ isConnected(): boolean
 
 Checks whether the WLAN is connected.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
@@ -388,35 +366,35 @@ isFeatureSupported(featureId: number): boolean
 
 Checks whether the device supports the specified WLAN feature.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.Core
+**System capability**: SystemCapability.Communication.WiFi.Core
 
-- **Parameters**
+**Parameters**
+
   | **Name**| **Type**| Mandatory| **Description**|
   | -------- | -------- | -------- | -------- |
   | featureId | number | Yes| Feature ID.|
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
-- Enumerates the WLAN features.
-  | Value| Description|
-  | -------- | -------- |
-  | 0x0001 | WLAN infrastructure mode|
-  | 0x0002 | 5 GHz bandwidth|
-  | 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature|
-  | 0x0008 | Wi-Fi Direct|
-  | 0x0010 | SoftAP|
-  | 0x0040 | Wi-Fi AWare|
-  | 0x8000 | WLAN AP/STA concurrency|
-  | 0x8000000 | WPA3 Personal (WPA-3 SAE)|
-  | 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
-  | 0x20000000 | Enhanced open feature|
+**Feature IDs**
+
+| Value| Description|
+| -------- | -------- |
+| 0x0001 | WLAN infrastructure mode|
+| 0x0002 | 5 GHz bandwidth|
+| 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature|
+| 0x0008 | Wi-Fi Direct|
+| 0x0010 | SoftAP|
+| 0x0040 | Wi-Fi AWare|
+| 0x8000 | WLAN AP/STA concurrency|
+| 0x8000000 | WPA3 Personal (WPA-3 SAE)|
+| 0x10000000 | WPA3-Enterprise&nbsp;Suite-B |
+| 0x20000000 | Enhanced open feature|
 
 
 ## wifi.getIpInfo<sup>7+</sup>
@@ -425,13 +403,11 @@ getIpInfo(): IpInfo
 
 Obtains IP information.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | [IpInfo](#IpInfo) | IP information obtained.|
@@ -458,13 +434,11 @@ getCountryCode(): string
 
 Obtains the country code.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.Core
+**System capability**: SystemCapability.Communication.WiFi.Core
 
-- Return value
+**Return value**
   | **Type**| **Description**|
   | -------- | -------- |
   | string | Country code obtained.|
@@ -476,13 +450,11 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 Obtains peer-to-peer (P2P) connection information. This method uses a promise to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;[WifiP2pLinkedInfo](#WifiP2pLinkedInfo)&gt; | Promise used to return the P2P connection information obtained.|
@@ -494,13 +466,11 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 
 Obtains P2P connection information. This method uses a callback to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#WifiP2pLinkedInfo)&gt; | Yes| Callback used to return the P2P connection information obtained.|
@@ -533,13 +503,11 @@ getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 
 Obtains the current P2P group information. This method uses a promise to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt; | Promise used to return the P2P group information obtained.|
@@ -551,13 +519,11 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 
 Obtains the P2P group information. This method uses an asynchronous callback to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#WifiP2pGroupInfo)&gt; | Yes| Callback used to return the P2P group information obtained.|
@@ -589,7 +555,7 @@ Represents the P2P device information.
 | deviceAddress | string | Read only| MAC address of the device.|
 | primaryDeviceType | string | Read only| Type of the primary device.|
 | deviceStatus | [P2pDeviceStatus](#P2pDeviceStatus) | Read only| Device status.|
-| groupCapabilities | number | Read only| Group capabilities.|
+| groupCapabilitys | number | Read only| Group capabilities.|
 
 ## P2pDeviceStatus<sup>8+</sup>
 
@@ -610,13 +576,11 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
 Obtains the list of peer devices in a P2P connection. This method uses a promise to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice[]](#WifiP2pDevice)&gt; | Promise used to return the peer device list obtained.|
@@ -628,13 +592,11 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
 Obtains the list of peer devices in a P2P connection. This method uses an asynchronous callback to return the result.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#WifiP2pDevice)&gt; | Yes| Callback used to return the peer device list obtained.|
@@ -646,18 +608,17 @@ createGroup(config: WifiP2PConfig): boolean;
 
 Creates a P2P group.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- **Parameters**
+**Parameters**
+
   | **Name**| **Type**| Mandatory| **Description**|
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#WifiP2PConfig) | Yes| Group configuration.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -691,13 +652,11 @@ removeGroup(): boolean;
 
 Removes a P2P group.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -709,24 +668,23 @@ p2pConnect(config: WifiP2PConfig): boolean;
 
 Sets up a P2P connection.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- **Parameters**
+**Parameters**
+
   | **Name**| **Type**| Mandatory| **Description**|
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#WifiP2PConfig) | Yes| Connection configuration.|
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
-- Example
+**Example**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -799,13 +757,11 @@ p2pCancelConnect(): boolean;
 
 Cancels this P2P connection.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -817,13 +773,11 @@ startDiscoverDevices(): boolean;
 
 Starts to discover devices.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -835,13 +789,11 @@ stopDiscoverDevices(): boolean;
 
 Stops discovering devices.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Return value
+**Return value**
   | Type| Description|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -853,25 +805,24 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
 Registers the WLAN state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiStateChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
 
-- Enumerates the WLAN states.
-  | **Value**| **Description**|
-  | -------- | -------- |
-  | 0 | Deactivated|
-  | 1 | Activated|
-  | 2 | Activating|
-  | 3 | Deactivating|
+**WLAN states** 
+
+| **Value**| **Description**|
+| -------- | -------- |
+| 0 | Deactivated|
+| 1 | Activated|
+| 2 | Activating|
+| 3 | Deactivating|
 
 
 ## wifi.off('wifiStateChange')<sup>7+</sup>
@@ -880,19 +831,17 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 
 Unregisters the WLAN state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiStateChange**.|
   | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
-- Example
+**Example**
   ```js
   import wifi from '@ohos.wifi';
   
@@ -915,23 +864,22 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
 Registers the WLAN connection state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
 
-- Enumerates the WLAN connection states.
-  | **Value**| **Description**|
-  | -------- | -------- |
-  | 0 | Disconnected|
-  | 1 | Connected|
+**WLAN connection states**
+
+| **Value**| **Description**|
+| -------- | -------- |
+| 0 | Disconnected|
+| 1 | Connected|
 
 
 ## wifi.off('wifiConnectionChange')<sup>7+</sup>
@@ -940,17 +888,15 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 
 Unregisters the WLAN connection state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to report the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
@@ -959,23 +905,22 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
 Registers the WLAN scan state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
 
-- Enumerates the WLAN scan states.
-  | **Value**| **Description**|
-  | -------- | -------- |
-  | 0 | Scan failed|
-  | 1 | Scan successful|
+**WLAN scan states**
+
+| **Value**| **Description**|
+| -------- | -------- |
+| 0 | Scan failed|
+| 1 | Scan successful|
 
 
 ## wifi.off('wifiScanStateChange')<sup>7+</sup>
@@ -984,13 +929,11 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 
 Unregisters the WLAN scan state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
@@ -1002,15 +945,13 @@ Unregisters the WLAN scan state change events.
 
 on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 
-Registers the RSSI state change events.
+Registers the RSSI change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiRssiChange**.|
@@ -1021,15 +962,13 @@ Registers the RSSI state change events.
 
 off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
-Unregisters the RSSI state change events.
+Unregisters the RSSI change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.STA
+**System capability**: SystemCapability.Communication.WiFi.STA
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **wifiRssiChange**.|
@@ -1042,25 +981,24 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 
 Registers the hotspot state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.AP.Core
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **hotspotStateChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
 
-- Enumerates the hotspot states.
-  | **Value**| **Description**|
-  | -------- | -------- |
-  | 0 | Deactivated|
-  | 1 | Activated|
-  | 2 | Activating|
-  | 3 | Deactivating|
+**Hotspot states**
+
+| **Value**| **Description**|
+| -------- | -------- |
+| 0 | Deactivated|
+| 1 | Activated|
+| 2 | Activating|
+| 3 | Deactivating|
 
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
@@ -1069,13 +1007,11 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 
 Unregisters the hotspot state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.AP.Core
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **hotspotStateChange**.|
@@ -1086,28 +1022,27 @@ Unregisters the hotspot state change events.
 
 on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 
-Registers the P2P status change events.
+Registers the P2P state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pStateChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
 
-- Enumerates the P2P states.
-  | **Value**| **Description**|
-  | -------- | -------- |
-  | 1 | Available|
-  | 2 | Opening|
-  | 3 | Opened|
-  | 4 | Closing|
-  | 5 | Closed|
+**P2P states**
+
+| **Value**| **Description**|
+| -------- | -------- |
+| 1 | Available|
+| 2 | Opening|
+| 3 | Opened|
+| 4 | Closing|
+| 5 | Closed|
 
 ## wifi.off('p2pStateChange')<sup>8+</sup>
 
@@ -1115,13 +1050,11 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 
 Unregisters the P2P state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pStateChange**.|
@@ -1134,13 +1067,11 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 
 Registers the P2P connection state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
@@ -1153,13 +1084,11 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 
 Unregisters the P2P connection state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
@@ -1172,13 +1101,11 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 
 Registers the P2P device state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
@@ -1191,13 +1118,11 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 Unregisters the P2P device state change events.
 
-- Required permissions:
-  ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
@@ -1210,13 +1135,11 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 Registers the P2P peer device state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
@@ -1229,13 +1152,11 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 
 Unregisters the P2P peer device state change events.
 
-- Required permissions:
-  ohos.permission.LOCATION
+**Required permissions**: ohos.permission.LOCATION
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
@@ -1248,13 +1169,11 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
 Registers the P2P persistent group state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
@@ -1267,13 +1186,11 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 
 Unregisters the P2P persistent group state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
@@ -1286,23 +1203,22 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 
 Registers the P2P discovered device state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
   | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the state of the P2P discovered device.|
 
-- Enumerates the states of P2P discovered devices.
-  | **Value**| **Description**|
-  | -------- | -------- |
-  | 0 | Initial state|
-  | 1 | Discovered|
+**P2P discovered device states**
+
+| **Value**| **Description**|
+| -------- | -------- |
+| 0 | Initial state|
+| 1 | Discovered|
 
 
 ## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
@@ -1311,13 +1227,11 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 
 Unregisters the P2P discovered device state change events.
 
-- Required permissions:
-  ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO
 
-- System capability:
-  SystemCapability.Communication.WiFi.P2P
+**System capability**: SystemCapability.Communication.WiFi.P2P
 
-- Parameters
+**Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|

@@ -3,7 +3,7 @@
 ## IDL Overview
 To ensure successful communications between the client and server, interfaces recognized by both parties must be defined. The OpenHarmony Interface Definition Language (IDL) is a tool for defining such interfaces. OpenHarmony IDL decomposes objects to be transferred into primitives that can be understood by the operating system and encapsulates cross-boundary objects based on developers' requirements.
 
-**Figure 1** IDL interface description
+  **Figure 1** IDL interface description
 
 ![IDL-interface-description](./figures/IDL-interface-description.png)
 
@@ -29,16 +29,16 @@ IDL has the following advantages:
 
 #### Primitive Type
 | IDL Primitive Type| C++ Primitive Type| TS Primitive Type|
-|   --------      |  --------      | --------    |
-|void             | void           | void |
-|boolean          | bool           | boolean |
-|byte             | int8_t         | number |
-|short            | int16_t        | number |
-|int              | int32_t        | number |
-|long             | int64_t        | number |
-|float            | float          | number |
-|double           | double         | number |
-|String           | std::string    | string |
+|   --------    |  --------     | --------     |
+|void           | void          | void         |
+|boolean        | bool          | boolean      |
+|byte           | int8_t        | number       |
+|short          | int16_t       | number       |
+|int            | int32_t       | number       |
+|long           | int64_t       | number       |
+|float          | float         | number       |
+|double         | double        | number       |
+|String         | std::string   | string       |
 
 The preceding table lists the primitive types supported by IDL and the mappings to the C++ and TS primitive types.
 
@@ -47,29 +47,34 @@ The sequenceable type is declared using the keyword **sequenceable**. This type 
 
 In C++, the declaration is placed in the file header in the format of **sequenceable includedir..namespace.typename**.  It can be in any of the following forms:
 
-```
+```cpp
 sequenceable includedir..namespace.typename
 sequenceable includedir...typename
 sequenceable namespace.typename
 ```
+
 In the preceding information, **includedir** indicates the directory where the header file of the type is located, and the dot (.) is used as the separator. **namespace** indicates the namespace where the type is located, and the dot (.) is used as the separator. **typename** indicates the data type, which can contain only English characters. **includedir** and **namespace** are separated by two dots (..). If the declaration statement does not contain two dots, all characters except the last typename will be parsed as a namespace. Example:
-```
+
+```cpp
 sequenceable a.b..C.D
 ```
+
 The preceding statement is parsed into the following code in the C++ header file:
-```
+
+```cpp
 #include  "a/b/d.h"
 using C::D;
 ```
+
 In TS, the declaration is placed in the file header in the format of **sequenceable namespace.typename;**. It can be in the following form:
 
-```
+```ts
 sequenceable idl.MySequenceable
 ```
 
 In the preceding information, **namespace** indicates the namespace to which the data type belongs, **typename** indicates the data type name, and **MySequenceable** indicates that data can be passed during IPC using **Parcel** objects. The sequenceable type is not defined in the IDL file, but in the .ts file. Therefore, IDL adds the following statement to the generated .ts file based on the declaration:
 
-```
+```ts
 import MySequenceable from "./my_sequenceable"
 ```
 
@@ -80,19 +85,19 @@ The interface type refers to interfaces defined in IDL files. The interfaces def
 
 The declaration form in C++ is similar to that of the sequenceable type. The declaration form is as follows:
 
-```
+```cpp
 interface includedir..namespace.typename
 ```
 
 In TS, the declaration form is as follows:
 
-```
+```ts
 interface namespace.interfacename
 ```
 
 In the preceding information, **namespace** indicates the namespace to which the interface belongs, and **interfacename** indicates the name of the interface. For example, **interface OHOS.IIdlTestObserver;** declares the **IIdlTestObserver** interface defined in another IDL file. This interface can be used as the parameter type or return value type of a method in the current file. IDL adds the following statement to the generated .ts file based on the statement:
 
-```
+```ts
 import IIdlTestObserver from "./i_idl_test_observer"
 ```
 
@@ -100,9 +105,9 @@ import IIdlTestObserver from "./i_idl_test_observer"
 The array type is represented by T[], where **T** can be the primitive, sequenceable, interface, or array type. In C++, this type is generated as **std::vector&lt;T&gt;**.
 The table below lists the mappings between the IDL array type and TS and C++ data types.
 
-|IDL Data Type | C++ Data Type      | TS Data Type    |
-|   --------             |  --------        |  --------        |
-|T[]                     | std::vector&lt;T&gt;   | T[] |
+|IDL Data Type | C++ Data Type          | TS Data Type    |
+|   -------              |  --------            |  --------    |
+|T[]                     | std::vector&lt;T&gt; | T[]          |
 
 #### Container Type
 IDL supports two container types: List and Map. The List container is represented in the format of **List&lt;T&gt;**. The Map container is represented in the format of **Map<KT,VT>**, where **T**, **KT**, and **VT** can be of the primitive, sequenceable, interface, array, or container type.
@@ -114,26 +119,32 @@ In TS, the List container type is not supported, and the Map container type is g
 The table below lists the mappings between the IDL container type and TS and C++ data types.
 
 |IDL Data Type | C++ Data Type      | TS Data Type    |
-|   --------             |  --------        |  --------        |
-|List&lt;T&gt;                 | std::list        | Not supported|
-|Map<KT,VT>              | std::map         | Map |
+|   --------             |  --------        |  -------     |
+|List&lt;T&gt;           | std::list        | Not supported       |
+|Map<KT,VT>              | std::map         | Map          |
 
 
 ### Specifications for Compiling IDL Files
 Only one interface type can be defined in an IDL file, and the interface name must be the same as the file name. The interface definition of the IDL file is described in Backus-Naur form (BNF). The basic definition format is as follows:
+
 ```
 [<*interface_attr_declaration*>]interface<*interface_name_with_namespace*>{<*method_declaration*>}
 ```
+
 In the preceding information, <*interface_attr_declaration*> declares interface attributes. Currently, only the **oneway** attribute is supported, indicating that all methods in the interface are unidirectional. Such a method returns value without waiting for the execution to complete. This attribute is optional. If this attribute is not set, synchronous call is used. The interface name must contain the complete interface header file directory, namespace, and method declaration. Empty interfaces are not allowed.
 The method declaration format in the interface is as follows:
+
 ```
 [<*method_attr_declaration*>]<*result_type*><*method_declaration*>
 ```
+
 In the preceding information, <*method_attr_declaration*> describes the interface attributes. Currently, only the **oneway** attribute is supported, indicating that the method is unidirectional. Such a method returns value without waiting for the execution to complete. This attribute is optional. If this attribute is not set, synchronous call is used. <*result_type*> indicates the type of the return value, and <*method_declaration*> indicates the method name and parameter declaration.
 The parameter declaration format is as follows:
+
 ```
 [<*formal_param_attr*>]<*type*><*identifier*>
 ```
+
 The value of <*formal_param_attr*> can be **in**, **out**, or **inout**, indicating that the parameter is an input parameter, an output parameter, or both an input and an output parameter, respectively. A **oneway** method does not allow **output** or **inout** parameters or return values.
 
 ## How to Develop
@@ -144,20 +155,20 @@ The value of <*formal_param_attr*> can be **in**, **out**, or **inout**, indicat
 
  You can use C++ to create IDL files. An example IDL file is as follows:
 
-```
+```cpp
   interface OHOS.IIdlTestService {
       int TestIntTransaction([in] int data);
       void TestStringTransaction([in] String data);
   }
 ```
 
-You can run the **./idl -gen-cpp -d dir -c dir/iTest.idl** command (**-d** indicates the output directory) to generate the interface file, stub file, and proxy file in the **dir** directory in the execution environment. The names of the generated interface class files are the same as that of the IDL file, except that the file name extensions are **.h** and **.cpp**. For example, for **IIdlTestService.idl**, the generated files are **i_idl_test_service.h**, **idl_test_service_proxy.h**, **idl_test_service_stub.h**, **idl_test_service_proxy.cpp**, and **idl_test_service_stub.cpp**.
+You can run the **./idl -gen-cpp -d dir -c dir/iTest.idl** command (**-d** indicates the output directory) to generate the interface file, stub file, and proxy file in the **dir** directory in the execution environment. The names of the generated interface class files are the same as that of the IDL file, except that the file name extensions are **.h** and **.cpp**. For example, the files generated for **IIdlTestService.idl** are **i_idl_test_service.h**, **idl_test_service_proxy.h**, **idl_test_service_stub.h**, **idl_test_service_proxy.cpp**, and **idl_test_service_stub.cpp**.
 
 #### Exposing Interfaces on the Server
 
 The stub class generated by IDL is an abstract implementation of the interface class and declares all methods in the IDL file.
 
-```
+```cpp
 #ifndef OHOS_IDLTESTSERVICESTUB_H
 #define OHOS_IDLTESTSERVICESTUB_H
 #include <iremote_stub.h>
@@ -182,7 +193,7 @@ private:
 
 You need to inherit the interface class defined in the IDL file and implement the methods in the class. In addition, you need to register the defined services with SAMGR during service initialization. In the following code snippet, **TestService** inherits the **IdlTestServiceStub** interface class and implements the **TestIntTransaction** and **TestStringTransaction** methods.  
 
-```
+```cpp
 #ifndef OHOS_IPC_TEST_SERVICE_H
 #define OHOS_IPC_TEST_SERVICE_H
 
@@ -207,7 +218,7 @@ private:
 
 The sample code for registering a service is as follows:
 
-```
+```cpp
 #include "test_service.h"
 
 #include <string_ex.h>
@@ -259,12 +270,11 @@ ErrCode TestService::TestStringTransaction(const std::string &data)
 } // namespace OHOS
 ```
 
-
 #### Calling Methods from the Client for IPC
 
 The C++ client obtains the service proxy defined in the system through SAMGR and then invokes the interface provided by the proxy. The sample code is as follows:
 
-```
+```cpp
 #include "test_client.h"
 
 #include "if_system_ability_manager.h"
@@ -316,16 +326,13 @@ void TestClient::StartStringTransaction()
 } // namespace OHOS
 ```
 
-
-
-
 ### Development Using TS
 
 #### Creating an IDL File
 
  You can use TS to create IDL files. An example IDL file is as follows:
 
-```
+```ts
   interface OHOS.IIdlTestService {
       int TestIntTransaction([in] int data);
       void TestStringTransaction([in] String data);
@@ -338,7 +345,7 @@ Run the **./idl -c IIdlTestService.idl -gen-ts -d /data/ts/** command (**-d** in
 
 The stub class generated by IDL is an abstract implementation of the interface class and declares all methods in the IDL file.
 
-```
+```ts
 import {testIntTransactionCallback} from "./i_idl_test_service";
 import {testStringTransactionCallback} from "./i_idl_test_service";
 import IIdlTestService from "./i_idl_test_service";
@@ -387,7 +394,7 @@ export default class IdlTestServiceStub extends rpc.RemoteObject implements IIdl
 
 You need to inherit the interface class defined in the IDL file and implement the methods in the class. The following code snippet shows how to inherit the **IdlTestServiceStub** interface class and implement the **testIntTransaction** and **testStringTransaction** methods.  
 
-```
+```ts
 import {testIntTransactionCallback} from "./i_idl_test_service"
 import {testStringTransactionCallback} from "./i_idl_test_service"
 import IdlTestServiceStub from "./idl_test_service_stub"
@@ -408,7 +415,7 @@ class IdlTestImp extends IdlTestServiceStub {
 
 After the service implements the interface, the interface needs to be exposed to the client for connection. If your service needs to expose this interface, extend **Ability** and implement **onConnect()** to return **IRemoteObject** so that the client can interact with the service process. The following code snippet shows how to expose the **IRemoteAbility** interface to the client:
 
-```
+```ts
 export default {
     onStart() {
         console.info('ServiceAbility onStart');
@@ -442,7 +449,7 @@ export default {
 
 When the client calls **connectAbility()** to connect to a Service ability, the **onConnect** callback in **onAbilityConnectDone** of the client receives the **IRemoteObject** instance returned by the **onConnect()** method of the Service ability. The client and Service ability are in different applications. Therefore, the directory of the client application must contain a copy of the .idl file (the SDK automatically generates the proxy class). The **onConnect** callback then uses the **IRemoteObject** instance to create the **testProxy** instance of the **IdlTestServiceProxy** class and calls the related IPC method. The sample code is as follows:
 
-```
+```ts
 import IdlTestServiceProxy from './idl_test_service_proxy'
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -495,7 +502,7 @@ To create a class that supports the sequenceable type, perform the following ope
 
 The following is an example of the **MySequenceable** class code:
 
-```
+```ts
 import rpc from '@ohos.rpc';
 export default class MySequenceable {
     constructor(num: number, str: string) {
@@ -523,8 +530,6 @@ export default class MySequenceable {
 }
 ```
 
-
-
 ## How to Develop for Interworking Between C++ and TS
 
 ### TS Proxy and C++ Stub Development
@@ -535,7 +540,7 @@ export default class MySequenceable {
 
 2. Create a service object, inherit the interface class defined in the C++ stub file, and implement the methods in the class. An example is as follows:
 
-   ```
+   ```cpp
    class IdlTestServiceImpl : public IdlTestServiceStub {
    public:
        IdlTestServiceImpl() = default;
@@ -558,7 +563,7 @@ export default class MySequenceable {
 
 C++ provides C++ service objects to TS in the format of native APIs. For example, C++ provides a **GetNativeObject** method, which is used to create an **IdlTestServiceImpl** instance. Using the **NAPI_ohos_rpc_CreateJsRemoteObject** method, you can create a JS remote object for the TS application.
 
-```
+```cpp
 NativeValue* GetNativeObject(NativeEngine& engine, NativeCallbackInfo& info)
 {
     sptr<IdlTestServiceImpl> impl = new IdlTestServiceImpl();
@@ -572,8 +577,7 @@ NativeValue* GetNativeObject(NativeEngine& engine, NativeCallbackInfo& info)
 
 Use TS to construct an IDL file and run commands to generate interfaces, stub files, and proxy files. An example proxy file is as follows:
 
-```
-
+```ts
 import {testIntTransactionCallback} from "./i_idl_test_service";
 import {testStringTransactionCallback} from "./i_idl_test_service";
 import IIdlTestService from "./i_idl_test_service";
@@ -634,7 +638,7 @@ export default class IdlTestServiceProxy implements IIdlTestService {
 2. Construct a TS proxy and transfers the remote C++ service object to it.
 3. Use the TS proxy to call the method declared in the IDL file to implement the interworking between the TS proxy and C++ stub. The following is an example:
 
-```
+```ts
 import IdlTestServiceProxy from './idl_test_service_proxy'
 import nativeMgr from 'nativeManager';
 

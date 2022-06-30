@@ -8,6 +8,7 @@
     - [音频采集开发指导](audio-capturer.md)
     - [OpenSL ES播放开发指导](opensles-playback.md)
     - [OpenSL ES录音开发指导](opensles-capture.md)
+    - [音频焦点模式开发指导](audio-interruptmode.md)
 
 - 视频
   - [视频播放开发指导](video-playback.md)

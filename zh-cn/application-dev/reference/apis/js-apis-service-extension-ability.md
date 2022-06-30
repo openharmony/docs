@@ -1,11 +1,11 @@
 # ServiceExtensionAbility
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+ServiceExtensionAbility模块提供ServiceExtension服务扩展相关接口的能力。
 
-
-提供ServiceExtension服务扩展相关接口。
-
+> **说明：**
+> 
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -13,15 +13,15 @@
 import ServiceExtension from '@ohos.application.ServiceExtensionAbility';
 ```
 
-
 ## 权限
 
 无
 
-
 ## 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
@@ -35,6 +35,8 @@ onCreate(want: Want): void;
 Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -61,6 +63,8 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **示例：**
 
   ```js
@@ -79,6 +83,8 @@ onRequest(want: Want, startId: number): void;
 Extension生命周期回调，如果是startAbility拉起的服务，会在onCreate之后回调。每次拉起服务都会回调，startId会递增。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -105,6 +111,8 @@ onConnect(want: Want): rpc.RemoteObject;
 Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于和客户端进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -146,6 +154,8 @@ Extension的生命周期，断开服务连接时回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 
@@ -161,3 +171,77 @@ Extension的生命周期，断开服务连接时回调。
     }
   }
   ```
+
+## ServiceExtensionAbility.onReconnect
+
+onReconnect(want: Want): void;
+
+当新客户端在所有以前的客户端连接之后尝试连接到服务扩展时调用
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | want |[Want](js-apis-application-Want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 | 
+
+**示例：**
+
+  ```js
+  class ServiceExt extends ServiceExtension {
+    onDisconnect(want) {
+      console.log('onDisconnect, want:' + want.abilityName);
+    }
+  }
+  ```
+
+## ServiceExtensionAbility.onReconnect
+
+onConfigurationUpdated(config: Configuration): void;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | config | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 | 
+
+**示例：**
+    
+  ```js
+  class myAbility extends Ability {
+      onConfigurationUpdated(config) {
+          console.log('onConfigurationUpdated, config:' + JSON.stringify(config));
+      }
+  }
+  ```
+
+## ServiceExtensionAbility.dump
+
+dump(params: Array\<string>): Array\<string>;
+
+转储客户端信息时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | params | Array\<string> | 是 | 表示命令形式的参数。| 
+
+**示例：**
+    
+  ```js
+  class myAbility extends Ability {
+      dump(params) {
+          console.log('dump, params:' + JSON.stringify(params));
+          return ["params"]
+      }
+  }
+  ```
+

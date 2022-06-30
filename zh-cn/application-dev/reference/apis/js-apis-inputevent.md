@@ -1,6 +1,6 @@
 # 输入事件
 
-设备上报的基本事件。
+InputEvent模块描述了设备上报的基本事件。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -10,6 +10,8 @@
 ```js
 import InputEvent from '@ohos.multimodalInput.inputEvent';
 ```
+
+## InputEvent 
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.Core
 

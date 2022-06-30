@@ -80,7 +80,7 @@ input :: host {
                     permission = 0660;                    // 驱动创建设备节点权限
                     moduleName = "HDF_TOUCH_GT911";       // 与驱动入口的moduleName匹配
                     serviceName = "hdf_touch_gt911_service";// HDF框架生成的节点名
-                    deviceMatchAttr = "zsj_gt911_5p5";    //与私有配置信息中的“match_attr”字段保持一致
+                    deviceMatchAttr = "zsj_gt911_5p5";    // 与私有配置信息中的“match_attr”字段保持一致
                 }
             }
   }
@@ -92,11 +92,11 @@ input :: host {
 
 “preload”决定驱动是否加载；
 
-“moduleName ”需要与驱动注册入口处的“moduleName ”字段保持一致；
+“moduleName”需要与驱动注册入口处的“moduleName”字段保持一致；
 
-“serviceName ”HDF框架依据该字段创建节点名；
+“serviceName”HDF框架依据该字段创建节点名；
 
-“deviceMatchAttr ”需要与私有配置信息中的“match\_attr”字段保持一致。
+“deviceMatchAttr”需要与私有配置信息中的“match\_attr”字段保持一致。
 
 通过配置设备描述信息，使得HDF框架通过moduleName与注册至驱动入口的代码相匹配，保证了驱动的正常加载，通过priority字段保证了各驱动的加载顺序。
 

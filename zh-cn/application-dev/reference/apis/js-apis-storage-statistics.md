@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import storagestatistics from "@ohos.storageStatistics";
+import storageStatistics from "@ohos.storageStatistics";
 ```
 
 ## storagestatistics.getTotalSizeOfVolume
@@ -227,7 +227,7 @@ getCurrentBundleStats(): Promise<BundleStats>
 - 示例
 
   ```js
-      let bundleStats = await storageStatistics.getCurrentBundleStats();
+      let bundleStats = storageStatistics.getCurrentBundleStats();
       console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
   ```
 
@@ -292,7 +292,7 @@ getTotalSize(): Promise<number>
 - 示例
 
   ```js
-      let number = await storageStatistics.getTotalSize();
+      let number = storageStatistics.getTotalSize();
       console.info("getTotalSize successfully:"+ JSON.stringify(number));
   ```
   
@@ -345,7 +345,7 @@ getFreeSize(): Promise<number>
 - 示例
 
   ```js
-      let number = await storageStatistics.getFreeSize();
+      let number = storageStatistics.getFreeSize();
       console.info("getFreeSize successfully:"+ JSON.stringify(number));
   ```
 
@@ -493,6 +493,7 @@ getUserStorageStats(userId?: string, callback:AsyncCallback&lt;StorageStats&gt;)
 - 示例
 
   ```js
+  let userId = "";
   storagestatistics.getUserStorageStats(userId, function(error, StorageStats){
       // do something
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));

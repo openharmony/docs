@@ -256,7 +256,8 @@ export class AudioDemo {
 
 The following samples are provided to help you better understand how to develop audio playback:
 
-- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code04927441464" tempcmdid="code04927441464">JsDistributedMusicPlayer</idp:inline>: Distributed Music Player (JS, API version 7)](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
-- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code4276559568" tempcmdid="code4276559568">JsAudioPlayer</idp:inline>: Audio Playback and Management (JS, API version 7)](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
-- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code246413101579" tempcmdid="code246413101579">eTsAudioPlayer</idp:inline>: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [`JsDistributedMusicPlayer`: Distributed Music Player (JS, API version 7)](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
+- [`JsAudioPlayer`: Audio Playback and Management (JS, API version 7)](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
+- [`eTsAudioPlayer`: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [Audio Player](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
+

@@ -10,7 +10,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 2. Register an SSH public key for access to Gitee.
 
-3. Install the git client and git-lfs.
+3. Install the git client and git-lfs if they are unavailable.
 
      Update the software source:
      
@@ -18,7 +18,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    sudo apt-get update
    ```
 
-     Run the following command to install the tools:
+    Run the following command to install the tools:
    
    ```
    sudo apt-get install git git-lfs
@@ -41,7 +41,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    ```
 
 
-## Procedure
+## Obtaining Source Code
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
@@ -70,7 +70,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
   For details about how to obtain the source code of an OpenHarmony release, see the [Release-Notes](../../release-notes/Readme.md).
 
 
-## Running prebuilts
+### Running prebuilts
 
 Go to the root directory of the source code and run the following script to install the compiler and binary tool:
 

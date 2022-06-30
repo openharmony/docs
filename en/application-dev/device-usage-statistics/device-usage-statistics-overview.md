@@ -12,22 +12,29 @@ Currently you can have access to statistics on the application usage, and notifi
 3.  Upon start of a new day
 
 - **The application usage statistics can include the following**:
-1. Events of all applications based on the specified start time and end time
+1.  Events of all applications based on the specified start time and end time
+2.  Application usage duration statistics based on the specified start time and end time
+3.  Events of the current application based on the specified start time and end time
+4.  Application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually)
+5.  Priority group of the current invoker application
+6.  Whether a specific application is in the idle state
+7.  Number of FA usage records specified by **maxNum**, sorted by time (most recent first). If **maxNum** is not specified, the default value **1000** will be used.
+8.  Number of notifications from applications based on the specified start time and end time
+9.  Statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time
+9.  Priority group of the invoker application or a specified application
 
-2. Application usage duration statistics based on the specified start time and end time
+- **The setters can be used to:**
 
-3. Events of the current application based on the specified start time and end time
+  Set the group for the application specified by **bundleName**.
 
-4. Application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually)
+- **The registration APIs can be used to:**
 
-5. Priority group of the current invoker application
+  Register a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback.
 
-6. Whether a specific application is in the idle state
+- **The deregistration APIs can be used to:**
 
-7. The number of FA usage records specified by **maxNum**, sorted by time (most recent first)
-
-   If **maxNum** is not specified, the default value **1000** will be used.
+  Deregister the callback for application group changes.
 
 ### Required Permissions
-- The **queryBundleActiveStates**, **queryBundleStateInfos**, and **queryBundleStateInfoByInterval** APIs used for device usage statistics are system APIs. Before calling these APIs, you need to apply for the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
-- This permission is not required for calling **queryCurrentBundleActiveStates**, **queryAppUsagePriorityGroup**, and **isIdleState**, which are third-party APIs.
+- Before calling the following system APIs, you need to apply for the **ohos.permission.BUNDLE_ACTIVE_INFO** permission: **queryBundleActiveStates**, **queryBundleStateInfos**, **queryBundleStateInfoByInterval**, **queryBundleActiveEventStates**, **queryAppNotificationNumber**, **queryAppUsagePriorityGroup(bundleName?)**, **setBundleGroup**, **registerGroupCallBack**, and **unRegisterGroupCallBack**.
+- This permission is not required for calling third-party APIs: **queryCurrentBundleActiveStates**, **queryAppUsagePriorityGroup()**, and **isIdleState**.

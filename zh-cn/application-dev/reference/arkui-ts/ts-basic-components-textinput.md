@@ -85,12 +85,12 @@ controller: TextInputController = new TextInputController()
 
 caretPosition(value:&nbsp;number): void
 
-设置光标移动到指定位置。
+设置输入光标的位置。
 - 参数
 
   | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                                     |
   | ----- | ------ | ---- | ---- | ---------------------------------------- |
-  | value | number | 是    | -    | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
+  | value | number | 是    | -    | 从字符串开始到光标所在位置的字符长度。 |
 
 
 ## 示例
@@ -107,10 +107,9 @@ struct TextInputExample1 {
 
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word' })
+      TextInput({ placeholder: 'input your word' })
         .placeholderColor("rgb(0,0,225)")
         .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
-        .textAlign(TextAlign.Center)
         .caretColor(Color.Blue)
         .height(50)
         .fontSize(30)

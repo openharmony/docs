@@ -7,14 +7,14 @@
     - [Creating a Source Code Project](quickstart-ide-lite-create-project.md)
     - Running a Hello World Program
         - Hi3861 Development Board
-            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3861-application-framework.md)
+            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3861-helloworld.md)
             - [Building](quickstart-ide-lite-steps-hi3861-building.md)
             - [Burning](quickstart-ide-lite-steps-hi3861-burn.md)
             - [Networking](quickstart-ide-lite-steps-hi3861-netconfig.md)
             - [Debugging and Verification](quickstart-ide-lite-steps-hi3861-debug.md)
             - [Running](quickstart-ide-lite-steps-hi3861-running.md)
         - Hi3516 Development Board
-            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3516-application-framework.md)
+            - [Writing a Hello World Program](quickstart-ide-lite-steps-hi3516-helloworld.md)
             - [Building](quickstart-ide-lite-steps-hi3516-building.md)
             - [Burning](quickstart-ide-lite-steps-hi3516-burn.md)
             - [Running](quickstart-ide-lite-steps-hi3516-running.md)
@@ -28,7 +28,7 @@
     - Running a Hello World Program
         - Hi3861 Development Board
             - [Setting Up the Hi3861 Development Board Environment](quickstart-lite-steps-hi3861-setting.md)
-            - [Writing a Hello World Program](quickstart-lite-steps-hi3861-application-framework.md)
+            - [Writing a Hello World Program](quickstart-lite-steps-hi3861-helloworld.md)
             - [Building](quickstart-lite-steps-hi3861-building.md)
             - [Burning](quickstart-lite-steps-hi3861-burn.md)
             - [Networking](quickstart-lite-steps-hi3861-netconfig.md)
@@ -36,7 +36,7 @@
             - [Running](quickstart-lite-steps-hi3861-running.md)
         - Hi3516 Development Board
             - [Setting Up the Hi3516 Development Board Environment](quickstart-lite-steps-hi3516-setting.md)
-            - [Writing a Hello World Program](quickstart-lite-steps-hi3516-application-framework.md)
+            - [Writing a Hello World Program](quickstart-lite-steps-hi3516-helloworld.md)
             - [Building](quickstart-lite-steps-hi3516-building.md)
             - [Burning](quickstart-lite-steps-hi3516-burn.md)
             - [Running](quickstart-lite-steps-hi3516-running.md)
@@ -75,7 +75,7 @@
     - [Setting Up Environments for Standard System](quickstart-standard-env-setup.md)
     - Running a Hello World Program
         - Hi3516 Development Board
-            - [Writing a Hello World Program](quickstart-standard-running-hi3516-create.md)
+            - [Writing a Hello World Program](quickstart-std-3516-create.md)
             - [Building](quickstart-standard-running-hi3516-build.md)
             - [Burning](quickstart-standard-running-hi3516-burning.md)
             - [Running](quickstart-standard-running-hi3516-running.md)

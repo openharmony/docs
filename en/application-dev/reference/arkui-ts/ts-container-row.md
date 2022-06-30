@@ -1,6 +1,6 @@
 # Row
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -22,24 +22,24 @@ Supported
 Row(value:{space?: Length})
 
 - Parameters
-  | Name| Type| Mandatory| Default Value| Description| 
+  | Name| Type| Mandatory| Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | No| 0 | Space between two adjacent child components in the horizontal layout.| 
+  | space | Length | No| 0 | Space between two adjacent child components in the horizontal layout. | 
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
+| Name| Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| alignItems | VerticalAlign | VerticalAlign.Center | Alignment mode of the child components in the vertical direction.|
-| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of the child components in the horizontal direction.|
+| alignItems | VerticalAlign | VerticalAlign.Center | Alignment mode of child components in the vertical direction. |
+| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of child components in the horizontal direction. |
 
 - VerticalAlign enums
-  | Name| Description| 
+  | Name | Description | 
   | -------- | -------- |
-  | Top | Top aligned.| 
-  | Center | Center aligned. This is the default alignment mode.| 
-  | Bottom | Bottom aligned.|
+  | Top | Top aligned. | 
+  | Center | Center aligned. This is the default alignment mode. | 
+  | Bottom | Bottom aligned. |
 
 
 ## Example

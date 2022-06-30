@@ -1,5 +1,6 @@
 # Geolocation
 
+Location services provide basic functions such as GNSS positioning, network positioning, geocoding, reverse geocoding, country code and geofencing.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -695,7 +696,7 @@ This is a system API and cannot be called by third-party applications.
 
 disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
 
-Enables the location service. This API uses an asynchronous callback to return the result.
+Disables the location service. This API uses an asynchronous callback to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -722,7 +723,7 @@ This is a system API and cannot be called by third-party applications.
 
 disableLocation() : Promise&lt;boolean&gt;
 
-Enables the location service. This API uses a promise to return the result.
+Disables the location service. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 

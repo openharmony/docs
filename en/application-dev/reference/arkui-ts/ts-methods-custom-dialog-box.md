@@ -1,7 +1,7 @@
 # Custom Dialog Box
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -10,21 +10,22 @@ The **CustomDialogController** class is used to display a custom dialog box.
 
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void,  autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean}) 
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean})
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | builder | [CustomDialog](../../ui/ts-component-based-customdialog.md) | Yes | - | Constructor of the custom dialog box content. |
   | cancel | () =&gt; void | No | - | Callback invoked when the dialog box is closed after the overlay exits. |
   | autoCancel | boolean | No | true | Whether to allow users to click the overlay to exit. |
   | alignment | DialogAlignment | No | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction. |
-  | offset | {<br/>dx: Length \|[Resource](../../ui/ts-types.md#resource),<br/>dy: Length  \|[Resource](../../ui/ts-types.md#resource)<br/>} |  |  | Offset of the dialog box relative to the alignment position. |
+  | offset | {<br/>dx: Length \|[Resource](../../ui/ts-types.md#resource),<br/>dy: Length  \|[Resource](../../ui/ts-types.md#resource)<br/>} | No | - | Offset of the dialog box relative to the alignment position. |
   | customStyle | boolean | No | false | Whether the style of the dialog box is customized. |
+  | gridCount<sup>8+</sup> | number                                   | No   | -                       | Count of grid columns occupied by the dialog box. |
 
 - DialogAlignment enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Top | Aligns vertically to the top. |
   | Center | Aligns vertically to the middle. |
@@ -38,7 +39,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void,  au
   | BottomEnd<sup>8+</sup> | Bottom right alignment. |
 
 
-### CustomDialogController
+## CustomDialogController
 
 
 ### Objects to Import
@@ -48,17 +49,14 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void,  au
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
 
-
-### dialogController.open
-
+### open()
 open(): void
 
 
 Opens the content of the custom dialog box. If the content has been displayed, this API does not take effect.
 
 
-### dialogController.close
-
+### close
 close(): void
 
 Closes the custom dialog box. If the dialog box is closed, the setting does not take effect.
@@ -67,7 +65,8 @@ Closes the custom dialog box. If the dialog box is closed, the setting does not 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @CustomDialog
 struct CustomDialogExample {
   controller: CustomDialogController

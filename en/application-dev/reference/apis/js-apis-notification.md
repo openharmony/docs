@@ -1,6 +1,6 @@
 # Notification
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -85,6 +85,8 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                                       | Mandatory| Description                                       |
@@ -100,7 +102,7 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 function publishCallback(err) {
 	console.info("==========================>publishCallback=======================>");
 }
-// ID of the user who receives the notification.
+// ID of the user who receives the notification
 var userId = 1
 // NotificationRequest object
 var notificationRequest = {
@@ -124,6 +126,8 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 Publishes a notification. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -287,6 +291,8 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                |
@@ -317,6 +323,8 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 Adds a notification slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -397,6 +405,8 @@ Adds multiple notification slots. This API uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                     | Mandatory| Description                    |
@@ -431,6 +441,8 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 Adds multiple notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -669,6 +681,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Readable| Writable| Type                     | Mandatory| Description            |
@@ -684,7 +698,7 @@ Subscribes to a notification with the subscription information specified. This A
 function subscribeCallback(err) {
 	console.info("==========================>subscribeCallback=======================>");
 }
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -706,6 +720,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Readable| Writable| Type                  | Mandatory| Description            |
@@ -719,7 +735,7 @@ Subscribes to a notification with the subscription information specified. This A
 function subscribeCallback(err) {
 	console.info("==========================>subscribeCallback=======================>");
 }
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -738,6 +754,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Readable| Writable| Type                     | Mandatory| Description        |
@@ -748,7 +766,7 @@ Subscribes to a notification with the subscription information specified. This A
 **Example**
 
 ```js
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -769,6 +787,8 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Readable| Writable| Type                  | Mandatory| Description                |
@@ -782,7 +802,7 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 function unsubscribeCallback(err) {
 	console.info("==========================>unsubscribeCallback=======================>");
 }
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -801,6 +821,8 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Readable| Writable| Type                  | Mandatory| Description        |
@@ -810,7 +832,7 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 **Example**
 
 ```js
-function onConsumeCallback(err, data) {
+function onConsumeCallback(data) {
 	console.info("==========================>onConsumeCallback=======================>");
 }
 var subscriber = {
@@ -830,6 +852,8 @@ enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallbac
 Sets whether to enable notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -861,6 +885,8 @@ Sets whether to enable notification for a specified bundle. This API uses a prom
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Readable| Writable| Type        | Mandatory| Description      |
@@ -888,6 +914,8 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 Checks whether notification is enabled for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -917,6 +945,8 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 Checks whether notification is enabled for a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -951,6 +981,8 @@ Checks whether notification is enabled for this application. This API uses an as
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                    |
@@ -976,6 +1008,8 @@ isNotificationEnabled(): Promise\<boolean\>
 Checks whether notification is enabled for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1007,6 +1041,8 @@ Sets whether to enable the notification badge for a specified bundle. This API u
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                |
@@ -1037,6 +1073,8 @@ Sets the notification slot for a specified bundle. This API uses a promise to re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Readable| Writable| Type        | Mandatory| Description      |
@@ -1064,6 +1102,8 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 Checks whether the notification badge is enabled for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1093,6 +1133,8 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 Checks whether the notification badge is enabled for a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1127,6 +1169,8 @@ Sets the notification slot for a specified bundle. This API uses an asynchronous
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                |
@@ -1160,6 +1204,8 @@ Sets the notification slot for a specified bundle. This API uses a promise to re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Readable| Writable| Type        | Mandatory| Description      |
@@ -1176,7 +1222,7 @@ var bundle = {
 var notificationSlot = {
     type: Notification.SlotType.SOCIAL_COMMUNICATION
 }
-Notification.displayBadge(bundle, notificationSlot).then(() => {
+Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("==========================>setSlotByBundleCallback=======================>");
 });
 ```
@@ -1190,6 +1236,8 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 Obtains the notification slots of a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1219,6 +1267,8 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 Obtains the notification slots of a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1253,6 +1303,8 @@ Obtains the number of notification slots of a specified bundle. This API uses an
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                     | Mandatory| Description                  |
@@ -1263,7 +1315,7 @@ Obtains the number of notification slots of a specified bundle. This API uses an
 **Example**
 
 ```js
-function getSlotNumByBundle(err, data) {
+function getSlotNumByBundleCallback(err, data) {
 	console.info("==========================>getSlotNumByBundleCallback=======================>");
 }
 var bundle = {
@@ -1281,6 +1333,8 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 Obtains the number of notification slots of a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1314,6 +1368,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCa
 Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1349,6 +1405,8 @@ Removes a notification for a specified bundle. This API uses a promise to return
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name           | Readable| Writable| Type           | Mandatory| Description      |
@@ -1381,6 +1439,8 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                |
@@ -1391,6 +1451,8 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 **Example**
 
 ```js
+var hashCode = 'hashCode'
+
 function removeCallback(err) {
 	console.info("==========================>removeCallback=======================>");
 }
@@ -1408,6 +1470,8 @@ Removes a notification for a specified bundle. This API uses a promise to return
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type      | Mandatory| Description      |
@@ -1417,6 +1481,8 @@ Removes a notification for a specified bundle. This API uses a promise to return
 **Example**
 
 ```js
+var hashCode = 'hashCode'
+
 Notification.remove(hashCode).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
@@ -1431,6 +1497,8 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 Removes all notifications for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1461,6 +1529,8 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                |
@@ -1487,6 +1557,8 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Readable| Writable| Type        | Mandatory| Description      |
@@ -1508,6 +1580,8 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 Removes all notifications for a specified user. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1536,6 +1610,8 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Readable| Writable| Type        | Mandatory| Description      |
@@ -1563,6 +1639,8 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                                                        | Mandatory| Description                |
@@ -1588,6 +1666,8 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 Obtains all active notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
@@ -1767,6 +1847,8 @@ Removes a notification group for a specified bundle. This API uses an asynchrono
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name     | Readable| Writable| Type                 | Mandatory| Description                        |
@@ -1798,6 +1880,8 @@ Removes a notification group for a specified bundle. This API uses a promise to 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name     | Readable| Writable| Type        | Mandatory| Description          |
@@ -1824,6 +1908,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 Sets the DND time. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1858,6 +1944,8 @@ Sets the DND time. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name| Readable| Writable| Type            | Mandatory| Description          |
@@ -1885,6 +1973,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 Sets the DND time for a specified user. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1922,6 +2012,8 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Readable| Writable| Type            | Mandatory| Description          |
@@ -1954,6 +2046,8 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                             | Mandatory| Description                  |
@@ -1979,6 +2073,8 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 Obtains the DND time. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
@@ -2063,6 +2159,8 @@ Checks whether the DND mode is supported. This API uses an asynchronous callback
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                    | Mandatory| Description                            |
@@ -2088,6 +2186,8 @@ supportDoNotDisturbMode(): Promise\<boolean\>
 Checks whether the DND mode is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
@@ -2182,11 +2282,11 @@ Requests notification to be enabled for this application. This API uses an async
 **Example**
 
 ```javascript
-function requestEnabledNotificationCallback() {
+function requestEnableNotificationCallback() {
     console.log('------------- requestEnabledNotification --------------');
 };
 
-Notification.requestEnabledNotification(requestEnabledNotificationCallback);
+Notification.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
 
@@ -2217,6 +2317,8 @@ Sets whether this device supports distributed notifications. This API uses an as
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Type                    | Mandatory| Description                      |
@@ -2245,6 +2347,8 @@ enableDistributed(enable: boolean): Promise\<void>
 Sets whether this device supports distributed notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -2285,7 +2389,7 @@ function isDistributedEnabledCallback() {
     console.log('----------- isDistributedEnabled ------------');
 };
 
-Notification.enableDistributed(isDistributedEnabledCallback);
+Notification.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
 
@@ -2322,6 +2426,8 @@ Sets whether an application supports distributed notifications based on the bund
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Type                    | Mandatory| Description                      |
@@ -2350,11 +2456,13 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 ## Notification.enableDistributedByBundle<sup>8+</sup>
 
-bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise<void>
+bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
 Sets whether an application supports distributed notifications based on the bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -2386,6 +2494,8 @@ Obtains whether an application supports distributed notifications based on the b
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Type                    | Mandatory| Description                      |
@@ -2404,7 +2514,7 @@ var bundle = {
     bundle: "bundleName1",
 }
 
-Notification.enableDistributedByBundle(bundle, isDistributedEnabledByBundleCallback);
+Notification.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
 
@@ -2416,6 +2526,8 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 Obtains whether an application supports distributed notifications based on the bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -2451,6 +2563,8 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name  | Type                              | Mandatory| Description                      |
@@ -2477,6 +2591,8 @@ Obtains the notification reminder type. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Return value**
 
 | Type              | Description           |
@@ -2492,7 +2608,288 @@ Notification.getDeviceRemindType()
     });
 ```
 
+## Notification.publishAsBundle<sup>9+</sup>
+
+publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
+
+Publishes an agent-powered notification. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+
+| Name              | Type                                       | Mandatory| Description                                         |
+| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
+| request              | [NotificationRequest](#notificationrequest) | Yes  | Notification to publish.|
+| representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
+| userId               | number                                      | Yes  | ID of the user who receives the notification.                           |
+| callback             | AsyncCallback                               | Yes  | Callback used to return the result.                     |
+
+**Example**
+
+```js
+// Callback for publishAsBundle
+function publishAsBundleCallback(err) {
+	console.info("==========================>publishAsBundleCallback=======================>");
+}
+// Bundle name of the application whose notification function is taken over by the reminder agent
+let representativeBundle = "com.example.demo"
+// ID of the user who receives the notification
+let userId = 100
+// NotificationRequest object
+let notificationRequest = {
+    id: 1,
+    content: {
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+}
+
+Notification.publishAsBundle(notificationRequest, representativeBundle, userId, publishAsBundleCallback);
+```
+
+## Notification.publishAsBundle<sup>9+</sup>
+
+publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
+
+Publishes a notification through the reminder agent. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+
+| Name              | Type                                       | Mandatory| Description                                         |
+| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
+| request              | [NotificationRequest](#notificationrequest) | Yes  | Notification to publish.|
+| representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
+| userId               | number                                      | Yes  | ID of the user who receives the notification.                           |
+
+**Example**
+
+```js
+// Bundle name of the application whose notification function is taken over by the reminder agent
+let representativeBundle = "com.example.demo"
+// ID of the user who receives the notification
+let userId = 100
+// NotificationRequest object
+var notificationRequest = {
+    id: 1,
+    content: {
+        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        normal: {
+            title: "test_title",
+            text: "test_text",
+            additionalText: "test_additionalText"
+        }
+    }
+}
+
+Notification.publishAsBundle(notificationRequest, representativeBundle, userId).then(() => {
+	console.info("==========================>publishAsBundleCallback=======================>");
+});
+```
+
+## Notification.cancelAsBundle<sup>9+</sup>
+
+cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
+
+Cancels a notification published by the reminder agent. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+
+| Name              | Type         | Mandatory| Description                    |
+| -------------------- | ------------- | ---- | ------------------------ |
+| id                   | number        | Yes  | Notification ID.                |
+| representativeBundle | string        | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.      |
+| userId               | number        | Yes  | ID of the user who receives the notification.      |
+| callback             | AsyncCallback | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+//cancelAsBundle
+function cancelAsBundleCallback(err) {
+	console.info("==========================>cancelAsBundleCallback=======================>");
+}
+// Bundle name of the application whose notification function is taken over by the reminder agent
+let representativeBundle = "com.example.demo"
+// ID of the user who receives the notification
+let userId = 100
+
+Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
+```
+
+## Notification.cancelAsBundle<sup>9+</sup>
+
+cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
+
+Publishes a notification through the reminder agent. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+
+| Name              | Type  | Mandatory| Description              |
+| -------------------- | ------ | ---- | ------------------ |
+| id                   | number | Yes  | Notification ID.          |
+| representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
+| userId               | number | Yes  | ID of the user who receives the notification.|
+
+**Example**
+
+```js
+// Bundle name of the application whose notification function is taken over by the reminder agent
+let representativeBundle = "com.example.demo"
+// ID of the user who receives the notification
+let userId = 100
+
+Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
+	console.info("==========================>cancelAsBundleCallback=======================>");
+});
+```
+
+## Notification.enableNotificationSlot<sup>9+</sup>
+
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback<void>): void
+
+Sets the enabled status for a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                  |
+| -------- | ----------------------------- | ---- | ---------------------- |
+| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information.          |
+| type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
+| enable   | boolean                       | Yes  | Whether to enable notification.            |
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+//enableNotificationSlot
+function enableSlotCallback(err) {
+    console.log('===================>enableSlotCallback==================>');
+};
+
+Notification.enableNotificationSlot(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    true,
+    enableSlotCallback);
+```
+
+## Notification.enableNotificationSlot<sup>9+</sup>
+
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise<void> 
+
+Sets the enabled status for a notification slot of a specified type. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.  |
+| type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
+| enable | boolean                       | Yes  | Whether to enable notification.    |
+
+**Example**
+
+```js
+//enableNotificationSlot
+Notification.enableNotificationSlot(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    true).then(() => {
+        console.log('====================>enableNotificationSlot====================>');
+    });
+```
+
+## Notification.isNotificationSlotEnabled<sup>9+</sup>
+
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback<boolean>): void
+
+Obtains the enabled status of a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                  |
+| -------- | ----------------------------- | ---- | ---------------------- |
+| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information.          |
+| type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+//isNotificationSlotEnabled
+function getEnableSlotCallback(err, data) {
+    console.log('===================>getEnableSlotCallback==================');
+};
+
+Notification.isNotificationSlotEnabled(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    getEnableSlotCallback);
+```
+
+## Notification.isNotificationSlotEnabled<sup>9+</sup>
+
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise<boolean>  
+
+Obtains the enabled status of a notification slot of a specified type. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.  |
+| type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
+
+**Example**
+
+```js
+//isNotificationSlotEnabled
+Notification.isNotificationSlotEnabled(
+    { bundle: "ohos.samples.notification", },
+    notify.SlotType.SOCIAL_COMMUNICATION,
+    true).then((data) => {
+      console.log('====================>isNotificationSlotEnabled====================>');
+    });
+```
+
 ## NotificationSubscriber
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 ### onConsume
 
@@ -2526,12 +2923,12 @@ function onConsumeCallback(data) {
     let wantAgent = data.wantAgent;
     wantAgent .getWant(wantAgent)
         .then((data1) => {
-            console.log('===> getWant success want:' + JSON.stringfy(data1));
+            console.log('===> getWant success want:' + JSON.stringify(data1));
         })
         .catch((err) => {
-            console.error('===> getWant failed because' + JSON.stringfy(err));
+            console.error('===> getWant failed because' + JSON.stringify(err));
         });
-    console.info('===> onConsume callback req.wantAgent:' + JSON.stringfy(req.wantAgent));
+    console.info('===> onConsume callback req.wantAgent:' + JSON.stringify(req.wantAgent));
 };
 
 var subscriber = {
@@ -2766,14 +3163,10 @@ function subscribeCallback(err) {
     }
 };
 
-function onEnabledNotificationChangedCallback(err, callbackData) {
-    if (err.code) {
-        console.info("subscribe failed " + JSON.stringify(err));
-    } else {
-        console.info("bundle: ", callbackData.bundle);
-        console.info("uid: ", callbackData.uid);
-        console.info("enable: ", callbackData.enable);
-    }
+function onEnabledNotificationChangedCallback(callbackData) {
+    console.info("bundle: ", callbackData.bundle);
+    console.info("uid: ", callbackData.uid);
+    console.info("enable: ", callbackData.enable);
 };
 
 var subscriber = {
@@ -2786,6 +3179,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 ## SubscribeCallbackData
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name           | Readable| Writable| Type                                             | Mandatory| Description    |
 | --------------- | ---- | --- | ------------------------------------------------- | ---- | -------- |
@@ -2800,6 +3195,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name  | Readable| Writable| Type   | Mandatory| Description            |
 | ------ | ---- | --- | ------- | ---- | ---------------- |
 | bundle | Yes | No | string  | Yes  | Bundle name of the application.      |
@@ -2810,6 +3207,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 ## DoNotDisturbDate<sup>8+</sup>
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name | Readable| Writable| Type                                 | Description                    |
 | ----- | ---- | --- | ------------------------------------- | ------------------------ |
@@ -2823,13 +3222,14 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name        | Value              | Description                                      |
 | ------------ | ---------------- | ------------------------------------------ |
-| TYPE_NONE    | DoNotDisturbType | Non-DND.                          |
-| TYPE_ONCE    | DoNotDisturbType | One-shot DND at the specified time segment (only considering the hour and minute).|
-| TYPE_DAILY   | DoNotDisturbType | Daily DND at the specified time segment (only considering the hour and minute).|
-| TYPE_CLEARLY | DoNotDisturbType | DND at the specified time segment (considering the year, month, day, hour, and minute).    |
+| TYPE_NONE    | 0 | Non-DND.                          |
+| TYPE_ONCE    | 1 | One-shot DND at the specified time segment (only considering the hour and minute).|
+| TYPE_DAILY   | 2 | Daily DND at the specified time segment (only considering the hour and minute).|
+| TYPE_CLEARLY | 3 | DND at the specified time segment (considering the year, month, day, hour, and minute).    |
 
 
 ## ContentType
@@ -2838,11 +3238,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
-| NOTIFICATION_CONTENT_BASIC_TEXT   | ContentType | Normal text notification.    |
-| NOTIFICATION_CONTENT_LONG_TEXT    | ContentType | Long text notification.  |
-| NOTIFICATION_CONTENT_PICTURE      | ContentType | Picture-attached notification.    |
-| NOTIFICATION_CONTENT_CONVERSATION | ContentType | Conversation notification.    |
-| NOTIFICATION_CONTENT_MULTILINE    | ContentType | Multi-line text notification.|
+| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | Normal text notification.    |
+| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | Long text notification.  |
+| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.    |
+| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | Conversation notification.    |
+| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.|
 
 ## SlotLevel
 
@@ -2850,9 +3250,9 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
-| LEVEL_NONE                        | 0           | The notification feature is disabled.    |
-| LEVEL_MIN                         | 1           | The notification feature is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone.|
-| LEVEL_LOW                         | 2           | The notification feature is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone.|
+| LEVEL_NONE                        | 0           | The notification function is disabled.    |
+| LEVEL_MIN                         | 1           | The notification function is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone.|
+| LEVEL_LOW                         | 2           | The notification function is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone.|
 | LEVEL_DEFAULT                     | 3           | The notification feature is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner.|
 | LEVEL_HIGH                        | 4           | The notification feature is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
 
@@ -2884,11 +3284,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 | Name                | Value      | Description      |
 | -------------------- | -------- | ---------- |
-| UNKNOWN_TYPE         | SlotType | Unknown type.|
-| SOCIAL_COMMUNICATION | SlotType | Notification slot for social communication.|
-| SERVICE_INFORMATION  | SlotType | Notification slot for service information.|
-| CONTENT_INFORMATION  | SlotType | Notification slot for content consultation.|
-| OTHER_TYPES          | SlotType | Notification slot for other purposes.|
+| UNKNOWN_TYPE         | 0 | Unknown type.|
+| SOCIAL_COMMUNICATION | 1 | Notification slot for social communication.|
+| SERVICE_INFORMATION  | 2 | Notification slot for service information.|
+| CONTENT_INFORMATION  | 3 | Notification slot for content consultation.|
+| OTHER_TYPES          | 0xFFFF | Notification slot for other purposes.|
 
 
 ## NotificationActionButton
@@ -2973,6 +3373,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name          | Value | Description                              |
 | -------------- | --- | --------------------------------- |
 | TYPE_NONE      | 0   | The default flag is used.                        |
@@ -3021,7 +3423,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | creatorBundleName     | Yes | No | string                                        | No  | Name of the bundle that creates the notification.            |
 | creatorUid            | Yes | No | number                                        | No  | UID used for creating the notification.             |
 | creatorPid            | Yes | No | number                                        | No  | PID used for creating the notification.             |
-| creatorUserId<sup>8+</sup>| Yes | No | number                                    | No  | ID of the user who creates a notification.          |
+| creatorUserId<sup>8+</sup>| Yes | No | number                                    | No  | ID of the user who creates the notification.          |
 | hashCode              | Yes | No | string                                        | No  | Unique ID of the notification.              |
 | classification        | Yes | Yes | string                                        | No  | Notification category.                  |
 | groupName<sup>8+</sup>| Yes | Yes | string                                        | No  | Group notification name.                |
@@ -3062,11 +3464,14 @@ Notification.subscribe(subscriber, subscribeCallback);
 | lightEnabled         | Yes | Yes | boolean               | No  | Whether the indicator blinks for the notification.                                  |
 | lightColor           | Yes | Yes | number                | No  | Indicator color of the notification.                                |
 | vibrationValues      | Yes | Yes | Array\<number\>       | No  | Vibration mode of the notification.                              |
+| enabled<sup>9+</sup> | Yes | No | boolean               | No  | Enabled status of the notification slot.                     |
 
 
 ## NotificationSorting
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name    | Readable| Writable| Type                                 | Mandatory| Description        |
 | -------- | ---- | --- | ------------------------------------- | ---- | ------------ |
@@ -3079,6 +3484,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name          | Readable| Writable| Type                                                        | Mandatory| Description            |
 | -------------- | ---- | --- | ------------------------------------------------------------ | ---- | ---------------- |
 | sortings       | Yes | No | {[key: string]: [NotificationSorting](#notificationsorting)} | Yes  | Array of notification sorting information.|
@@ -3088,6 +3495,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 ## NotificationSubscribeInfo
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name       | Readable| Writable| Type           | Mandatory| Description                           |
 | ----------- | --- | ---- | --------------- | ---- | ------------------------------- |
@@ -3117,6 +3526,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 ## DeviceRemindType<sup>8+</sup>
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |

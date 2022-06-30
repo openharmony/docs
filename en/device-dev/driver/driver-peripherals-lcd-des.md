@@ -1,70 +1,82 @@
-# LCD<a name="EN-US_TOPIC_0000001052857284"></a>
+# LCD
 
-## Overview<a name="section141575391542"></a>
 
-The Liquid Crystal Display \(LCD\) driver powers on the LCD and initializes internal LCD registers through APIs to enable the LCD to work properly. The display driver is developed based on the hardware driver foundation \([HDF](driver-hdf-overview.md)\). It provides power-on, power-off, and sending of the initialization sequence for LCD hardware across OSs and platforms. The display driver model is shown in  [Figure 1](#fig69138814229).
+## Overview
 
-**Figure  1**  Architecture of the display driver model<a name="fig69138814229"></a>  
-![](figures/architecture-of-the-display-driver-model.png "architecture-of-the-display-driver-model")
+The Liquid Crystal Display (LCD) driver performs operations such as powering on the LCD and initializing the internal registers of the driver integrated circuits (ICs).
 
-**Display Driver Model**
+The display driver model developed based on the Hardware Driver Foundation [(HDF)](../driver/driver-hdf-overview.md) provides a basic framework for LCD driver development, improves driver development efficiency, and facilitates porting of the driver across OSs and chip platforms. The figure below shows the HDF-based display driver model.
 
-The display driver model consists of the display common driver layer, SoC adapter layer, and third-party chip driver layer. The display driver model is developed based on the HDF and hides the differences between kernel forms through platform and OSAL APIs so the LCD driver can be migrated between different OSs and chip platforms. The display driver connects to the display common HAL, supports the implementation of Hardware Device Interfaces \(HDIs\), and provides various driver interfaces for the graphics service through the display HDI.
 
--   HDF display driver layer: connects to the display common HAL through the IOService data channel provided by the HDF to receive and process various upper-layer calls in a centralized manner.
--   SoC adapter layer: decouples the display driver from the SoC driver, configures parameters related to the chip platform, and passes the calls at the platform driver layer to the LCD driver layer.
--   LCD panel driver layer: provides LCD-related APIs for sending the initialization sequence, powering on/off, and setting the backlight.
+  **Figure 1** HDF-based display driver model
 
-The display driver model, capabilities, and APIs help you simplify the display driver development and improve the efficiency.
+  ![image](figures/architecture-of-the-display-driver-model.png "Display Driver Model")
 
-## API Description<a name="section53793327396"></a>
 
-The LCD interfaces are classified into the Mobile Industry Processor Interface \(MIPI\) Display Serial Interface \(DSI\), Transistor-Transistor Logic \(TTL\) interfaces, and Low Voltage Differential Signaling \(LVDS\) interfaces. The MIPI DSI and TTL interfaces are commonly used. Here is a brief introduction to them.
+The display driver model consists of the display common driver layer, SoC adapter layer, and LCD panel driver layer. The HDF-based display driver model shields the differences between kernel forms through platform and OSAL APIs so the LCD driver can be easily ported between different OSs and chip platforms. The display driver model connects to the display common Hardware Abstraction Layer (HAL), supports the implementation of the Hardware Device Interface (HDI), and provides various driver capability interfaces for graphics services through the Display-HDI.
 
--   MIPI DSI
+- Display common driver layer: connects to the display common HAL through the IOService data channel provided by the HDF to receive and process various upper-layer calls in a centralized manner.
 
-    **Figure  2**  MIPI DSI<a name="fig6936451331"></a>  
-    ![](figures/mipi-dsi.png "mipi-dsi")
+- SoC adapter layer: decouples the display driver from the SoC driver, configures parameters related to the chip platform, and passes the calls from the platform driver layer to the LCD driver layer.
 
-    The MIPI DSI is defined by MIPI Alliance. It is mainly used for mobile terminal display. The MIPI DSI is used to transmit image data, in compliance with the MIPI protocol. Generally, control information of the MIPI DSI is sent to the peer IC in the form of MIPI packets through the MIPI DSI. No additional interface is required.
+- LCD panel driver layer: provides LCD-related APIs for sending the initialization sequence, powering on/off, and setting the backlight.
 
--   TTL interface
+The display driver model leverages the capabilities and APIs provided by the platform to simplify the display driver development and improve the efficiency.
 
-    **Figure  3**  TTL interface<a name="fig141611855635"></a>  
+
+## Available APIs
+
+The LCD interfaces include the Mobile Industry Processor Interface (MIPI) Display Serial Interface (DSI), Transistor-Transistor Logic (TTL) interface, and Low Voltage Differential Signaling (LVDS) interface. The MIPI DSI and TTL interfaces are commonly used. Here is a brief introduction to them.
+
+- MIPI DSI
+
+    **Figure 2** MIPI DSI
+
+    ![](figures/mipi-dsi.png "MIPI DSI")
+
+  The DSI is defined by the MIPI Alliance for the displays used in mobile devices. The MIPI DSI is used to transmit image data, in compliance with the MIPI protocol. Generally, control information is sent to the peer IC in the form of MIPI packets over the MIPI DSI, without the need of additional peripheral interfaces.
+
+- TTL interface
+
+    **Figure 3** TTL interface
+
     ![](figures/ttl-interface.png "ttl-interface")
 
-    TTL level signals are generated by TTL devices, which are a major type of digital integrated circuits. They are manufactured using the bipolar process and feature high speed, low power consumption, and multiple types.
+  TTL level signals are generated by TTL devices, which are a major type of digital integrated circuits. TTL devices are manufactured using the bipolar process and feature high speed, low power consumption, and diversified types.
 
-    The TTL interface is used to transmit data in parallel mode under the control of control signals. It transmits data signals, clock signals, and control signals \(such as line synchronization signals, frame synchronization signals, and data validity signals\). Generally, the LCD of the TTL interface and the read/write of internal registers require additional peripheral interfaces, such as the Serial Peripheral Interface \(SPI\) and Inter-Integrated Circuit \(I2C\).
+  The TTL interface is used to transmit data in parallel mode under control signals. It transmits data signals, clock signals, and control signals (such as line synchronization signals, frame synchronization signals, and data validity signals). For the LCD with the TTL, additional peripheral interfaces, such as the Serial Peripheral Interface (SPI) and Inter-Integrated Circuit (I2C), are required for the read and write of the internal registers.
 
 
-## How to Develop<a name="section12394223125615"></a>
+## How to Develop
 
-The display driver model is developed based on the HDF, platform APIs, and APIs at the OS abstraction layer \(OSAL\), and provides a unified driver model for the LCD regardless of the OS \(LiteOS or Linux OS\) and chip platforms \(such as Hi35xx, Hi38xx, and V3S\).
+The HDF-based display driver model provides a unified driver model for LCDs regardless of the OS (LiteOS or Linux OS) and chip platform (Hi35xx, Hi38xx, or V3S). The development procedure is as follows:
 
-1.  Add the LCD driver-related hardware descriptions.
-2.  Add a driver that adapts to the chip at the SoC adapter layer.
-3.  Add the LCD panel driver and register the panel driver functions in the driver entry function  **Init**. The functions provide capabilities for:
-    -   Powering on/off the LCD device
 
-        Based on the LCD hardware connection, use the GPIO interfaces provided by the platform to perform operations on the LCD pins, such as the reset pin and IOVCC pin. For details about the power-on sequence, see the SPEC provided by the LCD supplier.
+1. Add the device configuration related to the LCD driver.
 
-    -   Sending the initialization sequence
+2. Adapt the driver to the chip at the SoC adapter layer.
 
-        Based on the LCD hardware interfaces, use the I2C, SPI, and MIPI interfaces provided by the platform to download the LCD initialization sequence. For details, see the SPEC provided by the LCD supplier.
+3. Add the LCD panel driver and register the panel driver functions in the driver entry function **Init**. The functions provide capabilities for:
+   - Powering on/off the LCD device
+      Based on the LCD hardware connection, use the GPIO APIs provided by the platform to perform operations on the LCD pins, such as the reset pin and IOVCC pin. For details about the power-on sequence, see the SPEC provided by the LCD supplier.
+   - Sending the initialization sequence
+      Based on the LCD hardware interfaces, use the I2C, SPI, and MIPI interfaces provided by the platform to download the LCD initialization sequence. For details, see the SPEC provided by the LCD supplier.
 
-4.  Implement other HDF interfaces as required, for example, the  **Release**  interface.
-5.  Use the HDF to create other device nodes for implementing service logic or debugging as required.
+4. Implement other HDF APIs as required, for example, **Release()**.
 
-## Development Example<a name="section7441155155813"></a>
+5. Use the HDF to create other device nodes for implementing service logic or debugging as required.
 
-Add the device description.
+
+## Development Example
+
+Add the device configuration.
+
 
 ```
-/* Description of the display driver */
+/* Configuration of the devices related to the display driver */
 display :: host {
     hostName = "display_host";
-    /* Description of the HDF display driver */
+    /* Configuration of the HDF display driver */
     device_hdf_disp :: device {
         device0 :: deviceNode {
             policy = 2;
@@ -74,7 +86,7 @@ display :: host {
             serviceName = "hdf_disp";
         }
     }
-    /* Description of the driver device at the SoC adapter layer */
+    /* Configuration of the driver device at the SoC adapter layer */
     device_hi35xx_disp :: device {
         device0 :: deviceNode {
             policy = 0;
@@ -82,7 +94,7 @@ display :: host {
             moduleName = "HI351XX_DISP";
         }
     }
-    /* Description of the LCD driver */
+    /* Configuration of the LCD driver */
     device_lcd :: device {
         device0 :: deviceNode {
             policy = 0;
@@ -100,7 +112,8 @@ display :: host {
 }
 ```
 
-The following example shows how to adapt the MIPI device to the Hi35xx series chips at the SoC adapter layer:
+Adapt the driver to the chip at the SoC adapter layer. The following example shows how to adapt the MIPI device to the Hi35xx series chips at the SoC adapter layer:
+
 
 ```
 static int32_t MipiDsiInit(struct PanelInfo *info)
@@ -130,7 +143,7 @@ static int32_t MipiDsiInit(struct PanelInfo *info)
     cfg.timing.edpiCmdSize = 0;
     cfg.pixelClk = CalcPixelClk(info);
     cfg.phyDataRate = CalcDataRate(info);
-    /* config mipi device */
+    /* Configure the MIPI device. */
     ret = MipiDsiSetCfg(mipiHandle, &cfg);
     if (ret != HDF_SUCCESS) {
         HDF_LOGE("%s:MipiDsiSetCfg failure", __func__);
@@ -142,14 +155,15 @@ static int32_t MipiDsiInit(struct PanelInfo *info)
 }
 ```
 
-The following example shows code for developing an LCD driver:
+Develop an LCD driver. The sample code is as follows:
+
 
 ```
 #define RESET_GPIO                5
 #define MIPI_DSI0                 0
 #define BLK_PWM1                  1
 #define PWM_MAX_PERIOD            100000
-/* backlight setting */
+/* Set the backlight. */
 #define MIN_LEVEL                 0
 #define MAX_LEVEL                 255
 #define DEFAULT_LEVEL             100
@@ -249,14 +263,14 @@ static int32_t LcdResetOn(void)
         HDF_LOGE("GpioWrite failure, ret:%d", ret);
         return HDF_FAILURE;
     }
-    /* delay 20ms */
+    /* Set the delay to 20 ms. */
     OsalMSleep(20);
     return HDF_SUCCESS;
 }
 
 static int32_t SampleInit(void)
 {
-    /* Obtain the MIPI DSI device handle. */
+    /* Open the MIPI DSI device handle. */
     g_mipiHandle = MipiDsiOpen(MIPI_DSI0);
     if (g_mipiHandle == NULL) {
         HDF_LOGE("%s: MipiDsiOpen failure", __func__);
@@ -306,7 +320,7 @@ static struct PanelInfo g_panelInfo = {
     .frameRate = FRAME_RATE,            /* frame rate */
     .intfType = MIPI_DSI,               /* panel interface type */
     .intfSync = OUTPUT_USER,            /* output timming type */
-    /* mipi config info */
+    /* MIPI configuration */
     .mipi = { DSI_2_LANES, DSI_VIDEO_MODE, VIDEO_BURST_MODE, FORMAT_RGB_24_BIT },
     /* backlight config info */
     .blk = { BLK_PWM, MIN_LEVEL, MAX_LEVEL, DEFAULT_LEVEL },
@@ -330,7 +344,7 @@ int32_t SampleEntryInit(struct HdfDeviceObject *object)
         HDF_LOGE("%s: param is null!", __func__);
         return HDF_FAILURE;
     }
-    /* Register the chip driver APIs with the platform driver. */
+    /* Register the device driver APIs with the platform driver. */
     if (PanelDataRegister(&g_panelData) != HDF_SUCCESS) {
         HDF_LOGE("%s: PanelDataRegister error!", __func__);
         return HDF_FAILURE;
@@ -346,4 +360,3 @@ struct HdfDriverEntry g_sampleDevEntry = {
 
 HDF_INIT(g_sampleDevEntry);
 ```
-

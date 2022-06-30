@@ -1,7 +1,7 @@
 # Counter
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,9 +25,9 @@ Counter()
 
 ## Events
 
-Universal events and gestures are not supported. Only the events listed below are supported.
+Except the events listed below, other events, including universal events, are not supported. 
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | onInc(event: () =&gt; void) | Event indicating that the number of monitored objects is increased. | 
 | onDec(event: () =&gt; void) | Event indicating that the number of monitored objects is decreased. | 

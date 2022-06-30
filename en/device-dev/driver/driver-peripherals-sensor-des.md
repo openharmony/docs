@@ -69,7 +69,7 @@ The sensor driver model provides APIs for the hardware service to make sensor se
 | int32_t GetAllSensors(struct SensorInformation **sensorInfo, int32_t *count) | Obtains information about all registered sensors in the system. The sensor information includes the sensor name, sensor vendor, firmware version, hardware version, sensor type ID, sensor ID, maximum range, accuracy, and power consumption.|
 | int32_t Enable(int32_t sensorId) | Enables a sensor. The subscriber can obtain sensor data only after the sensor is enabled.| 
 | int32_t Disable(int32_t sensorId) | Disables a sensor.| 
-| int32_t SetBatch(iint32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | Sets the sampling interval and data reporting interval for a sensor.| 
+| int32_t SetBatch(int32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | Sets the sampling interval and data reporting interval for a sensor.| 
 | int32_t SetMode(int32_t sensorId, int32_t mode) | Sets the data reporting mode for a sensor.| 
 | int32_t SetOption(int32_t sensorId, uint32_t option) | Sets options for a sensor, including its range and accuracy.| 
 | int32_t Register(int32_t groupId, RecordDataCallback cb) | Registers a sensor data callback based on the group ID.| 
@@ -575,7 +575,7 @@ HWTEST_F(HdfSensorTest,TestAccelDriver_001, TestSize.Level0)
     }
     /* Print the obtained sensor list. */
     for (int i = 0; i < count; i++) {
-        printf("get sensoriId[%d], info name[%s]\n\r", sensorInfo[i]->sensorId, sensorInfo[i]->sensorName);
+        printf("get sensorId[%d], info name[%s]\n\r", sensorInfo[i]->sensorId, sensorInfo[i]->sensorName);
     }
     ret = g_sensorDev->Enable(accelSensorId);
     EXPECT_EQ(0, ret);

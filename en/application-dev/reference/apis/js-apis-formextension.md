@@ -1,7 +1,9 @@
 # FormExtension
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Provides **FormExtension** APIs.
 
@@ -21,7 +23,7 @@ None
 
 | Name   | Type                                               | Readable| Writable| Description                                               |
 | ------- | ------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This class is inherited from **ExtensionContext**.|
+| context | [FormExtensionContext](js-apis-formextensioncontext.md) | Yes  | No  | Context of the **FormExtension**. This context is inherited from **ExtensionContext**.|
 
 ## onCreate
 
@@ -227,7 +229,7 @@ Called when the configuration of the environment where the ability is running is
 
 onAcquireFormState?(want: Want): formInfo.FormState;
 
-Used by the widget provider to receive the widget state query request. By default, the initial widget state is returned.
+Called when the widget provider receives the status query result of a specified service widget. By default, the initial state is returned.
 
 **System capability**: SystemCapability.Ability.Form
 

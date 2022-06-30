@@ -8,13 +8,11 @@ You can use video playback APIs to convert video data into visible signals, play
 
 ![en-us_image_video_state_machine](figures/en-us_image_video_state_machine.png)
 
-
-
 **Figure 2** Layer 0 diagram of video playback
 
 ![en-us_image_video_player](figures/en-us_image_video_player.png)
 
-Note: Video playback requires hardware capabilities such as display, audio, and codec.
+*Note: Video playback requires hardware capabilities such as display, audio, and codec.*
 
 1. A third-party application obtains a surface ID from the XComponent.
 2. The third-party application transfers the surface ID to the VideoPlayer JS.
@@ -43,9 +41,7 @@ The full video playback process includes creating an instance, setting the URL, 
 
 For details about the **url** types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
 
-For details about how to create an XComponent, see [XComponent](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-basic-components-xcomponent.md).
-
-*Note: **setSurface** must be called after the URL is set but before **prepare** is called.
+For details about how to create an XComponent, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
 ```js
 import media from '@ohos.multimedia.media'
@@ -120,7 +116,7 @@ export class VideoPlayerDemo {
       console.info('pause success');
     }, this.failureCallback).catch(this.catchCallback);
 
-    // Use a promise to obtain the video track information.
+    // Use a promise to obtain the video track information communication_dsoftbus.
     let arrayDescription;
     await videoPlayer.getTrackDescription().then((arrlist) => {
       if (typeof (arrlist) != 'undefined') {

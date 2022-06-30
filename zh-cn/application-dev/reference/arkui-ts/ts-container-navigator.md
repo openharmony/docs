@@ -53,12 +53,13 @@ Navigator(value?: {target: string, type?: NavigationType})
 @Component
 struct NavigatorExample {
   @State active: boolean = false
-  @State Text: string = 'news'
+  @State Text: object = {name: 'news'}
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Navigator({ target: 'pages/container/navigator/Detail', type: NavigationType.Push }) {
-        Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
+        Text('Go to ' + this.Text['name'] + ' page')
+            .width('100%').textAlign(TextAlign.Center)
       }.params({ text: this.Text })
 
       Navigator() {
@@ -79,7 +80,7 @@ import router from '@system.router'
 @Entry
 @Component
 struct DetailExample {
-  @State text: string = router.getParams().text
+  @State text: any = router.getParams().text
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
@@ -87,7 +88,8 @@ struct DetailExample {
         Text('Go to back page').width('100%').height(20)
       }
 
-      Text('This is ' + this.text + ' page').width('100%').textAlign(TextAlign.Center)
+      Text('This is ' + this.text['name'] + ' page')
+          .width('100%').textAlign(TextAlign.Center)
     }
     .width('100%').height(200).padding({ left: 35, right: 35, top: 35 })
   }

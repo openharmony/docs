@@ -184,7 +184,7 @@ void CheckDestDeviceSecurityLevelAsync(const DeviceIdentify *device, RequestOpti
 
 ### 设备安全等级凭据
 
-为了保证设备安全等级信息的完整性和不可抵赖性。设备的安全等级信息需要封装在“设备安全等级凭据”（简称为“凭据”）文件中在设备间进行传递，凭据中除了包含设备的安全等级信息之外，还可以包含设备型号、设备版本号等其它设备固有属性，同时使用PKI技术对上述信息进行签名。并结合[设备认证](https://gitee.com/openharmony/security_deviceauth)、[HUKS](https://gitee.com/openharmony/security_huks)等OpenHarmony其他基础安全能力。最大程度的保证了凭据传递的安全性。
+为了保证设备安全等级信息的完整性和不可抵赖性。设备的安全等级信息需要封装在“设备安全等级凭据”（简称为“凭据”）文件中在设备间进行传递，凭据中除了包含设备的安全等级信息之外，还可以包含设备型号、设备版本号等其它设备固有属性，同时使用PKI技术对上述信息进行签名。并结合[设备认证](https://gitee.com/openharmony/security_device_auth)、[HUKS](https://gitee.com/openharmony/security_huks)等OpenHarmony其他基础安全能力。最大程度的保证了凭据传递的安全性。
 
 ### 默认实现
 

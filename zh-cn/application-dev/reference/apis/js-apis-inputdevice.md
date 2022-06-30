@@ -19,16 +19,16 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 
-监听设备的热插拔事件。
+监听输入设备的热插拔事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 **参数**：
 
-| 参数     | 类型                                              | 必填 | 说明                 |
-| -------- | ------------------------------------------------- | ---- | -------------------- |
-| type     | string                                            | 是   | 输入设备的事件类型。 |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 是   | 可上报的输入设备事件。 |
+| 参数       | 类型                                       | 必填   | 说明          |
+| -------- | ---------------------------------------- | ---- | ----------- |
+| type     | string                                   | 是    | 输入设备的事件类型。  |
+| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 是    | 可上报的输入设备事件。 |
 
 **示例**：
 
@@ -36,7 +36,7 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 let isPhysicalKeyboardExist = true;
 inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
-    inputDevice.getKeyboardType(data.deviceId, (ret) => {
+    inputDevice.getKeyboardType(data.deviceId, (err, ret) => {
         console.log("The keyboard type of the device is: " + ret);
         if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
             // 监听物理键盘已连接。
@@ -54,26 +54,26 @@ inputDevice.on("change", (data) => {
 
 off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 
-取消监听设备的热插拔事件。
+取消监听输入设备的热插拔事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 **参数**：
 
-| 参数     | 类型                                              | 必填 | 说明                 |
-| -------- | ------------------------------------------------- | ---- | -------------------- |
-| type     | string                                            | 是   | 输入设备的事件类型。 |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 否   | 可上报的输入设备事件。 |
+| 参数       | 类型                                       | 必填   | 说明          |
+| -------- | ---------------------------------------- | ---- | ----------- |
+| type     | string                                   | 是    | 输入设备的事件类型。  |
+| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 否    | 可上报的输入设备事件。 |
 
 **示例**：
 
 ```js
-listener: function(data) {
+function listener(data) {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
 // 单独取消listener的监听。
-inputDevice.off("change", this.listener);
+inputDevice.off("change", listener);
 
 // 取消所有监听。
 inputDevice.off("change");
@@ -90,9 +90,9 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 **参数**：
 
-| 参数      | 类型                                       | 必填   | 说明    |
+| 参数       | 类型                                       | 必填   | 说明    |
 | -------- | ---------------------------------------- | ---- | ----- |
-| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。 |
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是    | 回调函数。 |
 
 **示例**：
 
@@ -104,7 +104,7 @@ inputDevice.getDeviceIds((ids)=>{
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise&lt;&lt;Array&lt;number&gt;&gt;
+getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 获取所有输入设备的id列表，使用Promise方式作为异步方法。
 
@@ -112,8 +112,8 @@ function getDeviceIds(): Promise&lt;&lt;Array&lt;number&gt;&gt;
 
 **返回值**：
 
-| 参数                      | 说明                          |
-| ------------------------- | ----------------------------- |
+| 参数                                 | 说明                  |
+| ---------------------------------- | ------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise实例，用于异步获取结果。 |
 
 **示例**：
@@ -150,7 +150,7 @@ inputDevice.getDevice(1, (inputDevice)=>{
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
+getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 获取输入设备的描述信息，使用Promise方式作为异步方法。
 
@@ -158,14 +158,14 @@ function getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 **参数**：
 
-| 参数     | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| deviceId | number | 是   | 需要获取信息的设备id。 |
+| 参数       | 类型     | 必填   | 说明           |
+| -------- | ------ | ---- | ------------ |
+| deviceId | number | 是    | 需要获取信息的设备id。 |
 
 **返回值**：
 
-| 参数                                               | 说明                          |
-| -------------------------------------------------- | ----------------------------- |
+| 参数                                       | 说明                  |
+| ---------------------------------------- | ------------------- |
 | Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise实例，用于异步获取结果。 |
 
 **示例**：
@@ -179,7 +179,7 @@ inputDevice.getDevice(1).then((inputDevice)=>{
 
 ## inputDevice.supportKeys<sup>9+</sup>
 
-supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void;
+supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void
 
 获取输入设备支持的键码值，使用callback方式作为异步方法。
 
@@ -187,11 +187,11 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;
 
 **参数**：
 
-| 参数     | 类型                                 | 必填 | 说明                                                         |
-| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| deviceId | number                               | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt;                 | 是   | 需要查询的键码值，最多支持5个按键查询。                      |
-| callback | Callback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，异步返回查询结果。                                 |
+| 参数       | 类型                                   | 必填   | 说明                                |
+| -------- | ------------------------------------ | ---- | --------------------------------- |
+| deviceId | number                               | 是    | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
+| keys     | Array&lt;KeyCode&gt;                 | 是    | 需要查询的键码值，最多支持5个按键查询。              |
+| callback | Callback&lt;Array&lt;boolean&gt;&gt; | 是    | 回调函数，异步返回查询结果。                    |
 
 **示例**：
 
@@ -204,7 +204,7 @@ inputDevice.supportKeys(1, [17, 22, 2055], (ret)=>{
 
 ## inputDevice.supportKeys<sup>9+</sup>
 
-supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;；
+supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;
 
 获取输入设备支持的键码值，使用Promise方式作为异步方法。
 
@@ -212,15 +212,15 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 
 **参数**：
 
-| 参数     | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| deviceId | number               | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
-| keys     | Array&lt;KeyCode&gt; | 是   | 需要查询的键码值，最多支持5个按键查询。                      |
+| 参数       | 类型                   | 必填   | 说明                                |
+| -------- | -------------------- | ---- | --------------------------------- |
+| deviceId | number               | 是    | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
+| keys     | Array&lt;KeyCode&gt; | 是    | 需要查询的键码值，最多支持5个按键查询。              |
 
 **返回值**：
 
-| 参数                                | 说明                          |
-| ----------------------------------- | ----------------------------- |
+| 参数                                  | 说明                  |
+| ----------------------------------- | ------------------- |
 | Promise&lt;Array&lt;boolean&gt;&gt; | Promise实例，用于异步获取结果。 |
 
 **示例**：
@@ -234,7 +234,7 @@ inputDevice.supportKeys(1, [17, 22, 2055]).then((ret)=>{
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
 
-getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void;
+getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
 
 查询输入设备的键盘类型，使用callback方式作为异步方法。
 
@@ -242,10 +242,10 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 
 **参数**：
 
-| 参数     | 类型                                               | 必填 | 说明                                                         |
-| -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deviceId | number                                             | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
-| callback | AsyncCallback&lt;[KeyboardType](#keyboardtype)&gt; | 是   | 回调函数，异步返回查询结果。                                 |
+| 参数       | 类型                                       | 必填   | 说明                                |
+| -------- | ---------------------------------------- | ---- | --------------------------------- |
+| deviceId | number                                   | 是    | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
+| callback | AsyncCallback&lt;[KeyboardType](#keyboardtype)&gt; | 是    | 回调函数，异步返回查询结果。                    |
 
 **示例**：
 
@@ -258,7 +258,7 @@ inputDevice.getKeyboardType(1, (ret)=>{
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
 
-getKeyboardType(deviceId: number,): Promise&lt;KeyboardType&gt;；
+getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
 查询输入设备的键盘类型，使用Promise方式作为异步方法。
 
@@ -266,15 +266,15 @@ getKeyboardType(deviceId: number,): Promise&lt;KeyboardType&gt;；
 
 **返回值**：
 
-| 参数                                         | 说明                          |
-| -------------------------------------------- | ----------------------------- |
+| 参数                                       | 说明                  |
+| ---------------------------------------- | ------------------- |
 | Promise&lt;[KeyboardType](#keyboardtype)&gt; | Promise实例，用于异步获取结果。 |
 
 **示例**：
 
 ```js
 // 示例查询设备id为1的设备键盘类型。
-inputDevice.getKeyboardType().then((ret)=>{
+inputDevice.getKeyboardType(1).then((ret)=>{
     console.log("The keyboard type of the device is: " + ret);
 })
 ```
@@ -285,10 +285,10 @@ inputDevice.getKeyboardType().then((ret)=>{
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称     | 参数类型                    | 说明                                                         |
-| -------- | --------------------------- | ------------------------------------------------------------ |
-| type     | [ChangeType](#changetype) | 表示输入设备插入或者移除。                                   |
-| deviceId | number                      | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
+| 名称       | 参数类型                      | 说明                                |
+| -------- | ------------------------- | --------------------------------- |
+| type     | [ChangeType](#changetype) | 表示输入设备插入或者移除。                     |
+| deviceId | number                    | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
 
 ## InputDeviceData
 
@@ -296,52 +296,52 @@ inputDevice.getKeyboardType().then((ret)=>{
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                 | 参数类型                               | 说明                                                         |
-| -------------------- | -------------------------------------- | ------------------------------------------------------------ |
-| id                   | number                                 | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
-| name                 | string                                 | 输入设备的名字。                                             |
+| 名称                   | 参数类型                                   | 说明                                       |
+| -------------------- | -------------------------------------- | ---------------------------------------- |
+| id                   | number                                 | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。        |
+| name                 | string                                 | 输入设备的名字。                                 |
 | sources              | Array&lt;[SourceType](#sourcetype)&gt; | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
-| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | 输入设备的轴信息。                                           |
-| bus<sup>9+</sup>     | number                                 | 输入设备的总线类型。                                         |
-| product<sup>9+</sup> | number                                 | 输入设备的产品信息。                                         |
-| vendor<sup>9+</sup>  | number                                 | 输入设备的厂商信息。                                         |
-| version<sup>9+</sup> | number                                 | 输入设备的版本信息。                                         |
-| phys<sup>9+</sup>    | string                                 | 输入设备的物理地址。                                         |
-| uniq<sup>9+</sup>    | string                                 | 输入设备的唯一标识。                                         |
+| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | 输入设备的轴信息。                                |
+| bus<sup>9+</sup>     | number                                 | 输入设备的总线类型。                               |
+| product<sup>9+</sup> | number                                 | 输入设备的产品信息。                               |
+| vendor<sup>9+</sup>  | number                                 | 输入设备的厂商信息。                               |
+| version<sup>9+</sup> | number                                 | 输入设备的版本信息。                               |
+| phys<sup>9+</sup>    | string                                 | 输入设备的物理地址。                               |
+| uniq<sup>9+</sup>    | string                                 | 输入设备的唯一标识。                               |
 
 ## AxisType<sup>9+</sup>
 
-输入设备的轴类型
+输入设备的轴类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称        | 参数类型 | 说明                |
-| ----------- | -------- | ------------------- |
-| touchMajor  | string   | 表示touchMajor轴。  |
-| touchMinor  | string   | 表示touchMinor轴。  |
-| toolMinor   | string   | 表示toolMinor轴。   |
-| toolMajor   | string   | 表示toolMajor轴。   |
-| orientation | string   | 表示orientation轴。 |
-| pressure    | string   | 表示pressure轴。    |
-| x           | string   | 表示x轴。           |
-| y           | string   | 表示y轴。           |
-| NULL        | string   | 无。                |
+| 名称          | 参数类型   | 说明              |
+| ----------- | ------ | --------------- |
+| touchMajor  | string | 表示touchMajor轴。  |
+| touchMinor  | string | 表示touchMinor轴。  |
+| toolMinor   | string | 表示toolMinor轴。   |
+| toolMajor   | string | 表示toolMajor轴。   |
+| orientation | string | 表示orientation轴。 |
+| pressure    | string | 表示pressure轴。    |
+| x           | string | 表示x轴。           |
+| y           | string | 表示y轴。           |
+| NULL        | string | 无。              |
 
 ## AxisRange
 
-输入设备的轴信息
+输入设备的轴信息。
 
 **系统能力**： 以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                    | 参数类型                  | 说明             |
-| ----------------------- | ------------------------- | ---------------- |
+| 名称                      | 参数类型                      | 说明       |
+| ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis                    | [AxisType](axistype)      | 轴的类型。       |
-| max                     | number                    | 轴的最大值。     |
-| min                     | number                    | 轴的最小值。     |
-| fuzz<sup>9+</sup>       | number                    | 轴的模糊值。     |
-| flat<sup>9+</sup>       | number                    | 轴的基准值。     |
-| resolution<sup>9+</sup> | number                    | 轴的分辨率。     |
+| axis                    | [AxisType](#axistype)     | 轴的类型。    |
+| max                     | number                    | 轴的最大值。   |
+| min                     | number                    | 轴的最小值。   |
+| fuzz<sup>9+</sup>       | number                    | 轴的模糊值。   |
+| flat<sup>9+</sup>       | number                    | 轴的基准值。   |
+| resolution<sup>9+</sup> | number                    | 轴的分辨率。   |
 
 ## SourceType
 
@@ -364,10 +364,10 @@ inputDevice.getKeyboardType().then((ret)=>{
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称   | 参数类型 | 说明               |
-| ------ | -------- | ------------------ |
-| add    | string   | 表示输入设备插入。 |
-| remove | string   | 表示输入设备移除。 |
+| 名称     | 参数类型   | 说明        |
+| ------ | ------ | --------- |
+| add    | string | 表示输入设备插入。 |
+| remove | string | 表示输入设备移除。 |
 
 ## KeyboardType<sup>9+</sup>
 
@@ -375,11 +375,11 @@ inputDevice.getKeyboardType().then((ret)=>{
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称                | 参数类型 | 值   | 说明               |
-| ------------------- | -------- | ---- | ------------------ |
-| NONE                | number   | 0    | 表示无按键设备。   |
-| UNKNOWN             | number   | 1    | 表示未知按键设备。 |
-| ALPHABETIC_KEYBOARD | number   | 2    | 表示全键盘设备。   |
-| DIGITAL_KEYBOARD    | number   | 3    | 表示小键盘设备。   |
-| HANDWRITING_PEN     | number   | 4    | 表示手写笔设备。   |
-| REMOTE_CONTROL      | number   | 5    | 表示遥控器设备。   |
+| 名称                  | 参数类型   | 值    | 说明        |
+| ------------------- | ------ | ---- | --------- |
+| NONE                | number | 0    | 表示无按键设备。  |
+| UNKNOWN             | number | 1    | 表示未知按键设备。 |
+| ALPHABETIC_KEYBOARD | number | 2    | 表示全键盘设备。  |
+| DIGITAL_KEYBOARD    | number | 3    | 表示小键盘设备。  |
+| HANDWRITING_PEN     | number | 4    | 表示手写笔设备。  |
+| REMOTE_CONTROL      | number | 5    | 表示遥控器设备。  |

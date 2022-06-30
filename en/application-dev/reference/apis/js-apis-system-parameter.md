@@ -1,7 +1,6 @@
 # System Parameter
 
 > **NOTE**<br>
->
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This is a system API and cannot be called by third-party applications.
 
@@ -49,7 +48,7 @@ try {
 
 get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the value of the attribute with the specified key.
+Obtains the value of the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Startup.SysInfo
 
@@ -80,7 +79,7 @@ try {
 
 get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the value of the attribute with the specified key.
+Obtains the value of the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Startup.SysInfo
 
@@ -89,7 +88,7 @@ Obtains the value of the attribute with the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| def | string | Yes| Default Value|
+| def | string | Yes| Default value.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -113,7 +112,7 @@ try {
 
 get(key: string, def?: string): Promise&lt;string&gt;
 
-Obtains the value of the attribute with the specified key.
+Obtains the value of the attribute with the specified key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Startup.SysInfo
 
@@ -122,7 +121,7 @@ Obtains the value of the attribute with the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| def | string | No| Default Value|
+| def | string | No| Default value.|
 
 **Return value**
 
@@ -176,7 +175,7 @@ try {
 
 set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a value for the attribute with the specified key.
+Sets a value for the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Startup.SysInfo
 
@@ -208,7 +207,7 @@ try {
 
 set(key: string, value: string): Promise&lt;void&gt;
 
-Sets a value for the attribute with the specified key.
+Sets a value for the attribute with the specified key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Startup.SysInfo
 
@@ -217,7 +216,7 @@ Sets a value for the attribute with the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| value| string | Yes| System attribute value to set.|
+| value| string | Yes | System attribute value to set.|
 
 **Return value**
 

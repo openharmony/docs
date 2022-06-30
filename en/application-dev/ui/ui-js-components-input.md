@@ -108,7 +108,7 @@ export default {
 ![en-us_image_0000001223287672](figures/en-us_image_0000001223287672.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - For wearables, the input type can only be **button**, **radio**, or **checkbox**.
 > 
 > - The settings of **checked** take effect only when the input type is set to **checkbox** or **radio**. The default value of **checked** is **false**.
@@ -245,7 +245,7 @@ import prompt from '@system.prompt'
 
 ![en-us_image_0000001223127708](figures/en-us_image_0000001223127708.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - This method is available when the input type is set to **text**, **email**, **date**, **time**, **number**, or **password**.
 
 

@@ -1,27 +1,34 @@
 # Nonlinear Container LightWeightMap 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+**LightWeightMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
+
+**LightWeightMap** is based on generics and uses a lightweight structure. Keys in the map are searched using hash values, which are stored in an array.
+
+Compared with **[HashMap](js-apis-hashmap.md)**, which can also store KV pairs, **LightWeightMap** occupies less memory.
+
+**Recommended use case**: Use LightWeightMap when you need to store and access **KV pairs**.
 
 ## Modules to Import
 
 ```ts
-import LightWeightMap from '@ohos.util.LightWeightMap'  
+import LightWeightMap from '@ohos.util.LightWeightMap';  
 ```
 
-## System Capabilities
 
-SystemCapability.Utils.Lang
 
 ## LightWeightMap
 
-
 ### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of entries in a lightweight map (called container later).|
+| length | number | Yes| No| Number of elements in a lightweight map (called container later).|
 
 
 ### constructor
@@ -29,6 +36,8 @@ SystemCapability.Utils.Lang
 constructor()
 
 A constructor used to create a **LightWeightMap** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
@@ -41,7 +50,9 @@ let lightWeightMap = new LightWeightMap();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no entry).
+Checks whether this container is empty (contains no element).
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -61,7 +72,9 @@ let result = lightWeightMap.isEmpty();
 
 hasAll(map: LightWeightMap<K, V>): boolean
 
-Checks whether this container contains all entries of the specified **LightWeightMap** instance.
+Checks whether this container contains all elements of the specified **LightWeightMap** instance.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -73,7 +86,7 @@ Checks whether this container contains all entries of the specified **LightWeigh
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if all the entries in the specified **LightWeightMap** instance are contained; returns **false** otherwise.|
+| boolean | Returns **true** if all the elements in the specified **LightWeightMap** instance are contained; returns **false** otherwise.|
 
 **Example**
 
@@ -93,11 +106,13 @@ hasKey(key: K): boolean;
 
 Checks whether this container contains the specified key.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key to check.|
+| key | K | Yes| Target key.|
 
 **Return value**
 
@@ -122,11 +137,13 @@ hasValue(value: V): boolean
 
 Checks whether this container contains the specified value.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes| Value to check.|
+| value | V | Yes| Target value.|
 
 **Return value**
 
@@ -150,11 +167,13 @@ increaseCapacityTo(minimumCapacity: number): void
 
 Increases the capacity of this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | Yes| Minimum number of entries to accommodate in this container.|
+| minimumCapacity | number | Yes| Minimum number of elements to accommodate in this container.|
 
 **Example**
 
@@ -170,11 +189,13 @@ get(key: K): V
 
 Obtains the value of the specified key in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key to query.|
+| key | K | Yes| Target key.|
 
 **Return value**
 
@@ -196,19 +217,21 @@ let result = lightWeightMap.get("sdfs");
 
 getIndexOfKey(key: K): number
 
-Obtains the index of the first occurrence of an entry with the specified key in this container.
+Obtains the index of the first occurrence of an element with the specified key in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the entry.|
+| key | K | Yes| Key of the element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -224,19 +247,21 @@ let result = lightWeightMap.getIndexOfKey("sdfs");
 
 getIndexOfValue(value: V): number
 
-Obtains the index of the first occurrence of an entry with the specified value in this container.
+Obtains the index of the first occurrence of an element with the specified value in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | Yes| Value of the entry.|
+| value | V | Yes| Key of the element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** if the specified entry is not found.|
+| number | Returns the position index if obtained; returns **-1** otherwise.|
 
 **Example**
 
@@ -252,13 +277,15 @@ let result = lightWeightMap.getIndexOfValue(123);
 
 getKeyAt(index: number): K
 
-Obtains the key of an entry at the specified position in this container.
+Obtains the key of an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry.|
+| index | number | Yes| Position index of the element.|
 
 **Return value**
 
@@ -280,13 +307,15 @@ let result = lightWeightMap.getKeyAt(1);
 
 setAll(map: LightWeightMap<K, V>): void
 
-Adds all entries in a **LightWeightMap** instance to this container.
+Adds all elements in a **LightWeightMap** instance to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| map | LightWeightMap<K, V> | Yes| **LightWeightMap** instance whose entries are to be added to the current container.|
+| map | LightWeightMap<K, V> | Yes| **LightWeightMap** instance whose elements are to be added to the current container.|
 
 **Example**
 
@@ -302,20 +331,22 @@ lightWeightMap.setAll(map);
 ### set
 set(key: K, value: V): Object
 
-Adds an entry to this container.
+Adds an element to this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the entry to add.|
-| value | V | Yes| Value of the entry to add.|
+| key | K | Yes| Key of the target element.|
+| value | V | Yes| Value of the target element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Object | Container that contains the new entry.|
+| Object | Container that contains the new element.|
 
 **Example**
 
@@ -329,19 +360,21 @@ let result = lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
 
 remove(key: K): V
 
-Removes an entry with the specified key from this container.
+Removes an element with the specified key from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes| Key of the entry to remove.|
+| key | K | Yes| Target key.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| V | Value of the entry removed.|
+| V | Value of the element removed.|
 
 **Example**
 
@@ -357,19 +390,21 @@ lightWeightMap.remove("sdfs");
 
 removeAt(index: number): boolean
 
-Removes an entry at the specified position from this container.
+Removes an element at the specified position from this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry.|
+| index | number | Yes| Position index of the element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the entry is removed successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
 
 **Example**
 
@@ -385,14 +420,16 @@ let result = lightWeightMap.removeAt(1);
 
 setValueAt(index: number, newValue: V): boolean
 
-Sets a value for an entry at the specified position in this container.
+Sets a value for an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry.|
-| newValue | V | Yes| Value of the entry to set.|
+| index | number | Yes| Position index of the target element.|
+| newValue | V | Yes| Value of the target element to set.|
 
 **Return value**
 
@@ -414,13 +451,15 @@ lightWeightMap.setValueAt(1, 3546);
 
 getValueAt(index: number): V
 
-Obtains the value of an entry at the specified position in this container.
+Obtains the value of an element at the specified position in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the entry.|
+| index | number | Yes| Position index of the element.|
 
 **Return value**
 
@@ -444,6 +483,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```ts
@@ -460,6 +501,8 @@ keys(): IterableIterator&lt;K&gt;
 
 Obtains an iterator that contains all the keys in this container.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -475,7 +518,7 @@ lightWeightMap.set("sdfs", 356);
 let iter = lightWeightMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 }
 ```
@@ -486,6 +529,8 @@ while(temp != undefined) {
 values(): IterableIterator&lt;V&gt;
 
 Obtains an iterator that contains all the values in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -502,7 +547,7 @@ lightWeightMap.set("sdfs", 356);
 let iter = lightWeightMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp);
+  console.log("value:" + temp);
   temp = iter.next().value;
 } 
 ```
@@ -512,20 +557,22 @@ while(temp != undefined) {
 
 forEach(callbackfn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
-Uses a callback to traverse the entries in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this container and obtain their position indexes.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackfn | function | Yes| Callback invoked to traverse the entries in the container.|
+| callbackfn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value to use when the callback is invoked.|
 
 callbackfn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No| Value of the entry that is currently traversed.|
-| key | K | No| Key of the entry that is currently traversed.|
+| value | V | No| Value of the element that is currently traversed.|
+| key | K | No| Key of the element that is currently traversed.|
 | map | LightWeightMap<K, V> | No| Instance that invokes the **forEach** method.|
 
 **Example**
@@ -535,7 +582,7 @@ let lightWeightMap = new LightWeightMap();
 lightWeightMap.set("sdfs", 123);
 lightWeightMap.set("dfsghsf", 357);
 lightWeightMap.forEach((value, key) => {
-  console.log(value, key);
+  console.log("value:" + value, key);
 });
 ```
 
@@ -544,7 +591,9 @@ lightWeightMap.forEach((value, key) => {
 
 entries(): IterableIterator<[K, V]>
 
-Obtains an iterator that contains all the entries in this container.
+Obtains an iterator that contains all the elements in this container.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -561,8 +610,8 @@ lightWeightMap.set("sdfs", 356);
 let iter = lightWeightMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```
@@ -571,13 +620,15 @@ while(temp != undefined) {
 
 toString(): String
 
-Concatenates the entries in this container into a string and returns the string.
+Concatenates the elements in this container into a string and returns the string.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | String | Returns a string.|
+| Type| Description|
+| -------- | -------- |
+| String | String obtained.|
 
 **Example**
 
@@ -594,6 +645,8 @@ Concatenates the entries in this container into a string and returns the string.
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -609,16 +662,16 @@ lightWeightMap.set("sdfs", 356);
 
 // Method 1:
 for (let item of lightWeightMap) { 
-  console.log("key: " + item[0]);
-  console.log("value: " + item[1]);
+  console.log("key:" + item[0]);
+  console.log("value:" + item[1]);
 }
 
 // Method 2:
 let iter = lightWeightMap[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log(temp[0]);
-  console.log(temp[1]);
+  console.log("key:" + temp[0]);
+  console.log("value:" + temp[1]);
   temp = iter.next().value;
 }
 ```

@@ -1,4 +1,4 @@
-# User_auth
+# User Authentication
 
 ## Overview
 
@@ -6,7 +6,7 @@
 
 User authentication is indispensable in identity authentication scenarios, such as device unlocking, payment, and app logins. The user authentication framework (User_auth) manages the mappings between user identities and authentication credential templates in a unified manner. It schedules executors implemented by basic authentication services (including PIN authentication and facial recognition) to register user authentication credentials, delete credentials, obtain related information, and complete authentication. The figure below shows the architecture of user authentication.
 
-The User_auth driver is developed based on the Hardware Driver Foundation (HDF). It shields hardware differences and provides stable user authentication capabilities for apps and account management system ability (SA). It supports user credential management, authentication information enrollment, authentication scheme generation, and authentication executor information management.
+The User_auth driver is developed based on the Hardware Driver Foundation (HDF). It shields hardware differences and provides stable user authentication capabilities for apps and account management system ability (SA). It supports user credential management, authentication information enrollment, authentication scheme generation, and executor information management.
 
 **Figure 1** User authentication architecture
 
@@ -41,7 +41,7 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - Executor security level
 
-  Certain security level is required for the execution environment of an executor. For example, the executor security level is low for an operation performed without access control and high for an operation performed in a Trusted Execution Environment (TEE).
+  Security level required for the execution environment of an executor.
 
 - User_auth public key & executor public key
 
@@ -66,11 +66,11 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - SA
 
-  SAs are loaded by the System Ability Manager service to provide basic system capabilities for the OpenHarmony system.
+  SAs are loaded by the System Ability Manager to provide basic system capabilities for OpenHarmony devices.
 
 - Kit
 
-  The kit provides basic application programming interfaces (APIs) for third-party applications.
+  The kit provides basic APIs for third-party applications.
   
 - Inner API
 
@@ -78,22 +78,22 @@ The identity authentication consists of the User_auth framework and basic authen
 
 ### Working Principles
 
-The User_auth driver shields the differences of security devices and environments. It provides unified interface for the User_auth service to implement management of authentication executors and credentials as well as authentication scheme generation.
+The User_auth driver shields the differences of security devices and environments. It provides unified interfaces for the User_auth service to implement management of executors and credentials as well as authentication scheme generation.
 You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
 
 **Figure 2** User_auth service and User_auth driver APIs
 
-![image](figures/user_auth_service_and_driver_api.png "interaction between the uin_auth service and driver")
+![image](figures/user_auth_service_and_driver_api.png "interaction between the user_auth service and driver")
 
 ### Constraints
 
-The User_auth driver must be implemented in a TEE to ensure secure storage of user credential information and trustworthiness of user authentication results.
+The User_auth driver must be implemented in a Trusted Execution Environment (TEE) to ensure secure storage of user credentials and trustworthiness of user authentication results.
 
 ## Development Guidelines
 
 ### When to Use
 
-The User_auth driver provides stable user credential management, authentication session management, and executor information management capabilities for the User_auth service to ensure successful PIN authentication and biometric recognition on devices.
+The User_auth driver provides stable user credential management, authentication session management, and executor information management for the User_auth service to ensure successful PIN authentication and biometric recognition on devices.
 
 ### Available APIs
 
@@ -106,7 +106,7 @@ The User_auth driver provides stable user credential management, authentication 
 | DeleteExecutor(uint64_t index)                               | Deletes an executor.                             |
 | OpenSession(int32_t userId, std::vector<uint8_t>& challenge) | Opens a session for authentication credential management.                                   |
 | CloseSession(int32_t userId)                                 | Closes a session for authentication credential management.                                   |
-| BeginEnrollment(int32_t userId, const std::vector<uint8_t>& authToken, const EnrollParam& param,<br>        ScheduleInfo& info) | Enrolls the user authentication credential. If a user has enrolled a PIN, the new PIN enrolled will replace the old PIN.|
+| BeginEnrollment(int32_t userId, const std::vector<uint8_t>& authToken, const EnrollParam& param,<br>        ScheduleInfo& info) | Enrolls the user authentication credential. If a user has enrolled a PIN, the old PIN will be overwritten.|
 | UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t>& scheduleResult, uint64_t& credentialId,<br>        CredentialInfo& oldInfo) | Updates the data to complete this enrollment.                                |
 | CancelEnrollment(int32_t userId)                             | Cancels an enrollment operation.                                              |
 | DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector<uint8_t>& authToken,<br>        CredentialInfo& info) | Deletes credential information based on the specified **credentialId**.                              |
@@ -119,13 +119,13 @@ The User_auth driver provides stable user credential management, authentication 
 | CancelAuthentication(uint64_t contextId)                     | Cancels an authentication.                                              |
 | BeginIdentification(uint64_t contextId, AuthType authType, const std::vector<int8_t>& challenge,<br>        uint32_t executorId, ScheduleInfo& scheduleInfo) | Starts an identification to generate the identification scheme and scheduling information.                          |
 | UpdateIdentificationResult(uint64_t contextId, const std::vector<uint8_t>& scheduleResult,<br>        IdentifyResultInfo& info) | Updates the identification result to evaluate the identification scheme.                  |
-| CancelIdentification(uint64_t contextId)                     | Cancel an identification.                                              |
+| CancelIdentification(uint64_t contextId)                     | Cancels an identification.                                              |
 | GetAuthTrustLevel(int32_t userId, AuthType authType, uint32_t& authTrustLevel) | Obtains the authentication trust level of the specified authentication type.                      |
 | GetValidSolution(int32_t userId, const std::vector<AuthType>& authTypes, uint32_t authTrustLevel,<br>        std::vector<AuthType>& validTypes) | Obtains the valid authentication scheme based on the authentication trust level for a user.                  |
 
 ### How to Develop
 
-The following uses the Hi3516DV300 platform as an example to demonstrate how to develop the User_auth driver. <br/>The directory structure is as follows:
+The following uses the Hi3516D V300 development board as an example to demonstrate how to develop the User_auth driver. <br/>The directory structure is as follows:
 
 ```undefined
 // drivers/peripheral/user_auth
@@ -144,7 +144,7 @@ The development procedure is as follows:
 1. Develop the User_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [user_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_driver.cpp).
 
    ```c++
-   // Create the IRemoteObject object by using the custom HdfUserAuthInterfaceHost object, which consists of the IoService object and HDI service.
+   // Create an IRemoteObject object by using the custom HdfUserAuthInterfaceHost object, which consists of the IoService object and HDI service.
    struct HdfUserAuthInterfaceHost {
        struct IDeviceIoService ioService;
        OHOS::sptr<OHOS::IRemoteObject> stub;
@@ -197,7 +197,7 @@ The development procedure is as follows:
    
        auto serviceImpl = IUserAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
-           HDF_LOGE("%{public}s: failed to get of implement service", __func__);
+           HDF_LOGE("%{public}s: Failed to obtain service", __func__);
            return HDF_FAILURE;
        }
    
@@ -310,18 +310,18 @@ The development procedure is as follows:
        CoAuthSchedule scheduleInfo;
        int32_t ret = CheckEnrollPermission(checkParam, &scheduleInfo.scheduleId);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("check permission failed");
+           IAM_LOGE("Permission check failed");
            GlobalUnLock();
            return ret;
        }
        ret = GetCoAuthSchedule(&scheduleInfo);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("get schedule info failed");
+           IAM_LOGE("Failed to get schedule info");
            GlobalUnLock();
            return ret;
        }
        if (!CopyScheduleInfo(&scheduleInfo, &info)) {
-           IAM_LOGE("copy schedule info failed");
+           IAM_LOGE("Failed to copy schedule info");
            ret = RESULT_BAD_COPY;
        }
        GlobalUnLock();
@@ -456,7 +456,7 @@ The development procedure is as follows:
        UserAuthTokenHal authTokenHal;
        info.result = RequestAuthResultFunc(contextId, scheduleResultBuffer, &authTokenHal);
        if (info.result != RESULT_SUCCESS) {
-           IAM_LOGE("execute func failed");
+           IAM_LOGE("Failed to execute the function");
            DestoryBuffer(scheduleResultBuffer);
            GlobalUnLock();
            return info.result;
@@ -481,7 +481,7 @@ The development procedure is as follows:
        uint32_t scheduleIdNum = 0;
        int32_t ret = CancelContextFunc(contextId, nullptr, &scheduleIdNum);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("execute func failed");
+           IAM_LOGE("Failed to execute the function");
            GlobalUnLock();
            return ret;
        }
@@ -492,7 +492,7 @@ The development procedure is as follows:
 
 ### Verification
 
-Use the [User Authentication APIs](../../application-dev/reference/apis/js-apis-useriam-userauth.md) to develop a JavaScript application and verify the application on the Hi3516DV300 platform. The sample code for verifying the authentication and authentication cancellation is as follows:
+Use the [User Authentication APIs](../../application-dev/reference/apis/js-apis-useriam-userauth.md) to develop a JavaScript application and verify the application on the Hi3516D V300 development board. The sample code for verifying and canceling the authentication is as follows:
 
 ```js
 // API version 8
@@ -549,9 +549,9 @@ export default {
         });
         let cancelCode = this.auth.cancel(contextId);
         if (cancelCode == userIAM_userAuth.Result.SUCCESS) {
-            console.info("cancel auth success");
+            console.info("Authentication canceled successfully");
         } else {
-            console.error("cancel auth fail");
+            console.error("Failed to cancel authentication");
         }
     }
 }
