@@ -1098,7 +1098,7 @@ promise.then(async (ret) => {
 ```
 
 ### update<sup>9+</sup>
-update(table: string, values: ValuesBucket, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
+update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
 根据DataSharePredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。
 
@@ -1109,7 +1109,7 @@ update(table: string, values: ValuesBucket, predicates: DataSharePredicates, cal
 | -------- | -------- | -------- | -------- |
 | table | string | 是 | 指定的目标表名。 |
 | values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | DataSharePredicates | 是 |  DataSharePredicates的实例对象指定的更新条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)| 是 |  DataSharePredicates的实例对象指定的更新条件。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定的callback回调方法。返回受影响的行数。 |
 
 **示例：**
@@ -1144,7 +1144,7 @@ update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Pro
 | -------- | -------- | -------- | -------- |
 | table | string | 是 | 指定的目标表名。 |
 | values | [ValuesBucket](#valuesbucket) | 是 | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
-| predicates | DataSharePredicates | 是 | DataSharePredicates的实例对象指定的更新条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的更新条件。 |
 
 **返回值**：
 | 类型 | 说明 |
@@ -1242,7 +1242,7 @@ delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&l
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | table | string | 是 | 指定的目标表名。 |
-| predicates | DataSharePredicates | 是 |  DataSharePredicates的实例对象指定的删除条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是 |  DataSharePredicates的实例对象指定的删除条件。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。返回受影响的行数。 |
 
 **示例：**
@@ -1260,7 +1260,7 @@ rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
 ```
 ### delete<sup>9+</sup>
 
-delete(table: string, predicates: DataSharePredicates):Promise&lt;number&gt;
+delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 根据DataSharePredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。
 
@@ -1270,7 +1270,7 @@ delete(table: string, predicates: DataSharePredicates):Promise&lt;number&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | table | string | 是 | 指定的目标表名。 |
-| predicates | DataSharePredicates | 是 | DataSharePredicates的实例对象指定的删除条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的删除条件。 |
 
 **返回值**：
 | 类型 | 说明 |
@@ -1363,7 +1363,7 @@ query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: A
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| predicates | DataSharePredicates | 是 | DataSharePredicates的实例对象指定的查询条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
@@ -1393,7 +1393,7 @@ query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| predicates | DataSharePredicates | 是 | DataSharePredicates的实例对象指定的查询条件。 |
+| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
