@@ -20,7 +20,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 | webgl.enableVertexAttribArray(index:&nbsp;GLuint):&nbsp;void | 连接变量与分配给它的缓冲区对象。 |
 | webgl.clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,<br />&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf):&nbsp;void | 清空&lt;canvas&gt;指定的颜色。 |
 | webgl.clear(mask:&nbsp;GLbitfield):&nbsp;void | 清空&lt;canvas&gt;。 |
-| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:&nbsp<br />;GLint,&nbsp;count:&nbsp;GLsizei):&nbsp;void | 执行数据绘制。 |
+| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:;GLint,<br />&nbsp;count:&nbsp;GLsizei):&nbsp;void | 执行数据绘制。 |
 | webgl.flush():&nbsp;void | 刷新数据至GPU，清空缓冲区。 |
 | webgl.createProgram():&nbsp;WebGLProgram&nbsp;\|&nbsp;null | 创建着色器程序对象。 |
 
