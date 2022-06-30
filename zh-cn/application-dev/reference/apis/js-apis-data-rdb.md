@@ -1114,14 +1114,14 @@ update(table: string, values: ValuesBucket, predicates: DataSharePredicates, cal
 
 **示例：**
 ```js
-import dataShare from '@ohos.data.dataShare'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 const valueBucket = {
     "NAME": "Rose",
     "AGE": 22,
     "SALARY": 200.5,
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
-let predicates = new dataShare.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
     if (err) {
@@ -1153,14 +1153,14 @@ update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Pro
 
 **示例：**
 ```js
-import dataShare from '@ohos.data.dataShare'
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
 const valueBucket = {
     "NAME": "Rose",
     "AGE": 22,
     "SALARY": 200.5,
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
-let predicates = new dataShare.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
 promise.then(async (ret) => {
@@ -1247,8 +1247,8 @@ delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&l
 
 **示例：**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
     if (err) {
@@ -1279,8 +1279,8 @@ delete(table: string, predicates: DataSharePredicates):Promise&lt;number&gt;
 
 **示例：**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.delete("EMPLOYEE", predicates)
 promise.then((rows) => {
@@ -1369,8 +1369,8 @@ query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: A
 
 **示例：**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
     if (err) {
@@ -1403,8 +1403,8 @@ query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt
 
 **示例：**
 ```js
-import dataShare from '@ohos.data.dataShare'
-let predicates = new dataShare.DataSharePredicates()
+import dataSharePredicates from '@ohos.data.dataSharePredicates'
+let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 let promise = rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
