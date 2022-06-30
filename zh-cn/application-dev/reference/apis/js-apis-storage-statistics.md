@@ -212,7 +212,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
 ## storagestatistics.getCurrentBundleStats<sup>9+</sup>
 
-getCurrentBundleStats(): Promise<BundleStats>
+getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 第三方应用异步获取占用空间，以promise方式返回。
 
@@ -233,7 +233,7 @@ getCurrentBundleStats(): Promise<BundleStats>
 
 ## storagestatistics.getCurrentBundleStats<sup>9+</sup>
 
-getCurrentBundleStats(callback: AsyncCallback<BundleStats>): void
+getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 第三方应用异步获取占用空间，以callback方式返回。
  
@@ -258,7 +258,7 @@ getCurrentBundleStats(callback: AsyncCallback<BundleStats>): void
   
 ## BundleStats<sup>9+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。<br>
 该接口为系统接口，三方应用不支持调用
 
 - 属性
@@ -274,7 +274,7 @@ getCurrentBundleStats(callback: AsyncCallback<BundleStats>): void
 
 ## storagestatistics.getTotalSize<sup>9+</sup>
 
-getTotalSize(): Promise<number>
+getTotalSize(): Promise&lt;number&gt;
 
 获取内卡的总空间大小，以promise方式返回。
 
@@ -299,7 +299,7 @@ getTotalSize(): Promise<number>
   
 ## storagestatistics.getTotalSize<sup>9+</sup>
 
-getTotalSize(callback: AsyncCallback<number>): void
+getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
 获取内卡的总空间大小，以callback方式返回。
 
@@ -327,7 +327,7 @@ getTotalSize(callback: AsyncCallback<number>): void
 
 ## storagestatistics.getFreeSize<sup>9+</sup>
 
-getFreeSize(): Promise<number>
+getFreeSize(): Promise&lt;number&gt;
 
 获取内卡的可用空间大小，以promise方式返回。
 
@@ -353,7 +353,7 @@ getFreeSize(): Promise<number>
 
 ## storagestatistics.getFreeSize<sup>9+</sup>
 
-getFreeSize(callback: AsyncCallback<number>): void
+getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
 获取内卡的可用空间大小，以callback方式返回。
 
@@ -439,7 +439,7 @@ getSystemSize(callback:AsyncCallback&lt;number&gt;):void
   
 ## storagestatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
+getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
 异步获取用户各类别数据大小，以promise方式返回。
 
@@ -474,7 +474,7 @@ getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
 
 ## storagestatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId?: number, callback:AsyncCallback&lt;StorageStats&gt;):void
+getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):void
 
 异步获取用户各类别数据大小，以callback方式返回。
 
@@ -505,7 +505,7 @@ getUserStorageStats(userId?: number, callback:AsyncCallback&lt;StorageStats&gt;)
 
 ## StorageStats<sup>9+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。<br>
 该接口为系统接口，三方应用不支持调用
 - 属性
 
