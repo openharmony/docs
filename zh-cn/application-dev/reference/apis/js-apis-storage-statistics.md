@@ -23,7 +23,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -58,7 +58,7 @@ getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):v
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -89,7 +89,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -125,7 +125,7 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -154,7 +154,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -189,7 +189,7 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -259,7 +259,7 @@ getCurrentBundleStats(callback: AsyncCallback<BundleStats>): void
 ## BundleStats<sup>9+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 属性
 
@@ -282,7 +282,7 @@ getTotalSize(): Promise<number>
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 返回值
 
@@ -307,7 +307,7 @@ getTotalSize(callback: AsyncCallback<number>): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -335,7 +335,7 @@ getFreeSize(): Promise<number>
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 返回值
 
@@ -361,7 +361,7 @@ getFreeSize(callback: AsyncCallback<number>): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -390,7 +390,7 @@ getSystemSize(): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 返回值
 
@@ -418,7 +418,7 @@ getSystemSize(callback:AsyncCallback&lt;number&gt;):void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -447,7 +447,7 @@ getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -482,7 +482,7 @@ getUserStorageStats(userId?: number, callback:AsyncCallback&lt;StorageStats&gt;)
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -506,7 +506,7 @@ getUserStorageStats(userId?: number, callback:AsyncCallback&lt;StorageStats&gt;)
 ## StorageStats<sup>9+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。
-**系统API**：该接口为系统接口，三方应用不支持调用
+该接口为系统接口，三方应用不支持调用
 - 属性
 
 | 名称      | 类型   | 说明           |
