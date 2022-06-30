@@ -2240,7 +2240,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑|
+| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
 | callback  | AsyncCallback&lt;void&gt;  | 是    |回调函数。   |
 
 **示例：**
@@ -3681,7 +3681,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;Kv
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| predicates  |[Predicates](#)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑            |
+| predicates  |[Predicates](#)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。            |
 
 **返回值：**
 
@@ -5440,7 +5440,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
-| query            |[Query](#querysup8sup)  | 是    | 数据库的查询谓词条件 |
+| query            |[Query](#query8)  | 是    | 数据库的查询谓词条件。|
 | delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
 
 **示例：**
