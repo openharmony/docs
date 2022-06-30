@@ -47,9 +47,9 @@ Connects to a device with a specified key.
 
   | Parameter | Description | 
   | -------- | -------- |
-  | key | Key that identifies the device. The value is in the &nbsp;IP address:port&nbsp; format or is a USB serial number. | 
+  | key | Key that identifies the device. The value is in the *IP address:Port* format or is a USB serial number. | 
   | **Return Value** | **Description** | 
-  | 1. error:&nbsp;device&nbsp;'\*\*\*'&nbsp;not&nbsp;found<br/>2. Nothing&nbsp;to&nbsp;do... | 1. The device does not exist<br>2. The command appended to **-t key** does not exist. | 
+  | 1. error: device '***' not found<br/>2. Nothing&nbsp;to&nbsp;do... | 1. The device does not exist<br>2. The command appended to **-t key** does not exist. | 
 
 Examples:
 
