@@ -67,6 +67,7 @@ In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits
    > During the installation, the page for agreeing to the user agreement and privacy statement is displayed. Read and agree to the user agreement and privacy statement.
    > 
    > If this page is not displayed and the installation exits, run the apt-get install whiptail command, then the installation command.
+
    Wait until the "Deveco Device Tool successfully installed." message is displayed.
 
    ![en-us_image_0000001198722374](figures/en-us_image_0000001198722374.png)
