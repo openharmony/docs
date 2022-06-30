@@ -16,7 +16,7 @@ choose(types:string[]): Promise&lt;string&gt;
 
 通过文件管理器选择文件，异步返回文件URI，使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数：
 
@@ -42,7 +42,7 @@ choose(callback:AsyncCallback&lt;string&gt;): void
 
 通过文件管理器选择文件，异步返回文件URI，使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数：
 
@@ -64,7 +64,7 @@ choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
 通过文件管理器选择文件，异步返回文件URI，使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数：
 
@@ -85,11 +85,11 @@ choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
 ## document.show
 
-show(url:string, types:string):Promise&lt;number&gt;
+show(uri:string, types:string):Promise&lt;void&gt;
 
 异步打开URI对应的文件，使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数：
 
@@ -114,11 +114,11 @@ show(url:string, types:string):Promise&lt;number&gt;
 
 ## document.show
 
-show(url:string, types:string, callback:AsyncCallback&lt;void&gt;): void
+show(uri:string, types:string, callback:AsyncCallback&lt;void&gt;): void
 
 异步打开URI对应的文件，使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 - 参数：
 
