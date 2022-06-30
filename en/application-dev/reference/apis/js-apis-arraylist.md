@@ -320,10 +320,10 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.replaceAllElements((value, index) => {
+arrayList.replaceAllElements((value: number, index: number)=> {
   return value = 2 * value;
 });
-arrayList.replaceAllElements((value, index) => {
+arrayList.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
 ```
@@ -394,8 +394,8 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-arrayList.sort((a, b) => a - b);
-arrayList.sort((a, b) => b - a);
+arrayList.sort((a: number, b: number) => a - b);
+arrayList.sort((a: number, b: number) => b - a);
 arrayList.sort();
 ```
 

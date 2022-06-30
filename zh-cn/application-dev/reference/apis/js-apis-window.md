@@ -98,6 +98,27 @@ import window from '@ohos.window';
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
+## Orientation<sup>9+</sup>
+
+窗口显示方向类型枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称                                  | 值   | 说明                          |
+| ------------------------------------- | ---- | ----------------------------- |
+| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。 |
+| PORTRAIT                              | 1    | 表示竖屏显示模式。             |
+| LANDSCAPE                             | 2    | 表示横屏显示模式。   |
+| PORTAIT_INVERTED                      | 3    | 表示反向竖屏显示模式。   |
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。 |
+| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。 |
+| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
+| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横向旋转模式。 |
+| LOCKED                                | 11   | 表示锁定模式。 |
+
 ## SystemBarRegionTint<sup>8+</sup>
 
 单个导航栏或状态栏回调信息。
@@ -1471,6 +1492,66 @@ promise.then((data)=> {
 });
 ```
 
+### setPreferredOrientation<sup>9+</sup>
+
+setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口的显示方向属性，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名              | 类型                                        | 必填 | 说明                   |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| Orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。         |
+| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
+
+**示例：** 
+
+```js
+var orientation = window.Orientation.AUTO_ROTATION;
+windowClass.setPreferredOrientation(orientation, (err, data) => {
+    if (err.code) {
+        console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in setting window orientation. Data: ' + JSON.stringify(data));
+});
+```
+
+### setPreferredOrientation<sup>9+</sup>
+
+setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
+
+设置窗口的显示方向属性，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名              | 类型                                        | 必填 | 说明                   |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| Orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。       |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：** 
+
+```js
+var orientation = window.Orientation.AUTO_ROTATION;
+let promise = windowClass.setPreferredOrientation(orientation);
+promise.then((data)=> {
+    console.info('Succeeded in setting the window orientation. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to set the window orientation. Cause: ' + JSON.stringify(err));
+});
+```
+
 ### loadContent<sup>7+</sup>
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -2540,6 +2621,71 @@ promise.then((data)=> {
     console.info('Succeeded in setting the window to be touchable. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
+});
+```
+
+### setForbidSplitMove<sup>9+</sup>
+
+setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口在分屏模式下是否被禁止移动，使用callback异步回调。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名      | 类型                      | 必填 | 说明                 |
+| ----------- | ------------------------- | ---- | -------------------- |
+| isForbidSplitMove | boolean                   | 是   | 窗口在分屏模式下是否被禁止移动。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**示例：** 
+
+```js
+var isForbidSplitMove = true;
+windowClass.setForbidSplitMove(isForbidSplitMove, (err, data) => {
+    if (err.code) {
+        console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in forbidding window moving in split screen mode. Data:' + JSON.stringify(data));
+
+});
+```
+
+### setForbidSplitMove<sup>9+</sup>
+
+setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
+
+设置窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名      | 类型    | 必填 | 说明                 |
+| ----------- | ------- | ---- | -------------------- |
+| isForbidSplitMove | boolean | 是   | 窗口在分屏模式下是否被禁止移动。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：** 
+
+```js
+var isForbidSplitMove = true;
+let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+promise.then((data)=> {
+    console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
 });
 ```
 

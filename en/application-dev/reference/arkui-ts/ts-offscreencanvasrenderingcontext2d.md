@@ -1,8 +1,7 @@
 # OffscreenCanvasRenderingContext2D
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 Use **OffscreenCanvasRenderingContext2D** to draw rectangles, images, and text offscreen onto a canvas. Drawing offscreen onto a canvas is a process where content to draw onto the canvas is first drawn in the buffer, and then converted into a picture, and finally the picture is drawn on the canvas. This process increases the drawing efficiency.
@@ -43,14 +42,15 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | true                            | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite. |
 | imageSmoothingQuality                    | string                                   | 'low'                           | Image smoothness. The value can be **'low'**, **'medium'**, or **'high'**. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The value of the **&lt;color&gt;** type can be in 'rgb(255, 255, 255)', 'rgba(255, 255, 255, 1.0)', or '\#FFFFFF' format.
 
 
 ### fillStyle
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FillStyleExample {
@@ -83,7 +83,8 @@ struct FillStyleExample {
 ### lineWidth
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineWidthExample {
@@ -116,7 +117,8 @@ struct LineWidthExample {
 ### strokeStyle
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StrokeStyleExample {
@@ -151,7 +153,8 @@ struct StrokeStyleExample {
 ### lineCap
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineCapExample {
@@ -188,7 +191,8 @@ struct LineCapExample {
 ### lineJoin
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineJoinExample {
@@ -226,7 +230,8 @@ struct LineJoinExample {
 ### miterLimit
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MiterLimit {
@@ -264,7 +269,8 @@ struct MiterLimit {
 ### font
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Font {
@@ -297,7 +303,8 @@ struct Font {
 ### textAlign
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CanvasExample {
@@ -345,7 +352,8 @@ struct CanvasExample {
 ### textBaseline
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextBaseline {
@@ -393,7 +401,8 @@ struct TextBaseline {
 ### globalAlpha
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalAlpha {
@@ -429,7 +438,8 @@ struct GlobalAlpha {
 ### lineDashOffset
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineDashOffset {
@@ -477,7 +487,8 @@ struct LineDashOffset {
 | xor              | Combines the new drawing and existing drawing using the XOR operation. |
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalCompositeOperation {
@@ -518,7 +529,8 @@ struct GlobalCompositeOperation {
 ### shadowBlur
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowBlur {
@@ -553,7 +565,8 @@ struct ShadowBlur {
 ### shadowColor
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowColor {
@@ -589,7 +602,8 @@ struct ShadowColor {
 ### shadowOffsetX
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetX {
@@ -625,7 +639,8 @@ struct ShadowOffsetX {
 ### shadowOffsetY
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetY {
@@ -661,7 +676,8 @@ struct ShadowOffsetY {
 ### imageSmoothingEnabled
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ImageSmoothingEnabled {
@@ -711,7 +727,8 @@ Fills a rectangle on the canvas.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct FillRect {
@@ -800,7 +817,8 @@ Clears the content in a rectangle on the canvas.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct ClearRect {
@@ -845,7 +863,8 @@ Draws filled text on the canvas.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct FillText {
@@ -941,7 +960,8 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct MeasureText {
@@ -1023,7 +1043,8 @@ Creates a drawing path.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct BeginPath {
@@ -1070,7 +1091,8 @@ Moves a drawing path to a target position on the canvas.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct MoveTo {
@@ -1115,7 +1137,8 @@ Connects the current point to a target position using a straight line.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct LineTo {
@@ -1154,7 +1177,8 @@ Draws a closed path.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct ClosePath {
@@ -1201,7 +1225,8 @@ Creates a pattern for image filling based on a specified source image and repeti
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct CreatePattern {
@@ -1250,7 +1275,8 @@ Draws a cubic bezier curve on the canvas.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct BezierCurveTo {
@@ -1297,7 +1323,8 @@ Draws a quadratic curve on the canvas.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct QuadraticCurveTo {
@@ -1346,7 +1373,8 @@ Draws an arc on the canvas.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Arc {
@@ -1393,7 +1421,8 @@ Draws an arc based on the radius and points on the arc.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct ArcTo {
@@ -1444,7 +1473,8 @@ Draws an ellipse in the specified rectangular region.
 - Example
 
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1490,7 +1520,8 @@ Creates a rectangle.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1527,7 +1558,8 @@ Fills the area inside a closed path.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Fill {
@@ -1564,7 +1596,8 @@ Sets the current path to a clipping path.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Clip {
@@ -1609,7 +1642,8 @@ Rotates a canvas clockwise around its coordinate axes.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Rotate {
@@ -1652,7 +1686,8 @@ Scales a canvas based on scale factors.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Scale {
@@ -1688,7 +1723,7 @@ transform(scaleX: number, skewX: number, skewY: number, scaleY: number, translat
 
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
 > - x' = scaleX \* x + skewY \* y + translateX
@@ -1707,7 +1742,8 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Transform {
@@ -1760,7 +1796,8 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct SetTransform {
@@ -1806,7 +1843,8 @@ Moves the origin of the coordinate system.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Translate {
@@ -1838,18 +1876,18 @@ Moves the origin of the coordinate system.
 
 ### drawImage
 
-drawImage(image: ImageBitmap, dx: number, dy: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
-drawImage(image: ImageBitmap, dx: number, dy: number, dWidth: number, dHeight: number): void
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dWidth: number, dHeight: number): void
 
-drawImage(image: ImageBitmap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
+drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number, sHeight: number, dx: number, dy: number, dWidth: number, dHeight: number):void
 
 Draws an image.
 
 - Parameters
     | Name    | Type                                     | Mandatory | Default Value | Description                              |
     | ------- | ---------------------------------------- | --------- | ------------- | ---------------------------------------- |
-    | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) | Yes       | null          | Image resource. For details, see ImageBitmap. |
+    | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes       | null          | Image resource. For details, see ImageBitmap. |
     | sx      | number                                   | No        | 0             | X-coordinate of the upper left corner of the rectangle used to crop the source image. |
     | sy      | number                                   | No        | 0             | Y-coordinate of the upper left corner of the rectangle used to crop the source image. |
     | sWidth  | number                                   | No        | 0             | Target width to crop the source image.   |
@@ -1862,7 +1900,8 @@ Draws an image.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct Index {
@@ -1915,12 +1954,24 @@ Creates an **ImageData** object by copying an existing **ImageData** object. For
     | --------- | ---------------------------------------- | --------- | ------------- | ----------------------------- |
     | imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | Yes       | null          | **ImageData** object to copy. |
 
+### getPixelMap
+
+getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
+
+Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created with the pixels within the specified area on the canvas.
+- Parameters
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | sx | number | Yes | 0 | X-coordinate of the upper left corner of the output area. |
+  | sy | number | Yes | 0 | Y-coordinate of the upper left corner of the output area. |
+  | sw | number | Yes | 0 | Width of the output area. |
+  | sh | number | Yes | 0 | Height of the output area. |
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
-Creates an [ImageData](ts-components-canvas-imagebitmap.md) object with pixels in the specified area on the canvas.
+Obtains the **[ImageData](ts-components-canvas-imagebitmap.md)** object created with the pixels within the specified area on the canvas.
 
 - Parameters
     | Name | Type   | Mandatory | Default Value | Description                              |
@@ -1950,7 +2001,8 @@ Puts the [ImageData](ts-components-canvas-imagebitmap.md) onto a rectangular are
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct PutImageData {
@@ -1993,7 +2045,8 @@ Restores the saved drawing context.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -2027,7 +2080,8 @@ Saves the current drawing context.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -2069,7 +2123,8 @@ Creates a linear gradient.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct CreateLinearGradient {
@@ -2121,7 +2176,8 @@ Creates a linear gradient.
 
 - Example
 
-  ```
+  ```ts
+// xxx.ets
   @Entry
   @Component
   struct CreateRadialGradient {

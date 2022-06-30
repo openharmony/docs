@@ -13,14 +13,14 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 | -------- | -------- |
 | canvas.getContext | 获取canvas对象上下文。 |
 | webgl.createBuffer():&nbsp;WebGLBuffer&nbsp;\|&nbsp;null | 创建与初始化WebGL数据缓冲区。 |
-| webgl.bindBuffer(target:&nbsp;GLenum,&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null):&nbsp;void | 将WebGL数据缓冲区与目标进行绑定。 |
-| webgl.bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;usage:&nbsp;GLenum,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint):&nbsp;void | 创建并初始化WebGL的数据存储区。 |
-| webgl.getAttribLocation(program:&nbsp;WebGLProgram,&nbsp;name:&nbsp;string):&nbsp;GLint | 从给定WebGL着色程序中获取着色器中attribute变量的地址。 |
-| webgl.vertexAttribPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,&nbsp;normalized:&nbsp;GLboolean,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr):&nbsp;void | 将缓冲区对象分配给变量。 |
+| webgl.bindBuffer(target:&nbsp;GLenum,<br />&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null):&nbsp;void | 将WebGL数据缓冲区与目标进行绑定。 |
+| webgl.bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,<br />&nbsp;usage:&nbsp;GLenum,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint):&nbsp;void | 创建并初始化WebGL的数据存储区。 |
+| webgl.getAttribLocation(program:&nbsp;WebGLProgram,<br />&nbsp;name:&nbsp;string):&nbsp;GLint | 从给定WebGL着色程序中获取着色器中attribute变量的地址。 |
+| webgl.vertexAttribPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,<br />&nbsp;normalized:&nbsp;GLboolean,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr):&nbsp;void | 将缓冲区对象分配给变量。 |
 | webgl.enableVertexAttribArray(index:&nbsp;GLuint):&nbsp;void | 连接变量与分配给它的缓冲区对象。 |
-| webgl.clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf):&nbsp;void | 清空&lt;canvas&gt;指定的颜色。 |
+| webgl.clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,<br />&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf):&nbsp;void | 清空&lt;canvas&gt;指定的颜色。 |
 | webgl.clear(mask:&nbsp;GLbitfield):&nbsp;void | 清空&lt;canvas&gt;。 |
-| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:&nbsp;GLint,&nbsp;count:&nbsp;GLsizei):&nbsp;void | 执行数据绘制。 |
+| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:;GLint,<br />&nbsp;count:&nbsp;GLsizei):&nbsp;void | 执行数据绘制。 |
 | webgl.flush():&nbsp;void | 刷新数据至GPU，清空缓冲区。 |
 | webgl.createProgram():&nbsp;WebGLProgram&nbsp;\|&nbsp;null | 创建着色器程序对象。 |
 

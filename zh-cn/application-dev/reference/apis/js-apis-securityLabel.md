@@ -23,18 +23,18 @@ let path = context.getFilesDir();
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, dataLevel:string):Promise&lt;void&gt;
+setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 
 以异步方法设置数据标签，以promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
-| 参数名    | 类型   | 必填 | 说明                                         |
-| --------- | ------ | ---- | -------------------------------------------- |
-| path      | string | 是   | 文件路径                                     |
-| dataLevel | string | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| 参数名    | 类型       | 必填 | 说明                                         |
+| --------- | ------    | ---- | -------------------------------------------- |
+| path      | string    | 是   | 文件路径                                     |
+| type      | dataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
 **返回值：**
 
@@ -45,8 +45,8 @@ setSecurityLabel(path:string, dataLevel:string):Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dataLevel = "s4";
-  securityLabel.setSecurityLabel(path, dataLevel).then(function(){
+  let type = "s4";
+  securityLabel.setSecurityLabel(path, type).then(function(){
       console.info("setSecurityLabel successfully");
   }).catch(function(error){
       console.info("setSecurityLabel failed with error:" + error);
@@ -55,48 +55,48 @@ setSecurityLabel(path:string, dataLevel:string):Promise&lt;void&gt;
 
 ## securityLabel.setSecurityLabel
 
-setSecurityLabel(path:string, dataLevel:string, callback: AsyncCallback&lt;void&gt;):void
+setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt;):void
 
 以异步方法设置数据标签，以callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
 | 参数名    | 类型                      | 必填 | 说明                                         |
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | 是   | 文件路径                                     |
-| dataLevel | string                    | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | dataLevel                 | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 是否设置数据标签之后的回调                   |
 
 **示例：**
 
   ```js
-  let dataLevel = "s4";
-  securityLabel.setSecurityLabel(path, dataLevel, function(error){
+  let type = "s4";
+  securityLabel.setSecurityLabel(path, type, function(error){
       console.info("setSecurityLabel:" + JSON.stringify(error));
   });
   ```
 ## securityLabel.setSecurityLabelSync
 
-setSecurityLabelSync(path:string, dataLevel:string):void
+setSecurityLabelSync(path:string, type:dataLevel):void
 
 以同步方法设置数据标签。
 
-**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
 | 参数名    | 类型   | 必填 | 说明                                         |
 | --------- | ------ | ---- | -------------------------------------------- |
 | path      | string | 是   | 文件路径                                     |
-| dataLevel | string | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
+| type      | dataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
 **示例：**
 
 ```js
-let dataLevel = "s4";
-securityLabel.setSecurityLabelSync(path, dataLevel);
+let type = "s4";
+securityLabel.setSecurityLabelSync(path, type);
 ```
 
 ## securityLabel.getSecurityLabel
@@ -105,7 +105,7 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 
 异步方法获取数据标签，以promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
@@ -122,9 +122,9 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let dataLevel = "s4";
-  securityLabel.getSecurityLabel(path).then(function(dataLevel){
-      console.log("getSecurityLabel successfully:" + dataLevel);
+  let type = "s4";
+  securityLabel.getSecurityLabel(path).then(function(type){
+      console.log("getSecurityLabel successfully:" + type);
   }).catch(function(error){
       console.log("getSecurityLabel failed with error:" + error);
   });
@@ -136,7 +136,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
 异步方法获取数据标签，以callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
@@ -148,9 +148,9 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  let dataLevel = "s4";
-  securityLabel.getSecurityLabel(path,function(error, dataLevel){
-      console.log("getSecurityLabel successfully:" + dataLevel);
+  let type = "s4";
+  securityLabel.getSecurityLabel(path,function(error, type){
+      console.log("getSecurityLabel successfully:" + type);
   });
   ```
 ## securityLabel.getSecurityLabelSync
@@ -159,7 +159,7 @@ getSecurityLabelSync(path:string):string
 
 以同步方法获取数据标签。
 
-**系统能力**：SystemCapability.FileManagement.File.DistributedFile
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 

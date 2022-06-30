@@ -50,6 +50,8 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 发布一个后台代理提醒，使用Promise方式实现异步调用。
 
+**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：

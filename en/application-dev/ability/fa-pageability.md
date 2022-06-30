@@ -37,6 +37,8 @@ You can override the lifecycle callbacks provided by the Page ability in the **a
 The ability supports two launch types: singleton and multi-instance.
 You can specify the launch type by setting **launchType** in the **config.json** file.
 
+**Table 1** Introduction to startup mode
+
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
 | standard    | Multi-instance  | A new instance is started each time an ability starts.|
@@ -48,7 +50,7 @@ By default, **singleton** is used.
 ## Development Guidelines
 ### Available APIs
 
-**Table 1** APIs provided by featureAbility
+**Table 2** APIs provided by featureAbility
 
 | API                                             | Description           |
 | --------------------------------------------------- | --------------- |
@@ -86,8 +88,10 @@ By default, **singleton** is used.
   );
 ```
 
-### Starting a Remote Page Ability (Applying only to System Applications)
->Note: The **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications. Therefore, remote Page ability startup applies only to system applications.
+### Starting a Remote Page Ability
+>Note
+>
+>This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
 
 **Modules to Import**
 
@@ -176,7 +180,7 @@ In the cross-device scenario, the application must also apply for the data synch
 
 ### Lifecycle APIs
 
-**Table 2** Lifecycle callbacks
+**Table 3** Lifecycle callbacks
 
 | API      | Description                                                        |
 | ------------ | ------------------------------------------------------------ |
