@@ -201,7 +201,7 @@ updater.getNewVersionInfo().then(info => {
   console.log(`info versionName = ` + info.versionComponents[0].displayVersion);
   console.log(`info versionCode = ` + info.versionComponents[0].innerVersion);
 }).catch(err => {
-  console.log("getNewVersionInfo promise error $JSON.stringify(err));
+  console.log("getNewVersionInfo promise error $JSON.stringify(err)");
 });
 ```
 
@@ -1254,7 +1254,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | subStatus         | number | 否    | 子状态    |
 | progress         | number | 是    | 进度    |
 | installMode         | number | 是    | 安装模式    |
-| errorMessages         |  Array\<[ErrorMessage](#errorMessage)>  | 否    | 错误内容    |
+| errorMessages         |  Array\<[ErrorMessage](#errorMessage)>  | 否    | 错误信息    |
 | versionComponets         | Array\<[VersionComponet](#versionComponet)> | 是    | 版本组件    |
 
 ## ErrorMessage
@@ -1281,54 +1281,16 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 ## UpgradeTaskCallback
 
-### onTaskUpdate(eventInfo: [EventInfo](#eventInfo))
+### onTaskUpdate
+onTaskUpdate(eventInfo: [EventInfo](#eventInfo)): void
 
-更新事件回调。
+事件回调。
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
 | 名称              | 参数类型                                     | 必填   | 说明   |
 | --------------- | ---------------------------------------- | ---- | ---- |
 | eventInfo          | [EventInfo](#eventInfo)     | 是    | 事件信息 |
-
-## NewVersionInfo
-
-新版本信息。
-
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
-| 名称              | 参数类型                                     | 必填   | 说明   |
-| --------------- | ---------------------------------------- | ---- | ---- |
-| status          | [NewVersionStatus](#newversionstatus)    | 是    | 升级状态 |
-| errMsg          | string                                   | 是    | 错误信息 |
-| checkResults    | Array<[CheckResult](#checkresult)>       | 是    | 检测结果 |
-| descriptionInfo | Array\<[DescriptionInfo](#descriptioninfo)> | 是    | 描述信息 |
-
-## CheckResult
-
-检测结果。
-
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
-| 名称            | 参数类型                          | 必填   | 说明     |
-| ------------- | ----------------------------- | ---- | ------ |
-| versionName   | string                        | 是    | 版本名称   |
-| versionCode   | number                        | 是    | 版本编码   |
-| size          | number                        | 是    | 版本大小   |
-| verifyInfo    | string                        | 是    | 版本校验信息 |
-| packageType   | [PackageTypes](#packagetypes) | 是    | 版本类型   |
-| descriptionId | string                        | 是    | 版本描述信息 |
-
-## DescriptionInfo
-
-版本描述信息。
-
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
-
-| 名称            | 参数类型   | 必填   | 说明            |
-| ------------- | ------ | ---- | ------------- |
-| descriptionId | string | 是    | 版本versionId信息 |
-| content       | string | 是    | 版本changelog信息 |
 
 ## BusinessVendor
 
