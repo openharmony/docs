@@ -230,14 +230,14 @@ Example:
 	- *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
 	- *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
 
-	    > **NOTE**
-	    > - The expected result of each test case must have an assertion.
-	    > - The test case level must be specified.
-	    > It is recommended that the test be implemented step by step according to the template.
-	    > The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case type @**tc.type** can be any of the following:
+	    Note the following:
+	    -  The expected result of each test case must have an assertion.
+	    -  The test case level must be specified.
+	    -  It is recommended that the test be implemented step by step according to the template.
+	    -  The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case type @**tc.type** can be any of the following:
 
 	| Test Case Type | Code |
-    	| ------------|------------|
+    	| ------------ |------------ |
     	| Function test | FUNC |
     	| Performance test | PERF |
     	| Reliability test | RELI |
