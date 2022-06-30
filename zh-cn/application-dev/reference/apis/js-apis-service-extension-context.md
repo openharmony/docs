@@ -30,7 +30,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
       "abilityName": "com.example.myapp.MyAbility"
   };
   this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringfy(err));
+      console.log('startAbility result:' + JSON.stringify(err));
   });
   ```
 
@@ -63,9 +63,9 @@ startAbility(want: Want): Promise&lt;void&gt;;
       "abilityName": "com.example.myapp.MyAbility"
   };
   this.context.startAbility(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -88,7 +88,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
   ```js
   this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err));
+      console.log('terminateSelf result:' + JSON.stringify(err));
   });
   ```
 
@@ -111,9 +111,9 @@ terminateSelf(): Promise&lt;void&gt;;
 
   ```js
   this.context.terminateSelf(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -174,7 +174,7 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
   ```js
   this.context.disconnectAbility(connection, (err) => { // connection为connectAbility中的返回值
-      console.log('terminateSelf result:' + JSON.stringfy(err));
+      console.log('terminateSelf result:' + JSON.stringify(err));
   });
   ```
 
@@ -203,9 +203,9 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 
   ```js
   this.context.disconnectAbility(connection).then((data) => { // connection为connectAbility中的返回值
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 

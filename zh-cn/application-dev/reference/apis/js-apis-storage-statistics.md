@@ -4,14 +4,13 @@
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
-> - 本模块接口为系统接口，三方应用不支持调用。
 
 该模块提供空间查询相关的常用功能：包括对内外卡的空间查询，对应用分类数据统计的查询，对应用数据的查询等。
 
 ## 导入模块
 
 ```js
-import storagestatistics from "@ohos.storageStatistics";
+import storageStatistics from "@ohos.storageStatistics";
 ```
 
 ## storagestatistics.getTotalSizeOfVolume
@@ -20,7 +19,11 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 异步获取指定卷的总空间大小，以promise方式返回。
 
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -51,7 +54,11 @@ getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):v
 
 异步获取指定卷的总空间大小，以callback方式返回。
 
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -78,7 +85,11 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
 异步获取指定卷的可用空间大小，以promise方式返回。
 
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -110,7 +121,11 @@ getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):vo
 
 异步获取指定卷的可用空间大小，以callback方式返回。
 
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -135,7 +150,11 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
 异步获取应用存储数据，以promise方式返回。
 
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -166,7 +185,11 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
 
 异步获取应用存储数据，以callback方式返回。
 
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
 
 - 参数
 
@@ -185,14 +208,312 @@ getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;)
   });
   ```
 
+
+
+## storagestatistics.getCurrentBundleStats<sup>9+</sup>
+
+getCurrentBundleStats(): Promise<BundleStats>
+
+第三方应用异步获取占用空间，以promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+- 返回值
+
+  | 类型                                        | 说明                       |
+  | ------------------------------------------ | -------------------------- |
+  | Promise&lt;[Bundlestats](#bundlestats)&gt; | 返回指定卷上的应用存储状态      |
+
+- 示例
+
+  ```js
+      let bundleStats = storageStatistics.getCurrentBundleStats();
+      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  ```
+
+## storagestatistics.getCurrentBundleStats<sup>9+</sup>
+
+getCurrentBundleStats(callback: AsyncCallback<BundleStats>): void
+
+第三方应用异步获取占用空间，以callback方式返回。
+ 
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+- 参数
+
+  | 参数名    | 类型                                                       | 必填  | 说明                                 |
+  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+  | callback | callback:AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | 是   | 获取指定卷上的应用存储状态之后的回调        |
+
+- 示例
+
+  ```js
+  storagestatistics.getCurrentBundleStats(function(error, bundleStats){
+      // do something
+      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  });
+  ```
+  
+  
+  
 ## BundleStats<sup>9+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。
+该接口为系统接口，三方应用不支持调用
 
-### 属性
+- 属性
 
 | 名称      | 类型   | 说明           |
 | --------- | ------ | -------------- |
-| appSize<sup>9+</sup>   | number | app数据大小    |
-| cacheSize<sup>9+</sup> | number | 缓存数据大小   |
-| dataSize<sup>9+</sup>  | number | 应用总数据大小 |
+| appSize   | number | app数据大小    |
+| cacheSize | number | 缓存数据大小   |
+| dataSize  | number | 应用总数据大小 |
+
+
+
+
+## storagestatistics.getTotalSize<sup>9+</sup>
+
+getTotalSize(): Promise<number>
+
+获取内卡的总空间大小，以promise方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 返回值
+
+  | 类型                   | 说明               |
+  | --------------------- | ------------------ |
+  | Promise&lt;number&gt; | 返回内卡的总空间大小   |
+
+- 示例
+
+  ```js
+      let number = storageStatistics.getTotalSize();
+      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  ```
+  
+## storagestatistics.getTotalSize<sup>9+</sup>
+
+getTotalSize(callback: AsyncCallback<number>): void
+
+获取内卡的总空间大小，以callback方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 参数
+
+  | 参数名    | 类型                                  | 必填  | 说明                     |
+  | -------- | ------------------------------------ | ---- | ------------------------ |
+  | callback | callback:AsyncCallback&lt;number&gt; | 是   | 获取内卡的总空间大小之后的回调 |
+
+- 示例
+
+  ```js
+  storagestatistics.getTotalSize(function(error, number){
+      // do something
+      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  });
+  ```
+
+
+## storagestatistics.getFreeSize<sup>9+</sup>
+
+getFreeSize(): Promise<number>
+
+获取内卡的可用空间大小，以promise方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 返回值
+
+  | 类型                   | 说明               |
+  | --------------------- | ------------------ |
+  | Promise&lt;number&gt; | 返回内卡的可用空间大小 |
+
+- 示例
+
+  ```js
+      let number = storageStatistics.getFreeSize();
+      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  ```
+
+
+## storagestatistics.getFreeSize<sup>9+</sup>
+
+getFreeSize(callback: AsyncCallback<number>): void
+
+获取内卡的可用空间大小，以callback方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 参数
+
+  | 参数名    | 类型                                  | 必填 | 说明                       |
+  | -------- | ------------------------------------ | ---- | ------------------------- |
+  | callback | callback:AsyncCallback&lt;number&gt; | 是   | 获取内卡的可用空间大小之后的回调 |
+
+- 示例
+
+  ```js
+  storagestatistics.getFreeSize(function(error, number){
+      // do something
+      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  });
+  ```
+
+
+
+## storagestatistics.getSystemSize<sup>9+</sup>
+
+getSystemSize(): Promise&lt;number&gt;
+
+异步获取系统空间大小，以promise方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 返回值
+
+  | 类型                  | 说明             |
+  | --------------------- | ---------------- |
+  | Promise&lt;number&gt; | 返回系统空间大小 |
+
+- 示例
+
+  ```js
+  storagestatistics.getSystemSize().then(function(number){
+      console.info("getSystemSize successfully:"+ number);
+  }).catch(function(err){
+      console.info("getSystemSize failed with error:"+ err);
+  });
+  ```
+
+## storagestatistics.getSystemSize<sup>9+</sup>
+
+getSystemSize(callback:AsyncCallback&lt;number&gt;):void
+
+异步获取系统空间大小，以callback方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 参数
+
+  | 参数名     | 类型                                 | 必填 | 说明                       |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
+  | callback   | callback:AsyncCallback&lt;number&gt; | 是   | 获取系统空间大小之后的回调 |
+
+- 示例
+
+  ```js
+  storagestatistics.getSystemSize(function(error, number){
+      // do something
+      console.info("getSystemSize successfully:"+ number);
+  });
+  ```
+  
+  
+  
+## storagestatistics.getUserStorageStats<sup>9+</sup>
+
+getUserStorageStats(userId?: number): Promise&lt;StorageStats&gt;
+
+异步获取用户各类别数据大小，以promise方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 参数
+
+  | 参数名     | 类型   | 必填 | 说明 |
+  | ---------- | ------ | ---- | ---- |
+  | userId | string | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。|
+
+- 返回值
+
+  | 类型                  | 说明             |
+  | --------------------- | ---------------- |
+  | Promise&lt;[StorageStats](#StorageStats)&gt; | 返回各类别数据大小 |
+
+- 示例
+
+  ```js
+  let userId = "";
+  storagestatistics.getUserStorageStats(userId).then(function(StorageStats){
+      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  }).catch(function(err){
+      console.info("getUserStorageStats failed with error:"+ err);
+  });
+  ```
+
+## storagestatistics.getUserStorageStats<sup>9+</sup>
+
+getUserStorageStats(userId?: number, callback:AsyncCallback&lt;StorageStats&gt;):void
+
+异步获取用户各类别数据大小，以callback方式返回。
+
+**需要权限**：ohos.permission.STORAGE_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+该接口为系统接口，三方应用不支持调用
+
+- 参数
+
+  | 参数名     | 类型                                 | 必填 | 说明                       |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
+  | userId | string                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
+  | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | 是   | 返回各类别数据大小之后的回调 |
+
+- 示例
+
+  ```js
+  let userId = "";
+  storagestatistics.getUserStorageStats(userId, function(error, StorageStats){
+      // do something
+      console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
+  });
+  ```
+
+
+
+## StorageStats<sup>9+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics。
+该接口为系统接口，三方应用不支持调用
+- 属性
+
+| 名称      | 类型   | 说明           |
+| --------- | ------ | -------------- |
+| total   | number | 内卡总空间大小    |
+| audio | number | 音频数据大小   |
+| video  | number | 视频数据大小 |
+| image   | number | 图像数据大小    |
+| file | number | 文件数据大小   |
+| app  | number | 应用数据大小 |

@@ -144,6 +144,8 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -179,6 +181,8 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -219,6 +223,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -253,6 +259,8 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -292,6 +300,8 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -325,6 +335,8 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -445,8 +457,6 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 merge(toMerge: BundleStateInfo): void
 
 合并相同包名的应用使用信息。
-
-本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 

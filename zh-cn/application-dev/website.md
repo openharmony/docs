@@ -925,10 +925,6 @@
 
         - [Navigation](reference/arkui-ts/ts-basic-components-navigation.md)
 
-        - [PatternLock](reference/arkui-ts/ts-basic-components-patternlock.md)
-
-        - [PluginComponent](reference/arkui-ts/ts-basic-components-plugincomponent.md)
-
         - [Progress](reference/arkui-ts/ts-basic-components-progress.md)
 
         - [QRCode](reference/arkui-ts/ts-basic-components-qrcode.md)

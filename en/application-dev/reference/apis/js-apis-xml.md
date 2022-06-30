@@ -1,6 +1,7 @@
 # XML Parsing and Generation
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -9,10 +10,6 @@
 ```
 import xml from '@ohos.xml';
 ```
-
-## System Capabilities
-
-SystemCapability.Utils.Lang
 
 ## XmlSerializer
 
@@ -23,11 +20,13 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 A constructor used to create an **XmlSerializer** instance.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | Yes| **ArrayBuffer** or **DataView** for storing the XML information to write.|
+| buffer | ArrayBuffer \| DataView | Yes| **ArrayBuffer** or **DataView** for storing the XML information to write.|
 | encoding | string | No| Encoding format.|
 
 **Example**
@@ -45,6 +44,8 @@ setAttributes(name: string, value: string): void
 
 Sets an attribute.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -55,6 +56,8 @@ Sets an attribute.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
@@ -66,6 +69,8 @@ addEmptyElement(name: string): void
 
 Adds an empty element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -75,6 +80,8 @@ Adds an empty element.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
@@ -86,9 +93,13 @@ setDeclaration(): void
 
 Sets a declaration.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
@@ -99,6 +110,8 @@ thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 startElement(name: string): void
 
 Writes the start tag based on the given element name.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -122,9 +135,13 @@ endElement(): void
 
 Writes the end tag of the element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
@@ -139,6 +156,8 @@ endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/htm
 setNamespace(prefix: string, namespace: string): void
 
 Sets the namespace for an element tag.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -164,6 +183,8 @@ setComment(text: string): void
 
 Sets the comment.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -187,6 +208,8 @@ setCDATA(text: string): void
 
 Sets CDATA attributes.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -207,6 +230,8 @@ thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
 setText(text: string): void
 
 Sets **Text**.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -232,6 +257,8 @@ setDocType(text: string): void
 
 Sets **DocType**.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -256,11 +283,13 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 Creates and returns an **XmlPullParser** object. The **XmlPullParser** object passes two parameters. The first parameter is the memory of the **ArrayBuffer** or **DataView** type, and the second parameter is the file format (UTF-8 by default).
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | Yes| **ArrayBuffer** or **DataView** that contains XML text information.|
+| buffer | ArrayBuffer \| DataView | Yes| **ArrayBuffer** or **DataView** that contains XML text information.|
 | encoding | string | No| Encoding format. Only UTF-8 is supported.|
 
 **Example**
@@ -288,6 +317,8 @@ var that = new xml.XmlPullParser(arrayBuffer);
 parse(option: ParseOptions): void
 
 Parses XML information.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
@@ -329,14 +360,16 @@ that.parse(options);
 
 Defines the XML parsing options.
 
+**System capability**: SystemCapability.Utils.Lang
+
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | No| Whether to ignore **Doctype**. The default value is **false**.|
 | ignoreNameSpace | boolean | No| Whether to ignore **Namespace**. The default value is **false**.|
-| tagValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **tagValue**.|
-| attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **attributeValue**.|
-| tokenValueCallbackFunction | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | No| Callback used to return **tokenValue**.|
+| tagValueCallbackFunction | (name: string, value: string)=&gt; boolean | No| Callback used to return **tagValue**.|
+| attributeValueCallbackFunction | (name: string, value: string)=&gt; boolean | No| Callback used to return **attributeValue**.|
+| tokenValueCallbackFunction | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo))=&gt; boolean | No| Callback used to return **tokenValue**.|
 
 ## ParseInfo
 
@@ -348,6 +381,8 @@ Provides APIs to manage the parsed XML information.
 getColumnNumber(): number
 
 Obtains the column line number, which starts from 1.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -362,6 +397,8 @@ getDepth(): number
 
 Obtains the depth of this element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -374,6 +411,8 @@ Obtains the depth of this element.
 getLineNumber(): number
 
 Obtains the current line number, starting from 1.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -388,6 +427,8 @@ getName(): string
 
 Obtains the name of this element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -400,6 +441,8 @@ Obtains the name of this element.
 getNamespace(): string
 
 Obtains the namespace of this element.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -414,6 +457,8 @@ getPrefix(): string
 
 Obtains the prefix of this element.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -426,6 +471,8 @@ Obtains the prefix of this element.
 getText(): string
 
 Obtains the text of the current event.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -440,6 +487,8 @@ isEmptyElementTag(): boolean
 
 Checks whether the current element is empty.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 
 | Type| Description|
@@ -452,6 +501,8 @@ Checks whether the current element is empty.
 isWhitespace(): boolean
 
 Checks whether the current text event contains only whitespace characters.
+
+**System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
@@ -466,6 +517,8 @@ getAttributeCount(): number
 
 Obtains the number of attributes for the current start tag.
 
+**System capability**: SystemCapability.Utils.Lang
+
 **Return value**
 | Type| Description|
 | -------- | -------- |
@@ -475,6 +528,8 @@ Obtains the number of attributes for the current start tag.
 ## EventType
 
 Enumerates the events.
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Value| Description|
 | -------- | -------- | -------- |

@@ -22,20 +22,23 @@ To start the test framework, specify the **TestRunner** and the package name or 
 An example command in the FA model is as follows:
 
 ```javascript
-aa test -p com.example.myapplicationfaets -s unittest OpenHarmonyTestRunner -s class ActsAbilityTest  -w 20
+aa test -b BundleName -p com.example.myapplicationfaets -s unittest OpenHarmonyTestRunner -s class ActsAbilityTest -w 20
 ```
 
 An example command in the stage model is as follows:
 ```javascript
-aa test -m com.example.myapplicationfaets -s unittest OpenHarmonyTestRunner -s class ActsAbilityTest  -w 20
+aa test -b BundleName -m com.example.myapplicationfaets -s unittest OpenHarmonyTestRunner -s class ActsAbilityTest -w 20
 ```
 | Parameter           | Mandatory| Description                                                    |
 | --------------- | -------- | ------------------------------------------------------------ |
+| -b              | Yes      | Bundle name of the HAP where the **TestRunner** is located.             |
 | -p              | Yes      | Package name of the HAP where the **TestRunner** is located. This parameter is used by the FA model.             |
 | -m              | Yes      | Module name of the HAP where the **TestRunner** is located. This parameter is used by the stage model.           |
 | -s unittest     | Yes      | Name of the **TestRunner** to be used. The TestRunner name must be the same as the file name.  |
-| -w              | No      | Timeout interval of a test case, in seconds. If this parameter is not specified, the test framework exits only after **finishTest** is invoked.|
-| -s \<key>\<value> | No      | It can be any parameter in the key-value format. The entered parameters can be obtained in key-value mode through **AbilityDelegatorArgs.parameters**. For example, in **-s classname myTest**, **classname** is the key and **myTest** is the value.|
+| -w              | No      | Timeout interval of a test case, in seconds. If this parameter is not specified or is set to a value less than or equal to **0**, the test framework exits only after **finishTest** is invoked.|
+| -s \<key>\<value> | No      | **-s** can be followed by any key-value pair obtained through **AbilityDelegatorArgs.parameters**. For example, in **-s classname myTest**, **-s classname** is the key and **myTest** is the value.|
+| -D              | No      | Debug mode for starting the tested application.|
+| -h              | No      | Help information.|
 
 ### Using DevEco Studio
 
@@ -44,6 +47,14 @@ For details about how to use DevEco Studio to start the test framework, see [Ope
 ## Introduction to TestRunner
 
 **TestRunner** is the entry class of the test framework test process. When the test process is started, the system calls related APIs in **TestRunner**. You need to inherit this class and override the **onPrepare** and **onRun** APIs. When creating an application template, DevEco Studio initializes the default **TestRunner** and starts the default **TestAbility** in the **onRun** API. You can modify the test code of **TestAbility** or override **onPrepare** and **onRun** in **TestRunner** to implement your own test code. For details, see [TestRunner](../reference/apis/js-apis-testRunner.md).
+
+## Introduction to AbilityDelegatorRegistry
+
+**AbilityDelegatorRegistry** is the **AbilityDelegator** repository class provided by the test framework. You can use **AbilityDelegatorRegistry** to obtain an **AbilityDelegator** instance and the input and generated parameters **AbilityDelegatorArgs** during the test. You can use **AbilityDelegator** to invoke the function set provided by the test framework for testing and verification. For details, see [AbilityDelegatorRegistry](../reference/apis/js-apis-abilityDelegatorRegistry.md).
+
+## Introduction to AbilityDelegatorArgs
+
+**AbilityDelegatorArgs** is a test parameter class provided by the test framework. You can use **AbilityDelegatorArgs** to obtain the parameters passed and generated during the test. For details, see [AbilityDelegatorArgs](../reference/apis/js-apis-application-abilityDelegatorArgs.md).
 
 ## Introduction to AbilityMonitor
 
@@ -54,7 +65,7 @@ For details about how to use DevEco Studio to start the test framework, see [Ope
 ```javascript
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -64,7 +75,7 @@ var monitor = {
 }
 
 var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor).then((void) => {
+abilityDelegator.addAbilityMonitor(monitor).then(() => {
     console.info("addAbilityMonitor promise");
 });
 ```
@@ -94,7 +105,7 @@ var abilityDelegator;
 var ability;
 var timeout = 100;
 
-function onAbilityCreateCallback() {
+function onAbilityCreateCallback(data) {
     console.info("onAbilityCreateCallback");
 }
 
@@ -113,8 +124,6 @@ var want = {
     bundleName: "bundleName",
     abilityName: "abilityName"
 };
-
-abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.startAbility(want, (err, data) => {
     console.info("startAbility callback");
 });
@@ -126,14 +135,47 @@ abilityDelegator.startAbility(want, (err, data) => {
 
 ### Running a Shell Command
 
-**AbilityDelegator** provides APIs to run shell commands. You can run a shell command in the test code. This feature takes effect only in the test environment.
+**AbilityDelegator** provides APIs to run shell commands in the test environment.
+
 **Example**
 
 ```javascript
-  var abilityDelegator;
-  var cmd = "cmd";
-  abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-  abilityDelegator.executeShellCommand(cmd, (err,data) => {
+var abilityDelegator;
+var cmd = "cmd";
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.executeShellCommand(cmd, (err, data) => {
     console.info("executeShellCommand callback");
-  });
+});
+```
+
+### Printing Log Information
+
+**AbilityDelegator** provides APIs for printing log information. You can call any API in the test code to print process logs to the unit test console.
+
+**Example**
+
+```javascript
+var abilityDelegator;
+var msg = "msg";
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.print(msg, (err) => {
+    console.info("print callback");
+});
+```
+
+### Finishing the Test and Printing Log Information
+
+**AbilityDelegator** provides the APIs for actively finishing the test. You can call any API in test code to finish the test and print logs to the unit test console.
+
+**Example**
+
+```javascript
+var abilityDelegator;
+var msg = "msg";
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.finishTest(msg, 0, (err) => {
+    console.info("finishTest callback");
+});
 ```
