@@ -85,7 +85,7 @@ choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
 ## document.show
 
-show(uri:string, types:string):Promise&lt;void&gt;
+show(uri:string, type:string):Promise&lt;void&gt;
 
 异步打开URI对应的文件，使用promise形式返回结果。
 
@@ -96,7 +96,7 @@ show(uri:string, types:string):Promise&lt;void&gt;
   | 参数 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
   | uri | string | 是   | 待打开的文件URI |
-  | types | string | 是   | 待打开文件的类型 |
+  | type | string | 是   | 待打开文件的类型 |
 
 - 返回值：
 
@@ -107,14 +107,14 @@ show(uri:string, types:string):Promise&lt;void&gt;
 - 示例：
 
   ```js
-  let types = "";
+  let type = "";
   let uri = "";
-  document.show(uri, types);
+  document.show(uri, type);
   ```
 
 ## document.show
 
-show(uri:string, types:string, callback:AsyncCallback&lt;void&gt;): void
+show(uri:string, type:string, callback:AsyncCallback&lt;void&gt;): void
 
 异步打开URI对应的文件，使用callback形式返回结果。
 
@@ -125,15 +125,15 @@ show(uri:string, types:string, callback:AsyncCallback&lt;void&gt;): void
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | uri | string | 是   | 待打开的文件URI |
-  | types | string | 是   | 待打开文件的类型 |
+  | type | string | 是   | 待打开文件的类型 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 异步打开uri对应文件（注：当前返回错误码）   |
 
 - 示例：
 
   ```js
-  let types = "";
+  let type = "";
   let uri = "";
-  document.show(uri, types, function(err) {
+  document.show(uri, type, function(err) {
         //do something
   });
   ```
