@@ -22,7 +22,7 @@ createEffect(source: image.PixelMap): Filter
 
 通过传入的PixelMap创建Filter实例。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -54,7 +54,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 通过属性创建PixelMap，使用Promise异步回调。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -89,7 +89,7 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 通过属性创建PixelMap，使用callback异步回调。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -119,7 +119,7 @@ image.createPixelMap(color, opts, (pixelmap) => {
 
 颜色类，用于保存取色的结果。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型   | 可读 | 可写 | 说明              |
 | ------ | ----- | ---- | ---- | ---------------- |
@@ -138,7 +138,7 @@ getMainColor(): Promise\<Color>
 
 读取图像主色的颜色值，结果写入[Color](#color)里，使用Promise异步回调。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -163,7 +163,7 @@ getMainColorSync(): Color
 
 读取图像主色的颜色值，结果写入[Color](#color)里，使用同步方式返回。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -188,7 +188,7 @@ blur(radius: number): Filter
 
 将模糊效果添加到效果链表中，结果返回效果链表的头节点。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -224,7 +224,7 @@ brightness(bright: number): Filter
 
 将高亮效果添加到效果链表中，结果返回效果链表的头节点。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -260,7 +260,7 @@ grayscale(): Filter
 
 将灰度效果添加到效果链表中，结果返回效果链表的头节点。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -289,7 +289,7 @@ getPixelMap(): image.PixelMap
 
 获取已添加链表效果的源图像的image.PixelMap。
 
-**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
