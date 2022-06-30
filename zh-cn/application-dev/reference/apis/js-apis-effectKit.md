@@ -1,6 +1,14 @@
-# 图像效果处理
+# 图像效果
+
+图像效果提供处理图像的一些基础能力，包括对当前图像的亮度调节、模糊化、灰度调节、智能取色等。
+
+该模块提供以下图像效果相关的常用功能：
+
+- [Filter](#Filter)：效果链。
+- [ColorPicker](#ColorPicker)：智能取色器。
 
 > **说明：**
+> 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -9,7 +17,7 @@
 import effectKit from '@ohos.effectKit';
 ```
 
-## effectKit.createEffect<sup>9+</sup>
+## effectKit.createEffect
 createEffect(source: image.PixelMap): Filter
 
 通过传入的PixelMap创建Filter实例。
@@ -18,19 +26,20 @@ createEffect(source: image.PixelMap): Filter
 
 **参数：**
 
-| 名称    | 类型                                             | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| source  | image.PixelMap                                      | 是   | image模块创建的PixelMap实例                                    |
+| 名称    | 类型               | 必填 | 说明     |
+| ------- | ----------------- | ---- | -------- |
+| source  | [image.PixelMap](js-apis-image#pixelmap7) | 是   | image模块创建的PixelMap实例。   |
 
 **返回值：**
 
 | 类型                             | 说明           |
 | -------------------------------- | -------------- |
-| Filter | 返回不带任何效果的Filter链表的头节点,失败时返回null |
+| [Filter](#Filter) | 返回不带任何效果的Filter链表的头节点，失败时返回null。 |
 
 **示例：**
 
 ```js
+import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
@@ -39,23 +48,30 @@ image.createPixelMap(color, opts)
     })
 ```
 
-## effectKit.createColorPicker<sup>9+</sup>
+## effectKit.createColorPicker
 
 createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
-通过属性创建PixelMap，通过回调函数返回结果。
+通过属性创建PixelMap，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
 **参数：**
 
-| 名称     | 类型                                             | 必填 | 说明                       |
-| -------- | ------------------------------------------------ | ---- | -------------------------- |
-| source   | image.PixelMap                                      | 是   |  image模块创建的PixelMap实例                                    |
+| 名称     | 类型         | 必填 | 说明                       |
+| -------- | ----------- | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image#pixelmap7) | 是   |  image模块创建的PixelMap实例 |
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| Promisse\<[ColorPicker](#ColorPicker)>  | Promise对象。返回当前创建的子窗口对象。 |
 
 **示例：**
 
 ```js
+import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
@@ -67,24 +83,25 @@ image.createPixelMap(color, opts, (pixelmap) => {
 })
 ```
 
-## effectKit.createColorPicker<sup>9+</sup>
+## effectKit.createColorPicker
 
-createColorPicker(source: image.PixelMap, callback: AsyncCallback<ColorPicker>): void
+createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>): void
 
-通过属性创建PixelMap，通过回调函数返回结果。
+通过属性创建PixelMap，使用callback异步回调。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
 **参数：**
 
-| 名称     | 类型                                             | 必填 | 说明                       |
-| -------- | ------------------------------------------------ | ---- | -------------------------- |
-| source   | image.PixelMap                                      | 是   | BGRA_8888格式的颜色数组。  |
-| callback | AsyncCallback\<[ColorPicker](#pixelmap7)>           | 是   | 通过回调返回ColorPicker对象。 |
+| 名称     | 类型                | 必填 | 说明                       |
+| -------- | ------------------ | ---- | -------------------------- |
+| source   | [image.PixelMap](js-apis-image#pixelmap7) | 是  | BGRA_8888格式的颜色数组。  |
+| callback | AsyncCallback\<[ColorPicker](#ColorPicker)> | 是  | 回调函数，返回ColorPicker。 |
 
 **示例：**
 
 ```js
+import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
@@ -98,28 +115,28 @@ image.createPixelMap(color, opts, (pixelmap) => {
 })
 ```
 
-## Color<sup>9+</sup>
+## Color
 
 颜色类，用于保存取色的结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Graphic.Graphic2D.Effectkit
+**系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
 | 名称   | 类型   | 可读 | 可写 | 说明              |
 | ------ | ----- | ---- | ---- | ---------------- |
-| red   | number | 是   | 否   | 红色分量值           |
-| green | number | 是   | 否   | 绿色分量值           |
-| blue  | number | 是   | 否   | 蓝色分量值           |
-| alpha | number | 是   | 否   | 透明通道分量值       |
+| red   | number | 是   | 否   | 红色分量值。           |
+| green | number | 是   | 否   | 绿色分量值。           |
+| blue  | number | 是   | 否   | 蓝色分量值。           |
+| alpha | number | 是   | 否   | 透明通道分量值。       |
 
-## ColorPicker<sup>9+</sup>
+## ColorPicker
 
-取色类，用于从一张图像数据中获取它的主要颜色。在调用ColorPicker的方法前，需要先通过createColorPicker创建一个ColorPicker实例。
+取色类，用于从一张图像数据中获取它的主要颜色。在调用ColorPicker的方法前，需要先通过[createColorPicker](#effectKit.createColorPicker)创建一个ColorPicker实例。
 
-### getMainColor<sup>9+</sup>
+### getMainColor
 
-getMainColor(): Promise\<Color>;
+getMainColor(): Promise\<Color>
 
-读取图像主色的颜色值，结果写入Color里，使用Promise形式返回。
+读取图像主色的颜色值，结果写入Color里，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
@@ -127,7 +144,7 @@ getMainColor(): Promise\<Color>;
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| Promise\<Color> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<[Color](#Color)> | Promise实例，用于获取结果，失败时返回错误信息。 |
 
 **示例：**
 
@@ -140,11 +157,11 @@ colorPicker.getMainColor().then(color => {
 })
 ```
 
-### getMainColorSync<sup>9+</sup>
+### getMainColorSync
 
-getMainColorSync(): Color;
+getMainColorSync(): Color
 
-读取图像主色的颜色值，结果写入Color里，使用同步方式返回。
+读取图像主色的颜色值，结果写入[Color](#Color)里，使用同步方式返回。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
@@ -152,7 +169,7 @@ getMainColorSync(): Color;
 
 | 类型     | 说明                                  |
 | :------- | :----------------------------------- |
-| Color    | Color实例，用于获取结果，失败时返回null |
+| [Color](#Color)    | Color实例，用于获取结果，失败时返回null。 |
 
 **示例：**
 
@@ -161,11 +178,11 @@ let color = colorPicker.getMainColorSync()
 console.log('get main color =' + color)
 ```
 
-## Filter<sup>9+</sup>
+## Filter
 
-图像效果类，用于将指定的效果结合到输入的image.PixelMap所存的图像中。在调用的方法前，需要先通过createEffect创建一个Filter实例。
+图像效果类，用于将指定的效果添加到输入图像中。在调用Filter的方法前，需要先通过[createEffect](#effectKit.createEffect)创建一个Filter实例。
 
-### blur<sup>9+</sup>
+### blur
 
 blur(radius: number): Filter
 
@@ -177,17 +194,18 @@ blur(radius: number): Filter
 
 | 参数名 | 类型        | 必填 | 说明                                                         |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-|  radius   | number | 是   | 模糊半径，模糊效果与所设置的值成正比值越大效果越明显。 |
+|  radius   | number | 是   | 模糊半径，单位是像素。模糊效果与所设置的值成正比，值越大效果越明显。 |
 
 **返回值：**
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| Filter | Filter链表头，可继续添加效果直到调用获取结果的接口,失败时返回null |
+| [Filter](#Filter) | 返回效果链表头。 |
 
 **示例：**
 
 ```js
+import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
@@ -200,7 +218,7 @@ image.createPixelMap(color, opts)
     })
 ```
 
-### brightness<sup>9+</sup>
+### brightness
 
 brightness(bright: number): Filter
 
@@ -218,11 +236,12 @@ brightness(bright: number): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| Filter | Filter链表头，可继续添加效果直到调用获取结果的接口,失败时返回null |
+| [Filter](#Filter) | 返回效果链表头。 |
 
 **示例：**
 
 ```js
+import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
@@ -235,7 +254,7 @@ image.createPixelMap(color, opts)
     })
 ```
 
-### grayscale<sup>9+</sup>
+### grayscale
 
 grayscale(): Filter
 
@@ -247,27 +266,28 @@ grayscale(): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| Filter | Filter链表头，可继续添加效果直到调用获取结果的接口,失败时返回null |
+| Filter | 返回效果链表头。 |
 
 **示例：**
 
 ```js
+import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
         let headFilter = effectKit.createEffect(pixelmap)
         if (headFilter != null) {
-            headFilter.brightness(bright)
+            headFilter.grayscale()
         }
     })
 ```
 
-### getPixelMap<sup>9+</sup>
+### getPixelMap
 
-getPixelMap(): image.PixelMap;
+getPixelMap(): image.PixelMap
 
-获取已经将链表中的效果全部添加到源图像的image.PixelMap。
+获取已添加链表效果的源图像的image.PixelMap。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.Effectkit
 
@@ -275,11 +295,12 @@ getPixelMap(): image.PixelMap;
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| image.PixelMap | 带有全部添加效果的图片源 |
+| [image.PixelMap](js-apis-image#pixelmap7) | 已添加链表效果的源图像的image.PixelMap。 |
 
 **示例：**
 
 ```js
+import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
