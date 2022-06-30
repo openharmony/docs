@@ -130,19 +130,12 @@ ohos.permission.MANAGE_BLUETOOTH
 **示例：**
 
   ```
-  bluetooth.startBLEScan({
-    success() {
-      bluetooth.subscribeBLEFound({
-        success(data) {
-          const [device] = data.devices;
-          if (!!device) {
-            bluetooth.stopBLEScan();
-          }
-        }
-      });
+  bluetooth.subscribeBLEFound({
+    success(data) {
+      console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
     },
-    fail(code, data) {
-      console.log('Failed to start BLE device scan, code: ${code}, data: ${data}');
+    fail(data, code) {
+      console.log('call bluetooth.startBLEScan failed, data: ${data}, code: ${code}.');
     }
   });
   ```
