@@ -19,5 +19,5 @@ ElementName信息
 | bundleName              | string   | 是   | 是   | 应用包名                   |
 | abilityName             | string   | 是   | 是   | Ability名称                |
 | uri                     | string   | 是   | 是   | 资源标识符                  |
-| shortName               | string   | 是   | 是   | Ability简称                |
+| shortName               | string   | 是   | 是   | Ability短名称                |
 | moduleName<sup>9+</sup> | string   | 是   | 是   | Ability所属的HAP包的名称    |
