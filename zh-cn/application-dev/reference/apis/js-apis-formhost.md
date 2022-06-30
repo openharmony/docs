@@ -857,7 +857,7 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 获取卡片状态
 
-**需要权限**：ohos.permission.REQUIRE_FORM和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.REQUIRE_FORM and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED.
 
 **系统能力**：SystemCapability.Ability.Form
 

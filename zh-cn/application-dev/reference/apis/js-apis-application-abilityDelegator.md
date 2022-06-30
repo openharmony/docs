@@ -6,10 +6,16 @@ AbilityDelegator提供添加用于监视指定能力的生命周期状态更改�
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
-## 导入模块
+## 使用说明
 
+通过AbilityDelegatorRegistry中getAbilityDelegator方法获取。
 ```js
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+
+var abilityDelegator;
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
 ```
 
 ## AbilityDelegator
