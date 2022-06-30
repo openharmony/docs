@@ -59,7 +59,7 @@ This option must be used together with a specific operation command. The followi
 
 **hdc\_std  -t   _key_   shell** \(replace  _key_  with the device information obtained\)
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >You can connect to multiple devices from the device you use for development. Each device has a unique key. The key can be  _IP address:Port number_  for a device connected through a network or the serial number for a device connected through USB.
 
 ## Querying the Device List<a name="section174891132104218"></a>
@@ -124,7 +124,7 @@ Stops a service process.
   | -------- | -------- |
   | -r | Triggers the service restart. | 
   | **Return Value** | **Description** | 
-  | ①Kill&nbsp;server&nbsp;finish<br/>2. Error information | 1. Information returned when the operation is successful.<br/>2. The operation fails. | 
+  | 1. Kill&nbsp;server&nbsp;finish<br/>2. Error information | 1. Information returned when the operation is successful.<br/>2. The operation fails. | 
 
 Example:
 
@@ -199,7 +199,7 @@ Example:
 
 hdc\_std tmode port 8710
 
->![](../public_sys-resources/icon-note.gif) **NOTE:**<br>
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br>
 >After this command is executed, the remote daemon process exits and restarts, and the TCP connection is enabled by default. If you do not include **port-number** in this command, a random port will be used to connect to the device.
 
 ## File Commands<a name="section173133523013"></a>
