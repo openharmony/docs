@@ -43,10 +43,11 @@ ret = g_usbClient.ClaimInterface(pip, interface, true);
 ```cpp
 srvClient.BulkTransfer(pipe, endpoint, vdata, timeout);
 ```
-- **pipe** indicates the pipe for data transfer of the USB device opened. 
-- **endpoint** indicates the endpoint for data transfer on the USB device. 
-- **vdata** indicates the binary data block to be transferred or read. 
-- **timeout** indicates the timeout duration of data transfer.
+Parameter description:
+- **pipe**: pipe for data transfer of the USB device opened. 
+- **endpoint**: endpoint for data transfer on the USB device. 
+- **vdata**: binary data block to be transferred or read. 
+- **timeout**: timeout duration of data transfer.
 
 7.  Close the USB device.
 
