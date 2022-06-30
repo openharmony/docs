@@ -1112,7 +1112,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | 返回和当前设备连接BLE设备地址集合。 |
+| Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。 |
 
 **示例：**
 
