@@ -236,13 +236,13 @@ Example:
 	    -  It is recommended that the test be implemented step by step according to the template.
 	    -  The comment must contain the test case name, description, type, and requirement number, which are in the @tc.*xxx*: *value* format. The test case type @**tc.type** can be any of the following:
 
-	    | Test Case Type | Code |
-	    | ------------ | ---------- |
-	    | Function test | FUNC |
-	    | Performance test | PERF |
- 	    | Reliability test | RELI |
-	    | Security test | SECU |
-	    | Fuzz test | FUZZ |
+	       | Test Case Type | Code |
+	       | ------------ | ---------- |
+	       | Function test | FUNC |
+	       | Performance test | PERF |
+	       | Reliability test | RELI |
+	       | Security test | SECU |
+	       | Fuzz test | FUZZ |
     
 
 **JavaScript Test Case Example**
