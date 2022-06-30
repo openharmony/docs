@@ -73,8 +73,8 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 
 getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
-按优先级从低到高，使用callback形式返回指定文件名所有的文件列表。例如，config.xml在设备中存在以下路径（优先级从低到高）：/system/etc/config.xml、
-/sys_pod/etc/config.xml，最终返回/system/etc/config.xml, /sys_pod/etc/config.xml。
+按优先级从低到高，使用callback形式返回指定文件名所有的文件列表。
+例如，config.xml在设备中存在以下路径（优先级从低到高）：/system/etc/config.xml、/sys_pod/etc/config.xml，最终返回/system/etc/config.xml, /sys_pod/etc/config.xml。
 
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
