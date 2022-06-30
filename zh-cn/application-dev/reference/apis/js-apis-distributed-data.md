@@ -4082,7 +4082,6 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 **示例：**
 
-### sync
 ```js
 let kvStore;
 kvStore.on('dataChange', function (data) {
