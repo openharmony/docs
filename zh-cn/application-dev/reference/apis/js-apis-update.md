@@ -813,7 +813,7 @@ terminateUpgrade(): Promise\<void>
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise，用于异步获取结果 |
 
 **示例：**
 
@@ -837,8 +837,8 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
-| taskCallback | UpgradeTaskCallback | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
 
 **示例：**
 
@@ -866,8 +866,8 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
-| taskCallback | UpgradeTaskCallback | 否    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
 
 **示例：**
 
@@ -1064,8 +1064,8 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
-| taskCallback | UpgradeTaskCallback | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
 
 **示例：**
 
@@ -1093,8 +1093,8 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | EventClassifyInfo | 是    | 事件信息 |
-| taskCallback | UpgradeTaskCallback | 否    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
 
 **示例：**
 
