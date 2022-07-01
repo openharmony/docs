@@ -454,6 +454,8 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 开启飞行模式，使用callback方式作为异步方法。
 
+该接口为系统接口。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -475,6 +477,8 @@ connection.enableAirplaneMode(function (error) {
 enableAirplaneMode(): Promise\<void>
 
 开启飞行模式，使用Promise方式作为异步方法。
+
+该接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -499,6 +503,8 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 关闭飞行模式，使用callback方式作为异步方法。
 
+该接口为系统接口。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -520,6 +526,8 @@ connection.disableAirplaneMode(function (error) {
 disableAirplaneMode(): Promise\<void>
 
 关闭飞行模式，使用Promise方式作为异步方法。
+
+该接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
