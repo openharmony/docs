@@ -69,11 +69,11 @@ setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): vo
 
 设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CellularData
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -96,11 +96,11 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 设置默认移动数据的SIM卡，使用Promise方式作为异步方法。 
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CellularData
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

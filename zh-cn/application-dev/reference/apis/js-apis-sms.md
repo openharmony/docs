@@ -192,11 +192,11 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 设置发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -227,11 +227,11 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 设置短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -258,11 +258,11 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 设置短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -297,11 +297,11 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -326,11 +326,11 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 获取短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
