@@ -174,7 +174,7 @@
       var g_object = distributedObject.createDistributedObject({name:undefined});
 
       export default class MainAbility extends Ability {
-          contentStorage : ContenStorage
+          contentStorage : ContentStorage
           sessionId : string;
 
        onContinue(wantParam : {[key: string]: any}) {
