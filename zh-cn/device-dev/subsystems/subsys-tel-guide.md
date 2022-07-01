@@ -1,28 +1,5 @@
 # 电话服务开发指导<a name="ZH-CN_TOPIC_0000001167051994"></a>
 
--   [Modem厂商库初始化开发指导](#section211mcpsimp)
-    -   [场景介绍](#section213mcpsimp)
-    -   [接口说明](#section811343241215)
-    -   [开发步骤](#section51031144122)
-    -   [调测验证](#section5351151517132)
-
--   [Modem业务请求及响应开发指导](#section295mcpsimp)
-    -   [场景介绍](#section297mcpsimp)
-    -   [接口说明](#section9503155219134)
-    -   [开发步骤](#section17190412101414)
-    -   [调测验证](#section10207938171413)
-
--   [Modem事件上报开发指导](#section390mcpsimp)
-    -   [场景介绍](#section401mcpsimp)
-    -   [接口说明](#section191193791518)
-    -   [开发步骤](#section16394112401512)
-    -   [调测验证](#section16999174401516)
-    -   [开发实例](#section33444350167)
-
--   [Modem厂商库集成指导](#section590mcpsimp)
-    -   [编译设置](#section592mcpsimp)
-    -   [调测验证](#section620mcpsimp)
-
 
 ## Modem厂商库初始化开发指导<a name="section211mcpsimp"></a>
 
