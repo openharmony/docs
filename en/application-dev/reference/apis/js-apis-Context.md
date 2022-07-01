@@ -836,7 +836,7 @@ Obtains information of the current ability. This API uses an asynchronous callba
 
 | Name    | Type                  | Mandatory| Description                     |
 | -------- | ---------------------- | ---- | ------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | Yes  | Callback used to return the ability information.|
+| callback | AsyncCallback\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | Yes  | Callback used to return the ability information.|
 
 **Example**
 
@@ -864,7 +864,7 @@ Obtains information of the current ability. This API uses a promise to return th
 
 | Type           | Description                     |
 | --------------- | ------------------------- |
-| Promise\<[AbilityInfo](#abilityInfo)> | Promise used to return the ability information.|
+| Promise\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | Promise used to return the ability information.|
 
 **Example**
 
