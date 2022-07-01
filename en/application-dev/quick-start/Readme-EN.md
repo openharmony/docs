@@ -11,4 +11,4 @@
   - [Application Package Structure Configuration File (Stage Model)](stage-structure.md)
   - [Resource File Categories](basic-resource-file-categories.md)
   - [SysCap](syscap.md)
-
+  - [HarmonyAppProvision Configuration File](app-provision-structure.md)

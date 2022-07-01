@@ -7,7 +7,7 @@
 ## Modules to Import
 
 
-```
+```js
 import request from '@ohos.request';
 ```
 
@@ -84,8 +84,10 @@ Uploads files. This API uses a promise to return the result.
 
   ```js
   let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
+  let data = { name: "name123", value: "123" };
+  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
-  request.upload({ url: 'https://patch', files:  [file1] }).then((data) => {
+  request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }).then((data) => {
       uploadTask = data;
   }).catch((err) => {
       console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
@@ -114,8 +116,10 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
   ```js
   let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
+  let data = { name: "name123", value: "123" };
+  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
-  request.upload({ url: 'https://patch', files:  [file1] }, (err, data) => {
+  request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }, (err, data) => {
       if (err) {
           console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
           return;
