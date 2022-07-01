@@ -829,7 +829,7 @@ release()
 **示例：** 
   ```
   resourceManager.getResourceManager((error, mgr) => {
-      release();
+      mgr.release();
   });
   ```
 
@@ -1141,7 +1141,7 @@ getStringByNameSync(resName: string): string
   resourceManager.getStringByNameSync("test");
   ```
 
- ### getBoolean<sup>9+</sup>
+### getBoolean<sup>9+</sup>
 
 getBoolean(resId: number): boolean
 
@@ -1187,7 +1187,7 @@ getBooleanByName(resName: string): boolean
   resourceManager.getBooleanByName("boolean_test");
   ```
 
- ### getNumber<sup>9+</sup>
+### getNumber<sup>9+</sup>
 
 getNumber(resId: number): number
 
