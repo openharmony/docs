@@ -838,7 +838,7 @@ getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
 | 名称     | 类型                   | 必填 | 描述                      |
 | -------- | ---------------------- | ---- | ------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回当前归属Ability详细信息。|
+| callback | AsyncCallback\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回当前归属Ability详细信息。|
 
 **示例：**
 
@@ -866,7 +866,7 @@ getAbilityInfo(): Promise\<AbilityInfo>
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<[AbilityInfo](#abilityInfo)> | 返回当前归属Ability详细信息。 |
+| Promise\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | 返回当前归属Ability详细信息。 |
 
 **示例：**
 
