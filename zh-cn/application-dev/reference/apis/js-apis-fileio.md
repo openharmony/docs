@@ -22,7 +22,7 @@ import fileio from '@ohos.fileio';
  context.getFilesDir().then((data) => {
       path = data;
  })
-```
+ ```
 
 
 ## fileio.stat
@@ -546,7 +546,7 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
   ```js
   fileio.open(path, 0o1, 0o0200).then(function(number){
       console.info("open file succeed");
-  }).catch(function(error){
+  }).catch(function(err){
       console.info("open file failed with error:"+ err);
   });
   ```
@@ -639,11 +639,11 @@ read(fd: number, buffer: ArrayBuffer, options?: {
   ```js
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
-  fileio.read(fd, buf).then(function(readout){
+  fileio.read(fd, buf).then(function(readOut){
       console.info("read file data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function(error){
-      console.info("read file data failed with error:"+ error);
+  }).catch(function(err){
+      console.info("read file data failed with error:"+ err);
   });
   ```
 
@@ -879,7 +879,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 
 **示例：**
   ```js
-  let fd = fileio.openSync(fpath, 0o100 | 0o2, 0o666);
+  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
        console.info("write data to file succeed and size is:"+ number);
   }).catch(function(err){
@@ -998,7 +998,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：**
   ```js
-  fileio.hash(fpath, "sha256", function(err, hashStr) {
+  fileio.hash(path, "sha256", function(err, hashStr) {
       if (hashStr) {
           console.info("calculate file hash succeed:"+ hashStr);
       }
@@ -1074,7 +1074,7 @@ chmodSync(path: string, mode: number): void
 
 **示例：**
   ```js
-  fileio.chmodSync(fpath, mode);
+  fileio.chmodSync(path, mode);
   ```
 
 
@@ -1409,7 +1409,7 @@ lstat(path: string): Promise&lt;Stat&gt;
 **示例：**
   ```js
   fileio.lstat(path).then(function(stat){
-      console.info("get link status succeed:"+ number);
+      console.info("get link status succeed:"+ JSON.stringify(stat));
   }).catch(function(err){
       console.info("get link status failed with error:"+ err);
   });
@@ -1663,7 +1663,7 @@ fsyncSync(fd: number): void
 
 **示例：**
   ```js
-  fileio.fyncsSync(fd);
+  fileio.fsyncSync(fd);
   ```
 
 
@@ -1857,7 +1857,7 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
 
 **示例：**
   ```js
-  let stat = fileio.statSync(fpath)
+  let stat = fileio.statSync(path)
   fileio.chown(path, stat.uid, stat.gid, function (err){
       // do something
   });
@@ -1881,7 +1881,7 @@ chownSync(path: string, uid: number, gid: number): void
 
 **示例：**
   ```js
-  let stat = fileio.statSync(fpath)
+  let stat = fileio.statSync(path)
   fileio.chownSync(path, stat.uid, stat.gid);
   ```
 
@@ -2078,7 +2078,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 **示例：**
   ```js
-  fileio.createStream(path, mode, function(err, stream){
+  fileio.createStream(path, "r+", function(err, stream){
       // do something
   });
   ```
@@ -2130,7 +2130,8 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 **示例：**
   ```js
-  fileio.fdopenStream(fd, mode).then(function(stream){
+  let fd = fileio.openSync(path);
+  fileio.fdopenStream(fd, "r+").then(function(stream){
       console.info("openStream succeed");
   }).catch(function(err){
       console.info("openStream failed with error:"+ err);
@@ -2155,7 +2156,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 **示例：**
   ```js
-  fileio.fdopenStream(fd, mode, function (err, stream) {
+  let fd = fileio.openSync(path);
+  fileio.fdopenStream(fd, "r+", function (err, stream) {
       // do something
   });
   ```
@@ -2182,6 +2184,7 @@ fdopenStreamSync(fd: number, mode: string): Stream
 
 **示例：**
   ```js
+  let fd = fileio.openSync(path);
   let ss = fileio.fdopenStreamSync(fd, "r+");
   ```
 
@@ -2235,7 +2238,7 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 
 **示例：**
   ```js
-  let stat = fileio.statSync(fpath);
+  let stat = fileio.statSync(path);
   fileio.fchown(fd, stat.uid, stat.gid, function (err){
       // do something
   });
@@ -2259,7 +2262,7 @@ fchownSync(fd: number, uid: number, gid: number): void
 
 **示例：**
   ```js
-  let stat = fileio.statSync(fpath);
+  let stat = fileio.statSync(path);
   fileio.fchownSync(fd, stat.uid, stat.gid);
   ```
 
@@ -2364,9 +2367,11 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **示例：**
   ```js
-  fileio.createWatcher(filename, events, function(watcher){
+  let filename = path +"/test.txt";
+  fileio.createWatcher(filename, 1, function(number){
       // do something
   });
+  
   ```
 
 
@@ -2498,7 +2503,7 @@ isFile(): boolean
 
 **示例：**
   ```js
-  let isFile = fileio.statSync(fpath).isFile();
+  let isFile = fileio.statSync(path).isFile();
   ```
 
 
@@ -2555,7 +2560,10 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
   ```js
-  fileio.stop();
+  let watcher = await fileio.createWatcher(filename, events, function(number){
+      // do something
+  });
+  await watcher.stop();
   ```
 
 
@@ -2574,13 +2582,16 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
   ```js
-  fileio.stop(function(err){
+  let watcher = await fileio.createWatcher(filename, events, function(number){
       // do something
+  });
+  watcher.stop(function(){
+      
   });
   ```
 
 
-## Stream<sup>7+</sup>
+## Stream
 
 文件流，在调用Stream的方法前，需要先通过createStream()方法（同步或异步）来构建一个Stream实例。
 
@@ -2600,7 +2611,7 @@ close(): Promise&lt;void&gt;
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(path);
+  let ss= fileio.createStreamSync(path, "r+");
   ss.close().then(function(){
       console.info("close fileStream succeed");
   }).catch(function(err){
@@ -2624,7 +2635,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(path);
+  let ss= fileio.createStreamSync(path, "r+");
   ss.close(function (err) {
       // do something
   });
@@ -2641,7 +2652,7 @@ closeSync(): void
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(path);
+  let ss= fileio.createStreamSync(path, "r+");
   ss.closeSync();
   ```
 
@@ -2661,7 +2672,7 @@ flush(): Promise&lt;void&gt;
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(path);
+  let ss= fileio.createStreamSync(path, "r+");
   ss.flush().then(function (){
       console.info("flush succeed");
   }).catch(function(err){
@@ -2685,7 +2696,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(path);
+  let ss= fileio.createStreamSync(path, "r+");
   ss.flush(function (err) {
       // do something
   });
@@ -2702,7 +2713,7 @@ flushSync(): void
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(path);
+  let ss= fileio.createStreamSync(path, "r+");
   ss.flushSync();
   ```
 
@@ -2733,7 +2744,7 @@ write(buffer: ArrayBuffer | string, options?: {
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(fpath, "r+");
+  let ss= fileio.createStreamSync(path, "r+");
   ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
       console.info("write succeed and size is:"+ number);
   }).catch(function(err){
@@ -2764,7 +2775,7 @@ write(buffer: ArrayBuffer | string, options: {
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(fpath, "r+");
+  let ss= fileio.createStreamSync(path, "r+");
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
       if (bytesWritten) {
          // do something
@@ -2800,7 +2811,7 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 
 **示例：**
   ```js
-  let ss= fileio.createStreamSync(fpath,"r+");
+  let ss= fileio.createStreamSync(path,"r+");
   let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
   ```
 
@@ -2830,7 +2841,7 @@ read(buffer: ArrayBuffer, options?: {
 
 **示例：**
   ```js
-  let ss = fileio.createStreamSync(fpath, "r+");
+  let ss = fileio.createStreamSync(path, "r+");
   ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
       console.info("read data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
@@ -2861,7 +2872,7 @@ read(buffer: ArrayBuffer, options: {
 
 **示例：**
   ```js
-  let ss = fileio.createStreamSync(fpath, "r+");
+  let ss = fileio.createStreamSync(path, "r+");
   ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
       if (readOut) {
           console.info("read data succeed");
@@ -2898,7 +2909,7 @@ readSync(buffer: ArrayBuffer, options?: {
 
 **示例：**
   ```js
-  let ss = fileio.createStreamSync(fpath, "r+");
+  let ss = fileio.createStreamSync(path, "r+");
   let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
   ```
 

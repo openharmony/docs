@@ -20,18 +20,18 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
 
-- 返回值
+**返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
   | Promise&lt;[FileInfo](#fileinfo)[]&gt; | 第一层目录相册信息 |
 
-- 示例
+**示例：**
 
   ```js
   filemanager.getRoot().then((fileInfo) => {
@@ -53,22 +53,22 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
-- 示例
+**示例：**
 
   ```js
-  let option = {
-            "dev":{
-            name:"",
-            }
+  let options = {
+    "dev":{
+      "name":"local"
+    }
   };
-  filemanager.getRoot(option,(err, fileInfo)=>{
+  filemanager.getRoot(options, (err, fileInfo)=>{
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
               console.log("file:"+JSON.stringify(fileInfo));
@@ -86,27 +86,28 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | path | string | 是 | 待查询目录uri |
   | type | string | 是 | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local'。<br/>-&nbsp;offset，number类型，待查询文件偏移个数。<br/>-&nbsp;count，number类型，待查询文件个数。 |
-  
-- 返回值
+
+**返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
   | Promise&lt;FileInfo[]&gt; | 文件信息 |
 
-- 异常
+**异常：**
+
   | 错误名称 | 错误类型 | 错误码 |说明 |
   | --- | -- | --- | -- |
   | 对应的目录、相册不存在 | No such file or directory | 2      | uri对应的目录、相册不存在 |
   | 获取FMS服务失败 | No such process | 3 | 获取FMS服务失败 |
   | path对应uri不是相册、目录 | Not a directory | 20 | path对应uri不是相册、目录 |
 
-- 示例
+**示例：**
 
   ```js
   // 获取目录下所有文件
@@ -120,10 +121,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
           }
       }
   }).catch((err) => {
-
-
-    
-      console.log(err)
+      console.log("failed to get file"+err);
   });
   ```
 
@@ -135,23 +133,24 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数
+**参数：**
 
-  | 参数名   | 类型                      | 必填 | 说明                                                         |
-  | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | path     | string                    | 是   | 待查询目录uri                                                |
-  | type     | string                    | 是   | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
-  | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local'。<br/>-&nbsp;offset，number类型，待查询文件偏移个数。<br/>-&nbsp;count，number类型，待查询文件个数。 |
-  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调                                 |
-- 异常
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | 是   | 待查询目录uri                                                |
+| type     | string                    | 是   | 待查询文件类型, 支持以下类型 "file", "image", "audio", "video" |
+| options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local'。<br/>-&nbsp;offset，number类型，待查询文件偏移个数。<br/>-&nbsp;count，number类型，待查询文件个数。 |
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调                                 |
 
-  | 错误名称                  | 错误类型                  | 错误码 | 说明                      |
-  | ------------------------- | ------------------------- | ------ | ------------------------- |
-  | 对应的目录、相册不存在    | No such file or directory | 2      | uri对应的目录、相册不存在 |
-  | 获取FMS服务失败           | No such process           | 3      | 获取FMS服务失败           |
-  | path对应uri不是相册、目录 | Not a directory           | 20     | path对应uri不是相册、目录 |
+**异常：**
 
-- 示例
+| 错误名称                  | 错误类型                  | 错误码 | 说明                      |
+| ------------------------- | ------------------------- | ------ | ------------------------- |
+| 对应的目录、相册不存在    | No such file or directory | 2      | uri对应的目录、相册不存在 |
+| 获取FMS服务失败           | No such process           | 3      | 获取FMS服务失败           |
+| path对应uri不是相册、目录 | Not a directory           | 20     | path对应uri不是相册、目录 |
+
+**示例：**
 
   ```js
   // 通过listFile、getRoot获取的文件path
@@ -177,7 +176,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
         }
     }
   }).catch((err) => {
-    console.log(err)
+    console.log("failed to get file"+err);
   });
   ```
 
@@ -189,20 +188,20 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数
+**参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | filename | string | 是 | 待创建的文件名 |
   | path | string | 是 | 待保存目的相册uri |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
 
-- 返回值
+**返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
   | string | 文件uri |
 
-- 异常
+**异常：**
   | 错误名称 | 错误类型 | 错误码 |说明 |
   | --- | -- | --- | -- |
   | 创建文件不允许 | Operation not permitted | 1 | 已有重名文件 |
@@ -210,7 +209,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
   | 获取FMS服务失败 | No such process | 3 | 获取FMS服务失败 |
   | path对应uri不是相册、目录 | Not a directory | 20 | path对应uri不是相册、目录 |
 
-- 示例
+**示例：**
 
   ```js
   // 创建文件，返回文件uri
@@ -232,7 +231,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数
+**参数：**
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
@@ -241,7 +240,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | 是   | 异步获取文件的信息之后的回调  |
 
-- 异常
+**异常：**
 
   | 错误名称                  | 错误类型                  | 错误码 | 说明                      |
   | ------------------------- | ------------------------- | ------ | ------------------------- |
@@ -250,7 +249,7 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   | 获取FMS服务失败           | No such process           | 3      | 获取FMS服务失败           |
   | path对应uri不是相册、目录 | Not a directory           | 20     | path对应uri不是相册、目录 |
 
-- 示例
+**示例：**
 
   ```js
   // 创建文件，返回文件uri
@@ -258,11 +257,15 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
   let media_path = ""
   // 待保存文件的后缀
   let name = "xxx.jpg"
-  let dev = "";
-  filemanager.createFile(media_path, name,  { DevInfo: dev }, function(err, uri) {
-      // 返回uri给应用
+  let options = {
+    "dev":{
+      "name":"local"
+    }
+  };
+  filemanager.createFile(media_path, name, options, function(err, uri) {
+    // 返回uri给应用
     console.log("file uri:"+uri);
-    });
+  });
 
   ```
 
