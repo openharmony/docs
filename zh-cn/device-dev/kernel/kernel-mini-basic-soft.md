@@ -64,7 +64,7 @@ OpenHarmony LiteOS-M内核的软件定时器模块提供下面几种功能，接
 
   **表1** 软件定时器接口
 
-| 功能分类 | p接口描述 | 
+| 功能分类 | 接口描述 | 
 | -------- | -------- |
 | 创建、删除定时器 | -&nbsp;LOS_SwtmrCreate：创建定时器<br/>-&nbsp;LOS_SwtmrDelete：删除定时器 | 
 | 启动、停止定时器 | -&nbsp;LOS_SwtmrStart：启动定时器<br/>-&nbsp;LOS_SwtmrStop：停止定时器 | 
