@@ -1,9 +1,5 @@
 # 动画开发指导<a name="ZH-CN_TOPIC_0000001051451654"></a>
 
--   [使用场景](#section726685714018)
--   [接口说明](#section85794718418)
--   [开发步骤](#section14101161317435)
-
 ## 使用场景<a name="section726685714018"></a>
 
 UI动画通过task处理机制每个tick调用一下用户设置的callback函数来实现，具体实现为AnimatorManager、Animator、AnimatorCallback三个类实现。
