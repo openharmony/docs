@@ -81,7 +81,8 @@ push(param: PushParameters, callback: AsyncCallback&lt;void&gt;): void
     | extraData | KVObject | 否    | 附加数据值。          |
 
 - 示例
-  见[组件使用者调用接口](#组件使用者调用接口)示例。
+
+  见[Plugin组件提供方](#组件提供方)示例。
 
 
 ## request
@@ -117,7 +118,8 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 
 
 - 示例
-  见[组件使用者调用接口](#组件使用者调用接口)示例。
+
+  见[Plugin组件使用方](#组件使用方)示例。
 
 
 ## on
@@ -146,22 +148,23 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback): v
     | extraData | KVObjec  | 附加数据。 |
 
 - 示例
-  见[组件使用者调用接口](#组件使用者调用接口)示例。
+
+  见[Plugin组件工具](#Plugin组件工具)示例。
 
 
 ## 示例
 
 
-### 使用PluginComponent组件
+### 组件使用方
 
 
-```
-import plugin from "../../test/plugin_component.js"
-import plugincomponent from '@ohos.plugincomponent'
+```ts
+//PluginUserExample.ets
+import plugin from "plugin_component.js"
 
 @Entry
 @Component
-struct PluginComponentExample {
+struct PluginUserExample {
   @StorageLink("plugincount") plugincount: Object[] = [
     { source: 'plugincomponent1', ability: 'com.example.plugin' },
     { source: 'plugintemplate', ability: 'com.example.myapplication' },
@@ -172,32 +175,23 @@ struct PluginComponentExample {
       Text('Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
-      Button('Push')
-        .fontSize(50)
+      Button('Register Request Listener')
+        .fontSize(30)
         .width(400)
         .height(100)
-        .onClick(() => {
-          plugin.Push()
-          console.log("Button('Push')")
+        .margin({top:20})
+        .onClick(()=>{
+          plugin.onListener()
+          console.log("Button('Register Request Listener')")
         })
-        .margin({ top: 20 })
-      Button('Request1')
+      Button('Request')
         .fontSize(50)
         .width(400)
         .height(100)
         .margin({ top: 20 })
         .onClick(() => {
-          plugin.Request1()
-          console.log("Button('Request1')")
-        })
-      Button('Request2')
-        .fontSize(50)
-        .width(400)
-        .height(100)
-        .margin({ top: 20 })
-        .onClick(() => {
-          plugin.Request2()
-          console.log("Button('Request2')")
+          plugin.Request()
+          console.log("Button('Request')")
         })
       ForEach(this.plugincount, item => {
         PluginComponent({
@@ -214,15 +208,58 @@ struct PluginComponentExample {
     }
     .width('100%')
     .height('100%')
+  }
 }
 ```
 
+### 组件提供方
 
-### 组件使用者调用接口
+```ts
+//PluginProviderExample.ets
+import plugin from "plugin_component.js"
 
+@Entry
+@Component
+struct PluginProviderExample {
+  @State message: string = 'no click!'
 
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Register Push Listener')
+        .fontSize(30)
+        .width(400)
+        .height(100)
+        .margin({top:20})
+        .onClick(()=>{
+          plugin.onListener()
+          console.log("Button('Register Push Listener')")
+        })
+      Button('Push')
+        .fontSize(30)
+        .width(400)
+        .height(100)
+        .margin({top:20})
+        .onClick(()=>{
+          plugin.Push()
+          this.message = "Button('Push')"
+          console.log("Button('Push')")
+        })
+      Text(this.message)
+        .height(150)
+        .fontSize(30)
+        .padding(5)
+        .margin(5)
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+  }
+}
 ```
-import pluginComponentManager from '@ohos.plugincomponent'
+
+### Plugin组件工具
+
+
+```js
+//plugin_component.js
+import pluginComponentManager from '@ohos.pluginComponent'
 
 function onPushListener(source, template, data, extraData) {
   console.log("onPushListener template.source=" + template.source)
@@ -239,58 +276,21 @@ function onPushListener(source, template, data, extraData) {
   console.log("onPushListener extraData=" + JSON.stringify(extraData))
 }
 
+function onRequestListener(source, name, data)
+{
+    console.log("onRequestListener name=" + name);
+    console.log("onRequestListener data=" + JSON.stringify(data));
+    return {template:"plugintemplate", data:data};
+}
+
 export default {
   //register listener
   onListener() {
     pluginComponentManager.on("push", onPushListener)
-  },
-  Request() {
-    // 组件使用者主动发送事件
-    pluginComponentManager.request({
-        want: {
-          bundleName: "com.example.myapplication",
-          abilityName: "com.example.myapplication.MainAbility",
-        },
-        name: "plugintemplate",
-        data: {
-          "key_1": "plugin component test",
-          "key_2": 34234
-        },
-        jsonPath: "assets/js",
-      },
-      (err, data) => {
-        console.log("request_callback1: componentTemplate.ability=" + data.componentTemplate.ability)
-        console.log("request_callback1: componentTemplate.source=" + data.componentTemplate.source)
-        var jsonObject = JSON.parse(data.componentTemplate.source)
-        console.log("request_callback1:source json object" + jsonObject)
-        var jsonArry = jsonObject.ExternalComponent
-        for (var i in jsonArry) {
-          console.log(jsonArry[i])
-        }
-        console.log("request_callback1:source json string" + JSON.stringify(jsonObject))
-        console.log("request_callback1: data=" + JSON.stringify(data.data))
-        console.log("request_callback1: extraData=" + JSON.stringify(data.extraData))
-      }
-    )
-  }
-}
-
-// 组件提供者使用接口示例
-import pluginComponentManager from '@ohos.plugincomponent'
-
-function onRequestListener(source, name, data) {
-  console.log("onRequestListener name=" + name)
-  console.log("onRequestListener data=" + JSON.stringify(data))
-  return { template: "plugintemplate", data: data }
-}
-
-export default {
-  //register listener
-  onListener() {
     pluginComponentManager.on("request", onRequestListener)
   },
   Push() {
-    // 组件提供者主动发送事件
+    // 组件提供方主动发送事件
     pluginComponentManager.push(
       {
         want: {
@@ -305,14 +305,41 @@ export default {
         extraData: {
           "extra_str": "this is push event"
         },
-        jsonPath: "assets/js",
+        jsonPath: "",
       },
       (err, data) => {
-        console.log("push_callback1: componentTemplate.ability=" + data.componentTemplate.ability)
-        console.log("push_callback1: componentTemplate.source=" + data.componentTemplate.source)
-        console.log("push ok!")
+        console.log("push_callback: push ok!");
       }
     )
   },
+  Request() {
+    // 组件使用方主动发送事件
+    pluginComponentManager.request({
+        want: {
+          bundleName: "com.example.myapplication",
+          abilityName: "com.example.myapplication.MainAbility",
+        },
+        name: "plugintemplate",
+        data: {
+          "key_1": "plugin component test",
+          "key_2": 34234
+        },
+        jsonPath: "",
+      },
+      (err, data) => {
+        console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+        console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+        var jsonObject = JSON.parse(data.componentTemplate.source)
+        console.log("request_callback:source json object" + jsonObject)
+        var jsonArry = jsonObject.ExternalComponent
+        for (var i in jsonArry) {
+          console.log(jsonArry[i])
+        }
+        console.log("request_callback:source json string" + JSON.stringify(jsonObject))
+        console.log("request_callback: data=" + JSON.stringify(data.data))
+        console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+      }
+    )
+  }
 }
 ```
