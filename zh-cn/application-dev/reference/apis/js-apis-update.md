@@ -95,7 +95,7 @@ getLocalUpdater(): LocalUpdater
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| [LocalUpdater](#localUpdater) | 本地升级对象 |
+| [LocalUpdater](#localupdater) | 本地升级对象 |
 
 **示例：**
 
@@ -143,7 +143,7 @@ checkNewVersion(): Promise\<CheckResult>
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[CheckResult](#checkResult)> | Promise函数返回检测结果 |
+| Promise\<[CheckResult](#checkresult)> | Promise函数返回检测结果 |
 
 **示例:**
 
@@ -1120,7 +1120,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
 | upgradeApp          | string                      | 是    | 调用方包名  |
-| businessType        | [BusinessType](#installmode) | 是    | 升级业务类型    |
+| businessType        | [BusinessType](#businesstype) | 是    | 升级业务类型    |
 
 ## BusinessType
 
@@ -1131,7 +1131,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
 | vendor              | [BusinessVendor](#businessvendor)   | 是    | 供应商  |
-| subType             | [BusinessSubType](#businesssubyype) | 是    | 类型    |
+| subType             | [BusinessSubType](#businesssubtype) | 是    | 类型    |
 
 ## CheckResult
 
