@@ -516,7 +516,7 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
     });
 
     // 无maNum参数调用方式
-    stats.getRecentlyUsedModules((err, res) => {
+    bundleState.getRecentlyUsedModules((err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {
