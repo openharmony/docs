@@ -197,11 +197,12 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | --- | -- |
-  | string | 文件uri |
+| 类型 | 说明 |
+| --- | -- |
+| Promise&lt;string&gt; | 文件uri |
 
 **异常：**
+
   | 错误名称 | 错误类型 | 错误码 |说明 |
   | --- | -- | --- | -- |
   | 创建文件不允许 | Operation not permitted | 1 | 已有重名文件 |
