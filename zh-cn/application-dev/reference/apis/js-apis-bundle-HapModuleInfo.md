@@ -6,6 +6,8 @@
 
 Hap模块信息
 
+## HapModuleInfo
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 名称                                | 类型                           | 可读   | 可写   | 说明                 |

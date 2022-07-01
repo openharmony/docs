@@ -73,7 +73,7 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, call
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -310,7 +310,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -608,7 +608,7 @@ getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -684,7 +684,7 @@ getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallbac
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -755,10 +755,6 @@ isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
 以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用callback形式返回结果。
 
-**需要权限：**
-
-无
-
 **系统能力：**
 
 SystemCapability.BundleManager.BundleFramework
@@ -825,10 +821,6 @@ bundle.isApplicationEnabled(bundleName)
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
 以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
-
-**需要权限：**
-
-无
 
 **系统能力：**
 
@@ -947,6 +939,10 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1162,7 +1158,7 @@ getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1246,7 +1242,7 @@ queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: num
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
