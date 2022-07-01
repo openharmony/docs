@@ -1,6 +1,5 @@
 # DFX概述<a name="ZH-CN_TOPIC_0000001185974398"></a>
 
--   [基本概念](#section5635178134811)
 
 在OpenHarmony中，DFX\([Design for X](https://en.wikipedia.org/wiki/Design_for_X)\)是为了提升质量属性的软件设计，目前包含的内容主要有：DFR（Design for Reliability，可靠性）和DFT（Design for Testability，可测试性）特性。
 
