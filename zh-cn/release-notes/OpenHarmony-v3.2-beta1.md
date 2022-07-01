@@ -198,7 +198,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 | 分布式数据管理 | DistributedRdb | 本示例展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | eTS |
 | 元能力 | BackgroundTaskManager | 本示例模拟下载功能，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | eTS |
 | 元能力 | BringApp | 本示例使用FeatureAbility接口，通过应用的包名与Ability名，拉起系统应用。 | eTS |
-| 媒体 | VideoPlayer | 本示例展示了在eTS中VideoPlayer如何播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | eTS |
+| 媒体 | VideoPlayer | 本示例展示了在eTS中如何VideoPlayer播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | eTS |
 | 元能力 | DistributeCalc | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | eTS |
 | 媒体 | JSRecorder | 本示例通过调用媒体相关接口来实现音频录制和播放的功能。 | eTS |
 | Web | Browser | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | eTS |
