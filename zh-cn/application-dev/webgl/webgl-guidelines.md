@@ -12,17 +12,17 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 | 接口名 | 描述 |
 | -------- | -------- |
 | canvas.getContext | 获取canvas对象上下文。 |
-| webgl.createBuffer():&nbsp;WebGLBuffer&nbsp;\|&nbsp;null | 创建与初始化WebGL数据缓冲区。 |
-| webgl.bindBuffer(target:&nbsp;GLenum,<br />&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null):&nbsp;void | 将WebGL数据缓冲区与目标进行绑定。 |
-| webgl.bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,<br />&nbsp;usage:&nbsp;GLenum,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint):&nbsp;void | 创建并初始化WebGL的数据存储区。 |
-| webgl.getAttribLocation(program:&nbsp;WebGLProgram,<br />&nbsp;name:&nbsp;string):&nbsp;GLint | 从给定WebGL着色程序中获取着色器中attribute变量的地址。 |
-| webgl.vertexAttribPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,<br />&nbsp;normalized:&nbsp;GLboolean,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr):&nbsp;void | 将缓冲区对象分配给变量。 |
-| webgl.enableVertexAttribArray(index:&nbsp;GLuint):&nbsp;void | 连接变量与分配给它的缓冲区对象。 |
-| webgl.clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,<br />&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf):&nbsp;void | 清空&lt;canvas&gt;指定的颜色。 |
-| webgl.clear(mask:&nbsp;GLbitfield):&nbsp;void | 清空&lt;canvas&gt;。 |
-| webgl.drawArrays(mode:&nbsp;GLenum,&nbsp;first:;GLint,<br />&nbsp;count:&nbsp;GLsizei):&nbsp;void | 执行数据绘制。 |
-| webgl.flush():&nbsp;void | 刷新数据至GPU，清空缓冲区。 |
-| webgl.createProgram():&nbsp;WebGLProgram&nbsp;\|&nbsp;null | 创建着色器程序对象。 |
+| webgl.createBuffer(): WebGLBuffer \| null | 创建与初始化WebGL数据缓冲区。 |
+| webgl.bindBuffer(target: GLenum, buffer: WebGLBuffer \| null): void | 将WebGL数据缓冲区与目标进行绑定。 |
+| webgl.bufferData(target: GLenum, srcData: ArrayBufferView, usage: GLenum, srcOffset: GLuint, length?: GLuint): void | 创建并初始化WebGL的数据存储区。 |
+| webgl.getAttribLocation(program: WebGLProgram, name: string): GLint | 从给定WebGL着色程序中获取着色器中attribute变量的地址。 |
+| webgl.vertexAttribPointer(index GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr): void | 将缓冲区对象分配给变量。 |
+| webgl.enableVertexAttribArray(index: GLuint): void | 连接变量与分配给它的缓冲区对象。 |
+| webgl.clearColor(red: GLclampf, green:GLclampf, blue: GLclampf, alpha: GLclampf): void | 清空&lt;canvas&gt;指定的颜色。 |
+| webgl.clear(mask: GLbitfield): void | 清空&lt;canvas&gt;。 |
+| webgl.drawArrays(mode: GLenum, first:;GLint, count: GLsizei): void | 执行数据绘制。 |
+| webgl.flush(): void | 刷新数据至GPU，清空缓冲区。 |
+| webgl.createProgram(): WebGLProgram \| null | 创建着色器程序对象。 |
 
 
 ## 开发步骤
