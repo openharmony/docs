@@ -8,11 +8,11 @@
 **表1** Service中相关生命周期API功能介绍
 |接口名|描述|
 |:------|:------|
-|onStart|该方法在创建Service的时候调用，用于Service的初始化。在Service的整个生命周期只会调用一次，调用时传入的Want应为空。|
-|onCommand|在Service创建完成之后调用，该方法在客户端每次启动该Service时都会调用，开发者可以在该方法中做一些调用统计、初始化类的操作。|
-|onConnect|在Ability和Service连接时调用。|
-|onDisconnect|在Ability与绑定的Service断开连接时调用。|
-|onStop|在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。|
+|onStart?(): void|该方法在创建Service的时候调用，用于Service的初始化。在Service的整个生命周期只会调用一次，调用时传入的Want应为空。|
+|onCommand?(want: Want, startId: number): void|在Service创建完成之后调用，该方法在客户端每次启动该Service时都会调用，开发者可以在该方法中做一些调用统计、初始化类的操作。|
+|onConnect?(want: Want): rpc.RemoteObject|在Ability和Service连接时调用。|
+|onDisconnect?(want: Want): void|在Ability与绑定的Service断开连接时调用。|
+|onStop?(): void|在Service销毁时调用。Service应通过实现此方法来清理任何资源，如关闭线程、注册的侦听器等。|
 
 ## 开发步骤
 
