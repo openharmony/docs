@@ -564,11 +564,11 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 设置主卡所在卡槽的索引号，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -593,11 +593,11 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 设置主卡所在卡槽的索引号，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -629,11 +629,11 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -656,11 +656,11 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -685,11 +685,11 @@ getIMEI(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的IMEI，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -721,11 +721,11 @@ getMEID(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -748,11 +748,11 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -777,11 +777,11 @@ getMEID(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的MEID，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -813,11 +813,11 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -840,11 +840,11 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -869,11 +869,11 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的唯一设备ID，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
 **系统能力**：SystemCapability.Telephony.CoreService
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
