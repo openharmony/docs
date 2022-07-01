@@ -166,7 +166,7 @@ let connId = featureAbility.connectAbility(
 );
 ```
 
-When a Service ability is connected, the **onConnect()** callback is invoked and returns an **IRemoteObject** defining the proxy used for communicating with the Service ability. OpenHarmony provides a default implementation of the **IRemoteObject** interface. You can extend **rpc.RemoteObject** to implement your own class of **IRemoteObject**.
+When a Service ability is connected, the **onConnect()** callback is invoked and returns an **IRemoteObject** defining the proxy used for communicating with the Service ability. OpenHarmony provides a default implementation of **IRemoteObject**. You can extend **rpc.RemoteObject** to implement your own class of **IRemoteObject**.
 
 The following code snippet shows how the Service ability instance returns itself to the calling ability:
 
