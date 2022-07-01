@@ -33,7 +33,7 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 | 参数名         | 类型                          | 必填   | 说明   |
 | ----------- | --------------------------- | ---- | ---- |
-| upgradeInfo | [UpgradeInfo](#upgradeInfo)                 | 是    | 升级信息 |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo)                 | 是    | 升级信息 |
 
 **返回值：**
 
@@ -217,7 +217,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback<[CurrentVersionInfo](#currentVersionInfo)> | 是    | 回调返回当前版本信息 |
+| callback | AsyncCallback<[CurrentVersionInfo](#currentversioninfo)> | 是    | 回调返回当前版本信息 |
 
 **示例：**
 
@@ -241,7 +241,7 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[CurrentVersionInfo](#currentVersionInfo)> | Promise，用于异步获取结果 |
+| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise，用于异步获取结果 |
 
 **示例：**
 
@@ -267,7 +267,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback<[TaskInfo](#taskInfo)> | 是    | 回调返回升级任务信息 |
+| callback | AsyncCallback<[TaskInfo](#taskinfo)> | 是    | 回调返回升级任务信息 |
 
 **示例：**
 
@@ -313,8 +313,8 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| downloadOptions | [DownloadOptions](#downloadOptions) | 是    | 下载选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| downloadOptions | [DownloadOptions](#downloadoptions) | 是    | 下载选项 |
 | callback | AsyncCallback<void> | 是    | 执行回调 |
 
 **示例：**
@@ -347,8 +347,8 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| downloadOptions | [DownloadOptions](#downloadOptions) | 是    | 下载选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| downloadOptions | [DownloadOptions](#downloadoptions) | 是    | 下载选项 |
 
 **返回值：**
 
@@ -388,8 +388,8 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| resumeDownloadOptions | [ResumeDownloadOptions](#resumeDownloadOptions) | 是    | 恢复下载选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项 |
 | callback | AsyncCallback<void> | 是    | 执行回调 |
 
 **示例：**
@@ -421,8 +421,8 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| resumeDownloadOptions | [ResumeDownloadOptions](#resumeDownloadOptions) | 是    | 恢复下载选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项 |
 
 **返回值：**
 
@@ -461,8 +461,8 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| pauseDownloadOptions | [PauseDownloadOptions](#pauseDownloadOptions) | 是    | 暂停下载选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项 |
 | callback | AsyncCallback<void> | 是    | 执行回调 |
 
 **示例：**
@@ -494,8 +494,8 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| pauseDownloadOptions | [PauseDownloadOptions](#pauseDownloadOptions) | 是    | 暂停下载选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项 |
 
 **返回值：**
 
@@ -534,8 +534,8 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| upgradeOptions | [UpgradeOptions](#upgradeOptions) | 是    | 更新选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| upgradeOptions | [UpgradeOptions](#upgradeoptions) | 是    | 更新选项 |
 | callback | AsyncCallback<void> | 是    | 执行回调 |
 
 **示例：**
@@ -567,8 +567,8 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| upgradeOptions | [UpgradeOptions](#upgradeOptions) | 是    | 更新选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| upgradeOptions | [UpgradeOptions](#upgradeoptions) | 是    | 更新选项 |
 
 **返回值：**
 
@@ -607,8 +607,8 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| clearOptions | [ClearOptions](#clearOptions) | 是    | 清除选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| clearOptions | [ClearOptions](#clearoptions) | 是    | 清除选项 |
 | callback | AsyncCallback<void> | 是    | 执行回调 |
 
 **示例：**
@@ -640,8 +640,8 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| clearOptions | [ClearOptions](#clearOptions) | 是    | 更新选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| clearOptions | [ClearOptions](#clearoptions) | 是    | 更新选项 |
 
 **返回值：**
 
@@ -680,7 +680,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[UpgradePolicy](#upgradePolicy)> | 是    | 回调返回升级策略信息 |
+| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | 是    | 回调返回升级策略信息 |
 
 **示例：**
 
@@ -703,7 +703,7 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 | 类型                                      | 说明                |
 | --------------------------------------- | ----------------- |
-| Promise\<[UpgradePolicy](#upgradePolicy)> | Promise函数返回升级策略信息 |
+| Promise\<[UpgradePolicy](#upgradepolicy)> | Promise函数返回升级策略信息 |
 
 **示例：**
 
@@ -728,7 +728,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| policy | [UpgradePolicy](#upgradePolicy) | 是    | 升级策略 |
+| policy | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略 |
 | callback | AsyncCallback\<number> | 是    | 回调设置结果 |
 
 **示例：**
@@ -756,7 +756,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 
 | 参数名    | 类型                            | 必填   | 说明     |
 | ------ | ----------------------------- | ---- | ------ |
-| policy | [UpgradePolicy](#upgradePolicy) | 是    | 升级策略 |
+| policy | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略 |
 
 **返回值：**
 
@@ -837,8 +837,8 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
-| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调 |
 
 **示例：**
 
@@ -866,8 +866,8 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
-| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 否    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | 否    | 事件回调 |
 
 **示例：**
 
@@ -946,7 +946,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| upgradeFile | [UpgradeFile](#upgradeFile) | 是    | 升级文件 |
+| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件 |
 | certsFile | string | 是    | 证书文件路径 |
 | callback | AsyncCallback\<number> | 是    | 回调校验结果 |
 
@@ -975,7 +975,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| upgradeFile | [UpgradeFile](#upgradeFile) | 是    | 升级文件 |
+| upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件 |
 | certsFile | string | 是    | 证书文件路径 |
 
 **返回值:**
@@ -999,7 +999,7 @@ updater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(number => {
 ```
 
 ### applyNewVersion
-applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradeFile)>, callback: AsyncCallback\<void>): void
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: AsyncCallback\<void>): void
 
 安装升级包，使用callback方式作为异步方法。
 
@@ -1009,7 +1009,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradeFile)>, callback: Asyn
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| upgradeFile | Array<[UpgradeFile](#upgradeFile)> | 是    | 升级文件 |
+| upgradeFile | Array<[UpgradeFile](#upgradefile)> | 是    | 升级文件 |
 | callback | AsyncCallback\<void> | 是    | 回调安装结果 |
 
 **示例：**
@@ -1027,7 +1027,7 @@ localUpdater.applyNewVersion(upgradeFiles, (err) => {
 
 ### applyNewVersion
 
-applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradeFile)>): Promise\<void>
+applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void>
 
 安装升级包，使用promise方式作为异步方法。
 
@@ -1064,8 +1064,8 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
-| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调 |
 
 **示例：**
 
@@ -1093,8 +1093,8 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
-| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | 是    | 事件信息 |
+| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | 是    | 事件回调 |
 
 **示例：**
 
@@ -1130,8 +1130,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| vendor              | [BusinessVendor](#businessVendor)   | 是    | 供应商  |
-| subType             | [BusinessSubType](#businessSubType) | 是    | 类型    |
+| vendor              | [BusinessVendor](#businessvendor)   | 是    | 供应商  |
+| subType             | [BusinessSubType](#businesssubyype) | 是    | 类型    |
 
 ## CheckResult
 
@@ -1142,7 +1142,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
 | isExistNewVersion              | bool   | 是    | 是否有新版本  |
-| newVersionInfo             | [NewVersionInfo](#newVersionInfo) | 否    | 新版本数据    |
+| newVersionInfo             | [NewVersionInfo](#newversioninfo) | 否    | 新版本数据    |
 
 ## NewVersionInfo
 
@@ -1152,8 +1152,8 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| versionDigestInfo              | [VersionDigestInfo](#versionDigestInfo)   | 是    | 版本摘要  |
-| versionComponents             | Array\<[VersionComponent](#vesionComponent)>  | 是    | 版本组件    |
+| versionDigestInfo              | [VersionDigestInfo](#versiondigestinfo)   | 是    | 版本摘要  |
+| versionComponents             | Array\<[VersionComponent](#vesioncomponent)>  | 是    | 版本组件    |
 
 ## VersionDigestInfo
 
@@ -1173,13 +1173,13 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| componentType              | [ComponentType](#componentType)   | 是    | 组件类型  |
-| upgradeAction              | [UpgradeAction](#upgradeAction)   | 是    | 升级方式  |
+| componentType              | [ComponentType](#componentyype)   | 是    | 组件类型  |
+| upgradeAction              | [UpgradeAction](#upgradeaction)   | 是    | 升级方式  |
 | displayVersion              | string   | 是    | 显示版本号  |
 | innerVersion              | string   | 是    | 版本号  |
 | size              | number   | 是    | 升级包大小  |
-| effectiveMode              | [EffectiveMode](#effectiveMode)   | 是    | 生效模式  |
-| descriptionInfo              | [DescriptionInfo](#descriptionInfo)   | 是    | 版本描述文件信息  |
+| effectiveMode              | [EffectiveMode](#effectivemode)   | 是    | 生效模式  |
+| descriptionInfo              | [DescriptionInfo](#descriptioninfo)   | 是    | 版本描述文件信息  |
 
 ## DescriptionInfo
 
@@ -1189,7 +1189,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| descriptionType              | [DescriptionType](#descriptionType)   | 是    | 描述文件类型  |
+| descriptionType              | [DescriptionType](#descriptiontype)   | 是    | 描述文件类型  |
 | content              |  string  | 是    | 描述文件内容  |
 
 ## CurrentVersionInfo
@@ -1202,7 +1202,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | ------------------- | --------------------------- | ---- | ------- |
 | osVersion              | string   | 是    | 系统版本号  |
 | deviceName              | string   | 是    | 设备名  |
-| versionComponents              | Array\<[VersionComponent](#vesionComponent)>   | 否    | 版本组件  |
+| versionComponents              | Array\<[VersionComponent](#vesioncomponent)>   | 否    | 版本组件  |
 
 ## DownloadOptions
 
@@ -1212,7 +1212,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| allowNetwork              | [NetType](#netType)   | 是    | 网络类型  |
+| allowNetwork              | [NetType](#nettype)   | 是    | 网络类型  |
 | order              | [Order](#order)   | 是    | 升级指令  |
 
 ## ResumeDownloadOptions
@@ -1223,7 +1223,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| allowNetwork              | [NetType](#netType)   | 是    | 网络类型  |
+| allowNetwork              | [NetType](#nettype)   | 是    | 网络类型  |
 
 ## PauseDownloadOptions
 
@@ -1253,7 +1253,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| status              | [UpgradeStatus](#upgradeStatus)   | 是    | 异常状态  |
+| status              | [UpgradeStatus](#upgradestatus)   | 是    | 异常状态  |
 
 ## UpgradePolicy
 
@@ -1265,7 +1265,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | ------------------- | --------------------------- | ---- | ------- |
 | downloadStrategy        | bool                        | 是    | 自动下载策略  |
 | autoUpgradeStrategy         | bool | 是    | 自动升级策略    |
-| autoUpgradePeriods | Array\<[UpgradePeriod](#upgradePeriod)>              | 是    | 自动升级时间段 |
+| autoUpgradePeriods | Array\<[UpgradePeriod](#upgradeperiod)>              | 是    | 自动升级时间段 |
 
 ## UpgradePeriod
 
@@ -1297,7 +1297,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| eventId        |   [EventId](#eventId)    | 是    | 事件ID  |
+| eventId        |   [EventId](#eventid)    | 是    | 事件ID  |
 | taskBody         | [TaskBody](#taskinfo) | 是    | 任务数据    |
 
 ## TaskBody
@@ -1308,13 +1308,13 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| versionDigestInfo        |   [VersionDigestInfo](#versionDigestInfo)    | 是    | 版本摘要  |
-| status         | [UpgradeStatus](#upgradeStatus) | 是    | 升级状态    |
+| versionDigestInfo        |   [VersionDigestInfo](#versiondigestinfo)    | 是    | 版本摘要  |
+| status         | [UpgradeStatus](#upgradestatus) | 是    | 升级状态    |
 | subStatus         | number | 否    | 子状态    |
 | progress         | number | 是    | 进度    |
 | installMode         | number | 是    | 安装模式    |
-| errorMessages         |  Array\<[ErrorMessage](#errorMessage)>  | 否    | 错误信息    |
-| versionComponets         | Array\<[VersionComponet](#versionComponet)> | 是    | 版本组件    |
+| errorMessages         |  Array\<[ErrorMessage](#errormessage)>  | 否    | 错误信息    |
+| versionComponets         | Array\<[VersionComponet](#versioncomponet)> | 是    | 版本组件    |
 
 ## ErrorMessage
 
@@ -1352,7 +1352,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 ## UpgradeTaskCallback
 
 ### onTaskUpdate
-onTaskUpdate(eventInfo: [EventInfo](#eventInfo)): void
+onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 事件回调。
 
@@ -1360,7 +1360,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventInfo)): void
 
 | 名称              | 参数类型                                     | 必填   | 说明   |
 | --------------- | ---------------------------------------- | ---- | ---- |
-| eventInfo          | [EventInfo](#eventInfo)     | 是    | 事件信息 |
+| eventInfo          | [EventInfo](#eventinfo)     | 是    | 事件信息 |
 
 ## BusinessVendor
 
