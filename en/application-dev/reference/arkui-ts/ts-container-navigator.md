@@ -1,11 +1,12 @@
 # Navigator
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Navigator&gt;** component provides redirection.
+The **\<Navigator>** component provides redirection to the target page.
 
 
 ## Required Permissions
@@ -25,42 +26,43 @@ Navigator(value?: {target: string, type?: NavigationType})
 Creates a navigator.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | target | string | Yes | - | Path of the target page to be redirected to. | 
-  | type | NavigationType | No | NavigationType.Push | Navigation type. | 
+  | target | string | Yes | - | Path of the target page to be redirected to. |
+  | type | NavigationType | No | NavigationType.Push | Navigation type. |
 
 - NavigationType enums
-    | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | Push | Navigates to a specified page in the application. | 
-  | Replace | Replaces the current page with another one in the application and destroys the current page. | 
-  | Back | Returns to the previous page or a specified page. | 
+  | Push | Navigates to a specified page in the application. |
+  | Replace | Replaces the current page with another one in the application and destroys the current page. |
+  | Back | Returns to the previous page or a specified page. |
 
 
 ## Attributes
 
-  | Name | Parameters | Default Value | Description | 
+| Name | Parameters | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| active | boolean | - | Whether the **&lt;Navigator&gt;** component is activated. If the component is activated, the corresponding navigation takes effect. | 
-| params | Object | undefined | Data that needs to be passed to the target page during redirection. You can use **router.getParams()** to obtain the data on the target page. | 
+| active | boolean | - | Whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect. |
+| params | Object | undefined | Data that needs to be passed to the target page during redirection. You can use **router.getParams()** to obtain the data on the target page. |
 
 
 ## Example
 
-  
-```
-// Navigator Page
+
+```ts
+// Navigator.ets
 @Entry
 @Component
 struct NavigatorExample {
   @State active: boolean = false
-  @State Text: string = 'news'
+  @State Text: object = {name: 'news'}
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Navigator({ target: 'pages/container/navigator/Detail', type: NavigationType.Push }) {
-        Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
+        Text('Go to ' + this.Text['name'] + ' page')
+            .width('100%').textAlign(TextAlign.Center)
       }.params({ text: this.Text })
 
       Navigator() {
@@ -74,15 +76,15 @@ struct NavigatorExample {
 }
 ```
 
-  
-```
-// Detail Page
+
+```ts
+// Detail.ets
 import router from '@system.router'
 
 @Entry
 @Component
 struct DetailExample {
-  @State text: string = router.getParams().text
+  @State text: any = router.getParams().text
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
@@ -90,7 +92,8 @@ struct DetailExample {
         Text('Go to back page').width('100%').height(20)
       }
 
-      Text('This is ' + this.text + ' page').width('100%').textAlign(TextAlign.Center)
+      Text('This is ' + this.text['name'] + ' page')
+          .width('100%').textAlign(TextAlign.Center)
     }
     .width('100%').height(200).padding({ left: 35, right: 35, top: 35 })
   }
@@ -98,9 +101,8 @@ struct DetailExample {
 
 ```
 
-  
-```
-// Back Page
+```ts
+// Back.ets
 @Entry
 @Component
 struct BackExample {

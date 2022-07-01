@@ -48,7 +48,7 @@ Not supported
 | textZoomAtio       | number                                   | 100               | Text zoom ratio of the page. The default value is **100**, which indicates 100%.                   |
 | userAgent          | string                                   | -                 | User agent.                                 |
 
->  **NOTE**<br>
+> **NOTE**<br>
 >
 > Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#Attributes), [height](ts-universal-attributes-size.md#Attributes), [padding](ts-universal-attributes-size.md#Attributes), [margin](ts-universal-attributes-size.md#Attributes), and [border](ts-universal-attributes-border.md#Attributes).
 
@@ -74,97 +74,85 @@ The universal events are not supported.
 | onShowFileSelector(callback: (event?: { result: [FileSelectorResult](#fileselectorresult), fileSelector:  [FileSelectorParam](#fileselectorparam) }) => void) | <p>Triggered to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.<br>**result**: file selection result to be sent to the web component.<br>**fileSelector**: information about the file selector.</p> |
 | onUrlLoadIntercept(callback: (event?: { data:string \| [WebResourceRequest](#webresourcerequest) }) => boolean) | <p>Triggered before the **\<Web>** component loads the URL to determine whether to block the access. The callback returns **true** if the access is blocked, and **false** otherwise.<br>**data**: URL information.</p> |
 
-### ConsoleMessage
+## ConsoleMessage
 
-- APIs
+| Name                           | Description                  |
+| ------------------------------- | ---------------------- |
+| getLineNumber(): number         | Obtains the number of rows in the **ConsoleMessage**.  |
+| getMessage(): string            | Obtains the log information of the **ConsoleMessage**.|
+| getMessageLevel(): [MessageLevel](#messagelevel-enums) | Obtains the log information level of the **ConsoleMessage**.|
+| getSourceId(): string           | Obtains the path and name of the web page source file.         |
 
-  | Name                           | Description                  |
-  | ------------------------------- | ---------------------- |
-  | getLineNumber(): number         | Obtains the number of rows in the **ConsoleMessage**.  |
-  | getMessage(): string            | Obtains the log information of the **ConsoleMessage**.|
-  | getMessageLevel(): MessageLevel | Obtains the log information level of the **ConsoleMessage**.|
-  | getSourceId(): string           | Obtains the path and name of the web page source file.         |
+## MessageLevel Enums
 
-- MessageLevel enums
+| Name   | Description   |
+| ----- | :---- |
+| Debug | Debug level.|
+| Error | Error level.|
+| Info  | Information level.|
+| Log   | Log level.|
+| Warn  | Warning level. |
 
-  | Name   | Description   |
-  | ----- | :---- |
-  | Debug | Debug level.|
-  | Error | Error level.|
-  | Info  | Information level.|
-  | Log   | Log level.|
-  | Warn  | Warning level. |
-
-### JsResult
+## JsResult
 
 Provides the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box.
 
-- APIs
+| Name                 | Description                   |
+| --------------------- | ----------------------- |
+| handleCancel(): void  | <p>The user's cancel operation in the dialog box.</p> |
+| handleConfirm(): void | <p>The user's confirm operation in the dialog box.</p> |
 
-  | Name                 | Description                   |
-  | --------------------- | ----------------------- |
-  | handleCancel(): void  | <p>The user's cancel operation in the dialog box.</p> |
-  | handleConfirm(): void | <p>The user's confirm operation in the dialog box.</p> |
+## WebResourceError
 
-### WebResourceError
+| Name                  | Description        |
+| ---------------------- | ------------ |
+| getErrorCode(): number | Obtains the error code for resource loading. |
+| getErrorInfo(): string | Obtains error information about resource loading.|
 
-- APIs
+## WebResourceRequest
 
-  | Name                  | Description        |
-  | ---------------------- | ------------ |
-  | getErrorCode(): number | Obtains the error code for resource loading. |
-  | getErrorInfo(): string | Obtains error information about resource loading.|
+| Name                                    | Description                |
+| ---------------------------------------- | -------------------- |
+| getRequestHeader(): Array\<[Header](#header)\> | Obtains the information about the resource request header.          |
+| getRequestUrl(): string                  | Obtains the URL of the resource request.       |
+| isMainFrame(): boolean                   | Checks whether the resource request is in the main frame.    |
+| isRedirect(): boolean                    | Checks whether the resource request is redirected by the server.    |
+| isRequestGesture(): boolean              | Checks whether the resource request is associated with a gesture (for example, a tap).|
 
-### WebResourceRequest
-
-- APIs
-
-  | Name                                    | Description                |
-  | ---------------------------------------- | -------------------- |
-  | getRequestHeader(): Array\<[Header](#header)\> | Obtains the information about the resource request header.          |
-  | getRequestUrl(): string                  | Obtains the URL of the resource request.       |
-  | isMainFrame(): boolean                   | Checks whether the resource request is in the main frame.    |
-  | isRedirect(): boolean                    | Checks whether the resource request is redirected by the server.    |
-  | isRequestGesture(): boolean              | Checks whether the resource request is associated with a gesture (for example, a tap).|
-
-### Header
+## Header
 
 Describes the request/response header returned by the **\<Web>** component.
 
-- Parameters
-
-  | Name       | Type  | Description         |
-  | ----------- | ------ | ------------- |
-  | headerKey   | string | Key of the request/response header.  |
-  | headerValue | string | Value of the request/response header.|
+| Name       | Type  | Description         |
+| ----------- | ------ | ------------- |
+| headerKey   | string | Key of the request/response header.  |
+| headerValue | string | Value of the request/response header.|
 
 
-### WebResourceResponse
+## WebResourceResponse
 
-- APIs
+| Name                                    | Description              |
+| ---------------------------------------- | ------------------ |
+| getReasonMessage(): string               | Obtains the status code description of the resource response.     |
+| getResponseCode(): number                | Obtains the status code of the resource response.       |
+| getResponseData(): string                | Obtains the data in the resource response.         |
+| getResponseEncoding(): string            | Obtains the encoding of the resource response.        |
+| getResponseHeader(): Array\<[Header](#header)\> | Obtains the resource response header.          |
+| getResponseMimeType(): string            | Obtains the media (MIME) type of the resource response.|
 
-  | Name                                    | Description              |
-  | ---------------------------------------- | ------------------ |
-  | getReasonMessage(): string               | Obtains the status code description of the resource response.     |
-  | getResponseCode(): number                | Obtains the status code of the resource response.       |
-  | getResponseData(): string                | Obtains the data in the resource response.         |
-  | getResponseEncoding(): string            | Obtains the encoding of the resource response.        |
-  | getResponseHeader(): Array\<[Header](#header)\> | Obtains the resource response header.          |
-  | getResponseMimeType(): string            | Obtains the media (MIME) type of the resource response.|
-
-### RenderExitReason
+## RenderExitReason
 
 Explains why the rendering process exits.
 
 | Name                        | Description               |
 | -------------------------- | ----------------- |
-| ProcessAbnormalTermination | The rendering process exits abnormally.        |
-| ProcessWasKilled           | The rendering process receives a SIGKILL message or is manually terminated.|
-| ProcessCrashed             | The rendering process crashes due to a segmentation error or other errors.   |
-| ProcessOom                 | The program memory is running low.          |
-| ProcessExitUnknown         | Other reason.            |
+| PROCESS_ABNORMAL_TERMINATION | The rendering process exits abnormally.        |
+| PROCESS_WAS_KILLED          | The rendering process receives a SIGKILL message or is manually terminated.|
+| PROCESS_CRASHED            | The rendering process crashes due to a segmentation error or other errors.   |
+| PROCESS_OOM                 | The program memory is running low.          |
+| PROCESS_EXIT_UNKNOWN         | Other reason.            |
 
-### MixedMode
+## MixedMode
 
 | Name        | Description                                |
 | ---------- | ---------------------------------- |
@@ -172,7 +160,7 @@ Explains why the rendering process exits.
 | Compatible | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
 | None       | HTTP and HTTPS hybrid content cannot be loaded.              |
 
-### CacheMode
+## CacheMode
 | Name     | Description                                  |
 | ------- | ------------------------------------ |
 | Default | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
@@ -180,32 +168,28 @@ Explains why the rendering process exits.
 | Online  | The cache is not used to load the resources. All resources are obtained from the Internet.              |
 | Only    | The cache alone is used to load the resources.                       |
 
-### FileSelectorResult
+## FileSelectorResult
 Notifies the **\<Web>** component of the file selection result.
 
-- APIs
+| Name                                           | Description                                                  |
+| ---------------------------------------------- | ------------------------------------------------------------ |
+| handleFileList(fileList: Array\<string>): void | Instructs the **\<Web>** component to select a file.<br>**fileList**: list of files to operate. |
 
-  | Name                                           | Description                                                  |
-  | ---------------------------------------------- | ------------------------------------------------------------ |
-  | handleFileList(fileList: Array\<string>): void | Instructs the **\<Web>** component to select a file.<br>**fileList**: list of files to operate. |
+## FileSelectorParam
+| Name                            | Description        |
+| -------------------------------- | ------------ |
+| title(): string               | Title of the file selector.  |
+| mode(): FileSelectorMode      | Mode of the file selector. |
+| acceptType(): Array\<string\> | File filtering type.   |
+| isCapture(): boolean             | Whether multimedia capabilities are invoked.|
 
-### FileSelectorParam
-- APIs
-
-  | Name                            | Description        |
-  | -------------------------------- | ------------ |
-  | getTitle(): string               | Obtains the title of the file selector.  |
-  | getMode(): FileSelectorMode      | Obtains the mode of the file selector. |
-  | getAcceptType(): Array\<string\> | Obtains the file filtering type.   |
-  | isCapture(): boolean             | Checks whether multimedia capabilities are invoked.|
-
-### FileSelectorMode
+## FileSelectorMode
 | Name                  | Description        |
 | -------------------- | ---------- |
-| FileOpenMode         | Open and upload a file. |
-| FileOpenMultipleMode | Open and upload multiple files. |
-| FileOpenFolderMode   | Open and upload a folder.|
-| FileSaveMode         | Save a file.   |
+| FILE_OPEN_MODE         | Open and upload a file. |
+| FILE_OPEN_MULTIPLE_MODE | Open and upload multiple files. |
+| FILE_OPEN_FOLDER_MODE   | Open and upload a folder.|
+| FILE_SAVE_MODE         | Save a file.   |
 
 ## WebController
 
