@@ -3022,6 +3022,8 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
 **参数：**
 
 
@@ -3048,11 +3050,13 @@ Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 ### onConsume
 
-onConsume?:(data: [SubscribeCallbackData](#subscribecallbackdata))
+onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 接收通知回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3095,11 +3099,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onCancel
 
-onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata))
+onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 删除通知回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3133,11 +3139,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onUpdate
 
-onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap))
+onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
 
 更新通知排序回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3169,11 +3177,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onConnect
 
-onConnect?:void
+onConnect?:() => void
 
 注册订阅回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **示例：**
 
@@ -3199,11 +3209,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDisconnect
 
-onDisconnect?:void
+onDisconnect?:() => void
 
 取消订阅回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **示例：**
 
@@ -3229,11 +3241,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDestroy
 
-onDestroy?:void
+onDestroy?:() => void
 
 服务失联回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **示例：**
 
@@ -3259,11 +3273,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDoNotDisturbDateChange<sup>8+</sup>
 
-onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate8))
+onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate8)) => void
 
 免打扰时间选项变更回调函数。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3295,11 +3311,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8))
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8)) => void
 
 监听应用通知使能变化。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3335,6 +3353,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称            | 可读 | 可写 | 类型                                              | 必填 | 描述     |
 | --------------- | ---- | --- | ------------------------------------------------- | ---- | -------- |
 | request         | 是  | 否  | [NotificationRequest](#notificationrequest)       | 是   | 通知内容。 |
@@ -3348,6 +3368,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称   | 可读 | 可写 | 类型    | 必填 | 描述             |
 | ------ | ---- | --- | ------- | ---- | ---------------- |
 | bundle | 是  | 否  | string  | 是   | 应用的包名。       |
@@ -3358,6 +3380,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 ## DoNotDisturbDate<sup>8+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称  | 可读 | 可写 | 类型                                  | 描述                     |
 | ----- | ---- | --- | ------------------------------------- | ------------------------ |
@@ -3371,6 +3395,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称         | 值               | 说明                                       |
 | ------------ | ---------------- | ------------------------------------------ |
@@ -3521,6 +3546,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称           | 值  | 描述                               |
 | -------------- | --- | --------------------------------- |
 | TYPE_NONE      | 0   | 默认标志。                         |
@@ -3571,13 +3598,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 | creatorPid            | 是  | 否  | number                                        | 否   | 创建通知的PID。              |
 | creatorUserId<sup>8+</sup>| 是  | 否  | number                                    | 否   | 创建通知的UserId。           |
 | hashCode              | 是  | 否  | string                                        | 否   | 通知唯一标识。               |
-| classification        | 是  | 是  | string                                        | 否   | 通知分类。                   |
+| classification        | 是  | 是  | string                                        | 否   | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | groupName<sup>8+</sup>| 是  | 是  | string                                        | 否   | 组通知名称。                 |
 | template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplate8) | 否   | 通知模板。                   |
-| isRemoveAllowed<sup>8+</sup> | 是  | 否  | boolean                                | 否   | 通知是否能被移除。                   |
-| source<sup>8+</sup>   | 是  | 否  | number                                        | 否   | 通知源。                   |
+| isRemoveAllowed<sup>8+</sup> | 是  | 否  | boolean                                | 否   | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| source<sup>8+</sup>   | 是  | 否  | number                                        | 否   | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
 | distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptions8)                 | 否   | 分布式通知的选项。          |
-| deviceId<sup>8+</sup> | 是  | 否  | string                                        | 否   | 通知源的deviceId。          |
+| deviceId<sup>8+</sup> | 是  | 否  | string                                        | 否   | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
 | notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflags8)                    | 否   | 获取NotificationFlags。          |
 
 
@@ -3590,7 +3617,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | isDistributed          | 是   | 是   | boolean        | 否   | 是否为分布式通知。                  |
 | supportDisplayDevices  | 是   | 是   | Array\<string> | 是   | 可以同步通知到的设备类型。           |
 | supportOperateDevices  | 是   | 是   | Array\<string> | 否   | 可以打开通知的设备。                |
-| remindType             | 是   | 否   | number         | 否   | 通知的提醒方式。                    |
+| remindType             | 是   | 否   | number         | 否   | 通知的提醒方式。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                    |
 
 
 ## NotificationSlot
@@ -3617,6 +3644,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称     | 可读 | 可写 | 类型                                  | 必填 | 描述         |
 | -------- | ---- | --- | ------------------------------------- | ---- | ------------ |
 | slot     | 是  | 否  | [NotificationSlot](#notificationslot) | 是   | 通知通道内容。 |
@@ -3628,6 +3657,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称           | 可读 | 可写 | 类型                                                         | 必填 | 描述             |
 | -------------- | ---- | --- | ------------------------------------------------------------ | ---- | ---------------- |
 | sortings       | 是  | 否  | {[key: string]: [NotificationSorting](#notificationsorting)} | 是   | 通知排序信息数组。 |
@@ -3637,6 +3668,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 ## NotificationSubscribeInfo
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称        | 可读 | 可写 | 类型            | 必填 | 描述                            |
 | ----------- | --- | ---- | --------------- | ---- | ------------------------------- |
@@ -3667,6 +3700,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称                 | 值  | 描述                               |
 | -------------------- | --- | --------------------------------- |
 | IDLE_DONOT_REMIND    | 0   | 设备未被使用，无需提醒。            |
@@ -3678,6 +3713,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 ## SourceType<sup>8+</sup>
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称                 | 值  | 描述                  |
 | -------------------- | --- | -------------------- |
