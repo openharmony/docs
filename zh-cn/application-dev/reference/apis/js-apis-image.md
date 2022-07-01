@@ -33,6 +33,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
@@ -59,6 +60,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -181,6 +183,8 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -221,6 +225,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -263,7 +268,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
-| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时error会返回错误信息。 |
+| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -305,6 +310,8 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 PixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
@@ -330,6 +337,8 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 PixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
@@ -405,6 +414,9 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(clolr, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
 })
@@ -447,6 +459,9 @@ release():Promise\<void>
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
 	    console.log('release succeeded.');
@@ -473,6 +488,9 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
 	    console.log('release succeeded.');
@@ -922,7 +940,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
+let packOpts = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(ImageSourceApi, packOpts)
     .then( data => {
         console.log('packing succeeded.');
@@ -950,7 +968,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
+let packOpts = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(PixelMapApi, packOpts, data => { 
     console.log('packing succeeded.');
 }).catch(error => {
@@ -982,7 +1000,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
+let packOpts = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(PixelMapApi, packOpts)
     .then( data => {
 	    console.log('packing succeeded.');
@@ -1101,7 +1119,7 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 **示例:**
 
 ```js
- receiver.getReceivingSurfaceId((err, id) => { 
+receiver.getReceivingSurfaceId((err, id) => { 
     if(err) {
         console.log('getReceivingSurfaceId failed.');
     } else {
@@ -1516,7 +1534,7 @@ PixelMap的初始化选项。
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
-| index              | number                              | 是   | 是   | 解码图片序号     |
+| index              | number                             | 是   | 是   | 解码图片序号。   |
 
 ## Region<sup>7+</sup>
 
