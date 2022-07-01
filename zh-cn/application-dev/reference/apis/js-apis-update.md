@@ -289,7 +289,7 @@ getTaskInfo(): Promise\<TaskInfo>
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[TaskInfo](#taskInfo)> | Promise，用于异步获取结果 |
+| Promise\<[TaskInfo](#taskinfo)> | Promise，用于异步获取结果 |
 
 **示例：**
 
