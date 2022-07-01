@@ -56,7 +56,7 @@ Since the location information is considered sensitive, your application still n
 
 ### Available APIs<a name="section1551164914237"></a>
 
-1. The following table describes APIs available for obtaining device location information.
+The following table describes APIs available for obtaining device location information.
 
 **Table 1** APIs for obtaining device location information
 | API| Description| 
