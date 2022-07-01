@@ -1,4 +1,4 @@
-# 文件管理
+文件管理
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -2560,10 +2560,13 @@ stop(): Promise&lt;void&gt;
 
 **示例：**
   ```js
-  let watcher = await fileio.createWatcher(filename, events, function(number){
+  let filename = path +"/test.txt";
+  let watcher = await fileio.createWatcher(filename, 1, function(number){
       // do something
   });
-  await watcher.stop();
+  watcher.stop().then(function(){
+      
+  });
   ```
 
 
@@ -2582,7 +2585,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
   ```js
-  let watcher = await fileio.createWatcher(filename, events, function(number){
+  let filename = path +"/test.txt";
+  let watcher = await fileio.createWatcher(filename, 1, function(number){
       // do something
   });
   watcher.stop(function(){
