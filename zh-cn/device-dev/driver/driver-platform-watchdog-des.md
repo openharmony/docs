@@ -21,7 +21,7 @@
 | WatchdogGetStatus | 获取看门狗状态 | 
 | WatchdogFeed | 清除看门狗定时器（喂狗) | 
 
-> ![](../public_sys-resources/icon-note.gif) 说明：<br>
+> ![](../public_sys-resources/icon-note.gif) **说明：**<br>
 > 本文涉及的看门狗的所有接口，仅限内核态使用，不支持在用户态使用。
 
 
