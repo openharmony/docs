@@ -6,14 +6,14 @@
 | ---- | --------------------------------- | ------------------------------------------------------------ |
 | 1    | 客户化写作基本要求                | **写作中，请变身开发者，对于开发者使用该API时所需的使用场景、参数选取原则、开发建议/经验、示例等信息进行清晰描述，达到指导开发者顺利使用本API进行开发的目标。** |
 | 2    |                                   | **所有的写作说明，在完成写作后，都要删除。**                 |
-| 3    | 上传路径                          | markdown文件：docs/zh-cn/application-dev/reference/apis<br>图片路径：docs/zh-cn/application-dev/reference/apis/figures，并在markdown文件中通过路径`![](figures/xxx.jpg)`引用。 |
+| 3    | 上传路径                          | markdown文件：docs/zh-cn/application-dev/reference/apis<br>图片路径：docs/zh-cn/application-dev/reference/apis/figures，并在markdown文件中通过路径`![](figures/xxx.jpg)`或`![](figures/xxx.png)`引用。 |
 | 4    | 文件命名                          | 一个d.ts对应一个js api文档，文件名称应与模块名称保持一致，格式为：**js-apis-模块名.md**。<br/>示例：<br/>媒体@ohos.multimedia.audio，文件命名为：js-apis-audio.md<br/>电话@ohos.telephony.sms，文件命名为：js-apis-sms.md |
 | 5    | 目录修改                          | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/apis/Readme-CN.md`。 |
 | 6    | 文档结构                          | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 接口（属性、方法、枚举、自定义类型）<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
-| 7    | 接口版本说明                      | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。<br/>    示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>    写法：`<sup>7+</sup>`<br/>    如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。 |
-| 8    | 废弃接口说明                      | 废弃内容不能直接删去，在废弃内容后面加标注deprecated，并使用“>”引用语法建议使用的替代方式，加上对应的链接。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API Version 7 开始不再维护，建议使用[newMethod]\(#newMethod)替代。 |
+| 7    | 接口版本说明                      | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>如果新增了一个方法，则在方法标题后增加标记，即 sim.getSimIccId<sup>7+</sup>，interface、class、枚举等同理。 |
+| 8    | 废弃接口说明                      | 废弃内容不能直接删去，在废弃内容后面加标注deprecated，并使用“>”引用语法建议使用的替代方式，加上对应的链接。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API Version 7 开始不再维护，建议使用[newMethod]\(#newmethod)替代。 |
 | 9    | 权限说明                          | 与代码保持一致，下沉到各个方法、枚举、属性字段中。<br/>1. 如果仅系统应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx，仅系统应用可用。<br/>2. 如果该权限所有应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>3. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
-| 10   | @syscap                           | 1. 每个方法都需要进行描述，格式：<br/>    **系统能力**：SystemCapability.xxx.xxx<br/>2. 每个表格（属性、枚举、常量、变量）可统一进行说明，分两种情况：<br/>    1）每个表格下系统能力无差异的，同方法的写法：<br/>          **系统能力**：SystemCapability.xxx.xxx<br/>    2）有差异的：<br/>          以下各项对应的系统能力有所不同，详见下表。<br/>          然后在每一个表格项里进行描述。 |
+| 10   | @syscap                           | 1. 每个方法都需要进行描述，格式：<br/>    **系统能力**：SystemCapability.xxx.xxx<br/>2. 每个表格（属性、枚举、常量、变量）可统一进行说明，分两种情况：<br/>    1）每个表格下系统能力无差异的，同方法的写法：<br/>          **系统能力**：SystemCapability.xxx.xxx<br/>    2）有差异的：在每一个表格项里进行描述。 |
 | 11   | @system api                       | 1. 如果某个模块全部接口均为system api，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口为系统接口。<br/>2. 如果某个接口为system api，仅供OEM厂商使用，则需要在描述中增加：<br/>    此接口为系统接口。 |
 | 12   | @FAModelOnly<br/>@StageModelOnly  | 1. 如果某个模块均只针对某模型实现，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口仅可在FA模型/Stage模型下使用。<br/>2. 如果某个接口只针对某模型实现，则需要在描述中增加：<br/>    此接口仅可在FA模型/Stage模型下使用。 |
 | 13   | 异步接口说明（callback、Promise） | 对于callback、Promise在方法描述、参数说明、返回值说明的具体描述要求如下：<br/>**callback**的固定句式：<br/>方法介绍：xxx（方法描述）。使用callback异步回调。<br/>参数说明：<br/>**callback\<boolean>**：回调函数。返回true表示xxx；返回false表示xxx。<br/>**callback\<Object>**：回调函数，返回xxx。例如”回调函数，返回音频采集器对象。“<br/>**AsyncCallback\<void>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，否则为错误对象。<br/>**AsyncCallback\<Object x>**：回调函数。当具体的操作（视具体接口功能描述）成功，err为undefined，data为获取到的Object x；否则为错误对象。<br/>**Promise**的固定句式：<br/>方法介绍：xxx（方法描述）。使用Promise异步回调。<br/>参数说明：<br/>**Promise\<boolean>**：Promise对象。返回true表示xxx；返回false表示xxx。<br/>**Promise\<Object>**：Promise对象，返回xxx。例如”Promise对象，返回音频采集器对象。“<br/>**Promise\<void>**：Promise对象。无返回结果的Promise对象。 |
@@ -274,7 +274,7 @@ import call from '@ohos.telephony.call';
 
 | 名称         | 类型                | 可读 | 可写 | 说明                                                         |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| parameterUrl | string              | 是   | 是   | 媒体输出URI。支持： 1. 协议类型为“internal”的相对路径，示例如下： 临时目录：internal://cache/test.mp4 2. 文件的绝对路径，示例如下： file:///data/data/ohos.xxx.xxx/files/test.mp4 |
+| parameterUrl | string              | 是   | 是   | 媒体输出URI。支持： <br/>1. 协议类型为“internal”的相对路径，示例如下： 临时目录：internal://cache/test.mp4 <br/>2. 文件的绝对路径，示例如下： file:///data/data/ohos.xxx.xxx/files/test.mp4 |
 | parameterOne | [CustomEnum](#枚举) | 是   | 是   | 属性描述，要求与参数说明类似。                               |
 
 ## 变更日志
