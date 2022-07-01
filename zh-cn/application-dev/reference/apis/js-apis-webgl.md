@@ -1,10 +1,12 @@
-# webgl
+# WebGL
 
->  **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+WebGL提供图形绘制的能力，包括对当前绘制图形的位置、颜色等进行处理。
 
 WebGL标准图形API，对应OpenGL ES 2.0特性集。更多信息请参考[WebGL™标准](https://www.khronos.org/registry/webgl/specs/latest/1.0/)。
+
+>  **说明：**
+>
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 调用方式
