@@ -1,5 +1,6 @@
 # 网络连接管理
 
+网络连接管理提供管理网络一些基础能力，包括获取默认激活的数据网络、获取所有激活数据网络列表、开启关闭飞行模式、获取网络能力信息等功能。
 
 > **说明：**
 >
@@ -79,7 +80,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 ```js
 connection.hasDefaultNet(function (error, has) {
     console.log(JSON.stringify(error))
-    console.log(has)
+    console.log('has: ' + has)
 })
 ```
 
@@ -101,7 +102,7 @@ hasDefaultNet(): Promise\<boolean>
 
 ```js
 connection.hasDefaultNet().then(function (has) {
-    console.log(has)
+    console.log('has: ' + has)
 })
 ```
 
@@ -446,6 +447,97 @@ connection.getAddressesByName(host).then(function (addresses) {
 })
 ```
 
+
+## connection.enableAirplaneMode
+
+enableAirplaneMode(callback: AsyncCallback\<void>): void
+
+开启飞行模式，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明               |
+| -------- | ------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<void> | 是   | 回调函数。         |
+
+**示例：**
+
+```js
+connection.enableAirplaneMode(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+## connection.enableAirplaneMode
+
+enableAirplaneMode(): Promise\<void>
+
+开启飞行模式，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                                        | 说明                          |
+| ------------------------------------------- | ----------------------------- |
+| Promise\<void> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+connection.enableAirplaneMode().then(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+
+## connection.disableAirplaneMode
+
+disableAirplaneMode(callback: AsyncCallback\<void>): void
+
+关闭飞行模式，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明               |
+| -------- | ------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<void> | 是   | 回调函数。         |
+
+**示例：**
+
+```js
+connection.disableAirplaneMode(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+## connection.disableAirplaneMode
+
+disableAirplaneMode(): Promise\<void>
+
+关闭飞行模式，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                                        | 说明                          |
+| ------------------------------------------- | ----------------------------- |
+| Promise\<void> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+connection.disableAirplaneMode().then(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+
 ## connection.createNetConnection
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
@@ -476,7 +568,7 @@ let netConnection = connection.createNetConnection()
 // 关注蜂窝网络
 let netConnectionCellular = connection.createNetConnection({
     netCapabilities: {
-        bearerTypes: [NetBearType.BEARER_CELLULAR]
+        bearerTypes: [connection.NetBearType.BEARER_CELLULAR]
     }
 })
 ```
