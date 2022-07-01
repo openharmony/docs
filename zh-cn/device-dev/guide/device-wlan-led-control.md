@@ -77,7 +77,6 @@ OpenHarmony  WLAN模组基于Hi3861平台提供了丰富的外设操作能力，
                     break;
             }
         }
-        return NULL;
     }
     ```
 
