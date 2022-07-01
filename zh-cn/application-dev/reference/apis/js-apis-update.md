@@ -21,9 +21,9 @@ import update from '@ohos.update'
 ohos.permission.UPDATE_SYSTEM
 ohos.permission.FACTORY_RESET
 
-## update.getOlineUpdater
+## update.getOnlineUpdater
 
-getOlineUpdater(upgradeInfo: UpgradeInfo): Updater
+getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 获取在线升级Updater。
 
@@ -52,7 +52,7 @@ try {
       subType: BusinessSubType.FIRMWARE;
     }
   }
-  let updater = update.getOlineUpdater(upgradeInfo);
+  let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
   console.error(" Fail to get updater error: " + error);
 }
@@ -121,13 +121,13 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[CheckResult](#checkResult)> | 是    | 回调返回检测结果 |
+| callback | AsyncCallback\<[CheckResult](#checkresult)> | 是    | 回调返回检测结果 |
 
 **示例：**
 
 ```
 updater.checkNewVersion((err, result) => {
-  console.log("checkNewVersion success  " + result?.isExsitNewVersion);
+  console.log("checkNewVersion isExsitNewVersion  " + result?.isExsitNewVersion);
 });
 ```
 
@@ -294,8 +294,8 @@ getTaskInfo(): Promise\<TaskInfo>
 **示例：**
 
 ```
-updater.getTaskInfo().then(value => {
-  console.log(`getTaskInfo isexistTask= ` + info.existTask);
+updater.getTaskInfo().then(info => {
+  console.log(`getTaskInfo existTask= ` + info.existTask);
 }).catch(err => {
   console.log("getTaskInfo promise error $JSON.stringify(err)");
 });
@@ -354,7 +354,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise，用于异步获取结果 |
 
 **示例：**
 
@@ -369,7 +369,7 @@ var downloadOptions = {
   allowNetwork: NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
   order: Order.DOWNLOAD // 下载
 }
-updater.download(versionDigestInfo, downloadOptions).then(void => {
+updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
 }).catch(err => {
   console.log(`download error $JSON.stringify(err)`);
@@ -428,7 +428,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise，用于异步获取结果 |
 
 **示例：**
 
@@ -501,7 +501,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise，用于异步获取结果 |
 
 **示例：**
 
@@ -574,7 +574,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise，用于异步获取结果 |
 
 **示例：**
 
@@ -588,7 +588,7 @@ var versionDigestInfo = {
 var upgradeOptions = {
   order: Order.INSTALL, // 安装指令
 }
-updater.upgrade(versionDigestInfo, upgradeOptions).then(value => {
+updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
 }).catch(err => {
   console.log(`upgrade error $JSON.stringify(err)`);
@@ -647,7 +647,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[void](#void)> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise，用于异步获取结果 |
 
 **示例：**
 
@@ -661,7 +661,7 @@ var versionDigestInfo = {
 var clearOptions = {
   status: UpgradeStatus.UPGRADE_FAIL,
 }
-updater.clearError(versionDigestInfo, clearOptions).then(value => {
+updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
 }).catch(err => {
   console.log(`clearError error $JSON.stringify(err)`);
@@ -737,9 +737,9 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段,用分钟表示
+  autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
 }
-updater.setUpgradePolicy(policy, (value, err) => {
+updater.setUpgradePolicy(policy, (err, value) => {
   console.log(`setUpgradePolicy result: ` + value?);
 });
 ```
@@ -770,7 +770,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradeInterval: [ 2, 3 ],
+  autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
 }
 updater.setUpdatePolicy(policy).then(result => 
   console.log("setUpdatePolicy ", result)
@@ -818,7 +818,7 @@ terminateUpgrade(): Promise\<void>
 **示例：**
 
 ```
-updater.terminateUpgrade().then(value => {
+updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch(err => {
   console.log(`terminateUpgrade error $JSON.stringify(err)`);
@@ -867,7 +867,7 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | eventClassifyInfo | [EventClassifyInfo](#eventClassifyInfo) | 是    | 事件信息 |
-| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 是    | 事件回调 |
+| taskCallback |  [UpgradeTaskCallback](#upgradeTaskCallback) | 否    | 事件回调 |
 
 **示例：**
 
@@ -925,7 +925,7 @@ factoryReset(): Promise\<void>
 **示例:**
 
 ```
-restorer.factoryReset().then(void => {
+restorer.factoryReset().then(() => {
   console.log("factoryReset success ");
 }).catch(err => {
   console.log("factoryReset error $JSON.stringify(err)");
@@ -1046,7 +1046,7 @@ var upgradeFile = [{
   fileType: ComponentType.OTA // OTA包
   filePath: "path" // 本地升级包路径
 }]
-updater.applyNewVersion(upgradeFiles).then(void => {
+updater.applyNewVersion(upgradeFiles).then(() => {
   console.log("applyNewVersion success");
 }).catch(err => {
   console.log("applyNewVersion error $JSON.stringify(err)");
@@ -1075,7 +1075,7 @@ var eventClassifyInfo = {
   extraInfo: ""
 }
 
-function onTaskUpdate(eventInfo): void {
+function onTaskUpdate(eventInfo) {
   console.log("on eventInfo id ", eventInfo.eventId);
 }
 
@@ -1104,7 +1104,7 @@ var eventClassifyInfo = {
   extraInfo: ""
 }
 
-function onTaskUpdate(eventInfo): void {
+function onTaskUpdate(eventInfo) {
   console.log("on eventInfo id ", eventInfo.eventId);
 }
 
@@ -1286,7 +1286,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| exisTask        | bool                        | 是    | 是否存在任务  |
+| existTask        | bool                        | 是    | 是否存在任务  |
 | taskBody         | [TaskBody](#taskinfo) | 是    | 任务数据    |
 
 ## EventInfo
@@ -1413,7 +1413,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventInfo)): void
 | ------------------- | ---- | -------- |
 | COLD   | 1 | 冷升级  |
 | LIVE   | 2 | 热升级  |
-| LIVE_AND_COLD   | 3 | 冷升级  |
+| LIVE_AND_COLD   | 3 | 融合升级  |
 
 ## DescriptionType
 
@@ -1456,7 +1456,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventInfo)): void
 
 ## UpgradeStatus
 
-升级指令。
+升级状态。
 
 **系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
 
@@ -1492,7 +1492,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventInfo)): void
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
 | EVENT_TASK_BASE   | 0x01000000 | 任务事件  |
-| EVENT_TASK_RECEVICE   | 0x01000001 | 收到任务  |
+| EVENT_TASK_RECEIVE   | 0x01000001 | 收到任务  |
 | EVENT_TASK_CANCEL   | 0x01000010 | 取消任务  |
 | EVENT_DOWNLOAD_WAIT   | 0x01000011 | 待下载  |
 | EVENT_DOWNLOAD_START   | 0x01000100 | 开始下载  |
