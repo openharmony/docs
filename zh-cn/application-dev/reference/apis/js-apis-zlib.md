@@ -120,13 +120,17 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 ## Options
 
+**系统能力：** SystemCapability.BundleManager.Zlib
+
 | 参数名   | 类型             | 必填 | 说明                                                      |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
 | level    | CompressLeve     | 否   | [参考zip.CompressLevel枚举定义](#zip.CompressLevel)       |
 | memLevel | MemLevel         | 否   | [参考zip.MemLevel枚举定义](#zip.MemLevel)                 |
-| userId   | CompressStrategy | 否   | [参考zip.CompressStrategy枚举定义](#zip.CompressStrategy) |
+| strategy | CompressStrategy | 否   | [参考zip.CompressStrategy枚举定义](#zip.CompressStrategy) |
 
 ## zip.MemLevel
+
+**系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
@@ -135,6 +139,8 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存 |
 
 ## zip.CompressLevel
+
+**系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称                               | 值   | 说明              |
 | ---------------------------------- | ---- | ----------------- |
@@ -145,6 +151,8 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 ## zip.CompressStrategy
 
+**系统能力：** SystemCapability.BundleManager.Zlib
+
 | 名称                               | 值   | 说明                     |
 | ---------------------------------- | ---- | ------------------------ |
 | COMPRESS_STRATEGY_DEFAULT_STRATEGY | 0    | 常规数据策略             |
@@ -154,6 +162,8 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | COMPRESS_STRATEGY_FIXED            | 4    | 固定的压缩策略           |
 
 ## zip.ErrorCode
+
+**系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称             | 值   | 说明         |
 | ---------------- | ---- | ------------ |
