@@ -1,8 +1,5 @@
 # HiSysEvent工具使用指导<a name="ZH-CN_TOPIC_0000001231614021"></a>
 
--   [概述](#section1886702718521)
--   [实时订阅HiSysEvent事件相关命令](#section1210623418527)
--   [查询历史HiSysEvent事件相关命令](#section1210623418539)
 
 ## 概述<a name="section1886702718521"></a>
 
