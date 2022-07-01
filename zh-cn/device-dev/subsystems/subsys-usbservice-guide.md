@@ -1,6 +1,5 @@
 # USB服务子系统使用指导<a name="ZH-CN_TOPIC_0000001077367159"></a>
 
--   [使用步骤](#section18816105182315)
 
 下面使用步骤以bulktransfer为例。
 

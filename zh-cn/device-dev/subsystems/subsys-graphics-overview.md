@@ -1,10 +1,5 @@
 # 图形图像概述<a name="ZH-CN_TOPIC_0000001051770388"></a>
 
--   [UI组件](#section1987017145112)
--   [布局](#section662016231612)
--   [动画](#section73736284117)
--   [Input事件](#section672194012114)
--   [渲染](#section14338859916)
 
 OpenHarmony图形系统，提供基础UI组件和容器类组件，包括button、image、label、list、animator、scroll view、swipe view、font、clock、chart、canvas、slider、layout等。同时提供截屏、导出组件树的DFX能力。模块内部实现组件渲染、动画、输入事件分发等功能。
 
