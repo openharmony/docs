@@ -2369,7 +2369,9 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
   ```js
   let filename = path +"/test.txt";
   fileio.createWatcher(filename, 1, function(number){
-      // do something
+     console.info("Monitoring times: "+number);
+  }).then(function(watcher){
+      console.info("listening for file changes");
   });
   
   ```
@@ -2561,11 +2563,12 @@ stop(): Promise&lt;void&gt;
 **示例：**
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
-      // do something
-  });
-  watcher.stop().then(function(){
-      
+  fileio.createWatcher(filename, 1, function(number){
+      console.info("Monitoring times: "+number);
+  }).then(function(watcher){
+      watcher.stop().then(function(){
+       console.info("close watcher succeed");
+      });
   });
   ```
 
@@ -2586,11 +2589,12 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
-      // do something
-  });
-  watcher.stop(function(){
-      
+  fileio.createWatcher(filename, 1, function(number){
+      console.info("Monitoring times: "+number);
+  }).then(function(watcher){
+      watcher.stop(function(){
+          console.info("close watcher succeed");
+      });
   });
   ```
 
