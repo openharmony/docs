@@ -1,10 +1,5 @@
 # USB服务子系统概述<a name="ZH-CN_TOPIC_0000001092893508"></a>
 
--   [概述](#section175431838101617)
--   [接口说明](#section83365421647)
-    -   [Host部分](#section83365421658)
-    -   [Device部分](#section83365421669)
-    -   [Port部分](#section83365421670)
 
 ## 概述<a name="section175431838101617"></a>
 
