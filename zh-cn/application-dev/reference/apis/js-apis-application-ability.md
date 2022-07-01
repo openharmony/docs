@@ -534,7 +534,7 @@ onRelease(callback: OnReleaseCallBack): void;
 
 ## Callee.on
 
-on(method: string, callback: CaleeCallBack): void;
+on(method: string, callback: CalleeCallBack): void;
 
 通用组件服务端注册消息通知callback。
 
@@ -545,7 +545,7 @@ on(method: string, callback: CaleeCallBack): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 与客户端约定的通知消息字符串。 | 
-  | callback | CaleeCallBack | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
+  | callback | CalleeCallBack | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
 
 **示例：**
     
@@ -626,7 +626,7 @@ off(method: string): void;
 | (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
  
 
- ## CaleeCallBack
+ ## CalleeCallBack
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
