@@ -40,10 +40,10 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 const STORE_CONFIG = { name: "RdbTest.db"}
 data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
     if (err) {
-        console.info("Get RdbStore failed, err: " + err)
+        console.info("Failed to get RdbStore, err: " + err)
         return
     }
-    console.log("Get RdbStore successfully.")
+    console.log("Got RdbStore successfully.")
 })
 ```
 
@@ -75,9 +75,9 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 const STORE_CONFIG = { name: "RdbTest.db" }
 let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
-    console.log("Get RdbStore successfully.")
+    console.log("Got RdbStore successfully.")
 }).catch((err) => {
-    console.log("Get RdbStore failed, err: " + err)
+    console.log("Failed to get RdbStore, err: " + err)
 })
 ```
 
@@ -100,10 +100,10 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 ```js
 data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
     if (err) {
-        console.info("Delete RdbStore failed, err: " + err)
+        console.info("Failed to delete RdbStore, err: " + err)
         return
     }
-    console.log("Delete RdbStore successfully.")
+    console.log("Deleted RdbStore successfully.")
 })
 ```
 
@@ -130,9 +130,9 @@ Deletes an RDB store. This API uses a promise to return the result.
 ```js
 let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
 promise.then(()=>{
-    console.log("Delete RdbStore successfully.")
+    console.log("Deleted RdbStore successfully.")
 }).catch((err) => {
-    console.info("Delete RdbStore failed, err: " + err)
+    console.info("Failed to delete RdbStore, err: " + err)
 })
 ```
 
@@ -981,10 +981,10 @@ const valueBucket = {
 }
 rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
     if (err) {
-        console.info("Insert failed, err: " + err)
+        console.info("Failed to insert data, err: " + err)
         return
     }
-    console.log("Insert first done: " + ret)
+    console.log("Inserted first row: " + ret)
 })
 ```
 
@@ -1020,7 +1020,7 @@ let promise = rdbStore.insert("EMPLOYEE", valueBucket)
 promise.then(async (ret) => {
     console.log("Insert first done: " + ret)
 }).catch((err) => {
-    console.log("Insert failed, err: " + err)
+    console.log("Failed to insert data, err: " + err)
 })
 ```
 
@@ -1038,7 +1038,7 @@ Updates data in the database based on the specified RdbPredicates object. This A
 | -------- | -------- | -------- | -------- |
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to  return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1052,7 +1052,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 rdbStore.update(valueBucket, predicates, function (err, ret) {
     if (err) {
-        console.info("Updated failed, err: " + err)
+        console.info("Failed to update data, err: " + err)
         return
     }
     console.log("Updated row count: " + ret)
@@ -1093,7 +1093,7 @@ let promise = rdbStore.update(valueBucket, predicates)
 promise.then(async (ret) => {
     console.log("Updated row count: " + ret)
 }).catch((err) => {
-    console.info("Updated failed, err: " + err)
+    console.info("Failed to update data, err: " + err)
 })
 ```
 
@@ -1110,7 +1110,7 @@ Updates data in the database based on the specified **DataSharePredicates** obje
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)| Yes|  Update conditions specified by the **DataSharePredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to  return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1125,7 +1125,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
     if (err) {
-        console.info("Updated failed, err: " + err)
+        console.info("Failed to update data, err: " + err)
         return
     }
     console.log("Updated row count: " + ret)
@@ -1166,7 +1166,7 @@ let promise = rdbStore.update("EMPLOYEE", valueBucket, predicates)
 promise.then(async (ret) => {
     console.log("Updated row count: " + ret)
 }).catch((err) => {
-    console.info("Updated failed, err: " + err)
+    console.info("Failed to update data, err: " + err)
 })
 ```
 
@@ -1191,10 +1191,10 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 rdbStore.delete(predicates, function (err, rows) {
     if (err) {
-        console.info("Delete failed, err: " + err)
+        console.info("Failed to delete data, err: " + err)
         return
     }
-    console.log("Delete rows: " + rows)
+    console.log("Deleted rows: " + rows)
 })
 ```
 
@@ -1223,9 +1223,9 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.delete(predicates)
 promise.then((rows) => {
-    console.log("Delete rows: " + rows)
+    console.log("Deleted rows: " + rows)
 }).catch((err) => {
-    console.info("Delete failed, err: " + err)
+    console.info("Failed to delete data, err: " + err)
 })
 ```
 
@@ -1252,10 +1252,10 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
     if (err) {
-        console.info("Delete failed, err: " + err)
+        console.info("Failed to delete data, err: " + err)
         return
     }
-    console.log("Delete rows: " + rows)
+    console.log("Deleted rows: " + rows)
 })
 ```
 ### delete<sup>9+</sup>
@@ -1284,9 +1284,9 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Lisa")
 let promise = rdbStore.delete("EMPLOYEE", predicates)
 promise.then((rows) => {
-    console.log("Delete rows: " + rows)
+    console.log("Deleted rows: " + rows)
 }).catch((err) => {
-    console.info("Delete failed, err: " + err)
+    console.info("Failed to delete data, err: " + err)
 })
 ```
 
@@ -1311,7 +1311,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose")
 rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
     if (err) {
-        console.info("Query failed, err: " + err)
+        console.info("Failed to query data, err: " + err)
         return
     }
     console.log("ResultSet column names: " + resultSet.columnNames)
@@ -1348,7 +1348,7 @@ Queries data in the database based on specified conditions. This API uses a prom
       console.log("ResultSet column names: " + resultSet.columnNames)
       console.log("ResultSet column count: " + resultSet.columnCount)
   }).catch((err) => {
-      console.info("Query failed, err: " + err)
+      console.info("Failed to query data, err: " + err)
   })
   ```
 
@@ -1374,7 +1374,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
     if (err) {
-        console.info("Query failed, err: " + err)
+        console.info("Failed to query data, err: " + err)
         return
     }
     console.log("ResultSet column names: " + resultSet.columnNames)
@@ -1411,7 +1411,7 @@ promise.then((resultSet) => {
     console.log("ResultSet column names: " + resultSet.columnNames)
     console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
-    console.info("Query failed, err: " + err)
+    console.info("Failed to query data, err: " + err)
 })
 ```
 
@@ -1434,7 +1434,7 @@ Queries data in the RDB store using the specified SQL statement. This API uses a
 ```js
 rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
     if (err) {
-        console.info("Query failed, err: " + err)
+        console.info("Failed to query data, err: " + err)
         return
     }
     console.log("ResultSet column names: " + resultSet.columnNames)
@@ -1469,7 +1469,7 @@ promise.then((resultSet) => {
     console.log("ResultSet column names: " + resultSet.columnNames)
     console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
-    console.info("Query failed, err: " + err)
+    console.info("Failed to query data, err: " + err)
 })
 ```
 
@@ -1494,7 +1494,7 @@ Runs the SQL statement that contains the specified parameters but does not retur
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
     if (err) {
-        console.info("ExecuteSql failed, err: " + err)
+        console.info("Failed to execute SQL, err: " + err)
         return
     }
     console.info('Create table done.')
@@ -1528,7 +1528,7 @@ let promise = rdbStore.executeSql(SQL_CREATE_TABLE)
 promise.then(() => {
     console.info('Create table done.')
 }).catch((err) => {
-    console.info("ExecuteSql failed, err: " + err)
+    console.info("Failed to execute SQL, err: " + err)
 })
 ```
 
@@ -1551,10 +1551,10 @@ const valueBucket = {
 }
 rdbStore.insert("test", valueBucket, function (err, ret) {
     if (err) {
-        console.info("Insert failed, err: " + err)
+        console.info("Failed to insert data, err: " + err)
         return
     }
-    console.log("Insert successfully: " + ret)
+    console.log("Inserted data successfully: " + ret)
 })
 rdbStore.commit()
 ```
@@ -1580,10 +1580,10 @@ const valueBucket = {
 
 rdbStore.insert("test", valueBucket, function (err, ret) {
     if (err) {
-        console.info("Insert failed, err: " + err)
+        console.info("Failed to insert data, err: " + err)
         return
     }
-    console.log("Insert successfully: " + ret)
+    console.log("Inserted data successfully: " + ret)
 })
 rdbStore.commit()
 ```
@@ -1610,10 +1610,10 @@ try {
     }
     rdbStore.insert("test", valueBucket, function (err, ret) {
         if (err) {
-            console.info("Insert failed, err: " + err)
+            console.info("Failed to insert data, err: " + err)
             return
         }
-        console.log("Insert successfully: " + ret)
+        console.log("Inserted data successfully: " + ret)
     })
     rdbStore.commit()
 } catch (e) {
@@ -1639,10 +1639,10 @@ Backs up the database with the specified name. This API uses an asynchronous cal
 ```js
 rdbStore.backup("dbBackup.db", function(err) {
     if (err) {
-        console.info('Backup failed, err: ' + err)
+        console.info('Failed to back up data, err: ' + err)
         return
     }
-    console.info('Backup success.')
+    console.info('Backup successful.')
 })
 ```
 
@@ -1668,9 +1668,9 @@ Backs up the database with the specified name. This API uses a promise to return
 ```js
 let promiseBackup = rdbStore.backup("dbBackup.db")
 promiseBackup.then(()=>{
-    console.info('Backup success.')
+    console.info('Backup successful.')
 }).catch((err)=>{
-    console.info('Backup failed, err: ' + err)
+    console.info('Failed to back up data, err: ' + err)
 })
 ```
 
@@ -1692,10 +1692,10 @@ Restores a database from a specified database backup file. This API uses an asyn
 ```js
 rdbStore.restore("dbBackup.db", function(err) {
     if (err) {
-        console.info('Restore failed, err: ' + err)
+        console.info('Failed to restore data, err: ' + err)
         return
     }
-    console.info('Restore success.')
+    console.info('Restore successful.')
 })
 ```
 
@@ -1721,9 +1721,9 @@ Restores a database from a specified database backup file. This API uses a promi
 ```js
 let promiseRestore = rdbStore.restore("dbBackup.db")
 promiseRestore.then(()=>{
-    console.info('Restore success.')
+    console.info('Restore successful.')
 }).catch((err)=>{
-    console.info('Restore failed, err: ' + err)
+    console.info('Failed to restore data, err: ' + err)
 })
 ```
 
@@ -1747,10 +1747,10 @@ Sets a list of distributed tables. This API uses an asynchronous callback to ret
 ```js
 rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
     if (err) {
-        console.info('SetDistributedTables failed, err: ' + err)
+        console.info('Failed to set distributed tables, err: ' + err)
         return
     }
-    console.info('SetDistributedTables successfully.')
+    console.info('Set distributed tables successfully.')
 })
   ```
 
@@ -1779,9 +1779,9 @@ Sets a list of distributed tables. This API uses a promise to return the result.
 ```js
 let promise = rdbStore.setDistributedTables(["EMPLOYEE"])
 promise.then(() => {
-    console.info("SetDistributedTables successfully.")
+    console.info("Set distributed tables successfully.")
 }).catch((err) => {
-    console.info("SetDistributedTables failed, err: " + err)
+    console.info("Failed to set distributed tables, err: " + err)
 })
 ```
 
@@ -1806,10 +1806,10 @@ Obtains the distributed table name for a remote device based on the local table 
 ```js
 rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
     if (err) {
-        console.info('ObtainDistributedTableName failed, err: ' + err)
+        console.info('Failed to obtain DistributedTableName, err: ' + err)
         return
     }
-    console.info('ObtainDistributedTableName successfully, tableName=.' + tableName)
+    console.info('Obtained DistributedTableName successfully, tableName=.' + tableName)
 })
 ```
 
@@ -1839,9 +1839,9 @@ Obtains the distributed table name for a remote device based on the local table 
 ```js
 let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
 promise.then((tableName) => {
-    console.info('ObtainDistributedTableName successfully, tableName= ' + tableName)
+    console.info('Obtained DistributedTableName successfully, tableName= ' + tableName)
 }).catch((err) => {
-    console.info('ObtainDistributedTableName failed, err: ' + err)
+    console.info('Failed to obtain DistributedTableName, err: ' + err)
 })
 ```
 
@@ -1944,7 +1944,7 @@ function storeObserver(devices) {
 try {
     rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
-    console.log('Register observer failed')
+    console.log('Failed to register observer')
 }
 ```
 
@@ -1976,7 +1976,7 @@ function storeObserver(devices) {
 try {
     rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
-    console.log('Unregister observer failed')
+    console.log('Failed to unregister observer')
 }
 ```
 
