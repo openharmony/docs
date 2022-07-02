@@ -852,7 +852,7 @@ function onTaskUpdate(eventInfo): void {
   console.log("on eventInfo id ", eventInfo.eventId);
 }
 
-localUpdater.on(eventClassifyInfo, onTaskUpdate);
+updater.on(eventClassifyInfo, onTaskUpdate);
 ```
 
 ### off
@@ -881,7 +881,7 @@ function onTaskUpdate(eventInfo): void {
   console.log("on eventInfo id ", eventInfo.eventId);
 }
 
-localUpdater.off(eventClassifyInfo, onTaskUpdate);
+updater.off(eventClassifyInfo, onTaskUpdate);
 ```
 
 ## Restorer
