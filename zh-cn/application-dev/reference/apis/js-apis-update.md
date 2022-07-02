@@ -127,7 +127,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 ```
 updater.checkNewVersion((err, result) => {
-  console.log("checkNewVersion isExsitNewVersion  " + result?.isExsitNewVersion);
+  console.log(`checkNewVersion isExsitNewVersion  ` + result?.isExsitNewVersion);
 });
 ```
 
@@ -149,11 +149,11 @@ checkNewVersion(): Promise\<CheckResult>
 
 ```
 updater.checkNewVersion().then(result => {
-  console.log("checkNewVersion isExsitNewVersion  " + result.isExsitNewVersion);
+  console.log(`checkNewVersion isExsitNewVersion  ` + result.isExsitNewVersion);
   // 版本摘要信息
-  console.log("checkNewVersion versionDigestInfo  " + result.newVersionInfo.versionDigestInfo);
+  console.log(`checkNewVersion versionDigestInfo  ` + result.newVersionInfo.versionDigestInfo);
 }).catch(err => {
-  console.log("checkNewVersion promise error $JSON.stringify(err)");
+  console.log(`checkNewVersion promise error ` + $JSON.stringify(err));
 });
 ```
 
@@ -201,7 +201,7 @@ updater.getNewVersionInfo().then(info => {
   console.log(`info versionName = ` + info.versionComponents[0].displayVersion);
   console.log(`info versionCode = ` + info.versionComponents[0].innerVersion);
 }).catch(err => {
-  console.log("getNewVersionInfo promise error $JSON.stringify(err)");
+  console.log(`getNewVersionInfo promise error ` + $JSON.stringify(err));
 });
 ```
 
@@ -251,7 +251,7 @@ updater.getCurrentVersionInfo().then(info => {
   console.log(`info deviceName = ` + info.deviceName);
   console.log(`info displayVersion = ` + info.versionComponents[0].displayVersion);
 }).catch(err => {
-  console.log("getCurrentVersionInfo promise error $JSON.stringify(err)");
+  console.log(`getCurrentVersionInfo promise error ` + $JSON.stringify(err));
 });
 ```
 
@@ -297,7 +297,7 @@ getTaskInfo(): Promise\<TaskInfo>
 updater.getTaskInfo().then(info => {
   console.log(`getTaskInfo existTask= ` + info.existTask);
 }).catch(err => {
-  console.log("getTaskInfo promise error $JSON.stringify(err)");
+  console.log(`getTaskInfo promise error ` + $JSON.stringify(err));
 });
 ```
 
@@ -327,11 +327,11 @@ var versionDigestInfo = {
 
 // 下载选项
 var downloadOptions = {
-  allowNetwork: NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
-  order: Order.DOWNLOAD // 下载
+  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  order: update.Order.DOWNLOAD // 下载
 }
 updater.download(versionDigestInfo, downloadOptions, (err) => {
-  console.log(`download error $JSON.stringify(err)`);
+  console.log(`download error ` + $JSON.stringify(err));
 });
 ```
 
@@ -366,13 +366,13 @@ var versionDigestInfo = {
 
 // 下载选项
 var downloadOptions = {
-  allowNetwork: NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
-  order: Order.DOWNLOAD // 下载
+  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  order: update.Order.DOWNLOAD // 下载
 }
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
 }).catch(err => {
-  console.log(`download error $JSON.stringify(err)`);
+  console.log(`download error ` + $JSON.stringify(err));
 });
 ```
 
@@ -402,10 +402,10 @@ var versionDigestInfo = {
 
 // 恢复下载选项
 var resumeDownloadOptions = {
-  allowNetwork: NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
 }
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
-  console.log(`resumeDownload error $JSON.stringify(err)`);
+  console.log(`resumeDownload error ` + $JSON.stringify(err));
 });
 ```
 
@@ -440,12 +440,12 @@ var versionDigestInfo = {
 
 // 恢复下载选项
 var resumeDownloadOptions = {
-  allowNetwork: NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
 }
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
   console.log(`resumeDownload start`);
 }).catch(err => {
-  console.log(`resumeDownload error $JSON.stringify(err)`);
+  console.log(`resumeDownload error ` + $JSON.stringify(err));
 });
 ```
 
@@ -475,10 +475,10 @@ var versionDigestInfo = {
 
 // 暂停下载选项
 var pauseDownloadOptions = {
-  isAllowAutoResume: true, // 允许自动恢复下载
+  isAllowAutoResume: true // 允许自动恢复下载
 }
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
-  console.log(`pauseDownload error $JSON.stringify(err)`);
+  console.log(`pauseDownload error ` + $JSON.stringify(err));
 });
 ```
 
@@ -513,12 +513,12 @@ var versionDigestInfo = {
 
 // 暂停下载选项
 var pauseDownloadOptions = {
-  isAllowAutoResume: true, // 允许自动恢复下载
+  isAllowAutoResume: true // 允许自动恢复下载
 }
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
   console.log(`pauseDownload`);
 }).catch(err => {
-  console.log(`pauseDownload error $JSON.stringify(err)`);
+  console.log(`pauseDownload error ` + $JSON.stringify(err));
 });
 ```
 
@@ -548,10 +548,10 @@ var versionDigestInfo = {
 
 // 安装选项
 var upgradeOptions = {
-  order: Order.INSTALL, // 安装指令
+  order: update.Order.INSTALL // 安装指令
 }
 updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
-  console.log(`upgrade error $JSON.stringify(err)`);
+  console.log(`upgrade error ` + $JSON.stringify(err));
 });
 ```
 
@@ -586,12 +586,12 @@ var versionDigestInfo = {
 
 // 安装选项
 var upgradeOptions = {
-  order: Order.INSTALL, // 安装指令
+  order: update.Order.INSTALL // 安装指令
 }
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
 }).catch(err => {
-  console.log(`upgrade error $JSON.stringify(err)`);
+  console.log(`upgrade error ` + $JSON.stringify(err));
 });
 ```
 
@@ -621,10 +621,10 @@ var versionDigestInfo = {
 
 // 清除选项
 var clearOptions = {
-  status: UpgradeStatus.UPGRADE_FAIL,
+  status: update.UpgradeStatus.UPGRADE_FAIL,
 }
 updater.clearError(versionDigestInfo, clearOptions, (err) => {
-  console.log(`clearError error $JSON.stringify(err)`);
+  console.log(`clearError error ` + $JSON.stringify(err));
 });
 ```
 
@@ -659,12 +659,12 @@ var versionDigestInfo = {
 
 // 清除选项
 var clearOptions = {
-  status: UpgradeStatus.UPGRADE_FAIL,
+  status: update.UpgradeStatus.UPGRADE_FAIL,
 }
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
 }).catch(err => {
-  console.log(`clearError error $JSON.stringify(err)`);
+  console.log(`clearError error ` + $JSON.stringify(err));
 });
 ```
 
@@ -712,7 +712,7 @@ updater.getUpgradePolicy().then(policy => {
   console.log(`policy downloadStrategy = ` + policy.downloadStrategy);
   console.log(`policy autoUpgradeStrategy = ` + policy.autoUpgradeStrategy);
 }).catch(err => {
-  console.log(`getUpgradePolicy promise error $JSON.stringify(err)`);
+  console.log(`getUpgradePolicy promise error " + $JSON.stringify(err));
 });
 ```
 
@@ -773,9 +773,9 @@ let policy = {
   autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
 }
 updater.setUpdatePolicy(policy).then(result => 
-  console.log("setUpdatePolicy ", result)
+  console.log(`setUpdatePolicy ` + result)
 ).catch(err => {
-  console.log(`setUpdatePolicy promise error $JSON.stringify(err)`);
+  console.log(`setUpdatePolicy promise error ` + $JSON.stringify(err));
 });
 ```
 
@@ -797,7 +797,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 ```
 updater.terminateUpgrade((err) => {
-  console.log(`terminateUpgrade error $JSON.stringify(err)`);
+  console.log(`terminateUpgrade error ` + $JSON.stringify(err));
 });
 ```
 
@@ -821,7 +821,7 @@ terminateUpgrade(): Promise\<void>
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch(err => {
-  console.log(`terminateUpgrade error $JSON.stringify(err)`);
+  console.log(`terminateUpgrade error ` + $JSON.stringify(err));
 });
 ```
 
@@ -844,12 +844,12 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 ```
 var eventClassifyInfo = {
-  eventClassify: EventClassify.TASK // 订阅升级更新事件
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 }
 
 function onTaskUpdate(eventInfo): void {
-  console.log("on eventInfo id ", eventInfo.eventId);
+  console.log(`on eventInfo id `, eventInfo.eventId);
 }
 
 updater.on(eventClassifyInfo, onTaskUpdate);
@@ -873,12 +873,12 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 ```
 var eventClassifyInfo = {
-  eventClassify: EventClassify.TASK // 订阅升级更新事件
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 }
 
 function onTaskUpdate(eventInfo): void {
-  console.log("on eventInfo id ", eventInfo.eventId);
+  console.log(`on eventInfo id `, eventInfo.eventId);
 }
 
 updater.off(eventClassifyInfo, onTaskUpdate);
@@ -904,7 +904,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 ```
 restorer.factoryReset((err) => {
-  console.log("factoryReset error $JSON.stringify(err)");
+  console.log(`factoryReset error ` + $JSON.stringify(err));
 });
 ```
 
@@ -926,9 +926,9 @@ factoryReset(): Promise\<void>
 
 ```
 restorer.factoryReset().then(() => {
-  console.log("factoryReset success ");
+  console.log(`factoryReset success`);
 }).catch(err => {
-  console.log("factoryReset error $JSON.stringify(err)");
+  console.log(`factoryReset error ` + $JSON.stringify(err));
 });
 ```
 
@@ -954,12 +954,12 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 ```
 var upgradeFile = {
-  fileType: ComponentType.OTA // OTA包
+  fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }
 
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err, value) => {
-  console.log("factoryReset error $JSON.stringify(err)");
+  console.log(`factoryReset error ` + $JSON.stringify(err));
 });
 ```
 
@@ -988,13 +988,13 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 ```
 var upgradeFile = {
-  fileType: ComponentType.OTA // OTA包
+  fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(number => {
-  console.log("verifyUpgradePackage result: " + number);
+  console.log(`verifyUpgradePackage result: ` + number);
 }).catch(err => {
-  console.log("verifyUpgradePackage error $JSON.stringify(err)");
+  console.log(`verifyUpgradePackage error ` + $JSON.stringify(err));
 });
 ```
 
@@ -1016,12 +1016,12 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 ```
 var upgradeFiles = [{
-  fileType: ComponentType.OTA // OTA包
+  fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }]
 
 localUpdater.applyNewVersion(upgradeFiles, (err) => {
-  console.log("applyNewVersion error $JSON.stringify(err)");
+  console.log(`applyNewVersion error ` + $JSON.stringify(err));
 });
 ```
 
@@ -1043,13 +1043,13 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 ```
 var upgradeFiles = [{
-  fileType: ComponentType.OTA // OTA包
+  fileType: update.update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }]
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
-  console.log("applyNewVersion success");
+  console.log(`applyNewVersion success`);
 }).catch(err => {
-  console.log("applyNewVersion error $JSON.stringify(err)");
+  console.log(`applyNewVersion error ` + $JSON.stringify(err));
 });
 ```
 
@@ -1071,12 +1071,12 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 ```
 var eventClassifyInfo = {
-  eventClassify: EventClassify.TASK // 订阅升级更新事件
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 }
 
 function onTaskUpdate(eventInfo) {
-  console.log("on eventInfo id ", eventInfo.eventId);
+  console.log(`on eventInfo id `, eventInfo.eventId);
 }
 
 localUpdater.on(eventClassifyInfo, onTaskUpdate);
@@ -1100,12 +1100,12 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 ```
 var eventClassifyInfo = {
-  eventClassify: EventClassify.TASK // 订阅升级更新事件
+  eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 }
 
 function onTaskUpdate(eventInfo) {
-  console.log("on eventInfo id ", eventInfo.eventId);
+  console.log(`on eventInfo id `, eventInfo.eventId);
 }
 
 localUpdater.off(eventClassifyInfo, onTaskUpdate);
