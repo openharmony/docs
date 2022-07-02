@@ -1042,7 +1042,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 **示例:**
 
 ```
-var upgradeFile = [{
+var upgradeFiles = [{
   fileType: ComponentType.OTA // OTA包
   filePath: "path" // 本地升级包路径
 }]
