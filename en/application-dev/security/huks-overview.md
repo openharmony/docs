@@ -20,7 +20,7 @@ HUKS manages keys through the following operations:
 
 - **Finish**: processes all data transferred to HUKS and then releases resources.
 
-    >![](../public_sys-resources/icon-notice.gif)**NOTICE**:<br/>If an error occurs in the **Init**, **Update**, or **Finish** operation, you must invoke the **Abort** operation to terminate the use of the key.
+    >**NOTICE**<br/>The **Abort** operation is invoked to terminate the use of the key when an error occurs in the **Init**, **Update**, or **Finish** operation.
 
 
 ### Constraints
