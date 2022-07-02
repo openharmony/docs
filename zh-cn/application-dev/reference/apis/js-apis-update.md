@@ -991,7 +991,7 @@ var upgradeFile = {
   fileType: ComponentType.OTA // OTA包
   filePath: "path" // 本地升级包路径
 }
-updater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(number => {
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(number => {
   console.log("verifyUpgradePackage result: " + number);
 }).catch(err => {
   console.log("verifyUpgradePackage error $JSON.stringify(err)");
@@ -1046,7 +1046,7 @@ var upgradeFile = [{
   fileType: ComponentType.OTA // OTA包
   filePath: "path" // 本地升级包路径
 }]
-updater.applyNewVersion(upgradeFiles).then(() => {
+localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log("applyNewVersion success");
 }).catch(err => {
   console.log("applyNewVersion error $JSON.stringify(err)");
