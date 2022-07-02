@@ -187,7 +187,7 @@ The development procedure is as follows:
    
        auto *hdfUserAuthInterfaceHost = new (std::nothrow) HdfUserAuthInterfaceHost;
        if (hdfUserAuthInterfaceHost == nullptr) {
-           HDF_LOGE("%{public}s: failed to create create HdfUserAuthInterfaceHost object", __func__);
+           HDF_LOGE("%{public}s: Failed to create HdfUserAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
    
@@ -271,7 +271,7 @@ The development procedure is as follows:
        int32_t ret = OpenEditSession(userId, &challengeU64);
        challenge.resize(sizeof(uint64_t));
        if (memcpy_s(&challenge[0], challenge.size(), &challengeU64, sizeof(uint64_t)) != EOK) {
-           IAM_LOGE("challengeU64 copy failed");
+           IAM_LOGE("Failed to copy challengeU64");
            return RESULT_BAD_COPY;
        }
        GlobalUnLock();
@@ -310,7 +310,7 @@ The development procedure is as follows:
        CoAuthSchedule scheduleInfo;
        int32_t ret = CheckEnrollPermission(checkParam, &scheduleInfo.scheduleId);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("Permission check failed");
+           IAM_LOGE("Failed to check permission");
            GlobalUnLock();
            return ret;
        }
@@ -356,7 +356,7 @@ The development procedure is as follows:
        bool isUpdate;
        int32_t ret = GetIsUpdate(&isUpdate);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("get isUpdate failed");
+           IAM_LOGE("Failed to get isUpdate");
            return ret;
        }
        if (isUpdate) {
@@ -416,7 +416,7 @@ The development procedure is as follows:
        }
        int32_t ret = GenerateSolutionFunc(solutionIn, &schedulesGet, &scheduleIdNum);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("generate solution failed");
+           IAM_LOGE("Failed to generate solution");
            GlobalUnLock();
            return ret;
        }
@@ -463,7 +463,7 @@ The development procedure is as follows:
        }
        info.token.resize(sizeof(UserAuthTokenHal));
        if (memcpy_s(&info.token[0], info.token.size(), &authTokenHal, sizeof(authTokenHal)) != EOK) {
-           IAM_LOGE("copy authToken failed");
+           IAM_LOGE("Failed to copy authToken");
            DestoryBuffer(scheduleResultBuffer);
            GlobalUnLock();
            return RESULT_BAD_COPY;
