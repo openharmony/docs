@@ -1,6 +1,6 @@
 # OpenHarmony IDL工具规格及使用说明书
 
-## 1. IDL接口描述语言简介
+## IDL接口描述语言简介
 在OpenHarmony中，当客户端和服务器进行IPC通信时，需要定义双方都认可的接口，以保障双方可以成功通信，OpenHarmony IDL（OpenHarmony Interface Definition Language）则是一种定义此类接口的工具。OpenHarmony IDL先把需要传递的对象分解成操作系统能够理解的基本类型，并根据开发者的需要封装跨边界的对象。
 
   **图1** IDL接口描述
@@ -23,11 +23,11 @@ OpenHarmony IDL接口描述语言主要用于：
 
 - OpenHarmony IDL中定义的接口可以支持跨进程调用或跨设备调用。根据OpenHarmony IDL中的定义生成的信息或代码可以简化跨进程或跨设备调用接口的实现。
 
-## 2. IDL接口描述语言构成
+## IDL接口描述语言构成
 
-### 2.1 数据类型
+### 数据类型
 
-#### 2.1.1 基础数据类型
+#### 基础数据类型
 | IDL基本数据类型 | C++基本数据类型 | TS基本数据类型 |
 |   --------    |  --------     | --------     |
 |void           | void          | void         |
@@ -42,7 +42,7 @@ OpenHarmony IDL接口描述语言主要用于：
 
 IDL支持的基本数据类型及其映射到C++、TS上的数据类型的对应关系如上表所示。
 
-#### 2.1.2 sequenceable数据类型
+#### sequenceable数据类型
 sequenceable数据类型是指使用“sequenceable”关键字声明的数据，表面该数据类型可以被序列化进行跨进程或跨设备传递。sequenceable在C++与TS中声明方式存在一定差异。
 
 在C++中sequenceable数据类型的声明放在文件的头部，以“sequenceable includedir..namespace.typename”的形式声明。具体而言。声明可以有如下三个形式：
@@ -80,7 +80,7 @@ import MySequenceable from "./my_sequenceable"
 
 需要注意的是，IDL并不负责该类型的代码实现，仅仅按照指定的形式引入该头文件或import指定模块，并使用该类型，因此开发者需要自行保证引入目录、命名空间及类型的正确性。
 
-#### 2.1.3 接口类型
+#### 接口类型
 接口类型是指OpenHarmony IDL文件中定义的接口。对于当前IDL文件中定义的接口，可以直接使用它作为方法参数类型或返回值类型。而在其它OpenHarmony IDL文件中定义的接口，则需要在文件的头部进行前置声明。
 
 C++中声明的形式与sequenceable类型相似，具体而言可以有如下形式：
@@ -101,7 +101,7 @@ interface namespace.interfacename
 import IIdlTestObserver from "./i_idl_test_observer"
 ```
 
-#### 2.1.4 数组类型
+#### 数组类型
 数组类型使用“T[]”表示，其中T可以是基本数据类型、sequenceable数据类型、interface类型和数组类型。该类型在C++生成代码中将被生成为std::vector&lt;T&gt;类型。
 OpenHarmony IDL数组数据类型与TS数据类型、C++数据类型的对应关系如下表所示：
 
@@ -109,7 +109,7 @@ OpenHarmony IDL数组数据类型与TS数据类型、C++数据类型的对应关
 |   -------              |  --------            |  --------    |
 |T[]                     | std::vector&lt;T&gt; | T[]          |
 
-#### 2.1.5 容器类型
+#### 容器类型
 IDL支持两种容器类型，即List和Map。其中List类型容器的用法为List&lt;T&gt;;Map容器的用法为Map<KT,VT>,其中T、KT、VT为基本数据类型、sequenceable类型、interface类型、数组类型或容器类型。
 
 List类型在C++代码中被映射为std::list,Map容器被映射为std::map。
@@ -124,7 +124,7 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 |Map<KT,VT>              | std::map         | Map          |
 
 
-### 2.2 IDL文件编写规范
+### IDL文件编写规范
 一个idl文件只能定义一个interface类型，且该interface名称必须和文件名相同。idl文件的接口定义使用BNF范式描述，其基本定义的形式如下：
 
 ```
@@ -147,11 +147,11 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 其中<*formal_param_attr*>的值为“in”，“out”，“inout”,分别表示该参数是输入参数，输出参数或输入输出参数。需要注意的是，如果一个方法被声明为oneway，则该方法不允许有输出类型的参数（及输入输出类型）和返回值。
 
-## 3.开发步骤
+## 开发步骤
 
-### 3.1 C++开发步骤
+### C++开发步骤
 
-#### 3.1.1 创建.idl文件
+#### 创建.idl文件
 
  开发者可以使用C++编程语言构建.idl文件。.idl示例如下： 
 
@@ -164,7 +164,7 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 使用者通过执行命令 “./idl -gen-cpp -d dir -c dir/iTest.idl” （-d为输出目录）在执行环境的dir目录中生成接口文件、Stub文件、Proxy文件。生成的接口类文件名称和.idl文件名称保持一致，区别在于其使用.h和.cpp扩展名。例如，IIdlTestService.idl 生成的文件名是 i_idl_test_service.h、idl_test_service_proxy.h、idl_test_service_stub.h、idl_test_service_proxy.cpp、idl_test_service_stub.cpp。
 
-#### 3.1.2 服务端公开接口
+#### 服务端公开接口
 
 OpenHarmony IDL工具生成的Stub类是接口类的抽象实现，并且会声明.idl文件中的所有方法。 
 
@@ -270,7 +270,7 @@ ErrCode TestService::TestStringTransaction(const std::string &data)
 } // namespace OHOS
 ```
 
-#### 3.1.3 客户端调用IPC方法
+#### 客户端调用IPC方法
 
 C++客户端通常通过SAMGR获取系统中定义的服务代理，随后即可正常调用proxy提供的接口。示例代码如下： 
 
@@ -326,9 +326,9 @@ void TestClient::StartStringTransaction()
 } // namespace OHOS
 ```
 
-### 3.2 TS开发步骤
+### TS开发步骤
 
-#### 3.2.1 创建.idl文件
+#### 创建.idl文件
 
  开发者可以使用TS编程语言构建.idl文件。.idl示例如下： 
 
@@ -341,7 +341,7 @@ void TestClient::StartStringTransaction()
 
 使用者通过执行命令 “./idl -c IIdlTestService.idl -gen-ts -d /data/ts/” （-d为输出目录）在执行环境的/data/ts/目录中生成接口文件、Stub文件、Proxy文件。生成的接口类文件名称和.idl文件名称保持一致，区别在于其使用.ts扩展名。例如，IIdlTestService.idl 生成的文件名是 i_idl_test_service.ts、idl_test_service_proxy.ts、idl_test_service_stub.ts。
 
-#### 3.2.2 服务端公开接口
+#### 服务端公开接口
 
 OpenHarmony IDL工具生成的Stub类是接口类的抽象实现，并且会声明.idl文件中的所有方法。 
 
@@ -445,7 +445,7 @@ export default {
 };
 ```
 
-#### 3.2.3 客户端调用IPC方法
+#### 客户端调用IPC方法
 
 客户端调用connectAbility()以连接服务时，客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例。由于客户端和服务在不同应用内，所以客户端应用的目录内必须包含.idl文件(SDK工具会自动生成Proxy代理类)的副本。客户端的onAbilityConnectDone中的onConnect回调会接收服务的onConnect()方法返回的IRemoteObject实例，使用IRemoteObject创建IdlTestServiceProxy类的实例对象testProxy，然后调用相关IPC方法。示例代码如下：
 
@@ -491,7 +491,7 @@ function connectAbility: void {
 
 ```
 
-#### 3.2.4 IPC传递sequenceable对象
+#### IPC传递sequenceable对象
 
 开发者可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。但是，必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持marshalling和unmarshalling方法。OpenHarmony 需要通过该marshalling和unmarshalling方法将对象序列化和反序列化成各进程能识别的对象。
 
@@ -530,11 +530,11 @@ export default class MySequenceable {
 }
 ```
 
-## 4. C++与TS互通开发步骤
+## C++与TS互通开发步骤
 
-### 4.1 TS Proxy与C++ Stub开发步骤
+### TS Proxy与C++ Stub开发步骤
 
-#### 4.1.1 C++端提供服务对象
+#### C++端提供服务对象
 
 1. 如上所述C++开发步骤，开发者使用C++编程语言构建.idl文件，通过命令生成接口、Stub文件、Proxy文件。
 
@@ -559,7 +559,7 @@ export default class MySequenceable {
    };
    ```
 
-#### 4.1.2 C++端提供napi接口
+#### C++端提供napi接口
 
 C++需要通过napi的方式，把C++服务对象提供给TS端，例如：C++端提供一个GetNativeObject方法，方法里创建IdlTestServiceImpl实例，通过NAPI_ohos_rpc_CreateJsRemoteObject方法，创建出一个JS远程对象供TS应用使用，如下：
 
@@ -573,7 +573,7 @@ NativeValue* GetNativeObject(NativeEngine& engine, NativeCallbackInfo& info)
 }
 ```
 
-#### 4.1.3 TS端提供Proxy对象
+#### TS端提供Proxy对象
 
 如上所述TS开发步骤，开发者使用TS编程语言构建.idl文件，通过命令生成接口、Stub文件、Proxy文件。Proxy文件例如：
 
@@ -632,7 +632,7 @@ export default class IdlTestServiceProxy implements IIdlTestService {
 }
 ```
 
-#### 4.1.4 TS与C++实现互通
+#### TS与C++实现互通
 
 1. TS应用调用napi接口获取C++服务的远程对象
 2. 构建TS Proxy对象，并把C++服务的远程对象传递给它
