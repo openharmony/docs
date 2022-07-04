@@ -107,7 +107,7 @@ struct TextInputExample1 {
 
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word' })
+      TextInput({ placeholder: 'input your word' })
         .placeholderColor("rgb(0,0,225)")
         .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
         .caretColor(Color.Blue)
