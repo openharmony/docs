@@ -1,6 +1,7 @@
 # 相机管理
 
 > **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -1034,7 +1035,7 @@ on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
 | 名称     | 类型                             | 必填 | 说明                                             |
 | :------- | :------------------------------- | :--- | :----------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，即CameraInput错误事件。 |
-| callback | ErrorCallback<CameraInputError\> | 是   | 回调函数，用于获取结果。                         |
+| callback | ErrorCallback<[CameraInputError](#camerainputerror)\> | 是   | 回调函数，用于获取结果。                         |
 
 **示例：**
 
@@ -1043,6 +1044,26 @@ cameraInput.on('error', (cameraInputError) => {
     console.log('Camera input error code: ' + cameraInputError.code);
 })
 ```
+
+##  CameraInputErrorCode
+
+枚举，CameraInput的错误码。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称          | 值   | 说明       |
+| ------------- | ---- | ---------- |
+| ERROR_UNKNOWN | -1   | 未知错误。 |
+
+##  CameraInputError
+
+CameraInput错误对象。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 类型                                        | 说明                       |
+| ---- | ------------------------------------------- | -------------------------- |
+| code | [CameraInputErrorCode](#camerainputerrorcode) | CameraInput中的错误码。 |
 
 
 ## FlashMode
@@ -2068,7 +2089,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 | 名称 | 类型                                              | 说明                   |
 | ---- | ------------------------------------------------- | ---------------------- |
-| code | [PreviewOutputErrorCode](#previewoutputerrorcode) | PreviewOut中的错误码。 |
+| code | [PreviewOutputErrorCode](#previewoutputerrorcode) | PreviewOutput中的错误码。 |
 
 ## camera.createPhotoOutput
 
