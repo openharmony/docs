@@ -32,25 +32,30 @@ RK3568的镜像烧录通过Winodow环境进行烧录。
 
 完成源码导入后，通过以下步骤进行烧录：
 
+1. [下载](https://gitee.com/hihope_iot/docs/blob/master/HiHope_DAYU200/%E7%83%A7%E5%86%99%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%8C%87%E5%8D%97/windows/DriverAssitant_v5.1.1.zip)并安装驱动DriverInstall.exe。
 
-1. 请连接好电脑和待烧录开发板，连接USB接口，具体可参考[RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)。
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   >
+   > 如果已经安装旧版本的烧写工具，请先点击"驱动卸载"按钮卸载驱动，然后再点击"驱动安装"按钮安装驱动。
 
-2. 在DevEco Device Tool中，选择REMOTE DEVELOPMENT &gt; Local PC，查看远程计算机（Ubuntu开发环境）与本地计算机（Windows开发环境）的连接状态。
+2. 请连接好电脑和待烧录开发板，连接USB接口，具体可参考[RK3568开发板介绍](quickstart-standard-board-introduction-rk3568.md)。
+
+3. 在DevEco Device Tool中，选择REMOTE DEVELOPMENT &gt; Local PC，查看远程计算机（Ubuntu开发环境）与本地计算机（Windows开发环境）的连接状态。
 
    - 如果Local PC右边连接按钮为![zh-cn_image_0000001261315939](figures/zh-cn_image_0000001261315939.png)，则远程计算机与本地计算机为已连接状态，不需要执行其他操作。
    - 如果Local PC右边连接按钮为![zh-cn_image_0000001261515989](figures/zh-cn_image_0000001261515989.png)，则点击绿色按钮进行连接。连接时DevEco Device Tool会重启服务，因此请不要在下载源码或源码编译过程中进行连接，否则会中断任务。
 
    ![zh-cn_image_0000001261395999](figures/zh-cn_image_0000001261395999.png)
 
-3. 在菜单栏中点击**Project Settings**按钮，进入RK3568工程配置界面。
+4. 在菜单栏中点击**Project Settings**按钮，进入RK3568工程配置界面。
 
    ![zh-cn_image_0000001198566364](figures/zh-cn_image_0000001198566364.png)
 
-4. 在“Tool Chain”页签，设置Uploader烧录器工具，可以通过Tool Chain页签中的Install按钮在线安装。
+5. 在“Tool Chain”页签，设置Uploader烧录器工具，可以通过Tool Chain页签中的Install按钮在线安装。
 
    ![zh-cn_image_0000001239661509](figures/zh-cn_image_0000001239661509.png)
 
-5. 在“hh_scdy200”页签，设置烧录选项，包括upload_partitions和upload_protocol。
+6. 在“hh_scdy200”页签，设置烧录选项，包括upload_partitions和upload_protocol。
 
    - upload_partitions_profile：选择待烧录程序的配置文件，该配置文件会指定烧录文件名称、起始烧录地址、地址长度等信息；同时请勾选**Enable to use upload_partitions_profile for upload**选项。
 
@@ -64,13 +69,13 @@ RK3568的镜像烧录通过Winodow环境进行烧录。
 
    ![zh-cn_image_0000001194504874](figures/zh-cn_image_0000001194504874.png)
 
-6. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
+7. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
 
-7. 在“PROJECT TASKS”中，点击hh_scdy200下的**Upload**按钮启动烧录。
+8. 在“PROJECT TASKS”中，点击hh_scdy200下的**Upload**按钮启动烧录。
 
    ![zh-cn_image_0000001194821710](figures/zh-cn_image_0000001194821710.png)
 
-8. 当屏幕提示“Operation paused，Please press Enter key to continue”，请按回车键继续。
+9. 当屏幕提示“Operation paused，Please press Enter key to continue”，请按回车键继续。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    >
