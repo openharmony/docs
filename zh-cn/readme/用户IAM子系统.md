@@ -31,11 +31,9 @@
 
 ```undefined
 //base/user_iam
-├── auth_executor_mgr	# 认证执行器管理部件，支持系统内统一的认证资源管理和调度
+├── user_auth_framework	# 用户认证框架，包括用户认证、凭据管理和执行器管理
 ├── face_auth			# 人脸认证部件，与认证执行器管理对接，支持人脸录入、删除和人脸认证功能
 ├── pin_auth 			# 口令认证部件，与认证执行器管理对接，支持口令录入、删除和口令认证功能
-├── user_auth			# 统一用户认证部件，提供统一用户身份认证功能
-└── user_idm 			# 用户身份凭据管理部件，提供系统内统一的用户身份凭据信息管理功能
 
 ```
 
@@ -53,12 +51,12 @@
 
 ## 相关仓
 
-[useriam_auth_executor_mgr](https://gitee.com/openharmony/useriam_auth_executor_mgr)
-
-[useriam_user_idm](https://gitee.com/openharmony/useriam_user_idm)
-
-[useriam_user_auth](https://gitee.com/openharmony/useriam_user_auth)
+[useriam_user_auth_framework](https://gitee.com/openharmony/useriam_user_auth_framework)
 
 [useriam_pin_auth](https://gitee.com/openharmony/useriam_pin_auth)
 
-[useriam_faceauth](https://gitee.com/openharmony/useriam_faceauth)
+[useriam_face_auth](https://gitee.com/openharmony/useriam_face_auth)
+
+[drivers_interface](https://gitee.com/openharmony/drivers_interface)
+
+[drivers_peripheral](https://gitee.com/openharmony/drivers_peripheral)
