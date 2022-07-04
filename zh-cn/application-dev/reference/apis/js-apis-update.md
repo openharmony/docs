@@ -127,7 +127,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 ```
 updater.checkNewVersion((err, result) => {
-  console.log(`checkNewVersion isExistNewVersion  ` + result.isExistNewVersion);
+  console.log(`checkNewVersion isExistNewVersion  ` + result?.isExistNewVersion);
 });
 ```
 
@@ -958,7 +958,7 @@ var upgradeFile = {
   filePath: "path" // 本地升级包路径
 }
 
-localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err, value) => {
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err, result) => {
   console.log(`factoryReset error ` + $JSON.stringify(err));
 });
 ```
@@ -991,8 +991,8 @@ var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }
-localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(number => {
-  console.log(`verifyUpgradePackage result: ` + number);
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(result => {
+  console.log(`verifyUpgradePackage result: ` + result);
 }).catch(err => {
   console.log(`verifyUpgradePackage error ` + $JSON.stringify(err));
 });
