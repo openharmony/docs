@@ -4,7 +4,7 @@
 
 People take their mobile devices wherever they go. Mobile devices have become a necessity in people's daily routines, whether it be for looking at the weather forecast, browsing news, hailing a taxi, navigating, or recording data from a workout. All these activities are so much associated with the location services on mobile devices.
 
-With the location awareness capability offered by , mobile devices will be able to obtain real-time, accurate location data. Building location awareness into your application can also lead to a better contextual experience for application users.
+With the location awareness capability offered by OpenHarmony, mobile devices will be able to obtain real-time, accurate location data. Building location awareness into your application can also lead to a better contextual experience for application users.
 
 Your application can call location-specific APIs to obtain the location information of a mobile device for offering location-based services such as drive navigation and motion track recording.
 
@@ -61,47 +61,47 @@ The following table describes APIs available for obtaining device location infor
 **Table 1** APIs for obtaining device location information
 | API| Description| 
 | -------- | -------- |
-| on(type:&nbsp;'locationChange',&nbsp;request:&nbsp;LocationRequest,&nbsp;callback:&nbsp;Callback&lt;Location&gt;)&nbsp;:&nbsp;void | Registers a listener for location changes with a location request initiated.| 
-| off(type:&nbsp;'locationChange',&nbsp;callback?:&nbsp;Callback&lt;Location&gt;)&nbsp;:&nbsp;void | Unregisters the listener for location changes with the corresponding location request deleted.| 
-| on(type:&nbsp;'locationServiceState',&nbsp;callback:&nbsp;Callback&lt;boolean&gt;)&nbsp;:&nbsp;void | Registers a listener for location service status change events.| 
-| off(type:&nbsp;'locationServiceState',&nbsp;callback:&nbsp;Callback&lt;boolean&gt;)&nbsp;:&nbsp;void | Unregisters the listener for location service status change events.| 
-| on(type:&nbsp;'cachedGnssLocationsReporting',&nbsp;request:&nbsp;CachedGnssLocationsRequest,&nbsp;callback:&nbsp;Callback&lt;Array&lt;Location&gt;&gt;)&nbsp;:&nbsp;void; | Registers a listener for cached GNSS location reports.| 
-| off(type:&nbsp;'cachedGnssLocationsReporting',&nbsp;callback?:&nbsp;Callback&lt;Array&lt;Location&gt;&gt;)&nbsp;:&nbsp;void; | Unregisters the listener for cached GNSS location reports.| 
-| on(type:&nbsp;'gnssStatusChange',&nbsp;callback:&nbsp;Callback&lt;SatelliteStatusInfo&gt;)&nbsp;:&nbsp;void; | Registers a listener for satellite status change events.| 
-| off(type:&nbsp;'gnssStatusChange',&nbsp;callback?:&nbsp;Callback&lt;SatelliteStatusInfo&gt;)&nbsp;:&nbsp;void; | Unregisters the listener for satellite status change events.| 
-| on(type:&nbsp;'nmeaMessageChange',&nbsp;callback:&nbsp;Callback&lt;string&gt;)&nbsp;:&nbsp;void; | Registers a listener for GNSS NMEA message change events.| 
-| off(type:&nbsp;'nmeaMessageChange',&nbsp;callback?:&nbsp;Callback&lt;string&gt;)&nbsp;:&nbsp;void; | Unregisters the listener for GNSS NMEA message change events.| 
-| on(type:&nbsp;'fenceStatusChange',&nbsp;request:&nbsp;GeofenceRequest,&nbsp;want:&nbsp;WantAgent)&nbsp;:&nbsp;void; | Registers a listener for status change events of the specified geofence.| 
-| off(type:&nbsp;'fenceStatusChange',&nbsp;request:&nbsp;GeofenceRequest,&nbsp;want:&nbsp;WantAgent)&nbsp;:&nbsp;void; | Unregisters the listener for status change events of the specified geofence.| 
-| getCurrentLocation(request:&nbsp;CurrentLocationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;Location&gt;)&nbsp;:&nbsp;void | Obtains the current location. This API uses an asynchronous callback to return the result. | 
-| getCurrentLocation(request?:&nbsp;CurrentLocationRequest)&nbsp;:&nbsp;Promise&lt;Location&gt; | Obtains the current location. This API uses a promise to return the result. | 
-| getLastLocation(callback:&nbsp;AsyncCallback&lt;Location&gt;)&nbsp;:&nbsp;void | Obtains the previous location. This API uses an asynchronous callback to return the result.| 
-| getLastLocation()&nbsp;:&nbsp;Promise&lt;Location&gt; | Obtains the previous location. This API uses a promise to return the result. | 
-| isLocationEnabled(callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void | Checks whether the location service is enabled. This API uses an asynchronous callback to return the result.| 
-| isLocationEnabled()&nbsp;:&nbsp;Promise&lt;boolean&gt; | Checks whether the location service is enabled. This API uses a promise to return the result.| 
-| requestEnableLocation(callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void | Requests to enable the location service. This API uses an asynchronous callback to return the result.| 
-| requestEnableLocation()&nbsp;:&nbsp;Promise&lt;boolean&gt; | Requests to enable the location service. This API uses a promise to return the result.| 
-| enableLocation(callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void | Enables the location service. This API uses an asynchronous callback to return the result.| 
-| enableLocation()&nbsp;:&nbsp;Promise&lt;boolean&gt; | Enables the location service. This API uses a promise to return the result.| 
-| disableLocation(callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void | Disables the location service. This API uses an asynchronous callback to return the result.| 
-| disableLocation()&nbsp;:&nbsp;Promise&lt;boolean&gt; | Disables the location service. This API uses a promise to return the result.| 
-| getCachedGnssLocationsSize(callback:&nbsp;AsyncCallback&lt;number&gt;)&nbsp;:&nbsp;void; | Obtains the number of cached GNSS locations. This API uses an asynchronous callback to return the result.| 
-| getCachedGnssLocationsSize()&nbsp;:&nbsp;Promise&lt;number&gt;; | Obtains the number of cached GNSS locations. This API uses a promise to return the result.| 
-| flushCachedGnssLocations(callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void; | Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses an asynchronous callback to return the result.| 
-| flushCachedGnssLocations()&nbsp;:&nbsp;Promise&lt;boolean&gt;; | Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses a promise to return the result.| 
-| sendCommand(command:&nbsp;LocationCommand,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void; | Sends extended commands to the location subsystem. This API uses an asynchronous callback to return the result.| 
-| sendCommand(command:&nbsp;LocationCommand)&nbsp;:&nbsp;Promise&lt;boolean&gt;; | Sends extended commands to the location subsystem. This API uses a promise to return the result.| 
-| isLocationPrivacyConfirmed(type&nbsp;:&nbsp;LocationPrivacyType,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void; | Checks whether a user agrees with the privacy statement of the location service. This API uses an asynchronous callback to return the result.| 
-| isLocationPrivacyConfirmed(type&nbsp;:&nbsp;LocationPrivacyType,)&nbsp;:&nbsp;Promise&lt;boolean&gt;; | Checks whether a user agrees with the privacy statement of the location service. This API uses a promise to return the result.| 
-| setLocationPrivacyConfirmStatus(type&nbsp;:&nbsp;LocationPrivacyType,&nbsp;isConfirmed&nbsp;:&nbsp;boolean,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void; | Sets the user confirmation status for the privacy statement of the location service. This API uses an asynchronous callback to return the result.| 
-| setLocationPrivacyConfirmStatus(type&nbsp;:&nbsp;LocationPrivacyType,&nbsp;isConfirmed&nbsp;:&nbsp;boolean)&nbsp;:&nbsp;Promise&lt;boolean&gt;; | Sets the user confirmation status for the privacy statement of the location service. This API uses a promise to return the result.| 
+| on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;) : void | Registers a listener for location changes with a location request initiated.| 
+| off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void | Unregisters the listener for location changes with the corresponding location request deleted.| 
+| on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | Registers a listener for location service status change events.| 
+| off(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | Unregisters the listener for location service status change events.| 
+| on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void; | Registers a listener for cached GNSS location reports.| 
+| off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void; | Unregisters the listener for cached GNSS location reports.| 
+| on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void; | Registers a listener for satellite status change events.| 
+| off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void; | Unregisters the listener for satellite status change events.| 
+| on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void; | Registers a listener for GNSS NMEA message change events.| 
+| off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void; | Unregisters the listener for GNSS NMEA message change events.| 
+| on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | Registers a listener for status change events of the specified geofence.| 
+| off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void; | Unregisters the listener for status change events of the specified geofence.| 
+| getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;) : void | Obtains the current location. This API uses an asynchronous callback to return the result. | 
+| getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt; | Obtains the current location. This API uses a promise to return the result. | 
+| getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void | Obtains the previous location. This API uses an asynchronous callback to return the result.| 
+| getLastLocation() : Promise&lt;Location&gt; | Obtains the previous location. This API uses a promise to return the result. | 
+| isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void | Checks whether the location service is enabled. This API uses an asynchronous callback to return the result.| 
+| isLocationEnabled() : Promise&lt;boolean&gt; | Checks whether the location service is enabled. This API uses a promise to return the result.| 
+| requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void | Requests to enable the location service. This API uses an asynchronous callback to return the result.| 
+| requestEnableLocation() : Promise&lt;boolean&gt; | Requests to enable the location service. This API uses a promise to return the result.| 
+| enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void | Enables the location service. This API uses an asynchronous callback to return the result.| 
+| enableLocation() : Promise&lt;boolean&gt; | Enables the location service. This API uses a promise to return the result.| 
+| disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void | Disables the location service. This API uses an asynchronous callback to return the result.| 
+| disableLocation() : Promise&lt;boolean&gt; | Disables the location service. This API uses a promise to return the result.| 
+| getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void; | Obtains the number of cached GNSS locations. This API uses an asynchronous callback to return the result.| 
+| getCachedGnssLocationsSize() : Promise&lt;number&gt;; | Obtains the number of cached GNSS locations. This API uses a promise to return the result.| 
+| flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void; | Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses an asynchronous callback to return the result.| 
+| flushCachedGnssLocations() : Promise&lt;boolean&gt;; | Obtains all cached GNSS locations and clears the GNSS cache queue. This API uses a promise to return the result.| 
+| sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : void; | Sends extended commands to the location subsystem. This API uses an asynchronous callback to return the result.| 
+| sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;; | Sends extended commands to the location subsystem. This API uses a promise to return the result.| 
+| isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&lt;boolean&gt;) : void; | Checks whether a user agrees with the privacy statement of the location service. This API uses an asynchronous callback to return the result.| 
+| isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;; | Checks whether a user agrees with the privacy statement of the location service. This API uses a promise to return the result.| 
+| setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean, callback: AsyncCallback&lt;boolean&gt;) : void; | Sets the user confirmation status for the privacy statement of the location service. This API uses an asynchronous callback to return the result.| 
+| setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolean) : Promise&lt;boolean&gt;; | Sets the user confirmation status for the privacy statement of the location service. This API uses a promise to return the result.| 
 
 
 ### How to Use<a name="section129654513264"></a>
 
 **Obtaining the device location information:**
 
-1. Before using basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user. For details, see .
+1. Before using basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user.
      The system provides the following location permissions:
    - ohos.permission.LOCATION
    
@@ -277,4 +277,4 @@ The following table describes APIs available for obtaining device location infor
 
 Location subsystem
 
-base_location
+[base_location](https://gitee.com/openharmony/base_location)
