@@ -16,16 +16,11 @@
 import update from '@ohos.update'
 ```
 
-## 权限列表
-
-ohos.permission.UPDATE_SYSTEM
-ohos.permission.FACTORY_RESET
-
 ## update.getOnlineUpdater
 
 getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
-获取在线升级Updater。
+获取在线升级对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -48,13 +43,13 @@ try {
   var upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
     businessType: {
-      vendor: BusinessVendor.PUBLIC
-      subType: BusinessSubType.FIRMWARE;
+      vendor: update.BusinessVendor.PUBLIC
+      subType: update.BusinessSubType.FIRMWARE;
     }
   }
   let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
-  console.error(" Fail to get updater error: " + error);
+  console.error(` Fail to get updater error: ${error}`);
 }
 ```
 
@@ -62,7 +57,7 @@ try {
 
 getRestorer(): Restorer
 
-获取恢复出厂对象Restorer。
+获取恢复出厂对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -79,7 +74,7 @@ getRestorer(): Restorer
 try {
   let restorer = update.getRestorer();
 } catch(error) {
-  console.error(" Fail to get restorer: " + error);
+  console.error(` Fail to get restorer: ${error}`);
 }
 ```
 
@@ -87,7 +82,7 @@ try {
 
 getLocalUpdater(): LocalUpdater
 
-获取本地升级的LocalUpdater。
+获取本地升级对象。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -103,7 +98,7 @@ getLocalUpdater(): LocalUpdater
 try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
-  console.error(" Fail to get localUpdater error: " + error);
+  console.error(` Fail to get localUpdater error: ${error}`);
 }
 ```
 
@@ -113,9 +108,10 @@ try {
 
 checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
-检查新版本，使用callback方式作为异步方法。
+检查新版本信息，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -127,7 +123,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 ```
 updater.checkNewVersion((err, result) => {
-  console.log(`checkNewVersion isExistNewVersion  ` + result?.isExistNewVersion);
+  console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
 });
 ```
 
@@ -135,9 +131,10 @@ updater.checkNewVersion((err, result) => {
 
 checkNewVersion(): Promise\<CheckResult>
 
-检查新版本，使用promise方式作为异步方法。
+检查新版本信息，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值:**
 
@@ -149,11 +146,11 @@ checkNewVersion(): Promise\<CheckResult>
 
 ```
 updater.checkNewVersion().then(result => {
-  console.log(`checkNewVersion isExistNewVersion  ` + result.isExistNewVersion);
+  console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
   // 版本摘要信息
-  console.log(`checkNewVersion versionDigestInfo  ` + result.newVersionInfo.versionDigestInfo.versionDigest);
+  console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
 }).catch(err => {
-  console.log(`checkNewVersion promise error ` + $JSON.stringify(err));
+  console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -164,6 +161,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 获取新版本信息，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -175,8 +173,8 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 ```
 updater.getNewVersionInfo((err, info) => {
-  console.log(`info displayVersion = ` + info?.versionComponents[0].displayVersion);
-  console.log(`info innerVersion = ` + info?.versionComponents[0].innerVersion);
+  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
+  console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
 });
 ```
 
@@ -187,6 +185,7 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 获取新版本信息，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
@@ -198,10 +197,10 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 ```
 updater.getNewVersionInfo().then(info => {
-  console.log(`info displayVersion = ` + info.versionComponents[0].displayVersion);
-  console.log(`info innerVersion = ` + info.versionComponents[0].innerVersion);
+  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
+  console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
 }).catch(err => {
-  console.log(`getNewVersionInfo promise error ` + $JSON.stringify(err));
+  console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -212,6 +211,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 获取当前版本信息，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -223,9 +223,9 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 ```
 updater.getCurrentVersionInfo((err, info) => {
-  console.log(`info osVersion = ` + info?.osVersion);
-  console.log(`info deviceName = ` + info?.deviceName);
-  console.log(`info displayVersion = ` + info?.versionComponents[0].displayVersion);
+  console.log(`info osVersion = ${info?.osVersion}`);
+  console.log(`info deviceName = ${info?.deviceName}`);
+  console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
 });
 ```
 
@@ -236,6 +236,7 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 获取当前版本信息，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
@@ -247,11 +248,11 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 ```
 updater.getCurrentVersionInfo().then(info => {
-  console.log(`info osVersion = ` + info.osVersion);
-  console.log(`info deviceName = ` + info.deviceName);
-  console.log(`info displayVersion = ` + info.versionComponents[0].displayVersion);
+  console.log(`info osVersion = ${info.osVersion}`);
+  console.log(`info deviceName = ${info.deviceName}`);
+  console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
 }).catch(err => {
-  console.log(`getCurrentVersionInfo promise error ` + $JSON.stringify(err));
+  console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -262,6 +263,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 获取升级任务信息，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -273,7 +275,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 ```
 updater.getTaskInfo((err, info) => {
-  console.log(`getTaskInfo isexistTask= ` + info?.existTask);
+  console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
 ```
 
@@ -295,9 +297,9 @@ getTaskInfo(): Promise\<TaskInfo>
 
 ```
 updater.getTaskInfo().then(info => {
-  console.log(`getTaskInfo existTask= ` + info.existTask);
+  console.log(`getTaskInfo isexistTask= ${info.existTask}`);
 }).catch(err => {
-  console.log(`getTaskInfo promise error ` + $JSON.stringify(err));
+  console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -308,6 +310,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 下载新版本，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -331,7 +334,7 @@ var downloadOptions = {
   order: update.Order.DOWNLOAD // 下载
 }
 updater.download(versionDigestInfo, downloadOptions, (err) => {
-  console.log(`download error ` + $JSON.stringify(err));
+  console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -342,6 +345,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 下载新版本，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -372,7 +376,7 @@ var downloadOptions = {
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
 }).catch(err => {
-  console.log(`download error ` + $JSON.stringify(err));
+  console.log(`download error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -383,6 +387,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 恢复下载新版本，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -405,7 +410,7 @@ var resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
 }
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
-  console.log(`resumeDownload error ` + $JSON.stringify(err));
+  console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -416,6 +421,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 恢复下载新版本，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -445,7 +451,7 @@ var resumeDownloadOptions = {
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
   console.log(`resumeDownload start`);
 }).catch(err => {
-  console.log(`resumeDownload error ` + $JSON.stringify(err));
+  console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -456,6 +462,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 暂停下载新版本，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -478,7 +485,7 @@ var pauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
 }
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
-  console.log(`pauseDownload error ` + $JSON.stringify(err));
+  console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -489,6 +496,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 恢复下载新版本，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -518,7 +526,7 @@ var pauseDownloadOptions = {
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
   console.log(`pauseDownload`);
 }).catch(err => {
-  console.log(`pauseDownload error ` + $JSON.stringify(err));
+  console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -529,6 +537,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 升级新版本，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -551,7 +560,7 @@ var upgradeOptions = {
   order: update.Order.INSTALL // 安装指令
 }
 updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
-  console.log(`upgrade error ` + $JSON.stringify(err));
+  console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -562,6 +571,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 升级新版本，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -591,7 +601,7 @@ var upgradeOptions = {
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
 }).catch(err => {
-  console.log(`upgrade error ` + $JSON.stringify(err));
+  console.log(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -602,6 +612,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 清除异常状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -624,7 +635,7 @@ var clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 }
 updater.clearError(versionDigestInfo, clearOptions, (err) => {
-  console.log(`clearError error ` + $JSON.stringify(err));
+  console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -635,6 +646,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 清除异常状态，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -664,7 +676,7 @@ var clearOptions = {
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
 }).catch(err => {
-  console.log(`clearError error ` + $JSON.stringify(err));
+  console.log(`clearError error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -675,6 +687,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 获取升级策略信息，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -686,8 +699,8 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 ```
 updater.getUpgradePolicy((err, policy) => {
-  console.log(`policy downloadStrategy = ` + policy?.downloadStrategy);
-  console.log(`policy autoUpgradeStrategy = ` + policy?.autoUpgradeStrategy);
+  console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
+  console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
 ```
 
@@ -698,6 +711,7 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 获取升级策略，通过promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
@@ -709,10 +723,10 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 ```
 updater.getUpgradePolicy().then(policy => {
-  console.log(`policy downloadStrategy = ` + policy.downloadStrategy);
-  console.log(`policy autoUpgradeStrategy = ` + policy.autoUpgradeStrategy);
+  console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
+  console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
 }).catch(err => {
-  console.log(`getUpgradePolicy promise error " + $JSON.stringify(err));
+  console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -723,6 +737,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 设置升级策略，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -740,7 +755,7 @@ let policy = {
   autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
 }
 updater.setUpgradePolicy(policy, (err, value) => {
-  console.log(`setUpgradePolicy result: ` + value?);
+  console.log(`setUpgradePolicy result: ${value?}`);
 });
 ```
 
@@ -751,6 +766,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 设置升级策略，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -773,9 +789,9 @@ let policy = {
   autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
 }
 updater.setUpgradePolicy(policy).then(result => 
-  console.log(`setUpgradePolicy ` + result)
+  console.log(`setUpgradePolicy &{result}`);
 ).catch(err => {
-  console.log(`setUpgradePolicy promise error ` + $JSON.stringify(err));
+  console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -786,6 +802,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 终止升级，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -797,7 +814,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 ```
 updater.terminateUpgrade((err) => {
-  console.log(`terminateUpgrade error ` + $JSON.stringify(err));
+  console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -821,7 +838,7 @@ terminateUpgrade(): Promise\<void>
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch(err => {
-  console.log(`terminateUpgrade error ` + $JSON.stringify(err));
+  console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -893,6 +910,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 恢复出厂设置，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
 
 **参数：**
 
@@ -904,7 +922,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 ```
 restorer.factoryReset((err) => {
-  console.log(`factoryReset error ` + $JSON.stringify(err));
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -915,6 +933,7 @@ factoryReset(): Promise\<void>
 恢复出厂设置，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
 
 **返回值:**
 
@@ -928,7 +947,7 @@ factoryReset(): Promise\<void>
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
 }).catch(err => {
-  console.log(`factoryReset error ` + $JSON.stringify(err));
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -941,6 +960,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 校验升级包，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -959,7 +979,7 @@ var upgradeFile = {
 }
 
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err, result) => {
-  console.log(`factoryReset error ` + $JSON.stringify(err));
+  console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -970,6 +990,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 校验升级包，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -992,9 +1013,9 @@ var upgradeFile = {
   filePath: "path" // 本地升级包路径
 }
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(result => {
-  console.log(`verifyUpgradePackage result: ` + result);
+  console.log(`verifyUpgradePackage result: ${result}`);
 }).catch(err => {
-  console.log(`verifyUpgradePackage error ` + $JSON.stringify(err));
+  console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1004,6 +1025,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 安装升级包，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
@@ -1021,7 +1043,7 @@ var upgradeFiles = [{
 }]
 
 localUpdater.applyNewVersion(upgradeFiles, (err) => {
-  console.log(`applyNewVersion error ` + $JSON.stringify(err));
+  console.log(`applyNewVersion error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1032,6 +1054,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 安装升级包，使用promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值:**
 
@@ -1049,7 +1072,7 @@ var upgradeFiles = [{
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
 }).catch(err => {
-  console.log(`applyNewVersion error ` + $JSON.stringify(err));
+  console.log(`applyNewVersion error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1115,7 +1138,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 升级信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1126,7 +1149,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 升级业务类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1137,7 +1160,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 搜包结果。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1148,7 +1171,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 新版本数据。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1159,7 +1182,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 版本摘要。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1169,7 +1192,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 版本组件。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1185,7 +1208,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 版本描述文件信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1196,7 +1219,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 当前版本信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1208,7 +1231,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 下载选项。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1219,7 +1242,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 恢复下载选项。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1229,7 +1252,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 暂停下载选项。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1239,7 +1262,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 升级选项。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1249,7 +1272,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 清除异常选项。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1259,7 +1282,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 升级策略。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1271,7 +1294,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 升级时间段。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1282,7 +1305,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 任务信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1293,7 +1316,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 事件信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1304,7 +1327,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 任务数据。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1320,7 +1343,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 错误信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1331,7 +1354,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 事件信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1342,7 +1365,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 升级文件。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -1356,7 +1379,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 事件回调。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称              | 参数类型                                     | 必填   | 说明   |
 | --------------- | ---------------------------------------- | ---- | ---- |
@@ -1366,7 +1389,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 设备厂家。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1376,7 +1399,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 升级类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1386,7 +1409,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 升级包类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1396,7 +1419,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 升级方式。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1407,7 +1430,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 生效模式。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1419,7 +1442,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 描述文件类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1430,7 +1453,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 网络类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1444,7 +1467,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 升级指令。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1458,7 +1481,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 升级状态。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1477,7 +1500,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 事件类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1487,7 +1510,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 事件ID。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -1502,9 +1525,9 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 | EVENT_DOWNLOAD_SUCCESS   | 0x01001000 | 下载成功  |
 | EVENT_DOWNLOAD_FAIL   | 0x01001001 | 下载失败  |
 | EVENT_UPGRADE_WAIT   | 0x01001010 | 待升级  |
-| EVENT_UPGRADE_START   | 0x01001100 | 开始升级  |
-| EVENT_UPGRADE_UPDATE   | 0x01001101 | 升级中  |
-| EVENT_APPLY_WAIT   | 0x01001110 | 待生效  |
-| EVENT_APPLY_START   | 0x01001111 | 开始生效  |
-| EVENT_UPGRADE_SUCCESS   | 0x01010000 | 更新成功  |
-| EVENT_UPGRADE_FAIL   | 0x01010001 | 更新失败  |
+| EVENT_UPGRADE_START   | 0x01001011 | 开始升级  |
+| EVENT_UPGRADE_UPDATE   | 0x01001100 | 升级中  |
+| EVENT_APPLY_WAIT   | 0x01001101 | 待生效  |
+| EVENT_APPLY_START   | 0x01001110 | 开始生效  |
+| EVENT_UPGRADE_SUCCESS   | 0x01001111 | 更新成功  |
+| EVENT_UPGRADE_FAIL   | 0x01010000 | 更新失败  |
