@@ -13,6 +13,6 @@
 - Vibrator
   - [Vibrator Overview](vibrator-overview.md)
   - [Vibrator Development](vibrator-guidelines.md)
-- Update Servcie
+- Update Service
   - [Sample Server Overview](sample-server-overview.md)
   - [Sample Server Development](sample-server-guidelines.md)

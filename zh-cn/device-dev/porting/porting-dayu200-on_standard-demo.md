@@ -3292,7 +3292,7 @@ root {
             busType = 0; // 0:i2c 1:spi
             busNum = 5;
             busAddr = 0x15;
-            regWidth = 1; // 1btye
+            regWidth = 1; // 1byte
         }
         sensorIdAttr :: sensorIdInfo {
             chipName = "mxc6655xa";
