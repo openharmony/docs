@@ -19,7 +19,7 @@ import EnvironmentCallback from "@ohos.application.EnvironmentCallback";
 
 onConfigurationUpdated(config: Configuration): void;
 
-注册监听系统环境变化后，在系统环境变化时触发回调。
+注册系统环境变化的监听后，在系统环境变化时触发回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -27,7 +27,7 @@ onConfigurationUpdated(config: Configuration): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | 是 | 变化后的Configuration对象 | 
+  | config | [Configuration](js-apis-configuration.md) | 是 | 变化后的Configuration对象。 |
 
 **示例：**
     

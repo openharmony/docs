@@ -34,13 +34,13 @@ registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**
 
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| [AbilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md) | callback | 是   | 回调方法，返回注册监听事件的id |
+| [AbilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md) | callback | 是   | 回调方法，返回注册监听事件的ID。 |
 
 **返回值：**
 
 | 类型   | 说明                           |
 | ------ | ------------------------------ |
-| number | 返回的此次注册监听生命周期的id（每次注册该id会自增+1，当超过监听上限数量2^63-1时，返回-1）|
+| number | 返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
 
 **示例：**
 
@@ -103,8 +103,8 @@ unregisterAbilityLifecycleCallback(callbackId: **number**,  callback: AsyncCallb
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callbackId    | number   | 是   | 注册监听应用内生命周期的id |
-| AsyncCallback | callback | 是   | 回调方法                   |
+| callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
+| AsyncCallback | callback | 是   | 回调方法。                   |
 
 **示例：**
 
@@ -121,7 +121,7 @@ unregisterAbilityLifecycleCallback(callbackId: **number**,  callback: AsyncCallb
 
 registerEnvironmentCallback(callback: EnvironmentCallback): **number**;
 
-注册监听系统环境变化
+注册对系统环境变化的监听。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -129,13 +129,13 @@ registerEnvironmentCallback(callback: EnvironmentCallback): **number**;
 
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| [EnvironmentCallback](js-apis-application-EnvironmentCallback.md) | callback | 是   | 回调方法，返回注册监听事件的id |
+| [EnvironmentCallback](js-apis-application-EnvironmentCallback.md) | callback | 是   | 回调方法，返回注册监听事件的ID。 |
 
 **返回值：**
 
 | 类型   | 说明                           |
 | ------ | ------------------------------ |
-| number | 返回的此次注册监听系统环境变化的id（每次注册该id会自增+1，当超过监听上限数量2^63-1时，返回-1）|
+| number | 返回的此次注册监听系统环境变化的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
 
 **示例：**
 
@@ -172,16 +172,16 @@ export default class MyAbilityStage extends AbilityStage {
 
 unregisterEnvironmentCallback(callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
 
-取消监听系统环境变化
+取消对系统环境变化的监听。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名        | 类型     | 必填 | 说明                       |
+| 参数名         | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callbackId    | number   | 是   | 注册监听系统环境变化的id |
-| AsyncCallback | callback | 是   | 回调方法                   |
+| callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
+| AsyncCallback | callback | 是   | 回调方法。                  |
 
 **示例：**
 
