@@ -1,5 +1,6 @@
 # Interpolation Calculation
 
+
 > **NOTE**<br>
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -20,12 +21,12 @@ init(curve?: Curve): Object
 Implements initialization for the interpolation curve, which is used to create an interpolation curve object based on the input parameter.
 
 - Parameters
-  | Name  | Type  | Mandatory | Default Value | Description   |
-  | ----- | ----- | --------- | ------------- | ------------- |
-  | curve | Curve | No        | Linear        | Curve object. |
- 
-- Return value
-  
+
+  | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
+  | curve | Curve | No | Linear | Curve object. |
+
+- Return value<br>
   Curve object.
 
 ## curves.steps
@@ -35,10 +36,11 @@ steps(count: number, end: boolean): Object
 Constructs a step curve object.
 
 - Parameters
+
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | count | number | Yes | - | Number of steps. Must be a positive integer. |
-  | end | boolean | Yes | true | Step change at the start or end point of each interval. Defaults to **true**, indicating that the step change occurs at the end point. |
+  | count | number | Yes | - | Number of steps. The value must be a positive integer. |
+  | end | boolean | No | true | Step change at the start or end point of each interval. Defaults to **true**, indicating that the step change occurs at the end point. |
 
 - Return value
   
@@ -51,12 +53,13 @@ cubicBezier(x1: number, y1: number, x2: number, y2: number): Object
 Constructs a third-order Bezier curve object. The curve value must be between 0 and 1.
 
 1. Parameters
-  | Name | Type   | Mandatory | Description                                                    |
-  | ---- | ------ | --------- | -------------------------------------------------------------- |
-  | x1   | number | Yes       | Horizontal coordinate of the first point on the Bezier curve.  |
-  | y1   | number | Yes       | Vertical coordinate of the first point on the Bezier curve.    |
-  | x2   | number | Yes       | Horizontal coordinate of the second point on the Bezier curve. |
-  | y2   | number | Yes       | Vertical coordinate of the second point on the Bezier curve.   |
+
+   | Name | Type   | Mandatory | Description                                                    |
+   | ---- | ------ | --------- | -------------------------------------------------------------- |
+   | x1   | number | Yes       | Horizontal coordinate of the first point on the Bezier curve.  |
+   | y1   | number | Yes       | Vertical coordinate of the first point on the Bezier curve.    |
+   | x2   | number | Yes       | Horizontal coordinate of the second point on the Bezier curve. |
+   | y2   | number | Yes       | Vertical coordinate of the second point on the Bezier curve.   |
 
 2. Return value
   
@@ -69,12 +72,13 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): Obje
 Constructs a spring curve object.
 
 1. Parameters
-  | Name      | Type   | Mandatory | Description       |
-  | --------- | ------ | --------- | ----------------- |
-  | velocity  | number | Yes       | Initial velocity. |
-  | mass      | number | Yes       | Mass.             |
-  | stiffness | number | Yes       | Stiffness.        |
-  | damping   | number | Yes       | Damping.          |
+
+   | Name      | Type   | Mandatory | Description       |
+   | --------- | ------ | --------- | ----------------- |
+   | velocity  | number | Yes       | Initial velocity. |
+   | mass      | number | Yes       | Mass.             |
+   | stiffness | number | Yes       | Stiffness.        |
+   | damping   | number | Yes       | Damping.          |
 
 2. Return value
   
