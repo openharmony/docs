@@ -72,7 +72,7 @@ Declare the permissions required by the app one by one in the **config.json** fi
 
 The permission level of **ohos.permission.PERMISSION2** is **system_basic**, which is higher than the app's APL. In this case, use the ACL.
 
-In addition to declaring all the permissions in the **config.json** file, you must declare the permissions whose levels are higher than the app's APL in the app's profile. In this example, declare the permission under the **acls** field:
+In addition to declaring all the permissions in the **config.json** file, you must declare the permissions whose levels are higher than the app's APL in the app's [profile](../quick-start/app-provision-structure.md). In this example, declare the permission under the **acls** field:
 ```json
 {
     "version-name": "1.0.0",

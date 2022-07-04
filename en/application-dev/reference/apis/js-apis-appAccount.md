@@ -134,7 +134,7 @@ Implicitly adds an app account based on the specified account owner, authenticat
 | owner    | string                | Yes   | Owner of the app account to add. The value is the bundle name of the app.         |
 | authType | string                | Yes   | Authentication type of the app account to add. The authentication type is customized. |
 | options  | {[key: string]: any}  | Yes   | Authentication options, which can be set as required.|
-| callback | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the authentication result.        |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the authentication result.        |
 
 **Example**
 
@@ -285,7 +285,7 @@ Enables an app account to access an app with the given bundle name. This API use
 | Name       | Type                       | Mandatory  | Description                               |
 | ---------- | ------------------------- | ---- | --------------------------------- |
 | name       | string                    | Yes   | Name of the target app account.                          |
-| bundleName | string                    | Yes   | Bundle name of an app.                        |
+| bundleName | string                    | Yes   | Bundle name of the app.                        |
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -310,7 +310,7 @@ Enables an app account to access an app with the given bundle name. This API use
 | Name       | Type    | Mandatory  | Description       |
 | ---------- | ------ | ---- | --------- |
 | name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of an app.|
+| bundleName | string | Yes   | Bundle name of the app.|
 
 **Return Value**
 
@@ -809,7 +809,7 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes   | Callback invoked to return information about all accessible app accounts.|
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return information about all accessible app accounts.|
 
 **Example**
 
@@ -835,7 +835,7 @@ Obtains information about all accessible app accounts. This API uses a promise t
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -863,7 +863,7 @@ Obtains information about all app accounts of the specified app. This API uses a
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
 | owner    | string                                   | Yes   | Owner of the app account. The value is the bundle name of the app.   |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes   | Callback invoked to return the app account information obtained.|
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return information about all accessible app accounts.|
 
 **Example**
 
@@ -896,7 +896,7 @@ Obtains information about all app accounts of the specified app. This API uses a
 
 | Type                                      | Description                   |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -924,7 +924,7 @@ Subscribes to the account change events of the specified account owners. This AP
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'change'                                 | Yes   | Account change events to subscribe to. The subscriber will receive a notification when the account owners update their accounts.|
 | owners   | Array&lt;string&gt;                      | Yes   | Account owners.                     |
-| callback | Callback&lt;Array&lt;AppAccountInfo&gt;&gt; | Yes   | Callback invoked to return the account changes.          |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return the account changes.          |
 
 **Example**
 
@@ -954,7 +954,7 @@ Unsubscribes from the account change events. This API uses an asynchronous callb
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | Yes   | Account change events to unsubscribe from.   |
-| callback | Callback<Array\<AppAccountInfo>> | No   | Callback used to report the account changes.|
+| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | No   | Callback used to report the account changes.|
 
 **Example**
 
@@ -990,7 +990,7 @@ Authenticates an app account to obtain the Open Authorization (OAuth) token. Thi
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | {[key: string]: any}  | Yes   | Options for the authentication.      |
-| callback | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the authentication result.|
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the authentication result.|
 
 **Example**
 
@@ -1446,7 +1446,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
 | sessionId | string                                   | Yes   | ID of the authentication session.|
-| callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | Yes   | Callback invoked to return the result.|
+| callback  | AsyncCallback&lt;[AuthenticatorCallback](#authenticatorcallback8)&gt; | Yes   | Callback invoked to return the result.|
 
 **Example**
 
@@ -1487,7 +1487,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
 
 | Type                                  | Description                   |
 | ------------------------------------ | --------------------- |
-| Promise&lt;AuthenticatorCallback&gt; | Promise used to return the result.|
+| Promise&lt;[AuthenticatorCallback](#authenticatorcallback8)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1522,7 +1522,7 @@ Obtains authenticator information of an app account. This API uses an asynchrono
 | Name     | Type                                    | Mandatory  | Description         |
 | -------- | -------------------------------------- | ---- | ----------- |
 | owner    | string                                 | Yes   | Owner of the app account. The value is the bundle name of the app.|
-| callback | AsyncCallback&lt;AuthenticatorInfo&gt; | Yes   | Callback invoked to return the result.   |
+| callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Yes   | Callback invoked to return the result.   |
 
 **Example**
 
@@ -1552,7 +1552,7 @@ Obtains authenticator information of an app account. This API uses a promise to 
 
 | Type                              | Description                   |
 | -------------------------------- | --------------------- |
-| Promise&lt;AuthenticatorInfo&gt; | Promise used to return the result.|
+| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1695,7 +1695,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 | -------------- | ------------------------- | ----- | --------------- |
 | name           | string                    | Yes   | Name of the target app account. |
 | owner          | string                    | Yes   | Owner of the app account. The value is the bundle name of the app.|
-| labels         | Array&lt;string&lt;       | Yes   | Labels to check.      |
+| labels         | Array&lt;string&gt;       | Yes   | Labels to check.      |
 | callback       | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. |
 
 **Example**
@@ -1722,7 +1722,7 @@ Checks whether an app account has specific labels. This API uses a promise to re
 | -------------- | ------------------------- | ----- | --------------- |
 | name           | string                    | Yes   | Name of the target app account. |
 | owner          | string                    | Yes   | Owner of the app account. The value is the bundle name of the app.|
-| labels         | Array&lt;string&lt;       | Yes   | Labels to check.      |
+| labels         | Array&lt;string&gt;       | Yes   | Labels to check.      |
 
 **Parameters**
 
@@ -1754,7 +1754,7 @@ Selects the accounts accessible to the requester based on the options. This API 
 | Name        | Type                                | Mandatory | Description            |
 | -------------- | ----------------------------------- | ----- | --------------- |
 | options        | SelectAccountsOptions               | Yes   | Options for selecting accounts.  |
-| callback       | AsyncCallback&lt;AppAccountInfo&gt; | Yes   | Callback invoked to return the result. |
+| callback       | AsyncCallback&lt;[AppAccountInfo](#appaccountinfo)&gt; | Yes   | Callback invoked to return the result. |
 
 **Example**
 
@@ -1781,13 +1781,13 @@ Selects the accounts accessible to the requester based on the options. This API 
 
 | Name        | Type                      | Mandatory | Description            |
 | -------------- | ------------------------- | ----- | --------------- |
-| options        | SelectAccountsOptions     | Yes   | Options for selecting accounts.  |
+| options        | [SelectAccountsOptions](#selectaccountsoptions9)     | Yes   | Options for selecting accounts.  |
 
 **Parameters**
 
 | Type               | Description                             |
 | ------------------- | -------------------------------- |
-| Promise&lt;AppAccountInfo&gt; | Promise used to return the result.|
+| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -1817,7 +1817,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 | -------- | --------------------- | ----- | ----------------------- |
 | name     | string                | Yes   | Name of the target app account.         |
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app.       |
-| callback | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the verification result.|
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the verification result.|
 
 **Example**
 
@@ -1848,8 +1848,8 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 | -------- | ----------------------- | ----- | ----------------------- |
 | name     | string                  | Yes   | Name of the target app account.         |
 | owner    | string                  | Yes   | Owner of the app account. The value is the bundle name of the app.       |
-| options  | VerifyCredentialOptions | Yes   | Options for verifying the user credential.         |
-| callback | AuthenticatorCallback   | Yes   | Authenticator callback invoked to return the verification result.|
+| options  | [VerifyCredentialOptions](#verifycredentialoptions9) | Yes   | Options for verifying the user credential.         |
+| callback | [AuthenticatorCallback](#authenticatorcallback8)   | Yes   | Authenticator callback invoked to return the verification result.|
 
 **Example**
 
@@ -1883,8 +1883,8 @@ Sets authenticator properties. This API uses an asynchronous callback to return 
 | Name   | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ----- | ----------------------- |
 | owner    | string                | Yes   | Owner of the authenticator.         |
-| options  | SetPropertiesOptions  | Yes   | Authenticator properties to set.         |
-| callback | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the result.|
+| options  | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.         |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the result.|
 
 **Example**
 
@@ -1914,8 +1914,8 @@ Sets authenticator properties. This API uses an asynchronous callback to return 
 | Name   | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ----- | ----------------------- |
 | owner    | string                | Yes   | Owner of the authenticator.         |
-| options  | SetPropertiesOptions  | Yes   | Authenticator properties to set.         |
-| callback | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the result.|
+| options  | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.         |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the result.|
 
 **Example**
 
@@ -1977,7 +1977,7 @@ Represents the options for selecting accounts.
 
 | Name         | Type                        | Mandatory | Description               |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;AppAccountInfo&gt; | No   | Allowed accounts.     |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appAccountinfo)&gt; | No   | Allowed accounts.     |
 | allowedOwners   | Array&lt;string&gt;         | No   | Allowed account owners.|
 | requiredLabels  | Array&lt;string&gt;         | No   | Labels required for the authenticator.   |
 
@@ -2160,7 +2160,7 @@ Implicitly adds an app account based on the specified authentication type and op
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the authentication result.|
+| callback         | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the authentication result.|
 
 ### authenticate<sup>8+</sup>
 
@@ -2177,7 +2177,7 @@ Authenticates an app account to obtain the OAuth access token. This API uses an 
 | authType         | string                | Yes   | Authentication type.     |
 | callerBundleName | string                | Yes   | Bundle name of the authentication requester.      |
 | options          | {[key: string]: any}  | Yes   | Options for the authentication.     |
-| callback         | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the authentication result.|
+| callback         | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the authentication result.|
 
 ### verifyCredential<sup>9+</sup>
 
@@ -2188,11 +2188,11 @@ Verifies the app account credential. This API uses an asynchronous callback to r
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
-| Name    | Type                    | Mandatory  | Description                       |
-| --------- | ------------------------ | -- -- | --------------------------- |
+| Name             | Type                   | Mandatory  | Description             |
+| ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | Yes   | Name of the target app account.             |
-| options   | VerifyCredentialOptions  | Yes   | Optional for credential verification.           |
-| callback  | AuthenticatorCallback    | Yes   | Authenticator callback invoked to return the verification result.|
+| options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | Yes   | Optional for credential verification.           |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8)    | Yes   | Authenticator callback invoked to return the verification result.|
 
 ### setProperties<sup>9+</sup>
 
@@ -2203,10 +2203,10 @@ Sets authenticator properties. This API uses an asynchronous callback to return 
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
-| Name    | Type                 | Mandatory  | Description                       |
-| --------- | --------------------- | -- -- | --------------------------- |
-| options   | SetPropertiesOptions  | Yes   | Authenticator properties to set.           |
-| callback  | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the result.|
+| Name             | Type                   | Mandatory  | Description             |
+| ---------------- | --------------------- | ---- | --------------- |
+| options   | [SetPropertiesOptions](#setpropertiesoptions9)  | Yes   | Authenticator properties to set.           |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the result.|
 
 ### checkAccountLabels<sup>9+</sup>
 
@@ -2217,11 +2217,11 @@ Checks the account labels. This API uses an asynchronous callback to return the 
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
-| Name    | Type                 | Mandatory  | Description                       |
-| --------- | --------------------- | -- -- | --------------------------- |
+| Name             | Type                   | Mandatory  | Description             |
+| ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | Yes   | Name of the target app account.             |
-| labels    | Array<string>         | Yes   | Labels to check.                  |
-| callback  | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the check result.|
+| labels    | Array&lt;string&gt;          | Yes   | Labels to check.                  |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the check result.|
 
 ### isAccountRemovable<sup>9+</sup>
 
@@ -2232,10 +2232,10 @@ Checks whether an app account can be deleted. This API uses an asynchronous call
 **System capability**: SystemCapability.Account.AppAccount
 
 **Parameters**
-| Name    | Type                 | Mandatory  | Description                       |
-| --------- | --------------------- | -- -- | --------------------------- |
+| Name             | Type                   | Mandatory  | Description             |
+| ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | Yes   | Name of the target app account.             |
-| callback  | AuthenticatorCallback | Yes   | Authenticator callback invoked to return the result.|
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | Yes   | Authenticator callback invoked to return the result.|
 
 ### getRemoteObject<sup>9+</sup>
 
@@ -2277,7 +2277,7 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
           callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
       }
 
-      checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthenticatorCallback) {
+      checkAccountLabels(name: string, labels: Array<string>, callback: AuthenticatorCallback) {
           var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
@@ -2287,10 +2287,11 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
-
+  var authenticator = null;
   export default {
       onConnect(want) {
-          return new MyAuthenticator();
+          authenticator = new MyAuthenticator();
+          return authenticator.getRemoteObject();
       }
   }
   ```
