@@ -42,17 +42,17 @@
 
 | 类名 | 方法名 | 描述 |
 | --- | ----- | ----|
-| Preferences | bool GetInt(const std::string &key, bool defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | int GetInt(const std::string &key, int defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 | Preferences | std::string GetString(const std::string &key, const std::string &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | bool GetBool(const std::string &key, const bool &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | float GetFloat(const std::string &key, const float &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | double GetDouble(const std::string &key, const double &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | int64_t GetLong(const std::string &key, const int64_t &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | bool GetBool(const std::string &key, bool defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | float GetFloat(const std::string &key, float defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | double GetDouble(const std::string &key, double defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | int64_t GetLong(const std::string &key, int64_t defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 | Preferences | std::set\<std::string\> GetStringSet(const std::string &key, const std::set\<std::string\> &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 
 **数据持久化**
 
-通过执行flush或者flushSync方法，应用可以将缓存的数据再次写回文本文件中进行持久化存储。
+通过执行Flush()或者FlushSync()方法，应用可以将缓存的数据再次写回文本文件中进行持久化存储。
 
 **表 5**  轻量级数据数据持久化接口
 
