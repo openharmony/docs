@@ -39,7 +39,7 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
    ```
 
 
-2. Customize a class that inherits from **ServiceExtensionAbility** in the .ts file in the directory where the Service Extension ability is defined and overwrite the lifecycle callbacks of the base class. The code sample is as follows:
+2. Customize a class that inherits from **ServiceExtensionAbility** in the .ts file in the directory where the Service Extension ability is defined and override the lifecycle callbacks of the base class. The code sample is as follows:
 
     ```js
     import rpc from '@ohos.rpc'
