@@ -20,7 +20,7 @@ resources
 |   |   |---string.json
 |   |---media
 |   |   |---icon.png
-|---rawfile  // 默认存在的目录
+|---rawfile
 ```
 
   **表1** resources目录分类
