@@ -127,7 +127,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 ```
 updater.checkNewVersion((err, result) => {
-  console.log(`checkNewVersion isExsitNewVersion  ` + result?.isExsitNewVersion);
+  console.log(`checkNewVersion isExistNewVersion  ` + result.isExistNewVersion);
 });
 ```
 
@@ -149,9 +149,9 @@ checkNewVersion(): Promise\<CheckResult>
 
 ```
 updater.checkNewVersion().then(result => {
-  console.log(`checkNewVersion isExsitNewVersion  ` + result.isExsitNewVersion);
+  console.log(`checkNewVersion isExistNewVersion  ` + result.isExistNewVersion);
   // 版本摘要信息
-  console.log(`checkNewVersion versionDigestInfo  ` + result.newVersionInfo.versionDigestInfo);
+  console.log(`checkNewVersion versionDigestInfo  ` + result.newVersionInfo.versionDigestInfo.versionDigest);
 }).catch(err => {
   console.log(`checkNewVersion promise error ` + $JSON.stringify(err));
 });
@@ -175,8 +175,8 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 ```
 updater.getNewVersionInfo((err, info) => {
-  console.log(`info versionName = ` + info?.versionComponents[0].displayVersion);
-  console.log(`info versionCode = ` + info?.versionComponents[0].innerVersion);
+  console.log(`info displayVersion = ` + info?.versionComponents[0].displayVersion);
+  console.log(`info innerVersion = ` + info?.versionComponents[0].innerVersion);
 });
 ```
 
@@ -198,8 +198,8 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 ```
 updater.getNewVersionInfo().then(info => {
-  console.log(`info versionName = ` + info.versionComponents[0].displayVersion);
-  console.log(`info versionCode = ` + info.versionComponents[0].innerVersion);
+  console.log(`info displayVersion = ` + info.versionComponents[0].displayVersion);
+  console.log(`info innerVersion = ` + info.versionComponents[0].innerVersion);
 }).catch(err => {
   console.log(`getNewVersionInfo promise error ` + $JSON.stringify(err));
 });
@@ -772,10 +772,10 @@ let policy = {
   autoUpgradeStrategy: false,
   autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
 }
-updater.setUpdatePolicy(policy).then(result => 
-  console.log(`setUpdatePolicy ` + result)
+updater.setUpgradePolicy(policy).then(result => 
+  console.log(`setUpgradePolicy ` + result)
 ).catch(err => {
-  console.log(`setUpdatePolicy promise error ` + $JSON.stringify(err));
+  console.log(`setUpgradePolicy promise error ` + $JSON.stringify(err));
 });
 ```
 
