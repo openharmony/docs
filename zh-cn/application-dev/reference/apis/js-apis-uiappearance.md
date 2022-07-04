@@ -4,11 +4,12 @@
 
 > **说明：**
 > 从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 本模块接口为系统接口。
 
 
 ## 导入模块
 
-```js
+```ts
 import uiAppearance from '@ohos.uiAppearance'
 ```
 
@@ -18,8 +19,6 @@ import uiAppearance from '@ohos.uiAppearance'
 深色模式枚举。
 
 
-### 属性
-
 | 名称 | 值 | 说明 |
 | -- | -- | -- |
 | ALWAYS_DARK | 0 | 系统始终为深色。  |
@@ -28,7 +27,7 @@ import uiAppearance from '@ohos.uiAppearance'
 
 ## uiAppearance.setDarkMode
 
-setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void;
+setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 
 设置系统深色模式。
 
@@ -36,20 +35,17 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：** 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| mode | DarkMode | 是 | 指定系统的深色模式配置 |
+| mode | [DarkMode](#darkmode) | 是 | 指定系统的深色模式配置 |
 | callback | AsyncCallback\<void>| 是 | 配置深色模式的异步回调 |
 
 **示例：** 
-  ```js
-function callback(err) {
-    console.info(`${err}`);
-}
-uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, callback)
+  ```ts
+uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (err) => {
+  console.info(`${err}`);
+})
   ```
 
 
@@ -63,15 +59,13 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：** 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| mode | DarkMode | 是 | 指定系统深色模式配置 |
+| mode | [DarkMode](#darkmode) | 是 | 指定系统深色模式配置 |
 
 **示例：** 
-  ```js
+  ```ts
 uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
     console.log('Set dark-mode successfully.');
 }).catch((err) => {
@@ -90,15 +84,13 @@ getDarkMode(): DarkMode;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **返回值：** 
 | 类型 | 说明 |
 | -- | -- |
-|DarkMode | 系统当前的深色模式配置 |
+|[DarkMode](#darkmode) | 系统当前的深色模式配置 |
 
 **示例：** 
-  ```js
+  ```ts
 let darkMode = uiAppearance.getDarkMode();
 console.log(`Get dark-mode ${darkMode}`);
   ```
