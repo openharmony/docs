@@ -2,11 +2,11 @@
 ## 场景介绍
 DataShare，用于应用管理其自身数据，并支持同个设备上不同应用间的数据共享。
 
-DataShare可分为数据的提供方和访问方两部分，提供方可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外提供这些接口。访问方利用工具类，便可以访问提供方提供的各种功能。
+DataShare可分为数据的提供方和访问方两部分，提供方可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外共享这些数据。访问方利用工具类，便可以访问提供方提供的这些数据。
 
 ## 接口说明
 
-**表1** DataShare提供方需要实现的API
+**表1** 数据提供方API说明
 
 |接口名|描述|
 |:------|:------|
@@ -15,22 +15,32 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
 |update?(uri: string, predicates: DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void|业务函数，在访问方更新数据时回调。|
 |query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void|业务函数，在访问方查询数据时回调。|
 |delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void|业务函数，在访问方删除数据时回调。|
-|batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void|业务函数，在访问方调用批量插入数据接口时回调。|
-|getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void|业务函数，返回URI所指定数据的MIME类型。|
-|getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void|业务函数，返回支持的文件的MIME类型。|
-|normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void|业务函数，实现对URI进行规范化。一个规范化的URI可以支持跨设备使用、持久化、备份和还原等，当上下文改变时仍然可以引用到相同的数据项。|
-|denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void|业务函数，实现将规范化URI转换成非规范化的URI。|
-|openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void|业务函数，在访问方调用打开文件时回调。提供方需要实现按mode所指定的方式打开uri所指定的文件，并返回其文件描述符。|
 
+完整的数据提供方接口请见[DataShareExtensionAbility](../reference/apis/js-apis-application-DataShareExtensionAbility.md)。
 
-## 开发步骤
+**表2** 数据访问方API说明
+
+| 接口名                                                       | 描述                               |
+| :----------------------------------------------------------- | :--------------------------------- |
+| createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;DataShareHelper&gt;): void | 创建DataShare工具类。              |
+| insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | 将单条数据记录插入数据库。         |
+| update(uri: string, predicates: DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | 更新数据库中的数据记录。           |
+| query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | 查询数据库中的数据。               |
+| delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | 从数据库中删除一条或多条数据记录。 |
+
+完整的数据访问方接口请见[DataShareHelper](../reference/apis/js-apis-dataShareHelper.md)。
+
+## 开发场景
+
 ### 数据提供方应用的开发（仅限系统应用）
 
-1. 数据提供方（也称服务端）应用的开发者可继承于DataShareExtensionAbility，并根据自己的需求或目标选择性实现Insert、Query、Update、Delete等接口的业务内容，例如数据提供方只提供查询服务，则可只重写查询接口。业务的实现可由开发者自定义，例如数据存储实现可以选择OpenHarmony支持的数据库，也可以直接使用文件进行读写，甚至可以访问网络数据。由此可见，DataShare并不产生或存储数据，它只是“数据的搬运工”。
+1. 数据提供方（也称服务端）继承于DataShareExtensionAbility，开发者可并根据应用需求选择性重写其业务实现。例如数据提供方只提供查询服务，则可只重写查询接口。
+
+2. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
 
    创建数据提供方的代码示例如下：
 
-   ```ets
+   ```ts
    import Extension from '@ohos.application.DataShareExtensionAbility'
    import rdb from '@ohos.data.rdb';
    import fileIo from '@ohos.fileio'
@@ -127,79 +137,21 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
                console.error('error' + err);
            }
        }
-   
-       batchInsert(uri: string, valueBuckets, callback) {
-           if (valueBuckets == null || valueBuckets.length == undefined) {
-               console.info('invalid valueBuckets');
-               return;
-           }
-           let resultNum = valueBuckets.length
-           valueBuckets.forEach(vb => {
-               console.info('valueBuckets:' + JSON.stringify(vb));
-               rdbStore.insert(TBL_NAME, vb, function (err, ret) {
-                   console.info('callback ret:' + ret);
-                   if (callback != undefined) {
-                       callback(err, resultNum);
-                   }
-               });
-           });
-       }
-   
-       getType(uri: string,callback) {
-           let ret = "image";
-           console.info('ret:' + ret);
-           let err = {"code":0};
-           callback(err,ret);
-           return ret;
-       }
-   
-       getFileTypes(uri: string, mimeTypeFilter: string, callback) {
-           let ret = new Array("type01", "type02", "type03");
-           console.info('ret:' + ret);
-           let err = {"code":2};
-           callback(err,ret);
-           return ret;
-       }
-   
-       openFile(uri: string, mode: string, callback) {
-           fileIo.open(result, 0o2 | 0o100, 0o666, function(err, fd) {
-               if(err) {
-                   console.info('OpenFile err = ' + err);
-               }
-               let num = fileIo.writeSync(fd, "this is a interesting test of DataShare");
-               callback(err,fd);
-           })
-       }
-   
-       normalizeUri(uri: string,callback) {
-           let ret = "normalize+" + uri;
-           console.info('ret:' + ret);
-           let err = {"code":2};
-           callback(err,ret);
-       }
-   
-       denormalizeUri(uri: string,callback) {
-           let ret = "denormalize+" + uri;
-           console.info('ret:' + ret);
-           let err = {"code":2};
-           callback(err,ret);
-           return ret;
-       }
    };
    ```
 
-2. 子模块配置
+3. 子模块配置
 
    | Json重要字段 | 备注说明                                                     |
    | ------------ | ------------------------------------------------------------ |
-   | "name"       | Ability名称，对应Ability派生的Data类名。                     |
-   | "type"       | Ability类型，Data对应的Ability类型为”data“。                 |
+   | "name"       | Ability名称，对应Ability派生的extension类名。                |
+   | "type"       | Ability类型，DataShare对应的Ability类型为”dataShare“，表示基于datashare模板开发的。 |
    | "uri"        | 通信使用的URI。                                              |
-   | "visible"    | 对其他应用是否可见，设置为true时，Data才能与其他应用进行通信传输数据。 |
+   | "visible"    | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 |
 
    **module.json5配置样例**
 
-   ```ets
+   ```ts
    "extensionAbilities": [
      {
        "srcEntrance": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
@@ -214,8 +166,6 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
    ```
 
 ### 数据访问方应用的开发
-#### 数据访问方应用开发指导
-
 
 1. 导入基础依赖包，以及获取与数据提供方通信的URI字符串。
 
@@ -225,7 +175,7 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
    - @ohos.data.dataShare
    - @ohos.data.dataSharePredicates
 
-   ```ets
+   ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
    import Ability from '@ohos.application.Ability'
    import dataShare from '@ohos.data.dataShare'
@@ -238,8 +188,7 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
 
 2. 创建工具接口类对象。
 
-   工具接口类对象DataShareHelper相关接口可参考[DataShareHelper](../reference/apis/js-apis-dataShareHelper.md)文档。
-   ```ets
+   ```ts
    export default class MainAbility extends Ability {
    	onWindowStageCreate(windowStage) {
    		abilityContext = this.context;
@@ -249,10 +198,10 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
    	}
    }
    ```
-
+   
 3. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增删改查等。
 
-   ```ets
+   ```ts
    // 构建一条数据
    var valuesBucket = {"name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1,2,3])};
    var updateBucket = {"name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1,2,3])};
@@ -264,50 +213,50 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
    	{"name": "ZhaoLiu", "age": 61, "Binary": arr});
    ```
 
-   ```ets
+   ```ts
    // 插入一条数据，callback方式调用:
    dsHelper.insert(dseUri, valuesBucket, (err,data) => {
        console.log("dsHelper insert result: " + data);
    });
    ```
 
-   ```ets
+   ```ts
    // 插入一条数据，promise方式调用:
    let ret = await dsHelper.insert(dseUri, valuesBucket);
    ```
 
-   ```ets
+   ```ts
    // 删除指定的数据，callback方式调用:
    dsHelper.delete(dseUri, da, (err,data) => {
        console.log("dsHelper delete result: " + data);
    });
    ```
 
-   ```ets
+   ```ts
    // 删除指定的数据，promise方式调用:
    let ret = await dsHelper.delete(dseUri, da);
    ```
 
-   ```ets
+   ```ts
    // 更新数据，callback方式调用:
    dsHelper.update(dseUri, da, updateBucket, (err,data) => {
        console.log("dsHelper update result: " + data);
    });
    ```
 
-   ```ets
+   ```ts
    // 更新数据，promise方式调用:
    let ret = await dsHelper.update(dseUri, da, updateBucket);
    ```
 
-   ```ets
+   ```ts
    // 查询数据，callback方式调用:
    dsHelper.query(dseUri, da, valArray, (err,data) => {
        console.log("dsHelper query result: " + data);
    });
    ```
 
-   ```ets
+   ```ts
    // 查询数据，promise方式调用:
    let result = await dsHelper.query(dseUri, da, valArray);
    ```
