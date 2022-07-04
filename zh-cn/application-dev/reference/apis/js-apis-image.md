@@ -232,7 +232,7 @@ image.createPixelMap(color, opts)
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
         }
-        var bufferArr = new Uint8Array(area.pixels);
+        let bufferArr = new Uint8Array(area.pixels);
         for (var i = 0; i < bufferArr.length; i++) {
             bufferArr[i] = i + 1;
         }
@@ -263,18 +263,22 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
-| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时error会返回错误信息。 |
 
 **示例：**
 
 ```js
-pixelmap.writePixels(Area, () => {
-    const readArea = {
-        pixels: new ArrayBuffer(20),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-    }
+pixelmap.writePixels(Area, (error) => {
+    if (error!=undefined) {
+		console.info('writePixels failed.');
+	} else {
+	    const readArea = {
+            pixels: new ArrayBuffer(20),
+            offset: 0,
+            stride: 8,
+            region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+        }
+	}
 })
 ```
 
@@ -890,7 +894,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 };
+let packOpts = { format:"image/jpeg", quality:98 };
 imagePackerApi.packing(ImageSourceApi, packOpts, data => {})
 ```
 
@@ -1512,7 +1516,7 @@ PixelMap的初始化选项。
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
-| index              | numer                              | 是   | 是   | 解码图片序号     |
+| index              | number                             | 是   | 是   | 解码图片序号     |
 
 ## Region<sup>7+</sup>
 
@@ -1535,7 +1539,7 @@ PixelMap的初始化选项。
 | 名称    | 类型   | 可读 | 可写 | 说明           |
 | ------- | ------ | ---- | ---- | -------------- |
 | format  | string | 是   | 是   | 目标格式。     |
-| quality | number | 是   | 是   | 目标图片质量。 |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 

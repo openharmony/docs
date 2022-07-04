@@ -9,7 +9,7 @@
 
 应用程序信息
 
-
+## ApplicationInfo
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -34,8 +34,8 @@
 | entryDir                   | string                                                       | 是   | 否   | 应用程序的文件保存路径                     |
 | codePath<sup>8+</sup>      | string                                                       | 是   | 否   | 应用程序的安装目录                         |
 | metaData<sup>8+</sup>      | Map\<string, Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>> | 是   | 否   | 应用程序的自定义元信息                     |
-| metaData<sup>9+</sup>      | Map\<string, Array\<[Metadata](js-apis-bundle-Metadata.md)>> | 是   | 否   | 应用程序的元信息                           |
+| metadata<sup>9+</sup>      | Map\<string, Array\<[Metadata](js-apis-bundle-Metadata.md)>> | 是   | 否   | 应用程序的元信息                           |
 | removable<sup>8+</sup>     | boolean                                                      | 是   | 否   | 应用程序是否可以被移除                     |
 | accessTokenId<sup>8+</sup> | number                                                       | 是   | 否   | 应用程序的accessTokenId                    |
 | uid<sup>8+</sup>           | number                                                       | 是   | 否   | 应用程序的uid                              |
-| entityType<sup>9+</sup>    | string                                                       | 是   | 否   | 应用程序的实体类型                         |
+| entityType<sup>8+</sup>    | string                                                       | 是   | 否   | 应用程序的实体类型                         |

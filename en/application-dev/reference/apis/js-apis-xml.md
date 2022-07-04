@@ -1,6 +1,7 @@
 # XML Parsing and Generation
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,7 +26,7 @@ A constructor used to create an **XmlSerializer** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | Yes| **ArrayBuffer** or **DataView** for storing the XML information to write.|
+| buffer | ArrayBuffer \| DataView | Yes| **ArrayBuffer** or **DataView** for storing the XML information to write.|
 | encoding | string | No| Encoding format.|
 
 **Example**
@@ -55,6 +56,8 @@ Sets an attribute.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
@@ -77,6 +80,8 @@ Adds an empty element.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
@@ -93,6 +98,8 @@ Sets a declaration.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
@@ -133,6 +140,8 @@ Writes the end tag of the element.
 **Example**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
@@ -280,7 +289,7 @@ Creates and returns an **XmlPullParser** object. The **XmlPullParser** object pa
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| buffer | ArrayBuffer&nbsp;\|&nbsp;DataView | Yes| **ArrayBuffer** or **DataView** that contains XML text information.|
+| buffer | ArrayBuffer \| DataView | Yes| **ArrayBuffer** or **DataView** that contains XML text information.|
 | encoding | string | No| Encoding format. Only UTF-8 is supported.|
 
 **Example**
@@ -358,9 +367,9 @@ Defines the XML parsing options.
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | No| Whether to ignore **Doctype**. The default value is **false**.|
 | ignoreNameSpace | boolean | No| Whether to ignore **Namespace**. The default value is **false**.|
-| tagValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **tagValue**.|
-| attributeValueCallbackFunction | (name:&nbsp;string,&nbsp;value:&nbsp;string)=&gt;&nbsp;boolean | No| Callback used to return **attributeValue**.|
-| tokenValueCallbackFunction | (eventType:&nbsp;[EventType](#eventtype),&nbsp;value:&nbsp;[ParseInfo](#parseinfo))=&gt;&nbsp;boolean | No| Callback used to return **tokenValue**.|
+| tagValueCallbackFunction | (name: string, value: string)=&gt; boolean | No| Callback used to return **tagValue**.|
+| attributeValueCallbackFunction | (name: string, value: string)=&gt; boolean | No| Callback used to return **attributeValue**.|
+| tokenValueCallbackFunction | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo))=&gt; boolean | No| Callback used to return **tokenValue**.|
 
 ## ParseInfo
 

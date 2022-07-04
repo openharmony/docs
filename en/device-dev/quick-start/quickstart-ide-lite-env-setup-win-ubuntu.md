@@ -11,14 +11,17 @@ In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits
 
 - Windows: Windows 10 (64-bit)
 
-- Ubuntu: Ubuntu 20.04 or later; recommended memory: 16 GB or higher.
+- Ubuntu: Ubuntu 20.04 or later; recommended memory: 16 GB or higher
 
-- User name: cannot contain Chinese characters
+- User name (Ubuntu): cannot contain Chinese characters
 
 - DevEco Device Tool: 3.0 Release
 
 
 ## Setting Up the Ubuntu Development Environment
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> If the Ubuntu system has not been set up yet, set it up on a virtual machine running Windows. Then, configure the Ubuntu basic environment.
 
 1. Make sure the Ubuntu shell environment is **bash**.
    1. Run the following command and check whether the command output is **bash**. If the command output is not **bash**, go to step 2.
@@ -55,14 +58,15 @@ In the Windows+Ubuntu hybrid development environment, you can enjoy the benefits
 
 4. Run the following command to install DevEco Device Tool, where **devicetool-linux-tool-3.0.0.401.sh** indicates the installation file name.
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-   > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
-
-   
    ```
    sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
-
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+   > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
+   > 
+   > During the installation, the page for agreeing to the user agreement and privacy statement is displayed. Read and agree to the user agreement and privacy statement.
+   > 
+   > If this page is not displayed and the installation exits, run the apt-get install whiptail command, then the installation command.
    Wait until the "Deveco Device Tool successfully installed." message is displayed.
 
    ![en-us_image_0000001198722374](figures/en-us_image_0000001198722374.png)
@@ -76,7 +80,7 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 
 2. Decompress the DevEco Device Tool package, double-click the installer, and then click **Next**.
 
-3. Set the installation path of DevEco Device Tool and click **Next**. You are advised to install DevEco Device Tool in a non-system drive.
+3. Set the installation path of DevEco Device Tool to a path that does not contain any Chinese characters, and then click **Next**. You are advised to install DevEco Device Tool in a non-system drive.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    > If you have installed DevEco Device Tool 3.0 Beta2 or earlier, the earlier version will be uninstalled before you install a new version. If the following error message is displayed during the uninstallation, click **Ignore** to continue the installation. This error does not affect the installation of the new version.
@@ -101,11 +105,14 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
 
        ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
 
-5. In the dialog box shown below, click **Next** to download and install the tools..
+5. In the dialog box shown below, click **Next**.
 
    ![en-us_image_0000001239634067](figures/en-us_image_0000001239634067.png)
 
-6. Wait for the DevEco Device Tool setup wizard to automatically install DevEco Device Tool. After the installation is complete, click **Finish** to close the setup wizard.
+6. Read the user agreement and privacy statement carefully, select I accept the licenses, and click **Next**.
+
+   ![en-us_image_0000001307019009](figures/en-us_image_0000001307019009.png)
+7. Wait for the DevEco Device Tool setup wizard to automatically install DevEco Device Tool. After the installation is complete, click **Finish** to close the setup wizard.
 
    ![en-us_image_0000001239650137](figures/en-us_image_0000001239650137.png)
 
@@ -174,29 +181,9 @@ To remotely access the Ubuntu environment through Windows and enjoy the benefits
    ![en-us_image_0000001215720398](figures/en-us_image_0000001215720398.png)
 
 5. In the displayed dialog box, select **Linux**, select **Continue**, and enter the password for logging in to the remote computer.
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > To eliminate the need for frequently entering the password for logging in to the remote computer, set an SSH public key.
 
    ![en-us_image_0000001215897530](figures/en-us_image_0000001215897530.png)
 
    After the connection is successful, the plug-in is automatically installed in the .vscode-server folder on the remote computer. After the installation is complete, reload Visual Studio Code in Windows as prompted. Then you can develop, compile, and burn source code in DevEco Device Tool on Windows.
-
-
-### Registering the Public Key for Accessing the Ubuntu Environment
-
-After the preceding operations are complete, you can remotely connect to the Ubuntu environment through Windows for development. However, you need to frequently enter the remote connection password. To eliminate this need, you can use the SSH public key.
-
-1. Open the Git bash CLI and run the following command to generate an SSH public key. During command execution, perform operations as prompted. Set **username** and **ip** to the user name and IP address you use for connecting to the Ubuntu system.
-   
-   ```
-   ssh-keygen -t rsa
-   ssh-copy-id -i ~/.ssh/id_rsa.pub username@ip
-   ```
-
-   ![en-us_image_0000001271532317](figures/en-us_image_0000001271532317.png)
-
-2. In Visual Studio Code, click the remote connection setting button and open the **config** file.
-
-   ![en-us_image_0000001226034634](figures/en-us_image_0000001226034634.png)
-
-3. In the **config** file, add the SSK key file information, as shown below. Then save the file.
-
-   ![en-us_image_0000001270356233](figures/en-us_image_0000001270356233.png)

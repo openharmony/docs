@@ -1336,7 +1336,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 **示例：**
 
 ```
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true, (err) => {
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
     if (err) {
         console.error('Failed to set the active status of the device. ${err.message}');
         return;
@@ -1370,7 +1370,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&
 
 
 ```
-audioManager.setDeviceActive(audio.DeviceType.SPEAKER, true).then(() => {
+audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
     console.log('Promise returned to indicate that the device is set to the active status.');
 });
 ```
@@ -1393,7 +1393,7 @@ isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&
 **示例：**
 
 ```
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER, (err, value) => {
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
     if (err) {
         console.error('Failed to obtain the active status of the device. ${err.message}');
         return;
@@ -1426,7 +1426,7 @@ isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 **示例：**
 
 ```
-audioManager.isDeviceActive(audio.DeviceType.SPEAKER).then((value) => {
+audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value) => {
     console.log('Promise returned to indicate that the active status of the device is obtained.' + value);
 });
 ```
@@ -1601,8 +1601,6 @@ on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
 设备更改。音频设备连接状态变化。
 
-此接口为系统接口，三方应用不支持调用。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
@@ -1652,8 +1650,6 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）
 
-此接口为系统接口，三方应用不支持调用。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
@@ -1672,7 +1668,7 @@ var interAudioInterrupt = {
     contentType:0,
     pauseWhenDucked:true
 };
-this.audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
+audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
     if (InterruptAction.actionType === 0) {
         console.log("An event to gain the audio focus starts.");
         console.log("Focus gain event:" + JSON.stringify(InterruptAction));
@@ -1708,7 +1704,7 @@ var interAudioInterrupt = {
     contentType:0,
     pauseWhenDucked:true
 };
-this.audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
+audioManager.off('interrupt', interAudioInterrupt, (InterruptAction) => {
     if (InterruptAction.actionType === 0) {
         console.log("An event to release the audio focus starts.");
         console.log("Focus release event:" + JSON.stringify(InterruptAction));
@@ -1770,7 +1766,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 **示例：**
 
 ```
-audioManager.setAudioScene(audio.AudioSceneMode.AUDIO_SCENE_PHONE_CALL).then(() => {
+audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
     console.log('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
     console.log('Failed to set the audio scene mode');
@@ -1930,6 +1926,7 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 **示例：**
 
 ```
+var resultFlag = true;
 audioRenderer.getRendererInfo().then((rendererInfo) => {
     console.log('Renderer GetRendererInfo:');
     console.log('Renderer content:' + rendererInfo.content);
@@ -2376,13 +2373,11 @@ getBufferSize(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```
-audioRenderer.getBufferSize((err, bufferSize) => {
+var bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
     if (err) {
         console.error('getBufferSize error');
     }
 });
-let buf = new ArrayBuffer(bufferSize);
-ss.readSync(buf);
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -2402,11 +2397,12 @@ getBufferSize(): Promise\<number>
 **示例：**
 
 ```
-audioRenderer.getBufferSize().then((bufferSize) => {
-    let buf = new ArrayBuffer(bufferSize);
-    ss.readSync(buf);
+var bufferSize;
+await audioRenderer.getBufferSize().then(async function (data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize :SUCCESS '+data);
+    bufferSize=data;
 }).catch((err) => {
-    console.log('ERROR: '+err.message);
+    console.info('AudioFrameworkRenderLog: getBufferSize :ERROR : '+err.message);
 });
 ```
 
@@ -2531,7 +2527,9 @@ on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
 **示例：**
 
 ```
-audioRenderer.on('interrupt', (interruptEvent) => {
+var isPlay;
+var started;
+audioRenderer.on('interrupt', async(interruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
         switch (interruptEvent.hintType) {
             case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
@@ -2544,14 +2542,33 @@ audioRenderer.on('interrupt', (interruptEvent) => {
                 break;
         }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-         switch (interruptEvent.hintType) {
+        switch (interruptEvent.hintType) {
             case audio.InterruptHint.INTERRUPT_HINT_RESUME:
                 console.log('Resume force paused renderer or ignore');
-                startRenderer();
+                await audioRenderer.start().then(async function () {
+                    console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
+                    started = true;
+                }).catch((err) => {
+                    console.info('AudioInterruptMusic: renderInstant start :ERROR : '+err.message);
+                    started = false;
+                });
+                if (started) {
+                    isPlay = true;
+                    console.info('AudioInterruptMusic Renderer started : isPlay : '+isPlay);
+                } else {
+                    console.error('AudioInterruptMusic Renderer start failed');
+                }
                 break;
             case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
                 console.log('Choose to pause or ignore');
-                pauseRenderer();
+                if (isPlay == true) {
+                    isPlay == false;
+                    console.info('AudioInterruptMusic: Media PAUSE : TRUE');
+                }
+                else {
+                    isPlay = true;
+                    console.info('AudioInterruptMusic: Media PLAY : TRUE');
+                }
                 break;
         }
     }
@@ -3012,7 +3029,7 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
     }
-};
+});
 ```
 
 

@@ -9,7 +9,7 @@
 
 Ability信息
 
-
+## AbilityInfo
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -41,5 +41,5 @@ Ability信息
 | labelId               | number                                                   | 是   | 否   | Ability的标签id                           |
 | subType               | AbilitySubType                                           | 是   | 否   | Ability中枚举使用的模板的子类型           |
 | metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)> | 是   | 否   | ability的自定义信息                       |
-| metaData<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | 是   | 否   | ability的元信息                           |
+| metadata<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | 是   | 否   | ability的元信息                           |
 | enabled<sup>8+</sup>  | boolean                                                  | 是   | 否   | ability是否可用                           |

@@ -885,7 +885,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 
 **示例：** 
   ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(data) {
       if (error) {
           console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
           return;
@@ -1349,8 +1349,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA，该权限为系统权限
-
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -1402,8 +1400,6 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 取消订阅传感器数据。
-
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1485,6 +1481,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1898,7 +1896,6 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -1966,7 +1963,6 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2033,7 +2029,6 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2168,7 +2163,6 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }

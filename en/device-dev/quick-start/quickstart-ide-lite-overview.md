@@ -10,7 +10,7 @@ To accommodate different developer habits, OpenHarmony provides two modes for ge
 - IDE mode: DevEco Device Tool is used for one-stop development, covering dependency installation, building, burning, and running.
 
 - Installation package mode: Dependency download and installation as well as building operations are performed using commands. Burning and running are performed in DevEco Device Tool.
-  OpenHarmony also provides the [Docker environment](../get-code/gettools-acquire.md), which can significantly simplify the environment configuration before compilation. You can build your source code in the Docker environment if you are more accustomed to using the installation package mode.
+  OpenHarmony also provides the [Docker environment](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-code/gettools-acquire.md), which can significantly simplify the environment configuration before compilation. You can build your source code in the Docker environment if you are more accustomed to using the installation package mode.
 
 This document exemplifies how to use the IDE mode. For details about the installation package mode, see [Getting Started with Mini and Small Systems (Installation Package Mode)](../quick-start/quickstart-lite-overview.md).
 

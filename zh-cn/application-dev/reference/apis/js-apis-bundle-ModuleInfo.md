@@ -9,7 +9,7 @@
 
 应用程序的模块信息
 
-
+## ModuleInfo
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 

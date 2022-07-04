@@ -37,6 +37,7 @@ import bluetooth from '@system.bluetooth';
 
   ```
   bluetooth.startBLEScan({
+    interval:0,
     success() {
       console.log('call bluetooth.startBLEScan success.');
     },
@@ -71,7 +72,6 @@ import bluetooth from '@system.bluetooth';
 
   ```
   bluetooth.stopBLEScan({
-    interval:0,
     success() {
       console.log('call bluetooth.stopBLEScan success.');
     },
@@ -120,19 +120,12 @@ import bluetooth from '@system.bluetooth';
 **示例：**
 
   ```
-  bluetooth.startBLEScan({
-    success() {
-      bluetooth.subscribeBLEFound({
-        success(data) {
-          const [device] = data.devices;
-          if (!!device) {
-            bluetooth.stopBLEScan();
-          }
-        }
-      });
+  bluetooth.subscribeBLEFound({
+    success(data) {
+      console.log('call bluetooth.subscribeBLEFound success, data: ${data}.');
     },
-    fail(code, data) {
-      console.log('Failed to start BLE device scan, code: ${code}, data: ${data}');
+    fail(data, code) {
+      console.log('call bluetooth.startBLEScan failed, data: ${data}, code: ${code}.');
     }
   });
   ```
