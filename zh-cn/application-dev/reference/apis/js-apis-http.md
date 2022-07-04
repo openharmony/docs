@@ -449,7 +449,7 @@ request方法回调函数的返回值类型。
 | 5      | 无法解析代理。                                               |
 | 6      | 无法解析主机。                                               |
 | 7      | 无法连接代理或主机。                                         |
-| 8      | The server sent data libcurl could not parse. This error code was known as as *CURLE_FTP_WEIRD_SERVER_REPLY* before 7.51.0. |
+| 8      | 无法解析服务器发送的数据。                                   |
 | 9      | URL资源访问被拒绝。如果是FTP协议，该情况常发生在将目录修改为远程目录时。 |
 | 10     | 在FTP会话中，等待服务器回连时发生错误。                      |
 | 11     | 将FTP密码发送到服务器后，发生错误。                          |
