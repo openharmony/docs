@@ -1,5 +1,4 @@
 # DataShare开发指导
-## 场景介绍
 DataShare，用于应用管理其自身数据，并支持同个设备上不同应用间的数据共享。
 
 DataShare可分为数据的提供方和访问方两部分，提供方可以选择性实现数据的增、删、改、查，以及文件打开等功能，并对外共享这些数据。访问方利用工具类，便可以访问提供方提供的这些数据。
@@ -171,10 +170,6 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
 
    其中，基础依赖包包括：
 
-   - @ohos.application.Ability
-   - @ohos.data.dataShare
-   - @ohos.data.dataSharePredicates
-
    ```ts
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
    import Ability from '@ohos.application.Ability'
@@ -185,7 +180,15 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
    let abilityContext;
    let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
    ```
+   
+2. 定义与数据提供方通信的URI字符串。
 
+   ```ts
+   let dsHelper;
+   let abilityContext;
+   let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
+   ```
+   
 2. 创建工具接口类对象。
 
    ```ts
