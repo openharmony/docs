@@ -27,7 +27,6 @@ List(value:{space?: number, initialIndex?: number, scroller?: Scroller})
   | -------- | -------- | -------- | -------- | -------- |
   | space | number | No | 0 | Spacing between list items. |
   | initialIndex | number | No | 0 | Item displayed at the beginning of the component when the current list is loaded for the first time, that is, the first item to be displayed. If the configured sequence number is greater than the sequence number of the last item, the setting does not take effect. |
-  | scroller | [Scroller](ts-container-scroll.md#scroller) | Yes | - | Scroller, which can be bound to and control scrollable components. |
 
 
 ## Attributes
