@@ -433,11 +433,11 @@ request方法回调函数的返回值类型。
 | 参数名               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>8+</sup> | 是   | Http请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需Http响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
-| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response错误码)。 |
+| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response常用错误码)。 |
 | header               | Object                                       | 是   | 发起http请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
 | cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
 
-## Response错误码
+## Response常用错误码
 
 | 错误码 | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
