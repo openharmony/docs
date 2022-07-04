@@ -9,7 +9,7 @@ Hi3516DV300支持USB烧录、网口烧录和串口烧录三种方式，本文采
 
 ## 导入源码
 
-在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](../quick-start/quickstart-lite-env-setup.md#安装deveco-device-tool)的情况下，您还需要通过以下步骤将编译好的源码导入Windows下，方可进行烧录。
+在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](quickstart-lite-env-setup.md)的情况下，您还需要通过以下步骤将编译好的源码导入Windows下，方可进行烧录。
 
 1. 打开DevEco Device Tool，进入Home页，点击**Import Project**打开工程。
 
@@ -64,7 +64,7 @@ Hi3516DV300支持USB烧录、网口烧录和串口烧录三种方式，本文采
 
    - upload_port：选择已查询到的串口号。
 
-    ![zh-cn_image_0000001223190441](figures/zh-cn_image_0000001223190441.png)
+     ![zh-cn_image_0000001223190441](figures/zh-cn_image_0000001223190441.png)
 
 7. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
 
