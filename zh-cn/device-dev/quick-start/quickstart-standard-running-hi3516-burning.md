@@ -15,7 +15,7 @@
 
 ## 导入源码
 
-在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](../quick-start/quickstart-standard-env-setup.md#安装deveco-device-tool)的情况下，您还需要通过以下步骤导入源码后，方可进行烧录。
+在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](quickstart-standard-env-setup.md)的情况下，您还需要通过以下步骤导入源码后，方可进行烧录。
 
 1. 打开DevEco Device Tool，进入Home页，点击**Import Project**打开工程。
 
