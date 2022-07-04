@@ -1692,6 +1692,136 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 })
 ```
 
+## bundle.setDisposedStatus<sup>9+</sup>
+
+setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
+
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
+**需要权限：**
+ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | 是    | 表示要被设置处置状态的应用包名。              |
+| status    | number                               | 是    | 表示要设置的处置状态值。由应用市场设置，通常正数表示应用有问题，负数表示不需要元能力提醒，0为默认值。             |
+| callback       | AsyncCallback\<void>        | 是    | 程序启动作为入参的回调函数，无返回值。   |
+
+**示例：**
+
+```js
+let bundleName = 'com.ohos.camera';
+let status = 1;
+const caller = function callback(err, data) {
+    console.error('Operation err is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.setDisposedStatus(bundleName, status, caller)
+```
+
+## bundle.setDisposedStatus<sup>9+</sup>
+
+setDisposedStatus(bundleName: string, status: number): Promise\<void>;
+
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
+
+**需要权限：**
+ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | 是    | 表示要被设置处置状态的应用包名。              |
+| status    | number                               | 是    | 表示要设置的处置状态值。由应用市场设置，通常正数表示应用有问题，负数表示不需要元能力提醒，0为默认值。             |
+
+**返回值：**
+
+| 类型                                    | 说明                             |
+| ------------------------------------- | ------------------------------ |
+| Promise\<void> | Promise形式，无返回值。 |
+
+**示例：**
+
+```js
+let bundleName = 'com.ohos.camera';
+let status = 1;
+
+bundle.setDisposedStatus(bundleName, status).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation err is: ' + err);
+})
+```
+
+## bundle.getDisposedStatus<sup>9+</sup>
+
+getDisposedStatus(bundleName: string,, callback: AsyncCallback\<number>): void;
+
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
+**需要权限：**
+ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | 是    | 表示要获取处置状态的应用包名。              |
+| callback       | AsyncCallback\<number>        | 是    | 程序启动作为入参的回调函数，返回应用的处置状态值。   |
+
+**示例：**
+
+```js
+let bundleName = 'com.ohos.camera';
+const caller = function callback(err, data) {
+    console.error('Operation err is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.getDisposedStatus(bundleName, caller)
+```
+
+## bundle.getDisposedStatus<sup>9+</sup>
+
+getDisposedStatus(bundleName: string, status: number): Promise\<void>;
+
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
+
+**需要权限：**
+ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称             | 类型                                | 必填   | 描述                                       |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | 是    | 表示要获取处置状态的应用包名。              |
+
+**返回值：**
+
+| 类型                                    | 说明                             |
+| ------------------------------------- | ------------------------------ |
+| Promise\<number> | Promise返回应用的处置状态。 |
+
+**示例：**
+
+```js
+let bundleName = 'com.ohos.camera';
+
+bundle.getDisposedStatus(bundleName).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation err is: ' + err);
+})
+```
+
 ## InstallErrorCode
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
