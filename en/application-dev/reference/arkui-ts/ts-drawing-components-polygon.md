@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Polygon&gt;** component is used to draw a polygon.
+The **<Polygon\>** component is used to draw a polygon.
 
 
 ## Required Permissions
@@ -25,13 +25,13 @@ Polygon(value:{options?: {width: Length, height: Length}})
 - Parameters
   | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | For details, see the **options** parameters. | 
+  | options | Object | No | - | Options of the polygon to draw. For details, see the **options** parameters. | 
 
 - options parameters
   | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width. | 
-  | height | Length | Yes | - | Height. | 
+  | width | Length | Yes | - | Width of the polygon. | 
+  | height | Length | Yes | - | Height of the polygon. | 
 
 
 ## Attributes
