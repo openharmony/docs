@@ -42,7 +42,9 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 ```js
 let kvManager;
 try {
+    var contextmock = featureAbility.getContext();
     const kvManagerConfig = {
+        context : contextmock,    
         bundleName : 'com.example.datamanagertest',
         userInfo : {
             userId : '0',
@@ -87,7 +89,9 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 ```js
 let kvManager;
 try {
+    var contextmock = featureAbility.getContext();
     const kvManagerConfig = {
+        context : contextmock, 
         bundleName : 'com.example.datamanagertest',
         userInfo : {
             userId : '0',
@@ -2241,7 +2245,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
+| predicates    | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
 | callback  | AsyncCallback&lt;void&gt;  | 是    |回调函数。   |
 
 **示例：**
@@ -2275,7 +2279,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
+| predicates    | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
 
 
 **返回值：**
@@ -2530,7 +2534,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| value   |Array[&lt;ValuesBucket&gt;]()[] | 是    |表示要插入的数据。  |
+| value   |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是    |表示要插入的数据。  |
 | callback |Asyncallback&lt;void&gt; |是     |回调函数。 |
 
 **示例：**
@@ -2569,7 +2573,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| value  |Array&lt;[ValuesBucket&gt;](#)[] | 是    |表示要插入的数据。  |
+| value  |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是    |表示要插入的数据。  |
 
 **返回值：**
 
@@ -3647,7 +3651,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| predicates  | Predicates    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
+| predicates  | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
 
 **示例：**
@@ -3682,7 +3686,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;Kv
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| predicates  |[Predicates](#)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。            |
+| predicates  |[DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。            |
 
 **返回值：**
 
@@ -4152,7 +4156,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, PULL_ONLY , 1000);
+        kvStore.sync(devices, query, mode , 1000);
     });
 }catch(e) {
     console.log('Sync e' + e);
