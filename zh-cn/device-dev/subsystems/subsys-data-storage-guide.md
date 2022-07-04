@@ -42,7 +42,7 @@
 
 | 类名 | 方法名 | 描述 |
 | --- | ----- | ----|
-| Preferences | bool GetBool(const std::string &key, bool defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | bool GetInt(const std::string &key, bool defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 | Preferences | std::string GetString(const std::string &key, const std::string &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 | Preferences | bool GetBool(const std::string &key, const bool &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 | Preferences | float GetFloat(const std::string &key, const float &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
