@@ -1,7 +1,7 @@
 # Bluetooth
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 >
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.bluetooth`](js-apis-bluetooth.md).
 >
@@ -15,7 +15,6 @@
 import bluetooth from '@system.bluetooth';
 ```
 
-
 ## bluetooth.startBLEScan(OBJECT)
 
 Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes system resources. Call [bluetooth.stopBLEScan](#bluetoothstopblescanobject) to stop the scan after a BLE device is detected and connected.
@@ -25,7 +24,6 @@ Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes sys
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
 **Parameters**
-
 **Table 1** StartBLEScanOptions
 
 | Name| Type| Mandatory| Description|
@@ -61,7 +59,6 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
 **Parameters**
-
 **Table 2** StopBLEScanOptions
 
 | Name| Type| Mandatory| Description|
@@ -74,6 +71,7 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
 
   ```
   bluetooth.stopBLEScan({
+    interval:0,
     success() {
       console.log('call bluetooth.stopBLEScan success.');
     },
@@ -96,7 +94,6 @@ Subscribes to the newly detected BLE device. If this API is called multiple time
 **System capability**: SystemCapability.Communication.Bluetooth.Lite
 
 **Parameters**
-
 **Table 3** SubscribeBLEFoundOptions
 
 | Name| Type| Mandatory| Description|
@@ -123,7 +120,7 @@ Subscribes to the newly detected BLE device. If this API is called multiple time
 **Example**
 
   ```
-  bluetooth.startaBLEScan({
+  bluetooth.startBLEScan({
     success() {
       bluetooth.subscribeBLEFound({
         success(data) {
