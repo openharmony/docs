@@ -12,13 +12,13 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 ## @LocalStorageLink装饰器
 
-组件通过使用@LocalStorageLink(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立双向数据绑定，当创建包含@LocalStorageLink的状态变量的组件时，该状态变量的值将会使用LocalStorage中的值进行初始化。如果LocalStorage中未定义初始值，将使用@LocalStorageLink定义的初始值。在UI组件中对@LocalStorageLink的状态变量所做的更改将同步到LocalStorage中，并从LocalStorage同步到Ability下的组件中。
+组件通过使用@LocalStorageLink(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立双向数据绑定。当创建包含@LocalStorageLink的状态变量的组件时，该状态变量的值将会使用LocalStorage中的值进行初始化。如果LocalStorage中未定义初始值，将使用@LocalStorageLink定义的初始值。在UI组件中对@LocalStorageLink的状态变量所做的更改将同步到LocalStorage中，并从LocalStorage同步到Ability下的组件中。
 
 ## @LocalStorageProp装饰器
 
-组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立单向数据绑定，当创建包含@LocalStorageProp的状态变量的组件时，该状态变量的值将使用LocalStorage中的值进行初始化。LocalStorage中的属性值的更改会导致当前Ability下的所有UI组件进行状态更新。
+组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立单向数据绑定。当创建包含@LocalStorageProp的状态变量的组件时，该状态变量的值将使用LocalStorage中的值进行初始化。LocalStorage中的属性值的更改会导致当前Ability下的所有UI组件进行状态更新。
 
-> **说明：** 创建LocalStorage实例时没有给LocalStorage实例默认值时，可以使用组件内@LocalStorageLink和@LocalStorageProp的默认值，如果定义时给定了默认值，那么不会再使用@LocalStorageLink和@LocalStorageProp的默认值。
+> **说明：** 创建LocalStorage实例时如未定义初始值，可以使用组件内@LocalStorageLink和@LocalStorageProp的初始值。如果定义时给定了初始值，那么不会再使用@LocalStorageLink和@LocalStorageProp的初始值。
 
 ## LocalStorage接口
 
@@ -58,7 +58,7 @@ has(propName: string): boolean
 
 ### get
 
-get<T>(propName: string): T
+get\<T>(propName: string): T
 
 获取对应key值的value。
 
@@ -78,7 +78,7 @@ get<T>(propName: string): T
 
 ### set
 
- set<T>(propName: string, newValue: T): boolean
+set\<T>(propName: string, newValue: T): boolean
 
 存储对象值。
 
@@ -99,7 +99,7 @@ get<T>(propName: string): T
 
 ### setOrCreate
 
- setOrCreate<T>(propName: string, newValue: T): boolean
+setOrCreate\<T>(propName: string, newValue: T): boolean
 
 创建或更新setOrCreate内部的值。
 
@@ -120,7 +120,7 @@ get<T>(propName: string): T
 
 ### link
 
- link<T>(propName: string): T
+link\<T>(propName: string): T
 
 与localStorage双向数据绑定。
 
@@ -140,7 +140,7 @@ get<T>(propName: string): T
 
 ### setAndLink
 
- setAndLink<T>(propName: string, defaultValue: T): T
+setAndLink\<T>(propName: string, defaultValue: T): T
 
 与link接口类似，双向数据绑定localStorage。
 
@@ -161,7 +161,7 @@ get<T>(propName: string): T
 
 ### prop
 
-prop<T>(propName: string): T
+prop\<T>(propName: string): T
 
 单向属性绑定的一种。更新组件的状态。
 
@@ -181,7 +181,7 @@ prop<T>(propName: string): T
 
 ### setAndProp
 
-setAndProp<T>(propName: string, defaultValue: T): T
+setAndProp\<T>(propName: string, defaultValue: T): T
 
 与Prop接口类似，存在localStorage的单向数据绑定prop值。
 
@@ -190,7 +190,7 @@ setAndProp<T>(propName: string, defaultValue: T): T
 | 参数名       | 类型   | 必填 | 默认值 | 参数描述                    |
 | ------------ | ------ | :--: | ------ | --------------------------- |
 | propName     | string |  是  | -      | 要保存的的键值对中的key值。 |
-| defaultValue | S      |  是  | -      | 创建的默认值。              |
+| defaultValue | T      |  是  | -      | 创建的默认值。              |
 
 **返回值：**
 
@@ -222,7 +222,7 @@ delete(propName: string): boolean
 
 ### keys
 
-keys(): IterableIterator<string>
+keys(): IterableIterator\<string>
 
 查找所有键。
 
@@ -230,7 +230,7 @@ keys(): IterableIterator<string>
 
 | 类型          | 描述                         |
 | ------------- | ---------------------------- |
-| array<string> | 返回包含所有键的字符串数组。 |
+| array\<string> | 返回包含所有键的字符串数组。 |
 
 
 
