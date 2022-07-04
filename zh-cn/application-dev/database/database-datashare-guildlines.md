@@ -28,7 +28,7 @@ DataShare可分为数据的提供方和访问方两部分，提供方可以选�
 | query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | 查询数据库中的数据。               |
 | delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | 从数据库中删除一条或多条数据记录。 |
 
-完整的数据访问方接口请见[DataShareHelper](../reference/apis/js-apis-dataShareHelper.md)。
+完整的数据访问方接口请见[DataShareHelper](../reference/apis/js-apis-data-dataShare.md)。
 
 ## 开发场景
 
