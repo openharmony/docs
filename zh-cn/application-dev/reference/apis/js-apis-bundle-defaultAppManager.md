@@ -3,6 +3,7 @@
 本模块提供查询默认应用的能力，支持查询当前应用是否是默认应用。
 
 > **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -101,7 +102,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                        |
 
 **返回值：**
@@ -146,7 +147,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
@@ -186,7 +187,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要查询的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | 是    | 程序启动作为入参的回调函数，返回包信息。                    |
 
 **示例：**
@@ -213,7 +214,7 @@ defaultAppMgr.getDefaultApplication("image/png", (err, data) => {
 
 setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -225,7 +226,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
@@ -261,7 +262,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void;
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -273,7 +274,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | userId  | number | 是    | 用户ID。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
@@ -310,7 +311,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void;
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型设置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -322,7 +323,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要设置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | elementName  | [ElementName](js-apis-bundle-ElementName.md) | 是    | 要设置为默认应用的组件信息。                           |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
@@ -358,7 +359,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -370,7 +371,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | userId  | number | 否    | 用户ID。默认值：调用方所在用户。                           |
 
 **示例：**
@@ -397,7 +398,7 @@ defaultAppMgr.resetDefaultApplication("image/png")
 
 resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void;
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -409,7 +410,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | userId  | number | 是    | 用户ID。                          |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
@@ -437,7 +438,7 @@ defaultAppMgr.resetDefaultApplication("image/png", 100, (err, data) => {
 
 resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
-以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用。
+以异步方法根据系统已定义的应用类型或者符合媒体类型格式（type/subtype）的文件类型重置默认应用，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.SET_DEFAULT_APPLICATION
 
@@ -449,7 +450,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| type  | string | 是    | 要设置的默认应用名称，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
+| type  | string | 是    | 要重置的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值，或者符合媒体类型格式的文件类型。       |
 | callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数。                    |
 
 **示例：**
