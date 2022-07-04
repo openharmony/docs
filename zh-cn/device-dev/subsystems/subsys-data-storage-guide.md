@@ -42,12 +42,12 @@
 
 | 类名 | 方法名 | 描述 |
 | --- | ----- | ----|
-| Preferences | int GetInt(const std::string &key, const int defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | int GetInt(const std::string &key, const int defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 | Preferences | std::string GetString(const std::string &key, const std::string &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | bool GetBool(const std::string &key, const bool defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | float GetFloat(const std::string &key, const float defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | double GetDouble(const std::string &key, const double defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | int64_t GetLong(const std::string &key, const int64_t defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | bool GetBool(const std::string &key, const bool defValue = false); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | float GetFloat(const std::string &key, const float defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | double GetDouble(const std::string &key, const double defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | int64_t GetLong(const std::string &key, const int64_t defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 | Preferences | std::set\<std::string\> GetStringSet(const std::string &key, const std::set\<std::string\> &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 
 **数据持久化**
