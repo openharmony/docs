@@ -19,7 +19,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 权限                                       | 权限等级     | 描述               |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO            | normal       | 仅限查询本应用信息 |
+| ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息   |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
 
@@ -77,7 +77,7 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, call
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -314,7 +314,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -613,7 +613,7 @@ getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -768,7 +768,7 @@ getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallbac
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -917,10 +917,6 @@ isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
 以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用callback形式返回结果。
 
-**需要权限：**
-
-无
-
 **系统能力：**
 
 SystemCapability.BundleManager.BundleFramework
@@ -987,10 +983,6 @@ bundle.isApplicationEnabled(bundleName)
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
 以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
-
-**需要权限：**
-
-无
 
 **系统能力：**
 
@@ -1109,6 +1101,10 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1324,7 +1320,7 @@ getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1488,7 +1484,7 @@ queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: nu
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1830,7 +1826,8 @@ ExtensionAbility的类型
 | FILE_SHARE<sup>9+</sup>        | 6    | ExtensionAbility的类型包括文件共享 |
 | STATIC_SUBSCRIBER<sup>9+</sup> | 7    | ExtensionAbility的类型包括订阅者  |
 | WALLPAPER<sup>9+</sup>         | 8    | ExtensionAbility的类型包括墙纸   |
-| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复   |
+| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复 |
+| ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | ExtensionAbility的类型包括企业管理员   |
 | UNSPECIFIED<sup>9+</sup>       | 20    | ExtensionAbility未指定类型     |
 
 ## ExtensionFlag<sup>9+</sup>

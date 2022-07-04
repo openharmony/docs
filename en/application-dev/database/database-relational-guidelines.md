@@ -89,7 +89,7 @@ The RDB provides **RdbPredicates** for you to set database operation conditions.
 | RdbPredicates | endWrap(): RdbPredicates | Adds a right parenthesis to the **RdbPredicates**.<br>- **RdbPredicates**: returns a **RdbPredicates** with a right parenthesis.|
 | RdbPredicates | or(): RdbPredicates | Adds the OR condition to the **RdbPredicates**.<br>- **RdbPredicates**: returns a **RdbPredicates** with the OR condition.|
 | RdbPredicates | and(): RdbPredicates | Adds the AND condition to the **RdbPredicates**.<br>- **RdbPredicates**: returns a **RdbPredicates** with the AND condition.|
-| RdbPredicates | contains(field: string, value: string): RdbPredicats | Sets the **RdbPredicates** to match a string containing the specified value.<br>- **field**: column name in the database table.<br>- **value**: value specified.<br>- **RdbPredicates**: returns a **RdbPredicates** object that matches the specified string.|
+| RdbPredicates | contains(field: string, value: string): RdbPredicates | Sets the **RdbPredicates** to match a string containing the specified value.<br>- **field**: column name in the database table.<br>- **value**: value specified.<br>- **RdbPredicates**: returns a **RdbPredicates** object that matches the specified string.|
 | RdbPredicates | beginsWith(field: string, value: string): RdbPredicates | Sets the **RdbPredicates** to match a string that starts with the specified value.<br>- **field**: column name in the database table.<br>- **value**: value specified.<br>- **RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 | RdbPredicates | endsWith(field: string, value: string): RdbPredicates | Sets the **RdbPredicates** to match a string that ends with the specified value.<br>- **field**: column name in the database table.<br>- **value**: value specified.<br>- **RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
 | RdbPredicates | isNull(field: string): RdbPredicates | Sets the **RdbPredicates** to match the field whose value is null.<br>- **field**: column name in the database table.<br>- **RdbPredicates**: returns a **RdbPredicates** object that matches the specified field.|
@@ -204,7 +204,7 @@ You can obtain the distributed table name for a remote device based on the local
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
    const STORE_CONFIG = {name: "rdbstore.db",}
    data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
-       rdbStore.executeSql(SQL_CREATE_TABLE)
+       rdbStore.executeSql(CREATE_TABLE_TEST)
        console.info('create table done.')
    })
    ```

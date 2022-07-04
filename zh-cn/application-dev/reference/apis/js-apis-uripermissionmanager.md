@@ -76,7 +76,7 @@ SystemCapability.Ability.AbilityRuntime.Core
   import WantConstant from '@ohos.ability.wantConstant';
   let accessTokenId =1
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  UriPermissionManager.verifyUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId)
+  UriPermissionManager.verifyUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId)
   .then((data) => {
       console.log('Verification succeeded.' + data)
   }).catch((error) => {

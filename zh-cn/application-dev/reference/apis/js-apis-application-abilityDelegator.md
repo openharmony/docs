@@ -622,6 +622,32 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
+### printSync
+
+printSync(msg: string): void
+
+打印日志信息到单元测试终端控制台
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| msg    | string | 是   | 日志字符串 |
+
+**示例：**
+
+```js
+var abilityDelegator;
+var msg = "msg";
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.printSync(msg);
+```
+
+
+
 ### print
 
 print(msg: string, callback: AsyncCallback\<void>): void

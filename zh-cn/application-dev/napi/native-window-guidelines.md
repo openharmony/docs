@@ -56,7 +56,7 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，包括从`Surface`构建
 3. **定义回调函数OnSurfaceCreated**。用于在`Surface`创建时，通过回调函数初始化开发者的渲染环境，例如`Skia`渲染环境。并将要显示的内容写入`NativeWindow`：
 
     ```c++
-    void OnSufaceCreatedCB(NativeXComponent* component, void* window) {
+    void OnSurfaceCreatedCB(NativeXComponent* component, void* window) {
         //获取 native window 的宽高
         uint64_t width_ = 0, height_ = 0;
         OH_NativeXComponent_GetXComponentSize(nativeXComponent, window, &width_, &height_);
@@ -89,8 +89,8 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，包括从`Surface`构建
         //创建 Skia Canvas 并将内容写入naitve window
         ...
 
-        //写入完成后，通过OH_NativeWindwo_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上
-        Regoin region{nullptr, 0};
+        //写入完成后，通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上
+        Region region{nullptr, 0};
         OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, region)
     }
     ```
@@ -99,9 +99,9 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，包括从`Surface`构建
 
     ```c++
     OH_NativeXComponent_Callback &callback_;
-    callback_->OnSurfaceCreated = OnSufaceCreatedCB;
-    callback_->OnSurfaceChanged = OnSufaceChangedCB;
-    callback_->OnSurfaceDestoryed = OnSufaceDestoryedCB;
+    callback_->OnSurfaceCreated = OnSurfaceCreatedCB;
+    callback_->OnSurfaceChanged = OnSurfaceChangedCB;
+    callback_->OnSurfaceDestoryed = OnSurfaceDestoryedCB;
     callback_->DispatchTouchEvent = DispatchTouchEventCB;
     OH_NativeXComponent_RegisterCallback(nativeXComponent, callback_)
     ```

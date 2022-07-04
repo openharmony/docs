@@ -16,7 +16,7 @@ Audio驱动框架基于[HDF驱动框架](https://device.harmonyos.com/cn/docs/do
 ![](figures/Audio框架图.png)
 
 驱动架构主要由以下几部分组成。
-- HDI adapter： 实现Audio HAL层驱动（HDI接口适配），给Audio服务（frameworks）提供所需的音频硬件驱动能力接口。包含 Audio Manager、Audio Adapter、Audio Control、Audio Capture、Audio Render等接口对象。 
+- HDI adapter：实现Audio HAL层驱动（HDI接口适配），给Audio服务（frameworks）提供所需的音频硬件驱动能力接口。包含 Audio Manager、Audio Adapter、Audio Control、Audio Capture、Audio Render等接口对象。 
 - Audio Interface Lib：配合内核中的Audio Driver Model使用，实现音频硬件的控制、录音数据的读取、播放数据的写入。它里面包括Stream_ctrl_common 通用层，主要是为了和上层的audio HDI adapter层进行对接。
 - ADM（Audio Driver Model）：音频驱动框架模型，向上服务于多媒体音频子系统，便于系统开发者能够更便捷的根据场景来开发应用。向下服务于具体的设备厂商，对于Codec和DSP设备厂商来说，可根据ADM模块提供的向下统一接口适配各自的驱动代码，就可以实现快速开发和适配OpenHarmony系统。
 - Audio Control Dispatch: 接收lib层的控制指令并将控制指令分发到驱动层。

@@ -420,6 +420,8 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                            |
@@ -491,6 +493,8 @@ getWant(agent: WantAgent): Promise\<Want\>
 获取WantAgent对象的want（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

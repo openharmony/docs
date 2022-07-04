@@ -1,8 +1,7 @@
 # Panel
 
 
-> **NOTE**
->
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -26,7 +25,7 @@ Panel(value:{show:boolean})
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | show | boolean | Yes | - | Whether the panel is shown or hidden. |
+  | show | boolean | Yes | - | Whether to show or hide the panel. |
 
 
 ## Attributes
@@ -35,7 +34,7 @@ Panel(value:{show:boolean})
 | -------- | -------- | -------- | -------- |
 | type | PanelType | PanelType.Foldable | Type of the panel. |
 | mode | PanelMode | - | Initial status of the panel. |
-| dragBar | boolean | true | Whether to enable a drag bar. The value **true** means that the drag bar will be displayed, and **false** means the opposite. |
+| dragBar | boolean | true | Whether to enable a drag bar. The value **true** means to display the drag bar, and **false** means the opposite. |
 | fullHeight | Length | - | Panel height in the **PanelMode.Full** mode. |
 | halfHeight | Length | - | Panel height in the **PanelMode.Half** mode. The default value is half of the screen height. |
 | miniHeight | Length | - | Panel height in the **PanelMode.Mini** mode. |
@@ -59,7 +58,7 @@ Panel(value:{show:boolean})
 
 | Name | Description |
 | -------- | -------- |
-| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the drag bar height plus the height of the content area. |
+| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the panel status changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the drag bar height plus the height of the content area. |
 
 
 ## Example

@@ -190,7 +190,7 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 **Example**
 
   ```js
-  systemTime.getCurrentTime().then((data) => {
+  systemTime.getRealActiveTime().then((data) => {
       console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
   }).catch((error) => {
       console.error(`failed to systemTime.getRealActiveTime because ` + JSON.stringify(error));

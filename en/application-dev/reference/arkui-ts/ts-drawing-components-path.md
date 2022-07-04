@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Path&gt;** component is used to draw a path.
+The **<Path\>** component is used to draw a path.
 
 
 ## Required Permissions
@@ -24,7 +24,7 @@ None
 | -------- | -------- | -------- | -------- | -------- |
 | width | Length | 0 | No | Width of the rectangle where the path is located. | 
 | height | Length | 0 | No | Height of the rectangle where the path is located. | 
-| commands | string | '' | Yes | Command string for drawing the path. | 
+| commands | string | '' | Yes | Commands for drawing the path. | 
 
 
 The supported commands are as follows:

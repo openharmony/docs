@@ -1,6 +1,6 @@
 # Page Routing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - Page routing APIs can be invoked only after page rendering is complete. Do not call the APIs in **onInit** and **onReady** when the page is still in the rendering phase.
@@ -190,6 +190,8 @@ getLength(): string
 
 Obtains the number of pages in the current stack.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 | Type| Description|
 | -------- | -------- |
@@ -275,7 +277,7 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 Describes the confirm dialog box.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Lite
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

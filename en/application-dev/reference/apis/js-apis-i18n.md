@@ -1461,7 +1461,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
   ```
 
 
-## RelativeTimeFormat<sup>8+</sup>
+## TimeZone<sup>8+</sup>
 
 
 ### getID<sup>8+</sup>

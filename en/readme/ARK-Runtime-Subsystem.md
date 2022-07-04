@@ -2,7 +2,7 @@
 
 ## Introduction<a name="section11660541593"></a>
 
-ArkCompiler is a built-in componentized and configurable multi-language compilation and runtime platform of OpenHarmony. It contains core components such as the compiler, toolchain, and runtime. It supports compilation and running of high-level programming languages on the multi-chip platform. It accelerates the running of the OpenHarmony standard operating system and its applications and services on mobile phones, PCs, tablets, TVs, automobiles, and smart wearables. ArkCompiler JS Runtime provides the capability of compiling and running the JavaScript (JS) language on the OpenHarmony operating system.
+ArkCompiler is a built-in componentized and configurable multi-language compilation and runtime platform of OpenHarmony. It contains core components such as the compiler, toolchain, and runtime. It supports compilation and running of high-level programming languages on the multi-chip platform. It accelerates the running of the OpenHarmony standard system and its applications and services on mobile phones, PCs, tablets, TVs, automobiles, and smart wearables. ArkCompiler JS Runtime provides the capability of compiling and running the JavaScript (JS) language on the OpenHarmony operating system.
 
 ArkCompiler JS Runtime consists of two parts: JS compiler toolchain and JS runtime. The JS compiler toolchain compiles JS source code into ArkCompiler bytecodes. The JS runtime executes the generated ArkCompiler bytecodes. Unless otherwise specified, bytecodes refer to ArkCompiler bytecodes in this document.
 
@@ -20,21 +20,21 @@ ArkCompiler JS Runtime runs ArkCompiler bytecode files to implement JS semantic 
 
 ArkCompiler JS Runtime consists of four subsystems:
 
--   Core Subsystem
+-   Core subsystem
 
-    Core Subsystem consists of basic language-irrelevant runtime libraries, including ArkCompiler File, Tooling, and ArkCompiler Base. ArkCompiler File provides bytecodes. Tooling supports Debugger. ArkCompiler Base is responsible for implementing system calls.
+    The core subsystem consists of basic language-irrelevant runtime libraries, including ArkCompiler File, Tooling, and ArkCompiler Base. ArkCompiler File provides bytecodes. Tooling supports Debugger. ArkCompiler Base is responsible for implementing system calls.
 
--   JS Execution Subsystem
+-   JS execution subsystem
 
-    JS Execution Subsystem consists of an interpreter that executes bytecodes, inline caching that stores hidden classes, and Profiler that analyzes and records runtime types.
+    JS Execution subsystem consists of an interpreter that executes bytecodes, inline caching that stores hidden classes, and Profiler that analyzes and records runtime types.
 
--   JS Compiler Subsystem
+-   JS compiler subsystem
 
-    JS Compiler Subsystem consists of the Stub compiler, optimized compilation framework based on the Circuit IR, and code generator.
+    The JS compiler subsystem consists of the Stub compiler, optimized compilation framework based on the Circuit IR, and code generator.
 
--   JS Runtime subsystem
+-   JS runtime subsystem
 
-    JS Runtime Subsystem contains various modules related to JS runtime:
+    The JS runtime subsystem contains various modules related to JS runtime:
     - Memory management: object allocator and garbage collector (CMS-GC and Partial-Compressing-GC for concurrent marking and partial memory compression)
     - Analysis tools: DFX tool and CPU and heap profiling tool
     - Concurrency management: abc file manager in the actor concurrency model

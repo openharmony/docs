@@ -238,7 +238,7 @@ You can use either of the following methods to connect to a Service ability:
     }
     ```
 
-### Connecting to a Remote Service Ability (Applying only to System Applications)
+### Connecting to a Remote Service Ability
 
 >**NOTE**
 >

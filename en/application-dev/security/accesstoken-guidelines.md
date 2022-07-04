@@ -1,6 +1,6 @@
 # Access Control Development
 
-## Scenario
+## When to Use
 
 In this example, the app requires the **ohos.permission.PERMISSION1** and **ohos.permission.PERMISSION2** permissions to implement core functions.
 
@@ -20,30 +20,30 @@ The table below lists only the API used in this guide. For more information, see
 
 | API                                                      | Description                                            |
 | ------------------------------------------------------------ | --------------------------------------------------- |
-| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | Verifies whether an app has the specified permission. This API uses a promise to return the result. |
+| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | Verifies whether an app has the specified permission. This API uses a promise to return the result.|
 
 ## Declaring Permissions
 
 ### config.json
 
-Declare the permissions required by the app one by one in the **config.json** file. The app cannot obtain a permission if it is not declared in the **config.json** file.
+Declare the permissions required by the app one by one in the **config.json** file. The app can obtain permissions that have been declared in the **config.json** file.
 
 **Description of config.json**
 
 | Field     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
 | name      | Name of the permission.                                                  |
-| reason    | Reason for requesting the permission. This field is mandatory for a user_grant permission. |
-| usedScene | Scenario of the permission. This field is mandatory for a user_grant permission. |
-| abilities | Abilities that use the permission. The value is an array. |
-| when      | Time when the permission is used. The value can be **inuse** (the permission can be used only in the foreground) or **always** (the permission can be used in foreground and background). |
+| reason    | Reason for requesting the permission. This field is mandatory for a user_grant permission.|
+| usedScene | Scenario of the permission. This field is mandatory for a user_grant permission.|
+| abilities | Abilities that use the permission. The value is an array.|
+| when      | Time when the permission is used. The value can be **inuse** (the permission can be used only in the foreground) or **always** (the permission can be used in foreground and background).|
 
 **Example**
 
 ```json
 {
     "module" : {
-        "requesetPermissions":[
+        "requestPermissions":[
            {
                 "name" : "ohos.permission.PERMISSION1",
                 "reason": "$string:reason",
@@ -107,7 +107,7 @@ In addition to declaring all the permissions in the **config.json** file, you mu
 
 After the permissions are declared, the system grants the system_grant permission during the installation of the app. The user_grant permission must be authorized by the user.
 
-Therefore, before invoking the API protected by the **ohos.permission.PERMISSION2 permission**, the app needs to verify whether it has the permission.
+Therefore, before allowing the app to call the API protected by the **ohos.permission.PERMISSION2** permission, the system needs to verify whether the app has the permission to do so.
 
 If the verification result indicates that the app has the permission, the app can access the target API. Otherwise, the app needs to request user authorization and then proceeds based on the authorization result. For details, see [Access Control Overview](accesstoken-overview.md).
 
@@ -119,34 +119,26 @@ If the verification result indicates that the app has the permission, the app ca
 
 The procedure is as follows:
 
-1. Obtain the caller's identity tokenId.
-2. Determine the permission to be verified. In this example, the permission is **permissionNameUser**.
-3. Call **verifyAccessToken** to verify the permissions of the caller.
-4. Proceed based on the permission verification result.
+1. Obtain the ability context.
+2. Call **requestPermissionsFromUser** to verify whether the app has required permissions.
+3. Proceed based on the permission verification result.
 
 ```js
-  import {describe, beforeEach, afterEach, it, expect} from 'deccjsunit/index'
-  import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-  import bundle from '@ohos.bundle'
-
-  async requestPermission() {
-    var permissionNameUser = "ohos.permission.PERMISSION2";
-    var bundleFlag = 0;
-    var tokenID = undefined;
-    var userID = 100;
-    var appInfo = await bundle.getApplicationInfo('ohos.acts.security.access_token.normal', bundleFlag, userID);
-    tokenID = appInfo.accessTokenId;
-    console.log("AccessTokenTest accessTokenId:" + appInfo.accessTokenId + ", name:" + appInfo.name
-        + ", bundleName:" + appInfo.bundleName)
-    var atManager = abilityAccessCtrl.createAtManager();
-    var result = await atManager.verifyAccessToken(tokenID, permissionNameUser);
-    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-        // Execute the operation.
-    } else {
-        // Apply for dynamic user authorization using requestPermissionsFromUser.
-    }
+  // OnWindowStageCreate lifecycle of the ability
+  onWindowStageCreate() {
+    var context = this.context
+    let array:Array<string> = ["ohos.permission.PERMISSION2"];
+    // requestPermissionsFromUser determines whether to invoke a pop-up window based on the permission authorization status.
+    context.requestPermissionsFromUser(array).then(function(data) {
+        console.log("data type:" + typeof(data));
+        console.log("data:" + data);
+        console.log("data permissions:" + data.permissions);
+        console.log("data result:" + data.authResults);
+    }, (err) => {
+        console.error('Failed to start ability', err.code);
+    });
   }
 
 ```
-> ![icon-note.gif](../public_sys-resources/icon-note.gif)**NOTE**<br/>
+> **NOTE**<br>
 > For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md).

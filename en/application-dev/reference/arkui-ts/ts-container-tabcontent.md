@@ -1,11 +1,11 @@
 # TabContent
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;TabContent&gt;** component is used only in the **&lt;Tabs&gt;** component. It corresponds to the content view of a switched tab page.
+The **<TabContent\>** component is used only in the **<Tabs\>** component. It corresponds to the content view of a switched tab page.
 
 
 ## Required Permissions
@@ -29,12 +29,12 @@ Touch target configuration is not supported.
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| tabBar | string \| {<br/>icon?: string,<br/>text?: string<br/>}<br/>\| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Content displayed on the tab bar.<br/>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
+| tabBar | string \| {<br/>icon?: string,<br/>text?: string<br/>}<br/>\| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Content displayed on the tab bar.<br/>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 or later).<br/>**NOTE**<br/>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The **&lt;TabContent&gt;** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **&lt;Tabs&gt;** component.
+> **NOTE**
+> - The **<TabContent\>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **<Tabs\>** component.
 > 
-> - The **&lt;TabContent&gt;** component does not support setting of the common height attribute. Its height is determined by the height of the parent **&lt;Tabs&gt;** component and the **&lt;TabBar&gt;** component.
+> - The **<TabContent\>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **<Tabs\>** component and the **<TabBar\>** component.
 
 
 ## Example

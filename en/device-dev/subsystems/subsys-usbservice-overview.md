@@ -8,9 +8,10 @@ USB devices are classified into two types: USB host and USB device. On OpenHarmo
   **Figure 1** USB service architecture
   ![USB service architecture](figure/en-us_image_0000001267088285.png)
 
+The USB service architecture consists of three layers:
 - USB API: a layer that provides JS APIs for the upper layer through NAPI.
 
-- USB Service: a layer implemented by using the C++ programming language and logically divided into the Host, Device, and Port modules. HDI-based APIs provided by USB Service are mainly used to implement management of USB device list, USB functions, USB ports, and USB device access permissions.
+- USB service: a layer implemented by using the C++ programming language and logically divided into the Host, Device, and Port modules. HDI-based APIs provided by USB Service are mainly used to implement management of USB device list, USB functions, USB ports, and USB device access permissions.
 
 - USB HAL: a layer implemented by using the C programming language. Based on the Host Driver Development Kit (SDK) and Device DDK, USB HAL encapsulates basic USB device operations, provides C++ APIs for the upper layer, and receives information from the kernel through the Hardware Driver Foundation (HDF) framework.
 

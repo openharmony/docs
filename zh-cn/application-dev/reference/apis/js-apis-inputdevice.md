@@ -179,7 +179,7 @@ inputDevice.getDevice(1).then((inputDevice)=>{
 
 ## inputDevice.supportKeys<sup>9+</sup>
 
-supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void;
+supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void
 
 获取输入设备支持的键码值，使用callback方式作为异步方法。
 
@@ -204,7 +204,7 @@ inputDevice.supportKeys(1, [17, 22, 2055], (ret)=>{
 
 ## inputDevice.supportKeys<sup>9+</sup>
 
-supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;；
+supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;
 
 获取输入设备支持的键码值，使用Promise方式作为异步方法。
 
@@ -234,7 +234,7 @@ inputDevice.supportKeys(1, [17, 22, 2055]).then((ret)=>{
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
 
-getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void;
+getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
 
 查询输入设备的键盘类型，使用callback方式作为异步方法。
 
@@ -258,7 +258,7 @@ inputDevice.getKeyboardType(1, (ret)=>{
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
 
-getKeyboardType(deviceId: number,): Promise&lt;KeyboardType&gt;；
+getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
 查询输入设备的键盘类型，使用Promise方式作为异步方法。
 
@@ -285,10 +285,10 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
 
-| 名称       | 参数类型                      | 说明                                |
-| -------- | ------------------------- | --------------------------------- |
-| type     | [ChangeType](#changetype) | 表示输入设备插入或者移除。                     |
-| deviceId | number                    | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
+| 名称       | 参数类型                        | 说明                                |
+| -------- | --------------------------- | --------------------------------- |
+| type     | [ChangedType](#changedtype) | 表示输入设备插入或者移除。                     |
+| deviceId | number                      | 输入设备的唯一标识，同一个物理设备反复插拔，其设备id会发生变化。 |
 
 ## InputDeviceData
 

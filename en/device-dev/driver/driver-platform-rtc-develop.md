@@ -14,7 +14,7 @@ The real-time clock (RTC) is a real-time clock device in the operating system. I
 
 **RtcMethod**:
 
-
+  
 ```
 struct RtcMethod {
     int32_t (*ReadTime)(struct RtcHost *host, struct RtcTime *time);
@@ -78,7 +78,7 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
    Generally, the HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
 
      RTC driver entry example:
-   
+     
    ```
    struct HdfDriverEntry g_rtcDriverEntry = {
      .moduleVersion = 1,
@@ -98,7 +98,7 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
    
    - **device_info.hcs** configuration example
    
-     
+       
      ```
      root {
        device_info {
@@ -120,7 +120,7 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
    
    - **rtc_config.hcs** configuration example
    
-     
+       
      ```
      root {
        platform {
@@ -139,16 +139,16 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
              lock3Addr = 0xff;
            }
          }
-         }
        }
-       ```
-     
+     }
+     ```
+
 3. Initialize the **RtcHost** object at the core layer, including defining a custom structure (to pass parameters and data) and implementing the **HdfDriverEntry** member functions (**Bind**, **Init** and **Release**) to instantiate **RtcMethod** in **RtcHost** (so that the underlying driver functions can be called).
    - Defining a custom structure
 
       To the driver, the custom structure holds parameters and data. The **DeviceResourceIface** method provided by the HDF reads the values in the **rtc_config.hcs** file to initialize the members in the custom structure.
 
-      
+        
       ```
       struct RtcConfigInfo {
         uint32_t           spiBaseAddr; // Used for address mapping.
@@ -174,7 +174,7 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
       ```
    - Instantiating **RtcMethod** in **RtcHost** (other members are initialized by **Init**)
 
-     
+        
       ```
       // Example in rtc_hi35xx.c: instantiate the hook.
       static struct RtcMethod g_method = {
@@ -217,7 +217,7 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
 
       Binds the **HdfDeviceObject** object and **RtcHost**.
 
-      
+        
       ```
       static int32_t HiRtcBind(struct HdfDeviceObject *device)
       {
@@ -226,7 +226,7 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
                                          // Prerequisite for conversion between HdfDeviceObject and RtcHost.
         ...
         device->service = &host->service; // Prerequisite for conversion between HdfDeviceObject and RtcHost.
-                                         // It allows the global use of host by calling RtcHostFromDevice.
+                                         // It helps implement the global host by calling RtcHostFromDevice.
         return HDF_SUCCESS;
       }
       ```
@@ -245,18 +245,18 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
 
       Initializes the custom structure object and **RtcHost**.
 
-      
+        
       ```
       static int32_t HiRtcInit(struct HdfDeviceObject *device)
       {
         struct RtcHost *host = NULL;
         struct RtcConfigInfo *rtcInfo = NULL;
         ...
-        host = RtcHostFromDevice(device);// A forced conversion from HdfDeviceObject to RtcHost is involved.
+        host = RtcHostFromDevice(device);// Forcibly convert HdfDeviceObject to RtcHost.
         rtcInfo = OsalMemCalloc(sizeof(*rtcInfo));
         ...
         // HiRtcConfigData reads attributes from the device configuration tree and fills the values in supportAnaCtrl, supportLock, spiBaseAddr, regAddrLength, and irq in rtcInfo.
-        // Provide parameters for HiRtcSwInit and HiRtcSwInit, and perform operations such as releasing memory when the function internal processing fails.
+        // Provide parameters for HiRtcSwInit and HiRtcSwInit. When HiRtcSwInit and HiRtcSwInit fail to be executed internally, Release() can be called to release memory.
         if (HiRtcConfigData(rtcInfo, device->property) != 0) {
           ...
         }
@@ -287,15 +287,15 @@ The following uses **rtc_hi35xx.c** as an example to present the information req
 
       Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** or **Bind** function has the corresponding value assignment operations.
 
-      
+        
       ```
       static void HiRtcRelease(struct HdfDeviceObject *device)
       {
           struct RtcHost *host = NULL;
           struct RtcConfigInfo *rtcInfo = NULL;
           ...
-          host = RtcHostFromDevice(device);            // A forced conversion from HdfDeviceObject to RtcHost is involved.
-          rtcInfo = (struct RtcConfigInfo *)host->data;// A forced conversion from RtcHost to RtcConfigInfo is involved.
+          host = RtcHostFromDevice(device);            // Forcibly convert HdfDeviceObject to RtcHost.
+          rtcInfo = (struct RtcConfigInfo *)host->data;// Forcibly convert RtcHost to RtcConfigInfo.
           if (rtcInfo != NULL) {
               HiRtcSwExit(rtcInfo);
               OsalMemFree(rtcInfo);                    // Release RtcConfigInfo.

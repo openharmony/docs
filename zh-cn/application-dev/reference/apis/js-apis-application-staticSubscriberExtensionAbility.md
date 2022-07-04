@@ -18,7 +18,9 @@ onReceiveEvent(event: CommonEventData): void;
 
 静态订阅者通用事件回调。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

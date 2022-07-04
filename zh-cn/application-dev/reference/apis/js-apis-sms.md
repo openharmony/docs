@@ -1,5 +1,7 @@
 # 短信服务
 
+短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址，以及检查当前设备是否具备短信发送和接收能力等。
+
 >**说明：** 
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -162,7 +164,7 @@ setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
 
 设置发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -190,7 +192,7 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 设置发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -204,9 +206,9 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型           | 说明                            |
-| -------------- | ------------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。        |
+| 类型            | 说明                            |
+| --------------- | ------------------------------- |
+| Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
 **示例：**
 
@@ -225,7 +227,7 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 设置短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
@@ -256,7 +258,7 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 设置短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
@@ -295,7 +297,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 
@@ -324,7 +326,7 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 获取短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 

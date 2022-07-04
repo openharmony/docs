@@ -1,5 +1,7 @@
 # 网络搜索
 
+网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持5G\(NR\)、判断主卡的Radio是否打开等。
+
 >**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -562,7 +564,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 设置主卡所在卡槽的索引号，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -573,7 +575,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 | 参数名   | 类型                  | 必填 | 说明                                   |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当设置成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -591,7 +593,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 设置主卡所在卡槽的索引号，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -607,7 +609,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 | 类型            | 说明                            |
 | --------------- | ------------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。        |
+| Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
 **示例：**
 
@@ -627,7 +629,7 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -654,7 +656,7 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -683,7 +685,7 @@ getIMEI(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的IMEI，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -699,7 +701,7 @@ getIMEI(slotId?: number): Promise<string\>
 
 | 类型              | 说明                                       |
 | ----------------- | ------------------------------------------ |
-| Promise\<string\> | Promise对象。返回IMEI；如果IMEI不存在，则返回空字符串。 |
+| Promise\<string\> | 返回IMEI；如果IMEI不存在，则返回空字符串。 |
 
 **示例：**
 
@@ -719,7 +721,7 @@ getMEID(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -746,7 +748,7 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -775,7 +777,7 @@ getMEID(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的MEID，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -811,7 +813,7 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -838,7 +840,7 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
 获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -867,7 +869,7 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 
 获取设备的指定卡槽的唯一设备ID，使用Promise方式作为异步方法。
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 

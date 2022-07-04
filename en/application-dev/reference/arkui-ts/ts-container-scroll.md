@@ -1,11 +1,11 @@
 # Scroll
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Scroll&gt;** component scrolls the content when the layout size of a component exceeds the viewport of its parent component.
+The **<Scroll\>** component scrolls the content when the layout size of a component exceeds the viewport of its parent component.
 
 
 ## Required Permissions
@@ -25,7 +25,7 @@ Scroll(scroller?: Scroller)
 
 ## Attributes
 
-| Name       | Type      | Default Value      | Description |
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
 | scrollable     | ScrollDirection   | ScrollDirection.Vertical | Scroll method. |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate-enums) | Auto | Scroll bar status. |
@@ -33,7 +33,7 @@ Scroll(scroller?: Scroller)
 | scrollBarWidth | Length | - | Width of the scrollbar. |
 
 - ScrollDirection
-  | Name       | Description |
+  | Name     | Description |
   | -------- | -------- |
   | Horizontal | Only horizontal scrolling is supported. |
   | Vertical | Only vertical scrolling is supported. |
@@ -42,7 +42,7 @@ Scroll(scroller?: Scroller)
 
 ## Scroller
 
-Controller of the scrollable container component. You can bind this component to the container component and use it to control the scrolling of the container component. Currently, this component can be bound to the **&lt;List&gt;** and **&lt;Scroll&gt;** components.
+Controller of the scrollable container component. You can bind this component to the container component and use it to control the scrolling of the container component. Currently, this component can be bound to the **<List\>** and **<Scroll\>** components.
 
 
 ### Objects to Import
@@ -78,7 +78,7 @@ Scrolls to the edge of the container.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | Edge | Yes | - | Edge position to scroll to. |
 
@@ -90,7 +90,7 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 Scrolls to the next or previous page.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | next | boolean | Yes | - | Whether to turn to the next page. The value **true** means to scroll to the next page, and the value **false** means to scroll to the previous page. |
 
@@ -104,9 +104,9 @@ Obtains the scrolling offset.
 
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
-  | {<br/>xOffset: number,<br/>yOffset: number<br/>} | **xOffset**: horizontal scrolling offset.<br/>**yOffset**: vertical scrolling offset. |
+  | {<br/>xOffset: number,<br/>yOffset: number<br/>} | - **xOffset**: horizontal scrolling offset.<br/>- **yOffset**: vertical scrolling offset. |
 
 
 ### scroller.scrollToIndex
@@ -117,12 +117,12 @@ scroller.scrollToIndex(value: number): void
 Scrolls to the specified index.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> Only the **&lt;List&gt;** component is supported.
+> **NOTE**<br>
+> Only the **<List\>** component is supported.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | Yes | - | Index of the item to be scrolled to in the list. |
 
@@ -131,8 +131,8 @@ Scrolls to the specified index.
 
 | Name | Description |
 | -------- | -------- |
-| onScroll(xOffset: number, yOffset: number) =&gt; void | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs. |
-| onScrollEdge(side: Edge) =&gt; void | Callback for the event of scrolling to the edge. |
+| onScroll(xOffset: number, yOffset: number) =&gt; void | Invoked to return the horizontal and vertical scrolling offsets when the specified scroll event occurs. |
+| onScrollEdge(side: Edge) =&gt; void | Invoked when an item is scrolled to the edge. |
 | onScrollEnd() =&gt; void | Invoked when scrolling stops. |
 
 

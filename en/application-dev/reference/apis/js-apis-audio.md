@@ -3063,7 +3063,7 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
     }
-};
+});
 ```
 
 

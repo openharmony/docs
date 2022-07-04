@@ -327,7 +327,12 @@ SystemCapability.Ability.Form
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want            | [Want](js-apis-application-Want.md)                          | 是   | abilityName: 目标卡片ability<br/>parameters:<br/>"ohos.extra.param.key.form_dimension"<br/>"ohos.extra.param.key.form_name"<br/>"ohos.extra.param.key.module_name" |
 | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 否   | 用于创建卡片的数据                                           |
-| callback        | AsyncCallback&lt;string&gt;                                  | 是   | callback形式返回卡片标识                                     |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;string&gt; | Promise实例，用于返回卡片标识。 |
 
 **示例：**
 

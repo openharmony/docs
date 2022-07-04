@@ -19,7 +19,7 @@
 
 ## 接口
 
-TextArea(value?:{placeholder?: string controller?: TextAreaController})
+TextArea(value?:{placeholder?: string, controller?: TextAreaController})
 
 - 参数
   | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述           |
@@ -91,10 +91,11 @@ caretPosition(value: number): void
 @Entry
 @Component
 struct TextAreaExample1 {
+  controller: TextAreaController = new TextAreaController()
   @State text: string = ''
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word'})
+      TextArea({ placeholder: 'input your word', controller: this.controller})
         .placeholderColor("rgb(0,0,225)")
         .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
         .textAlign(TextAlign.Center)
@@ -110,6 +111,7 @@ struct TextAreaExample1 {
         })
         .onChange((value: string) => {
           this.text = value
+          this.controller.caretPosition(-1)
         })
       Text(this.text).width('90%')
     }

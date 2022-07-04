@@ -1,7 +1,7 @@
 # Burning
 
 
-Hi3516D V300 supports burning through the USB port, network port, and serial port. This document describes how to burn source code through the USB port. The operations are performed in Windows.
+Burning is the process of downloading compiled program files to a development board to provide a basis for subsequent debugging. With the one-click burning function of DevEco Device Tool, you can burn images on development boards quickly and efficiently.
 
 
 ### Importing Source Code
@@ -27,7 +27,7 @@ After the building is complete, ensure that you can [remotely access the Ubuntu 
 
    ![en-us_image_0000001215743910](figures/en-us_image_0000001215743910.png)
 
-5. On the **Import Project** page, select **ipcamera_hispark_taurus** for **Product**, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **Ohos Ver**.
+5. On the **Import Project** page, select a product, and the MCU, board, company, and kernel fields will be automatically populated. Then, select the OpenHarmony source code version for **ohosVersion**. Select **ipcamera_hispark_taurus**.
 
    ![en-us_image_0000001227711014](figures/en-us_image_0000001227711014.png)
 

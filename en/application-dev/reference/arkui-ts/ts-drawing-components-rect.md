@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Rect&gt;** component is used to draw a rectangle.
+The **<Rect\>** component is used to draw a rectangle.
 
 
 ## Required Permissions
@@ -25,14 +25,14 @@ Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;L
 - Parameters
   | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | For details, see the **options** parameters. | 
+  | options | Object | No | - | Options of the rectangle to draw. For details, see the **options** parameters. | 
 
 - options parameters
   | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width. | 
-  | height | Length | Yes | - | Height. | 
-  | radius | Length \| Array&lt;Length&gt; | No | 0 | Radius of a rounded corner. You can set the radius of four rounded corners. | 
+  | width | Length | Yes | - | Width of the rectangle. | 
+  | height | Length | Yes | - | Height of the rectangle. | 
+  | radius | Length \| Array&lt;Length&gt; | No | 0 | Radius of the rounded corner. You can set the radius of four rounded corners. | 
   | radiusWidth | Length | No | 0 | Width of the rounded corner. | 
   | radiusHeight | Length | No | 0 | Height of the rounded corner. | 
 
@@ -41,11 +41,11 @@ Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;L
 
 | Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | No | Width. | 
-| height | Length | 0 | No | Height. | 
-| radiusWidth | Length | 0 | No | Width of a rounded corner. The width and height are the same when only the width is set. | 
+| width | Length | 0 | No | Width of the rectangle. | 
+| height | Length | 0 | No | Height of the rectangle. | 
+| radiusWidth | Length | 0 | No | Width of the rounded corner. The width and height are the same when only the width is set. | 
 | radiusHeight | Length | 0 | No | Height of the rounded corner. The width and height are the same only when the height is set. | 
-| radius | Length \| Array&lt;Length&gt; | 0 | No | Size of the rounded corner. | 
+| radius | Length \| Array&lt;Length&gt; | 0 | No | Radius of the rounded corner. | 
 
 
 ## Example
