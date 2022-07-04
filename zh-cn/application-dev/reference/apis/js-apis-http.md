@@ -1,6 +1,8 @@
 # 数据请求
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+本模块提供http数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
+
+>**说明：** 
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -93,9 +95,9 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                    |
-| -------- | ------------------------------------------------------- | ---- | ----------------------- |
-| url      | string                                                  | 是   | 发起网络请求的URL地址。 |
+| 参数名   | 类型                                           | 必填 | 说明                    |
+| -------- | ---------------------------------------------- | ---- | ----------------------- |
+| url      | string                                         | 是   | 发起网络请求的URL地址。 |
 | callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。              |
 
 **示例：**
@@ -169,15 +171,15 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 **参数：**
 
-| 参数名  | 类型               | 必填 | 说明                                               |
-| ------- | ------------------ | ---- | -------------------------------------------------- |
-| url     | string             | 是   | 发起网络请求的URL地址。                            |
+| 参数名  | 类型               | 必填 | 说明                                            |
+| ------- | ------------------ | ---- | ----------------------------------------------- |
+| url     | string             | 是   | 发起网络请求的URL地址。                         |
 | options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
 
 **返回值：**
 
-| 类型                  | 说明                              |
-| :-------------------- | :-------------------------------- |
+| 类型                                   | 说明                              |
+| :------------------------------------- | :-------------------------------- |
 | Promise<[HttpResponse](#httpresponse)> | 以Promise形式返回发起请求的结果。 |
 
 
@@ -225,7 +227,7 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 订阅HTTP Response Header 事件。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
-> 此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
+>此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -353,13 +355,13 @@ httpRequest.once('headersReceive', (header) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名          | 类型                                 | 必填 | 说明                                                       |
-| -------------- | ------------------------------------ | ---- | ---------------------------------------------------------- |
-| method         | [RequestMethod](#requestmethod) | 否   | 请求方式。                                                 |
+| 参数名         | 类型                                          | 必填 | 说明                                                         |
+| -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
 | extraData      | string \| Object  \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>8+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>8+</sup> |
-| header         | Object                               | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。 |
-| readTimeout    | number                               | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。            |
-| connectTimeout | number                               | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。            |
+| header         | Object                                        | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
+| readTimeout    | number                                        | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
+| connectTimeout | number                                        | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 
 ## RequestMethod
 
@@ -431,7 +433,98 @@ request方法回调函数的返回值类型。
 | 参数名               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>8+</sup> | 是   | Http请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需Http响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
-| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码如下：<br />- 200：通用错误<br />- 202：参数错误<br />- 300：I/O错误 |
+| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response错误码)。 |
 | header               | Object                                       | 是   | 发起http请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
 | cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
+
+## Response错误码
+
+| 错误码 | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| 0      | 正常执行。                                                   |
+| 1      | 不支持的协议类型。                                           |
+| 2      | 初始化失败。可能是内部错误或资源问题。                       |
+| 3      | URL格式错误。                                                |
+| 4      | 构建时无法找到内置的请求功能、协议或选项。                   |
+| 5      | 无法解析代理。                                               |
+| 6      | 无法解析主机。                                               |
+| 7      | 无法连接代理或主机。                                         |
+| 8      | The server sent data libcurl could not parse. This error code was known as as *CURLE_FTP_WEIRD_SERVER_REPLY* before 7.51.0. |
+| 9      | URL资源访问被拒绝。如果是FTP协议，该情况常发生在将目录修改为远程目录时。 |
+| 10     | 在FTP会话中，等待服务器回连时发生错误。                      |
+| 11     | 将FTP密码发送到服务器后，发生错误。                          |
+| 12     | FTP会话等待服务器连接超时。                                  |
+| 13     | 无法从服务器获取对PASV或EPSV命令的响应。                     |
+| 14     | 无法解析FTP服务器对PASV命令的响应。                          |
+| 15     | 在查找用于连接的主机时，出现内部错误。                       |
+| 16     | 在HTTP2层中检测到错误。                                      |
+| 17     | 尝试将传输模式设置为二进制或ASCII时收到错误。                |
+| 18     | 文件传输的大小与预期不符。                                   |
+| 19     | RETR命令失败或零字节传输。                                   |
+| 21     | QUOTE命令失败。                                              |
+| 22     | This is returned if CURLOPT_FAILONERROR is set TRUE and the HTTP server returns an error code that is >= 400. |
+| 23     | 将接收到的数据写入文件时出现错误。                           |
+| 25     | 启动上传失败。                                               |
+| 26     | 读取本地文件出现错误。                                       |
+| 27     | 内存分配请求失败。                                           |
+| 28     | 操作超时。                                                   |
+| 30     | FTP PORT命令返回错误。                                       |
+| 31     | FTP REST命令返回错误。                                       |
+| 33     | 超出服务器支持范围。                                         |
+| 34     | HTTP内部错误。                                               |
+| 35     | SSL/TLS握手时发生错误。                                      |
+| 36     | 无法恢复下载，因为指定的偏移量超出了文件边界。               |
+| 37     | 无法通过文件路径读取文件。                                   |
+| 38     | LDAP无法绑定。                                               |
+| 39     | LDAP搜索失败。                                               |
+| 41     | 找不到需要的zlib函数。                                       |
+| 42     | 被回调中止。                                                 |
+| 43     | 调用函数时错误传参。                                         |
+| 45     | 接口错误，无法使用指定的输出接口。                           |
+| 47     | 重定向过多，超过可跟踪重定向的最大数量。                     |
+| 48     | 存在未知选项。                                               |
+| 49     | 传递到setopt的选项格式错误。                                 |
+| 52     | 服务器没有返回任何内容。                                     |
+| 53     | 找不到指定的加密引擎。                                       |
+| 54     | 将选定的SSL加密引擎设置为默认值失败。                        |
+| 55     | 发送网络数据失败。                                           |
+| 56     | 接收网络数据失败。                                           |
+| 58     | 本地客户端证书存在问题。                                     |
+| 59     | 无法使用指定的密码。                                         |
+| 60     | 远程服务器的SSL证书或SSH md5指纹认证错误。                   |
+| 61     | 无法识别的传输码。                                           |
+| 63     | 超出最大文件大小。                                           |
+| 64     | 请求的FTP SSL级别失败。                                      |
+| 65     | 当进行发送操作时，需要回退数据以重新传输，但回退操作失败。   |
+| 66     | 初始化SSL引擎失败。                                          |
+| 67     | 远程服务器拒绝登录。                                         |
+| 68     | 在TFTP服务器上找不到文件。                                   |
+| 69     | TFTP服务器上的权限问题。                                     |
+| 70     | 服务器上磁盘空间不足。                                       |
+| 71     | TFTP操作非法。                                               |
+| 72     | 未知的TFTP传输ID                                             |
+| 73     | 文件已存在。                                                 |
+| 74     | TFTP服务器运行错误。                                         |
+| 77     | 无法加载SSL CA证书，文件丢失或格式错误。                     |
+| 78     | URL中引用的资源不存在                                        |
+| 79     | SSH会话期间发生未指定的错误。                                |
+| 80     | 关闭SSL连接失败。                                            |
+| 81     | socket未准备好发送/接收，需要在准备好后重试。                |
+| 82     | 无法加载CRL文件，文件丢失或格式错误。                        |
+| 83     | Issuer检查失败。                                             |
+| 84     | PRET命令失败。                                               |
+| 85     | RTSP CSeq号不匹配                                            |
+| 86     | RTSP会话ID不匹配。                                           |
+| 87     | 无法解析FTP文件列表。                                        |
+| 88     | 块回调错误。                                                 |
+| 89     | 没有可用连接，会话将进入队列。                               |
+| 90     | 指定的公钥不匹配。                                           |
+| 91     | 证书状态无效。                                               |
+| 92     | HTTP/2成帧层流错误。                                         |
+| 93     | 在回调内部调用了API。                                        |
+| 94     | 身份认证错误。                                               |
+| 95     | 在HTTP/3层中检测到问题。                                     |
+| 96     | QUIC连接错误。此错误可能是由SSL库错误引起的。QUIC是用于HTTP/3传输的协议。 |
+| 97     | 代理握手失败。                                               |
+| 98     | 需要SSL客户端证书。                                          |
 
