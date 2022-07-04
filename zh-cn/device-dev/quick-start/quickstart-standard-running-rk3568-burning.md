@@ -8,7 +8,7 @@ RK3568的镜像烧录通过Winodow环境进行烧录。
 
 ## 导入源码
 
-在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](../quick-start/quickstart-standard-env-setup.md#安装deveco-device-tool)的情况下，您还需要通过以下步骤将编译好的源码导入Windows下，方可进行烧录。
+在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](quickstart-standard-env-setup.md)的情况下，您还需要通过以下步骤将编译好的源码导入Windows下，方可进行烧录。
 
 1. 打开DevEco Device Tool，进入Home页，点击**Import Project**打开工程。
 
@@ -67,7 +67,7 @@ RK3568的镜像烧录通过Winodow环境进行烧录。
 
    - upload_protocol：选择烧录协议，固定选择“upgrade”。
 
-   ![zh-cn_image_0000001194504874](figures/zh-cn_image_0000001194504874.png)
+     ![zh-cn_image_0000001194504874](figures/zh-cn_image_0000001194504874.png)
 
 7. 所有的配置都修改完成后，在工程配置页签的顶部，点击**Save**进行保存。
 
