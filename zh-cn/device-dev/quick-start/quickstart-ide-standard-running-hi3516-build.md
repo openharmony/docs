@@ -30,6 +30,6 @@
 
 6. 等待编译完成，在**TERMINAL**窗口输出“SUCCESS”，编译完成。
 
-   ![zh-cn_image_0000001221012767](figures/zh-cn_image_0000001221012767.png)
+   ![zh-cn_image_0000001221012768](figures/zh-cn_image_0000001221012768.png)
 
    编译完成后，可以在工程的**out**目录下，查看编译生成的文件，用于后续的[Hi3516DV300开发板烧录](quickstart-ide-standard-running-hi3516-burning.md)。
