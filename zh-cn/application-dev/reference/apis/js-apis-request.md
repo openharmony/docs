@@ -22,7 +22,7 @@ var config = {
   "deviceConfig": {
     "default": {
       "network": {
-        "cleartextTraffic":true
+        "cleartextTraffic": true
       }
       //...
     }
