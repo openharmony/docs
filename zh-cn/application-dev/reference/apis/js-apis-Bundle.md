@@ -22,6 +22,7 @@ SystemCapability.BundleManager.BundleFramework
 | ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息   |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
+| ohos.permission.MANAGE_DISPOSED_APP_STATUS | system_core  | 可设置和查询应用的处置状态   |
 
 权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
 
@@ -1697,8 +1698,7 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
 
 以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
-**需要权限：**
-ohos.permission.MANAGE_DISPOSED_APP_STATUS
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
@@ -1728,8 +1728,7 @@ setDisposedStatus(bundleName: string, status: number): Promise\<void>;
 
 以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
 
-**需要权限：**
-ohos.permission.MANAGE_DISPOSED_APP_STATUS
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
@@ -1764,8 +1763,7 @@ bundle.setDisposedStatus(bundleName, status).then(data=>{
 getDisposedStatus(bundleName: string,, callback: AsyncCallback\<number>): void;
 
 以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
-**需要权限：**
-ohos.permission.MANAGE_DISPOSED_APP_STATUS
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
@@ -1793,8 +1791,7 @@ getDisposedStatus(bundleName: string, status: number): Promise\<void>;
 
 以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
 
-**需要权限：**
-ohos.permission.MANAGE_DISPOSED_APP_STATUS
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
