@@ -16,7 +16,7 @@ OpenHarmony内核中，procfs在开机时会自动挂载到/proc目录下，仅�
 procfs文件的创建无法使用一般的文件系统接口，需要使用ProcMkdir接口创建目录，使用CreateProcEntry接口创建文件。文件节点功能的开发就是实现read和write函数的钩子挂到CreateProcEntry创建的文件中。当用户使用读写procfs的文件时，就会调用到钩子函数来实现自定义的功能。
 
 
-### 编程实例
+编程实例
 
 下面我们以创建/proc/hello/world文件为例，实现如下功能：
 
