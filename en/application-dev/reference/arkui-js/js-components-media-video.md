@@ -1,7 +1,7 @@
 # video
 
 
->  **NOTE**<br>
+>  **NOTE**
 >
 > - This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 >
@@ -15,7 +15,7 @@
 > ]
 > ```
 
-The **\<Video>** component provides a video player.
+The **\<video>** component provides a video player.
 
 
 ## Child Components
@@ -76,7 +76,8 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
 | pause | - | Pauses a video.|
 | setCurrentTime | {&nbsp;currenttime:&nbsp;value&nbsp;} | Sets the video playback position, in seconds.|
 
->  **NOTE**<br>
+> **NOTE**
+>
 > The methods in the above table can be called after the **attached** callback is invoked.
 
 ## Example
@@ -89,7 +90,7 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
          onpaues='pauesCallback' onfinish='finishCallback' onerror='errorCallback'
          onseeking='seekingCallback' onseeked='seekedCallback' 
          ontimeupdate='timeupdateCallback'
-         style="object-fit:fit; width:80%; height:400px;"
+         style="object-fit:fill; width:80%; height:400px;"
          onclick="change_start_pause">
    </video>
 </div>

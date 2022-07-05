@@ -16,51 +16,53 @@ None
 Use the following attributes to bind gesture recognition to a component. When a gesture is recognized, the event callback is invoked to notify the component.
 
 
-| Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| gesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to recognize.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting. | 
-| priorityGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to preferentially recognize.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - By default, the child component takes precedence over the parent component in gesture recognition. When **priorityGesture** is configured for the parent component, the parent component takes precedence over the child component in gesture recognition. | 
-| parallelGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture that can be triggered together with the child component gesture.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - The gesture event is not a bubbling event. When **parallelGesture** is set for the parent component, gesture events that are the same for the parent component and child components can be triggered, thereby implementing a bubbling effect. | 
+| gesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to recognize.<br/>- **gesture**: type of the gesture to bind.<br/>- **mask**: event response setting. |
+| priorityGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to preferentially recognize.<br/>- **gesture**: type of the gesture to bind.<br/>- **mask**: event response setting.<br/>By default, the child component takes precedence over the parent component in gesture recognition. When **priorityGesture** is configured for the parent component, the parent component takes precedence over the child component in gesture recognition. |
+| parallelGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture that can be triggered together with the child component gesture.<br/>- **gesture**: type of the gesture to bind.<br/>- **mask**: event response setting.<br/>The gesture event is not a bubbling event. When **parallelGesture** is set for the parent component, gesture events bound to both the parent and child components can be triggered, thereby implementing a bubbling effect. |
 
 
 - GestureMask enums
-  | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | Normal | The gestures of child components are not masked and are recognized based on the default gesture recognition sequence. | 
-  | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> However, the built-in gestures of the child components are not masked. For example, when the child component is a **&lt;List&gt;** component, the built-in sliding gestures can still be triggered. | 
+  | Normal | The gestures of child components are not masked and are recognized based on the default gesture recognition sequence. |
+  | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br/>However, the built-in gestures of the child components are not masked. For example, when the child component is a **&lt;List&gt;** component, the built-in sliding gestures can still be triggered. |
 
 
-- Gesture types
-  | Name | Description | 
+- GestureType enums
+  | Name | Description |
   | -------- | -------- |
-  | TapGesture | Tap gesture, which can be a single-tap or multi-tap gesture. | 
-  | LongPressGesture | Long press gesture. | 
-  | PanGesture | Pan gesture. | 
-  | PinchGesture | Pinch gesture. | 
-  | RotationGesture | Rotation gesture. | 
-  | GestureGroup | A group of gestures. Continuous recognition, parallel recognition, and exclusive recognition are supported. | 
+  | TapGesture | Tap gesture, which can be a single-tap or multi-tap gesture. |
+  | LongPressGesture | Long press gesture. |
+  | PanGesture | Pan gesture. |
+  | PinchGesture | Pinch gesture. |
+  | RotationGesture | Rotation gesture. |
+  | SwipeGesture | Swipe gesture, which can be idenfied when the swipe speed is 100 vp/s or higher. |
+  | GestureGroup | A group of gestures. Continuous recognition, parallel recognition, and exclusive recognition are supported. |
 
 
 ## Gesture Response Event
 
-The component uses the **gesture** method to bind the gesture object and uses the events provided in this object to respond to the gesture operation. For example, the **onAction** event of the **TapGesture** object can be used to respond to a click event. For details about the event definition, see the section of each gesture object.
+A component uses the **gesture** method to bind the gesture object and uses the events provided in this object to respond to the gesture operation. For example, the **onAction** event of the **TapGesture** object can be used to respond to a click event. For details about the event definition, see the section of each gesture object.
 
 - TapGesture events
-  | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | onAction((event?: GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized. | 
+  | onAction((event?: GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized. |
 
 - GestureEvent attributes
-  | Name | Type | Description | 
+  | Name | Type | Description |
   | -------- | -------- | -------- |
-  | timestamp | number | Timestamp of the event. | 
-  | target<sup>8+</sup> | EventTarget | Object that triggers the gesture event. | 
+  | timestamp | number | Timestamp of the event. |
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | Object that triggers the gesture event. |
 
 
 ## Example
 
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct GestureSettingsExample {
