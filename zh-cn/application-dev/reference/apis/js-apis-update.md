@@ -49,7 +49,7 @@ try {
   }
   let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
-  console.error(` Fail to get updater error: ${error}`);
+  console.error(`Fail to get updater error: ${error}`);
 }
 ```
 
@@ -74,7 +74,7 @@ getRestorer(): Restorer
 try {
   let restorer = update.getRestorer();
 } catch(error) {
-  console.error(` Fail to get restorer: ${error}`);
+  console.error(`Fail to get restorer: ${error}`);
 }
 ```
 
@@ -98,7 +98,7 @@ getLocalUpdater(): LocalUpdater
 try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
-  console.error(` Fail to get localUpdater error: ${error}`);
+  console.error(`Fail to get localUpdater error: ${error}`);
 }
 ```
 
@@ -108,16 +108,17 @@ try {
 
 checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
-检查新版本信息，使用callback方式作为异步方法。
+检查新版本信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[CheckResult](#checkresult)> | 是    | 回调返回检测结果 |
+| callback | AsyncCallback\<[CheckResult](#checkresult)> | 是    | 回调函数，返回搜包结果对象。 |
 
 **示例：**
 
@@ -131,16 +132,17 @@ updater.checkNewVersion((err, result) => {
 
 checkNewVersion(): Promise\<CheckResult>
 
-检查新版本信息，使用Promise方式作为异步方法。
+检查新版本信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值:**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[CheckResult](#checkresult)> | Promise函数返回检测结果 |
+| Promise\<[CheckResult](#checkresult)> | Promise对象，返回搜包结果对象。 |
 
 **示例:**
 
@@ -158,16 +160,17 @@ updater.checkNewVersion().then(result => {
 
 getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
-获取新版本信息，使用callback方式作为异步方法。
+获取新版本信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback<[NewVersionInfo](#newversioninfo)> | 是    | 回调返回新版本信息 |
+| callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | 是    | 回调函数，返回新版本信息对象。 |
 
 **示例：**
 
@@ -182,16 +185,17 @@ updater.getNewVersionInfo((err, info) => {
 
 getNewVersionInfo(): Promise\<NewVersionInfo>
 
-获取新版本信息，使用promise方式作为异步方法。
+获取新版本信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[NewVersionInfo](#newversioninfo)> | Promise，用于异步获取结果 |
+| Promise\<[NewVersionInfo](#newversioninfo)> | Promise对象，返回新版本信息对象。 |
 
 **示例：**
 
@@ -208,16 +212,17 @@ updater.getNewVersionInfo().then(info => {
 
 getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
-获取当前版本信息，使用callback方式作为异步方法。
+获取当前版本信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback<[CurrentVersionInfo](#currentversioninfo)> | 是    | 回调返回当前版本信息 |
+| callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | 是    | 回调函数，返回当前版本信息对象。 |
 
 **示例：**
 
@@ -233,16 +238,17 @@ updater.getCurrentVersionInfo((err, info) => {
 
 getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
-获取当前版本信息，使用promise方式作为异步方法。
+获取当前版本信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise，用于异步获取结果 |
+| Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise对象，返回当前版本对象。 |
 
 **示例：**
 
@@ -260,16 +266,17 @@ updater.getCurrentVersionInfo().then(info => {
 
 getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
-获取升级任务信息，使用callback方式作为异步方法。
+获取升级任务信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback<[TaskInfo](#taskinfo)> | 是    | 回调返回升级任务信息 |
+| callback | AsyncCallback\<[TaskInfo](#taskinfo)> | 是    | 回调函数，返回升级任务信息对象。 |
 
 **示例：**
 
@@ -283,7 +290,7 @@ updater.getTaskInfo((err, info) => {
 
 getTaskInfo(): Promise\<TaskInfo>
 
-获取升级任务信息，使用promise方式作为异步方法。
+获取升级任务信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -291,7 +298,7 @@ getTaskInfo(): Promise\<TaskInfo>
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<[TaskInfo](#taskinfo)> | Promise，用于异步获取结果 |
+| Promise\<[TaskInfo](#taskinfo)> | Promise对象，返回任务信息对象。 |
 
 **示例：**
 
@@ -307,9 +314,10 @@ updater.getTaskInfo().then(info => {
 
 download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions, callback: AsyncCallback\<void>): void
 
-下载新版本，使用callback方式作为异步方法。
+下载新版本。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -318,7 +326,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 | -------- | ---------------------------------------- | ---- | --------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
 | downloadOptions | [DownloadOptions](#downloadoptions) | 是    | 下载选项 |
-| callback | AsyncCallback<void> | 是    | 执行回调 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当下载成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -342,9 +350,10 @@ updater.download(versionDigestInfo, downloadOptions, (err) => {
 
 download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions): Promise\<void>
 
-下载新版本，使用promise方式作为异步方法。
+下载新版本。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -358,7 +367,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -384,9 +393,10 @@ updater.download(versionDigestInfo, downloadOptions).then(() => {
 
 resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions, callback: AsyncCallback\<void>): void
 
-恢复下载新版本，使用callback方式作为异步方法。
+恢复下载新版本。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -395,7 +405,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 | -------- | ---------------------------------------- | ---- | --------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
 | resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | 是    | 恢复下载选项 |
-| callback | AsyncCallback<void> | 是    | 执行回调 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当恢复下载成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -418,9 +428,10 @@ updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
 
 resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: ResumeDownloadOptions): Promise\<void>
 
-恢复下载新版本，使用promise方式作为异步方法。
+恢复下载新版本。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -434,7 +445,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -459,9 +470,10 @@ updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
 
 pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions, callback: AsyncCallback\<void>): void
 
-暂停下载新版本，使用callback方式作为异步方法。
+暂停下载新版本。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -470,7 +482,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 | -------- | ---------------------------------------- | ---- | --------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
 | pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | 是    | 暂停下载选项 |
-| callback | AsyncCallback<void> | 是    | 执行回调 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当暂停下载成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -493,9 +505,10 @@ updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
 
 pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseDownloadOptions): Promise\<void>
 
-恢复下载新版本，使用promise方式作为异步方法。
+恢复下载新版本。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -509,7 +522,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -534,9 +547,10 @@ updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
 
 upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, callback: AsyncCallback\<void>): void
 
-升级新版本，使用callback方式作为异步方法。
+升级新版本。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -545,7 +559,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 | -------- | ---------------------------------------- | ---- | --------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
 | upgradeOptions | [UpgradeOptions](#upgradeoptions) | 是    | 更新选项 |
-| callback | AsyncCallback<void> | 是    | 执行回调 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当升级执行成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -568,9 +582,10 @@ updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
 
 upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): Promise\<void>
 
-升级新版本，使用promise方式作为异步方法。
+升级新版本。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -584,7 +599,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -609,9 +624,10 @@ updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
 
 clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, callback: AsyncCallback\<void>): void
 
-清除异常状态，使用callback方式作为异步方法。
+清除异常状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -620,7 +636,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 | -------- | ---------------------------------------- | ---- | --------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
 | clearOptions | [ClearOptions](#clearoptions) | 是    | 清除选项 |
-| callback | AsyncCallback<void> | 是    | 执行回调 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当清除异常成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -643,9 +659,10 @@ updater.clearError(versionDigestInfo, clearOptions, (err) => {
 
 clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Promise\<void>
 
-清除异常状态，使用promise方式作为异步方法。
+清除异常状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -659,7 +676,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -684,16 +701,17 @@ updater.clearError(versionDigestInfo, clearOptions).then(() => {
 
 getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
-获取升级策略信息，使用callback方式作为异步方法。
+获取升级策略信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | 是    | 回调返回升级策略信息 |
+| callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | 是    | 回调函数，返回升级策略信息对象 |
 
 **示例：**
 
@@ -711,13 +729,14 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 获取升级策略，通过promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
 | 类型                                      | 说明                |
 | --------------------------------------- | ----------------- |
-| Promise\<[UpgradePolicy](#upgradepolicy)> | Promise函数返回升级策略信息 |
+| Promise\<[UpgradePolicy](#upgradepolicy)> | Promise对象，返回升级策略信息对象。 |
 
 **示例：**
 
@@ -734,9 +753,10 @@ updater.getUpgradePolicy().then(policy => {
 
 setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 
-设置升级策略，使用callback方式作为异步方法。
+设置升级策略。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -744,7 +764,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | policy | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略 |
-| callback | AsyncCallback\<number> | 是    | 回调设置结果 |
+| callback | AsyncCallback\<number> | 是    | 回调函数，返回设置结果对象 |
 
 **示例：**
 
@@ -763,9 +783,10 @@ updater.setUpgradePolicy(policy, (err, value) => {
 
 setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 
-设置升级策略，使用promise方式作为异步方法。
+设置升级策略。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -778,7 +799,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 
 | 类型               | 说明              |
 | ---------------- | --------------- |
-| Promise\<number> | Promise函数返回设置结果 |
+| Promise\<number> | Promise对象，返回设置结果对象。 |
 
 **示例：**
 
@@ -799,16 +820,17 @@ updater.setUpgradePolicy(policy).then(result =>
 
 terminateUpgrade(callback: AsyncCallback\<void>): void
 
-终止升级，使用callback方式作为异步方法。
+终止升级。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback<void> | 是    | 结果回调 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当清除升级缓存成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -822,7 +844,7 @@ updater.terminateUpgrade((err) => {
 
 terminateUpgrade(): Promise\<void>
 
-终止升级，使用promise方式作为异步方法。
+终止升级。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -830,7 +852,7 @@ terminateUpgrade(): Promise\<void>
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise，用于异步获取结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -846,7 +868,7 @@ updater.terminateUpgrade().then(() => {
 ### on
 on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
 
-注册事件监听，使用callback方式作为异步方法。
+注册事件监听。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -875,7 +897,7 @@ updater.on(eventClassifyInfo, onTaskUpdate);
 ### off
 off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
 
-取消注册事件监听，使用callback方式作为异步方法。
+取消注册事件监听。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -907,7 +929,7 @@ updater.off(eventClassifyInfo, onTaskUpdate);
 
 factoryReset(callback: AsyncCallback\<void>): void
 
-恢复出厂设置，使用callback方式作为异步方法。
+恢复出厂设置。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 **需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
@@ -916,7 +938,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<void> | 是    | 回调结果 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当恢复出厂执行成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -930,7 +952,7 @@ restorer.factoryReset((err) => {
 
 factoryReset(): Promise\<void>
 
-恢复出厂设置，使用promise方式作为异步方法。
+恢复出厂设置。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 **需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
@@ -939,7 +961,7 @@ factoryReset(): Promise\<void>
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise函数返回调用结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例:**
 
@@ -957,9 +979,10 @@ restorer.factoryReset().then(() => {
 
 verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: AsyncCallback\<number>): void
 
-校验升级包，使用callback方式作为异步方法。
+校验升级包。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -968,7 +991,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 | -------- | ---------------------------------------- | ---- | --------- |
 | upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件 |
 | certsFile | string | 是    | 证书文件路径 |
-| callback | AsyncCallback\<number> | 是    | 回调校验结果 |
+| callback | AsyncCallback\<number> | 是    | 回调函数，返回升级包校验结果对象 |
 
 **示例：**
 
@@ -985,11 +1008,12 @@ localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err, result) =>
 
 ### verifyUpgradePackage
 
-verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void>
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<number>
 
-校验升级包，使用promise方式作为异步方法。
+校验升级包。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -1003,7 +1027,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise函数返回调用结果 |
+| Promise\<number> | Promise对象，返回升级包校验结果对象。 |
 
 **示例:**
 
@@ -1022,9 +1046,10 @@ localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(result => {
 ### applyNewVersion
 applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: AsyncCallback\<void>): void
 
-安装升级包，使用callback方式作为异步方法。
+安装升级包。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **参数：**
@@ -1032,7 +1057,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | upgradeFile | Array<[UpgradeFile](#upgradefile)> | 是    | 升级文件 |
-| callback | AsyncCallback\<void> | 是    | 回调安装结果 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当安装升级包执行成功时，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1051,16 +1076,17 @@ localUpdater.applyNewVersion(upgradeFiles, (err) => {
 
 applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void>
 
-安装升级包，使用promise方式作为异步方法。
+安装升级包。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值:**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<void> | Promise函数返回调用结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例:**
 
@@ -1079,7 +1105,7 @@ localUpdater.applyNewVersion(upgradeFiles).then(() => {
 ### on
 on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): void
 
-注册事件监听，使用callback方式作为异步方法。
+注册事件监听。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -1108,7 +1134,7 @@ localUpdater.on(eventClassifyInfo, onTaskUpdate);
 ### off
 off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): void
 
-取消注册事件监听，使用callback方式作为异步方法。
+取消注册事件监听。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
