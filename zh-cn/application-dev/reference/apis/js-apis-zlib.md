@@ -1,6 +1,7 @@
 # Zip模块(JS端SDK接口)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+> 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 使用限制
@@ -124,9 +125,9 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 
 | 参数名   | 类型             | 必填 | 说明                                                      |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
-| level    | CompressLeve     | 否   | [参考zip.CompressLevel枚举定义](#zip.CompressLevel)       |
-| memLevel | MemLevel         | 否   | [参考zip.MemLevel枚举定义](#zip.MemLevel)                 |
-| strategy | CompressStrategy | 否   | [参考zip.CompressStrategy枚举定义](#zip.CompressStrategy) |
+| level    | CompressLeve     | 否   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)       |
+| memLevel | MemLevel         | 否   | 参考[zip.MemLevel枚举定义](#zipmemlevel)                 |
+| strategy | CompressStrategy | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy) |
 
 ## zip.MemLevel
 
