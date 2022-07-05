@@ -87,7 +87,7 @@ product_company：不体现在配置中，而是目录名，vendor下一级目�
 这一步需要移植Linux内核，让Linux内核可以成功运行起来。
 
 
-### 1.为SOC添加内核构建的子系统
+### 为SOC添加内核构建的子系统
 
 修改文件 //build/subsystem_config.json增加一个子系统. 配置如下：
 
@@ -104,7 +104,7 @@ product_company：不体现在配置中，而是目录名，vendor下一级目�
 接着需要修改定义产品的配置文件//vendor/MyProductVendor/MyProduct/config.json，将刚刚定义的子系统加入到产品中。
 
 
-### 2. 编译内核
+### 编译内核
 
 源码中提供了Linux 4.19的内核，归档在//kernel/linux-4.19。本节以该内核版本为例，讲解如何编译内核。
 
@@ -133,7 +133,7 @@ BUILD.gn是subsystem构建的唯一入口。
 | $root_build_dir/packages/phone/images/uboot | bootloader镜像 | 
 
 
-### 3. 移植验证
+### 移植验证
 
 启动编译，验证预期的kernel镜像是否成功生成。
 
@@ -167,7 +167,7 @@ BUILD.gn是subsystem构建的唯一入口。
 ## HDF驱动移植
 
 
-### 1. LCD
+### LCD
 
 HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱动，在驱动中生成模型的实例，并完成注册。
 
@@ -222,7 +222,7 @@ root {
 更详细的驱动开发指导，请参考 [LCD](../driver/driver-peripherals-lcd-des.md)。
 
 
-### 2. 触摸屏
+### 触摸屏
 
 本节描述如何移植触摸屏驱动。触摸屏的驱动被放置在//drivers/framework/model/input/driver/touchscreen目录中。移植触摸屏驱动主要工作是向系统注册ChipDevice模型实例。
 
@@ -283,7 +283,7 @@ HDF_INIT(g_touchXXXXChipEntry);
 更详细的驱动开发指导，请参考 [TOUCHSCREEN](../driver/driver-peripherals-touch-des.md)。
 
 
-### 3. WLAN
+### WLAN
 
 Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分负责处理WLAN流量。HDF WLAN分别为这两部分做了抽象。目前支持SDIO接口的WLAN芯片。
 
@@ -424,6 +424,6 @@ obj-$(CONFIG_DRIVERS_WLAN_XXX) += $(HDF_DEVICE_ROOT)/MySoCVendor/peripheral/buil
 当在内核中开启DRIVERS_WLAN_XXX开关时，会调用//device/MySoCVendor/peripheral/build/standard/中的makefile。更多详细的开发手册，请参考[WLAN开发](../guide/device-wlan-led-control.md)。
 
 
-### 4. 开发移植示例
+### 开发移植示例
 
 开发移植示例请参考[DAYU开发板](https://gitee.com/openharmony-sig/devboard_device_hihope_build/blob/master/DAYU%20%E5%B9%B3%E5%8F%B0OpenHarmony%20%E9%80%82%E9%85%8D%E6%8C%87%E5%AF%BC%20-202108.pdf)。
