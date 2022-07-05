@@ -874,7 +874,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 const array = new ArrayBuffer(100);
 imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {
             if(data !== undefined){
-                console.info('TC_053-1 success');     
+                console.info('Succeeded in updating data.');     
             }
 ```
 
