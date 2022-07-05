@@ -45,7 +45,7 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
 | scrollable | boolean | 是否可以通过左右滑动进行页面切换，默认为true。 | 是否可以通过左右滑动进行页面切换，默认为true。 |
 | barMode | BarMode  | TabBar布局模式。 | TabBar布局模式。 |
 | barWidth | number | TabBar的宽度值，不设置时使用系统主题中的默认值。 | TabBar的宽度值，不设置时使用系统主题中的默认值。 |
-| barHeight | number | TabBar的高度值，不设置时使用系统主题中的默认值。 | TabBar的高度值，不设置时使用系统主题中的默认值**。** |
+| barHeight | number | TabBar的高度值，不设置时使用系统主题中的默认值。 | TabBar的高度值，不设置时使用系统主题中的默认值。 |
 | animationDuration | number | 200 | TabContent滑动动画时长。 |
 
 - BarMode枚举说明
