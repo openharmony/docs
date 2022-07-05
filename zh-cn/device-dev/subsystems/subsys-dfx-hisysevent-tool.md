@@ -5,152 +5,160 @@
 
 目前在系统的/system/bin目录下预置了hisysevent工具，开发者可以通过此工具实时订阅HiSysEvent事件及查询历史HiSysEvent事件。
 
-
 ## 实时订阅HiSysEvent事件相关命令
 
 - 实时订阅HiSysEvent事件的基础命令：
 
-  
-```
-hisysevent -r
-```
+    ```
+    hisysevent -r
+    ```
 
-选项说明：
+    选项说明：
 
-  | 选项名称 | 功能说明 | 
-| -------- | -------- |
-| -r | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 | 
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -r | 以缺省设置实时订阅HiSysEvent事件，在此种订阅方式下有任何实时HiSysEvent事件产生，都会在控制台上打印此HiSysEvent事件 |
 
 - 打开调试模式：
 
-  
-```
-hisysevent -r -d
-```
+    ```
+    hisysevent -r -d
+    ```
 
-选项说明：
+    选项说明：
 
-  | 选项名称 | 功能说明 | 
-| -------- | -------- |
-| -d | 在调试模式下实时订阅HiSysEvent事件 | 
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -d | 在调试模式下实时订阅HiSysEvent事件 |
 
 - 通过事件标签方式实时订阅HiSysEvent事件：
 
-  
-```
-hisysevent -r -t <tag> [-c [WHOLE_WORD|PREFIX|REGULAR]]
-```
+    ```
+    hisysevent -r -t <tag> [-c [WHOLE_WORD|PREFIX|REGULAR]]
+    ```
 
-选项说明：
+    选项说明：
 
-  | 选项名称 | 功能说明 | 
-| -------- | -------- |
-| -t | 设置实时订阅的HiSysEvent事件标签，用来过滤订阅的HiSysEvent事件。 | 
-| -c | 设置实时订阅的HiSysEvent事件标签匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则。 | 
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -t | 设置实时订阅的HiSysEvent事件标签，用来过滤订阅的HiSysEvent事件。 |
+    | -c | 设置实时订阅的HiSysEvent事件标签匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则。 |
 
-命令实例：
+    命令实例：
 
-  
-```
-# hisysevent -r -t "TAG" -c PREFIX   {"domain_":"ARKUI","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
-# hisysevent -r -t "TAw{0,1}" -c REGULAR {"domain_":"WINDOWMANAGER","name_":"NO_FOCUS_WINDOW","type_":1,"time_":1501940269802,"tz_":"+0000","tag_":"TAG","pid_":1428,"tid_":1433,"uid_":10001,"level_":"CRITICAL","info_":""}   {"domain_":"ARKUI","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
-# hisysevent -r -t "TAw+" -c REGULAR    {"domain_":"WINDOWMANAGER","name_":"NO_FOCUS_WINDOW","type_":1,"time_":1501940269802,"tz_":"+0000","tag_":"TAG","pid_":1428,"tid_":1433,"uid_":10001,"level_":"CRITICAL","info_":""}   {"domain_":"ARKUI","name_":"UI_BLOCK_6S","type_":1,"time_":1501940269812,"tz_":"+0000","tag_":"TAG1","pid_":1428,"tid_":1452,"uid_":10001,"level_":"CRITICAL","info_":""}
-```
+    ```
+	# hisysevent -r -t "STA" -c PREFIX
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963670809,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805200750","HAPPEN_TIME":1501963670809,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"4973863135535405472","info_":""}
+    # hisysevent -r -t "STAw{0,6}" -c REGULAR
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963793206,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805200953","HAPPEN_TIME":1501963793206,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"16367997008075110557","info_":""}
+    # hisysevent -r -t "STA\w+" -c REGULAR
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963863393,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201103","HAPPEN_TIME":1501963863393,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"5522352691813553392","info_":""}
+    ```
 
 - 通过事件领域及事件名称的方式实时订阅HiSysEvent事件：
 
-  
-```
-hisysevent -r -o <domain> -n <eventName> [-c [WHOLE_WORD|PREFIX|REGULAR]]
-```
+    ```
+    hisysevent -r -o <domain> -n <eventName> [-c [WHOLE_WORD|PREFIX|REGULAR]]
+    ```
 
-选项说明：
+    选项说明：
 
-  | 选项名称 | 功能说明 | 
-| -------- | -------- |
-| -o | 设置实时订阅的HiSysEvent事件领域，用来过滤订阅的HiSysEvent事件。 | 
-| -n | 设置实时订阅的HiSysEvent事件名称，用来过滤订阅的HiSysEvent事件。 | 
-| -c | 设置实时订阅的HiSysEvent事件领域及事件名称的匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则。 | 
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -o | 设置实时订阅的HiSysEvent事件领域，用来过滤订阅的HiSysEvent事件。 |
+    | -n | 设置实时订阅的HiSysEvent事件名称，用来过滤订阅的HiSysEvent事件。 |
+    | -c | 设置实时订阅的HiSysEvent事件领域及事件名称的匹配规则，有“WHOLE_WORD”、“PREFIX”、“REGULAR”三种匹配规则。 |
 
-命令实例：
+    命令实例：
 
-  
-```
-# hisysevent -r -o "DOMAINA" -n "EVENTNAMEA"
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":1501940269802,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-# hisysevent -r -o "DOMAw{0,10}" -n "EVENTw+" -c REULAR
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":1501940269802,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}  {"domain_":"DOMAINABC","name_":"EVENTNAMEABC","type_":1,"time_":1501940269938,"tz_":"+0000","pid_":1428,"tid_":1336,"uid_":10002,"level_":"CRITICAL","info_":""}
-# hisysevent -r -o "DOMAw{0,10}" -c REGULAR
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":1501940269802,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}   {"domain_":"DOMAINABC","name_":"EVENTNAMEABC","type_":1,"time_":1501940269938,"tz_":"+0000","pid_":1428,"tid_":1336,"uid_":10002,"level_":"CRITICAL","info_":""}
-{"domain_":"DOMAINABC","name_":"EVENTNAMEB","type_":1,"time_":1501940279938,"tz_":"+0000","pid_":1428,"tid_":1344,"uid_":10002,"level_":"CRITICAL","info_":""}
-```
+    ```
+    # hisysevent -r -o "RELIABILITY" -n "APP_FREEZE"
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501963989773,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201309","HAPPEN_TIME":1501963989773,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"16367997008075110557","info_":""}
+    # hisysevent -r -o "RELIABI\w{0,8}" -n "APP_FREEZE" -c REGULAR
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964144383,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201544","HAPPEN_TIME":1501964144383,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"13456525196455104060","info_":""}
+    # hisysevent -r -o "RELIABI\w+" -c REGULAR
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964193466,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201633","HAPPEN_TIME":1501964193466,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"12675246910904037271","info_":""}
+    ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 当同时通过-t、-o及-n指定了相关订阅规则参数设置，则判断设置的事件标签是否为空，若不为空，则使用事件标签规则进行订阅，否则使用事件领域及事件名称订阅规则进行订阅。
+    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+    > 当同时通过-t、-o及-n指定了相关订阅规则参数设置，则判断设置的事件标签是否为空，若不为空，则使用事件标签规则进行订阅，否则使用事件领域及事件名称订阅规则进行订阅。
 
 
 ## 查询历史HiSysEvent事件相关命令
 
 - 查询历史HiSysEvent事件的基础命令：
 
-  
-```
-hisysevent -l
-```
+    ```
+    hisysevent -l
+    ```
 
-选项说明：
+    选项说明：
 
-  | 选项名称 | 功能说明 | 
-| -------- | -------- |
-| -l | 以缺省设置查询历史HiSysEvent事件，此次查询会返回最近不多于1000条的HiSysEvent事件。 | 
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -l | 以缺省设置查询历史HiSysEvent事件，此次查询会返回最近不多于1000条的HiSysEvent事件。 |
 
 - 通过设置开始/结束时间，过滤查询历史HiSysEvent事件的结果的命令：
 
-  
-```
-hisysevent -l -s <begin time> -e <end time>
-```
+    ```
+    hisysevent -l -s <begin time> -e <end time>
+    ```
 
-选项说明：
+    选项说明：
 
-  | 选项名称 | 功能说明 | 
-| -------- | -------- |
-| -s | 设置查询历史HiSysEvent事件的开始时间，此次查询只会返回不早于该时间点的HiSysEvent事件。 | 
-| -e | 设置查询历史HiSysEvent事件的结束时间，此次查询只会返回不晚于该时间点的HiSysEvent事件。 | 
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -s | 设置查询历史HiSysEvent事件的开始时间，此次查询只会返回不早于该时间点的HiSysEvent事件。 |
+    | -e | 设置查询历史HiSysEvent事件的结束时间，此次查询只会返回不晚于该时间点的HiSysEvent事件。 |
 
-命令实例：
+    命令实例：
 
-  
-```
-# hisysevent -l -s 20207388633 -e 20207389000
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207388633,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207388634,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207388900,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207389000,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-```
+    ```
+    # hisysevent -l -s 1501964222980 -e 1501964222996
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964222980,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201702","HAPPEN_TIME":1501964222980,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"10435592800188571430","info_":""}
+    {"domain_":"GRAPHIC","name_":"NO_DRAW","type_":1,"time_":1501964222980,"tz_":"+0000","pid_":1505,"tid_":1585,"uid_":10002,"PID":1505,"UID":10002,"ABILITY_NAME":"","MSG":"It took 1957104259905ns to draw, UI took 0ns to draw, RSRenderThread took 8962625ns to draw, RSRenderThread dropped 0 UI Frames","level_":"MINOR","id_":"1708287249901948387","info_":"isResolved,eventId:0"}
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964222994,"tz_":"+0000","pid_":623,"tid_":1445,"uid_":1201,"SUB_EVENT_TYPE":"NO_DRAW","EVENT_TIME":"20170805201702","MODULE":"NO_DRAW","PNAME":"NO_DRAW","REASON":"NO_DRAW","DIAG_INFO":"","STACK":"SUMMARY:\n","HIVIEW_LOG_FILE_PATHS":["/data/log/faultlog/faultlogger/appfreeze-NO_DRAW-10002-20170805201702"],"DOMAIN":"GRAPHIC","STRING_ID":"NO_DRAW","PID":1505,"UID":10002,"PACKAGE_NAME":"NO_DRAW","PROCESS_NAME":"","MSG":"It took 1956945826265ns to draw, UI took 0ns to draw, RSRenderThread took 9863293ns to draw, RSRenderThread dropped 0 UI Frames\n","level_":"CRITICAL","tag_":"STABILITY","id_":"10448522101019619655","info_":""}
+    ```
 
 - 通过设置最大数量值，限制查询历史HiSysEvent事件的数量：
 
-  
-```
-hisysevent -l -m <max hisysevent count>
-```
+    ```
+    hisysevent -l -m <max hisysevent count>
+    ```
 
-选项说明：
+    选项说明：
 
-  | 选项名称 | 功能说明 | 
-| -------- | -------- |
-| -m | 设置查询历史HiSysEvent事件的数量，有效值范围[0,1000]，此次查询返回的HiSysEvent事件数目不会多于此值。 | 
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -m | 设置查询历史HiSysEvent事件的数量，有效值范围[0,1000]，此次查询返回的HiSysEvent事件数目不会多于此值。 |
 
-命令实例：
+    命令实例：
 
-  
-```
-# hisysevent -l -s 20207388633 -e 20207389000 -m 3
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207388634,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207388900,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207389000,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-# hisysevent -l -m 2
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207388633,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-{"domain_":"DOMAINA","name_":"EVENTNAMEA","type_":1,"time_":20207388634,"tz_":"+0000","pid_":1428,"tid_":1333,"uid_":10002,"level_":"CRITICAL","info_":""}
-```
+    ```
+    # hisysevent -l -s 1501964222980 -e 1501964222996 -m 1
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964222980,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201702","HAPPEN_TIME":1501964222980,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"10435592800188571430","info_":""}
+    ```
+
+## 系统事件合法性校验模式
+
+- 打开系统事件合法性校验模式
+
+    ```
+    hisysevent -v
+    ```
+	
+    选项说明：
+
+    | 选项名称 | 功能说明 |
+    | -------- | -------- |
+    | -v | 配合订阅命令-r及查询命令-l使用，当打开事件合法性校验模式，系统事件包含的非法内容会标记为红色高亮显示。 |
+
+    命令实例：
+
+    ```
+    # hisysevent -v -l -s 1501964222980 -e 1501964222996
+    # 因为HAPPEN_TIME与VERSION没有在事件领域RELIABILITY所属的事件名称APP_FREEZE下进行yaml文件配置，属于非法内容，所以这两个键会被高亮显示为红色.
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964222980,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805201702","HAPPEN_TIME":1501964222980,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"10435592800188571430","info_":""}
+    # hisysevent -v -r -o "RELIABILITY" -n "APP_FREEZE"
+    {"domain_":"RELIABILITY","name_":"APP_FREEZE","type_":1,"time_":1501964644584,"pid_":1505,"uid_":10002,"FAULT_TYPE":"4","MODULE":"com.ohos.screenlock","REASON":"NO_DRAW","SUMMARY":"SUMMARY:\n","LOG_PATH":"/data/log/faultlog/faultlogger/appfreeze-com.ohos.screenlock-10002-20170805202404","HAPPEN_TIME":1501964644584,"VERSION":"1.0.0","level_":"CRITICAL","tag_":"STABILITY","id_":"11097868872446282676","info_":""}
+    ```
