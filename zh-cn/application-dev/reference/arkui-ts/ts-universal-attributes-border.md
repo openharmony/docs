@@ -30,7 +30,7 @@
   | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | width | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 边框宽度。 |
-  | color | [ResourceColor](../../ui/ts-types.md#resourcecolor类型8) | 'Black' | 否 | 边框颜色。 |
+  | color | [ResourceColor](../../ui/ts-types.md) | 'Black' | 否 | 边框颜色。 |
   | radius | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 边框角度。 |
   | style | BorderStyle | BorderStyle.Solid | 否 | 边框样式。 |
 
