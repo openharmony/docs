@@ -1202,7 +1202,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
 | versionDigestInfo              | [VersionDigestInfo](#versiondigestinfo)   | 是    | 版本摘要  |
-| versionComponents             | Array\<[VersionComponent](#vesioncomponent)>  | 是    | 版本组件    |
+| versionComponents             | Array\<[VersionComponent](#versioncomponent)>  | 是    | 版本组件    |
 
 ## VersionDigestInfo
 
