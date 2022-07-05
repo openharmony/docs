@@ -912,7 +912,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                                | Mandatory  | Description                                   |
 | ----------- | ---------------------------------- | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-Want.md)                               | Yes   | Want that contains the bundle name.                  |
+| want        | [Want](js-apis-application-Want.md)| Yes   | Want that contains the bundle name.                  |
 | bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId      | number                             | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.          |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes   | Callback used to return the ability information.           |
@@ -953,7 +953,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                                | Mandatory  | Description                                   |
 | ----------- | ---------------------------------- | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-Want.md)                               | Yes   | Want that contains the bundle name.                  |
+| want        | [Want](js-apis-application-Want.md)| Yes   | Want that contains the bundle name.                  |
 | bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes   | Callback used to return the ability information.           |
 
@@ -1207,7 +1207,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name            | Type    | Mandatory  | Description                                      |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)   | Yes   | Want that contains the bundle name.                       |
-| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
+| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0. |
 | userId         | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
 
 **Return value**
@@ -1253,8 +1253,8 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name          | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| want           | [Want](js-apis-application-Want.md)                                                        | Yes  | Want that contains the bundle name.                      |
-| extensionFlags | number                                   | Yes    | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9). |
+| want           | [Want](js-apis-application-Want.md)      | Yes  | Want that contains the bundle name.                      |
+| extensionFlags | number                                   | Yes    | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0. |
 | userId         | number                                   | Yes    | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes  | Callback used to return the Extension ability information.      |
 
@@ -1294,8 +1294,8 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name            | Type                                      | Mandatory  | Description                                      |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| want           | [Want](js-apis-application-Want.md)                                     | Yes   | Want that contains the bundle name.                     |
-| extensionFlags | number                                   | Yes    | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9). |
+| want           | [Want](js-apis-application-Want.md) | Yes   | Want that contains the bundle name.                     |
+| extensionFlags | number                                   | Yes    | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0. |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes   | Callback used to return the Extension ability information.     |
 
 **Example**
