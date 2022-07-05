@@ -1,7 +1,7 @@
 # GridItem
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -32,7 +32,7 @@ GridItem()
 | columnStart | number | - | Start column number of the component. |
 | columnEnd | number | - | End column number of the component. |
 | forceRebuild | boolean | false | Whether to re-create this node when the component is being built. |
-| selectable<sup>8+</sup> | boolean | true | Whether the current **&lt;GridItem&gt;** is selectable by the mouse.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute takes effect only when mouse frame selection is enabled for the parent **&lt;Grid&gt;** container. |
+| selectable<sup>8+</sup> | boolean | true | Whether the current **&lt;GridItem&gt;** is selectable by the mouse.<br/>**NOTE**<br/>This attribute takes effect only when mouse frame selection is enabled for the parent **&lt;Grid&gt;** container. |
 
 
 ## Events

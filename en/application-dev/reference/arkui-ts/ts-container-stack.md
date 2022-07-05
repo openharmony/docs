@@ -1,11 +1,11 @@
 # Stack
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Stack&gt;** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
+The **<Stack\>** component provides a stack container where child components are successively stacked and the latter one overwrites the previous one.
 
 
 ## Required Permissions
@@ -23,7 +23,7 @@ None
 Stack(value:{alignContent?: Alignment})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | alignContent | [Alignment](ts-appendix-enums.md#alignment-enums) | No | Center | Alignment of child components in the container. |
 

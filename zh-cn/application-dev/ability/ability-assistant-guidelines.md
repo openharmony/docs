@@ -74,9 +74,9 @@ Ability assistant（Ability助手，简称为aa）是实现应用、原子化服
   | -l/--mission-list | type（缺省打印全部） | 打印任务栈信息。<br />type：<br />NORMAL <br />DEFAULT_STANDARD<br />DEFAULT_SINGLE<br />LAUNCHER |
   | -e/--extension    | elementName          | 打印扩展组件信息。                                           |
   | -u/--userId       | UserId               | 打印指定UserId的栈信息，需要和其他参数组合使用，例如 `aa dump -a -u 100`、`aa dump -d -u 100` |
-  | -d/--data         |                      | 打印Data Ability。                                           |
-  | -i/--ability      | AbilityRecord ID     | 打印指定Ability详细信息                                      |
-  | -c/--client       |                      | 打印Ability详细信息，需要和其他参数组合使用，例如 `aa dump -a -c`、`aa dump -i 21 -c` |
+  | -d/--data         | -                    | 打印Data Ability。                                           |
+  | -i/--ability      | AbilityRecord ID     | 打印指定Ability详细信息。                                    |
+  | -c/--client       | -                    | 打印Ability详细信息，需要和其他参数组合使用，例如 `aa dump -a -c`、`aa dump -i 21 -c` |
   
   **使用方法：**
   

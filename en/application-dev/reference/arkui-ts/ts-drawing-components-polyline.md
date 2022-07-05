@@ -1,11 +1,11 @@
 # Polyline
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Polyline&gt;** component is used to draw a polyline.
+The **<Polyline\>** component is used to draw a polyline.
 
 
 ## Required Permissions
@@ -23,20 +23,20 @@ None
 Polyline(options?: {width: Length, height: Length})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | For details, see the **options** parameters. | 
+  | options | Object | No | - | Options of the polyline to draw. For details, see the **options** parameters. | 
 
 - options parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width. | 
-  | height | Length | Yes | - | Height. | 
+  | width | Length | Yes | - | Width of the polyline. | 
+  | height | Length | Yes | - | Height of the polyline. | 
 
 
 ## Attributes
 
-  | Name | Type | Default Value | Mandatory | Description | 
+| Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
 | width | Length | 0 | No | Width of the rectangle where the polyline is located. | 
 | height | Length | 0 | No | Height of the rectangle where the polyline is located. | 
@@ -46,7 +46,7 @@ Polyline(options?: {width: Length, height: Length})
 ## Example
 
   
-```
+```ts
 @Entry
 @Component
 struct PolylineExample {

@@ -190,7 +190,8 @@ export class AudioRecorderDemo {
 
 The following samples are provided to help you better understand how to develop audio recording:
 
-- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code15884933169" tempcmdid="code15884933169">Recorder</idp:inline>: Recorder (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
-- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code563211231612" tempcmdid="code563211231612">JsRecorder</idp:inline>: Recorder (JS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/JSRecorder)
-- [<idp:inline class="- topic/inline " val="code" displayname="code" id="code7932192919168" tempcmdid="code7932192919168">eTsAudioPlayer</idp:inline>: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [`Recorder`: Recorder (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
+- [`JsRecorder`: Recorder (JS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/JSRecorder)
+- [`eTsAudioPlayer`: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
 - [Audio Player](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
+

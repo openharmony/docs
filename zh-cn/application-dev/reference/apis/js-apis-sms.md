@@ -1,5 +1,7 @@
 # 短信服务
 
+短信服务提供了管理短信的一些基础能力，包括创建、发送短信，获取、设置发送短信的默认SIM卡槽ID，获取、设置短信服务中心（SMSC）地址，以及检查当前设备是否具备短信发送和接收能力等。
+
 >**说明：** 
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -156,6 +158,68 @@ promise.then(data => {
 });
 ```
 
+## sms.setDefaultSmsSlotId<sup>7+</sup>
+
+setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
+
+设置发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| slotId   | number                    | 是   | SIM卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+sms.setDefaultSmsSlotId(0,(err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.setDefaultSmsSlotId<sup>7+</sup>
+
+setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
+
+设置发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| slotId | number | 是   | SIM卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>- -1：清除默认配置 |
+
+**返回值：**
+
+| 类型            | 说明                            |
+| --------------- | ------------------------------- |
+| Promise\<void\> | 以Promise形式异步返回设置结果。 |
+
+**示例：**
+
+```js
+let promise = sms.setDefaultSmsSlotId(0);
+promise.then(data => {
+    console.log(`setDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`setDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## sms.setSmscAddr<sup>7+</sup>
 
@@ -163,11 +227,11 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 设置短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -190,15 +254,15 @@ sms.setSmscAddr(slotId, smscAddr, (err,data) => {
 
 ## sms.setSmscAddr<sup>7+</sup>
 
-setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
+setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 设置短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
+
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -233,11 +297,11 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 获取短信服务中心（SMSC）地址，使用callback方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -262,11 +326,11 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 获取短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Telephony.SmsMms
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

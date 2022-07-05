@@ -4,18 +4,16 @@
 
 A widget is a set of UI components used to display important information or operations for an application. It provides users with direct access to a desired application service, without requiring them to open the application.
 
-A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive features such as opening a UI page or sending a message. The widget host is responsible for displaying the service widget.
+A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive functions such as opening a UI page or sending a message.  
 
 Basic concepts:
 
-- Widget provider<br>
-  The widget provider is an atomic service that provides the content to be displayed. It controls the display content, component layout, and component click events of a widget.
-- Widget host<br>
-  The widget host is an application that displays the widget content and controls the position where the widget is displayed in the host application.
-- Widget Manager<br>
-  The Widget Manager is a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
+- Widget provider: an atomic service that controls what and how content is displayed in a widget and interacts with users.
+- Widget host: an application that displays the widget content and controls the position where the widget is displayed in the host application.
+- Widget Manager: a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**
+>
 > The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
 You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
@@ -24,16 +22,16 @@ The widget provider controls the widget content to display, component layout, an
 
 ## When to Use
 
-Stage ability development refers to the development conducted by the widget provider based on the [stage model](stage-brief.md). As a widget provider, you need to carry out the following operations:
+Stage widget development refers to the development conducted by the widget provider based on the [stage model](stage-brief.md). As a widget provider, you need to carry out the following operations:
 
-- Develop the lifecycle callback functions in **FormExtension**.
-- Create a **FormBindingData** object.
+- Develop the lifecycle callbacks in **FormExtension**.
+- Create a **FormBindingData** instance.
 - Update a widget through **FormProvider**.
 - Develop the widget UI page.
 
 ## Available APIs
 
-The **FormExtension** class has the **context** attribute. For details on the APIs provided by the **FormExtension** class, see [FormExtension](../reference/apis/js-apis-formextension.md).
+The **FormExtension** class has the following APIs. For details, see [FormExtension](../reference/apis/js-apis-formextension.md).
 
 **Table 1** FormExtension APIs
 
@@ -42,19 +40,19 @@ The **FormExtension** class has the **context** attribute. For details on the AP
 | onCreate(want: Want): formBindingData.FormBindingData        | Called to notify the widget provider that a **Form** instance (widget) has been created.          |
 | onCastToNormal(formId: string): void                         | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
 | onUpdate(formId: string): void                               | Called to notify the widget provider that a widget has been updated.          |
-| onVisibilityChange(newStatus: { [key: string]: number }): void | Called to notify the widget provider of the change of widget visibility.        |
-| onEvent(formId: string, message: string): void               | Called to instruct the widget provider to receive and process the widget event.      |
+| onVisibilityChange(newStatus: { [key: string]: number }): void | Called to notify the widget provider of the change in widget visibility.        |
+| onEvent(formId: string, message: string): void               | Called to instruct the widget provider to receive and process a widget event.      |
 | onDestroy(formId: string): void                              | Called to notify the widget provider that a **Form** instance (widget) has been destroyed.          |
-| onConfigurationUpdated(config: Configuration): void;         | Called when the configuration of the environment where the ability is running is updated.                      |
+| onConfigurationUpdated(config: Configuration): void;         | Called when the configuration of the environment where the widget is running is updated.                      |
 
-The **context** attribute of the **FormExtension** class inherits from the **FormExtensionContext** class. For details about the APIs provided by the **FormExtensionContext** class, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
+The **FormExtension** class also has a member context, that is, the **FormExtensionContext** class. For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
 
 **Table 2** FormExtensionContext APIs
 
 | API                                                      | Description                     |
 | :----------------------------------------------------------- | :------------------------ |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | Updates a widget. This method uses a callback to return the result.   |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Updates a widget. This method uses a promise to return the result.|
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | Updates a widget. This API uses an asynchronous callback to return the result.   |
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Updates a widget. This API uses a promise to return the result.|
 
 For details about the **FormProvider** APIs, see [FormProvider](../reference/apis/js-apis-formprovider.md).
 
@@ -69,9 +67,9 @@ For details about the **FormProvider** APIs, see [FormProvider](../reference/api
 
 ## How to Develop
 
-### Creating a Form Extension
+### Creating a FormExtension Instance
 
-To create a widget in the stage model, you need to implement the lifecycle callback functions of **FormExtension**. The sample code is as follows:
+To create a widget in the stage model, implement the lifecycle callbacks of **FormExtension**. The sample code is as follows:
 
 1. Import the required modules.
 
@@ -82,13 +80,13 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    import formProvider from '@ohos.application.formProvider'
    ```
 
-2. Implement the lifecycle callback functions of **FormExtension**.
+2. Implement the lifecycle callbacks of **FormExtension**.
 
    ```javascript
    export default class FormAbility extends FormExtension {
        onCreate(want) {
            console.log('FormAbility onCreate');
-           // Persistently store widget information for subsequent use, such as widget instance retrieval and update.
+           // Persistently store widget information for subsequent use, such as during widget instance retrieval or update.
            let obj = {
                "title": "titleOnCreate",
                "detail": "detailOnCreate"
@@ -101,7 +99,7 @@ To create a widget in the stage model, you need to implement the lifecycle callb
            console.log('FormAbility onCastToNormal');
        }
        onUpdate(formId) {
-           // To support scheduled update, periodic update, or update requested by the widget host for a widget, override this method for data update.
+           // To support scheduled update, periodic update, or update requested by the widget host, override this method for widget data update.
            console.log('FormAbility onUpdate');
            let obj = {
                "title": "titleOnUpdate",
@@ -130,24 +128,22 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    }
    ```
 
-### Configuring config.json for the Form Ability
+### Configuring the Widget Configuration File
 
-Configure the **module.json** file for the **Form** ability.
-
-- The internal field structure of the **extensionAbility** module is described as follows:
+- Configure Extension ability information under **extensionAbilities** in the **module.json5** file. The internal field structure is described as follows:
 
   | Field   | Description                                                        | Data Type  | Default          |
   | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
-  | name        | Name of an extension ability.                  | String    | No                  |
-  | srcEntrance | JS code path of the extension ability.    | String    | No                  |
-  | description | Description of the extension ability. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)|
-  | icon        | Index of the extension ability icon file.                  | String    | Yes (initial value: left empty)|
-  | label       | Descriptive information about the extension ability presented externally. The value can be a string or a resource index to the description.| String    | Yes (initial value: left empty)|
-  | type        | Type of the extension ability. The value can be **form** or **service**.             | String    | No                  |
+  | name        | Name of the Extension ability. This field must be specified.                | String    | No                  |
+  | srcEntrance | Path of the Extension ability lifecycle code. This field must be specified.| String    | No                  |
+  | description | Description of the Extension ability. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)|
+  | icon        | Index of the Extension ability icon file.                  | String    | Yes (initial value: left empty)|
+  | label       | Descriptive information about the Extension ability presented externally. The value can be a string or a resource index to the description.| String    | Yes (initial value: left empty)|
+  | type        | Type of the Extension ability. In the current development scenario, set this field to **form**.| String    | No                  |
   | permissions | Permissions required for abilities of another application to call the current ability.        | String array| Yes (initial value: left empty)|
-  | metadata    | Metadata of the extension ability. It describes the configuration information of the extension ability.| Object      | Yes (initial value: left empty)  |
+  | metadata    | Metadata (configuration information) of the Extension ability.| Object      | Yes (initial value: left empty)  |
 
-  For a Form Extension ability, set **type** to **form** and **metadata** to the widget details.
+  For a Form Extension ability, you must specify **metadata**. Specifically, set **name** to **ohos.extension.form** (fixed), and set **resource** to the index of the widget configuration information.
 
   A configuration example is as follows:
 
@@ -165,25 +161,25 @@ Configure the **module.json** file for the **Form** ability.
   }]
      ```
 
-- Configure the widget profile module. In the metadata of the Form Extension ability, the resource file path specified by **ohos.extension.form** must be used. For example, **$profile:form_config** means that **form_config.json** in the **resources/base/profile/** directory of the development view is used as the widget profile.
+- Configure the widget configuration information. **resource** in **metadata** specifies the index of the widget configuration information. For example, **$profile:form_config** means that **form_config.json** in the **resources/base/profile/** directory of the development view is used as the widget profile configuration file.
 
   The internal field structure is described as follows:
   
   | Field           | Description                                                        | Data Type  | Default              |
   | ------------------- | ------------------------------------------------------------ | ---------- | ------------------------ |
-  | name                | Class name of the widget. The value is a string with a maximum of 127 bytes.                   | String    | No                      |
+  | name                | Class name of a widget. The value is a string with a maximum of 127 bytes.                   | String    | No                      |
   | description         | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String    | Yes (initial value: left empty)      |
   | src                 | Full path of the UI code corresponding to the widget.                            | String    | No                      |
   | window              | Window-related configurations.                              | Object      | Yes                  |
   | isDefault           | Whether the widget is a default one. Each ability has only one default widget.<br>**true**: The widget is the default one.<br>**false**: The widget is not the default one.| Boolean    | No                      |
   | colorMode           | Color mode of the widget. Available values are as follows:<br>**auto**: The widget adopts the auto-adaptive color mode.<br>**dark**: The widget adopts the dark color mode.<br>**light**: The widget adopts the light color mode.| String    | Yes (initial value: **auto**)|
-  | supportDimensions   | Grid styles supported by the widget. Available values are as follows:<br>1 * 2: indicates a grid with one row and two columns.<br>2 * 2: indicates a grid with two rows and two columns.<br>2 * 4: indicates a grid with two rows and four columns.<br>4 * 4: indicates a grid with four rows and four columns.| String array| No                      |
+  | supportDimensions   | Grid styles supported by the widget. Available values are as follows:<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No                      |
   | defaultDimension    | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String    | No                      |
-  | updateEnabled       | Whether the widget can be updated periodically. Available values are as follows:<br>**true**: The widget can be updated periodically, depending on the update way you select, either at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** is preferentially recommended.<br>**false**: The widget cannot be updated periodically.| Boolean  | No                      |
+  | updateEnabled       | Whether the widget can be updated periodically. Available values are as follows:<br>**true**: The widget can be updated periodically, depending on the update way you select, either at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** is recommended.<br>**false**: The widget cannot be updated periodically.| Boolean  | No                      |
   | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.        | String    | Yes (initial value: **0:0**) |
   | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer ***N***, the interval is calculated by multiplying ***N*** and 30 minutes.| Number      | Yes (initial value: **0**)   |
   | formConfigAbility   | Link to a specific page of the application. The value is a URI.                       | String    | Yes (initial value: left empty)    |
-  | formVisibleNotify   | Whether the widget is allowed to use the widget visibility notification.                          | String    | Yes (initial value: left empty)    |
+  | formVisibleNotify   | Whether the widget is allowed to use the widget visibility notification.                        | String    | Yes (initial value: left empty)    |
   | metaData            | Metadata of the widget. This field contains the array of the **customizeData** field.           | Object      | Yes (initial value: left empty)    |
 
      A configuration example is as follows:
@@ -192,7 +188,7 @@ Configure the **module.json** file for the **Form** ability.
   {
       "forms": [{
           "name": "widget",
-          "description": "This is a service widget.",
+          "description": "This is a widget.",
           "src": "./js/widget/pages/index/index",
           "window": {
               "autoDesignWidth": true,
@@ -211,9 +207,9 @@ Configure the **module.json** file for the **Form** ability.
      ```
 
 
-### Widget Data Persistence
+### Persistently Storing Widget Data
 
-Mostly, the widget provider is started only when it needs to obtain information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget.
+Mostly, the widget provider is started only when it needs to obtain information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting the widget.
 
 ```javascript
        onCreate(want) {
@@ -222,7 +218,8 @@ Mostly, the widget provider is started only when it needs to obtain information 
            let formId = want.parameters["ohos.extra.param.key.form_identity"];
            let formName = want.parameters["ohos.extra.param.key.form_name"];
            let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-           // Persistently store widget information for subsequent use, such as widget instance retrieval and update.
+           // Persistently store widget data for subsequent use, such as widget instance retrieval and update.
+           // The storeFormInfo API is not implemented here. For details about the implementation, see "Samples" below.
            storeFormInfo(formId, formName, tempFlag, want);
 
            let obj = {
@@ -238,9 +235,11 @@ You should override **onDestroy** to delete widget data.
 
 ```javascript
        onDestroy(formId) {
-           // Delete widget data.
-           deleteFormInfo(formId);
            console.log('FormAbility onDestroy');
+
+           // You need to implement the code for deleting the persistent widget data.
+           // The deleteFormInfo API is not implemented here. For details about the implementation, see "Samples" below.
+           deleteFormInfo(formId);
        }
 ```
 
@@ -248,16 +247,37 @@ For details about the persistence method, see [Lightweight Data Store Developmen
 
 Note that the **Want** passed by the widget host to the widget provider contains a temporary flag, indicating whether the requested widget is a temporary one.
 
-Normal widget: a widget that will be persistently used by the widget host
+- Normal widget: a widget that will be persistently used by the widget host
 
-Temporary widget: a widget that is temporarily used by the widget host
+- Temporary widget: a widget that is temporarily used by the widget host
 
-Data of a temporary widget is not persistently stored. If the widget framework is killed and restarted, data of a temporary widget will be deleted. However, the widget provider is not notified of which widget is deleted, and still keeps the data. Therefore, the widget provider should implement data clearing. In addition, the widget host may convert a temporary widget into a normal one. If the conversion is successful, the widget provider should process the widget ID and store the data persistently. This prevents the widget provider from deleting persistent data when clearing temporary widgets.
+Data of a temporary widget is not persistently stored. If it is deleted from the Widget Manager due to exceptions, such as crash of the widget framework, the widget provider will not be notified of which widget is deleted, and still keeps the data. In light of this, the widget provider should implement data clearing. If the widget host successfully converts a temporary widget into a normal one, the widget provider should also process the widget ID and store the data persistently. This prevents the widget provider from deleting the widget data when clearing temporary widgets.
+
+### Updating Widget Data
+
+When a widget application initiates a data update upon a scheduled or periodic update, the application obtains the latest data and calls **updateForm** to update the widget. The sample code is as follows:
+
+```javascript
+onUpdate(formId) {
+    // To support scheduled update, periodic update, or update requested by the widget host, override this method for widget data update.
+    console.log('FormAbility onUpdate');
+    let obj = {
+        "title": "titleOnUpdate",
+        "detail": "detailOnUpdate"
+    };
+    let formData = formBindingData.createFormBindingData(obj);
+    // Call the updateForm method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+    formProvider.updateForm(formId, formData).catch((error) => {
+        console.log('FormAbility updateForm, error:' + JSON.stringify(error));
+    });
+}
+```
 
 ### Developing the Widget UI Page
+
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Currently, only the JavaScript-based web-like development paradigm can be used to develop the widget UI.
 
    - hml:
@@ -339,10 +359,7 @@ Now you've got a widget shown below.
 
 ![fa-form-example](figures/fa-form-example.png)
 
-## Development Example
+## Samples
 
 The following sample is provided to help you better understand how to develop a widget on the stage model:
-
-[FormExtAbility](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)
-
-Users can create, update, and delete widgets on the home screen of their devices or by using their own widget host. This sample also implements widget information persistence by using lightweight data storage.
+- [`FormExtAbility`: Stage Model Widget (eTS, JS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)

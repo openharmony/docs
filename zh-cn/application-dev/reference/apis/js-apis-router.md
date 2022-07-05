@@ -190,6 +190,8 @@ getLength(): string
 
 获取当前在页面栈内的页面数量。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
@@ -275,7 +277,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 页面返回询问对话框选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

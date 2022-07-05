@@ -26,7 +26,7 @@ import window from '@ohos.window';
 | 名称              | 值 | 说明               |
 | ----------------- | ------ | ------------------ |
 | TYPE_APP          | 0      | 表示应用子窗口。此接口仅可在FA模型下使用。 |
-| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。此接口仅可在Stage模型下使用。 |
+| TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
 | TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。此接口仅可在Stage模型下使用。<br>此接口为系统接口，三方应用不支持调用。 |
 | TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
 | TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
@@ -47,10 +47,12 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称        | 值   | 说明               |
-| ----------- | ---- | ------------------ |
-| TYPE_SYSTEM | 0    | 表示系统默认区域。 |
-| TYPE_CUTOUT | 1    | 表示刘海屏区域。   |
+| 名称                               | 值  | 说明              |
+|----------------------------------|-----| ----------------- |
+| TYPE_SYSTEM                      | 0   | 表示系统默认区域。|
+| TYPE_CUTOUT                      | 1   | 表示刘海屏区域。  |
+| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2   | 表示手势区域。    |
+| TYPE_KEYBOARD<sup>9+</sup>       | 3   | 表示软键盘区域。  |
 
 ## WindowMode<sup>7+</sup>
 
@@ -68,6 +70,19 @@ import window from '@ohos.window';
 | SECONDARY  | 4    | 表示APP分屏多窗口次要模式。   |
 | FLOATING   | 5    | 表示APP自由悬浮形式窗口模式。 |
 
+## WindowLayoutMode<sup>9+</sup>
+
+窗口布局模式枚举。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| WINDOW_LAYOUT_MODE_CASCADE  | 0    | 表示使用层叠布局模式。       |
+| WINDOW_LAYOUT_MODE_TILE | 1    | 表示使用平铺布局模式。             |
+
 ## SystemBarProperties
 
 状态栏、导航栏的属性。
@@ -82,6 +97,27 @@ import window from '@ohos.window';
 | navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
+
+## Orientation<sup>9+</sup>
+
+窗口显示方向类型枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称                                  | 值   | 说明                          |
+| ------------------------------------- | ---- | ----------------------------- |
+| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。 |
+| PORTRAIT                              | 1    | 表示竖屏显示模式。             |
+| LANDSCAPE                             | 2    | 表示横屏显示模式。   |
+| PORTAIT_INVERTED                      | 3    | 表示反向竖屏显示模式。   |
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。 |
+| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。 |
+| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
+| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横向旋转模式。 |
+| LOCKED                                | 11   | 表示锁定模式。 |
 
 ## SystemBarRegionTint<sup>8+</sup>
 
@@ -133,6 +169,7 @@ import window from '@ohos.window';
 
 | 名称       | 参数类型      | 可读 | 可写 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
+| visible<sup>9+</sup>    | boolean       | 是   | 是   | 规避区域是否可见。 |
 | leftRect   | [Rect](#rect) | 是   | 是   | 屏幕左侧的矩形区。 |
 | topRect    | [Rect](#rect) | 是   | 是   | 屏幕顶部的矩形区。 |
 | rightRect  | [Rect](#rect) | 是   | 是   | 屏幕右侧的矩形区。 |
@@ -446,8 +483,6 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
 获取当前应用内最后显示的窗口，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
@@ -477,8 +512,6 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
 获取当前应用内最后显示的窗口，使用Promise异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
@@ -503,6 +536,195 @@ promise.then((data)=> {
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+})
+```
+
+## window.minimizeAll<sup>9+</sup>
+minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
+
+最小化某显示设备下的所有窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
+
+**示例：**
+
+```js
+import display from '@ohos.display'
+import window from '@ohos.window'
+
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if(err.code) {
+        return;
+    }
+    displayClass = data;
+    window.minimizeAll(displayClass.id, (err, data) => {
+        if(err.code) {
+            console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in minimizing all windows.');
+    });
+});
+```
+
+## window.minimizeAll<sup>9+</sup>
+minimizeAll(id: number): Promise&lt;void&gt;
+
+最小化某显示设备下的所有窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+import display from '@ohos.display'
+import window from '@ohos.window'
+
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if(err.code) {
+        return;
+    }
+    displayClass = data;
+    let promise = window.minimizeAll(displayClass.id);
+    promise.then((data)=> {
+        console.info('Succeeded in minimizing all windows.');
+    }).catch((err)=>{
+        console.error('Failed to minimize all windows. Cause: ' + JSON.stringify(err));
+    })
+});
+```
+
+## window.toggleShownStateForAllAppWindows<sup>9+</sup>
+toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
+
+多窗口快速切换时隐藏或者恢复应用窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
+
+**示例：**
+
+```js
+window.toggleShownStateForAllAppWindows((err, data) => {
+    if (err.code) {
+        console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in toggling shown state for all app windows.');
+})
+```
+
+## window.toggleShownStateForAllAppWindows<sup>9+</sup>
+toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
+
+多窗口快速切换时隐藏或者恢复应用窗口。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let promise = window.toggleShownStateForAllAppWindows();
+promise.then((data)=> {
+    console.info('Succeeded in toggling shown state for all app windows. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to toggle shown state for all app windows. Cause: ' + JSON.stringify(err));
+})
+```
+
+## window.setWindowLayoutMode<sup>9+</sup>
+setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口布局模式。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| mode       | [WindowLayoutMode](#windowlayoutmode9)                  | 是   | 设置的窗口布局模式 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
+
+**示例：**
+
+```js
+window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE, (data) => {
+    console.info('Succeeded in setting window layout mode. Data: ' + JSON.stringify(data));
+});
+```
+
+## window.setWindowLayoutMode<sup>9+</sup>
+setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
+
+设置窗口布局模式。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明           |
+| -------- | ------------------------- | ---- | -------------- |
+| mode       | [WindowLayoutMode](#windowlayoutmode9)                    | 是   | 设置的窗口布局模式 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let promise = window.setWindowLayoutMode(window.WindowLayoutMode.WINDOW_LAYOUT_MODE_CASCADE);
+promise.then((data)=> {
+    console.info('Succeeded in setting window layout mode. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to set window layout mode. Cause: ' + JSON.stringify(err));
 })
 ```
 
@@ -955,7 +1177,7 @@ promise.then((data)=> {
 
 ### getAvoidArea<sup>7+</sup>
 
-getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): void
+getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用callback异步回调。
 
@@ -963,10 +1185,10 @@ getAvoidArea(type: AvoidAreaType, callback: AsyncCallback&lt;AvoidArea&gt;): voi
 
 **参数：** 
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
-| callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调函数。返回窗口内容规避区域。                             |
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [AvoidAreaType](#avoidareatype7)              | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
+| callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | 是   | 回调函数。返回窗口内容规避区域。                             |
 
 **示例：** 
 
@@ -983,7 +1205,7 @@ windowClass.getAvoidArea(type, (err, data) => {
 
 ### getAvoidArea<sup>7+</sup>
 
-getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
+getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
 获取窗口内容规避的区域，如系统的系统栏区域、凹凸区域。使用Promise异步回调。
 
@@ -991,15 +1213,15 @@ getAvoidArea(type: AvoidAreaType): Promise&lt;AvoidArea&gt;
 
 **参数：** 
 
-| 参数名 | 类型                            | 必填 | 说明                                                         |
-| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type   | [AvoidAreaType](#avoidareatype) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。 |
+| 参数名 | 类型                               | 必填 | 说明                                                         |
+| ------ |----------------------------------| ---- | ------------------------------------------------------------ |
+| type   | [AvoidAreaType](#avoidareatype7) | 是   | 表示规避区类型。type为TYPE_SYSTEM，表示系统默认区域。type为TYPE_CUTOUT，表示刘海屏区域。type为TYPE_SYSTEM_GESTURE，表示手势区域。type为TYPE_KEYBOARD，表示软键盘区域。 |
 
 **返回值：** 
 
-| 类型                                   | 说明                                |
-| -------------------------------------- | ----------------------------------- |
-| Promise&lt;[AvoidArea](#avoidarea)&gt; | Promise对象。返回窗口内容规避区域。 |
+| 类型                                      | 说明                                |
+|-----------------------------------------| ----------------------------------- |
+| Promise&lt;[AvoidArea](#avoidarea7)&gt; | Promise对象。返回窗口内容规避区域。 |
 
 **示例：** 
 
@@ -1270,6 +1492,66 @@ promise.then((data)=> {
 });
 ```
 
+### setPreferredOrientation<sup>9+</sup>
+
+setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口的显示方向属性，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名              | 类型                                        | 必填 | 说明                   |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| Orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。         |
+| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
+
+**示例：** 
+
+```js
+var orientation = window.Orientation.AUTO_ROTATION;
+windowClass.setPreferredOrientation(orientation, (err, data) => {
+    if (err.code) {
+        console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in setting window orientation. Data: ' + JSON.stringify(data));
+});
+```
+
+### setPreferredOrientation<sup>9+</sup>
+
+setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
+
+设置窗口的显示方向属性，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名              | 类型                                        | 必填 | 说明                   |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| Orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。       |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：** 
+
+```js
+var orientation = window.Orientation.AUTO_ROTATION;
+let promise = windowClass.setPreferredOrientation(orientation);
+promise.then((data)=> {
+    console.info('Succeeded in setting the window orientation. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to set the window orientation. Cause: ' + JSON.stringify(err));
+});
+```
+
 ### loadContent<sup>7+</sup>
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1503,20 +1785,23 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size &gt;): void
 windowClass.off('windowSizeChange');
 ```
 
-### on('systemAvoidAreaChange')<sup>7+</sup>
+### on('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
-on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
+on(type: 'systemAvoidAreaChange', callback: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-开启系统窗口规避区变化的监听。
+开启系统规避区变化的监听。
+> **说明：** 从API version 9开始废弃，推荐使用[on('avoidAreaChange')](#onavoidareachange9)。
+>
+> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
 
-| 参数名   | 类型                                    | 必填 | 说明                                                         |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
-| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 是   | 回调函数。返回当前的窗口规避区。                             |
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 是   | 回调函数。返回当前规避区。                             |
 
 **示例：** 
 
@@ -1526,25 +1811,73 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 });
 ```
 
-### off('systemAvoidAreaChange')<sup>7+</sup>
+### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
-off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
+off(type: 'systemAvoidAreaChange', callback?: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-关闭系统窗口规避区变化的监听。
+关闭系统规避区变化的监听。
+> **说明：** 从API version 9开始废弃，推荐使用[off('avoidAreaChange')](#offavoidareachange9)。
+>
+> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
 
-| 参数名   | 类型                                    | 必填 | 说明                                                         |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统窗口规避区变化事件。 |
-| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | 否   | 回调函数。返回当前的窗口规避区。                             |
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是   | 监听事件，固定为'systemAvoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;[AvoidArea](#avoidarea7)&gt; | 否   | 回调函数。返回当前规避区。                            |
 
 **示例：** 
 
 ```js
 windowClass.off('systemAvoidAreaChange');
+```
+
+
+### on('avoidAreaChange')<sup>9+</sup>
+
+on(type: 'avoidAreaChange', callback: Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt;): void
+
+开启系统规避区变化的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                               | 必填 | 说明                                   |
+| -------- |------------------------------------------------------------------| ---- |--------------------------------------|
+| type     | string                                                           | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 是   | 回调函数。返回当前规避区以及规避区类型。|
+
+**示例：**
+
+```js
+windowClass.on('avoidAreaChange', (type, data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(type) + 'Data: ' + JSON.stringify(data));
+});
+```
+
+### off('avoidAreaChange')<sup>9+</sup>
+
+off(type: 'avoidAreaChange', callback: Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt;): void
+
+关闭系统规避区变化的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                          | 必填  | 说明                                 |
+| -------- |-----------------------------------------------------------------------------|-----|------------------------------------|
+| type     | string                                                                      | 是   | 监听事件，固定为'avoidAreaChange'，即系统规避区变化事件。 |
+| callback | Callback&lt;{[AvoidAreaType](#avoidareatype7), [AvoidArea](#avoidarea7)}&gt; | 否   | 回调函数。返回当前规避区以及规避区类型。|
+
+**示例：**
+
+```js
+windowClass.off('avoidAreaChange');
 ```
 
 ### on('keyboardHeightChange')<sup>7+</sup>
@@ -1589,6 +1922,52 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 ```js
 windowClass.off('keyboardHeightChange');
+```
+
+### on('touchOutside')<sup>9+</sup>
+
+on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
+
+开启本窗口区域范围外的点击事件的监听。
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
+| callback | Callback<void&gt; | 是   | 回调函数。当点击事件发生在本窗口范围之外的回调。                               |
+
+**示例：**
+
+```js
+windowClass.on('touchOutside', () => {
+    console.info('touch outside');
+});
+```
+
+### off('touchOutside')<sup>9+</sup>
+
+off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
+
+关闭本窗口区域范围外的点击事件的监听。
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。当点击事件发生在本窗口范围之外的回调。                               |
+
+**示例：**
+
+```js
+windowClass.off('touchOutside');
 ```
 
 ### isSupportWideGamut<sup>8+</sup>
@@ -1755,7 +2134,7 @@ promise.then((data)=> {
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的背景色，使用callback异步回调。
+设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)之后使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1783,7 +2162,7 @@ windowClass.setBackgroundColor(color, (err, data) => {
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
-设置窗口的背景色，使用Promise异步回调。
+设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)之后使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2245,6 +2624,71 @@ promise.then((data)=> {
 });
 ```
 
+### setForbidSplitMove<sup>9+</sup>
+
+setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置窗口在分屏模式下是否被禁止移动，使用callback异步回调。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名      | 类型                      | 必填 | 说明                 |
+| ----------- | ------------------------- | ---- | -------------------- |
+| isForbidSplitMove | boolean                   | 是   | 窗口在分屏模式下是否被禁止移动。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**示例：** 
+
+```js
+var isForbidSplitMove = true;
+windowClass.setForbidSplitMove(isForbidSplitMove, (err, data) => {
+    if (err.code) {
+        console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in forbidding window moving in split screen mode. Data:' + JSON.stringify(data));
+
+});
+```
+
+### setForbidSplitMove<sup>9+</sup>
+
+setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
+
+设置窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名      | 类型    | 必填 | 说明                 |
+| ----------- | ------- | ---- | -------------------- |
+| isForbidSplitMove | boolean | 是   | 窗口在分屏模式下是否被禁止移动。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：** 
+
+```js
+var isForbidSplitMove = true;
+let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+promise.then((data)=> {
+    console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
+}).catch((err)=>{
+    console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+});
+```
+
 ## WindowStageEventType<sup>9+</sup>
 
 WindowStage生命周期。
@@ -2362,11 +2806,11 @@ class myAbility extends Ability {
         var windowClass = null;
         windowStage.createSubWindow("mySubWindow", (err, data) => {
             if (err.code) {
-                console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+                console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
                 return;
             }
             windowClass = data;
-            console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
             windowClass.resetSize(500, 1000);
         });
     }
@@ -2405,9 +2849,9 @@ class myAbility extends Ability {
         let promise = windowStage.createSubWindow("mySubWindow");
         promise.then((data)=> {
             windowClass = data;
-            console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         }).catch((err)=>{
-            console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
+            console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
         })
     }
 }
@@ -2438,11 +2882,11 @@ class myAbility extends Ability {
         var windowClass = null;
         windowStage.getSubWindow((err, data) => {
             if (err.code) {
-                console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+                console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
                 return;
             }
             windowClass = data;
-            console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
         });
     }
 }
@@ -2474,9 +2918,9 @@ class myAbility extends Ability {
         let promise = windowStage.getSubWindow();
         promise.then((data)=> {
             windowClass = data;
-            console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
+            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
         }).catch((err)=>{
-            console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
+            console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
         })
     }
 }
@@ -2660,7 +3104,31 @@ class myAbility extends Ability {
 }
 ```
 
-### setShowOnLockScreen('showOnLockScreen')<sup>9+</sup>
+### disableWindowDecor()<sup>9+</sup>
+
+disableWindowDecor(): void
+
+禁止窗口装饰。
+
+此接口仅可在Stage模型下使用。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**示例：** 
+
+```ts
+import Ability from '@ohos.application.Ability';
+class myAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        console.log('disableWindowDecor');
+        windowStage.disableWindowDecor();
+    }
+}
+```
+
+### setShowOnLockScreen()<sup>9+</sup>
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 

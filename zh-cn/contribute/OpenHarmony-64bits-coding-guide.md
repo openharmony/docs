@@ -7,7 +7,7 @@
 OpenHarmony的目标是面向全场景、全连接、全智能时代，基于开源的方式，搭建一个智能终端设备操作系统的框架和平台，促进万物互联产业的繁荣发展。具有“硬件互助，资源共享”、“一次开发，多端部署”、“统一OS，弹性部署”的技术特性。
 OpenHarmony支持三种系统类型：
 
-1. 轻量系统（mini system），面向MCU类处理器（例如Arm Cortex-M、RISC-V 32位）的轻量设备，硬件资源极其有限，支持的设备最小内存为128KiB；
+1. 轻量系统（mini system），面向MCU类处理器（例如Arm Cortex-M、RISC-V 32位）的轻量设备，硬件资源极其有限，支持的设备最小内存为128KiB
 2. 小型系统（small system），面向应用处理器（例如Arm Cortex-A 64位）的设备，支持的设备最小内存为1MiB
 3. 标准系统（standard system），面向应用处理器（例如Arm Cortex-A 64位）的设备，支持的设备最小内存为128MiB
 
@@ -21,7 +21,7 @@ OpenHarmony支持三种系统类型：
 
 #### 数据类型差异
 
-大部分的32位系统采用的是ILP32，即int、long和pointer是32位长度。大部分的64位系统采用的是LP64，即long、long long、pointer是64位长度。Windows系统采用的是LLP64，即long long和pointer是64位长度。各系统基本数据长度对比如下表所示：
+大部分的32位系统采用的是ILP32，即int、long和pointer是32位长度。大部分的64位系统采用的是LP64，即long、long long、pointer是64位长度。Windows系统采用的是LLP64，即long long和pointer是64位长度。各系统基本数据类型长度对比如下表所示：
 
 | **TYPE**  | **ILP32** | **LP64** | **LLP64** | **LP32** | **ILP64** |
 | --------- | --------- | -------- | --------- | -------- | --------- |
@@ -35,31 +35,31 @@ OpenHarmony支持三种系统类型：
 | size_t    | **4**     | **8**    | **8**     | 4        | 8         |
 | pointer   | **4**     | **8**    | **8**     | 4        | 8         |
 
-上表中只包含了部分基本类型，下表分别将ILP32和LP64的sizeof和print`进行对比，展示了更全面的常量和类型对应的差异：
+上表中只包含了部分基本类型，下表分别将ILP32和LP64的sizeof和print进行对比，展示了更全面的常量和类型对应的差异：
 
-| Type               | ILP32 sizeof | ILP32 print | LP64 sizeof | LP64 print | 备注   |
+| Type               | ILP32 sizeof | ILP32 print | LP64 sizeof | LP64 print | 备注    |
 | ------------------ | ------------ | ----------- | ----------- | ---------- | ------ |
 | bool               | 1            | %u          | 1           | %u         | C++    |
-| char               | 1            | %d或%c      | 1           | %d或%c     |        |
+| char               | 1            | %d或%c      | 1           | %d或%c     |         |
 | unsigned char      | 1            | %u          | 1           | %u         |        |
 | short              | 2            | %d          | 2           | %d         |        |
 | unsigned short     | 2            | %u          | 2           | %u         |        |
 | int                | 4            | %d          | 4           | %d         |        |
 | unsigned int       | 4            | %u          | 4           | %u         |        |
-| long               | 4            | %ld         | **8**       | %ld        | 有差异 |
-| unsigned long      | 4            | %lu         | **8**       | %lu        | 有差异 |
-| long int           | 4            | %ld         | **8**       | %ld        | 有差异 |
-| unsigned long int  | 4            | %lu         | **8**       | %lu        | 有差异 |
+| long               | 4            | %ld         | **8**       | %ld        | 有差异  |
+| unsigned long      | 4            | %lu         | **8**       | %lu        | 有差异  |
+| long int           | 4            | %ld         | **8**       | %ld        | 有差异  |
+| unsigned long int  | 4            | %lu         | **8**       | %lu        | 有差异  |
 | long long          | 8            | %lld        | 8           | %lld       |        |
 | unsigned long long | 8            | %llu        | 8           | %llu       |        |
-| type *             | 4            | %p          | **8**       | %p         | 有差异 |
+| type \*            | 4            | %p          | **8**       | %p         | 有差异  |
 | pid_t              | 4            | %d          | 4           | %d         |        |
 | socklen_t          | 4            | %u          | 4           | %u         |        |
-| off_t              | 4            | %zd         | **8**       | %zd        | 有差异 |
-| time_t             | 4            | %zd         | 8           | %zd        | 有差异 |
-| pthread_t          | 4            | %zu         | **8**       | %zu        | 有差异 |
-| size_t             | 4            | %zu         | 8           | %zu        | 有差异 |
-| ssize_t            | 4            | %zd         | **8**       | %zd        | 有差异 |
+| off_t              | 4            | %zd         | **8**       | %zd        | 有差异  |
+| time_t             | 4            | %zd         | 8           | %zd        | 有差异  |
+| pthread_t          | 4            | %zu         | **8**       | %zu        | 有差异  |
+| size_t             | 4            | %zu         | 8           | %zu        | 有差异  |
+| ssize_t            | 4            | %zd         | **8**       | %zd        | 有差异  |
 
 #### 数据结构对齐的差异
 
@@ -97,7 +97,7 @@ typedef struct tagFoo {
 
 #### 【规则】开发者贡献的代码应当遵循此规范，编写出可同时应用于32位和64位的代码
 
-【说明】由于OpenHarmony会长期同时存在32位的运行环境和64位的运行环境，而为了代码的一致性，开发者在编码时需要充分考虑代码的可移植能力。
+【说明】由于OpenHarmony会长期同时存在32位的运行环境和64位的运行环境，为了代码的一致性，开发者在编码时需要充分考虑代码的可移植能力。
 
 ### 数据类型定义和格式化
 
@@ -121,11 +121,11 @@ typedef struct tagFoo {
 | double           | 8     | 8     | %lf     | 双精度浮点数                                                 |
 | bool             | 1     | 1     | %d      | 布尔类型                                                     |
 | uintptr_t        | **4** | **8** | %zu     | 会根据32位和64位的不同定义为不同的长度，用于可能存储指针的场景 |
-| type *           | **4** | **8** | %p      | type *，可变长度类型，与uintptr_t等价，存在类型转换时建议使用uintptr_t |
+| type \*           | **4** | **8** | %p      | type \*，可变长度类型，与uintptr_t等价，存在类型转换时建议使用uintptr_t |
 | nullptr_t        | **4** | **8** | %p      | 指针初始化                                                   |
 | pid_t            | 4     | 4     | %d      | Linux内置，固定长度                                          |
 | socklen_t        | 4     | 4     | %u      | Linux内置，固定长度                                          |
-| off_t/time_t     | **4** | **8** | %zd     | 可变长类型，有符号                                           |
+| off_t/time_t     | **4** | **8** | %zd     | 可变长度类型，有符号                                           |
 | size_t/pthread_t | **4** | **8** | %zu     | 可变长度类型，无符号，仅用于调用库函数的兼容性要求（比如底层API中使用了size_t） |
 
 上述类型定义在stddef.h（C）和cstdint（C++）标准库中，在采用#define重定义相关类型时，其源头应来自于上述类型。
@@ -353,13 +353,13 @@ p = (int32_t *)malloc(sizeof(p) * ELEMENTS_NUMBER);
 【样例】
 
 ```c
-#pragma pack(push) # 保存当前的对齐方式
-#pragma pack(1) # 设置对齐方式为1字节对齐
+#pragma pack(push) // 保存当前的对齐方式
+#pragma pack(1) // 设置对齐方式为1字节对齐
 struct test
 {
     ......
 };
-#pragma pack(pop) # 恢复之前的对齐方式
+#pragma pack(pop) // 恢复之前的对齐方式
 ```
 
 #### 【规则】涉及多机通信的消息结构体，需要对齐统一。基于兼容性考虑，可优先采用1字节对齐；禁止使用8字节对齐和64位数据类型以避免与32位系统通信错误
@@ -494,7 +494,7 @@ printf("t2 = %lu\n", t2);
 
 #### 【规则】当需要将指针作为基址，再按照字节计算偏移时，指针需要强制转换为uintptr_t或uint8_t *等单字节指针类型
 
-【说明】如果转换为整型，采用uint32_t强转，会出现指针被截断的情况，因此需要转换为uintptr_t。也可转换为单字节宽度的指针类型，如uint8_t *、char *等，转为上述方式后，偏移均被理解为字节。void *类型实际也会按照1字节进行偏移，但为了类型明确化，建议使用前面更明确的类型代替。
+【说明】如果转换为整型，采用uint32_t强转，会出现指针被截断的情况，因此需要转换为uintptr_t。也可转换为单字节宽度的指针类型，如uint8_t \*、char \*等，转为上述方式后，偏移均被理解为字节。void \*类型实际也会按照1字节进行偏移，但为了类型明确化，建议使用前面更明确的类型代替。
 
 【示例】
 
@@ -503,13 +503,13 @@ printf("t2 = %lu\n", t2);
 void *pPkt = (void *)((uint32_t)MSG_GET_DATA_ADDR(msgAddr) + OFFSET);
 
 // 正确
-void *pPkt = (void *)((uintptr_t)MSG_GET_DATA_ADDR(msgAddr) + OFFSET);// C
+void *pPkt = (void *)((uintptr_t)MSG_GET_DATA_ADDR(msgAddr) + OFFSET); // C
 void *pPkt = reinterpret_cast<void *>(reinterpret_cast<uintptr_t>(MSG_GET_DATA_ADDR(msgAddr)) + OFFSET); // C++
 ```
 
 #### 【规则】禁止指针与uint32_t之间相互赋值，包括函数参数传递
 
-【说明】如果要定义的变量可能是不确定长度的指针，使用void *；如果要定义的变量既可以是指针，也可以是整形，使用uintptr_t。
+【说明】如果要定义的变量可能是不确定长度的指针，使用void \*；如果要定义的变量既可以是指针，也可以是整形，使用uintptr_t。
 
 【示例】指针与整型的转换
 

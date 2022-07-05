@@ -222,11 +222,11 @@ cancelPairedDevice(deviceId: string): boolean
 
 删除配对的远程设备。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -388,7 +388,7 @@ startBluetoothDiscovery(): boolean
 
 开启蓝牙扫描，可以发现远端设备。
 
-**需要权限**：ohos.permission.USE_BLUETOOTH；ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1128,7 +1128,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | 返回和当前设备连接BLE设备地址集合。 |
+| Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。 |
 
 **示例：**
 
@@ -1143,7 +1143,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
 
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.MANAGE_BLUETOOTH；                           ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.MANAGE_BLUETOOTH；ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1422,7 +1422,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 取消订阅a2dp连接状态变化事件。
 
@@ -1451,11 +1451,13 @@ a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState
+### getPlayingState<sup>9+</sup>
 
 getPlayingState(device: string): PlayingState
 
 获取设备的播放状态。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1576,7 +1578,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 取消订阅HFP连接状态变化事件。
 
@@ -1616,11 +1618,11 @@ connect(device: string): boolean
 
 连接设备的HidHost服务。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1648,11 +1650,11 @@ disconnect(device: string): boolean
 
 断开连接设备的HidHost服务。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1706,7 +1708,7 @@ hidHost.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>9+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 取消订阅HidHost连接状态变化事件。
 
@@ -1964,6 +1966,15 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
+// 创建descriptors
+let descriptors = [];
+let arrayBuffer = new ArrayBuffer(8);
+let descV = new Uint8Array(arrayBuffer);
+descV[0] = 11;
+let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
@@ -2542,14 +2553,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```js
 // Promise 模式
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.connect();
-var services = device.getServices();
-console.log("bluetooth services size is ", services.length);
-
-for (let i = 0; i < services.length; i++) {
-    console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);
-}
+gattClientDevice.getServices().then(result => {
+    console.info("getServices successfully:" + JSON.stringify(result));
+});
 ```
 
 
@@ -2882,6 +2888,15 @@ setNotifyCharacteristicChanged(characteristic: BLECharacteristic, enable: boolea
 **示例：**
 
 ```js
+// 创建descriptors
+let descriptors = [];
+let arrayBuffer = new ArrayBuffer(8);
+let descV = new Uint8Array(arrayBuffer);
+descV[0] = 11;
+let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
@@ -3355,11 +3370,19 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称          | 参数类型   | 可读   | 可写   | 说明                                       |
-| ----------- | ------ | ---- | ---- | ---------------------------------------- |
-| deviceId    | string | 是    | 是    | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。     |
-| name        | string | 是    | 是    | 表示过滤的BLE设备名。                             |
-| serviceUuid | string | 是    | 是    | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| 名称                                     | 参数类型    | 可读 | 可写 | 说明                                                         |
+| ---------------------------------------- | ----------- | ---- | ---- | ------------------------------------------------------------ |
+| deviceId                                 | string      | 是   | 是   | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
+| name                                     | string      | 是   | 是   | 表示过滤的BLE设备名。                                        |
+| serviceUuid                              | string      | 是   | 是   | 表示过滤包含该UUID服务的设备，例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuidMask<sup>9+</sup>             | string      | 是   | 是   | 表示过滤包含该UUID服务掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceSolicitationUuid<sup>9+</sup>     | string      | 是   | 是   | 表示过滤包含该UUID服务请求的设备，例如：00001888-0000-1000-8000-00805F9B34FB。 |
+| serviceSolicitationUuidMask<sup>9+</sup> | string      | 是   | 是   | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
+| serviceData<sup>9+</sup>                 | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
+| serviceDataMask<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
+| manufacturerId<sup>9+</sup>              | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
+| manufactureData<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
+| manufactureDataMask<sup>9+</sup>         | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
 
 
 ## ScanOptions

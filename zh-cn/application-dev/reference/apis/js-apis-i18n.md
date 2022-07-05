@@ -3,7 +3,7 @@
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - I18N模块包含国际化能力增强接口（未在ECMA 402中定义）。
+> - I18N模块包含国际化能力增强接口（未在ECMA 402中定义），包括区域管理、电话号码处理、日历等，国际化基础能力请参考[Intl模块](js-apis-intl.md)。
 
 
 ## 导入模块
@@ -115,13 +115,12 @@ getSystemLanguage(): string
 
 setSystemLanguage(language: string): boolean
 
-设置系统语言。
+设置系统语言。<br>
+该接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：SystemCapability.Global.I18n
-
-**系统API**: 该接口为系统接口，三方应用不支持调用。
 
 **参数：** 
 | 参数名      | 类型     | 说明    |
@@ -209,13 +208,12 @@ getSystemRegion(): string
 
 setSystemRegion(region: string): boolean
 
-设置系统区域。
+设置系统区域。<br>
+该接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：SystemCapability.Global.I18n
-
-**系统API**: 该接口为系统接口，三方应用不支持调用。
 
 **参数：** 
 | 参数名    | 类型     | 说明    |
@@ -256,13 +254,12 @@ getSystemLocale(): string
 
 setSystemLocale(locale: string): boolean
 
-设置系统Locale。
+设置系统Locale。<br>
+该接口为系统接口。 
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：SystemCapability.Global.I18n
-
-**系统API**: 该接口为系统接口，三方应用不支持调用。
 
 **参数：** 
 | 参数名    | 类型     | 说明              |
@@ -1461,7 +1458,7 @@ getTimeZone(zoneID?: string): TimeZone
   ```
 
 
-## RelativeTimeFormat<sup>8+</sup>
+## TimeZone<sup>8+</sup>
 
 
 ### getID<sup>8+</sup>
@@ -1547,4 +1544,137 @@ getOffset(date?: number): number
   ```
   var timezone = i18n.getTimeZone();
   timezone.getOffset(1234567890);
+  ```
+
+
+### getAvailableIDs<sup>9+</sup>
+
+static getAvailableIDs(): Array&lt;string&gt;
+
+获取系统支持的时区ID。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| Array&lt;string&gt; | 系统支持的时区ID列表 |
+
+**示例：** 
+  ```
+  var ids = i18n.TimeZone.getAvailableIDs();
+  ```
+
+
+### getAvailableZoneCityIDs<sup>9+</sup>
+
+static getAvailableZoneCityIDs(): Array&lt;string&gt;
+
+获取系统支持的时区城市ID。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| Array&lt;string&gt; | 系统支持的时区城市ID列表 |
+
+**示例：** 
+  ```
+  var cityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
+  ```
+
+
+### getCityDisplayName<sup>9+</sup>
+
+static getCityDisplayName(cityID: string, locale: string): string
+
+获取某时区城市在locale下的本地化显示。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| cityID | string | 是    | 时区城市ID |
+| locale | string | 是    | 区域ID |
+
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| string | 时区城市在locale下的本地化显示 |
+
+**示例：** 
+  ```
+  var displayName = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN");
+  ```
+
+
+### getTimezoneFromCity<sup>9+</sup>
+
+static getTimezoneFromCity(cityID: string): TimeZone
+
+创建某时区城市对应的时区对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| cityID | string | 是    | 时区城市ID |
+
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| TimeZone | 时区城市对应的时区对象 |
+
+**示例：** 
+  ```
+  var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
+  ```
+
+
+## i18n.setUsingLocalDigit<sup>9+</sup>
+
+setUsingLocalDigit(flag: boolean): boolean
+
+设置是否打开本地数字开关。<br>
+该接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| flag | boolean | 是    | true表示打开本地数字开关，false表示关闭本地数字开关。 |
+
+**返回值：** 
+| 类型       | 说明           |
+| -------- | ------------ |
+| boolean | true表示本地数字开关设置成功，false表示本地数字开关设置失败。 |
+
+**示例：** 
+  ```
+  var status = i18n.setUsingLocalDigit(true);
+  ```
+
+
+## i18n.getUsingLocalDigit<sup>9+</sup>
+
+getUsingLocalDigit(): boolean
+
+获取系统当前是否打开本地数字开关。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+| 类型       | 说明           |
+| -------- | ------------ |
+| boolean | true表示系统当前已打开本地数字开关，false表示系统当前未打开本地数字开关。 |
+
+**示例：** 
+  ```
+  var status = i18n.getUsingLocalDigit();
   ```

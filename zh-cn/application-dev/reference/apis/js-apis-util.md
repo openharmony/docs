@@ -208,9 +208,6 @@ decode(input: Uint8Array, options?: { stream?: false }): string
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  for(var j= 0; j < 6; j++) {
-      console.log(result[j]);
-  }
   var retStr = textDecoder.decode( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
@@ -262,6 +259,7 @@ encode(input?: string): Uint8Array
 **示例：**
   ```js
   var textEncoder = new util.TextEncoder();
+  var buffer = new ArrayBuffer(20);
   var result = new Uint8Array(buffer);
   result = textEncoder.encode("\uD800¥¥");
   ```
@@ -1091,6 +1089,8 @@ type ScopeType = ScopeComparable | number;
 ```js
 class Temperature{
     constructor(value){
+       // 当使用ts语言开发时，需要补充以下代码：
+       // private readonly _temp: Temperature;
        this._temp = value;
     }
     comapreTo(value){

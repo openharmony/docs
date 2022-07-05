@@ -2448,7 +2448,7 @@ root {
         pwmBacklightConfig {
             match_attr = "pwm_bl_dev";
             pwmDevNum = 1;
-            pwmMaxPeroid = 25000;
+            pwmMaxPeriod = 25000;
             backlightDevName = "hdf_pwm";
             minBrightness = 0;
             defBrightness = 127;
@@ -3292,7 +3292,7 @@ root {
             busType = 0; // 0:i2c 1:spi
             busNum = 5;
             busAddr = 0x15;
-            regWidth = 1; // 1btye
+            regWidth = 1; // 1byte
         }
         sensorIdAttr :: sensorIdInfo {
             chipName = "mxc6655xa";

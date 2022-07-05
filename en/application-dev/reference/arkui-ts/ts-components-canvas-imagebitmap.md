@@ -10,7 +10,7 @@
 
 ## Attributes
 
-| Name | Type | Description |
+| Name | Type | Description | 
 | -------- | -------- | -------- |
 | width | number | Actual width of the rectangle on the canvas, in pixels. |
 | height | number | Actual height of the rectangle on the canvas, in pixels. |

@@ -1,5 +1,7 @@
 # 接口
 
+- [开发说明](development-intro.md)
+
 - Ability框架
 
   - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
@@ -13,6 +15,7 @@
   - [@ohos.application.appManager (appManager)](js-apis-appmanager.md)
   - [@ohos.application.Configuration (Configuration)](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](js-apis-configurationconstant.md)
+  - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-DataShareExtensionAbility.md)
   - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-featureAbility.md)
   - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-formbindingdata.md)
   - [@ohos.application.FormExtension (FormExtension)](js-apis-formextension.md)
@@ -57,6 +60,7 @@
 - 应用程序包管理
 
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
+  - [@ohos.bundle.defaultAppManager (Bundle模块)](js-apis-bundle-defaultAppManager.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
   - bundle/[AbilityInfo (AbilityInfo)](js-apis-bundle-AbilityInfo.md)
@@ -73,6 +77,7 @@
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
+  - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
 - 图形图像
 
   - [@ohos.display (屏幕属性)](js-apis-display.md)
@@ -100,19 +105,25 @@
 
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
   - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
+  - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
 - 安全
 
   - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)
+  - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
   - [@system.cipher (加密算法)](js-apis-system-cipher.md)
 - 数据管理
 
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
+  - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
+  - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)
+  - [@ohos.data.dataShareResultSet (数据共享结果集)](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
   - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
+  - [@ohos.data.ValuesBucket (数据集)](js-apis-data-ValuesBucket.md)
   - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
 - 文件管理
@@ -158,6 +169,7 @@
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
   - [@ohos.hilog (日志打印)](js-apis-hilog.md)
+  - [@ohos.hiSysEvent (系统事件打点)](js-apis-hisysevent.md)
   - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
   - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
@@ -176,8 +188,13 @@
   - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient (注入按键)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)](js-apis-inputmonitor.md)
+  - [@ohos.multimodalInput.keyCode (键值)](js-apis-keycode.md)
+  - [@ohos.multimodalInput.keyEvent (按键输入事件)](js-apis-keyevent.md)
+  - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](js-apis-mouseevent.md)
+  - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)

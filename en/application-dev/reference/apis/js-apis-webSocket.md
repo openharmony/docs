@@ -23,7 +23,7 @@ import webSocket from '@ohos.net.webSocket';
 var defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-    console.log("on open, status:" + value.status + ", message:" + value.message);
+    console.log("on open, status:" + value['status'] + ", message:" + value['message']);
     // When receiving the on('open') event, the client can use the send() API to communicate with the server.
     ws.send("Hello, server!", (err, value) => {
         if (!err) {
@@ -47,7 +47,7 @@ ws.on('message', (err, value) => {
     }
 });
 ws.on('close', (err, value) => {
-    console.log("on close, code is " + value.code + ", reason is " + value.reason);
+    console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
 });
 ws.on('error', (err) => {
     console.log("on error, error:" + JSON.stringify(err));
@@ -393,7 +393,7 @@ Enables listening for the **open** events of a WebSocket connection. This API us
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('open', (err, value) => {
-	console.log("on open, status:" + value.status + ", message:" + value.message);
+	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 });
 ```
 
@@ -421,7 +421,7 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 ```js
 let ws = webSocket.createWebSocket();
 let callback1 = (err, value) => {
-	console.log("on open, status:" + value.status + ", message:" + value.message);
+	console.log("on open, status:" + value['status'] + ", message:" + value['message']);
 }
 ws.on('open', callback1);
 // You can pass the callback of the on function to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.
@@ -505,7 +505,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 ```js
 let ws = webSocket.createWebSocket();
 ws.on('close', (err, value) => {
-	console.log("on close, code is " + value.code + ", reason is " + value.reason);
+	console.log("on close, code is " + value['code'] + ", reason is " + value['reason']);
 });
 ```
 

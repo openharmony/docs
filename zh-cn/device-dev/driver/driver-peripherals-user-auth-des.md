@@ -21,7 +21,7 @@
 
 - 认证凭据模板
 
-  认证凭据模板在用户设置认证凭据时由认证服务产生并存储。在认证时，读取模板信息并用和当次认证过程中产生的认证数据做对比，完成身份认证。每个模板有一个ID，用于索引模板信息文件。
+  认证凭据模板在用户设置认证凭据时由认证服务产生并存储。每个模板有一个ID，用于索引模板信息文件。在认证时，读取模板信息并用和当次认证过程中产生的认证数据做对比，完成身份认证。
 
 - 执行器
 
@@ -29,7 +29,7 @@
 
 - 执行器角色
 
-  - ​    全功能执行器：执行器可独立处理一次凭据注册和身份认证请求，即可提供用户认证数据采集、处理、储存及比对能力。
+  - ​    全功能执行器：执行器可独立处理凭据注册和身份认证请求，即可提供用户认证数据采集、处理、储存及比对能力。
 
   - ​    采集器：执行器提供用户认证时的数据采集能力，需要和认证器配合完成用户认证。
 
@@ -144,7 +144,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成User_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，详细代码参见[user_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_driver.cpp)文件。
 
    ```c++
-   // 通过自定义的HdfUserAuthInterfaceHost对象包含ioService对象和真正的HDI Service实现IRemoteObject对象
+   // 通过自定义的HdfUserAuthInterfaceHost对象包含IoService对象和真正的HDI Service实现IRemoteObject对象
    struct HdfUserAuthInterfaceHost {
        struct IDeviceIoService ioService;
        OHOS::sptr<OHOS::IRemoteObject> stub;
@@ -187,7 +187,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
    
        auto *hdfUserAuthInterfaceHost = new (std::nothrow) HdfUserAuthInterfaceHost;
        if (hdfUserAuthInterfaceHost == nullptr) {
-           HDF_LOGE("%{public}s: failed to create create HdfUserAuthInterfaceHost object", __func__);
+           HDF_LOGE("%{public}s: failed to create HdfUserAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
    
@@ -197,7 +197,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
    
        auto serviceImpl = IUserAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
-           HDF_LOGE("%{public}s: failed to get of implement service", __func__);
+           HDF_LOGE("%{public}s: failed to implement service", __func__);
            return HDF_FAILURE;
        }
    
@@ -271,7 +271,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        int32_t ret = OpenEditSession(userId, &challengeU64);
        challenge.resize(sizeof(uint64_t));
        if (memcpy_s(&challenge[0], challenge.size(), &challengeU64, sizeof(uint64_t)) != EOK) {
-           IAM_LOGE("challengeU64 copy failed");
+           IAM_LOGE("failed to copy challengeU64");
            return RESULT_BAD_COPY;
        }
        GlobalUnLock();
@@ -310,18 +310,18 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        CoAuthSchedule scheduleInfo;
        int32_t ret = CheckEnrollPermission(checkParam, &scheduleInfo.scheduleId);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("check permission failed");
+           IAM_LOGE("Failed to check permission");
            GlobalUnLock();
            return ret;
        }
        ret = GetCoAuthSchedule(&scheduleInfo);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("get schedule info failed");
+           IAM_LOGE("Failed to get schedule info");
            GlobalUnLock();
            return ret;
        }
        if (!CopyScheduleInfo(&scheduleInfo, &info)) {
-           IAM_LOGE("copy schedule info failed");
+           IAM_LOGE("Failed to copy schedule info");
            ret = RESULT_BAD_COPY;
        }
        GlobalUnLock();
@@ -356,7 +356,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        bool isUpdate;
        int32_t ret = GetIsUpdate(&isUpdate);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("get isUpdate failed");
+           IAM_LOGE("Failed to get isUpdate");
            return ret;
        }
        if (isUpdate) {
@@ -397,7 +397,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
    {
        IAM_LOGI("start");
        if (param.challenge.size() != sizeof(uint64_t)) {
-           IAM_LOGE("challenge copy failed");
+           IAM_LOGE("Failed to copy challenge");
            return RESULT_BAD_PARAM;
        }
        GlobalLock();
@@ -410,13 +410,13 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        solutionIn.authTrustLevel = param.authTrustLevel;
        if (memcpy_s(&solutionIn.challenge, sizeof(uint64_t), &param.challenge[0],
            param.challenge.size()) != EOK) {
-           IAM_LOGE("challenge copy failed");
+           IAM_LOGE("Failed to copy challenge");
            GlobalUnLock();
            return RESULT_BAD_COPY;
        }
        int32_t ret = GenerateSolutionFunc(solutionIn, &schedulesGet, &scheduleIdNum);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("generate solution failed");
+           IAM_LOGE("Failed to generate solution");
            GlobalUnLock();
            return ret;
        }
@@ -456,14 +456,14 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        UserAuthTokenHal authTokenHal;
        info.result = RequestAuthResultFunc(contextId, scheduleResultBuffer, &authTokenHal);
        if (info.result != RESULT_SUCCESS) {
-           IAM_LOGE("execute func failed");
+           IAM_LOGE("Failed to execute func");
            DestoryBuffer(scheduleResultBuffer);
            GlobalUnLock();
            return info.result;
        }
        info.token.resize(sizeof(UserAuthTokenHal));
        if (memcpy_s(&info.token[0], info.token.size(), &authTokenHal, sizeof(authTokenHal)) != EOK) {
-           IAM_LOGE("copy authToken failed");
+           IAM_LOGE("Failed to copy authToken");
            DestoryBuffer(scheduleResultBuffer);
            GlobalUnLock();
            return RESULT_BAD_COPY;
@@ -481,7 +481,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        uint32_t scheduleIdNum = 0;
        int32_t ret = CancelContextFunc(contextId, nullptr, &scheduleIdNum);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("execute func failed");
+           IAM_LOGE("Failed to execute func");
            GlobalUnLock();
            return ret;
        }

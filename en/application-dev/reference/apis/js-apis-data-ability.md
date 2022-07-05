@@ -1,6 +1,7 @@
 # DataAbilityPredicates
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -17,21 +18,21 @@ import dataAbility from '@ohos.data.dataAbility';
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
 
-Creates an **RdbPredicates** object based on a **DataAbilityPredicates** object.
+Creates an **RdbPredicates** object from a **DataAbilityPredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | name | string | Yes| Table name in the RDB store.|
-  | dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | Yes| **DataAbilityPredicates** object.  |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Table name in the RDB store.|
+| dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | Yes| **DataAbilityPredicates** object.  |
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | **RdbPredicates** object created.|
+| Type| Description|
+| -------- | -------- |
+| rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
   ```js
@@ -57,20 +58,19 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
   ```
 
 
@@ -85,20 +85,19 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notEqualTo("NAME", "lisi")
+  dataAbilityPredicates.notEqualTo("NAME", "lisi")
   ```
 
 
@@ -113,14 +112,13 @@ Adds a left parenthesis to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a left parenthesis.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a left parenthesis.|
 
 **Example**
   ```js
-  let predicates = new dataAbilitylity.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
       .or()
@@ -140,14 +138,13 @@ Adds a right parenthesis to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a right parenthesis.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a right parenthesis.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "lisi")
+  dataAbilityPredicates.equalTo("NAME", "lisi")
       .beginWrap()
       .equalTo("AGE", 18)
       .or()
@@ -167,14 +164,13 @@ Adds the OR condition to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the OR condition.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the OR condition.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
+  dataAbilityPredicates.equalTo("NAME", "Lisa")
       .or()
       .equalTo("NAME", "Rose")
   ```
@@ -191,14 +187,13 @@ Adds the AND condition to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the AND condition.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the AND condition.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Lisa")
+  dataAbilityPredicates.equalTo("NAME", "Lisa")
       .and()
       .equalTo("SALARY", 200.5)
   ```
@@ -215,20 +210,19 @@ Sets a **DataAbilityPredicates** object to match a string containing the specifi
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.contains("NAME", "os")
+  dataAbilityPredicates.contains("NAME", "os")
   ```
 
 
@@ -243,20 +237,19 @@ Sets a **DataAbilityPredicates** object to match a string that starts with the s
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.beginsWith("NAME", "os")
+  dataAbilityPredicates.beginsWith("NAME", "os")
   ```
 
 
@@ -271,20 +264,19 @@ Sets a **DataAbilityPredicates** object to match a string that ends with the spe
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.endsWith("NAME", "se")
+  dataAbilityPredicates.endsWith("NAME", "se")
   ```
 
 
@@ -299,19 +291,18 @@ Sets a **DataAbilityPredicates** object to match the field whose value is null.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.isNull("NAME")
+  dataAbilityPredicates.isNull("NAME")
   ```
 
 
@@ -326,19 +317,18 @@ Sets a **DataAbilityPredicates** object to match the field whose value is not nu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.isNotNull("NAME")
+  dataAbilityPredicates.isNotNull("NAME")
   ```
 
 
@@ -353,20 +343,19 @@ Sets a **DataAbilityPredicates** object to match a string that is similar to the
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.like("NAME", "%os%")
+  dataAbilityPredicates.like("NAME", "%os%")
   ```
 
 
@@ -381,20 +370,19 @@ Sets a **DataAbilityPredicates** object to match the specified string.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.glob("NAME", "?h*g")
+  dataAbilityPredicates.glob("NAME", "?h*g")
   ```
 
 
@@ -409,21 +397,20 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.between("AGE", 10, 50)
+  dataAbilityPredicates.between("AGE", 10, 50)
   ```
 
 
@@ -438,21 +425,20 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
+| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notBetween("AGE", 10, 50)
+  dataAbilityPredicates.notBetween("AGE", 10, 50)
   ```
 
 
@@ -467,20 +453,19 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.greaterThan("AGE", 18)
+  dataAbilityPredicates.greaterThan("AGE", 18)
   ```
 
 
@@ -495,20 +480,19 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.lessThan("AGE", 20)
+  dataAbilityPredicates.lessThan("AGE", 20)
   ```
 
 
@@ -523,20 +507,19 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.greaterThanOrEqualTo("AGE", 18)
+  dataAbilityPredicates.greaterThanOrEqualTo("AGE", 18)
   ```
 
 
@@ -551,20 +534,19 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.lessThanOrEqualTo("AGE", 20)
+  dataAbilityPredicates.lessThanOrEqualTo("AGE", 20)
   ```
 
 
@@ -579,19 +561,18 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.orderByAsc("NAME")
+  dataAbilityPredicates.orderByAsc("NAME")
   ```
 
 
@@ -606,19 +587,18 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.orderByDesc("AGE")
+  dataAbilityPredicates.orderByDesc("AGE")
   ```
 
 
@@ -633,20 +613,13 @@ Sets a **DataAbilityPredicates** object to filter out duplicate records.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that can filter out duplicate records.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that can filter out duplicate records.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").distinct("NAME")
-  let promiseDistinct =  rdbStore.query(predicates, ["NAME"])
-  promiseDistinct.then((resultSet) => {   
-      console.log("distinct")
-  }).catch((err) => {
-      expect(null).assertFail();
-  })
+  dataAbilityPredicates.equalTo("NAME", "Rose").distinct()
   ```
 
 
@@ -661,19 +634,18 @@ Set a **DataAbilityPredicates** object to specify the maximum number of records.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | value | number | Yes| Maximum number of records.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Maximum number of records.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the maximum number of records.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the maximum number of records.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").limitAs(3)
+  dataAbilityPredicates.equalTo("NAME", "Rose").limitAs(3)
   ```
 
 
@@ -688,19 +660,18 @@ Sets a **DataAbilityPredicates** object to specify the start position of the ret
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the start position of the returned result.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the start position of the returned result.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.equalTo("NAME", "Rose").offsetAs(3)
+  dataAbilityPredicates.equalTo("NAME", "Rose").offsetAs(3)
   ```
 
 
@@ -715,19 +686,18 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | fields | Array&lt;string&gt; | Yes| Names of columns to group.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fields | Array&lt;string&gt; | Yes| Names of columns to group.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that groups rows with the same value.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that groups rows with the same value.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.groupBy(["AGE", "NAME"])
+  dataAbilityPredicates.groupBy(["AGE", "NAME"])
   ```
 
 ### indexedBy
@@ -735,24 +705,24 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 
 indexedBy(field: string): DataAbilityPredicates
 
-
 Sets a **DataAbilityPredicates** object to specify the index column.
+
+**System capability**:  SystemCapability.DistributedDataManager.DataShare.Core 
 
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | indexName | string | Yes| Name of the index column.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| indexName | string | Yes| Name of the index column.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the index column.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the index column.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.indexedBy("SALARY_INDEX")
+  dataAbilityPredicates.indexedBy("SALARY_INDEX")
   ```
 
 
@@ -767,21 +737,20 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array<
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.in("AGE", [18, 20])
+  dataAbilityPredicates.in("AGE", [18, 20])
   ```
 
 
@@ -796,21 +765,20 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array<
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | field | string | Yes| Column name in the table.|
-  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| field | string | Yes| Column name in the table.|
+| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| Type| Description|
+| -------- | -------- |
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
-  let predicates = new dataAbility.DataAbilityPredicates("EMPLOYEE")
-  predicates.notIn("NAME", ["Lisa", "Rose"])
+  dataAbilityPredicates.notIn("NAME", ["Lisa", "Rose"])
   ```
 
 ## ValueType

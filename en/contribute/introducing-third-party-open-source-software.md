@@ -12,7 +12,7 @@ This guide applies to all third-party open-source software to be introduced to t
 ## Improvements and Revisions
 
 1. This document is drafted and maintained by the OpenHarmony SIG QA. What you are reading now is the latest version of this document.
-     
+   
 2. Any addition, modification, or deletion of the principles mentioned in this document can be traced in the tracing system.
 3. The PMC reviews and finalizes the principles after thorough discussion in the community.
 
@@ -36,7 +36,7 @@ For easier maintenance and evolution, comply with the following principles when 
 8. Do not introduce any software version that has high-risk vulnerabilities and does not provide solutions.
 9. If you need to modify the software, place the new code in the software repository and ensure that the new code meets the license requirements of the software. Retain the original license for the modified files, and use the same license for the new files (recommended).
 10. Provide the **README.OpenSource** file in the root directory of the software repository. Include the following information in the file: software name, license, license file location, version, upstream community address of the corresponding version, software maintenance owner, function description, and introduction reason.
-11. Make sure the software to introduce will be under the custody of a domain SIG. In principle, the PMC will deny the introduction of a piece of software without the confirmation of the SIG QA and the corresponding domain SIG. When introducing multiple pieces of software at a time, you can ask the PMC to hold a temporary review meeting between SIGs for faster introduction. If you want to introduce a piece of software but fail to meet the preceding requirements, send an email to law@openatom.org.
+11. Make sure the software you introduce is under the custody of a domain SIG. In principle, the PMC will deny the introduction of a piece of software without the confirmation of the SIG QA and the corresponding domain SIG. When introducing multiple pieces of software at a time, you can ask the PMC to hold a temporary review meeting between SIGs for faster introduction. If you want to introduce a piece of software but fail to meet the preceding requirements, send an email to law@openatom.org.
 
 ### Software Introduction Process
 
@@ -58,7 +58,7 @@ Follow the process described in the [SIG Management Regulations](https://gitee.c
 
 1. Self-check list
 
-| Check Item| Description| Self-Check Result Example| 
+| Check Item| Description| Self-Check Result Example|
 | :----- | :----- | :----- |
 | Software name| Provide the official name of the software and the repository name to which the software is introduced. The repository name is in the format of **third_party_*****softwareName***.| third_party_*softwareName*|
 | Official website| Provide the official website link of the software.| https://softwaresite |

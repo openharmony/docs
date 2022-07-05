@@ -1,11 +1,10 @@
 # missionManager
 
+missionManager模块提供系统任务管理能力，包括对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 > **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-missionManager模块提供系统任务管理能力，开发者可以对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 ## 导入模块
 
@@ -23,7 +22,11 @@ registerMissionListener(listener: MissionListener): number;
 
 注册系统任务状态监听。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -59,7 +62,11 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 取消任务状态监听。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -93,7 +100,11 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
 取消任务状态监听，以promise方式返回执行结果。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -132,7 +143,11 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 获取任务信息，以异步回调的方式返回任务信息。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -166,7 +181,11 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
 获取任务信息，以promise方式返回任务信息。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -198,7 +217,11 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 获取所有任务信息，以回调函数的方式返回任务信息数组。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -227,7 +250,11 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 获取所有任务信息，以promise的方式返回任务信息数组。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -259,7 +286,11 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
 获取任务快照，以回调函数的方式返回快照内容。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -294,7 +325,11 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
 获取任务快照，以promise的方式返回快照内容。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -334,7 +369,11 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 锁定指定任务id的任务，以回调函数的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -367,7 +406,11 @@ lockMission(missionId: number): Promise&lt;void&gt;;
 
 锁定指定任务id的任务，以promise方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -405,7 +448,11 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 解锁指定任务id的任务，以回调函数的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -438,7 +485,11 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
 
 解锁指定任务id的任务，以promise的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -480,7 +531,11 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 清理指定任务id的任务，无论该任务是否被锁定，以回调函数的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -513,7 +568,11 @@ clearMission(missionId: number): Promise&lt;void&gt;;
 
 清理指定任务id的任务，无论该任务是否被锁定，以promise的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -552,7 +611,11 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 
 清理所有未锁定的任务，以回调函数的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **示例：**
 
@@ -571,7 +634,11 @@ clearAllMissions(): Promise&lt;void&gt;;
 
 清理所有未锁定的任务，以promise的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -595,7 +662,11 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 把指定任务id的任务切到前台，以回调函数的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -628,14 +699,18 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以回调函数的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | StartOptions | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -662,14 +737,18 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 把指定任务id的任务切到前台，同时指定任务切换到前台时的启动参数，例如窗口模式、设备ID等，以promise的方式返回。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | options | StartOptions | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
+  | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
 **返回值：**
 
@@ -699,7 +778,9 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 表示Ability对应任务信息的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |

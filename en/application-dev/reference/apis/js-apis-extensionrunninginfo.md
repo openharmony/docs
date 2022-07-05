@@ -1,8 +1,8 @@
 # ExtensionRunningInfo
 
-> **NOTE**<br/>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 Provides extension running information.
 
@@ -14,10 +14,7 @@ import abilitymanager from '@ohos.application.abilityManager';
 
 ## Usage
 
-
 The extension running information is obtained through an **abilityManager** instance.
-
-
 
 ```js
 import abilitymanager from '@ohos.application.abilityManager';

@@ -1,11 +1,10 @@
 # uriPermissionManager
 
+uriPermissionManager模块提供了Uri权限管理的能力。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-
-Uri权限管理。
 
 
 ## 导入模块
@@ -77,7 +76,7 @@ SystemCapability.Ability.AbilityRuntime.Core
   import WantConstant from '@ohos.ability.wantConstant';
   let accessTokenId =1
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  UriPermissionManager.verifyUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId)
+  UriPermissionManager.verifyUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId)
   .then((data) => {
       console.log('Verification succeeded.' + data)
   }).catch((error) => {

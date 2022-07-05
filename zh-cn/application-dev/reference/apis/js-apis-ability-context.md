@@ -1,11 +1,13 @@
 # AbilityContext
 
+AbilityContext是Ability的上下文环境，继承自Context。
+
+AbilityContext模块提供允许访问特定于ability的资源的能力，包括对Ability的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。   
 > 本模块接口仅可在Stage模型下使用。
-
-Ability的上下文环境，继承自Context。
 
 ## 导入模块
 
@@ -78,7 +80,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md)  | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例：**
@@ -111,7 +113,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -180,7 +182,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | 是 | 执行结果回调函数。 |
 
 
@@ -213,7 +215,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 否 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 
 **返回值：**
@@ -276,7 +278,7 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  this.context.terminateSelf(want).then((data) => {
+  this.context.terminateSelf().then((data) => {
       console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));

@@ -1,7 +1,9 @@
-# Context Module
+# Context
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.  
+> The APIs of this module can be used only in the FA model.
 
 ## Modules to Import
 
@@ -834,7 +836,7 @@ Obtains information of the current ability. This API uses an asynchronous callba
 
 | Name    | Type                  | Mandatory| Description                     |
 | -------- | ---------------------- | ---- | ------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | Yes  |Callback used to return the ability information.|
+| callback | AsyncCallback\<[AbilityInfo](#abilityInfo)> | Yes  | Callback used to return the ability information.|
 
 **Example**
 
@@ -886,7 +888,7 @@ Obtains the context of the application.
 
 | Type     | Description  |
 | --------- |------ |
-|  Context |Application context.|
+|  Context | Application context.|
 
 **Example**
 
@@ -928,14 +930,14 @@ Describes the HAP module information.
 | labelId          | number        | Yes  | No  | Module label ID.        |
 | iconId           | number        | Yes  | No  | Module icon ID.        |
 | backgroundImg    | string        | Yes  | No  | Module background image.      |
-| supportedModes   | number        | Yes  | No  | Modes supported by the module.    |
-| reqCapabilities  | Array<string> | Yes  | No  | Capabilities required for module running.|
-| deviceTypes      | Array<string> | Yes  | No  | An array of supported device types.|
-| abilityInfo      | Array<AbilityInfo> | Yes  | No  | Ability information.       |
+| supportedModes   | number        | Yes  | No  | Running modes supported by the module.    |
+| reqCapabilities  | Array\<string> | Yes  | No  | Capabilities required for module running.|
+| deviceTypes      | Array\<string> | Yes  | No  | Device types supported by the module.|
+| abilityInfo      | Array\<AbilityInfo> | Yes  | No  | Ability information. |
 | moduleName       | string        | Yes  | No  | Module name.            |
-| mainAbilityName  | string        | Yes  | No  | Name of the entrance ability.   |
-| installationFree | boolean       | Yes  | No  | When installation-free is supported.    |
-| mainElementName | string | Yes| No| Information about the entry ability.|
+| mainAbilityName  | string        | Yes  | No  | Name of the main ability.   |
+| installationFree | boolean       | Yes  | No  | Whether installation-free is supported.    |
+| mainElementName | string | Yes| No| Information about the main ability.|
 
 ## AppVersionInfo<sup>7+</sup>
 

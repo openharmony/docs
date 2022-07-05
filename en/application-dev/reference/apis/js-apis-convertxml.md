@@ -27,7 +27,7 @@ Converts an XML text into a JavaScript object.
 | Name | Type                             | Mandatory| Description           |
 | ------- | --------------------------------- | ---- | --------------- |
 | xml     | string                            | Yes  | XML text to convert.|
-| options | [ConvertOptions](#convertoptions) | No  | Options for coversion.     |
+| options | [ConvertOptions](#convertoptions) | No  | Options for conversion.     |
 
 **Return value**
 
@@ -57,7 +57,7 @@ console.log(result)
 
 ## ConvertOptions
 
-Options for coversion.
+Options for conversion.
 
 **System capability**: SystemCapability.Utils.Lang
 

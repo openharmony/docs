@@ -15,7 +15,7 @@ You can develop applications or services in the low-code approach using either o
 
 - Create a project that supports low-code development. This method is used as an example in this topic.
 
-- In an existing project, create a .visual file for development.
+- In an existing project, create a .visual file for development. For details, see [Creating a .visual File That Supports Low-Code Development](#building-the-second-page).
 
 
 ## Creating a Project That Supports Low-Code Development
@@ -52,7 +52,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
    
    Open the **index.visual** file, right-click the existing template components on the canvas, and choose **Delete** from the shortcut menu to delete them. Below is an illustration of the operations.
 
-![en-us_image_0000001233208980](figures/en-us_image_0000001233208980.gif)
+   ![en-us_image_0000001233208980](figures/en-us_image_0000001233208980.gif)
 
 2. Add a **Column** component and set its styles and attributes.<a name="add_container"></a>
 
@@ -62,7 +62,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 
 3. Add a **Text** component.
 
-   Drag the **Text** component from the **UI Control** area to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277608813](figures/en-us_image_0000001277608813.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hello World**), set **FontSize** to **30fp**, and set **TextAlign** to **Center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
+   Drag the **Text** component from the **UI Control** area to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277608813](figures/en-us_image_0000001277608813.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hello World**), set **FontSize** to **30fp**, and set **TextAlign** to **center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
 
    ![en-us_image_0000001235731706](figures/en-us_image_0000001235731706.gif)
 
@@ -70,7 +70,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 
    Drag the **Button** component from the **UI Control** area to the canvas and then to a position under the **Text** component. In the **Attributes &amp; Styles** area on the right, click ![en-us_image_0000001277728577](figures/en-us_image_0000001277728577.png)**General** and set **Height** of the **Button** component to **40vp**. Click ![en-us_image_0000001277809337](figures/en-us_image_0000001277809337.png)**Feature** and set **Label** to **Next** and **FontSize** to **25fp**. Below is an illustration of the operations.
 
-![en-us_image_0000001235732402](figures/en-us_image_0000001235732402.gif)
+   ![en-us_image_0000001235732402](figures/en-us_image_0000001235732402.gif)
 
 5. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. 
 
@@ -85,7 +85,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
    
    In the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **ets** &gt; **MainAbility**, right-click the **pages** folder, choose **New** &gt; **Visual**, name the page **second**, and click **Finish**. Below, you can see the structure of the **pages** folder.
 
-![en-us_image_0000001233368868](figures/en-us_image_0000001233368868.png)
+   ![en-us_image_0000001233368868](figures/en-us_image_0000001233368868.png)
 
 2. [Delete the existing template components from the canvas.](#delete_origin_content)
 
@@ -110,7 +110,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
         }
       }
       ```
-   - Drag the **Text** component to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277488985](figures/en-us_image_0000001277488985.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hi there**), set **FontSize** to **30fp**, and set **TextAlign** to **Center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
+   - Drag the **Text** component to the canvas and then to the center area of the **Column** component. In the **Attributes &amp; Styles** area, click ![en-us_image_0000001277488985](figures/en-us_image_0000001277488985.png)**Feature**, set **Content** of the **Text** component to **this.message** (that is, **Hi there**), set **FontSize** to **30fp**, and set **TextAlign** to **center**. Then, select the **Text** component on the canvas and drag its corners to fully display the text. Below is an illustration of the operations.
 
       ![en-us_image_0000001280255513](figures/en-us_image_0000001280255513.gif)
 
@@ -123,7 +123,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 
 ## Implementing Page Redirection
 
-You can implement page redirection through the page router, which finds the target page based on the page URI. Import the **router** module and then perform the steps below:
+You can implement page redirection through the page router, which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
    

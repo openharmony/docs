@@ -1,11 +1,12 @@
 # util
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-This module provides common utility functions, such as **TextEncoder** and **TextDecoder** for string encoding and decoding, **RationalNumber** for rational number operations, **LruBuffer** for buffer management, **Scope** for range determination, **Base64** for Base64 encoding and decoding, and **types** for checks of built-in object types.
+This module provides common utility functions, such as **TextEncoder** and **TextDecoder** for string encoding and decoding, **RationalNumber** for rational number operations, **LruBuffer** for buffer management, **Scope** for range determination, **Base64** for Base64 encoding and decoding, and **Types** for checks of built-in object types.
 
 
 ## Modules to Import
@@ -23,15 +24,15 @@ Prints the input content in a formatted string.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | format  | string  | Yes | Format of the string to print. |
- | ...args  | Object[]  | No | Data to format. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| format | string | Yes| Format of the string to print.|
+| ...args | Object[] | No| Data to format.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | string  | String in the specified format. |
+| Type| Description|
+| -------- | -------- |
+| string | String in the specified format.|
 
 **Example**
   ```js
@@ -49,14 +50,14 @@ Obtains detailed information about a system error code.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | errno  | number  | Yes | Error code generated. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| errno | number | Yes| Error code generated.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | string  | Detailed information about the error code. |
+| Type| Description|
+| -------- | -------- |
+| string | Detailed information about the error code.|
 
 **Example**
   ```js
@@ -76,14 +77,14 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | original  | Function  | Yes | Asynchronous function. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| original | Function | Yes| Asynchronous function.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Function  | Callback, in which the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter indicates the resolved value. |
+| Type| Description|
+| -------- | -------- |
+| Function | Callback, in which the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter indicates the resolved value.|
 
 **Example**
   ```js
@@ -107,14 +108,14 @@ Processes an asynchronous function and returns a promise version.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | original  | Function  | Yes | Asynchronous function. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| original | Function | Yes| Asynchronous function.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Function  | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise version. |
+| Type| Description|
+| -------- | -------- |
+| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise version.|
 
 **Example**
   ```js
@@ -138,11 +139,11 @@ Processes an asynchronous function and returns a promise version.
 
 **System capability**: SystemCapability.Utils.Lang
 
- | Name | Type | Readable | Writable | Description |
- | --------  | --------  | --------  | --------  | --------  |
- | encoding  | string  | Yes | No | Encoding format.<br>-&nbsp;Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le |
- | fatal  | boolean  | Yes | No | Whether to display fatal errors. |
- | ignoreBOM  | boolean  | Yes | No | Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM. |
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| encoding | string | Yes| No| Encoding format.<br>- Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
+| fatal | boolean | Yes| No| Whether to display fatal errors.|
+| ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
 
 ### constructor
@@ -154,17 +155,17 @@ A constructor used to create a **TextDecoder** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | encoding  | string  | No | Encoding format. |
- | options  | Object  | No | Encoding-related options, which include **fatal** and **ignoreBOM**. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| encoding | string | No| Encoding format.|
+| options | Object | No| Encoding-related options, which include **fatal** and **ignoreBOM**.|
 
   **Table 1** options
 
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | fatal  | boolean  | No | Whether to display fatal errors. |
- | ignoreBOM  | boolean  | No | Whether to ignore the BOM. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fatal | boolean | No| Whether to display fatal errors.|
+| ignoreBOM | boolean | No| Whether to ignore the BOM.|
 
 **Example**
   ```js
@@ -181,21 +182,21 @@ Decodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | input  | Unit8Array  | Yes | Uint8Array to decode. |
- | options  | Object  | No | Options related to decoding. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| input | Unit8Array | Yes| Uint8Array to decode.|
+| options | Object | No| Options related to decoding.|
 
   **Table 2** options
 
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | stream  | boolean  | No | Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| stream | boolean | No| Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | string  | Data decoded. |
+| Type| Description|
+| -------- | -------- |
+| string | Data decoded.|
 
 **Example**
   ```js
@@ -208,9 +209,6 @@ Decodes the input content.
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  for(var j= 0; j < 6; j++) {
-      console.log(result[j]);
-  }
   var retStr = textDecoder.decode( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
@@ -222,9 +220,9 @@ Decodes the input content.
 
 **System capability**: SystemCapability.Utils.Lang
 
- | Name | Type | Readable | Writable | Description |
- | --------  | --------  | --------  | --------  | --------  |
- | encoding  | string  | Yes | No | Encoding format. The default format is **utf-8**. |
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| encoding | string | Yes| No| Encoding format. The default format is **utf-8**.|
 
 
 ### constructor
@@ -250,18 +248,19 @@ Encodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | input  | string  | Yes | String to encode. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| input | string | Yes| String to encode.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Uint8Array  | Encoded text. |
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | Encoded text.|
 
 **Example**
   ```js
   var textEncoder = new util.TextEncoder();
+  var buffer = new ArrayBuffer(20);
   var result = new Uint8Array(buffer);
   result = textEncoder.encode("\uD800¥¥");
   ```
@@ -276,15 +275,15 @@ Stores the UTF-8 encoded text.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | input  | string  | Yes | String to encode. |
- | dest  | Uint8Array  | Yes | **Uint8Array** instance used to store the UTF-8 encoded text. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| input | string | Yes| String to encode.|
+| dest | Uint8Array | Yes| **Uint8Array** instance used to store the UTF-8 encoded text.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Uint8Array  | Encoded text. |
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | Encoded text.|
 
 **Example**
   ```js
@@ -306,10 +305,10 @@ A constructor used to create a **RationalNumber** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | numerator  | number  | Yes | Numerator, which is an integer. |
- | denominator  | number  | Yes | Denominator, which is an integer. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| numerator | number | Yes| Numerator, which is an integer.|
+| denominator | number | Yes| Denominator, which is an integer.|
 
 **Example**
   ```js
@@ -326,14 +325,14 @@ Creates a **RationalNumber** object based on the given string.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | rationalString  | string  | Yes | String used to create the **RationalNumber** object. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| rationalString | string | Yes| String used to create the **RationalNumber** object.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | object  | **RationalNumber** object created. |
+| Type| Description|
+| -------- | -------- |
+| object | **RationalNumber** object created.|
 
 **Example**
   ```js
@@ -351,17 +350,16 @@ Compares this **RationalNumber** object with a given object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | another  | RationalNumber  | Yes | Object used to compare with this **RationalNumber** object. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| another | RationalNumber | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object. |
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
 
 **Example**
-
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
   var rational = rationalNumer.creatRationalFromString("3/4");
@@ -378,9 +376,9 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | An integer or a floating-point number. |
+| Type| Description|
+| -------- | -------- |
+| number | An integer or a floating-point number.|
 
 **Example**
   ```js
@@ -398,14 +396,14 @@ Checks whether this **RationalNumber** object equals the given object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | object  | Object  | Yes | Object used to compare with this **RationalNumber** object. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| object | Object | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the two objects are equal; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the two objects are equal; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -424,15 +422,15 @@ Obtains the greatest common divisor of two specified integers.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | number1  | number  | Yes | The first integer used to get the greatest common divisor. |
- | number2  | number  | Yes | The second integer used to get the greatest common divisor. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| number1 | number | Yes| The first integer used to get the greatest common divisor.|
+| number2 | number | Yes| The second integer used to get the greatest common divisor.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Greatest common divisor obtained. |
+| Type| Description|
+| -------- | -------- |
+| number | Greatest common divisor obtained.|
 
 **Example**
   ```js
@@ -451,9 +449,9 @@ Obtains the numerator of this **RationalNumber** object.
 
 **Return value**
 
- | Type | Description |
- | --------  | --------  |
- | number  | Numerator of this **RationalNumber** object. |
+| Type| Description|
+| -------- | -------- |
+| number | Numerator of this **RationalNumber** object.|
 
 **Example**
   ```js
@@ -471,9 +469,9 @@ Obtains the denominator of this **RationalNumber** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Denominator of this **RationalNumber** object. |
+| Type| Description|
+| -------- | -------- |
+| number | Denominator of this **RationalNumber** object.|
 
 **Example**
   ```js
@@ -484,16 +482,16 @@ Obtains the denominator of this **RationalNumber** object.
 
 ### isZero<sup>8+</sup>
 
-isZero​(): boolean
+isZero​():boolean
 
 Checks whether this **RationalNumber** object is **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -511,9 +509,9 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise.|
 
 **Example**
   ```js
@@ -524,16 +522,16 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
 ### isFinite<sup>8+</sup>
 
-isFinite​(): boolean
+isFinite​():boolean
 
 Checks whether this **RationalNumber** object represents a finite value.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise.|
 
 **Example**
   ```js
@@ -551,9 +549,9 @@ Obtains the string representation of this **RationalNumber** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | string  | Returns **NaN** if the numerator and denominator of this object are both **0**; returns a string in Numerator/Denominator format otherwise, for example, **3/5**. |
+| Type| Description|
+| -------- | -------- |
+| string | Returns **NaN** if the numerator and denominator of this object are both **0**; returns a string in Numerator/Denominator format otherwise, for example, **3/5**.|
 
 **Example**
   ```js
@@ -567,9 +565,9 @@ Obtains the string representation of this **RationalNumber** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
- | Name | Type | Readable | Writable | Description |
- | --------  | --------  | --------  | --------  | --------  |
- | length  | number  | Yes | No | Total number of values in this buffer. |
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | Yes| No| Total number of values in this buffer.|
 
 **Example**
   ```js
@@ -589,9 +587,9 @@ A constructor used to create an **LruBuffer** instance. The default capacity of 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | capacity  | number  | No | Capacity of the **LruBuffer** to create. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| capacity | number | No| Capacity of the **LruBuffer** to create.|
 
 **Example**
   ```js
@@ -608,9 +606,9 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | newCapacity  | number  | Yes | New capacity of the **LruBuffer**. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| newCapacity | number | Yes| New capacity of the **LruBuffer**.|
 
 **Example**
   ```js
@@ -628,9 +626,9 @@ Obtains the string representation of this **LruBuffer** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | string  | String representation of this **LruBuffer** object. |
+| Type| Description|
+| -------- | -------- |
+| string | String representation of this **LruBuffer** object.|
 
 **Example**
   ```js
@@ -651,9 +649,9 @@ Obtains the capacity of this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Capacity of this buffer. |
+| Type| Description|
+| -------- | -------- |
+| number | Capacity of this buffer.|
 
 **Example**
   ```js
@@ -688,9 +686,9 @@ Obtains the number of return values for **createDefault()**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Number of return values for **createDefault()**. |
+| Type| Description|
+| -------- | -------- |
+| number | Number of return values for **createDefault()**.|
 
 **Example**
   ```js
@@ -709,9 +707,9 @@ Obtains the number of times that the queried values are mismatched.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Number of times that the queried values are mismatched. |
+| Type| Description|
+| -------- | -------- |
+| number | Number of times that the queried values are mismatched.|
 
 **Example**
   ```js
@@ -731,9 +729,9 @@ Obtains the number of removals from this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Number of removals from the buffer. |
+| Type| Description|
+| -------- | -------- |
+| number | Number of removals from the buffer.|
 
 **Example**
   ```js
@@ -754,9 +752,9 @@ Obtains the number of times that the queried values are matched.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Number of times that the queried values are matched. |
+| Type| Description|
+| -------- | -------- |
+| number | Number of times that the queried values are matched.|
 
 **Example**
   ```js
@@ -776,9 +774,9 @@ Obtains the number of additions to this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | number  | Number of additions to the buffer. |
+| Type| Description|
+| -------- | -------- |
+| number | Number of additions to the buffer.|
 
 **Example**
   ```js
@@ -797,9 +795,9 @@ Checks whether this buffer is empty.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the buffer does not contain any value. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the buffer does not contain any value.|
 
 **Example**
   ```js
@@ -811,21 +809,21 @@ Checks whether this buffer is empty.
 
 ### get<sup>8+</sup>
 
-get(key: K): V  | undefined
+get(key: K): V | undefined
 
 Obtains the value of the specified key.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | key  | K  | Yes | Key based on which the value is queried. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | K | Yes| Key based on which the value is queried.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | V&nbsp;\ |&nbsp;undefind  | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| V \| undefind | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
 
 **Example**
   ```js
@@ -844,15 +842,15 @@ Adds a key-value pair to this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | key  | K  | Yes | Key of the key-value pair to add. |
- | value  | V  | Yes | Value of the key-value pair to add. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | K | Yes| Key of the key-value pair to add.|
+| value | V | Yes| Value of the key-value pair to add.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | V  | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown.  |
+| Type| Description|
+| -------- | -------- |
+| V | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
 
 **Example**
   ```js
@@ -870,9 +868,9 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | V&nbsp;[]  | All values in the buffer, listed from the most to the least recently accessed. |
+| Type| Description|
+| -------- | -------- |
+| V [] | All values in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
@@ -893,9 +891,9 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | K&nbsp;[]  | All keys in the buffer, listed from the most to the least recently accessed. |
+| Type| Description|
+| -------- | -------- |
+| K [] | All keys in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
@@ -907,21 +905,21 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 ### remove<sup>8+</sup>
 
-remove(key: K): V  | undefined
+remove(key: K): V | undefined
 
 Removes the specified key and its value from this buffer.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | key  | K  | Yes | Key to remove. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | K | Yes| Key to remove.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | V&nbsp;\ |&nbsp;undefind  | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown. |
+| Type| Description|
+| -------- | -------- |
+| V \| undefind | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
 
 **Example**
   ```js
@@ -940,12 +938,12 @@ Performs subsequent operations after a value is removed.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | isEvict  | boolean  | No | Whether the buffer capacity is insufficient. If the value is **true**, this method is called due to insufficient capacity. |
- | key  | K  | Yes | Key removed. |
- | value  | V  | Yes | Value removed. |
- | newValue  | V  | No | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| isEvict | boolean | No| Whether the buffer capacity is insufficient. If the value is **true**, this method is called due to insufficient capacity.|
+| key | K | Yes| Key removed.|
+| value | V | Yes| Value removed.|
+| newValue | V | No| New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
 
 **Example**
   ```js
@@ -985,14 +983,14 @@ Checks whether this buffer contains the specified key.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | key  | K  | Yes | Key to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | K | Yes| Key to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the buffer contains the specified key; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the buffer contains the specified key; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1011,14 +1009,14 @@ Creates a value if the value of the specified key is not available.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | key  | K  | Yes | Key of which the value is missing. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | K | Yes| Key of which the value is missing.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | V  | Value of the key. |
+| Type| Description|
+| -------- | -------- |
+| V | Value of the key.|
 
 **Example**
   ```js
@@ -1036,9 +1034,9 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [K,&nbsp;V]  | Iterable array. |
+| Type| Description|
+| -------- | -------- |
+| [K, V] | Iterable array.|
 
 **Example**
   ```js
@@ -1057,9 +1055,9 @@ Obtains a two-dimensional array in key-value pairs.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [K,&nbsp;V]  | Two-dimensional array in key-value pairs. |
+| Type| Description|
+| -------- | -------- |
+| [K, V] | Two-dimensional array in key-value pairs.|
 
 **Example**
   ```js
@@ -1081,7 +1079,7 @@ The values of the **ScopeComparable** type are used to implement the **compareTo
 interface ScopeComparable{
     compareTo(other: ScopeComparable): boolean;
 }
-type ScopeType = ScopeComparable  | number;
+type ScopeType = ScopeComparable | number;
 ```
 
 
@@ -1092,6 +1090,8 @@ Example
 ```js
 class Temperature{
     constructor(value){
+       // If TS is used for development, add the following code:
+       // private readonly _temp: Temperature;
        this._temp = value;
     }
     comapreTo(value){
@@ -1116,10 +1116,10 @@ A constructor used to create a **Scope** object with the specified upper and low
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | lowerObj  | [ScopeType](#scopetype8)  | Yes | Lower limit of the **Scope** object. |
- | upperObj  | [ScopeType](#scopetype8)  | Yes | Upper limit of the **Scope** object. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit of the **Scope** object.|
+| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit of the **Scope** object.|
 
 **Example**
   ```js
@@ -1138,9 +1138,9 @@ Obtains a string representation that contains this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | string  | String representation containing the **Scope**. |
+| Type| Description|
+| -------- | -------- |
+| string | String representation containing the **Scope**.|
 
 **Example**
   ```js
@@ -1160,14 +1160,14 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | range  | [Scope](#scope8)  | Yes | **Scope** specified. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| range | [Scope](#scope8) | Yes| **Scope** specified.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [Scope](#scope8)  | Intersection of this **Scope** and the given **Scope**. |
+| Type| Description|
+| -------- | -------- |
+| [Scope](#scope8) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
   ```js
@@ -1183,22 +1183,22 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 ### intersect<sup>8+</sup>
 
-intersect(lowerObj: ScopeType,upperObj: ScopeType): Scope
+intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | lowerObj  | [ScopeType](#scopetype8)  | Yes | Lower limit. |
- | upperObj  | [ScopeType](#scopetype8)  | Yes | Upper limit. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [Scope](#scope8)  | Intersection of this **Scope** and the given lower and upper limits. |
+| Type| Description|
+| -------- | -------- |
+| [Scope](#scope8) | Intersection of this **Scope** and the given lower and upper limits.|
 
 **Example**
   ```js
@@ -1221,9 +1221,9 @@ Obtains the upper limit of this **Scope**.
 
 **Return value**
 
- | Type | Description |
- | --------  | --------  |
- | [ScopeType](#scopetype8)  | Upper limit of this **Scope**. |
+| Type| Description|
+| -------- | -------- |
+| [ScopeType](#scopetype8) | Upper limit of this **Scope**.|
 
 **Example**
   ```js
@@ -1243,9 +1243,9 @@ Obtains the lower limit of this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [ScopeType](#scopetype8)  | Lower limit of this **Scope**. |
+| Type| Description|
+| -------- | -------- |
+| [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
 
 **Example**
   ```js
@@ -1265,17 +1265,18 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | lowerObj  | [ScopeType](#scopetype8)  | Yes | Lower limit. |
- | upperObj  | [ScopeType](#scopetype8)  | Yes | Upper limit. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [Scope](#scope8)  | Union set of this **Scope** and the given lower and upper limits. |
+| Type| Description|
+| -------- | -------- |
+| [Scope](#scope8) | Union set of this **Scope** and the given lower and upper limits.|
 
 **Example**
+
   ```js
   var tempLower = new Temperature(30);
   var tempUpper = new Temperature(40);
@@ -1288,21 +1289,21 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 ### expand<sup>8+</sup>
 
-expand(range:Scope):Scope
+expand(range: Scope): Scope
 
 Obtains the union set of this **Scope** and the given **Scope**.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | range  | [Scope](#scope8)  | Yes | **Scope** specified. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| range | [Scope](#scope8) | Yes| **Scope** specified.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [Scope](#scope8)  | Union set of this **Scope** and the given **Scope**. |
+| Type| Description|
+| -------- | -------- |
+| [Scope](#scope8) | Union set of this **Scope** and the given **Scope**.|
 
 **Example**
   ```js
@@ -1325,14 +1326,14 @@ Obtains the union set of this **Scope** and the given value.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | [ScopeType](#scopetype8)  | Yes | Value specified. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [Scope](#scope8)  | Union set of this **Scope** and the given value. |
+| Type| Description|
+| -------- | -------- |
+| [Scope](#scope8) | Union set of this **Scope** and the given value.|
 
 **Example**
   ```js
@@ -1353,14 +1354,14 @@ Checks whether a value is within this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | [ScopeType](#scopetype8)  | Yes | Value specified. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the value is within this **Scope**; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1381,14 +1382,14 @@ Checks whether a range is within this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | range  | [Scope](#scope8)  | Yes | **Scope** specified. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| range | [Scope](#scope8) | Yes| **Scope** specified.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the range is within this **Scope**; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1411,14 +1412,14 @@ Limits a value to this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | [ScopeType](#scopetype8)  | Yes | Value specified. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | [ScopeType](#scopetype8)  | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**. |
+| Type| Description|
+| -------- | -------- |
+| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
 
 **Example**
   ```js
@@ -1456,14 +1457,14 @@ Encodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | src  | Uint8Array  | Yes | Uint8Array to encode. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| src | Uint8Array | Yes| Uint8Array to encode.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Uint8Array  | Uint8Array encoded. |
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | Uint8Array encoded.|
 
 **Example**
   ```js
@@ -1482,14 +1483,14 @@ Encodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | src  | Uint8Array  | Yes | Uint8Array to encode. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| src | Uint8Array | Yes| Uint8Array to encode.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | string  | String encoded from the Uint8Array. |
+| Type| Description|
+| -------- | -------- |
+| string | String encoded from the Uint8Array.|
 
 **Example**
   ```js
@@ -1501,21 +1502,21 @@ Encodes the input content.
 
 ### decodeSync<sup>8+</sup>
 
-decodeSync(src: Uint8Array  | string): Uint8Array
+decodeSync(src: Uint8Array | string): Uint8Array
 
 Decodes the input content.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | src  | Uint8Array&nbsp;\ |&nbsp;string  | Yes | Uint8Array or string to decode. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| src | Uint8Array \| string | Yes| Uint8Array or string to decode.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Uint8Array  | Uint8Array decoded. |
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | Uint8Array decoded.|
 
 **Example**
   ```js
@@ -1534,14 +1535,14 @@ Encodes the input content asynchronously.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | src  | Uint8Array  | Yes | Uint8Array to encode asynchronously. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Promise&lt;Uint8Array&gt;  | Uint8Array obtained after asynchronous encoding. |
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
 
 **Example**
   ```js
@@ -1565,14 +1566,14 @@ Encodes the input content asynchronously.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | src  | Uint8Array  | Yes | Uint8Array to encode asynchronously. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Promise&lt;string&gt;  | String obtained after asynchronous encoding. |
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;string&gt; | String obtained after asynchronous encoding.|
 
 **Example**
   ```js
@@ -1586,21 +1587,21 @@ Encodes the input content asynchronously.
 
 ### decode<sup>8+</sup>
 
-decode(src: Uint8Array  | string): Promise&lt;Uint8Array&gt;
+decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
 Decodes the input content asynchronously.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | src  | Uint8Array&nbsp;\ |&nbsp;string  | Yes | Uint8Array or string to decode asynchronously. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| src | Uint8Array \| string | Yes| Uint8Array or string to decode asynchronously.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | Promise&lt;Uint8Array&gt;  | Uint8Array obtained after asynchronous decoding. |
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
 
 **Example**
   ```js
@@ -1622,7 +1623,7 @@ Decodes the input content asynchronously.
 
 constructor()
 
-A constructor used to create a **types** object.
+A constructor used to create a **Types** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1641,14 +1642,14 @@ Checks whether the input value is of the **ArrayBuffer** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1668,14 +1669,14 @@ Checks whether the input value is of the **ArrayBufferView** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **ArrayBufferView** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **ArrayBufferView** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1693,14 +1694,14 @@ Checks whether the input value is of the **arguments** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **arguments** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **arguments** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1721,14 +1722,14 @@ Checks whether the input value is of the **ArrayBuffer** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1746,14 +1747,14 @@ Checks whether the input value is an asynchronous function.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is an asynchronous function; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is an asynchronous function; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1771,14 +1772,14 @@ Checks whether the input value is of the **Boolean** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Boolean** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Boolean** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1796,14 +1797,14 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1821,14 +1822,14 @@ Checks whether the input value is of the **DataView** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **DataView** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **DataView** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1847,14 +1848,14 @@ Checks whether the input value is of the **Date** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Date** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Date** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1872,14 +1873,14 @@ Checks whether the input value is of the **native external** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **native external** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **native external** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1898,14 +1899,14 @@ Checks whether the input value is of the **Float32Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Float32Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Float32Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1923,14 +1924,14 @@ Checks whether the input value is of the **Float64Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Float64Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Float64Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1948,14 +1949,14 @@ Checks whether the input value is a generator function.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is a generator function; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a generator function; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -1973,14 +1974,14 @@ Checks whether the input value is a generator object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is a generator object; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a generator object; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2000,14 +2001,14 @@ Checks whether the input value is of the **Int8Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Int8Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Int8Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2025,14 +2026,14 @@ Checks whether the input value is of the **Int16Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Int16Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Int16Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2050,14 +2051,14 @@ Checks whether the input value is of the **Int32Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Int32Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Int32Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2075,14 +2076,14 @@ Checks whether the input value is of the **Map** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Map** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Map** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2100,14 +2101,14 @@ Checks whether the input value is of the **MapIterator** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **MapIterator** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **MapIterator** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2126,14 +2127,14 @@ Checks whether the input value is of the **Error** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Error** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Error** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2151,14 +2152,14 @@ Checks whether the input value is a number object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is a number object; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a number object; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2176,14 +2177,14 @@ Checks whether the input value is a promise.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is a promise; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a promise; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2201,14 +2202,14 @@ Checks whether the input value is a proxy.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is a proxy; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a proxy; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2228,14 +2229,14 @@ Checks whether the input value is of the **RegExp** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **RegExp** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **RegExp** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2253,14 +2254,14 @@ Checks whether the input value is of the **Set** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Set** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Set** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2278,14 +2279,14 @@ Checks whether the input value is of the **SetIterator** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **SetIterator** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **SetIterator** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2304,14 +2305,14 @@ Checks whether the input value is a string object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is a string object; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a string object; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2329,14 +2330,14 @@ Checks whether the input value is a symbol object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is a symbol object; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a symbol object; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2357,14 +2358,14 @@ Checks whether the input value is of the **TypedArray** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **TypedArray** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **TypedArray** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2382,14 +2383,14 @@ Checks whether the input value is of the **Uint8Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Uint8Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Uint8Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2407,14 +2408,14 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Uint8ClampedArray** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Uint8ClampedArray** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2432,14 +2433,14 @@ Checks whether the input value is of the **Uint16Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Uint16Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Uint16Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2457,14 +2458,14 @@ Checks whether the input value is of the **Uint32Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **Uint32Array** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **Uint32Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2482,14 +2483,14 @@ Checks whether the input value is of the **WeakMap** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **WeakMap** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **WeakMap** type; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -2507,14 +2508,14 @@ Checks whether the input value is of the **WeakSet** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
- | Name | Type | Mandatory | Description |
- | --------  | --------  | --------  | --------  |
- | value  | Object  | Yes | Object to check. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
 
 **Return value**
- | Type | Description |
- | --------  | --------  |
- | boolean  | Returns **true** if the input value is of the **WeakSet** type; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **WeakSet** type; returns **false** otherwise.|
 
 **Example**
   ```js

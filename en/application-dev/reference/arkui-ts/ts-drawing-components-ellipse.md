@@ -1,11 +1,11 @@
 # Ellipse
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Ellipse&gt;** component is used to draw an ellipse.
+The **<Ellipse\>** component is used to draw an ellipse.
 
 
 ## Required Permissions
@@ -23,20 +23,20 @@ None
 ellipse(options?: {width: Length, height: Length})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | For details, see the **options** parameters. | 
+  | options | Object | No | - | Options of the ellipse to draw. For details, see the **options** parameters. | 
 
 - options parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width. | 
-  | height | Length | Yes | - | Height. | 
+  | width | Length | Yes | - | Width of the ellipse. | 
+  | height | Length | Yes | - | Height of the ellipse. | 
 
 
 ## Attributes
 
-  | Name | Type | Default Value | Mandatory | Description | 
+| Name | Type | Default Value | Mandatory | Description | 
 | -------- | -------- | -------- | -------- | -------- |
 | width | Length | 0 | No | Width of the rectangle where the ellipse is located. | 
 | height | Length | 0 | No | Height of the rectangle where the ellipse is located. | 
@@ -45,7 +45,7 @@ ellipse(options?: {width: Length, height: Length})
 ## Example
 
   
-```
+```ts
 @Entry
 @Component
 struct EllipseExample {

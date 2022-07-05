@@ -74,7 +74,10 @@ The table below describes the APLs.
 | system_basic| The apps of this level provide basic system services.    |
 | Normal      | The apps of this level are normal apps.                            |
 
-By default, apps are of the normal APL. For the app of the system_basic or system_core APL, declare the app APL level in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+By default, apps are of the normal APL.
+
+For the app of the system_basic or system_core APL, declare the app APL level in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+
 ### Permission Levels
 
 The permissions open to apps vary with the permission level. The permission levels include the following in ascending order of seniority.
@@ -101,13 +104,28 @@ The permissions open to apps vary with the permission level. The permission leve
 
 As described above, permission levels and app APLs are in one-to-one correspondence. In principle, **an app with a lower APL cannot apply for higher permissions by default**.
 
-The Access Control List (ACL) makes low-level apps to have high-level permissions.
+The Access Control List (ACL) makes low-level apps have high-level permissions.
 
 **Example**
 
-The APL of app A is normal. App A needs to have permission B (system_basic level) and permission C (normal level). In this case, you can use the ACL to grant permission B to app A.
+The APL of app A is normal. App A needs to have permission B (system_basic level) and permission C (normal level).
+
+In this case, you can use the ACL to grant permission B to app A.
 
 For details, see [Using the ACL](#using-the-acl).
+For details about whether the ACL is enabled for a permission, see [Permission List](permission-list.md).
+
+### Using the ACL
+
+If the permission required by an app has higher level than the app's APL, you can use the ACL to grant the permissions required.
+
+In addition to the preceding [authorization processes](#authorization-processes), you must declare the ACL.
+
+In other words, in addition to declaring the required permissions in the **config.json** file, you must declare the high-level permissions in the app's [profile](accesstoken-guidelines.md#declaring-the-acl). The subsequent steps of authorization are the same.
+
+**NOTE**
+
+Declare the target ACL in the **acl** field of the app's profile in the app installation package, and generate a certificate using the profile signing tool. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
 
 ## Permission Authorization Modes
 
@@ -129,7 +147,7 @@ Permissions can be classified into the following types based on the authorizatio
 
     The user_grant permission list must also be presented on the details page of the app in the app store.
 
-## Authorization Processes
+### Authorization Processes
 
 The process for an app obtaining the required permissions varies depending on the permission authorization mode.
 
@@ -153,18 +171,6 @@ The procedure is as follows:
 
 - Check the app's permission each time before the operation requiring the permission is performed.
 
-- To check whether a user has granted specific permissions to your app, use the [verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstoken) method. This method returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus). For details about the sample code, see [Access Control Development](accesstoken-guidelines.md).
+- To check whether a user has granted specific permissions to your app, use the [verifyAccessToken](../reference/apis/js-apis-abilityAccessCtrl.md) method. This method returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Access Control Development](accesstoken-guidelines.md).
 - Users must be able to understand and control the authorization of user_grant permissions. During the running process, the app requiring user authorization must proactively call the API to dynamically request the authorization. Then, the system displays a dialog box asking the user to grant the requested permission. The user will determine whether to grant the permission based on the running context of the app.
 - The permission authorized is not permanent, because the user may revoke the authorization at any time. Therefore, even if the user has granted the requested permission to the app, the app must check for the permission before calling the API controlled by this permission.
-
-### Using the ACL
-
-If the permission required by an app has higher level than the app's APL, you can use the ACL to grant the permissions required.
-
-In addition to the preceding [authorization processes](#authorization-processes), you must declare the ACL.
-
-In other words, in addition to declaring the required permissions in the **config.json** file, you must declare the high-level permissions in the app's [profile](accesstoken-guidelines.md). The subsequent steps of authorization are the same.
-
-**NOTE**
-
-Declare the target ACL in the **acl** field of the app's profile in the app installation package, and generate a certificate using the profile signing tool. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).

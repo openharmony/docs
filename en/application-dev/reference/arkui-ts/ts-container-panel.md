@@ -1,12 +1,11 @@
 # Panel
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Panel&gt;** component is a slidable panel that presents lightweight content with flexible sizes. It is a pop-up component.
+The **<Panel\>** component is a slidable panel that presents lightweight content with flexible sizes. It is a pop-up component.
 
 
 ## Required Permissions
@@ -24,9 +23,9 @@ This component can contain child components.
 Panel(value:{show:boolean})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | show | boolean | Yes | - | Whether the panel is shown or hidden. |
+  | show | boolean | Yes | - | Whether to show or hide the panel. |
 
 
 ## Attributes
@@ -35,31 +34,31 @@ Panel(value:{show:boolean})
 | -------- | -------- | -------- | -------- |
 | type | PanelType | PanelType.Foldable | Type of the panel. |
 | mode | PanelMode | - | Initial status of the panel. |
-| dragBar | boolean | true | Whether to enable a drag bar. The value **true** means that the drag bar will be displayed, and **false** means the opposite. |
+| dragBar | boolean | true | Whether to enable a drag bar. The value **true** means to display the drag bar, and **false** means the opposite. |
 | fullHeight | Length | - | Panel height in the **PanelMode.Full** mode. |
 | halfHeight | Length | - | Panel height in the **PanelMode.Half** mode. The default value is half of the screen height. |
 | miniHeight | Length | - | Panel height in the **PanelMode.Mini** mode. |
 
 - PanelType enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
-  | Minibar | A minibar panel displays content in the minibar area or a large (fullscreen-like) area. |
-  | Foldable | A foldable panel displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area. |
-  | Temporary | A temporary panel displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area. |
+  | Minibar | A minibar panel that displays content in the minibar area or a large (fullscreen-like) area. |
+  | Foldable | A foldable panel that displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area. |
+  | Temporary | A temporary panel that displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area. |
 
 - PanelMode enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
-  | Mini | Displays a **minibar** or **foldable** panel in its minimum size. This attribute does not take effect for **temporary** panels. |
-  | Half | Displays a **foldable** or **temporary** panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels. |
-  | Full | Displays a panel in a large (fullscreen-like) area. |
+  | Mini | Display of a minibar or foldable panel in its minimum size. This attribute does not take effect for **temporary** panels. |
+  | Half | Display of a foldable or temporary panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels. |
+  | Full | Display of a panel in a large (fullscreen-like) area. |
 
 
 ## Events
 
 | Name | Description |
 | -------- | -------- |
-| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the status of the panel changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the drag bar height plus the height of the content area. |
+| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the panel status changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the drag bar height plus the height of the content area. |
 
 
 ## Example

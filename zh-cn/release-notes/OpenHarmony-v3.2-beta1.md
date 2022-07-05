@@ -138,7 +138,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 
 ### 特性变更
 
-**表2** 版本特性变更表
+**表3** 版本特性变更表
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 |
 | -------- | -------- | -------- |
@@ -156,7 +156,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 | 全球化 | -&nbsp;支持获取资源的同步接口，支持按资源名称获取资源，支持获取float等类型资源。<br/>-&nbsp;新增对MCC/MNC类型限定词资源的支持。<br/>-&nbsp;支持应用内不同模块独立编译。<br/>-&nbsp;支持获取区域偏好的年月日顺序。<br/>-&nbsp;获取本地文字的读音表达，例如汉字转拼音。<br/>主要涉及如下需求：<br/>I596AO&nbsp;支持MCC/MNC限定词<br/>I58ZSE&nbsp;资源管理接口能力增强<br/>I58ZSG&nbsp;资源ID生成<br/>I4WM02&nbsp;音译<br/>I4WK2O&nbsp;日期顺序获取 | NA |
 | ArkUI | -&nbsp;支持组件布局边界显示。<br/>-&nbsp;增强XComponent组件的鼠标操作，并且优化了输入法弹出时的布局调整，在应用性能方面进行了优化。<br/>-&nbsp;增强分栏与侧边栏组件能力，支持拖拽自动隐藏功能。<br/>-&nbsp;AbilityComponent组件支持，支持将应用界面（Ability）作为控件嵌入其他应用显示。<br/>主要涉及需求如下：<br/>I58ZPY&nbsp;支持解码降采样图片性能化<br/>I58ZPX&nbsp;支持CPU提频优化动画性能<br/>I58ZPW&nbsp;新增AbilityComponent组件<br/>I58ZPS&nbsp;XComponent组件鼠标事件<br/>I58ZPR&nbsp;支持输入框拉起输入法应用时自动布局<br/>I58ZPQ&nbsp;分栏、侧边栏支持自由拖拽到小于最小宽度后自动隐藏功能<br/>I58ZPP&nbsp;图形绘制/辅助类组件支持显示布局边界<br/>I58ZPO&nbsp;按钮/选择/信息展示/动效类组件支持显示布局边界<br/>I58ZPN&nbsp;文本/输入/图片/视频/媒体类组件支持显示布局边界 | NA |
 | 程序访问控制 | -&nbsp;新增SELinux针对service、hdf_service的标签保护能力。<br/>-&nbsp;新增Native服务的权限配置及校验能力。<br/>主要涉及需求如下：<br/>I58ZO1&nbsp;针对service，提供selinux标签保护能力<br/>I58ZO2&nbsp;针对hdf_service，提供selinux标签保护能力<br/>I58ZO3&nbsp;accessToken支持native服务的权限校验机制 | NA |
-| 公共基础类库 | TypedArray和SharedArrayBuffer支持ECMA&nbsp;2021规范。<br/>主要涉及如下需求：<br/>I58ZPZ&nbsp;支持TypeArray&nbsp;2021规范<br/>I58ZQ0&nbsp;支持&nbsp;shard&nbsp;array&nbsp;buffer&nbsp;2021规范 | NA |
+| 公共基础类库 | TypedArray和SharedArrayBuffer支持ECMA&nbsp;2021规范。<br/>主要涉及如下需求：<br/>I58ZPZ&nbsp;支持TypedArray&nbsp;2021规范<br/>I58ZQ0&nbsp;支持&nbsp;shard&nbsp;array&nbsp;buffer&nbsp;2021规范 | NA |
 | 语言编译运行时 | -&nbsp;方舟虚拟机支持多实例调试，以及条件断点和watch表达式。<br/>主要涉及如下需求：<br/>I58ZQE&nbsp;方舟支持多实例调试<br/>I58ZQD&nbsp;方舟支持条件断点<br/>I58ZQB&nbsp;方舟支持watch变量及表达式<br/>I58ZQ8&nbsp;支持TSAOT优化编译器生成代码支持ArkJS运行时GC特性<br/>I58ZQ7&nbsp;支持TSAOT优化编译器后端机器码生成框架适配 | NA |
 | 升级服务 | 新增适配RK&nbsp;3568。<br/>主要涉及如下需求：<br/>I58ZSM&nbsp;update_service部件支持RK&nbsp;3568升级适配<br/>I58ZSO&nbsp;updater部件支持RK&nbsp;3568升级适配 | NA |
 | Misc软件服务 | 补齐API6前的http文件上传、下载接口。<br/>主要涉及如下需求：<br/>I58ZSC&nbsp;【download】支持\@system.request接口<br/>I53J82&nbsp;&nbsp;【upload】支持\@system.request接口 | NA |
@@ -182,7 +182,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 
 ### Samples
 
-**表2** 新增Samples
+**表4** 新增Samples
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
@@ -198,7 +198,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 | 分布式数据管理 | DistributedRdb | 本示例展示了在eTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | eTS |
 | 元能力 | BackgroundTaskManager | 本示例模拟下载功能，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | eTS |
 | 元能力 | BringApp | 本示例使用FeatureAbility接口，通过应用的包名与Ability名，拉起系统应用。 | eTS |
-| 媒体 | VideoPlayer | 本示例展示了在eTS中如何VideoPlayer播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | eTS |
+| 媒体 | VideoPlayer | 本示例展示了在eTS中VideoPlayer如何播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | eTS |
 | 元能力 | DistributeCalc | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | eTS |
 | 媒体 | JSRecorder | 本示例通过调用媒体相关接口来实现音频录制和播放的功能。 | eTS |
 | Web | Browser | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | eTS |
@@ -214,7 +214,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 
 ## 修复缺陷列表
 
-**表6** 修复缺陷ISSUE列表
+**表5** 修复缺陷ISSUE列表
 
 | ISSUE单                                                      | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -223,7 +223,7 @@ _[API差异报告](api-change/v3.2-beta/readme.md)_
 
 ## 遗留缺陷列表
 
-**表7** 遗留缺陷列表
+**表6** 遗留缺陷列表
 
 | ISSUE                                                        | 问题描述                                                   | 影响                                                         | 计划解决日期 |
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------ |

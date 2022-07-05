@@ -1,11 +1,11 @@
 # RowSplit
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;RowSplit&gt;** lays out child components horizontally and inserts a vertical divider between every two child components.
+The **<RowSplit\>** component lays out child components horizontally and inserts a vertical divider between every two child components.
 
 
 ## Required Permissions
@@ -27,10 +27,10 @@ RowSplit()
 
 | Name | Type | Description |
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged. The default value is **false**. |
+| resizeable | boolean | Whether the divider is draggable. The default value is **false**. |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> Similar to **&lt;RowSplit&gt;**, the divider of **&lt;RowSplit&gt;** can be dragged to a position that just fully holds a component.
+> **NOTE**<br>
+> Similar to **<RowSplit\>**, the divider of **<RowSplit\>** can be dragged to a position that just fully holds a component.
 
 
 ## Example

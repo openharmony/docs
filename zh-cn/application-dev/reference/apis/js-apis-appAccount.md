@@ -134,7 +134,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 | owner    | string                | 是    | 要添加的应用帐号所有者包名。          |
 | authType | string                | 是    | 要添加的应用帐号鉴权类型。鉴权类型为自定义。  |
 | options  | {[key: string]: any}  | 是    | 鉴权所需要的可选项。可选项可根据自己需要设置。 |
-| callback | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。         |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。         |
 
 **示例：**
 
@@ -809,7 +809,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 应用帐号信息列表。 |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 应用帐号信息列表。 |
 
 **示例：**
 
@@ -835,7 +835,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -863,7 +863,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | owner    | string                                   | 是    | 应用包名称。    |
-| callback | AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 应用帐号信息列表。 |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 应用帐号信息列表。 |
 
 **示例：**
 
@@ -896,7 +896,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;AppAccountInfo&gt;&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -924,7 +924,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'change'                                 | 是    | 关于帐号更改事件，当帐号所有者更新帐号时，订阅者将收到通知。 |
 | owners   | Array&lt;string&gt;                      | 是    | 指示帐号的所有者。                      |
-| callback | Callback&lt;Array&lt;AppAccountInfo&gt;&gt; | 是    | 订阅指定帐号所有者的帐号变更事件的回调。           |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 订阅指定帐号所有者的帐号变更事件的回调。           |
 
 **示例：**
 
@@ -954,7 +954,7 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | 是    | 关于帐号更改事件。    |
-| callback | Callback<Array\<AppAccountInfo>> | 否    | 取消订阅帐号事件的回调。 |
+| callback | Callback<Array\<[AppAccountInfo](#appaccountinfo)>> | 否    | 取消订阅帐号事件的回调。 |
 
 **示例：**
 
@@ -990,7 +990,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 | owner    | string                | 是    | 要鉴权的应用帐号所有者包名。  |
 | authType | string                | 是    | 鉴权类型。           |
 | options  | {[key: string]: any}  | 是    | 鉴权所需的可选项。       |
-| callback | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。 |
 
 **示例：**
 
@@ -1446,7 +1446,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 | 参数名       | 类型                                       | 必填   | 说明       |
 | --------- | ---------------------------------------- | ---- | -------- |
 | sessionId | string                                   | 是    | 鉴权会话的标识。 |
-| callback  | AsyncCallback&lt;AuthenticatorCallback&gt; | 是    | 查询结果的回调。 |
+| callback  | AsyncCallback&lt;[AuthenticatorCallback](#authenticatorcallback8)&gt; | 是    | 查询结果的回调。 |
 
 **示例：**
 
@@ -1487,7 +1487,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 | 类型                                   | 说明                    |
 | ------------------------------------ | --------------------- |
-| Promise&lt;AuthenticatorCallback&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;[AuthenticatorCallback](#authenticatorcallback8)&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -1522,7 +1522,7 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 | 参数名      | 类型                                     | 必填   | 说明          |
 | -------- | -------------------------------------- | ---- | ----------- |
 | owner    | string                                 | 是    | 应用帐号的所有者包名。 |
-| callback | AsyncCallback&lt;AuthenticatorInfo&gt; | 是    | 查询结果的回调。    |
+| callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | 是    | 查询结果的回调。    |
 
 **示例：**
 
@@ -1552,7 +1552,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 类型                               | 说明                    |
 | -------------------------------- | --------------------- |
-| Promise&lt;AuthenticatorInfo&gt; | Promise实例，用于获取异步返回结果。 |
+| Promise&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | Promise实例，用于获取异步返回结果。 |
 
 **示例：**
 
@@ -1562,6 +1562,376 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
        console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err) => {
       console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
+  });
+  ```
+
+### checkAppAccess<sup>9+</sup>
+
+checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
+
+检查指定应用帐户对特定应用是否授权，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名      | 类型                         | 必填  | 说明             |
+| ---------- | ---------------------------- | ----- | ---------------- |
+| name       | string                       | 是    | 应用帐户的名称。   |
+| bundleName | string                       | 是    | 被检查的应用包名。 |
+| callback   | AsyncCallback&lt;boolean&gt; | 是    | 检查结果的回调。   |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.checkAppAccess("zhangsan", "com.example.ohos.accountjsdemo", (err, data) => {
+      console.log('checkAppAccess: ' + JSON.stringify(data));
+      console.log("checkAppAccess err: "  + JSON.stringify(err));
+  });
+  ```
+
+### checkAppAccess<sup>9+</sup>
+
+checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
+
+检查指定应用帐户对特定应用是否授权，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名      | 类型   | 必填   | 说明             |
+| ---------- | ------ | ----- | ---------------- |
+| name       | string | 是    | 应用帐户的名称。   |
+| bundleName | string | 是    | 被检查的应用包名。 |
+
+**参数：**
+
+| 类型                   | 说明                              |
+| ---------------------- | --------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.checkAppAccess("zhangsan", "com.example.ohos.accountjsdemo").then((data) => {
+       console.log('checkAppAccess: ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.log("checkAppAccess err: "  + JSON.stringify(err));
+  });
+  ```
+
+### deleteAccountCredential<sup>9+</sup>
+
+deleteAccountCredential(name: string, credentialType: string, callback: AsyncCallback&lt;void&gt;): void
+
+删除指定应用帐户的指定类型的凭据信息，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名         | 类型                       | 必填  | 说明            |
+| -------------- | ------------------------- | ----- | -------------- |
+| name           | string                    | 是    | 应用帐户的名称。 |
+| credentialType | string                    | 是    | 凭据类型。      |
+| callback       | AsyncCallback&lt;void&gt; | 是    | 删除结果的回调。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.deleteAccountCredential("zhangsan", "pin", (err, data) => {
+      console.log('deleteAccountCredential: ' + JSON.stringify(data));
+      console.log("deleteAccountCredential err: "  + JSON.stringify(err));
+  });
+  ```
+
+### deleteAccountCredential<sup>9+</sup>
+
+deleteAccountCredential(name: string, credentialType: string): Promise&lt;void&gt;
+
+删除指定应用帐户的指定类型的凭据信息，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名         | 类型   | 必填   | 说明            |
+| -------------- | ------ | ----- | --------------- |
+| name           | string | 是    | 应用帐户的名称。 |
+| credentialType | string | 是    | 凭据类型。       |
+
+**参数：**
+
+| 类型                | 说明                              |
+| ------------------- | -------------------------------- |
+| Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.deleteAccountCredential("zhangsan", "pin").then((data) => {
+       console.log('deleteAccountCredential: ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.log("deleteAccountCredential err: "  + JSON.stringify(err));
+  });
+  ```
+
+### checkAccountLabels<sup>9+</sup>
+
+checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, callback: AsyncCallback&lt;boolean&gt;): void;
+
+检查指定帐户是否具有特定的标签集合，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名         | 类型                       | 必填  | 说明             |
+| -------------- | ------------------------- | ----- | --------------- |
+| name           | string                    | 是    | 应用帐户的名称。  |
+| owner          | string                    | 是    | 应用帐户的所有者。|
+| labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
+| callback       | AsyncCallback&lt;void&gt; | 是    | 检查结果的回调。  |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo", (err, data) => {
+      console.log('checkAccountLabels: ' + JSON.stringify(data));
+      console.log("checkAccountLabels err: "  + JSON.stringify(err));
+  });
+  ```
+
+### checkAccountLabels<sup>9+</sup>
+
+checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Promise&lt;void&gt;
+
+检查指定帐户是否具有特定的标签集合，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名         | 类型                       | 必填  | 说明             |
+| -------------- | ------------------------- | ----- | --------------- |
+| name           | string                    | 是    | 应用帐户的名称。  |
+| owner          | string                    | 是    | 应用帐户的所有者。|
+| labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
+
+**参数：**
+
+| 类型                | 说明                              |
+| ------------------- | -------------------------------- |
+| Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo").then((data) => {
+       console.log('checkAccountLabels: ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.log("checkAccountLabels err: "  + JSON.stringify(err));
+  });
+  ```
+
+### selectAccountsByOptions<sup>9+</sup>
+
+selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;);
+
+根据选项选择请求方可访问的帐号列表，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名         | 类型                                 | 必填  | 说明             |
+| -------------- | ----------------------------------- | ----- | --------------- |
+| options        | SelectAccountsOptions               | 是    | 选择帐户的选项。  |
+| callback       | AsyncCallback&lt;[AppAccountInfo](#appaccountinfo)&gt; | 是    | 选择结果的回调。  |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var options = {
+    allowedOwners: ["com.example.ohos.accountjsdemo"]
+  };
+  appAccountManager.selectAccountsByOptions(options, (err, data) => {
+      console.log('selectAccountsByOptions: ' + JSON.stringify(data));
+      console.log("selectAccountsByOptions err: "  + JSON.stringify(err));
+  });
+  ```
+
+### selectAccountsByOptions<sup>9+</sup>
+
+selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;void&gt;
+
+根据选项选择请求方可访问的帐户列表，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名         | 类型                       | 必填  | 说明             |
+| -------------- | ------------------------- | ----- | --------------- |
+| options        | [SelectAccountsOptions](#selectaccountsoptions9)     | 是    | 选择帐户的选项。  |
+
+**参数：**
+
+| 类型                | 说明                              |
+| ------------------- | -------------------------------- |
+| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise实例，用于获取异步返回结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var options = {
+    allowedOwners: ["com.example.ohos.accountjsdemo"]
+  };
+  appAccountManager.selectAccountsByOptions(options).then((data) => {
+       console.log('selectAccountsByOptions: ' + JSON.stringify(data));
+  }).catch((err) => {
+      console.log("selectAccountsByOptions err: "  + JSON.stringify(err));
+  });
+  ```
+
+### verifyCredential<sup>9+</sup>
+
+verifyCredential(name: string, owner: string, callback: AuthenticatorCallback): void;
+
+验证用户凭据，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名    | 类型                  | 必填  | 说明                     |
+| -------- | --------------------- | ----- | ----------------------- |
+| name     | string                | 是    | 应用帐户的名称。          |
+| owner    | string                | 是    | 应用帐户的所有者。        |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，返回验证结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.verifyCredential("zhangsan", "com.example.ohos.accountjsdemo", {
+    onResult: (resultCode, result) => {
+      console.log("verifyCredential onResult, resultCode:" + JSON.stringify(resultCode));
+      console.log("verifyCredential onResult, result:" + JSON.stringify(result));
+    },
+    onRequestRedirected: (request) => {
+      console.log("verifyCredential onRequestRedirected, request:" + JSON.stringify(request));
+    }
+  });
+  ```
+
+### verifyCredential<sup>9+</sup>
+
+verifyCredential(name: string, owner: string, options, callback: AuthenticatorCallback): void;
+
+验证用户凭据，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名    | 类型                    | 必填  | 说明                     |
+| -------- | ----------------------- | ----- | ----------------------- |
+| name     | string                  | 是    | 应用帐户的名称。          |
+| owner    | string                  | 是    | 应用帐户的所有者。        |
+| options  | [VerifyCredentialOptions](#verifycredentialoptions9) | 是    | 验证凭据的选项。          |
+| callback | [AuthenticatorCallback](#authenticatorcallback8)   | 是    | 认证器回调，返回验证结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var options = {
+    credentialType: "pin",
+    credential: "123456"
+  };
+  appAccountManager.verifyCredential("zhangsan", "com.example.ohos.accountjsdemo", options, {
+    onResult: (resultCode, result) => {
+      console.log("verifyCredential onResult, resultCode:" + JSON.stringify(resultCode));
+      console.log("verifyCredential onResult, result:" + JSON.stringify(result));
+    },
+    onRequestRedirected: (request) => {
+      console.log("verifyCredential onRequestRedirected, request:" + JSON.stringify(request));
+    }
+  });
+  ```
+
+### setAuthenticatorProperties<sup>9+</sup>
+
+setAuthenticatorProperties(owner: string, callback: AuthenticatorCallback): void;
+
+设置认证器属性，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名    | 类型                  | 必填  | 说明                     |
+| -------- | --------------------- | ----- | ----------------------- |
+| owner    | string                | 是    | 认证器的所有者。          |
+| options  | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的选项。          |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，返回设置结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.setAuthenticatorProperties("com.example.ohos.accountjsdemo", {
+    onResult: (resultCode, result) => {
+      console.log("setAuthenticatorProperties onResult, resultCode:" + JSON.stringify(resultCode));
+      console.log("setAuthenticatorProperties onResult, result:" + JSON.stringify(result));
+    },
+    onRequestRedirected: (request) => {
+      console.log("setAuthenticatorProperties onRequestRedirected, request:" + JSON.stringify(request));
+    }
+  });
+  ```
+
+### setAuthenticatorProperties<sup>9+</sup>
+
+setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callback: AuthenticatorCallback): void;
+
+设置认证器属性，使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名    | 类型                  | 必填  | 说明                     |
+| -------- | --------------------- | ----- | ----------------------- |
+| owner    | string                | 是    | 认证器的所有者。          |
+| options  | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的选项。          |
+| callback | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，返回设置结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var options = {
+    properties: {"prop1": "value1"}
+  };
+  appAccountManager.setAuthenticatorProperties("com.example.ohos.accountjsdemo", options, {
+    onResult: (resultCode, result) => {
+      console.log("setAuthenticatorProperties onResult, resultCode:" + JSON.stringify(resultCode));
+      console.log("setAuthenticatorProperties onResult, result:" + JSON.stringify(result));
+    },
+    onRequestRedirected: (request) => {
+      console.log("setAuthenticatorProperties onRequestRedirected, request:" + JSON.stringify(request));
+    }
   });
   ```
 
@@ -1599,6 +1969,42 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | iconId  | string | 是    | 认证器的图标标识。  |
 | labelId | string | 是    | 认证器的标签标识。  |
 
+## SelectAccountsOptions<sup>9+</sup>
+
+表示用于选择帐号的选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+
+| 参数名          | 类型                         | 必填  | 说明                |
+| --------------- | --------------------------- | ----- | ------------------- |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appAccountinfo)&gt; | 否    | 允许的帐号数组。      |
+| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组。 |
+| requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识。    |
+
+## VerifyCredentialOptions<sup>9+</sup>
+
+表示用于验证凭据的选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+
+| 参数名          | 类型                   | 必填  | 说明           |
+| -------------- | ---------------------- | ----- | -------------- |
+| credentialType | string                 | 否    | 凭据类型。      |
+| credential     | string                 | 否    | 凭据取值。      |
+| parameters     | {[key:string]: Object} | 否    | 自定义参数对象。 |
+
+
+## SetPropertiesOptions<sup>9+</sup>
+
+表示用于设置属性的选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
+
+| 参数名     | 类型                    | 必填  | 说明           |
+| ---------- | ---------------------- | ----- | -------------- |
+| properties | {[key:string]: Object} | 否    | 属性对象。      |
+| parameters | {[key:string]: Object} | 否    | 自定义参数对象。 |
+
 ## Constants<sup>8+</sup>
 
 表示常量的枚举。
@@ -1618,6 +2024,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | KEY_CALLER_PID                | "callerPid"            | 表示键名，调用方PID。  |
 | KEY_CALLER_UID                | "callerUid"            | 表示键名，调用方UID。  |
 | KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | 表示键名，调用方包名。   |
+| KEY_REQUIRED_LABELS           | "requiredLabels"       | 表示键名，必需的标签。   |
+| KEY_BOOLEAN_RESULT           | "booleanResult"         | 表示键名，布尔返回值。   |
 
 ## ResultCode<sup>8+</sup>
 
@@ -1655,7 +2063,7 @@ OAuth认证器回调接口。
 
 onResult: (code: number, result: {[key: string]: any}) =&gt; void
 
-通知鉴权结果。
+通知请求结果。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1685,7 +2093,7 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 
 onRequestRedirected: (request: Want) =&gt; void
 
-通知鉴权请求被跳转。
+通知请求被跳转。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1714,9 +2122,29 @@ onRequestRedirected: (request: Want) =&gt; void
   }
   ```
 
+### onRequestContinued<sup>9+</sup>
+
+onRequestContinued: () =&gt; void
+
+通知请求被继续处理。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var sessionId = "1234";
+  appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
+      callback.OnRequestContinued();
+  }).catch((err) => {
+      console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+  });
+  ```
+
 ## Authenticator<sup>8+</sup>
 
-OAuth认证器基类。
+认证器基类。
 
 ### addAccountImplicitly<sup>8+</sup>
 
@@ -1732,7 +2160,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权请求方的包名。       |
 | options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
-| callback         | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
+| callback         | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。 |
 
 ### authenticate<sup>8+</sup>
 
@@ -1749,7 +2177,73 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权请求方的包名。       |
 | options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
-| callback         | AuthenticatorCallback | 是    | 认证器回调，用于返回鉴权结果。 |
+| callback         | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回鉴权结果。 |
+
+### verifyCredential<sup>9+</sup>
+
+verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthenticatorCallback): void;
+
+验证应用帐户的凭据，并使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
+| name      | string                   | 是    | 应用帐号的名称。              |
+| options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | 是    | 验证凭据的可选项。            |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8)    | 是    | 认证器回调，用于返回验证结果。 |
+
+### setProperties<sup>9+</sup>
+
+setProperties(options: SetPropertiesOptions, callback: AuthenticatorCallback): void;
+
+设置认证器属性，并使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
+| options   | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的可选项。            |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回设置结果。 |
+
+### checkAccountLabels<sup>9+</sup>
+
+checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthenticatorCallback): void;
+
+检查帐号标签，并使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
+| name      | string                | 是    | 应用帐号的名称。              |
+| labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回检查结果。 |
+
+### isAccountRemovable<sup>9+</sup>
+
+isAccountRemovable(name: string, callback: AuthenticatorCallback): void;
+
+判断帐号是否可以删除，并使用callback回调异步返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+| 接口名              | 类型                    | 必填   | 说明              |
+| ---------------- | --------------------- | ---- | --------------- |
+| name      | string                | 是    | 应用帐号的名称。              |
+| callback  | [AuthenticatorCallback](#authenticatorcallback8) | 是    | 认证器回调，用于返回判断结果。 |
+
+### getRemoteObject<sup>9+</sup>
+
+getRemoteObject(): rpc.RemoteObject;
+
+获取认证器的远程对象，不可以重载实现。
+
+**系统能力：** SystemCapability.Account.AppAccount
 
 **示例：**
 
@@ -1768,11 +2262,36 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
                         [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
-  }
 
+      verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthenticatorCallback) {
+          callback.onRequestRedirected({
+              bundleName: "com.example.ohos.accountjsdemo",
+              abilityName: "com.example.ohos.accountjsdemo.VerifyAbility",
+              parameters: {
+                name: name
+              }
+          });
+      }
+
+      setProperties(options: SetPropertiesOptions, callback: AuthenticatorCallback) {
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
+      }
+
+      checkAccountLabels(name: string, labels: Array<string>, callback: AuthenticatorCallback) {
+          var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      }
+    
+      isAccountRemovable(name, callback) {
+          var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: true};
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      }
+  }
+  var authenticator = null;
   export default {
       onConnect(want) {
-          return new MyAuthenticator();
+          authenticator = new MyAuthenticator();
+          return authenticator.getRemoteObject();
       }
   }
   ```

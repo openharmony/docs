@@ -1,8 +1,8 @@
-# WantAgent Module
+# WantAgent
 
->**NOTE**
->
->The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
 ## Modules to Import
 
@@ -782,7 +782,7 @@ Checks whether two **WantAgent** objects are equal. This API uses an asynchronou
 | Name      | Readable| Writable| Type                    | Mandatory| Description                                   |
 | ---------- | --- | ---- | ------------------------ | ---- | --------------------------------------- |
 | agent      | Yes  | No | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | Yes  | No | WantAgent                | Yes  | Target **WantAgent** object.                          |
+| otherAgent | Yes  | No | WantAgent                | Yes  | The second **WantAgent** object.                          |
 | callback   | Yes  | No | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -857,7 +857,7 @@ Checks whether two **WantAgent** objects are equal. This API uses a promise to r
 | Name      | Readable| Writable| Type     | Mandatory| Description         |
 | ---------- | --- | ---- | --------- | ---- | ------------- |
 | agent      | Yes  | No | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | Yes  | No | WantAgent | Yes  | Target **WantAgent** object.|
+| otherAgent | Yes  | No | WantAgent | Yes  | The second **WantAgent** object.|
 
 **Return value**
 
@@ -914,7 +914,7 @@ WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
 });
 ```
 
-## WantAgent.getOperationType
+## WantAgent.getOperationType<sup>9+</sup>
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 
@@ -975,7 +975,7 @@ WantAgent.getOperationType(wantAgent, (OperationType) => {
 })
 ```
 
-## WantAgent.getOperationType
+## WantAgent.getOperationType<sup>9+</sup>
 
 getOperationType(agent: WantAgent): Promise\<number>;
 

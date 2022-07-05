@@ -20,7 +20,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 | 名称    | 类型                                             | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors  | ArrayBuffer                                      | 是   | 颜色数组。                                                   |
+| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                    |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -32,9 +32,12 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 **示例：**
 
 ```js
-image.createPixelMap(Color, opts)
-            .then((pixelmap) => {
-            })
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts)
+    .then((pixelmap) => {
+        })
 ```
 
 ## image.createPixelMap<sup>8+</sup>
@@ -49,15 +52,18 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 | 名称     | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | 是   | 颜色数组。                 |
+| colors   | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。  |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 属性。                     |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 通过回调返回PixelMap对象。 |
 
 **示例：**
 
 ```js
-image.createPixelMap(Color, opts, (pixelmap) => {
-            })
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (pixelmap) => {
+        })
 ```
 
 ## PixelMap<sup>7+</sup>
@@ -95,11 +101,12 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
+const readBuffer = new ArrayBuffer(400);
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
-                        //符合条件则进入 
-                }).catch(error => {
-                //不符合条件则进入
-            })
+    console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
+}).catch(error => {
+    console.log('Failed to read image pixel data.');  //不符合条件则进入
+})
 ```
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -120,8 +127,14 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-pixelmap.readPixelsToBuffer(readBuffer, () => {
-            })
+const readBuffer = new ArrayBuffer(400);
+pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
+    if(err) {
+        console.log('Failed to read image pixel data.');  //不符合条件则进入
+    } else {
+        console.log('Succeeded in reading image pixel data.');  //符合条件则进入
+    }
+})
 ```
 
 ### readPixels<sup>7+</sup>
@@ -147,11 +160,12 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
-pixelmap.readPixels(area).then((data) => {
-                  //符合条件则进入      
-                }).catch(error => {
-                //不符合条件则进入
-            })
+const area = new ArrayBuffer(400);
+pixelmap.readPixels(area).then(() => {
+    console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
+}).catch(error => {
+    console.log('Failed to read the image data in the area.'); //不符合条件则进入
+})
 ```
 
 ### readPixels<sup>7+</sup>
@@ -172,21 +186,21 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
-     if(pixelmap == undefined){
-          console.info('createPixelMap failed');
-          expect(false).assertTrue();
-          done();
-      }else{
-          const area = { pixels: new ArrayBuffer(8),
-                    offset: 0,
-                    stride: 8,
-                    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }}
-           pixelmap.readPixels(area, () => {
-               console.info('readPixels success');
-           })
-      }
+    if(pixelmap == undefined){
+        console.info('createPixelMap failed.');
+    } else {
+        const area = { pixels: new ArrayBuffer(8),
+            offset: 0,
+            stride: 8,
+            region: { size: { height: 1, width: 2 }, x: 0, y: 0 }};
+        pixelmap.readPixels(area, () => {
+            console.info('readPixels success');
+        })
+    }
 })
 ```
 
@@ -214,20 +228,19 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
         if (pixelmap == undefined) {
-            console.info('createPixelMap failed');
-            expect(false).assertTrue()
-            done();
+            console.info('createPixelMap failed.');
         }
         const area = { pixels: new ArrayBuffer(8),
             offset: 0,
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
         }
-        var bufferArr = new Uint8Array(area.pixels);
+        let bufferArr = new Uint8Array(area.pixels);
         for (var i = 0; i < bufferArr.length; i++) {
             bufferArr[i] = i + 1;
         }
@@ -240,11 +253,8 @@ image.createPixelMap(color, opts)
                 region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
             }        
         })
-    })
-    .catch(error => {
+    }).catch(error => {
         console.log('error: ' + error);
-        expect().assertFail();
-        done();
     })
 ```
 
@@ -266,14 +276,19 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-pixelmap.writePixels(area, () => {
-                const readArea = {
-                    pixels: new ArrayBuffer(20),
-                    offset: 0,
-                    stride: 8,
-                    region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-                }
-            })
+const area = new ArrayBuffer(400);
+pixelmap.writePixels(area, (error) => {
+    if (error!=undefined) {
+		console.info('Failed to write pixelmap into the specified area.');
+	} else {
+	    const readArea = {
+            pixels: new ArrayBuffer(20),
+            offset: 0,
+            stride: 8,
+            region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+        }
+	}
+})
 ```
 
 ### writeBufferToPixels<sup>7+</sup>
@@ -299,11 +314,14 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
-pixelMap.writeBufferToPixels(colorBuffer).then(() => {
+const color = new ArrayBuffer(96);
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Unit8Array(color);
+pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
-});
+})
 ```
 
 ### writeBufferToPixels<sup>7+</sup>
@@ -324,12 +342,16 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-pixelMap.writeBufferToPixels(colorBuffer, function(err) {
+const color = new ArrayBuffer(96);\
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Unit8Array(color);
+pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
-    }
-    console.log("Succeeded in writing data from a buffer to a PixelMap.");
+    } else {
+		console.log("Succeeded in writing data from a buffer to a PixelMap.");
+	}
 });
 ```
 
@@ -350,6 +372,7 @@ getImageInfo(): Promise\<ImageInfo>
 **示例：**
 
 ```js
+const pixelMap = new ArrayBuffer(400);
 pixelMap.getImageInfo().then(function(info) {
     console.log("Succeeded in obtaining the image pixel map information.");
 }).catch((err) => {
@@ -374,7 +397,9 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```js
-pixelmap.getImageInfo((imageInfo) => {})
+pixelmap.getImageInfo((imageInfo) => { 
+    console.log("Succeeded in obtaining the image pixel map information..");
+})
 ```
 
 ### getBytesNumberPerRow<sup>7+</sup>
@@ -394,7 +419,12 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```js
-rowCount = pixelmap.getBytesNumberPerRow()
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (err,pixelmap) => {
+    let rowCount = pixelmap.getBytesNumberPerRow();
+})
 ```
 
 ### getPixelBytesNumber<sup>7+</sup>
@@ -414,7 +444,7 @@ getPixelBytesNumber(): number
 **示例：**
 
 ```js
-pixelBytesNumber = pixelmap.getPixelBytesNumber()
+let pixelBytesNumber = pixelmap.getPixelBytesNumber();
 ```
 
 ### release<sup>7+</sup>
@@ -434,8 +464,16 @@ release():Promise\<void>
 **示例：**
 
 ```js
- pixelmap.release().then(() => { })
-            .catch(error => {})
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (pixelmap) => {
+    pixelmap.release().then(() => {
+	    console.log('Succeeded in releasing pixelmap object.');
+    }).catch(error => {
+	    console.log('Failed to release pixelmap object.');
+    })
+})
 ```
 
 ### release<sup>7+</sup>
@@ -455,7 +493,16 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-pixelmap.release(()=>{ })   
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (pixelmap) => {
+    pixelmap.release().then(() => {
+	    console.log('Succeeded in releasing pixelmap object.');
+    }).catch(error => {
+	    console.log('Failed to release pixelmap object.');
+    })
+})
 ```
 
 ## image.createImageSource
@@ -508,7 +555,7 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(0)
+const imageSourceApi = image.createImageSource(0);
 ```
 
 ## ImageSource
@@ -541,7 +588,13 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```js
-imageSourceApi.getImageInfo(0,(error, imageInfo) => {})
+imageSourceApi.getImageInfo(0,(error, imageInfo) => { 
+    if(error) {
+        console.log('getImageInfo failed.');
+    } else {
+        console.log('getImageInfo succeeded.');
+    }
+})
 ```
 
 ### getImageInfo
@@ -561,7 +614,9 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```js
-imageSourceApi.getImageInfo(imageInfo => {})
+imageSourceApi.getImageInfo(imageInfo => { 
+    console.log('Succeeded in obtaining the image information.');
+})
 ```
 
 ### getImageInfo
@@ -588,8 +643,11 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 ```js
 imageSourceApi.getImageInfo(0)
-            .then(imageInfo => {})
-			.catch(error => {})
+    .then(imageInfo => {
+		console.log('Succeeded in obtaining the image information.');
+	}).catch(error => {
+		console.log('Failed to obtain the image information.');
+	})
 ```
 
 ### getImageProperty<sup>7+</sup>
@@ -617,8 +675,9 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 ```js
 imageSourceApi.getImageProperty("BitsPerSample")
-            .then(data => {})
-            .catch(error => {})
+    .then(data => {
+		console.log('Succeeded in getting the value of the specified attribute key of the image.');
+	})
 ```
 
 ### getImageProperty<sup>7+</sup>
@@ -639,7 +698,13 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```js
-imageSourceApi.getImageProperty("BitsPerSample",(error,data) => {})
+imageSourceApi.getImageProperty("BitsPerSample",(error,data) => { 
+    if(error) {
+        console.log('Failed to get the value of the specified attribute key of the image.');
+    } else {
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+    }
+})
 ```
 
 ### getImageProperty<sup>7+</sup>
@@ -661,7 +726,14 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 **示例：**
 
 ```js
-imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => {})
+const property = new ArrayBuffer(400);
+imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => { 
+    if(error) {
+        console.log('Failed to get the value of the specified attribute key of the image.');
+    } else {
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
+    }
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -687,8 +759,11 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap().then(pixelmap => {})
-    						.catch(error => {})
+imageSourceApi.createPixelMap().then(pixelmap => {
+    console.log('Succeeded in creating pixelmap object through image decoding parameters.');
+}).catch(error => {
+    console.log('Failed to create pixelmap object through image decoding parameters.');
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -708,7 +783,11 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap(pixelmap => {})
+imageSourceApi.createPixelMap(pixelmap => { 
+    console.log('Succeeded in creating pixelmap object.');
+}).catch(error => {
+    console.log('Failed to create pixelmap object.');
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -729,7 +808,10 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap(decodingOptions, pixelmap => {})    
+const decodingOptions = new ArrayBuffer(400);
+imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
+    console.log('Succeeded in creating pixelmap object.');
+})
 ```
 
 ### release
@@ -749,7 +831,9 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-imageSourceApi.release(() => {})
+imageSourceApi.release(() => { 
+    console.log('release succeeded.');
+})
 ```
 
 ### release
@@ -769,7 +853,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-imageSourceApi.release().then(()=>{ }).catch(error => {})
+imageSourceApi.release().then(()=>{
+    console.log('Succeeded in releasing the image source instance.');
+}).catch(error => {
+    console.log('Failed to release the image source instance.');
+})
 ```
 
 ## image.createImagePacker
@@ -823,7 +911,8 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
+let packOpts = { format:"image/jpeg", quality:98 };
+const imageSourceApi = new ArrayBuffer(400);
 imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
 
@@ -851,10 +940,14 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
+let packOpts = { format:"image/jpeg", quality:98 }
+const imageSourceApi = new ArrayBuffer(400);
 imagePackerApi.packing(imageSourceApi, packOpts)
-    .then( data => { })
-	.catch(error => {})
+    .then( data => {
+        console.log('packing succeeded.');
+	}).catch(error => {
+	    console.log('packing failed.');
+	})
 ```
 
 ### packing<sup>8+</sup>
@@ -876,8 +969,13 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(pixelMapApi, packOpts, data => {})
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
+imagePackerApi.packing(pixelMapApi, packOpts, data => { 
+    console.log('Succeeded in packing the image.');
+}).catch(error => {
+	console.log('Failed to pack the image.');
+})
 ```
 
 ### packing<sup>8+</sup>
@@ -904,10 +1002,14 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
 imagePackerApi.packing(pixelMapApi, packOpts)
-    .then( data => { })
-	.catch(error => {})
+    .then( data => {
+	    console.log('Succeeded in packing the image.');
+	}).catch(error => {
+	    console.log('Failed to pack the image..');
+	})
 ```
 
 ### release
@@ -927,7 +1029,9 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-imagePackerApi.release(()=>{})
+imagePackerApi.release(()=>{ 
+    console.log('Succeeded in releasing image packaging.');
+})
 ```
 
 ### release
@@ -947,8 +1051,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
- imagePackerApi.release().then(()=>{
-            }).catch((error)=>{}) 
+imagePackerApi.release().then(()=>{
+    console.log('Succeeded in releasing image packaging.');
+}).catch((error)=>{ 
+    console.log('Failed to release image packaging.'); 
+}) 
 ```
 
 ## image.createImageReceiver<sup>9+</sup>
@@ -977,7 +1084,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 **示例：**
 
 ```js
-var receiver = image.createImageReceiver(8192, 8, 4, 8)
+var receiver = image.createImageReceiver(8192, 8, 4, 8);
 ```
 
 ## ImageReceiver<sup>9+</sup>
@@ -1013,7 +1120,13 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 **示例:**
 
 ```js
- receiver.getReceivingSurfaceId((err, id) => {});
+receiver.getReceivingSurfaceId((err, id) => { 
+    if(err) {
+        console.log('getReceivingSurfaceId failed.');
+    } else {
+        console.log('getReceivingSurfaceId succeeded.');
+    }
+});
 ```
 
 ### getReceivingSurfaceId<sup>9+</sup>
@@ -1034,8 +1147,10 @@ getReceivingSurfaceId(): Promise\<string>
 
 ```js
 receiver.getReceivingSurfaceId().then( id => { 
-            }).catch(error => {
-            })
+    console.log('getReceivingSurfaceId succeeded.');
+}).catch(error => {
+    console.log('getReceivingSurfaceId failed.');
+})
 ```
 
 ### readLatestImage<sup>9+</sup>
@@ -1055,7 +1170,13 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```js
- receiver.readLatestImage((err, img) => { });
+receiver.readLatestImage((err, img) => { 
+    if(err) {
+        console.log('readLatestImage failed.');
+    } else {
+        console.log('readLatestImage succeeded.');
+    }
+});
 ```
 
 ### readLatestImage<sup>9+</sup>
@@ -1075,8 +1196,11 @@ readLatestImage(): Promise\<Image>
 **示例：**
 
 ```js
-receiver.readLatestImage().then(img => {})
-	.catch(error => {})
+receiver.readLatestImage().then(img => {
+    console.log('readLatestImage succeeded.');
+}).catch(error => {
+    console.log('readLatestImage failed.');
+})
 ```
 
 ### readNextImage<sup>9+</sup>
@@ -1096,7 +1220,13 @@ readNextImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```js
-receiver.readNextImage((err, img) => {});
+receiver.readNextImage((err, img) => { 
+    if(err) {
+        console.log('readNextImage failed.');
+    } else {
+        console.log('readNextImage succeeded.');
+    }
+});
 ```
 
 ### readNextImage<sup>9+</sup>
@@ -1116,9 +1246,11 @@ readNextImage(): Promise\<Image>
 **示例：**
 
 ```js
- receiver.readNextImage().then(img => {
-            }).catch(error => {
-            })
+receiver.readNextImage().then(img => {
+    console.log('readNextImage succeeded.');
+}).catch(error => {
+    console.log('readNextImage failed.');
+})
 ```
 
 ### on('imageArrival')<sup>9+</sup>
@@ -1139,7 +1271,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
- receiver.on('imageArrival', () => {})
+receiver.on('imageArrival', () => {})
 ```
 
 ### release<sup>9+</sup>
@@ -1159,7 +1291,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
- receiver.release(() => {})
+receiver.release(() => {})
 ```
 
 ### release<sup>9+</sup>
@@ -1179,8 +1311,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
- receiver.release().then(() => {})
- 	.catch(error => {})
+receiver.release().then(() => {
+    console.log('release succeeded.');
+}).catch(error => {
+    console.log('release failed.');
+})
 ```
 
 ## Image<sup>9+</sup>
@@ -1215,7 +1350,13 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 **示例：**
 
 ```js
- img.getComponent(4, (err, component) => {})
+img.getComponent(4, (err, component) => {
+    if(err) {
+        console.log('getComponent failed.');
+    } else {
+        console.log('getComponent succeeded.');
+    }
+})
 ```
 
 ### getComponent<sup>9+</sup>
@@ -1263,7 +1404,11 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-img.release(() =>{ }) 
+img.release(() =>{ 
+    console.log('release succeeded.');
+}).catch(error => {
+    console.log('release failed.');
+}) 
 ```
 
 ### release<sup>9+</sup>
@@ -1286,8 +1431,10 @@ release(): Promise\<void>
 
 ```js
 img.release().then(() =>{
-            }).catch(error => {
-            })  
+    console.log('release succeeded.');
+}).catch(error => {
+    console.log('release failed.');
+})
 ```
 
 ## PositionArea<sup>7+</sup>
@@ -1388,7 +1535,7 @@ PixelMap的初始化选项。
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
-| index              | numer                              | 是   | 是   | 解码图片序号     |
+| index              | number                             | 是   | 是   | 解码图片序号。   |
 
 ## Region<sup>7+</sup>
 
@@ -1411,7 +1558,7 @@ PixelMap的初始化选项。
 | 名称    | 类型   | 可读 | 可写 | 说明           |
 | ------- | ------ | ---- | ---- | -------------- |
 | format  | string | 是   | 是   | 目标格式。     |
-| quality | number | 是   | 是   | 目标图片质量。 |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 

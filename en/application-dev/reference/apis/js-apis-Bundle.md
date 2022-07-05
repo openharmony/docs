@@ -143,7 +143,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
+getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo>>
 
 Obtains the information of all available bundles of a specified user in the system. This API uses a promise to return the result.
 
@@ -166,7 +166,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Type                         | Description                        |
 | --------------------------- | -------------------------- |
-| Promise<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Promise used to return the information of all available bundles.|
+| Promise\<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Promise used to return the information of all available bundles.|
 
 **Example**
 
@@ -185,7 +185,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo>>): void
 
 Obtains the information of all available bundles in the system. This API uses an asynchronous callback to return the result.
 
@@ -220,7 +220,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo>>): void
 
 Obtains the information of all available bundles in the system. This API uses an asynchronous callback to return the result.
 
@@ -238,7 +238,7 @@ SystemCapability.BundleManager.BundleFramework
 | ---------- | --------------------------------- | ---- | --------------------------------------- |
 | bundleFlag | BundleFlag                        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId     | number                            | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
-| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
+| callback   | AsyncCallback\<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
 
 **Example**
 
@@ -495,7 +495,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 
 ## bundle.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise<BundleInfo>
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise\<BundleInfo>
 
 Obtains information about the bundles contained in a HAP file. This API uses a promise to return the result.
 
@@ -530,7 +530,7 @@ bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
 
 ## bundle.getBundleArchiveInfo
 
-getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback<BundleInfo>) : void
+getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>) : void
 
 Obtains information about the bundles contained in a HAP file. This API uses an asynchronous callback to return the result.
 

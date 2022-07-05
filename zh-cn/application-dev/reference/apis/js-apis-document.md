@@ -12,28 +12,29 @@ import document from '@ohos.document';
 
 ## document.choose
 
-choose(type:string[]): Promise&lt;string&gt;
+choose(types? : string[]): Promise&lt;string&gt;
 
 通过文件管理器选择文件，异步返回文件URI，使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数：
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | type   | string[] | 否   | 限定文件选择的类型 |
+  | types   | string[] | 否   | 限定文件选择的类型 |
 
-- 返回值：
+**返回值：**
 
   | 类型                  | 说明           |
   | --------------------- | -------------- |
   | Promise&lt;string&gt; | 异步返回文件URI（注：当前返回错误码） |
 
-- 示例：
+**示例：**
 
   ```js
-  await document.choose(type);
+  let types = [];
+  document.choose(types);
   ```
 ## document.choose
 
@@ -41,80 +42,85 @@ choose(callback:AsyncCallback&lt;string&gt;): void
 
 通过文件管理器选择文件，异步返回文件URI，使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | callback | AsyncCallback&lt;string&gt; | 是   | 异步获取对应文件URI（注：当前返回错误码） |
 
-- 示例：
+**示例：**
 
   ```js
-  await document.choose(function(err, uri) {
+  let uri = "";
+  document.choose(function(err, uri) {
         //do something with uri
   });
   ```
 ## document.choose
 
-choose(type:string[], callback:AsyncCallback&lt;string&gt;): void
+choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
 通过文件管理器选择文件，异步返回文件URI，使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | type     | string[]                      | 否   | 限定选择文件的类型 |
+  | types    | string[]                      | 否   | 限定选择文件的类型 |
   | callback | AsyncCallback&lt;string&gt; | 是   | 异步获取对应文件URI（注：当前返回错误码） |
 
-- 示例：
+**示例：**
 
   ```js
-  await document.choose(type, function(err, uri) {
+  let types = [];
+  let uri = "";
+  document.choose(types, function(err, uri) {
         //do something with uri
   });
   ```
 
 ## document.show
 
-show(url:string, type:string):Promise&lt;number&gt;
+show(uri:string, type:string):Promise&lt;void&gt;
 
 异步打开URI对应的文件，使用promise形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数：
+**参数：**
 
   | 参数 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
   | uri | string | 是   | 待打开的文件URI |
   | type | string | 是   | 待打开文件的类型 |
 
-- 返回值：
+**返回值：**
 
   | 类型                  | 说明         |
   | --------------------- | ------------ |
   | Promise&lt;void&gt; | Promise回调返回void表示成功打开文件（注：当前返回错误码） |
 
-- 示例：
+**示例：**
 
   ```js
-  await document.show(uri, type);
+  let type = "";
+  let uri = "";
+  document.show(uri, type);
   ```
 
 ## document.show
 
-show(url:string, type:string, callback:AsyncCallback&lt;void&gt;): void
+show(uri:string, type:string, callback:AsyncCallback&lt;void&gt;): void
 
 异步打开URI对应的文件，使用callback形式返回结果。
 
-**系统能力**：SystemCapability.FileManagement.File.FileIO
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
-- 参数：
+**参数：**
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
@@ -122,10 +128,12 @@ show(url:string, type:string, callback:AsyncCallback&lt;void&gt;): void
   | type | string | 是   | 待打开文件的类型 |
   | callback | AsyncCallback&lt;void&gt; | 是   | 异步打开uri对应文件（注：当前返回错误码）   |
 
-- 示例：
+**示例：**
 
   ```js
-  await document.show(uri, type, function(err) {
+  let type = "";
+  let uri = "";
+  document.show(uri, type, function(err) {
         //do something
   });
   ```

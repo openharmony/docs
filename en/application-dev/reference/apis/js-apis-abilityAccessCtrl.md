@@ -1,6 +1,9 @@
-#  	Ability Access Control
+# Ability Access Control
 
-> **NOTE**<br/>
+Provides program permission management capabilities, including authentication, authorization, and revocation.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -72,6 +75,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 Grants a user granted permission to an application. This API uses a promise to return the result.
 
+This is a system API and cannot be called by third-party applications.
+
 **Required permissions**: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 **System capability**: SystemCapability.Security.AccessToken
@@ -96,19 +101,19 @@ Grants a user granted permission to an application. This API uses a promise to r
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag);
+let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
 ```
-
-
 
 ### grantUserGrantedPermission
 
 grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
 
 Grants a user granted permission to an application. This API uses an asynchronous callback to return the result.
+
+This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
@@ -129,8 +134,12 @@ Grants a user granted permission to an application. This API uses an asynchronou
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -139,6 +148,8 @@ AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_P
 revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
 
 Revokes a user granted permission given to an application. This API uses a promise to return the result.
+
+This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -176,6 +187,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 Revokes a user granted permission given to an application. This API uses an asynchronous callback to return the result.
 
+This is a system API and cannot be called by third-party applications.
+
 **Required permissions**: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 **System capability**: SystemCapability.Security.AccessToken
@@ -195,8 +208,12 @@ Revokes a user granted permission given to an application. This API uses an asyn
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
 let permissionFlag = 1;
-AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",permissionFlag, data => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    if (err) {
+        console.log(`callback: err->${JSON.stringify(err)}`);
+    } else {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    }
 });
 ```
 
@@ -206,7 +223,9 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 Obtains the flags of the specified permission of a given application. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_SENSITIVE_PERMISSIONS, GRANT_SENSITIVE_PERMISSIONS, or REVOKE_SENSITIVE_PERMISSIONS
+This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.GET_SENSITIVE_PERMISSIONS, ohos.permission.GRANT_SENSITIVE_PERMISSIONS, or ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 **System capability**: SystemCapability.Security.AccessToken
 

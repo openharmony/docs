@@ -1,6 +1,7 @@
 # Media
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
@@ -117,7 +118,7 @@ Creates an **AudioRecorder** instance to control audio recording.
 **Example**
 
 ```js
-let audiorecorder = media.createAudioRecorder();
+let audioRecorder = media.createAudioRecorder();
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -679,6 +680,8 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 Sets **SurfaceId**. This API uses a callback to return the result.
 
+*Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 **Parameters**
@@ -706,6 +709,8 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 Sets **SurfaceId**. This API uses a promise to return the result.
 
+*Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 **Parameters**
@@ -716,9 +721,9 @@ Sets **SurfaceId**. This API uses a promise to return the result.
 
 **Return value**
 
-| Type         | Description                          |
-| ------------- | ------------------------------ |
-| Promise<void> | Promise used to return the result.|
+| Type          | Description                          |
+| -------------- | ------------------------------ |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
@@ -1679,34 +1684,34 @@ let audioRecorderConfig = {
     uri : 'fd://xx',                                                            // The file must be created by the caller and granted with proper permissions.
     location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                             // Set the 'error' event callback.
+audioRecorder.on('error', (error) => {                                             // Set the error event callback.
     console.info(`audio error called, errName is ${error.name}`);
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
-audioRecorder.on('prepare', () => {                                              // Set the 'prepare' event callback.
+audioRecorder.on('prepare', () => {                                              // Set the prepare event callback.
     console.log('prepare success');
-    audioRecorder.start();                                                       // Start recording and trigger the 'start' event callback.
+    audioRecorder.start();                                                       // Start recording and trigger the start event callback.
 });
-audioRecorder.on('start', () => {                                                 // Set the 'start' event callback.
+audioRecorder.on('start', () => {                                                 // Set the start event callback.
     console.log('audio recorder start success');
 });
-audioRecorder.on('pause', () => {                                                 // Set the 'pause' event callback.
+audioRecorder.on('pause', () => {                                                 // Set the pause event callback.
     console.log('audio recorder pause success');
 });
-audioRecorder.on('resume', () => {                                                 // Set the 'resume' event callback.
+audioRecorder.on('resume', () => {                                                 // Set the resume event callback.
     console.log('audio recorder resume success');
 });
-audioRecorder.on('stop', () => {                                                 // Set the 'stop' event callback.
+audioRecorder.on('stop', () => {                                                 // Set the stop event callback.
     console.log('audio recorder stop success');
 });
-audioRecorder.on('release', () => {                                                 // Set the 'release' event callback.
+audioRecorder.on('release', () => {                                                 // Set the release event callback.
     console.log('audio recorder release success');
 });
-audioRecorder.on('reset', () => {                                                 // Set the 'reset' event callback.
+audioRecorder.on('reset', () => {                                                 // Set the reset event callback.
     console.log('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)                                       // Set recording parameters and trigger the 'prepare' event callback.
+audioRecorder.prepare(audioRecorderConfig)                                       // Set recording parameters and trigger the prepare event callback.
 ```
 
 ### on('error')
@@ -1727,12 +1732,12 @@ Subscribes to the audio recording error event.
 **Example**
 
 ```js
-audioRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
+audioRecorder.on('error', (error) => {                                  // Set the error event callback.
     console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
     console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
     console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
 });
-audioRecorder.prepare();                                                  // Do no set any parameter in prepare and trigger the 'error' event callback.
+audioRecorder.prepare();                                                  // Do no set any parameter in prepare and trigger the error event callback.
 ```
 
 ## AudioRecorderConfig
@@ -1749,7 +1754,7 @@ Describes audio recording configurations.
 | numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.                                 |
 | format                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.                        |
 | location              | [Location](#location)                   | No  | Geographical location of the recorded audio.                                        |
-| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
+| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
 | audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | No  | Audio encoding format.                                              |
 
 
@@ -2347,7 +2352,7 @@ Subscribes to the video recording error event.
 **Example**
 
 ```js
-videoRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
+videoRecorder.on('error', (error) => {                                  // Set the error event callback.
     console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
     console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
     console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
@@ -2383,7 +2388,7 @@ Describes the video recording parameters.
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video.                                        |
 | location        | [Location](#location)                          | No  | Geographical location of the recorded video.                                        |
-| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
+| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -2434,7 +2439,7 @@ Enumerates the container format types (CFTs).
 
 | Name       | Value   | Description                 |
 | ----------- | ----- | --------------------- |
-| CFT_MPEG_4  | "mp4" | Video container format MPEG-4 .|
+| CFT_MPEG_4  | "mp4" | Video container format MPEG-4.|
 | CFT_MPEG_4A | "m4a" | Audio container format M4A.|
 
 ## Location

@@ -246,6 +246,17 @@ Enumerates the audio stream types.
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | Audio stream for voice assistant.|
 
 
+## InterruptMode<sup>9+</sup>
+
+Enumerates the audio interruption modes.
+
+**System capability**: SystemCapability.Multimedia.Audio.InterruptMode
+
+| Name                        | Default Value| Description      |
+| ---------------------------- | ------ | ---------- |
+| SHARE_MODE      | 0      | Share mode.|
+| INDEPENDENT_MODE| 1      | Independent mode.    |
+
 ## DeviceFlag
 
 Enumerates the audio device flags.
@@ -542,7 +553,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | actionType | [InterruptActionType](#interruptactiontype) | Yes  | Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event.|
 | type       | [InterruptType](#interrupttype)             | No  | Type of the audio interruption event.                                              |
-| hint       | [InterruptHint](interrupthint)              | No  | Hint provided along with the audio interruption event.                                              |
+| hint       | [InterruptHint](#interrupthint)              | No  | Hint provided along with the audio interruption event.                                              |
 | activated  | boolean                                     | No  | Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released.|
 
 ## VolumeEvent<sup>8+</sup>
@@ -646,7 +657,7 @@ Sets the volume for a stream. This API uses an asynchronous callback to return t
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
 | volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
-| callback   | AsyncCallback&lt;void\>         | Yes  | Callback used to return the result.                                  |
+| callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result.                                  |
 
 **Example**
 
@@ -1135,6 +1146,8 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 Sets an audio parameter. This API uses an asynchronous callback to return the result.
 
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
@@ -1148,7 +1161,7 @@ Sets an audio parameter. This API uses an asynchronous callback to return the re
 **Example**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
+audioManager.setAudioParameter('key_example', 'value_example', (err) => {
     if (err) {
         console.error('Failed to set the audio parameter. ${err.message}');
         return;
@@ -1162,6 +1175,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 Sets an audio parameter. This API uses a promise to return the result.
+
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1181,7 +1196,7 @@ Sets an audio parameter. This API uses a promise to return the result.
 **Example**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
+audioManager.setAudioParameter('key_example', 'value_example').then(() => {
     console.log('Promise returned to indicate a successful setting of the audio parameter.');
 });
 ```
@@ -1191,6 +1206,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the value of an audio parameter. This API uses an asynchronous callback to return the result.
+
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1204,7 +1221,7 @@ Obtains the value of an audio parameter. This API uses an asynchronous callback 
 **Example**
 
 ```
-audioManager.getAudioParameter('PBits per sample', (err, value) => {
+audioManager.getAudioParameter('key_example', (err, value) => {
     if (err) {
         console.error('Failed to obtain the value of the audio parameter. ${err.message}');
         return;
@@ -1218,6 +1235,8 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 getAudioParameter(key: string): Promise&lt;string&gt;
 
 Obtains the value of an audio parameter. This API uses a promise to return the result.
+
+This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1236,7 +1255,7 @@ Obtains the value of an audio parameter. This API uses a promise to return the r
 **Example**
 
 ```
-audioManager.getAudioParameter('PBits per sample').then((value) => {
+audioManager.getAudioParameter('key_example').then((value) => {
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
 });
 ```
@@ -2477,7 +2496,55 @@ audioRenderer.getRenderRate().then((renderRate) => {
     console.log('ERROR: '+err.message);
 });
 ```
+### setInterruptMode<sup>9+</sup>
 
+setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
+
+Sets the audio interruption mode for the application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| interruptMode | [InterruptMode](#InterruptMode) | Yes  | Audio interruption mode.                                            |
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **undefined** is returned. Otherwise, **error** is returned.|
+
+**Example**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
+    console.log('Promise returned to indicate a successful volume setting.');
+});
+```
+### setInterruptMode<sup>9+</sup>
+
+setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
+
+Sets the audio interruption mode for the application. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name| Type| Mandatory| Description                                                    |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+|interruptMode | [InterruptMode](#InterruptMode) | Yes  | Audio interruption mode.|
+|callback | Callback\<void>  | Yes |Callback used to return the result.|
+
+**Example**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
+    console.log('Callback returned to indicate a successful volume setting.');
+});
+```
 ### on('interrupt')<sup>9+</sup>
 
 on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
@@ -2996,7 +3063,7 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
     }
-};
+});
 ```
 
 

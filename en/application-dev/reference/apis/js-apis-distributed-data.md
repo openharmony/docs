@@ -576,13 +576,12 @@ Provides KV store configuration.
 
 Defines the KV store types.
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 | Name | Default Value| Description                   |
 | ---   | ----  | ----------------------- |
-| DEVICE_COLLABORATION  | 0 | Device KV store.  |
-| SINGLE_VERSION  | 1 | Single KV store. |
-| MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently. |
+| DEVICE_COLLABORATION  | 0 | Device KV store. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| SINGLE_VERSION  | 1 | Single KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
 ## SecurityLevel
@@ -1239,7 +1238,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1274,7 +1273,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1309,7 +1308,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1344,7 +1343,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1379,7 +1378,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1414,7 +1413,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1449,7 +1448,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1485,7 +1484,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1520,7 +1519,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1555,7 +1554,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1590,7 +1589,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1625,7 +1624,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1660,7 +1659,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1690,7 +1689,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1720,7 +1719,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1755,7 +1754,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1790,7 +1789,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1826,7 +1825,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1860,7 +1859,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1890,7 +1889,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1920,7 +1919,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1955,7 +1954,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1990,7 +1989,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-   console.log("dumplicated calls should be ok :" + e);
+   console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -2051,7 +2050,7 @@ try {
     let sql1 = query.getSqlLike();
     console.log("GetSqlLike sql=" + sql1);
 } catch (e) {
-    console.log("dumplicated calls should be ok : " + e);
+    console.log("duplicated calls should be ok : " + e);
 }
 ```
 

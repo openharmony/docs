@@ -1,12 +1,12 @@
 # 配置策略
 
+配置策略提供按预先定义的定制配置层级获取对应定制配置目录和文件路径的能力。
+
 >  **说明：**
 >
 >  本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 >  本模块接口均为系统接口，三方应用不支持调用。
-
-配置策略提供按预先定义的定制配置层级获取对应定制配置目录和文件路径的能力。
 
 ## 导入模块
 
@@ -16,10 +16,10 @@ import configPolicy from '@ohos.configPolicy';
 
 ## getOneCfgFile
 
-getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;): void
+getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 
 使用callback形式返回指定文件名的最高优先级配置文件路径。
-例如，config.xml在设备中存在以下路径（优先级从低到高）：/system/etc/config.xml、/sys-pod/etc/config.xml，最终返回/sys-pod/etc/config.xml。
+例如，config.xml在设备中存在以下路径（优先级从低到高）：/system/etc/config.xml、/sys_pod/etc/config.xml，最终返回/sys_pod/etc/config.xml。
 
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
@@ -31,7 +31,7 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：** 
   ```js
-  configPolicy.getOneCfgFile('config.xml', (error, value) => {
+  configPolicy.getOneCfgFile('etc/config.xml', (error, value) => {
       if (error == undefined) {
           console.log("value is " + value);
       } else {
@@ -61,7 +61,7 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 
 **示例：** 
   ```js
-  configPolicy.getOneCfgFile('config.xml').then(value => {
+  configPolicy.getOneCfgFile('etc/config.xml').then(value => {
       console.log("value is " + value);
   }).catch(error => {
       console.log("getOneCfgFile promise " + error);
@@ -71,10 +71,10 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 
 ## getCfgFiles
 
-getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
-按优先级从低到高，使用callback形式返回指定文件名所有的文件列表。例如，config.xml在设备中存在以下路径（优先级从低到高）：/system/etc/config.xml、
-/sys-pod/etc/config.xml，最终返回/system/etc/config.xml, /sys-pod/etc/config.xml。
+按优先级从低到高，使用callback形式返回指定文件名所有的文件列表。
+例如，config.xml在设备中存在以下路径（优先级从低到高）：/system/etc/config.xml、/sys_pod/etc/config.xml，最终返回/system/etc/config.xml, /sys_pod/etc/config.xml。
 
 **系统能力**：SystemCapability.Customization.ConfigPolicy
 
@@ -86,7 +86,7 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
 **示例：** 
   ```js
-  configPolicy.getCfgFiles('config.xml', (error, value) => {
+  configPolicy.getCfgFiles('etc/config.xml', (error, value) => {
       if (error == undefined) {
           console.log("value is " + value);
       } else {
@@ -116,7 +116,7 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 
   ```js
-  configPolicy.getCfgFiles('config.xml').then(value => {
+  configPolicy.getCfgFiles('etc/config.xml').then(value => {
       console.log("value is " + value);
   }).catch(error => {
       console.log("getCfgFiles promise " + error);
@@ -126,7 +126,7 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 
 ## getCfgDirList
 
-getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 
 使用callback形式返回配置层级目录列表。
 

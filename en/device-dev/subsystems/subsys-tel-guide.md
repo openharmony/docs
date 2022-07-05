@@ -4,7 +4,7 @@
 
 ### When to Use<a name="section213mcpsimp"></a>
 
-Initializing a modem vendor library means to implement  **const HRilOps \*RilInitOps\(const struct HRilReport \*reportOps\)**  function in the vendor library. This function is mainly used to:
+Initializing a modem vendor library means to implement **const HRilOps \*RilInitOps\(const struct HRilReport \*reportOps\)** function in the vendor library. This function is mainly used to:
 
 -   Receive function pointers to event callbacks of RIL Adapter. When a service event needs to be reported, the target pointer will be called to report the event to RIL Adapter.
 -   Create a thread for reading modem nodes. In this thread, the data reported by the modem is read cyclically and parsed as a specific service event for reporting.
@@ -14,29 +14,15 @@ Initializing a modem vendor library means to implement  **const HRilOps \*RilIni
 
 The following table describes the API for initializing a modem vendor library.
 
-**Table  1**  API for initializing a modem vendor library
+**Table  1** API for initializing a modem vendor library
 
-<a name="table223mcpsimp"></a>
-<table><thead align="left"><tr id="row229mcpsimp"><th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.1"><p id="p231mcpsimp"><a name="p231mcpsimp"></a><a name="p231mcpsimp"></a>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%" id="mcps1.2.3.1.2"><p id="p233mcpsimp"><a name="p233mcpsimp"></a><a name="p233mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row235mcpsimp"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p237mcpsimp"><a name="p237mcpsimp"></a><a name="p237mcpsimp"></a>const HRilOps *RilInitOps(const struct HRilReport * reportOps)</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p239mcpsimp"><a name="p239mcpsimp"></a><a name="p239mcpsimp"></a>Function: Provides an entry for running a modem vendor library.</p>
-<p id="p56281836194610"><a name="p56281836194610"></a><a name="p56281836194610"></a>Input parameter:</p>
-<p id="p240mcpsimp"><a name="p240mcpsimp"></a><a name="p240mcpsimp"></a><strong id="b164737479278"><a name="b164737479278"></a><a name="b164737479278"></a>reportOps</strong>: Specifies the pointer to the event callback function, which is passed by RIL Adapter.</p>
-<p id="p241mcpsimp"><a name="p241mcpsimp"></a><a name="p241mcpsimp"></a>Return result: function pointer of the service request API.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| API | Description | 
+| -------- | -------- |
+| const&nbsp;HRilOps&nbsp;\*RilInitOps(const&nbsp;struct&nbsp;HRilReport&nbsp;\*&nbsp;reportOps) | Provides an entry for running a modem vendor library.<br>Input parameter:<br>**reportOps**: Specifies the pointer to the event callback function, which is passed by RIL Adapter.<br/>Return result: function pointer of the service request API. | 
 
 ### How to Develop<a name="section51031144122"></a>
 
-1.  Set the event callback function pointers passed by RIL Adapter through  **RilInitOps**.
+1.  Set the event callback function pointers passed by RIL Adapter through **RilInitOps**.
 
     ```
     // Define the callback function pointers of the modem vendor library.
@@ -51,7 +37,7 @@ The following table describes the API for initializing a modem vendor library.
     ```
 
 
-1.  Create the  **g\_reader**  main thread to enable message looping.
+1.  Create the **g\_reader** main thread to enable message looping.
 
     ```
     pthread_attr_t t;
@@ -61,7 +47,7 @@ The following table describes the API for initializing a modem vendor library.
     ```
 
 
-1.  In the  **g\_eventListeners**  thread, use  **open\(\)**  to open a modem node and then create the  **g\_reader**  thread to read and process messages reported by the modem.
+1.  In the **g\_eventListeners** thread, use **open\(\)** to open a modem node and then create the **g\_reader** thread to read and process messages reported by the modem.
 
     ```
     g_fd = open(g_devicePath, O_RDWR); // Open the device node specified by g_devicePath.
@@ -121,7 +107,7 @@ The following table describes the API for initializing a modem vendor library.
 
 ### Debugging and Verification<a name="section5351151517132"></a>
 
-1.  Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated  **libril\_vendor.z.so**  library file to the  **/system/lib/**  directory of the device. For details about how to integrate a library file, see  [Integrating Modem Vendor Libraries](#section590mcpsimp).
+1.  Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device. For details about how to integrate a library file, see  [Integrating Modem Vendor Libraries](#section590mcpsimp).
 
     ```
     hdc_std file send libril_vendor.z.so /system/lib/
@@ -134,7 +120,7 @@ The following table describes the API for initializing a modem vendor library.
     hdc_std shell reboot
     ```
 
-3.  Run the  **hdc\_std shell hilog**  command to view the debug log, and check whether the  **RilInitOps\(\)**  function is successfully executed. The following debug log is for reference:
+3.  Run the **hdc\_std shell hilog** command to view the debug log, and check whether the **RilInitOps\(\)** function is successfully executed. The following debug log is for reference:
 
     ```
     01-01 05:13:23.071   136  2319 D 00000/RilAdapterInit: [RilAdapterDispatch-(hril_hdf.c:55)] sbuf IPC obtain test success!
@@ -153,41 +139,16 @@ After receiving a specific telephony service request, RIL Adapter calls the targ
 
 The following table describes the APIs for responding to modem service requests, with the dial module as an example.
 
-**Table  2**  APIs for responding to modem service requests
+**Table  2** APIs for responding to modem service requests
 
-<a name="table303mcpsimp"></a>
-<table><thead align="left"><tr id="row309mcpsimp"><th class="cellrowborder" valign="top" width="49.84%" id="mcps1.2.3.1.1"><p id="p311mcpsimp"><a name="p311mcpsimp"></a><a name="p311mcpsimp"></a>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="50.160000000000004%" id="mcps1.2.3.1.2"><p id="p313mcpsimp"><a name="p313mcpsimp"></a><a name="p313mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row315mcpsimp"><td class="cellrowborder" valign="top" width="49.84%" headers="mcps1.2.3.1.1 "><p id="p317mcpsimp"><a name="p317mcpsimp"></a><a name="p317mcpsimp"></a>void ReqDial(ReqDataInfo *requestInfo, const void *data, size_t dataLen);</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.160000000000004%" headers="mcps1.2.3.1.2 "><p id="p319mcpsimp"><a name="p319mcpsimp"></a><a name="p319mcpsimp"></a>Function: Processes number dial requests.</p>
-<p id="p12610151394115"><a name="p12610151394115"></a><a name="p12610151394115"></a>Input parameters:</p>
-<a name="ul105511416204116"></a><a name="ul105511416204116"></a><ul id="ul105511416204116"><li><strong id="b85517162414"><a name="b85517162414"></a><a name="b85517162414"></a>requestInfo</strong>: request type</li></ul>
-<a name="ul1676502416411"></a><a name="ul1676502416411"></a><ul id="ul1676502416411"><li><strong id="b1576510240416"><a name="b1576510240416"></a><a name="b1576510240416"></a>data</strong>: called number</li></ul>
-<a name="ul842034134114"></a><a name="ul842034134114"></a><ul id="ul842034134114"><li><strong id="b1542193411415"><a name="b1542193411415"></a><a name="b1542193411415"></a>dataLen</strong>: data length</li></ul>
-<p id="p323mcpsimp"><a name="p323mcpsimp"></a><a name="p323mcpsimp"></a>Return value: none</p>
-</td>
-</tr>
-<tr id="row324mcpsimp"><td class="cellrowborder" valign="top" width="49.84%" headers="mcps1.2.3.1.1 "><p id="p326mcpsimp"><a name="p326mcpsimp"></a><a name="p326mcpsimp"></a>void (*OnCallReport)(struct ReportInfo reportInfo, const void *data, size_t dataLen);</p>
-</td>
-<td class="cellrowborder" valign="top" width="50.160000000000004%" headers="mcps1.2.3.1.2 "><p id="p328mcpsimp"><a name="p328mcpsimp"></a><a name="p328mcpsimp"></a>Function: Reports the execution result of a service request to RIL Adapter.</p>
-<p id="p489264432"><a name="p489264432"></a><a name="p489264432"></a>Input parameters:</p>
-<a name="ul44156301444"></a><a name="ul44156301444"></a><ul id="ul44156301444"><li><strong id="b15415930154418"><a name="b15415930154418"></a><a name="b15415930154418"></a>reportInfo</strong>: request type</li></ul>
-<a name="ul18380115494513"></a><a name="ul18380115494513"></a><ul id="ul18380115494513"><li><strong id="b83808549457"><a name="b83808549457"></a><a name="b83808549457"></a>data</strong>: called number</li></ul>
-<a name="ul118421156184517"></a><a name="ul118421156184517"></a><ul id="ul118421156184517"><li><strong id="b48421056144519"><a name="b48421056144519"></a><a name="b48421056144519"></a>dataLen</strong>: data length</li></ul>
-<p id="p332mcpsimp"><a name="p332mcpsimp"></a><a name="p332mcpsimp"></a>Return value: none</p>
-</td>
-</tr>
-</tbody>
-</table>
+| API | Description | 
+| -------- | -------- |
+| void&nbsp;ReqDial(ReqDataInfo&nbsp;\*requestInfo,&nbsp;const&nbsp;void&nbsp;\*data,&nbsp;size_t&nbsp;dataLen); | Processes number dial requests.<br>Input parameters:<br>**requestInfo**: request type<br/>**data**: called number<br/>**dataLen**: data length<br/>Return value: none | 
+| void&nbsp;(\*OnCallReport)(struct&nbsp;ReportInfo&nbsp;reportInfo,&nbsp;const&nbsp;void&nbsp;\*data,&nbsp;size_t&nbsp;dataLen); | Reports the execution result of a service request to RIL Adapter.<br>Input parameters:<br>**reportInfo**: request type<br/>**data**: called number<br/>**dataLen**: data length<br/>Return value: none | 
 
 ### How to Develop<a name="section17190412101414"></a>
 
-1.  Implement processing of dial requests in the  **ReqDial\(\)**  API.
+1.  Implement processing of dial requests in the **ReqDial\(\)** API.
 
     ```
     // Implement the API for processing dial requests.
@@ -226,7 +187,7 @@ The following table describes the APIs for responding to modem service requests,
     }
     ```
 
-2.  After the modem executes the dial command, report the execution result to RIL Adapter via  **OnCallReport\(\)**.
+2.  After the modem executes the dial command, report the execution result to RIL Adapter via **OnCallReport\(\)**.
 
     ```
     ret = SendCommandLock(cmd, NULL, 0, &pResponse);
@@ -241,7 +202,7 @@ The following table describes the APIs for responding to modem service requests,
 
 ### Debugging and Verification<a name="section10207938171413"></a>
 
-1.  Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated  **libril\_vendor.z.so**  library file to the  **/system/lib/**  directory of the device.
+1.  Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device.
 
     ```
     hdc_std file send libril_vendor.z.so /system/lib/
@@ -254,7 +215,7 @@ The following table describes the APIs for responding to modem service requests,
     hdc_std shell reboot
     ```
 
-3.  Run the  **hdc\_std shell**  command. Then, run the  **./system/bin/ril\_adapter\_test**  command, type  **1**, and enter the phone number as prompted to test the call function.
+3.  Run the **hdc\_std shell** command. Then, run the **./system/bin/ril\_adapter\_test** command, type **1**, and enter the phone number as prompted to test the call function.
 
     ```
     hdc_std shell
@@ -270,7 +231,7 @@ The following table describes the APIs for responding to modem service requests,
     1
     ```
 
-4.  Open another terminal window, and run the  **hdc\_std shell hilog**  command. Then, view the log to check whether  **ReqDial\(\)**  is successfully executed. The following debug log is for reference:
+4.  Open another terminal window, and run the **hdc\_std shell hilog** command. Then, view the log to check whether **ReqDial\(\)** is successfully executed. The following debug log is for reference:
 
     ```
     01-01 05:27:27.419   136   408 D 02b01/Rilvendor: [SendCommandLock-(at_support.c:210)] SendCommandLock enter, cmd: ATD17620373527
@@ -299,30 +260,15 @@ A modem node thread reads the messages reported by the modem cyclically, parses 
 
 The following table describes the API for reporting modem events.
 
-**Table  3**  API for reporting modem events
+**Table  3** API for reporting modem events
 
-<a name="table407mcpsimp"></a>
-<table><thead align="left"><tr id="row413mcpsimp"><th class="cellrowborder" valign="top" width="52%" id="mcps1.2.3.1.1"><p id="p415mcpsimp"><a name="p415mcpsimp"></a><a name="p415mcpsimp"></a>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="48%" id="mcps1.2.3.1.2"><p id="p417mcpsimp"><a name="p417mcpsimp"></a><a name="p417mcpsimp"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row419mcpsimp"><td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.3.1.1 "><p id="p421mcpsimp"><a name="p421mcpsimp"></a><a name="p421mcpsimp"></a>void OnNotifyOps(const char *s, const char *smsPdu)</p>
-</td>
-<td class="cellrowborder" valign="top" width="48%" headers="mcps1.2.3.1.2 "><p id="p423mcpsimp"><a name="p423mcpsimp"></a><a name="p423mcpsimp"></a>Function: Distributes the events reported by the modem.</p>
-<p id="p17924530141912"><a name="p17924530141912"></a><a name="p17924530141912"></a>Input parameters:</p>
-<a name="ul678053915191"></a><a name="ul678053915191"></a><ul id="ul678053915191"><li><strong id="b14780173912196"><a name="b14780173912196"></a><a name="b14780173912196"></a>s</strong>: AT command prefix</li></ul>
-<a name="ul206343434192"></a><a name="ul206343434192"></a><ul id="ul206343434192"><li><strong id="b65891958173518"><a name="b65891958173518"></a><a name="b65891958173518"></a>smsPdu</strong>: PDU of the SMS message</li></ul>
-<p id="p426mcpsimp"><a name="p426mcpsimp"></a><a name="p426mcpsimp"></a>Return value: none</p>
-</td>
-</tr>
-</tbody>
-</table>
+| API | Description | 
+| -------- | -------- |
+| void&nbsp;OnNotifyOps(const&nbsp;char&nbsp;\*s,&nbsp;const&nbsp;char&nbsp;\*smsPdu) | Distributes the events reported by the modem.<br>Input parameters:<br/>**s**: AT command prefix<br/>**smsPdu**: PDU of the SMS message<br/>Return value: none | 
 
 ### How to Develop<a name="section16394112401512"></a>
 
-1.  Call  **OnNotifyOps\(\)**  in the g\_reader thread of the modem device node to parse reported modem events. On determining the command type, call  **OnXxxReport\(\)**  to report the parsed module events to the hril layer.
+1.  Call **OnNotifyOps\(\)** in the g\_reader thread of the modem device node to parse reported modem events. On determining the command type, call **OnXxxReport\(\)** to report the parsed module events to the hril layer.
 
     ```
     // Parse the data reported by the modem as events proactively reported by the corresponding module.
@@ -352,7 +298,7 @@ The following table describes the API for reporting modem events.
     ```
 
 
-1.  Distribute the reported events from the  **hril**  layer to the Telephony Service layer.
+1.  Distribute the reported events from the **hril** layer to the Telephony Service layer.
 
     ```
     // Report the call status proactively.
@@ -380,7 +326,7 @@ The following table describes the API for reporting modem events.
 
 ### Debugging and Verification<a name="section16999174401516"></a>
 
-1.  Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated  **libril\_vendor.z.so**  library file to the  **/system/lib/**  directory of the device.
+1.  Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device.
 
     ```
     hdc_std file send libril_vendor.z.so /system/lib/
@@ -393,7 +339,7 @@ The following table describes the API for reporting modem events.
     hdc_std shell reboot
     ```
 
-3.  Run the  **hdc\_std shell**  command. Then, run the  **./system/bin/ril\_adapter\_test**  command, type  **1**, and enter the phone number as prompted to test the call function.
+3.  Run the **hdc\_std shell** command. Then, run the **./system/bin/ril\_adapter\_test** command, type **1**, and enter the phone number as prompted to test the call function.
 
     ```
     hdc_std shell
@@ -409,7 +355,7 @@ The following table describes the API for reporting modem events.
     1
     ```
 
-4.  Open another terminal window, and run the  **hdc\_std shell hilog**  command. Then, view the log to check whether  **OnNotifyOps\(\)**  is successfully executed. The following debug log is for reference:
+4.  Open another terminal window, and run the **hdc\_std shell hilog** command. Then, view the log to check whether **OnNotifyOps\(\)** is successfully executed. The following debug log is for reference:
 
     ```
     01-01 00:08:01.334   546   551 D 02b01/TelRilTest: [DialResponse-(tel_ril_call.cpp:280)] DialResponse --> radioResponseInfo->serial:2, radioResponseInfo->error:0
@@ -434,16 +380,16 @@ The following table describes the API for reporting modem events.
 
 ### Development Examples<a name="section33444350167"></a>
 
--   **Outgoing Call**
+-  **Outgoing Call**
 
     The following figure shows the API calling for an outgoing call.
 
-    **Figure  1**  Time sequence of API calling for an outgoing call<a name="fig494mcpsimp"></a>  
+   **Figure  1** Time sequence of API calling for an outgoing call<a name="fig494mcpsimp"></a>  
     
 
     ![](figure/en-us_image_0000001171507146.png)
 
-    When an application initiates an outgoing call, RIL Adapter receives a call request, and the  **hril**  layer invokes the  **ReqDial\(\)**  function. In  **ReqDial\(\)**, the data passed by the Telephony Service is encapsulated as an AT command and sent to the modem. After executing the dial command, the modem reports the execution result to RIL Adapter through  **OnCallReport\(\)**.
+    When an application initiates an outgoing call, RIL Adapter receives a call request, and the **hril** layer invokes the **ReqDial\(\)** function. In **ReqDial\(\)**, the data passed by the Telephony Service is encapsulated as an AT command and sent to the modem. After executing the dial command, the modem reports the execution result to RIL Adapter through **OnCallReport\(\)**.
 
     ```
     // Callback function pointer of the call module
@@ -513,18 +459,18 @@ The following table describes the API for reporting modem events.
     ```
 
 
--   **Incoming Call**
+-  **Incoming Call**
 
     The following figure shows the API calling of an incoming call.
 
-    **Figure  2**  Time sequence of API calling for an incoming call<a name="fig556mcpsimp"></a>  
+   **Figure  2** Time sequence of API calling for an incoming call<a name="fig556mcpsimp"></a>  
     
 
     ![](figure/en-us_image_0000001214727595.png)
 
-    The  **g\_reader**  thread cyclically reads the messages reported by the modem. When the modem receives an incoming call event, it actively reports the information about the incoming call.
+    The **g\_reader** thread cyclically reads the messages reported by the modem. When the modem receives an incoming call event, it actively reports the information about the incoming call.
 
-    The  **g\_reader**  thread calls  **OnNotifyOps\(\)**  to parse the reported information. If the parsed data reported by the modem starts with characters such as  **+CRING**  or  **RING**, it indicates that an incoming call event exists. In this case, the event is reported to RIL Adapter through  **OnCallReport\(reportInfo, NULL, 0\)**.
+    The **g\_reader** thread calls **OnNotifyOps\(\)** to parse the reported information. If the parsed data reported by the modem starts with characters such as **+CRING** or **RING**, it indicates that an incoming call event exists. In this case, the event is reported to RIL Adapter through **OnCallReport\(reportInfo, NULL, 0\)**.
 
     ```
     // Parse the data reported by the modem as events proactively reported by the corresponding module.
@@ -558,7 +504,7 @@ The following table describes the API for reporting modem events.
 
 ### Configuring Compilation Information<a name="section592mcpsimp"></a>
 
-Compile the modem vendor library into a dynamic library by using  **BUILD.gn**. Upon startup, RIL Adapter loads the dynamic library to the system in dlopen mode and then initializes the library. For details about how to implement vendor library initialization, see  [Initializing a Modem Vendor Library](#section211mcpsimp). The following is an example of  **BUILD.gn**:
+Compile the modem vendor library into a dynamic library by using **BUILD.gn**. Upon startup, RIL Adapter loads the dynamic library to the system in dlopen mode and then initializes the library. For details about how to implement vendor library initialization, see  [Initializing a Modem Vendor Library](#section211mcpsimp). The following is an example of **BUILD.gn**:
 
 ```
 import("//build/ohos.gni")
@@ -588,5 +534,5 @@ ohos_shared_library("ril_vendor") { // Modem vendor library
 ### Debugging and Verification<a name="section620mcpsimp"></a>
 
 1.  Compile the code.
-2.  Check whether  **libril\_vendor.z.so**  exists in the  **/out/{device_name}/telephony/ril\_adapter**  directory. If yes, the integration is successful. Otherwise, correct the error and perform debugging and verification again.
+2.  Check whether **libril\_vendor.z.so** exists in the **/out/{device_name}/telephony/ril\_adapter** directory. If yes, the integration is successful. Otherwise, correct the error and perform debugging and verification again.
 

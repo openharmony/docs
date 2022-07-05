@@ -1,5 +1,7 @@
 # Bundle模块(JS端SDK接口)
 
+本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility、应用状态等信息的查询
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 > API9 当前为Canary版本，仅供试用，不保证接口可稳定调用。
@@ -15,11 +17,13 @@ SystemCapability.BundleManager.BundleFramework
 
 ## 权限列表
 
-| 权限                                       | 权限等级         | 描述        |
-| ---------------------------------------- | ------------ | --------- |
-| ohos.permission.GET_BUNDLE_INFO          | normal       | 仅限查询本应用信息 |
+| 权限                                       | 权限等级     | 描述               |
+| ------------------------------------------ | ------------ | ------------------ |
+| ohos.permission.GET_BUNDLE_INFO            | normal       | 查询指定应用信息   |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
-| ohos.permission.INSTALL_BUNDLE           | system_core  | 可安装、卸载应用  |
+| ohos.permission.INSTALL_BUNDLE             | system_core  | 可安装、卸载应用   |
+
+权限等级参考[权限等级说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/accesstoken-overview.md#%E6%9D%83%E9%99%90%E7%AD%89%E7%BA%A7%E8%AF%B4%E6%98%8E)
 
 ## bundle.getApplicationInfo
 
@@ -29,7 +33,7 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number): Pr
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -73,7 +77,7 @@ getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, call
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -264,7 +268,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions):
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -310,7 +314,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -569,7 +573,7 @@ getAbilityInfo(bundleName: string, abilityName: string): Promise\<AbilityInfo>
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -609,7 +613,7 @@ getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -724,7 +728,7 @@ getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -764,7 +768,7 @@ getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallbac
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -877,10 +881,6 @@ isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
 以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用Promise形式返回结果。
 
-**需要权限：**
-
-无
-
 **系统能力：**
 
 SystemCapability.BundleManager.BundleFramework
@@ -917,10 +917,6 @@ isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
 以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用callback形式返回结果。
 
-**需要权限：**
-
-无
-
 **系统能力：**
 
 SystemCapability.BundleManager.BundleFramework
@@ -953,10 +949,6 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
 以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用Promise形式返回结果。
-
-**需要权限：**
-
-无
 
 **系统能力：**
 
@@ -992,10 +984,6 @@ isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): vo
 
 以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
 
-**需要权限：**
-
-无
-
 **系统能力：**
 
 SystemCapability.BundleManager.BundleFramework
@@ -1028,7 +1016,7 @@ queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise<Ar
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1073,6 +1061,10 @@ queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: As
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
+
 **系统能力：**
 
 SystemCapability.BundleManager.BundleFramework
@@ -1109,6 +1101,10 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1285,7 +1281,7 @@ getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1324,7 +1320,7 @@ getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1439,7 +1435,7 @@ queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: nu
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1488,7 +1484,7 @@ queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: nu
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1610,6 +1606,12 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | abilityName    | string                               | 是    | 表示要获取的配置文件所属的ability。             |
 | metadataName   | string                               | 否    | 表示要获取的配置文件所属的[metadata](js-apis-bundle-Metadata.md)。            |
 
+**返回值：**
+
+| 类型                                    | 说明                             |
+| ------------------------------------- | ------------------------------ |
+| Promise\<Array\<string>> | Promise形式返回配置文件的json字符串数组。 |
+
 **示例：**
 
 ```js
@@ -1669,6 +1671,12 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
 | extensionAbilityName    | string                               | 是    | 表示要获取的配置文件所属的extensionAbility。             |
 | metadataName   | string                               | 否    | 表示要获取的配置文件所属的metadata。            |
+
+**返回值：**
+
+| 类型                                    | 说明                             |
+| ------------------------------------- | ------------------------------ |
+| Promise\<Array\<string>> | Promise形式返回配置文件的json字符串数组。 |
 
 **示例：**
 
@@ -1770,7 +1778,15 @@ Ability类型
 | LANDSCAPE     | 无    | 屏幕方向--横屏      |
 | PORTRAIT      | 无    | 屏幕方向--竖屏      |
 | FOLLOW_RECENT | 无    | 屏幕方向--紧跟上一个组件 |
-
+| LANDSCAPE_INVERTED |无    | 屏幕方向--反向横屏     |
+| PORTRAIT_INVERTED |无    | 屏幕方向--反向竖屏     |
+| AUTO_ROTATION |无    | 屏幕方向--随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE |无    | 屏幕方向--传感器横屏旋转，包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT |无    | 屏幕方向--传感器竖屏旋转，包括了竖屏和反向竖屏     |
+| AUTO_ROTATION_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转为横屏， 包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向随可传感器旋转为竖屏， 包括了横屏和反向横屏     |
+| LOCKED |无    | 屏幕方向--传感器开关关闭，方向锁定     |
 ## LaunchMode
 
 启动模式
@@ -1810,7 +1826,8 @@ ExtensionAbility的类型
 | FILE_SHARE<sup>9+</sup>        | 6    | ExtensionAbility的类型包括文件共享 |
 | STATIC_SUBSCRIBER<sup>9+</sup> | 7    | ExtensionAbility的类型包括订阅者  |
 | WALLPAPER<sup>9+</sup>         | 8    | ExtensionAbility的类型包括墙纸   |
-| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复   |
+| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复 |
+| ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | ExtensionAbility的类型包括企业管理员   |
 | UNSPECIFIED<sup>9+</sup>       | 20    | ExtensionAbility未指定类型     |
 
 ## ExtensionFlag<sup>9+</sup>
@@ -1849,3 +1866,15 @@ ExtensionAbility的类型
 | ------------------ | ---- | ---- |
 | PERMISSION_DENIED  | -1   | 拒绝许可 |
 | PERMISSION_GRANTED | 0    | 批准   |
+
+## SupportWindowMode
+
+支持窗口模式
+
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称                 | 类型   | 说明   |
+| ------------------ | ---- | ---- |
+| FULLSCREEN  | 无   | 全屏模式 |
+| SPLIT | 无    | 分屏模式   |
+| FLOATING | 无    | 悬浮模式   |

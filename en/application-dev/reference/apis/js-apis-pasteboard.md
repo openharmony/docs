@@ -1,7 +1,7 @@
 # Pasteboard
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 
 
@@ -48,9 +48,9 @@ Creates a **PasteData** object for plain text.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("content");
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("content");
+  ```
 
 
 ## pasteboard.createHtmlData<sup>7+</sup>
@@ -75,10 +75,10 @@ Creates a **PasteData** object for HTML text.
 
 **Example**
 
-```js
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var pasteData = pasteboard.createHtmlData(html);
-```
+  ```js
+  var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+  var pasteData = pasteboard.createHtmlData(html);
+  ```
 
 
 ## pasteboard.createWantData<sup>7+</sup>
@@ -103,13 +103,13 @@ Creates a **PasteData** object for Want text.
 
 **Example**
 
-```js
-var object = {
-    bundleName: "com.example.aafwk.test",
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-var pasteData = pasteboard.createWantData(object);
-```
+  ```js
+  var object = {
+      bundleName: "com.example.aafwk.test",
+      abilityName: "com.example.aafwk.test.TwoAbility"
+  };
+  var pasteData = pasteboard.createWantData(object);
+  ```
 
 
 ## pasteboard.createUriData<sup>7+</sup>
@@ -134,9 +134,9 @@ Creates a **PasteData** object for URI text.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
-```
+  ```js
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  ```
 
 
 ## pasteboard.createPlainTextRecord<sup>7+</sup>
@@ -161,9 +161,9 @@ Creates a **PasteDataRecord** object of the plain text type.
 
 **Example**
 
-```js
-var record = pasteboard.createPlainTextRecord("hello");
-```
+  ```js
+  var record = pasteboard.createPlainTextRecord("hello");
+  ```
 
 
 ## pasteboard.createHtmlTextRecord<sup>7+</sup>
@@ -188,10 +188,10 @@ Creates a **PasteDataRecord** object of the HTML text type.
 
 **Example**
 
-```js
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var record = pasteboard.createHtmlTextRecord(html);
-```
+  ```js
+  var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+  var record = pasteboard.createHtmlTextRecord(html);
+  ```
 
 
 ## pasteboard.createWantRecord<sup>7+</sup>
@@ -216,13 +216,13 @@ Creates a **PasteDataRecord** object of the Want text type.
 
 **Example**
 
-```js
-var object = {
-    bundleName: "com.example.aafwk.test",
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-var record = pasteboard.createWantRecord(object);
-```
+  ```js
+  var object = {
+      bundleName: "com.example.aafwk.test",
+      abilityName: "com.example.aafwk.test.TwoAbility"
+  };
+  var record = pasteboard.createWantRecord(object);
+  ```
 
 
 ## pasteboard.createUriRecord<sup>7+</sup>
@@ -247,9 +247,9 @@ Creates a **PasteDataRecord** object of the URI text type.
 
 **Example**
 
-```js
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
-```
+  ```js
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  ```
 
 
 ## PasteDataProperty<sup>7+</sup>
@@ -301,14 +301,14 @@ Forcibly converts the content in this **PasteData** object to the plain text. Th
 
 **Example**
 
-```js
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
-record.convertToText().then((data) => {
-    console.info('convertToText success data : ' + JSON.stringify(data));
-}).catch((error) => { 
-    console.error('convertToText failed because ' + JSON.stringify(error));
-});
-```
+  ```js
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  record.convertToText().then((data) => {
+      console.info('convertToText success data : ' + JSON.stringify(data));
+  }).catch((error) => { 
+      console.error('convertToText failed because ' + JSON.stringify(error));
+  });
+  ```
 
 
 ### convertToText<sup>7+</sup>
@@ -327,16 +327,16 @@ Forcibly converts the content in this **PasteData** object to the plain text. Th
 
 **Example**
 
-```js
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
-record.convertToText((err, data) => {    
-    if (err) {        
-        console.error('convertToText failed because ' + JSON.stringify(err));        
-        return;   
-      }
-    console.info('convertToText success data : ' + JSON.stringify(data));
-});
-```
+  ```js
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  record.convertToText((err, data) => {    
+      if (err) {        
+          console.error('convertToText failed because ' + JSON.stringify(err));        
+          return;   
+        }
+      console.info('convertToText success data : ' + JSON.stringify(data));
+  });
+  ```
 
 
 ## PasteData
@@ -366,10 +366,10 @@ Obtains the plain text of the primary record.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var plainText = pasteData.getPrimaryText();
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var plainText = pasteData.getPrimaryText();
+  ```
 
 
 ### getPrimaryHtml<sup>7+</sup>
@@ -388,11 +388,11 @@ Obtains the HTML text of the primary record.
 
 **Example**
 
-```js
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var pasteData = pasteboard.createHtmlData(html);
-var htmlText = pasteData.getPrimaryHtml();
-```
+  ```js
+  var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+  var pasteData = pasteboard.createHtmlData(html);
+  var htmlText = pasteData.getPrimaryHtml();
+  ```
 
 
 ### getPrimaryWant<sup>7+</sup>
@@ -411,14 +411,14 @@ Obtains the **Want** object of the primary record.
 
 **Example**
 
-```js
-var object = { 
-    bundleName: "com.example.aafwk.test",    
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-var pasteData = pasteboard.createWantData(object);
-var want = pasteData.getPrimaryWant();
-```
+  ```js
+  var object = { 
+      bundleName: "com.example.aafwk.test",    
+      abilityName: "com.example.aafwk.test.TwoAbility"
+  };
+  var pasteData = pasteboard.createWantData(object);
+  var want = pasteData.getPrimaryWant();
+  ```
 
 
 ### getPrimaryUri<sup>7+</sup>
@@ -437,10 +437,10 @@ Obtains the URI text of the primary record.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
-var uri = pasteData.getPrimaryUri();
-```
+  ```js
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var uri = pasteData.getPrimaryUri();
+  ```
 
 
 ### addTextRecord<sup>7+</sup>
@@ -485,11 +485,11 @@ The pasteboard supports a maximum number of 128 data records.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-pasteData.addHtmlRecord(html);
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+  pasteData.addHtmlRecord(html);
+  ```
 
 
 ### addWantRecord<sup>7+</sup>
@@ -510,14 +510,14 @@ The pasteboard supports a maximum number of 128 data records.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var object = { 
-    bundleName: "com.example.aafwk.test",    
-    abilityName: "com.example.aafwk.test.TwoAbility"
-};
-pasteData.addWantRecord(object);
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var object = { 
+      bundleName: "com.example.aafwk.test",    
+      abilityName: "com.example.aafwk.test.TwoAbility"
+  };
+  pasteData.addWantRecord(object);
+  ```
 
 
 ### addUriRecord<sup>7+</sup>
@@ -538,10 +538,10 @@ The pasteboard supports a maximum number of 128 data records.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
+  ```
 
 
 ### addRecord<sup>7+</sup>
@@ -562,14 +562,14 @@ The pasteboard supports a maximum number of 128 data records.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
-var textRecord = pasteboard.createPlainTextRecord("hello");
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var htmlRecord = pasteboard.createHtmlTextRecord(html);
-pasteData.addRecord(textRecord);
-pasteData.addRecord(htmlRecord);
-```
+  ```js
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var textRecord = pasteboard.createPlainTextRecord("hello");
+  var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+  var htmlRecord = pasteboard.createHtmlTextRecord(html);
+  pasteData.addRecord(textRecord);
+  pasteData.addRecord(htmlRecord);
+  ```
 
 
 ### getMimeTypes<sup>7+</sup>
@@ -588,10 +588,10 @@ Obtains **mimeTypes** in [PasteDataProperty](#pastedataproperty7) from this past
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var types = pasteData.getMimeTypes();
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var types = pasteData.getMimeTypes();
+  ```
 
 
 ### getPrimaryMimeType<sup>7+</sup>
@@ -610,10 +610,10 @@ Obtains the data type of the primary record.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var type = pasteData.getPrimaryMimeType();
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var type = pasteData.getPrimaryMimeType();
+  ```
 
 
 ### getProperty<sup>7+</sup>
@@ -632,10 +632,10 @@ Obtains the property description object.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var property = pasteData.getProperty();
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var property = pasteData.getProperty();
+  ```
 
 
 ### getRecordAt<sup>7+</sup>
@@ -660,10 +660,10 @@ Obtains the record with the specified index.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var record = pasteData.getRecordAt(0);
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var record = pasteData.getRecordAt(0);
+  ```
 
 
 ### getRecordCount<sup>7+</sup>
@@ -682,10 +682,10 @@ Obtains the number of data records in this pasteboard.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var count = pasteData.getRecordCount();
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var count = pasteData.getRecordCount();
+  ```
 
 
 ### getTag<sup>7+</sup>
@@ -704,10 +704,10 @@ Obtains the user-defined tag content. If the tag content is not set, null is ret
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var tag = pasteData.getTag();
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var tag = pasteData.getTag();
+  ```
 
 
 ### hasMimeType<sup>7+</sup>
@@ -732,10 +732,10 @@ Checks whether the content of this pasteboard contains the specified data type.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var hasType = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var hasType = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
+  ```
 
 
 ### removeRecordAt<sup>7+</sup>
@@ -760,10 +760,10 @@ Removes the data record with a specified index from this pasteboard.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var isRemove = pasteData.removeRecordAt(0);
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var isRemove = pasteData.removeRecordAt(0);
+  ```
 
 
 ### replaceRecordAt<sup>7+</sup>
@@ -789,11 +789,11 @@ Replaces the data record with a specified index in this pasteboard.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
-var isReplace = pasteData.replaceRecordAt(0, record);
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var isReplace = pasteData.replaceRecordAt(0, record);
+  ```
 
 
 ## pasteboard.getSystemPasteboard
@@ -812,9 +812,9 @@ Obtains the system pasteboard.
 
 **Example**
 
-```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
-```
+  ```js
+  var systemPasteboard = pasteboard.getSystemPasteboard();
+  ```
 
 
 ## SystemPasteboard
@@ -843,17 +843,17 @@ Writes data to a pasteboard. This API uses an asynchronous callback to return th
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("content");
-var systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setPasteData(pasteData, (error, data) => { 
-    if (error) {
-        console.error('Failed to setPasteData. Cause: ' + error.message);
-        return;
-    }
-    console.info('setPasteData successfully.');
-});
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("content");
+  var systemPasteboard = pasteboard.getSystemPasteboard();
+  systemPasteboard.setPasteData(pasteData, (error, data) => { 
+      if (error) {
+          console.error('Failed to setPasteData. Cause: ' + error.message);
+          return;
+      }
+      console.info('setPasteData successfully.');
+  });
+  ```
 
 
 ### setPasteData
@@ -878,15 +878,15 @@ Writes data to a pasteboard. This API uses a promise to return the result.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("content");
-var systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.setPasteData(pasteData).then((data) => {
-    console.info('setPasteData success.');
-}).catch((error) => {
-    console.error('Failed to setPasteData. Cause: ' + error.message);
-});
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("content");
+  var systemPasteboard = pasteboard.getSystemPasteboard();
+  systemPasteboard.setPasteData(pasteData).then((data) => {
+      console.info('setPasteData success.');
+  }).catch((error) => {
+      console.error('Failed to setPasteData. Cause: ' + error.message);
+  });
+  ```
 
 
 ### getPasteData
@@ -905,16 +905,16 @@ Reads the system pasteboard content. This API uses an asynchronous callback to r
 
 **Example**
 
-```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getPasteData((error, pasteData) => {  
-    if (error) {
-        console.error('Failed to getPasteData. Cause: ' + error.message);
-        return;
-    }
-    var text = pasteData.getPrimaryText();
-});
-```
+  ```js
+  var systemPasteboard = pasteboard.getSystemPasteboard();
+  systemPasteboard.getPasteData((error, pasteData) => {  
+      if (error) {
+          console.error('Failed to getPasteData. Cause: ' + error.message);
+          return;
+      }
+      var text = pasteData.getPrimaryText();
+  });
+  ```
 
 
 ### getPasteData
@@ -933,14 +933,14 @@ Reads the system pasteboard content. This API uses a promise to return the resul
 
 **Example**
 
-```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getPasteData().then((pasteData) => { 
-    var text = pasteData.getPrimaryText();
-}).catch((error) => {
-    console.error('Failed to getPasteData. Cause: ' + error.message);
-})
-```
+  ```js
+  var systemPasteboard = pasteboard.getSystemPasteboard();
+  systemPasteboard.getPasteData().then((pasteData) => { 
+      var text = pasteData.getPrimaryText();
+  }).catch((error) => {
+      console.error('Failed to getPasteData. Cause: ' + error.message);
+  })
+  ```
 
 
 ### on('update')<sup>7+</sup>
@@ -960,18 +960,18 @@ Subscribes to the content change event of the system pasteboard. If the pasteboa
 
 **Example**
 
-```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
-var listener = ()=>{
-    console.info('The system pasteboard has changed');
-};
-systemPasteboard.on('update', listener);
-```
+  ```js
+  var systemPasteboard = pasteboard.getSystemPasteboard();
+  var listener = () => {
+      console.info('The system pasteboard has changed');
+  };
+  systemPasteboard.on('update', listener);
+  ```
 
 
 ### off('update')<sup>7+</sup>
 
-off(type: 'update', callback? : () =&gt;void ): void
+off(type:  'update', callback?: () =&gt;void ): void
 
 Unsubscribes from the system pasteboard content change event.
 
@@ -986,9 +986,12 @@ Unsubscribes from the system pasteboard content change event.
 
 **Example**
 
-```js
-systemPasteboard.off('update', listener);
-```
+  ```js
+ let listener = () => {
+      console.info('The system pasteboard has changed');
+  };    
+ systemPasteboard.off('update', listener);
+  ```
 
 
 ### hasPasteData<sup>7+</sup>
@@ -1007,15 +1010,15 @@ Checks whether the system pasteboard contains content. This API uses an asynchro
 
 **Example**
 
-```js
-systemPasteboard.hasPasteData((err, data) => {
-    if (err) {
-        console.error('failed to hasPasteData because ' + JSON.stringify(err));
-        return;
-    }
-    console.info('success hasPasteData : ' + JSON.stringify(data));
-});
-```
+  ```js
+  systemPasteboard.hasPasteData((err, data) => {
+      if (err) {
+          console.error('failed to hasPasteData because ' + JSON.stringify(err));
+          return;
+      }
+      console.info('success hasPasteData : ' + JSON.stringify(data));
+  });
+  ```
 
 
 ### hasPasteData<sup>7+</sup>
@@ -1059,15 +1062,15 @@ Clears the system pasteboard content. This API uses an asynchronous callback to 
 
 **Example**
 
-```js
-systemPasteboard.clear((err, data) => { 
-    if (err) {        
-        console.error('failed to clear because ' + JSON.stringify(err));        
-        return;    
-    }
-    console.info('success clear');
-});
-```
+  ```js
+  systemPasteboard.clear((err, data) => { 
+      if (err) {        
+          console.error('failed to clear because ' + JSON.stringify(err));        
+          return;    
+      }
+      console.info('success clear');
+  });
+  ```
 
 
 ### clear<sup>7+</sup>
@@ -1086,10 +1089,10 @@ Clears the system pasteboard content. This API uses a promise to return the resu
 
 **Example**
 
-```js
-systemPasteboard.clear().then((data) => { 
-    console.info('success clear');
-}).catch((error) => {    
-    console.error('failed to clear because ' + JSON.stringify(error));
-});
-```
+  ```js
+  systemPasteboard.clear().then((data) => { 
+      console.info('success clear');
+  }).catch((error) => {    
+      console.error('failed to clear because ' + JSON.stringify(error));
+  });
+  ```

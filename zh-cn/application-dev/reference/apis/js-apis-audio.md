@@ -1,13 +1,15 @@
 # 音频管理
 
->  **说明：**
->  本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。 
 
 该模块提供以下音频相关的常用功能：
 
 - [AudioManager](#audiomanager)：音频管理。
 - [AudioRenderer](#audiorenderer8)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
 - [AudioCapturer](#audiocapturer8)：音频采集，用于录制PCM音频数据。
+
+>  **说明：**
+>  本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -245,6 +247,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | MEDIA                        | 3      | 媒体。     |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
 
+
+## InterruptMode<sup>9+</sup>
+
+枚举，焦点模型。
+
+**系统能力：** SystemCapability.Multimedia.Audio.InterruptMode
+
+| 名称                         | 默认值 | 描述       |
+| ---------------------------- | ------ | ---------- |
+| SHARE_MODE      | 0      | 共享焦点模式。 |
+| INDEPENDENT_MODE| 1      | 独立焦点模式。     |
 
 ## DeviceFlag
 
@@ -549,7 +562,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 音量改变时，应用接收的事件。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
@@ -624,8 +637,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 默认值 | 描述                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
 | AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
-| AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>系统接口，三方应用不支持调用。 |
-| AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>系统接口，三方应用不支持调用。 |
+| AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口，三方应用不支持调用。 |
+| AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
 ## AudioManager
@@ -637,6 +650,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置指定流的音量，使用callback方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -665,6 +680,8 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
 setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 设置指定流的音量，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1030,6 +1047,8 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 设置铃声模式，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
@@ -1056,6 +1075,8 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 设置铃声模式，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1135,6 +1156,10 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 
 音频参数设置，使用callback方式异步返回结果。
 
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **参数：**
@@ -1148,7 +1173,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
+audioManager.setAudioParameter('key_example', 'value_example', (err) => {
     if (err) {
         console.error('Failed to set the audio parameter. ${err.message}');
         return;
@@ -1162,6 +1187,10 @@ audioManager.setAudioParameter('PBits per sample', '8 bit', (err) => {
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 音频参数设置，使用Promise方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1181,7 +1210,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
 ```
-audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
+audioManager.setAudioParameter('key_example', 'value_example').then(() => {
     console.log('Promise returned to indicate a successful setting of the audio parameter.');
 });
 ```
@@ -1191,6 +1220,8 @@ audioManager.setAudioParameter('PBits per sample', '8 bit').then(() => {
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 获取指定音频参数值，使用callback方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1204,7 +1235,7 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```
-audioManager.getAudioParameter('PBits per sample', (err, value) => {
+audioManager.getAudioParameter('key_example', (err, value) => {
     if (err) {
         console.error('Failed to obtain the value of the audio parameter. ${err.message}');
         return;
@@ -1218,6 +1249,8 @@ audioManager.getAudioParameter('PBits per sample', (err, value) => {
 getAudioParameter(key: string): Promise&lt;string&gt;
 
 获取指定音频参数值，使用Promise方式异步返回结果。
+
+本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -1236,7 +1269,7 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 **示例：**
 
 ```
-audioManager.getAudioParameter('PBits per sample').then((value) => {
+audioManager.getAudioParameter('key_example').then((value) => {
     console.log('Promise returned to indicate that the value of the audio parameter is obtained.' + value);
 });
 ```
@@ -1415,6 +1448,8 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置麦克风静音状态，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
@@ -1441,6 +1476,8 @@ audioManager.setMicrophoneMute(true, (err) => {
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 设置麦克风静音状态，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -1470,6 +1507,8 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
 获取麦克风静音状态，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
@@ -1496,6 +1535,8 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 
 获取麦克风静音状态，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **返回值：**
@@ -1519,7 +1560,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 监听系统音量变化事件。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1546,7 +1587,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 监听铃声模式变化事件。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1688,7 +1729,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
 设置音频场景模式，使用callback方式异步返回结果。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1717,7 +1758,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 设置音频场景模式，使用Promise方式返回异步结果。
 
-此接口为系统接口，三方应用不支持。
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -2477,7 +2518,55 @@ audioRenderer.getRenderRate().then((renderRate) => {
     console.log('ERROR: '+err.message);
 });
 ```
+### setInterruptMode<sup>9+</sup>
 
+setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
+
+设置应用的焦点模型。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。                                             |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | 以Promise对象返回结果，设置成功时返回undefined，否则返回error。 |
+
+**示例：**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
+    console.log('Promise returned to indicate a successful volume setting.');
+});
+```
+### setInterruptMode<sup>9+</sup>
+
+setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
+
+设置应用的焦点模型。使用Callback回调返回执行结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+|interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。|
+|callback | Callback\<void>  | 是  |回调返回执行结果。|
+
+**示例：**
+
+```
+audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
+    console.log('Callback returned to indicate a successful volume setting.');
+});
+```
 ### on('interrupt')<sup>9+</sup>
 
 on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
@@ -2996,7 +3085,7 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
     }
-};
+});
 ```
 
 

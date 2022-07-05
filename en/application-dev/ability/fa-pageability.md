@@ -37,6 +37,8 @@ You can override the lifecycle callbacks provided by the Page ability in the **a
 The ability supports two launch types: singleton and multi-instance.
 You can specify the launch type by setting **launchType** in the **config.json** file.
 
+**Table 1** Introduction to startup mode
+
 | Launch Type    | Description    |Description            |
 | ----------- | -------  |---------------- |
 | standard    | Multi-instance  | A new instance is started each time an ability starts.|
@@ -48,7 +50,7 @@ By default, **singleton** is used.
 ## Development Guidelines
 ### Available APIs
 
-**Table 1** APIs provided by featureAbility
+**Table 2** APIs provided by featureAbility
 
 | API                                             | Description           |
 | --------------------------------------------------- | --------------- |
@@ -86,8 +88,10 @@ By default, **singleton** is used.
   );
 ```
 
-### Starting a Remote Page Ability (Applying only to System Applications)
->Note: The **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications. Therefore, remote Page ability startup applies only to system applications.
+### Starting a Remote Page Ability
+>Note
+>
+>This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
 
 **Modules to Import**
 
@@ -102,16 +106,16 @@ By default, **singleton** is used.
   console.info('onStartRemoteAbility begin');
   let params;
   let wantValue = {
-    bundleName: 'ohos.samples.etsDemo',
-    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
-    deviceId: getRemoteDeviceId(),
-    parameters: params
+      bundleName: 'ohos.samples.etsDemo',
+      abilityName: 'ohos.samples.etsDemo.RemoteAbility',
+      deviceId: getRemoteDeviceId(),
+      parameters: params
   };
   console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
   featureAbility.startAbility({
-    want: wantValue
+      want: wantValue
   }).then((data) => {
-    console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+      console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
   });
   console.info('onStartRemoteAbility end');
   }
@@ -123,17 +127,17 @@ Obtain **deviceId** from **DeviceManager**. The sample code is as follows:
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   let dmClass;
   function getRemoteDeviceId() {
-    if (typeof dmClass === 'object' && dmClass != null) {
-        let list = dmClass.getTrustedDeviceListSync();
-        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+      if (typeof dmClass === 'object' && dmClass != null) {
+          let list = dmClass.getTrustedDeviceListSync();
+          if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
             console.log("MainAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
-        }
-        console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
-        return list[0].deviceId;
-    } else {
-        console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
-    }
+          }
+          console.log("MainAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+          return list[0].deviceId;
+      } else {
+          console.log("MainAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+      }
   }
 ```
 
@@ -143,41 +147,40 @@ In the cross-device scenario, the application must also apply for the data synch
   import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
   import bundle from '@ohos.bundle';
   async function RequestPermission() {
-  console.info('RequestPermission begin');
-  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
-  let bundleFlag = 0;
-  let tokenID = undefined;
-  let userID = 100;
-  let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
-  tokenID = appInfo.accessTokenId;
-  let atManager = abilityAccessCtrl.createAtManager();
-  let requestPermissions: Array<string> = [];
-  for (let i = 0;i < array.length; i++) {
-    let result = await atManager.verifyAccessToken(tokenID, array[i]);
-    console.info("verifyAccessToken result:" + JSON.stringify(result));
-    if (result == abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
-    } else {
-      requestPermissions.push(array[i]);
-    }
-  }
-  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
-  if (requestPermissions.length == 0 || requestPermissions == []) {
-    return;
-  }
-  let context = featureAbility.getContext();
-  context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
-    console.info("data:" + JSON.stringify(data));
-    console.info("data requestCode:" + data.requestCode);
-    console.info("data permissions:" + data.permissions);
-    console.info("data authResults:" + data.authResults);
-  });
-  console.info('RequestPermission end');
+      console.info('RequestPermission begin');
+      let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+      let bundleFlag = 0;
+      let tokenID = undefined;
+      let userID = 100;
+      let  appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+      tokenID = appInfo.accessTokenId;
+      let atManager = abilityAccessCtrl.createAtManager();
+      let requestPermissions: Array<string> = [];
+      for (let i = 0;i < array.length; i++) {
+          let result = await atManager.verifyAccessToken(tokenID, array[i]);
+          console.info("verifyAccessToken result:" + JSON.stringify(result));
+          if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+              requestPermissions.push(array[i]);
+          }
+      }
+      console.info("requestPermissions:" + JSON.stringify(requestPermissions));
+      if (requestPermissions.length == 0 || requestPermissions == []) {
+          return;
+      }
+      let context = featureAbility.getContext();
+      context.requestPermissionsFromUser(requestPermissions, 1, (data)=>{
+          console.info("data:" + JSON.stringify(data));
+          console.info("data requestCode:" + data.requestCode);
+          console.info("data permissions:" + data.permissions);
+          console.info("data authResults:" + data.authResults);
+      });
+      console.info('RequestPermission end');
   }
 ```
 
 ### Lifecycle APIs
 
-**Table 2** Lifecycle callbacks
+**Table 3** Lifecycle callbacks
 
 | API      | Description                                                        |
 | ------------ | ------------------------------------------------------------ |

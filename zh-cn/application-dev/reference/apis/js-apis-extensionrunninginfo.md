@@ -1,10 +1,11 @@
 # ExtensionRunningInfo
 
+ExtensionRunningInfo模块提供对Extension运行的相关信息和类型进行设置和查询的能力。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-Extension运行相关信息。
 
 ## 导入模块
 
@@ -37,24 +38,4 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 | processName | string | 是 | 否 | 进程名称。 |
 | startTime | number | 是 | 否 | Extension启动时间。 |
 | clientPackage | Array&lt;String&gt; | 是 | 否 | 表示当期进程下的所有包名。 |
-| type | [bundle.ExtensionAbilityType](#bundleextensionabilitytype) | 是 | 否 | Extension类型。 |
-
-
-## bundle.ExtensionAbilityType
-
-Extension类型。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
-
-  | 名称 | 值 | 说明 | 
-| -------- | -------- | -------- |
-| FORM | 0 | 表示带有form类型的扩展信息。< | 
-| WORK_SCHEDULER | 1 | 表示带有work&nbsp;scheduler类型的扩展信息。< | 
-| INPUT_METHOD | 2 | 表示用输入法类型的扩展信息。< | 
-| SERVICE | 3 | 表示带有service类型的扩展信息。< | 
-| ACCESSIBILITY | 4 | 表示具有可访问性类型的扩展信息。< | 
-| DATA_SHARE | 5 | 表示带有datashare类型的扩展信息。< | 
-| FILE_SHARE | 6 | 表示带有fileshare类型的扩展信息。< | 
-| STATIC_SUBSCRIBER | 7 | 表示带有静态订阅者类型的扩展信息。< | 
-| WALLPAPER | 8 | 表示带有wallpaper类型的扩展信息。< | 
-| UNSPECIFIED | 9 | 表示未指定类型信息。< | 
+| type | [bundle.ExtensionAbilityType](js-apis-Bundle.md#extensionabilitytype9) | 是 | 否 | Extension类型。 |

@@ -1,7 +1,9 @@
 # AbilityContext
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.  
+> The APIs of this module can be used only in the stage model.
 
 Implements the ability context. This module is inherited from **Context**.
 
@@ -55,7 +57,7 @@ Starts an ability. This API uses a callback to return the result.
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   this.context.startAbility(want, (error) => {
       console.log("error.code = " + error.code)
@@ -76,7 +78,7 @@ Starts an ability. This API uses a callback to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md)  | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -85,7 +87,7 @@ Starts an ability. This API uses a callback to return the result.
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   var options = {
   	windowMode: 0,
@@ -109,7 +111,7 @@ Starts an ability. This API uses a promise to return the result.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
@@ -123,7 +125,7 @@ Starts an ability. This API uses a promise to return the result.
   var want = {
   	"deviceId": "",
   	"bundleName": "com.extreme.test",
-  	"abilityName": "com.extreme.test.MainAbility"
+  	"abilityName": "MainAbility"
   };
   var options = {
   	windowMode: 0,
@@ -141,7 +143,7 @@ Starts an ability. This API uses a promise to return the result.
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability. This API uses a callback to return the execution result when the ability is terminated.
+Starts an ability. This API uses a callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -169,7 +171,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability. This API uses a callback to return the execution result when the ability is terminated.
+Starts an ability. This API uses a callback to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -178,7 +180,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
 
 
@@ -202,7 +204,7 @@ Starts an ability. This API uses a callback to return the execution result when 
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-Starts an ability. This API uses a promise to return the execution result when the ability is terminated.
+Starts an ability. This API uses a promise to return the result when the ability is terminated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -211,7 +213,7 @@ Starts an ability. This API uses a promise to return the execution result when t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 
 **Return value**
@@ -374,7 +376,7 @@ Obtains the caller interface of the specified ability, and if the specified abil
       onWindowStageCreate(windowStage) {
           this.context.startAbilityByCall({
               bundleName: "com.example.myservice",
-              abilityName: "com.example.myservice.MainAbility",
+              abilityName: "MainAbility",
               deviceId: ""
           }).then((obj) => {
               caller = obj;
@@ -450,7 +452,7 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
-Sets the label of the ability displayed in the task. This API uses a callback to return the result.
+Sets the label of the ability in the mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -474,7 +476,7 @@ Sets the label of the ability displayed in the task. This API uses a callback to
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-Sets the label of the ability displayed in the task. This API uses a promise to return the result.
+Sets the label of the ability in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

@@ -1,6 +1,10 @@
 # Emitter
 
-> 说明：本模块首批接口从API version 7开始支持。
+本模块提供发送和处理进程内事件的能力，包括对持续订阅事件或单次订阅事件的处理，取消订阅事件，发送事件到事件队列。
+
+> **说明：**
+>
+> 本模块首批接口从API version 7开始支持。
 
 ## 导入模块
 
@@ -16,12 +20,14 @@ import emitter from '@ohos.events.emitter'
 
 用于表示事件被投递的优先级。
 
+**系统能力**:  以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
+
 | 名称      | 值   | 说明                                              |
 | --------- | ---- | ------------------------------------------------- |
-| IMMEDIATE | 0    | 表示事件被立即投递。<br/>**系统能力**: SystemCapability.Notification.Emitter                                |
-| HIGH      | 1    | 表示事件先于LOW优先级投递。<br/>**系统能力**: SystemCapability.Notification.Emitter                         |
-| LOW       | 2    | 表示事件优于IDLE优先级投递，事件的默认优先级是LOW。<br/>**系统能力**: SystemCapability.Notification.Emitter |
-| IDLE      | 3    | 表示在没有其他事件的情况下，才投递该事件。<br/>**系统能力**: SystemCapability.Notification.Emitter          |
+| IMMEDIATE | 0    | 表示事件被立即投递。                                |
+| HIGH      | 1    | 表示事件先于LOW优先级投递。                         |
+| LOW       | 2    | 表示事件优于IDLE优先级投递，事件的默认优先级是LOW。   |
+| IDLE      | 3    | 表示在没有其他事件的情况下，才投递该事件。            |
 
 ## emitter.on
 
@@ -131,15 +137,19 @@ emitter.emit(innerEvent, eventData);
 
 进程内的事件。
 
+**系统能力**: 以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
+
 | 名称     | 参数类型                        | 可读 | 可写 | 说明                               |
 | -------- | ------------------------------- | ---- | ---- | ---------------------------------- |
-| eventId  | number                          | 是   | 是   | 事件的ID，由开发者定义用来辨别事件。<br/>**系统能力**: SystemCapability.Notification.Emitter |
-| priority | [EventPriority](#eventpriority) | 是   | 是   | 事件被投递的优先级。<br/>**系统能力**: SystemCapability.Notification.Emitter                 |
+| eventId  | number                          | 是   | 是   | 事件的ID，由开发者定义用来辨别事件。 |
+| priority | [EventPriority](#eventpriority) | 是   | 是   | 事件被投递的优先级。         |
 
 ## EventData
 
 发送事件时传递的数据。
 
+**系统能力**: 以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
+
 | 名称 | 参数类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。<br/>**系统能力**: SystemCapability.Notification.Emitter |
+| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。 |

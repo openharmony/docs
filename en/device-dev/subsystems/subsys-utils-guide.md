@@ -4,60 +4,18 @@
 
 **Table  1**  APIs for file operations
 
-<a name="table1171894475019"></a>
-<table><thead align="left"><tr id="row1471814441508"><th class="cellrowborder" valign="top" width="45.540000000000006%" id="mcps1.2.3.1.1"><p id="p11718174425016"><a name="p11718174425016"></a><a name="p11718174425016"></a>Function</p>
-</th>
-<th class="cellrowborder" valign="top" width="54.459999999999994%" id="mcps1.2.3.1.2"><p id="p6718124475013"><a name="p6718124475013"></a><a name="p6718124475013"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row671818445506"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p871814441501"><a name="p871814441501"></a><a name="p871814441501"></a>int UtilsFileOpen(const char* path, int oflag, int mode)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p127181444165016"><a name="p127181444165016"></a><a name="p127181444165016"></a>Opens or creates a file.</p>
-</td>
-</tr>
-<tr id="row1171874420507"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p1671884419509"><a name="p1671884419509"></a><a name="p1671884419509"></a>int UtilsFileClose(int fd)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p1071884416504"><a name="p1071884416504"></a><a name="p1071884416504"></a>Closes a file with a specified file descriptor.</p>
-</td>
-</tr>
-<tr id="row6718744105017"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p137181644145015"><a name="p137181644145015"></a><a name="p137181644145015"></a>int UtilsFileRead(int fd, char *buf, unsigned int len)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p1171854410509"><a name="p1171854410509"></a><a name="p1171854410509"></a>Reads a specified length of data from a file with the specified file descriptor and writes the data into the buffer.</p>
-</td>
-</tr>
-<tr id="row2071817440509"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p17718144465012"><a name="p17718144465012"></a><a name="p17718144465012"></a>int UtilsFileWrite(int fd, const char *buf, unsigned int len)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p67191444145012"><a name="p67191444145012"></a><a name="p67191444145012"></a>Writes a specified length of data into a file with the specified file descriptor.</p>
-</td>
-</tr>
-<tr id="row471974425019"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p11719174475016"><a name="p11719174475016"></a><a name="p11719174475016"></a>int UtilsFileDelete(const char *path)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p2071919446507"><a name="p2071919446507"></a><a name="p2071919446507"></a>Deletes a specified file.</p>
-</td>
-</tr>
-<tr id="row1071964425013"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p20719114405010"><a name="p20719114405010"></a><a name="p20719114405010"></a>int UtilsFileStat(const char *path, unsigned int *fileSize)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p8719144435015"><a name="p8719144435015"></a><a name="p8719144435015"></a>Obtains the file size.</p>
-</td>
-</tr>
-<tr id="row2071924417504"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p57193447501"><a name="p57193447501"></a><a name="p57193447501"></a>int UtilsFileSeek(int fd, int offset, unsigned int whence)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p1071934495014"><a name="p1071934495014"></a><a name="p1071934495014"></a>Adjusts the read and write position offset in a file.</p>
-</td>
-</tr>
-<tr id="row1135017417557"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p2350184112554"><a name="p2350184112554"></a><a name="p2350184112554"></a>int UtilsFileCopy(const char* src, const char* dest)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p113501041155511"><a name="p113501041155511"></a><a name="p113501041155511"></a>Copies the source file to a target file.</p>
-</td>
-</tr>
-<tr id="row11216645145517"><td class="cellrowborder" valign="top" width="45.540000000000006%" headers="mcps1.2.3.1.1 "><p id="p192171345105519"><a name="p192171345105519"></a><a name="p192171345105519"></a>int UtilsFileMove(const char* src, const char* dest)</p>
-</td>
-<td class="cellrowborder" valign="top" width="54.459999999999994%" headers="mcps1.2.3.1.2 "><p id="p921744595517"><a name="p921744595517"></a><a name="p921744595517"></a>Moves the source file into a target file.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Function | Description |
+| ---------- | ------------- |
+| int UtilsFileOpen(const char* path, int oflag, int mode) | Opens or creates a file. |
+| int UtilsFileClose(int fd) | Closes a file with a specified file descriptor. |
+| int UtilsFileRead(int fd, char *buf, unsigned int len) | Reads a specified length of data from a file with the specified file descriptor and writes the data into the buffer. |
+| int UtilsFileWrite(int fd, const char *buf, unsigned int len) | Writes a specified length of data into a file with the specified file descriptor. |
+| int UtilsFileDelete(const char *path) | Deletes a specified file. |
+| int UtilsFileStat(const char *path, unsigned int *fileSize) | Obtains the file size. |
+| int UtilsFileSeek(int fd, int offset, unsigned int whence) | Adjusts the read and write position offset in a file. |
+| int UtilsFileCopy(const char* src, const char* dest) | Copies the source file to a target file. |
+| int UtilsFileMove(const char* src, const char* dest) | Moves the source file into a target file. |
+
 
 Sample code for file operations:
 
@@ -92,30 +50,12 @@ printf("delete ret = %d\n", ret);
 
 **Table  2**  APIs for KV store operations
 
-<a name="table1731550155318"></a>
-<table><thead align="left"><tr id="row4419501537"><th class="cellrowborder" valign="top" width="57.38999999999999%" id="mcps1.2.3.1.1"><p id="p54150165315"><a name="p54150165315"></a><a name="p54150165315"></a>Function</p>
-</th>
-<th class="cellrowborder" valign="top" width="42.61%" id="mcps1.2.3.1.2"><p id="p941150145313"><a name="p941150145313"></a><a name="p941150145313"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row34145016535"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p980953910190"><a name="p980953910190"></a><a name="p980953910190"></a>int UtilsGetValue(const char* key, char* value, unsigned int len)</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p13562171015712"><a name="p13562171015712"></a><a name="p13562171015712"></a>Obtains the value matching a specified key from the file system or cache.</p>
-</td>
-</tr>
-<tr id="row1746172917474"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p242913617818"><a name="p242913617818"></a><a name="p242913617818"></a>int UtilsSetValue(const char* key, const char* value)</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p2431455765"><a name="p2431455765"></a><a name="p2431455765"></a>Adds or updates the value matching a specified key in the file system or cache.</p>
-</td>
-</tr>
-<tr id="row10992232154714"><td class="cellrowborder" valign="top" width="57.38999999999999%" headers="mcps1.2.3.1.1 "><p id="p118151439111910"><a name="p118151439111910"></a><a name="p118151439111910"></a>int UtilsDeleteValue(const char* key)</p>
-</td>
-<td class="cellrowborder" valign="top" width="42.61%" headers="mcps1.2.3.1.2 "><p id="p126575774517"><a name="p126575774517"></a><a name="p126575774517"></a>Deletes the value matching a specified key from the file system or cache.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Function | Description |
+| ----------- | ---------------- |
+| int UtilsGetValue(const char* key, char* value, unsigned int len) | Obtains the value matching a specified key from the file system or cache. |
+| int UtilsSetValue(const char* key, const char* value) | Adds or updates the value matching a specified key in the file system or cache. |
+| int UtilsDeleteValue(const char* key) | Deletes the value matching a specified key from the file system or cache. |
+
 
 Sample code for the KV store:
 
@@ -280,5 +220,3 @@ printf("UtilsDeleteValue delete ret = %d\n", ret);
 
     **Figure  2**  Output of the system attribute dumping command for the LiteOS Cortex-A kernel<a name="fig2179718143018"></a>  
     ![](figure/output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-a-kernel.png "output-of-the-system-attribute-dumping-command-for-the-liteos-cortex-a-kernel")
-
-

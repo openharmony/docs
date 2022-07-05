@@ -55,6 +55,8 @@ setAttributes(name: string, value: string): void
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
@@ -77,6 +79,8 @@ addEmptyElement(name: string): void
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
@@ -93,6 +97,8 @@ setDeclaration(): void
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
@@ -133,6 +139,8 @@ endElement(): void
 **示例：**
 
 ```js
+var arrayBuffer = new ArrayBuffer(1024);
+var bufView = new DataView(arrayBuffer);
 var thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");

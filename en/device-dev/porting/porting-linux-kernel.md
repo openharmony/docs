@@ -87,9 +87,9 @@ The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to 
     export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_standard
     ```
 
-3.  Comment out the flags that cannot be recognized by  **clang**.
+3.  Comment out the flags that cannot be recognized by **clang**.
 
-    In the  **PROJ\_ROOT/out/KERNEL\_OBJ/kernel/src\_tmp/linux-rpi3b/arch/arm/Makefile**  file, comment out the following line:
+    In the **PROJ\_ROOT/out/KERNEL\_OBJ/kernel/src\_tmp/linux-rpi3b/arch/arm/Makefile** file, comment out the following line:
 
     ```
     KBUILD_CFLAGS  +=-fno-omit-frame-pointer -mapcs -mno-sched-prolog
@@ -105,18 +105,25 @@ drivers/staging/hilog
 drivers/staging/hievent
 ```
 
-Copy the preceding code from the  **kernel/linux/linux-4.19/drivers/staging**  directory of OpenHarmony to  **out/KERNEL\_OBJ/kernel/src\_tmp/linux-rpi3b/drivers/staging**.
+Copy the preceding code from the **kernel/linux/linux-4.19/drivers/staging** directory of OpenHarmony to **out/KERNEL\_OBJ/kernel/src\_tmp/linux-rpi3b/drivers/staging**.
 
-Add the following code to the third-party kernel file  **Kconfig**  in the  **drivers/staging**  directory:
+Add the following code to the third-party kernel file **Kconfig** in the **drivers/staging** directory:
 
 ```
 source "drivers/staging/hilog/Kconfig"
 source "drivers/staging/hievent/Kconfig"
 ```
 
-Enable the CONFIG macros  **CONFIG\_HILOG**  and  **CONFIG\_HIEVENT**  in the kernel  **config**  section.
+Add the following code to the third-party kernel file **Makefile** in the **drivers/staging** directory:
 
-For details about how to use the logs, see  [Hilog\_lite](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README.md).
+```
+obj-$(CONFIG_HILOG)             += hilog/
+obj-$(CONFIG_HIEVENT)           += hievent/
+```
+
+Enable the CONFIG macros **CONFIG\_HILOG** and **CONFIG\_HIEVENT** in the kernel **config** section.
+
+For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README.md).
 
 ### Porting the HDF Feature<a name="section12971205681710"></a>
 
@@ -124,9 +131,9 @@ For details about how to use the logs, see  [Hilog\_lite](https://gitee.com/open
 
     Run the shell script to apply HDF patches.
 
-    1.  Set the three variables in the  **patch\_hdf.sh**  script.
-    2.  Obtain the  **patch\_hdf.sh**  script.
-    3.  Run the  **patch\_hdf.sh**  script to pass the three variables in sequence.
+    1.  Set the three variables in the **patch\_hdf.sh** script.
+    2.  Obtain the **patch\_hdf.sh** script.
+    3.  Run the **patch\_hdf.sh** script to pass the three variables in sequence.
 
     Run the following command:
 
@@ -144,9 +151,9 @@ For details about how to use the logs, see  [Hilog\_lite](https://gitee.com/open
     PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch # HDF patch file.
     ```
 
-2.  Configure the  **config**  file.
+2.  Configure the **config** file.
 
-    Configure basic HDF settings. If other functions are required, enable the corresponding driver switch by using  **menuconfig**.
+    Configure basic HDF settings. If other functions are required, enable the corresponding driver switch by using **menuconfig**.
 
     After HDF patches are installed, the HDF function is disabled by default. To enable the HDF function, perform the following settings:
 
@@ -161,7 +168,7 @@ For details about how to use the logs, see  [Hilog\_lite](https://gitee.com/open
     CONFIG_DRIVERS_HDF_TEST=y
     ```
 
-    Alternatively, run the following command to enable the HDF configuration on the  **menuconfig**  page:
+    Alternatively, run the following command to enable the HDF configuration on the **menuconfig** page:
 
     ```
     # Generate the .config file.
@@ -173,7 +180,7 @@ For details about how to use the logs, see  [Hilog\_lite](https://gitee.com/open
     # [*]   HDF driver framework support --->
     ```
 
-    The configuration \(in  **Device Drivers**  \>  **HDF driver framework support**\) is as follows:
+    The configuration \(in **Device Drivers** \> **HDF driver framework support**\) is as follows:
 
     ![](figures/menuconfig.png)
 
@@ -193,16 +200,16 @@ The HDF test cases are used to verify basic functions of the HDF framework and p
 
 **Prerequisites**
 
--   In  **menuconfig**,  **CONFIG\_DRIVERS\_HDF\_TEST**  is set to  **y**.
+-   In **menuconfig**, **CONFIG\_DRIVERS\_HDF\_TEST** is set to **y**.
 -   The standard Hi3516D V300 kernel is built completely.
 
 **Test Case Build and Test Method**
 
-Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)  tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
+Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md) tool to push the test case execution file to the device and execute the test cases. The procedure is as follows:
 
 1.  Build the HDF test cases.
-2.  Use the  **hdc\_std**  tool to push the test case execution file to the device.
-3.  Go to the  **data/test**  directory of the device and execute the test file.
+2.  Use the **hdc\_std** tool to push the test case execution file to the device.
+3.  Go to the **data/test** directory of the device and execute the test file.
 
 The procedure is as follows:
 
@@ -218,9 +225,9 @@ The procedure is as follows:
 
 2.  Copy the test files to the target device \(Raspberry Pi in this example\).
 
-    Method 1: Use the  [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)  tool.
+    Method 1: Use the [hdc\_std](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md) tool.
 
-    1.  Create the  **data/test**  directory in Raspberry Pi.
+    1.  Create the **data/test** directory in Raspberry Pi.
 
         ```
         mkdir -p data/test
@@ -238,8 +245,8 @@ The procedure is as follows:
 
     Method 2: Copy the test files to Raspberry Pi using its memory card.
 
-    1.  Remove the serial port and USB cable of Raspberry Pi from the PC, and remove its memory card. The  **zImage**  file in the memory card will be replaced. Back it up in advance.
-    2.  Insert the memory card into the port of the PC used for porting, download the  **zImage**  file and the  **test/**  folder to the PC, and then copy them to the root directory of the memory card.
+    1.  Remove the serial port and USB cable of Raspberry Pi from the PC, and remove its memory card. The **zImage** file in the memory card will be replaced. Back it up in advance.
+    2.  Insert the memory card into the port of the PC used for porting, download the **zImage** file and the **test/** folder to the PC, and then copy them to the root directory of the memory card.
     3.  Insert the memory card into Raspberry Pi.
 
         ```
@@ -255,7 +262,7 @@ The procedure is as follows:
         ```
 
 3.  Perform the test.
-    1.  Go to the  **data/test**  directory.
+    1.  Go to the **data/test** directory.
 
         ```
         cd /data/test
@@ -276,7 +283,7 @@ The procedure is as follows:
         ./SbufTest
         ```
 
-    4.  If  **PASSED**  is displayed for all test items, HDF is functioning.
+    4.  If **PASSED** is displayed for all test items, HDF is functioning.
 
         Example: DevMgrTest case
 

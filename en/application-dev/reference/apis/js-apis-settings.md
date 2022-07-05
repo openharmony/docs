@@ -1,6 +1,7 @@
 # Settings
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -27,7 +28,7 @@ Obtains the URI of a data item.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: 'settings.screen.brightness'<br> </li>  <li>Time format: 'settings.time.format'<br> </li></ul> <li>Custom data items</li></ul>|
+| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: settings.display.SCREEN_BRIGHTNESS_STATUS<br> </li>  <li>Time format: settings.date.TIME_FORMAT<br> </li></ul> <li>Custom data items</li></ul>|
 
 **Return value**
 
@@ -39,7 +40,7 @@ Obtains the URI of a data item.
 
 ```typescript
  // Obtain the URI of a data item.
- let urivar = settings.getUriSync('settings.screen.brightness');  
+ let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);  
 ```
 
 
@@ -55,7 +56,7 @@ Obtains the value of a data item.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes| **DataAbilityHelper** class.|
-| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: 'settings.screen.brightness'<br> </li>  <li>Time format: 'settings.time.format'<br> </li></ul> <li>Custom data items</li></ul>|
+| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: **settings.display.SCREEN_BRIGHTNESS_STATUS**<br> </li>  <li>Time format: **settings.date.TIME_FORMAT**<br> </li></ul> <li>Custom data items</li></ul> |
 | defValue | string | Yes| Default value This parameter is user-defined. If it is not found in the database, the default value is returned.|
 
 **Return value**
@@ -69,11 +70,10 @@ Obtains the value of a data item.
 ```typescript
   import featureAbility from '@ohos.ability.featureAbility';
 
-// Obtain the value of 'settings.screen.brightness' (this data item already exists in the database).
-let brightness = 'settings.screen.brightness';
-let uri = settings.getUriSync(brightness);
+// Obtain the value of settings.display.SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
-let value = settings.getValueSync(helper, brightness, '10');
+let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
 
@@ -85,7 +85,7 @@ Sets the value of a data item.
 
 If the specified data item exists in the database, the **setValueSync** method updates the value of the data item. If the data item does not exist in the database, the **setValueSync** method inserts the data item into the database.
 
-**Required permissions**: ohos.permission.WRITE_SYSTEM_SETTING
+**Required permissions**: ohos.permission.MODIFY_SETTINGS
 
 **System capability**: SystemCapability.Applictaions.settings.Core
 
@@ -94,7 +94,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes| **DataAbilityHelper** class.|
-| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: 'settings.screen.brightness'<br> </li>  <li>Time format: 'settings.time.format'<br> </li></ul> <li>Custom data items</li></ul>|
+| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: **settings.display.SCREEN_BRIGHTNESS_STATUS**<br> </li>  <li>Time format: **settings.date.TIME_FORMAT**<br> </li></ul> <li>Custom data items</li></ul> |
 | value | string | Yes| Value of the data item.|
 
 **Return value**
@@ -108,10 +108,9 @@ If the specified data item exists in the database, the **setValueSync** method u
 ```typescript
   import featureAbility from '@ohos.ability.featureAbility';
 
-// Update the value of 'settings.screen.brightness'. (As this data item exists in the database, the setValueSync 
+// Update the value of settings.display.SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync 
    method will update the value of the data item.)
-let brightness = 'settings.screen.brightness';
-let uri = settings.getUriSync(brightness);
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 let helper = featureAbility.acquireDataAbilityHelper(uri);
-let ret = settings.setValueSync(helper, brightness, '100');
+let ret = settings.setValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```

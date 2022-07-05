@@ -181,124 +181,124 @@
         - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
-  - 基础功能开发
-    - 公共事件与通知
-      - [公共事件与通知概述](notification/notification-brief.md)
-      - [公共事件开发指导](notification/common-event.md)
-      - [通知开发指导](notification/notification.md)
-      - [调试助手使用指导](notification/assistant-guidelines.md)
-    - 窗口管理
-      - 窗口
-        - [窗口开发概述](windowmanager/window-overview.md)
-        - [窗口开发指导](windowmanager/window-guidelines.md)
-      - 屏幕属性
-        - [屏幕属性开发概述](windowmanager/display-overview.md)
-        - [屏幕属性开发指导](windowmanager/display-guidelines.md)
-      - 屏幕截图
-        - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
-        - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
-    - WebGL
-      - [WebGL开发概述](webgl/webgl-overview.md)
-      - [WebGL开发指导](webgl/webgl-guidelines.md)
-    - 媒体
-      - 音频
-        - [音频开发概述](media/audio-overview.md)
-        - [音频播放开发指导](media/audio-playback.md)
-        - [音频录制开发指导](media/audio-recorder.md)
-        - [音频渲染开发指导](media/audio-renderer.md)
-        - [音频采集开发指导](media/audio-capturer.md)
-      - 视频
-        - [视频播放开发指导](media/video-playback.md)
-        - [视频录制开发指导](media/video-recorder.md)
-      - 图片
-        - [图片开发指导](media/image.md)
-    - 安全
-      - 用户认证
-        - [用户认证开发概述](security/userauth-overview.md)
-        - [用户认证开发指导](security/userauth-guidelines.md)
-      - 密钥管理
-        - [HUKS开发概述](security/huks-overview.md)
-        - [HUKS开发指导](security/huks-guidelines.md)
-      - Hap包签名工具
-        - [Hap包签名工具开发指导](security/hapsigntool-guidelines.md)
-      - 访问控制
-        - [访问控制开发概述](security/accesstoken-overview.md)
-        - [访问控制开发指导](security/accesstoken-guidelines.md)
-    - 网络与连接
-      - 网络管理
-        - [网络管理开发概述](connectivity/net-mgmt-overview.md)
-        - [HTTP数据请求](connectivity/http-request.md)
-        - [WebSocket连接](connectivity/websocket-connection.md)
-        - [Socket连接](connectivity/socket-connection.md)
-      - IPC与RPC通信
-        - [IPC与RPC通信概述](connectivity/ipc-rpc-overview.md)
-        - [IPC与RPC通信开发指导](connectivity/ipc-rpc-development-guideline.md)
-        - [远端状态订阅开发实例](connectivity/subscribe-remote-state.md)
-    - 电话服务
-      - [电话服务开发概述](telephony/telephony-overview.md)
-      - [跳转拨号界面](telephony/jumping-to-the-dial-screen.md)
-      - [获取当前蜂窝网络信号信息](telephony/cellular-network-signal-info.md)
-    - 数据管理
-      - 分布式数据服务
-        - [分布式数据服务概述](database/database-mdds-overview.md)
-        - [分布式数据服务开发指导](database/database-mdds-guidelines.md)
-      - 关系型数据库
-        - [关系型数据库概述](database/database-relational-overview.md)
-        - [关系型数据库开发指导](database/database-relational-guidelines.md)
-      - 轻量级数据存储
-        - [轻量级数据存储概述](database/database-preference-overview.md)
-        - [轻量级数据存储开发指导](database/database-preference-guidelines.md)
-      - 分布式数据对象
-        - [分布式数据对象概述](database/database-distributedobject-overview.md)
-        - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
+  - 公共事件与通知
+    - [公共事件与通知概述](notification/notification-brief.md)
+    - [公共事件开发指导](notification/common-event.md)
+    - [通知开发指导](notification/notification.md)
     - 后台代理提醒
       - [后台代理概述](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
       - [后台代理开发指导](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
-    - 后台任务管理
-      - [后台任务概述](background-task-management/background-task-overview.md)
-      - [后台任务开发指导](background-task-management/background-task-dev-guide.md)
+    - [调试助手使用指导](notification/assistant-guidelines.md)
+  - 窗口管理
+    - 窗口
+      - [窗口开发概述](windowmanager/window-overview.md)
+      - [窗口开发指导](windowmanager/window-guidelines.md)
+    - 屏幕属性
+      - [屏幕属性开发概述](windowmanager/display-overview.md)
+      - [屏幕属性开发指导](windowmanager/display-guidelines.md)
+    - 屏幕截图
+      - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
+      - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
+  - WebGL
+    - [WebGL开发概述](webgl/webgl-overview.md)
+    - [WebGL开发指导](webgl/webgl-guidelines.md)
+  - 媒体
+    - 音频
+      - [音频开发概述](media/audio-overview.md)
+      - [音频播放开发指导](media/audio-playback.md)
+      - [音频录制开发指导](media/audio-recorder.md)
+      - [音频渲染开发指导](media/audio-renderer.md)
+      - [音频采集开发指导](media/audio-capturer.md)
+    - 视频
+      - [视频播放开发指导](media/video-playback.md)
+      - [视频录制开发指导](media/video-recorder.md)
+    - 图片
+      - [图片开发指导](media/image.md)
+  - 安全
+    - 用户认证
+      - [用户认证开发概述](security/userauth-overview.md)
+      - [用户认证开发指导](security/userauth-guidelines.md)
+    - 密钥管理
+      - [HUKS开发概述](security/huks-overview.md)
+      - [HUKS开发指导](security/huks-guidelines.md)
+    - Hap包签名工具
+      - [Hap包签名工具开发指导](security/hapsigntool-guidelines.md)
+    - 访问控制
+      - [访问控制开发概述](security/accesstoken-overview.md)
+      - [访问控制开发指导](security/accesstoken-guidelines.md)
+  - 网络与连接
+    - 网络管理
+      - [网络管理开发概述](connectivity/net-mgmt-overview.md)
+      - [HTTP数据请求](connectivity/http-request.md)
+      - [WebSocket连接](connectivity/websocket-connection.md)
+      - [Socket连接](connectivity/socket-connection.md)
+    - IPC与RPC通信
+      - [IPC与RPC通信概述](connectivity/ipc-rpc-overview.md)
+      - [IPC与RPC通信开发指导](connectivity/ipc-rpc-development-guideline.md)
+      - [远端状态订阅开发实例](connectivity/subscribe-remote-state.md)
+  - 电话服务
+    - [电话服务开发概述](telephony/telephony-overview.md)
+    - [跳转拨号界面](telephony/jumping-to-the-dial-screen.md)
+    - [获取当前蜂窝网络信号信息](telephony/cellular-network-signal-info.md)
+  - 数据管理
+    - 分布式数据服务
+      - [分布式数据服务概述](database/database-mdds-overview.md)
+      - [分布式数据服务开发指导](database/database-mdds-guidelines.md)
+    - 关系型数据库
+      - [关系型数据库概述](database/database-relational-overview.md)
+      - [关系型数据库开发指导](database/database-relational-guidelines.md)
+    - 轻量级数据存储
+      - [轻量级数据存储概述](database/database-preference-overview.md)
+      - [轻量级数据存储开发指导](database/database-preference-guidelines.md)
+    - 分布式数据对象
+      - [分布式数据对象概述](database/database-distributedobject-overview.md)
+      - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
+  - 任务管理
+    - 后台任务
+      - [后台任务概述](task-management/background-task-overview.md)
+      - [后台任务开发指导](task-management/background-task-dev-guide.md)
     - 延迟任务调度
-      - [延迟任务调度概述](work-scheduler/work-scheduler-overview.md)
-      - [延迟任务调度开发指导](work-scheduler/work-scheduler-dev-guide.md)
-    - 设备管理
-      - USB服务
-        - [USB服务开发概述](device/usb-overview.md)
-        - [USB服务开发指导](device/usb-guidelines.md)
-      - 位置
-        - [位置开发概述](device/device-location-overview.md)
-        - [获取设备的位置信息](device/device-location-info.md)
-        - [（逆）地理编码转化](device/device-location-geocoding.md)
-      - 传感器
-        - [传感器开发概述](device/sensor-overview.md)
-        - [传感器开发指导](device/sensor-guidelines.md)
-      - 振动
-        - [振动开发概述](device/vibrator-overview.md)
-        - [振动开发指导](device/vibrator-guidelines.md)
-      - 升级服务
-        - [示例服务器开发概述](device/sample-server-overview.md)
-        - [示例服务器开发指导](device/sample-server-guidelines.md)
-    - 设备使用信息统计
-      - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
-      - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-dev-guide.md)
-    - DFX
-      - 应用事件打点
-        - [应用事件打点概述](dfx/hiappevent-overview.md)
-        - [应用事件打点开发指导](dfx/hiappevent-guidelines.md)
-      - 性能打点跟踪
-        - [性能打点跟踪概述](dfx/hitracemeter-overview.md)
-        - [性能打点跟踪开发指导](dfx/hitracemeter-guidelines.md)
-      - 分布式跟踪
-        - [分布式跟踪概述](dfx/hitracechain-overview.md)
-        - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
-    - 国际化
-      - [国际化开发概述](internationalization/international-overview.md)
-      - [Intl开发指导](internationalization/intl-guidelines.md)
-      - [I18n开发指导](internationalization/i18n-guidelines.md)
-    - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-    - Native API的相关指导
-      - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
-      - [Drawing开发指导](napi/drawing-guidelines.md)
-      - [Rawfile开发指导](napi/rawfile-guidelines.md)
+      - [延迟任务调度概述](task-management/work-scheduler-overview.md)
+      - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
+  - 设备管理
+    - USB服务
+      - [USB服务开发概述](device/usb-overview.md)
+      - [USB服务开发指导](device/usb-guidelines.md)
+    - 位置
+      - [位置开发概述](device/device-location-overview.md)
+      - [获取设备的位置信息](device/device-location-info.md)
+      - [（逆）地理编码转化](device/device-location-geocoding.md)
+    - 传感器
+      - [传感器开发概述](device/sensor-overview.md)
+      - [传感器开发指导](device/sensor-guidelines.md)
+    - 振动
+      - [振动开发概述](device/vibrator-overview.md)
+      - [振动开发指导](device/vibrator-guidelines.md)
+    - 升级服务
+      - [示例服务器开发概述](device/sample-server-overview.md)
+      - [示例服务器开发指导](device/sample-server-guidelines.md)
+  - 设备使用信息统计
+    - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
+    - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-dev-guide.md)
+  - DFX
+    - 应用事件打点
+      - [应用事件打点概述](dfx/hiappevent-overview.md)
+      - [应用事件打点开发指导](dfx/hiappevent-guidelines.md)
+    - 性能打点跟踪
+      - [性能打点跟踪概述](dfx/hitracemeter-overview.md)
+      - [性能打点跟踪开发指导](dfx/hitracemeter-guidelines.md)
+    - 分布式跟踪
+      - [分布式跟踪概述](dfx/hitracechain-overview.md)
+      - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
+  - 国际化
+    - [国际化开发概述](internationalization/international-overview.md)
+    - [Intl开发指导](internationalization/intl-guidelines.md)
+    - [I18n开发指导](internationalization/i18n-guidelines.md)
+  - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
+  - Native API的相关指导
+    - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+    - [Drawing开发指导](napi/drawing-guidelines.md)
+    - [Rawfile开发指导](napi/rawfile-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
@@ -494,6 +494,7 @@
         - [Web](reference/arkui-ts/ts-basic-components-web.md)
         - [Xcomponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
       - 容器组件
+        - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
         - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
         - [Badge](reference/arkui-ts/ts-container-badge.md)
         - [Column](reference/arkui-ts/ts-container-column.md)
@@ -508,6 +509,7 @@
         - [Navigator](reference/arkui-ts/ts-container-navigator.md)        
         - [Panel](reference/arkui-ts/ts-container-panel.md)
         - [Refresh](reference/arkui-ts/ts-container-refresh.md)
+        - [RelativeContainer](reference/arkui-ts/ts-container-relativecontainer.md)
         - [Row](reference/arkui-ts/ts-container-row.md)
         - [RowSplit](reference/arkui-ts/ts-container-rowsplit.md)
         - [Scroll](reference/arkui-ts/ts-container-scroll.md)        
@@ -567,6 +569,7 @@
       - [@ohos.application.AbilityStage (AbilityStage)](reference/apis/js-apis-application-abilitystage.md)
       - [@ohos.application.appManager (appManager)](reference/apis/js-apis-appmanager.md)
       - [@ohos.application.Configuration (Configuration)](reference/apis/js-apis-configuration.md)
+      - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-DataShareExtensionAbility.md)
       - [@ohos.application.ConfigurationConstant (ConfigurationConstant)](reference/apis/js-apis-configurationconstant.md)
       - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-featureAbility.md)
       - [@ohos.application.formBindingData (卡片数据绑定类)](reference/apis/js-apis-formbindingdata.md)
@@ -645,10 +648,14 @@
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
     - 数据管理
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
+      - [@ohos.data.dataShare (数据共享)](reference/apis/js-apis-data-dataShare.md)
+      - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis/js-apis-data-dataSharePredicates.md)
+      - [@ohos.data.dataShareResultSet (数据共享结果集)](reference/apis/js-apis-data-DataShareResultSet.md)
       - [@ohos.data.distributedData (分布式数据管理)](reference/apis/js-apis-distributed-data.md)
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.rdb (关系型数据库)](reference/apis/js-apis-data-rdb.md)
+      - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-ValuesBucket.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理

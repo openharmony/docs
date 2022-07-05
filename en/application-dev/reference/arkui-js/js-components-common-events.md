@@ -223,14 +223,14 @@ Sets a custom drag image.
 
 | Name     | Type    | Mandatory  | Name                                      |
 | -------- | -------- | ---- | ---------------------------------------- |
-| pixelmap | PixelMap | Yes   | Image transferred from the frontend. For details, see [PixelMap](../apis/js-apis-image.md#pixelmap7).|
+| pixelmap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes   | Image transferred from the frontend. |
 | offsetX  | number   | Yes   | Horizontal offset relative to the image.                            |
 | offsetY  | number   | Yes   | Vertical offset relative to the image.                           |
 
 **Return value**
 | Type  | Description                       |
 | ---- | ------------------------ |
-| bool | Operation result. The value **true** means that the operation is successful, and **false** means otherwise.|
+| boolean | Operation result. The value **true** means that the operation is successful, and **false** means otherwise.|
 
 **Example**
 

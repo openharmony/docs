@@ -1,15 +1,14 @@
 # AbilityStage
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
 
 Runtime class for HAP files. It provides APIs to notify you when a HAP file starts loading. You can then initialize the HAP file, for example, pre-load resources and create threads.
 
-
 ## Modules to Import
 
-  
 ```js
 import AbilityStage from '@ohos.application.AbilityStage';
 ```
@@ -21,8 +20,6 @@ onCreate(): void
 Called when the application is created.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-
 
 **Example**
     

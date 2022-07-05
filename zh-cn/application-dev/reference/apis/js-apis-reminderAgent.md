@@ -1,5 +1,9 @@
 # 后台代理提醒
 
+本模块提供后台代理提醒的能力。
+
+开发应用时，开发者可以调用后台提醒发布的接口创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -45,6 +49,8 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 发布一个后台代理提醒，使用Promise方式实现异步调用。
+
+**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 

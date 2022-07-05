@@ -8,7 +8,7 @@ In Host mode, you can obtain the list of connected devices, enable or disable th
 
 The USB service provides the following functions: query of USB device list, bulk data transfer, control transfer, and access permission management.
 
-The following table lists the USB APIs currently available. For details, see the  [API Reference](../reference/apis/js-apis-usb.md).
+The following table lists the USB APIs currently available. For details, see the [API Reference](../reference/apis/js-apis-usb.md).
 
 **Table  1**  Open USB APIs
 
@@ -21,7 +21,7 @@ The following table lists the USB APIs currently available. For details, see the
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | Claims a USB interface                                       |
-| function bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.                                      |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.                                      |
 | closePipe(pipe: USBDevicePipe): number                       | Closes a USB device pipe.                                    |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                    |
 | getFileDescriptor(pipe: USBDevicePipe): number               | Obtains the file descriptor.                                 |

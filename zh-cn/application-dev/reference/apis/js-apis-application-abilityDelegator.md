@@ -1,5 +1,7 @@
 # AbilityDelegator
 
+AbilityDelegator提供添加用于监视指定能力的生命周期状态更改的AbilityMonitor对象的能力，包括对AbilityMonitor实例的添加、删除、等待ability到达OnCreate生命周期、设置等待时间等、获取指定ability的生命周期状态、获取当前应用顶部ability、启动指定ability等。
+
 > **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
@@ -616,6 +618,32 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
         console.info("doAbilityBackground promise");
     });
 });
+```
+
+
+
+### printSync
+
+printSync(msg: string): void
+
+打印日志信息到单元测试终端控制台
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| msg    | string | 是   | 日志字符串 |
+
+**示例：**
+
+```js
+var abilityDelegator;
+var msg = "msg";
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.printSync(msg);
 ```
 
 

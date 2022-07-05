@@ -24,7 +24,7 @@ USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js
 | setConfiguration(pipe:&nbsp;USBDevicePipe,&nbsp;config:&nbsp;USBConfig):&nbsp;number | 设置设备的配置。 |
 | setInterface(pipe:&nbsp;USBDevicePipe,&nbsp;iface:&nbsp;USBInterface):&nbsp;number | 设置设备的接口。 |
 | claimInterface(pipe:&nbsp;USBDevicePipe,&nbsp;iface:&nbsp;USBInterface,&nbsp;force?:&nbsp;boolean):&nbsp;number | 获取接口。 |
-| function&nbsp;bulkTransfer(pipe:&nbsp;USBDevicePipe,&nbsp;endpoint:&nbsp;USBEndpoint,&nbsp;buffer:&nbsp;Uint8Array,&nbsp;timeout?:&nbsp;number):&nbsp;Promise&lt;number&gt; | 批量传输。 |
+|bulkTransfer(pipe:&nbsp;USBDevicePipe,&nbsp;endpoint:&nbsp;USBEndpoint,&nbsp;buffer:&nbsp;Uint8Array,&nbsp;timeout?:&nbsp;number):&nbsp;Promise&lt;number&gt; | 批量传输。 |
 | closePipe(pipe:&nbsp;USBDevicePipe):&nbsp;number | 关闭设备消息控制通道。 |
 | releaseInterface(pipe:&nbsp;USBDevicePipe,&nbsp;iface:&nbsp;USBInterface):&nbsp;number | 释放接口。 |
 | getFileDescriptor(pipe:&nbsp;USBDevicePipe):&nbsp;number | 获取文件描述符。 |

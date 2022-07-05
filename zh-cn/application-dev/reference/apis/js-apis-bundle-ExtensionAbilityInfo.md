@@ -9,7 +9,7 @@
 
 ExtensionAbility信息
 
-
+## ExtensionAbilityInfo
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -25,7 +25,7 @@ ExtensionAbility信息
 | extensionAbilityType | bundle.ExtensionAbilityType                          | 是   | 否   | ExtensionAbility类型                               |
 | permissions          | Array\<string>                                       | 是   | 否   | 被其他应用ExtensionAbility调用时需要申请的权限集合 |
 | applicationInfo      | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | 是   | 否   | 应用程序的配置信息                                 |
-| metaData             | Array\<[Metadata](js-apis-bundle-Metadata.md)>       | 是   | 否   | ExtensionAbility的元信息                           |
+| metadata             | Array\<[Metadata](js-apis-bundle-Metadata.md)>       | 是   | 否   | ExtensionAbility的元信息                           |
 | enabled              | boolean                                              | 是   | 否   | ExtensionAbility是否可用                           |
 | readPermission       | string                                               | 是   | 否   | 读取ExtensionAbility数据所需的权限                 |
 | writePermission      | string                                               | 是   | 否   | 向ExtensionAbility写数据所需的权限                 |

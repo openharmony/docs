@@ -10,15 +10,15 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 2. Register an SSH public key for access to Gitee.
 
-3. Install the git client and git-lfs.
+3. Install the git client and git-lfs if they are unavailable.
 
-     Update the software source:
-     
+   Update the software source:
+   
    ```
    sudo apt-get update
    ```
 
-     Run the following command to install the tools:
+   Run the following command to install the tools:
    
    ```
    sudo apt-get install git git-lfs
@@ -34,12 +34,21 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 5. Run the following commands to install the **repo** tool:
    
+   In this example, **~/bin** is used as an example installation directory. You can change the directory as needed.
+   
    ```
-   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o /usr/local/bin/repo  # If you do not have the access permission to this directory, download the tool to any other accessible directory and configure the directory to the environment variable.
-   chmod a+x /usr/local/bin/repo
+   mkdir ~/bin
+   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
+   chmod a+x ~/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
    ```
+6. Add the path of the **repo** tool to environment variables.
 
+   ```
+   vim ~/.bashrc               # Edit environment variables.
+   export PATH=~/bin:$PATH     # Add the path of the **repo** tool to the end of environment variables.
+   source ~/.bashrc            # Apply environment variables.
+   ```
 
 ## Procedure
 
@@ -70,7 +79,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
   For details about how to obtain the source code of an OpenHarmony release, see the [Release-Notes](../../release-notes/Readme.md).
 
 
-## Running prebuilts
+### Running prebuilts
 
 Go to the root directory of the source code and run the following script to install the compiler and binary tool:
 

@@ -53,7 +53,7 @@ Provides the detailed information of the permissions to request from the system.
 | name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
 | reason                | string                  | Yes  | Yes  | Reason for requesting the permission.  |
 | reasonId<sup>9+</sup> | number                  | Yes  | Yes  | ID of the reason for requesting the permission.|
-| usedScene             | [UsedScene](#UsedScene) | Yes  | Yes  | Application scenario and timing for using the permission.|
+| usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Application scenario and timing for using the permission.|
 
 
 

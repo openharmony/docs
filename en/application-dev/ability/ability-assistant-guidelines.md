@@ -2,11 +2,7 @@
 
 The ability assistant enables you to start applications, atomic services, and test cases and debug applications. By using this tool, you can send commands in the hdc shell to perform various system operations, such as starting abilities, forcibly stopping processes, and printing ability information.
 
-## Development Guidelines
-
-The ability assistant is pre-installed in the device environment. You can directly invoke the tool using commands.
-
-### Query-related Commands
+## Query-related Commands
 
 - **help**
 
@@ -22,7 +18,7 @@ The ability assistant is pre-installed in the device environment. You can direct
   aa help
   ```
 
-### Ability-related Commands
+## Ability-related Commands
 
 - **start**
 
@@ -77,10 +73,10 @@ The ability assistant is pre-installed in the device environment. You can direct
   | -a/--all          | -                    | Prints ability information in all missions.                                |
   | -l/--mission-list | type (All logs are printed if this parameter is left unspecified.)| Prints mission stack information.<br>The following values are available for **type**:<br>- NORMAL <br>- DEFAULT_STANDARD<br>- DEFAULT_SINGLE<br>- LAUNCHER |
   | -e/--extension    | elementName          | Prints extended component information.                                          |
-  | -u/--userId       | UserId               | Prints stack information of a specified user ID. This parameter must be used together with other parameters.<br>Example commands: aa **dump -a -u 100** and **aa dump -d -u 100**|
-  | -d/--data         |                      | Prints Data ability information.                                          |
+  | -u/--userId       | UserId               | Prints stack information of a specified user ID. This parameter must be used together with other parameters. <br/>Example commands: aa **dump -a -u 100** and **aa dump -d -u 100**. |
+  | -d/--data         | - | Prints Data ability information.                                          |
   | -i/--ability      | AbilityRecord ID     | Prints detailed information about a specified ability.                                     |
-  | -c/--client       |                      | Prints detailed ability information. This parameter must be used together with other parameters.<br>Example commands: **aa dump -a -c** and **aa dump -i 21 -c**|
+  | -c/--client       | - | Prints detailed ability information. This parameter must be used together with other parameters. <br/>Example commands: **aa dump -a -c** and **aa dump -i 21 -c**. |
   
   **Method**
   

@@ -1,5 +1,5 @@
 # Common Event Development
-### Introduction
+## Introduction
 OpenHarmony provides a Common Event Service (CES) for applications to subscribe to, publish, and unsubscribe from common events.
 
 Common events are classified into system common events and custom common events.
@@ -25,13 +25,13 @@ You can create a subscriber object to subscribe to a common event to obtain the 
 ### How to Develop
 1. Import the **commonEvent** module.
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent';
 ```
 
 2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEvent.md#commoneventsubscribeinfo).
 
-```javascript
+```js
 private subscriber = null	// Used to save the created subscriber object for subsequent subscription and unsubscription.
 
 // Subscriber information
@@ -42,7 +42,7 @@ var subscribeInfo = {
 
 3. Create a subscriber object and save the returned object for subsequent operations such as subscription and unsubscription.
 
-```javascript
+```js
 // Callback for subscriber creation.
 commonEvent.createSubscriber(subscribeInfo, (err, subscriber) => {
     if (err.code) {
@@ -57,7 +57,7 @@ commonEvent.createSubscriber(subscribeInfo, (err, subscriber) => {
 
 4. Create a subscription callback, which is triggered when an event is received. The data returned by the subscription callback contains information such as the common event name and data carried by the publisher. For details about the data types and parameters of the common event data, see [CommonEventData](../reference/apis/js-apis-commonEvent.md#commoneventdata).
 
-```javascript
+```js
 // Callback for common event subscription.
 if (this.subscriber != null) {
     commonEvent.subscribe(this.subscriber, (err, data) => {
@@ -74,7 +74,7 @@ if (this.subscriber != null) {
 }
 ```
 
-## Public Event Publishing Development
+## Common Event Publishing Development
 
 ### When to Use
 You can use the **publish** APIs to publish a custom common event, which can carry data for subscribers to parse and process.
@@ -89,13 +89,13 @@ You can use the **publish** APIs to publish a custom common event, which can car
 #### Development for Publishing a Common Event
 1. Import the **commonEvent** module.
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent';
 ```
 
 2. Pass in the common event name and callback, and publish the event.
 
-```javascript
+```js
 // Publish a common event.
 commonEvent.publish("event", (err) => {
 	if (err.code) {
@@ -109,13 +109,13 @@ commonEvent.publish("event", (err) => {
 #### Development for Publishing a Common Event with Given Attributes
 1. Import the **commonEvent** module.
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent'
 ```
 
 2. Define attributes of the common event to publish. For details about the data types and parameters in the data to publish, see [CommonEventPublishData](../reference/apis/js-apis-commonEvent.md#commoneventpublishdata).
 
-```javascript
+```js
 // Attributes of a common event.
 var options = {
 	code: 1,			 // Result code of the common event
@@ -125,7 +125,7 @@ var options = {
 
 3. Pass in the common event name, attributes of the common event, and callback, and publish the event.
 
-```javascript
+```js
 // Publish a common event.
 commonEvent.publish("event", options, (err) => {
 	if (err.code) {
@@ -149,14 +149,14 @@ You can use the **unsubscribe** API to unsubscribe from a common event.
 ### How to Develop
 1. Import the **commonEvent** module.
 
-```javascript
+```js
 import commonEvent from '@ohos.commonEvent';
 ```
 
 2. Subscribe to a common event by following instructions in [Common Event Subscription Development](#Common-Event-Subscription-Development).
 3. Invoke the **unsubscribe** API in **CommonEvent** to unsubscribe from the common event.
 
-```javascript
+```js
 if (this.subscriber != null) {
     commonEvent.unsubscribe(this.subscriber, (err) => {
         if (err.code) {

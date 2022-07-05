@@ -1,10 +1,11 @@
 # TextInput
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;TextInput&gt;** component provides single-line text input.
+The **\<TextInput>** component provides single-line text input.
 
 
 ## Required Permissions
@@ -14,7 +15,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -39,8 +40,9 @@ In addition to universal attributes, the following attributes are supported.
 | placeholderFont | {<br/>size?: Length,<br/>weight?: number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
 | enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
 | caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
-| maxLength<sup>8+</sup> | number | - | Maximum number of characters in the text input. |
+| maxLength | number | - | Maximum number of characters in the text input. |
 | inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: regular expression to set.<br/>- **error**: error message containing the ignored content returned when regular expression matching fails. |
+| copyOption<sup>9+</sup> | boolean\|[CopyOption](ts-basic-components-text.md) | true | Whether copy and paste is allowed. |
 
 - EnterKeyType enums
   | Name | Description |
@@ -74,10 +76,10 @@ In addition to universal attributes, the following attributes are supported.
 
 ### TextInputController<sup>8+</sup>
 
-Implements the controller of the **&lt;TextInput&gt;** component.
+Implements the controller of the **\<TextInput>** component.
 
 
-### Objects to Import
+#### Objects to Import
 
 
 ```
@@ -89,12 +91,12 @@ controller: TextInputController = new TextInputController()
 
 caretPosition(value: number): void
 
-Sets the cursor in a specified position.
+Sets the position of the caret.
 
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Position of the input cursor.<br/>**value**: length from the start of the string to the position where the input cursor is located. |
+  | value | number | Yes | - | Length from the start of the text string to the position where the caret is located. |
 
 
 
@@ -103,8 +105,8 @@ Sets the cursor in a specified position.
 
 ### Single-line Text Input
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample1 {
@@ -112,10 +114,9 @@ struct TextInputExample1 {
 
   build() {
     Column() {
-      TextArea({ placeholder: 'input your word' })
+      TextInput({ placeholder: 'input your word' })
         .placeholderColor("rgb(0,0,225)")
         .placeholderFont({ size: 30, weight: 100, family: 'cursive', style: FontStyle.Italic })
-        .textAlign(TextAlign.Center)
         .caretColor(Color.Blue)
         .height(50)
         .fontSize(30)
@@ -136,10 +137,10 @@ struct TextInputExample1 {
 ![en-us_image_0000001212378402](figures/en-us_image_0000001212378402.gif)
 
 
-### Setting the Input Cursor
+### Setting the Caret
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample2 {

@@ -26,6 +26,20 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
 1. Instantiate a **Locale** object.<br>
    Create a **Locale** object by using the **Locale** constructor. This method receives a string representing the locale and an optional [Attributes](../reference/apis/js-apis-intl.md) list. 
 
+   A **Locale** object consists of four parts: language, script, region, and extension, which are separated by using a hyphen (-).
+   -  Language: mandatory. It is represented by a two-letter or three-letter code as defined in ISO-639. For example, **en** indicates English and **zh** indicates Chinese.
+   -  Script: optional. It is represented by a four-letter code as defined in ISO-15924. The first letter is in uppercase, and the remaining three letters are in lowercase. For example, **Hant** represents the traditional Chinese, and **Hans** represents the simplified Chinese.
+   -  Country or region: optional. It is represented by two-letter code as defined in ISO-3166. Both letters are in uppercase. For example, **CN** represents China, and **US** represents the United States.
+   -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported (see BCP 47 Extensions). Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin numbering system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
+      | Extended Parameter ID| Description|
+      | -------- | -------- |
+      | ca | Calendar algorithm.|
+      | co | Collation type.|
+      | hc | Hour cycle.|
+      | nu | Numbering system.|
+      | kn | Whether numeric collation is used when sorting or comparing strings.|
+      | kf | Whether upper case or lower case is considered when sorting or comparing strings.|
+
    
    ```
    var locale = "zh-CN";
@@ -89,7 +103,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 2. Format the date and time.<br>
-   Call the **format** method to format a **Date** object. This method returns a string representing the formatting result.
+   Call the **format** method to format the date and time in the **DateTimeFormat** object. This method returns a string representing the formatting result.
      
    ```
    Date date = new Date();
@@ -97,7 +111,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 3. Format a period.<br>
-   Call the **formatRange** method to format a period. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
+   Call the **formatRange** method to format the period in the **DateTimeFormat** object. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
      
    ```
    Date startDate = new Date();
@@ -113,9 +127,9 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
    ```
 
 
-## Number Formatting
+## Formatting Numbers
 
-Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number for a specific locale.
+Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format numbers for a specific locale.
 
 
 ### Available APIs
@@ -161,7 +175,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format a number fo
    ```
 
 
-## String Sorting
+## Sorting Strings
 
 Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on a specific locale. Users in different regions have different preferences for string sorting.
 
@@ -248,7 +262,7 @@ Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singu
    ```
 
 
-## Formatting Relative Time
+## Formatting the Relative Time
 
 Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the relative time for a specific locale.
 

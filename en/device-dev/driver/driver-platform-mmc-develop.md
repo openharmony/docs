@@ -3,7 +3,7 @@
 
 ## Overview
 
-In the Hardware Driver Foundation (HDF), the MultiMedia Card (MMC) uses the independent service mode for API adaptation.  In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device to increase memory resources.
+In the Hardware Driver Foundation (HDF), the MultiMedia Card (MMC) uses the independent service mode for API adaptation.  In this mode, each device independently publishes a service to process external access requests. When receiving an access request, the HDF DeviceManager extracts parameters from the request to call the internal APIs of the target device. In the independent service mode, the HDF DeviceManager provides service management capabilities. However, you need to configure a node for each device, which increases memory usage.
 
   **Figure 1** Independent service mode
 
@@ -76,7 +76,7 @@ The MMC module adaptation involves the following steps:
 
 4. Debug the driver.
    
-   (Optional) For new drivers, verify the basic functions, for example, verify the information returned after the **MmcCntlrOps** instance is attached and whether the device starts successfully.
+   (Optional) For new drivers, verify the basic functions, for example, check the information returned after the **MmcCntlrOps** instance is attached and whether the device starts successfully.
 
 
 ## Development Example
@@ -202,7 +202,7 @@ The following uses **himci.c** as an example to present the information required
 3. Initialize the **MmcCntlr** object at the core layer, including defining a custom structure (to pass parameters and data) and implementing the **HdfDriverEntry** member functions (**Bind**, **Init**, and **Release**) to instantiate **MmcCntlrOps** in **MmcCntlr** (so that the underlying driver functions can be called).
    - Defining a custom structure
 
-      To the driver, the custom structure holds parameters and data. The **DeviceResourceIface** method provided by the HDF reads the values in the **mmc_config.hcs** file to initialize the members in the custom structure and pass important parameters to the **MmcCntlr** object at the core layer.
+      To the driver, the custom structure holds parameters and data. The **DeviceResourceIface** method provided by the HDF reads the values in the **mmc_config.hcs** file to initialize the members in the custom structure and passes important parameters to the **MmcCntlr** object at the core layer.
 
       
       ```
