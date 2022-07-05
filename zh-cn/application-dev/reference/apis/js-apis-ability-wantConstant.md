@@ -14,61 +14,63 @@ import wantConstant from '@ohos.ability.wantConstant'
 
 ## wantConstant.Action
 
-**系统能力**：SystemCapability.Ability.AbilityBase
+want操作的常数。
 
-权限列表。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 系统公共事件宏      | 系统公共事件名称          | 订阅者所需权限     |
+| 名称      | 值          | 描述     |
 | ------------ | ------------------ | ---------------------- |
-| ACTION_HOME                                 | ohos.want.action.home                    | 无                                                           |
-| ACTION_DIAL                                 | ohos.want.action.dial                    | 无                                                           |
-| ACTION_SEARCH                               | ohos.want.action.search                  | 无                                                           |
-| ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | 无                                                           |
-| ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | 无                                                           |
-| ACTION_APPLICATION_DETAILS_SETTINGS         | ohos.settings.application.details        | 无                                                           |
-| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 无                                                           |
-| ACTION_SHOW_ALARMS                          | ohos.want.action.showAlarms              | 无                                                           |
-| ACTION_SNOOZE_ALARM                         | ohos.want.action.snoozeAlarm             | 无                                                           |
-| ACTION_DISMISS_ALARM                        | ohos.want.action.dismissAlarm            | 无                                                           |
-| ACTION_DISMISS_TIMER                        | ohos.want.action.dismissTimer            | 无                                                           |
-|  ACTION_SEND_SMS                            | ohos.want.action.sendSms                 | 无                                                           |
-| ACTION_CHOOSE                               | ohos.want.action.choose                  | 无                                                           |
-| ACTION_IMAGE_CAPTURE<sup>8+</sup>           | ohos.want.action.imageCapture            | 无                                                           |
-| ACTION_VIDEO_CAPTUR<sup>8+</sup>            | ohos.want.action.videoCapture            | 无                                                           |
-| ACTION_SELECT                               | ohos.want.action.select                  | 无                                                           |
-| ACTION_SEND_DATA                            | ohos.want.action.sendData                | 无                                                           |
-| ACTION_SEND_MULTIPLE_DATA                   | ohos.want.action.sendMultipleData        | 无                                                           |
-| ACTION_SCAN_MEDIA_FILE                      | ohos.want.action.scanMediaFile           | 无                                                           |
-| ACTION_VIEW_DATA                            | ohos.want.action.viewData                | 无                                                           |
-|  ACTION_EDIT_DATA                           | ohos.want.action.editData                | 无                                                           |
-|  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | 无                                                           |
-|  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | 无                                                           |
-|  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | 无                                                           |
-|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 无                                                           |
-|  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 无                                                           |
+| ACTION_HOME                                 | ohos.want.action.home                    | 指示返回原点的操作。                                          |
+| ACTION_DIAL                                 | ohos.want.action.dial                    | 指示启动显示小键盘的页面功能的操作                              |
+| ACTION_SEARCH                               | ohos.want.action.search                  | 指示启动页面搜索功能的操作。                                   |
+| ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | 指示启动提供无线网络设置的页面功能的操作，例如，Wi-Fi选项。      |
+| ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | 指示启动管理已安装应用程序的页面功能的操作。                    |
+| ACTION_APPLICATION_DETAILS_SETTINGS         | ohos.settings.application.details        | 指示启动显示指定应用程序详细信息的页面功能的操作。               |
+| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 指示启动页面功能以设置闹钟的操做作。                            |
+| ACTION_SHOW_ALARMS                          | ohos.want.action.showAlarms              | 指示启动显示所有警报的页面功能的操作时钟。                      |
+| ACTION_SNOOZE_ALARM                         | ohos.want.action.snoozeAlarm             | 指示启动用于使闹钟睡眠的页面功能的操作。                        |
+| ACTION_DISMISS_ALARM                        | ohos.want.action.dismissAlarm            | 指示启动删除闹钟的页面功能的操作。                              |
+| ACTION_DISMISS_TIMER                        | ohos.want.action.dismissTimer            | 指示启动页面功能以关闭计时器的操作。                            |
+|  ACTION_SEND_SMS                            | ohos.want.action.sendSms                 | 指示启动发送sms的页面功能的操作。                               |
+| ACTION_CHOOSE                               | ohos.want.action.choose                  | 指示启动页面功能以打开联系人或图片的操作。                       |
+| ACTION_IMAGE_CAPTURE<sup>8+</sup>           | ohos.want.action.imageCapture            | 指示启动页面拍照功能的操作。                                    |
+| ACTION_VIDEO_CAPTUR<sup>8+</sup>            | ohos.want.action.videoCapture            | 指示启动页面功能以拍摄视频的操作。                               |
+| ACTION_SELECT                               | ohos.want.action.select                  | 指示显示应用程序选择对话框的操作。                               |
+| ACTION_SEND_DATA                            | ohos.want.action.sendData                | 指示发送单个数据记录的操作。       |
+| ACTION_SEND_MULTIPLE_DATA                   | ohos.want.action.sendMultipleData        | 指示发送多个数据记录的操作。                                  |
+| ACTION_SCAN_MEDIA_FILE                      | ohos.want.action.scanMediaFile           | 指示请求媒体扫描仪扫描文件并将文件添加到媒体库的操作。              |
+| ACTION_VIEW_DATA                            | ohos.want.action.viewData                | 指示查看数据的操作。                                             |
+|  ACTION_EDIT_DATA                           | ohos.want.action.editData                | 指示编辑数据的操作。                                             |
+|  INTENT_PARAMS_INTENT                       | ability.want.params.INTENT               | 指示将使用连接选取显示的选项的操作。                            |
+|  INTENT_PARAMS_TITLE                        | ability.want.params.TITLE                | 指示与连接选取显示的选项一起使用时的字符序列对话框标题。     |
+|  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
+|  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示与连接发送数据一起使用时，包含与意图相关联的数据流的URI。     |
+|  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
+| ACTION_MARKER_DOWNLOAD        | ohos.want.action.marketDownload        | 表示从应用程序市场下载应用程序的行为。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。  |
 
 
 ## wantConstant.Entity
 
-**系统能力**：SystemCapability.Ability.AbilityBase
-
-权限列表。
-
-| 系统公共事件宏      | 系统公共事件名称          | 订阅者所需权限     |
-| ------------ | ------------------ | ---------------------- |
-| ENTITY_DEFAULT                             | entity.system.default                    | 无                                                           |
-| ENTITY_HOME                                | entity.system.homel                      | 无                                                           |
-| ENTITY_VOICE                               | ENTITY_VOICE                             | 无                                                           |
-| ENTITY_BROWSABLE                           | entity.system.browsable                  | 无                                                           |
-| ENTITY_VIDEO                               | entity.system.video                      | 无                                                           |
-| ACTION_APPLICATION_DETAILS_SETTINGS        | ohos.settings.application.details        | 无                                                           |
-
-
-## flags说明
+want实体的常数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
 
-| 名称                                 | 参数       | 描述                                                         |
+| 名称      | 值          | 描述     |
+| ------------ | ------------------ | ---------------------- |
+| ENTITY_DEFAULT                             | entity.system.default                    | 指示默认实体，如果未指定该实体，则使用该实体。         |
+| ENTITY_HOME                                | entity.system.homel                      | 指示主屏幕实体。                                    |
+| ENTITY_VOICE                               | entity.system.voice                      | 表示语音交互实体。                                   |
+| ENTITY_BROWSABLE                           | entity.system.browsable                  | 指示浏览器类别。                                     |
+| ENTITY_VIDEO                               | entity.system.video                      | 指示视频类别。                                       |
+
+
+## wantConstant.Flags
+
+Flags说明。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+
+| 名称                                 | 值       | 描述                                                         |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 指示对URI执行读取操作的授权。                                  |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 指示对URI执行写入操作的授权。                                  |
@@ -76,10 +78,10 @@ import wantConstant from '@ohos.ability.wantConstant'
 | FLAG_ABILITY_CONTINUATION            | 0x00000008 | 确定是否可以将本地设备上的功能迁移到远程设备。                   |
 | FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 指定组件是否属于OHOS。                                         |
 | FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 指定是否启动某个能力。                                          |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。                                     |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。                                 |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                                     |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                                |
 | FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。                               |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。         |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。         |
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                             |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                              |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                              |
