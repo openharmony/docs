@@ -1,6 +1,7 @@
 # Settings
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -55,7 +56,7 @@ Obtains the value of a data item.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes| **DataAbilityHelper** class.|
-| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: settings.display.SCREEN_BRIGHTNESS_STATUS<br> </li>  <li>Time format: settings.date.TIME_FORMAT<br> </li></ul> <li>Custom data items</li></ul>|
+| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: **settings.display.SCREEN_BRIGHTNESS_STATUS**<br> </li>  <li>Time format: **settings.date.TIME_FORMAT**<br> </li></ul> <li>Custom data items</li></ul> |
 | defValue | string | Yes| Default value This parameter is user-defined. If it is not found in the database, the default value is returned.|
 
 **Return value**
@@ -93,7 +94,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes| **DataAbilityHelper** class.|
-| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: settings.display.SCREEN_BRIGHTNESS_STATUS<br> </li>  <li>Time format: settings.date.TIME_FORMAT<br> </li></ul> <li>Custom data items</li></ul>|
+| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: **settings.display.SCREEN_BRIGHTNESS_STATUS**<br> </li>  <li>Time format: **settings.date.TIME_FORMAT**<br> </li></ul> <li>Custom data items</li></ul> |
 | value | string | Yes| Value of the data item.|
 
 **Return value**

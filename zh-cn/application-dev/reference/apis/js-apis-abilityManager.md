@@ -29,7 +29,6 @@ Ability的状态信息。
 | FOREGROUNDING | 11 | 表示ability为foregrounding状态。  | 
 | BACKGROUNDING | 12 | 表示ability为backgrounding状态。  | 
 
-
 ## updateConfiguration
 
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void

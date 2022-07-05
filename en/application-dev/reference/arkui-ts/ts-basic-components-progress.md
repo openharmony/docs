@@ -1,11 +1,12 @@
 # Progress
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Progress&gt;** component is used to provide a progress bar that displays the progress of content loading or an operation.
+The **\<Progress>** component is used to provide a progress bar that displays the progress of content loading or an operation.
 
 
 ## Required Permissions
@@ -15,12 +16,12 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-Progress(value: { value: number, total?: number, type?: ProgressType})
+Progress(value: {value: number, total?: number, type?: ProgressType})
 
 Creates a progress bar.
 
@@ -54,7 +55,8 @@ Creates a progress bar.
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ProgressExample {
@@ -88,8 +90,8 @@ struct ProgressExample {
 
       Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
-        Progress({ value: 10, type: ProgressType.Capsule }).width(100)
-        Progress({ value: 20, total: 150, type: ProgressType.Capsule }).color(Color.Grey).value(50).width(100)
+        Progress({ value: 10, type: ProgressType.Capsule }).width(100).height(50)
+        Progress({ value: 20, total: 150, type: ProgressType.Capsule }).color(Color.Grey).value(50).width(100).height(50)
       }
     }.width('100%').margin({ top: 30 })
   }

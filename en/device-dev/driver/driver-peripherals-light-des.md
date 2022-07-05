@@ -5,7 +5,9 @@
 
 ### Light
 
-The light driver model provides APIs for the upper-layer light hardware service layer to control lights, including obtaining the light type, setting the lighting mode and blinking effect, and turning on or off a light. This model implements functionalities such as cross-OS migration and differentiated configurations based on the Hardware Driver Foundation (HDF) to achieve the goal of "one-time development for cross-system deployment" of the light driver. The figure below shows the light driver model.
+The light driver model provides APIs for the upper-layer light hardware service layer to control lights, including obtaining the light type, setting the lighting mode and blinking effect, and turning on or off a light. This model implements functionalities such as cross-OS migration and differentiated configurations based on the Hardware Driver Foundation (HDF) to achieve the goal of "one-time development for cross-system deployment" of the light driver. 
+
+The figure below shows the light driver model.
 
 **Figure 1** Light driver model
 
@@ -23,7 +25,7 @@ The following uses the Hi3516D V300 development board powered by the standard sy
 
 1. The light driver reads the light device management configuration from **Light Host** in the **device_info.hcs** file.
 2. The light driver reads the light data configuration from the **light_config.hcs** file.
-3. The light driver parses information about the light device management configuration and associates with the corresponding device driver.
+3. The light driver parses the light device management configuration and associates with the corresponding device driver.
 4. The light proxy delivers an instruction to the light stub.
 5. The light stub delivers an instruction to the light controller.
 6. The light abstract driver interface is started.
@@ -40,17 +42,17 @@ The light driver model provides APIs to obtain information about all the lights 
 
 **Table 1** APIs of the light driver model
 
-| API                                                      | Description                                                    |
+| API                                                          | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| int32_t (*GetLightInfo)(struct LightInfo **lightInfo, uint32_t *count) | Obtains information about all lights in the system. **lightInfo** indicates the double pointer to the basic light information. **count** indicates the pointer to the number of lights.|
-| int32_t (*TurnOnLight)(uint32_t type, struct LightEffect *effect) | Turns on available lights in the list based on the specified light type. **type** indicates the light type, and **effect** indicates the pointer to the blinking effect.|
-| int32_t (*TurnOffLight)(uint32_t type)                       | Turns off available lights in the light list based on the specified light type. **type** indicates the light type.                      |
+| int32_t (*GetLightInfo)(struct LightInfo **lightInfo, uint32_t *count) | Obtains information about all lights in the system. <br/>-&nbsp;**lightInfo** indicates the double pointer to the basic light information. <br/>-&nbsp;**count** indicates the pointer to the number of lights. |
+| int32_t (*TurnOnLight)(uint32_t lightId, struct LightEffect *effect) | Turns on available lights in the list based on the specified light type. <br/>**lightId** indicates the light type, and **effect** indicates the pointer to the blinking effect. |
+| int32_t (*TurnOffLight)(uint32_t lightId)                    | Turns off available lights in the light list based on the specified light type. <br/>**lightId** indicates the light type. |
 
 ### How to Develop
 1. Based on the HDF and the driver entry, complete the light abstract driver development (using the **Bind**, **Init**, **Release**, and **Dispatch** functions), resource configuration, and HCS parsing. Configure the light driver device information.
 
    - Call **HDF_INIT** to register the driver entry with the HDF. Generally, the HDF calls the **Bind** function and then the **Init** function to load the driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
-     The light driver model uses HDF configuration source (HCS). For details about HCS fields, see [Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md).
+     The light driver model uses HDF configuration source (HCS). For details about HCS fields, see [Configuration Management](../driver/driver-hdf-manage.md).
      The light driver entry is defined as follows:
 
      ```c
@@ -62,7 +64,7 @@ The light driver model provides APIs to obtain information about all the lights 
          .Init = InitLightDriver, // Initialize the light driver.
          .Release = ReleaseLightDriver, // Release the light resources.
      };
-     /* Call HDF_INIT to register the driver entry with the HDF. The HDF calls the Bind function and then the Init function to load a driver. If Init fails to be called, the HDF calls Release to release driver resources and exit. */
+     /* Call HDF_INIT to register the driver entry with the HDF. When loading the driver, the HDF calls Bind() and then Init() to load the driver. If Init() fails to be called, the HDF will call Release() to release resources and exit. */
      HDF_INIT(g_lightDriverEntry);
      ```
 
@@ -81,13 +83,13 @@ The light driver model provides APIs to obtain information about all the lights 
      
          CHECK_LIGHT_NULL_PTR_RETURN_VALUE(data, HDF_ERR_INVALID_PARAM);
          (void)OsalMutexLock(&drvData->mutex);
-         if (!HdfSbufReadInt32(data, &lightType)) {
-             HDF_LOGE("%s: sbuf read lightType failed", __func__);
+         if (!HdfSbufReadInt32(data, &lightId)) {
+             HDF_LOGE("%s: sbuf read lightId fail", __func__);
              (void)OsalMutexUnlock(&drvData->mutex);
              return HDF_ERR_INVALID_PARAM;
          }
          .....
-         ret = DispatchCmdHandle(lightType, data, reply);
+         ret = DispatchCmdHandle(lightId, data, reply);
          (void)OsalMutexUnlock(&drvData->mutex);
          return ret;
      }
@@ -128,6 +130,11 @@ The light driver model provides APIs to obtain information about all the lights 
              HDF_LOGE("%s: get light config fail!", __func__);
              return HDF_FAILURE;
          }
+         /* Set the GPIO pin direction. */
+         if (SetLightGpioDir(drvData) != HDF_SUCCESS) {
+             HDF_LOGE("%s: set light gpio dir fail!", __func__);
+             return HDF_FAILURE;
+         }
      
          return HDF_SUCCESS;
      }
@@ -153,18 +160,18 @@ The light driver model provides APIs to obtain information about all the lights 
      }
      ```
 
-   - The light device management module dispatches light device APIs in the system. During the system startup process, the HDF loads the device management driver from the HCS of the light host.
+   - The light device management module publishes light device APIs in the system. During the system startup process, the HDF loads the device management driver based on **Light Host** in the HCS.
 
      ```
      /* Light device HCS */
      device_light :: device {
          device0 :: deviceNode {
-             policy = 2; // Driver service dispatch policy (0: no service is dispatched; 1: services are dispatched to the kernel mode; 2: services are dispatched to both the kernel mode and user mode)
+             policy = 2; // Policy for the driver to publish services. (0: The driver does not provide services. 1: The driver publishes services for the kernel space. 2: The driver publishes services for both the kernel space and user space.)
              priority = 100; // Light driver startup priority. The value ranges from 0 to 200. A larger value indicates a lower priority. The value 100 is recommended. If the priorities are the same, the device loading sequence cannot be ensured.
-             preload = 0; // Field for specifying whether to load the driver. The value 0 means to load the driver, and 2 means the opposite.
+             preload = 0; // Whether to load the driver on demand. The value 0 means to load the driver on demand; the value 2 means the opposite.
              permission = 0664; // Permission for the driver to create a device node.
              moduleName = "HDF_LIGHT"; // Light driver name. The value of this field must be the same as that of moduleName in the HdfDriverEntry structure.
-             serviceName = "hdf_light"; // Service name of the driver, which must be unique.
+             serviceName = "hdf_light"; // Unique name of the service published by the driver.
              deviceMatchAttr = "hdf_light_driver"; // Keyword for matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
          }
      ```
@@ -173,16 +180,16 @@ The light driver model provides APIs to obtain information about all the lights 
 
    ```c
    /* Allocate resources and parse the HCS. */
-   static int32_t ParseLightInfo(const struct DeviceResourceNode *node)
+   static int32_t ParseLightInfo(const struct DeviceResourceNode *node, const struct DeviceResourceIface *parser)
    {
        .....
        /* Obtain the number of supported light types from the HCS. */
-       drvData->lightNum = parser->GetElemNum(light, "lightType");
+       drvData->lightNum = parser->GetElemNum(light, "lightId");
        ....
        for (i = 0; i < drvData->lightNum; ++i) {
-            /* Obtains the light type information. */
-            ret = parser->GetUint32ArrayElem(light, "lightType", i, &temp, 0);
-            CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightType");
+           /* Obtain the light type. */
+           ret = parser->GetUint32ArrayElem(light, "lightId", i, &temp, 0);
+           CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "lightId");
        }
    
        for (i = 0; i < drvData->lightNum; ++i) {
@@ -191,12 +198,19 @@ The light driver model provides APIs to obtain information about all the lights 
        drvData->info[temp] = (struct LightDeviceInfo *)OsalMemCalloc(sizeof(struct LightDeviceInfo));
        .....
        /* Fill in the light device information. */
-       ret = parser->GetUint32(light, "busRNum", &drvData->info[temp]->busRNum, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busRNum");
-       ret = parser->GetUint32(light, "busGNum", &drvData->info[temp]->busGNum, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busGNum");
-       ret = parser->GetUint32(light, "busBNum", &drvData->info[temp]->busBNum, 0);
-       CHECK_LIGHT_PARSER_RESULT_RETURN_VALUE(ret, "busBNum");
+       ret = parser->GetUint32(node, "busRNum", (uint32_t *)&drvData->info[temp]->busRNum, 0);
+       if (ret != HDF_SUCCESS) {
+           /* If busNum fails to be obtained, the color of the light corresponding to busNum cannot be set. */
+           drvData->info[temp]->busRNum = LIGHT_INVALID_GPIO;
+       }
+       ret = parser->GetUint32(node, "busGNum", (uint32_t *)&drvData->info[temp]->busGNum, 0);
+       if (ret != HDF_SUCCESS) {
+           drvData->info[temp]->busGNum = LIGHT_INVALID_GPIO;
+       }
+       ret = parser->GetUint32(node, "busBNum", (uint32_t *)&drvData->info[temp]->busBNum, 0);
+       if (ret != HDF_SUCCESS) {
+           drvData->info[temp]->busBNum = LIGHT_INVALID_GPIO;
+       }
        .....
        return HDF_SUCCESS;
    }
@@ -205,25 +219,25 @@ The light driver model provides APIs to obtain information about all the lights 
 3. Call related APIs to obtain the light type, turn on and off lights, and create and delete the timer based on the blinking mode. 
 
    ```c
-   /* Call GetAllLightInfo to obtain the light type. Call Enable to enable the blinking mode. 
-      Call Disable to stop blinking. */
+   /* Call GetAllLightInfo() to obtain the light type. Call TurnOnLight() to enable the blinking mode. 
+      Call TurnOffLight() to stop blinking. */
    static int32_t GetAllLightInfo(struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        .....
        /* Obtain the number of light types. */
        if (!HdfSbufWriteUint32(reply, drvData->lightNum)) {
-           HDF_LOGE("%s: write sbuf failed", __func__);
+           HDF_LOGE("%s: write sbuf fail", __func__);
            return HDF_FAILURE;
        }
        for (i = 0; i < LIGHT_TYPE_BUTT; ++i) {
            if (drvData->info[i] == NULL) {
                continue;
            }
-           lightInfo.lightType = i;
+           lightInfo.lightId = i;
            lightInfo.reserved = NULL;
            /* Fill the light device information into the reply. */
            if (!HdfSbufWriteBuffer(reply, &lightInfo, sizeof(lightInfo))) {
-               HDF_LOGE("%s: write sbuf failed", __func__);
+               HDF_LOGE("%s: write sbuf fail", __func__);
                return HDF_FAILURE;
            }
        }
@@ -231,38 +245,67 @@ The light driver model provides APIs to obtain information about all the lights 
        return HDF_SUCCESS;
    }
    
-   /* Enable lights based on the specified light type and input parameters. */
-   static int32_t Enable(uint32_t lightType, struct HdfSBuf *data, struct HdfSBuf *reply)
+   /* Update the status of the lights of the specified type. */
+   static int32_t UpdateLight(uint32_t lightId, uint32_t lightOn)
    {
        .....
-       /* Set the light color based on the brightness value passed in. Red: bits 16–31; Green: bits 8–15; Blue: bits 0–7 */
-       if ((drvData->info[lightType]->lightBrightness & LIGHT_MAKE_R_BIT) != 0) {
-           drvData->info[lightType]->busNum = drvData->info[lightType]->busRNum;
-       } else if ((drvData->info[lightType]->lightBrightness & LIGHT_MAKE_G_BIT) != 0) {
-           drvData->info[lightType]->busNum = drvData->info[lightType]->busGNum;
-       } else if ((drvData->info[lightType]->lightBrightness & LIGHT_MAKE_B_BIT) != 0) {
-           drvData->info[lightType]->busNum = drvData->info[lightType]->busBNum;
+       /* If the lightBrightness value passed in is invalid, use the default value. */
+       if (drvData->info[lightId]->lightBrightness == 0) {
+           lightBrightness = drvData->info[lightId]->defaultBrightness;
+       } else {
+           lightBrightness = drvData->info[lightId]->lightBrightness;
        }
-       /* The light is steady on. */
-       if (buf->flashEffect.flashMode == LIGHT_FLASH_NONE) {
-   
-           if (GpioWrite(drvData->info[lightType]->busNum, GPIO_VAL_HIGH) != HDF_SUCCESS) {
+       /* If bits 0 to 7 are not 0, output the GPIO pin corresponding to blue based on the status of lightOn. */
+       if ((lightBrightness & LIGHT_MAKE_B_BIT) != 0) {
+           ret = WriteGpio(drvData->info[lightId]->busBNum, lightOn);
+           if (ret != HDF_SUCCESS) {
+               HDF_LOGE("%s: write blue gpio fail", __func__);
                return HDF_FAILURE;
            }
        }
+       /* If bits 8 to 15 are not 0, output the GPIO pin corresponding to green based on the status of lightOn. */
+       if ((lightBrightness & LIGHT_MAKE_G_BIT) != 0) {
+           ret = WriteGpio(drvData->info[lightId]->busGNum, lightOn);
+           if (ret != HDF_SUCCESS) {
+               HDF_LOGE("%s: write green gpio fail", __func__);
+               return HDF_FAILURE;
+           }
+       }
+       /* If bits 16 to 23 are not 0, output the GPIO pin corresponding to red based on the status of lightOn. */
+       if ((lightBrightness & LIGHT_MAKE_R_BIT) != 0) {
+           ret = WriteGpio(drvData->info[lightId]->busRNum, lightOn);
+           if (ret != HDF_SUCCESS) {
+               HDF_LOGE("%s: write red gpio fail", __func__);
+               return HDF_FAILURE;
+           }
+       }
+       .....
+   }
+
+   /* Enable lights based on the specified light type and input parameters. */
+   static int32_t TurnOnLight(uint32_t lightId, struct HdfSBuf *data, struct HdfSBuf *reply)
+   {
+       .....
+       /* Receive the lightBrightness value passed in. Bits 24 to 31 are extension bits, bits 16 to 23 indicate red, bits 8 to 15 indicate green, and bits 0 to 7 indicate blue. If lightBrightness is not 0, enable the light in the specified color.
+          Set the light brightness to a value ranging from 0 to 255 if supported. */
+       drvData->info[lightId]->lightBrightness = buf->lightBrightness;
+       /* The light is steady on. */
+       if (buf->flashEffect.flashMode == LIGHT_FLASH_NONE) {
+           return UpdateLight(lightId, LIGHT_STATE_START);
+       }
        /* The light is blinking. */
        if (buf->flashEffect.flashMode == LIGHT_FLASH_TIMED) {
-           drvData->info[lightType]->lightState = LIGHT_STATE_START;
+           drvData->info[lightId]->lightState = LIGHT_STATE_START;
            /* If the specified blinking duration is less than the minimum time period supported by the system, the time configured by the system (in HCS) is used. */
-           drvData->info[lightType]->onTime = buf->flashEffect.onTime < drvData->info[lightType]->onTime ?
-           drvData->info[lightType]->onTime : buf->flashEffect.onTime;
-           drvData->info[lightType]->offTime = buf->flashEffect.offTime < drvData->info[lightType]->offTime ?
-           drvData->info[lightType]->offTime : buf->flashEffect.offTime;
+           drvData->info[lightId]->onTime = buf->flashEffect.onTime < drvData->info[lightId]->onTime ?
+           drvData->info[lightId]->onTime : buf->flashEffect.onTime;
+           drvData->info[lightId]->offTime = buf->flashEffect.offTime < drvData->info[lightId]->offTime ?
+           drvData->info[lightId]->offTime : buf->flashEffect.offTime;
            /* Create a timer. */
-           if (OsalTimerCreate(&drvData->timer, drvData->info[lightType]->onTime,
-               LightTimerEntry, (uintptr_t)lightType) != HDF_SUCCESS) {
-                HDF_LOGE("%s: create light timer fail!", __func__);
-                return HDF_FAILURE;
+           if (OsalTimerCreate(&drvData->timer, drvData->info[lightId]->onTime,
+               LightTimerEntry, (uintptr_t)lightId) != HDF_SUCCESS) {
+           HDF_LOGE("%s: create light timer fail!", __func__);
+           return HDF_FAILURE;
            }
            /* Start the periodic timer. */
            if (OsalTimerStartLoop(&drvData->timer) != HDF_SUCCESS) {
@@ -274,7 +317,7 @@ The light driver model provides APIs to obtain information about all the lights 
    }
    
    /* Turn off lights based on the specified light type. */
-   static int32_t Disable(uint32_t lightType, struct HdfSBuf *data, struct HdfSBuf *reply)
+   static int32_t TurnOffLight(uint32_t lightId, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        /* Delete the timer. */
        if (drvData->timer.realTimer != NULL) {
@@ -283,9 +326,8 @@ The light driver model provides APIs to obtain information about all the lights 
                HDF_LOGE("%s: delete haptic timer fail!", __func__);
            }
        }
-       /* Power off the corresponding GPIO. */
-       if (GpioWrite(drvData->info[lightType]->busRNum, GPIO_VAL_LOW) != HDF_SUCCESS){
-           HDF_LOGE("%s: gpio write failed", __func__);
+       if (UpdateLight(lightId, LIGHT_STATE_STOP) != HDF_SUCCESS) {
+           HDF_LOGE("%s: gpio write fail", __func__);
            return HDF_FAILURE;
        }
    
@@ -298,16 +340,16 @@ The light driver model provides APIs to obtain information about all the lights 
 After the driver is developed, develop auto-test cases in the light unit test to verify the basic functionalities of the driver. Use the developer self-test platform as the test environment.
 
 ```c++
-/* Initialize the light interface instance before executing the test case. */
+/* Initialize the LightInterfaceInstance before executing the test case. */
 void HdfLightTest::SetUpTestCase()
 {
     g_lightDev = NewLightInterfaceInstance();
     if (g_lightDev == nullptr) {
-        printf("test light get Module instance failed\n\r");
+        printf("test light get Module instance fail\n\r");
     }
     int32_t ret = g_lightDev->GetLightInfo(&g_lightInfo, &g_count);
     if (ret == -1) {
-        printf("get light informations failed\n\r");
+        printf("get light informations fail\n\r");
     }
 }
 
@@ -334,9 +376,9 @@ HWTEST_F(HdfLightTest, GetLightList001, TestSize.Level1)
     info = g_lightInfo;
 
     for (int i = 0; i < g_count; ++i) {
-        printf("get lightId[%d]\n\r", info->lightType);
-        EXPECT_GE(info->lightType, g_minLightType);
-        EXPECT_LE(info->lightType, g_maxLightType);
+        printf("get lightId[%d]\n\r", info->lightId);
+        EXPECT_GE(info->lightId, g_minLightId);
+        EXPECT_LE(info->lightId, g_maxLightId);
         info++;
     }
 }
@@ -347,14 +389,14 @@ HWTEST_F(HdfLightTest, EnableLight001, TestSize.Level1)
     int32_t i;
     int32_t ret;
     struct LightEffect effect;
-    effect->lightBrightness = 0x80000000;
+    effect->lightBrightness = 0x00800000;
     effect->flashEffect.flashMode = LIGHT_FLASH_NONE;
     effect->flashEffect.onTime = 0;
     effect->flashEffect.offTime = 0;
 
     for (i = 0; i < g_count; ++i) {
 
-        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightType, effect);
+        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightId, effect);
         EXPECT_EQ(0, ret);
 
         OsalSleep(LIGHT_WAIT_TIME);
@@ -370,14 +412,14 @@ HWTEST_F(HdfLightTest, EnableLight002, TestSize.Level1)
     int32_t i;
     int32_t ret;
     struct LightEffect effect;
-    effect->lightBrightness = 0x80000000;
+    effect->lightBrightness = 0x00800000;
     effect->flashEffect.flashMode = LIGHT_FLASH_TIMED;
     effect->flashEffect.onTime = g_onTime;
     effect->flashEffect.offTime = g_offTime;
 
     for (i = 0; i < g_count; ++i) {
 
-        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightType, effect);
+        ret = g_lightDev->TurnOnLight(g_lightInfo[i]->lightId, effect);
         EXPECT_EQ(0, ret);
 
         OsalSleep(LIGHT_WAIT_TIME);

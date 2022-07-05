@@ -9,14 +9,14 @@
 
 ## 规则说明  
 
- * 容器内子组件区分水平方向，垂直方向:  
-   * 水平方向为left, middle, right，对应容器的HorizontalAlign.Start, HorizontalAlign.Center, HorizontalAlign.End  
-   * 垂直方向为top, center, bottom, right，对应容器的VerticalAlign.Top, VerticalAlign.Center, VerticalAlign.Bottom
- * 子组件可以将容器或者其他子组件设为锚点:  
+ * 容器内子组件区分水平方向，垂直方向：  
+   * 水平方向为left， middle， right，对应容器的HorizontalAlign.Start， HorizontalAlign.Center， HorizontalAlign.End  
+   * 垂直方向为top， center， bottom，对应容器的VerticalAlign.Top， VerticalAlign.Center， VerticalAlign.Bottom
+ * 子组件可以将容器或者其他子组件设为锚点：  
    * 参与相对布局的容器内组件必须设置id，容器id固定为__container__  
    * 无id的子组件位置设置默认为容器左上方  
    * 此子组件某一方向上的三个位置可以将容器或其他子组件的同方向三个位置为锚点，同方向上两个以上位置设置锚点以后会跳过第三个  
-   * 同方向上两个以上位置设置锚点时此子组件额外设置width, height不生效  
+   * 同方向上两个以上位置设置锚点时此子组件额外设置width，height不生效  
    * 对齐后需要额外偏移可设置offset  
  * 特殊情况
    * 互相依赖，环形依赖时容器内子组件全部不绘制  

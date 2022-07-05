@@ -1,5 +1,7 @@
 # 蜂窝数据
 
+蜂窝数据提供了移动数据管理能力，包括获取、设置默认移动数据的SIM卡，获取蜂窝数据业务的上下行和分组交换域（PS域）的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
+
 >**说明：** 
 >
 >本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
@@ -67,7 +69,7 @@ setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): vo
 
 设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -78,7 +80,7 @@ setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): vo
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                | 是   | SIM卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。<br/>- -1：清除默认配置。 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当设置成功，err为undefined，否则为错误对象。                 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -94,7 +96,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 设置默认移动数据的SIM卡，使用Promise方式作为异步方法。 
 
-该接口为系统接口。
+此接口为系统接口。
 
 **需要权限**：ohos.permission.SET_TELEPHONY_STATE
 
@@ -108,9 +110,9 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 
 **返回值：**
 
-| 类型           | 说明                            |
-| -------------- | ------------------------------- |
-| Promise<\void\> | 无返回结果的Promise对象。        |
+| 类型            | 说明                            |
+| --------------- | ------------------------------- |
+| Promise\<void\> | 以Promise形式异步返回设置结果。 |
 
 **示例：**
 

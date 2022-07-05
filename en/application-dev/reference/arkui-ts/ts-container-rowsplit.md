@@ -27,7 +27,7 @@ RowSplit()
 
 | Name | Type | Description |
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged. The default value is **false**. |
+| resizeable | boolean | Whether the divider is draggable. The default value is **false**. |
 
 > **NOTE**<br>
 > Similar to **<RowSplit\>**, the divider of **<RowSplit\>** can be dragged to a position that just fully holds a component.

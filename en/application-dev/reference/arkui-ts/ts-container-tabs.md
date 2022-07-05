@@ -1,11 +1,11 @@
 # Tabs
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Tabs&gt;** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
+The **<Tabs\>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
 
 ## Required Permissions
@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-The **&lt;Tabs&gt;** component can contain [TabContent](ts-container-tabcontent.md) child components.
+A **<Tabs\>** component can contain multiple [TabContent](ts-container-tabcontent.md) components.
 
 
 ## APIs
@@ -23,14 +23,14 @@ The **&lt;Tabs&gt;** component can contain [TabContent](ts-container-tabcontent.
 Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | barPosition | BarPosition | No | BarPosition.Start | Tab bar position for creating the **&lt;Tabs&gt;** container component. |
+  | barPosition | BarPosition | No | BarPosition.Start | Tab bar position for creating the **<Tabs\>** container component. |
   | index | number | No | 0 | Initial tab index. |
   | controller | [TabsController](#tabscontroller) | No | - | Tab controller. |
 
 - BarPosition enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container. |
   | End | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container. |
@@ -50,7 +50,7 @@ Touch target configuration is not supported.
 | animationDuration | number | 200 | Animation duration of the tab content. |
 
 - BarMode enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Scrollable | The actual layout width of the tab bar is used. If the actual width exceeds the total length, the tab bar is scrollable. |
   | Fixed | The widths of all tab bars are evenly allocated. |

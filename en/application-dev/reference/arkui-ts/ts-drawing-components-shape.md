@@ -5,13 +5,13 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Shape&gt;** component is the parent component of the drawing components. The attributes described in this topic are universal attributes supported by all the drawing components.
+The **<Shape\>** component is the parent component of the drawing components. The attributes described in this topic are universal attributes supported by all the drawing components.
 
 
-1. The drawing components use **&lt;Shape&gt;** as the parent component to implement the effect similar to SVG.
+1. Drawing components use **<Shape\>** as their parent component to implement the effect similar to SVG.
 
 
-2. The **&lt;Shape&gt;** component is used independently to draw a specific shape.
+2. The **<Shape\>** component is used independently to draw a specific shape.
 
 
 ## Required Permissions

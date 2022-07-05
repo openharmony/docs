@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Ellipse&gt;** component is used to draw an ellipse.
+The **<Ellipse\>** component is used to draw an ellipse.
 
 
 ## Required Permissions
@@ -25,13 +25,13 @@ ellipse(options?: {width: Length, height: Length})
 - Parameters
   | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | For details, see the **options** parameters. | 
+  | options | Object | No | - | Options of the ellipse to draw. For details, see the **options** parameters. | 
 
 - options parameters
   | Name | Type | Mandatory | Default Value | Description | 
   | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width. | 
-  | height | Length | Yes | - | Height. | 
+  | width | Length | Yes | - | Width of the ellipse. | 
+  | height | Length | Yes | - | Height of the ellipse. | 
 
 
 ## Attributes

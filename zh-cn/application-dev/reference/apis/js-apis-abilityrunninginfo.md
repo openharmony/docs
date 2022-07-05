@@ -6,12 +6,6 @@ AbilityRunningInfo模块提供对Ability运行的相关信息和状态进行设�
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 导入模块
-
-```js
-import abilitymanager from '@ohos.application.abilityManager';
-```
-
 ## 使用说明
 
 通过abilityManager中getAbilityRunningInfos方法获取。
@@ -36,21 +30,4 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 | uid | number | 是 | 否 | 用户ID。  | 
 | processName | string | 是 | 否 | 进程名称。  | 
 | startTime | number | 是 | 否 | Ability启动时间。  | 
-| abilityState | [abilityManager.AbilityState](#abilitymanagerabilitystate) | 是 | 否 | Ability状态。  | 
-
-
-## abilityManager.AbilityState
-
-Ability的状态信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**：该接口为系统接口，三方应用不支持调用。
-
-| 名称 | 值 | 说明 | 
-| -------- | -------- | -------- |
-| INITIAL | 0 | 表示ability为initial状态。| 
-| FOREGROUND | 9 | 表示ability为foreground状态。  | 
-| BACKGROUND | 10 | 表示ability为background状态。  | 
-| FOREGROUNDING | 11 | 表示ability为foregrounding状态。  | 
-| BACKGROUNDING | 12 | 表示ability为backgrounding状态。  | 
+| abilityState | [abilityManager.AbilityState](js-apis-abilityManager.md#abilityState) | 是 | 否 | Ability状态。  | 

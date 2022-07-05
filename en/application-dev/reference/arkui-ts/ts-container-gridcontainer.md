@@ -5,7 +5,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;GridContainer&gt;** component lays out components vertically. It is used only in the grid layout.
+The **<GridContainer\>** component lays out components vertically. It is used only in the grid layout.
 
 
 ## Required Permissions
@@ -33,7 +33,7 @@ GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter
 - SizeType enums
   | Name | Description | 
   | -------- | -------- |
-  | XS | Device of the minimum size. | 
+  | XS | Minimum-sized device. | 
   | SM | Small-sized device. | 
   | MD | Medium-sized device. | 
   | LG | Large-sized device. | 
@@ -42,7 +42,7 @@ GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter
 
 ## Attributes
 
-Universal attributes and [attributes](ts-container-column.md#attributes) of the **&lt;Column&gt;** component are supported.
+Universal attributes and [attributes](ts-container-column.md#attributes) of the **<Column\>** component are supported.
 
 
 ## Events

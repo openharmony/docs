@@ -1,5 +1,7 @@
 # observer
 
+本模块提供订阅管理功能，可以订阅/取消订阅的事件包括：网络状态变化、信号状态变化、通话状态变化、蜂窝数据链路连接状态、蜂窝数据业务的上下行数据流状态、SIM状态变化。
+
 >**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -69,8 +71,6 @@ observer.on('networkStateChange', {slotId: 0}, data =>{
 off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
 
 取消订阅网络状态变化事件，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 >**说明：**
 >
@@ -184,8 +184,6 @@ on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: stri
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.READ_CALL_LOG
-
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
 **参数：**
@@ -209,8 +207,6 @@ observer.on('callStateChange', value =>{
 on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state:CallState, number: string }>): void;
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.READ_CALL_LOG
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
@@ -236,8 +232,6 @@ observer.on('callStateChange', {slotId: 0}, value =>{
 off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: string }>): void;
 
 取消订阅通话状态变化事件，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.READ_CALL_LOG
 
 >**说明：**
 >

@@ -1,7 +1,7 @@
 # Action Sheet
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,7 +20,7 @@ show(options: { paramObject1})
 Defines and shows the action sheet.
 
 - paramObject1 parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | title | string \|[Resource](../../ui/ts-types.md#resource) | No | None | Title of the dialog box. |
   | message | string \|[Resource](../../ui/ts-types.md#resource) |  |  | Content of the dialog box. |
@@ -32,9 +32,8 @@ Defines and shows the action sheet.
   | sheets | Array&lt;SheetInfo&gt; | Yes | - | Options in the dialog box. Each option supports the image, text, and callback. |
 
 - SheetInfo parameters
-    | | | | | |
-  | -------- | -------- | -------- | -------- | -------- |
   | Name | Type | Mandatory | Default Value | Description |
+  | -------- | -------- | -------- | -------- | -------- |
   | title | string | Yes | - | Sheet text. |
   | icon | string | No | None | Sheet icon. |
   | action | ()=&gt;void | Yes | - | Callback when the sheet is selected. |

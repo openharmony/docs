@@ -12,7 +12,8 @@ Basic concepts:
 - Widget host: an application that displays the widget content and controls the position where the widget is displayed in the host application.
 - Widget Manager: a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
 You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
@@ -187,7 +188,7 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
   {
       "forms": [{
           "name": "widget",
-          "description": "This is a service widget.",
+          "description": "This is a widget.",
           "src": "./js/widget/pages/index/index",
           "window": {
               "autoDesignWidth": true,

@@ -42,17 +42,17 @@
 
 | 类名 | 方法名 | 描述 |
 | --- | ----- | ----|
-| Preferences | bool GetBool(const std::string &key, bool defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | std::string GetString(const std::string &key, const std::string &defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | bool GetBool(const std::string &key, bool defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | float GetFloat(const std::string &key, float defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | double GetDouble(const std::string &key, double defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | int64_t GetLong(const std::string &key, int64_t defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
-| Preferences | std::set\<std::string\> GetStringSet(const std::string &key, std::set\<std::string\> &defValue); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | int GetInt(const std::string &key, const int defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | std::string GetString(const std::string &key, const std::string &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | bool GetBool(const std::string &key, const bool defValue = false); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | float GetFloat(const std::string &key, const float defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | double GetDouble(const std::string &key, const double defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | int64_t GetLong(const std::string &key, const int64_t defValue = 0); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
+| Preferences | std::set\<std::string\> GetStringSet(const std::string &key, const std::set\<std::string\> &defValue = {}); | key：要获取的存储key名称，不能为空。<br/>defValue：若获取失败或value不存在返回此默认值。<br/>返回值：value。 |
 
 **数据持久化**
 
-通过执行flush或者flushSync方法，应用可以将缓存的数据再次写回文本文件中进行持久化存储。
+通过执行Flush()或者FlushSync()方法，应用可以将缓存的数据再次写回文本文件中进行持久化存储。
 
 **表 5**  轻量级数据数据持久化接口
 
@@ -122,14 +122,13 @@
 
 5. 数据持久化。
 
-   应用存入数据到Preferences实例后，可以通过flush或者flushSync方法将Preferences实例回写到文件中。
+   应用存入数据到Preferences实例后，可以通过Flush()或者FlushSync()方法将Preferences实例回写到文件中。
 
     ```C++
     int err = pref->FlushSync();
     EXPECT_EQ(ret, E_OK);
     ```
    
-
 6. 订阅数据变化。
 
     应用订阅数据变化需要指定PreferencesObserver作为回调方法。订阅的key的值发生变更后，当执行flush或者flushSync方法时，PreferencesObserver被触发回调。不再需要PreferencesObserver时请注销。
@@ -144,7 +143,7 @@
         std::atomic_int notifyTimes;
         static const std::vector<std::string> NOTIFY_KEYS_VECTOR;
     };
-
+    
     PreferencesObserverCounter::~PreferencesObserverCounter() {}
     
     void PreferencesObserverCounter::OnChange(Preferences &preferences, const std::string &key)
@@ -156,7 +155,7 @@
             }
         }
     }
-
+    
     const std::vector<std::string> PreferencesObserverCounter::NOTIFY_KEYS_VECTOR = { PreferencesTest::KEY_TEST_INT_ELEMENT,
         PreferencesTest::KEY_TEST_LONG_ELEMENT, PreferencesTest::KEY_TEST_FLOAT_ELEMENT,
         PreferencesTest::KEY_TEST_BOOL_ELEMENT, PreferencesTest::KEY_TEST_STRING_ELEMENT };
@@ -167,17 +166,17 @@
     std::shared_ptr<PreferencesObserver> counter =
         std::make_shared<PreferencesObserverCounter>();
     pref->RegisterObserver(counter);  // 注册数据变化的回调。
-
+    
     pref->PutString(PreferencesTest::KEY_TEST_STRING_ELEMENT, "test");
     pref->Flush();  // 触发执行counter的onChanged回调方法。
     EXPECT_EQ(static_cast<PreferencesObserverCounter *>(counter.get())->notifyTimes, 1);
-
+    
     /* same value */
     pref->PutInt(PreferencesTest::KEY_TEST_INT_ELEMENT, 2);
     pref->PutString(PreferencesTest::KEY_TEST_STRING_ELEMENT, "test");
     pref->Flush();
     EXPECT_EQ(static_cast<PreferencesObserverCounter *>(counter.get())->notifyTimes, 2);
-
+    
     pref->UnRegisterObserver(counter);  // 注销注册数据变化的回调。
     ```
 
@@ -191,5 +190,4 @@
     int ret = PreferencesHelper::DeletePreferences("/data/test/test");
     EXPECT_EQ(ret, E_OK);
     ```
-
 

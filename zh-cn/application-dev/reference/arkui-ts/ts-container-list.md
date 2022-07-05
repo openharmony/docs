@@ -63,6 +63,7 @@ List(value:{space?: number, initialIndex?: number})
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onItemDelete(index:&nbsp;number)&nbsp;=&gt;&nbsp;boolean | 列表项删除时触发。 |
+| onScrollBegin<sup>9+</sup>(dx: number, dy: number)&nbsp;=&gt;&nbsp;{ dxRemain: number, dyRemain: number } | 滚动开始事件回调。<br>参数：<br>- dx：即将发生的水平方向滚动量。<br>- dy：即将发生的竖向方向滚动量。<br>返回值：<br>- dxRemain：水平方向滚动剩余量。<br>- dyRemain：竖直方向滚动剩余量。 |
 | onScrollIndex(firstIndex:&nbsp;number,&nbsp;lastIndex:&nbsp;number)&nbsp;=&gt;&nbsp;void | 当前列表显示的起始位置和终止位置发生变化时触发。 |
 
 >  **说明：**

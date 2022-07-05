@@ -19,15 +19,15 @@ Use the following attributes to bind gesture recognition to a component. When a 
 | Name | Type | Default Value | Description | 
 | -------- | -------- | -------- | -------- |
 | gesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to recognize.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting. | 
-| priorityGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to preferentially recognize.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - By default, the child component takes precedence over the parent component in gesture recognition. When **priorityGesture** is configured for the parent component, the parent component takes precedence over the child component in gesture recognition. | 
-| parallelGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture that can be triggered together with the child component gesture.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - The gesture event is not a bubbling event. When **parallelGesture** is set for the parent component, gesture events that are the same for the parent component and child components can be triggered, thereby implementing a bubbling effect. | 
+| priorityGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture to preferentially recognize.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>**NOTE**<br/>By default, the child component takes precedence over the parent component in gesture recognition. When **priorityGesture** is configured for the parent component, the parent component takes precedence over the child component in gesture recognition. | 
+| parallelGesture | gesture: GestureType,<br/>mask?: GestureMask | gesture: -,<br/>mask: GestureMask.Normal | Gesture that can be triggered together with the child component gesture.<br/>**gesture** specifies the type of the gesture to bind, and **mask** specifies the event response setting.<br/>**NOTE**<br/>The gesture event is not a bubbling event. When **parallelGesture** is set for the parent component, gesture events that are the same for the parent component and child components can be triggered, thereby implementing a bubbling effect. | 
 
 
 - GestureMask enums
   | Name | Description | 
   | -------- | -------- |
   | Normal | The gestures of child components are not masked and are recognized based on the default gesture recognition sequence. | 
-  | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> However, the built-in gestures of the child components are not masked. For example, when the child component is a **&lt;List&gt;** component, the built-in sliding gestures can still be triggered. | 
+  | IgnoreInternal | The gestures of child components are masked. Only the gestures of the current component are recognized.<br/>**NOTE**<br/>The built-in gestures of the child components are not masked. For example, when the child component is a **&lt;List&gt;** component, the built-in sliding gestures can still be triggered. | 
 
 
 - GestureType enums
@@ -43,7 +43,7 @@ Use the following attributes to bind gesture recognition to a component. When a 
 
 ## Gesture Response Event
 
-The component uses the **gesture** method to bind the gesture object and uses the events provided in this object to respond to the gesture operation. For example, the **onAction** event of the **TapGesture** object can be used to respond to a click event. For details about the event definition, see the section of each gesture object.
+The component uses the **gesture** method to bind the gesture object and uses the events provided in this object to respond to the gesture operation. For example, the **onAction** event of the **TapGesture** object can be used to respond to a click event. For details about the events, see the section of each gesture object.
 
 - TapGesture events
   | Name | Description | 

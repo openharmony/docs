@@ -1,6 +1,8 @@
 # 数据请求
 
->![](public_sys-resources/icon-note.gif) **说明：** 
+本模块提供http数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
+
+>**说明：** 
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -93,9 +95,9 @@ request\(url: string, callback: AsyncCallback\<HttpResponse\>\):void
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                    |
-| -------- | ------------------------------------------------------- | ---- | ----------------------- |
-| url      | string                                                  | 是   | 发起网络请求的URL地址。 |
+| 参数名   | 类型                                           | 必填 | 说明                    |
+| -------- | ---------------------------------------------- | ---- | ----------------------- |
+| url      | string                                         | 是   | 发起网络请求的URL地址。 |
 | callback | AsyncCallback\<[HttpResponse](#httpresponse)\> | 是   | 回调函数。              |
 
 **示例：**
@@ -169,15 +171,15 @@ request\(url: string, options? : HttpRequestOptions\): Promise<HttpResponse\>
 
 **参数：**
 
-| 参数名  | 类型               | 必填 | 说明                                               |
-| ------- | ------------------ | ---- | -------------------------------------------------- |
-| url     | string             | 是   | 发起网络请求的URL地址。                            |
+| 参数名  | 类型               | 必填 | 说明                                            |
+| ------- | ------------------ | ---- | ----------------------------------------------- |
+| url     | string             | 是   | 发起网络请求的URL地址。                         |
 | options | HttpRequestOptions | 是   | 参考[HttpRequestOptions](#httprequestoptions)。 |
 
 **返回值：**
 
-| 类型                  | 说明                              |
-| :-------------------- | :-------------------------------- |
+| 类型                                   | 说明                              |
+| :------------------------------------- | :-------------------------------- |
 | Promise<[HttpResponse](#httpresponse)> | 以Promise形式返回发起请求的结果。 |
 
 
@@ -225,7 +227,7 @@ on\(type: 'headerReceive', callback: AsyncCallback<Object\>\): void
 订阅HTTP Response Header 事件。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
-> 此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
+>此接口已废弃，建议使用[on\('headersReceive'\)<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -353,13 +355,13 @@ httpRequest.once('headersReceive', (header) => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.NetStack。
 
-| 参数名          | 类型                                 | 必填 | 说明                                                       |
-| -------------- | ------------------------------------ | ---- | ---------------------------------------------------------- |
-| method         | [RequestMethod](#requestmethod) | 否   | 请求方式。                                                 |
+| 参数名         | 类型                                          | 必填 | 说明                                                         |
+| -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
 | extraData      | string \| Object  \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>8+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>8+</sup> |
-| header         | Object                               | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。 |
-| readTimeout    | number                               | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。            |
-| connectTimeout | number                               | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。            |
+| header         | Object                                        | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
+| readTimeout    | number                                        | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
+| connectTimeout | number                                        | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 
 ## RequestMethod
 
@@ -431,7 +433,18 @@ request方法回调函数的返回值类型。
 | 参数名               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | result               | string \| Object \| ArrayBuffer<sup>8+</sup> | 是   | Http请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需Http响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
-| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码如下：<br />- 200：通用错误<br />- 202：参数错误<br />- 300：I/O错误 |
+| responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response常用错误码)。 |
 | header               | Object                                       | 是   | 发起http请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
 | cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
+
+## Response常用错误码
+
+| 错误码 | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| -1     | 参数错误。                                                   |
+| 3      | URL格式错误。                                                |
+| 4      | 构建时无法找到内置的请求功能、协议或选项。                   |
+| 5      | 无法解析代理。                                               |
+| 6      | 无法解析主机。                                               |
+| 7      | 无法连接代理或主机。                                         |
 

@@ -56,7 +56,7 @@ The following steps describe how to use `OH_NativeXComponent` in OpenHarmony to 
 3. Define the callback `OnSurfaceCreated`. During the creation of a `Surface`, the callback is used to initialize the rendering environment, for example, the `Skia` rendering environment, and write the content to be displayed to `NativeWindow`.
 
     ```c++
-    void OnSufaceCreatedCB(NativeXComponent* component, void* window) {
+    void OnSurfaceCreatedCB(NativeXComponent* component, void* window) {
         // Obtain the width and height of the native window.
         uint64_t width_ = 0, height_ = 0;
         OH_NativeXComponent_GetXComponentSize(nativeXComponent, window, &width_, &height_);
@@ -89,8 +89,8 @@ The following steps describe how to use `OH_NativeXComponent` in OpenHarmony to 
         // Create Skia Canvas and write the content to the native window.
         ...
 
-        // After the write operation is complete, flush the buffer by using OH_NativeWindwo_NativeWindowFlushBuffer so that the data is displayed on the screen.
-        Regoin region{nullptr, 0};
+        // After the write operation is complete, flush the buffer by using OH_NativeWindow_NativeWindowFlushBuffer so that the data is displayed on the screen.
+        Region region{nullptr, 0};
         OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow_, buffer, fenceFd, region)
     }
     ```
@@ -99,9 +99,9 @@ The following steps describe how to use `OH_NativeXComponent` in OpenHarmony to 
 
     ```c++
     OH_NativeXComponent_Callback &callback_;
-    callback_->OnSurfaceCreated = OnSufaceCreatedCB;
-    callback_->OnSurfaceChanged = OnSufaceChangedCB;
-    callback_->OnSurfaceDestoryed = OnSufaceDestoryedCB;
+    callback_->OnSurfaceCreated = OnSurfaceCreatedCB;
+    callback_->OnSurfaceChanged = OnSurfaceChangedCB;
+    callback_->OnSurfaceDestoryed = OnSurfaceDestoryedCB;
     callback_->DispatchTouchEvent = DispatchTouchEventCB;
     OH_NativeXComponent_RegisterCallback(nativeXComponent, callback_)
     ```

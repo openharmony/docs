@@ -42,9 +42,13 @@ Scroll(scroller?: Scroller)
 
 | 名称                                       | 功能描述                          |
 | ---------------------------------------- | ----------------------------- |
+| onScrollBegin<sup>9+</sup>(dx: number, dy: number)&nbsp;=&gt;&nbsp;{ dxRemain: number, dyRemain: number } | 滚动开始事件回调。<br>参数：<br>- dx：即将发生的水平方向滚动量。<br>- dy：即将发生的竖向方向滚动量。<br>返回值：<br>- dxRemain：水平方向滚动剩余量。<br>- dyRemain：竖直方向滚动剩余量。 |
 | onScroll(xOffset:&nbsp;number,&nbsp;yOffset:&nbsp;number)&nbsp;=&gt;&nbsp;void | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 |
 | onScrollEdge(side:&nbsp;Edge)&nbsp;=&gt;&nbsp;void | 滚动到边缘事件回调。                    |
 | onScrollEnd()&nbsp;=&gt;&nbsp;void       | 滚动停止事件回调。                     |
+
+>  **说明：**
+> 若通过onScrollBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
 
 ## Scroller
 
@@ -103,7 +107,7 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 ### currentOffset
 
-scroller.currentOffset(): Object
+currentOffset(): Object
 
 
 返回当前的滚动偏移量。
@@ -117,7 +121,7 @@ scroller.currentOffset(): Object
 
 ### scrollToIndex
 
-scroller.scrollToIndex(value: number): void
+scrollToIndex(value: number): void
 
 
 滑动到指定Index。
@@ -131,6 +135,25 @@ scroller.scrollToIndex(value: number): void
   | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
   | ----- | ------ | ---- | ---- | ----------------- |
   | value | number | 是    | -    | 要滑动到的列表项在列表中的索引值。 |
+
+
+### scrollBy
+
+scrollBy(dx: Length, dy: Length): void
+
+
+滑动指定距离。
+
+
+>  **说明：**
+> 仅支持Scroll组件。
+
+
+- 参数
+  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+  | ----- | ------ | ---- | ---- | ----------------- |
+  | dx | Length | 是    | -    | 水平方向滚动距离。 |
+  | dy | Length | 是    | -    | 竖直方向滚动距离。 |
 
 
 ## 示例
@@ -188,3 +211,58 @@ struct ScrollExample {
 ```
 
 ![zh-cn_image_0000001174104386](figures/zh-cn_image_0000001174104386.gif)
+
+
+```ts
+@Entry
+@Component
+struct NestedScroll {
+  @State listPosition: number = 0 // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底部。
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  private scroller: Scroller = new Scroller()
+
+  build() {
+    Flex() {
+      Scroll(this.scroller) {
+        Column() {
+          Text("Scroll Area")
+            .width("100%").height("40%").backgroundColor(0X330000FF)
+            .fontSize(16).textAlign(TextAlign.Center)
+
+          List({ space: 20 }) {
+            ForEach(this.arr, (item) => {
+              ListItem() {
+                Text("ListItem" + item)
+                  .width("100%").height("100%").borderRadius(15)
+                  .fontSize(16).textAlign(TextAlign.Center).backgroundColor(Color.White)
+              }.width("100%").height(100)
+            }, item => item)
+          }
+          .width("100%").height("50%").edgeEffect(EdgeEffect.None)
+          .onReachStart(() => {
+            this.listPosition = 0
+          })
+          .onReachEnd(() => {
+            this.listPosition = 2
+          })
+          .onScrollBegin((dx: number, dy: number) => {
+            if ((this.listPosition == 0 && dy >= 0) || (this.listPosition == 2 && dy <= 0)) {
+              this.scroller.scrollBy(0, -dy)
+              return { dxRemain: dx, dyRemain: 0 }
+            }
+            this.listPosition = 1;
+            return { dxRemain: dx, dyRemain: dy }
+          })
+
+          Text("Scroll Area")
+            .width("100%").height("40%").backgroundColor(0X330000FF)
+            .fontSize(16).textAlign(TextAlign.Center)
+        }
+      }
+      .width("100%").height("100%")
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding(20)
+  }
+}
+```
+
+![NestedScroll](figures/NestedScroll.gif)

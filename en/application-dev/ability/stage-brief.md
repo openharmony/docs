@@ -8,7 +8,7 @@ The following figure shows the design ideas of the stage model.
 
 ![stagedesign](figures/stagedesign.png)
 
-​        The stage model is designed based on the following considerations:
+The stage model is designed based on the following considerations:
 
 - **Balance between application capabilities and overall system power consumption**
 

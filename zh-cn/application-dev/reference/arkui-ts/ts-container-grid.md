@@ -37,16 +37,7 @@ Grid()
 | minCount<font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是Row时，表示可显示的最小行数<br/>当layoutDirection是Column时，表示可显示的最小列数。 |
 | cellLength<font color=ff0000><sup>8+</sup></font> | number | 0 | 当layoutDirection是Row时，表示一行的高度<br/>当layoutDirection是Column时，表示一列的宽度。 |
 | multiSelectable<font color=ff0000><sup>8+</sup></font> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
-| dragAnimation<font color=ff0000><sup>8+</sup></font> | boolean         | false                 | 是否开启拖拽GridItem动画。 |
-| edgeEffection<font color=ff0000><sup>8+</sup></font> | EdgeEffect         | EdgeEffect.Spring     | 设置边缘滑动效果，目前支持的滑动效果参见EdgeEffect枚举说明。 |
-
-
-
-- EdgeEffect枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
-  | None | 滑动到边缘后无效果。 |
+| supportAnimation<font color=ff0000><sup>8+</sup></font> | boolean         | false                 | 控制Grid是否支持动画。 |
 
 ## 事件
 

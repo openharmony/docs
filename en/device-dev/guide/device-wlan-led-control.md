@@ -6,9 +6,9 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Development<a name="section13857170163412"></a>
 
-1.  Complete the operations described in  [Getting Started with Hi3861](../quick-start/quickstart-lite-introduction-hi3861.md#section19352114194115).
+1.  Complete the operations described in [Getting Started with Hi3861](../quick-start/quickstart-lite-overview.md).
 
-    LED control examples are stored in the file  **applications/sample/wifi-iot/app/iothardware/led\_example.c**.
+    LED control examples are stored in the file **applications/sample/wifi-iot/app/iothardware/led\_example.c**.
 
 2.  Understand the cable connections by referring to the schematic diagram. You can learn that LED of hispark pegasus is connected to pin 9 of the chip.
 
@@ -73,17 +73,16 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
                     break;
             }
         }
-        return NULL;
     }
     ```
 
-5.  Call  **SYS\_RUN\(\)**  of OpenHarmony to start the service. \(**SYS\_RUN**  is defined in the  **ohos\_init.h**  file.\)
+5.  Call **SYS\_RUN\(\)** of OpenHarmony to start the service. \(**SYS\_RUN** is defined in the **ohos\_init.h** file.\)
 
     ```
     SYS_RUN(LedExampleEntry);
     ```
 
-6.  Change the  **applications/sample/wifi-iot/app/BUILD.gn**  file to enable  **led\_example.c**  to participate in compilation.
+6.  Change the **applications/sample/wifi-iot/app/BUILD.gn** file to enable **led\_example.c** to participate in compilation.
 
     ```
     import("//build/lite/config/component/lite_component.gni")
@@ -97,10 +96,10 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
 ## Verification<a name="section1949121910344"></a>
 
-For details about the compilation and burning processes, see  [Building Source Code](../quick-start/quickstart-lite-steps-hi3861-connection.md#section191121332125319)  and  [Burning Images](../quick-start/quickstart-lite-steps-hi3861-connection.md#section3288165814218)  in the  _Getting Started with Hi3861_.
+For details about the compilation and burning processes, see [Building](../quick-start/quickstart-lite-steps-hi3861-building.md) and [Burning](../quick-start/quickstart-lite-steps-hi3861-burn.md).
 
-After the preceding two steps are complete, press the  **RST**  button to reset the module. If the LED blinks periodically as expected, the verification is passed.
+After the preceding two steps are complete, press the **RST** button to reset the module. If the LED blinks periodically as expected, the verification is passed.
 
-**Figure  1**  LED blinking<a name="fig20768175218527"></a>  
+**Figure  1** LED blinking<a name="fig20768175218527"></a>  
 ![](figures/led-blinking.gif "led-blinking")
 
