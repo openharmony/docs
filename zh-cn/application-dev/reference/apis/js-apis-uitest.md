@@ -1283,7 +1283,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
 
-UiDriver对象采取如下操作：通过key值找到对应键并点击。
+UiDriver对象采取如下操作：通过给定的所有key值找到对应组合键并点击。
 
 **系统能力**：SystemCapability.Test.UiTest
 
