@@ -16,7 +16,7 @@ Application error management APIs are provided by the **errorManager** module. F
 | unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void\>): void | Unregisters an observer in callback mode. The number passed to this API is the SN of the registered observer. |
 | unregisterErrorObserver(observerId: number): Promise\<void\> | Unregisters an observer in promise mode. The number passed to this API is the SN of the registered observer. |
 
-When an asynchronous callback is used, the return value can be processed directly in the callback. If a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Result Codes for Unregistering an Observer](#result codes-for-unregistering-an-observer).
+When an asynchronous callback is used, the return value can be processed directly in the callback. If a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Result Codes for Unregistering an Observer](#result-codes-for-unregistering-an-observer).
 
 
 **Table 2** Description of the ErrorObserver API
