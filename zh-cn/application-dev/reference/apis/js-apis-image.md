@@ -876,6 +876,7 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {
             if(data !== undefined){
                 console.info('Succeeded in updating data.');     
             }
+		})
 ```
 
 ### createPixelMap<sup>7+</sup>
