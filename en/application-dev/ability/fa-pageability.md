@@ -132,7 +132,9 @@ You can also include **parameters** in the **want** parameter and set its value 
   );
 ```
 ### Starting a Remote Page Ability
->Note: This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
+>Note
+>
+>This feature applies only to system applications, since the **getTrustedDeviceListSync** API of the **DeviceManager** class is open only to system applications.
 
 **Modules to Import**
 
