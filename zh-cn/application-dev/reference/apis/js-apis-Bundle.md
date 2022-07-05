@@ -1698,6 +1698,7 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
 
 以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
