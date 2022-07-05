@@ -792,8 +792,6 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc")
             .then(() => {
                 const w = imageSourceApi.getImageProperty("ImageWidth")
                 console.info('w', w);
-                expect(w == 'abc').assertTrue();
-                done();
             })
 ```
 
@@ -847,9 +845,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 ```js
 const array = new ArrayBuffer(100);
 imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
-            expect(data).assertTrue();
             console.info('Succeeded in updating data.');
-            done();
         })
 ```
 
@@ -878,9 +874,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 const array = new ArrayBuffer(100);
 imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {
             if(data !== undefined){
-                expect(data).assertTrue();
-                console.info('TC_053-1 success');
-                done();      
+                console.info('Succeeded in updating data.');    
             }
 ```
 
