@@ -1,6 +1,9 @@
-# Bundle Module (JavaScript SDK APIs)
+# Bundle
 
-> **NOTE**<br>
+The **Bundle** module provides APIs for querying bundle information, application information, abilities, Extension abilities, and application states.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 ## Modules to Import
@@ -15,11 +18,13 @@ SystemCapability.BundleManager.BundleFramework
 
 ## Required Permissions
 
-| Required Permissions                                      | Permission Level        | Description       |
-| ---------------------------------------- | ------------ | --------- |
-| ohos.permission.GET_BUNDLE_INFO          | normal       | Permission to query information about the current application.|
+| Required Permissions                                      | Permission Level    | Description              |
+| ------------------------------------------ | ------------ | ------------------ |
+| ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to query information about a specified application.  |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all applications.|
-| ohos.permission.INSTALL_BUNDLE           | system_core  | Permission to install or uninstall applications. |
+| ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall applications.  |
+
+For details, see “Permission Levels” in [Access Control Overview](../../security/accesstoken-overview.md).
 
 ## bundle.getApplicationInfo
 
@@ -69,7 +74,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-Obtains the application information based on a given bundle name. This API uses an asynchronous callback to return the result.
+Obtains the application information of the specified user based on a given bundle name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -143,9 +148,9 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo>>
+getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
 
-Obtains the information of all available bundles of a specified user in the system. This API uses a promise to return the result.
+Obtains the information of all available bundles of the specified user in the system. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -166,7 +171,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Type                         | Description                        |
 | --------------------------- | -------------------------- |
-| Promise\<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Promise used to return the information of all available bundles.|
+| Promise<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Promise used to return the information of all available bundles.|
 
 **Example**
 
@@ -185,7 +190,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
 
 Obtains the information of all available bundles in the system. This API uses an asynchronous callback to return the result.
 
@@ -220,9 +225,9 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-Obtains the information of all available bundles in the system. This API uses an asynchronous callback to return the result.
+Obtains the information of all available bundles of the specified user in the system. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -238,7 +243,7 @@ SystemCapability.BundleManager.BundleFramework
 | ---------- | --------------------------------- | ---- | --------------------------------------- |
 | bundleFlag | BundleFlag                        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId     | number                            | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
-| callback   | AsyncCallback\<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
+| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
 
 **Example**
 
@@ -343,7 +348,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback\<BundleInfo>): void
 
-Obtains the bundle information based on a given bundle name. This API uses an asynchronous callback to return the result.
+Obtains the bundle information based on a given bundle name and bundle options. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -877,10 +882,6 @@ isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
 Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses a promise to return the result.
 
-**Required permissions**
-
-None
-
 **System capability**
 
 SystemCapability.BundleManager.BundleFramework
@@ -917,10 +918,6 @@ isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
 Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses an asynchronous callback to return the result.
 
-**Required permissions**
-
-None
-
 **System capability**
 
 SystemCapability.BundleManager.BundleFramework
@@ -953,10 +950,6 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
 Checks whether an application is enabled based on a given bundle name. This API uses a promise to return the result.
-
-**Required permissions**
-
-None
 
 **System capability**
 
@@ -991,10 +984,6 @@ bundle.isApplicationEnabled(bundleName)
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
 Checks whether an application is enabled based on a given bundle name. This API uses an asynchronous callback to return the result.
-
-**Required permissions**
-
-None
 
 **System capability**
 
@@ -1069,9 +1058,13 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 ## bundle.queryAbilityByWant
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-Obtains the ability information based on a given want. This API uses an asynchronous callback to return the result.
+Obtains the ability information of the specified user based on a given want. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1109,6 +1102,10 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;
 
 Obtains the ability information based on a given want. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1285,7 +1282,7 @@ Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bu
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1324,7 +1321,7 @@ Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bu
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1439,7 +1436,7 @@ Obtains the Extension ability information based on a given want. This API uses a
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1484,11 +1481,11 @@ bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, userId)
 
 queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
-Obtains the Extension ability information based on a given want. This API uses an asynchronous callback to return the result.
+Obtains the Extension ability information of the specified user based on a given want. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1562,6 +1559,138 @@ const receiver = function onReceive(err, data) {
     console.error('Operation failed. Cause: ' + dataValue);
 }
 bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, receiver)
+```
+
+## bundle.getProfileByAbility<sup>9+</sup>
+
+getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;
+
+Obtains the JSON string array of the current application's configuration file in the [metadata](js-apis-bundle-Metadata.md) based on a given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result. This API cannot be used to obtain the JSON string array of another application.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | Yes   | Module to which the configuration file to be obtained belongs.             |
+| abilityName    | string                               | Yes   | Ability to which the configuration file to be obtained belongs.            |
+| metadataName   | string                               | Yes   | Metadata to which the configuration file to be obtained belongs.           |
+| callback       | AsyncCallback\<Array\<string>>        | Yes   | Callback used to return the JSON string array of the configuration file.  |
+
+**Example**
+
+```js
+let moduleName = 'entry';
+let abilityName = 'MainAbility';
+let metadataName = 'ohos.ability.shortcuts';
+const caller = function callback(err, data) {
+    console.error('Operation errcode is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.getProfileByAbility(moduleName, abilityName, metadataName, caller)
+```
+
+## bundle.getProfileByAbility<sup>9+</sup>
+
+getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string>>;
+
+Obtains the JSON string array of the current application's configuration file in the [metadata](js-apis-bundle-Metadata.md) based on a given module name, ability name, and metadata name. This API uses a promise to return the result. This API cannot be used to obtain the JSON string array of another application.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | Yes   | Module to which the configuration file to be obtained belongs.             |
+| abilityName    | string                               | Yes   | Ability to which the configuration file to be obtained belongs.            |
+| metadataName   | string                               | No   | Metadata to which the configuration file to be obtained belongs.           |
+
+**Return value**
+
+| Type                                   | Description                            |
+| ------------------------------------- | ------------------------------ |
+| Promise\<Array\<string>> | Promise used to return the JSON string array of the configuration file.|
+
+**Example**
+
+```js
+let moduleName = 'entry';
+let abilityName = 'MainAbility';
+let metadataName = 'ohos.ability.shortcuts';
+
+bundle.getProfileByAbility(moduleName, abilityName, metadataName).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation errcode is: ' + err);
+})
+```
+
+## bundle.getProfileByExtensionAbility<sup>9+</sup>
+
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;
+
+Obtains the JSON string array of the current application's configuration file in the [metadata](js-apis-bundle-Metadata.md) based on a given module name, Extension ability name, and metadata name. This API uses an asynchronous callback to return the result. This API cannot be used to obtain the JSON string array of another application.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | Yes   | Module to which the configuration file to be obtained belongs.             |
+| extensionAbilityName    | string                               | Yes   | Extension ability to which the configuration file to be obtained belongs.            |
+| metadataName   | string                               | Yes   | Metadata to which the configuration file to be obtained belongs.           |
+| callback       | AsyncCallback\<Array\<string>>        | Yes   | Callback used to return the JSON string array of the configuration file.  |
+
+**Example**
+
+```js
+let moduleName = 'entry';
+let extensionAbilityName = 'Form';
+let metadataName = 'ohos.extension.form';
+const caller = function callback(err, data) {
+    console.error('Operation errcode is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName, caller)
+```
+
+## bundle.getProfileByExtensionAbility<sup>9+</sup>
+
+getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string>>;
+
+Obtains the JSON string array of the current application's configuration file in the [metadata](js-apis-bundle-Metadata.md) based on a given module name, Extension ability name, and metadata name. This API uses a promise to return the result. This API cannot be used to obtain the JSON string array of another application.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| moduleName     | string                               | Yes   | Module to which the configuration file to be obtained belongs.             |
+| extensionAbilityName    | string                               | Yes   | Extension ability to which the configuration file to be obtained belongs.            |
+| metadataName   | string                               | No   | Metadata to which the configuration file to be obtained belongs.           |
+
+**Return value**
+
+| Type                                   | Description                            |
+| ------------------------------------- | ------------------------------ |
+| Promise\<Array\<string>> | Promise used to return the JSON string array of the configuration file.|
+
+**Example**
+
+```js
+let moduleName = 'entry';
+let extensionAbilityName = 'Form';
+let metadataName = 'ohos.extension.form';
+
+bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation errcode is: ' + err);
+})
 ```
 
 ## InstallErrorCode
@@ -1646,11 +1775,19 @@ Enumerates display orientations.
 
 | Name           | Type  | Description           |
 | ------------- | ---- | ------------- |
-| UNSPECIFIED   | None   | The system automatically determines the display orientation.    |
+| UNSPECIFIED   | None   | Unspecified display orientation.    |
 | LANDSCAPE     | None   | Landscape orientation.     |
 | PORTRAIT      | None   | Portrait orientation.     |
-| FOLLOW_RECENT | None   | The page ability orientation is the same as that of the nearest ability in the stack.|
-
+| FOLLOW_RECENT | None   | Orientation same as that of the nearest ability in the stack.|
+| LANDSCAPE_INVERTED |None   | Reverse landscape orientation.    |
+| PORTRAIT_INVERTED |None   | Reverse portrait orientation.    |
+| AUTO_ROTATION |None   | Orientation determined by the sensor.    |
+| AUTO_ROTATION_LANDSCAPE |None   | Orientation determined by the sensor in the horizontal direction, including landscape and reverse landscape.    |
+| AUTO_ROTATION_PORTRAIT |None   | Orientation determined by the sensor in the vertical direction, including portrait and reverse portrait.    |
+| AUTO_ROTATION_RESTRICTED |None   | Orientation determined by the sensor when the sensor switch is enabled.    |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED |None   | Orientation determined by the sensor in the horizontal direction, including landscape and reverse landscape, when the sensor switch is enabled.    |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED |None   | Orientation determined by the sensor in the vertical direction, including portrait and reverse portrait, when the sensor switch is enabled.    |
+| LOCKED |None   | Auto rotate locked.    |
 ## LaunchMode
 
 Enumerates launch modes.
@@ -1681,7 +1818,7 @@ Enumerates Extension ability types.
 
 | Name                            | Type  | Description                       |
 | ------------------------------ | ---- | ------------------------- |
-| FORM<sup>9+</sup>              | 0    | Form included.  |
+| FORM<sup>9+</sup>              | 0    | Form (widget) included.  |
 | WORK_SCHEDULER<sup>9+</sup>    | 1    | Work scheduler included.|
 | INPUT_METHOD<sup>9+</sup>      | 2    | Input method included. |
 | SERVICE<sup>9+</sup>           | 3    | Service included.  |
@@ -1690,7 +1827,8 @@ Enumerates Extension ability types.
 | FILE_SHARE<sup>9+</sup>        | 6    | File sharing included.|
 | STATIC_SUBSCRIBER<sup>9+</sup> | 7    | Subscribers included. |
 | WALLPAPER<sup>9+</sup>         | 8    | Wallpaper included.  |
-| BACKUP<sup>9+</sup>            | 9    | Data backup and restore included.  |
+| BACKUP<sup>9+</sup>            | 9    | Data backup and restore included.|
+| ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | Enterprise administrators included.  |
 | UNSPECIFIED<sup>9+</sup>       | 20    | Unspecified type.    |
 
 ## ExtensionFlag<sup>9+</sup>
@@ -1729,3 +1867,15 @@ Enumerates permission grant states.
 | ------------------ | ---- | ---- |
 | PERMISSION_DENIED  | -1   | Permission denied.|
 | PERMISSION_GRANTED | 0    | Permission granted.  |
+
+## SupportWindowMode
+
+Enumerates window modes.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name                | Type  | Description  |
+| ------------------ | ---- | ---- |
+| FULLSCREEN  | None  | Full screen.|
+| SPLIT | None   | Split-screen.  |
+| FLOATING | None   | Floating.  |
