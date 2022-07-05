@@ -26,7 +26,8 @@ The following table describes APIs available for mutual conversion between coord
 
 ## How to Develop
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> 
 > The **GeoConvert** instance needs to access backend services to obtain information. Therefore, before performing the following steps, ensure that your device is connected to the network.
 
 1. Import the **geolocation** module by which you can implement all APIs related to the geocoding and reverse geocoding conversion capabilities.
