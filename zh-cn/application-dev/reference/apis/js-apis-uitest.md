@@ -1279,7 +1279,7 @@ async function demo() {
 }
 ```
 
-### triggerCombineKeys
+### triggerCombineKeys<sup>9+</sup>
 
 triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
 
