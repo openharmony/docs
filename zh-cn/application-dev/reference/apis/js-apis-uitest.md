@@ -1283,7 +1283,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
 
-UiDriver对象采取如下操作：通过给定的所有key值找到对应组合键并点击。
+UiDriver对象采取如下操作，通过给定的所有key值找到对应组合键并点击。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1300,7 +1300,14 @@ UiDriver对象采取如下操作：通过给定的所有key值找到对应组合
 ```js
 async function demo() {
     let driver = UiDriver.create()
-    await driver.triggerKey(2072, 2017)
+    await driver.triggerCombineKeys(2072, 2017)
+}
+```
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.triggerCombineKeys(2072, 2047, 2035)
 }
 ```
 
