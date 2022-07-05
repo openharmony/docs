@@ -66,6 +66,7 @@ You can use any of the following methods to acquire the OpenHarmony source code:
 
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**
+>
 >Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 -   **Obtaining OpenHarmony master code**
@@ -193,6 +194,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 ## Method 4: Acquiring Source Code from the GitHub Image Repository<a name="section23448418360"></a>
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**
+>
 > The image repository is synchronized at 23:00 (UTC +8:00) every day.
 
 Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)

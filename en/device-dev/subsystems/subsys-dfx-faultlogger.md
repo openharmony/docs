@@ -6,7 +6,7 @@
 
 ### Function
 
-FaultLogger is a maintenance and debugging log framework provided by OpenHarmony. It enables unified detection, log collection, log storage, and log reporting for application, ability, and system service process crashes.
+FaultLogger is a maintenance and debugging log framework provided by OpenHarmony. It enables unified detection, log collection, log storage, and log reporting for application, ability, and system service process crashes. It is available for the standard system and the Linux kernel-based small system.
 
 FaultLogger is responsible for fault recording of OpenHarmony. It runs on the following two components based on the service object:
 
