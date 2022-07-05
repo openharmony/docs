@@ -115,7 +115,7 @@ XTS子系统当前包括acts与tools软件包：
 
 2. src目录下用例编写样例。
    
-   1.引用测试框架
+    1.引用测试框架
      
      ```
      #include "hctest.h"
