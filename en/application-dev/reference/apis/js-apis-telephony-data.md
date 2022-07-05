@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import data from '@ohos.telephony.data';
 ```
 
@@ -14,7 +14,7 @@ import data from '@ohos.telephony.data';
 
 getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void 
 
-Obtains the default SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
+Obtains the default slot of the SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -28,7 +28,7 @@ Obtains the default SIM card used for mobile data. This API uses an asynchronous
 
 **Example**
 
-```
+```js
 data.getDefaultCellularDataSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -38,13 +38,13 @@ data.getDefaultCellularDataSlotId((err, data) => {
 
 getDefaultCellularDataSlotId(): Promise\<number\> 
 
-Obtains the default SIM card used for mobile data. This API uses a promise to return the result. 
+Obtains the default slot of the SIM card used for mobile data. This API uses a promise to return the result. 
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Telephony.CellularData
 
-**Return Value**
+**Return value**
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
@@ -52,12 +52,74 @@ Obtains the default SIM card used for mobile data. This API uses a promise to re
 
 **Example**
 
-```
+```js
 let promise = data.getDefaultCellularDataSlotId();
 promise.then((data) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch((err) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.setDefaultCellularDataSlotId
+
+setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+
+Sets the default slot of the SIM card used for mobile data. This API uses an asynchronous callback to return the result. 
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                                        |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.                |
+
+**Example**
+
+```js
+data.setDefaultCellularDataSlotId(0,(err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.setDefaultCellularDataSlotId
+
+setDefaultCellularDataSlotId(slotId: number): Promise\<void\> 
+
+Sets the default slot of the SIM card used for mobile data. This API uses a promise to return the result. 
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
+
+**Return value**
+
+| Type          | Description                           |
+| -------------- | ------------------------------- |
+| Promise<\void\> | Promise that returns no value.       |
+
+**Example**
+
+```js
+let promise = data.setDefaultCellularDataSlotId(0);
+promise.then((data) => {
+    console.log(`setDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`setDefaultCellularDataSlotId fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -77,7 +139,7 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 
 **Example**
 
-```
+```js
 data.getCellularDataFlowType((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -91,7 +153,7 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 
 **System capability**: SystemCapability.Telephony.CellularData
 
-**Return Value**
+**Return value**
 
 | Type                                    | Description                                           |
 | ---------------------------------------- | ----------------------------------------------- |
@@ -99,7 +161,7 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 
 **Example**
 
-```
+```js
 let promise = data.getCellularDataFlowType();
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -124,7 +186,7 @@ Obtains the connection status of the packet switched (PS) domain. This API uses 
 
 **Example**
 
-```
+```js
 data.getCellularDataState((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -138,7 +200,7 @@ Obtains the connection status of the PS domain. This API uses a promise to retur
 
 **System capability**: SystemCapability.Telephony.CellularData
 
-**Return Value**
+**Return value**
 
 | Type                                            | Description                                 |
 | ------------------------------------------------ | ------------------------------------- |
@@ -146,7 +208,7 @@ Obtains the connection status of the PS domain. This API uses a promise to retur
 
 **Example**
 
-```
+```js
 let promise = data.getCellularDataState();
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -169,11 +231,11 @@ Checks whether the cellular data service is enabled. This API uses an asynchrono
 
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>**true**: The cellular data service is enabled.<br>**false**: The cellular data service is disabled.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The cellular data service is enabled.<br>- **false**: The cellular data service is disabled.|
 
 **Example**
 
-```
+```js
 data.isCellularDataEnabled((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -189,15 +251,15 @@ Checks whether the cellular data service is enabled. This API uses a promise to 
 
 **System capability**: SystemCapability.Telephony.CellularData
 
-**Return Value**
+**Return value**
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.<br>**true**: The cellular data service is enabled.<br>**false**: The cellular data service is disabled.|
+| Promise\<boolean\> | Promise used to return the result.<br>- **true**: The cellular data service is enabled.<br>- **false**: The cellular data service is disabled.|
 
 **Example**
 
-```
+```js
 let promise = data.isCellularDataEnabled();
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -220,12 +282,12 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| slotId   | number                   | Yes  | Card slot ID. <br>**0**: card slot 1<br>**1**: card slot 2                    |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
+| slotId   | number                   | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2                    |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: Roaming is enabled for the cellular data service.<br>- **false**: Roaming is disabled for the cellular data service.|
 
 **Example**
 
-```
+```js
 data.isCellularDataRoamingEnabled(0,(err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -245,17 +307,17 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 | Name| Type  | Mandatory| Description                                    |
 | ------ | ------ | ---- | ---------------------------------------- |
-| slotId | number | Yes  | Card slot ID. <br>**0**: card slot 1<br>**1**: card slot 2|
+| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.<br>**true**: Roaming is enabled for the cellular data service.<br>**false**: Roaming is disabled for the cellular data service.|
+| Promise\<boolean\> | Promise used to return the result.<br>- **true**: Roaming is enabled for the cellular data service.<br>- **false**: Roaming is disabled for the cellular data service.|
 
 **Example**
 
-```
+```js
 let promise = data.isCellularDataRoamingEnabled(0);
 promise.then((data) => {
     console.log(`test success, promise: data->${JSON.stringify(data)}`);
@@ -275,7 +337,7 @@ Defines the cellular data flow type.
 | DATA_FLOW_TYPE_NONE    | 0    | No uplink or downlink data is available.                  |
 | DATA_FLOW_TYPE_DOWN    | 1    | Only the downlink data is available.                        |
 | DATA_FLOW_TYPE_UP      | 2    | Only the uplink data is available.                        |
-| DATA_FLOW_TYPE_UP_DOWN | 3    | Both uplink data and downlink data are available.                        |
+| DATA_FLOW_TYPE_UP_DOWN | 3    | Both the uplink data and downlink data are available.                        |
 | DATA_FLOW_TYPE_DORMANT | 4    | No uplink or downlink data is available because the lower-layer link is in the dormant state.|
 
 ## DataConnectState
@@ -286,7 +348,7 @@ Describes the connection status of a cellular data link.
 
 | Name                   | Value  | Description                      |
 | ----------------------- | ---- | -------------------------- |
-| DATA_STATE_UNKNOWN     | -1   | The status of the cellular data link is unknown.    |
+| DATA_STATE_UNKNOWN      | -1   | The status of the cellular data link is unknown.    |
 | DATA_STATE_DISCONNECTED | 0    | The cellular data link is disconnected.    |
 | DATA_STATE_CONNECTING   | 1    | The cellular data link is being connected.|
 | DATA_STATE_CONNECTED    | 2    | The cellular data link is connected.  |

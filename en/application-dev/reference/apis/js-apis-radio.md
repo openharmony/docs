@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```js
+```
 import radio from '@ohos.telephony.radio'
 ```
 
@@ -15,7 +15,7 @@ import radio from '@ohos.telephony.radio'
 
 getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
 
-Obtains the radio access technology (RAT) used by the CS and PS domains. This API uses an asynchronous callback to return the result.
+Obtains the radio access technology (RAT) used by the CS and PS domains for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -42,7 +42,7 @@ radio.getRadioTech(slotId, (err, data) =>{
 
 getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
 
-Obtains the RAT used by the CS and PS domains. This API uses a promise to return the result. 
+Obtains the RAT used by the CS and PS domains for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -102,7 +102,7 @@ radio.getNetworkState((err, data) =>{
 
 getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
-Obtains the network status. This API uses an asynchronous callback to return the result.
+Obtains the network status of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -231,7 +231,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. which is a country code, for example, **CN** (China).|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
 
 **Example**
 
@@ -556,10 +556,350 @@ promise.then(data => {
 });
 ```
 
+## radio.setPrimarySlotId<sup>8+</sup>
+
+setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
+
+Sets the ID of the slot in which the primary card is located. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                  |
+| -------- | --------------------- | ---- | -------------------------------------- |
+| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+
+**Example**
+
+```js
+let slotId = 0;
+radio.setPrimarySlotId(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.setPrimarySlotId<sup>8+</sup>
+
+setPrimarySlotId\(slotId: number\): Promise\<void\>
+
+Sets the ID of the slot in which the primary card is located. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type           | Description                           |
+| --------------- | ------------------------------- |
+| Promise\<void\> | Promise that returns no value.       |
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.setPrimarySlotId(slotId);
+promise.then(data => {
+    console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getIMEI<sup>8+</sup>
+
+getIMEI(callback: AsyncCallback<string\>): void
+
+Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                      |
+| -------- | ----------------------- | ---- | ------------------------------------------ |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
+
+**Example**
+
+```js
+radio.getIMEI((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getIMEI<sup>8+</sup>
+
+getIMEI(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                      |
+| -------- | ----------------------- | ---- | ------------------------------------------ |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. If the IMEI does not exist, an empty string is returned.|
+
+**Example**
+
+```js
+let slotId = 0;
+radio.getIMEI(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getIMEI<sup>8+</sup>
+
+getIMEI(slotId?: number): Promise<string\>
+
+Obtains the IMEI of the SIM card in a card slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                      |
+| ----------------- | ------------------------------------------ |
+| Promise\<string\> | Promise used to return the result. If the IMEI does not exist, an empty string is returned.|
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.getIMEI(slotId);
+promise.then(data => {
+    console.log(`getIMEI success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getIMEI fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getMEID<sup>8+</sup>
+
+getMEID(callback: AsyncCallback<string\>): void
+
+Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description      |
+| -------- | ----------------------- | ---- | ---------- |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+radio.getMEID((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getMEID<sup>8+</sup>
+
+getMEID(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                  |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.getMEID(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getMEID<sup>8+</sup>
+
+getMEID(slotId?: number): Promise<string\>
+
+Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                   |
+| ----------------- | --------------------------------------- |
+| Promise\<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.getMEID(slotId);
+promise.then(data => {
+    console.log(`getMEID success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getMEID fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getUniqueDeviceId<sup>8+</sup>
+
+getUniqueDeviceId(callback: AsyncCallback<string\>): void
+
+Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description      |
+| -------- | ----------------------- | ---- | ---------- |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+radio.getUniqueDeviceId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getUniqueDeviceId<sup>8+</sup>
+
+getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                  |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.getUniqueDeviceId(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getUniqueDeviceId<sup>8+</sup>
+
+getUniqueDeviceId(slotId?: number): Promise<string\>
+
+Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                         |
+| ----------------- | --------------------------------------------- |
+| Promise\<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.getUniqueDeviceId(slotId);
+promise.then(data => {
+    console.log(`getUniqueDeviceId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getUniqueDeviceId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## RadioTechnology
 
-Enumerates the RATs.
+Enumerates the RAT.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -594,7 +934,7 @@ Defines the signal strength.
 
 ## NetworkType
 
-Defines the network type.
+Enumerates network types.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -610,7 +950,7 @@ Defines the network type.
 
 ## NetworkState
 
-Defines the network registration status.
+Defines the network status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -629,7 +969,7 @@ Defines the network registration status.
 
 ## RegState
 
-Defines the network registration status.
+Defines the network status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
