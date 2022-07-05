@@ -277,7 +277,7 @@
    struct FoodImageDisplay {
      build() {
        Stack({ alignContent: Alignment.BottomStart }) {
-         Image($m('Tomato.png'))
+         Image($rawfile('Tomato.png'))
            .objectFit(ImageFit.Contain)
            .height(357)
          Text('Tomato')
