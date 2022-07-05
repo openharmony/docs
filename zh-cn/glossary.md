@@ -29,9 +29,9 @@
 
 ## D
 
-- ### DevEco Studio for Embedded
+- ### DevEco Device Tool
 
-    嵌入式设备开发IDE。
+    OpenHarmony智能硬件设备的高效开发工具。
 
 - ### DMS
 
