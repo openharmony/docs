@@ -1,7 +1,7 @@
 # Touch Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -14,44 +14,42 @@ None
 
 | Name | Pop-up | Description |
 | -------- | -------- | -------- |
-| onTouch(callback: (event?: TouchEvent) =&gt; void) | Yes | Invoked when a touch action is triggered. For details about the event parameters, see [TouchEvent](#touchevent). |
+| onTouch(callback: (event?: TouchEvent) =&gt; void) | Yes | Invoked when a touch action is triggered. For details about **event**, see [TouchEvent](#touchevent). |
 
 
-### TouchEvent
+## TouchEvent
 
 - Attributes
-    | Name | Type | Description | 
-  | -------- | -------- | -------- |
-  | type | TouchType | Type of a touch event. | 
-  | touches | Array&lt;TouchObject&gt; | All finger information. | 
-  | changedTouches | Array&lt;TouchObject&gt; | Finger information changed. | 
-  | timestamp | number | Timestamp of the event. | 
-  | target<sup>8+</sup> | EventTarget | Target of the event. | 
+  | Name                       | Type                       | Description |
+  | --------------- | ----------------------- | ---------------------- |
+  | type                | TouchType | Type of a touch event. |
+  | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information. |
+  | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed. |
+  | timestamp           | number | Timestamp of the event. |
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Target of the event. |
 
 - APIs
-    | API | Description | 
+    | API | Description |
   | -------- | -------- |
-  | stopPropagation(): void | Pop-up of the stop event. | 
+  | stopPropagation(): void | Pop-up of the stop event. |
 
+## TouchObject
+| Name | Type | Description |
+| -------- | -------- | -------- |
+| type | [TouchType](#touchtype) | Type of a touch event. |
+| id   | number | Unique identifier of a finger. |
+| screenX | number | X coordinate of the touch point relative to the left edge of the device screen. |
+| screenY | number | Y coordinate of the touch point relative to the upper edge of the device screen. |
+| x | number | X coordinate of the touch point relative to the left edge of the element to touch. |
+| y | number | Y coordinate of the touch point relative to the upper edge of the element to touch. |
 
-- TouchObject
-    | Name | Type | Description | 
-  | -------- | -------- | -------- |
-  | type | TouchType | Type of a touch event. | 
-  | id | number | Unique identifier of a finger. | 
-  | screenX | number | X coordinate of the touch point relative to the left edge of the screen. | 
-  | screenY | number | Y coordinate of the touch point relative to the upper edge of the device screen. | 
-  | x | number | X coordinate of the touch point relative to the left edge of the element to touch. | 
-  | y | number | Y coordinate of the touch point relative to the upper edge of the element to touch. | 
-
-
-- TouchType
-    | Name | Description | 
-  | -------- | -------- |
-  | Down | Trigger a touch event when a finger is pressed. | 
-  | Up | Trigger a touch event when a finger is lifted. | 
-  | Move | Trigger a touch event when a finger moves on the screen in pressed state. | 
-  | Cancel | Trigger an event when a touch event is canceled. | 
+## TouchType
+| Name | Description |
+| -------- | -------- |
+| Down | Trigger a touch event when a finger is pressed. |
+| Up   | Trigger a touch event when a finger is lifted. |
+| Move | Trigger a touch event when a finger moves on the screen in pressed state. |
+| Cancel | Trigger an event when a touch event is canceled. |
 
 
 ## Example

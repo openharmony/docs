@@ -14,7 +14,7 @@ import mediaquery from '@ohos.mediaquery'
 
 ## Required Permissions
 
-None.
+None
 
 
 ## mediaquery.matchMediaSync
@@ -37,7 +37,7 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 **Example**
   ```js
-listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
   ```
 
 
@@ -91,7 +91,7 @@ Deregisters a callback with the corresponding query condition by using the handl
   ```js
     import mediaquery from '@ohos.mediaquery'
     
-    listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+    let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
     function onPortrait(mediaQueryResult) {
         if (mediaQueryResult.matches) {
             // do something here
