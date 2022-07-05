@@ -1,10 +1,12 @@
-# webgl2
+# WebGL2
 
->  **说明：** 
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+WebGL2支持图形的绘制，包括对当前绘制图形的位置、颜色等进行处理，其中相对WebGL来说对渲染管道和着色语言进行了增强。
 
 WebGL标准图形API，对应OpenGL ES 3.0特性集。更多信息请参考[WebGL™标准](https://www.khronos.org/registry/webgl/specs/latest/2.0/)。
+
+>  **说明：**
+>
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 调用方式
