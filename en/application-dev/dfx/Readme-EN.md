@@ -9,3 +9,5 @@
 - Distributed Call Chain Tracing
   - [Overview of Distributed Call Chain Tracing](hitracechain-overview.md)
   - [Development of Distributed Call Chain Tracing](hitracechain-guidelines.md)
+- Error Management
+  - [Development of Error Manager](errormanager-guidelines.md)
