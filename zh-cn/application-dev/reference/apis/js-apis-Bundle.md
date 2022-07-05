@@ -2,7 +2,8 @@
 
 本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility、应用状态等信息的查询
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+> 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 > API9 当前为Canary版本，仅供试用，不保证接口可稳定调用。
 ## 导入模块
@@ -74,7 +75,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-以异步方法根据给定的包名获取ApplicationInfo，使用callback形式返回结果。
+以异步方法根据给定的包名获取指定用户下的ApplicationInfo，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -227,7 +228,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-以异步方法获取系统中所有可用的BundleInfo，使用callback形式返回结果。
+以异步方法获取系统中指定用户下所有可用的BundleInfo，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -468,7 +469,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
 
-获取指定用户下所有已安装的应用信息，使用callback形式返回结果。
+获取所有已安装的应用信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -1060,7 +1061,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+以异步方法根据给定的意图获取获取指定用户下Ability信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -1278,7 +1279,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
 
-以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
+以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -1298,7 +1299,7 @@ SystemCapability.BundleManager.BundleFramework
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | 返回值为[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
+| Promise\<image.PixelMap> | 返回值为[PixelMap](js-apis-image.md)。 |
 
 **示例：**
 
@@ -1317,7 +1318,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
-以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
+以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -1333,7 +1334,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | bundleName  | string                                   | 是    | 要查询的bundleName。                          |
 | abilityName | string                                   | 是    | 要查询的abilityName。                         |
-| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
+| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](js-apis-image.md)。 |
 
 **示例：**
 
@@ -1353,7 +1354,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Promise\<image.PixelMap>;
 
-以异步方法通过bundleName、moduleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用Promise形式返回结果。
+以异步方法通过bundleName、moduleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -1374,7 +1375,7 @@ SystemCapability.BundleManager.BundleFramework
 **返回值：**
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | 返回值为[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
+| Promise\<image.PixelMap> | 返回值为[PixelMap](js-apis-image.md)。 |
 
 **示例：**
 
@@ -1394,7 +1395,7 @@ bundle.getAbilityIcon(bundleName, moduleName, abilityName)
 
 getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
-以异步方法通过bundleName、moduleName和abilityName获取对应Icon的[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)，使用callback形式返回结果。
+以异步方法通过bundleName、moduleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -1411,7 +1412,7 @@ SystemCapability.BundleManager.BundleFramework
 | bundleName  | string                                   | 是    | 要查询的bundleName。                          |
 | moduleName  | string                                   | 是    | moduleName。                          |
 | abilityName | string                                   | 是    | 要查询的abilityName。                         |
-| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md)。 |
+| callback   | AsyncCallback\<image.PixelMap> | 是   | 程序启动作为入参的回调函数，返回指定[PixelMap](js-apis-image.md)。 |
 
 **示例：**
 
@@ -1481,7 +1482,7 @@ bundle.queryExtensionAbilityInfos(want, extensionType, extensionFlags, userId)
 
 queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
-以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
+以异步方法根据给定的意图获取指定用户下的ExtensionAbility信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -1605,7 +1606,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
 | moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
 | abilityName    | string                               | 是    | 表示要获取的配置文件所属的ability。             |
-| metadataName   | string                               | 否    | 表示要获取的配置文件所属的[metadata](js-apis-bundle-Metadata.md)。            |
+| metadataName   | string                               | 否    | 表示要获取的配置文件所属的metadata。            |
 
 **返回值：**
 
@@ -1641,7 +1642,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
 | moduleName     | string                               | 是    | 表示要获取的配置文件所属的module。              |
 | extensionAbilityName    | string                               | 是    | 表示要获取的配置文件所属的extensionAbility。             |
-| metadataName   | string                               | 是    | 表示要获取的配置文件所属的[metadata](js-apis-bundle-Metadata.md)。            |
+| metadataName   | string                               | 是    | 表示要获取的配置文件所属的metadata。            |
 | callback       | AsyncCallback\<Array\<string>>        | 是    | 程序启动作为入参的回调函数，返回配置文件的json字符串数组。   |
 
 **示例：**
