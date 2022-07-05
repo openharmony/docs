@@ -5,13 +5,7 @@ ExtensionRunningInfo模块提供对Extension运行的相关信息和类型进行
 > **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-
-## 导入模块
-
-```js
-import abilitymanager from '@ohos.application.abilityManager';
-```
+> 本模块接口均为系统接口，三方应用不支持调用
 
 ## 使用说明
 
@@ -25,8 +19,7 @@ abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => {
 });
 ```
 
-
-### 属性
+## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 

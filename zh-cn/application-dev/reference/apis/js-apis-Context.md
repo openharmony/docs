@@ -1,17 +1,11 @@
 # Context模块
 
-Context模块提供了ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等并且只能通过ability获得。
+Context模块提供了ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
 
 > **说明：**
 > 
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。   
 > 本模块接口仅可在FA模型下使用。
-
-## 导入模块
-
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-```
 
 ## 使用说明
 

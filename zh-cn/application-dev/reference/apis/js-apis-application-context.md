@@ -9,14 +9,19 @@ Context模块提供开发者运行代码的上下文环境的能力，包括查�
 
 提供开发者运行代码的上下文环境，包括应用信息、ResourceManager等信息。
 
-## 导入模块
-```
-import AbilityContext from '@ohos.application.Ability';
-```
-
 ## 使用说明
 
 通过AbilityContext等继承实现。
+
+ ```js
+import AbilityContext from '@ohos.application.Ability'
+  class MainAbility extends AbilityContext {
+    onWindowStageCreate(windowStage) {
+      let test = "com.example.test";
+      let context = this.context.createBundleContext(test);
+    }
+  }
+```
 
 ## 属性
 
@@ -24,18 +29,17 @@ import AbilityContext from '@ohos.application.Ability';
 
   | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| resourceManager | ResourceManager | 是 | 否 | ResourceManager对象。 | 
-| applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 | 
-| cacheDir | string | 是 | 否 | 应用在内部存储上的缓存路径。 | 
-| tempDir | string | 是 | 否 | 应用的临时文件路径。 | 
-| filesDir | string | 是 | 否 | 应用在内部存储上的文件路径。 | 
-| databaseDir | string | 是 | 否 | 获取本地数据存储路径。 | 
-| storageDir | string | 是 | 否 | 获取轻量级数据存储路径。 | 
-| bundleCodeDir | string | 是 | 否 | 应用安装路径。 | 
-| distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 | 
-| eventHub | [EventHub](js-apis-eventhub.md) | 是 | 否 | 事件中心信息。| 
-| area | [AreaMode](#areamode) | 是 | 是 | 文件分区。| 
-
+| resourceManager | ResourceManager | 是 | 否 | ResourceManager对象。 |
+| applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 |
+| cacheDir | string | 是 | 否 | 应用在内部存储上的缓存路径。 |
+| tempDir | string | 是 | 否 | 应用的临时文件路径。 |
+| filesDir | string | 是 | 否 | 应用在内部存储上的文件路径。 |
+| databaseDir | string | 是 | 否 | 获取本地数据存储路径。 |
+| bundleCodeDir | string | 是 | 否 | 应用安装路径。 |
+| distributedFilesDir | string | 是 | 否 | 应用的分布式文件路径。 |
+| eventHub | [EventHub](js-apis-eventhub.md) | 是 | 否 | 事件中心信息。|
+| area | [AreaMode](#areamode) | 是 | 是 | 文件分区。|
+| preferencesDir | string | 是 | 是 | 指示应用程序首选项目录。|
 
 ## Context.createBundleContext
 

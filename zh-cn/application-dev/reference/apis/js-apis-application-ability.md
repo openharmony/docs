@@ -29,8 +29,6 @@ import Ability from '@ohos.application.Ability';
 | lastRequestWant | [Want](js-apis-application-Want.md) | 是 | 否 | Ability最后请求时的参数。| 
 | callee | [Callee](#callee) | 是 | 否 | 调用Stub（桩）服务对象。| 
 
-
-
 ## Ability.onCreate
 
 onCreate(want: Want, param: AbilityConstant.LaunchParam): void;
