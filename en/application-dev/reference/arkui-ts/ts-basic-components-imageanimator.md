@@ -53,13 +53,13 @@ ImageAnimator()
 
 ## Events
 
-| Name | Description |
-| -------- | -------- | -------- |
-| onStart() =&gt; void | Triggered when the animation starts to play. |
-| onPause() =&gt; void | Triggered when the animation playback is paused. |
-| onRepeat() =&gt; void | Triggered when the animation playback is repeated. |
-| onCancel() =&gt; void | Triggered when the animation playback is canceled. |
-| onFinish() =&gt; void | Triggered when the animation playback is complete. |
+| Name | Description | 
+| -------- | -------- |
+| onStart() =&gt; void | Triggered when the animation starts to play. | 
+| onPause() =&gt; void | Triggered when the animation playback is paused. | 
+| onRepeat() =&gt; void | Triggered when the animation playback is repeated. | 
+| onCancel() =&gt; void | Triggered when the animation playback is canceled. | 
+| onFinish() =&gt; void | Triggered when the animation playback is complete. | 
 
 
 ## Example
