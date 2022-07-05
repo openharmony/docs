@@ -21,7 +21,7 @@ app.json示例：
 
 ```json
 {
-	"app": {
+    "app": {
         "bundleName": "com.application.music",
         "vendor": "application",
         "versionCode": 1,
@@ -233,13 +233,13 @@ deviceTypes示例 :
 
 ```json
 {
-	"module": {
-		"name": "myHapName",
+    "module": {
+        "name": "myHapName",
         "type": "har",
         "deviceTypes" : [
             "wearable"
         ]
-	}
+    }
 }
 ```
 
@@ -604,7 +604,7 @@ form示例 :
             "supportDimensions": [
                 "2*2"
             ],
-           "metadata": [
+            "metadata": [
              {
                 "name": "string",
                 "value": "string",
@@ -620,18 +620,14 @@ form示例 :
 
 ```json
 {
-	"extensionAbilities": [
-        {
-            "name": "MyForm",
-            "type": "form", 
-            "metadata": [
-                {
-                    "name": "ohos.extability.form",
-                    "resource": "$profile:form_config",
-                }
-            ],
-        }
-	]
+    "extensionAbilities": [{
+        "name": "MyForm",
+        "type": "form",
+        "metadata": [{
+            "name": "ohos.extability.form",
+            "resource": "$profile:form_config"
+        }]
+    }]
 }
 ```
 
@@ -656,19 +652,15 @@ metadata中指定shortcut信息，其中 :
 
 ```json
 {
-        "shortcuts": [
-            {
-                "shortcutId": "id_test1",
-                "label": "$string:shortcut",
-                "icon": "$media:aa_icon",
-                "wants": [
-                    {
-                       "bundleName": "com.ohos.hello"
-                       "abilityName": "MainAbility"
-                    }
-                ]
-            }
-        ]
+    "shortcuts": [{
+        "shortcutId": "id_test1",
+        "label": "$string:shortcut",
+        "icon": "$media:aa_icon",
+        "wants": [{
+            "bundleName": "com.ohos.hello",
+            "abilityName": "MainAbility"
+        }]
+    }]
 }
 ```
 
@@ -678,23 +670,19 @@ metadata中指定shortcut信息，其中 :
 {
     "module": {
         "name": "MyAbilityStage",
-        "abilities" : [
-            {
-                "name" : "MyAbility",
-                "srcEntrance": "./abilities/MyAbility.ts",
-                "skills": [{
-                            "actions": ["action.system.home"],
-                            "entities": ["entity.system.home"],
-                            "uris": []
-                }],
-                "metadata": [
-                    {
-                        "name": "ohos.ability.shortcuts",
-                        "resource": "$profile:shortcuts_config", 
-                    }
-                ],
-            }
-        ]
+        "abilities": [{
+            "name": "MyAbility",
+            "srcEntrance": "./abilities/MyAbility.ts",
+            "skills": [{
+                "actions": ["action.system.home"],
+                "entities": ["entity.system.home"],
+                "uris": []
+            }],
+            "metadata": [{
+                "name": "ohos.ability.shortcuts",
+                "resource": "$profile:shortcuts_config"
+            }]
+        }]
     }
 }
 ```
@@ -721,20 +709,18 @@ metadata中指定commonEvent信息，其中 :
 
 ```json
 {
-    "commonEvents": [
-            {
-                "name": "abilityName",
-                "permission": "string",
-                "types": [
-                    "string",
-                    "string"
-                ],
-                "events": [
-                    "string",
-                    "string"
-                ]
-            }
-    ]
+    "commonEvents": [{
+        "name": "abilityName",
+        "permission": "string",
+        "types": [
+            "string",
+            "string"
+        ],
+        "events": [
+            "string",
+            "string"
+        ]
+    }]
 }
 ```
 
@@ -746,12 +732,10 @@ metadata中指定commonEvent信息，其中 :
         "name": "mySubscriber",
         "srcEntrance": "./extension/my_subscriber.js",
         "type": "staticSubscriber",
-        "metadata": [
-            {
-                "name": "ohos.extability.staticSubscriber",
-                "resource": "$profile:common_event_config", 
-            }
-        ],
+        "metadata": [{
+            "name": "ohos.extability.staticSubscriber",
+            "resource": "$profile:common_event_config",
+        }],
     }
 ]
 ```
@@ -814,17 +798,17 @@ distroFilter示例 :
 ```json
 "distroFilter": [
     {
-       "apiVersion": {
+        "apiVersion": {
             "policy": "include",
-            "value": [4,5]
+            "value": [4, 5]
         },
         "screenShape": {
             "policy": "include",
-            "value": ["circle","rect"]
+            "value": ["circle", "rect"]
         },
         "screenWindow": {
             "policy": "include",
-            "value": ["454*454","466*466"]
+            "value": ["454*454", "466*466"]
         }
     }
 ]
@@ -837,16 +821,13 @@ distroFilter示例 :
     {
         "name": "mySubscriber",
         "srcEntrance": "./extension/my_subscriber.js",
-        "type": "staticSubscriber", 
-        "metadata": [
-            {
-                "name": "ohos.extability.staticSubscriber",
-                "resource": "$profile:distroFilter_config", 
-            }
-        ],
+        "type": "staticSubscriber",
+        "metadata": [{
+            "name": "ohos.extability.staticSubscriber",
+            "resource": "$profile:distroFilter_config",
+        }],
     }
 ]
-
 ```
 
 #### testRunner对象内部结构
@@ -858,8 +839,8 @@ distroFilter示例 :
 
 ```
 "testRunner": {
-	"name": "myTestRUnnerName",
-	"srcPath": "etc/test/TestRunner.ts"
+    "name": "myTestRUnnerName",
+    "srcPath": "etc/test/TestRunner.ts"
 }
 ```
 
