@@ -198,35 +198,35 @@ component
   
 - 芯片解决方案目录树规则如下：
 
-```
-device                                      
-└── board                         # 芯片解决方案厂商
-    └── company                       # 开发板名称
-        ├── BUILD.gn                # 编译脚本
-        ├── hals                    # OS南向接口适配
-        ├── linux                   # 可选，linux内核版本
-        │   └── config.gni          # linux版本编译配置
-        └── liteos_a                # 可选，liteos内核版本
-            └── config.gni          # liteos_a版本编译配置
-```
+  ```
+  device                                      
+  └── board                         # 芯片解决方案厂商
+      └── company                       # 开发板名称
+          ├── BUILD.gn                # 编译脚本
+          ├── hals                    # OS南向接口适配
+          ├── linux                   # 可选，linux内核版本
+          │   └── config.gni          # linux版本编译配置
+          └── liteos_a                # 可选，liteos内核版本
+               └── config.gni          # liteos_a版本编译配置
+  ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> config.gni为开发板编译相关的配置，编译时会采用该配置文件中的参数编译所有OS部件，编译阶段系统全局可见。
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > config.gni为开发板编译相关的配置，编译时会采用该配置文件中的参数编译所有OS部件，编译阶段系统全局可见。
 
 - config.gni的关键字段介绍如下：
 
-```
-kernel_type:            开发板使用的内核类型，例如：“liteos_a”, “liteos_m”, “linux”。
-kernel_version:         开发使用的内核版本，例如：“4.19”。
-board_cpu:              开发板CPU类型，例如：“cortex-a7”, “riscv32”。
-board_arch:             开发芯片arch, 例如： “armv7-a”, “rv32imac”。
-board_toolchain:        开发板自定义的编译工具链名称，例如：“gcc-arm-none-eabi”。若为空，则使用默认为ohos-clang。
-board_toolchain_prefix：编译工具链前缀，例如：“gcc-arm-none-eabi”。
-board_toolchain_type：  编译工具链类型，目前支持gcc和clang。例如：“gcc” ，“clang”。
-board_cflags：          开发板配置的c文件编译选项。
-board_cxx_flags：       开发板配置的cpp文件编译选项。
-board_ld_flags：        开发板配置的链接选项。
-```
+  ```
+  kernel_type:            开发板使用的内核类型，例如：“liteos_a”, “liteos_m”, “linux”。
+  kernel_version:         开发使用的内核版本，例如：“4.19”。
+  board_cpu:              开发板CPU类型，例如：“cortex-a7”, “riscv32”。
+  board_arch:             开发芯片arch, 例如： “armv7-a”, “rv32imac”。
+  board_toolchain:        开发板自定义的编译工具链名称，例如：“gcc-arm-none-eabi”。若为空，则使用默认为ohos-clang。
+  board_toolchain_prefix：编译工具链前缀，例如：“gcc-arm-none-eabi”。
+  board_toolchain_type：  编译工具链类型，目前支持gcc和clang。例如：“gcc” ，“clang”。
+  board_cflags：          开发板配置的c文件编译选项。
+  board_cxx_flags：       开发板配置的cpp文件编译选项。
+  board_ld_flags：        开发板配置的链接选项。
+  ```
 
 ### 产品解决方案
 
