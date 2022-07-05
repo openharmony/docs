@@ -558,6 +558,34 @@ createImageSource(fd: number): ImageSource
 const imageSourceApi = image.createImageSource(0);
 ```
 
+## image.createIncrementalSource<sup>7+</sup>
+
+function createIncrementalSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
+
+创建增量图片源。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明                                 |
+| ------- | ------------------------------- | ---- | ------------------------------------ |
+| buf     | ArrayBuffer                     | 是   | 数组                                 |
+| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [ImageSource](#imagesource) | 返回图片源，失败时返回undefined。 |
+
+**示例：**
+
+```js
+const buf = new ArrayBuffer(96);
+const imageSourceApi = image.createIncrementalSource(buf);
+```
+
 ## ImageSource
 
 图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过createImageSource构建一个ImageSource实例。
@@ -734,6 +762,126 @@ imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => {
         console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
+```
+
+### modifyImageProperty<sup>7+</sup>
+
+modifyImageProperty(key: string, value: string): Promise<void>
+
+修改属性的值。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| key     | string | 是   | 图片属性名。 |
+| value   | string | 是   | 属性值。     |
+
+**返回值：**
+
+| 类型                   | 说明                     |
+| ---------------------- | ------------------------ |
+| Promise<[void](#void)> | 返回修改后的图片属性值。 |
+
+**示例：**
+
+```js
+imageSourceApi.modifyImageProperty("ImageWidth", "abc")
+            .then(() => {
+                const w = imageSourceApi.getImageProperty("ImageWidth")
+                console.info('w', w);
+                expect(w == 'abc').assertTrue();
+                done();
+            })
+```
+
+### modifyImageProperty<sup>7+</sup>
+
+modifyImageProperty(key: string, value: string, callback: AsyncCallback<void>): void
+
+修改属性的值，callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                           |
+| -------- | ------------------- | ---- | ------------------------------ |
+| key      | string              | 是   | 图片属性名。                   |
+| value    | string              | 是   | 属性值。                       |
+| callback | AsyncCallback<void> | 是   | 修改属性值，callback返回结果。 |
+
+**示例：**
+
+```js
+imageSourceApi.modifyImageProperty("ImageWidth", "abc",() => {})
+```
+
+### updateData<sup>7+</sup>
+
+updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number): Promise<void>
+
+更新增量数据。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 名称       | 类型        | 必填 | 说明         |
+| ---------- | ----------- | ---- | ------------ |
+| buf        | ArrayBuffer | 是   | 增量数据。   |
+| isFinished | boolean     | 是   | 是否更新完。 |
+| value      | number      | 否   | 偏移量。     |
+| length     | number      | 否   | 数组长。     |
+
+**返回值：**
+
+| 类型                   | 说明                   |
+| ---------------------- | ---------------------- |
+| Promise<[void](#void)> | 返回更新后的增量数据。 |
+
+**示例：**
+
+```js
+const array = new ArrayBuffer(100);
+imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
+            expect(data).assertTrue();
+            console.info('Succeeded in updating data.');
+            done();
+        })
+```
+
+
+### updateData<sup>7+</sup>
+
+updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback<void>): void
+
+更新增量数据。
+
+**系统能力：** SystemCapability.Multimedia.Image
+
+**参数：**
+
+| 名称       | 类型                | 必填 | 说明                 |
+| ---------- | ------------------- | ---- | -------------------- |
+| buf        | ArrayBuffer         | 是   | 增量数据。           |
+| isFinished | boolean             | 是   | 是否更新完。         |
+| value      | number              | 否   | 偏移量。             |
+| length     | number              | 否   | 数组长。             |
+| callback   | AsyncCallback<void> | 是   | 回调表示成功或失败。 |
+
+**示例：**
+
+```js
+const array = new ArrayBuffer(100);
+imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {
+            if(data !== undefined){
+                expect(data).assertTrue();
+                console.info('TC_053-1 success');
+                done();      
+            }
 ```
 
 ### createPixelMap<sup>7+</sup>
