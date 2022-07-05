@@ -50,7 +50,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 **返回值：** 
 | 类型                                          | 说明                                      |
 | --------------------------------------------- | ----------------------------------------- |
-| Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise对象。返回当前创建的屏幕对象集合。 |
+| Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise对象。返回当前获取的屏幕对象集合。 |
 
 **示例：**
 ```js
@@ -404,7 +404,7 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 **返回值：**
 | 类型                   | 说明                                  |
 | ---------------------- | ------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前自动转屏是否处于锁定状态 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前自动转屏处于锁定状态；返回false表示当前自动转屏不处于锁定状态。 |
 
 **示例：**
 ```js
@@ -426,7 +426,7 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名    | 类型                          | 必填 | 说明                                                         |
 | --------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当查询自动转屏锁定状态成功，err为undefined，否则为错误对象。 |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前自动转屏处于锁定状态；返回false表示当前自动转屏不处于锁定状态。 |
 
 **示例：**
 
