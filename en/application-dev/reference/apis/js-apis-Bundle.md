@@ -1,6 +1,7 @@
-# Bundle Module (JavaScript SDK APIs)
+# Bundle
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 ## Modules to Import
@@ -15,11 +16,11 @@ SystemCapability.BundleManager.BundleFramework
 
 ## Required Permissions
 
-| Required Permissions                                      | Permission Level        | Description       |
-| ---------------------------------------- | ------------ | --------- |
-| ohos.permission.GET_BUNDLE_INFO          | normal       | Permission to query information about the current application.|
+| Required Permissions                                      | Permission Level    | Description              |
+| ------------------------------------------ | ------------ | ------------------ |
+| ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to query information about the current application. |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all applications.|
-| ohos.permission.INSTALL_BUNDLE           | system_core  | Permission to install or uninstall applications. |
+| ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall applications.  |
 
 ## bundle.getApplicationInfo
 
@@ -69,7 +70,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-Obtains the application information based on a given bundle name. This API uses an asynchronous callback to return the result.
+Obtains the application information of the specified user based on a given bundle name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -143,9 +144,9 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo>>
+getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
 
-Obtains the information of all available bundles of a specified user in the system. This API uses a promise to return the result.
+Obtains the information of all available bundles of the specified user in the system. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -166,7 +167,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Type                         | Description                        |
 | --------------------------- | -------------------------- |
-| Promise\<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Promise used to return the information of all available bundles.|
+| Promise<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Promise used to return the information of all available bundles.|
 
 **Example**
 
@@ -185,7 +186,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
 
 Obtains the information of all available bundles in the system. This API uses an asynchronous callback to return the result.
 
@@ -220,9 +221,9 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 ## bundle.getAllBundleInfo
 
-getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo>>): void
+getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
-Obtains the information of all available bundles in the system. This API uses an asynchronous callback to return the result.
+Obtains the information of all available bundles of the specified user in the system. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -238,7 +239,7 @@ SystemCapability.BundleManager.BundleFramework
 | ---------- | --------------------------------- | ---- | --------------------------------------- |
 | bundleFlag | BundleFlag                        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId     | number                            | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
-| callback   | AsyncCallback\<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
+| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
 
 **Example**
 
@@ -343,7 +344,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback\<BundleInfo>): void
 
-Obtains the bundle information based on a given bundle name. This API uses an asynchronous callback to return the result.
+Obtains the bundle information based on a given bundle name and bundle options. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -718,10 +719,6 @@ isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
 Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses a promise to return the result.
 
-**Required permissions**
-
-None
-
 **System capability**
 
 SystemCapability.BundleManager.BundleFramework
@@ -759,10 +756,6 @@ isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
 Checks whether the ability that matches a given **AbilityInfo** object is enabled. This API uses an asynchronous callback to return the result.
 
-**Required permissions**
-
-None
-
 **System capability**
 
 SystemCapability.BundleManager.BundleFramework
@@ -795,10 +788,6 @@ bundle.isAbilityEnabled(Info, (err, data) => {
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
 Checks whether an application is enabled based on a given bundle name. This API uses a promise to return the result.
-
-**Required permissions**
-
-None
 
 **System capability**
 
@@ -833,10 +822,6 @@ bundle.isApplicationEnabled(bundleName)
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
 Checks whether an application is enabled based on a given bundle name. This API uses an asynchronous callback to return the result.
-
-**Required permissions**
-
-None
 
 **System capability**
 
@@ -911,9 +896,13 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 ## bundle.queryAbilityByWant
 
-queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo>>): void
+queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-Obtains the ability information based on a given want. This API uses an asynchronous callback to return the result.
+Obtains the ability information of the specified user based on a given want. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -923,7 +912,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                                | Mandatory  | Description                                   |
 | ----------- | ---------------------------------- | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-Want.md) | Yes   | Want that contains the bundle name.                  |
+| want        | [Want](js-apis-application-Want.md)                               | Yes   | Want that contains the bundle name.                  |
 | bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId      | number                             | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.          |
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes   | Callback used to return the ability information.           |
@@ -952,6 +941,10 @@ queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback<Arra
 
 Obtains the ability information based on a given want. This API uses an asynchronous callback to return the result.
 
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
 **System capability**
 
 SystemCapability.BundleManager.BundleFramework
@@ -960,7 +953,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                                | Mandatory  | Description                                   |
 | ----------- | ---------------------------------- | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-Want.md)   | Yes   | Want that contains the bundle name.                  |
+| want        | [Want](js-apis-application-Want.md)                               | Yes   | Want that contains the bundle name.                  |
 | bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes   | Callback used to return the ability information.           |
 
@@ -1127,7 +1120,7 @@ Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bu
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1166,7 +1159,7 @@ Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bu
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1203,7 +1196,7 @@ Obtains the Extension ability information based on a given want. This API uses a
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1214,7 +1207,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name            | Type    | Mandatory  | Description                                      |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)   | Yes   | Want that contains the bundle name.                       |
-| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
 | userId         | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
 
 **Return value**
@@ -1246,11 +1239,11 @@ bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
 
 queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
-Obtains the Extension ability information based on a given want. This API uses an asynchronous callback to return the result.
+Obtains the Extension ability information of the specified user based on a given want. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1258,12 +1251,12 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name            | Type                                      | Mandatory  | Description                                      |
-| -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| want           | [Want](js-apis-application-Want.md)      | Yes   | Want that contains the bundle name.                     |
-| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId         | number                                   | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
-| callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes   | Callback used to return the Extension ability information.     |
+| Name          | Type                                                        | Mandatory| Description                                                        |
+| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| want           | [Want](js-apis-application-Want.md)                                                        | Yes  | Want that contains the bundle name.                      |
+| extensionFlags | number                                   | Yes    | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9). |
+| userId         | number                                   | Yes    | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
+| callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes  | Callback used to return the Extension ability information.      |
 
 **Example**
 
@@ -1301,8 +1294,8 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name            | Type                                      | Mandatory  | Description                                      |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| want           | [Want](js-apis-application-Want.md)      | Yes   | Want that contains the bundle name.                     |
-| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| want           | [Want](js-apis-application-Want.md)                                     | Yes   | Want that contains the bundle name.                     |
+| extensionFlags | number                                   | Yes    | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9). |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes   | Callback used to return the Extension ability information.     |
 
 **Example**
@@ -1369,7 +1362,7 @@ Enumerates bundle flags.
 | GET_ABILITY_INFO_SYSTEMAPP_ONLY<sup>8+</sup> | 0x00000080 | Obtains the ability information of system applications.|
 | GET_ABILITY_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000100 | Obtains information about disabled abilities.  |
 | GET_APPLICATION_INFO_WITH_DISABLE<sup>8+</sup> | 0x00000200 | Obtains information about disabled applications.       |
-| GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | Obtains all application information.          |
+| GET_ALL_APPLICATION_INFO                 | 0xFFFF0000 | Obtains all application information.           |
 
 ## BundleOptions
 
@@ -1403,10 +1396,10 @@ Enumerates display orientations.
 
 | Name           | Type  | Description           |
 | ------------- | ---- | ------------- |
-| UNSPECIFIED   | None   | The system automatically determines the display orientation.    |
+| UNSPECIFIED   | None   | Unspecified display orientation.    |
 | LANDSCAPE     | None   | Landscape orientation.     |
 | PORTRAIT      | None   | Portrait orientation.     |
-| FOLLOW_RECENT | None   | The page ability orientation is the same as that of the nearest ability in the stack.|
+| FOLLOW_RECENT | None   | Orientation same as that of the nearest ability in the stack.|
 
 ## LaunchMode
 
@@ -1438,7 +1431,7 @@ Enumerates Extension ability types.
 
 | Name                            | Type  | Description                       |
 | ------------------------------ | ---- | ------------------------- |
-| FORM<sup>9+</sup>              | 0    | Form included.  |
+| FORM<sup>9+</sup>              | 0    | Form (widget) included.  |
 | WORK_SCHEDULER<sup>9+</sup>    | 1    | Work scheduler included.|
 | INPUT_METHOD<sup>9+</sup>      | 2    | Input method included. |
 | SERVICE<sup>9+</sup>           | 3    | Service included.  |
@@ -1484,3 +1477,4 @@ Enumerates permission grant states.
 | ------------------ | ---- | ---- |
 | PERMISSION_DENIED  | -1   | Permission denied.|
 | PERMISSION_GRANTED | 0    | Permission granted.  |
+
