@@ -114,50 +114,50 @@ XTS子系统当前包括acts与tools软件包：
    ```
 
 2. src目录下用例编写样例。
+   
    1.引用测试框架
-
      
-   ```
-   #include "hctest.h"
-   ```
+     ```
+     #include "hctest.h"
+     ```
 
    2. 使用宏定义LITE_TEST_SUIT定义子系统、模块、测试套件名称
 
      
-   ```
-   /**  
-   * @brief  register a test suite named "IntTestSuite"  
-   * @param  test subsystem name  
-   * @param  example module name  
-   * @param  IntTestSuite test suite name  
-   */
-   LITE_TEST_SUIT(test, example, IntTestSuite);
-   ```
+      ```
+      /**  
+      * @brief  register a test suite named "IntTestSuite"  
+      * @param  test subsystem name  
+      * @param  example module name  
+      * @param  IntTestSuite test suite name  
+      */
+       LITE_TEST_SUIT(test, example, IntTestSuite);
+      ```
 
    3. 定义Setup与TearDown
 
-   命名方式：测试套件名称+Setup，测试套件名称+TearDown。
+      命名方式：测试套件名称+Setup，测试套件名称+TearDown。
 
-   Setup与TearDown必须存在，可以为空函数。
+      Setup与TearDown必须存在，可以为空函数。
 
    4. 使用宏定义LITE_TEST_CASE写测试用例
 
-   包括三个参数：测试套件名称，测试用例名称，用例属性（测试类型、用例粒度、用例级别）。
+      包括三个参数：测试套件名称，测试用例名称，用例属性（测试类型、用例粒度、用例级别）。
 
      
-   ```
-   LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
-   {  
-     //do something 
-   };
-   ```
+      ```
+      LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
+      {  
+        //do something 
+         };
+      ```
 
    5. 使用宏定义 RUN_TEST_SUITE注册测试套件
 
      
-   ```
-   RUN_TEST_SUITE(IntTestSuite);
-   ```
+      ```
+      RUN_TEST_SUITE(IntTestSuite);
+      ```
 
 3. 测试模块的配置文件（BUILD.gn）样例：
    在每个测试模块目录下新建BUILD.gn编译文件，用于指定编译后静态库的名称、依赖的头文件、依赖的库等；具体写法如下：
@@ -237,52 +237,52 @@ XTS子系统当前包括acts与tools软件包：
 2. 测试模块src下用例编写样例：
    1. 引用测试框架：
 
-   需要引用gtest.h  如：\#include "gtest/gtest.h"
+      需要引用gtest.h  如：\#include "gtest/gtest.h"
 
      
-   ```
-   #include "gtest/gtest.h"
-   ```
+      ```
+      #include "gtest/gtest.h"
+      ```
 
    2. 定义Setup与TearDown
 
      
-   ```
-   using namespace std;
-   using namespace testing::ext;
-   class TestSuite: public testing::Test {
-   protected:
-   // Preset action of the test suite, which is executed before the first test case
-   static void SetUpTestCase(void){
-   }
-   // Test suite cleanup action, which is executed after the last test case
-   static void TearDownTestCase(void){
-   }
-   // Preset action of the test case
-   virtual void SetUp()
-   {
-   }
-   // Cleanup action of the test case
-   virtual void TearDown()
-   {
-   }
-   };
-   ```
+      ```
+      using namespace std;
+      using namespace testing::ext;
+      class TestSuite: public testing::Test {
+      protected:
+      // Preset action of the test suite, which is executed before the first test case
+      static void SetUpTestCase(void){
+      }
+      // Test suite cleanup action, which is executed after the last test case
+      static void TearDownTestCase(void){
+      }
+     // Preset action of the test case
+     virtual void SetUp()
+     {
+     }
+     // Cleanup action of the test case
+     virtual void TearDown()
+     {
+      }
+      };
+     ```
 
    3. 使用宏定义HWTEST或HWTEST_F写测试用例
 
-   普通测试用例的定义：HWTEST（测试套名称， 测试用例名称， 用例标注）。
+      普通测试用例的定义：HWTEST（测试套名称， 测试用例名称， 用例标注）。
 
-   包含SetUp和TearDown的测试用例的定义 ：HWTEST_F（测试套名称， 测试用例名称，用例标注）。
-
-   宏定义包括三个参数：测试套件名称，测试用例名称，用例属性（测试类型、用例粒度、用例级别）。
+      包含SetUp和TearDown的测试用例的定义 ：HWTEST_F（测试套名称， 测试用例名称，用例标注）。
+  
+      宏定义包括三个参数：测试套件名称，测试用例名称，用例属性（测试类型、用例粒度、用例级别）。
 
      
-   ```
-   HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
-   // do something
-   }
-   ```
+      ```
+      HWTEST_F(TestSuite, TestCase_0001, Function | MediumTest | Level1) {
+      // do something
+      }
+      ```
 
 3. 测试模块下用例配置文件（BUILD.gn）样例：
    每个测试模块目录下新建BUILD.gn编译文件，用于指定编译后可执行文件的名称、依赖的头文件、依赖的库等；具体写法如下。每个测试模块将独立编译成.bin可执行文件， 该文件可直接push到单板上进行测试。
@@ -482,7 +482,7 @@ Windows工作台下安装python3.7及以上版本，确保工作台和测试设�
 
 1. 在Windows工作台上，找到从Linux服务器上拷贝下来的测试套件用例目录(对应编译生成的out/release/suites/acts目录)，在Windows命令窗口进入对应目录，直接执行acts\run.bat。
 
-1. 界面启动后，输入用例执行指令。
+2. 界面启动后，输入用例执行指令。
    - 全量执行
         
       ```
@@ -505,5 +505,5 @@ Windows工作台下安装python3.7及以上版本，确保工作台和测试设�
 
    等待执行完成。
 
-1. 查看测试报告。
+3. 查看测试报告。
    进入acts\reports\，获取当前的执行记录，打开“summary_report.html”可以获取到测试报告。
