@@ -354,10 +354,10 @@ OHOS Which product do you need?  neptune_iotlink_demo
 5. 为了组织一些产品侧的应用，需要强制链接到产品工程中来，本方案在vendor相应的`config.json`加入了相应的list来组织，在`vendor/hihope/neptune_iotlink_demo/config.json`增加对应的list：
 
    ```
-    "bin_list": [                       --- demo list
+    "bin_list": [                            --- demo list
       {
         "elf_name": "hihope",
-        "enable": "false",                 --- list开关
+        "enable": "false",                   --- list开关
         "force_link_libs": [
           "bootstrap",
           "broadcast",
