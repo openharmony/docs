@@ -28,8 +28,8 @@
 - paramObject2参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | title | string&nbsp;\|&&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 弹窗标题。 |
-  | message | string&nbsp;\|&&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是 | - | 弹窗内容。 |
+  | title | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 弹窗标题。 |
+  | message | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是 | - | 弹窗内容。 |
   | autoCancel | boolean | 否 | true | 点击遮障层时，是否关闭弹窗。 |
   | primaryButton | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | - | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
   | secondaryButton | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | - | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
