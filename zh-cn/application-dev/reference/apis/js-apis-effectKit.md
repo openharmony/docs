@@ -5,6 +5,7 @@
 该模块提供以下图像效果相关的常用功能：
 
 - [Filter](#filter)：效果链。
+- [Color](#color)：颜色类，用于保存取色的结果。
 - [ColorPicker](#colorpicker)：智能取色器。
 
 > **说明：**
@@ -52,7 +53,7 @@ image.createPixelMap(color, opts)
 
 createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
-通过属性创建PixelMap，使用Promise异步回调。
+通过传入的PixelMap创建ColorPicker实例，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -60,13 +61,13 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 | 名称     | 类型         | 必填 | 说明                       |
 | -------- | ----------- | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例 |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   |  image模块创建的PixelMap实例。 |
 
 **返回值：**
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promisse\<[ColorPicker](#colorpicker)>  | Promise对象。返回当前创建的子窗口对象。 |
+| Promisse\<[ColorPicker](#colorpicker)>  | Promise对象。返回创建的ColorPicker实例。 |
 
 **示例：**
 
@@ -87,7 +88,7 @@ image.createPixelMap(color, opts, (pixelmap) => {
 
 createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>): void
 
-通过属性创建PixelMap，使用callback异步回调。
+通过传入的PixelMap创建ColorPicker实例，使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -95,8 +96,8 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 | 名称     | 类型                | 必填 | 说明                       |
 | -------- | ------------------ | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  | BGRA_8888格式的颜色数组。  |
-| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数，返回ColorPicker。 |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | 是  |image模块创建的PixelMap实例。  |
+| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | 是  | 回调函数。返回创建的ColorPicker实例。 |
 
 **示例：**
 
@@ -107,9 +108,9 @@ let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     effectKit.createColorPicker(pixelMap, (error, colorPicker) ) {
         if(error) {
-            console.log('create color picker failed.');
+            console.log('Failed to create color picker.');
         } else {
-            console.log('create color picker succeeded.');
+            console.log('Succeeded in creating color picker.');
         }
     })
 })
@@ -144,16 +145,16 @@ getMainColor(): Promise\<Color>
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| Promise\<[Color](#color)> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<[Color](#color)> | Promise对象。返回图像主色对应的颜色值，失败时返回错误信息。 |
 
 **示例：**
 
 ```js
 colorPicker.getMainColor().then(color => {
-    console.log('get main color succeeded.')
+    console.log('Succeeded in getting main color.')
     console.info("color[ARGB]=" + color.alpha "," + color.red + "," + color.green + "," + color.blue);
 }).catch(error => {
-    console.log('get main color failed.');
+    console.log('Failed to get main color.');
 })
 ```
 
@@ -169,7 +170,7 @@ getMainColorSync(): Color
 
 | 类型     | 说明                                  |
 | :------- | :----------------------------------- |
-| [Color](#color)    | Color实例，用于获取结果，失败时返回null。 |
+| [Color](#color)    | Color实例，即图像主色对应的颜色值，失败时返回null。 |
 
 **示例：**
 
@@ -266,7 +267,7 @@ grayscale(): Filter
 
 | 类型           | 说明                                            |
 | :------------- | :---------------------------------------------- |
-| Filter | 返回效果链表头。 |
+| [Filter](#filter) | 返回效果链表头。 |
 
 **示例：**
 
