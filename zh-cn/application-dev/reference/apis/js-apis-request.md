@@ -1,5 +1,6 @@
 # 上传下载
 
+request部件主要给应用提供上传下载文件、后台传输代理的基础能力。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -18,14 +19,16 @@ import request from '@ohos.request';
 默认支持https，如果要支持http，需要在config.json里增加network标签，属性标识 "cleartextTraffic": true。即：
 
 ```
+var config = {
   "deviceConfig": {
     "default": {
       "network": {
         "cleartextTraffic": true
       }
-      ...
+      //...
     }
   }
+}
 ```
 
 
@@ -466,11 +469,10 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
   
   ```js
-      downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
+  downloadTask.on('progress', function download_callback(receivedSize, totalSize) {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   }
   );
-  });
   ```
 
 
@@ -501,11 +503,10 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
   
   ```js
-      downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
-          console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
-      }
+  downloadTask .off('progress', function download_callback(receivedSize, totalSize) {
+      console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
+  }
   );
-  });
   ```
 
 
@@ -529,11 +530,10 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
   
   ```js
-      downloadTask.on('complete', function callback() {
-          console.info('Download task completed.');
-      }
+  downloadTask.on('complete', function callback() {
+      console.info('Download task completed.');
+  }
   );
-  });
   ```
 
 
@@ -557,11 +557,10 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
   
   ```js
-      downloadTask.off('complete', function callback() {
-          console.info('Download task completed.');
-      }
+  downloadTask.off('complete', function callback() {
+      console.info('Download task completed.');
+  }
   );
-  }); 
   ```
 
 
@@ -591,11 +590,10 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
   
   ```js 
-      downloadTask.on('fail', function callBack(err) {
-          console.info('Download task failed. Cause:' + err);
-      }
+  downloadTask.on('fail', function callBack(err) {
+      console.info('Download task failed. Cause:' + err);
+  }
   );
-  });
   ```
 
 
@@ -625,11 +623,10 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
   
   ```js
-      downloadTask.off('fail', function callBack(err) {
-          console.info('Download task failed. Cause:' + err);
-      } 
+  downloadTask.off('fail', function callBack(err) {
+      console.info('Download task failed. Cause:' + err);
+  } 
   );
-  });
   ```
 
 
