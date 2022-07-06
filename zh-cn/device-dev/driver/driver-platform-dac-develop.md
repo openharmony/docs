@@ -85,6 +85,8 @@ DAC模块适配包含以下四个步骤：
 3. 实例化核心层接口函数。
 4. 驱动调试。
 
+---
+
 1.  实例化驱动入口：
 
     驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会汇总所有加载的驱动的HdfDriverEntry对象入口，形成一个类似数组的段地址空间，方便上层调用。
