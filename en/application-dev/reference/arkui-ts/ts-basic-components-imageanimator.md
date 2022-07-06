@@ -54,7 +54,7 @@ ImageAnimator()
 ## Events
 
 | Name | Description |
-| -------- | -------- | -------- |
+| -------- | -------- | 
 | onStart() =&gt; void | Triggered when the animation starts to play. |
 | onPause() =&gt; void | Triggered when the animation playback is paused. |
 | onRepeat() =&gt; void | Triggered when the animation playback is repeated. |

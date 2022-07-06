@@ -91,7 +91,7 @@ DevHandle SpiOpen(const struct SpiDevInfo *info);
 
 ```
 struct SpiDevInfo spiDevinfo;       /* SPI设备描述符 */
-DevHandle spiHandle = NULL; /* SPI设备句柄  */
+DevHandle spiHandle = NULL;         /* SPI设备句柄  */
 spiDevinfo.busNum = 0;              /* SPI设备总线号 */
 spiDevinfo.csNum = 0;               /* SPI设备片选号 */
 

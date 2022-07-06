@@ -23,11 +23,9 @@ Based on the unified user authentication framework, the system can be extended t
 
 ```undefined
 //base/user_iam
-├── auth_executor_mgr	# Authentication executor management part, which supports unified authentication resource management and scheduling
+├── user_auth_framework	# User authentication framework, including user authentication, credential management and executor management
 ├── face_auth			# Facial authentication module, which connects to the authentication executor management part and supports facial information recording, deletion, and verification
 ├── pin_auth 			# Password authentication module, which connects to the authentication executor management part and supports password recording, deletion, and verification
-├── user_auth			# Unified user authentication part
-└── user_idm 			# User credential management part
 
 ```
 
@@ -45,12 +43,12 @@ Based on the unified user authentication framework, the system can be extended t
 
 ## Repositories Involved
 
-[useriam_auth_executor_mgr](https://gitee.com/openharmony/useriam_auth_executor_mgr)
-
-[useriam_user_idm](https://gitee.com/openharmony/useriam_user_idm)
-
-[useriam_user_auth](https://gitee.com/openharmony/useriam_user_auth)
+[useriam_user_auth_framework](https://gitee.com/openharmony/useriam_user_auth_framework)
 
 [useriam_pin_auth](https://gitee.com/openharmony/useriam_pin_auth)
 
-[useriam_faceauth](https://gitee.com/openharmony/useriam_faceauth)
+[useriam_face_auth](https://gitee.com/openharmony/useriam_face_auth)
+
+[drivers_interface](https://gitee.com/openharmony/drivers_interface)
+
+[drivers_peripheral](https://gitee.com/openharmony/drivers_peripheral)

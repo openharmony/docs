@@ -1,12 +1,13 @@
 # Page Transition
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 Customize the page transition animations by configuring the page entrance and exit components in the global **pageTransition** method.
 
+## APIs
 
 | Name | Parameter | Description |
 | -------- | -------- | -------- |
@@ -15,7 +16,7 @@ Customize the page transition animations by configuring the page entrance and ex
 
 
 - Animation parameters
-    | Name | Type | Default Value | Mandatory | Description |
+  | Name | Type | Default Value | Mandatory | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | type | RouteType | - | No | If this parameter is not set, the reverse playback effect as pop switches to push is used. |
   | duration | number | 1000 | No | Animation duration, in ms. |
@@ -24,7 +25,7 @@ Customize the page transition animations by configuring the page entrance and ex
 
 
 - RouteType enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Pop | When page A jumps to page B, page A is Exit+Push, and page B is Enter+Push. |
   | Push | When page B returns to page A, page A is Enter+Pop, and page B is Exit+Pop. |
@@ -42,7 +43,7 @@ The **PageTransitionEnter** and **PageTransitionExit** components support the fo
 | opacity | number | 1 | No | Opacity, which is the opacity value of the start point of entrance or the end point of exit. |
 
 - SlideEffect enums
-    | Name | Description |
+  | Name | Description |
   | -------- | -------- |
   | Left | When set to Enter, slides in from the left. When set to Exit, slides out to the left. |
   | Right | When set to Enter, slides in from the right. When set to Exit, slides out to the right. |
@@ -56,8 +57,8 @@ The PageTransitionEnter and PageTransitionExit components support the following 
 
 | Event | Description |
 | -------- | -------- |
-| onEnter(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1. |
-| onExit(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1. |
+| onEnter(type: RouteType, progress: number) =&gt; void | Callback invoked when page entrance occurs. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1. |
+| onExit(type: RouteType, progress: number) =&gt; void | Callback invoked when page exit occurs. The input parameter is the normalized progress of the current exit animation. The value range is 0–1. |
 
 
 ## Example

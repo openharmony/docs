@@ -38,7 +38,6 @@ struct DragExample {
   @State text: string = ''
   @State bool: boolean = false
   @State bool1: boolean = false
-  @State size: string = ''
   @State appleVisible: Visibility = Visibility.Visible
   @State orangeVisible: Visibility = Visibility.Visible
   @State bananaVisible: Visibility = Visibility.Visible

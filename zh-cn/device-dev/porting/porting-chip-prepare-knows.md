@@ -43,7 +43,7 @@ vendor目录规则：vendor/{产品解决方案厂商}/{产品名称}。以华�
   
 ```
 vendor                       # 产品解决方案厂商
-└── example                   # 产品解决方案厂商名称
+└── example                  # 产品解决方案厂商名称
     └── wifiiot              # 产品名称
           ├── hals           # 产品解决方案厂商OS适配
           ├── BUILD.gn       # 产品编译脚本

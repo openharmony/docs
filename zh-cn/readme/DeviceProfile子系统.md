@@ -179,15 +179,13 @@ subscribeInfos.emplace_back(info2);
 
 std::list<ProfileEvent> failedEvents;
 // 执行订阅接口
-DistributedDeviceProfileClient::GetInstance().SubscribeProfileEvents(subscribeInfos,
-    callback, failedEvents);
+DistributedDeviceProfileClient::GetInstance().SubscribeProfileEvents(subscribeInfos, callback, failedEvents);
 sleep(SUBSCRIBE_SLEEP_TIME);
 std::list<ProfileEvent> profileEvents;
 profileEvents.emplace_back(ProfileEvent::EVENT_PROFILE_CHANGED);
 failedEvents.clear();
 // 解除订阅
-DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEvents,
-    callback, failedEvents);
+DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEvents, callback, failedEvents);
 ```
 
 ## 相关仓<a name="section176111311166"></a>

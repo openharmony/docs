@@ -5,6 +5,8 @@
 
 当设备需要设置不同的振动效果时，可以调用Vibrator模块，例如：设备的按键可以设置不同强度和不同时长的振动，闹钟和来电可以设置不同强度和时长的单次或周期振动。
 
+详细的接口介绍请参考[Vibrator接口](../reference/apis/js-apis-vibrator.md)。
+
 
 ## 接口说明
 
@@ -24,36 +26,36 @@
 
    ```
    "reqPermissions": [
-     {
-         "name": "ohos.permission.ACCELEROMETER",
-         "reason": "", 
-         "usedScene": {
-         "ability": [
-             ".MainAbility"
-         ],
-         "when": "inuse"
-       }
-     },
-     {
-         "name": "ohos.permission.VIBRATE",
-         "reason": "", 
-         "usedScene": {
-         "ability": [
-             ".MainAbility"
-         ],
-         "when": "inuse"
-       }
-     },
-     {
-         "name": "ohos.permission.ACTIVITY_MOTION",
-         "reason": "", 
-         "usedScene": {
-         "ability": [
-             ".MainAbility"
-         ],
-         "when": "inuse"
-       }
-     },
+       {
+           "name": "ohos.permission.ACCELEROMETER",
+           "reason": "",
+           "usedScene": {
+               "ability": [
+                   ".MainAbility"
+               ],
+               "when": "inuse"
+           }
+       },
+       {
+           "name": "ohos.permission.VIBRATE",
+           "reason": "",
+           "usedScene": {
+               "ability": [
+                   ".MainAbility"
+               ],
+               "when": "inuse"
+           }
+       },
+       {
+           "name": "ohos.permission.ACTIVITY_MOTION",
+           "reason": "",
+           "usedScene": {
+               "ability": [
+                   ".MainAbility"
+               ],
+               "when": "inuse"
+           }
+       },
    ]
    ```
 
@@ -61,12 +63,12 @@
 
    ```
    import vibrator from "@ohos.vibrator"
-   vibrator.vibrate(1000).then((error)=>{
-       if(error){//调用失败，打印error.code和error.message
-          Console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);  
-       }else{//调用成功,设备开始振动
+   vibrator.vibrate(1000).then((error) => {
+       if (error) { //调用失败，打印error.code和error.message
+          Console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);  
+       } else { //调用成功,设备开始振动
           Console.log("Promise returned to indicate a successful vibration.")  
-       };
+       }
    })
    ```
 
@@ -74,12 +76,12 @@
 
    ```
    import vibrator from "@ohos.vibrator"
-   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error)=>{
-      if(error){//调用失败，打印error.code和error.message
-          Console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);
-      }else{//调用成功，设备停止振动
+   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error) => {
+      if (error) { //调用失败，打印error.code和error.message
+          Console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);
+      } else { //调用成功，设备停止振动
           Console.log("Promise returned to indicate successful.");
-      };
+      }
    })
    ```
 

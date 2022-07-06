@@ -292,8 +292,8 @@
 
      另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md)。
    
-   ```js
-   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"};
+   ```
+   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    ```
 
 2. 相对时间格式化。

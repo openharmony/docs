@@ -21,8 +21,6 @@
 @Entry
 @Component
 struct MotionPathExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
   @State toggle: boolean = true
 
   build() {

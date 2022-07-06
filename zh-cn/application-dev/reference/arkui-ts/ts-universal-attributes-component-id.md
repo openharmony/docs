@@ -171,17 +171,17 @@ struct IdExample {
         console.info(getInspectorTree())
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
-          sendEventByKey("longclick", 11, "")
+          sendEventByKey("longClick", 11, "")
         }, 2000)
       }).id('click')
 
       Button() {
-        Text('longclick').fontSize(25).fontWeight(FontWeight.Bold)
+        Text('longClick').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .gesture(
       LongPressGesture().onActionEnd(() => {
         console.info('long clicked')
-        this.text = "Button 'longclick' is longclicked"
+        this.text = "Button 'longClick' is longclicked"
         setTimeout(() => {
           let rect = Utils.getComponentRect('onTouch')
           let touchPoint: TouchObject = {
@@ -196,7 +196,7 @@ struct IdExample {
           touchPoint.type = TouchType.Up
           sendTouchEvent(touchPoint)
         }, 2000)
-      })).id('longclick')
+      })).id('longClick')
 
       Button() {
         Text('onTouch').fontSize(25).fontWeight(FontWeight.Bold)

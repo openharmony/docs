@@ -116,15 +116,15 @@ app实例：
     "bundleName": "com.example.myapplication",
     "vendor": "example",
     "version": {
-      "code": 1,
-      "name": "1.0"
+        "code": 1,
+        "name": "1.0"
     },
     "apiVersion": {
-      "compatible": 4,
-      "target": 5,
-      "releaseType": "Beta1"
+        "compatible": 4,
+        "target": 5,
+        "releaseType": "Beta1"
     }
-  }
+}
 ```
 
 ### deviceConfig对象的内部结构
@@ -187,24 +187,24 @@ deviceConfig示例：
 
 ```json
 "deviceConfig": {
-	"default": {
-		"process": "com.example.test.example",
-		"supportBackup": false,
-		"network": {
-			"cleartextTraffic": true,
-			"securityConfig": {
-				"domainSettings": {
-					"cleartextPermitted": true,
-					"domains": [
-						{
-							"subdomains": true,
-							"name": "example.ohos.com"
-						}
-					]
-				}
-			}
-		}
-	}
+    "default": {
+        "process": "com.example.test.example",
+        "supportBackup": false,
+        "network": {
+            "cleartextTraffic": true,
+            "securityConfig": {
+                "domainSettings": {
+                    "cleartextPermitted": true,
+                    "domains": [
+                        {
+                            "subdomains": true,
+                            "name": "example.ohos.com"
+                        }
+                    ]
+                }
+            }
+        }
+    }
 }
 ```
 
@@ -240,33 +240,33 @@ module示例：
 
 ```json
 "module": {
-	"mainAbility": "MainAbility",
-	"package": "com.example.myapplication.entry",
-	"name": ".MyOHOSAbilityPackage",
-	"description": "$string:description_application",
-	"supportModes": [
-		"drive"
-	],
-	"deviceType": [
-		"car"
-	],
-	"distro": {
-		"moduleName": "ohos_entry",
-		"moduleType": "entry"
-	},
-	"abilities": [
-		...
-	],
-	"shortcuts": [
-		...
-	],
-	"js": [
-		...
-	],
-	"reqPermissions": [
-		...
-	],
-	"colorMode": "light"
+    "mainAbility": "MainAbility",
+    "package": "com.example.myapplication.entry",
+    "name": ".MyOHOSAbilityPackage",
+    "description": "$string:description_application",
+    "supportModes": [
+        "drive"
+    ],
+    "deviceType": [
+        "car"
+    ],
+    "distro": {
+        "moduleName": "ohos_entry",
+        "moduleType": "entry"
+    },
+    "abilities": [
+      ...
+    ],
+    "shortcuts": [
+      ...
+    ],
+    "js": [
+      ...
+    ],
+    "reqPermissions": [
+      ...
+    ],
+    "colorMode": "light"
 }
 ```
 
@@ -283,9 +283,9 @@ distro示例：
 
 ```json
 "distro": {
-	"moduleName": "ohos_entry",
-	"moduleType": "entry",
-	"installationFree": true,
+    "moduleName": "ohos_entry",
+    "moduleType": "entry",
+    "installationFree": true,
     "deliveryWithInstall": true
 }
 ```
@@ -398,8 +398,7 @@ abilities示例：
         "label": "$media:example",
         "launchType": "standard",
         "orientation": "unspecified",
-        "permissions": [
-        ], 
+        "permissions": [], 
         "visible": true,
         "skills": [
             {
@@ -488,13 +487,13 @@ skills示例：
         ],
         "uris": [
             {
-                 "scheme": "http",
-                 "host": "www.example.com",
-                 "port": "8080",
-                 "path": "query/student/name",
-                 "type": "text/*"
-             }
-         ]
+                "scheme": "http",
+                "host": "www.example.com",
+                "port": "8080",
+                "path": "query/student/name",
+                "type": "text/*"
+            }
+        ]
     }
 ]
 ```
@@ -750,18 +749,18 @@ commonEvents示例：
 
 ```json
 "commonEvents": [
-	{
-		"name":"MainAbility",
-		"permission": "string",
-		"data":[
-			"string",
-			"string"
-		],
-		"events": [
-			"string",
-			"string"
-		]
-	}
+    {
+        "name":"MainAbility",
+        "permission": "string",
+        "data":[
+            "string",
+            "string"
+        ],
+        "events": [
+            "string",
+            "string"
+        ]
+    }
 ]
 ```
 
@@ -774,8 +773,8 @@ commonEvents示例：
 
 ```json
 "testRunner": {
-	"name": "myTestRUnnerName",
-	"srcPath": "etc/test/TestRunner.ts"
+    "name": "myTestRUnnerName",
+    "srcPath": "etc/test/TestRunner.ts"
 }
 ```
 

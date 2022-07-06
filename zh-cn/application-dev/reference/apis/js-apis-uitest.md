@@ -1001,6 +1001,54 @@ async function demo() {
     }
 ```
 
+### pinchOut<sup>9+</sup>
+
+pinchOut(scale: number): Promise\<void>
+
+将控件按指定的比例进行捏合放大。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明       |
+| ------ | ----------- | ---- | ---------- |
+| scale  | number      | 是   | 指定比例   |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let image = await driver.findComponent(BY.type('image'))
+    await image.pinchOut(1.5)
+    }
+```
+
+### pinchIn<sup>9+</sup>
+
+pinchIn(scale: number): Promise\<void>
+
+将控件按指定的比例进行捏合缩小。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明       |
+| ------ | ----------- | ---- | ---------- |
+| scale  | number      | 是   | 指定比例   |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let image = await driver.findComponent(BY.type('image'))
+    await image.pinchIn(0.5)
+    }
+```
+
 ## UiDriver
 
 UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等API。
@@ -1230,6 +1278,32 @@ async function demo() {
     await driver.triggerKey(123)
 }
 ```
+
+### triggerCombineKeys<sup>9+</sup>
+
+triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
+
+UiDriver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，UiDriver对象找到组合键并点击ctrl+c。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                |
+| ------- | ------ | ---- | ------------------- |
+| key0    | number | 是   | 指定的第一个key值。 |
+| key1    | number | 是   | 指定的第二个key值。 |
+| key2    | number | 否   | 指定的第三个key值。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.triggerCombineKeys(2072, 2047, 2035)
+}
+```
+
 
 ### click
 

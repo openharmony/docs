@@ -23,7 +23,7 @@ struct CountDownTimerComponent {
     @State countDownFrom: number = 10
     private timerId: number = -1
 
-    private aboutToAppear(): void  {
+    aboutToAppear(): void  {
         this.timerId = setInterval(() => {
             if (this.countDownFrom <= 1) {
                 clearTimeout(this.timerId)
@@ -32,7 +32,7 @@ struct CountDownTimerComponent {
         }, 1000) // decr counter by 1 every second
     }
 
-    private aboutToDisappear(): void {
+    aboutToDisappear(): void {
         if (this.timerId > 0) {
             clearTimeout(this.timerId)
             this.timerId = -1
