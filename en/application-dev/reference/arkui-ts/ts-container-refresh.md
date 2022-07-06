@@ -15,7 +15,7 @@ This component supports only one child component.
 
 ## APIs
 
-Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number\}\)
+Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number | string\}\)
 
 - Parameters
 
