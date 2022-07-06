@@ -20,19 +20,21 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
 Asynchronously obtains information about all available volumes. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-- Return value
+**Return value**
 
   | Type                              | Description                      |
   | ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   volumemanager.getAllVolumes().then(function(volumes){
-      // do something
+      // Do something.
   });
   ```
 
@@ -42,20 +44,22 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
 Asynchronously obtains information about all available volumes. This API uses a callback to return the result.
 
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-- Parameters
+**Parameters**
 
   | Name  | Type                                             | Mandatory| Description                                |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
   | callback | callback:AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return the volume information obtained.|
-  
-- Example
+
+**Example**
 
   ```js
   let uuid = "";
   volumemanager.getAllVolumes(function(error, volumes){
-      // do something
+      // Do something.
   });
   ```
 
@@ -66,26 +70,28 @@ mount(volumeId: string): Promise&lt;boolean&gt;
 
 Asynchronously mounts a volume. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
+
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-- Parameters
+**Parameters**
 
   | Name  | Type  | Mandatory| Description|
   | -------- | ------ | ---- | ---- |
   | volumeId | string | Yes  | Volume ID.|
 
-- Return value
+**Return value**
 
   | Type                  | Description      |
   | ---------------------- | ---------- |
   | Promise&lt;boolean&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   let volumeId = "";
   volumemanager.mount(volumeId).then(function(flag){
-      // do something
+      // Do something.
   });
   ```
 
@@ -95,21 +101,23 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 Asynchronously obtains the available space of the specified volume. This API uses a callback to return the result.
 
+**Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
+
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-- Parameters
+**Parameters**
 
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
   | callback | callback:AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   let volumeId = "";
   volumemanager.mount(volumeId, function(error, flag){
-      // do something
+      // Do something.
   });
   ```
 
@@ -119,26 +127,28 @@ unmount(volumeId: string): Promise&lt;boolean&gt;
 
 Asynchronously unmounts a volume. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
+
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-- Parameters
+**Parameters**
 
   | Name  | Type  | Mandatory| Description|
   | -------- | ------ | ---- | ---- |
   | volumeId | string | Yes  | Volume ID.|
 
-- Return value
+**Return value**
 
   | Type                  | Description      |
   | ---------------------- | ---------- |
   | Promise&lt;boolean&gt; | Promise used to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   let volumeId = "";
   volumemanager.unmount(volumeId).then(function(flag){
-      // do something
+      // Do something.
   });
   ```
 
@@ -148,21 +158,306 @@ unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
 
 Asynchronously unmounts a volume. This API uses a callback to return the result.
 
+**Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
+
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-- Parameters
+**Parameters**
 
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
   | callback | callback:AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the execution result.|
 
-- Example
+**Example**
 
   ```js
   let volumeId = "";
   volumemanager.unmount(volumeId, function(error, flag){
-      // do something
+      // Do something.
+  });
+  ```
+
+## volumemanager.getVolumeByUuid
+
+getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
+
+Asynchronously obtains volume information based on the Universally unique identifier (UUID). This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name  | Type  | Mandatory| Description|
+    | -------- | ------ | ---- | ---- |
+  | uuid | string | Yes  | UUID of the volume.|
+
+**Return value**
+
+  | Type                              | Description                      |
+    | ---------------------------------- | -------------------------- |
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the execution result.|
+
+**Example**
+
+  ```js
+  let uuid = "";
+  let volume = await volumemanager.getVolumeByUuid(uuid);
+  ```
+
+## volumemanager.getVolumeByUuid
+
+getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
+
+Asynchronously obtains volume information based on the UUID. This API uses a callback to return the result.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name   | Type                                                | Mandatory| Description                |
+  | -------- | ------------------------------------------------ | ---- | -------------------- |
+  | uuid | string                                                 | Yes  | UUID of the volume.                |
+  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+
+**Example**
+
+  ```js
+  let uuid = "";
+  volumemanager.getVolumeByUuid(uuid, (error, volume) => {
+      // Do something.    
+  });
+  ```
+
+## volumemanager.getVolumeById
+
+getVolumeById(id: string): Promise&lt;Volume&gt;
+
+Asynchronously obtains volume information based on the volume ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name   | Type   | Mandatory | Description|
+  | -------- | ------ | ---- | ---- |
+  | id | string | Yes  | Volume ID.|
+
+**Return value**
+
+  | Type                              | Description                      |
+  | ---------------------------------- | -------------------------- |
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the execution result.|
+
+**Example**
+
+  ```js
+  let id = "";
+  let volume = await volumemanager.getVolumeById(id);
+  ```
+
+## volumemanager.getVolumeById
+
+getVolumeById(id: string, callback: AsyncCallback&lt;Volume&gt;): void
+
+Asynchronously obtains volume information based on the volume ID. This API uses a callback to return the result.
+
+**Required permissions**: ohos.permission.STORAGE_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name   | Type                                                | Mandatory| Description                |
+    | -------- | ------------------------------------------------ | ---- | -------------------- |
+  | id | string                                              | Yes  | Volume ID.                |
+  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+
+**Example**
+
+  ```js
+  let id = "";
+  volumemanager.getVolumeById(id, (error, volume) => {
+      // Do something.    
+  });
+  ```
+
+## volumemanager.setVolumeDescription
+
+setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
+
+Asynchronously sets the volume description based on the UUID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name    | Type  | Mandatory| Description|
+  | --------- | ------ | ---- | ---- |
+  | uuid      | string | Yes  | UUID of the volume.|
+  | description | string | Yes  | Volume description.|
+
+**Return value**
+
+  | Type                   | Description                      |
+  | ---------------------- | -------------------------- |
+  | Promise&lt;void&gt; | Promise used to return the volume description.                  |
+
+**Example**
+
+  ```js
+  let uuid = "";
+  let description = "";
+  let bool = await volumemanager.setVolumeDescription(uuid, description);
+  ```
+
+## volumemanager.setVolumeDescription
+
+setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&lt;void&gt;): void
+
+Asynchronously sets the volume description based on the UUID. This API uses a callback to return the result.
+
+**Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name     | Type                                    | Mandatory| Description             |
+  | ---------- | --------------------------------------- | ---- | ---------------- |
+  | uuid       | string                                  | Yes  | UUID of the volume.           |
+  | description | string                                 | Yes  | Volume description.           |
+  | callback   | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the volume description.|
+
+**Example**
+
+  ```js
+  let uuid = "";
+  let description = "";
+  volumemanager.setVolumeDescription(uuid, description, (error, bool) => {
+      // Do something.    
+  });
+  ```
+
+## volumemanager.format
+
+format(volId: string): Promise&lt;void&gt;
+
+Asynchronously formats a volume. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MOUNT_FORMAT_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name      | Type  | Mandatory| Description|
+  | ----------- | ------ | ---- | ---- |
+  | volId    | string | Yes  | Volume ID.|
+
+**Return value**
+
+  | Type                   | Description                      |
+    | --------------------- | ----------------------- |
+  | Promise&lt;void&gt; | Promise used to return the result.           |
+
+**Example**
+
+  ```js
+  let volId = "";
+  let bool = await volumemanager.format(volId);
+  ```
+
+## volumemanager.format
+
+format(volId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Asynchronously formats a volume. This API uses a callback to return the result.
+
+**Required permissions**: ohos.permission.MOUNT_FORMAT_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name     | Type                                    | Mandatory| Description             |
+    | -------- | --------------------------------------- | ---- | ---------------- |
+  | volId   | string                                  | Yes  | Volume ID.           |
+  | callback   | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result. |
+
+**Example**
+
+  ```js
+  let volId = "";
+  volumemanager.format(volId, (error, bool) => {
+      // Do something.    
+  });
+  ```
+
+## volumemanager.partition
+
+partition(volId: string, fstype: string): Promise&lt;void&gt;
+
+Asynchronously partitions a disk. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MOUNT_FORMAT_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name      | Type  | Mandatory| Description|
+    | ----------- | ------ | ---- | ---- |
+  | volId    | string | Yes  | ID of the disk to which the volume belongs.|
+  | fstype      | string | Yes  | Partition type.   |
+
+**Return value**
+
+  | Type                     | Description                      |
+   | --------------------- | ----------------------- |
+  | Promise&lt;void&gt;   | Promise used to return the result.             |
+
+**Example**
+
+  ```js
+  let volId = "";
+  let fstype = "";
+  let bool = await volumemanager.partition(volId, fstype);
+  ```
+
+## volumemanager.partition
+
+partition(volId: string, fstype : string, callback: AsyncCallback&lt;void&gt;): void
+
+Asynchronously partitions a disk. This API uses a callback to return the result.
+
+**Required permissions**: ohos.permission.MOUNT_FORMAT_MANAGER
+
+**System capability**: SystemCapability.FileManagement.StorageService.Volume
+
+**Parameters**
+
+  | Name     | Type                                  | Mandatory| Description             |
+  | -------- | --------------------------------------- | ---- | ---------------- |
+  | volId   | string                                  | Yes  | ID of the disk to which the volume belongs.     |
+  | fstype     | string                                  | Yes  | Partition type.          |
+  | callback | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.     |
+
+**Example**
+
+  ```js
+  let volId = "";
+  let fstype = "";
+  volumemanager.format(volId, fstype, (error, bool) => {
+      // Do something.    
   });
   ```
 
@@ -172,11 +467,11 @@ Asynchronously unmounts a volume. This API uses a callback to return the result.
 
 ### Attributes
 
-| Name       | Type   | Description                |
+| Name        | Type   | Description                |
 | ----------- | ------- | -------------------- |
-| id          | number  | Volume ID.                |
-| uuid        | string  | Universally unique identifier (UUID) of the volume.              |
+| id          | string  | Volume ID.                |
+| uuid        | string  | UUID of the volume.              |
 | description | string  | Description of the volume.          |
-| removable | boolean | Whether the volume is a removable storage device.|
-| state       | int     | Current volume status.          |
+| removable   | boolean | Whether the volume is a removable storage device.|
+| state       | number  | Current volume status.          |
 | path        | string  | Mount address of the volume.        |
