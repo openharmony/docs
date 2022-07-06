@@ -174,8 +174,8 @@ LOSCFG_SOC_ASR5822S=y
      module_name = get_path_info(rebase_path("."), "name")
      module_group(module_name) {
        modules = [
-         "dev_wifi_a",                     --- 单板模块
-         "hcs",                            --- hcs文件的对应模块
+         "dev_wifi_a",                     # 单板模块
+         "hcs",                            # hcs文件的对应模块
        ]
      }
    }
@@ -203,17 +203,17 @@ LOSCFG_SOC_ASR5822S=y
    import("//kernel/liteos_m/liteos.gni")
 
    config("public") {
-     include_dirs = [ "." ]                 --- 公共头文件
+     include_dirs = [ "." ]                 # 公共头文件
    }
 
-   kernel_module("asr_startup") {           --- 编译的模块
-     sources = [                            --- 编译的源文件
+   kernel_module("asr_startup") {           # 编译的模块
+     sources = [                            # 编译的源文件
          "startup.c",
          "board.c",
          "startup_cm4.S",
      ]
 
-     include_dirs = [                       --- 模块内使用到的头文件
+     include_dirs = [                       # 模块内使用到的头文件
        "...",
      ]
    }
@@ -223,10 +223,10 @@ LOSCFG_SOC_ASR5822S=y
 
    ```
    config("public") {
-     include_dirs = []                       --- 公共头文件
-     ldflags = []                            --- 链接参数，包括ld文件
-     libs = []                               --- 链接库
-     defines = []                            --- 定义
+     include_dirs = []                       # 公共头文件
+     ldflags = []                            # 链接参数，包括ld文件
+     libs = []                               # 链接库
+     defines = []                            # 定义
    ```
 
    ![](../public_sys-resources/icon-note.gif) **说明：** 
@@ -306,8 +306,8 @@ if (ret != LOS_OK) {
 在初始化之后，每个shell命令需要进行注册，例如：`vendor/asrmicro/wifi_demo/tests/wifi/wifi_app.c`：
 
 ```
-osCmdReg(CMD_TYPE_STD, "wifi_open", 0, (CMD_CBK_FUNC)ap_conn_func);    --- 连接AP的指令，这里可以带参
-osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   --- 断开指令
+osCmdReg(CMD_TYPE_STD, "wifi_open", 0, (CMD_CBK_FUNC)ap_conn_func);    // 连接AP的指令，这里可以带参
+osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   // 断开指令
 ```
 
 ### 内核启动适配
@@ -316,21 +316,21 @@ osCmdReg(CMD_TYPE_EX, "wifi_close", 0, (CMD_CBK_FUNC)ap_close_func);   --- 断�
 注册中断，可参考`//device/soc/asrmicro/asr582x/liteos_m/sdk/startup/board.c`:
 
 ```
-ArchHwiCreate(UART1_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,UART1_IRQHandler,0);   --- UART中断
-ArchHwiCreate(GPIO_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,GPIO_IRQHandler,0);     --- GPIO中断
+ArchHwiCreate(UART1_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,UART1_IRQHandler,0);   // UART中断
+ArchHwiCreate(GPIO_IRQn,configLIBRARY_NORMAL_INTERRUPT_PRIORITY,0,GPIO_IRQHandler,0);     // GPIO中断
 ```
 
 内核初始化示例如下：
 ```
-osStatus_t ret = osKernelInitialize();                                                    --- 内核初始化
+osStatus_t ret = osKernelInitialize();                                                    // 内核初始化
 
 if(ret == osOK)
 {
-    threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task);                   --- 创建init线程
+    threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task);                   // 创建init线程
 
     if(threadId!=NULL)
     {
-        osKernelStart();                                                                  --- 线程调度
+        osKernelStart();                                                                  // 线程调度
     }
 }
 ```
@@ -339,9 +339,9 @@ if(ret == osOK)
 
 ```
 ...
-DeviceManagerStart();           --- HDF初始化
+DeviceManagerStart();           // HDF初始化
 
-OHOS_SystemInit();              --- OpenHarmony系统组件初始化
+OHOS_SystemInit();              // OpenHarmony系统组件初始化
 ....
 ```
 
@@ -439,14 +439,14 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
    ```
    controller_uart0 :: uart_controller {
        match_attr = "asr582x_uart_0";
-       port = 0;                       /* UART_ID_0 */
+       port = 0;                        /* UART_ID_0 */
 
-       pin_tx_pin = 0;                /* IO_PIN_10 */
+       pin_tx_pin = 0;                  /* IO_PIN_10 */
        pin_tx_mux = 25;                 /* IO_MUX_2  */
 
-       pin_rx_pin = 1;                /* IO_PIN_11 */
+       pin_rx_pin = 1;                  /* IO_PIN_11 */
        pin_rx_mux = 25;                 /* IO_MUX_2 */
-       tx_rx = 3;                     /* TX_RX MODE */
+       tx_rx = 3;                       /* TX_RX MODE */
    }
    ```
 
@@ -598,7 +598,7 @@ dsoftbus组件的选项配置如下：
 
 ```
 declare_args() {
-  asr_dsoftbus_test = true              --- 打开dsoftbus demo编译
+  asr_dsoftbus_test = true              # 打开dsoftbus demo编译
 }
 ```
 
@@ -610,7 +610,7 @@ declare_args() {
     "enable": "true",
     "test_modules": [
         "wifi_test",
-        "dsoftbus_test"                 --- 打开dsoftbus_test模块
+        "dsoftbus_test"                 # 打开dsoftbus_test模块
     ]
     }
 ]
@@ -626,7 +626,7 @@ dsoftbus组件的运行需至少预留80KB RAM。如资源不够，可对其它�
 `//kernel_liteos_m/blob/master/components/net/lwip-2.1/porting/include/lwip/lwipopts.h`：
 
 ```
-#define TCPIP_THREAD_STACKSIZE          0x2000              --- 缩小TCPIP任务栈大小
+#define TCPIP_THREAD_STACKSIZE          0x2000              // 缩小TCPIP任务栈大小
 ```
 
 在communication_dsoftbus仓中，加入了-fPIC编译选项，这样会让编译器产生与位置无关代码，并使用相对地址，但是在LiteOS-M核中使用的是静态库，不推荐使用。
