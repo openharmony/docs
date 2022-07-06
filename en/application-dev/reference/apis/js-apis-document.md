@@ -1,8 +1,8 @@
 # File Interaction
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-- The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-- The APIs of this module will be deprecated and are not recommended for use. An exception will be thrown if any of the APIs is called.
+> **NOTE**<br/>
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module will be deprecated and are not recommended for use. An exception will be thrown if any of the APIs is called.
 
 ## Modules to Import
 
@@ -12,109 +12,115 @@ import document from '@ohos.document';
 
 ## document.choose
 
-choose(type:string[]): Promise&lt;string&gt;
+choose(types? : string[]): Promise&lt;string&gt;
 
-Chooses a file of the specified type using the file manager. This method uses a promise to return the result.
+Chooses a file of the specified type using the file manager. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
   | Name| Type  | Mandatory| Description                        |
   | ------ | ------ | ---- | ---------------------------- |
-  | type   | string[] | No  | Type of the file to choose.|
+  | types   | string[] | No  | Type of the file to choose.|
 
-- Return value
+**Return value**
 
   | Type                 | Description          |
   | --------------------- | -------------- |
   | Promise&lt;string&gt; | Promise used to return the result. An error code is returned.|
 
-- Example
+**Example**
 
   ```js
-  await document.choose(type);
+  let types = [];
+  document.choose(types);
   ```
 ## document.choose
 
 choose(callback:AsyncCallback&lt;string&gt;): void
 
-Chooses a file using the file manager. This method uses an asynchronous callback to return the result.
+Chooses a file using the file manager. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
   | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. An error code is returned.|
 
-- Example
+**Example**
 
   ```js
-  await document.choose(function(err, uri) {
+  let uri = "";
+  document.choose(function(err, uri) {
         // Do something with the URI. 
   });
   ```
 ## document.choose
 
-choose(type:string[], callback:AsyncCallback&lt;string&gt;): void
+choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
-Chooses a file of the specified type using the file manager. This method uses an asynchronous callback to return the result.
+Chooses a file using the file manager. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | type     | string[]                      | No  | Type of the file to choose.|
+  | types    | string[]                      | No  | Type of the file to choose.|
   | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. An error code is returned.|
 
-- Example
+**Example**
 
   ```js
-  await document.choose(type, function(err, uri) {
+  let types = [];
+  let uri = "";
+  document.choose(types, function(err, uri) {
         // Do something with the URI. 
   });
   ```
 
 ## document.show
 
-show(url:string, type:string):Promise&lt;number&gt;
+show(uri:string, type:string):Promise&lt;void&gt;
 
-Opens a file. This method uses a promise to return the result.
+Opens a file. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
   | Name| Type  | Mandatory| Description                        |
   | ---- | ------ | ---- | ---------------------------- |
   | uri | string | Yes  | URI of the file to open.|
   | type | string | Yes  | Type of the file to open.|
 
-- Return value
+**Return value**
 
   | Type                 | Description        |
   | --------------------- | ------------ |
   | Promise&lt;void&gt; | Promise used to return the result. An error code is returned.|
 
-- Example
+**Example**
 
   ```js
-  await document.show(uri, type);
+  let type = "";
+  let uri = "";
+  document.show(uri, type);
   ```
 
 ## document.show
 
-show(url:string, type:string, callback:AsyncCallback&lt;void&gt;): void
+show(uri:string, type:string, callback:AsyncCallback&lt;void&gt;): void
 
-Opens a file. This method uses an asynchronous callback to return the result.
+Opens a file. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.FileManagement.File.FileIO
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
@@ -122,10 +128,12 @@ Opens a file. This method uses an asynchronous callback to return the result.
   | type | string | Yes  | Type of the file to open.|
   | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. An error code is returned.  |
 
-- Example
+**Example**
 
   ```js
-  await document.show(uri, type, function(err) {
+  let type = "";
+  let uri = "";
+  document.show(uri, type, function(err) {
         //do something
   });
   ```
