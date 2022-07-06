@@ -35,10 +35,10 @@
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.1.1&nbsp;Release | NA |
-| SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API&nbsp;Version&nbsp;8&nbsp;Release) | NA |
-| SDK | Ohos_sdk_public&nbsp;3.1.6.6 (API&nbsp;Version&nbsp;8&nbsp;Release) | Public SDK于7月6日更新发布 |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Beta3&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 |
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用 |
+| Public SDK | Ohos_sdk_public&nbsp;3.1.6.6 (API&nbsp;Version&nbsp;8&nbsp;Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>DevEco Studio 3.0 Beta4版本起，通过DevEco Studio获取的SDK默认为Public SDK。<br/>该版本Public SDK于7月6日单独更新发布。 |
+| Full SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API&nbsp;Version&nbsp;8&nbsp;Release) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Beta3&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用。 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
 
 
 ## 源码获取
@@ -119,7 +119,7 @@ repo forall -c 'git lfs pull'
 
 | 子系统名称 | 标准系统 | 轻量、小型系统 |
 | -------- | -------- | -------- |
-| SDK | SDK区分Full SDK和Public SDK进行发布。<br/>其中：<br/>- Public SDK面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio获取的SDK为Public SDK。<br/>- Full SDK面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要对DevEco Studio默认加载的SDK进行替换，可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。<br/>*说明：API Version 8的Public SDK首次于7月6日更新发布。* | NA |
+| SDK | SDK区分Full SDK和Public SDK进行发布。<br/>*说明：API Version 8的Public SDK首次于7月6日单独更新发布。* | NA |
 | 系统服务管理 | 新增添加群组校验机制。<br/>主要涉及如下需求：<br/>I52G5Q&nbsp;添加群组校验机制 | NA |
 | 电源管理 | 实现兼容亮度调节和电池信息查询API接口能力。<br/>主要涉及如下需求：<br/>I526UP&nbsp;支持\@system.brightness亮度调节接口<br/>I526UP&nbsp;支持\@system.battery电池信息查询接口 | NA |
 | 包管理 | 实现查询指定应用是否安装接口能力。<br/>主要涉及如下需求：<br/>I56EWD&nbsp;支持对测试框架的配置<br/>I55RZJ&nbsp;查询指定应用是否安装 | NA |
