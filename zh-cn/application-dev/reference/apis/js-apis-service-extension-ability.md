@@ -202,6 +202,8 @@ onReconnect(want: Want): void;
 
 onConfigurationUpdated(config: Configuration): void;
 
+当Extension更新配置信息时调用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
