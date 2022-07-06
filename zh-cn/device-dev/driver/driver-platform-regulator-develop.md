@@ -129,12 +129,12 @@ Regulator模块适配包含以下四个步骤：
            device_regulator :: device {
                device0 :: deviceNode {	// 为每一个Regulator控制器配置一个HDF设备节点，存在多个时添加，否则不用
                    policy = 1;	        // 2：用户态可见；1：内核态可见；0：不需要发布服务
-                   priority = 50;	// 驱动启动优先级
+                   priority = 50;	    // 驱动启动优先级
                    permission = 0644;	// 驱动创建设备节点权限
                    /* 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致 */
                    moduleName = "HDF_PLATFORM_REGULATOR_MANAGER";		
                    serviceName = "HDF_PLATFORM_REGULATOR_MANAGER";		//【必要且唯一】驱动对外发布服务的名称
-                  /* 【必要】用于配置控制器私有数据，要与regulator_config.hcs中对应控制器保持一致，具体的控制器信息在regulator_config.hcs中 */
+                   /* 【必要】用于配置控制器私有数据，要与regulator_config.hcs中对应控制器保持一致，具体的控制器信息在regulator_config.hcs中 */
                    deviceMatchAttr = "hdf_platform_regulator_manager";
                }
                device1 :: deviceNode {
@@ -215,8 +215,8 @@ Regulator模块适配包含以下四个步骤：
         };
         
         struct RegulatorDesc {
-            const char *name;              /* regulator名称 */
-            const char *parentName;        /* regulator父节点名称 */
+            const char *name;                /* regulator名称 */
+            const char *parentName;          /* regulator父节点名称 */
             struct RegulatorConstraints constraints;    /* regulator约束信息 */
             uint32_t minUv;                  /* 最小输出电压值 */
             uint32_t maxUv;                  /* 最大输出电压值 */
