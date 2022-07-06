@@ -1333,7 +1333,7 @@ videoPlayer.setSpeed(speed).then() => {
 
 selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
 
-通过回调方式设置码率。
+通过回调方式设置码率，通过[availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>)获取当前码流支持的Bitrate。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1392,7 +1392,7 @@ videoPlayer.selectBitrate(bitrate).then() => {
 
 on(type: 'playbackCompleted', callback: Callback\<void>): void
 
-开始监听视频播放完成事件，通过[availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>)获取当前码流支持的Bitrate。
+开始监听视频播放完成事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1521,7 +1521,7 @@ on(type: 'availableBitrateCollected', callback: (bitrates: Array<number>) => voi
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 视频播放码率上报事件回调类型，支持的事件：'availableBitrateCollected'，只在开始播放时候上报一次 |
-| callback | function | 是   | 视频播放码率事件回调方法，使用Array数组存放支持的码率。      |
+| callback | function | 是   | 视频播放码率事件回调方法，使用数组存放支持的码率。      |
 
 **示例：**
 
@@ -1875,7 +1875,7 @@ audioRecorder.prepare();                                                  // pre
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[ContainerFormatType ](#containerformattype8)替代。
+> 从 API Version 8 开始废弃，建议使用[ContainerFormatType](#containerformattype8)替代。
 
 表示音频封装格式的枚举。
 
