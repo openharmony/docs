@@ -9,12 +9,13 @@
 import image from '@ohos.multimedia.image';
 ```
 
-## image.createPixelMap<sup>8+</sup>
+## image.createPixelMap<sup>6+</sup>
+
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
 通过属性创建PixelMap，通过Promise返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -46,7 +47,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 通过属性创建PixelMap，通过回调函数返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -72,7 +73,7 @@ image.createPixelMap(color, opts, (pixelmap) => {
 
  ### 属性
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                    | 类型    | 可读 | 可写 | 说明                       |
 | ----------------------- | ------- | ---- | ---- | -------------------------- |
@@ -84,7 +85,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -115,7 +116,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -143,7 +144,7 @@ readPixels(area: PositionArea): Promise\<void>
 
 读取区域内的图片数据，使用Promise形式返回读取结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -174,7 +175,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取区域内的图片数据，使用callback形式返回读取结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -210,7 +211,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 将PixelMap写入指定区域内，使用Promise形式返回写入结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：** 
 
@@ -264,7 +265,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 将PixelMap写入指定区域内，使用callback形式返回写入结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：** 
 
@@ -297,7 +298,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -330,7 +331,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -361,7 +362,7 @@ getImageInfo(): Promise\<ImageInfo>
 
 获取图像像素信息，使用Promise形式返回获取的图像像素信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -386,7 +387,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图像像素信息，使用callback形式返回获取的图像像素信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -408,7 +409,7 @@ getBytesNumberPerRow(): number
 
 获取图像像素每行字节数。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -427,13 +428,13 @@ image.createPixelMap(color, opts, (err,pixelmap) => {
 })
 ```
 
-### getPixelBytesNumber<sup>7+</sup>
+### getPixelBytesNumber<sup>9+</sup>
 
 getPixelBytesNumber(): number
 
 获取图像像素的总字节数。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -453,7 +454,7 @@ release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -482,7 +483,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放PixelMap对象，使用callback形式返回释放结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -505,13 +506,13 @@ image.createPixelMap(color, opts, (pixelmap) => {
 })
 ```
 
-## image.createImageSource
+## image.createImageSource<sup>9+</sup>
 
 createImageSource(uri: string): ImageSource
 
 通过传入的uri创建图片源实例。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -532,45 +533,40 @@ let path = this.context.getApplicationContext().fileDirs + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
-## image.createImageSource<sup>7+</sup>
+## image.CreateImageSource<sup>9+</sup>
 
-createImageSource(fd: number): ImageSource
+createImageSource(buf: ArrayBuffer): ImageSource
 
-通过传入文件描述符来创建图片源实例。
+基于增量缓冲区创建增量图片源。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| fd     | number | 是   | 文件描述符fd。 |
-
-**返回值：**
-
-| 类型                        | 说明                                         |
-| --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+| 参数名 | 类型        | 必填 | 说明   |
+| ------ | ----------- | ---- | ------ |
+| buf    | ArrayBuffer | 是   | 数组。 |
 
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(0);
+const buf = new ArrayBuffer(96);
+image.createImageSource(buf, () => { })
 ```
 
-## image.createIncrementalSource<sup>7+</sup>
+## image.CreateIncrementalSource<sup>6+</sup>
 
-function createIncrementalSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
+function CreateIncrementalSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 创建增量图片源。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
 | 参数名  | 类型                            | 必填 | 说明                                 |
 | ------- | ------------------------------- | ---- | ------------------------------------ |
-| buf     | ArrayBuffer                     | 是   | 数组                                 |
+| buf     | ArrayBuffer                     | 是   | 数组。                               |
 | options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
@@ -592,7 +588,7 @@ const imageSourceApi = image.createIncrementalSource(buf);
 
 ### 属性
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -604,7 +600,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 获取指定序号的图片信息，使用callback形式返回图片信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -631,7 +627,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图片信息，使用callback形式返回图片信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -653,7 +649,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 获取图片信息，使用Promise形式返回图片信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -684,7 +680,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
  **参数：**
 
@@ -714,7 +710,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
  **参数：**
 
@@ -735,13 +731,13 @@ imageSourceApi.getImageProperty("BitsPerSample",(error,data) => {
 })
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>9+</sup>
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
 获取图片指定属性键的值，callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -764,13 +760,13 @@ imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => {
 })
 ```
 
-### modifyImageProperty<sup>7+</sup>
+### modifyImageProperty<sup>9+</sup>
 
 modifyImageProperty(key: string, value: string): Promise<void>
 
 修改属性的值。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -795,13 +791,13 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc")
             })
 ```
 
-### modifyImageProperty<sup>7+</sup>
+### modifyImageProperty<sup>9+</sup>
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback<void>): void
 
 修改属性的值，callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -817,13 +813,13 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback<void>): 
 imageSourceApi.modifyImageProperty("ImageWidth", "abc",() => {})
 ```
 
-### updateData<sup>7+</sup>
+### updateData<sup>9+</sup>
 
 updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number): Promise<void>
 
 更新增量数据。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -850,13 +846,13 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
 ```
 
 
-### updateData<sup>7+</sup>
+### updateData<sup>6+</sup>
 
 updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback<void>): void
 
 更新增量数据。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -885,7 +881,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -915,7 +911,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -939,7 +935,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 通过图片解码参数创建PixelMap对象。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -963,7 +959,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片源实例，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -985,7 +981,7 @@ release(): Promise\<void>
 
 释放图片源实例，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **返回值：**
 
@@ -1009,7 +1005,7 @@ createImagePacker(): ImagePacker
 
 创建ImagePacker实例。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
 
@@ -1029,7 +1025,7 @@ const imagePackerApi = image.createImagePacker();
 
 ### 属性
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
@@ -1041,7 +1037,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 图片压缩或重新打包，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -1065,7 +1061,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -1099,7 +1095,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 图片压缩或重新打包，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -1127,7 +1123,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -1161,7 +1157,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片打包实例，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -1183,7 +1179,7 @@ release(): Promise\<void>
 
 释放图片打包实例，使用Promise形式返回释放结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
 
