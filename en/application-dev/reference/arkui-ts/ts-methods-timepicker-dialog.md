@@ -1,6 +1,6 @@
 # Time Picker Dialog Box
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 You can display a time picker in a dialog box to allow users to select a time from the given range, which is from 00:00 to 23:59 by default.
@@ -13,16 +13,16 @@ None
 
 show(options?: TimePickerDialogOptions)
 
-Defines and displays a time picker dialog box.
+Shows a time picker dialog box.
 
 - options parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | selected | Date | No| Current system time| Time of the selected item.|
-  | useMilitaryTime | boolean | No| false | Whether to display time in 24-hour format.|
-  | onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No| - | Triggered when the OK button in the dialog box is clicked.|
-  | onCancel | () => void | No| - | Triggered when the Cancel button in the dialog box is clicked.|
-  | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No| - | Triggered when the selected item in the picker changes.|
+ | Name | Type | Mandatory | Default Value | Description |
+ | -------- | -------- | -------- | -------- | -------- |
+ | selected | Date | No | Current system time | Time of the selected item. |
+ | useMilitaryTime | boolean | No | false | Whether to display time in 24-hour format. |
+ | onAccept | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No | - | Callback invoked when the OK button in the dialog box is clicked. |
+ | onCancel | () => void | No | - | Triggered when the Cancel button in the dialog box is clicked. |
+ | onChange | (value: [TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult)) => void | No | - | Callback invoked when the selected item in the picker changes. |
 
 ## Example
 
