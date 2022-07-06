@@ -30,7 +30,7 @@ Checkbox( name?: string,  group?: string )
 
 | 名称          | 参数类型 | 默认值 | 描述 |
 | ------------- | ------- | ------ | -------- |
-| select        | bool   | false | 设置多选框是否选中。 |
+| select        | boolean | false | 设置多选框是否选中。 |
 | selectedColor | Color | - | 设置多选框选中状态颜色。 |
 
 ## 事件
