@@ -1,7 +1,8 @@
 # 升级
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 升级范围：升级整个系统，包括内置的资源、预置应用；第三方的应用不在升级的范围。
 
@@ -932,6 +933,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 恢复出厂设置。使用callback异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
 
 **参数：**
@@ -955,6 +957,7 @@ factoryReset(): Promise\<void>
 恢复出厂设置。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
 **需要权限**：ohos.permission.FACTORY_RESET，该权限为系统权限
 
 **返回值:**
@@ -1384,7 +1387,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| eventClassify        |   EventClassify   | 是    | 事件类型  |
+| eventClassify        |   [EventClassify](#eventclassify)   | 是    | 事件类型  |
 | extraInfo         | string | 是    | 额外信息    |
 
 ## UpgradeFile
@@ -1395,7 +1398,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| fileType        |   ComponentType   | 是    | 文件类型  |
+| fileType        |   [ComponentType](#componenttype)   | 是    | 文件类型  |
 | filePath         | string | 是    | 文件路径    |
 
 ## UpgradeTaskCallback
