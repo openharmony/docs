@@ -2,7 +2,8 @@
 
 
 
-> **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -11,7 +12,7 @@ Provides the ability information.
 
 
 
- **System capability**: SystemCapability.BundleManager.BundleFramework
+**System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name                 | Type                                                    | Readable| Writable| Description                                     |
 | --------------------- | -------------------------------------------------------- | ---- | ---- | ----------------------------------------- |
@@ -43,3 +44,10 @@ Provides the ability information.
 | metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)> | Yes  | No  | Custom metadata of the ability.                      |
 | metaData<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | Yes  | No  | Metadata of the ability.                          |
 | enabled<sup>8+</sup>  | boolean                                                  | Yes  | No  | Whether the ability is enabled.                          |
+| supportWindowMode<sup>9+</sup>  | Array\<[SupportWindowMode](js-apis-Bundle.md)> | Yes  | No  | Window modes supported by the ability.                     |
+| maxWindowRatio<sup>9+</sup>  | number                                            | Yes  | No  | Maximum window ratio supported by the ability.                     |
+| minWindowRatio<sup>9+</sup>  | number                                            | Yes  | No  | Minimum window ratio supported by ability.                     |
+| maxWindowWidth<sup>9+</sup>  | number                                            | Yes  | No  | Maximum window width supported by the ability.                     |
+| minWindowWidth<sup>9+</sup>  | number                                            | Yes  | No  | Minimum window width supported by the ability.                     |
+| maxWindowHeight<sup>9+</sup>  | number                                           | Yes  | No  | Maximum window height supported by the ability.                     |
+| minWindowHeight<sup>9+</sup>  | number                                           | Yes  | No  | Minimum window height supported by the ability.                     |
