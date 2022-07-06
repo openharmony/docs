@@ -52,7 +52,7 @@ Request类的属性如下表所示。
 | msg_ | 类型：DataInfo<br/>作用：存放调用算法接口的输入数据。 | .data&nbsp;=&nbsp;nullptr<br/>.length&nbsp;=&nbsp;0 | 
 
 
-Response类的属性如下下表所示。
+Response类的属性如下表所示。
 
 
   **表4** Response类的属性
