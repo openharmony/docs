@@ -1,7 +1,7 @@
 # 编译
 
 
-OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](../quick-start/quickstart-standard-reference.md#使用buildsh脚本编译源码)。
+OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](quickstart-standard-reference.md)。
 
 
 在Ubuntu环境下进入源码根目录，执行如下命令进行编译：
