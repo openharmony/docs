@@ -81,6 +81,7 @@
 - 图形图像
 
   - [@ohos.display (屏幕属性)](js-apis-display.md)
+  - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
   - [@ohos.window (窗口)](js-apis-window.md)
   - [webgl (WebGL)](js-apis-webgl.md)
