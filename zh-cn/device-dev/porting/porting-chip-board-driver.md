@@ -43,6 +43,6 @@
    OS接口适配后，板级驱动集成到OpenHarmony也存在2种选择：
 
    - SDK独立编译，通过二进制形式直接链入OpenHarmony；
-   - SDK基于OpenHarmony改造编译框架，从长期演进及后期联调便利性角度角度考虑，建议基于GN编译框架直接改造SDK编译框架，通过源码形式链入OpenHarmony工程。
+   - SDK基于OpenHarmony改造编译框架，从长期演进及后期联调便利性角度考虑，建议基于GN编译框架直接改造SDK编译框架，通过源码形式链入OpenHarmony工程。
 
 3. 验证SDK基本功能。
