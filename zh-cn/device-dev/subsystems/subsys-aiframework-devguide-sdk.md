@@ -18,7 +18,7 @@ SDK头文件的功能实现是基于对SDK的调用映射到对客户端的调�
 | int&nbsp;**AieClientGetOption**(const&nbsp;ClientInfo&nbsp;&amp;clientInfo,<br/>&nbsp;int&nbsp;optionType,&nbsp;const&nbsp;DataInfo&nbsp;&amp;inputInfo,<br/>&nbsp;DataInfo&nbsp;&amp;outputInfo) | **作用**：给定特定的optionType和inputInfo，获取其对应的配置项信息。<br/>**返回值**：0为成功，其他返回值失败。 | **clientInfo**(NOT&nbsp;NULL)：引擎客户端信息；<br/>**optionType**(NOT&nbsp;NULL)：所获取配置项信息的对应算法状态位；<br/>**inputInfo**(可为NULL)：所获取配置项信息的对应算法参数信息；<br/>**outputInfo**(可为NULL)：所要获取的配置项信息返回结果； |
 
 
-其中，ConfigInfo，ClientInfo，AlgorithmInfo，DataInfo的数据结构如下下表所示。
+其中，ConfigInfo，ClientInfo，AlgorithmInfo，DataInfo的数据结构如下表所示。
 
 
   **表2** ConfigInfo，ClientInfo，AlgorithmInfo，DataInfo的数据结构
