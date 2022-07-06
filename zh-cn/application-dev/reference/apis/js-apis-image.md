@@ -9,7 +9,7 @@
 import image from '@ohos.multimedia.image';
 ```
 
-## image.createPixelMap<sup>6+</sup>
+## image.createPixelMap<sup>8+</sup>
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
