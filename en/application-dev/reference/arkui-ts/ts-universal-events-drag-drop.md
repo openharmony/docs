@@ -49,7 +49,6 @@ struct DragExample {
   @State orangeVisible: Visibility = Visibility.Visible
   @State bananaVisible: Visibility = Visibility.Visible
   @State select: number = 0
-  @State currentIndex: number = 0
 
   @Builder pixelMapBuilder() {
     Column() {
