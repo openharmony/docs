@@ -1,6 +1,7 @@
 # Video
 
->  **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **\<Video>** component provides a video player.
@@ -9,11 +10,11 @@ The **\<Video>** component provides a video player.
 
 To use online videos, you need to add the **ohos.permission.INTERNET** permission to the corresponding **abilities** in the **config.json** or **module.json** file, whichever is appropriate.
 
-```json
+```
 "abilities":[
   {
     ...
-    "permissions": ["ohos.permission.INTERNET],
+    "permissions": ["ohos.permission.INTERNET"],
     ...
   }
 ]
@@ -27,16 +28,16 @@ Not supported
 
 Video(value: VideoOptions)
 
-1. VideoOptions attributes
+- VideoOptions attributes
   | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
   | src | string \| [Resource](../../ui/ts-types.md) | No| - | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).|
-  | currentProgressRate | number \| PlaybackSpeed<sup>8+</sup> | No| 1.0 \| PlaybackSpeed.<br>Speed_Forward_1_00_X | Video playback speed.<br>> **NOTE**<br>> The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>|
+  | currentProgressRate | number \| PlaybackSpeed<sup>8+</sup> | No| 1.0 \| PlaybackSpeed.<br>Speed_Forward_1_00_X | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**. |
   | previewUri | string \| PixelMap<sup>8+</sup> \| [Resource](../../ui/ts-types.md) | No| - | Path of the preview image.|
   | controller | [VideoController](#videocontroller) | No| - | Controller.|
 
 
-2. PlaybackSpeed<sup>8+</sup>
+- PlaybackSpeed<sup>8+</sup>
   | Name                 | Description           |
   | -------------------- | --------------------- |
   | Speed_Forward_0_75_X | 0.75x playback speed. |
@@ -77,47 +78,40 @@ A **VideoController** object can control one or more videos.
 
 ### Objects to Import
 
-```ts
+```
 controller: VideoController = new VideoController();
 ```
 
 
 ### start
 
-```ts
 start(): void
 
 Starts playback.
-```
 
 ### pause
 
-```ts
 pause(): void
 
 Pauses playback.
-```
 
 ### stop
 
-```ts
 stop(): void
 
 Stops playback.
-```
 
 ### setCurrentTime
 
-```ts
 setCurrentTime(value: number)
 
 Sets the video playback position.
-```
 
-- Parameters
-  | Name  | Type   | Mandatory | Default Value | Description              |
-  | ----- | ------ | --------- | ------------- | ------------------------ |
-  | value | number | Yes       | -             | Video playback position. |
+**Parameters**
+
+| Name  | Type   | Mandatory | Default Value | Description              |
+| ----- | ------ | --------- | ------------- | ------------------------ |
+| value | number | Yes       | -             | Video playback position. |
 
 ### requestFullscreen
 
@@ -125,10 +119,11 @@ requestFullscreen(value: boolean)
 
 Requests full-screen mode.
 
-- Parameters
-  | Name  | Type   | Mandatory | Default Value | Description                                  |
-  | ----- | ------ | --------- | ------------- | -------------------------------------------- |
-  | value | boolean | Yes       | false         | Whether the playback is in full-screen mode. |
+**Parameters**
+
+| Name  | Type   | Mandatory | Default Value | Description                                  |
+| ----- | ------ | --------- | ------------- | -------------------------------------------- |
+| value | boolean | Yes       | false         | Whether the playback is in full-screen mode. |
 
 ### exitFullscreen
 
@@ -142,19 +137,20 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 Sets the video playback position with the specified seek mode.
 
-1. Parameters
-  | Name     | Type     | Mandatory | Default Value | Description              |
-  | -------- | -------- | --------- | ------------- | -----------------------  |
-  | value    | number   | Yes       | -             | Video playback position. |
-  | seekMode | SeekMode | Yes       | -             | Seek mode.               |
+**Parameters**
 
-2. SeekMode<sup>8+</sup>
-  | Name             | Description                                                               |
-  | ---------------- | ------------------------------------------------------------------------- |
-  | PreviousKeyframe | Seeks to the nearest previous keyframe.                                   |
-  | NextKeyframe     | Seeks to the nearest next keyframe.                                       |
-  | ClosestKeyframe  | Seeks to the nearest keyframe.                                            |
-  | Accurate         | Seeks to a specific frame, regardless of whether the frame is a keyframe. |
+| Name     | Type     | Mandatory | Default Value | Description              |
+| -------- | -------- | --------- | ------------- | -----------------------  |
+| value    | number   | Yes       | -             | Video playback position. |
+| seekMode | SeekMode | Yes       | -             | Seek mode.               |
+
+SeekMode<sup>8+</sup>
+| Name             | Description                                                               |
+| ---------------- | ------------------------------------------------------------------------- |
+| PreviousKeyframe | Seeks to the nearest previous keyframe.                                   |
+| NextKeyframe     | Seeks to the nearest next keyframe.                                       |
+| ClosestKeyframe  | Seeks to the nearest keyframe.                                            |
+| Accurate         | Seeks to a specific frame, regardless of whether the frame is a keyframe. |
 
 ## Example
 
