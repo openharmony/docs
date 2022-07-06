@@ -10,3 +10,4 @@
 - **[HiSysEvent开发指导](subsys-dfx-hisysevent.md)**
 - **[HiDumper开发指导](subsys-dfx-hidumper.md)**
 - **[HiChecker开发指导](subsys-dfx-hichecker.md)**
+- **[Hiview开发指导](subsys-dfx-hiview.md)**

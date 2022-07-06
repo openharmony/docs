@@ -1,106 +1,167 @@
 # HiSysEvent打点
 
-
 ## 概述
-
 
 ### 功能简介
 
-HiSysEvent提供OpenHarmony打点接口，通过在关键路径打点记录系统在运行过程中的重要信息，辅助开发者定位问题，此外还支持开发者将数据上传到云进行大数据质量度量。
+HiSysEvent打点提供了事件埋点功能，开发者可以通过在关键路径埋点来记录系统在运行过程中的重要信息。
 
+### 运作机制
 
-### 约束与限制
-
-在进行HiSysEvent事件打点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)。
-
+在进行HiSysEvent事件埋点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)。
 
 ## 开发指导
 
+### 场景介绍
+
+事件埋点的主要工作是将打点数据进行落盘。
 
 ### 接口说明
 
-C++打点接口如下：
+#### c++接口说明
 
-HiSysEvent类，具体的API详见接口文档 。
+c++事件埋点开发能力如下：HiSysEvent类，具体的API详见接口文档 。
 
-  **表4** HiSysEvent接口介绍
+**表1** c++事件埋点API接口功能介绍
 
-| 接口名 | 描述 | 
-| -------- | -------- |
-| template&lt;typename...&nbsp;Types&gt;&nbsp;static&nbsp;int&nbsp;Write(const&nbsp;std::string&nbsp;&amp;domain,<br/>&nbsp;const&nbsp;std::string&nbsp;&amp;eventName,<br/>&nbsp;EventType&nbsp;type,&nbsp;Types...&nbsp;keyValues) | 接口功能：记录系统事件。<br/>输入参数：<br/>-&nbsp;domain：事件的相关领域，需要使用预置领域请参考Domain，可自定义领域。自定义领域长度在16个字符以内，有效的字符是0-9、A-Z，以字母开头。<br/>-&nbsp;eventName：事件名，长度在32个字符以内，有效的字符是0-9、A-Z、下划线，以字母开头，不能以下划线结尾。<br/>-&nbsp;type：事件类型，参考EventType。<br/>-&nbsp;keyValues：事件参数键值对，支持基本的数据类型、std::string，以及std::vector&lt;基本类型&gt;、std:vector&lt;std::string&gt;。参数名长度在48个字符以内，有效的字符是0-9、A-Z、下划线，以字母开头，不能以下划线结尾。参数名的个数在32个以内。<br/>返回值：<br/>-&nbsp;0：系统事件记录成功。<br/>-&nbsp;负值：系统事件记录失败。 | 
+| 接口名                                                       | 描述                   |
+| ------------------------------------------------------------ | ---------------------- |
+| template&lt;typename...&nbsp;Types&gt;&nbsp;<br>static&nbsp;int&nbsp;Write(const&nbsp;std::string&nbsp;&amp;domain,&nbsp;const&nbsp;std::string&nbsp;&amp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Types...&nbsp;keyValues) | 将打点事件数据进行落盘 |
 
-  **表5** HiSysEvent::Domain接口介绍
+ **表2** c++事件类型API接口介绍
 
-| 成员名称 | 描述 | 
-| -------- | -------- |
-| static&nbsp;const&nbsp;std::string&nbsp;AAFWK | 元能力子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;APPEXECFWK | 用户程序框架子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;ACCOUNT | 账号子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;ARKUI | ARKUI子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;AI | AI业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;BARRIER_FREE | 无障碍软件服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;BIOMETRICS | 生物特征识别服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;CCRUNTIME | C/C++运行环境子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;COMMUNICATION | 公共通信子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;DEVELOPTOOLS | 研发工具链子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;DISTRIBUTED_DATAMGR | 分布式数据管理子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;DISTRIBUTED_SCHEDULE | 分布式任务调度子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;GLOBAL | 全球化子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;GRAPHIC | 图形子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;HIVIEWDFX | DFX子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;IAWARE | 本地资源调度管控子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;INTELLI_ACCESSORIES | 智能配件业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;INTELLI_TV | 智能电视业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;IVI_HARDWARE | 车机专有硬件服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;LOCATION | 位置服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;MSDP | 综合传感处理平台子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;MULTI_MEDIA | 媒体子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;MULTI_MODAL_INPUT | 多模输入子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;NOTIFICATION | 事件通知子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;POWERMGR | 电源服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;ROUTER | 路由器业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;SECURITY | 安全子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;SENSORS | 泛Sensor服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;SOURCE_CODE_TRANSFORMER | 应用移植子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;STARTUP | 启动恢复子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;TELEPHONY | 电话服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;UPDATE | 升级服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;USB | USB服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;WEARABLE_HARDWARE | 穿戴专有硬件服务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;WEARABLE_HARDWARE | 穿戴业务子系统 | 
-| static&nbsp;const&nbsp;std::string&nbsp;OTHERS | 其它 | 
+| 接口名    | 描述         |
+| --------- | ------------ |
+| FAULT     | 故障类型事件 |
+| STATISTIC | 统计类型事件 |
+| SECURITY  | 安全类型事件 |
+| BEHAVIOR  | 行为类型事件 |
 
-  **表6** HiSysEvent::EventType接口介绍
+#### kernel接口说明
 
-| 接口名 | 描述 | 
-| -------- | -------- |
-| FAULT | 故障类型事件 | 
-| STATISTIC | 统计类型事件 | 
-| SECURITY | 安全类型事件 | 
-| BEHAVIOR | 系统行为事件 | 
+kernel事件埋点开发能力如下：
 
+**表3** kernel事件埋点API接口功能介绍
+
+| 接口名                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| struct hiview_hisysevent *hisysevent_create(const char *domain, const char *name, enum hisysevent_type type); | 创建一个事件对象                     |
+| void hisysevent_destroy(struct hiview_hisysevent *event);    | 销毁一个事件对象                     |
+| int hisysevent_put_integer(struct hiview_hisysevent *event, const char *key, long long value); | 将整数类型的事件参数添加到事件对象   |
+| int hisysevent_put_string(struct hiview_hisysevent *event, const char *key, const char *value); | 将字符串类型的事件参数添加到事件对象 |
+| int hisysevent_write(struct hiview_hisysevent *event);       | 将事件对象数据进行落盘               |
+
+**表4** kernel事件类型API接口介绍
+
+| 接口名    | 描述         |
+| --------- | ------------ |
+| FAULT     | 故障类型事件 |
+| STATISTIC | 统计类型事件 |
+| SECURITY  | 安全类型事件 |
+| BEHAVIOR  | 行为类型事件 |
+
+### 开发步骤
+
+#### c++埋点开发步骤
+
+1. 在需要埋点的地方直接调用埋点接口，并传入相应事件参数即可：
+
+   ```c++
+   HiSysEvent::Write(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
+   ```
+
+#### kernel埋点开发步骤
+
+1. 根据事件领域、事件名称、事件类型参数，创建一个基础的事件对象：
+
+   ```c
+   struct hiview_hisysevent *event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
+   ```
+
+2. 将自定义的事件参数，传入到事件对象里：
+
+   ```c
+   // 添加整数类型参数
+   hisysevent_put_integer(event, "BOOT_TIME", 100);
+
+   // 添加字符串类型参数
+   hisysevent_put_string(event, "MSG", "This is a test message");
+   ```
+
+3. 在事件对象构建完成后，将事件进行上报：
+
+   ```c
+   hisysevent_write(event);
+   ```
+
+4. 事件上报完成后，需要手动将对象销毁：
+
+   ```c
+   hisysevent_destroy(&event);
+   ```
 
 ### 开发实例
 
-C++接口实例
+#### c++埋点开发实例
 
-1. 源代码开发
-   在类定义头文件或者类实现源文件中，包含HiSysEvent头文件：
+假设业务模块需要在应用启动时进行埋点来记录应用启动事件，且需要记录应用的包名信息，完整使用示例如下所示：
 
-     
-   ```
-   #include "hisysevent.h"
-   ```
+1. 首先，需要在业务模块的在BUILD.gn里增加HiSysEvent部件依赖：
 
-   假设在业务关注应用启动时间start_app，在业务类实现相关源文件中使用（调用接口打点）：
-
-     
-   ```
-   HiSysEvent::Write(HiSysEvent::Domain::AAFWK, "start_app", HiSysEvent::EventType::FAULT, "app_name", "com.demo");
-   ```
-
-2. 编译设置，在BUILD.gn里增加子系统SDK依赖：
-     
-   ```
+   ```c++
    external_deps = [ "hisysevent_native:libhisysevent" ]
    ```
+
+2. 在业务模块的应用启动函数StartAbility()中，调用埋点接口并传入对应事件参数：
+
+
+   ```c++
+   #include "hisysevent.h"
+
+   int StartAbility()
+   {
+       ... // 其他业务逻辑
+       int ret = HiSysEvent::Write(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
+       ... // 其他业务逻辑
+   }
+   ```
+
+#### kernel埋点开发实例
+
+假设内核业务模块需要在设备启动时进行埋点来记录设备启动事件，完整使用示例如下所示：
+
+1. 在设备启动函数device_boot()中，构建一个启动事件对象，然后将事件进行上报，最后销毁事件对象。
+
+```c
+#include <dfx/hiview_hisysevent.h>
+
+#include <linux/errno.h>
+#include <linux/printk.h>
+
+int device_boot()
+{
+    ... // 其他业务逻辑
+    struct hiview_hisysevent *event = NULL;
+    int ret = 0;
+
+    event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
+    if (!event) {
+        pr_err("failed to create event");
+        return -EINVAL;
+    }
+    ret = hisysevent_put_string(event, "MSG", "This is a test message");
+    if (ret != 0) {
+        pr_err("failed to put sting to event, ret=%d", ret);
+        goto hisysevent_end;
+    }
+    ret = hisysevent_write(event);
+
+hisysevent_end:
+    hisysevent_destroy(&event);
+    ... // 其他业务逻辑
+}
+```
+
+# 参考
+
+HiSysEvent模块会将埋点数据写入到节点文件中，而埋点数据的解析处理会在Hiview模块中统一进行，详细处理过程可参考[Hiview开发指导](subsys-dfx-hiview.md)。
