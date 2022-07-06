@@ -12,7 +12,7 @@
 
 | 名称    | 类型定义                  | 描述                                       |
 | ----- | --------------------- | ---------------------------------------- |
-| color | string&nbsp;\|颜色枚举字符串 | 用于描述颜色信息，JS脚本中不支持颜色枚举格式。<br/>字符串格式如下：<br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)'<br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)'<br/>-&nbsp;HEX格式：'\#rrggbb'，'\#aarrggbb'<br/>-&nbsp;枚举格式：'black'，'white'。 |
+| color | string&nbsp;\|&nbsp;颜色枚举字符串 | 用于描述颜色信息，JS脚本中不支持颜色枚举格式。<br/>字符串格式如下：<br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)'<br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)'<br/>-&nbsp;HEX格式：'\#rrggbb'，'\#aarrggbb'<br/>-&nbsp;枚举格式：'black'，'white'。 |
 
 **表1** 当前支持的颜色枚举
 
