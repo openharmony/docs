@@ -90,7 +90,7 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
          platform :: host {
          hostName = "platform_host";
          priority = 50;
-         device_spi :: device {        //为每一个 SPI 控制器配置一个HDF设备节点
+         device_spi :: device {                           //为每一个 SPI 控制器配置一个HDF设备节点
              device0 :: deviceNode {
              policy = 1;
              priority = 60;
@@ -104,8 +104,8 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
              priority = 60;
              permission = 0644;
              moduleName = "HDF_PLATFORM_SPI";             // 【必要】用于指定驱动名称，该字段的值必须和驱动入口结构的moduleName值一致
-             serviceName = "HDF_PLATFORM_SPI_1";         // 【必要且唯一】驱动对外发布服务的名称
-             deviceMatchAttr = "hisilicon_hi35xx_spi_1";// 需要与设备hcs文件中的match_attr匹配
+             serviceName = "HDF_PLATFORM_SPI_1";          // 【必要且唯一】驱动对外发布服务的名称
+             deviceMatchAttr = "hisilicon_hi35xx_spi_1";  // 需要与设备hcs文件中的match_attr匹配
              }
              ...
          }
@@ -294,10 +294,10 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       int32_t ret;
       struct SpiCntlr *cntlr = NULL;
       ...
-      cntlr = SpiCntlrFromDevice(device);// 这里有HdfDeviceObject到SpiCntlr的强制转化，通过service成员，赋值见Bind函数
+      cntlr = SpiCntlrFromDevice(device); // 这里有HdfDeviceObject到SpiCntlr的强制转化，通过service成员，赋值见Bind函数
                                           // return (device == NULL) ? NULL : (struct SpiCntlr *)device->service;
       ...
-      ret = Pl022Init(cntlr, device);// 【必要】实例化厂商自定义操作对象，示例见下
+      ret = Pl022Init(cntlr, device);     // 【必要】实例化厂商自定义操作对象，示例见下
       ...
       ret = Pl022Probe(cntlr->priv);
       ...
@@ -318,15 +318,15 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       // 计算最大，最小速度对应的频率
       pl022->maxSpeedHz = (pl022->clkRate) / ((SCR_MIN + 1) * CPSDVSR_MIN);
       pl022->minSpeedHz = (pl022->clkRate) / ((SCR_MAX + 1) * CPSDVSR_MAX);
-      DListHeadInit(&pl022->deviceList);// 初始化DList链表
-      pl022->cntlr = cntlr;                // 使Pl022与SpiCntlr可以相互转化的前提
-      cntlr->priv = pl022;              // 使Pl022与SpiCntlr可以相互转化的前提
-      cntlr->busNum = pl022->busNum;    // 给SpiCntlr的busNum赋值
-      cntlr->method = &g_method;        // SpiCntlrMethod的实例化对象的挂载
+      DListHeadInit(&pl022->deviceList); // 初始化DList链表
+      pl022->cntlr = cntlr;              // 使Pl022与SpiCntlr可以相互转化的前提
+      cntlr->priv = pl022;               // 使Pl022与SpiCntlr可以相互转化的前提
+      cntlr->busNum = pl022->busNum;     // 给SpiCntlr的busNum赋值
+      cntlr->method = &g_method;         // SpiCntlrMethod的实例化对象的挂载
       ...
       ret = Pl022CreatAndInitDevice(pl022);
       if (ret != 0) {
-          Pl022Release(pl022);             // 初始化失败就释放Pl022对象
+          Pl022Release(pl022);           // 初始化失败就释放Pl022对象
           return ret;
       }
       return 0;
@@ -352,11 +352,11 @@ SPI模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       {
           struct SpiCntlr *cntlr = NULL;
           ...
-          cntlr = SpiCntlrFromDevice(device);// 这里有HdfDeviceObject到SpiCntlr的强制转化，通过service成员，赋值见Bind函数
-                                          // return (device==NULL) ?NULL:(struct SpiCntlr *)device->service;
+          cntlr = SpiCntlrFromDevice(device); // 这里有HdfDeviceObject到SpiCntlr的强制转化，通过service成员，赋值见Bind函数
+                                              // return (device==NULL) ?NULL:(struct SpiCntlr *)device->service;
           ...
           if (cntlr->priv != NULL) {
-              Pl022Remove((struct Pl022 *)cntlr->priv);// 这里有SpiCntlr到Pl022的强制转化 
+              Pl022Remove((struct Pl022 *)cntlr->priv);   // 这里有SpiCntlr到Pl022的强制转化 
           }
           SpiCntlrDestroy(cntlr);                         // 释放Pl022对象
       }
