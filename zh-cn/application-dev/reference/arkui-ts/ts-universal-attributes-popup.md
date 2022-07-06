@@ -1,5 +1,7 @@
 # Popup控制
 
+设置组件点击时弹出的气泡框状态。
+
 >  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
@@ -18,13 +20,13 @@
 
 
 - PopupOptions类型接口说明
-  | 名称 | 类型 | 必填 | 默认值 | 描述 | 
+  | 名称 | 类型 | 必填 | 默认值 | 描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | message | string | 是 | - | 弹窗信息内容。 | 
-  | placementOnTop | boolean | 否 | false | 是否在组件上方显示，默认值为false。 | 
-  | primaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第一个按钮。<br/>value:&nbsp;弹窗里主按钮的文本。<br/>action:&nbsp;点击主按钮的回调函数。 | 
-  | secondaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 | 
-  | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。 | 
+  | message | string | 是 | - | 弹窗信息内容。 |
+  | placementOnTop | boolean | 否 | false | 是否在组件上方显示，默认值为false。 |
+  | primaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第一个按钮。<br/>value:&nbsp;弹窗里主按钮的文本。<br/>action:&nbsp;点击主按钮的回调函数。 |
+  | secondaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 |
+  | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。 |
 
 - CustomPopupOptions<sup>8+</sup>类型接口说明
   | 名称 | 类型 | 必填 | 默认值 | 描述 |
