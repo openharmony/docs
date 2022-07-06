@@ -48,9 +48,9 @@ Obtains file information. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.stat(path).then(function(stat){
-      console.info("getFileInfo succeed:"+ JSON.stringify(stat));
+      console.info("Got file info:"+ JSON.stringify(stat));
   }).catch(function(err){
-      console.info("getFileInfo failed with error:"+ err);
+      console.info("Failed to get file info. Error:"+ err);
   });
   ```
 
@@ -124,9 +124,9 @@ Opens a file directory. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.opendir(path).then(function(dir){
-      console.info("opendir succeed:"+ JSON.stringify(dir));
+      console.info("Directory opened:"+ JSON.stringify(dir));
   }).catch(function(err){
-      console.info("opendir failed with error:"+ err);
+      console.info("Failed to open the directory. Error:"+ err);
   });
   ```
 
@@ -206,9 +206,9 @@ Checks whether the current process can access a file. This API uses a promise to
 **Example**
   ```js
   fileio.access(path).then(function() {
-      console.info("access succeed");
+      console.info("Access successful");
   }).catch(function(err){
-      console.info("access failed with error:"+ err);
+      console.info("Access failed. Error:"+ err);
   });
   ```
 
@@ -255,7 +255,7 @@ Synchronously checks whether the current process can access the specified file.
   try {
       fileio.accessSync(path);
   } catch(err) {
-      console.info("accessSync failed with error:"+ err);
+      console.info("accessSync failed. Error:"+ err);
   }
   ```
 
@@ -282,9 +282,9 @@ Closes a file. This API uses a promise to return the result.
   ```js
   let fd = fileio.openSync(path);
   fileio.close(fd).then(function(){
-      console.info("close file succeed");
+      console.info("File closed");
   }).catch(function(err){
-      console.info("close file failed with error:"+ err);
+      console.info("Failed to close the file. Error:"+ err);
   });
   ```
 
@@ -347,9 +347,9 @@ Closes the stream. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.close().then(function(){
-      console.info("close file stream succeed");
+      console.info("File stream closed");
   }).catch(function(err){
-      console.info("close file stream failed with error:"+ err);
+      console.info("Failed to close the file stream. Error:"+ err);
   });
   ```
 
@@ -398,9 +398,9 @@ Copies a file. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.copyFile(src, dest).then(function(){
-      console.info("copyFile succeed");
+      console.info("File copied");
   }).catch(function(err){
-      console.info("copyFile failed with error:"+ err);
+      console.info("Failed to copy the file. Error:"+ err);
   });
   ```
 
@@ -472,9 +472,9 @@ Creates a directory. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.mkdir(path).then(function() {
-      console.info("mkdir succeed");
+      console.info("Directory created");
   }).catch(function (error){
-      console.info("mkdir failed with error:"+ error);
+      console.info("Failed to create the directory. Error:"+ error);
   });
   ```
 
@@ -497,7 +497,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 **Example**
   ```js
   fileio.mkdir(path, function(err) {
-    console.info("mkdir succeed");
+    console.info("Directory created");
   });
   ```
 
@@ -545,9 +545,9 @@ Opens a file. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.open(path, 0o1, 0o0200).then(function(number){
-      console.info("open file succeed");
+      console.info("File opened");
   }).catch(function(err){
-      console.info("open file failed with error:"+ err);
+      console.info("Failed to open the file. Error:"+ err);
   });
   ```
 
@@ -640,7 +640,7 @@ Reads data from a file. This API uses a promise to return the result.
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf).then(function(readOut){
-      console.info("read file data succeed");
+      console.info("Read file data");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("Failed to read file data. Error:"+ err);
@@ -674,7 +674,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf, function (err, readOut) {
       if (readOut) {
-          console.info("read file data succeed");
+          console.info("Read file data");
           console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
@@ -734,9 +734,9 @@ Deletes a directory. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.rmdir(path).then(function() {
-      console.info("rmdir succeed");
+      console.info("Directory deleted");
   }).catch(function(err){
-      console.info("rmdir failed with error:"+ err);
+      console.info("Failed to delete the directory. Error:"+ err);
   });
   ```
 
@@ -759,7 +759,7 @@ Deletes a directory. This API uses an asynchronous callback to return the result
   ```js
   fileio.rmdir(path, function(err){
       // Do something.
-      console.info("rmdir succeed");
+      console.info("Directory deleted");
   });
   ```
 
@@ -804,9 +804,9 @@ Deletes a file. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.unlink(path).then(function(){
-      console.info("remove file succeed");
+      console.info("File deleted");
   }).catch(function(error){
-      console.info("remove file failed with error:"+ error);
+      console.info("Failed to delete the file. Error:"+ error);
   });
   ```
 
@@ -828,7 +828,7 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 **Example**
   ```js
   fileio.unlink(path, function(err) {
-      console.info("remove file succeed");
+      console.info("File deleted");
   });
   ```
 
@@ -881,9 +881,9 @@ Writes data into a file. This API uses a promise to return the result.
   ```js
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
-       console.info("write data to file succeed and size is:"+ number);
+       console.info("Data written to file and size is:"+ number);
   }).catch(function(err){
-      console.info("write data to file failed with error:"+ err);
+      console.info("Failed to write data to the file. Error:"+ err);
   });
   ```
 
@@ -914,7 +914,7 @@ Writes data into a file. This API uses an asynchronous callback to return the re
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
       if (bytesWritten) {
-         console.info("write data to file succeed and size is:"+ bytesWritten);
+         console.info("Data written to file and size is:"+ bytesWritten);
       }
   });
   ```
@@ -974,9 +974,9 @@ Calculates the hash value of a file. This API uses a promise to return the resul
 **Example**
   ```js
   fileio.hash(path, "sha256").then(function(str){
-      console.info("calculate file hash succeed:"+ str);
+      console.info("Calculated file hash:"+ str);
   }).catch(function(error){
-      console.info("calculate file hash failed with error:"+ err);
+      console.info("Failed to calculate the file hash. Error:"+ err);
   });
   ```
 
@@ -1000,7 +1000,7 @@ Calculates the hash value of a file. This API uses an asynchronous callback to r
   ```js
   fileio.hash(path, "sha256", function(err, hashStr) {
       if (hashStr) {
-          console.info("calculate file hash succeed:"+ hashStr);
+          console.info("Calculated file hash:"+ hashStr);
       }
   });
   ```
@@ -1028,9 +1028,9 @@ Changes file permissions. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.chmod(path, mode).then(function() {
-      console.info("chmod succeed");
+      console.info("File permissions changed");
   }).catch(function(err){
-      console.info("chmod failed with error:"+ err);
+      console.info("Failed to change file permissions. Error:"+ err);
   });
   ```
 
@@ -1099,9 +1099,9 @@ Obtains file information based on the file descriptor. This API uses a promise t
 **Example**
   ```js
   fileio.fstat(fd).then(function(stat){
-      console.info("fstat succeed:"+ JSON.stringify(stat));
+      console.info("File information obtained:"+ JSON.stringify(stat));
   }).catch(function(err){
-      console.info("fstat failed with error:"+ err);
+      console.info("Failed to obtain file information. Error:"+ err);
   });
   ```
 
@@ -1177,7 +1177,7 @@ Truncates a file based on the file descriptor. This API uses a promise to return
   ```js
   let fd = fileio.openSync(path);
   fileio.ftruncate(fd, 5).then(function(err) {    
-      console.info("truncate file succeed");
+      console.info("File truncated");
   }).catch(function(err){
       console.info("Failed to truncate the file. Error:"+ err);
   });
@@ -1249,7 +1249,7 @@ Truncates a file based on the file path. This API uses a promise to return the r
 **Example**
   ```js
   fileio.truncate(path, len).then(function(){
-      console.info("truncate file succeed");
+      console.info("File truncated");
   }).catch(function(err){
       console.info("Failed to truncate the file. Error:"+ err);
   });
@@ -1325,9 +1325,9 @@ Reads the text content of a file. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.readText(path).then(function(str) {
-      console.info("readText succeed:"+ str);
+      console.info("Read file text:"+ str);
   }).catch(function(err){
-      console.info("readText failed with error:"+ err);
+      console.info("Failed to read text. Error:"+ err);
   });
   ```
 
@@ -1409,7 +1409,7 @@ Obtains link information. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.lstat(path).then(function(stat){
-      console.info("get link status succeed:"+ JSON.stringify(stat));
+      console.info("Got link info:"+ JSON.stringify(stat));
   }).catch(function(err){
       console.info("Failed to obtain the link status. Error:"+ err);
   });
@@ -1488,7 +1488,7 @@ Reads data from a file. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.read(new ArrayBuffer(4096)).then(function(readout){
-      console.info("read file data succeed");
+      console.info("Read file data");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("Failed to read file data. Error:"+ err);
@@ -1520,7 +1520,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   let buf = new ArrayBuffer(4096);
   fileio.read(buf, function (err, readOut) {
       if (readOut) {
-          console.info("read file data succeed");
+          console.info("Read file data");
           console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
@@ -1549,9 +1549,9 @@ Renames a file. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.rename(oldPath, newPath).then(function() {
-      console.info("rename succeed");
+      console.info("File renamed");
   }).catch(function(err){
-      console.info("rename failed with error:"+ err);
+      console.info("Failed to rename the file. Error:"+ err);
   });
   ```
 
@@ -1619,9 +1619,9 @@ Flushes data of a file to disk. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.fsync(fd).then(function(){
-      console.info("sync data succeed");
+      console.info("Data flushed");
   }).catch(function(err){
-      console.info("sync data failed with error:"+ err);
+      console.info("Failed to flush data. Error:"+ err);
   });
   ```
 
@@ -1688,9 +1688,9 @@ Flushes data of a file to disk. This API uses a promise to return the result. **
 **Example**
   ```js
   fileio.fdatasync(fd).then(function(err) {
-      console.info("sync data succeed");
+      console.info("Data flushed");
   }).catch(function(err){
-      console.info("sync data failed with error:"+ err);
+      console.info("Failed to flush data. Error:"+ err);
   });
   ```
 
@@ -1758,9 +1758,9 @@ Creates a symbolic link based on the file path. This API uses a promise to retur
 **Example**
   ```js
   fileio.symlink(target, srcPath).then(function() {
-      console.info("symlink succeed");
+      console.info("Symbolic link created");
   }).catch(function(err){
-      console.info("symlink failed with error:"+ err);
+      console.info("Failed to create the symbolic link. Error:"+ err);
   });
   ```
 
@@ -1832,9 +1832,9 @@ Changes the file owner based on the file path. This API uses a promise to return
   ```js
   let stat = fileio.statSync(path);
   fileio.chown(path, stat.uid, stat.gid).then(function(){
-      console.info("chown succeed");
+      console.info("File owner changed");
   }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+      console.info("Failed to change the file owner. Error:"+ err);
   });
   ```
 
@@ -1907,9 +1907,9 @@ Creates a temporary directory. This API uses a promise to return the result.
 **Example**
   ```js
   fileio.mkdtemp(path + "XXXX").then(function(path){
-      console.info("mkdtemp succeed:"+ path);
+      console.info("Temporary directory created:"+ path);
   }).catch(function(err){
-      console.info("mkdtemp failed with error:"+ err);
+      console.info("Failed to create a temporary directory. Error:"+ err);
   });
   ```
 
@@ -1982,9 +1982,9 @@ Changes file permissions based on the file descriptor. This API uses a promise t
 **Example**
   ```js
   fileio.fchmod(fd, mode).then(function() {
-      console.info("chmod succeed");
+      console.info("File permissions changed");
   }).catch(function(err){
-      console.info("chmod failed with error:"+ err);
+      console.info("Failed to change file permissions. Error:"+ err);
   });
   ```
 
@@ -2054,9 +2054,9 @@ Opens a file stream based on the file path. This API uses a promise to return th
 **Example**
   ```js
   fileio.createStream(path, "r+").then(function(stream){
-      console.info("createStream succeed");
+      console.info("Stream opened");
   }).catch(function(err){
-      console.info("createStream failed with error:"+ err);
+      console.info("Failed to create the stream. Error:"+ err);
   });
   ```
 
@@ -2132,9 +2132,9 @@ Opens a file stream based on the file descriptor. This API uses a promise to ret
   ```js
   let fd = fileio.openSync(path);
   fileio.fdopenStream(fd, "r+").then(function(stream){
-      console.info("openStream succeed");
+      console.info("Stream opened");
   }).catch(function(err){
-      console.info("openStream failed with error:"+ err);
+      console.info("Failed to open the stream. Error:"+ err);
   });
   ```
 
@@ -2213,9 +2213,9 @@ Changes the file owner based on the file descriptor. This API uses a promise to 
   ```js
   let stat = fileio.statSync(path);
   fileio.fchown(fd, stat.uid, stat.gid).then(function() {
-      console.info("chown succeed");
+      console.info("File owner changed");
   }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+      console.info("Failed to change the file owner. Error:"+ err);
   });
   ```
 
@@ -2291,9 +2291,9 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
   ```js
   let stat = fileio.statSync(path);
   fileio.lchown(path, stat.uid, stat.gid).then(function() {
-      console.info("chown succeed");
+      console.info("File owner changed");
   }).catch(function(err){
-      console.info("chown failed with error:"+ err);
+      console.info("Failed to change the file owner. Error:"+ err);
   });
   ```
 
@@ -2565,7 +2565,7 @@ Stops the **watcher** instance. This API uses a promise to return the result.
       console.info("Monitoring times: "+number);
   });
   watcher.stop().then(function(){
-       console.info("close watcher succeed");
+       console.info("Watcher stopped");
   });
   ```
 
@@ -2590,7 +2590,7 @@ Stops the **watcher** instance. This API uses an asynchronous callback to return
       console.info("Monitoring times: "+number);
   });
   watcher.stop(function(){
-      console.info("close watcher succeed");
+      console.info("Watcher stopped");
   })
   ```
 
@@ -2616,9 +2616,9 @@ Closes the stream. This API uses a promise to return the result.
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.close().then(function(){
-      console.info("close fileStream succeed");
+      console.info("Stream closed");
   }).catch(function(err){
-      console.info("close fileStream  failed with error:"+ err);
+      console.info("Failed to close the file stream. Error:"+ err);
   });
   ```
 
@@ -2677,9 +2677,9 @@ Flushes the stream. This API uses a promise to return the result.
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.flush().then(function (){
-      console.info("flush succeed");
+      console.info("Stream flushed");
   }).catch(function(err){
-      console.info("flush failed with error:"+ err);
+      console.info("Failed to flush the stream. Error:"+ err);
   });
   ```
 
@@ -2749,9 +2749,9 @@ Writes data into the stream. This API uses a promise to return the result.
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("write succeed and size is:"+ number);
+      console.info("Data written to the stream and size is:"+ number);
   }).catch(function(err){
-      console.info("write failed with error:"+ err);
+      console.info("Failed to write data into the stream. Error:"+ err);
   });
   ```
 
@@ -2782,7 +2782,7 @@ Writes data into the stream. This API uses an asynchronous callback to return th
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
       if (bytesWritten) {
          // Do something
-         console.info("write succeed and size is:"+ bytesWritten);
+         console.info("Data written to the stream and size is:"+ bytesWritten);
       }
   });
   ```
@@ -2846,10 +2846,10 @@ Reads data from the stream. This API uses a promise to return the result.
   ```js
   let ss = fileio.createStreamSync(path, "r+");
   ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
-      console.info("read data succeed");
+      console.info("Read data successfully");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
-      console.info("read data failed with error:"+ err);
+      console.info("Failed to read data. Error:"+ err);
   });
   ```
 
@@ -2878,7 +2878,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
   let ss = fileio.createStreamSync(path, "r+");
   ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
       if (readOut) {
-          console.info("read data succeed");
+          console.info("Read data successfully");
           console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
@@ -2939,9 +2939,9 @@ Reads the next directory entry. This API uses a promise to return the result.
   ```js
   let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
-      console.log("read succeed:"+JSON.stringify(dirent));
+      console.log("Read the next directory entry:"+JSON.stringify(dirent));
   }).catch(function(err){
-      console.info("read failed with error:"+ err);
+      console.info("Failed to read data. Error:"+ err);
   });
   ```
 
@@ -2965,7 +2965,7 @@ Reads the next directory entry. This API uses an asynchronous callback to return
   dir.read(function (err, dirent) {
       if (dirent) {
           // Do something
-          console.log("read succeed:"+JSON.stringify(dirent));
+          console.log("Read the next directory entry:"+JSON.stringify(dirent));
       }
   });
   ```
