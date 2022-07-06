@@ -28,7 +28,7 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 | 参数名         | 类型                          | 必填   | 说明   |
 | ----------- | --------------------------- | ---- | ---- |
-| upgradeInfo | [UpgradeInfo](#upgradeinfo)                 | 是    | 升级信息 |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo)                 | 是    | 升级信息对象 |
 
 **返回值：**
 
@@ -43,8 +43,8 @@ try {
   var upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
     businessType: {
-      vendor: update.BusinessVendor.PUBLIC
-      subType: update.BusinessSubType.FIRMWARE;
+      vendor: update.BusinessVendor.PUBLIC,
+      subType: update.BusinessSubType.FIRMWARE
     }
   }
   let updater = update.getOnlineUpdater(upgradeInfo);
