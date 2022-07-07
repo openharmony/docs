@@ -31,8 +31,6 @@ The example shows the transition of a shared element from a page and page B.
 @Entry
 @Component
 struct SharedTransitionExample {
-  @State scale: number = 1
-  @State opacity: number = 1
   @State active: boolean = false
 
   build() {
