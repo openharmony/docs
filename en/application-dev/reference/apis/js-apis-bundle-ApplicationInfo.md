@@ -1,21 +1,16 @@
 # ApplicationInfo
 
-
-
-> **NOTE**<br>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
+Provides the application information. 
 
-
-Provides the application information.
-
-
+## ApplicationInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
-
-
 
 | Name                      | Type                                                        | Readable| Writable| Description                                      |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------ |
@@ -36,7 +31,7 @@ Provides the application information.
 | entryDir                   | string                                                       | Yes  | No  | Path for storing application files.                    |
 | codePath<sup>8+</sup>      | string                                                       | Yes  | No  | Installation directory of the application.                        |
 | metaData<sup>8+</sup>      | Map\<string, Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>> | Yes  | No  | Custom metadata of the application.                    |
-| metaData<sup>9+</sup>      | Map\<string, Array\<[Metadata](js-apis-bundle-Metadata.md)>> | Yes  | No  | Metadata of the application.                          |
+| metadata<sup>9+</sup>      | Map\<string, Array\<[Metadata](js-apis-bundle-Metadata.md)>> | Yes  | No  | Metadata of the application.                          |
 | removable<sup>8+</sup>     | boolean                                                      | Yes  | No  | Whether the application is removable.                    |
 | accessTokenId<sup>8+</sup> | number                                                       | Yes  | No  | Access token ID of the application.                   |
 | uid<sup>8+</sup>           | number                                                       | Yes  | No  | UID of the application.                             |

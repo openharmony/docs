@@ -1,21 +1,16 @@
 # HapModuleInfo
 
-
-
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
-
-
 Provides the HAP module information.
 
-
+## HapModuleInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
-
-
 
 | Name                             | Type                                                        | Readable| Writable| Description                |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
