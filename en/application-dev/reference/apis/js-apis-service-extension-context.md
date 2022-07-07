@@ -1,6 +1,7 @@
 # ServiceExtensionContext
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -30,7 +31,7 @@ Starts an ability. This API uses a callback to return the result.
       "abilityName": "com.example.myapp.MyAbility"
   };
   this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringfy(err));
+      console.log('startAbility result:' + JSON.stringify(err));
   });
   ```
 
@@ -63,9 +64,9 @@ Starts an ability. This API uses a promise to return the result.
       "abilityName": "com.example.myapp.MyAbility"
   };
   this.context.startAbility(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -88,7 +89,7 @@ Terminates this ability. This API uses a callback to return the result.
 
   ```js
   this.context.terminateSelf((err) => {
-      console.log('terminateSelf result:' + JSON.stringfy(err));
+      console.log('terminateSelf result:' + JSON.stringify(err));
   });
   ```
 
@@ -111,9 +112,9 @@ Terminates this ability. This API uses a promise to return the result.
 
   ```js
   this.context.terminateSelf(want).then((data) => {
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
@@ -174,7 +175,7 @@ Disconnects this ability from the Service ability. This API uses a callback to r
 
   ```js
   this.context.disconnectAbility(connection, (err) => { // connection is the return value of connectAbility.
-      console.log('terminateSelf result:' + JSON.stringfy(err));
+      console.log('terminateSelf result:' + JSON.stringify(err));
   });
   ```
 
@@ -203,9 +204,9 @@ Disconnects this ability from the Service ability. This API uses a promise to re
 
   ```js
   this.context.disconnectAbility(connection).then((data) => { // connection is the return value of connectAbility.
-      console.log('success:' + JSON.stringfy(data));
+      console.log('success:' + JSON.stringify(data));
   }).catch((error) => {
-      console.log('failed:' + JSON.stringfy(error));
+      console.log('failed:' + JSON.stringify(error));
   });
   ```
 
