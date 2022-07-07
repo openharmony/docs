@@ -1,6 +1,6 @@
 # Performance Tracing
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - The APIs of this module are no longer maintained since API version 8. It is recommended that you use the APIs of [hiTraceMeter](js-apis-hitracemeter.md) instead.
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -17,7 +17,7 @@ import bytrace from '@ohos.bytrace';
 
 startTrace(name: string, taskId: number, expectedTime?: number): void
 
-Starts a trace task. **expectedTime** is an optional parameter, which specifies the expected duration of the trace.
+Marks the start of a timeslice trace task.
 
 **System capability**: SystemCapability.Developtools.Bytrace
 
@@ -25,11 +25,12 @@ Starts a trace task. **expectedTime** is an optional parameter, which specifies 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes| Name of a timeslice trace task.|
+| taskId | number | Yes| ID of a timeslice trace task.|
 | expectedTime | number | No| Expected duration of the trace, in ms.|
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+> 
 > If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same taskId can be used. For details, see the bytrace.finishTrace example.
 
 **Example**
@@ -44,7 +45,7 @@ bytrace.startTrace("myTestFunc", 1, 5); // The expected duration of the trace is
 
 finishTrace(name: string, taskId: number): void
 
-Stops a trace task.
+Marks the end of a timeslice trace task.
 
 **System capability**: SystemCapability.Developtools.Bytrace
 
@@ -52,10 +53,11 @@ Stops a trace task.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the trace task to start.|
-| taskId | number | Yes| Task ID.|
+| name | string | Yes| Name of a timeslice trace task.|
+| taskId | number | Yes| ID of a timeslice trace task.|
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+> 
 > To stop a trace task, the values of name and task ID in **finishTrace** must be the same as those in **startTrace**.
 
 **Example**
@@ -91,7 +93,7 @@ bytrace.finishTrace("myTestFunc", 1);
 
 traceByValue(name: string, count: number): void
 
-Traces the value changes of a variable.
+Defines the variable that indicates the number of timeslice trace tasks.
 
 **System capability**: SystemCapability.Developtools.Bytrace
 
