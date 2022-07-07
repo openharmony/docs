@@ -1,11 +1,15 @@
 # EnterpriseAdminExtentionAbility
 
-EnterpriseAdminExtentionAbility模块提供企业管理员应用扩展相关接口。
+本模块提供企业管理员应用拓展能力。
+
+企业管理员应用需要存在一个EnterpriseAdminExtentionAbility并重写相关接口，以此具备模块提供的各项能力，比如接收由系统发送的该应用被激活或者去激活的通知。
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+> 
 > 本模块接口仅可在Stage模型下使用。
+
 ## 导入模块
 
 ```ts
@@ -22,12 +26,12 @@ onAdminEnabled(): void
 
 **示例：**
 
-  ```ts
+```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-    onAdminEnabled() {
-    }
+  onAdminEnabled() {
+  }
 };
-  ```
+```
 
 ## EnterpriseAdminExtentionAbility.onAdminDisabled
 
@@ -38,11 +42,10 @@ onAdminDisabled(): void
 **系统能力**：SystemCapability.Customation.EnterpriseDeviceManager
 
 **示例：**
-    
 
-  ```ts
+```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-    onAdminDisabled() {
-    }
+  onAdminDisabled() {
+  }
 };
-  ```
+```
