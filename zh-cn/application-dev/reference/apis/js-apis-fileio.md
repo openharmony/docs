@@ -42,9 +42,9 @@ stat(path: string): Promise&lt;Stat&gt;
 
 **返回值：**
 
-  | 类型                           | 说明         |
-  | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回文件的具体信息。 |
+| 类型                           | 说明         |
+| ---------------------------- | ---------- |
+| Promise&lt;[Stat](#stat)&gt; | Promise对象。返回文件的具体信息。 |
 
 **示例：**
   ```js
@@ -93,9 +93,9 @@ statSync(path:string): Stat
 
 
 **返回值：**
-  | 类型            | 说明         |
-  | ------------- | ---------- |
-  | [Stat](#stat) | 表示文件的具体信息。 |
+| 类型            | 说明         |
+| ------------- | ---------- |
+| [Stat](#stat) | 表示文件的具体信息。 |
 
 **示例：**
   ```js
@@ -118,9 +118,9 @@ opendir(path: string): Promise&lt;Dir&gt;
 | path   | string | 是   | 待打开文件目录的应用沙箱路径。 |
 
 **返回值：**
-  | 类型                         | 说明       |
-  | -------------------------- | -------- |
-  | Promise&lt;[Dir](#dir)&gt; | Promise对象。返回Dir对象。 |
+| 类型                         | 说明       |
+| -------------------------- | -------- |
+| Promise&lt;[Dir](#dir)&gt; | Promise对象。返回Dir对象。 |
 
 **示例：**
   ```js
@@ -172,9 +172,9 @@ opendirSync(path: string): Dir
 | path   | string | 是   | 待打开文件目录的应用沙箱路径。 |
 
 **返回值：**
-  | 类型          | 说明       |
-  | ----------- | -------- |
-  | [Dir](#dir) | 返回Dir对象。 |
+| 类型          | 说明       |
+| ----------- | -------- |
+| [Dir](#dir) | 返回Dir对象。 |
 
 **示例：**
   ```js
@@ -200,9 +200,9 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 | mode   | number | 否   | 访问文件时的选项，可给定如下选项，以按位或的方式使用多个选项，默认给定0。<br/>确认当前进程是否具有对应权限：<br/>-&nbsp;0：确认文件是否存在。<br/>-&nbsp;1：确认当前进程是否具有可执行权限。<br/>-&nbsp;2：确认当前进程是否具有写权限。<br/>-&nbsp;4：确认当前进程是否具有读权限。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -270,14 +270,14 @@ close(fd: number):Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待关闭文件的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待关闭文件的文件描述符。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -299,10 +299,10 @@ close(fd: number, callback:AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明           |
-  | -------- | ------------------------- | ---- | ------------ |
-  | fd       | number                    | 是    | 待关闭文件的文件描述符。 |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
+| 参数名      | 类型                        | 必填   | 说明           |
+| -------- | ------------------------- | ---- | ------------ |
+| fd       | number                    | 是    | 待关闭文件的文件描述符。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
 
 **示例：**
   ```js
@@ -322,9 +322,9 @@ closeSync(fd: number): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待关闭文件的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待关闭文件的文件描述符。 |
 
 **示例：**
   ```js
@@ -341,9 +341,9 @@ close(): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -364,9 +364,9 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明            |
-  | -------- | ------------------------- | ---- | ------------- |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件流之后的回调。 |
+| 参数名      | 类型                        | 必填   | 说明            |
+| -------- | ------------------------- | ---- | ------------- |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件流之后的回调。 |
 
 **示例：**
   ```js
@@ -385,16 +385,16 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型                         | 必填   | 说明                                       |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
-  | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
+| 参数名  | 类型                         | 必填   | 说明                                       |
+| ---- | -------------------------- | ---- | ---------------------------------------- |
+| src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+| dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+| mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -415,12 +415,12 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                         | 必填   | 说明                                       |
-  | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest     | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
-  | mode     | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
-  | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
+| 参数名      | 类型                         | 必填   | 说明                                       |
+| -------- | -------------------------- | ---- | ---------------------------------------- |
+| src      | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+| dest     | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+| mode     | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
+| callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
 **示例：**
   ```js
@@ -439,11 +439,11 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型                         | 必填   | 说明                                       |
-  | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
-  | dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
-  | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
+| 参数名  | 类型                         | 必填   | 说明                                       |
+| ---- | -------------------------- | ---- | ---------------------------------------- |
+| src  | string&nbsp;\|&nbsp;number | 是    | 待复制文件的路径或待复制文件的描述符。                      |
+| dest | string&nbsp;\|&nbsp;number | 是    | 目标文件路径或目标文件描述符。                          |
+| mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **示例：**
   ```js
@@ -466,9 +466,9 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 | mode   | number | 否   | 创建目录的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o775。<br/>-&nbsp;0o775：所有者具有读、写及可执行权限，其余用户具有读及可执行权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -539,9 +539,9 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 | mode   | number | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 
 **返回值：**
-  | 类型                    | 说明          |
-  | --------------------- | ----------- |
-  | Promise&lt;number&gt; | Promise对象。返回打开文件的文件描述符。 |
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| Promise&lt;number&gt; | Promise对象。返回打开文件的文件描述符。 |
 
 **示例：**
   ```js
@@ -593,9 +593,9 @@ openSync(path:string, flags?:number, mode?:number): number
 | mode   | number | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o640：所有者具有读、写权限，所有用户组具有读权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。<br/>创建出的文件权限受umask影响，umask随进程启动确定，其修改当前不开放。 |
 
 **返回值：**
-  | 类型     | 说明          |
-  | ------ | ----------- |
-  | number | 打开文件的文件描述符。 |
+| 类型     | 说明          |
+| ------ | ----------- |
+| number | 打开文件的文件描述符。 |
 
 **示例：**
   ```js
@@ -632,9 +632,9 @@ read(fd: number, buffer: ArrayBuffer, options?: {
 
 **返回值：**
 
-  | 类型                                 | 说明     |
-  | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
+| 类型                                 | 说明     |
+| ---------------------------------- | ------ |
+| Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
 **示例：**
   ```js
@@ -662,12 +662,12 @@ read(fd: number, buffer: ArrayBuffer, options: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                                       | 必填   | 说明                                       |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | fd       | number                                   | 是    | 待读取文件的文件描述符。                             |
-  | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
-  | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
-  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步读取数据之后的回调。                             |
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| fd       | number                                   | 是    | 待读取文件的文件描述符。                             |
+| buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
+| options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
+| callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步读取数据之后的回调。                             |
 
 **示例：**
   ```js
@@ -695,16 +695,16 @@ readSync(fd: number, buffer: ArrayBuffer, options?: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名     | 类型          | 必填   | 说明                                       |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | fd      | number      | 是    | 待读取文件的文件描述符。                             |
-  | buffer  | ArrayBuffer | 是    | 用于保存读取到的文件数据的缓冲区。                        |
-  | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
+| 参数名     | 类型          | 必填   | 说明                                       |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| fd      | number      | 是    | 待读取文件的文件描述符。                             |
+| buffer  | ArrayBuffer | 是    | 用于保存读取到的文件数据的缓冲区。                        |
+| options | Object      | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
-  | 类型     | 说明       |
-  | ------ | -------- |
-  | number | 实际读取的长度。 |
+| 类型     | 说明       |
+| ------ | -------- |
+| number | 实际读取的长度。 |
 
 **示例：**
   ```js
@@ -728,9 +728,9 @@ rmdir(path: string): Promise&lt;void&gt;
 | path   | string | 是   | 待删除目录的应用沙箱路径。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -798,9 +798,9 @@ unlink(path:string): Promise&lt;void&gt;
 | path   | string | 是   | 待删除文件的应用沙箱路径。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -867,16 +867,16 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名     | 类型                              | 必填   | 说明                                       |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
+| 参数名     | 类型                              | 必填   | 说明                                       |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| fd      | number                          | 是    | 待写入文件的文件描述符。                             |
+| buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+| options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
-  | 类型                    | 说明       |
-  | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
+| 类型                    | 说明       |
+| --------------------- | -------- |
+| Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
 
 **示例：**
   ```js
@@ -903,12 +903,12 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                              | 必填   | 说明                                       |
-  | -------- | ------------------------------- | ---- | ---------------------------------------- |
-  | fd       | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options  | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
-  | callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
+| 参数名      | 类型                              | 必填   | 说明                                       |
+| -------- | ------------------------------- | ---- | ---------------------------------------- |
+| fd       | number                          | 是    | 待写入文件的文件描述符。                             |
+| buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+| options  | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
+| callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
 
 **示例：**
   ```js
@@ -935,16 +935,16 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名     | 类型                              | 必填   | 说明                                       |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | fd      | number                          | 是    | 待写入文件的文件描述符。                             |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
+| 参数名     | 类型                              | 必填   | 说明                                       |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| fd      | number                          | 是    | 待写入文件的文件描述符。                             |
+| buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+| options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
-  | 类型     | 说明       |
-  | ------ | -------- |
-  | number | 实际写入的长度。 |
+| 类型     | 说明       |
+| ------ | -------- |
+| number | 实际写入的长度。 |
 
 **示例：**
   ```js
@@ -968,9 +968,9 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 | algorithm | string | 是   | 哈希计算采用的算法。可选&nbsp;"md5"、"sha1"&nbsp;或&nbsp;"sha256"。建议采用安全强度更高的&nbsp;"sha256"。 |
 
 **返回值：**
-  | 类型                    | 说明                         |
-  | --------------------- | -------------------------- |
-  | Promise&lt;string&gt; | Promise对象。返回文件的哈希值。表示为十六进制数字串，所有字母均大写。 |
+| 类型                    | 说明                         |
+| --------------------- | -------------------------- |
+| Promise&lt;string&gt; | Promise对象。返回文件的哈希值。表示为十六进制数字串，所有字母均大写。 |
 
 **示例：**
   ```js
@@ -1022,9 +1022,9 @@ chmod(path: string, mode: number):Promise&lt;void&gt;
 | mode   | number | 是   | 改变文件权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1088,14 +1088,14 @@ fstat(fd: number): Promise&lt;Stat&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待获取文件状态的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待获取文件状态的文件描述符。 |
 
 **返回值：**
-  | 类型                           | 说明         |
-  | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise对象。返回表示文件状态的具体信息。 |
+| 类型                           | 说明         |
+| ---------------------------- | ---------- |
+| Promise&lt;[Stat](#stat)&gt; | Promise对象。返回表示文件状态的具体信息。 |
 
 **示例：**
   ```js
@@ -1116,10 +1116,10 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                                 | 必填   | 说明               |
-  | -------- | ---------------------------------- | ---- | ---------------- |
-  | fd       | number                             | 是    | 待获取文件状态的文件描述符。     |
-  | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是    | 异步获取文件状态信息之后的回调。 |
+| 参数名      | 类型                                 | 必填   | 说明               |
+| -------- | ---------------------------------- | ---- | ---------------- |
+| fd       | number                             | 是    | 待获取文件状态的文件描述符。     |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是    | 异步获取文件状态信息之后的回调。 |
 
 **示例：**
   ```js
@@ -1139,14 +1139,14 @@ fstatSync(fd: number): Stat
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待获取文件状态的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待获取文件状态的文件描述符。 |
 
 **返回值：**
-  | 类型            | 说明         |
-  | ------------- | ---------- |
-  | [Stat](#stat) | 表示文件状态的具体信息。 |
+| 类型            | 说明         |
+| ------------- | ---------- |
+| [Stat](#stat) | 表示文件状态的具体信息。 |
 
 **示例：**
   ```js
@@ -1164,15 +1164,15 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明               |
-  | ---- | ------ | ---- | ---------------- |
-  | fd   | number | 是    | 待截断文件的文件描述符。     |
-  | len  | number | 否    | 文件截断后的长度，以字节为单位。 |
+| 参数名  | 类型     | 必填   | 说明               |
+| ---- | ------ | ---- | ---------------- |
+| fd   | number | 是    | 待截断文件的文件描述符。     |
+| len  | number | 否    | 文件截断后的长度，以字节为单位。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。|
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。|
 
 **示例：**
   ```js
@@ -1194,11 +1194,11 @@ ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明               |
-  | -------- | ------------------------- | ---- | ---------------- |
-  | fd       | number                    | 是    | 待截断文件的文件描述符。     |
-  | len      | number                    | 是    | 文件截断后的长度，以字节为单位。 |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，本调用无返回值。  |
+| 参数名      | 类型                        | 必填   | 说明               |
+| -------- | ------------------------- | ---- | ---------------- |
+| fd       | number                    | 是    | 待截断文件的文件描述符。     |
+| len      | number                    | 是    | 文件截断后的长度，以字节为单位。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，本调用无返回值。  |
 
 **示例：**
   ```js
@@ -1217,10 +1217,10 @@ ftruncateSync(fd: number, len?: number): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明               |
-  | ---- | ------ | ---- | ---------------- |
-  | fd   | number | 是    | 待截断文件的文件描述符。     |
-  | len  | number | 否    | 文件截断后的长度，以字节为单位。 |
+| 参数名  | 类型     | 必填   | 说明               |
+| ---- | ------ | ---- | ---------------- |
+| fd   | number | 是    | 待截断文件的文件描述符。     |
+| len  | number | 否    | 文件截断后的长度，以字节为单位。 |
 
 **示例：**
   ```js
@@ -1243,9 +1243,9 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 | len    | number | 否   | 文件截断后的长度，以字节为单位。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1319,9 +1319,9 @@ readText(filePath: string, options?: {
 | options  | Object | 否   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 
 **返回值：**
-  | 类型                    | 说明         |
-  | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise对象。返回读取文件的内容。 |
+| 类型                    | 说明         |
+| --------------------- | ---------- |
+| Promise&lt;string&gt; | Promise对象。返回读取文件的内容。 |
 
 **示例：**
   ```js
@@ -1379,9 +1379,9 @@ readTextSync(filePath: string, options?: {
 | options  | Object | 否   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 
 **返回值：**
-  | 类型   | 说明                 |
-  | ------ | -------------------- |
-  | string | 返回读取文件的内容。 |
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| string | 返回读取文件的内容。 |
 
 **示例：**
   ```js
@@ -1403,9 +1403,9 @@ lstat(path: string): Promise&lt;Stat&gt;
 | path   | string | 是   | 目标文件的应用沙箱路径。 |
 
 **返回值：**
-  | 类型                           | 说明         |
-  | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
+| 类型                           | 说明         |
+| ---------------------------- | ---------- |
+| Promise&lt;[Stat](#stat)&gt; | promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
 
 **示例：**
   ```js
@@ -1453,9 +1453,9 @@ lstatSync(path:string): Stat
 | path   | string | 是   | 目标文件的应用沙箱路径。 |
 
 **返回值：**
-  | 类型            | 说明         |
-  | ------------- | ---------- |
-  | [Stat](#stat) | 表示文件的具体信息。 |
+| 类型            | 说明         |
+| ------------- | ---------- |
+| [Stat](#stat) | 表示文件的具体信息。 |
 
 **示例：**
   ```js
@@ -1476,15 +1476,15 @@ read(buffer: ArrayBuffer, options?: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型        | 必填 | 说明                                                         |
-  | ------- | ----------- | ---- | ------------------------------------------------------------ |
-  | buffer  | ArrayBuffer | 是   | 用于保存读取到的文件数据的缓冲区。                           |
-  | options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>约束：offset+length<=buffer.size。 |
+| 参数名  | 类型        | 必填 | 说明                                                         |
+| ------- | ----------- | ---- | ------------------------------------------------------------ |
+| buffer  | ArrayBuffer | 是   | 用于保存读取到的文件数据的缓冲区。                           |
+| options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>约束：offset+length<=buffer.size。 |
 
 **返回值：**
-  | 类型                                 | 说明     |
-  | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
+| 类型                                 | 说明     |
+| ---------------------------------- | ------ |
+| Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
 **示例：**
   ```js
@@ -1510,11 +1510,11 @@ read(buffer: ArrayBuffer, options: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                                       | 必填   | 说明                                       |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
-  | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>约束：offset+length<=buffer.size。 |
-  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步从文件读取数据之后的回调。                          |
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
+| options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>约束：offset+length<=buffer.size。 |
+| callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步从文件读取数据之后的回调。                          |
 
 **示例：**
   ```js
@@ -1543,9 +1543,9 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 | newPath | String | 是   | 目标文件的新应用沙箱路径。   |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1608,14 +1608,14 @@ fsync(fd: number): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待同步文件的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待同步文件的文件描述符。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1636,10 +1636,10 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明              |
-  | -------- | ------------------------- | ---- | --------------- |
-  | fd       | number                    | 是    | 待同步文件的文件描述符。    |
-  | Callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件数据同步之后的回调。 |
+| 参数名      | 类型                        | 必填   | 说明              |
+| -------- | ------------------------- | ---- | --------------- |
+| fd       | number                    | 是    | 待同步文件的文件描述符。    |
+| Callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件数据同步之后的回调。 |
 
 **示例：**
   ```js
@@ -1658,9 +1658,9 @@ fsyncSync(fd: number): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待同步文件的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待同步文件的文件描述符。 |
 
 **示例：**
   ```js
@@ -1677,14 +1677,14 @@ fdatasync(fd: number): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待同步文件的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待同步文件的文件描述符。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1705,10 +1705,10 @@ fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                              | 必填   | 说明                |
-  | -------- | ------------------------------- | ---- | ----------------- |
-  | fd       | number                          | 是    | 待同步文件的文件描述符。      |
-  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步将文件内容数据同步之后的回调。 |
+| 参数名      | 类型                              | 必填   | 说明                |
+| -------- | ------------------------------- | ---- | ----------------- |
+| fd       | number                          | 是    | 待同步文件的文件描述符。      |
+| callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步将文件内容数据同步之后的回调。 |
 
 **示例：**
   ```js
@@ -1727,9 +1727,9 @@ fdatasyncSync(fd: number): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待同步文件的文件描述符。 |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待同步文件的文件描述符。 |
 
 **示例：**
   ```js
@@ -1752,9 +1752,9 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 | srcPath | string | 是   | 符号链接文件的应用沙箱路径。 |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1825,9 +1825,9 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 | gid    | number | 是   | 新的GID（GroupID）。       |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1896,14 +1896,14 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名    | 类型     | 必填   | 说明                          |
-  | ------ | ------ | ---- | --------------------------- |
-  | prefix | string | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+| 参数名    | 类型     | 必填   | 说明                          |
+| ------ | ------ | ---- | --------------------------- |
+| prefix | string | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
 
 **返回值：**
-  | 类型                   | 说明         |
-  | --------------------- | ---------- |
-  | Promise&lt;string&gt; | Promise对象。返回生成的唯一目录路径。 |
+| 类型                   | 说明         |
+| --------------------- | ---------- |
+| Promise&lt;string&gt; | Promise对象。返回生成的唯一目录路径。 |
 
 **示例：**
   ```js
@@ -1924,10 +1924,10 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                          | 必填   | 说明                          |
-  | -------- | --------------------------- | ---- | --------------------------- |
-  | prefix   | string                      | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
-  | callback | AsyncCallback&lt;string&gt; | 是    | 异步创建临时目录之后的回调。              |
+| 参数名      | 类型                          | 必填   | 说明                          |
+| -------- | --------------------------- | ---- | --------------------------- |
+| prefix   | string                      | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步创建临时目录之后的回调。              |
 
 **示例：**
   ```js
@@ -1946,14 +1946,14 @@ mkdtempSync(prefix: string): string
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名    | 类型     | 必填   | 说明                          |
-  | ------ | ------ | ---- | --------------------------- |
-  | prefix | string | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+| 参数名    | 类型     | 必填   | 说明                          |
+| ------ | ------ | ---- | --------------------------- |
+| prefix | string | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
 
 **返回值：**
-  | 类型    | 说明         |
-  | ------ | ---------- |
-  | string | 产生的唯一目录路径。 |
+| 类型    | 说明         |
+| ------ | ---------- |
+| string | 产生的唯一目录路径。 |
 
 **示例：**
   ```js
@@ -1970,15 +1970,15 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明                                       |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | fd   | number | 是    | 待改变文件的文件描述符。                             |
-  | mode | number | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| fd   | number | 是    | 待改变文件的文件描述符。                             |
+| mode | number | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 
 **返回值：**
-  | 类型                 | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                 | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -1999,11 +1999,11 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                              | 必填   | 说明                                       |
-  | -------- | ------------------------------- | ---- | ---------------------------------------- |
-  | fd       | number                          | 是    | 待改变文件的文件描述符。                             |
-  | mode     | number                          | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
-  | callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步改变文件权限之后的回调。                           |
+| 参数名      | 类型                              | 必填   | 说明                                       |
+| -------- | ------------------------------- | ---- | ---------------------------------------- |
+| fd       | number                          | 是    | 待改变文件的文件描述符。                             |
+| mode     | number                          | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+| callback | AsyncCallback&nbsp;&lt;void&gt; | 是    | 异步改变文件权限之后的回调。                           |
 
 **示例：**
   ```js
@@ -2022,10 +2022,10 @@ fchmodSync(fd: number, mode: number): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明                                       |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | fd   | number | 是    | 待改变文件的文件描述符。                             |
-  | mode | number | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| fd   | number | 是    | 待改变文件的文件描述符。                             |
+| mode | number | 是    | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 
 **示例：**
   ```js
@@ -2048,9 +2048,9 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 | mode   | string | 是   | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
 
 **返回值：**
-  | 类型                                | 说明        |
-  | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
+| 类型                                | 说明        |
+| --------------------------------- | --------- |
+| Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
 
 **示例：**
   ```js
@@ -2100,9 +2100,9 @@ createStreamSync(path: string, mode: string): Stream
 | mode   | string | 是   | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
 
 **返回值：**
-  | 类型                | 说明        |
-  | ------------------ | --------- |
-  | [Stream](#stream7) | 返回文件流的结果。 |
+| 类型                | 说明        |
+| ------------------ | --------- |
+| [Stream](#stream7) | 返回文件流的结果。 |
 
 **示例：**
   ```js
@@ -2119,15 +2119,15 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明                                       |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | fd   | number | 是    | 待打开文件的文件描述符。                             |
-  | mode | string | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| fd   | number | 是    | 待打开文件的文件描述符。                             |
+| mode | string | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
 
 **返回值：**
-  | 类型                               | 说明        |
-  | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
+| 类型                               | 说明        |
+| --------------------------------- | --------- |
+| Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
 
 **示例：**
   ```js
@@ -2149,11 +2149,11 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                                       | 必填   | 说明                                       |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | fd       | number                                   | 是    | 待打开文件的文件描述符。                             |
-  | mode     | string                                   | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
-  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt; | 是    | 异步打开文件流之后的回调。                            |
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| fd       | number                                   | 是    | 待打开文件的文件描述符。                             |
+| mode     | string                                   | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
+| callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt; | 是    | 异步打开文件流之后的回调。                            |
 
 **示例：**
   ```js
@@ -2173,15 +2173,15 @@ fdopenStreamSync(fd: number, mode: string): Stream
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明                                       |
-  | ---- | ------ | ---- | ---------------------------------------- |
-  | fd   | number | 是    | 待打开文件的文件描述符。                             |
-  | mode | string | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| fd   | number | 是    | 待打开文件的文件描述符。                             |
+| mode | string | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
 
 **返回值：**
-  | 类型                | 说明        |
-  | ------------------ | --------- |
-  | [Stream](#stream7) | 返回文件流的结果。 |
+| 类型                | 说明        |
+| ------------------ | --------- |
+| [Stream](#stream7) | 返回文件流的结果。 |
 
 **示例：**
   ```js
@@ -2199,16 +2199,16 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待改变文件的文件描述符。 |
-  | uid  | number | 是    | 文件所有者的UID。   |
-  | gid  | number | 是    | 文件所有组的GID。   |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待改变文件的文件描述符。 |
+| uid  | number | 是    | 文件所有者的UID。   |
+| gid  | number | 是    | 文件所有组的GID。   |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -2230,12 +2230,12 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明              |
-  | -------- | ------------------------- | ---- | --------------- |
-  | fd       | number                    | 是    | 待改变文件的文件描述符。    |
-  | uid      | number                    | 是    | 文件所有者的UID。      |
-  | gid      | number                    | 是    | 文件所有组的GID。      |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步改变文件所有者之后的回调。 |
+| 参数名      | 类型                        | 必填   | 说明              |
+| -------- | ------------------------- | ---- | --------------- |
+| fd       | number                    | 是    | 待改变文件的文件描述符。    |
+| uid      | number                    | 是    | 文件所有者的UID。      |
+| gid      | number                    | 是    | 文件所有组的GID。      |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步改变文件所有者之后的回调。 |
 
 **示例：**
   ```js
@@ -2255,11 +2255,11 @@ fchownSync(fd: number, uid: number, gid: number): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明           |
-  | ---- | ------ | ---- | ------------ |
-  | fd   | number | 是    | 待改变文件的文件描述符。 |
-  | uid  | number | 是    | 文件所有者的UID。   |
-  | gid  | number | 是    | 文件所有组的GID。   |
+| 参数名  | 类型     | 必填   | 说明           |
+| ---- | ------ | ---- | ------------ |
+| fd   | number | 是    | 待改变文件的文件描述符。 |
+| uid  | number | 是    | 文件所有者的UID。   |
+| gid  | number | 是    | 文件所有组的GID。   |
 
 **示例：**
   ```js
@@ -2284,9 +2284,9 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 | gid    | number | 是   | 新的GID。                  |
 
 **返回值：**
-  | 类型                  | 说明                           |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise对象。无返回值。 |
+| 类型                  | 说明                           |
+| ------------------- | ---------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **示例：**
   ```js
@@ -2362,9 +2362,9 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 | callback | AsyncCallback&lt;number&nbsp;&gt; | 是   | 每发生变化一次，调用一次此函数。                             |
 
 **返回值：**
-  | 类型                  | 说明         |
-  | -------------------- | ---------- |
-  | [Watcher](#watcher7) | Promise对象。返回文件变化监听的实例。 |
+| 类型                  | 说明         |
+| -------------------- | ---------- |
+| [Watcher](#watcher7) | Promise对象。返回文件变化监听的实例。 |
 
 **示例：**
   ```js
@@ -2422,9 +2422,9 @@ isBlockDevice(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明               |
-  | ------- | ---------------- |
-  | boolean | 表示文件是否是块特殊设备。 |
+| 类型      | 说明               |
+| ------- | ---------------- |
+| boolean | 表示文件是否是块特殊设备。 |
 
 **示例：**
   ```js
@@ -2441,9 +2441,9 @@ isCharacterDevice(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明                |
-  | ------- | ----------------- |
-  | boolean | 表示文件是否是字符特殊设备。 |
+| 类型      | 说明                |
+| ------- | ----------------- |
+| boolean | 表示文件是否是字符特殊设备。 |
 
 **示例：**
   ```js
@@ -2460,9 +2460,9 @@ isDirectory(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明            |
-  | ------- | ------------- |
-  | boolean | 表示文件是否是目录。 |
+| 类型      | 说明            |
+| ------- | ------------- |
+| boolean | 表示文件是否是目录。 |
 
 **示例：**
   ```js
@@ -2479,9 +2479,9 @@ isFIFO(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明                    |
-  | ------- | --------------------- |
-  | boolean | 表示文件是否是&nbsp;FIFO。 |
+| 类型      | 说明                    |
+| ------- | --------------------- |
+| boolean | 表示文件是否是&nbsp;FIFO。 |
 
 **示例：**
   ```js
@@ -2498,9 +2498,9 @@ isFile(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明              |
-  | ------- | --------------- |
-  | boolean | 表示文件是否是普通文件。 |
+| 类型      | 说明              |
+| ------- | --------------- |
+| boolean | 表示文件是否是普通文件。 |
 
 **示例：**
   ```js
@@ -2517,9 +2517,9 @@ isSocket(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明             |
-  | ------- | -------------- |
-  | boolean | 表示文件是否是套接字。 |
+| 类型      | 说明             |
+| ------- | -------------- |
+| boolean | 表示文件是否是套接字。 |
 
 **示例：**
   ```js
@@ -2536,9 +2536,9 @@ isSymbolicLink(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明              |
-  | ------- | --------------- |
-  | boolean | 表示文件是否是符号链接。 |
+| 类型      | 说明              |
+| ------- | --------------- |
+| boolean | 表示文件是否是符号链接。 |
 
 **示例：**
   ```js
@@ -2580,9 +2580,9 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明                     |
-  | -------- | ------------------------- | ---- | ---------------------- |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 以异步方法关闭watcher监听之后的回调。 |
+| 参数名      | 类型                        | 必填   | 说明                     |
+| -------- | ------------------------- | ---- | ---------------------- |
+| callback | AsyncCallback&lt;void&gt; | 是    | 以异步方法关闭watcher监听之后的回调。 |
 
 **示例：**
   ```js
@@ -2610,9 +2610,9 @@ close(): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型                  | 说明            |
-  | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise对象。返回表示异步关闭文件流的结果。 |
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。返回表示异步关闭文件流的结果。 |
 
 **示例：**
   ```js
@@ -2634,9 +2634,9 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明            |
-  | -------- | ------------------------- | ---- | ------------- |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件流之后的回调。 |
+| 参数名      | 类型                        | 必填   | 说明            |
+| -------- | ------------------------- | ---- | ------------- |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件流之后的回调。 |
 
 **示例：**
   ```js
@@ -2671,9 +2671,9 @@ flush(): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型                  | 说明            |
-  | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise对象。返回表示异步刷新文件流的结果。 |
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。返回表示异步刷新文件流的结果。 |
 
 **示例：**
   ```js
@@ -2695,9 +2695,9 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                        | 必填   | 说明             |
-  | -------- | ------------------------- | ---- | -------------- |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步刷新文件流后的回调函数。 |
+| 参数名      | 类型                        | 必填   | 说明             |
+| -------- | ------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步刷新文件流后的回调函数。 |
 
 **示例：**
   ```js
@@ -2737,15 +2737,15 @@ write(buffer: ArrayBuffer | string, options?: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名     | 类型                              | 必填   | 说明                                       |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
+| 参数名     | 类型                              | 必填   | 说明                                       |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+| options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
-  | 类型                    | 说明       |
-  | --------------------- | -------- |
-  | Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
+| 类型                    | 说明       |
+| --------------------- | -------- |
+| Promise&lt;number&gt; | Promise对象。返回实际写入的长度。 |
 
 **示例：**
   ```js
@@ -2772,11 +2772,11 @@ write(buffer: ArrayBuffer | string, options: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名   | 类型                            | 必填 | 说明                                                         |
-  | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
-  | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
+| 参数名   | 类型                            | 必填 | 说明                                                         |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| buffer   | ArrayBuffer&nbsp;\|&nbsp;string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+| options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。 |
+| callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
 **示例：**
   ```js
@@ -2804,15 +2804,15 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名     | 类型                              | 必填   | 说明                                       |
-  | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
+| 参数名     | 类型                              | 必填   | 说明                                       |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer&nbsp;\|&nbsp;string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+| options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入数据的位置相对于数据首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
-  | 类型     | 说明       |
-  | ------ | -------- |
-  | number | 实际写入的长度。 |
+| 类型     | 说明       |
+| ------ | -------- |
+| number | 实际写入的长度。 |
 
 **示例：**
   ```js
@@ -2834,15 +2834,15 @@ read(buffer: ArrayBuffer, options?: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名     | 类型          | 必填   | 说明                                       |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
-  | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
+| 参数名     | 类型          | 必填   | 说明                                       |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
+| options | Object      | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
-  | 类型                                 | 说明     |
-  | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
+| 类型                                 | 说明     |
+| ---------------------------------- | ------ |
+| Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
 **示例：**
   ```js
@@ -2869,11 +2869,11 @@ read(buffer: ArrayBuffer, options: {
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                                       | 必填   | 说明                                       |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | buffer   | ArrayBuffer                              | 是    | 用于读取文件的缓冲区。                              |
-  | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
-  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步从流文件读取数据之后的回调。                         |
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| buffer   | ArrayBuffer                              | 是    | 用于读取文件的缓冲区。                              |
+| options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
+| callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步从流文件读取数据之后的回调。                         |
 
 **示例：**
   ```js
@@ -2901,16 +2901,16 @@ readSync(buffer: ArrayBuffer, options?: {
 
 **参数：**
 
-  | 参数名     | 类型          | 必填   | 说明                                       |
-  | ------- | ----------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
-  | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
+| 参数名     | 类型          | 必填   | 说明                                       |
+| ------- | ----------- | ---- | ---------------------------------------- |
+| buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
+| options | Object      | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
 
 **返回值：**
 
-  | 类型     | 说明       |
-  | ------ | -------- |
-  | number | 实际读取的长度。 |
+| 类型     | 说明       |
+| ------ | -------- |
+| number | 实际读取的长度。 |
 
 **示例：**
   ```js
@@ -2933,9 +2933,9 @@ read(): Promise&lt;Dirent&gt;
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型                               | 说明            |
-  | -------------------------------- | ------------- |
-  | Promise&lt;[Dirent](#dirent)&gt; | Promise对象。返回表示异步读取目录项的结果。 |
+| 类型                               | 说明            |
+| -------------------------------- | ------------- |
+| Promise&lt;[Dirent](#dirent)&gt; | Promise对象。返回表示异步读取目录项的结果。 |
 
 **示例：**
   ```js
@@ -2957,9 +2957,9 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
-  | 参数名      | 类型                                     | 必填   | 说明               |
-  | -------- | -------------------------------------- | ---- | ---------------- |
-  | callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | 是    | 异步读取下一个目录项之后的回调。 |
+| 参数名      | 类型                                     | 必填   | 说明               |
+| -------- | -------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | 是    | 异步读取下一个目录项之后的回调。 |
 
 **示例：**
   ```js
@@ -2982,9 +2982,9 @@ readSync(): Dirent
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型                | 说明       |
-  | ----------------- | -------- |
-  | [Dirent](#dirent) | 表示一个目录项。 |
+| 类型                | 说明       |
+| ----------------- | -------- |
+| [Dirent](#dirent) | 表示一个目录项。 |
 
 **示例：**
   ```js
@@ -3064,9 +3064,9 @@ isBlockDevice(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明               |
-  | ------- | ---------------- |
-  | boolean | 表示当前目录项是否是块特殊设备。 |
+| 类型      | 说明               |
+| ------- | ---------------- |
+| boolean | 表示当前目录项是否是块特殊设备。 |
 
 **示例：**
   ```js
@@ -3084,9 +3084,9 @@ isCharacterDevice(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明                |
-  | ------- | ----------------- |
-  | boolean | 表示当前目录项是否是字符特殊设备。 |
+| 类型      | 说明                |
+| ------- | ----------------- |
+| boolean | 表示当前目录项是否是字符特殊设备。 |
 
 **示例：**
   ```js
@@ -3104,9 +3104,9 @@ isDirectory(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明            |
-  | ------- | ------------- |
-  | boolean | 表示当前目录项是否是目录。 |
+| 类型      | 说明            |
+| ------- | ------------- |
+| boolean | 表示当前目录项是否是目录。 |
 
 **示例：**
   ```js
@@ -3124,9 +3124,9 @@ isFIFO(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明              |
-  | ------- | --------------- |
-  | boolean | 表示当前目录项是否是FIFO。 |
+| 类型      | 说明              |
+| ------- | --------------- |
+| boolean | 表示当前目录项是否是FIFO。 |
 
 **示例：**
   ```js
@@ -3144,9 +3144,9 @@ isFile(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明              |
-  | ------- | --------------- |
-  | boolean | 表示当前目录项是否是普通文件。 |
+| 类型      | 说明              |
+| ------- | --------------- |
+| boolean | 表示当前目录项是否是普通文件。 |
 
 **示例：**
   ```js
@@ -3164,9 +3164,9 @@ isSocket(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明             |
-  | ------- | -------------- |
-  | boolean | 表示当前目录项是否是套接字。 |
+| 类型      | 说明             |
+| ------- | -------------- |
+| boolean | 表示当前目录项是否是套接字。 |
 
 **示例：**
   ```js
@@ -3184,9 +3184,9 @@ isSymbolicLink(): boolean
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **返回值：**
-  | 类型      | 说明              |
-  | ------- | --------------- |
-  | boolean | 表示当前目录项是否是符号链接。 |
+| 类型      | 说明              |
+| ------- | --------------- |
+| boolean | 表示当前目录项是否是符号链接。 |
 
 **示例：**
   ```js
