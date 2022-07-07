@@ -256,7 +256,8 @@ resourceManager.getResourceManager((error, mgr) => {
 
 提供访问应用资源的能力。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
