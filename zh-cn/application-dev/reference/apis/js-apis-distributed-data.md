@@ -94,33 +94,6 @@ export default class MyAbilityStage extends AbilityStage {
   }
 }
 ```
-3）在前两种场景下，切换area时的处理。
-```js
-import AbilityStage from '@ohos.application.Ability';
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-  doSwapArea() {
-      this.context.area = 1
-      let context = this.context
-      const kvManagerConfig = {
-      context : context,
-      bundleName : 'com.example.datamanagertest',
-      userInfo : {
-      userId : '0',
-      userType : distributedData.UserType.SAME_USER_ID
-      }
-    }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("createKVManager err: " + JSON.stringify(err));
-        return;
-      }
-      console.log("createKVManager success");
-      kvManager = manager;
-    });
-  }
-}
-```
 
 ## distributedData.createKVManager
 
