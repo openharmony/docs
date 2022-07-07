@@ -533,7 +533,27 @@ let path = this.context.getApplicationContext().fileDirs + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
-## image.CreateImageSource<sup>9+</sup>
+## image.createImageSource<sup>9+</sup>
+
+createImageSource(fd: number): ImageSource
+
+通过传入文件描述符来创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明          |
+| ------ | ------ | ---- | ------------- |
+| fd     | number | 是   | 文件描述符fd。|
+
+**示例：**
+
+```js
+const imageSourceApi = image.createImageSource(0)
+```
+
+## image.createImageSource<sup>9+</sup>
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
@@ -554,7 +574,7 @@ const buf = new ArrayBuffer(96);
 image.createImageSource(buf, () => { })
 ```
 
-## image.CreateIncrementalSource<sup>6+</sup>
+## image.createIncrementalSource<sup>6+</sup>
 
 function CreateIncrementalSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
@@ -1621,6 +1641,12 @@ img.release().then(() =>{
 | UNKNOWN   | 0      | 未知格式。        |
 | RGBA_8888 | 3      | 格式为RGBA_8888。 |
 | RGB_565   | 2      | 格式为RGB_565。   |
+| BGRA_8888 | 4      | 格式为BGRA_8888。 |
+| RGB_888   | 5      | 格式为RGB_888。   |
+| ALPHA_8   | 6      | 格式为ALPHA_8。   |
+| RGBA_F16  | 7      | 格式为RGBA_F16。  |
+| NV21      | 8      | 格式为NV21。      |
+| NV12      | 9      | 格式为NV12。      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -1716,16 +1742,21 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称              | 默认值            | 说明                 |
-| ----------------- | ----------------- | -------------------- |
-| BITS_PER_SAMPLE   | "BitsPerSample"   | 每个像素比特数。     |
-| ORIENTATION       | "Orientation"     | 图片方向。           |
-| IMAGE_LENGTH      | "ImageLength"     | 图片长度。           |
-| IMAGE_WIDTH       | "ImageWidth"      | 图片宽度。           |
-| GPS_LATITUDE      | "GPSLatitude"     | 图片纬度。           |
-| GPS_LONGITUDE     | "GPSLongitude"    | 图片经度。           |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"  | 纬度引用，例如N或S。 |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef" | 经度引用，例如W或E。 |
+| 名称              | 默认值                  | 说明                    |
+| ----------------- | ----------------------- | ----------------------- |
+| BITS_PER_SAMPLE   | "BitsPerSample"         | 每个像素比特数。        |
+| ORIENTATION       | "Orientation"           | 图片方向。              |
+| IMAGE_LENGTH      | "ImageLength"           | 图片长度。              |
+| IMAGE_WIDTH       | "ImageWidth"            | 图片宽度。              |
+| GPS_LATITUDE      | "GPSLatitude"           | 图片纬度。              |
+| GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。              |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。    |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。    |
+| DateTimeOriginal  | "2022:06:02 15:51:35"   | 拍摄时间。              |
+| ExposureTime      | "1/33 sec."             | 曝光时间。              |
+| SceneType         | "Directly photographed" | 拍摄场景，例如直接拍摄。|
+| ISOSpeedRatings   | "400"                   | ISO 曝光度。            |
+| FNumber           | "f/1.8"                 | 光圈值。                |
 
 ## ImageFormat<sup>9+</sup>
 
