@@ -46,10 +46,10 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```
     bundleState.isIdleState("com.ohos.camera", (err, res) => {
-        if(err.code === 0) {
-            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-        } else {
+        if(err) {
             console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
         }
     });
   ```
@@ -102,10 +102,10 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
   ```
     bundleState.queryAppUsagePriorityGroup((err, res) => {
-        if(err.code === 0) {
-            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
-        } else {
+        if(err) {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
         }
     });
   ```
@@ -158,7 +158,9 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
   ```
     bundleState.queryBundleStateInfos(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if(err) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos callback success.');
             let i = 1;
             for(let key in res){
@@ -166,8 +168,6 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
                 console.log('BUNDLE_ACTIVE queryBundleStateInfos callback result ' + JSON.stringify(res[key]));
                 i++;
             }
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
         }
     });
   ```
@@ -238,14 +238,14 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
   ```
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if(err) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback result ' + JSON.stringify(res[i]));
             }
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
         }
     });
   ```
@@ -314,14 +314,14 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
   ```
     bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if(err) {
+            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryBundleActiveStates callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryBundleActiveStates callback result ' + JSON.stringify(res[i]));
             }
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
         }
     });
   ```
@@ -385,14 +385,14 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
 
   ```
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if(err) {
+            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback result ' + JSON.stringify(res[i]));
              }
-        } else {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
         }
     });
   ```
