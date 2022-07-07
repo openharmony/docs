@@ -1,7 +1,7 @@
 # Sensor Overview
 
 
-Sensors in OpenHarmony are an abstraction of underlying sensor hardware. Your application can access the underlying sensor hardware via the sensors. Using the APIs provided by sensors, you can query sensors on your device, subscribe to sensor data, customize algorithms based on sensor data, and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
+Sensors in OpenHarmony are an abstraction of underlying sensor hardware. Your application can access the underlying sensor hardware via the sensors. Using the [Sensor](../reference/apis/js-apis-sensor.md) APIs, you can query sensors on your device, subscribe to sensor data, customize algorithms based on sensor data, and develop various sensor-based applications, such as compass, motion-controlled games, and fitness and health applications.
 
 
 A sensor is a device to detect events or changes in an environment and send messages about the events or changes to another device (for example, a CPU). Generally, a sensor is composed of sensitive components and conversion components. Sensors are the cornerstone of the IoT. A unified sensor management framework is required to achieve data sensing at a low latency and low power consumption, thereby keeping up with requirements of "1+8+N" products or business in the Seamless AI Life Strategy. The sensor list is as follows:
