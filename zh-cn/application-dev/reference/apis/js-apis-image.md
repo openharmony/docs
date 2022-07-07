@@ -428,7 +428,7 @@ image.createPixelMap(color, opts, (err,pixelmap) => {
 })
 ```
 
-### getPixelBytesNumber<sup>9+</sup>
+### getPixelBytesNumber<sup>7+</sup>
 
 getPixelBytesNumber(): number
 
@@ -506,7 +506,7 @@ image.createPixelMap(color, opts, (pixelmap) => {
 })
 ```
 
-## image.createImageSource<sup>9+</sup>
+## image.createImageSource
 
 createImageSource(uri: string): ImageSource
 
@@ -533,7 +533,7 @@ let path = this.context.getApplicationContext().fileDirs + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
-## image.createImageSource<sup>9+</sup>
+## image.createImageSource<sup>7+</sup>
 
 createImageSource(fd: number): ImageSource
 
@@ -574,9 +574,9 @@ const buf = new ArrayBuffer(96);
 image.createImageSource(buf, () => { })
 ```
 
-## image.createIncrementalSource<sup>6+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-function CreateIncrementalSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
+function CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 创建增量图片源。
 
@@ -751,7 +751,7 @@ imageSourceApi.getImageProperty("BitsPerSample",(error,data) => {
 })
 ```
 
-### getImageProperty<sup>9+</sup>
+### getImageProperty<sup>7+</sup>
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
