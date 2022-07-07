@@ -15,7 +15,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 通过属性创建PixelMap，通过Promise返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -547,6 +547,12 @@ createImageSource(fd: number): ImageSource
 | ------ | ------ | ---- | ------------- |
 | fd     | number | 是   | 文件描述符fd。|
 
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
 **示例：**
 
 ```js
@@ -557,15 +563,15 @@ const imageSourceApi = image.createImageSource(0)
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-基于增量缓冲区创建增量图片源。
+通过缓冲区创建图片源实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明   |
-| ------ | ----------- | ---- | ------ |
-| buf    | ArrayBuffer | 是   | 数组。 |
+| 参数名 | 类型        | 必填 | 说明             |
+| ------ | ----------- | ---- | ---------------- |
+| buf    | ArrayBuffer | 是   | 图像缓冲区数组。 |
 
 **示例：**
 
@@ -578,7 +584,7 @@ image.createImageSource(buf, () => { })
 
 function CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
-创建增量图片源。
+通过缓冲区以增量的方式创建图片源实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -586,8 +592,8 @@ function CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): Ima
 
 | 参数名  | 类型                            | 必填 | 说明                                 |
 | ------- | ------------------------------- | ---- | ------------------------------------ |
-| buf     | ArrayBuffer                     | 是   | 数组。                               |
-| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
+| buf     | ArrayBuffer                     | 是   | 增量数据。                           |
+| options | [SourceOptions](#SourceOptions) | 否   | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
 
@@ -782,9 +788,9 @@ imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => {
 
 ### modifyImageProperty<sup>9+</sup>
 
-modifyImageProperty(key: string, value: string): Promise<void>
+modifyImageProperty(key: string, value: string): Promise\<void>
 
-修改属性的值。
+通过指定的键修改图片属性的值，使用Promise形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -797,9 +803,9 @@ modifyImageProperty(key: string, value: string): Promise<void>
 
 **返回值：**
 
-| 类型                   | 说明                     |
-| ---------------------- | ------------------------ |
-| Promise<[void](#void)> | 返回修改后的图片属性值。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **示例：**
 
@@ -815,7 +821,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc")
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback<void>): void
 
-修改属性的值，callback形式返回结果。
+通过指定的键修改图片属性的值，callback形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -835,9 +841,9 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc",() => {})
 
 ### updateData<sup>9+</sup>
 
-updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number): Promise<void>
+updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number): Promise\<void>
 
-更新增量数据。
+更新增量数据，使用Promise形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -852,9 +858,9 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 
 **返回值：**
 
-| 类型                   | 说明                   |
-| ---------------------- | ---------------------- |
-| Promise<[void](#void)> | 返回更新后的增量数据。 |
+| 类型           | 说明                       |
+| -------------- | -------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。|
 
 **示例：**
 
@@ -866,11 +872,11 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
 ```
 
 
-### updateData<sup>6+</sup>
+### updateData<sup>9+</sup>
 
 updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback<void>): void
 
-更新增量数据。
+更新增量数据，callback形式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1641,12 +1647,6 @@ img.release().then(() =>{
 | UNKNOWN   | 0      | 未知格式。        |
 | RGBA_8888 | 3      | 格式为RGBA_8888。 |
 | RGB_565   | 2      | 格式为RGB_565。   |
-| BGRA_8888 | 4      | 格式为BGRA_8888。 |
-| RGB_888   | 5      | 格式为RGB_888。   |
-| ALPHA_8   | 6      | 格式为ALPHA_8。   |
-| RGBA_F16  | 7      | 格式为RGBA_F16。  |
-| NV21      | 8      | 格式为NV21。      |
-| NV12      | 9      | 格式为NV12。      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -1752,11 +1752,6 @@ PixelMap的初始化选项。
 | GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。              |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。    |
 | GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。    |
-| DateTimeOriginal  | "2022:06:02 15:51:35"   | 拍摄时间。              |
-| ExposureTime      | "1/33 sec."             | 曝光时间。              |
-| SceneType         | "Directly photographed" | 拍摄场景，例如直接拍摄。|
-| ISOSpeedRatings   | "400"                   | ISO 曝光度。            |
-| FNumber           | "f/1.8"                 | 光圈值。                |
 
 ## ImageFormat<sup>9+</sup>
 
