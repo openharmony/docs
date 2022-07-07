@@ -18,7 +18,7 @@ onAdminEnabled(): void
 
 设备管理员被激活事件回调。
 
-**系统能力**：SystemCapability.Customation.EnterpriseDeviceManager
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
 **示例：**
 
@@ -35,7 +35,7 @@ onAdminDisabled(): void
 
 设备管理员被去激活事件回调。
 
-**系统能力**：SystemCapability.Customation.EnterpriseDeviceManager
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
 **示例：**
     
