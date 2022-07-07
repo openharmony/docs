@@ -15,13 +15,13 @@
 包含流程：创建实例、读取图片信息、读写pixelmap、更新数据、打包像素、释放资源等流程。
 
 ```js
-const Color = new ArrayBuffer(96);//用于存放图像像素数据
+const color = new ArrayBuffer(96);//用于存放图像像素数据
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } } //图像像素数据
 
 //创建pixelmap对象
-const Color = new ArrayBuffer(96);
+const color = new ArrayBuffer(96);
 let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 2, width: 3 } }
-        image.createPixelMap(Color, opts, pixelmap => {
+        image.createPixelMap(color, opts, pixelmap => {
             expect(pixelmap !== null).assertTrue();
             console.info('TC_001-1 success');
             done();
