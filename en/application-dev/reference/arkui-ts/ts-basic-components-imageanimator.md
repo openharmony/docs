@@ -1,12 +1,10 @@
 # ImageAnimator
 
-
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
 
+> **NOTE**
+>
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
@@ -27,7 +25,7 @@ ImageAnimator()
 
 | Name | Type | Default Value | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| images | Array&lt;{<br/>src:string,<br/>width?:Length,<br/>height?:Length,<br/>top?:Length,<br/>left?:Length,<br/>duration?:number<br/>}&gt; | [] | Yes | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. The detailed description is as follows:<br/>**src**: image path. The image format can be SVG, PNG, or JPG.<br/>**width**: image width.<br/>**height**: image height.<br/>**top**: vertical coordinate of the image relative to the upper left corner of the component.<br/>**left**: horizontal coordinate of the image relative to the upper left corner of the component.<br/>**duration**: playback duration of the image, in ms. |
+| images | Array&lt;{<br>src:string,<br>width?:Length,<br>height?:Length,<br>top?:Length,<br>left?:Length,<br>duration?:number<br>}&gt; | [] | Yes | Image frame information. The information of each frame includes the image path, image size, image position, and image playback duration. The detailed description is as follows:<br>**src**: image path. The image format can be SVG, PNG, or JPG.<br>**width**: image width.<br>**height**: image height.<br>**top**: vertical coordinate of the image relative to the upper left corner of the component.<br>**left**: horizontal coordinate of the image relative to the upper left corner of the component.<br>**duration**: playback duration of the image, in ms. |
 | state | AnimationStatus | AnimationStatus.Initial | No | Playback status of the animation. The default status is **Initial**. |
 | duration | number | 1000 | No | Playback duration, in ms. The default duration is 1000 ms. When the duration is **0**, no image is played. The value change takes effect only at the beginning of the next cycle. When a separate duration is set in images, the setting of this attribute is invalid. |
 | reverse | boolean | false | No | Playback sequence. The value **false** indicates that images are played from the first one to the last one, and **true** indicates that images are played from the last one to the first one. |
@@ -36,6 +34,15 @@ ImageAnimator()
 | fillMode | FillMode | FillMode.Forwards | No | Status before and after the animation starts. For details about the options, see **FillMode**. |
 | iterations | number | 1 | No | By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. |
 
+- ImageFrameInfo
+  | Name| Type| Default Value| Mandatory| Description|
+  | -------- | -------- | -------- | -------- | -------- |
+  | src | string \| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| "" | Yes| Image path. The image format can be .svg, .png, or .jpg.|
+  | width | [Length](.../ui/ts-types.md#length-type)| 0 | No| Image width.|
+  | height | [Length](.../ui/ts-types.md#length-type)| 0 | No| Image height.|
+  | top | [Length](.../ui/ts-types.md#length-type)| 0 | No| Vertical coordinate of the image relative to the upper left corner of the component.|
+  | left | [Length](.../ui/ts-types.md#length-type)| 0 | No| Horizontal coordinate of the image relative to the upper left corner of the component.|
+  | duration | number | 0 | No| Playback duration of each image frame, in milliseconds.|
 - AnimationStatus enums
   | Name | Description |
   | -------- | -------- |
@@ -54,7 +61,7 @@ ImageAnimator()
 ## Events
 
 | Name | Description |
-| -------- | -------- | 
+| -------- | -------- |
 | onStart() =&gt; void | Triggered when the animation starts to play. |
 | onPause() =&gt; void | Triggered when the animation playback is paused. |
 | onRepeat() =&gt; void | Triggered when the animation playback is repeated. |
@@ -65,7 +72,8 @@ ImageAnimator()
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ImageAnimatorExample {
@@ -95,7 +103,7 @@ struct ImageAnimatorExample {
             left: 0
           },
           {
-            src: '/comment/bg3.jpg',
+            src: $r('app.media.bg3'),
             duration: 500,
             width: 325,
             height: 200,
@@ -103,7 +111,7 @@ struct ImageAnimatorExample {
             left: 0
           },
           {
-            src: '/comment/bg4.jpg',
+            src: $rawfile('bg4.jpg'),
             duration: 500,
             width: 325,
             height: 200,
@@ -127,6 +135,7 @@ struct ImageAnimatorExample {
           console.info('Cancel')
         })
         .onFinish(() => { // Triggered after the frame animation playback is complete.
+          this.state = AnimationStatus.Stopped
           console.info('Finish')
         })
       Row() {

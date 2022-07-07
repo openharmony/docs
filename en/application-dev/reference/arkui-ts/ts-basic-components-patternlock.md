@@ -1,9 +1,11 @@
 # PatternLock
 
-> **NOTE**<br>
+The **\<PatternLock>** component allows users to use a pattern password for authentication. It enters the input state once being touched, and exits the input state and sends the entered password to the application once the finger leaves the screen.
+
+> **NOTE**
+> 
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<PatternLock>** component allows users to use a pattern password for authentication. It enters the input state once being touched, and exits the input state and sends the entered password to the application once the finger leaves the screen.
 
 ## Required Permissions
 
@@ -11,7 +13,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 ##  APIs
 
@@ -62,7 +64,8 @@ Resets the component status.
 
 ##  Example
 
-```typescript
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PatternLockExample {
