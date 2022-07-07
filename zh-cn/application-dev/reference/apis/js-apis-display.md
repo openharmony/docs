@@ -185,7 +185,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件。<br/>-&nbsp;type为"add"，表示增加显示设备事件。<br/>-&nbsp;type为"remove"，表示移除显示设备事件。<br/>-&nbsp;type为"change"，表示改变显示设备事件。 |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
@@ -208,7 +208,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 设置监听类型。<br/>-&nbsp;type为"add"，表示监听增加显示设备。<br/>-&nbsp;type为"remove"，表示监听移除显示设备。<br/>-&nbsp;type为"change"，表示监听改变显示设备。 |
+  | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
   | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
