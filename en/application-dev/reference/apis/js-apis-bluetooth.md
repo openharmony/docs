@@ -3,7 +3,7 @@
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-Provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
+The Bluetooth module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 
 ## Modules to Import
@@ -11,17 +11,6 @@ Provides Classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and 
 ```js
 import bluetooth from '@ohos.bluetooth';
 ```
-
-
-## Required Permissions
-
-ohos.permission.USE_BLUETOOTH
-
-ohos.permission.MANAGE_BLUETOOTH
-
-ohos.permission.DISCOVER_BLUETOOTH
-
-ohos.permission.LOCATION
 
 
 ## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
@@ -202,7 +191,7 @@ let result = bluetooth.pairDevice("XX:XX:XX:XX:XX:XX");
 
 getProfileConnState(profileId: ProfileId): ProfileConnectionState
 
-Obtains the connection status of a profile.
+Obtains the connection state of a profile.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -232,6 +221,8 @@ let result = bluetooth.getProfileConnState(bluetooth.ProfileId.PROFILE_A2DP_SOUR
 cancelPairedDevice(deviceId: string): boolean
 
 Cancels a paired remote device.
+
+This is a system API.
 
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
@@ -397,7 +388,7 @@ startBluetoothDiscovery(): boolean
 
 Starts Bluetooth scan to discover remote devices.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1277,7 +1268,7 @@ No value is returned.
 
 getDeviceState(device: string): ProfileConnectionState
 
-Obtains the connection status of the profile.
+Obtains the connection state of the profile.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1315,7 +1306,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device to connect.|
+| device | string | Yes   | Address of the target device.|
 |
 
 **Return value**
@@ -1347,7 +1338,7 @@ Disconnects an A2DP connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device to disconnect.|
+| device | string | Yes   | Address of the target device.|
 |
 
 **Return value**
@@ -1369,7 +1360,7 @@ let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the A2DP connection status change events.
+Subscribes to the A2DP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1396,9 +1387,9 @@ A2dpSourceProfile.on('connectionStateChange', onReceiveEvent);
 
 ### A2dpSourceProfile.off('connectionStateChange')<sup>8+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the A2DP connection status change events.
+Unsubscribes from the A2DP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1423,11 +1414,13 @@ A2dpSourceProfile.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState
+### getPlayingState<sup>9+</sup>
 
 getPlayingState(device: string): PlayingState
 
-Obtains the playing status of a device.
+Obtains the playing state of a device.
+
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1442,7 +1435,7 @@ Obtains the playing status of a device.
 |                               |            |
 | ----------------------------- | ---------- |
 | Type | Description |
-| [PlayingState](#PlayingState) | Playing status obtained. |
+| [PlayingState](#PlayingState) | Playing state obtained. |
 
 **Example**
 
@@ -1524,7 +1517,7 @@ let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 
 on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Subscribes to the HFP connection status change events.
+Subscribes to the HFP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1533,7 +1526,7 @@ Subscribes to the HFP connection status change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the HFP connection state change event.                              |
 
 **Return value**
 
@@ -1551,9 +1544,9 @@ HandsFreeAudioGatewayProfile.on('connectionStateChange', onReceiveEvent);
 
 ### HandsFreeAudioGatewayProfile.off('connectionStateChange')<sup>8+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
-Unsubscribes from the HFP connection status change events.
+Unsubscribes from the HFP connection state change events.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1807,6 +1800,16 @@ Notifies the connected client device when a characteristic value changes.
 **Example**
 
 ```js
+// Create descriptors.
+let descriptors = [];
+let arrayBuffer = new ArrayBuffer(8);
+let descV = new Uint8Array(arrayBuffer);
+descV[0] = 11;
+let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+descriptors[0] = descriptor;
+
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
 characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
@@ -2178,7 +2181,6 @@ let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
-
 ### on('connectStateChange')
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
@@ -2325,7 +2327,7 @@ let ret = device.close();
 
 getServices(callback: AsyncCallback&lt;Array&lt;GattService&gt;&gt;): void
 
-Obtains all services of the remote BLE device. This method uses an asynchronous callback to return the result.
+Obtains all services of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2367,7 +2369,7 @@ device.getServices(getServices);
 
 getServices(): Promise&lt;Array&lt;GattService&gt;&gt;
 
-Obtains all services of the remote BLE device. This method uses a promise to return the result.
+Obtains all services of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2385,14 +2387,9 @@ Obtains all services of the remote BLE device. This method uses a promise to ret
 
 ```js
 // Promise
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.connect();
-var services = device.getServices();
-console.log("bluetooth services size is ", services.length);
-
-for (let i = 0; i < services.length; i++) {
-    console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);
-}
+gattClientDevice.getServices().then(result => {
+    console.info("Got services successfully:" + JSON.stringify(result));
+});
 ```
 
 
@@ -2400,7 +2397,7 @@ for (let i = 0; i < services.length; i++) {
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
-Reads the characteristic value of the specific service of the remote BLE device. This method uses an asynchronous callback to return the result.
+Reads the characteristic value of the specific service of the peer BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2454,7 +2451,7 @@ device.readCharacteristicValue(characteristic, readCcc);
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
-Reads the characteristic value of the specific service of the remote BLE device. This method uses a promise to return the result.
+Reads the characteristic value of the specific service of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2501,7 +2498,7 @@ device.readCharacteristicValue(characteristic);
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This method uses an asynchronous callback to return the result.
+Reads the descriptor contained in the specific characteristic of the peer BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2545,7 +2542,7 @@ device.readDescriptorValue(descriptor, readDesc);
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This method uses a promise to return the result.
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2725,6 +2722,16 @@ Sets the function of notifying the GATT client when the characteristic value of 
 **Example**
 
 ```js
+// Create descriptors.
+let descriptors = [];
+let arrayBuffer = new ArrayBuffer(8);
+let descV = new Uint8Array(arrayBuffer);
+descV[0] = 11;
+let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+descriptors[0] = descriptor;
+
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
@@ -2862,7 +2869,7 @@ device.off('BLEConnectionStateChange');
 
 getDeviceName(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the name of the remote BLE device. This method uses an asynchronous callback to return the result.
+Obtains the name of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2894,7 +2901,7 @@ let deviceName = gattClient.getDeviceName((err, data)=> {
 
 getDeviceName(): Promise&lt;string&gt;
 
-Obtains the name of the remote BLE device. This method uses a promise to return the result.
+Obtains the name of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2922,7 +2929,7 @@ let deviceName = gattClient.getDeviceName().then((data) => {
 
 getRssiValue(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the received signal strength indication (RSSI) of the remote BLE device. This method uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the received signal strength indication (RSSI) of the remote BLE device. This API uses an asynchronous callback to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2955,7 +2962,7 @@ let rssi = gattClient.getRssiValue((err, data)=> {
 
 getRssiValue(): Promise&lt;number&gt;
 
-Obtains the RSSI of the remote BLE device. This method uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
+Obtains the RSSI of the remote BLE device. This API uses a promise to return the result. It can be used only after a connection is set up by calling [connect](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
