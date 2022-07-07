@@ -94,7 +94,7 @@ switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolea
      prompt.showToast({message:"切换输入法成功" + this.imeList[this.flag].packageName, duration: 200});
  });
 ```
-
+## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 
 
