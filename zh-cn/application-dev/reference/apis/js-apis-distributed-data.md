@@ -39,7 +39,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
-1）ability或extension开发场景：
+Stage模型下的示例：
 ```js
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
@@ -67,7 +67,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-2）application开发场景：
+FA模型下的示例：
 ```js
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
@@ -116,7 +116,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
 
 **示例：**
-1）ability或extension开发场景：
+Stage模型下的示例：
 ```js
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
@@ -144,7 +144,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-2）application开发场景：
+FA模型下的示例：
 ```js
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
@@ -180,7 +180,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
 | bundleName | string | 是  | 调用方的包名。 |
 
