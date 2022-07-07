@@ -83,7 +83,7 @@ switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolea
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  |target | InputmethodProperty | 是 | 传入要切换的目标输入法。 |
+  |target | [InputmethodProperty](#InputmethodProperty) | 是 | 传入要切换的目标输入法。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法切换是否成功。 |
 
 
@@ -100,12 +100,16 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
-**返回值：**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  |target | InputmethodProperty | 是 | 传入要切换的目标输入法。 |
+  |target |  [InputmethodProperty](#InputmethodProperty)| 是 | 传入要切换的目标输入法。 |
 
+**返回值：**
+  | 类型                                      | 说明                         |
+  | ----------------------------------------- | ---------------------------- |
+  | [Promise](#Promise) | 回调返回切换后的输入法。 |
 **示例：**
 
 
