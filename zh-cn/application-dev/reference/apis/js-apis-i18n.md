@@ -671,6 +671,31 @@ format(number: string): string
   ```
 
 
+### getLocationName<sup>8+</sup>
+
+static getLocationName(number: string, locale: string): string
+
+获取电话号码归属地。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明         |
+| ------ | ------ | ---- | ---------- |
+| number | string | 是    | 电话号码 |
+| locale | string | 是    | 区域ID |
+
+**返回值：** 
+| 类型     | 说明         |
+| ------ | ---------- |
+| string | 电话号码归属地。 |
+
+**示例：** 
+  ```
+  var location = i18n.PhoneNumberFormat.getLocationName('15812312345', 'zh-CN');
+  ```
+
+
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
 表示电话号码格式化对象可设置的属性。
