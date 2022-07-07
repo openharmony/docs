@@ -314,7 +314,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
   ```
     bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
-        if(err) {
+        if (err) {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
         } else {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
