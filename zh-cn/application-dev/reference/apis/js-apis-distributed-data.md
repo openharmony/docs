@@ -39,28 +39,59 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
+1）ability或extension开发场景：
 ```js
+import AbilityStage from '@ohos.application.Ability'
 let kvManager;
-try {
-    var contextmock = featureAbility.getContext();
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
     const kvManagerConfig = {
-        context : contextmock,    
-        bundleName : 'com.example.datamanagertest',
-        userInfo : {
-            userId : '0',
-            userType : distributedData.UserType.SAME_USER_ID
-        }
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.log("createKVManager err: "  + JSON.stringify(err));
-            return;
-        }
-        console.log("createKVManager success");
-        kvManager = manager;
+      if (err) {
+        console.log("createKVManager err: " + JSON.stringify(err));
+        return;
+      }
+      console.log("createKVManager success");
+      kvManager = manager;
     });
-} catch (e) {
-    console.log("An unexpected error occurred. Error:" + e);
+  }
+}
+```
+
+2）application开发场景：
+```js
+import AbilityStage from '@ohos.application.Ability'
+let kvManager;
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
+    const kvManagerConfig = {
+      context: context.getApplicationContext(),
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
+    }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("createKVManager err: " + JSON.stringify(err));
+        return;
+      }
+      console.log("createKVManager success");
+      kvManager = manager;
+    });
+  }
 }
 ```
 
@@ -85,27 +116,59 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
 
 **示例：**
-
+1）ability或extension开发场景：
 ```js
+import AbilityStage from '@ohos.application.Ability'
 let kvManager;
-try {
-    var contextmock = featureAbility.getContext();
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
     const kvManagerConfig = {
-        context : contextmock, 
-        bundleName : 'com.example.datamanagertest',
-        userInfo : {
-            userId : '0',
-            userType : distributedData.UserType.SAME_USER_ID
-        }
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
     }
-    distributedData.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("createKVManager success");
-        kvManager = manager;
-    }).catch((err) => {
-        console.log("createKVManager err: "  + JSON.stringify(err));
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("createKVManager err: " + JSON.stringify(err));
+        return;
+      }
+      console.log("createKVManager success");
+      kvManager = manager;
     });
-} catch (e) {
-    console.log("An unexpected error occurred. Error:" + e);
+  }
+}
+```
+
+2）application开发场景：
+```js
+import AbilityStage from '@ohos.application.Ability'
+let kvManager;
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
+    const kvManagerConfig = {
+      context: context.getApplicationContext(),
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
+    }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("createKVManager err: " + JSON.stringify(err));
+        return;
+      }
+      console.log("createKVManager success");
+      kvManager = manager;
+    });
+  }
 }
 ```
 
