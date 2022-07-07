@@ -8,7 +8,7 @@
 > API9 当前为Canary版本，仅供试用，不保证接口可稳定调用。
 ## 导入模块
 
-```
+```js
 import bundle from '@ohos.bundle';
 ```
 
@@ -69,8 +69,6 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 })
 ```
 
-
-
 ## bundle.getApplicationInfo
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
@@ -109,7 +107,6 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
  })
 ```
 
-
 ## bundle.getApplicationInfo
 
 getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
@@ -145,7 +142,6 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
  })
 ```
-
 
 ## bundle.getAllBundleInfo
 
@@ -187,8 +183,6 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 })
 ```
 
-
-
 ## bundle.getAllBundleInfo
 
 getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
@@ -222,7 +216,6 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
  })
 ```
-
 
 ## bundle.getAllBundleInfo
 
@@ -259,8 +252,6 @@ bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
  })
 ```
-
-
 
 ## bundle.getBundleInfo
 
@@ -305,8 +296,6 @@ bundle.getBundleInfo(bundleName, bundleFlags, options)
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
-
-
 
 ## bundle.getBundleInfo
 
