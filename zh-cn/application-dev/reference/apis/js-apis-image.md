@@ -1742,16 +1742,16 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称              | 默认值                  | 说明                    |
-| ----------------- | ----------------------- | ----------------------- |
-| BITS_PER_SAMPLE   | "BitsPerSample"         | 每个像素比特数。        |
-| ORIENTATION       | "Orientation"           | 图片方向。              |
-| IMAGE_LENGTH      | "ImageLength"           | 图片长度。              |
-| IMAGE_WIDTH       | "ImageWidth"            | 图片宽度。              |
-| GPS_LATITUDE      | "GPSLatitude"           | 图片纬度。              |
-| GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。              |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。    |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。    |
+| 名称              | 默认值            | 说明                    |
+| ----------------- | ----------------- | ----------------------- |
+| BITS_PER_SAMPLE   | "BitsPerSample"   | 每个像素比特数。        |
+| ORIENTATION       | "Orientation"     | 图片方向。              |
+| IMAGE_LENGTH      | "ImageLength"     | 图片长度。              |
+| IMAGE_WIDTH       | "ImageWidth"      | 图片宽度。              |
+| GPS_LATITUDE      | "GPSLatitude"     | 图片纬度。              |
+| GPS_LONGITUDE     | "GPSLongitude"    | 图片经度。              |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"  | 纬度引用，例如N或S。    |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef" | 经度引用，例如W或E。    |
 
 ## ImageFormat<sup>9+</sup>
 
