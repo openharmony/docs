@@ -1838,10 +1838,3 @@ PixelMap的初始化选项。
 | ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | 写入像素映射失败。                                  |
 | ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | pixelmap不允许修改。                                |
 | ERR_IMAGE_CONFIG_FAILED             | 62980259 | 配置错误。                                          |
-
-
-
-
-
-
-
