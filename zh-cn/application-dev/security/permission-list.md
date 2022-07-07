@@ -137,3 +137,4 @@
 | ohos.permission.MANAGE_DISPOSED_APP_STATUS               | system_core  | system_grant | TRUE    | 允许设置和查询应用的处置状态。                               |
 | ohos.permission.ACCESS_IDS                               | system_core  | system_grant | TRUE    | 允许应用查询设备的唯一标识符信息。                               |
 | ohos.permission.DUMP                                     | system_core  | system_grant | TRUE    | 允许导出系统基础信息和SA服务信息。                               |
+| ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | 允许不同设备之间进行组网处理。                                   |
