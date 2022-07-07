@@ -68,6 +68,36 @@ promise.then(data => {
 });
 ```
 
+### verifyAccessTokenSync<sup>9+</sup>
+
+verifyAccessTokenSync(tokenID: number, permissionName: string): GrantStatus
+
+校验应用是否被授予权限，同步返回结果。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | 是   | 要校验应用的身份标识。              |
+| permissionName | string | 是   | 需要校验的权限名称。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| [GrantStatus](#grantstatus) | 枚举实例，返回授权状态。 |
+
+**示例：**
+
+```js
+var AtManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0;
+let data = verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+console.log(`data->${JSON.stringify(data)}`);
+```
+
 ### grantUserGrantedPermission
 
 grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
