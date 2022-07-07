@@ -379,18 +379,19 @@ Perform the following steps in Ubuntu:
 ### Installing LLVM (Only Required for OpenHarmony_v1.x)
 
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
-> When downloading source code under the OpenHarmony_v1.x branches or tags, perform the operation procedure described in this section to install LLVM 9.0.0.
+> When downloading source code under the OpenHarmony_v1.x branches or tags, perform the operation procedure described in this section to install LLVM 12.0.1.
 > 
 > When downloading source code under the Master or non-OpenHarmony_v1.x branches or tags, skip this section. hb will automatically download the latest version of LLVM.
 
 1. Start a Linux server.
 
-2. [Download LLVM](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)
+2. [Download LLVM](https://repo.huaweicloud.com/openharmony/compiler/clang/12.0.1-530132/linux/clang-530132-linux-x86_64.tar.bz2)
 
 3. Decompress the LLVM installation package to **~/llvm**.
    
    ```
-   tar -zxvf llvm.tar -C ~/
+   tar -jxvf clang.tar.bz2 -C ~/
+   mv ~/clang-530132/ ~/llvm
    ```
 
 4. Set the environment variable.

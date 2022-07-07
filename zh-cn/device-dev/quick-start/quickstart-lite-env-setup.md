@@ -386,18 +386,19 @@ bash build/prebuilts_download.sh
 ### 安装LLVM(仅OpenHarmony_v1.x分支/标签需要)
 
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
-> 如果下载的源码为OpenHarmony_v1.x分支/标签，请按下面的步骤安装9.0.0版本的llvm。
+> 如果下载的源码为OpenHarmony_v1.x分支/标签，请按下面的步骤安装12.0.1版本的llvm。
 > 
 > 如果下载的源码为Master及非OpenHarmony_v1.x分支/标签，可直接跳过本小节，hb会自动下载最新的llvm。
 
 1. 打开Linux编译服务器终端。
 
-2. [下载LLVM工具](https://repo.huaweicloud.com/harmonyos/compiler/clang/9.0.0-36191/linux/llvm-linux-9.0.0-36191.tar)。
+2. [下载LLVM工具](https://repo.huaweicloud.com/openharmony/compiler/clang/12.0.1-530132/linux/clang-530132-linux-x86_64.tar.bz2)。
 
 3. 解压LLVM安装包至~/llvm路径下。
      
    ```
-   tar -zxvf llvm.tar -C ~/
+   tar -jxvf clang.tar.bz2 -C ~/
+   mv ~/clang-530132/ ~/llvm
    ```
 
 4. 设置环境变量。
