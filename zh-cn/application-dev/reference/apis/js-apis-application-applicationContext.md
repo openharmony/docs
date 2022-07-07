@@ -78,7 +78,7 @@ export default class MyAbilityStage extends AbilityStage {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.unregisterAbilityLifecycleCallback(lifecycleId, (error, data) => {
-        console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
+            console.log("unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error));
         });
     }
 }
