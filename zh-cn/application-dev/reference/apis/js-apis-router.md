@@ -29,6 +29,7 @@ push(options: RouterOptions): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options | [RouterOptions](#routeroptions) | 是 | 跳转页面描述信息。 |
+| mode<sup>9+</sup> | [RouterMode](#routermode9) | 否 | 跳转页面使用的模式。 |
 
 
 **示例：**
@@ -77,6 +78,7 @@ replace(options: RouterOptions): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options | [RouterOptions](#routeroptions) | 是 | 替换页面描述信息。 |
+| mode<sup>9+</sup> | [RouterMode](#routermode9) | 否 | 跳转页面使用的模式。 |
 
 **示例：**
 
@@ -89,7 +91,7 @@ replace(options: RouterOptions): void
         params: {
           data1: 'message',
         },
-      });
+      }, router.RouterMode.Standard);
     }
   }
   ```
@@ -438,3 +440,13 @@ getParams(): Object
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
   > 页面路由栈支持的最大Page数量为32。
 
+## RouterMode<sup>9+</sup>
+
+路由跳转模式。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite。
+
+| 名称 | 描述 |
+| -------- | -------- |
+| Standard | 标准模式。 |
+| Single | 单实例模式。<br/>如果目标页面的url在页面栈中已经存在同url页面，离栈顶最近的页面会被移动到栈顶，移动后的页面为新建页。<br/>如目标页面的url在页面栈中不存在同url页面，按标准模式跳转。 |

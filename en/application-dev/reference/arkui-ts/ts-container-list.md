@@ -20,7 +20,7 @@ This component contains the child component [<ListItem>](ts-container-listitem.m
 
 ## APIs
 
-List(value:{space?: number, initialIndex?: number})
+List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller})
 
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |

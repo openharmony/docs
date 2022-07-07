@@ -80,7 +80,7 @@ DevHandle UartOpen(uint32_t port);
   
 ```
 DevHandle handle = NULL;    /* UART设备句柄  */
-uint32_t port = 3;                  /* UART设备端口号 */
+uint32_t port = 3;          /* UART设备端口号 */
 handle = UartOpen(port);
 if (handle == NULL) {
     HDF_LOGE("UartOpen: failed!\n");

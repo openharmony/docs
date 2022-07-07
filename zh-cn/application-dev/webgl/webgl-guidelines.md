@@ -669,7 +669,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
    
            // 初始化着色器
            if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
-               console.log('Failed to intialize shaders.');
+               console.log('Failed to initialize shaders.');
                return;
            }
    

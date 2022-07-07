@@ -70,7 +70,7 @@
 
 | 名称                               | 类型             | 默认值        | 必填   | 描述                                       |
 | -------------------------------- | -------------- | ---------- | ---- | ---------------------------------------- |
-| color                            | &lt;color&gt   | \#ffffff   | 否    | 候选项字体颜色。                                 |
+| color                            | &lt;color&gt;  | \#ffffff   | 否    | 候选项字体颜色。                                 |
 | font-size                        | &lt;length&gt; | 16px       | 否    | 候选项字体尺寸，类型length，单位px。                   |
 | selected-color                   | &lt;color&gt;  | #ff0a69f7  | 否    | 选中项字体颜色。                                 |
 | selected-font-size               | &lt;length&gt; | 20px       | 否    | 选中项字体尺寸，类型length，单位px。                   |

@@ -6,14 +6,11 @@
 > - 从API Version 8开始，该接口不再维护，推荐使用新接口[`@ohos.hiTraceMeter`](js-apis-hitracemeter.md)。
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
-```
+```js
 import bytrace from '@ohos.bytrace';
 ```
-
-
 
 ## bytrace.startTrace
 
@@ -36,11 +33,10 @@ startTrace(name: string, taskId: number, expectedTime?: number): void
 
 **示例：**
 
-```
+```js
 bytrace.startTrace("myTestFunc", 1);
 bytrace.startTrace("myTestFunc", 1, 5); // 从startTrace到finishTrace流程的期望耗时为5ms
 ```
-
 
 ## bytrace.finishTrace
 
@@ -62,7 +58,7 @@ finishTrace(name: string, taskId: number): void
 
 **示例：**
 
-```
+```js
 bytrace.finishTrace("myTestFunc", 1);
 ```
 
@@ -88,7 +84,6 @@ bytrace.startTrace("myTestFunc", 1);   // 第二个跟踪任务开始，同名�
 bytrace.finishTrace("myTestFunc", 1);
 ```
 
-
 ## bytrace.traceByValue
 
 traceByValue(name: string, count: number): void
@@ -105,7 +100,7 @@ traceByValue(name: string, count: number): void
 
 **示例：**
 
-```
+```js
 let traceCount = 3;
 bytrace.traceByValue("myTestCount", traceCount);
 traceCount = 4;
