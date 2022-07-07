@@ -15,7 +15,7 @@
 
 ## 接口
 
-Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number\}\)
+Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number | string\}\)
 
 - 参数
 
@@ -23,7 +23,7 @@ Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number\}\)
   | -------- | -------- | -------- | -------- | -------- |
   | refreshing | boolean | 是 | - | 当前组件是否正在刷新。 |
   | offset | Length | 否 | 16 | 刷新组件静止时距离父组件顶部的距离。|
-  | friction | number | 否 | 62 | 下拉摩擦系数，取值范围为0到100。<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
+  | friction | number&nbsp;\|&nbsp;string | 否 | 62 | 下拉摩擦系数，取值范围为0到100。<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
 
 
 
