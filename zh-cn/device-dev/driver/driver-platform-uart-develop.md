@@ -263,14 +263,14 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       // uart_core.c核心层UartHostCreate函数说明
       struct UartHost *UartHostCreate(struct HdfDeviceObject *device)
       {
-          struct UartHost *host = NULL;      // 新建UartHost
+          struct UartHost *host = NULL;                          // 新建UartHost
           ...
           host = (struct UartHost *)OsalMemCalloc(sizeof(*host));//分配内存
           ...
-          host->device = device;               // 【必要】使HdfDeviceObject与UartHost可以相互转化的前提
-          device->service = &(host->service);// 【必要】使HdfDeviceObject与UartHost可以相互转化的前提
+          host->device = device;                           // 【必要】使HdfDeviceObject与UartHost可以相互转化的前提
+          device->service = &(host->service);              // 【必要】使HdfDeviceObject与UartHost可以相互转化的前提
           host->device->service->Dispatch = UartIoDispatch;// 为service成员的Dispatch方法赋值    
-          OsalAtomicSet(&host->atom, 0);     // 原子量初始化或者原子量设置
+          OsalAtomicSet(&host->atom, 0);                   // 原子量初始化或者原子量设置
           host->priv = NULL;
           host->method = NULL;
           return host;
@@ -319,7 +319,7 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           ...
           port = (struct UartPl011Port *)OsalMemCalloc(sizeof(struct UartPl011Port));//【2】
           ...
-          udd->ops = Pl011GetOps();// 【3】设备开启、关闭、属性设置、发送操作等函数挂载
+          udd->ops = Pl011GetOps();       // 【3】设备开启、关闭、属性设置、发送操作等函数挂载
           udd->recv = PL011UartRecvNotify;// 【4】数据接收通知函数（条件锁机制）挂载
           udd->count = 0;          // 【5】
           port->udd = udd;         // 【6】使UartPl011Port与UartDriverData可以相互转化的前提
@@ -328,9 +328,9 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
           ...
           udd->private = port;     //【7】
           
-          host->priv = udd;    // 【必要】使UartHost与UartDriverData可以相互转化的前提
-          host->num = udd->num;// 【必要】UART设备号
-          UartAddDev(host);    // 【必要】核心层uart_dev.c 中的函数，作用：注册一个字符设备节点到vfs，这样从用户态可以通过这个虚拟文件节点访问UART    
+          host->priv = udd;        // 【必要】使UartHost与UartDriverData可以相互转化的前提
+          host->num = udd->num;    // 【必要】UART设备号
+          UartAddDev(host);        // 【必要】核心层uart_dev.c 中的函数，作用：注册一个字符设备节点到vfs，这样从用户态可以通过这个虚拟文件节点访问UART    
           return HDF_SUCCESS;
       }
       
