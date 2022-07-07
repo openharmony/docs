@@ -22,8 +22,10 @@
 
  - OpenHarmony 3.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.1-release.md)了解版本详情。
 
+    该已更新至OpenHarmony 3.1.1 Release，点击[此处](zh-cn/release-notes/OpenHarmony-v3.1.1-release.md)了解版本详情。
+
  - OpenHarmony 3.0 LTS版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)了解版本详情。
- 
+
     该版本已更新至OpenHarmony 3.0.3 LTS，点击[此处](zh-cn/release-notes/OpenHarmony-v3.0.3-LTS.md)了解版本详情。
 
  - OpenHarmony 2.2 Beta2版本：点击[此处](zh-cn/release-notes/OpenHarmony-v2.2-beta2.md)了解版本详情。
@@ -48,3 +50,7 @@ OpenHarmony_v1.x_release：OpenHarmony 1.1.4 LTS稳定版本，点击[此处](zh
 您可以对现有文档进行评价、简单更改、反馈文档质量问题、贡献您的原创内容，详细请参考[贡献文档](zh-cn/contribute/贡献文档.md)。
 
 卓越贡献者将会在开发者社区文档贡献专栏表彰公示。
+
+- 邮件列表：docs@openharmony.io
+
+- Zulip群组：documentation_sig
