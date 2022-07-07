@@ -70,8 +70,8 @@
 
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | query(predicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void | 根据指定条件查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
-  | RdbStore | query(predicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array):&nbsp;Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
+  | RdbStore | query(predicates:&nbsp;RdbPredicates,&nbsp;columns:&nbsp;Array<string>,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void | 根据指定条件查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+  | RdbStore | query(predicates:&nbsp;RdbPredicates,&nbsp;columns?:&nbsp;Array<string>):&nbsp;Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;predicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-&nbsp;columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
   | RdbStore | querySql(sql:&nbsp;string,&nbsp;bindArgs:&nbsp;Array&lt;ValueType&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):void | 根据指定SQL语句查询数据库中的数据，结果以callback形式返回。<br/>-&nbsp;sql：指定要查询的SQL语句。<br/>-&nbsp;bindArgs：SQL语句中参数的值。<br/>-&nbsp;callback：指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
   | RdbStore | querySql(sql:&nbsp;string,&nbsp;bindArgs?:&nbsp;Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | 根据指定SQL语句查询数据库中的数据，结果以Promise形式返回。<br/>-&nbsp;sql：指定要查询的SQL语句。<br/>-&nbsp;bindArgs：SQL语句中参数的值。 |
 
