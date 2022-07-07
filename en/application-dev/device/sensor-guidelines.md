@@ -34,40 +34,52 @@
 1. To obtain data from a type of sensor, configure the requested permissions in the **config.json** file.  
   
    ```
-   "reqPermissions":[
-     {
-        "name":"ohos.permission.ACCELEROMETER",
-        "reason"":"", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-     {
-        "name":"ohos.permission.GYROSCOPE",
-        "reason"":"", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-     {
-        "name":"ohos.permission.ACTIVITY_MOTION",
-        "reason"":"ACTIVITY_MOTION_TEST", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-     {
-        "name":"ohos.permission.READ_HEALTH_DATA",
-        "reason"":"HEALTH_DATA_TEST", 
-        "usedScene":{
-         "ability": ["sensor.index.MainAbility",".MainAbility"],
-         "when":"inuse"
-       }
-     },
-   ]
+   "reqPermissions": [
+      {
+        "name": "ohos.permission.ACCELEROMETER",
+        "reason": "",
+        "usedScene": {
+          "ability": [
+            "sensor.index.MainAbility",
+            ".MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.GYROSCOPE",
+        "reason": "",
+        "usedScene": {
+          "ability": [
+            "sensor.index.MainAbility",
+            ".MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.ACTIVITY_MOTION",
+        "reason": "ACTIVITY_MOTION_TEST",
+        "usedScene": {
+          "ability": [
+            "sensor.index.MainAbility",
+            ".MainAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_HEALTH_DATA",
+        "reason": "HEALTH_DATA_TEST",
+        "usedScene": {
+          "ability": [
+            "sensor.index.MainAbility",
+            ".MainAbility"
+          ],
+          "when": "inuse"
+        }
+      }
+    ]
    ```
    
 2. Subscribe to data changes of a type of sensor.
@@ -75,7 +87,7 @@
    ```
    import sensor from "@ohos.sensor"
    sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
-          console.info("Subscription succeeded. data = "+ data); // The call is successful, and the obtained sensor data is printed.
+          console.info("Subscription succeeded. data = " + data); // The call is successful, and the obtained sensor data is printed.
      }
    );
    ```
@@ -127,4 +139,4 @@
 
 The following sample is provided to help you better understand how to develop sensors:
 
-- [`Sensor`: sensor (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)
+- [`Sensor`: sensor (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)
