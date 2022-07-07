@@ -1,11 +1,12 @@
 # List
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **List** component provides a list container that presents a series of list items arranged in a column with the same width. It supports presentation of the same type of data in a multiple and coherent row style, for example, images or text.
+The **\<List>** component provides a list container that presents a series of list items arranged in columns with the same width. It supports presentation of the same type of data, for example, images or text, in a multiple and coherent row style.
 
 
 ## Required Permissions
@@ -15,12 +16,12 @@ None
 
 ## Child Components
 
-This component contains the child component [<ListItem>](ts-container-listitem.md).
+This component contains the child component [\<ListItem>](ts-container-listitem.md).
 
 
 ## APIs
 
-List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller})
+List(value:{space?: number, initialIndex?: number})
 
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
@@ -34,18 +35,28 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
 | listDirection | [Axis](ts-appendix-enums.md#axis-enums) | Vertical | Direction in which the list items are arranged. For details, see **Axis** enums. |
-| divider | {<br/>strokeWidth: Length,<br/>color?:Color,<br/>startMargin?: Length,<br/>endMargin?: Length<br/>} | - | Style of the divider for the list items. By default, there is no divider.<br/>**strokeWidth**: stroke width of the divider.<br/>**color**: color of the divider.<br/>**startMargin**: distance between the divider and the start of the list.<br/>**endMargin**: distance between the divider and the end of the list. |
+| divider | {<br>strokeWidth: Length,<br>color?:Color,<br>startMargin?: Length,<br>endMargin?: Length<br>} | - | Style of the divider for the list items. By default, there is no divider.<br>**strokeWidth**: stroke width of the divider.<br>**color**: color of the divider.<br>**startMargin**: distance between the divider and the start of the list.<br>**endMargin**: distance between the divider and the end of the list. |
 | editMode | boolean | false | Whether the **&lt;List&gt;** component is in editable mode. |
 | edgeEffect | EdgeEffect | EdgeEffect.Spring | Sliding effect. For details, see EdgeEffect enums. |
-| chainAnimation | boolean | false | Whether to display chained animations on this list when it slides or its top and bottom are dragged. The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.<br/>- **false**: No chained animations are displayed.<br/>- **true**: Chained animations are displayed. |
-| multiSelectable<sup>8+</sup> | boolean | false | Whether to enable mouse frame selection.<br/>- **false**: The mouse frame selection is disabled.<br/>- **true**: The mouse frame selection is enabled. |
-| restoreId<sup>8+</sup> | number | - | Migration ID of the component. During application migration, the status of the component is migrated to the component with the same migration ID on the peer end.<br/>For a **List** component, the status includes the item serial number displayed at the start position. |
+| chainAnimation | boolean | false | Whether to display chained animations on this list when it slides or its top and bottom are dragged. The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.<br>- **false**: No chained animations are displayed.<br>- **true**: Chained animations are displayed. |
+| multiSelectable<sup>8+</sup> | boolean | false | Whether to enable mouse frame selection.<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled. |
+| restoreId<sup>8+</sup> | number | - | Migration ID of the component. During application migration, the status of the component is migrated to the component with the same migration ID on the peer end.<br>For a **<\List>** component, the status includes the item serial number displayed at the start position. |
+| lanes<sup>9+</sup> | number \|<br>{<br>minLength: Length,<br>maxLength: Length<br>} | 1 | In the following description, **listDirection** is set to **Axis.Vertical**:<br>Number of columns in which the list items are arranged along the cross axis.<br>- If the value type is number, the column width is determined based on the specified number and the cross-axis width of the **\<List>** component.<br>- If the value type is {minLength, maxLength}, the number of columns is adjusted adaptively based on the width of the **\<List>** component, ensuring that the width respects the {minLength, maxLength} constraints during adaptation. The **minLength** constraint is prioritized. For example, if **lanes** is set to **{minLength: 40vp, maxLength: 60vp}** and the width of the **\<List>** component is 70 vp, the list items are arranged in one column with their alignment compliant with the **alignListItem** settings. If the width of the **\<List>** component is changed to 80 vp, which is twice the value of **minLength**, the list items are arranged in two columns.|
+| alignListItem<sup>9+</sup> | ListItemAlign | ListItemAlign.Center | Alignment mode of list items along the cross axis when: Cross-axis width of the **\<List>** component > Cross-axis width of list items x Value of **lanes**.|
 
 - EdgeEffect enums
   | Name | Description |
   | -------- | -------- |
-  | Spring | Similar to the physical dynamic effect of a spring. After scrolling to the edge, you can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After you release your hand, the knob is rebounded. |
-  | None | No effect after the scroll bar is moved to the edge. |
+  | Spring | Similar to the physical dynamic effect of a spring. After scrolling to the edge, the user can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After the user releases their hand, the knob is rebounded. |
+  | None | No effect after the scrollbar is moved to the edge. |
+
+- ListItemAlign enums
+
+  | Name  | Description                                  |
+  | ------ | -------------------------------------- |
+  | Start  | The list items are packed toward the start edge of the **\<List>** component along the cross axis.|
+  | Center | The list items are centered in the **\<List>** component along the cross axis.|
+  | End    | The list items are packed toward the end edge of the **\<List>** component in the cross axis.|
 
 
 ## Events
@@ -55,26 +66,28 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
 | onItemDelete(index: number) =&gt; boolean | Triggered when a list item is deleted. |
 | onScrollIndex(firstIndex: number, lastIndex: number) =&gt; void | Triggered when the start position and end position of the current list are changed. |
 
-> **NOTE**<br>
+> **NOTE**
+>
 > To enable the editable mode for a list, the following conditions must be met:
-> 
+>
 > - **editMode** is set to **true**.
-> 
-> - The list is bound to the **onItemDelete** event and the event returns **true** during event callback.
-> 
+>
+> - The list is bound to the **onItemDelete** event, and the event returns **true** through a callback.
+>
 > - The **editable** attribute of **ListItem** is set to **true**.
-> 
+>
 > To enable dragging for a list item, the following conditions must be met:
-> 
+>
 > - **editMode** is set to **true**.
-> 
-> - The list item is bound to the **onDragStart** event and the event returns a floating UI during event callback.
+>
+> - The list item is bound to the **onDragStart** event, and the event returns a floating UI through a callback.
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ListExample {
@@ -121,3 +134,48 @@ struct ListExample {
 ```
 
 ![en-us_image_0000001256978357](figures/en-us_image_0000001256978357.gif)
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListLanesExample {
+  @State arr: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
+  @State alignListItem: ListItemAlign = ListItemAlign.Start
+
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 0 }) {
+        ForEach(this.arr, (item) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+          .border({ width: 2, color: Color.Green })
+        }, item => item)
+      }
+      .height(300)
+      .width("90%")
+      .editMode(true)
+      .border({ width: 3, color: Color.Red })
+      .lanes({ minLength: 40, maxLength: 60 })
+      .alignListItem(this.alignListItem)
+
+      Button("Change alignListItem: "+ this.alignListItem).onClick(() => {
+        if (this.alignListItem == ListItemAlign.Start) {
+          this.alignListItem = ListItemAlign.Center
+        } else if (this.alignListItem == ListItemAlign.Center) {
+          this.alignListItem = ListItemAlign.End
+        } else {
+          this.alignListItem = ListItemAlign.Start
+        }
+      })
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+  }
+}
+```
