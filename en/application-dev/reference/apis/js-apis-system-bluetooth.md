@@ -37,6 +37,7 @@ Scans for Bluetooth Low Energy (BLE) devices nearby. This operation consumes sys
 
   ```
   bluetooth.startBLEScan({
+    interval:0,
     success() {
       console.log('call bluetooth.startBLEScan success.');
     },
@@ -71,7 +72,6 @@ Stops scanning for BLE devices nearby. This API is used with [bluetooth.startBLE
 
   ```
   bluetooth.stopBLEScan({
-    interval:0,
     success() {
       console.log('call bluetooth.stopBLEScan success.');
     },
@@ -120,19 +120,12 @@ Subscribes to the newly detected BLE device. If this API is called multiple time
 **Example**
 
   ```
-  bluetooth.startBLEScan({
-    success() {
-      bluetooth.subscribeBLEFound({
-        success(data) {
-          const [device] = data.devices;
-          if (!!device) {
-            bluetooth.stopBLEScan();
-          }
-        }
-      });
+  bluetooth.subscribeBLEFound({
+    success(data) {
+      console.log('Called bluetooth.subscribeBLEFound successsully, data: ${data}.');
     },
-    fail(code, data) {
-      console.log('Failed to start BLE device scan, code: ${code}, data: ${data}');
+    fail(data, code) {
+      console.log('Failed to call bluetooth.startBLEScan, data: ${data}, code: ${code}.');
     }
   });
   ```
