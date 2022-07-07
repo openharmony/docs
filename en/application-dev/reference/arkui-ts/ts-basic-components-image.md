@@ -25,7 +25,7 @@ Image(src: string | PixelMap | Resource)
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | src | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](../../ui/ts-types.md#resource-type) | Yes | - | Image address, which can be the address of an Internet or a local image.<br/>\- The following image formats are supported: png, jpg, bmp, svg, gif.<br/>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string. <br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability. |
+  | src | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](../../ui/ts-types.md#resource-type) | Yes | - | Image address, which can be the address of an Internet or a local image.<br/>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>\- The following image formats are supported: png, jpg, bmp, svg, gif.<br/>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string. <br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability. |
 
 
 ## Attributes
@@ -34,10 +34,10 @@ Image(src: string | PixelMap | Resource)
 | -------- | -------- | -------- | -------- |
 | alt | string | - | Placeholder image displayed during loading. Both local and Internal URIs are supported. |
 | objectFit | ImageFit | ImageFit.Cover | Image scale type. |
-| objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | ImageRepeat.NoRepeat | Whether the image is repeated.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
-| interpolation | ImageInterpolation | None | Interpolation effect of the image. This attribute is valid only when the image is zoomed in.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images.<br/>> <br/>> - This attribute is not applicable to a **PixelMap** object. |
-| renderMode | ImageRenderMode | Original | Rendering mode of the image.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> - This attribute is not applicable to SVG images. |
-| sourceSize | {<br/>width: number,<br/>height: number<br/>} | - | Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This attribute is not applicable to a **PixelMap** object. |
+| objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | ImageRepeat.NoRepeat | Whether the image is repeated.<br/>**NOTE**<br/>This attribute is not applicable to SVG images. |
+| interpolation | ImageInterpolation | None | Interpolation effect of the image. This attribute is valid only when the image is zoomed in.<br/>**NOTE**<br/>- This attribute is not applicable to SVG images.<br/>- This attribute is not applicable to a **PixelMap** object. |
+| renderMode | ImageRenderMode | Original | Rendering mode of the image.<br/>**NOTE**<br/>This attribute is not applicable to SVG images. |
+| sourceSize | {<br/>width: number,<br/>height: number<br/>} | - | Decoding size of the image. The original image is decoded into an image of the specified size. If the value is of the number type, the unit px is used.<br/>**NOTE**<br/>This attribute is not applicable to a **PixelMap** object. |
 | syncLoad<sup>8+</sup> | boolean | false | Whether to load images synchronously. By default, images are loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed. |
 
 - ImageFit enums

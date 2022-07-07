@@ -85,7 +85,7 @@ Uploads files. This API uses a promise to return the result.
   ```js
   let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
   let data = { name: "name123", value: "123" };
-  let header = { key1: value1, key2: value2 };
+  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
   request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }).then((data) => {
       uploadTask = data;
@@ -117,7 +117,7 @@ Uploads files. This API uses an asynchronous callback to return the result.
   ```js
   let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
   let data = { name: "name123", value: "123" };
-  let header = { key1: value1, key2: value2 };
+  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
   request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }, (err, data) => {
       if (err) {
