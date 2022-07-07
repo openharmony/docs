@@ -5,7 +5,7 @@
 
 - Windows系统要求：Windows10 64位系统。
 
-- Ubuntu系统要求：Ubuntu18.04及以上版本，内存推荐16 GB及以上。
+- Ubuntu系统要求：Ubuntu18.04~21.10版本，内存推荐16 GB及以上。
 
 - Windows系统和Ubuntu系统的用户名不能包含中文字符。
 
@@ -58,7 +58,7 @@
 
 ### 安装Window版本DevEco Device Tool
 
-1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download)Windows版。
+1. 下载[DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Windows版。
 
 2. 解压DevEco Device Tool压缩包，双击安装包程序，点击Next进行安装。
 
@@ -107,6 +107,11 @@
 
 ### 安装Ubuntu版本DevEco Device Tool
 
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 如果没有Ubuntu系统，可在Windows系统中通过虚拟机方式搭建Ubuntu系统，具体请参考[Ubuntu系统安装指导](https://developer.huawei.com/consumer/cn/training/course/video/C101639987816176315)。Ubuntu系统安装完成后，请根据指导完成[Ubuntu基础环境配置](https://developer.huawei.com/consumer/cn/training/course/video/C101639988048536240)，然后再根据本章节进行DevEco Device Tool工具的安装。
+
+
 1. 将Ubuntu Shell环境修改为bash。
 
    1. 执行如下命令，确认输出结果为bash。如果输出结果不是bash，请根据步骤2，将Ubuntu shell修改为bash。
@@ -146,13 +151,9 @@
    sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   >
-   > 安装过程中，会自动检查Python是否安装，且要求Python为3.8~3.9版本。如果不满足，则安装过程中会自动安装，提示“Do you want to continue?”，请输入“Y”后继续安装。
-   > 
-   > 安装过程中，会弹出用户协议和隐私声明签署的页面，请详细阅读用户协议和隐私声明，需签署同意用户协议和隐私声明才能进行下一步的安装。
-   > 
-   > 如果未弹出用户协议和隐私声明签署的页面，而直接退出了安装，请先执行apt-get install whiptail，然后再执行安装命令。
+5. 在用户协议和隐私声明签署界面，请详细阅读用户协议和隐私声明，需签署同意用户协议和隐私声明才能进行下一步的安装。  
+
+   ![zh-cn_image_0000001322167645.png](figures/zh-cn_image_0000001322167645.png)
 
    安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
 
