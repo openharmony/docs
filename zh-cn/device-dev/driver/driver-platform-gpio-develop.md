@@ -104,8 +104,8 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
               policy = 0;        // 等于0，不需要发布服务
               priority = 10;     // 驱动启动优先级
               permission = 0644; // 驱动创建设备节点权限
-              moduleName = "hisi_pl061_driver";          //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
-              deviceMatchAttr = "hisilicon_hi35xx_pl061";//【必要】用于配置控制器私有数据，要与 gpio_config.hcs 中 
+              moduleName = "hisi_pl061_driver";           //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
+              deviceMatchAttr = "hisilicon_hi35xx_pl061"; //【必要】用于配置控制器私有数据，要与 gpio_config.hcs 中 
                                                           // 对应控制器保持一致，其他控制器信息也在文件中
               }
           }
