@@ -115,23 +115,239 @@
 
 ### 参数说明
    **表1**  service字段说明<a name="table14737791471"></a>
-   | 字段名 | 字段说明 | 字段解释 | 支持系统类型 |
-   | ---------- |-------- | --------| --------|
-   | name          | 当前服务的服务名。(必选) |  类型：字符串； 服务名非空且长度<=32字节。| 小型系统和标准系统 |
-   | path          | 当前服务的可执行文件全路径和参数，数组形式。 (必选) | 确保第一个数组元素为可执行文件路径、数组元素个数<=20。 <br> 每个元素为字符串形式以及每个字符串长度<=64字节。| 小型系统和标准系统 |
-   | uid           | 当前服务进程的uid值。 | 类型：int、字符串。 | 小型系统和标准系统 |
-   | gid           | 当前服务进程的gid值。 | 类型：int、int[]、字符串、字符串数组。 | 小型系统和标准系统 |
-   | once          | 当前服务进程是否为一次性进程。 | 1：一次性进程，当该进程退出时，init不会重新启动该服务进程。 <br>0 : 常驻进程，当该进程退出时，init收到SIGCHLD信号并重新启动该服务进程。 | 小型系统和标准系统 |
-   | importance    | 当前服务优先级 | <li>标准系统中: 服务优先级取值范围 [-20， 19]，超出为无效设置。<li>小型系统中：0 : 非重要进程；非0 : 重要进程 | 小型系统和标准系统 |
-   | caps          | 当前服务所需的capability值，根据安全子系统已支持的capability，评估所需的capability，遵循最小权限原则配置。| 类型：数字或者字符串数组，在配置数字时，按linux标准的capability进行配置。字符串时，使用标准定义的宏的名字进行配置。 | 小型系统和标准系统 |
-   | critical      | 为服务提供抑制机制，服务在配置时间 T 内，频繁重启次数超过设置次数 N 重启系统。 | <li>标准系统中： 类型：int[]，如："critical" : [M, N, T]，其中M：使能标志位（0：不使能；1：使能）， N：频繁拉起服务次数， T：时间(单位：秒)。M > 0; N > 0。 <li> 小型系统中 & 标准系统中：类型：int，如："critical" : M，其中 M：使能标志位（0：不使能；1：使能）。 默认拉起服务次数：4次， 时间：20秒 。| 标准系统 |
-   | cpucore      | 服务需要的绑定的cpu核心数 | 类型：int型数组， 如"cpucore" : [N1, N2, ...], N1， N2均为需要绑定的cpu核索引， 如单核设备 cpucore : [0]。 | 标准系统 |
-   | d-caps       | 服务分布式能力（仅标准系统以上提供）。| 类型：字符串数组， 如 "d-caps" : ["OHOS_DMS"]。 | 标准系统 |
-   | apl          | 服务能力特权级别（仅标准系统以上提供）。 | 类型：字符串， 如 "apl" : "system_core"。<br> 目前支持"system_core"（默认值）, "normal", "system_basic"。 | 标准系统 |
-   | start-mode   | 服务的启动模式（仅标准系统以上提供）。 | 类型：字符串， 如 "start-mode" : "condition"。<br>目前支持"boot", "normal", "condition"。具体说明参考：[init服务启动控制](#section56901555918)。 | 标准系统 |
-   | ondemand     | 按需启动服务的标志。 | 类型：bool，如"ondemand" : true，小型系统只在Linux内核上支持。具体说明参考：[init服务按需启动](#section56901555920)。| 小型系统和标准系统 |
-   | disable | 预留字段，无实际意义。 | 无。 | 小型系统和标准系统 |
-   | sandbox | 沙盒功能是否打开。 | 1：打开服务的沙盒功能 （默认值）。<br>0：关闭服务的沙盒功能。 | 标准系统 |
+<table border="0" cellpadding="0" cellspacing="0" width="737" style="border-collapse: collapse;table-layout:fixed;width:554pt;border-spacing: 0px;font-variant-ligatures: normal; font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px; text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial">
+            <tbody>
+                <tr height="24" style="height:18.0pt">
+                    <th height="24" class="xl6521805" width="126" style="height:18.0pt;width:95pt">
+                        字段名
+                    </th>
+                    <th class="xl6521805" width="196" style="border-left:none;width:147pt">
+                        字段说明
+                    </th>
+                    <th class="xl6521805" width="242" style="border-left:none;width:182pt">
+                        字段解释
+                    </th>
+                    <th class="xl6521805" width="173" style="border-left:none;width:130pt">
+                        支持系统类型
+                    </th>
+                </tr>
+                <tr height="111" style="mso-height-source:userset;height:83.25pt">
+                    <td height="111" class="xl6621805" width="126" style="height:83.25pt;border-top: none;width:95pt">
+                        name
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        当前服务的服务名。(必选)
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        类型：字符串； 服务名非空且长度&lt;=32字节。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="185" style="mso-height-source:userset;height:138.75pt">
+                    <td height="185" class="xl6621805" width="126" style="height:138.75pt;border-top: none;width:95pt">
+                        path
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        当前服务的可执行文件全路径和参数，数组形式。 (必选)
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        确保第一个数组元素为可执行文件路径、数组元素个数&lt;=20。<br>
+                        每个元素为字符串形式以及每个字符串长度&lt;=64字节。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="71" style="mso-height-source:userset;height:53.25pt">
+                    <td height="71" class="xl6621805" width="126" style="height:53.25pt;border-top: none;width:95pt">
+                        uid
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        当前服务进程的uid值。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        类型：int、字符串。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="93" style="mso-height-source:userset;height:69.75pt">
+                    <td height="93" class="xl6621805" width="126" style="height:69.75pt;border-top: none;width:95pt">
+                        gid
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        当前服务进程的gid值。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        类型：int、int[]、字符串、字符串数组。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="218" style="mso-height-source:userset;height:163.5pt">
+                    <td height="218" class="xl6621805" width="126" style="height:163.5pt;border-top: none;width:95pt">
+                        once
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        当前服务进程是否为一次性进程。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        1：一次性进程，当该进程退出时，init不会重新启动该服务进程。<br>
+                        0 : 常驻进程，当该进程退出时，init收到SIGCHLD信号并重新启动该服务进程。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="182" style="mso-height-source:userset;height:136.5pt">
+                    <td height="182" class="xl6621805" width="126" style="height:136.5pt;border-top: none;width:95pt">
+                        importance
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        当前服务优先级
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        标准系统中: 服务优先级取值范围 [-20， 19]，超出为无效设置。<br>
+                        小型系统中：0 : 非重要进程；非0 : 重要进程
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="219" style="mso-height-source:userset;height:164.25pt">
+                    <td height="219" class="xl6621805" width="126" style="height:164.25pt;border-top: none;width:95pt">
+                        caps
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        当前服务所需的capability值，根据安全子系统已支持的capability，评估所需的capability，遵循最小权限原则配置。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        类型：数字或者字符串数组，在配置数字时，按linux标准的capability进行配置。字符串时，使用标准定义的宏的名字进行配置。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="405" style="mso-height-source:userset;height:303.75pt">
+                    <td height="405" class="xl6621805" width="126" style="height:303.75pt;border-top: none;width:95pt">
+                        critical
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        为服务提供抑制机制，服务在配置时间 T 内，频繁重启次数超过设置次数 N 重启系统。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        标准系统中： 类型：int[]，如："critical" : [M, N, T]，其中M：使能标志位（0：不使能；1：使能）， N：频繁拉起服务次数， T：时间(单位：秒)。M &gt; 0; N &gt; 0。<br>
+                        小型系统中 &amp; 标准系统中：类型：int，如："critical" : M，其中 M：使能标志位（0：不使能；1：使能）。 默认拉起服务次数：4次， 时间：20秒 。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        标准系统
+                    </td>
+                </tr>
+                <tr height="173" style="mso-height-source:userset;height:129.75pt">
+                    <td height="173" class="xl6621805" width="126" style="height:129.75pt;border-top: none;width:95pt">
+                        cpucore
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        服务需要的绑定的cpu核心数
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        类型：int型数组， 如"cpucore" : [N1, N2, ...], N1， N2均为需要绑定的cpu核索引， 如单核设备 cpucore : [0]。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        标准系统
+                    </td>
+                </tr>
+                <tr height="116" style="mso-height-source:userset;height:87.0pt">
+                    <td height="116" class="xl6621805" width="126" style="height:87.0pt;border-top: none;width:95pt">
+                        d-caps
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        服务分布式能力（仅标准系统以上提供）。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        类型：字符串数组， 如 "d-caps" : ["OHOS_DMS"]。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        标准系统
+                    </td>
+                </tr>
+                <tr height="182" style="mso-height-source:userset;height:136.5pt">
+                    <td height="182" class="xl6621805" width="126" style="height:136.5pt;border-top: none;width:95pt">
+                        apl
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        服务能力特权级别（仅标准系统以上提供）。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        类型：字符串， 如 "apl" : "system_core"。 目前支持"system_core"（默认值）, "normal", "system_basic"。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        标准系统
+                    </td>
+                </tr>
+                <tr height="193" style="mso-height-source:userset;height:144.75pt">
+                    <td height="193" class="xl6621805" width="126" style="height:144.75pt;border-top: none;width:95pt">
+                        start-mode
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        服务的启动模式（仅标准系统以上提供）。
+                    </td>
+                    <td class="xl6721805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        <a href="#section56901555918">类型：字符串， 如 "start-mode" : "condition"。目前支持"boot", "normal", "condition"。具体说明参考：init服务启动控制。</a>
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        标准系统
+                    </td>
+                </tr>
+                <tr height="147" style="mso-height-source:userset;height:110.25pt">
+                    <td height="147" class="xl6621805" width="126" style="height:110.25pt;border-top: none;width:95pt">
+                        ondemand
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        按需启动服务的标志。
+                    </td>
+                    <td class="xl6721805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        <a href="#section56901555920">类型：bool，如"ondemand" : true，小型系统只在Linux内核上支持。具体说明参考：init服务按需启动。</a>
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="72" style="mso-height-source:userset;height:54.0pt">
+                    <td height="72" class="xl6621805" width="126" style="height:54.0pt;border-top:none; width:95pt">
+                        disable
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        预留字段，无实际意义。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        无。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="106" style="mso-height-source:userset;height:79.5pt">
+                    <td height="106" class="xl6621805" width="126" style="height:79.5pt;border-top: none;width:95pt">
+                        sandbox
+                    </td>
+                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
+                        沙盒功能是否打开。
+                    </td>
+                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
+                        1：打开服务的沙盒功能 （默认值）。<br>
+                        0：关闭服务的沙盒功能。
+                    </td>
+                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
+                        标准系统
+                    </td><!--[endif]-->
+                </tr>
+            </tbody>
+    </table>
 
    **表2**  socket字段说明
    | 字段名 | 说明 |
