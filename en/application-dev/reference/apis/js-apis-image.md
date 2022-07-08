@@ -127,7 +127,7 @@ Reads image pixel map data and writes the data to an **ArrayBuffer**. This API u
 ```js
 pixelmap.readPixelsToBuffer(ReadBuffer, (err, res) => {
     if(err) {
-        console.log('readPixelsToBuffer failed.'); // Called if the condition is met.
+        console.log('readPixelsToBuffer failed.'); // Called if no condition is met.
     } else {
         console.log('readPixelsToBuffer succeeded.'); // Called if the condition is met.
     }
@@ -233,7 +233,7 @@ image.createPixelMap(color, opts)
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
         }
-        var bufferArr = new Uint8Array(area.pixels);
+        let bufferArr = new Uint8Array(area.pixels);
         for (var i = 0; i < bufferArr.length; i++) {
             bufferArr[i] = i + 1;
         }
@@ -269,13 +269,17 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 **Example**
 
 ```js
-pixelmap.writePixels(Area, () => {
-    const readArea = {
-        pixels: new ArrayBuffer(20),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-    }
+pixelmap.writePixels(Area, (error) => {
+    if (error!=undefined) {
+		console.info('writePixels failed.');
+	} else {
+	    const readArea = {
+            pixels: new ArrayBuffer(20),
+            offset: 0,
+            stride: 8,
+            region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+        }
+	}
 })
 ```
 
@@ -891,7 +895,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 };
+let packOpts = { format:"image/jpeg", quality:98 };
 imagePackerApi.packing(ImageSourceApi, packOpts, data => {})
 ```
 
@@ -1513,7 +1517,7 @@ Defines image decoding options.
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
-| index              | numer                              | Yes  | Yes  | Index of the image to decode.    |
+| index              | number                              | Yes  | Yes  | Index of the image to decode.    |
 
 ## Region<sup>7+</sup>
 
@@ -1536,7 +1540,7 @@ Defines the option for image packing.
 | Name   | Type  | Readable| Writable| Description          |
 | ------- | ------ | ---- | ---- | -------------- |
 | format  | string | Yes  | Yes  | Format of the packed image.    |
-| quality | number | Yes  | Yes  | Quality of the packed image.|
+| quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100. |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
