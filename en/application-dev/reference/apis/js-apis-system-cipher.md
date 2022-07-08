@@ -83,7 +83,7 @@ export default {
         'M9TORIgdH8MjIbWsGnndAkEAw9yURDaorE8IYPLF2IEn09g1uzvWPs3phDb6smVx\n' + 
         '8GfqIdUNf+aCG5TZK/kXBF1sqcsi7jXMAf4jBlejVbSVZg==',
          success: function(data) {                
-           console.log(`handling successful:${data.text}`);          
+           console.log(`handling success:${data.text}`);          
          },            
          fail: function(data, code) {               
            console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
