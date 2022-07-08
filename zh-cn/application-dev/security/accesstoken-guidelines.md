@@ -24,9 +24,13 @@
 
 ## 权限申请声明
 
-### FA模型 config.json文件声明
+应用需要在工程配置文件中，对需要的权限逐个声明，没有在配置文件中声明的权限，应用将无法获得授权。Ability框架提供了两种模型，分别为FA模型和Stage模型，更多信息可以参考[Ability框架概述](../ability/ability-brief.md)。
 
-FA模型中应用需要在config.json文件中对需要的权限逐个进行声明。没有在config.json中声明的权限，应用无法获得此应用授权。
+不同的Ability框架模型的应用包结构不同，所使用的配置文件不同，请开发者在申请权限时注意区分。
+
+### FA模型
+
+使用FA模型的应用，需要在config.json文件中声明权限。
 
 **config.json标签说明：**
 
@@ -69,9 +73,9 @@ FA模型中应用需要在config.json文件中对需要的权限逐个进行声�
 }
 ```
 
-### stage模型 module.json5文件声明
+### Stage模型
 
-stage模型中应用需要在module.json5文件中对需要的权限逐个进行声明。没有在module.json5中声明的权限，应用无法获得此应用授权。
+使用Stage模型的应用，需要在module.json5文件中声明权限。
 
 **示例：**
 
