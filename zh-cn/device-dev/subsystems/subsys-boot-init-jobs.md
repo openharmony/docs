@@ -53,10 +53,10 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         mkdir
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        mkdir&nbsp;目标文件夹<br>如：mkdir&nbsp;/storage/myDirectory
+                        mkdir&nbsp;目标文件夹 [mode] [owner] [group]<br>如：mkdir&nbsp;/storage/myDirectory<br>mkdir /storage/myDirectory 0755 root root
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        创建文件夹命令，mkdir和目标文件夹之间有且只能有一个空格。
+                        创建文件夹命令，mkdir和目标文件夹之间有且只能有一个空格。不支持文件夹递归创建。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -98,7 +98,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         mount&nbsp;fileSystemType&nbsp;src&nbsp;dst&nbsp;flags&nbsp;data<br>如：mount&nbsp;vfat&nbsp;/dev/mmcblk0&nbsp;/sdc&nbsp;rw,umask=000<br>mount&nbsp;jffs2&nbsp;/dev/mtdblock3&nbsp;/storage&nbsp;nosuid
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        挂载命令，各参数之间有且仅有一个空格。flags当前仅支持nodev、noexec、nosuid、rdonly，data为可选字段。
+                        挂载命令，各参数之间有且仅有一个空格。<br>flags参考base/startup/init_lite/services/init/init_common_cmds.c中mountFlagMap函数mountFlagMap[]数组，data为可选字段。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -109,7 +109,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         start
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        start&nbsp;serviceName<br>如：start&nbsp;foundationstart&nbsp;shell
+                        start&nbsp;serviceName<br>如：start&nbsp;foundationstart
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         启动服务命令，start后面跟着service名称，该service名称必须能够在services数组中找到。
@@ -160,20 +160,6 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         小型系统和标准系统
                     </td>
                 </tr>
-                <tr height="266" style="mso-height-source:userset;height:199.5pt">
-                    <td height="266" class="xl6621952" width="140" style="height:199.5pt;border-top: none;width:105pt">
-                        write
-                    </td>
-                    <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        write filename value<br>如：write /data/testfile 0
-                    </td>
-                    <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        写文件命令。后面跟两个参数，第一个参数是文件的绝对路径，第二个参数是要写入文件的字符串。
-                    </td>
-                    <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
-                        小型系统和标准系统
-                    </td>
-                </tr>
                 <tr height="185" style="height:138.75pt">
                     <td height="185" class="xl6621952" width="140" style="height:138.75pt;border-top: none;width:105pt">
                         stop
@@ -182,7 +168,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         stop servicename<br>如：stop console
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        关闭服务命令。后面跟一个参数，即要关闭的服务名。
+                        停止服务命令。后面跟一个参数，即要关停止的服务名。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -210,7 +196,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         reset servicename<br>如：reset console
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        重启服务命令。后面跟一个参数，即要重启的服务名。目前reset命令的策略是，如果一个服务没有启动，则该命令会将其拉起，如果一个服务处于运行状态，则该命令会将其关闭后重启。
+                        重置服务命令。后面跟一个参数，即要重启的服务名。目前reset命令的策略是，如果一个服务没有启动，则该命令会将其拉起，如果一个服务处于运行状态，则该命令会将其关闭后重启。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -238,7 +224,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         sleep time<br>如：sleep 5
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        睡眠命令。后面可以跟一个参数，该参数是睡眠时间。
+                        睡眠命令。后面可以跟一个参数，该参数是睡眠时间。<br>sleep命令谨慎使用。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -277,10 +263,10 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         wait
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        wait PID<br>如：wait pid
+                        wait filepath<br>如：wait /data/testfile 或 wait /data/testfile 5
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        等待命令。
+                        等待命令，等待时间不超过5秒。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -291,24 +277,10 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         setrlimit
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        setrlimit resource curValue maxValue<br>如：setrlimit resource 10 100
+                        setrlimit resource curValue maxValue<br>如：setrlimit RLIMIT_CPU 10 100
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        设定资源使用限制命令。
-                    </td>
-                    <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
-                        小型系统和标准系统
-                    </td>
-                </tr>
-                <tr height="208" style="height:156.0pt">
-                    <td height="208" class="xl6621952" width="140" style="height:156.0pt;border-top: none;width:105pt">
-                        write
-                    </td>
-                    <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        write path content<br>如：write /proc/sys/kernel/sysrq 0
-                    </td>
-                    <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        写文件命令。
+                        设定资源使用限制命令。<br>resource参考base/startup/init_lite/services/init/init_common_cmds.c中DoSetrlimit函数resource[]。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -322,7 +294,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         exec 可执行文件路径 可执行文件传的参数<br>如：exec /system/bin/udevadm trigger
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        系统调用命令。
+                        执行命令，参数个数不超过10个。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
@@ -361,7 +333,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         symlink
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        symlink path1 path2<br>如：symlink /proc/self/fd/0 /dev/stdin
+                        symlink target link_name<br>如：symlink /proc/self/fd/0 /dev/stdin
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         符号链接命令。
@@ -389,7 +361,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         insmod
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        insmod ko文件<br>如：insmod xxx.ko
+                        insmod <ko name> [-f] [options]<br>如：insmod xxx.ko
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         内核模块文件载入命令。
@@ -518,7 +490,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         stopAllServices [bool]<br>如：stopAllServices false 或 stopAllServices
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        停止所有服务。
+                        停止所有服务， 默认10毫秒。
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         标准系统
@@ -636,6 +608,20 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         标准系统
                     </td>
                 </tr>
+                <tr height="162" style="height:121.5pt">
+                    <td height="162" class="xl6621952" width="140" style="height:121.5pt;border-top: none;width:105pt">
+                        mksandbox
+                    </td>
+                    <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
+                        mksandbox fileName <br>如：mksandbox system
+                    </td>
+                    <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
+                        创建沙盒。
+                    </td>
+                    <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
+                        标准系统
+                    </td>
+                </tr>
                 <tr height="384" style="mso-height-source:userset;height:288.0pt">
                     <td height="384" class="xl6621952" width="140" style="height:288.0pt;border-top: none;width:105pt">
                         loadcfg
@@ -672,7 +658,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <th class="xl6420252" width="200" style="width:150pt;border-image: initial">
                         功能
                     </th>
-                    <th class="xl6520252" width="178" style="width:134pt;border-image: initial">
+                    <th class="xl6520252" width="170" style="width:134pt;border-image: initial">
                         支持系统类型
                     </th>
                 </tr>
@@ -689,7 +675,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6720252" width="200" style="width:150pt;border-image: initial; box-sizing: border-box">
                         jobs解析总入口。
                     </td>
-                    <td class="xl6720252" width="178" style="width:134pt;border-image: initial; box-sizing: border-box">
+                    <td class="xl6720252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         小型系统和标准系统
                     </td>
                 </tr>
@@ -706,7 +692,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl7020252" width="200" style="width:150pt;border-image: initial; box-sizing: border-box">
                         校验job是否已存在，解析cmds下命令的功能。
                     </td>
-                    <td class="xl6920252" width="178" style="width:134pt;border-image: initial; box-sizing: border-box">
+                    <td class="xl6920252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         小型系统
                     </td>
                 </tr>
@@ -723,7 +709,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6720252" width="200" style="width:150pt">
                         解析job中cmds命令。当前小型系统使用，标准系统由于涉及trigger功能和condition条件启动功能，并未使用该接口进行命令解析。
                     </td>
-                    <td class="xl6720252" width="178" style="width:134pt;border-image: initial; box-sizing: border-box">
+                    <td class="xl6720252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         小型系统和标准系统
                     </td>
                 </tr>
@@ -740,7 +726,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6920252" width="200" style="width:150pt;border-image: initial; box-sizing: border-box">
                         解析job中Trigger命令。
                     </td>
-                    <td class="xl6920252" width="178" style="width:134pt;border-image: initial; box-sizing: border-box">
+                    <td class="xl6920252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         标准系统
                     </td>
                 </tr>
@@ -757,7 +743,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6720252" width="200" style="width:150pt">
                         获取job名称，condition属性以及cmds命令组的功能，解析到的job以hash表的形式存储，而命令的保存则使用了队列结构。
                     </td>
-                    <td class="xl6720252" width="178" style="width:134pt;border-image: initial; box-sizing: border-box">
+                    <td class="xl6720252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         标准系统
                     </td>
                 </tr><!--[endif]-->
@@ -780,7 +766,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <th class="xl6322245" width="200" style="border-left:none;width:128pt">
                         功能
                     </th>
-                    <th class="xl6322245" width="178" style="border-left:none;width:133pt">
+                    <th class="xl6322245" width="170" style="border-left:none;width:133pt">
                         支持系统类型
                     </th>
                 </tr>
@@ -797,7 +783,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
                         校验名称的有效性并发送触发job事件的功能。
                     </td>
-                    <td class="xl6422245" width="177" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
+                    <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         标准系统
                     </td>
                 </tr>
@@ -814,7 +800,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6522245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
                         通过系统参数进行整机控制以及服务的启动与停止等。
                     </td>
-                    <td class="xl6522245" width="177" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
+                    <td class="xl6522245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         标准系统
                     </td>
                 </tr>
@@ -831,7 +817,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
                         trigger命令执行接口
                     </td>
-                    <td class="xl6422245" width="177" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
+                    <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         标准系统
                     </td>
                 </tr>
@@ -848,7 +834,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6522245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
                         仅标准系统可用。通过参数中的job名称找到对应命令组，并将命令推入执行队列依次执行。
                     </td>
-                    <td class="xl6522245" width="177" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
+                    <td class="xl6522245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         标准系统
                     </td>
                 </tr>
@@ -865,7 +851,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
                         通过jobName匹配对应job，调用DoCmdByIndex执行其中的命令。
                     </td>
-                    <td class="xl6422245" width="177" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
+                    <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         小型系统
                     </td>
                 </tr>
@@ -882,7 +868,7 @@ jobs管理属于init启动过程中的一环，是一个流程化的功能，是
                     <td class="xl6522245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
                         拼接参数与命令。
                     </td>
-                    <td class="xl6522245" width="177" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
+                    <td class="xl6522245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         小型系统和标准系统
                     </td>
                 </tr><!--[endif]-->
