@@ -1790,11 +1790,10 @@ PixelMap的初始化选项。
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
 
-## ResponseCode<sup>9+</sup>
+## ResponseCode
 
 编译错误返回的响应码。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
 
 | 名称                                | 值       | 说明                                                |
 | ----------------------------------- | -------- | --------------------------------------------------- |
