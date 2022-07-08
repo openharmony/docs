@@ -2504,7 +2504,7 @@ Obtains the interface.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8).
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2653,7 +2653,7 @@ Provides methods to implement **IRemoteObject**.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8-2).
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8-2).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -3471,7 +3471,7 @@ A constructor used to create a **RemoteObject** object.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8-4).
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8-4).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
