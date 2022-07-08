@@ -23,7 +23,7 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 
 应用使用权限的工作流程如图所示。
 
-![](figures/figure1.jpg)
+![](figures/figure1.png)
 
 ![](figures/permission-application-process.png)
 
