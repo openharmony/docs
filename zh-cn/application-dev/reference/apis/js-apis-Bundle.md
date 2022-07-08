@@ -112,7 +112,7 @@ getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallb
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -347,7 +347,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, c
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1178,134 +1178,6 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = com.example.myapplication;
 let abilityName = com.example.myapplication.MainAbility;
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
-})
-```
-
-
-## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
-
-queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
-
-以异步方法根据给定的意图获取ExtensionAbility信息，使用Promise形式返回结果。
-
-**需要权限：**
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：**
-
-SystemCapability.BundleManager.BundleFramework
-
-**参数：**
-
-| 名称             | 类型     | 必填   | 描述                                       |
-| -------------- | ------ | ---- | ---------------------------------------- |
-| want           | [Want](js-apis-application-Want.md)   | 是    | 包含要查询的应用程序包名称的意图。                        |
-| extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
-| userId         | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
-
-**返回值：**
-
-| 类型                                    | 说明                             |
-| ------------------------------------- | ------------------------------ |
-| Promise<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Promise形式返回ExtensionAbility信息。 |
-
-**示例：**
-
-```js
-let extensionFlags = 0;
-let userId = 100;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
-};
-bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId)
-.then((data) => {
-    console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
-    console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
-```
-
-
-
-## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
-
-queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
-
-以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
-
-**需要权限：**
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：**
-
-SystemCapability.BundleManager.BundleFramework
-
-**参数：**
-
-| 名称             | 类型                                       | 必填   | 描述                                       |
-| -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| want           | [Want](js-apis-application-Want.md)      | 是    | 指示包含要查询的应用程序包名称的意图。                      |
-| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值，大于等于0。 |
-| userId         | number                                   | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
-| callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
-
-**示例：**
-
-```js
-let extensionFlags = 0;
-let userId = 100;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
-};
-bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, userId, (err, data) => {
-    if (err) {
-        console.error('Operation failed. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Operation successful. Data:' + JSON.stringify(data));
-})
-```
-
-## bundle.queryExtensionAbilityInfosByWant<sup>9+</sup>
-
-queryExtensionAbilityInfosByWant(want: Want, extensionFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void;
-
-以异步方法根据给定的意图获取ExtensionAbility信息，使用callback形式返回结果。
-
-**需要权限：**
-
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：**
-
-SystemCapability.BundleManager.BundleFramework
-
-**参数：**
-
-| 名称             | 类型                                       | 必填   | 描述                                       |
-| -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| want           | [Want](js-apis-application-Want.md)      | 是    | 指示包含要查询的应用程序包名称的意图。                      |
-| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：大于等于0。 |
-| callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
-
-**示例：**
-
-```js
-let extensionFlags = 0;
-let want = {
-    bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
-};
-bundle.queryExtensionAbilityInfosByWant(want, extensionFlags, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
