@@ -50,7 +50,7 @@ export default {
      '+Enz0RzmVFh/4yk6lmqRzuEFQqhQqSZzaLq6sq2N2G0Sv2Xl3sLvqAfe2HNm2oBw\n' +
      'jBpApTJ3TeneOo6Z5QIDAQAB',  
       success: function(data) {                
-        console.log(`handling successful:${data.text}`);          
+        console.log(`Handling successful:${data.text}`);          
       },            
       fail: function(data, code) {               
         console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
@@ -83,7 +83,7 @@ export default {
         'M9TORIgdH8MjIbWsGnndAkEAw9yURDaorE8IYPLF2IEn09g1uzvWPs3phDb6smVx\n' + 
         '8GfqIdUNf+aCG5TZK/kXBF1sqcsi7jXMAf4jBlejVbSVZg==',
          success: function(data) {                
-           console.log(`handling successful:${data.text}`);          
+           console.log(`Handling successful:${data.text}`);          
          },            
          fail: function(data, code) {               
            console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
@@ -130,13 +130,13 @@ export default {
       action: 'encrypt',            
       // Text to be encrypted.           
       text: 'hello',            
-      // Base64-encoded key used for encryption.           
+      // Base64-encoded key.           
       key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',            
       transformation: 'AES/CBC/PKCS5Padding',            
       ivOffset: '0',            
       ivLen: '16',            
       success: function(data) {                
-        console.log(`handling successful:${data.text}`);          
+        console.log(`Handling successful:${data.text}`);          
         },            
       fail: function(data, code) {               
         console.log(`### Failed to encrypt cipher.rsa ### ${code}:${data}`); 
@@ -150,13 +150,13 @@ export default {
       action: 'decrypt',            
       // Text to be decrypted, which is binary text encoded in Base64.           
       text: '1o0kf2HXwLxHkSh5W5NhzA==',            
-       // Base64-encoded key used for decryption.           
+       // Base64-encoded key.           
        key: 'NDM5Qjk2UjAzMEE0NzVCRjlFMkQwQkVGOFc1NkM1QkQ=',            
        transformation: 'AES/CBC/PKCS5Padding',            
        ivOffset: '0',            
        ivLen: '16',            
        success: function(data) {                
-         console.log(`handling success:${data.text}`);          
+         console.log(`Handling successful:${data.text}`);          
         },            
        fail: function(data, code) {               
          console.log(`### Failed to decrypt cipher.rsa ### ${code}:${data}`); 
