@@ -97,7 +97,7 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 3. 重新编译，查看串口输出。如果检测到内存问题，会输出检测结果。
 
 
-## 内核态编程实例
+#### 内核态编程实例
 
 本实例实现如下功能：
 
@@ -108,7 +108,7 @@ OpenHarmony LiteOS-A内核的LMS模块提供下面几种功能，接口详细信
 3. 添加-fsanitize=kernel-address后编译执行，观察输出结果
 
 
-## 内核态示例代码
+#### 内核态示例代码
 
   实例代码如下：
   
@@ -169,7 +169,7 @@ LOS_MODULE_INIT(Example_Lms_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ```
 
 
-### 内核态结果验证
+#### 内核态结果验证
 
   输出结果如下：
   
@@ -302,7 +302,7 @@ if ("$ohos_build_compiler_specified" == "gcc") {
 ```
 
 
-### 用户态编程实例
+#### 用户态编程实例
 
 本实例实现如下功能：
 
@@ -311,7 +311,7 @@ if ("$ohos_build_compiler_specified" == "gcc") {
 2. 添加对应编译选项后，重新编译执行
 
 
-### 用户态示例代码
+#### 用户态示例代码
 
   实例代码如下：
   
@@ -357,7 +357,7 @@ int main(int argc, char * const * argv)
 ```
 
 
-### 用户态结果验证
+#### 用户态结果验证
 
   输出结果如下：
   

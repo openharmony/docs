@@ -186,7 +186,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 - LOS_TraceRecordDump —— trace_dump
 
 
-## 内核态编程实例
+### 内核态编程实例
 
 本实例实现如下功能：
 
@@ -201,7 +201,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 5. 格式化输出trace数据。
 
 
-## 内核态示例代码
+### 内核态示例代码
 
 实例代码如下：
 
@@ -253,7 +253,7 @@ LOS_MODULE_INIT(Example_Trace_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ```
 
 
-## 结果验证
+### 结果验证
 
 输出结果如下：
 

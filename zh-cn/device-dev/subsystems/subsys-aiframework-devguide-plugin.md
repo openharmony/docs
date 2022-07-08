@@ -4,7 +4,7 @@
 AI引擎框架规定了一套算法插件接入规范，各插件需实现规定接口以实现获取插件版本信息、算法推理类型、同步执行算法、异步执行算法、加载算法插件、卸载算法插件、设置算法配置信息、获取指定算法配置信息等功能。（同步算法实现SyncProcess接口，异步算法实现AsyncProcess接口）。
 
 
-1）算法插件类IPlugin接口设计如下表所示。
+算法插件类IPlugin接口设计如下表所示。
 
 
   **表1** 算法插件类IPlugin接口设计
@@ -24,7 +24,7 @@ AI引擎框架规定了一套算法插件接入规范，各插件需实现规定
 算法插件类接口：Prepare、SyncProcess、AsyncProcess、Release、SetOption、GetOption分别于客户端接口AieClientPrepare、AieClientSyncProcess、AieClientAsyncProcess、AieClientRelease、AieClientSetOption、AieClientGetOption一一对应；GetInferMode接口用于返回算法执行类型——同步或异步。
 
 
-2）算法插件回调类IPluginCallback 接口设计如下表所示。
+算法插件回调类IPluginCallback 接口设计如下表所示。
 
 
   **表2** 算法插件回调类IPluginCallback 接口设计
@@ -52,7 +52,7 @@ Request类的属性如下表所示。
 | msg_ | 类型：DataInfo<br/>作用：存放调用算法接口的输入数据。 | .data&nbsp;=&nbsp;nullptr<br/>.length&nbsp;=&nbsp;0 | 
 
 
-Response类的属性如下下表所示。
+Response类的属性如下表所示。
 
 
   **表4** Response类的属性

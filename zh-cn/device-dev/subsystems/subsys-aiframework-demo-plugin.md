@@ -1,7 +1,7 @@
 # 唤醒词识别插件的开发示例
 
 
-1. 在代码路径//foundation/ai/engine/services/server/plugin中添加唤醒词识别插件的接口定义（IPlugin），并实现AI能力的调用。如下代码片段即实现唤醒词识别的算法插件的接口定义。更多插件开发的相关代码参考路径如下：//foundation/ai/engine/services/server/plugin/asr/keyword_spotting
+在代码路径//foundation/ai/engine/services/server/plugin中添加唤醒词识别插件的接口定义（IPlugin），并实现AI能力的调用。如下代码片段即实现唤醒词识别的算法插件的接口定义。更多插件开发的相关代码参考路径如下：//foundation/ai/engine/services/server/plugin/asr/keyword_spotting
      
    ```
    #include "plugin/i_plugin.h

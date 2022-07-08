@@ -103,12 +103,12 @@
 
 解决办法：
 
-- 更新[Kconfig文件](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig)
+更新[Kconfig文件](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig)
 
-  ```shell
-  cd build/tools/component_tools
-  python3 generate_kconfig.py
-  ```
+```shell
+cd build/tools/component_tools
+python3 generate_kconfig.py
+```
 
-  更多选项通过`python3 generate_kconfig.py -h`查看。
+更多选项通过`python3 generate_kconfig.py -h`查看。
 

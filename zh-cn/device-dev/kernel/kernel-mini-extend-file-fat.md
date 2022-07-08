@@ -79,24 +79,24 @@ FAT文件系统的使用需要底层MMC相关驱动的支持。在一个带MMC�
 
 ### 示例代码
 
-前提条件：
+ **前提条件：** 
 
-- 系统已将MMC设备分区挂载到user目录
+ 系统已将MMC设备分区挂载到user目录
 
-  代码实现如下：
+ **代码实现如下：** 
   
-```
-#include <stdio.h>
-#include <string.h>
-#include "sys/stat.h"
-#include "fcntl.h"
-#include "unistd.h"
+  ```
+  #include <stdio.h>
+  #include <string.h>
+  #include "sys/stat.h"
+  #include "fcntl.h"
+  #include "unistd.h"
 
-#define LOS_OK 0
-#define LOS_NOK -1
+  #define LOS_OK 0
+  #define LOS_NOK -1
 
-int FatfsTest(void) 
-{     
+  int FatfsTest(void) 
+  {     
     int ret;
     int fd = -1;
     ssize_t len;
@@ -171,8 +171,8 @@ int FatfsTest(void)
     }
 
     return LOS_OK;
-}
-```
+    }
+  ```
 
 
 ### 结果验证
