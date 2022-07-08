@@ -3,7 +3,7 @@
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-Provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
+The Bluetooth module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 
 ## Modules to Import
@@ -222,11 +222,11 @@ cancelPairedDevice(deviceId: string): boolean
 
 Cancels a paired remote device.
 
+This is a system API.
+
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -388,7 +388,7 @@ startBluetoothDiscovery(): boolean
 
 Starts Bluetooth scan to discover remote devices.
 
-**Required permissions**: ohos.permission.USE_BLUETOOTH and ohos.permission.LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -447,7 +447,7 @@ Sets the device pairing confirmation.
 
 | Name   | Type     | Mandatory  | Description                              |
 | ------ | ------- | ---- | -------------------------------- |
-| device | string  | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX:XX.|
+| device | string  | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | accept | boolean | Yes   | Whether to accept the pairing request. The value **true** means to accept the pairing request, and the value **false** means the opposite.       |
 
 **Return value**
@@ -1422,7 +1422,7 @@ a2dpSrc.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 Unsubscribes from the A2DP connection state change events.
 
@@ -1451,11 +1451,13 @@ a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState
+### getPlayingState<sup>9+</sup>
 
 getPlayingState(device: string): PlayingState
 
 Obtains the playing state of a device.
+
+**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1576,7 +1578,7 @@ hfpAg.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>8+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 Unsubscribes from the HFP connection state change events.
 
@@ -1616,11 +1618,11 @@ connect(device: string): boolean
 
 Connects to the HidHost service of a device.
 
+This is a system API.
+
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1648,11 +1650,11 @@ disconnect(device: string): boolean
 
 Disconnects from the HidHost service of a device.
 
+This is a system API.
+
 **Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1706,7 +1708,7 @@ hidHost.on('connectionStateChange', onReceiveEvent);
 
 ### off('connectionStateChange')<sup>9+</sup>
 
-off(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
 
 Unsubscribes from the HidHost connection state change events.
 
@@ -1964,6 +1966,15 @@ Notifies the connected client device when a characteristic value changes.
 **Example**
 
 ```js
+// Create descriptors.
+let descriptors = [];
+let arrayBuffer = new ArrayBuffer(8);
+let descV = new Uint8Array(arrayBuffer);
+descV[0] = 11;
+let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
@@ -2541,14 +2552,9 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 ```js
 // Promise
-let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
-device.connect();
-var services = device.getServices();
-console.log("bluetooth services size is ", services.length);
-
-for (let i = 0; i < services.length; i++) {
-    console.log('bluetooth serviceUuid is ' + services[i].serviceUuid);
-}
+gattClientDevice.getServices().then(result => {
+    console.info("Got services successfully:" + JSON.stringify(result));
+});
 ```
 
 
@@ -2881,6 +2887,15 @@ Sets the function of notifying the GATT client when the characteristic value of 
 **Example**
 
 ```js
+// Create descriptors.
+let descriptors = [];
+let arrayBuffer = new ArrayBuffer(8);
+let descV = new Uint8Array(arrayBuffer);
+descV[0] = 11;
+let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
+  characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
+  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB', characteristicValue: arrayBufferC, descriptors:descriptors};
