@@ -16,7 +16,7 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions\|&nbsp;CustomPopupOptions | - | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
+| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions&nbsp;\|&nbsp;CustomPopupOptions | - | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
 
 
 - PopupOptions类型接口说明
