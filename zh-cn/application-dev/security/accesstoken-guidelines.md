@@ -24,9 +24,9 @@
 
 ## 权限申请声明
 
-### config.json文件声明
+### FA模型 config.json文件声明
 
-应用需要在config.json文件中对需要的权限逐个进行声明。没有在config.json中声明的权限，应用无法获得此应用授权。
+FA模型中应用需要在config.json文件中对需要的权限逐个进行声明。没有在config.json中声明的权限，应用无法获得此应用授权。
 
 **config.json标签说明：**
 
@@ -37,6 +37,41 @@
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
 | abilities | 标识需要使用到该权限的元能力，标签为数组形式。               |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
+
+**示例：**
+
+```json
+{
+    "module" : {
+        "reqPermissions":[
+           {
+                "name" : "ohos.permission.PERMISSION1",
+                "reason": "$string:reason",
+                "usedScene": {
+                     "abilities": [
+                         "FormAbility"
+                     ],
+                     "when":"inuse"
+                }
+            },
+           {
+                "name" : "ohos.permission.PERMISSION2",
+                "reason": "$string:reason",
+                "usedScene": {
+                     "abilities": [
+                         "FormAbility"
+                     ],
+                     "when":"always"
+                }
+            }
+        ],
+    }
+}
+```
+
+### stage模型 module.json5文件声明
+
+stage模型中应用需要在module.json5文件中对需要的权限逐个进行声明。没有在module.json5中声明的权限，应用无法获得此应用授权。
 
 **示例：**
 
@@ -68,6 +103,7 @@
     }
 }
 ```
+
 ## ACL方式声明
 
 如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于应用此时应用的APL等级，用户的最佳做法是使用ACL方式。
