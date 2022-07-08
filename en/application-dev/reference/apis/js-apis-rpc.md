@@ -1,5 +1,6 @@
 # RPC
 
+This module implements communication between processes, including inter-process communication (IPC) on a single device and Remote Procedure Call (RPC) between processes of difference devices. IPC is implemented based on the Binder driver, and RPC is based on the software bus driver.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -2397,7 +2398,7 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 ## IRemoteBroker
 
-Obtains a remote proxy object.
+Provides the holder of a remote proxy object.
 
 
 ### asObject
