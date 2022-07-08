@@ -98,9 +98,12 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
   ```
 
 
-## util.promiseWrapper
+## util.promiseWrapper<sup>(deprecated)</sup>
 
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[util.promiseWrapper9+](#utilpromisewrapper9)替代。
 
 对异步函数处理并返回一个promise的版本。
 
@@ -131,6 +134,38 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
   })
   ```
 
+## util.promiseWrapper<sup>9+</sup>
+
+promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
+
+对异步函数处理并返回一个promise的函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| original | Function | 是 | 异步函数。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的函数。 |
+
+**示例：**
+  ```js
+  function aysnFun(str1, str2, callback) {
+      if (typeof str1 === 'string' && typeof str2 === 'string') {
+          callback(null, str1 + str2);
+      } else {
+          callback('type err');
+      }
+  }
+  let newPromiseObj = util.promiseWrapper(aysnFun);
+  newPromiseObj("Hello", 'World').then(res => {
+      console.log(res);
+  })
+  ```
 
 ## TextDecoder
 
