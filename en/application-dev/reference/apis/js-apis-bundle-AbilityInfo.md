@@ -42,7 +42,7 @@ Provides the ability information.
 | labelId               | number                                                   | Yes  | No  | Ability label ID.                          |
 | subType               | AbilitySubType                                           | Yes  | No  | Subtype of the template that can be used by the ability.          |
 | metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)> | Yes  | No  | Custom metadata of the ability.                      |
-| metaData<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | Yes  | No  | Metadata of the ability.                          |
+| metadata<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | Yes  | No  | Metadata of the ability.                          |
 | enabled<sup>8+</sup>  | boolean                                                  | Yes  | No  | Whether the ability is enabled.                          |
 | supportWindowMode<sup>9+</sup>  | Array\<[SupportWindowMode](js-apis-Bundle.md)> | Yes  | No  | Window modes supported by the ability.                     |
 | maxWindowRatio<sup>9+</sup>  | number                                            | Yes  | No  | Maximum window ratio supported by the ability.                     |
