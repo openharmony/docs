@@ -151,7 +151,7 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
    }
    ```
 
-   ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/1-2.png)
+   ![img](figures/1-2.png)
 
 2. Common button
 
@@ -176,7 +176,7 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
    }
    ```
 
-   ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001198898293.png)
+   ![img](figures/en-us_image_0000001198898293.png)
 
 3. Check box
 
@@ -213,7 +213,7 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
    }
    ```
 
-   ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173324749.png)
+   ![img](figures/en-us_image_0000001173324749.png)
 
 4. Radio button
 
@@ -251,4 +251,4 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
    }
    ```
 
-   ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/1-3.png)
+   ![img](figures/1-3.png)
