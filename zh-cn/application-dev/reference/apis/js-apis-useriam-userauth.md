@@ -1,6 +1,8 @@
 # 用户认证
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+提供用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。
+
+> **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -11,25 +13,6 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
 ## 完整示例
-
-```js
-// API version 6
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-export default {
-    startAuth() {
-        console.info("start auth");
-        let auth = userIAM_userAuth.getAuthenticator();
-        auth.execute("FACE_ONLY", "S2").then((code)=>{
-            console.info("auth success");
-            // 此处添加认证成功逻辑
-        }).catch((code)=>{
-            console.error("auth fail, code = " + code);
-            // 此处添加认证失败逻辑
-        });
-    }
-}
-```
 
 ```js
 // API version 8
@@ -106,133 +89,25 @@ export default {
 }
 ```
 
-## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
-
-getAuthenticator(): Authenticator
-
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[constructor](#constructor8)替代。
-
-获取Authenticator对象，用于执行用户身份认证。
-
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
-
-**返回值：**
-| 类型                                      | 说明         |
-| ----------------------------------------- | ------------ |
-| [Authenticator](#authenticatordeprecated) | 认证器对象。 |
-
-**示例：**
-  ```js
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  ```
-
-## Authenticator<sup>(deprecated)</sup>
-
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[UserAuth](#userauth8)替代。
-
-认证器对象。
-
-
-### execute<sup>(deprecated)</sup>
-
-execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
-
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
-
-执行用户认证，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
-
-**参数：**
-
-| 参数名   | 类型                        | 必填 | 说明                                                         |
-| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                      | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-| level    | string                      | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
-| callback | AsyncCallback&lt;number&gt; | 否   | 回调函数。                                                   |
-
- callback返回值：
-
-| 类型   | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| number | 表示认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
-
-**示例：**
-  ```js
-  authenticator.execute("FACE_ONLY", "S2", (code)=>{
-      if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
-          console.info("auth success");
-          return;
-      }
-      console.error("auth fail, code = " + code);
-  })
-  ```
-
-
-### execute<sup>(deprecated)</sup>
-
-execute(type:string, level:string): Promise&lt;number&gt;
-
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
-
-执行用户认证，使用promise方式作为异步方法。
-
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
-
-**参数：**
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-| level  | string | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
-
-**返回值：**
-| 类型                  | 说明                                                         |
-| --------------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
-
-**示例：**
-
 ```js
-let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-    console.info("auth success");
-}).catch((code)=>{
-    console.error("auth fail, code = " + code);
-});
+// API version 6
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+export default {
+    startAuth() {
+        console.info("start auth");
+        let auth = userIAM_userAuth.getAuthenticator();
+        auth.execute("FACE_ONLY", "S2").then((code)=>{
+            console.info("auth success");
+            // 此处添加认证成功逻辑
+        }).catch((code)=>{
+            console.error("auth fail, code = " + code);
+            // 此处添加认证失败逻辑
+        });
+    }
+}
 ```
 
-## AuthenticationResult<sup>(deprecated)</sup>
-
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[ResultCode](#resultcode8)替代。
-
-表示认证结果的枚举。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
-
-| 名称               | 默认值 | 描述                       |
-| ------------------ | ------ | -------------------------- |
-| NO_SUPPORT         | -1     | 设备不支持当前的认证方式。 |
-| SUCCESS            | 0      | 认证成功。                 |
-| COMPARE_FAILURE    | 1      | 比对失败。                 |
-| CANCELED           | 2      | 用户取消认证。             |
-| TIMEOUT            | 3      | 认证超时。                 |
-| CAMERA_FAIL        | 4      | 开启相机失败。             |
-| BUSY               | 5      | 认证服务忙，请稍后重试。   |
-| INVALID_PARAMETERS | 6      | 认证参数无效。             |
-| LOCKED             | 7      | 认证失败次数过多，已锁定。 |
-| NOT_ENROLLED       | 8      | 未录入认证凭据。           |
-| GENERAL_ERROR      | 100    | 其他错误。                 |
 
 ## UserAuth<sup>8+</sup>
 
@@ -246,7 +121,7 @@ constructor()
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
 
@@ -270,7 +145,7 @@ getVersion() : number
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
 
@@ -296,7 +171,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
@@ -335,7 +210,7 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
@@ -383,7 +258,7 @@ cancelAuth(contextID : Uint8Array) : number
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
@@ -422,7 +297,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 
 表示在认证操作中，获取认证结果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
@@ -471,7 +346,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示在认证过程中，获取提示码信息，非必须实现。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
 
@@ -518,7 +393,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示认证结果的对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称         | 参数类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
@@ -530,7 +405,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示执行结果的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                    | 默认值 | 描述                 |
 | ----------------------- | ------ | -------------------- |
@@ -551,7 +426,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示人脸认证过程中提示码的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                          | 默认值 | 描述                                 |
 | ----------------------------- | ------ | ------------------------------------ |
@@ -572,7 +447,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示指纹认证过程中提示码的枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称                              | 默认值 | 描述                                               |
 | --------------------------------- | ------ | -------------------------------------------------- |
@@ -588,7 +463,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示身份认证的凭据类型枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称        | 默认值 | 描述       |
 | ----------- | ------ | ---------- |
@@ -599,7 +474,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 
 表示认证结果的信任等级枚举。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.UserIAM.UserAuth.Core
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称 | 默认值 | 描述                      |
 | ---- | ------ | ------------------------- |
@@ -607,3 +482,131 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 | ATL2 | 20000  | 认证结果的信任等级级别2。 |
 | ATL3 | 30000  | 认证结果的信任等级级别3。 |
 | ATL4 | 40000  | 认证结果的信任等级级别4。 |
+
+## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
+
+getAuthenticator(): Authenticator
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[constructor](#constructor8)替代。
+
+获取Authenticator对象，用于执行用户身份认证。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**返回值：**
+| 类型                                      | 说明         |
+| ----------------------------------------- | ------------ |
+| [Authenticator](#authenticatordeprecated) | 认证器对象。 |
+
+**示例：**
+  ```js
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  ```
+
+## Authenticator<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[UserAuth](#userauth8)替代。
+
+认证器对象。
+
+
+### execute<sup>(deprecated)</sup>
+
+execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
+
+执行用户认证，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                      | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| level    | string                      | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
+| callback | AsyncCallback&lt;number&gt; | 否   | 回调函数。                                                   |
+
+ callback返回值：
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 表示认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
+
+**示例：**
+  ```js
+  authenticator.execute("FACE_ONLY", "S2", (code)=>{
+      if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
+          console.info("auth success");
+          return;
+      }
+      console.error("auth fail, code = " + code);
+  })
+  ```
+
+
+### execute<sup>(deprecated)</sup>
+
+execute(type:string, level:string): Promise&lt;number&gt;
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
+
+执行用户认证，使用promise方式作为异步方法。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| level  | string | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
+
+**返回值：**
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
+
+**示例：**
+
+```js
+let authenticator = userIAM_userAuth.getAuthenticator();
+authenticator.execute("FACE_ONLY", "S2").then((code)=>{
+    console.info("auth success");
+}).catch((code)=>{
+    console.error("auth fail, code = " + code);
+});
+```
+
+## AuthenticationResult<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 8 开始废弃，建议使用[ResultCode](#resultcode8)替代。
+
+表示认证结果的枚举。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称               | 默认值 | 描述                       |
+| ------------------ | ------ | -------------------------- |
+| NO_SUPPORT         | -1     | 设备不支持当前的认证方式。 |
+| SUCCESS            | 0      | 认证成功。                 |
+| COMPARE_FAILURE    | 1      | 比对失败。                 |
+| CANCELED           | 2      | 用户取消认证。             |
+| TIMEOUT            | 3      | 认证超时。                 |
+| CAMERA_FAIL        | 4      | 开启相机失败。             |
+| BUSY               | 5      | 认证服务忙，请稍后重试。   |
+| INVALID_PARAMETERS | 6      | 认证参数无效。             |
+| LOCKED             | 7      | 认证失败次数过多，已锁定。 |
+| NOT_ENROLLED       | 8      | 未录入认证凭据。           |
+| GENERAL_ERROR      | 100    | 其他错误。                 |
