@@ -39,26 +39,59 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
-```js
+Stage模型下的示例：
+```ts
+import AbilityStage from '@ohos.application.Ability'
 let kvManager;
-try {
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
     const kvManagerConfig = {
-        bundleName : 'com.example.datamanagertest',
-        userInfo : {
-            userId : '0',
-            userType : distributedData.UserType.SAME_USER_ID
-        }
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.log("createKVManager err: "  + JSON.stringify(err));
-            return;
-        }
-        console.log("createKVManager success");
-        kvManager = manager;
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Succeeded in creating KVManager");
+      kvManager = manager;
     });
-} catch (e) {
-    console.log("An unexpected error occurred. Error:" + e);
+  }
+}
+```
+
+FA模型下的示例：
+```js
+import AbilityStage from '@ohos.application.Ability'
+let kvManager;
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
+    const kvManagerConfig = {
+      context: context.getApplicationContext(),
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
+    }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Succeeded in creating KVManager");
+      kvManager = manager;
+    });
+  }
 }
 ```
 
@@ -83,25 +116,59 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
 
 **示例：**
-
-```js
+Stage模型下的示例：
+```ts
+import AbilityStage from '@ohos.application.Ability'
 let kvManager;
-try {
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
     const kvManagerConfig = {
-        bundleName : 'com.example.datamanagertest',
-        userInfo : {
-            userId : '0',
-            userType : distributedData.UserType.SAME_USER_ID
-        }
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
     }
-    distributedData.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("createKVManager success");
-        kvManager = manager;
-    }).catch((err) => {
-        console.log("createKVManager err: "  + JSON.stringify(err));
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Succeeded in creating KVManager");
+      kvManager = manager;
     });
-} catch (e) {
-    console.log("An unexpected error occurred. Error:" + e);
+  }
+}
+```
+
+FA模型下的示例：
+```js
+import AbilityStage from '@ohos.application.Ability'
+let kvManager;
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
+    const kvManagerConfig = {
+      context: context.getApplicationContext(),
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
+    }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Succeeded in creating KVManager");
+      kvManager = manager;
+    });
+  }
 }
 ```
 
@@ -113,7 +180,7 @@ try {
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
 | bundleName | string | 是  | 调用方的包名。 |
 
@@ -1250,7 +1317,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1285,7 +1352,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1320,7 +1387,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1355,7 +1422,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1390,7 +1457,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1425,7 +1492,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1459,7 +1526,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1495,7 +1562,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1530,7 +1597,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1565,7 +1632,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1600,7 +1667,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1635,7 +1702,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1670,7 +1737,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1700,7 +1767,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1730,7 +1797,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1765,7 +1832,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1800,7 +1867,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1836,7 +1903,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1870,7 +1937,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1900,7 +1967,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1930,7 +1997,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1965,7 +2032,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -2000,7 +2067,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-   console.log("dumplicated calls should be ok :" + e);
+   console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -2061,7 +2128,7 @@ try {
     let sql1 = query.getSqlLike();
     console.log("GetSqlLike sql=" + sql1);
 } catch (e) {
-    console.log("dumplicated calls should be ok : " + e);
+    console.log("duplicated calls should be ok : " + e);
 }
 ```
 
@@ -2241,7 +2308,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
+| predicates    | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
 | callback  | AsyncCallback&lt;void&gt;  | 是    |回调函数。   |
 
 **示例：**
@@ -2275,7 +2342,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| predicates    | Predicates  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
+| predicates    | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
 
 
 **返回值：**
@@ -2530,7 +2597,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| value   |Array[&lt;ValuesBucket&gt;]()[] | 是    |表示要插入的数据。  |
+| value   |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是    |表示要插入的数据。  |
 | callback |Asyncallback&lt;void&gt; |是     |回调函数。 |
 
 **示例：**
@@ -2569,7 +2636,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| value  |Array&lt;[ValuesBucket&gt;](#)[] | 是    |表示要插入的数据。  |
+| value  |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是    |表示要插入的数据。  |
 
 **返回值：**
 
@@ -3647,7 +3714,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| predicates  | Predicates    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
+| predicates  | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
 
 **示例：**
@@ -3682,7 +3749,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;Kv
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| predicates  |[Predicates](#)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。            |
+| predicates  |[DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。            |
 
 **返回值：**
 
@@ -4152,7 +4219,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, PULL_ONLY , 1000);
+        kvStore.sync(devices, query, mode , 1000);
     });
 }catch(e) {
     console.log('Sync e' + e);
