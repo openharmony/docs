@@ -46,10 +46,10 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```
     bundleState.isIdleState("com.ohos.camera", (err, res) => {
-        if(err.code === 0) {
-            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-        } else {
+        if (err) {
             console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
         }
     });
   ```
@@ -77,9 +77,9 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 **示例**：
 
   ```
-    bundleState.isIdleState("com.ohos.camera").then( res => {
+    bundleState.isIdleState("com.ohos.camera").then(res => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
     });
   ```
@@ -102,10 +102,10 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
   ```
     bundleState.queryAppUsagePriorityGroup((err, res) => {
-        if(err.code === 0) {
-            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
-        } else {
+        if (err) {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
         }
     });
   ```
@@ -127,9 +127,9 @@ queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 **示例**：
 
   ```
-    bundleState.queryAppUsagePriorityGroup().then( res => {
+    bundleState.queryAppUsagePriorityGroup().then(res => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
     });
   ```
@@ -158,16 +158,16 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
   ```
     bundleState.queryBundleStateInfos(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos callback success.');
             let i = 1;
-            for(let key in res){
+            for (let key in res) {
                 console.log('BUNDLE_ACTIVE queryBundleStateInfos callback number : ' + i);
                 console.log('BUNDLE_ACTIVE queryBundleStateInfos callback result ' + JSON.stringify(res[key]));
                 i++;
             }
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
         }
     });
   ```
@@ -200,15 +200,15 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 **示例**：
 
   ```
-    bundleState.queryBundleStateInfos(0, 20000000000000).then( res => {
+    bundleState.queryBundleStateInfos(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
         let i = 1;
-        for(let key in res){
+        for (let key in res) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos promise number : ' + i);
             console.log('BUNDLE_ACTIVE queryBundleStateInfos promise result ' + JSON.stringify(res[key]));
             i++;
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise failed, because: ' + err.code);
     });
   ```
@@ -238,14 +238,14 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
   ```
     bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback result ' + JSON.stringify(res[i]));
             }
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
         }
     });
   ```
@@ -279,13 +279,13 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
   ```
-    bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
+    bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise failed, because: ' + err.code);
     });
   ```
@@ -314,14 +314,14 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
   ```
     bundleState.queryBundleActiveStates(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryBundleActiveStates callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryBundleActiveStates callback result ' + JSON.stringify(res[i]));
             }
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
         }
     });
   ```
@@ -354,13 +354,13 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 **示例**：
 
   ```
-    bundleState.queryBundleActiveStates(0, 20000000000000).then( res => {
+    bundleState.queryBundleActiveStates(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryBundleActiveStates promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleActiveStates promise failed, because: ' + err.code);
     });
   ```
@@ -385,14 +385,14 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
 
   ```
     bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback result ' + JSON.stringify(res[i]));
              }
-        } else {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
         }
     });
   ```
@@ -421,13 +421,13 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 **示例**：
 
   ```
-    bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
+    bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
     });
   ```
