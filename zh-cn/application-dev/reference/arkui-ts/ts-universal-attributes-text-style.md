@@ -20,7 +20,7 @@
 | fontColor | Color | - | 设置文本颜色。 |
 | fontSize | Length | - | 设置文本尺寸，Length为number类型时，使用fp单位。 |
 | fontStyle | FontStyle | FontStyle.Normal | 设置文本的字体样式。 |
-| fontWeight | number&nbsp;\|FontWeight | FontWeight.FontWeightNormal | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>提供常用枚举值，参考：FontWeight枚举说明。 |
+| fontWeight | number&nbsp;\|&nbsp;FontWeight | FontWeight.FontWeightNormal | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>提供常用枚举值，参考：FontWeight枚举说明。 |
 | fontFamily | string | - | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。 |
 
 
