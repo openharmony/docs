@@ -29,11 +29,11 @@
 | none<sup>6+</sup>        | -                                        | 不进行任何转换。                                 |
 | matrix<sup>6+</sup>      | &lt;number&gt;                           | 入参为六个值的矩阵，6个值分别代表：scaleX,&nbsp;skewY,&nbsp;skewX,&nbsp;scaleY,&nbsp;translateX,&nbsp;translateY。 |
 | matrix3d<sup>6+</sup>    | &lt;number&gt;                           | 入参为十六个值的4X4矩阵。                           |
-| translate                | &lt;length&gt;\|&nbsp;&lt;percent&gt;    | 平移动画属性，支持设置x轴和y轴两个维度的平移参数。               |
-| translate3d<sup>6+</sup> | &lt;length&gt;\|&nbsp;&lt;percent&gt;    | 三个入参，分别代表X轴、Y轴、Z轴的平移距离。                  |
-| translateX               | &lt;length&gt;\|&nbsp;&lt;percent&gt;    | X轴方向平移动画属性。                              |
-| translateY               | &lt;length&gt;\|&nbsp;&lt;percent&gt;    | Y轴方向平移动画属性。                              |
-| translateZ<sup>6+</sup>  | &lt;length&gt;\|&nbsp;&lt;percent&gt;    | Z轴的平移距离。                                 |
+| translate                | &lt;length&gt;&nbsp;\|&nbsp;&lt;percent&gt;    | 平移动画属性，支持设置x轴和y轴两个维度的平移参数。               |
+| translate3d<sup>6+</sup> | &lt;length&gt;&nbsp;\|&nbsp;&lt;percent&gt;    | 三个入参，分别代表X轴、Y轴、Z轴的平移距离。                  |
+| translateX               | &lt;length&gt;&nbsp;\|&nbsp;&lt;percent&gt;    | X轴方向平移动画属性。                              |
+| translateY               | &lt;length&gt;&nbsp;\|&nbsp;&lt;percent&gt;    | Y轴方向平移动画属性。                              |
+| translateZ<sup>6+</sup>  | &lt;length&gt;&nbsp;\|&nbsp;&lt;percent&gt;    | Z轴的平移距离。                                 |
 | scale                    | &lt;number&gt;                           | 缩放动画属性，支持设置x轴和y轴两个维度的缩放参数。               |
 | scale3d<sup>6+</sup>     | &lt;number&gt;                           | 三个入参，分别代表X轴、Y轴、Z轴的缩放参数。                  |
 | scaleX                   | &lt;number&gt;                           | X轴方向缩放动画属性。                              |
