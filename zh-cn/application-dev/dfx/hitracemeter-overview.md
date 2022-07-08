@@ -1,6 +1,6 @@
 # 性能打点跟踪概述
 
-hiTraceMeter是开发者用于追踪进程轨迹，度量程序执行性能的一种工具，基于内核的ftrace机制，提供给用户态应用代码执行时长度量打点的能力。开发者通过使用hiTraceMeter API在程序中打点，并使用hiTraceMeter提供的命令行工具采集跟踪数据。
+hiTraceMeter是用于追踪进程轨迹，度量程序执行性能的一种工具，基于内核的ftrace机制，提供给用户态应用代码执行时长度量打点的能力。开发者通过使用hiTraceMeter API在程序中打点，并使用hiTraceMeter提供的命令行工具采集跟踪数据。
 
 ## 基本概念
 
@@ -15,4 +15,4 @@ hiTraceMeter是开发者用于追踪进程轨迹，度量程序执行性能的�
 
 ## 约束与限制
 
-- 由于JS程序的异步IO特性，现在hiTraceMeter只提供了异步接口。
+由于JS程序的异步IO特性，现在hiTraceMeter只提供了异步接口。
