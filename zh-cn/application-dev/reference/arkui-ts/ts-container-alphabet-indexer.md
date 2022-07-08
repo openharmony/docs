@@ -1,12 +1,9 @@
 # AlphabetIndexer
 
+可以与容器组件联动用于按逻辑结构快速定位容器显示区域的组件。
+
 >  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-字母索引条。
-
-
 
 ## 权限列表
 
@@ -23,32 +20,32 @@
 AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | arrayValue | Array&lt;string&gt; | 是 | - | 字母索引字符串数组。 | 
-  | selected | number | 是 | - | 选中项编号。 | 
+  | arrayValue | Array&lt;string&gt; | 是 | - | 字母索引字符串数组。 |
+  | selected | number | 是 | - | 选中项编号。 |
 
 
 ## 属性
 
-| 名称 | 参数类型 | 描述 | 
+| 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| selectedColor | Color | 选中文本文字颜色。 | 
-| popupColor | Color | 弹出提示文本字体颜色。 | 
-| selectedBackgroundColor | Color | 选中文本背景颜色。 | 
-| popupBackground | Color | 弹窗索引背景色。 | 
-| usingPopup | boolean | 是否使用弹出索引提示。 | 
-| selectedFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 选中文本文字样式。 | 
-| popupFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 弹出提示文本字体样式。 | 
-| font | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 字母索引条默认文本字体样式。 | 
-| itemSize | Length | 字母索引条字母区域大小，字母区域为正方形，设置正方形边长。 | 
-| alignStyle | IndexerAlign | 字母索引条对齐样式，支持左侧对齐样式与右侧对齐样式，影响弹窗弹出位置。 | 
+| selectedColor | Color | 选中文本文字颜色。 |
+| popupColor | Color | 弹出提示文本字体颜色。 |
+| selectedBackgroundColor | Color | 选中文本背景颜色。 |
+| popupBackground | Color | 弹窗索引背景色。 |
+| usingPopup | boolean | 是否使用弹出索引提示。 |
+| selectedFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 选中文本文字样式。 |
+| popupFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 弹出提示文本字体样式。 |
+| font | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 字母索引条默认文本字体样式。 |
+| itemSize | Length | 字母索引条字母区域大小，字母区域为正方形，设置正方形边长。 |
+| alignStyle | IndexerAlign | 字母索引条对齐样式，支持左侧对齐样式与右侧对齐样式，影响弹窗弹出位置。 |
 
 - IndexerAlign枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Left | 弹框显示在索引条右侧。 | 
-  | Right | 弹框显示在索引条左侧。 | 
+  | Left | 弹框显示在索引条右侧。 |
+  | Right | 弹框显示在索引条左侧。 |
 
 
 ## 事件

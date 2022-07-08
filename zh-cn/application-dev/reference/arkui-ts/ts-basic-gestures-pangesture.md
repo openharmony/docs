@@ -1,5 +1,7 @@
 # PanGesture
 
+用于触发拖动手势事件，滑动的最小距离为5vp时拖动手势识别成功。
+
 >  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
@@ -21,16 +23,16 @@ PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: nu
   | distance | number | 否 | 5.0 | 最小滑动识别距离，单位为vp。 |
 
 - PanDirection枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | All | 所有方向可滑动。 | 
-  | Horizontal | 水平方向可滑动。 | 
-  | Vertical | 竖直方向可滑动。 | 
-  | Left | 向左滑动。 | 
-  | Right | 向右滑动。 | 
-  | Up | 向上滑动。 | 
-  | Down | 向下滑动。 | 
-  | None | 任何方向都不可滑动。 | 
+  | All | 所有方向可滑动。 |
+  | Horizontal | 水平方向可滑动。 |
+  | Vertical | 竖直方向可滑动。 |
+  | Left | 向左滑动。 |
+  | Right | 向右滑动。 |
+  | Up | 向上滑动。 |
+  | Down | 向下滑动。 |
+  | None | 任何方向都不可滑动。 |
 
 
 ### PanGestureOptions
@@ -43,27 +45,27 @@ PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distan
   同PanGesture参数说明。
 
 - 接口
-  | 名称 | 功能描述 | 
+  | 名称 | 功能描述 |
   | -------- | -------- |
-  | setDirection(value:&nbsp;PanDirection) | 设置direction属性。 | 
-  | setDistance(value:&nbsp;number) | 设置distance属性。 | 
-  | setFingers(value:&nbsp;number) | 设置fingers属性。 | 
+  | setDirection(value:&nbsp;PanDirection) | 设置direction属性。 |
+  | setDistance(value:&nbsp;number) | 设置distance属性。 |
+  | setFingers(value:&nbsp;number) | 设置fingers属性。 |
 
 
 ## 事件
 
-| 名称 | 功能描述 | 
-| -------- | -------- | 
-| onActionStart(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 | 
-| onActionUpdate(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 | 
-| onActionEnd(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 | 
-| onActionCancel(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 | 
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onActionStart(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 |
+| onActionUpdate(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 |
+| onActionEnd(callback:&nbsp;(event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 |
+| onActionCancel(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 |
 
 - GestureEvent对象中与Pan手势相关的属性
-  | 属性名称 | 属性类型 | 描述 | 
+  | 属性名称 | 属性类型 | 描述 |
   | -------- | -------- | -------- |
-  | offsetX | number | 手势事件偏移量，单位为vp。 | 
-  | offsetY | number | 手势事件偏移量，单位为vp。 | 
+  | offsetX | number | 手势事件偏移量，单位为vp。 |
+  | offsetY | number | 手势事件偏移量，单位为vp。 |
 
 
 ## 示例

@@ -1,5 +1,7 @@
 # 菜单
 
+在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)属性绑定的菜单。
+
 >  **说明：**
 > 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 

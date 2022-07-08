@@ -2,7 +2,8 @@
 
 资源管理模块，根据当前configuration（语言，区域，横竖屏，mccmnc）和device capability（设备类型，分辨率）提供获取应用资源信息读取接口。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -238,7 +239,7 @@ resourceManager.getResourceManager((error, mgr) => {
 | offset | number | rawfile的起始偏移量      |
 | length | number | rawfile的文件长度       |
 
-## Resource
+## Resource<sup>9+</sup>
 
 表示的资源信息。
 
@@ -255,7 +256,8 @@ resourceManager.getResourceManager((error, mgr) => {
 
 提供访问应用资源的能力。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
@@ -330,7 +332,7 @@ getString(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resource    | [Resource](#resource)                     | 是    | 资源信息           |
+| resource    | [Resource](#resource9)                     | 是    | 资源信息           |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **示例：** 
@@ -360,7 +362,7 @@ getString(resource: Resource): Promise&lt;string&gt;
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
 | 类型                    | 说明          |
@@ -449,7 +451,7 @@ getStringArray(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resource    | [Resource](#resource)                      | 是    | 资源信息           |
+| resource    | [Resource](#resource9)                      | 是    | 资源信息           |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
 **示例：** 
@@ -479,7 +481,7 @@ getStringArray(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
 | 类型                    | 说明          |
@@ -568,7 +570,7 @@ getMedia(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resource    | [Resource](#resource)                      | 是    | 资源信息           |
+| resource    | [Resource](#resource9)                      | 是    | 资源信息           |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
 **示例：** 
@@ -598,7 +600,7 @@ getMedia(resource: Resource): Promise&lt;Uint8Array&gt;
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
 | 类型                    | 说明          |
@@ -687,7 +689,7 @@ getMediaBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resource    | [Resource](#resource)                      | 是    | 资源信息                    |
+| resource    | [Resource](#resource9)                      | 是    | 资源信息                    |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
 **示例：** 
@@ -717,7 +719,7 @@ getMediaBase64(resource: Resource): Promise&lt;string&gt;
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
 | 类型                    | 说明                   |
@@ -917,7 +919,7 @@ getPluralString(resource: Resource, num: number, callback: AsyncCallback&lt;stri
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明                              |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| resource    | [Resource](#resource)                      | 是    | 资源信息                           |
+| resource    | [Resource](#resource9)                      | 是    | 资源信息                           |
 | num      | number                      | 是    | 数量值                             |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定resource对象表示的单复数字符串 |
 
@@ -948,7 +950,7 @@ getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 | num   | number | 是    | 数量值   |
 
 **返回值：** 
@@ -1451,7 +1453,7 @@ getStringSync(resource: Resource): string
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
 | 类型                    | 说明          |
@@ -1524,7 +1526,7 @@ getBoolean(resource: Resource): boolean
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
 | 类型                    | 说明          |
@@ -1599,7 +1601,7 @@ getNumber(resource: Resource): number
 **参数：** 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
 | 类型                    | 说明          |

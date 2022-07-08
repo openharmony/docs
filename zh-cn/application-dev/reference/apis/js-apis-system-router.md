@@ -1,5 +1,7 @@
 # 页面路由
 
+通过不同的uri访问不同的页面。
+
 > **说明：**
 >
 > - 从API Version 8 开始，该接口不再维护，推荐使用新接口[`@ohos.router`](js-apis-router.md)。

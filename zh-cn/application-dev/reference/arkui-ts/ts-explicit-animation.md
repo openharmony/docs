@@ -1,5 +1,7 @@
 # 显式动画
 
+提供显示动画接口。
+
 >  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
@@ -12,20 +14,20 @@
 ## AnimationOptions对象说明
 
 - 属性
-  | 属性名称 | 属性类型 | 默认值 | 描述 | 
+  | 属性名称 | 属性类型 | 默认值 | 描述 |
   | -------- | -------- | -------- | -------- |
-  | duration | number | 1000 | 动画持续时间，单位为毫秒。 | 
-  | tempo | number | 1.0 | 动画的播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。 | 
-  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | 动画曲线。 | 
-  | delay | number | 0 | 单位为ms(毫秒)，默认不延时播放。 | 
-  | iterations | number | 1 | 默认播放一次，设置为-1时表示无限次播放。 | 
-  | playMode | PlayMode | Normal | 设置动画播放模式，默认播放完成后重头开始播放。 | 
+  | duration | number | 1000 | 动画持续时间，单位为毫秒。 |
+  | tempo | number | 1.0 | 动画的播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。 |
+  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | 动画曲线。 |
+  | delay | number | 0 | 单位为ms(毫秒)，默认不延时播放。 |
+  | iterations | number | 1 | 默认播放一次，设置为-1时表示无限次播放。 |
+  | playMode | PlayMode | Normal | 设置动画播放模式，默认播放完成后重头开始播放。 |
 
 
 - 接口
-  | 名称 | 功能描述 | 
+  | 名称 | 功能描述 |
   | -------- | -------- |
-  | onFinish()&nbsp;=&gt;&nbsp;void | 动效播放完成回调。 | 
+  | onFinish()&nbsp;=&gt;&nbsp;void | 动效播放完成回调。 |
 
 
 ## 示例

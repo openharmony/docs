@@ -59,6 +59,7 @@
 - Bundle Management
 
   - [@ohos.bundle](js-apis-Bundle.md)
+  - [@ohos.bundle.defaultAppManager](js-apis-bundle-defaultAppManager.md)
   - [@ohos.bundleState](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib](js-apis-zlib.md)
   - bundle/[AbilityInfo](js-apis-bundle-AbilityInfo.md)
@@ -108,6 +109,7 @@
 
   - [@ohos.configPolicy](js-apis-config-policy.md)
   - [@ohos.enterpriseDeviceManager](js-apis-enterprise-device-manager.md)
+  - [@ohos.EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)
 
 - Security
 
@@ -173,6 +175,7 @@
   - [@ohos.hichecker](js-apis-hichecker.md)
   - [@ohos.hidebug](js-apis-hidebug.md)
   - [@ohos.hilog](js-apis-hilog.md)
+  - [@ohos.hiSysEvent](js-apis-hisysevent.md)
   - [@ohos.hiTraceChain](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter](js-apis-hitracemeter.md)
   - [@ohos.inputMethod](js-apis-inputmethod.md)
@@ -192,13 +195,13 @@
   - [@ohos.geolocation](js-apis-geolocation.md)
   - [@ohos.multimodalInput.inputConsumer](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.inputEvent](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor](js-apis-inputmonitor.md)
-  - [@ohos.multimodalInput.inputEvent](js-apis-inputevent.md)
   - [@ohos.multimodalInput.keyCode](js-apis-keycode.md)
   - [@ohos.multimodalInput.keyEvent](js-apis-keyevent.md)
   - [@ohos.multimodalInput.mouseEvent](js-apis-mouseevent.md)
-  - [@ohos.multimodalInput.ToucEvent](js-apis-touchevent.md)
+  - [@ohos.multimodalInput.touchEvent](js-apis-touchevent.md)
   - [@ohos.power](js-apis-power.md)
   - [@ohos.runningLock](js-apis-runninglock.md)
   - [@ohos.sensor](js-apis-sensor.md)

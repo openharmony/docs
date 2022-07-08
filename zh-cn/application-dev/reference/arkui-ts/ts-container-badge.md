@@ -1,10 +1,9 @@
 # Badge
 
+可以附加在单个组件上用于信息标记的容器组件。
+
 >  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-新事件标记组件，在组件上提供事件信息展示能力。
 
 
 ## 权限列表
@@ -49,11 +48,11 @@ Badge(value: {value: string, position?: BadgePosition, style?: BadgeStyle})
   | badgeColor | Color | 否 | Color.Red | badge的颜色。 |
 
 - BadgePosition枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Right | 圆点显示在右侧纵向居中。 | 
-  | RightTop | 圆点显示在右上角。 | 
-  | Left | 圆点显示在左侧纵向居中。 | 
+  | Right | 圆点显示在右侧纵向居中。 |
+  | RightTop | 圆点显示在右上角。 |
+  | Left | 圆点显示在左侧纵向居中。 |
 
 
 ## 示例

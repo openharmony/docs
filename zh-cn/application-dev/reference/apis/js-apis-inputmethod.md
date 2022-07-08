@@ -1,5 +1,7 @@
 # 输入法框架
 
+本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -47,7 +49,7 @@ getInputMethodController(): InputMethodController
     | [InputMethodController](#InputMethodController) | 回调返回当前客户端实例。 |
 
 **示例：**
-  
+
 ```js
   var InputMethodController = inputMethod.getInputMethodController();
 ```
@@ -62,9 +64,9 @@ getInputMethodSetting(): InputMethodSetting
 
 **返回值：**
 
-  | 类型                                      | 说明                         |
-  | ----------------------------------------- | ---------------------------- |
-  | [InputMethodSetting](#InputMethodSetting) | 回调返回当前客户端设置实例。 |
+| 类型                                      | 说明                         |
+| ----------------------------------------- | ---------------------------- |
+| [InputMethodSetting](#InputMethodSetting) | 回调返回当前客户端设置实例。 |
 
 
 **示例：**
@@ -87,9 +89,9 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法隐藏是否成功。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法隐藏是否成功。 |
 
 **示例：**
 
@@ -109,9 +111,9 @@ stopInput(): Promise&lt;boolean&gt;
 
 **返回值：**
 
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 返回输入法隐藏是否成功。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | 返回输入法隐藏是否成功。 |
 
 **示例：**
 
@@ -134,12 +136,12 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 **参数：**
-  | 参数名   | 类型                                               | 必填 | 说明                   |
-  | -------- | -------------------------------------------------- | ---- | ---------------------- |
-  | callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
+| 参数名   | 类型                                               | 必填 | 说明                   |
+| -------- | -------------------------------------------------- | ---- | ---------------------- |
+| callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
 
 **示例：**
-  
+
 ```js
   InputMethodSetting.listInputMethod((properties)=>{
     for (var i = 0;i < properties.length; i++) {
@@ -158,9 +160,9 @@ listInputMethod(): Array&lt;InputMethodProperty&gt;
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
 **返回值：**
-  | 类型                                                        | 说明                   |
-  | ----------------------------------------------------------- | ---------------------- |
-  | Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
+| 类型                                                        | 说明                   |
+| ----------------------------------------------------------- | ---------------------- |
+| Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
 
 **示例：**
 
