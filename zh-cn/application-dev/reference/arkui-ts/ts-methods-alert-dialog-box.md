@@ -11,7 +11,7 @@
 
 | 名称 | 参数类型 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| show | options:&nbsp;{&nbsp;paramObject1\|&nbsp;paramObject2} | - | 定义并显示AlertDialog组件。 |
+| show | options:&nbsp;{&nbsp;paramObject1&nbsp;\|&nbsp;paramObject2} | - | 定义并显示AlertDialog组件。 |
 
 - paramObject1参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
