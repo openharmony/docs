@@ -17,6 +17,7 @@
             - [布局约束](ts-universal-attributes-layout-constraints.md)
             - [Flex布局](ts-universal-attributes-flex-layout.md)
             - [边框设置](ts-universal-attributes-border.md)
+            - [图片边框设置](ts-universal-attributes-border-image.md)
             - [背景设置](ts-universal-attributes-background.md)
             - [透明度设置](ts-universal-attributes-opacity.md)
             - [显隐控制](ts-universal-attributes-visibility.md)
