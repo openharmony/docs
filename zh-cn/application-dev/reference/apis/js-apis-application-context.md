@@ -29,7 +29,7 @@ import AbilityContext from '@ohos.application.Ability'
 
   | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| resourceManager | ResourceManager | 是 | 否 | ResourceManager对象。 |
+| resourceManager | resmgr.ResourceManager; | 是 | 否 | ResourceManager对象。 |
 | applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 |
 | cacheDir | string | 是 | 否 | 应用在内部存储上的缓存路径。 |
 | tempDir | string | 是 | 否 | 应用的临时文件路径。 |
