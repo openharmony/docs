@@ -5,17 +5,19 @@
 
 You can set different vibration effects as needed, for example, customizing the vibration intensity, frequency, and duration for button touches, alarm clocks, and incoming calls.
 
+For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md).
+
 
 ## Available APIs
 
 | Module           | API                                     | Description                             |
 | ------------- | ---------------------------------------- | ------------------------------- |
-| ohos.vibrator | vibrate(duration:&nbsp;number):&nbsp;Promise&lt;void&gt; | Triggers vibration with the specified duration. This API uses a promise to return the result.      |
-| ohos.vibrator | vibrate(duration:&nbsp;number,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Triggers vibration with the specified duration. This API uses a callback to return the result.     |
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId):&nbsp;Promise&lt;void&gt; | Triggers vibration with the specified effect. This API uses a promise to return the result. |
-| ohos.vibrator | vibrate(effectId:&nbsp;EffectId,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Triggers vibration with the specified effect. This API uses a callback to return the result.|
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode):&nbsp;Promise&lt;void&gt; | Stops vibration. This API uses a promise to return the result.                          |
-| ohos.vibrator | stop(stopMode:&nbsp;VibratorStopMode,&nbsp;callback?:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Stops vibration. This API uses a callback to return the result.                          |
+| ohos.vibrator | vibrate(duration: number): Promise&lt;void&gt; | Triggers vibration with the specified duration. This API uses a promise to return the result.      |
+| ohos.vibrator | vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void | Triggers vibration with the specified duration. This API uses a callback to return the result.     |
+| ohos.vibrator | vibrate(effectId: EffectId): Promise&lt;void&gt; | Triggers vibration with the specified effect. This API uses a promise to return the result. |
+| ohos.vibrator | vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void | Triggers vibration with the specified effect. This API uses a callback to return the result.|
+| ohos.vibrator | stop(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration. This API uses a promise to return the result.                          |
+| ohos.vibrator | stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void | Stops vibration. This API uses a callback to return the result.                          |
 
 
 ## How to Develop
@@ -24,36 +26,36 @@ You can set different vibration effects as needed, for example, customizing the 
 
    ```
    "reqPermissions": [
-     {
-         "name": "ohos.permission.ACCELEROMETER",
-         "reason": "", 
-         "usedScene": {
-         "ability": [
-             ".MainAbility"
-         ],
-         "when": "inuse"
-       }
-     },
-     {
-         "name": "ohos.permission.VIBRATE",
-         "reason": "", 
-         "usedScene": {
-         "ability": [
-             ".MainAbility"
-         ],
-         "when": "inuse"
-       }
-     },
-     {
-         "name": "ohos.permission.ACTIVITY_MOTION",
-         "reason": "", 
-         "usedScene": {
-         "ability": [
-             ".MainAbility"
-         ],
-         "when": "inuse"
-       }
-     },
+       {
+           "name": "ohos.permission.ACCELEROMETER",
+           "reason": "",
+           "usedScene": {
+               "ability": [
+                   ".MainAbility"
+               ],
+               "when": "inuse"
+           }
+       },
+       {
+           "name": "ohos.permission.VIBRATE",
+           "reason": "",
+           "usedScene": {
+               "ability": [
+                   ".MainAbility"
+               ],
+               "when": "inuse"
+           }
+       },
+       {
+           "name": "ohos.permission.ACTIVITY_MOTION",
+           "reason": "",
+           "usedScene": {
+               "ability": [
+                   ".MainAbility"
+               ],
+               "when": "inuse"
+           }
+       },
    ]
    ```
 
@@ -61,12 +63,12 @@ You can set different vibration effects as needed, for example, customizing the 
 
    ```
    import vibrator from "@ohos.vibrator"
-   vibrator.vibrate(1000).then((error)=>{
-       if (error){ // The call fails, and error.code and error.message are printed.
-          Console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);  
-       }else{ // The call is successful, and the device starts to vibrate.
+   vibrator.vibrate(1000).then((error) => {
+       if (error) { // The call fails, and error.code and error.message are printed.
+          Console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);  
+       } else { // The call is successful, and the device starts to vibrate.
           Console.log("Promise returned to indicate a successful vibration.")  
-       };
+       }
    })
    ```
 
@@ -74,12 +76,12 @@ You can set different vibration effects as needed, for example, customizing the 
 
    ```
    import vibrator from "@ohos.vibrator"
-   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error)=>{
-      if(error){ // The call fails, and error.code and error.message are printed.
-          Console.log("Promise return failed.error.code"+error.code+"error.message"+error.message);
-      }else{ // The call is successful, and the device stops vibrating.
+   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error) => {
+      if (error) { // The call fails, and error.code and error.message are printed.
+          Console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);
+      } else { // The call is successful, and the device stops vibrating.
           Console.log("Promise returned to indicate a successful stop.");
-      };
+      }
    })
    ```
 
@@ -87,4 +89,4 @@ You can set different vibration effects as needed, for example, customizing the 
 
 The following sample is provided to help you better understand how to develop vibrators:
 
-- [`Vibrator`: vibrator (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Vibrator)
+- [`Vibrator`: vibrator (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Vibrator)
