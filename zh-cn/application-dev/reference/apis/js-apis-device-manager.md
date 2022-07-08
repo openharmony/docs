@@ -10,7 +10,8 @@
 - 查询可信设备列表
 - 查询本地设备信息，包括设备名称，设备类型和设备标识
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口为系统接口，三方应用不支持调用。
 
@@ -277,7 +278,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 - 返回值：
   | 名称 | 说明 |
   | -------- | -------- |
-  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | 返回可信设备列表。 |
+  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | 返回本地设备列表。 |
 
 - 示例：
   ```js
