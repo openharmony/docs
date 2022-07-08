@@ -1,12 +1,15 @@
 # Result Set
 
+A result set is a set of results returned after the relational database (RDB) query APIs are called. You can use the **resultset** APIs to obtain required data.
+
 > **NOTE**<br/>
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Usage
 
-You need to use [RdbStore.query()](js-apis-data-rdb.md#query) to obtain the **resultSet** object.
+You need to use [RdbStore.query()](js-apis-data-rdb.md#query) to obtain a **resultSet** object.
 
 ```js
 import dataRdb from '@ohos.data.rdb';
@@ -20,7 +23,7 @@ promise.then((resultSet) => {
 
 ## ResultSet
 
-Provides methods to access the result set, which is obtained by querying the relational database (RDB) store.
+Provides methods to access the result set, which is obtained by querying the RDB store.
 
 
 ### Attributes
