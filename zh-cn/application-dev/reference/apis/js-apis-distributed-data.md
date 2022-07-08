@@ -40,7 +40,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 
 **示例：**
 Stage模型下的示例：
-```js
+```ts
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
 export default class MyAbilityStage extends AbilityStage {
@@ -57,10 +57,10 @@ export default class MyAbilityStage extends AbilityStage {
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
       if (err) {
-        console.log("createKVManager err: " + JSON.stringify(err));
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
         return;
       }
-      console.log("createKVManager success");
+      console.log("Succeeded in creating KVManager");
       kvManager = manager;
     });
   }
@@ -85,10 +85,10 @@ export default class MyAbilityStage extends AbilityStage {
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
       if (err) {
-        console.log("createKVManager err: " + JSON.stringify(err));
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
         return;
       }
-      console.log("createKVManager success");
+      console.log("Succeeded in creating KVManager");
       kvManager = manager;
     });
   }
@@ -117,7 +117,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
 **示例：**
 Stage模型下的示例：
-```js
+```ts
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
 export default class MyAbilityStage extends AbilityStage {
@@ -134,10 +134,10 @@ export default class MyAbilityStage extends AbilityStage {
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
       if (err) {
-        console.log("createKVManager err: " + JSON.stringify(err));
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
         return;
       }
-      console.log("createKVManager success");
+      console.log("Succeeded in creating KVManager");
       kvManager = manager;
     });
   }
@@ -162,10 +162,10 @@ export default class MyAbilityStage extends AbilityStage {
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
       if (err) {
-        console.log("createKVManager err: " + JSON.stringify(err));
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
         return;
       }
-      console.log("createKVManager success");
+      console.log("Succeeded in creating KVManager");
       kvManager = manager;
     });
   }
