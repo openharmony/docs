@@ -183,4 +183,4 @@ export default {
 };
 ```
 
-![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/image-animator.gif)
+![img](figures/image-animator.gif)
