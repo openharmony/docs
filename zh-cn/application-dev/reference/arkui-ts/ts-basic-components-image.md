@@ -31,7 +31,7 @@ Image(src: string | PixelMap | Resource)
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| alt | string | - | 加载时显示的占位图。支持本地图片和网络路径。 |
+| alt | string \| [Resource](../../ui/ts-types.md#resource类型) | - | 加载时显示的占位图。支持本地图片和网络路径。 |
 | objectFit | ImageFit                                                | Cover | 设置图片的缩放类型。 |
 | objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat枚举说明) | NoRepeat | 设置图片的重复样式。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | interpolation | ImageInterpolation | None | 设置图片的插值效果，仅针对图片放大插值。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
