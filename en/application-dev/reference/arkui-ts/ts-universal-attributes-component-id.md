@@ -1,8 +1,11 @@
 # Component ID
 
+**id** identifies a component uniquely within an application. This module provides APIs for obtaining the attributes of or sending events to the component with the specified ID.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs provided by this module are system APIs.
 
 
 ## Required Permissions
@@ -12,9 +15,9 @@ None
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
-| -------- | -------- | -------- | -------- |
-| id | string | '' | Unique ID of the component. The uniqueness is ensured by the user. | 
+| Name  | Type  | Default Value | Description                |
+| ---- | ------ | ---- | ------------------ |
+| id   | string | ''   | Unique ID you assigned to the component.|
 
 
 ## APIs
@@ -27,15 +30,26 @@ getInspectorByKey(id: string): string
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | id | string | Yes | - | ID of the component whose attributes are to be obtained. | 
+  | Name  | Type    | Mandatory  | Default Value | Description         |
+  | ---- | ------ | ---- | ---- | ----------- |
+  | id   | string | Yes   | -    | ID of the component whose attributes are to be obtained.|
 
 - Return value
-    | Type | Description | 
-  | -------- | -------- |
-  | string | JSON string of the component attribute list. | 
+  | Type    | Description             |
+  | ------ | --------------- |
+  | string | JSON string of the component attribute list.|
 
+### getInspectorTree
+
+getInspectorTree(): string
+
+Obtains the component tree and component attributes.
+
+- Return value
+
+  | Type    | Description                 |
+  | ------ | ------------------- |
+  | string | JSON string of the component tree and component attribute list.|
 
 ### sendEventByKey
 
@@ -44,61 +58,207 @@ sendEventByKey(id: string, action: number, params: string): boolean
 Sends an event to the component with the specified ID.
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | id | string | Yes | - | ID of the component for which the event is to be sent. | 
-  | action | number | Yes | - | Type of the event to be sent. The options are as follows:<br/>- Click event: 10.<br/>- LongClick: 11. | 
-  | params | string | Yes | - | Event parameters. If there is no parameter, pass an empty string **""**. | 
+  | Name    | Type    | Mandatory  | Default Value | Description                                      |
+  | ------ | ------ | ---- | ---- | ---------------------------------------- |
+  | id     | string | Yes   | -    | ID of the component to which the event is to be sent.                            |
+  | action | number | Yes   | -    | Type of the event to be sent. The options are as follows:<br>- **10**: click event.<br>- **11**: long click event.|
+  | params | string | Yes   | -    | Event parameters. If there is no parameter, pass an empty string **""**.                  |
 
 - Return value
-    | Type | Description | 
-  | -------- | -------- |
-  | boolean | Returns **false** if the component with the specified ID cannot be found; returns **true** otherwise. | 
+  | Type     | Description                            |
+  | ------- | ------------------------------ |
+  | boolean | Returns **true** if the component with the specified ID is found; returns **false** otherwise.|
 
+### sendTouchEvent
+
+sendTouchEvent(event: TouchObject): boolean
+
+Sends a touch event.
+
+- Parameters
+
+  | Name   | Type         | Mandatory  | Default Value | Description                                      |
+  | ----- | ----------- | ---- | ---- | ---------------------------------------- |
+  | event | TouchObject | Yes   | -    | Location where a touch event is triggered. For details, see [TouchEvent](ts-universal-events-touch.md#touchevent).|
+
+- Return value
+
+  | Type     | Description                        |
+  | ------- | -------------------------- |
+  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+
+### sendKeyEvent
+
+sendKeyEvent(event: KeyEvent): boolean
+
+Sends a key event.
+
+- Parameters
+
+  | Name   | Type      | Mandatory  | Default Value | Description                                      |
+  | ----- | -------- | ---- | ---- | ---------------------------------------- |
+  | event | KeyEvent | Yes   | -    | Key event. For details, see [KeyEvent](ts-universal-events-key.md#keyevent).|
+
+- Return value
+
+  | Type     | Description                         |
+  | ------- | --------------------------- |
+  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+
+### sendMouseEvent
+
+sendMouseEvent(event: MouseEvent): boolean
+
+Sends a mouse event.
+
+- Parameters
+
+  | Name   | Type        | Mandatory  | Default Value | Description                                      |
+  | ----- | ---------- | ---- | ---- | ---------------------------------------- |
+  | event | MouseEvent | Yes   | -    | Mouse event. For details, see [MouseEvent](ts-universal-mouse-key.md#mouseevent).|
+
+- Return value
+
+  | Type     | Description                         |
+  | ------- | --------------------------- |
+  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
+class Utils {
+  static rect_left;
+  static rect_top;
+  static rect_right;
+  static rect_bottom;
+  static rect_value;
+
+  static getComponentRect(key) {
+    let strJson = getInspectorByKey(key);
+    let obj = JSON.parse(strJson);
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let rectInfo = JSON.parse('[' + obj.$rect + ']')
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
+    this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
+    this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
+    this.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    return this.rect_value = {
+      "left": this.rect_left, "top": this.rect_top, "right": this.rect_right, "bottom": this.rect_bottom
+    }
+  }
+}
+
 @Entry
 @Component
 struct IdExample {
+  @State text: string = ''
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+
       Button() {
-        Text('click')
-          .fontSize(25)
-          .fontWeight(FontWeight.Bold)
-      }
-      .type(ButtonType.Capsule)
-      .margin({
-        top: 20
-      }).onClick(() => {
+        Text('onKeyTab').fontSize(25).fontWeight(FontWeight.Bold)
+      }.margin({ top: 20 }).backgroundColor('#0D9FFB')
+      .onKeyEvent(() => {
+        this.text = "onKeyTab"
+      })
+
+      Button() {
+        Text('click to start').fontSize(25).fontWeight(FontWeight.Bold)
+      }.margin({ top: 20 })
+      .onClick(() => {
         console.info(getInspectorByKey("click"))
         console.info(getInspectorTree())
+        this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
           sendEventByKey("longclick", 11, "")
         }, 2000)
       }).id('click')
 
       Button() {
-        Text('longclick')
-          .fontSize(25)
-          .fontWeight(FontWeight.Bold)
-      }
-      .type(ButtonType.Capsule)
-      .margin({
-        top: 20
-      })
-      .backgroundColor('#0D9FFB')
+        Text('longclick').fontSize(25).fontWeight(FontWeight.Bold)
+      }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .gesture(
-        LongPressGesture().onActionEnd(() => {
-          console.info('long clicked')
-        }))
-      .id('longclick')
+      LongPressGesture().onActionEnd(() => {
+        console.info('long clicked')
+        this.text = "Button 'longclick' is longclicked"
+        setTimeout(() => {
+          let rect = Utils.getComponentRect('onTouch')
+          let touchPoint: TouchObject = {
+            id: 1,
+            x: rect.left + (rect.right - rect.left) / 2,
+            y: rect.top + (rect.bottom - rect.top) / 2,
+            type: TouchType.Down,
+            screenX: rect.left + (rect.right - rect.left) / 2,
+            screenY: rect.left + (rect.right - rect.left) / 2,
+          }
+          sendTouchEvent(touchPoint)
+          touchPoint.type = TouchType.Up
+          sendTouchEvent(touchPoint)
+        }, 2000)
+      })).id('longclick')
+
+      Button() {
+        Text('onTouch').fontSize(25).fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule).margin({ top: 20 })
+      .onClick(() => {
+        console.info('onTouch is clicked')
+        this.text = "Button 'onTouch' is clicked"
+        setTimeout(() => {
+          let rect = Utils.getComponentRect('onMouse')
+          let mouseEvent: MouseEvent = {
+            button: MouseButton.Left,
+            action: MouseAction.Press,
+            x: rect.left + (rect.right - rect.left) / 2,
+            y: rect.top + (rect.bottom - rect.top) / 2,
+            screenX: rect.left + (rect.right - rect.left) / 2,
+            screenY: rect.top + (rect.bottom - rect.top) / 2,
+            timestamp: 1,
+            target: {
+              area: {
+                width: 1,
+                height: 1,
+                position: {
+                  x: 1,
+                  y: 1
+                },
+                globalPosition: {
+                  x: 1,
+                  y: 1
+                }
+              }
+            },
+            source: SourceType.Mouse
+          }
+          sendMouseEvent(mouseEvent)
+        }, 2000)
+      }).id('onTouch')
+
+      Button() {
+        Text('onMouse').fontSize(25).fontWeight(FontWeight.Bold)
+      }.margin({ top: 20 }).backgroundColor('#0D9FFB')
+      .onMouse(() => {
+        console.info('onMouse')
+        this.text = "Button 'onMouse' in onMouse"
+        setTimeout(() => {
+          let keyEvent: KeyEvent = {
+            type: KeyType.Down,
+            keyCode: 2049,
+            keyText: 'tab',
+            keySource: 4,
+            deviceId: 0,
+            metaKey: 0,
+            timestamp: 0
+          }
+          sendKeyEvent(keyEvent)
+        }, 2000)
+      }).id('onMouse')
+
+      Text(this.text).fontSize(25).padding(15)
     }
-    .width('100%')
-    .height('100%')
+    .width('100%').height('100%')
   }
 }
 ```

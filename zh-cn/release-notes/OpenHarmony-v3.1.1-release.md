@@ -32,12 +32,13 @@
 
   **表1** 版本软件和工具配套关系
 
-| 软件 | 版本 | 备注 | 
+| 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
-| OpenHarmony | 3.1.1&nbsp;Release | NA | 
-| SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API&nbsp;Version&nbsp;8&nbsp;Release) | NA | 
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Beta3&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用 | 
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用 | 
+| OpenHarmony | 3.1.1&nbsp;Release | NA |
+| Public SDK | Ohos_sdk_public&nbsp;3.1.6.6 (API&nbsp;Version&nbsp;8&nbsp;Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>DevEco Studio 3.0 Beta4版本起，通过DevEco Studio获取的SDK默认为Public SDK。<br/>该版本Public SDK于7月6日单独更新发布。 |
+| Full SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API&nbsp;Version&nbsp;8&nbsp;Release) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 3.0&nbsp;Beta3&nbsp;for&nbsp;OpenHarmony | OpenHarmony应用开发推荐使用。 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.0&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
 
 
 ## 源码获取
@@ -101,8 +102,10 @@ repo forall -c 'git lfs pull'
 | Hi3861轻量系统解决方案（二进制）        | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_pegasus.tar.gz.sha256) |
 | Hi3516轻量系统解决方案-LiteOS（二进制） | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus.tar.gz.sha256) |
 | Hi3516轻量系统解决方案-Linux（二进制）  | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/hispark_taurus_linux.tar.gz.sha256) |
-| 标准系统SDK包（Mac）                    | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz.sha256) |
-| 标准系统SDK包（Windows\Linux）          | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz.sha256) |
+| 标准系统Full SDK包（Mac）               | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-full.tar.gz.sha256) |
+| 标准系统Full SDK包（Windows\Linux）     | 3.1.1 Release  | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-full.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac） | 3.1.1 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows\Linux） | 3.1.1 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.1.1/ohos-sdk-public.tar.gz.sha256) |
 
 
 ## 更新说明
@@ -114,21 +117,22 @@ repo forall -c 'git lfs pull'
 
 **表3** 版本新增特性表
 
-  | 子系统名称 | 标准系统 | 轻量、小型系统 | 
+| 子系统名称 | 标准系统 | 轻量、小型系统 |
 | -------- | -------- | -------- |
-| 系统服务管理 | 新增添加群组校验机制。<br/>主要涉及如下需求：<br/>I52G5Q&nbsp;添加群组校验机制 | NA | 
-| 电源管理 | 实现兼容亮度调节和电池信息查询API接口能力。<br/>主要涉及如下需求：<br/>I526UP&nbsp;支持\@system.brightness亮度调节接口<br/>I526UP&nbsp;支持\@system.battery电池信息查询接口 | NA | 
-| 包管理 | 实现查询指定应用是否安装接口能力。<br/>主要涉及如下需求：<br/>I56EWD&nbsp;支持对测试框架的配置<br/>I55RZJ&nbsp;查询指定应用是否安装 | NA | 
-| 位置服务 | 实现兼容基本定位API接口能力。<br/>主要涉及如下需求：<br/>I53WFP&nbsp;支持基本定位能力，兼容system&nbsp;API | NA | 
-| 元能力 | 实现FA模型支持查询/设置组件横竖屏状态、组件锁屏显示和组件启动亮屏。<br/>主要涉及如下需求：<br/>I56EH7&nbsp;FA模型支持查询/设置组件横竖屏状态<br/>I50D5Y&nbsp;FA模型支持组件锁屏显示<br/>I56EH7&nbsp;FA模型支持组件启动亮屏<br/>I55WB0&nbsp;卡片数据支持携带图片<br/>I55WB0&nbsp;FA卡片能力补齐-formManager重构<br/>I55WB0&nbsp;FA卡片能力补齐-支持卡片状态查询<br/>I55WB0&nbsp;FA卡片能力补齐-支持删除无效卡片<br/>I55WB0&nbsp;FA卡片能力补齐-支持卡片可见状态与更新状态单独设置<br/>I50D8H&nbsp;支持拦截uncatchedexception<br/>I50D91&nbsp;支持ANR(Application&nbsp;Not&nbsp;Response)处理 | NA | 
-| 媒体 | 实现音频焦点、音频解码能力相关API接口能力。<br/>主要涉及如下需求：<br/>I56REO&nbsp;音频部件焦点/设备接口OH补齐<br/>I522W0&nbsp;支持amr格式音频编码枚举类型 | NA | 
-| 窗口 | 支持对窗口属性进行设置。<br/>主要涉及如下需求：<br/>I56EH7&nbsp;支持窗口属性设置 | NA | 
-| 网络管理 | 实现兼容WebSocket、fetch等API接口能力，支持以太网连接。<br/>主要涉及如下需求：<br/>I53CKH&nbsp;支持兼容\@system.fetch<br/>I53CJX&nbsp;支持兼容\@system.network<br/>I53CKT&nbsp;支持WebSocket<br/>I580PC&nbsp;支持以太网连接 | NA | 
-| Misc软件服务 | 实现兼容http文件下载API接口能力。<br/>主要涉及如下需求：<br/>I56Q4X&nbsp;支持文件下载接口 | NA | 
-| 事件通知 | 实现通知发送和取消的API接口能力。<br/>主要涉及如下需求：<br/>I50EEW&nbsp;通知发送和取消功能的接口能力补齐 | NA | 
-| 分布式数据管理 | 实现兼容\@system.storage&nbsp;API接口能力。<br/>主要涉及如下需求：<br/>I56RF3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支持\@system.storage接口 | NA | 
-| 启动恢复 | 实现兼容\@system.device&nbsp;API接口能力。<br/>主要涉及如下需求：<br/>I56GBS&nbsp;支持\@system.device相关API | NA | 
-| 应用 | 联系人支持第三方应用调用系统通话能力，提供用户基础通信能力。<br/>主要涉及如下需求：<br/>I58ZQ4&nbsp;联系人支持第三方应用调用系统通话能力 | NA | 
+| SDK | SDK区分Full SDK和Public SDK进行发布。<br/>*说明：API Version 8的Public SDK首次于7月6日单独更新发布。* | NA |
+| 系统服务管理 | 新增添加群组校验机制。<br/>主要涉及如下需求：<br/>I52G5Q&nbsp;添加群组校验机制 | NA |
+| 电源管理 | 实现兼容亮度调节和电池信息查询API接口能力。<br/>主要涉及如下需求：<br/>I526UP&nbsp;支持\@system.brightness亮度调节接口<br/>I526UP&nbsp;支持\@system.battery电池信息查询接口 | NA |
+| 包管理 | 实现查询指定应用是否安装接口能力。<br/>主要涉及如下需求：<br/>I56EWD&nbsp;支持对测试框架的配置<br/>I55RZJ&nbsp;查询指定应用是否安装 | NA |
+| 位置服务 | 实现兼容基本定位API接口能力。<br/>主要涉及如下需求：<br/>I53WFP&nbsp;支持基本定位能力，兼容system&nbsp;API | NA |
+| 元能力 | 实现FA模型支持查询/设置组件横竖屏状态、组件锁屏显示和组件启动亮屏。<br/>主要涉及如下需求：<br/>I56EH7&nbsp;FA模型支持查询/设置组件横竖屏状态<br/>I50D5Y&nbsp;FA模型支持组件锁屏显示<br/>I56EH7&nbsp;FA模型支持组件启动亮屏<br/>I55WB0&nbsp;卡片数据支持携带图片<br/>I55WB0&nbsp;FA卡片能力补齐-formManager重构<br/>I55WB0&nbsp;FA卡片能力补齐-支持卡片状态查询<br/>I55WB0&nbsp;FA卡片能力补齐-支持删除无效卡片<br/>I55WB0&nbsp;FA卡片能力补齐-支持卡片可见状态与更新状态单独设置<br/>I50D8H&nbsp;支持拦截uncatchedexception<br/>I50D91&nbsp;支持ANR(Application&nbsp;Not&nbsp;Response)处理 | NA |
+| 媒体 | 实现音频焦点、音频解码能力相关API接口能力。<br/>主要涉及如下需求：<br/>I56REO&nbsp;音频部件焦点/设备接口OH补齐<br/>I522W0&nbsp;支持amr格式音频编码枚举类型 | NA |
+| 窗口 | 支持对窗口属性进行设置。<br/>主要涉及如下需求：<br/>I56EH7&nbsp;支持窗口属性设置 | NA |
+| 网络管理 | 实现兼容WebSocket、fetch等API接口能力，支持以太网连接。<br/>主要涉及如下需求：<br/>I53CKH&nbsp;支持兼容\@system.fetch<br/>I53CJX&nbsp;支持兼容\@system.network<br/>I53CKT&nbsp;支持WebSocket<br/>I580PC&nbsp;支持以太网连接 | NA |
+| Misc软件服务 | 实现兼容http文件下载API接口能力。<br/>主要涉及如下需求：<br/>I56Q4X&nbsp;支持文件下载接口 | NA |
+| 事件通知 | 实现通知发送和取消的API接口能力。<br/>主要涉及如下需求：<br/>I50EEW&nbsp;通知发送和取消功能的接口能力补齐 | NA |
+| 分布式数据管理 | 实现兼容\@system.storage&nbsp;API接口能力。<br/>主要涉及如下需求：<br/>I56RF3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支持\@system.storage接口 | NA |
+| 启动恢复 | 实现兼容\@system.device&nbsp;API接口能力。<br/>主要涉及如下需求：<br/>I56GBS&nbsp;支持\@system.device相关API | NA |
+| 应用 | 联系人支持第三方应用调用系统通话能力，提供用户基础通信能力。<br/>主要涉及如下需求：<br/>I58ZQ4&nbsp;联系人支持第三方应用调用系统通话能力 | NA |
 
 ### API变更
 
@@ -142,7 +146,7 @@ repo forall -c 'git lfs pull'
 
 ## 修复缺陷列表
 
-**表6** 修复缺陷ISSUE列表
+**表4** 修复缺陷ISSUE列表
 
 | ISSUE单                                                      | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -153,7 +157,7 @@ repo forall -c 'git lfs pull'
 
 ## 遗留缺陷列表
 
-**表7** 遗留缺陷列表
+**表5** 遗留缺陷列表
 
 | ISSUE                                                        | 问题描述                                                   | 影响                                              | 计划解决日期 |
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------- | ------------ |

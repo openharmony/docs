@@ -165,7 +165,6 @@ struct VideoCreateComponent {
   @State autoPlays: boolean = false;
   @State controlsss: boolean = true;
   controller: VideoController = new VideoController();
-  @State startStaus: boolean = true;
   build() {
     Column() {
       Video({

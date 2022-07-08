@@ -119,7 +119,7 @@ The following table lists the APIs used for ability continuation. For details ab
    ```javascript
     onContinue(wantParam : {[key: string]: any}) {
         Logger.info("onContinue using distributedObject")
-        // Set the user input data into the want parameter.
+        // Set the user input data into want params.
         wantParam["input"] = AppStorage.Get<string>('ContinueInput');
         Logger.info(`onContinue input = ${wantParam["input"]}`);
         return AbilityConstant.OnContinueResult.AGREE

@@ -12,7 +12,8 @@ Basic concepts:
 - Widget host: an application that displays the widget content and controls the position where the widget is displayed in the host application.
 - Widget Manager: a resident agent that manages widgets added to the system and provides functions such as periodic widget update.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The widget host and provider do not keep running all the time. The Widget Manager starts the widget provider to obtain widget information when a widget is added, deleted, or updated.
 
 You only need to develop widget content as the widget provider. The system automatically handles the work done by the widget host and Widget Manager.
@@ -254,7 +255,7 @@ Data of a temporary widget is not persistently stored. If it is deleted from the
 
 ### Updating Widget Data
 
-When a widget application initiates a data update upon a scheduled or periodic update, the application obtains the latest data and calls **updateForm** to update the widget. The code snippet is as follows:
+When a widget application initiates a data update upon a scheduled or periodic update, the application obtains the latest data and calls **updateForm** to update the widget. The sample code is as follows:
 
 ```javascript
 onUpdate(formId) {

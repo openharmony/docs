@@ -1,10 +1,5 @@
 # 电话服务概述<a name="ZH-CN_TOPIC_0000001164469232"></a>
 
--   [概述](#section184mcpsimp)
--   [基本概念](#section187mcpsimp)
--   [运作机制](#section194mcpsimp)
--   [约束与限制](#section205mcpsimp)
-
 ## 概述<a name="section184mcpsimp"></a>
 
 本指南简要介绍了Modem厂商库的集成、初始化、业务请求响应和事件上报的方法，并通过通话业务的具体开发实例呈现厂商库的适配开发过程，供不同Modem芯片的开发者参考，从而帮助其高效地实现电话相关业务功能的开发。
