@@ -540,7 +540,7 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名     | 类型                      | 必填 | 说明                                                         |
 | ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| densityDpi | number                    | 是   | 像素密度。                                                   |
+| densityDpi | number                    | 是   | 像素密度。支持的输入范围为80-640。                           |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕的像素密度成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -562,9 +562,9 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名     | 类型   | 必填 | 说明       |
-| ---------- | ------ | ---- | ---------- |
-| densityDpi | number | 是   | 像素密度。 |
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| densityDpi | number | 是   | 像素密度。支持的输入范围为80-640。 |
 
 **返回值：**
 
