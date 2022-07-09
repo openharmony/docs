@@ -886,10 +886,6 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 **示例：** 
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
       console.info('Distance: ' + data.distance);
     }
   );
