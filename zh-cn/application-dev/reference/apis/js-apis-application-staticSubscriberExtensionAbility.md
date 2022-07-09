@@ -1,6 +1,6 @@
 # StaticSubscriberExtensionAbility
 
-StaticSubscriberExtensionAbility模块提供静态订阅者扩展能力的类别的能力。
+StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility的类别的能力。
 
 > **说明：**
 > 
