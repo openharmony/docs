@@ -99,18 +99,6 @@ module.json示例:
                 "resource": "$profile:config_file2"
             }
         ],
-        "metadata": [
-            {
-                "name": "string",
-                "value": "string",
-                "resource": "$profile:config_file1"
-            },
-            {
-                "name": "string",
-                "value": "string",
-                "resource": "$profile:config_file2"
-            }
-        ],
         "abilities": [
             {
                 "name": "MainAbility",
@@ -143,38 +131,14 @@ module.json示例:
                 ],
                 "startWindowIcon": "$media:icon",
                 "startWindowBackground": "$color:red"
-            }
-        ],
-        "abilities": [
+            },
             {
-                "name": "MainAbility",
-                "srcEntrance" : "./login/MyMainAbility.ts",
-                "description": "$string:description_main_ability",
+                "name": "sampleAbility",
+                "srcEntrance" : "./login/sampleAbility.ts",
+                "description": "$string:description_sample_ability",
                 "icon": "$media:icon",
                 "label": "HiMusic",
                 "visible": true,
-                "skills": [
-                    {
-                        "actions": [
-                            "action.system.home"
-                        ],
-                        "entities": [
-                            "entity.system.home"
-                        ],
-                        "uris": [ ]
-                    }
-                ],
-                "backgroundModes": [
-                    "dataTransfer",
-                    "audioPlayback",
-                    "audioRecording",
-                    "location",
-                    "bluetoothInteraction",
-                    "multiDeviceConnection",
-                    "wifiInteraction",
-                    "voip",
-                    "taskKeeping"
-                ],
                 "startWindowIcon": "$media:icon",
                 "startWindowBackground": "$color:red"
             }
