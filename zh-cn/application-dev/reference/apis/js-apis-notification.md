@@ -943,6 +943,8 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                     |
@@ -1559,6 +1561,8 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -3273,7 +3277,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDoNotDisturbDateChange<sup>8+</sup>
 
-onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate8)) => void
+onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](#donotdisturbdate8)) => void
 
 免打扰时间选项变更回调函数。
 
@@ -3285,7 +3289,7 @@ onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbda
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | Notification.[DoNotDisturbDate](#donotdisturbdate8) | 是 | 回调返回免打扰时间选项变更。 |
+| mode | notification.[DoNotDisturbDate](#donotdisturbdate8) | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 ```javascript
