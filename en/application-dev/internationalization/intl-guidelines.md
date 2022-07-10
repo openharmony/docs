@@ -1,6 +1,7 @@
-# Internationalization Development (intl)
+# Internationalization Development (Intl)
 
-This development guide describes how to use i18n APIs that are defined in ECMA 402.
+This module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N interfaces defined in ECMA 402.
+The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
 
 > **NOTE**<br>
 > In the code snippets in this document, **intl** refers to the name of the imported module.
