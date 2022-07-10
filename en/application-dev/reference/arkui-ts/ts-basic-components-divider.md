@@ -1,7 +1,8 @@
 # Divider
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,7 +16,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -41,7 +42,8 @@ Universal events are not supported.
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DividerExample {
