@@ -1,11 +1,11 @@
 # Navigation
 
+The **\<Navigation>** component typically functions as the root container of a page and displays the page title, toolbar, and menu based on the attribute settings.
 
-> **NOTE**<br>
+
+> **NOTE**
+>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Navigation&gt;** component typically functions as the root container of a page and displays the page title, toolbar, and menu based on the attribute settings.
 
 
 ## Required Permissions
@@ -30,7 +30,7 @@ Creates a component that can automatically display the navigation bar, title, an
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
 | title | string \| [CustomBuilder](../../ui/ts-types.md) | - | Page title. |
-| subtitle | string | - | Subtitle of the page. |
+| subTitle | string | - | Subtitle of the page. |
 | menus | Array&lt;NavigationMenuItem&gt; \| [CustomBuilder](../../ui/ts-types.md) | - | Menu in the upper right corner of the page. |
 | titleMode | NavigationTitleMode | NavigationTitleMode.Free | Display mode of the page title bar. |
 | toolBar | {<br/>items:[<br/>Object<br/>] }<br/>\| [CustomBuilder](../../ui/ts-types.md) | - | Content of the toolbar.<br/>**items**: all items on the toolbar. |
@@ -60,6 +60,7 @@ Creates a component that can automatically display the navigation bar, title, an
   | Full | The mode is fixed at full mode (main title and subtitle). |
 
   > **NOTE**
+  >
   > Currently, only the scrollable component **&lt;List&gt;** is supported.
 
 
@@ -73,8 +74,8 @@ Creates a component that can automatically display the navigation bar, title, an
 ## Example
 
 
-```
-// Example 01
+```ts
+// xxx.ets
 @Entry
 @Component
 struct NavigationExample {
@@ -161,9 +162,8 @@ struct NavigationExample {
 
 ![en-us_image_0000001256978359](figures/en-us_image_0000001256978359.gif)
 
-
-```
-// Example 02
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ToolbarBuilderExample {
