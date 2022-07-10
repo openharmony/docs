@@ -1,5 +1,6 @@
-# Combination Key
+# Input Consumer
 
+The Input Consumer module implements listening for key events.
 
 > **NOTE**<br>
 >
@@ -18,9 +19,11 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 ## inputConsumer.on
 
-on(type: "key", keyOptions: KeyOptions, callback: Callback<KeyOptions>): void
+on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): void
 
 Enables listening for combination key events. When a combination key event that meets the specified conditions occurs, **keyOptions** will be passed as an input parameter to **callback**.
+
+This is a system API.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -28,9 +31,9 @@ Enables listening for combination key events. When a combination key event that 
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the key input event to listen for. Only **key** is supported.| 
-| keyOptions | [keyOptions](#keyOptions) | Yes| Key option, which specifies the condition for combination key input.| 
-| callback | KeyOptions | Yes| Callback used to return the result.<br> When a key input event that meets the specified options occurs, **keyOptions** will be passed as an input parameter to **callback**.| 
+| type | string | Yes| Type of the key input event to listen for. Only **key** is supported.|
+| keyOptions | [keyOptions](#keyOptions) | Yes| Key option, which specifies the condition for combination key input.|
+| callback | Callback&lt;KeyOptions&gt; | Yes| Callback used to return the result.<br> When a key input event that meets the specified options occurs, **keyOptions** will be passed as an input parameter to **callback**.| 
 
 **Example**
 
@@ -46,9 +49,11 @@ inputConsumer.on('key', keyOptions, callback);
 
 ## inputConsumer.off
 
-off(type: "key", keyOptions: KeyOptions, callback?: Callback<KeyOptions>): void
+off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;): void
 
 Stops listening for combination key events.
+
+This is a system API.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -58,7 +63,7 @@ Stops listening for combination key events.
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the key input event to listen for. Only **key** is supported.| 
 | keyOptions | [keyOptions](#keyOptions) | Yes| Key options passed to the key input event when listening starts.| 
-| callback | Callback<KeyOptions> | Yes| Callback function passed to the key input event with **keyOptions** when listening starts.| 
+| callback | Callback&lt;KeyOptions&gt; | Yes| Callback function passed to the key input event with **keyOptions** when listening starts.| 
 
 **Example**
 
@@ -75,6 +80,8 @@ inputConsumer.off('key', keyOptions, callback);
 ## keyOptions
 
 Defines the key options that are met when a combination key input event occurs.
+
+This is a system API.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 

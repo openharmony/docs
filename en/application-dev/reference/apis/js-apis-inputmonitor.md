@@ -1,5 +1,6 @@
 # Input Monitor
 
+The Input Monitor module implements listening for global touch events.
 
 > **NOTE**<br>
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -26,6 +27,8 @@ on(type: "touch", receiver: TouchEventReceiver): void
 
 Enables listening for global touch events.
 
+This is a system API.
+
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
@@ -46,9 +49,11 @@ inputMonitor.off("touch", (event) => {
 });
 ```
 
-on(type: "mouse", receiver:Callback<MouseEvent>):void
+on(type: "mouse", receiver: Callback&lt;MouseEvent&gt;): void
 
 Enables listening for global mouse events.
+
+This is a system API.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -59,7 +64,7 @@ Enables listening for global mouse events.
 | Name    | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
 | type     | string               | Yes  | Type of the input event to listen for. The value is **mouse**.|
-| receiver | Callback<MouseEvent> | Yes  | Callback used to return the mouse event.         |
+| receiver | Callback&lt;MouseEvent&gt; | Yes  | Callback used to return the mouse event.         |
 
   **Example**
 
@@ -73,9 +78,11 @@ inputMonitor.off("mouse", (event) => {
 
 ## inputMonitor.off
 
-off(type: "touch", receiver?:TouchEventReceiver):void
+off(type: "touch", receiver?: TouchEventReceiver): void
 
 Stops listening for global touch events.
+
+This is a system API.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
@@ -98,6 +105,8 @@ off(type: "mouse", receiver?:Callback<MouseEvent>):void
 
 Stops listening for global mouse events.
 
+This is a system API.
+
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
@@ -107,7 +116,7 @@ Stops listening for global mouse events.
 | Name    | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
 | type     | string               | Yes  | Type of the input event to listen for. The value is **mouse**.|
-| receiver | Callback<MouseEvent> | No  | Callback used to return the mouse event.         |
+| receiver | Callback&lt;MouseEvent&gt; | No  | Callback used to return the mouse event.         |
 
 **Example**
 
@@ -119,12 +128,9 @@ inputMonitor.off("mouse");
 
 ## TouchEventReceiver
 
-This class provides the callback of touch events.
+Provides the callback of touch events.
 
-
-### (touchEvent: TouchEvent): Boolean
-
-Represents the callback used to return the touch event. You need to define the name of the callback function in the correct format. Ensure that the input parameter is of the **TouchEvent** type, and the return value is of the **Boolean** type.
+This is a system API.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 

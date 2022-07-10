@@ -1,5 +1,7 @@
 # Input Event
 
+The Input Event module describes basic events reported by an input device.
+
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -8,6 +10,8 @@
 ```js
 import InputEvent from '@ohos.multimodalInput.inputEvent';
 ```
+
+## InputEvent 
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

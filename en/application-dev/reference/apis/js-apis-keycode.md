@@ -1,6 +1,6 @@
 # Keycode
 
-Provides keycodes for a key device.
+The Keycode module provides keycodes for a key device.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -10,6 +10,8 @@ Provides keycodes for a key device.
 ```js
 import {KeyCode} from '@ohos.multimodalInput.keyCode'
 ```
+
+## KeyCode
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

@@ -1,7 +1,7 @@
 # Input Device
 
 
-The input device management module is used to listen for the connection, disconnection, and updates of input devices and display information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
+The Input Device module implements listening for connection, disconnection, and update events of input devices and displays information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
 
 
 > **NOTE**<br>
@@ -179,7 +179,7 @@ inputDevice.getDevice(1).then((inputDevice)=>{
 
 ## inputDevice.supportKeys<sup>9+</sup>
 
-supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void;
+supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;Array&lt;boolean&gt;&gt;): void
 
 Obtains the key codes supported by the input device. This API uses an asynchronous callback to return the result.
 
@@ -204,7 +204,7 @@ inputDevice.supportKeys(1, [17, 22, 2055], (ret)=>{
 
 ## inputDevice.supportKeys<sup>9+</sup>
 
-supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;;
+supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;boolean&gt;&gt;
 
 Obtains the key codes supported by the input device. This API uses a promise to return the result.
 
@@ -234,7 +234,7 @@ inputDevice.supportKeys(1, [17, 22, 2055]).then((ret)=>{
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
 
-getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void;
+getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): void
 
 Obtains the keyboard type of an input device. This API uses an asynchronous callback to return the result.
 
@@ -258,7 +258,7 @@ inputDevice.getKeyboardType(1, (ret)=>{
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
 
-getKeyboardType(deviceId: number,): Promise&lt;KeyboardType&gt;;
+getKeyboardType(deviceId: number,): Promise&lt;KeyboardType&gt;
 
 Obtains the keyboard type of an input device. This API uses a promise to return the result.
 
