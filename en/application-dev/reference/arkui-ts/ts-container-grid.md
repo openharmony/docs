@@ -1,11 +1,10 @@
 # Grid
 
+The **\<Grid>** component is a two-dimensional layout. The component is divided into rows and columns to form cells. You can specify the cell where an item is located and combine different grids to form various layouts.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Grid&gt;** component is a two-dimensional layout. The component is divided into rows and columns to form cells. You can specify the cell where an item is located and combine different grids to form various layouts.
 
 
 ## Required Permissions
@@ -15,7 +14,7 @@ None
 
 ## Child Components
 
-This component contains the child component [<GridItem>](ts-container-griditem.md).
+This component contains the child component [\<GridItem>](ts-container-griditem.md).
 
 
 ## APIs
@@ -32,31 +31,24 @@ Grid()
 | columnsGap | Length | 0 | Spacing between columns. |
 | rowsGap | Length | 0 | Spacing between rows. |
 | editMode<sup>8+</sup> | boolean | false | Whether to enter editing mode. In editing mode, you can drag the **&lt;[GridItem](ts-container-griditem.md)&gt;** in the **&lt;Gird&gt;** component. |
-| layoutDirection<sup>8+</sup> | [LayoutDirection](ts-appendix-enums.md#layoutdirection-enums) | LayoutDirection.Row | Main axis direction of the layout. The options are as follows:- **LayoutDirection.Row**: Horizontal layout, where the child components are arranged in the same direction as the main axis runs along the rows.- **LayoutDirection.Column**: Vertical layout, where the child components are arranged in the same direction as the main axis runs down the columns. |
+| layoutDirection<sup>8+</sup> | number | 0 | Main axis direction of the layout. The options are as follows:<br>- **0**: Horizontal layout, where the child components are arranged in the same direction as the main axis runs along the rows.<br>- **1**: Vertical layout, where the child components are arranged in the same direction as the main axis runs down the columns. |
 | maxCount<sup>8+</sup> | number | 1 | Maximum number of rows that can be displayed. |
 | minCount<sup>8+</sup> | number | 1 | Minimum number of rows that can be displayed. |
 | cellLength<sup>8+</sup> | number | 0 | Fixed height per row. |
 | multiSelectable<sup>8+</sup> | boolean | false | Whether to enable mouse frame selection.<br/>- **false**: The mouse frame selection is disabled.<br/>- **true**: The mouse frame selection is disabled. |
-| edgeEffection<sup>8+</sup> | EdgeEffect | EdgeEffect.Spring | Edge effect. For details, see **EdgeEffect**. |
-
-- EdgeEffect enums
-
-  | Name   | Description                                                  |
-  | ------ | ------------------------------------------------------------ |
-  | Spring | Similar to the physical dynamic effect of a spring. After scrolling to the edge, you can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After you release your hand, the knob is rebounded. |
-  | None   | No effect after the scrollbar is moved to the edge.          |
+| supportAnimation<sup>8+</sup> | boolean | false | Whether the grid layout supports animation. |
 
 ## Events
 
-| Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onScrollIndex(first: number) =&gt; void | Triggered when the start item of the grid changes. | 
+| onScrollIndex(first: number) =&gt; void | Triggered when the start item of the grid changes. |
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridExample {
