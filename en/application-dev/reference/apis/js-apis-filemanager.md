@@ -1,8 +1,10 @@
 # User File Access and Management
->![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+>**NOTE**<br/>
 >
->- The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >- The APIs of this module are system APIs and cannot be called by third-party applications. Currently, these APIs can be called only by **filepicker**.
+
+Provides service APIs for accessing and managing user files. It interworks with the underlying file management services to implement media library and external card management, and provides capabilities for applications to query and create user files.
 
 ## Modules to Import
 
@@ -16,20 +18,20 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 
 Obtains information about the root album or directory in asynchronous mode. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
 
-- Return value
+**Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | Promise&lt;[FileInfo](#fileinfo)[]&gt; | Promise used to return the root album or directory information obtained.|
+| Type| Description|
+| --- | -- |
+| Promise&lt;[FileInfo](#fileinfo)[]&gt; | Promise used to return the root album or directory information obtained.|
 
-- Example
+**Example**
 
   ```js
   filemanager.getRoot().then((fileInfo) => {
@@ -49,25 +51,31 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
 
 Obtains information about the root album or directory in asynchronous mode. This API uses a callback to return the result.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                         |
-  | -------- | ------------------------- | ---- | ----------------------------- |
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
-  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the root album or directory information obtained. |
+| Name  | Type                     | Mandatory| Description                         |
+| -------- | ------------------------- | ---- | ----------------------------- |
+| options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the root album or directory information obtained. |
 
-- Example
+**Example**
 
   ```js
-  filemanager.getRoot((err, fileInfo) => {
+  let options = {
+    "dev":{
+      "name":"local"
+    }
+  };
+  filemanager.getRoot(options, (err, fileInfo)=>{
       if(Array.isArray(fileInfo)) {
           for (var i = 0; i < fileInfo.length; i++) {
               console.log("file:"+JSON.stringify(fileInfo));
           }
-      }
+      } 
   });
+  
   ```
 
 ## filemanager.listFile
@@ -76,34 +84,35 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 Obtains information about the second-level album or files in asynchronous mode. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | path | string | Yes| URI of the directory to query.|
-  | type | string | Yes| Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
-  
-- Return value
+**Parameters**
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| path | string | Yes| URI of the directory to query.|
+| type | string | Yes| Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
+| options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
 
-  | Type| Description|
-  | --- | -- |
-  | Promise&lt;FileInfo[]&gt; | Promise used to return the album or file information obtained.|
+**Return value**
 
-- Error
-  | Error Info| Error Code|Description|
-  | -- | --- | -- |
-  | No such file or directory | 2      | The directory or album of the specified URI does not exist.|
-  | No such process | 3 | Failed to obtain the FMS service.|
-  | Not a directory | 20 | The object specified by the URI is not a directory or album.|
+| Type| Description|
+| --- | -- |
+| Promise&lt;FileInfo[]&gt; | Promise used to return the album or file information obtained.|
 
-- Example
+**Error**
+
+| Error Info| Error Code|Description|
+| -- | --- | -- |
+| No such file or directory | 2      | The directory or album of the specified URI does not exist.|
+| No such process | 3 | Failed to obtain the FMS service.|
+| Not a directory | 20 | The object specified by the URI is not a directory or album.|
+
+**Example**
 
   ```js
   // Obtain all files in the directory.
   // Call listFile() and getRoot() to obtain the file URI.
-  let media_path = file.uri
+  let media_path = ""
   filemanager.listFile(media_path, "file")
   .then((fileInfo) => {
       if(Array.isArray(fileInfo)) {
@@ -112,7 +121,7 @@ Obtains information about the second-level album or files in asynchronous mode. 
           }
       }
   }).catch((err) => {
-      console.log(err)
+      console.log("Failed to get file"+err);
   });
   ```
 
@@ -122,72 +131,90 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 Obtains information about the second-level album or files in asynchronous mode. This API uses a callback to return the result.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                                                        |
-  | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-  | path     | string                    | Yes  | URI of the directory to query.                                               |
-  | type     | string                    | Yes  | Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
-  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained.                                |
-- Error
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| path     | string                    | Yes  | URI of the directory to query.                                               |
+| type     | string                    | Yes  | Type of the files to query. The file type can be **file**, **image**, **audio**, or **video**.|
+| options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.<br>- &nbsp;**offset**: position to start the query. The value is a number.<br>- &nbsp;**count**: number of files to query.|
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the root album or directory information obtained.                                |
 
-  | Error Info                 | Error Code| Description                     |
-  | ------------------------- | ------ | ------------------------- |
-  | No such file or directory | 2      | The directory or album of the specified URI does not exist.|
-  | No such process           | 3      | Failed to obtain the FMS service.          |
-  | Not a directory           | 20     | The object specified by the URI is not a directory or album.|
+**Error**
 
-- Example
+| Error Info                 | Error Code| Description                     |
+| ------------------------- | ------ | ------------------------- |
+| No such file or directory | 2      | The directory or album of the specified URI does not exist.|
+| No such process           | 3      | Failed to obtain the FMS service.          |
+| Not a directory           | 20     | The object specified by the URI is not a directory or album.|
+
+**Example**
 
   ```js
-  // Call listFile() and getRoot() to obtain the file URI.
-  let media_path = file.uri
-  filemanager.listFile(media_path, "file", (err, fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  // Call listFile() and getRoot() to obtain the file path.
+  let fileInfos = filemanager.getRoot(); 
+  let media_path  = "";
+  for (let i = 0; i < fileInfos.length; i++) {
+	if (fileInfos[i].name == "image_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "audio_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "video_album") {
+	  media_path = fileInfos[i].path;
+	} else if (fileInfos[i].name == "file_folder") {
+	  media_path = fileInfos[i].path;
+	}
+  }
+
+  filemanager.listFile(media_path, "file")
+  .then((fileInfo) => {
+    if(Array.isArray(fileInfo)) {
+        for (var i = 0; i < fileInfo.length; i++) {
+            console.log("file:"+JSON.stringify(fileInfo));
+        }
+    }
+  }).catch((err) => {
+    console.log("Failed to get file"+err);
   });
   ```
 
 ## filemanager.createFile
 
-filemanager.createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
+createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   Promise&lt;string&gt;
 
 Creates a file in the specified path in asynchronous mode. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
-  | Name| Type| Mandatory| Description|
-  | --- | --- | --- | -- |
-  | filename | string | Yes| Name of the file to create.|
-  | path | string | Yes| URI of the file to create.|
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| --- | --- | --- | -- |
+| filename | string | Yes| Name of the file to create.|
+| path | string | Yes| URI of the file to create.|
+| options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
 
-- Return value
+**Return value**
 
-  | Type| Description|
-  | --- | -- |
-  | promise<string>| Promise used to return the URI of the file created.|
+| Type| Description|
+| --- | -- |
+| Promise&lt;string&gt; | Promise used to return the URI of the file created.|
 
-- Error
-  | Error Info| Error Code|Description|
-  | -- | --- | -- |
-  | Operation not permitted | 1 | A file with the same name already exists.|
-  | No such file or directory | 2 | The directory or album of the specified URI does not exist.|
-  | No such process | 3 | Failed to obtain the FMS service.|
-  | Not a directory | 20 | The object specified by the URI is not a directory or album.|
+**Error**
 
-- Example
+| Error Info| Error Code|Description|
+| -- | --- | -- |
+| Operation not permitted | 1 | A file with the same name already exists.|
+| No such file or directory | 2 | The directory or album of the specified URI does not exist.|
+| No such process | 3 | Failed to obtain the FMS service.|
+| Not a directory | 20 | The object specified by the URI is not a directory or album.|
+
+**Example**
 
   ```js
   // Create a file.
-  let media_path = file.uri // Obtain the file URI using listFile() and getRoot().
+  let media_path = "" // Obtain the file URI using listFile() and getRoot().
   let name = "xxx.jpg" // File to be saved.
   filemanager.createFile(media_path, name).then((uri) => {
       // The URI of the file created is returned.
@@ -203,44 +230,50 @@ createFile(path : string, filename: string, options? : {dev? : DevInfo}, callbac
 
 Creates a file in the specified path in asynchronous mode. This API uses a callback to return the result.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                     | Mandatory| Description                         |
-  | -------- | ------------------------- | ---- | ----------------------------- |
-  | filename | string                    | Yes  | Name of the file to create.               |
-  | path     | string                    | Yes  | URI of the file to create.            |
-  | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
-  | callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the file information obtained. |
+| Name  | Type                     | Mandatory| Description                         |
+| -------- | ------------------------- | ---- | ----------------------------- |
+| filename | string                    | Yes  | Name of the file to create.               |
+| path     | string                    | Yes  | URI of the file to create.            |
+| options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
+| callback | AsyncCallback&lt;[FileInfo](#fileinfo)[]&gt; | Yes  | Callback invoked to return the root album or directory information obtained. |
 
-- Error
+**Error**
 
-  | Error Info                 | Error Code| Description                     |
-  | ------------------------- | ------ | ------------------------- |
-  | Operation not permitted   | 1      | A file with the same name already exists.             |
-  | No such file or directory | 2      | The directory or album of the specified URI does not exist.|
-  | No such process           | 3      | Failed to obtain the FMS service.          |
-  | Not a directory           | 20     | The object specified by the URI is not a directory or album.|
+| Error Info                 | Error Code| Description                     |
+| ------------------------- | ------ | ------------------------- |
+| Operation not permitted   | 1      | A file with the same name already exists.             |
+| No such file or directory | 2      | The directory or album of the specified URI does not exist.|
+| No such process           | 3      | Failed to obtain the FMS service.          |
+| Not a directory           | 20     | The object specified by the URI is not a directory or album.|
 
-- Example
+**Example**
 
   ```js
   // Create a file.
   // Call listFile() and getRoot() to obtain the file URI.
-  let media_path = file.uri
+  let media_path = ""
   // File to be saved.
   let name = "xxx.jpg"
-  filemanager.createFile(media_path, name, (err, uri) => {
-      // The URI of the file created is returned.
-      console.log("file uri:"+uri);
+  let options = {
+    "dev":{
+      "name":"local"
+    }
+  };
+  filemanager.createFile(media_path, name, options, function(err, uri) {
+    // The URI of the file created is returned.
+    console.log("file uri:"+uri);
   });
+
   ```
 
 ## FileInfo
 Defines the file information returned by **getRoot()** or **listFile()**.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
 ### Attributes
 
@@ -257,7 +290,7 @@ Defines the file information returned by **getRoot()** or **listFile()**.
 
 Defines the device type.
 
-**System capability**: SystemCapability.FileManagement.FileManagerService
+**System capability**: SystemCapability.FileManagement.UserFileService
 
 ### Attributes
 
