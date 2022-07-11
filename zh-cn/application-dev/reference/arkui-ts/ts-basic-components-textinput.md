@@ -19,7 +19,7 @@
 
 ## 接口
 
-TextInput(value?:{placeholder?: string | Resource，text?: string | Resource, controller?: TextInputController})
+TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, controller?: TextInputController})
 
 - 参数
   | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
