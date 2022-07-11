@@ -1499,6 +1499,7 @@ async function demo() {
     let driver = UiDriver.create()
     let window = await driver.findWindow({actived: true})
     let name = await window.getBundleName()
+}
 ```
 
 ### getBounds<sup>9+</sup>
