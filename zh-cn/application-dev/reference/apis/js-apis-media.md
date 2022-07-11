@@ -576,7 +576,7 @@ let fdPath = 'fd://'
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 fileIO.open(path).then(fdNumber) => {
    fdPath = fdPath + '' + fdNumber;
-   console.info('open fd succsess fd is' + fdPath);
+   console.info('open fd success fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
 }).catch((err) => {
@@ -1775,7 +1775,7 @@ audioRecorder.prepare();                                                  // pre
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[ContainerFormatType ](#containerformattype8)替代。
+> 从 API Version 8 开始废弃，建议使用[ContainerFormatType](#containerformattype8)替代。
 
 表示音频封装格式的枚举。
 
