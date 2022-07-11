@@ -636,7 +636,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let
+await pixelMap.translate(3.0, 1.0);
 ```
 
 ### translate<sup>9+</sup>
@@ -663,7 +663,7 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-let
+await pixelMap.translate(3.0, 1.0);
 ```
 
 ### rotate<sup>9+</sup>
@@ -684,7 +684,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let
+await pixelMap.rotate(90.0);
 ```
 
 ### rotate<sup>9+</sup>
@@ -710,7 +710,7 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```js
-let
+await pixelMap.rotate(90.0);
 ```
 
 ### flip<sup>9+</sup>
@@ -732,7 +732,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```js
-let
+await pixelMap.flip(false, true);
 ```
 
 ### flip<sup>9+</sup>
@@ -759,7 +759,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```js
-let
+await pixelMap.flip(false, true);
 ```
 
 ### crop<sup>9+</sup>
@@ -780,7 +780,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let
+await pixelMap.crop(3x3);
 ```
 
 ### crop<sup>9+</sup>
@@ -806,7 +806,7 @@ crop(region: Region): Promise\<void>
 **示例：**
 
 ```js
-let
+await pixelMap.crop(3x3);
 ```
 
 ### release<sup>7+</sup>
