@@ -1,6 +1,6 @@
 # Video
 
->  **NOTE**<br>
+> **NOTE**<br>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **\<Video>** component provides a video player.
@@ -13,7 +13,7 @@ To use online videos, you need to add the **ohos.permission.INTERNET** permissio
 "abilities":[
   {
     ...
-    "permissions": ["ohos.permission.INTERNET],
+    "permissions": ["ohos.permission.INTERNET"],
     ...
   }
 ]
@@ -166,7 +166,6 @@ struct VideoCreateComponent {
   @State autoPlays: boolean = false;
   @State controlsss: boolean = true;
   controller: VideoController = new VideoController();
-  @State startStaus: boolean = true;
   build() {
     Column() {
       Video({

@@ -182,7 +182,7 @@ Subscribes to the **headerReceive** event, which is triggered when an HTTP respo
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to subscribe to. The value is **headerReceive** (response header). |
+| type | string | Yes | Type of the event to subscribe to. The value is **'headerReceive'** (response header). |
 | callback | function | Yes | Callback for the HTTP Response Header event. |
 
 Parameters of the callback function
@@ -215,7 +215,7 @@ Unsubscribes from the upload progress event. This API uses an asynchronous callb
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to unsubscribe from. The value is **progress** (upload progress). |
+| type | string | Yes | Type of the event to unsubscribe from. The value is **'progress'** (upload progress). |
 | callback | function | No | Callback for the upload progress event. |
 
 Parameters of the callback function
@@ -249,7 +249,7 @@ Unsubscribes from the **headerReceive** event. This API uses an asynchronous cal
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to unsubscribe from. The value is **headerReceive** (response header). |
+| type | string | Yes | Type of the event to unsubscribe from. The value is **'headerReceive'** (response header). |
 | callback | function | No | Callback for the HTTP Response Header event. |
 
 Parameters of the callback function
@@ -452,7 +452,7 @@ Subscribes to the download progress event. This API uses an asynchronous callbac
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to subscribe to. The value is **progress** (download progress). |
+| type | string | Yes | Type of the event to subscribe to. The value is **'progress'** (download progress). |
 | callback | function | Yes | Callback for the download progress event. |
 
 Parameters of the callback function
@@ -487,7 +487,7 @@ Unsubscribes from the download progress event. This API uses an asynchronous cal
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to unsubscribe from. The value is **progress** (download progress). |
+| type | string | Yes | Type of the event to unsubscribe from. The value is **'progress'** (download progress). |
 | callback | function | No | Callback for the download progress event. |
 
 Parameters of the callback function
@@ -522,7 +522,7 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type.<br/>- **complete**: download task completion event.<br/>- **pause**: download task pause event.<br/>- **remove**: download task removal event. |
+| type | string | Yes | Event type.<br/>- **'complete'**: download task completion event.<br/>- **'pause'**: download task pause event.<br/>- **'remove'**: download task removal event. |
 | callback | function | Yes | Callback used to return the result. |
 
 **Example**
@@ -550,7 +550,7 @@ Unsubscribes from the download event. This API uses an asynchronous callback to 
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type.<br/>- **complete**: download task completion event.<br/>- **pause**: download task pause event.<br/>- **remove**: download task removal event. |
+| type | string | Yes | Event type.<br/>- **'complete'**: download task completion event.<br/>- **'pause'**: download task pause event.<br/>- **'remove'**: download task removal event. |
 | callback | function | No | Callback used to return the result. |
 
 **Example**
@@ -578,7 +578,7 @@ Subscribes to the download task failure event. This API uses an asynchronous cal
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the subscribed event. The value is **fail** (download failure). |
+| type | string | Yes | Type of the subscribed event. The value is **'fail'** (download failure). |
 | callback | function | Yes | Callback for the download task failure event. |
 
 Parameters of the callback function
@@ -612,7 +612,7 @@ Unsubscribes from the download task failure event. This API uses an asynchronous
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to unsubscribe from. The value is **fail** (download failure). |
+| type | string | Yes | Type of the event to unsubscribe from. The value is **'fail'** (download failure). |
 | callback | function | No | Callback for the download task failure event. |
 
 Parameters of the callback function
@@ -948,7 +948,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 | enableMetered | boolean | No | Download allowed in metered connections. |
 | enableRoaming | boolean | No | Download allowed on a roaming network. |
 | description | string | No | Description of the download session. |
-| filePath<sup>7+</sup> | string | No | Download path. (The default path is [ERROR:Invalid link:en-us_topic_0000001135742582.xml#xref8132147102215,link:en-us_topic_0000001127125012.xml#section1856519365229](en-us_topic_0000001127125012.xml#section1856519365229)).<br/>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br/>- filePath:'test.txt': Files are stored in the default path.<br/>- filePath:'workspace/': The **workspace** directory is created in the default path to store files. |
+| filePath<sup>7+</sup> | string | No | Download path. (The default path is **'internal://cache/'**.<br/>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br/>- filePath:'test.txt': Files are stored in the default path.<br/>- filePath:'workspace/': The **workspace** directory is created in the default path to store files. |
 | networkType | number | No | Network type allowed for download. |
 | title | string | No | Title of the download session. |
 

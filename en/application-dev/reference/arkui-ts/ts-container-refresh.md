@@ -1,9 +1,9 @@
 # Refresh
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
 The **<Refresh\>** component is used to refresh a page through a pull-down gesture.
+
+> **NOTE**
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
@@ -15,7 +15,7 @@ This component supports only one child component.
 
 ## APIs
 
-Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number\}\)
+Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number | string\}\)
 
 - Parameters
 
@@ -23,7 +23,7 @@ Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number\}\)
   | -------- | -------- | -------- | -------- | -------- |
   | refreshing | boolean | Yes| - | Whether the current component is being refreshed.|
   | offset | Length | No| 16 | Distance to the top of the parent component from the **<Refresh\>** component that comes to rest after a successful pull-down gesture.|
-  | friction | number | No| 62 | Coefficient of friction, which indicates the **<Refresh\>** component's sensitivity to the pull-down gesture. The value ranges from 0 to 100. <br/>- **0** indicates that the **<Refresh\>** component is not sensitive to the pull-down gesture. <br/>- **100** indicates that the **<Refresh\>** component is highly sensitive to the pull-down gesture. <br/>- A larger value indicates a more sensitive response of the **<Refresh\>** component to the pull-down gesture.|
+  | friction | number \| string | No| 62 | Coefficient of friction, which indicates the **<Refresh\>** component's sensitivity to the pull-down gesture. The value ranges from 0 to 100. <br/>- **0** indicates that the **<Refresh\>** component is not sensitive to the pull-down gesture. <br/>- **100** indicates that the **<Refresh\>** component is highly sensitive to the pull-down gesture. <br/>- A larger value indicates a more sensitive response of the **<Refresh\>** component to the pull-down gesture.|
 
 
 

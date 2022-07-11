@@ -1,6 +1,8 @@
 # Getting Started with JavaScript in the Low-Code Approach
 
-> **NOTE**<br/>This feature will be available in DevEco Studio V2.2 Beta1 and later versions.
+> **NOTE**
+>
+> This feature will be available in DevEco Studio V2.2 Beta1 and later versions.
 >
 > For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
@@ -13,7 +15,7 @@ You can develop applications or services in the low-code approach using either o
 
 - Create a project that supports low-code development. This method is used as an example in this topic.
 
-- In an existing project, create a Visual file for development.
+- In an existing project, create a Visual file for development. For details, see [Creating a .visual File That Supports Low-Code Development](#building-the-second-page).
 
 
 ## Creating a Project That Supports Low-Code Development
