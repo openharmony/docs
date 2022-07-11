@@ -1,17 +1,14 @@
 # BundleInfo
 
-
-
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
-
-
 Provides the application bundle information.
 
-
+## BundleInfo
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -26,7 +23,7 @@ Provides the application bundle information.
 | appInfo                           | ApplicationInfo         | Yes  | No  | Application configuration information.                        |
 | abilityInfos                      | Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>         | Yes  | No  | Ability configuration information.                         |
 | reqPermissions                    | Array\<string>                                               | Yes  | No  | Permissions to request from the system for running the application.          |
-| reqPermissionDetails              | Array\<[ReqPermissionDetail](#ReqPermissionDetail)>          | Yes  | No  | Detailed information of the permissions to request from the system.|
+| reqPermissionDetails              | Array\<[ReqPermissionDetail](#reqpermissiondetail)>          | Yes  | No  | Detailed information of the permissions to request from the system.|
 | vendor                            | string                                                       | Yes  | No  | Vendor of the bundle.                            |
 | versionCode                       | number                                                       | Yes  | No  | Version number of the bundle.                            |
 | versionName                       | string                                                       | Yes  | No  | Version description of the bundle.                  |
@@ -42,8 +39,6 @@ Provides the application bundle information.
 | reqPermissionStates<sup>8+</sup>  | Array\<number>                                               | Yes  | No  | Permission grant state.                        |
 | extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | Yes  | No  | Extension ability information.                       |
 
-
-
 ## ReqPermissionDetail
 
 Provides the detailed information of the permissions to request from the system.
@@ -55,8 +50,6 @@ Provides the detailed information of the permissions to request from the system.
 | name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
 | reason                | string                  | Yes  | Yes  | Reason for requesting the permission.  |
 | usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Application scenario and timing for using the permission.|
-
-
 
 ## UsedScene
 

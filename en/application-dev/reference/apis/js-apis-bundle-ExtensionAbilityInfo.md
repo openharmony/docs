@@ -1,17 +1,14 @@
 # ExtensionAbilityInfo
 
-
-
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
-
-
 Provides the Extension ability information.
 
-
+## ExtensionAbilityInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 

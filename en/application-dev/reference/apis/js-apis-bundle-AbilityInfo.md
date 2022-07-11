@@ -1,17 +1,14 @@
 # AbilityInfo
 
-
-
-> **NOTE**<br/>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
+Provides the ability information. 
 
-
-Provides the ability information.
-
-
+## AbilityInfo
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -38,10 +35,10 @@ Provides the ability information.
 | deviceCapabilities    | Array\<string>                                           | Yes  | No  | Device capabilities required for the ability.                    |
 | readPermission        | string                                                   | Yes  | No  | Permission required for reading the ability data.                |
 | writePermission       | string                                                   | Yes  | No  | Permission required for writing data to the ability.                |
-| applicationInfo       | ApplicationInfo     | Yes  | No  | Application configuration information.                       |
+| applicationInfo       | ApplicationInfo                                          | Yes  | No  | Application configuration information.                       |
 | uri                   | string                                                   | Yes  | No  | URI of the ability.       |
 | labelId               | number                                                   | Yes  | No  | Ability label ID.                          |
 | subType               | AbilitySubType                                           | Yes  | No  | Subtype of the template that can be used by the ability.          |
 | metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)> | Yes  | No  | Custom metadata of the ability.                      |
-| metaData<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | Yes  | No  | Metadata of the ability.                          |
+| metadata<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | Yes  | No  | Metadata of the ability.                          |
 | enabled<sup>8+</sup>  | boolean                                                  | Yes  | No  | Whether the ability is enabled.                          |
