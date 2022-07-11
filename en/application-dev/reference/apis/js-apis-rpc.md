@@ -1,5 +1,6 @@
 # RPC
 
+This module implements communication between processes, including inter-process communication (IPC) on a single device and Remote Procedure Call (RPC) between processes of difference devices. IPC is implemented based on the Binder driver, and RPC is based on the software bus driver.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -2397,7 +2398,7 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 ## IRemoteBroker
 
-Obtains a remote proxy object.
+Provides the holder of a remote proxy object.
 
 
 ### asObject
@@ -2503,7 +2504,7 @@ Obtains the interface.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8).
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2652,7 +2653,7 @@ Provides methods to implement **IRemoteObject**.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8-2).
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8-2).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -3470,7 +3471,7 @@ A constructor used to create a **RemoteObject** object.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup> ](#sendrequest8-4).
+> This API is deprecated since API Version 8. You are advised to use [sendRequest<sup>8+</sup>](#sendrequest8-4).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
