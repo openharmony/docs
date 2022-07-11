@@ -343,7 +343,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);\
+const color = new ArrayBuffer(96);
 const pixelMap = new ArrayBuffer(400);
 let bufferArr = new Uint8Array(color);
 pixelMap.writeBufferToPixels(color, function(err) {
@@ -587,7 +587,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-let
+await pixelMap.scale(2.0, 1.0);
 ```
 
 ### scale<sup>9+</sup>
@@ -614,7 +614,7 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-let
+await pixelMap.scale(2.0, 1.0);
 ```
 
 ### translate<sup>9+</sup>
