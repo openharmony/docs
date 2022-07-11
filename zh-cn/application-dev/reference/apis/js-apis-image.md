@@ -587,7 +587,9 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-await pixelMap.scale(2.0, 1.0);
+async function () {
+	await pixelMap.scale(2.0, 1.0);
+}
 ```
 
 ### scale<sup>9+</sup>
@@ -614,7 +616,9 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-await pixelMap.scale(2.0, 1.0);
+async function () {
+	await pixelMap.scale(2.0, 1.0);
+}
 ```
 
 ### translate<sup>9+</sup>
@@ -636,7 +640,9 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-await pixelMap.translate(3.0, 1.0);
+async function () {
+	await pixelMap.translate(3.0, 1.0);
+}
 ```
 
 ### translate<sup>9+</sup>
@@ -663,7 +669,9 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-await pixelMap.translate(3.0, 1.0);
+async function () {
+	await pixelMap.translate(3.0, 1.0);
+}
 ```
 
 ### rotate<sup>9+</sup>
@@ -684,7 +692,9 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-await pixelMap.rotate(90.0);
+async function () {
+	await pixelMap.rotate(90.0);
+}
 ```
 
 ### rotate<sup>9+</sup>
@@ -710,7 +720,9 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```js
-await pixelMap.rotate(90.0);
+async function () {
+	await pixelMap.rotate(90.0);
+}
 ```
 
 ### flip<sup>9+</sup>
@@ -732,7 +744,9 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```js
-await pixelMap.flip(false, true);
+async function () {
+	await pixelMap.flip(false, true);
+}
 ```
 
 ### flip<sup>9+</sup>
@@ -759,7 +773,9 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```js
-await pixelMap.flip(false, true);
+async function () {
+	await pixelMap.flip(false, true);
+}
 ```
 
 ### crop<sup>9+</sup>
@@ -780,7 +796,9 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-await pixelMap.crop(3x3);
+async function () {
+	await pixelMap.crop(3x3);
+}
 ```
 
 ### crop<sup>9+</sup>
@@ -806,7 +824,9 @@ crop(region: Region): Promise\<void>
 **示例：**
 
 ```js
-await pixelMap.crop(3x3);
+async function () {
+	await pixelMap.crop(3x3);
+}
 ```
 
 ### release<sup>7+</sup>
