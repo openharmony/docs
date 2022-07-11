@@ -523,7 +523,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -565,7 +565,7 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -605,7 +605,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -650,7 +650,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[featureAbility.startAbilityForResult](js-apis-featureAbility.md#featureabilitystartabilityforresult7)拉起FilePicker替代。<br/>FilePicker是OpenHarmony中预置的系统应用，为用户提供文件选择及保存功能。FilePicker的使用方法请参考[OpenHarmony/applications_filepicker](https://gitee.com/openharmony/applications_filepicker#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -685,7 +685,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[featureAbility.startAbilityForResult](js-apis-featureAbility.md#featureabilitystartabilityforresult7)拉起FilePicker替代。<br/>FilePicker是OpenHarmony中预置的系统应用，为用户提供文件选择及保存功能。FilePicker的使用方法请参考[OpenHarmony/applications_filepicker](https://gitee.com/openharmony/applications_filepicker#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
