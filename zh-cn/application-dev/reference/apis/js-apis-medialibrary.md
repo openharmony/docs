@@ -2137,12 +2137,12 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称  | 默认值 | 说明 |
-| ----- | ------ | ---- |
-| FILE  | 1      | 文件 |
-| IMAGE | 3      | 图片 |
-| VIDEO | 4      | 视频 |
-| AUDIO | 5      | 音频 |
+| 名称  |  说明 |
+| ----- |  ---- |
+| FILE  |  文件 |
+| IMAGE |  图片 |
+| VIDEO |  视频 |
+| AUDIO |  音频 |
 
 ## FileKey<sup>8+</sup>
 
@@ -2178,14 +2178,14 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称          | 默认值 | 说明               |
-| ------------- | ------ | ------------------ |
-| DIR_CAMERA    | 0      | 表示Camera文件路径 |
-| DIR_VIDEO     | 1      | 表示视频路径       |
-| DIR_IMAGE     | 2      | 表示图片路径       |
-| DIR_AUDIO     | 3      | 表示音频路径       |
-| DIR_DOCUMENTS | 4      | 表示文档路径       |
-| DIR_DOWNLOAD  | 5      | 表示下载路径       |
+| 名称          |  说明               |
+| ------------- |  ------------------ |
+| DIR_CAMERA    |  表示Camera文件路径 |
+| DIR_VIDEO     |  表示视频路径       |
+| DIR_IMAGE     |  表示图片路径       |
+| DIR_AUDIO     |  表示音频路径       |
+| DIR_DOCUMENTS |  表示文档路径       |
+| DIR_DOWNLOAD  |  表示下载路径       |
 
 ## DeviceType<sup>8+</sup>
 
@@ -2193,15 +2193,15 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称         | 默认值 | 说明       |
-| ------------ | ------ | ---------- |
-| TYPE_UNKNOWN | 0      | 未识别设备 |
-| TYPE_LAPTOP  | 1      | 笔记本电脑 |
-| TYPE_PHONE   | 2      | 手机       |
-| TYPE_TABLET  | 3      | 平板电脑   |
-| TYPE_WATCH   | 4      | 智能手表   |
-| TYPE_CAR     | 5      | 车载设备   |
-| TYPE_TV      | 6      | 电视设备   |
+| 名称         |  说明       |
+| ------------ |  ---------- |
+| TYPE_UNKNOWN |  未识别设备 |
+| TYPE_LAPTOP  |  笔记本电脑 |
+| TYPE_PHONE   |  手机       |
+| TYPE_TABLET  |  平板电脑   |
+| TYPE_WATCH   |  智能手表   |
+| TYPE_CAR     |  车载设备   |
+| TYPE_TV      |  电视设备   |
 
 ## MediaFetchOptions<sup>7+</sup>
 
