@@ -10,10 +10,10 @@ Obtains storage space information, including the space of built-in and plug-in m
 ## Modules to Import
 
 ```js
-import storagestatistics from "@ohos.storageStatistics";
+import storageStatistics from "@ohos.storageStatistics";
 ```
 
-## storagestatistics.getTotalSizeOfVolume
+## storageStatistics.getTotalSizeOfVolume
 
 getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
@@ -23,32 +23,34 @@ Asynchronously obtains the total size of the specified volume. This API uses a p
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
   | volumeUuid | string | Yes  | UUID of the volume.|
 
-- Return value
+**Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;number&gt; | Promise used to return the total size of the volume.|
 
-- Example
+**Example**
 
   ```js
   let uuid = "";
-  storagestatistics.getTotalSizeOfVolume(uuid).then(function(number){
+  storageStatistics.getTotalSizeOfVolume(uuid).then(function(number){
       console.info("getTotalSizeOfVolume successfully:"+ number);
   }).catch(function(err){
       console.info("getTotalSizeOfVolume failed with error:"+ err);
   });
   ```
 
-## storagestatistics.getTotalSizeOfVolume
+## storageStatistics.getTotalSizeOfVolume
 
 getTotalSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
 
@@ -58,28 +60,28 @@ Asynchronously obtains the total size of the specified volume. This API uses a c
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                      |
   | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size of the volume.|
 
-- Example
+**Example**
 
   ```js
   let uuid = "";
-  storagestatistics.getTotalSizeOfVolume(uuid, function(error, number){
+  storageStatistics.getTotalSizeOfVolume(uuid, function(error, number){
       // Do something.
       console.info("getTotalSizeOfVolume successfully:"+ number);
   });
   ```
-  
-  
 
-## storagestatistics.getFreeSizeOfVolume
+## storageStatistics.getFreeSizeOfVolume
 
 getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
@@ -89,25 +91,27 @@ Asynchronously obtains the available space of the specified volume. This API use
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
   | volumeUuid | string | Yes  | UUID of the volume.|
 
-- Return value
+**Return value**
 
   | Type                 | Description              |
   | --------------------- | ------------------ |
   | Promise&lt;number&gt; | Promise used to return the available space of the volume.|
 
-- Example
+**Example**
 
   ```js
   let uuid = "";
-  storagestatistics.getFreeSizeOfVolume(uuid).then(function(number){
+  storageStatistics.getFreeSizeOfVolume(uuid).then(function(number){
       console.info("getFreeSizeOfVolume successfully:"+ number);
   }).catch(function(err){
       console.info("getFreeSizeOfVolume failed with error:"+ err);
@@ -115,7 +119,7 @@ Asynchronously obtains the available space of the specified volume. This API use
   
   ```
 
-## storagestatistics.getFreeSizeOfVolume
+## storageStatistics.getFreeSizeOfVolume
 
 getFreeSizeOfVolume(volumeUuid: string, callback:AsyncCallback&lt;number&gt;):void
 
@@ -125,26 +129,28 @@ Asynchronously obtains the available space of the specified volume. This API use
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name    | Type                                | Mandatory| Description                        |
   | ---------- | ------------------------------------ | ---- | ---------------------------- |
   | volumeUuid | string                               | Yes  | UUID of the volume.                        |
   | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the volume.|
 
-- Example
+**Example**
 
   ```js
   let uuid = "";
-  storagestatistics.getFreeSizeOfVolume(uuid, function(error, number){
+  storageStatistics.getFreeSizeOfVolume(uuid, function(error, number){
       // Do something.
       console.info("getFreeSizeOfVolume successfully:"+ number);
   });
   ```
 
-## storagestatistics.getBundleStats<sup>9+</sup>
+## storageStatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
@@ -154,32 +160,34 @@ Asynchronously obtains space information of an application. This API uses a prom
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name     | Type  | Mandatory| Description    |
   | ----------- | ------ | ---- | -------- |
   | packageName | string | Yes  | Bundle name of the application.|
-  
-- Return value
+
+**Return value**
 
   | Type                                      | Description                      |
   | ------------------------------------------ | -------------------------- |
   | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.|
 
-- Example
+**Example**
 
   ```js
   let packageName = "";
-  storagestatistics.getBundleStats(packageName).then(function(BundleStats){
+  storageStatistics.getBundleStats(packageName).then(function(BundleStats){
       console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
   }).catch(function(err){
       console.info("getBundleStats failed with error:"+ err);
   });
   ```
 
-## storagestatistics.getBundleStats<sup>9+</sup>
+## storageStatistics.getBundleStats<sup>9+</sup>
 
 getBundleStats(packageName: string,  callback: AsyncCallback&lt;BundleStats&gt;): void
 
@@ -189,78 +197,80 @@ Asynchronously obtains space information of an application. This API uses a call
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name  | Type                                                     | Mandatory| Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | packageName | string | Yes  | Bundle name of the application.|
   | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.|
-  
-- Example
+
+**Example**
 
   ```js
   let packageName = "";
-  storagestatistics.getBundleStats(packageName, function(error, BundleStats){
+  storageStatistics.getBundleStats(packageName, function(error, BundleStats){
       // Do something.
       console.info("getBundleStats successfully:"+ JSON.stringify(BundleStats));
   });
   ```
 
+## storageStatistics.getCurrentBundleStats<sup>9+</sup>
 
-
-## storagestatistics.getCurrentBundleStats<sup>9+</sup>
-
-getCurrentBundleStats(): Promise<BundleStats>
+getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 Asynchronously obtains space information of the current third-party application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-- Return value
+**Return value**
 
   | Type                                       | Description                      |
   | ------------------------------------------ | -------------------------- |
   | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.     |
 
-- Example
+**Example**
 
   ```js
-      let bundleStats = await storageStatistics.getCurrentBundleStats();
-      console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
+  let bundleStats = storageStatistics.getCurrentBundleStats();
+  console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
   ```
 
-## storagestatistics.getCurrentBundleStats<sup>9+</sup>
+## storageStatistics.getCurrentBundleStats<sup>9+</sup>
 
-getCurrentBundleStats(callback: AsyncCallback<BundleStats>): void
+getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 Asynchronously obtains space information of the current third-party application. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-- Parameters
+**Parameters**
 
   | Name   | Type                                                      | Mandatory | Description                                |
   | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
   | callback | callback:AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.       |
 
-- Example
+**Example**
 
   ```js
-  storagestatistics.getCurrentBundleStats(function(error, bundleStats){
+  storageStatistics.getCurrentBundleStats(function(error, bundleStats){
       // Do something.
       console.info("getCurrentBundleStats successfully:"+ JSON.stringify(bundleStats));
   });
   ```
-  
-  
-  
+
 ## BundleStats<sup>9+</sup>
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-- Attributes
+
+This is a system API and cannot be called by third-party applications.
+
+
+### Attributes
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
@@ -269,11 +279,9 @@ Asynchronously obtains space information of the current third-party application.
 | dataSize  | number | Total data size of the application.|
 
 
+## storageStatistics.getTotalSize<sup>9+</sup>
 
-
-## storagestatistics.getTotalSize<sup>9+</sup>
-
-getTotalSize(): Promise<number>
+getTotalSize(): Promise&lt;number&gt;
 
 Obtains the total space of the built-in memory card. This API uses a promise to return the result.
 
@@ -281,24 +289,26 @@ Obtains the total space of the built-in memory card. This API uses a promise to 
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Return value
+This is a system API and cannot be called by third-party applications.
+
+
+**Return value**
 
   | Type                  | Description              |
   | --------------------- | ------------------ |
   | Promise&lt;number&gt; | Promise used to return the total space of the built-in memory card.  |
 
-- Example
+**Example**
 
   ```js
-      let number = await storageStatistics.getTotalSize();
-      console.info("getTotalSize successfully:"+ JSON.stringify(number));
+  let number = storageStatistics.getTotalSize();
+  console.info("getTotalSize successfully:"+ JSON.stringify(number));
   ```
-  
-## storagestatistics.getTotalSize<sup>9+</sup>
 
-getTotalSize(callback: AsyncCallback<number>): void
+## storageStatistics.getTotalSize<sup>9+</sup>
+
+getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the total space of the built-in memory card. This API uses a callback to return the result.
 
@@ -306,27 +316,29 @@ Obtains the total space of the built-in memory card. This API uses a callback to
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name   | Type                                 | Mandatory | Description                    |
   | -------- | ------------------------------------ | ---- | ------------------------ |
   | callback | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total space of the built-in memory card.|
 
-- Example
+**Example**
 
   ```js
-  storagestatistics.getTotalSize(function(error, number){
+  storageStatistics.getTotalSize(function(error, number){
       // Do something.
       console.info("getTotalSize successfully:"+ JSON.stringify(number));
   });
   ```
 
 
-## storagestatistics.getFreeSize<sup>9+</sup>
+## storageStatistics.getFreeSize<sup>9+</sup>
 
-getFreeSize(): Promise<number>
+getFreeSize(): Promise&lt;number&gt;
 
 Obtains the available space of the built-in memory card. This API uses a promise to return the result.
 
@@ -334,25 +346,27 @@ Obtains the available space of the built-in memory card. This API uses a promise
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Return value
+This is a system API and cannot be called by third-party applications.
+
+
+**Return value**
 
   | Type                  | Description              |
   | --------------------- | ------------------ |
   | Promise&lt;number&gt; | Promise used to return the available space of the built-in memory card.|
 
-- Example
+**Example**
 
   ```js
-      let number = await storageStatistics.getFreeSize();
-      console.info("getFreeSize successfully:"+ JSON.stringify(number));
+  let number = storageStatistics.getFreeSize();
+  console.info("getFreeSize successfully:"+ JSON.stringify(number));
   ```
 
 
-## storagestatistics.getFreeSize<sup>9+</sup>
+## storageStatistics.getFreeSize<sup>9+</sup>
 
-getFreeSize(callback: AsyncCallback<number>): void
+getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the available space of the built-in memory card. This API uses a callback to return the result.
 
@@ -360,26 +374,26 @@ Obtains the available space of the built-in memory card. This API uses a callbac
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name   | Type                                 | Mandatory| Description                      |
   | -------- | ------------------------------------ | ---- | ------------------------- |
   | callback | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the built-in memory card.|
 
-- Example
+**Example**
 
   ```js
-  storagestatistics.getFreeSize(function(error, number){
+  storageStatistics.getFreeSize(function(error, number){
       // Do something.
       console.info("getFreeSize successfully:"+ JSON.stringify(number));
   });
   ```
 
-
-
-## storagestatistics.getSystemSize<sup>9+</sup>
+## storageStatistics.getSystemSize<sup>9+</sup>
 
 getSystemSize(): Promise&lt;number&gt;
 
@@ -389,25 +403,27 @@ Asynchronously obtains the system space. This API uses a promise to return the r
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Return value
+This is a system API and cannot be called by third-party applications.
+
+
+**Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;number&gt; | Promise used to return the system space obtained.|
 
-- Example
+**Example**
 
   ```js
-  storagestatistics.getSystemSize().then(function(number){
+  storageStatistics.getSystemSize().then(function(number){
       console.info("getSystemSize successfully:"+ number);
   }).catch(function(err){
       console.info("getSystemSize failed with error:"+ err);
   });
   ```
 
-## storagestatistics.getSystemSize<sup>9+</sup>
+## storageStatistics.getSystemSize<sup>9+</sup>
 
 getSystemSize(callback:AsyncCallback&lt;number&gt;):void
 
@@ -417,28 +433,28 @@ Asynchronously obtains the system space. This API uses a callback to return the 
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback used to return the system space obtained.|
 
-- Example
+**Example**
 
   ```js
-  storagestatistics.getSystemSize(function(error, number){
+  storageStatistics.getSystemSize(function(error, number){
       // Do something.
       console.info("getSystemSize successfully:"+ number);
   });
   ```
-  
-  
-  
-## storagestatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId?: string): Promise&lt;StorageStats&gt;
+## storageStatistics.getUserStorageStats<sup>9+</sup>
+
+getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
 Asynchronously obtains the space occupied by each type of user data. This API uses a promise to return the result.
 
@@ -446,34 +462,36 @@ Asynchronously obtains the space occupied by each type of user data. This API us
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | userId | string | No  | User ID.<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
+  | userId | string | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
 
-- Return value
+**Return value**
 
   | Type                 | Description            |
   | --------------------- | ---------------- |
   | Promise&lt;[StorageStats](#StorageStats)&gt; | Promise used to return the information obtained.|
 
-- Example
+**Example**
 
   ```js
   let userId = "";
-  storagestatistics.getUserStorageStats(userId).then(function(StorageStats){
+  storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   }).catch(function(err){
       console.info("getUserStorageStats failed with error:"+ err);
   });
   ```
 
-## storagestatistics.getUserStorageStats<sup>9+</sup>
+## storageStatistics.getUserStorageStats<sup>9+</sup>
 
-getUserStorageStats(userId?: string, callback:AsyncCallback&lt;StorageStats&gt;):void
+getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):void
 
 Asynchronously obtains the space occupied by each type of user data. This API uses a callback to return the result.
 
@@ -481,31 +499,37 @@ Asynchronously obtains the space occupied by each type of user data. This API us
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-**System API**: This is a system API and cannot be called by third-party applications.
 
-- Parameters
+This is a system API and cannot be called by third-party applications.
+
+
+**Parameters**
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | string                               | No  | User ID.<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
+  | userId | string                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
   | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | Yes  | Callback invoked to return the information obtained.|
 
-- Example
+**Example**
 
   ```js
-  storagestatistics.getUserStorageStats(userId, function(error, StorageStats){
+  let userId = "";
+  storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
       // Do something.
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   });
   ```
 
 
-
 ## StorageStats<sup>9+</sup>
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-- Attributes
+
+This is a system API and cannot be called by third-party applications.
+
+
+### Attributes
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
