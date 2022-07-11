@@ -46,7 +46,7 @@ show(options: {&nbsp;paramObject1})
 // xxx.ets
 @Entry
 @Component
-struct ActionSheetExapmle {
+struct ActionSheetExample {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
