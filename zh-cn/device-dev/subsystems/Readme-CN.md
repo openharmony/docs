@@ -96,6 +96,7 @@
     - [HiDumper开发指导](subsys-dfx-hidumper.md)
     - [HiChecker开发指导](subsys-dfx-hichecker.md)
     - [Faultlogger开发指导](subsys-dfx-faultlogger.md)
+    - [Hiview开发指导](subsys-dfx-hiview.md)
 - 调测工具
     - [bytrace使用指导](subsys-toolchain-bytrace-guide.md)
     - [hdc_std使用指导](subsys-toolchain-hdc-guide.md)
