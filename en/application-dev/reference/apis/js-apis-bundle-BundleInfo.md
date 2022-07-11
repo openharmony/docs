@@ -2,14 +2,15 @@
 
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 
 Provides the application bundle information.
 
-
+## BundleInfo
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -53,7 +54,7 @@ Provides the detailed information of the permissions to request from the system.
 | name                  | string                  | Yes  | Yes  | Name of the permission to request.  |
 | reason                | string                  | Yes  | Yes  | Reason for requesting the permission.  |
 | reasonId<sup>9+</sup> | number                  | Yes  | Yes  | ID of the reason for requesting the permission.|
-| usedScene             | [UsedScene](#UsedScene) | Yes  | Yes  | Application scenario and timing for using the permission.|
+| usedScene             | [UsedScene](#usedscene) | Yes  | Yes  | Application scenario and timing for using the permission.|
 
 
 
