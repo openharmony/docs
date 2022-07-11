@@ -135,7 +135,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
 | MEM_LEVEL_MIN     | 1    | zip 接口在压缩过程中最小使用内存 |
-| MEM_LEVEL_MIN     | 9    | zip 接口在压缩过程中最大使用内存 |
+| MEM_LEVEL_MAX     | 9    | zip 接口在压缩过程中最大使用内存 |
 | MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存 |
 
 ## zip.CompressLevel
