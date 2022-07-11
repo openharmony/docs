@@ -958,7 +958,7 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.createImageSource(data);
+const imageSourceApi = image.createImageSource(buf);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
