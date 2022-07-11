@@ -239,7 +239,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 ```js
 this.context.terminateSelf((err) => {
-    console.log('terminateSelf result:' + JSON.stringfy(err));
+    console.log('terminateSelf result:' + JSON.stringify(err));
 });
 ```
 
@@ -261,9 +261,9 @@ Terminates this ability. This API uses a promise to return the result.
 
 ```js
 this.context.terminateSelf(want).then((data) => {
-    console.log('success:' + JSON.stringfy(data));
+    console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
-    console.log('failed:' + JSON.stringfy(error));
+    console.log('failed:' + JSON.stringify(error));
 });
 ```
 
