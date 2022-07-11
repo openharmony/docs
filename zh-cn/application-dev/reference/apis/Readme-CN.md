@@ -28,6 +28,7 @@
   - [@ohos.application.uriPermissionManager (uriPermissionManager)](js-apis-uripermissionmanager.md)
   - [@ohos.application.Want (Want)](js-apis-application-Want.md)
   - [@ohos.wantAgent (WantAgent模块)](js-apis-wantAgent.md)
+  - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](js-apis-application-WindowExtensionAbility.md)
   - ability/[dataAbilityHelper (DataAbilityHelper模块)](js-apis-dataAbilityHelper.md)
   - app/[context (Context模块)](js-apis-Context.md)
   - application/[AbilityContext (AbilityContext)](js-apis-ability-context.md)
@@ -76,6 +77,7 @@
 - 图形图像
 
   - [@ohos.display (屏幕属性)](js-apis-display.md)
+  - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
   - [@ohos.window (窗口)](js-apis-window.md)
   - [webgl (WebGL)](js-apis-webgl.md)
