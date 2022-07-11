@@ -109,7 +109,7 @@ Enumerates the window orientations.
 | UNSPECIFIED                           | 0    | Unspecified. The orientation is determined by the system.|
 | PORTRAIT                              | 1    | Portrait.            |
 | LANDSCAPE                             | 2    | Landscape.  |
-| PORTAIT_INVERTED                      | 3    | Reverse portrait.  |
+| PORTRAIT_INVERTED                     | 3    | Reverse portrait.  |
 | LANDSCAPE_INVERTED                    | 4    | Reverse landscape.|
 | AUTO_ROTATION                         | 5    | Auto rotation.|
 | AUTO_ROTATION_PORTRAIT                | 6    | Auto rotation in the vertical direction.|
@@ -2067,7 +2067,7 @@ Sets this window to the wide or default color gamut mode. This API uses a promis
 **Example**
 
 ```js
-let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
+let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
 promise.then((data)=> {
     console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
