@@ -486,7 +486,9 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-await pixelMap.opacity(0.5);
+async function () {
+	await pixelMap.opacity(0.5);
+}
 ```
 
 ### opacity<sup>9+</sup>
@@ -512,7 +514,9 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```js
-await pixelMap.opacity(0.5);
+async function () {
+	await pixelMap.opacity(0.5);
+}
 ```
 
 ### createAlphaPixelmap<sup>9+</sup>
