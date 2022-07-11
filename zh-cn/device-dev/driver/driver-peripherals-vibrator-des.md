@@ -1,11 +1,10 @@
 # Vibrator
 
-
 ## 概述
 
 ### 功能简介
 
-为了快速开发传感器驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达（Vibrator）驱动模型。马达驱动模型，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口和解析接口的能力。用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如图1所示：
+为了快速开发传感器驱动，基于HDF（Hardware Driver Foundation）驱动框架开发了马达（Vibrator）驱动模型。马达驱动模型，屏蔽设备驱动与系统交互的实现，为硬件服务层提供统一稳定的驱动接口能力，为驱动开发者提供开放的接口和解析接口的能力，用于不同操作系统马达设备部件的部署指导和马达设备部件驱动的开发。马达驱动模型如图1所示：
 
 **图 1** 马达驱动模型图
 
@@ -52,19 +51,19 @@
 
 ### 接口说明
 
-马达驱动模型支持静态HCS配置和动态参数两种振动效果配置能力。马达硬件服务调用StartOnce接口动态配置持续振动；调用Start接口启动静态配置的振动效果。马达驱动模型对HDI开放的API接口能力，如下所示。
+马达驱动模型支持静态HCS配置和动态参数两种振动效果配置能力。马达硬件服务调用StartOnce接口动态配置持续振动；调用Start接口启动静态配置的振动效果。马达驱动模型对HDI开放的API接口能力，如下表所示。
 
 **表 1** 马达驱动模型对外API接口能力介绍
 
-| 接口名                                 | 功能描述                                                 |
-| -------------------------------------- | -------------------------------------------------------- |
+| 接口名                                  | 功能描述                                           |
+| -------------------------------------- | ------------------------------------------------ |
 | int32_t  StartOnce(uint32_t duration)  | 按照指定持续时间触发振动马达，duration为振动持续时长。   |
 | int32_t  Start(const char *effectType) | 按照指定预置效果启动马达，effectType表示预置的预置效果。 |
-| int32_t  Stop(enum VibratorMode mode)  | 按照指定的振动模式停止马达振动。                         |
+| int32_t  Stop(enum VibratorMode mode)  | 按照指定的振动模式停止马达振动。                       |
 
 ### 开发步骤
 
-Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能力接口，包括马达一次振动、马达效果配置震动、马达停止。基于HDF驱动框架开发的马达驱动模型，实现跨操作系统迁移、器件差异配置等功能。马达具体的开发步骤如下：
+Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能力接口，包括马达一次振动、马达效果配置震动、马达停止。基于HDF驱动框架开发的马达驱动模型，实现跨操作系统迁移、器件差异配置等功能。具体的开发步骤如下：
 
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成马达抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，配置资源和HCS解析。
 
@@ -77,7 +76,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
          .moduleName = "HDF_VIBRATOR", // 马达模块名，要与device_info.hcs文件里的马达moduleName字段值一样
          .Bind = BindVibratorDriver, // 马达绑定函数
          .Init = InitVibratorDriver, // 马达初始化函数
-        .Release = ReleaseVibratorDriver, // 马达资源释放函数
+         .Release = ReleaseVibratorDriver, // 马达资源释放函数
      };
      
      HDF_INIT(g_vibratorDriverEntry);
@@ -203,7 +202,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
 
    - 马达效果模型使用HCS作为配置描述源码，hcs配置文件字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
 
-     ```
+     ```hcs
      /* 马达数据配置模板（vibrator_config.hcs） */
      root {
          vibratorConfig {
@@ -367,6 +366,3 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
          return HDF_SUCCESS;
      }
      ```
-
-
-
