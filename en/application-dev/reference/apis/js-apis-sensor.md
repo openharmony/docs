@@ -886,11 +886,7 @@ Subscribes to only one data change of the proximity sensor.
 
 **Example**
   ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(error, data) {
-      if (error) {
-          console.error("Subscription failed. Error code: " + error.code + "; message: " + error.message);
-          return;
-      }
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(data) {
       console.info('Distance: ' + data.distance);
     }
   );
@@ -1350,8 +1346,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 Unsubscribes from sensor data changes.
 
-**Required permission**: ohos.permission.READ_HEALTH_DATA (a system permission)
-
 **System capability**: SystemCapability.Sensors.Sensor
 
 **Parameters**
@@ -1403,8 +1397,6 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 Unsubscribes from sensor data changes.
-
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1486,6 +1478,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1899,7 +1893,6 @@ Obtains the angle change between two rotation matrices. This API uses a callback
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -1967,7 +1960,6 @@ Converts a rotation vector into a rotation matrix. This API uses a callback to r
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2034,7 +2026,6 @@ Converts a rotation vector into a quaternion. This API uses a callback to return
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2169,7 +2160,6 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }
