@@ -2,7 +2,8 @@
 
 创建并显示文本提示框、对话框和操作菜单。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明**
+> **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -10,9 +11,6 @@
 ```
 import prompt from '@ohos.prompt'
 ```
-## 权限列表
-
-无
 
 ## prompt.showToast
 
@@ -48,7 +46,7 @@ showToast(options: ShowToastOptions): void
 | -------- | -------------- | ---- | ---------------------------------------- |
 | message  | string         | 是    | 显示的文本信息。                                 |
 | duration | number         | 否    | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
-| bottom   | &lt;length&gt; | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
+| bottom   | string | number | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
 
 ## prompt.showDialog
 
