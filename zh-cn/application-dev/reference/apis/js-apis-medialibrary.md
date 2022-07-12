@@ -650,7 +650,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-> **说明**： <br/>从API Version 9开始废弃。建议使用[featureAbility.startAbilityForResult](js-apis-featureAbility.md#featureabilitystartabilityforresult7)拉起FilePicker替代。<br/>FilePicker是OpenHarmony中预置的系统应用，为用户提供文件选择及保存功能。FilePicker的使用方法请参考[OpenHarmony/applications_filepicker](https://gitee.com/openharmony/applications_filepicker#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)。
+> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -685,7 +685,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-> **说明**： <br/>从API Version 9开始废弃。建议使用[featureAbility.startAbilityForResult](js-apis-featureAbility.md#featureabilitystartabilityforresult7)拉起FilePicker替代。<br/>FilePicker是OpenHarmony中预置的系统应用，为用户提供文件选择及保存功能。FilePicker的使用方法请参考[OpenHarmony/applications_filepicker](https://gitee.com/openharmony/applications_filepicker#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)。
+> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
