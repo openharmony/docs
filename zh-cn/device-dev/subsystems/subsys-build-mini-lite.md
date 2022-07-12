@@ -112,8 +112,7 @@ component
          "ram": "~200KB",                                                 # 部件RAM估值       
          "deps": {                      
          "components": [                                                  # 部件依赖的其他部件
-           "samgr_lite",
-           "ipc_lite"
+           "samgr_lite"
          ],
          "third_party": [                                                 # 部件依赖的三方开源软件
            "bounds_checking_function"

@@ -5,9 +5,9 @@ LiteIPC is an OpenHarmony extension to the LiteOS(a) kernel which provides a mea
 
 ## API
 *Application-layer Interface*  
-//foundation/communication/ipc_lite/frameworks/liteipc/include/liteipc.h (mini and small systems)  
+//foundation/communication/ipc/interfaces/innerkits/c/ipc/include/ipc_skeleton.h (mini and small systems)
+//foundation/communication/ipc/interfaces/innerkits/c/ipc/include/serializer.h (mini and small systems)
 //foundation/communication/ipc/ipc/native/c/ipc/src/liteos_a/include/lite_ipc.h (standard systems)  
-//foundation/communication/ipc_lite/interfaces/kits/liteipc_adapter.h  
 
 *Implementation*  
 //kernel/liteos_a/kernel/extended/liteipc/hm_liteipc.h  
