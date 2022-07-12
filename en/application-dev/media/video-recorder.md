@@ -8,8 +8,6 @@ During video recording, audio and video signals are captured, encoded, and saved
 
 ![en-us_image_video_recorder_state_machine](figures/en-us_image_video_recorder_state_machine.png)
 
-
-
 **Figure 2** Layer 0 diagram of video recording
 
 ![en-us_image_video_recorder_zero](figures/en-us_image_video_recorder_zero.png)

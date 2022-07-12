@@ -2,10 +2,7 @@
 
 ## When to Use
 
-You can use OpenSL ES to develop the audio recording function in OpenHarmony. Currently, only some
-[OpenSL ES APIs](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h) are implemented. If an API that has not been implemented yet is called, **SL_RESULT_FEATURE_UNSUPPORTED** will be returned.
-
- 
+You can use OpenSL ES to develop the audio recording function in OpenHarmony. Currently, only some [OpenSL ES APIs](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h) are implemented. If an API that has not been implemented is called, **SL_RESULT_FEATURE_UNSUPPORTED** will be returned.
 
 ## How to Develop
 
@@ -27,16 +24,12 @@ To use OpenSL ES to develop the audio recording function in OpenHarmony, perform
     (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
     ```
 
-    
-
 3. Obtain the **engineEngine** instance of the **SL_IID_ENGINE** interface.
 
     ```c++
     SLEngineItf engineItf = nullptr;
     result = (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineItf);
     ```
-
-    
 
 4. Configure the recorder information (including the input source **audiosource** and output source **audiosink**), and create a **pcmCapturerObject** instance.
 
@@ -81,20 +74,18 @@ To use OpenSL ES to develop the audio recording function in OpenHarmony, perform
     ```
 
 5. Obtain the **recordItf** instance of the **SL_IID_RECORD** interface.
-
-    ```
+ 
+    ```c++
     SLRecordItf  recordItf;
     (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
-    ```
+    ```   
 
 6. Obtain the **bufferQueueItf** instance of the **SL_IID_OH_BUFFERQUEUE** interface.
 
-    ```
+    ```c++
     SLOHBufferQueueItf bufferQueueItf;
     (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
     ```
-
-    
 
 7. Register the **BufferQueueCallback** function.
 
@@ -120,7 +111,6 @@ To use OpenSL ES to develop the audio recording function in OpenHarmony, perform
     (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
-
 8. Start audio recording.
 
     ```c++
@@ -144,7 +134,6 @@ To use OpenSL ES to develop the audio recording function in OpenHarmony, perform
         return;
     }
     ```
-
 
 9. Stop audio recording.
 
