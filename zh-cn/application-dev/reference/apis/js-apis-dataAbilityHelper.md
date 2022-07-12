@@ -647,7 +647,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -685,7 +685,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<num
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -719,7 +719,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -765,7 +765,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -806,7 +806,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -849,7 +849,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );

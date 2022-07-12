@@ -234,11 +234,8 @@ onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;
     
   ```js
   class myAbility extends Ability {
-      onNewWant(want, launchParams) {
+      onNewWant(want) {
           console.log('onNewWant, want:' + want.abilityName);
-          if (launchParams.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-              console.log('onNewWant, launchReason is continuation');
-          }
       }
   }
   ```

@@ -369,7 +369,7 @@ hasWindowFocus(): Promise\<boolean>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
     console.info("==========================>hasWindowFocus=======================>");
 });
@@ -528,9 +528,9 @@ ConnectOptions类型说明
 
 | 名称           | 读写属性 | 类型       | 必填   | 描述                        |
 | ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect    | 只读   | function | 是    | 连接成功时的回调函数。               |
-| onDisconnect | 只读   | function | 是    | 连接失败时的回调函数。               |
-| onFailed     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
+| onConnect<sup>7+</sup>    | 只读   | function | 是    | 连接成功时的回调函数。               |
+| onDisconnect<sup>7+</sup> | 只读   | function | 是    | 连接失败时的回调函数。               |
+| onFailed<sup>7+</sup>     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
 
 **返回值：**
 
