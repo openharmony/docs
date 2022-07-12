@@ -452,15 +452,15 @@ let pixelBytesNumber = pixelmap.getPixelBytesNumber();
 
 getDensity():number
 
-获取当前的Density值。
+获取当前图像像素的密度。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
-| 类型   | 说明                 |
-| ------ | -------------------- |
-| number | 图像像素的Density值。|
+| 类型   | 说明            |
+| ------ | --------------- |
+| number | 图像像素的密度。|
 
 **示例：**
 
@@ -472,7 +472,7 @@ let getDensity = pixelmap.getDensity();
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回释放结果。
+通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -495,7 +495,7 @@ async function () {
 
 opacity(rate: number): Promise\<void>
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回释放结果。
+通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -503,7 +503,7 @@ opacity(rate: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | 是   | 透明比率的值,取值范围：0-1。|
+| rate   | number | 是   | 透明比率的值，取值范围：0-1。|
 
 **返回值：**
 
@@ -523,7 +523,7 @@ async function () {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回释放结果。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -549,15 +549,15 @@ pixelMap.createAlphaPixelmap(async (err, alphaPixelMap) => {
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回释放结果。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                         |
-| -------- | ------------------------ | ---- | ---------------------------- |
-| callback | AsyncCallback\<PixelMap> | 是   | 获取回调，异步返回释放结果。 |
+| 参数名   | 类型                     | 必填 | 说明                     |
+| -------- | ------------------------ | ---- | ------------------------ |
+| callback | AsyncCallback\<PixelMap> | 是   | 获取回调，异步返回结果。 |
 
 **示例：**
 
@@ -576,17 +576,17 @@ if (pixelMap != undefined) {
 
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的宽高对图片进行缩放，使用callback形式返回释放结果。
+根据输入的宽高对图片进行缩放，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明                          |
-| -------- | -------------------- | ---- | ----------------------------- |
-| x        | number               | 是   | 宽度的缩放值。                |
-| y        | number               | 是   | 高度的缩放值。                |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+| 参数名   | 类型                 | 必填 | 说明                            |
+| -------- | -------------------- | ---- | ------------------------------- |
+| x        | number               | 是   | 宽度的缩放值，其值为输入的倍数。|
+| y        | number               | 是   | 高度的缩放值，其值为输入的倍数。|
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。  |
 
 **示例：**
 
@@ -600,22 +600,22 @@ async function () {
 
 scale(x: number, y: number): Promise\<void>
 
-根据输入的宽高对图片进行缩放，使用Promise形式返回释放结果。
+根据输入的宽高对图片进行缩放，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明          |
-| ------ | ------ | ---- | ------------- |
-| x      | number | 是   | 宽度的缩放值。|
-| y      | number | 是   | 高度的缩放值。|
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放值，其值为输入的倍数。|
+| y      | number | 是   | 高度的缩放值，其值为输入的倍数。|
 
 **返回值：**
 
-| 类型           | 说明                            |
-| -------------- | ------------------------------- |
-| Promise\<void> | Promise实例，异步返回释放结果。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **示例：**
 
@@ -629,7 +629,7 @@ async function () {
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的坐标对图片进行位置变换，使用callback形式返回释放结果。
+根据输入的坐标对图片进行位置变换，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -653,7 +653,7 @@ async function () {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，使用Promise形式返回释放结果。
+根据输入的坐标对图片进行位置变换，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -666,9 +666,9 @@ translate(x: number, y: number): Promise\<void>
 
 **返回值：**
 
-| 类型           | 说明                            |
-| -------------- | ------------------------------- |
-| Promise\<void> | Promise实例，异步返回释放结果。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **示例：**
 
@@ -682,7 +682,7 @@ async function () {
 
 rotate(angle: number, callback: AsyncCallback\<void>): void
 
-根据输入的角度对图片进行旋转，使用callback形式返回释放结果。
+根据输入的角度对图片进行旋转，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -705,7 +705,7 @@ async function () {
 
 rotate(angle: number): Promise\<void>
 
-根据输入的角度对图片进行旋转，使用Promise形式返回释放结果。
+根据输入的角度对图片进行旋转，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -717,9 +717,9 @@ rotate(angle: number): Promise\<void>
 
 **返回值：**
 
-| 类型           | 说明                            |
-| -------------- | ------------------------------- |
-| Promise\<void> | Promise实例，异步返回释放结果。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **示例：**
 
@@ -733,7 +733,7 @@ async function () {
 
 flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): void
 
-根据输入的条件对图片进行翻转，使用callback形式返回释放结果。
+根据输入的条件对图片进行翻转，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -757,7 +757,7 @@ async function () {
 
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
-根据输入的条件对图片进行翻转，使用Promise形式返回释放结果。
+根据输入的条件对图片进行翻转，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -770,9 +770,9 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 **返回值：**
 
-| 类型           | 说明                            |
-| -------------- | ------------------------------- |
-| Promise\<void> | Promise实例，异步返回释放结果。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **示例：**
 
@@ -786,7 +786,7 @@ async function () {
 
 crop(region: Region, callback: AsyncCallback\<void>): void
 
-根据输入的尺寸对图片进行裁剪，使用callback形式返回释放结果。
+根据输入的尺寸对图片进行裁剪，使用callback形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -794,7 +794,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | Region               | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
 
 **示例：**
@@ -809,21 +809,21 @@ async function () {
 
 crop(region: Region): Promise\<void>
 
-根据输入的尺寸对图片进行裁剪，使用Promise形式返回释放结果。
+根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明        |
-| ------ | ------ | ---- | ----------- |
-| region | Region | 是   | 裁剪的尺寸。|
+| 参数名 | 类型               | 必填 | 说明        |
+| ------ | ------------------ | ---- | ----------- |
+| region | [Region](#region7) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
-| 类型           | 说明                            |
-| -------------- | ------------------------------- |
-| Promise\<void> | Promise实例，异步返回释放结果。 |
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **示例：**
 
