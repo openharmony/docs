@@ -36,7 +36,7 @@ class MainAbility extends Ability {
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。
+启动Ability（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -67,7 +67,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。
+启动Ability（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -102,7 +102,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
-启动Ability。通过Promise返回结果。
+启动Ability（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -145,7 +145,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在结束的时候返回执行结果。
+启动Ability并在结束的时候返回执行结果（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -173,7 +173,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-启动Ability并在结束的时候返回执行结果。
+启动Ability并在结束的时候返回执行结果（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -206,7 +206,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-启动Ability并在结束的时候返回执行结果。
+启动Ability并在结束的时候返回执行结果（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -312,11 +312,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
   ```
 
 
-  ## AbilityContext.startAbilityForResultWithAccount
+## AbilityContext.startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
 
-启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
+启动一个Ability并在该Ability帐号销毁时返回执行结果（promise形式）。
 
 **需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -364,7 +364,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability自身。
+停止Ability自身（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -387,7 +387,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止Ability自身。通过Promise返回结果。
+停止Ability自身（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -412,7 +412,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息。
+停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -441,7 +441,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
-停止Ability，并返回给调用startAbilityForResult 接口相关信息。
+停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -474,7 +474,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
 connectAbility(want: Want, options: ConnectOptions): number;
 
-使用AbilityInfo.AbilityType.SERVICE模板将当前能力连接到一个能力。
+使用AbilityInfo.AbilityType.SERVICE模板将当前Ability连接到一个Ability。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -515,7 +515,7 @@ connectAbility(want: Want, options: ConnectOptions): number;
 
 connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-使用AbilityInfo.AbilityType.SERVICE模板和account将当前能力连接到一个能力。
+使用AbilityInfo.AbilityType.SERVICE模板和account将当前Ability连接到一个Ability。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -559,7 +559,7 @@ connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions
 
 disconnectAbility(connection: number): Promise\<void>;
 
-已成功连接接口。
+断开连接（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -569,7 +569,7 @@ disconnectAbility(connection: number): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 连接的能力的数字代码。 |
+| connection | number | 是 | 连接的Ability的数字代码。 |
 
 **返回值：**
 
@@ -592,7 +592,7 @@ disconnectAbility(connection: number): Promise\<void>;
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
-已成功连接接口。
+断开连接（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -602,7 +602,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 连接的能力的数字代码。 |
+| connection | number | 是 | 连接的Ability的数字代码。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
 **示例：**
@@ -774,7 +774,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
 
-拉起弹窗请求用户授权。
+拉起弹窗请求用户授权（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -800,7 +800,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
-拉起弹窗请求用户授权。通过Promise返回结果。
+拉起弹窗请求用户授权（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -833,7 +833,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
-设置ability在任务中显示的名称。
+设置ability在任务中显示的名称（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -857,7 +857,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-设置ability在任务中显示的名称。
+设置ability在任务中显示的名称（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -886,7 +886,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 
 setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
-设置当前ability的任务标签。
+设置当前ability在任务中显示的图标（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -896,7 +896,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的能力图标。 |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **示例：**
@@ -928,7 +928,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
-设置当前ability的任务标签。
+设置当前ability在任务中显示的图标（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -938,7 +938,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | 是 | 在最近的任务中显示的能力图标。 |
+| icon | image.PixelMap | 是 | 在最近的任务中显示的ability图标。 |
 
 **返回值：**
 
