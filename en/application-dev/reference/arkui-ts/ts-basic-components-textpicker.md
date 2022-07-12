@@ -1,11 +1,12 @@
 # TextPicker
 
 
-> **NOTE**<br>
+The **\<TextPicker>** component allows users to select text from a list of options.
+
+
+> **NOTE**
+>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;TextPicker&gt;** component allows users to select text from a list of options.
 
 
 ## Required Permissions
@@ -15,27 +16,28 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-TextPicker(value: {range: string[], selected?: number})
+TextPicker(value: {range: string[] | Resource, value?: string, selected?: number})
 
 Creates a text picker based on the selection range specified by **range**.
 
-- Parameter
+- Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | range | string[] | Yes | - | Data selection range of the picker. |
-  | selected | number | No | - | Index value of the selected item in the array. By default, the first element is selected. |
+  | range | string[]\|&nbsp;[Resource](../../ui/ts-types.md) | Yes | - | Data selection range of the picker. |
+  | value | string | No | - | Search text. |
+  | selected | number | No | Index of the first item | Index of the selected item in the array. |
 
 
 ## Attributes
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| defaultPickerItemHeight | Length | - | Default height of a Picker content item element. |
+| defaultPickerItemHeight | Length | - | Default height of an item in the picker. |
 
 
 ## Events
@@ -48,7 +50,8 @@ Creates a text picker based on the selection range specified by **range**.
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
