@@ -642,7 +642,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 
 设置指定流的音量，使用callback方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -672,7 +672,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 设置指定流的音量，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -868,6 +868,8 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 设置指定音量流静音，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -895,6 +897,8 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 设置指定音量流静音，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1038,7 +1042,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 设置铃声模式，使用callback方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1067,7 +1071,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 设置铃声模式，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
