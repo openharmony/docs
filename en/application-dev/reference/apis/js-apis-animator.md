@@ -1,6 +1,7 @@
 # Animator
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -22,7 +23,7 @@ Creates an **Animator** object.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [AnimatorOptions](#animatoroptions) | Yes| Animator options. For details, see **AnimatorOptions**.|
+| options | [AnimatorOptions](#animatoroptions) | Yes| Animator options.|
 
 **Return value**
 | Type| Description|
@@ -213,14 +214,14 @@ animator.oncancel();
 
 onrepeat: () => void
 
+Called when this animation repeats.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 ```
 animator.onrepeat();
 ```
-
-Called when this animation repeats.
 
 ## AnimatorOptions
 
@@ -231,7 +232,7 @@ Defines animator options.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | duration | number | Yes| Duration for playing the animation, in milliseconds. The default value is **0**.|
-| easing | string | Yes| Animation interpolation curve. The default value is **ease**.|
+| easing | string | Yes| Animation interpolation curve. The default value is **'ease'**.|
 | delay | number | Yes| Animation delay duration, in milliseconds. The default value is **0**, indicating that there is no delay.|
 | fill | "none" \| "forwards" \| "backwards" \| "both" | Yes| State of the animated target after the animation is executed. The default value is **none**, which means that the target will retain its end state (defined by the last keyframe) after the animation is executed. |
 | direction | "normal" \| "reverse" \| "alternate" \| "alternate-reverse" | Yes| Animation playback mode. The default value is **normal**.|
