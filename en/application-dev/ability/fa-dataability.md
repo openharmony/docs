@@ -1,8 +1,33 @@
 # Data Ability Development
+
 ## When to Use
+
 A Data ability helps applications manage access to data stored by themselves and other applications. It also provides APIs for sharing data with other applications either on the same device or across devices.
 
 Data ability providers can customize data access-related APIs such as data inserting, deleting, updating, and querying, as well as file opening, and share data with other applications through these open APIs.
+
+## URI Introduction
+
+A Uniform Resource Identifier (URI) is used to identify a specific data item, such as a table in the database or a file on the disk. URIs used in OpenHarmony comply with the commonly used URI standard. A URI consists of the components:
+
+![fa-dataability-uri](figures/fa-dataability-uri.png)
+
+- **scheme**: name of the scheme used by the Data ability. The value is fixed at **dataability**.
+- **authority**: device ID. To access data on a remote device, set this component to the ID of the remote device. To access data on the local device, leave this component empty.
+- **path**: location of the specific resource to access.
+- **query**: query parameters.
+- **fragment**: subordinate resources to access.
+
+Example URIs:
+
+- Cross-device communication: **dataability://***device_id***/***com.domainname.dataability.persondata***/***person***/***10*
+- Local-device communication: **dataability:///***com.domainname.dataability.persondata***/***person***/***10*
+
+
+> **NOTE**
+>
+> In the case of local-device communication, **device_id** is empty, and therefore, there are three slashes (/) after **dataability:**.
+
 
 ## Available APIs
 
