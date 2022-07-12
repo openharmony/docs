@@ -208,7 +208,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 ## prompt.showActionMenu
 
-showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
+showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
 创建并显示操作菜单，菜单响应后同步返回结果。
 
@@ -259,7 +259,7 @@ showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
 | 名称      | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
 | title   | string | 否    | 标题文本。                                    |
-| buttons | Array  | 是    | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
+| buttons | Array&lt;[Button](#button)&gt;  | 是    | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
 ## ActionMenuSuccessResponse
 
@@ -270,4 +270,15 @@ showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
 | 名称    | 类型     | 必填   | 说明                       |
 | ----- | ------ | ---- | ------------------------ |
 | index | number | 否    | 选中按钮在buttons数组中的索引，从0开始。 |
+
+## Button
+
+菜单中的菜单项按钮。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
+
+| 名称    | 类型     | 必填   | 说明                       |
+| ----- | ------ | ---- | ------------------------ |
+| text | string | 是    | 按钮文本内容。 |
+| color | string | 是    | 按钮文本颜色。 |
 
