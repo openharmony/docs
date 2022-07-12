@@ -1877,7 +1877,7 @@ Sets this window to the wide or default color gamut mode. This API uses a promis
 **Example**
 
 ```js
-let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
+let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
 promise.then((data)=> {
     console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
