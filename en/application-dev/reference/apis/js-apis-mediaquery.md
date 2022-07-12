@@ -66,7 +66,7 @@ Registers a callback with the corresponding query condition by using the handle.
 **Parameters**
 | Name     | Type                              | Mandatory  | Description              |
 | -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | Yes   | Must enter the string **change**.|
+| type     | string                           | Yes   | Must enter the string **'change'**.|
 | callback | Callback&lt;MediaQueryResult&gt; | Yes   | Callback registered with media query.      |
 
 **Example**
@@ -91,7 +91,7 @@ Deregisters a callback with the corresponding query condition by using the handl
   ```js
     import mediaquery from '@ohos.mediaquery'
     
-    listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+    let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
     function onPortrait(mediaQueryResult) {
         if (mediaQueryResult.matches) {
             // do something here
