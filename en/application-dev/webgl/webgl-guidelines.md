@@ -29,7 +29,8 @@ WebGL helps you process graphics at the frontend, for example, drawing color gra
 
 The following describes how to draw a 2D image without using shaders and how to draw a color triangle using shaders.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > When using WebGL for development, use a real device to ensure the GUI display effect.
 
 
