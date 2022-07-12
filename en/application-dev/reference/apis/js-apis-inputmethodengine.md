@@ -1,7 +1,8 @@
 # Input Method Engine
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
 >
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -13,7 +14,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 Defines constant values.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -50,7 +51,7 @@ getInputMethodEngine(): InputMethodEngine
 
 Obtains an **InputMethodEngine** instance.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -70,7 +71,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 Obtains a **KeyboardDelegate** instance.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -94,7 +95,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 Listens for the input method binding event. This API uses a callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -118,7 +119,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 Cancels listening for the input method binding event.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -139,7 +140,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 Listens for an input method event.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -162,7 +163,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 Cancels listening for an input method event.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -187,7 +188,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 Listens for a hard keyboard even. This API uses a callback to return the key information.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -210,7 +211,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 Cancels listening for a hard keyboard even.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -231,7 +232,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 Listens for cursor context changes. This API uses a callback to return the cursor information.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -254,7 +255,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 Cancels listening for cursor context changes.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -275,7 +276,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 Listens for text selection changes. This API uses a callback to return the text selection information.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -298,7 +299,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 Cancels listening for text selection changes.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -320,7 +321,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 Listens for text changes. This API uses a callback to return the current text content.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -343,7 +344,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 Cancels listening for text changes.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -368,7 +369,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Hides the keyboard. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -390,7 +391,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 Hides the keyboard. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -415,7 +416,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the specific-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -438,7 +439,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 Obtains the specific-length text before the cursor. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -465,7 +466,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the specific-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -488,7 +489,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 Obtains the specific-length text after the cursor. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -515,7 +516,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Deletes the fixed-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -538,7 +539,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 Deletes the fixed-length text before the cursor. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -565,7 +566,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -588,7 +589,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 Deletes the fixed-length text after the cursor. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -615,7 +616,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Sets the Enter key to send the text to its target. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -638,7 +639,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 Sets the Enter key to send the text to its target. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -665,7 +666,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Inserts text. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -688,7 +689,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 Inserts text. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -715,7 +716,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 Obtains the attribute of the edit box. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -732,11 +733,11 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 ### getEditorAttribute
 
-getEditorAttribute(): EditorAttribute
+getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 Obtains the attribute of the edit box. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -754,7 +755,7 @@ var EditorAttribute = TextInputClient.getEditorAttribute();
 
 Describes the attribute of the edit box.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name        | Type| Readable| Writable| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
@@ -765,7 +766,7 @@ Describes the attribute of the edit box.
 
 Describes the attribute of a key.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |

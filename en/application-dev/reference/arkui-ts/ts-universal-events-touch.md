@@ -2,7 +2,8 @@
 
 
 > **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -12,7 +13,7 @@ None
 
 ## Events
 
-| Name | Pop-up | Description |
+| Name | Bubbling Supported | Description |
 | -------- | -------- | -------- |
 | onTouch(callback: (event?: TouchEvent) =&gt; void) | Yes | Invoked when a touch action is triggered. For details about **event**, see [TouchEvent](#touchevent). |
 
@@ -20,25 +21,25 @@ None
 ## TouchEvent
 
 - Attributes
-  | Name                       | Type                       | Description |
-  | --------------- | ----------------------- | ---------------------- |
-  | type                | TouchType | Type of a touch event. |
-  | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information. |
-  | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed. |
-  | timestamp           | number | Timestamp of the event. |
+  | Name | Type | Description |
+  | -------- | -------- | -------- |
+  | type | TouchType | Type of a touch event. |
+  | touches | Array&lt;[TouchObject](#touchobject)&gt; | All finger information. |
+  | changedTouches | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed. |
+  | timestamp | number | Timestamp of the event. |
   | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Target of the event. |
 
 - APIs
-    | API | Description |
+  | API | Description |
   | -------- | -------- |
-  | stopPropagation(): void | Pop-up of the stop event. |
+  | stopPropagation(): void | Bubbling of the stop event. |
 
 ## TouchObject
 | Name | Type | Description |
 | -------- | -------- | -------- |
 | type | [TouchType](#touchtype) | Type of a touch event. |
-| id   | number | Unique identifier of a finger. |
-| screenX | number | X coordinate of the touch point relative to the left edge of the device screen. |
+| id | number | Unique identifier of a finger. |
+| screenX | number | X coordinate of the touch point relative to the left edge of the screen. |
 | screenY | number | Y coordinate of the touch point relative to the upper edge of the device screen. |
 | x | number | X coordinate of the touch point relative to the left edge of the element to touch. |
 | y | number | Y coordinate of the touch point relative to the upper edge of the element to touch. |
@@ -47,7 +48,7 @@ None
 | Name | Description |
 | -------- | -------- |
 | Down | Trigger a touch event when a finger is pressed. |
-| Up   | Trigger a touch event when a finger is lifted. |
+| Up | Trigger a touch event when a finger is lifted. |
 | Move | Trigger a touch event when a finger moves on the screen in pressed state. |
 | Cancel | Trigger an event when a touch event is canceled. |
 
@@ -55,7 +56,8 @@ None
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TouchExample {
@@ -77,7 +79,7 @@ struct TouchExample {
           }
           console.info(this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
           + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\ncomponent globalPos:('
-          + event.target.area.globalPos.x + ',' + event.target.area.globalPos.y + ')\nwidth:'
+          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
           + event.target.area.width + '\nheight:' + event.target.area.height)
         })
       Text(this.text)

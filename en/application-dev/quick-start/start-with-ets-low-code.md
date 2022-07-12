@@ -1,6 +1,8 @@
 # Getting Started with eTS in the Low-Code Approach
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
+> **NOTE**
+>
+> This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
 >
 > The component lineup that supports low-code development in eTS is now at its preliminary stage and will be expanding in coming versions.
 >
@@ -52,7 +54,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
    
    Open the **index.visual** file, right-click the existing template components on the canvas, and choose **Delete** from the shortcut menu to delete them. Below is an illustration of the operations.
 
-   ![en-us_image_0000001233208980](figures/en-us_image_0000001233208980.gif)
+![en-us_image_0000001233208980](figures/en-us_image_0000001233208980.gif)
 
 2. Add a **Column** component and set its styles and attributes.<a name="add_container"></a>
 
@@ -70,7 +72,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
 
    Drag the **Button** component from the **UI Control** area to the canvas and then to a position under the **Text** component. In the **Attributes &amp; Styles** area on the right, click ![en-us_image_0000001277728577](figures/en-us_image_0000001277728577.png)**General** and set **Height** of the **Button** component to **40vp**. Click ![en-us_image_0000001277809337](figures/en-us_image_0000001277809337.png)**Feature** and set **Label** to **Next** and **FontSize** to **25fp**. Below is an illustration of the operations.
 
-   ![en-us_image_0000001235732402](figures/en-us_image_0000001235732402.gif)
+![en-us_image_0000001235732402](figures/en-us_image_0000001235732402.gif)
 
 5. On the toolbar in the upper right corner of the editing window, click **Previewer** to open the Previewer. 
 
@@ -85,7 +87,7 @@ Add **Column**, **Text**, and **Button** components to the first page. A column 
    
    In the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **ets** &gt; **MainAbility**, right-click the **pages** folder, choose **New** &gt; **Visual**, name the page **second**, and click **Finish**. Below, you can see the structure of the **pages** folder.
 
-   ![en-us_image_0000001233368868](figures/en-us_image_0000001233368868.png)
+![en-us_image_0000001233368868](figures/en-us_image_0000001233368868.png)
 
 2. [Delete the existing template components from the canvas.](#delete_origin_content)
 

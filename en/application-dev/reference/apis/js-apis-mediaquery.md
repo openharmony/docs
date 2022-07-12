@@ -66,11 +66,12 @@ Registers a callback with the corresponding query condition by using the handle.
 **Parameters**
 | Name     | Type                              | Mandatory  | Description              |
 | -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | Yes   | Must enter the string **change**.|
+| type     | string                           | Yes   | Must enter the string **'change'**.|
 | callback | Callback&lt;MediaQueryResult&gt; | Yes   | Callback registered with media query.      |
 
 **Example**
-  For details, see [off Example](#off).
+
+For details, see [off Example](#off).
 
 
 ### off

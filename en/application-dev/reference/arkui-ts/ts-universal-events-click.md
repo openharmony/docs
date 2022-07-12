@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -13,21 +13,21 @@ None
 
 ## Events
 
-| Name | Bubble Supported | Description |
+| Name | Bubbling Supported | Description |
 | -------- | -------- | -------- |
-| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about **event**, see [ClickEvent](#clickevent). |
+| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about the event parameters, see [ClickEvent](#clickevent). |
 
 
 ## ClickEvent
 
-| Name                | Type | Description |
+| Name | Type | Description |
 | -------- | -------- | -------- |
-| screenX                | number | X coordinate of the click relative to the left edge of the screen. |
-| screenY                | number | Y coordinate of the click relative to the upper edge of the screen. |
-| x                      | number | X coordinate of the click relative to the left edge of the component being clicked. |
-| y                      | number | Y coordinate of the click relative to the upper edge of the component being clicked. |
-| target<sup>8+</sup>    | [EventTarget](#eventtarget8) | Target element that is clicked. |
-| timestamp              | number | Timestamp of the event. |
+| screenX | number | X coordinate of the click relative to the left edge of the screen. |
+| screenY | number | Y coordinate of the click relative to the upper edge of the screen. |
+| x | number | X coordinate of the click relative to the left edge of the component being clicked. |
+| y | number | Y coordinate of the click relative to the upper edge of the component being clicked. |
+| target<sup>8+</sup> | [EventTarget](#eventtarget8) | Target element that is clicked. |
+| timestamp | number | Timestamp of the event. |
 
 ## EventTarget<sup>8+</sup>
 
