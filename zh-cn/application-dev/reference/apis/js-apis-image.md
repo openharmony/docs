@@ -36,7 +36,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
@@ -63,7 +63,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -190,7 +190,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -231,7 +231,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -281,7 +281,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 ```js
 const area = new ArrayBuffer(400);
 pixelmap.writePixels(area, (error) => {
-    if (error!=undefined) {
+    if (error != undefined) {
 		console.info('Failed to write pixelmap into the specified area.');
 	} else {
 	    const readArea = {
@@ -319,7 +319,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 ```js
 const color = new ArrayBuffer(96);
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
@@ -345,9 +345,9 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);\
+const color = new ArrayBuffer(96);
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
@@ -401,7 +401,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 ```js
 pixelmap.getImageInfo((imageInfo) => { 
-    console.log("Succeeded in obtaining the image pixel map information..");
+    console.log("Succeeded in obtaining the image pixel map information.");
 })
 ```
 
@@ -423,7 +423,7 @@ getBytesNumberPerRow(): number
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
@@ -450,6 +450,391 @@ getPixelBytesNumber(): number
 let pixelBytesNumber = pixelmap.getPixelBytesNumber();
 ```
 
+### getDensity<sup>9+</sup>
+
+getDensity():number
+
+获取当前图像像素的密度。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型   | 说明            |
+| ------ | --------------- |
+| number | 图像像素的密度。|
+
+**示例：**
+
+```js
+let getDensity = pixelmap.getDensity();
+```
+
+### opacity<sup>9+</sup>
+
+opacity(rate: number, callback: AsyncCallback\<void>): void
+
+通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| -------- | -------------------- | ---- | ------------------------------ |
+| rate     | number               | 是   | 透明比率的值,取值范围：0-1。   |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.opacity(0.5);
+}
+```
+
+### opacity<sup>9+</sup>
+
+opacity(rate: number): Promise\<void>
+
+通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                        |
+| ------ | ------ | ---- | --------------------------- |
+| rate   | number | 是   | 透明比率的值，取值范围：0-1。|
+
+**返回值：**
+
+| 类型           | 说明                                            |
+| -------------- | ----------------------------------------------- |
+| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.opacity(0.5);
+}
+```
+
+### createAlphaPixelmap<sup>9+</sup>
+
+createAlphaPixelmap(): Promise\<PixelMap>
+
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                        |
+| -------------------------------- | --------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise实例，返回pixelmap。 |
+
+**示例：**
+
+```js
+pixelMap.createAlphaPixelmap(async (err, alphaPixelMap) => {
+    if (alphaPixelMap == undefined) {
+        console.info('Failed to obtain new pixel map.');
+    } else {
+        console.info('Succeed in obtaining new pixel map.');
+    }
+})
+```
+
+### createAlphaPixelmap<sup>9+</sup>
+
+createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
+
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                     |
+| -------- | ------------------------ | ---- | ------------------------ |
+| callback | AsyncCallback\<PixelMap> | 是   | 获取回调，异步返回结果。 |
+
+**示例：**
+
+```js
+let pixelMap = await imageSource.createPixelMap();
+if (pixelMap != undefined) {
+    pixelMap.createAlphaPixelmap(async (err, alphaPixelMap) => {
+        console.info('Failed to obtain new pixel map.');    
+    })
+} else {
+    console.info('Succeed in obtaining new pixel map.');
+}
+```
+
+### scale<sup>9+</sup>
+
+scale(x: number, y: number, callback: AsyncCallback\<void>): void
+
+根据输入的宽高对图片进行缩放，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                            |
+| -------- | -------------------- | ---- | ------------------------------- |
+| x        | number               | 是   | 宽度的缩放值，其值为输入的倍数。|
+| y        | number               | 是   | 高度的缩放值，其值为输入的倍数。|
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。  |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.scale(2.0, 1.0);
+}
+```
+
+### scale<sup>9+</sup>
+
+scale(x: number, y: number): Promise\<void>
+
+根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放值，其值为输入的倍数。|
+| y      | number | 是   | 高度的缩放值，其值为输入的倍数。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.scale(2.0, 1.0);
+}
+```
+
+### translate<sup>9+</sup>
+
+translate(x: number, y: number, callback: AsyncCallback\<void>): void
+
+根据输入的坐标对图片进行位置变换，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| x        | number               | 是   | 区域横坐标。                  |
+| y        | number               | 是   | 区域纵坐标。                  |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.translate(3.0, 1.0);
+}
+```
+
+### translate<sup>9+</sup>
+
+translate(x: number, y: number): Promise\<void>
+
+根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明        |
+| ------ | ------ | ---- | ----------- |
+| x      | number | 是   | 区域横坐标。|
+| y      | number | 是   | 区域纵坐标。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.translate(3.0, 1.0);
+}
+```
+
+### rotate<sup>9+</sup>
+
+rotate(angle: number, callback: AsyncCallback\<void>): void
+
+根据输入的角度对图片进行旋转，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| angle    | number               | 是   | 图片旋转的角度。              |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.rotate(90.0);
+}
+```
+
+### rotate<sup>9+</sup>
+
+rotate(angle: number): Promise\<void>
+
+根据输入的角度对图片进行旋转，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                          |
+| ------ | ------ | ---- | ----------------------------- |
+| angle  | number | 是   | 图片旋转的角度。              |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.rotate(90.0);
+}
+```
+
+### flip<sup>9+</sup>
+
+flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): void
+
+根据输入的条件对图片进行翻转，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                          |
+| ---------- | -------------------- | ---- | ----------------------------- |
+| horizontal | boolean              | 是   | 水平翻转。                    |
+| vertical   | boolean              | 是   | 垂直翻转。                    |
+| callback   | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.flip(false, true);
+}
+```
+
+### flip<sup>9+</sup>
+
+flip(horizontal: boolean, vertical: boolean): Promise\<void>
+
+根据输入的条件对图片进行翻转，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明      |
+| ---------- | ------- | ---- | --------- |
+| horizontal | boolean | 是   | 水平翻转。|
+| vertical   | boolean | 是   | 垂直翻转。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.flip(false, true);
+}
+```
+
+### crop<sup>9+</sup>
+
+crop(region: Region, callback: AsyncCallback\<void>): void
+
+根据输入的尺寸对图片进行裁剪，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.crop(3x3);
+}
+```
+
+### crop<sup>9+</sup>
+
+crop(region: Region): Promise\<void>
+
+根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明        |
+| ------ | ------------------ | ---- | ----------- |
+| region | [Region](#region7) | 是   | 裁剪的尺寸。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**示例：**
+
+```js
+async function () {
+	await pixelMap.crop(3x3);
+}
+```
+
 ### release<sup>7+</sup>
 
 release():Promise\<void>
@@ -460,15 +845,15 @@ release():Promise\<void>
 
 **返回值：**
 
-| 类型           | 说明               |
-| -------------- | ------------------ |
-| Promise\<void> | 异步返回释放结果。 |
+| 类型           | 说明                            |
+| -------------- | ------------------------------- |
+| Promise\<void> | Promise实例，异步返回释放结果。 |
 
 **示例：**
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -497,7 +882,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -579,7 +964,7 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-image.createImageSource(buf, () => { })
+const imageSourceApi = image.createImageSource(buf);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -607,7 +992,7 @@ function CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): Ima
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.createIncrementalSource(buf);
+const imageSourceApi = image.CreateIncrementalSource(buf);
 ```
 
 ## ImageSource
@@ -1615,7 +2000,7 @@ img.release().then(() =>{
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
 | stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                    |
-| region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度 |
+| region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
@@ -1795,7 +2180,6 @@ PixelMap的初始化选项。
 ## ResponseCode
 
 编译错误返回的响应码。
-
 
 | 名称                                | 值       | 说明                                                |
 | ----------------------------------- | -------- | --------------------------------------------------- |
