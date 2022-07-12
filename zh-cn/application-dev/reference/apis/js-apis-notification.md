@@ -2924,7 +2924,7 @@ function enableSlotCallback(err) {
 
 Notification.enableNotificationSlot(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
+    Notification.SlotType.SOCIAL_COMMUNICATION,
     true,
     enableSlotCallback);
 ```
@@ -2953,7 +2953,7 @@ enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): P
 //enableNotificationSlot
 Notification.enableNotificationSlot(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
+    Notification.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.log('====================>enableNotificationSlot====================>');
     });
@@ -2961,7 +2961,7 @@ Notification.enableNotificationSlot(
 
 ## Notification.isNotificationSlotEnabled <sup>9+</sup>
 
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback<boolean>): void
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
 获取指定类型的渠道使能状态（Callback形式）。
 
@@ -2975,7 +2975,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](#bundleoption) | 是   | 指定包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
-| callback | AsyncCallback\<void\>         | 是   | 设定渠道使能回调函数。 |
+| callback | AsyncCallback\<boolean\>         | 是   | 设定渠道使能回调函数。 |
 
 **示例：**
 
@@ -2987,13 +2987,13 @@ function getEnableSlotCallback(err, data) {
 
 Notification.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
+    Notification.SlotType.SOCIAL_COMMUNICATION,
     getEnableSlotCallback);
 ```
 
 ## Notification.isNotificationSlotEnabled <sup>9+</sup>
 
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise<boolean>  
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
 
 获取指定类型的渠道使能状态（Promise形式）。
 
@@ -3014,8 +3014,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise<boolean
 //isNotificationSlotEnabled
 Notification.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
-    true).then((data) => {
+    Notification.SlotType.SOCIAL_COMMUNICATION
+    ).then((data) => {
       console.log('====================>isNotificationSlotEnabled====================>');
     });
 ```
