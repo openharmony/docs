@@ -39,6 +39,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
+
 Stage模型下的示例：
 ```ts
 import AbilityStage from '@ohos.application.Ability'
@@ -116,6 +117,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
 
 **示例：**
+
 Stage模型下的示例：
 ```ts
 import AbilityStage from '@ohos.application.Ability'
