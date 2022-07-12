@@ -21,8 +21,9 @@
 >  **说明：**
 > 支持焦点控制的组件：Button、Text、Image、List、Grid。
 
-
 ## 示例
+
+焦点事件当前仅支持在真机上显示运行效果。
 
 ```ts
 // xxx.ets
@@ -68,3 +69,5 @@ struct FocusableExample {
   }
 }
 ```
+
+![focus](figures/focus.png)
