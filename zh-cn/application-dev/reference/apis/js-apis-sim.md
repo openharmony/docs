@@ -467,7 +467,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 **示例：**
 
-```jsjs
+```js
 sim.hasSimCard(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -646,7 +646,7 @@ setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-sim.setDefaultVoiceSlotId(0,(err, data) => {
+sim.setDefaultVoiceSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -710,8 +710,8 @@ setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-const name='中国移动';
-sim.setShowName(0, name,(err, data) => {
+const name = '中国移动';
+sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -744,8 +744,8 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 **示例：**
 
 ```js
-const name='中国移动';
-let promise = sim.setShowName(0,name);
+const name = '中国移动';
+let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -839,8 +839,8 @@ setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): 
 **示例：**
 
 ```js
-let number='+861xxxxxxxxxx';
-sim.setShowNumber(0, number,(err, data) => {
+let number = '+861xxxxxxxxxx';
+sim.setShowNumber(0, number, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -874,8 +874,8 @@ setShowNumber\(slotId: number,number: string\): Promise\<void\>
 **示例：**
 
 ```js
-let number='+861xxxxxxxxxx';
-let promise = sim.setShowNumber(0,number);
+let number = '+861xxxxxxxxxx';
+let promise = sim.setShowNumber(0, number);
 promise.then(data => {
     console.log(`setShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1095,10 +1095,12 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 **示例：**
 
 ```js
-LockInfo.lockType = 1;
-LockInfo.password = "1234";
-LockInfo.state = 0;
-sim.setLockState(0, LockInfo, (err, data) => {
+let lockInfo = {
+    lockType = 1,
+    password = "1234",
+    state = 0
+};
+sim.setLockState(0, lockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1132,10 +1134,12 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 **示例：**
 
 ```js
-LockInfo.lockType = 1;
-LockInfo.password = "1234";
-LockInfo.state = 0;
-let promise = sim.setLockState(0, LockInfo);
+let lockInfo = {
+    lockType = 1,
+    password = "1234",
+    state = 0
+};
+let promise = sim.setLockState(0, lockInfo);
 promise.then(data => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1228,7 +1232,7 @@ alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback
 **示例：**
 
 ```js
-sim.alterPin(0, "1234", "0000"(err, data) => {
+sim.alterPin(0, "1234", "0000", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1330,7 +1334,7 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusR
 **示例：**
 
 ```js
-let promise = sim.alterPin2(0, "1234","0000");
+let promise = sim.alterPin2(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1361,8 +1365,8 @@ unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse
 **示例：**
 
 ```js
-let pin='1234';
-sim.unlockPin(0, pin,(err, data) => {
+let pin = '1234';
+sim.unlockPin(0, pin, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1396,8 +1400,8 @@ unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
 **示例：**
 
 ```js
-let pin='1234';
-let promise = sim.unlockPin(0,pin);
+let pin = '1234';
+let promise = sim.unlockPin(0, pin);
 promise.then(data => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1429,9 +1433,9 @@ unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<Loc
 **示例：**
 
 ```js
-let puk='1xxxxxxx';
-let newPin='1235';
-sim.unlockPuk(0, newPin,puk,(err, data) => {
+let puk = '1xxxxxxx';
+let newPin = '1235';
+sim.unlockPuk(0, newPin, puk, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1466,9 +1470,9 @@ unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusRespo
 **示例：**
 
 ```js
-let puk='1xxxxxxx';
-let newPin='1235';
-let promise = sim.unlockPuk(0,newPin,puk);
+let puk = '1xxxxxxx';
+let newPin = '1235';
+let promise = sim.unlockPuk(0, newPin, puk);
 promise.then(data => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1499,8 +1503,8 @@ promise.then(data => {
 **示例：**
 
 ```js
-let pin2='1234';
-sim.unlockPin2(0, pin2,(err, data) => {
+let pin2 = '1234';
+sim.unlockPin2(0, pin2, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1567,9 +1571,9 @@ unlockPuk2(slotId: number,newPin2: string,puk2: string ,callback: AsyncCallback<
 **示例：**
 
 ```js
-let puk2='1xxxxxxx';
-let newPin2='1235';
-sim.unlockPuk2(0, newPin2,puk2,(err, data) => {
+let puk2 = '1xxxxxxx';
+let newPin2 = '1235';
+sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1604,9 +1608,9 @@ unlockPuk2slotId: number,newPin2: string,puk2: string): Promise&lt;LockStatusRes
 **示例：**
 
 ```js
-let puk2='1xxxxxxx';
-let newPin2='1235';
-let promise = sim.unlockPuk2(0,newPin2,puk2);
+let puk2 = '1xxxxxxx';
+let newPin2 = '1235';
+let promise = sim.unlockPuk2(0, newPin2, puk2);
 promise.then(data => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1634,6 +1638,1136 @@ getMaxSimCount\(\): number
 console.log("Result: "+ sim.getMaxSimCount())
 ```
 
+## sim.getSimIccId<sup>7+</sup>
+
+getSimIccId(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽SIM卡的ICCID，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.getSimIccId(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimIccId<sup>7+</sup>
+
+getSimIccId(slotId: number): Promise<string\>
+
+获取指定卡槽SIM卡的ICCID，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                        |
+| ---------------- | ------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的ICCID。 |
+
+**示例：**
+
+```js
+let promise = sim.getSimIccId(0);
+promise.then(data => {
+    console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimIccId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getVoiceMailIdentifier<sup>8+</sup>
+
+getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡语音信箱的alpha标识符，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.getVoiceMailIdentifier(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getVoiceMailIdentifier<sup>8+</sup>
+
+getVoiceMailIdentifier(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡语音信箱的alpha标识符，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的alpha标识符。 |
+
+**示例：**
+
+```js
+let promise = sim.getVoiceMailIdentifier(0);
+promise.then(data => {
+    console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getVoiceMailIdentifier fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getVoiceMailNumber<sup>8+</sup>
+
+getVoiceMailNumber(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的语音信箱号，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.getVoiceMailNumber(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getVoiceMailNumber<sup>8+</sup>
+
+getVoiceMailNumber(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的语音信箱号，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                             |
+| ---------------- | ------------------------------------------------ |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的语音信箱号。 |
+
+**示例：**
+
+```js
+let promise = sim.getVoiceMailNumber(0);
+promise.then(data => {
+    console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getVoiceMailNumber fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.setVoiceMailInfo<sup>8+</sup>
+
+setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback: AsyncCallback<void\>): void
+
+设置语音邮件信息，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                                   |
+| ---------- | -------------------- | ---- | -------------------------------------- |
+| slotId     | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| mailName   | string               | 是   | 邮件名字                               |
+| mailNumber | string               | 是   | 邮件号码                               |
+| callback   | AsyncCallback<void\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com" , (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.setVoiceMailInfo<sup>8+</sup>
+
+setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<void\>
+
+设置语音邮件信息，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                                   |
+| ---------- | ------ | ---- | -------------------------------------- |
+| slotId     | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| mailName   | string | 是   | 邮件名字                               |
+| mailNumber | string | 是   | 邮件号码                               |
+
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise<void\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
+promise.then(data => {
+    console.log(`setVoiceMailInfo success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setVoiceMailInfo fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getSimTelephoneNumber<sup>8+</sup>
+
+getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的MSISDN，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.getSimTelephoneNumber(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimTelephoneNumber<sup>8+</sup>
+
+getSimTelephoneNumber(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的MSISDN，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                         |
+| ---------------- | -------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的MSISDN。 |
+
+**示例：**
+
+```js
+let promise = sim.getSimTelephoneNumber(0);
+promise.then(data => {
+    console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimTelephoneNumber fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getSimGid1<sup>7+</sup>
+
+getSimGid1(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的组标识符级别1（GID1），使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.getSimGid1(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimGid1<sup>7+</sup>
+
+getSimGid1(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的组标识符级别1（GID1），使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取指定卡槽SIM卡的标识符级别1。 |
+
+**示例：**
+
+```js
+let promise = sim.getSimGid1(0);
+promise.then(data => {
+    console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimGid1 fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getIMSI
+
+getIMSI(slotId: number, callback: AsyncCallback<string\>): void
+
+获取国际移动用户识别码，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.getIMSI(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getIMSI
+
+getIMSI(slotId: number): Promise<string\>
+
+获取国际移动用户识别码，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                        |
+| ---------------- | ------------------------------------------- |
+| Promise<string\> | 以Promise形式返回获取的国际移动用户识别码。 |
+
+**示例：**
+
+```js
+let promise = sim.getIMSI(0);
+promise.then(data => {
+    console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getIMSI fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOperatorConfigs<sup>8+</sup>
+
+getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\>>): void
+
+获取运营商配置，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<Array<[OperatorConfig](#OperatorConfig8)\>> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.getOperatorConfigs(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getOperatorConfigs<sup>8+</sup>
+
+getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
+
+获取运营商配置，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                                | 说明                          |
+| --------------------------------------------------- | ----------------------------- |
+| Promise<Array<[OperatorConfig](#OperatorConfig8)\>> | 以Promise形式返回运营商配置。 |
+
+**示例：**
+
+```js
+let promise = sim.getOperatorConfigs(0);
+promise.then(data => {
+    console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getOperatorConfigs fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.queryIccDiallingNumbers<sup>8+</sup>
+
+queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallback<Array<DiallingNumbersInfo\>>): void
+
+查询SIM卡联系人号码，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                       |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type     | ContactType                                                  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| callback | AsyncCallback<Array<[DiallingNumbersInfo](#DiallingNumbersInfo8)\>> | 是   | 回调函数。                                                 |
+
+**示例：**
+
+```js
+sim.queryIccDiallingNumbers(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.queryIccDiallingNumbers<sup>8+</sup>
+
+queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<DiallingNumbersInfo\>>
+
+查询SIM卡联系人号码，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                       |
+| ------ | ----------- | ---- | ---------------------------------------------------------- |
+| slotId | number      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type   | ContactType | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+
+**返回值：**
+
+| 类型                                                         | 说明                           |
+| ------------------------------------------------------------ | ------------------------------ |
+| Promise<Array<[DiallingNumbersInfo](#DiallingNumbersInfo8)\>> | 以Promise形式返回Icc拨号号码。 |
+
+**示例：**
+
+```js
+let promise = sim.queryIccDiallingNumbers(0, 1);
+promise.then(data => {
+    console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`queryIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.addIccDiallingNumbers<sup>8+</sup>
+
+addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+添加SIM卡联系人号码，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+sim.addIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.addIccDiallingNumbers<sup>8+</sup>
+
+addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+添加SIM卡联系人号码，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回添加结果。 |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+let promise = sim.addIccDiallingNumbers(0, 1, diallingNumbersInof);
+promise.then(data => {
+    console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`addIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.delIccDiallingNumbers<sup>8+</sup>
+
+delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+删除SIM卡联系人号码，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+sim.delIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.delIccDiallingNumbers<sup>8+</sup>
+
+delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+删除SIM卡联系人号码，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回删除结果。 |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+let promise = sim.delIccDiallingNumbers(0, 1, diallingNumbersInof);
+promise.then(data => {
+    console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`delIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.updateIccDiallingNumbers<sup>8+</sup>
+
+updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+更新SIM卡联系人号码，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.updateIccDiallingNumbers<sup>8+</sup>
+
+updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+更新SIM卡联系人号码，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_CONTACTS
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名          | 类型                                         | 必填 | 说明                                                       |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
+| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise<void\> | 以Promise形式返回更新的结果。 |
+
+**示例：**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+let promise = sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof);
+promise.then(data => {
+    console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`updateIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.sendEnvelopeCmd<sup>8+</sup>
+
+sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
+
+发送信封命令，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                   |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd      | string               | 是   | 命令                                   |
+| callback | AsyncCallback<void\> | 是   | 是                                     |
+
+**示例：**
+
+```js
+sim.sendEnvelopeCmd(0, "ls", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.sendEnvelopeCmd<sup>8+</sup>
+
+sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
+
+发送信封命令，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd    | string | 是   | 命令                                   |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回发送结果。 |
+
+**示例：**
+
+```js
+let promise = sim.sendEnvelopeCmd(0, "ls");
+promise.then(data => {
+    console.log(`sendEnvelopeCmd success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`sendEnvelopeCmd fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.sendTerminalResponseCmd<sup>8+</sup>
+
+sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
+
+发送终端响应命令，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                   |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd      | string               | 是   | 命令                                   |
+| callback | AsyncCallback<void\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+sim.sendTerminalResponseCmd(0, "ls", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.sendTerminalResponseCmd<sup>8+</sup>
+
+sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
+
+发送终端响应命令，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| cmd    | string | 是   | 命令                                   |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise<void\> | 以Promise形式返回发送结果。 |
+
+**示例：**
+
+```js
+let promise = sim.sendTerminalResponseCmd(0, "ls");
+promise.then(data => {
+    console.log(`sendTerminalResponseCmd success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`sendTerminalResponseCmd fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.unlockSimLock<sup>8+</sup>
+
+unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<LockStatusResponse\>): void
+
+解锁SIM卡锁，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明                                   |
+| -------- | ---------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                     | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| lockInfo | [PersoLockInfo](#PersoLockInfo8)                           | 是   | 定制锁类型信息                         |
+| callback | AsyncCallback<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数                               |
+
+**示例：**
+
+```js
+let persoLockInfo = {
+    lockType = 0,
+    password = "1234"
+};
+sim.unlockSimLock(0, persoLockInfo, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.unlockSimLock<sup>8+</sup>
+
+unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusResponse\>
+
+解锁SIM卡锁，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                   |
+| -------- | -------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| lockInfo | [PersoLockInfo](#PersoLockInfo8) | 是   | 定制锁类型信息                         |
+
+**返回值：**
+
+| 类型                                                 | 说明                      |
+| ---------------------------------------------------- | ------------------------- |
+| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回锁状态。 |
+
+**示例：**
+
+```js
+let persoLockInfo = {
+    lockType = 0,
+    password = "1234"
+};
+let promise = sim.unlockSimLock(0, persoLockInfo);
+promise.then(data => {
+    console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`unlockSimLock fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOpKey<sup>9+</sup>
+
+getOpKey(slotId: number, callback: AsyncCallback<number\>): void
+
+获取指定卡槽中SIM卡的opkey，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<number\> | 是   | 回调函数                               |
+
+**示例：**
+
+```js
+sim.getOpKey(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getOpKey<sup>9+</sup>
+
+getOpKey(slotId: number): Promise<number\>
+
+获取指定卡槽中SIM卡的opkey，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise<number\> | 以Promise形式返回指定卡槽中SIM卡的opkey。 |
+
+**示例：**
+
+```js
+let promise = sim.getOpKey(0);
+promise.then(data => {
+    console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getOpKey fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOpName<sup>9+</sup>
+
+getOpName(slotId: number, callback: AsyncCallback<string\>): void
+
+获取指定卡槽中SIM卡的OpName，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<string\> | 是   | 回调函数                               |
+
+**示例：**
+
+```js
+sim.getOpName(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getOpName<sup>9+</sup>
+
+getOpName(slotId: number): Promise<string\>
+
+获取指定卡槽中SIM卡的OpName，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型             | 说明                                       |
+| ---------------- | ------------------------------------------ |
+| Promise<string\> | 以Promise形式返回指定卡槽中SIM卡的OpName。 |
+
+**示例：**
+
+```js
+let promise = sim.getOpName(0);
+promise.then(data => {
+    console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getOpName fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## SimState
 
@@ -1737,11 +2871,11 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称     | 类型      | 说明   |
-| -------- | --------- | ------ |
-| lockType | LockType  | 锁类型 |
-| password | string    | 密码   |
-| state    | LockState | 锁状态 |
+| 名称     | 类型                     | 说明   |
+| -------- | ------------------------ | ------ |
+| lockType | [LockType](#LockType8)   | 锁类型 |
+| password | string                   | 密码   |
+| state    | [LockState](#LockState8) | 锁状态 |
 
 ## **PersoLockInfo**<sup>8+</sup>
 
@@ -1751,10 +2885,10 @@ SIM卡状态。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称     | 类型          | 说明         |
-| -------- | ------------- | ------------ |
-| lockType | PersoLockType | 定制锁的类型 |
-| password | string        | 密码         |
+| 名称     | 类型                             | 说明         |
+| -------- | -------------------------------- | ------------ |
+| lockType | [PersoLockType](#PersoLockType8) | 定制锁的类型 |
+| password | string                           | 密码         |
 
 ## **IccAccountInfo**<sup>7+</sup>
 
@@ -1774,3 +2908,43 @@ Icc账户信息。
 | showName   | string  | SIM卡显示名称    |
 | showNumber | string  | SIM卡显示号码    |
 
+## **OperatorConfig**<sup>8+</sup>
+
+运营商配置。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称  | 类型   | 说明 |
+| ----- | ------ | ---- |
+| field | string | 字段 |
+| value | string | 值   |
+
+## **DiallingNumbersInfo**<sup>8+</sup>
+
+拨号号码信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称         | 类型   | 说明     |
+| ------------ | ------ | -------- |
+| alphaTag     | string | 标签     |
+| number       | string | 号码     |
+| recordNumber | number | 记录编号 |
+| pin2         | string | pin2密码 |
+
+## **ContactType**<sup>8+</sup>
+
+联系人类型。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称            | 值   | 说明       |
+| :-------------- | ---- | ---------- |
+| GENERAL_CONTACT | 1    | 通用联系人 |
+| FIXED_DIALING   | 2    | 固定拨号   |

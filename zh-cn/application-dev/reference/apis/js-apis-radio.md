@@ -701,7 +701,7 @@ getIMEI(slotId?: number): Promise<string\>
 
 | 类型              | 说明                                       |
 | ----------------- | ------------------------------------------ |
-| Promise\<string\> | 返回IMEI；如果IMEI不存在，则返回空字符串。 |
+| Promise\<string\> | 以Promise形式异步返回IMEI；如果IMEI不存在，则返回空字符串。 |
 
 **示例：**
 
@@ -899,6 +899,693 @@ promise.then(data => {
 });
 ```
 
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
+
+发送更新小区位置请求，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+radio.sendUpdateCellLocationRequest((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(\): Promise<void\>
+
+发送更新小区位置请求，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let promise = radio.sendUpdateCellLocationRequest();
+promise.then(data => {
+    console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`sendUpdateCellLocationRequest fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getCellInformation<sup>8+</sup>
+
+getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
+
+获取小区信息，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                     |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| callback | AsyncCallback\<Array<[CellInformation](#cellInformation)\>\> | 是   | 回调函数，返回小区信息。 |
+
+**示例：**
+
+```js
+radio.getCellInformation((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getCellInformation<sup>8+</sup>
+
+getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
+
+获取小区信息，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                   |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<Array<[CellInformation](#cellInformation)\>\> | 是   | 回调函数，返回小区信息。               |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getCellInformation(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getCellInformation<sup>8+</sup>
+
+getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
+
+获取小区信息，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                                   | 说明                    |
+| ------------------------------------------------------ | ----------------------- |
+| Promise\<Array<[CellInformation](#cellInformation)\>\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getCellInformation(slotId);
+promise.then(data => {
+    console.log(`getCellInformation success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getCellInformation fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.setNetworkSelectionMode
+
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCallback<void\>\): void
+
+设置网络选择模式，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                        | 必填 | 说明               |
+| -------- | ----------------------------------------------------------- | ---- | ------------------ |
+| options  | [NetworkSelectionModeOptions](#networkSelectionModeOptions) | 是   | 网络选择模式选项。 |
+| callback | AsyncCallback\<void\>                                       | 是   | 回调函数。         |
+
+**示例：**
+
+```js
+let networkInformation={
+    operatorName: "中国移动",
+    operatorNumeric: "898600",
+    state: 1,
+    radioTech: "CS"
+}
+let networkSelectionModeOptions={
+    slotid: 0,
+    selectMode: 1,
+    networkInformation: networkInformation,
+    resumeSelection: true
+}
+radio.setNetworkSelectionMode(networkSelectionModeOptions, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.setNetworkSelectionMode
+
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
+
+设置网络选择模式，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名  | 类型                                                        | 必填 | 说明               |
+| ------- | ----------------------------------------------------------- | ---- | ------------------ |
+| options | [NetworkSelectionModeOptions](#networkSelectionModeOptions) | 是   | 网络选择模式选项。 |
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let networkInformation={
+    operatorName: "中国移动",
+    operatorNumeric: "898600",
+    state: 1,
+    radioTech: "CS"
+}
+let networkSelectionModeOptions={
+    slotid: 0,
+    selectMode: 1,
+    networkInformation: networkInformation,
+    resumeSelection: true
+}
+let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
+promise.then(data => {
+    console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getNetworkSearchInformation
+
+getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
+
+获取网络搜索信息，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                   |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<[NetworkSearchResult](#networkSearchResult)\> | 是   | 回调函数。返回网络搜索信息。           |
+
+**示例：**
+
+```js
+radio.getNetworkSearchInformation(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getNetworkSearchInformation
+
+getNetworkSearchInformation\(slotId: number\): Promise<void\>
+
+获取网络搜索信息，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                                   | 说明                    |
+| ------------------------------------------------------ | ----------------------- |
+| Promise\<[NetworkSearchResult](#networkSearchResult)\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let promise = radio.getNetworkSearchInformation(0);
+promise.then(data => {
+    console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkSearchInformation fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getNrOptionMode<sup>8+</sup>
+
+getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
+
+获取Nr选项模式 ，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                           | 必填 | 说明       |
+| -------- | ---------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[NrOptionMode](#nrOptionMode)\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+radio.getNrOptionMode((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNrOptionMode<sup>8+</sup>
+
+getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
+
+获取Nr选项模式 ，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                           | 必填 | 说明                                   |
+| -------- | ---------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<[NrOptionMode](#nrOptionMode)\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getNrOptionMode(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNrOptionMode<sup>8+</sup>
+
+getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
+
+获取Nr选项模式 ，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                     | 说明                    |
+| ---------------------------------------- | ----------------------- |
+| Promise\<[NrOptionMode](#nrOptionMode)\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getNrOptionMode(slotId);
+promise.then(data => {
+    console.log(`getNrOptionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getNrOptionMode fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.turnOnRadio<sup>7+</sup>
+
+turnOnRadio(callback: AsyncCallback<void\>): void
+
+打开Radio，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+radio.turnOnRadio((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOnRadio<sup>7+</sup>
+
+turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
+
+打开Radio，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                   |
+| -------- | --------------------- | ---- | -------------------------------------- |
+| slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.turnOnRadio(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOnRadio<sup>7+</sup>
+
+turnOnRadio(slotId?: number): Promise<void\>
+
+打开Radio，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.turnOnRadio(slotId);
+promise.then(data => {
+    console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`turnOnRadio fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.turnOffRadio<sup>7+</sup>
+
+turnOffRadio(callback: AsyncCallback<void\>): void
+
+关闭Radio，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+radio.turnOffRadio((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOffRadio<sup>7+</sup>
+
+turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
+
+关闭Radio，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                   |
+| -------- | --------------------- | ---- | -------------------------------------- |
+| slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.turnOffRadio(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOffRadio<sup>7+</sup>
+
+turnOffRadio(slotId?: number): Promise<void\>
+
+关闭Radio，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.turnOffRadio(slotId);
+promise.then(data => {
+    console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`turnOffRadio fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.setPreferredNetwork<sup>8+</sup>
+
+setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
+
+设置首选网络，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名      | 类型                                          | 必填 | 说明                                   |
+| ----------- | --------------------------------------------- | ---- | -------------------------------------- |
+| slotId      | number                                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| networkMode | [PreferredNetworkMode](#preferredNetworkMode) | 是   | 设置首选网络模式                       |
+| callback    | AsyncCallback\<void\>                         | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+radio.setPreferredNetwork(0, , (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.setPreferredNetwork<sup>8+</sup>
+
+setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
+
+设置首选网络，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名      | 类型                                          | 必填 | 说明                                   |
+| ----------- | --------------------------------------------- | ---- | -------------------------------------- |
+| slotId      | number                                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| networkMode | [PreferredNetworkMode](#preferredNetworkMode) | 是   | 设置首选网络模式                       |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let promise = radio.setPreferredNetwork(0, );
+promise.then(data => {
+    console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getPreferredNetwork<sup>8+</sup>
+
+getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
+
+获取首选网络，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                   |
+| -------- | ------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<PreferredNetworkMode\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+radio.getPreferredNetwork(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getPreferredNetwork<sup>8+</sup>
+
+getPreferredNetwork(slotId: number): Promise<void\>
+
+设置首选网络，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let promise = radio.getPreferredNetwork(0);
+promise.then(data => {
+    console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## RadioTechnology
 
 无线接入技术。
@@ -1010,4 +1697,239 @@ promise.then(data => {
 | NETWORK_SELECTION_UNKNOWN   | 0    | 未知选网模式。 |
 | NETWORK_SELECTION_AUTOMATIC | 1    | 自动选网模式。 |
 | NETWORK_SELECTION_MANUAL    | 2    | 手动选网模式。 |
+
+## PreferredNetworkMode<sup>8+</sup>
+
+首选网络模式。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称                                                      | 值   | 说明                                           |
+| --------------------------------------------------------- | ---- | ---------------------------------------------- |
+| PREFERRED_NETWORK_MODE_GSM                                | 1    | 首选GSM网络模式。                             |
+| PREFERRED_NETWORK_MODE_WCDMA                              | 2    | 首选WCDMA网络模式。                           |
+| PREFERRED_NETWORK_MODE_LTE                                | 3    | 首选LTE网络模式。                             |
+| PREFERRED_NETWORK_MODE_LTE_WCDMA                          | 4    | 首选LTE WCDMA网络模式。                       |
+| PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM                      | 5    | 首选LTE WCDMA GSM网络模式。                   |
+| PREFERRED_NETWORK_MODE_WCDMA_GSM                          | 6    | 首选WCDMA GSM网络模式。                       |
+| PREFERRED_NETWORK_MODE_CDMA                               | 7    | 首选CDMA网络模式。                            |
+| PREFERRED_NETWORK_MODE_EVDO                               | 8    | 首选EVDO网络模式。                            |
+| PREFERRED_NETWORK_MODE_EVDO_CDMA                          | 9    | 首选EVDO CDMA网络模式。                       |
+| PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA                | 10   | 首选WCDMA GSM EVDO CDMA网络模式。              |
+| PREFERRED_NETWORK_MODE_LTE_EVDO_CDMA                      | 11   | 首选LTE EVDO CDMA网络模式。                   |
+| PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM_EVDO_CDMA            | 12   | 首选LTE WCDMA GSM EVDO CDMA网络模式。         |
+| PREFERRED_NETWORK_MODE_TDSCDMA                            | 13   | 首选TDSCDMA网络模式。                         |
+| PREFERRED_NETWORK_MODE_TDSCDMA_GSM                        | 14   | 首选TDSCDMA GSM网络模式。                     |
+| PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA                      | 15   | 首选TDSCDMA_WCDMA网络模式。                   |
+| PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM                  | 16   | 首选TDSCDMA_WCDMA_GSM网络模式。               |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA                        | 17   | 首选LTE TDSCDMA网络模式。                     |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_GSM                    | 18   | 首选LTE TDSCDMA GSM网络模式。                 |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA                  | 19   | 首选LTE TDSCDMA WCDMA网络模式。               |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM              | 20   | 首选LTE TDSCDMA WCDMA GSM网络模式。           |
+| PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM_EVDO_CDMA        | 21   | 首选TDSCDMA WCDMA GSM EVDO CDMA网络模式。     |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA    | 22   | 首选LTE TDSCDMA WCDMA GSM EVDO CDMA网络模式。 |
+| PREFERRED_NETWORK_MODE_NR                                 | 31   | 首选NR网络模式。                              |
+| PREFERRED_NETWORK_MODE_NR_LTE                             | 32   | 首选NR LTE网络模式。                          |
+| PREFERRED_NETWORK_MODE_NR_LTE_WCDMA                       | 33   | 首选NR LTE WCDMA网络模式。                    |
+| PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM                   | 34   | 首选NR LTE WCDMA GSM网络模式。                |
+| PREFERRED_NETWORK_MODE_NR_LTE_EVDO_CDMA                   | 35   | 首选NR LTE EVDO CDMA网络模式。                |
+| PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM_EVDO_CDMA         | 36   | 首选NR LTE WCDMA GSM EVDO CDMA网络模式。      |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA                     | 37   | 首选NR LTE TDSCDMA网络模式。                  |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM                 | 38   | 首选NR LTE TDSCDMA GSM网络模式。              |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | 首选NR LTE TDSCDMA WCDMA网络模式。            |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | 首选NR LTE TDSCDMA WCDMA GSM网络模式。        |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | 首选NR LTE TDSCDMA WCDMA GSM网络模式。        |
+| PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | 首选网络模式最大值                             |
+
+## CellInformation<sup>8+</sup>
+
+小区信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称              | 类型                                                         | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| networkType       | [NetworkType](#networkType)                                  | 获取服务单元的网络类型。                                     |
+| isCamped          | boolean                                                      | 获取服务单元的状态。                                         |
+| timeStamp         | number                                                       | 获取单元格信息时获取时间戳。                                 |
+| signalInformation | [SignalInformation](#signalInformation)                      | 信号信息。                                                  |
+| data              | [CdmaCellInformation](#cdmaCellInformation) \| [GsmCellInformation](#gsmCellInformation) \| [LteCellInformation](#lteCellInformation) \| [NrCellInformation](#nrCellInformation) \| [TdscdmaCellInformation](#tdscdmaCellInformation) | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
+
+## CdmaCellInformation<sup>8+</sup>
+
+Cdma小区信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称      | 类型   | 说明         |
+| --------- | ------ | ------------ |
+| baseId    | number | 基站Id。     |
+| latitude  | number | 经度。       |
+| longitude | number | 纬度。       |
+| nid       | number | 网络识别码。 |
+| sid       | number | 系统识别码。 |
+
+## GsmCellInformation<sup>8+</sup>
+
+Gsm小区信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称   | 类型   | 说明                 |
+| ------ | ------ | -------------------- |
+| lac    | number | 位置区编号。         |
+| cellId | number | 小区号。             |
+| arfcn  | number | 绝对无线频率信道号。 |
+| bsic   | number | 基站识别号。         |
+| mcc    | string | 移动国家码。         |
+| mnc    | string | 移动网号。           |
+
+## LteCellInformation<sup>8+</sup>
+
+Lte小区信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称          | 类型    | 说明                    |
+| ------------- | ------- | ----------------------- |
+| cgi           | number  | 小区全球标识。          |
+| pci           | number  | 物理小区识别。          |
+| tac           | number  | 跟踪区域代码。          |
+| earfcn        | number  | 绝对无线频率信道号。    |
+| bandwidth     | number  | 带宽。                  |
+| mcc           | string  | 移动国家码。            |
+| mnc           | string  | 移动网号。              |
+| isSupportEndc | boolean | 是否支持新无线电_双连接 |
+
+## NrCellInformation<sup>8+</sup>
+
+Nr小区信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称    | 类型   | 说明             |
+| ------- | ------ | ---------------- |
+| nrArfcn | number | 5G频点号。       |
+| pci     | number | 物理小区识别。   |
+| tac     | number | 跟踪区域代码。   |
+| nci     | number | 5G网络小区标识。 |
+| mcc     | string | 移动国家码。     |
+| mnc     | string | 移动网号。       |
+
+## TdscdmaCellInformation<sup>8+</sup>
+
+Tdscdma小区信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称   | 类型   | 说明         |
+| ------ | ------ | ------------ |
+| lac    | number | 位置区编号。 |
+| cellId | number | 小区号。     |
+| cpid   | number | 小区参数Id。 |
+| uarfcn | number | 绝对射频号。 |
+| mcc    | string | 移动国家码。 |
+| mnc    | string | 移动网号。   |
+
+## WcdmaCellInformation<sup>8+</sup>
+
+Wcdma小区信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称   | 类型   | 说明         |
+| ------ | ------ | ------------ |
+| lac    | number | 位置区编号。 |
+| cellId | number | 小区号。     |
+| psc    | number | 主扰码。     |
+| uarfcn | number | 绝对射频号。 |
+| mcc    | string | 移动国家码。 |
+| mnc    | string | 移动网号。   |
+
+## NrOptionMode<sup>8+</sup>
+
+Nr的选择模式。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称                 | 值   | 说明                               |
+| -------------------- | ---- | ---------------------------------- |
+| NR_OPTION_UNKNOWN    | 0    | 未知的Nr选择模式。                 |
+| NR_OPTION_NSA_ONLY   | 1    | 仅非独立组网的Nr选择模式。         |
+| NR_OPTION_SA_ONLY    | 2    | 仅独立组网的Nr选择模式。           |
+| NR_OPTION_NSA_AND_SA | 3    | 非独立组网和独立组网的Nr选择模式。 |
+
+## NetworkSearchResult
+
+网络搜索结果。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称                   | 类型                                              | 说明           |
+| ---------------------- | ------------------------------------------------- | -------------- |
+| isNetworkSearchSuccess | boolean                                           | 网络搜索成功。 |
+| networkSearchResult    | Array<[NetworkInformation](#networkInformation)\> | 网络搜索结果。 |
+
+## NetworkInformation
+
+网络信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称            | 类型                                      | 说明           |
+| --------------- | ----------------------------------------- | -------------- |
+| operatorName    | string                                    | 运营商的名称。 |
+| operatorNumeric | string                                    | 运营商数字。   |
+| state           | [NetworkInformation](#networkInformation) | 网络信息状态。 |
+| radioTech       | string                                    | 无线电技术。   |
+
+## NetworkInformationState
+
+网络信息状态。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称              | 值   | 说明             |
+| ----------------- | ---- | ---------------- |
+| NETWORK_UNKNOWN   | 0    | 网络状态未知。   |
+| NETWORK_AVAILABLE | 1    | 网络可用于注册。 |
+| NETWORK_CURRENT   | 2    | 已在网络中注册。 |
+| NETWORK_FORBIDDEN | 3    | 网络无法注册。   |
+
+## NetworkSelectionModeOptions
+
+网络选择模式选项。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称               | 类型                                          | 说明                                   |
+| ------------------ | --------------------------------------------- | -------------------------------------- |
+| slotId             | number                                        | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| selectMode         | [NetworkSelectionMode](#networkSelectionMode) | 网络选择模式。                        |
+| networkInformation | [NetworkInformation](#networkInformation)     | 网络信息。                            |
+| resumeSelection    | boolean                                       | 继续选择。                             |
 

@@ -375,6 +375,739 @@ let result = sms.hasSmsCapability();
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
 
+## sms.splitMessage<sup>8+</sup>
+
+splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
+
+将长短信拆分为多个片段，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                          |
+| -------- | ----------------------------- | ---- | ----------------------------- |
+| content  | string                        | 是   | 指示短消息内容，不能为null。 |
+| callback | AsyncCallback<Array<string\>> | 是   | 回调函数。                    |
+
+**示例：**
+
+```js
+string content= "long message";
+sms.splitMessage(content, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.splitMessage<sup>8+</sup>
+
+splitMessage(content: string): Promise<Array<string\>>
+
+将长短信拆分为多个片段，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                 |
+| ------- | ------ | ---- | ------------------------------------ |
+| content | string | 是   | 指示短消息内容，不能为{@code null}。 |
+
+**返回值：**
+
+| 类型                    | 说明                                |
+| ----------------------- | ----------------------------------- |
+| Promise<Array<string\>> | 以Promise形式返回多个片段的的结果。 |
+
+**示例：**
+
+```js
+string content = "long message";
+let promise = sms.splitMessage(content);
+promise.then(data => {
+    console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`splitMessage fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.addSimMessage<sup>7+</sup>
+
+addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
+
+添加SIM卡短信，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [SimMessageOptions](#SimMessageOptions7) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status: [SimMessageStatus](#SimMessageStatus7) |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let simMessageOptions = {
+    slotId = 0,
+    smsc = "test",
+    pdu = "xxxxxx",
+    status = 0
+};
+sms.addSimMessage(simMessageOptions, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.addSimMessage<sup>7+</sup>
+
+addSimMessage(options: SimMessageOptions): Promise<void\>
+
+添加SIM卡短信，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                                         |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [SimMessageOptions](#SimMessageOptions7) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status: [SimMessageStatus](#SimMessageStatus7) |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回添加的结果。 |
+
+**示例：**
+
+```js
+let simMessageOptions = {
+    slotId = 0,
+    smsc = "test",
+    pdu = "xxxxxx",
+    status = 0
+};
+let promise = sms.addSimMessage(simMessageOptions);
+promise.then(data => {
+    console.log(`addSimMessage success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`addSimMessage fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.delSimMessage<sup>7+</sup>
+
+delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>): void
+
+删除SIM卡短信，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                      |
+| -------- | ------------------------- | ---- | ----------------------------------------- |
+| slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| msgIndex | number                    | 是   | 消息索引                                  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
+
+**示例：**
+
+```js
+let slotId = 0;
+let msgIndex = 1;
+sms.delSimMessage(slotId, msgIndex, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.delSimMessage<sup>7+</sup>
+
+delSimMessage(slotId: number, msgIndex: number): Promise<void\>
+
+删除SIM卡短信，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                      |
+| -------- | ------ | ---- | ----------------------------------------- |
+| slotId   | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| msgIndex | number | 是   | 消息索引                                  |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回删除的结果。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let msgIndex = 1;
+let promise = sms.delSimMessage(slotId, msgIndex);
+promise.then(data => {
+    console.log(`delSimMessage success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`delSimMessage fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.updateSimMessage<sup>7+</sup>
+
+updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\>): void
+
+更新SIM卡短信，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [UpdateSimMessageOptions](#UpdateSimMessageOptions7) | 是   | slotId: number<br/>msgIndex: number<br/>newStatus: [SimMessageStatus](#SimMessageStatus7)<br/>pdu: string<br/>smsc: string |
+| callback | AsyncCallback&lt;void&gt;                            | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let updateSimMessageOptions = {
+    slotId = 0,
+    msgIndex = 1,
+    newStatus = 0,
+    pdu = "xxxxxxx",
+    smsc = "test"
+};
+sms.updateSimMessage(updateSimMessageOptions, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.updateSimMessage<sup>7+</sup>
+
+updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
+
+更新SIM卡短信，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                         |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [UpdateSimMessageOptions](#UpdateSimMessageOptions7) | 是   | slotId: number<br/>msgIndex: number<br/>newStatus: [SimMessageStatus](#SimMessageStatus7)<br/>pdu: string<br/>smsc: string |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回更新的结果。 |
+
+**示例：**
+
+```js
+let updateSimMessageOptions = {
+    slotId = 0,
+    msgIndex = 1,
+    newStatus = 0,
+    pdu = "xxxxxxx",
+    smsc = "test"
+};
+let promise = sms.updateSimMessage(updateSimMessageOptions);
+promise.then(data => {
+    console.log(`updateSimMessage success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`updateSimMessage fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.getAllSimMessages<sup>7+</sup>
+
+getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\>>): void
+
+获取所有SIM卡短信，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                                                        | 必填 | 说明                                      |
+| -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
+| slotId   | number                                                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback<Array<[SimShortMessage](#SimShortMessage8)\>> | 是   | 回调函数。                                |
+
+**示例：**
+
+```js
+let slotId = 0;
+sms.getAllSimMessages(slotId, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.getAllSimMessages<sup>7+</sup>
+
+getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
+
+获取所有SIM卡短信，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| slotId | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                                    | 说明                               |
+| ------------------------------------------------------- | ---------------------------------- |
+| PromiseArray<[SimShortMessage](#SimShortMessage8)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = sms.getAllSimMessages(slotId);
+promise.then(data => {
+    console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getAllSimMessages fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.setCBConfig<sup>7+</sup>
+
+setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
+
+设置CB配置，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| options  | [CBConfigOptions](#CBConfigOptions8) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status:  [SimMessageStatus](#SimMessageStatus7) |
+| callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let cbConfigOptions = {
+    slotId = 0,
+    smsc = "test",
+    pdu = "xxxxxxxx",
+    status = 0
+};
+sms.setCBConfig(cbConfigOptions, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.setCBConfig<sup>7+</sup>
+
+setCBConfig(options: CBConfigOptions): Promise<void\>
+
+设置CB配置，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.RECEIVE_SMS
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名  | 类型                                 | 必填 | 说明                                                         |
+| ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | [CBConfigOptions](#CBConfigOptions8) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status:  [SimMessageStatus](#SimMessageStatus7) |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | 以Promise形式返回设置的结果。 |
+
+**示例：**
+
+```js
+let cbConfigOptions = {
+    slotId = 0,
+    smsc = "test",
+    pdu = "xxxxxxxx",
+    status = 0
+};
+let promise = sms.setCBConfig(cbConfigOptions);
+promise.then(data => 
+    console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`setCBConfig fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.getSmsSegmentsInfo<sup>8+</sup>
+
+getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo\>): void
+
+获取短信段信息，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名    | 类型                                                         | 必填 | 说明                                      |
+| --------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| message   | string                                                       | 是   | 消息                                      |
+| force7bit | boolean                                                      | 是   | 强转7位                                   |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#&lt;SmsSegmentsInfo8)&gt; | 是   | 回调函数                                  |
+
+**示例：**
+
+```js
+let slotId = 0;
+sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.getSmsSegmentsInfo<sup>8+</sup>
+
+getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo\>
+
+获取短信段信息，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                      |
+| --------- | ------- | ---- | ----------------------------------------- |
+| slotId    | number  | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| message   | string  | 是   | 消息                                      |
+| force7bit | boolean | 是   | 强转7位                                   |
+
+**返回值：**
+
+| 类型                                                         | 说明                          |
+| ------------------------------------------------------------ | ----------------------------- |
+| Promise&lt;&lt;[SmsSegmentsInfo](#&lt;SmsSegmentsInfo8)&gt;&gt; | 以Promise形式返回短信段信息。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
+promise.then(data => 
+    console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getSmsSegmentsInfo fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.isImsSmsSupported<sup>8+</sup>
+
+isImsSmsSupported(callback: AsyncCallback<boolean\>): void
+
+如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明       |
+| -------- | ---------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+sms.isImsSmsSupported((err, data) => {
+      console.log(`callback: err->${JSON.(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.isImsSmsSupported<sup>8+</sup>
+
+isImsSmsSupported(): Promise<boolean\>
+
+如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise&lt;boolean&gt; | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let promise = sms.isImsSmsSupported();
+promise.then(data => {
+    console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`isImsSmsSupported fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.getImsShortMessageFormat<sup>8+</sup>
+
+getImsShortMessageFormat(callback: AsyncCallback<string\>): void
+
+获取IMS上支持的SMS格式，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明       |
+| -------- | --------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+sms.getImsShortMessageFormat((err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.getImsShortMessageFormat<sup>8+</sup>
+
+getImsShortMessageFormat(): Promise<string\>
+
+获取IMS上支持的SMS格式，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**返回值：**
+
+| 类型                  | 说明                       |
+| --------------------- | -------------------------- |
+| Promise&lt;string&gt; | 以Promise形式返回SMS格式。 |
+
+**示例：**
+
+```js
+let promise = sms.getImsShortMessageFormat();
+promise.then(data => {
+    console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getImsShortMessageFormat fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.decodeMms<sup>8+</sup>
+
+decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsInformation\>): void
+
+彩信解码，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名          | 类型                                                    | 必填 | 说明           |
+| --------------- | ------------------------------------------------------- | ---- | -------------- |
+| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名 |
+| callback        | AsyncCallback&lt;[MmsInformation](#MmsInformation8)&gt; | 是   | 回调函数。     |
+
+**示例：**
+
+```js
+let mmsFilePathName = "filename";
+sms.decodeMms(mmsFilePathName, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.decodeMms<sup>8+</sup>
+
+decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
+
+彩信解码，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名          | 类型                    | 必填 | 说明           |
+| --------------- | ----------------------- | ---- | -------------- |
+| mmsFilePathName | string \|Array<number\> | 是   | 彩信文件路径名 |
+
+**返回值：**
+
+| 类型                                                      | 说明                        |
+| --------------------------------------------------------- | --------------------------- |
+| Promise&lt;&lt;[MmsInformation](#MmsInformation8)&gt;&gt; | 以Promise形式返回彩信信息。 |
+
+**示例：**
+
+```js
+let mmsFilePathName = "filename";
+let promise = sms.getSmscAddr(mmsFilePathName);
+promise.then(data => {
+    console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`decodeMms fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sms.encodeMms<sup>8+</sup>
+
+encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
+
+彩信编码，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名   | 类型                                | 必填 | 说明                                                         |
+| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| mms      | [MmsInformation](#MmsInformation8)  | 是   | messageType: [MessageType](#MessageType8)<br/>mmsType : [MmsSendReq](#MmsSendReq8) \|[MmsSendConf](#MmsSendConf8)\|[MmsNotificationInd](#MmsNotificationInd8)\|<br/>[MmsRespInd](#MmsRespInd8)\|[MmsRetrieveConf](#MmsRetrieveConf8)\|[MmsAcknowledgeInd](#MmsAcknowledgeInd8)\|<br/>[MmsDeliveryInd](#MmsDeliveryInd8)\|[MmsReadOrigInd](#MmsReadOrigInd8)\|[MmsReadRecInd](#MmsReadRecInd8)<br/>attachment?: Array<[MmsAttachment](#MmsAttachment8)\> |
+| callback | AsyncCallback&lt;Array<number\>&gt; | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let mmsAcknowledgeInd = {
+    transactionId = "100",
+    version = 0x10,
+    reportAllowed = 128
+};
+let mmsInformation = {
+   messageType = 133,
+    mmsType = mmsAcknowledgeInd
+};
+sms.encodeMms(mmsInformation, (err, data) => {
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.encodeMms<sup>8+</sup>
+
+encodeMms(mms: MmsInformation): Promise<Array<number\>>
+
+彩信编码，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.SmsMms
+
+**参数：**
+
+| 参数名 | 类型                               | 必填 | 说明                                                         |
+| ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| mms    | [MmsInformation](#MmsInformation8) | 是   | messageType: [MessageType](#MessageType8)<br/>mmsType : [MmsSendReq](#MmsSendReq8) \|[MmsSendConf](#MmsSendConf8)\|[MmsNotificationInd](#MmsNotificationInd8)\|<br/>[MmsRespInd](#MmsRespInd8)\|[MmsRetrieveConf](#MmsRetrieveConf8)\|[MmsAcknowledgeInd](#MmsAcknowledgeInd8)\|<br/>[MmsDeliveryInd](#MmsDeliveryInd8)\|[MmsReadOrigInd](#MmsReadOrigInd8)\|[MmsReadRecInd](#MmsReadRecInd8)<br/>attachment?: Array<[MmsAttachment](#MmsAttachment8)\> |
+
+**返回值：**
+
+| 类型                          | 说明                                |
+| ----------------------------- | ----------------------------------- |
+| Promise&lt;Array<number\>&gt; | 以Promise形式返回彩信编码后的结果。 |
+
+**示例：**
+
+```js
+let mmsAcknowledgeInd = {
+    transactionId = "100",
+    version = 0x10,
+    reportAllowed = 128
+};
+let mmsInformation = {
+   messageType = 133,
+    mmsType = mmsAcknowledgeInd
+};
+let promise = sms.encodeMms(mmsInformation);
+promise.then(data => {
+    console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`encodeMms fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## ShortMessage
 
 短信实例。
@@ -464,3 +1197,406 @@ console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 | SEND_SMS_FAILURE_UNKNOWN             | 1    | 发送短信失败，原因未知。                               |
 | SEND_SMS_FAILURE_RADIO_OFF           | 2    | 发送短信失败，原因为调制解调器关机。                   |
 | SEND_SMS_FAILURE_SERVICE_UNAVAILABLE | 3    | 发送短信失败，原因为网络不可用、不支持发送或接收短信。 |
+
+## MmsInformation<sup>8+</sup>
+
+彩信信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名      | 类型                                                         | 必填 | 说明     |
+| ----------- | ------------------------------------------------------------ | ---- | -------- |
+| messageType | [MessageType](#MessageType8)                                 | 是   | 消息类型 |
+| mmsType     | [MmsSendReq](#MmsSendReq8) \|[MmsSendConf](#MmsSendConf8) \|[MmsNotificationInd](#MmsNotificationInd8) \|[MmsRespInd](#MmsRespInd8) \|[MmsRetrieveConf](#MmsRetrieveConf8)\|[MmsAcknowledgeInd](#MmsAcknowledgeInd8)\|[MmsDeliveryInd](#MmsDeliveryInd8)\|[MmsReadOrigInd](#MmsReadOrigInd8)\|[MmsReadRecInd](#MmsReadOrigInd8) | 是   | 彩信类型 |
+| attachment  | Array<[MmsAttachment](#MmsAttachment8)\>                     | 否   | 附件     |
+
+## MmsSendReq<sup>8+</sup>
+
+彩信发送请求。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名           | 类型                                 | 必填 | 说明         |
+| ---------------- | ------------------------------------ | ---- | ------------ |
+| from             | [MmsAddress](#MmsAddress8)           | 是   | 彩信来源     |
+| transactionId    | string                               | 是   | 事务ID       |
+| contentType      | string                               | 是   | 内容类型     |
+| version          | [MmsVersionType](#MmsVersionType8)   | 是   | 版本         |
+| to               | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 发送至       |
+| date             | number                               | 否   | 日期         |
+| cc               | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 抄送         |
+| bcc              | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 暗抄送       |
+| subject          | string                               | 否   | 主题         |
+| messageClass     | number                               | 否   | 消息类       |
+| expiry           | number                               | 否   | 到期         |
+| priority         | [MmsPriorityType](#MmsPriorityType8) | 否   | 优先         |
+| senderVisibility | number                               | 否   | 发件人可见性 |
+| deliveryReport   | number                               | 否   | 交付报告     |
+| readReport       | number                               | 否   | 阅读报告     |
+
+## MmsSendConf<sup>8+</sup>
+
+彩信发送配置。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名        | 类型                               | 必填 | 说明     |
+| ------------- | ---------------------------------- | ---- | -------- |
+| responseState | number                             | 是   | 响应状态 |
+| transactionId | string                             | 是   | 事务ID   |
+| version       | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
+| messageId     | string                             | 否   | 消息ID   |
+
+## MmsNotificationInd<sup>8+</sup>
+
+彩信通知索引。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名          | 类型                               | 必填 | 说明     |
+| --------------- | ---------------------------------- | ---- | -------- |
+| transactionId   | string                             | 是   | 事务ID   |
+| messageClass    | number                             | 是   | 消息类   |
+| messageSize     | number                             | 是   | 消息大小 |
+| expiry          | number                             | 是   | 到期     |
+| contentLocation | string                             | 是   | 内容位置 |
+| version         | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
+| from            | [MmsAddress](#MmsAddress8)         | 否   | 来源     |
+| subject         | string                             | 否   | 主题     |
+| deliveryReport  | number                             | 否   | 状态报告 |
+| contentClass    | number                             | 否   | 内容类   |
+
+## MmsAcknowledgeInd<sup>8+</sup>
+
+彩信确认索引。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名        | 类型                               | 必填 | 说明     |
+| ------------- | ---------------------------------- | ---- | -------- |
+| transactionId | string                             | 是   | 事务ID   |
+| version       | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
+| reportAllowed | [ReportType](#ReportType8)         | 否   | 允许报告 |
+
+## MmsRetrieveConf<sup>8+</sup>
+
+彩信检索配置。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名         | 类型                                 | 必填 | 说明     |
+| -------------- | ------------------------------------ | ---- | -------- |
+| transactionId  | string                               | 是   | 事务ID   |
+| messageId      | string                               | 是   | 消息ID   |
+| date           | number                               | 是   | 日期     |
+| contentType    | string                               | 是   | 内容类型 |
+| to             | Array<[MmsAddress](#MmsAddress8)\>   | 是   | 发送至   |
+| version        | [MmsVersionType](#MmsVersionType8)   | 是   | 版本     |
+| from           | [MmsAddress](#MmsAddress8)           | 否   | 来源     |
+| cc             | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 抄送     |
+| subject        | string                               | 否   | 主题     |
+| priority       | [MmsPriorityType](#MmsPriorityType8) | 否   | 优先级   |
+| deliveryReport | number                               | 否   | 状态报告 |
+| readReport     | number                               | 否   | 阅读报告 |
+| retrieveStatus | number                               | 否   | 检索状态 |
+| retrieveText   | string                               | 否   | 检索文本 |
+
+## MmsReadOrigInd<sup>8+</sup>
+
+彩信读取原始索引。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名     | 类型                               | 必填 | 说明     |
+| ---------- | ---------------------------------- | ---- | -------- |
+| version    | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
+| messageId  | string                             | 是   | 消息ID   |
+| to         | Array<[MmsAddress](#MmsAddress8)\> | 是   | 发送至   |
+| from       | [MmsAddress](#MmsAddress8)         | 是   | 来源     |
+| date       | number                             | 是   | 日期     |
+| readStatus | number                             | 是   | 阅读状态 |
+
+## MmsAttachment<sup>8+</sup>
+
+彩信附件。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名                  | 类型                                 | 必填 | 说明               |
+| ----------------------- | ------------------------------------ | ---- | ------------------ |
+| contentId               | string                               | 是   | 内容ID             |
+| contentLocation         | string                               | 是   | 内容位置           |
+| contentDisposition      | [DispositionType](#DispositionType8) | 是   | 内容处理           |
+| contentTransferEncoding | string                               | 是   | 内容传输编码       |
+| contentType             | string                               | 是   | 内容类型           |
+| isSmil                  | boolean                              | 是   | 同步多媒体集成语言 |
+| path                    | string                               | 否   | 路径               |
+| inBuff                  | Array<number\>                       | 否   | 缓冲区中           |
+| fileName                | string                               | 否   | 文件名             |
+| charset                 | [MmsCharSets](#MmsCharSets8)         | 否   | 字符集             |
+
+## MmsAddress<sup>8+</sup>
+
+彩信地址。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名  | 类型                         | 必填 | 说明   |
+| ------- | ---------------------------- | ---- | ------ |
+| address | string                       | 是   | 地址   |
+| charset | [MmsCharSets](#MmsCharSets8) | 是   | 字符集 |
+
+## MessageType<sup>8+</sup>
+
+消息类型。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名                    | 值   | 说明                 |
+| ------------------------- | ---- | -------------------- |
+| TYPE_MMS_SEND_REQ         | 128  | 彩信发送请求类型     |
+| TYPE_MMS_SEND_CONF        | 129  | 彩信发送配置类型     |
+| TYPE_MMS_NOTIFICATION_IND | 130  | 彩信通知索引类型     |
+| TYPE_MMS_RESP_IND         | 131  | 彩信回复索引类型     |
+| TYPE_MMS_RETRIEVE_CONF    | 132  | 彩信检索配置类型     |
+| TYPE_MMS_ACKNOWLEDGE_IND  | 133  | 彩信确认索引类型     |
+| TYPE_MMS_DELIVERY_IND     | 134  | 彩信传送索引类型     |
+| TYPE_MMS_READ_REC_IND     | 135  | 彩信读取接收索引类型 |
+| TYPE_MMS_READ_ORIG_IND    | 136  | 彩信读取原始索引类型 |
+
+## MmsPriorityType<sup>8+</sup>
+
+彩信优先级类型。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名     | 值   | 说明           |
+| ---------- | ---- | -------------- |
+| MMS_LOW    | 128  | 彩信优先级低   |
+| MMS_NORMAL | 129  | 彩信优先级正常 |
+| MMS_HIGH   | 130  | 彩信优先级高   |
+
+## MmsVersionType<sup>8+</sup>
+
+彩信版本类型。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名          | 值   | 说明        |
+| --------------- | ---- | ----------- |
+| MMS_VERSION_1_0 | 0x10 | 彩信版本1_0 |
+| MMS_VERSION_1_1 | 0x11 | 彩信版本1_1 |
+| MMS_VERSION_1_2 | 0x12 | 彩信版本1_2 |
+| MMS_VERSION_1_3 | 0x13 | 彩信版本1_3 |
+
+## MmsCharSets<sup>8+</sup>
+
+彩信字符集。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名          | 值     | 说明                |
+| --------------- | ------ | ------------------- |
+| BIG5            | 0X07EA | BIG5格式            |
+| ISO_10646_UCS_2 | 0X03E8 | ISO_10646_UCS_2格式 |
+| ISO_8859_1      | 0X04   | ISO_8859_1格式      |
+| ISO_8859_2      | 0X05   | ISO_8859_2格式      |
+| ISO_8859_3      | 0X06   | ISO_8859_3格式      |
+| ISO_8859_4      | 0X07   | ISO_8859_4格式      |
+| ISO_8859_5      | 0X08   | ISO_8859_5格式      |
+| ISO_8859_6      | 0X09   | ISO_8859_6格式      |
+| ISO_8859_7      | 0X0A   | ISO_8859_7格式      |
+| ISO_8859_8      | 0X0B   | ISO_8859_8格式      |
+| ISO_8859_9      | 0X0C   | ISO_8859_9格式      |
+| SHIFT_JIS       | 0X11   | SHIFT_JIS格式       |
+| US_ASCII        | 0X03   | US_ASCII格式        |
+| UTF_8           | 0X6A   | UTF_8格式           |
+
+## DispositionType<sup>8+</sup>
+
+处理类型。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名     | 值   | 说明     |
+| ---------- | ---- | -------- |
+| FROM_DATA  | 0    | 数据来源 |
+| ATTACHMENT | 1    | 附件     |
+| INLINE     | 2    | 内联     |
+
+## ReportType<sup>8+</sup>
+
+报告类型。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名  | 值   | 说明 |
+| ------- | ---- | ---- |
+| MMS_YES | 128  | YES  |
+| MMS_NO  | 129  | NO   |
+
+## CBConfigOptions<sup>8+</sup>
+
+小区广播配置选项。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名         | 类型                 | 必填 | 说明         |
+| -------------- | -------------------- | ---- | ------------ |
+| slotId         | number               | 是   | 卡槽ID       |
+| enable         | boolean              | 是   | 可行         |
+| startMessageId | number               | 是   | 消息起始ID   |
+| endMessageId   | number               | 是   | 消息结束ID   |
+| ranType        | [RanType](#RanType7) | 是   | 手机网络制式 |
+
+## SimMessageStatus<sup>7+</sup>
+
+SIM卡消息状态。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名                    | 值   | 说明                        |
+| ------------------------- | ---- | --------------------------- |
+| SIM_MESSAGE_STATUS_FREE   | 0    | SIM卡上的状态可用空间       |
+| SIM_MESSAGE_STATUS_READ   | 1    | 消息已读状态                |
+| SIM_MESSAGE_STATUS_UNREAD | 3    | 消息未读状态                |
+| SIM_MESSAGE_STATUS_SENT   | 5    | 存储发送消息（仅适用于SMS） |
+| SIM_MESSAGE_STATUS_UNSENT | 7    | 储未发送消息（仅适用于SMS） |
+
+## RanType<sup>7+</sup>
+
+手机网络制式。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名    | 值   | 说明 |
+| --------- | ---- | ---- |
+| TYPE_GSM  | 1    | GSM  |
+| TYPE_CDMA | 2    | CMDA |
+
+## SmsEncodingScheme<sup>8+</sup>
+
+短信编码方案。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名               | 值   | 说明         |
+| -------------------- | ---- | ------------ |
+| SMS_ENCODING_UNKNOWN | 0    | 未知短信编码 |
+| SMS_ENCODING_7BIT    | 1    | 7位短信编码  |
+| SMS_ENCODING_8BIT    | 2    | 8位短信编码  |
+| SMS_ENCODING_16BIT   | 3    | 16位短信编码 |
+
+## SimMessageOptions<sup>7+</sup>
+
+SIM卡消息选项。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名 | 类型                                   | 必填 | 说明           |
+| ------ | -------------------------------------- | ---- | -------------- |
+| slotId | number                                 | 是   | 卡槽ID         |
+| smsc   | string                                 | 是   | 短消息业务中心 |
+| pdu    | string                                 | 是   | 协议数据单元   |
+| status | [SimMessageStatus](#SimMessageStatus7) | 是   | 状态           |
+
+## UpdateSimMessageOptions<sup>7+</sup>
+
+更新SIM卡消息选项。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名    | 类型                                   | 必填 | 说明           |
+| --------- | -------------------------------------- | ---- | -------------- |
+| slotId    | number                                 | 是   | 卡槽ID         |
+| msgIndex  | number                                 | 是   | 消息索引       |
+| newStatus | [SimMessageStatus](#SimMessageStatus7) | 是   | 新状态         |
+| pdu       | string                                 | 是   | 协议数据单元   |
+| smsc      | string                                 | 是   | 短消息业务中心 |
+
+## SimShortMessage<sup>8+</sup>
+
+SIM卡短消息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名           | 类型                                   | 必填 | 说明          |
+| ---------------- | -------------------------------------- | ---- | ------------- |
+| shortMessage     | [ShortMessage](#ShortMessage)          | 是   | 短消息        |
+| simMessageStatus | [SimMessageStatus](#SimMessageStatus7) | 是   | SIM卡消息状态 |
+| indexOnSim       | number                                 | 是   | SIM卡索引     |
+
+## MmsDeliveryInd<sup>8+</sup>
+
+彩信发送标识。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名    | 类型                               | 必填 | 说明   |
+| --------- | ---------------------------------- | ---- | ------ |
+| messageId | string                             | 是   | 消息ID |
+| date      | number                             | 是   | 日期   |
+| to        | Array<[MmsAddress](#MmsAddress8)\> | 是   | 发送至 |
+| status    | number                             | 是   | 状态   |
+| version   | [MmsVersionType](#MmsVersionType8) | 是   | 版本   |
+
+## MmsRespInd<sup>8+</sup>
+
+彩信回复标志。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名        | 类型                               | 必填 | 说明     |
+| ------------- | ---------------------------------- | ---- | -------- |
+| transactionId | string                             | 是   | 事件ID   |
+| status        | number                             | 是   | 状态     |
+| version       | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
+| reportAllowed | [ReportType](#ReportType8)         | 否   | 允许报告 |
