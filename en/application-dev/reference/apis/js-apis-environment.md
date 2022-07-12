@@ -1,6 +1,8 @@
 # Environment
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+This module provides JS APIs for obtaining the root directories of the storage and public files.
+
+> **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.

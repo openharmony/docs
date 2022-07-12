@@ -1,6 +1,8 @@
 # Getting Started with JavaScript in the Low-Code Approach
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>This feature will be available in DevEco Studio V2.2 Beta1 and later versions.
+> **NOTE**
+>
+> This feature will be available in DevEco Studio V2.2 Beta1 and later versions.
 >
 > For best possible results, use [DevEco Studio V3.0.0.900 Beta3](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta_openharmony) for your development.
 
@@ -53,15 +55,15 @@ Add **Div**, **Text**, and **Button** components to the first page.
 1. Delete the existing template components from the canvas.<a name= delete_origin_content></a>
    
 
-   Open the index.visual file, right-click the existing template components on the canvas, and choose **Delete** from the shortcut menu to delete them. Below is an illustration of the operations.
+Open the index.visual file, right-click the existing template components on the canvas, and choose **Delete** from the shortcut menu to delete them. Below is an illustration of the operations.
 
-   ![en-us_image_0000001216600980](figures/en-us_image_0000001216600980.gif)
+![en-us_image_0000001216600980](figures/en-us_image_0000001216600980.gif)
 
 2. Add a **Div** component and set its styles and attributes.<a name = add_container></a>
 
    Drag the **Div** component from the **UI Control** area to the canvas. In the **Attributes &amp; Styles** area on the right, click ![en-us_image_0000001260226691](figures/en-us_image_0000001260226691.png)**General** and set **Height** to **100%** so that the component fills the entire screen. Click ![en-us_image_0000001215226858](figures/en-us_image_0000001215226858.png)**Flex**, set **FlexDirection** to **column** so that the main axis of the component is vertical, and set both **JustifyContent** and **AlignItems** to **center** so that the child components of the **Div** component are centered along the main axis and cross axis. Below is an illustration of the operations.
 
-   ![en-us_image_0000001216448880](figures/en-us_image_0000001216448880.gif)
+![en-us_image_0000001216448880](figures/en-us_image_0000001216448880.gif)
 
 3. Add a **Text** component.
 
@@ -88,7 +90,7 @@ Add **Div**, **Text**, and **Button** components to the first page.
    
    In the **Project** window, choose **entry** &gt; **src** &gt; **main** &gt; **js** &gt; **MainAbility**, right-click the **pages** folder, choose **New** &gt; **Visual**, name the page **second**, and click **Finish**. Below, you can see the structure of the **pages** folder.
 
-   ![en-us_image_0000001223882030](figures/en-us_image_0000001223882030.png)
+![en-us_image_0000001223882030](figures/en-us_image_0000001223882030.png)
 
 2. [Delete the existing template components from the canvas.](#delete_origin_content)
 
@@ -171,4 +173,4 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
 
    ![en-us_image_0000001262127855](figures/en-us_image_0000001262127855.png)
 
-Congratulations! You have finished developing your OpenHarmony app in JavaScript in the low-code approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md)
+Congratulations! You have finished developing your OpenHarmony app in JavaScript in the low-code approach. To learn more about OpenHarmony, see [OpenHarmony Overview](../application-dev-guide.md).
