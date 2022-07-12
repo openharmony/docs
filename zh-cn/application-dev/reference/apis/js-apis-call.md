@@ -518,9 +518,7 @@ promise.then(data => {
 
 muteRinger\(callback: AsyncCallback<void\>\): void
 
-静音铃声。使用callback异步回调。
-
-如果来电铃声响起，手机将停止铃声。否则，此方法不起作用。
+如果来电铃声响起，手机将停止铃声。否则，此方法不起作用。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -547,9 +545,7 @@ call.muteRinger((err, data) => {
 
 muteRinger\(\): Promise<void\>
 
-静音铃声。使用Promise异步回调。
-
-如果来电铃声响起，手机将停止铃声。否则，此方法不起作用。
+如果来电铃声响起，手机将停止铃声。否则，此方法不起作用。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -580,8 +576,6 @@ answer\(callback: AsyncCallback<void\>\): void
 
 接听来电。使用callback异步回调。
 
-指示呼叫应答的标识符。自API 9起，它是可选的
-
 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
@@ -608,8 +602,6 @@ call.answer((err, data) => {
 answer\(callId: number, callback: AsyncCallback<void\>\): void
 
 接听来电。使用callback异步回调。
-
-指示呼叫应答的标识符。自API 9起，它是可选的
 
 此接口为系统接口。
 
@@ -639,8 +631,6 @@ answer(callId?: number\): Promise<void\>
 
 接听来电。使用Promise异步回调。
 
-指示呼叫应答的标识符。自API 9起，它是可选的
-
 此接口为系统接口。
 
 **需要权限**：ohos.permission.ANSWER_CALL
@@ -649,9 +639,9 @@ answer(callId?: number\): Promise<void\>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明     |
-| ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫Id。 |
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| callId | number | 否   | 呼叫Id。自API 9起，它是可选的。 |
 
 **返回值：**
 
@@ -675,8 +665,6 @@ promise.then(data => {
 hangup\(callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
-
-指示挂断呼叫的标识符。自API 9以来，它是可选的。 
 
 此接口为系统接口。
 
@@ -702,8 +690,6 @@ call.hangup((err, data) => {
 hangup\(callId: number, callback: AsyncCallback<void\>\): void
 
 挂断电话。使用callback异步回调。
-
-指示挂断呼叫的标识符。自API 9以来，它是可选的。 
 
 此接口为系统接口。
 
@@ -731,17 +717,15 @@ hangup\(callId?: number\): Promise<void\>
 
 挂断电话。使用Promise异步回调。
 
-指示挂断呼叫的标识符。自API 9以来，它是可选的。
-
 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明     |
-| ------ | ------ | ---- | -------- |
-| callId | number | 是   | 呼叫id。 |
+| 参数名 | 类型   | 必填 | 说明                              |
+| ------ | ------ | ---- | --------------------------------- |
+| callId | number | 否   | 呼叫id。自API 9以来，它是可选的。 |
 
 **返回值：**
 
@@ -765,8 +749,6 @@ promise.then(data => {
 reject\(callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
-
-指示要拒绝的调用的标识符。自API 9以来，它是可选的。
 
 此接口为系统接口。
 
@@ -792,8 +774,6 @@ call.reject((err, data) => {
 reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
-
-指示要拒绝的调用的标识符。自API 9以来，它是可选的。
 
 此接口为系统接口。
 
@@ -823,8 +803,6 @@ call.reject(rejectMessageOptions, (err, data) => {
 reject(callId: number, callback: AsyncCallback<void\>): <void\>
 
 拒绝来电。使用callback异步回调。
-
-指示要拒绝的调用的标识符。自API 9以来，它是可选的。
 
 此接口为系统接口。
 
@@ -860,8 +838,6 @@ reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<vo
 
 拒绝来电。使用callback异步回调。
 
-指示要拒绝的调用的标识符。自API 9以来，它是可选的。
-
 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
@@ -892,18 +868,16 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
 拒绝来电。使用Promise异步回调。
 
-指示要拒绝的调用的标识符。自API 9以来，它是可选的。
-
 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
 **参数：**
 
-| 参数名  | 类型                                          | 必填 | 说明           |
-| ------- | --------------------------------------------- | ---- | -------------- |
-| callId  | number                                        | 否   | 呼叫Id。       |
-| options | [RejectMessageOptions](#RejectMessageOptions) | 否   | 拒绝消息选项。 |
+| 参数名  | 类型                                          | 必填 | 说明                              |
+| ------- | --------------------------------------------- | ---- | --------------------------------- |
+| callId  | number                                        | 否   | 呼叫Id。自API 9以来，它是可选的。 |
+| options | [RejectMessageOptions](#RejectMessageOptions) | 否   | 拒绝消息选项。                    |
 
 **返回值：**
 
