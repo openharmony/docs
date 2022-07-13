@@ -92,7 +92,7 @@ vendor
     └── niobe407         			     --- 产品名字：niobe407
 ```
 
-获取[OpenHarmony源码](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/sourcecode-acquire.md)，根据上述目录规划，创建相应文件夹。
+获取[OpenHarmony源码](../get-code/sourcecode-acquire.md)，根据上述目录规划，创建相应文件夹。
 
 ### 预编译适配
 
