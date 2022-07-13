@@ -1,6 +1,7 @@
 # 形状裁剪
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -21,6 +22,7 @@
 ## 示例
 
 ```
+// xxx.ets
 @Entry
 @Component
 struct ClipAndMaskExample {
@@ -28,24 +30,24 @@ struct ClipAndMaskExample {
     Column({ space: 5 }) {
       Text('clip').fontSize(9).width('90%').fontColor(0xCCCCCC)
       // 用一个280px直径的圆对图像进行裁剪
-      Image('/comment/bg.jpg')
+      Image($r('app.media.example'))
         .clip(new Circle({ width: 80, height: 80 }))
         .width('500px').height('280px')
 
       Row() {
-        Image('/comment/bg.jpg').width('500px').height('280px')
+        Image($r('app.media.example')).width('500px').height('280px')
       }
       .clip(true)
       .borderRadius(20)
 
       Text('mask').fontSize(9).width('90%').fontColor(0xCCCCCC)
       // 给图像添加了一个500px*280px的遮罩
-      Image('/comment/bg.jpg')
+      Image($r('app.media.example'))
         .mask(new Rect({ width: '500px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('280px')
 
       // 给图像添加了一个280px*280px的圆遮罩
-      Image('/comment/bg.jpg')
+      Image($r('app.media.example'))
         .mask(new Circle({ width: '280px', height: '280px' }).fill(Color.Gray))
         .width('500px').height('281px')
     }
