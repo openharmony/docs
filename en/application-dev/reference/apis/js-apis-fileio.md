@@ -1,9 +1,10 @@
-File Management
+# File Management
+
+The fileio module provides APIs for file storage and management, including basic file management, directory management, file information statistics, and stream read and write.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-Provides file storage and management capabilities, including basic file management, file directory management, file information statistics, and stream read and write.
 
 ## Modules to Import
 
@@ -46,6 +47,7 @@ Obtains file information. This API uses a promise to return the result.
   | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file information obtained.|
 
 **Example**
+
   ```js
   fileio.stat(path).then(function(stat){
       console.info("Got file info:"+ JSON.stringify(stat));
@@ -64,12 +66,14 @@ Obtains file information. This API uses an asynchronous callback to return the r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                              | Mandatory| Description                          |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
 | path     | string                             | Yes  | Application sandbox path of the file.    |
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback invoked to return the file information obtained.|
 
 **Example**
+
   ```js
   fileio.stat(path, function (err, stat) {
       // Example code in Stat
@@ -86,17 +90,20 @@ Synchronously obtains file information.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the file.|
 
 
 **Return value**
+
   | Type           | Description        |
   | ------------- | ---------- |
   | [Stat](#stat) | File information obtained.|
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   // Example code in Stat
@@ -112,16 +119,19 @@ Opens a file directory. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                          |
 | ------ | ------ | ---- | ------------------------------ |
 | path   | string | Yes  | Application sandbox path of the directory to open.|
 
 **Return value**
+
   | Type                        | Description      |
   | -------------------------- | -------- |
   | Promise&lt;[Dir](#dir)&gt; | Promise used to return the **Dir** object.|
 
 **Example**
+
   ```js
   fileio.opendir(path).then(function(dir){
       console.info("Directory opened:"+ JSON.stringify(dir));
@@ -147,6 +157,7 @@ Opens a file directory. This API uses an asynchronous callback to return the res
 | callback | AsyncCallback&lt;[Dir](#dir)&gt; | Yes  | Callback invoked when the directory is open asynchronously.  |
 
 **Example**
+
   ```js
   fileio.opendir(path, function (err, dir) { 
       // Example code in Dir struct
@@ -171,11 +182,13 @@ Synchronously opens a directory.
 | path   | string | Yes  | Application sandbox path of the directory to open.|
 
 **Return value**
+
   | Type         | Description      |
   | ----------- | -------- |
   | [Dir](#dir) | A **Dir** instance corresponding to the directory.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   // Example code in Dir struct
@@ -199,11 +212,13 @@ Checks whether the current process can access a file. This API uses a promise to
 | mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.access(path).then(function() {
       console.info("Access successful");
@@ -222,6 +237,7 @@ Checks whether the current process can access a file. This API uses an asynchron
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the file.                                  |
@@ -229,6 +245,7 @@ Checks whether the current process can access a file. This API uses an asynchron
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is asynchronously checked.                |
 
 **Example**
+
   ```js
   fileio.access(path, function (err) {
       // Do something.
@@ -245,12 +262,14 @@ Synchronously checks whether the current process can access the specified file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
 | mode   | number | No  | Options for accessing the file. You can specify multiple options, separated with a bitwise OR operator (&#124;). The default value is **0**.<br>The options are as follows:<br>-&nbsp;**0**: check whether the file exists.<br>-&nbsp;**1**: check whether the current process has the execute permission on the file.<br>-&nbsp;**2**: check whether the current process has the write permission on the file.<br>-&nbsp;**4**: check whether the current process has the read permission on the file.|
 
 **Example**
+
   ```js
   try {
       fileio.accessSync(path);
@@ -269,16 +288,19 @@ Closes a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the file to close.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   fileio.close(fd).then(function(){
@@ -298,12 +320,14 @@ Closes a file. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description          |
   | -------- | ------------------------- | ---- | ------------ |
   | fd       | number                    | Yes   | File descriptor of the file to close.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is closed asynchronously.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   fileio.close(fd, function (err) {
@@ -321,11 +345,13 @@ Synchronously closes a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the file to close.|
 
 **Example**
+
   ```js
   fileio.closeSync(fd);
   ```
@@ -340,11 +366,13 @@ Closes the stream. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.close().then(function(){
       console.info("File stream closed");
@@ -363,11 +391,13 @@ Closes the stream. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description           |
   | -------- | ------------------------- | ---- | ------------- |
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is closed asynchronously.|
 
 **Example**
+
   ```js
   fileio.close(function(err){
       // Do something.
@@ -384,6 +414,7 @@ Copies a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type                        | Mandatory  | Description                                      |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
   | src  | string&nbsp;\|&nbsp;number | Yes   | Path or file descriptor of the file to copy.                     |
@@ -391,11 +422,13 @@ Copies a file. This API uses a promise to return the result.
   | mode | number                     | No   | Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.copyFile(src, dest).then(function(){
       console.info("File copied");
@@ -414,6 +447,7 @@ Copies a file. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                        | Mandatory  | Description                                      |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
   | src      | string&nbsp;\|&nbsp;number | Yes   | Path or file descriptor of the file to copy.                     |
@@ -422,6 +456,7 @@ Copies a file. This API uses an asynchronous callback to return the result.
   | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked when the file is copied asynchronously.                            |
 
 **Example**
+
   ```js
   fileio.copyFile(src, dest, function (err) {
       // Do something.
@@ -438,6 +473,7 @@ Synchronously copies a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type                        | Mandatory  | Description                                      |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
   | src  | string&nbsp;\|&nbsp;number | Yes   | Path or file descriptor of the file to copy.                     |
@@ -445,6 +481,7 @@ Synchronously copies a file.
   | mode | number                     | No   | Option for overwriting the file of the same name in the destination path. The default value is **0**, which is the only value supported.<br>**0**: Completely overwrite the file with the same name and truncate the part that is not overwritten.|
 
 **Example**
+
   ```js
   fileio.copyFileSync(src, dest);
   ```
@@ -459,17 +496,20 @@ Creates a directory. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the directory.                                  |
 | mode   | number | No  | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.mkdir(path).then(function() {
       console.info("Directory created");
@@ -488,6 +528,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the directory.                                  |
@@ -495,6 +536,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the directory is created asynchronously.                            |
 
 **Example**
+
   ```js
   fileio.mkdir(path, function(err) {
     console.info("Directory created");
@@ -511,12 +553,14 @@ Synchronously creates a directory.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the directory.                                  |
 | mode   | number | No  | Permission on the directory to create. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o775**.<br>-&nbsp;**0o775**: The owner has the read, write, and execute permissions, and other users have the read and execute permissions.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Example**
+
   ```js
   fileio.mkdirSync(path);
   ```
@@ -531,6 +575,7 @@ Opens a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
@@ -538,11 +583,13 @@ Opens a file. This API uses a promise to return the result.
 | mode   | number | No  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Return value**
+
   | Type                   | Description         |
   | --------------------- | ----------- |
   | Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
 
 **Example**
+
   ```js
   fileio.open(path, 0o1, 0o0200).then(function(number){
       console.info("File opened");
@@ -561,6 +608,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | Yes  | Application sandbox path of the file.                                  |
@@ -569,6 +617,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 | callback | AsyncCallback&nbsp;&lt;void&gt; | Yes  | Callback invoked when the file is open asynchronously.                                    |
 
 **Example**
+
   ```js
   fileio.open(path, 0, function(err, fd) {
       // Do something.
@@ -585,6 +634,7 @@ Synchronously opens a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
@@ -592,11 +642,13 @@ Synchronously opens a file.
 | mode   | number | No  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;). The default value is **0o666**.<br>-&nbsp;**0o666**: The owner, user group, and other users have the read and write permissions on the file.<br>-&nbsp;**0o640**: The owner has the read and write permissions, and the user group has the read permission.<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.<br>The file permissions on newly created files are affected by umask, which is set as the process starts. Currently, the modification of umask is not open.|
 
 **Return value**
+
   | Type    | Description         |
   | ------ | ----------- |
   | number | File descriptor of the file opened.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path, 0o102, 0o640);
   ```
@@ -623,6 +675,7 @@ Reads data from a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name | Type       | Mandatory| Description                                                        |
 | ------- | ----------- | ---- | ------------------------------------------------------------ |
 | fd      | number      | Yes  | File descriptor of the file to read.                                    |
@@ -636,6 +689,7 @@ Reads data from a file. This API uses a promise to return the result.
   | Promise&lt;[ReadOut](#readout)&gt; | Promise used to return the data read.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
@@ -661,6 +715,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                                      | Mandatory  | Description                                      |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | File descriptor of the file to read.                            |
@@ -669,6 +724,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked when the data is read asynchronously.                            |
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
@@ -694,6 +750,7 @@ Synchronously reads data from a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | fd      | number      | Yes   | File descriptor of the file to read.                            |
@@ -701,11 +758,13 @@ Synchronously reads data from a file.
   | options | Object      | No   | The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
+
   | Type    | Description      |
   | ------ | -------- |
   | number | Length of the data read.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
@@ -722,16 +781,19 @@ Deletes a directory. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the directory.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.rmdir(path).then(function() {
       console.info("Directory deleted");
@@ -750,12 +812,14 @@ Deletes a directory. This API uses an asynchronous callback to return the result
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Application sandbox path of the directory.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the directory is deleted asynchronously.  |
 
 **Example**
+
   ```js
   fileio.rmdir(path, function(err){
       // Do something.
@@ -773,11 +837,13 @@ Synchronously deletes a directory.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the directory.|
 
 **Example**
+
   ```js
   fileio.rmdirSync(path);
   ```
@@ -792,16 +858,19 @@ Deletes a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the file.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.unlink(path).then(function(){
       console.info("File deleted");
@@ -820,12 +889,14 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Application sandbox path of the file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is deleted asynchronously.  |
 
 **Example**
+
   ```js
   fileio.unlink(path, function(err) {
       console.info("File deleted");
@@ -842,11 +913,13 @@ Synchronously deletes a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the file.|
 
 **Example**
+
   ```js
   fileio.unlinkSync(path);
   ```
@@ -866,6 +939,7 @@ Writes data into a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | File descriptor of the file to write.                            |
@@ -873,11 +947,13 @@ Writes data into a file. This API uses a promise to return the result.
   | options | Object                          | No   | The options are as follows:<br>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position.<br>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
 
 **Return value**
+
   | Type                   | Description      |
   | --------------------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the length of the data written.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
@@ -902,6 +978,7 @@ Writes data into a file. This API uses an asynchronous callback to return the re
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                             | Mandatory  | Description                                      |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | Yes   | File descriptor of the file to write.                            |
@@ -910,6 +987,7 @@ Writes data into a file. This API uses an asynchronous callback to return the re
   | callback | AsyncCallback&lt;number&gt;     | Yes   | Callback invoked when the data is written asynchronously.                      |
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
@@ -934,6 +1012,7 @@ Synchronously writes data into a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | Yes   | File descriptor of the file to write.                            |
@@ -941,11 +1020,13 @@ Synchronously writes data into a file.
   | options | Object                          | No   | The options are as follows:<br>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position.<br>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size|
 
 **Return value**
+
   | Type    | Description      |
   | ------ | -------- |
   | number | Length of the data written in the file.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   let num = fileio.writeSync(fd, "hello, world");
@@ -961,17 +1042,20 @@ Calculates the hash value of a file. This API uses a promise to return the resul
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name   | Type  | Mandatory| Description                                                        |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | path      | string | Yes  | Application sandbox path of the file.                            |
 | algorithm | string | Yes  | Algorithm used to calculate the hash value. The value can be **md5**, **sha1**, or **sha256**. **sha256** is recommended for security purposes.|
 
 **Return value**
+
   | Type                   | Description                        |
   | --------------------- | -------------------------- |
   | Promise&lt;string&gt; | Promise used to return the hash value obtained. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Example**
+
   ```js
   fileio.hash(path, "sha256").then(function(str){
       console.info("Calculated file hash:"+ str);
@@ -990,6 +1074,7 @@ Calculates the hash value of a file. This API uses an asynchronous callback to r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name   | Type                       | Mandatory| Description                                                        |
 | --------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | path      | string                      | Yes  | Application sandbox path of the file.                            |
@@ -997,6 +1082,7 @@ Calculates the hash value of a file. This API uses an asynchronous callback to r
 | callback  | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the hash value obtained. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Example**
+
   ```js
   fileio.hash(path, "sha256", function(err, hashStr) {
       if (hashStr) {
@@ -1015,17 +1101,20 @@ Changes file permissions. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                              |
 | mode   | number | Yes  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.chmod(path, mode).then(function() {
       console.info("File permissions changed");
@@ -1044,6 +1133,7 @@ Changes file permissions. This API uses an asynchronous callback to return the r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the file.                              |
@@ -1051,6 +1141,7 @@ Changes file permissions. This API uses an asynchronous callback to return the r
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file permissions are changed asynchronously.                                |
 
 **Example**
+
   ```js
   fileio.chmod(path, mode, function (err) {
       // Do something.
@@ -1067,12 +1158,14 @@ Synchronously changes file permissions.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                              |
 | mode   | number | Yes  | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Example**
+
   ```js
   fileio.chmodSync(path, mode);
   ```
@@ -1087,16 +1180,19 @@ Obtains file information based on the file descriptor. This API uses a promise t
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the target file.|
 
 **Return value**
+
   | Type                          | Description        |
   | ---------------------------- | ---------- |
   | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file information.|
 
 **Example**
+
   ```js
   fileio.fstat(fd).then(function(stat){
       console.info("File information obtained:"+ JSON.stringify(stat));
@@ -1115,12 +1211,14 @@ Obtains file information based on the file descriptor. This API uses an asynchro
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                                | Mandatory  | Description              |
   | -------- | ---------------------------------- | ---- | ---------------- |
   | fd       | number                             | Yes   | File descriptor of the target file.    |
   | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes   | Callback invoked to return the file information obtained.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   fileio.fstat(fd, function (err) {
@@ -1138,16 +1236,19 @@ Synchronously obtains file information based on the file descriptor.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the target file.|
 
 **Return value**
+
   | Type           | Description        |
   | ------------- | ---------- |
   | [Stat](#stat) | File information obtained.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   let stat = fileio.fstatSync(fd);
@@ -1163,17 +1264,20 @@ Truncates a file based on the file descriptor. This API uses a promise to return
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description              |
   | ---- | ------ | ---- | ---------------- |
   | fd   | number | Yes   | File descriptor of the file to truncate.    |
   | len  | number | No   | File length, in bytes, after truncation.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   fileio.ftruncate(fd, 5).then(function(err) {    
@@ -1193,6 +1297,7 @@ Truncates a file based on the file descriptor. This API uses an asynchronous cal
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description              |
   | -------- | ------------------------- | ---- | ---------------- |
   | fd       | number                    | Yes   | File descriptor of the file to truncate.    |
@@ -1200,6 +1305,7 @@ Truncates a file based on the file descriptor. This API uses an asynchronous cal
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value. |
 
 **Example**
+
   ```js
   fileio.ftruncate(fd, len, function(err){
       // Do something.
@@ -1216,12 +1322,14 @@ Synchronously truncates a file based on the file descriptor.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description              |
   | ---- | ------ | ---- | ---------------- |
   | fd   | number | Yes   | File descriptor of the file to truncate.    |
   | len  | number | No   | File length, in bytes, after truncation.|
 
 **Example**
+
   ```js
   fileio.ftruncateSync(fd, len);
   ```
@@ -1236,17 +1344,20 @@ Truncates a file based on the file path. This API uses a promise to return the r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                            |
 | ------ | ------ | ---- | -------------------------------- |
 | path   | string | Yes  | Application sandbox path of the file to truncate.      |
 | len    | number | No  | File length, in bytes, after truncation.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.truncate(path, len).then(function(){
       console.info("File truncated");
@@ -1265,6 +1376,7 @@ Truncates a file based on the file path. This API uses an asynchronous callback 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                            |
 | -------- | ------------------------- | ---- | -------------------------------- |
 | path     | string                    | Yes  | Application sandbox path of the file to truncate.|
@@ -1272,6 +1384,7 @@ Truncates a file based on the file path. This API uses an asynchronous callback 
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.  |
 
 **Example**
+
   ```js
   fileio.truncate(path, len, function(err){
       // Do something.
@@ -1288,12 +1401,14 @@ Synchronously truncates a file based on the file path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                            |
 | ------ | ------ | ---- | -------------------------------- |
 | path   | string | Yes  | Application sandbox path of the file to truncate.|
 | len    | number | No  | File length, in bytes, after truncation.|
 
 **Example**
+
   ```js
   fileio.truncateSync(path, len);
   ```
@@ -1312,17 +1427,20 @@ Reads the text content of a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file to read.                                  |
 | options  | Object | No  | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
+
   | Type                   | Description        |
   | --------------------- | ---------- |
   | Promise&lt;string&gt; | Promise used to return the content read.|
 
 **Example**
+
   ```js
   fileio.readText(path).then(function(str) {
       console.info("Read file text:"+ str);
@@ -1345,6 +1463,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Application sandbox path of the file to read.                                  |
@@ -1352,6 +1471,7 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the content read.                        |
 
 **Example**
+
   ```js
   fileio.readText(path, function(err, str){
       // Do something.
@@ -1372,17 +1492,20 @@ Synchronously reads the text of a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | Yes  | Application sandbox path of the file to read.                                  |
 | options  | Object | No  | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**encoding** (string): format of the data (string) to be encoded. The default value is **utf-8**, which is the only value supported.|
 
 **Return value**
+
   | Type  | Description                |
   | ------ | -------------------- |
   | string | Promise used to return the content of the file read.|
 
 **Example**
+
   ```js
   let str = fileio.readTextSync(path, {position: 1, length: 3});
   ```
@@ -1397,16 +1520,19 @@ Obtains link information. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | path   | string | Yes  | Application sandbox path of the target file.|
 
 **Return value**
+
   | Type                          | Description        |
   | ---------------------------- | ---------- |
   | Promise&lt;[Stat](#stat)&gt; | Promise used to return the link information obtained. For details, see [Stat](#stat).|
 
 **Example**
+
   ```js
   fileio.lstat(path).then(function(stat){
       console.info("Got link info:"+ JSON.stringify(stat));
@@ -1425,12 +1551,14 @@ Obtains link information. This API uses an asynchronous callback to return the r
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                              | Mandatory| Description                                  |
 | -------- | ---------------------------------- | ---- | -------------------------------------- |
 | path     | string                             | Yes  | Application sandbox path of the target file.|
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback used to return the link information obtained.      |
 
 **Example**
+
   ```js
   fileio.lstat(path, function (err, stat) {
       // Do something.
@@ -1447,16 +1575,19 @@ Synchronously obtains the link information.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | path   | string | Yes  | Application sandbox path of the target file.|
 
 **Return value**
+
   | Type           | Description        |
   | ------------- | ---------- |
   | [Stat](#stat) | Link information obtained.|
 
 **Example**
+
   ```js
   let stat = fileio.lstatSync(path);
   ```
@@ -1475,17 +1606,20 @@ Reads data from a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type       | Mandatory| Description                                                        |
   | ------- | ----------- | ---- | ------------------------------------------------------------ |
   | buffer  | ArrayBuffer | Yes  | Buffer used to store the file data read.                          |
   | options | Object      | No  | The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>Constraints: offset + length <= Buffer size|
 
 **Return value**
+
   | Type                                | Description    |
   | ---------------------------------- | ------ |
   | Promise&lt;[ReadOut](#readout)&gt; | Promise used to return the data read.|
 
 **Example**
+
   ```js
   fileio.read(new ArrayBuffer(4096)).then(function(readout){
       console.info("Read file data");
@@ -1509,6 +1643,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                                      | Mandatory  | Description                                      |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
@@ -1516,6 +1651,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked when the data is read asynchronously from the file.                         |
 
 **Example**
+
   ```js
   let buf = new ArrayBuffer(4096);
   fileio.read(buf, function (err, readOut) {
@@ -1536,17 +1672,20 @@ Renames a file. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
 | oldPath | string | Yes  | Application sandbox path of the file to rename.|
 | newPath | String | Yes  | Application sandbox path of the file renamed.  |
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.rename(oldPath, newPath).then(function() {
       console.info("File renamed");
@@ -1565,6 +1704,7 @@ Renames a file. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                        |
 | -------- | ------------------------- | ---- | ---------------------------- |
 | oldPath  | string                    | Yes  | Application sandbox path of the file to rename.|
@@ -1572,6 +1712,7 @@ Renames a file. This API uses an asynchronous callback to return the result.
 | Callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file is asynchronously renamed.  |
 
 **Example**
+
   ```js
   fileio.rename(oldPath, newPath, function(err){
   });
@@ -1587,12 +1728,14 @@ Synchronously renames a file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
 | oldPath | string | Yes  | Application sandbox path of the file to rename.|
 | newPath | String | Yes  | Application sandbox path of the file renamed.  |
 
 **Example**
+
   ```js
   fileio.renameSync(oldPath, newPath);
   ```
@@ -1607,16 +1750,19 @@ Flushes data of a file to disk. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the file to flush.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.fsync(fd).then(function(){
       console.info("Data flushed");
@@ -1635,12 +1781,14 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description             |
   | -------- | ------------------------- | ---- | --------------- |
   | fd       | number                    | Yes   | File descriptor of the file to flush.   |
   | Callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file is synchronized in asynchronous mode.|
 
 **Example**
+
   ```js
   fileio.fsync(fd, function(err){
       // Do something.
@@ -1657,11 +1805,13 @@ Flushes data of a file to disk in synchronous mode.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the file to flush.|
 
 **Example**
+
   ```js
   fileio.fsyncSync(fd);
   ```
@@ -1676,16 +1826,19 @@ Flushes data of a file to disk. This API uses a promise to return the result. **
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the file to flush.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.fdatasync(fd).then(function(err) {
       console.info("Data flushed");
@@ -1704,12 +1857,14 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                             | Mandatory  | Description               |
   | -------- | ------------------------------- | ---- | ----------------- |
   | fd       | number                          | Yes   | File descriptor of the file to synchronize.     |
   | callback | AsyncCallback&nbsp;&lt;void&gt; | Yes   | Callback invoked when the file data is synchronized in asynchronous mode.|
 
 **Example**
+
   ```js
   fileio.fdatasync (fd, function (err) {
       // Do something.
@@ -1726,11 +1881,13 @@ Synchronizes data in a file in synchronous mode.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the file to flush.|
 
 **Example**
+
   ```js
   let stat = fileio.fdatasyncSync(fd);
   ```
@@ -1745,17 +1902,20 @@ Creates a symbolic link based on the file path. This API uses a promise to retur
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
 | target  | string | Yes  | Application sandbox path of the target file.    |
 | srcPath | string | Yes  | Application sandbox path of the symbolic link file.|
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.symlink(target, srcPath).then(function() {
       console.info("Symbolic link created");
@@ -1774,6 +1934,7 @@ Creates a symbolic link based on the file path. This API uses an asynchronous ca
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                            |
 | -------- | ------------------------- | ---- | -------------------------------- |
 | target   | string                    | Yes  | Application sandbox path of the target file.        |
@@ -1781,6 +1942,7 @@ Creates a symbolic link based on the file path. This API uses an asynchronous ca
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the symbolic link is created asynchronously.|
 
 **Example**
+
   ```js
   fileio.symlink(target, srcPath, function (err) {
       // Do something.
@@ -1797,12 +1959,14 @@ Synchronously creates a symbolic link based on a specified path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
 | target  | string | Yes  | Application sandbox path of the target file.    |
 | srcPath | string | Yes  | Application sandbox path of the symbolic link file.|
 
 **Example**
+
   ```js
   fileio.symlinkSync(target, srcPath);
   ```
@@ -1817,6 +1981,7 @@ Changes the file owner based on the file path. This API uses a promise to return
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the file.|
@@ -1824,11 +1989,13 @@ Changes the file owner based on the file path. This API uses a promise to return
 | gid    | number | Yes  | New group ID (GID).      |
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   fileio.chown(path, stat.uid, stat.gid).then(function(){
@@ -1848,6 +2015,7 @@ Changes the file owner based on the file path. This API uses an asynchronous cal
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                          |
 | -------- | ------------------------- | ---- | ------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the file.    |
@@ -1856,6 +2024,7 @@ Changes the file owner based on the file path. This API uses an asynchronous cal
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file owner is changed asynchronously.|
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path)
   fileio.chown(path, stat.uid, stat.gid, function (err){
@@ -1873,6 +2042,7 @@ Synchronously changes the file owner based on its path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the file.|
@@ -1880,6 +2050,7 @@ Synchronously changes the file owner based on its path.
 | gid    | number | Yes  | New GID.                 |
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path)
   fileio.chownSync(path, stat.uid, stat.gid);
@@ -1895,16 +2066,19 @@ Creates a temporary directory. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
   | prefix | string | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
 
 **Return value**
+
   | Type                  | Description        |
   | --------------------- | ---------- |
   | Promise&lt;string&gt; | Promise used to return the unique directory generated.|
 
 **Example**
+
   ```js
   fileio.mkdtemp(path + "XXXX").then(function(path){
       console.info("Temporary directory created:"+ path);
@@ -1923,12 +2097,14 @@ Creates a temporary directory. This API uses an asynchronous callback to return 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                         | Mandatory  | Description                         |
   | -------- | --------------------------- | ---- | --------------------------- |
   | prefix   | string                      | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
   | callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked when a temporary directory is created asynchronously.             |
 
 **Example**
+
   ```js
   fileio.mkdtemp(path + "XXXX", function (err, res) {
       // Do something.
@@ -1945,16 +2121,19 @@ Synchronously creates a temporary directory.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
   | prefix | string | Yes   | A randomly generated string used to replace "XXXXXX" in a directory.|
 
 **Return value**
+
   | Type   | Description        |
   | ------ | ---------- |
   | string | Unique path generated.|
 
 **Example**
+
   ```js
   let res = fileio.mkdtempSync(path + "XXXX");
   ```
@@ -1969,17 +2148,20 @@ Changes file permissions based on the file descriptor. This API uses a promise t
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | Yes   | File descriptor of the target file.                            |
   | mode | number | Yes   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Return value**
+
   | Type                | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   fileio.fchmod(fd, mode).then(function() {
       console.info("File permissions changed");
@@ -1998,6 +2180,7 @@ Changes file permissions based on the file descriptor. This API uses an asynchro
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                             | Mandatory  | Description                                      |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | Yes   | File descriptor of the target file.                            |
@@ -2005,6 +2188,7 @@ Changes file permissions based on the file descriptor. This API uses an asynchro
   | callback | AsyncCallback&nbsp;&lt;void&gt; | Yes   | Callback invoked when the file permissions are changed asynchronously.                          |
 
 **Example**
+
   ```js
   fileio.fchmod(fd, mode, function (err) {
       // Do something.
@@ -2021,12 +2205,14 @@ Synchronously changes the file permissions based on the file descriptor.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | Yes   | File descriptor of the target file.                            |
   | mode | number | Yes   | Permissions on the file. You can specify multiple permissions, separated using a bitwise OR operator (&#124;).<br>-&nbsp;**0o700**: The owner has the read, write, and execute permissions.<br>- &nbsp;**0o400**: The owner has the read permission.<br>-&nbsp;**0o200**: The owner has the write permission.<br>-&nbsp;**0o100**: The owner has the execute permission.<br>-&nbsp;**0o070**: The user group has the read, write, and execute permissions.<br>-&nbsp;**0o040**: The user group has the read permission.<br>-&nbsp;**0o020**: The user group has the write permission.<br>-&nbsp;**0o010**: The user group has the execute permission.<br>-&nbsp;**0o007**: Other users have the read, write, and execute permissions.<br>-&nbsp;**0o004**: Other users have the read permission.<br>-&nbsp;**0o002**: Other users have the write permission.<br>-&nbsp;**0o001**: Other users have the execute permission.|
 
 **Example**
+
   ```js
    fileio.fchmodSync(fd, mode);
   ```
@@ -2041,17 +2227,20 @@ Opens a file stream based on the file path. This API uses a promise to return th
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
 | mode   | string | Yes  | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
+
   | Type                               | Description       |
   | --------------------------------- | --------- |
   | Promise&lt;[Stream](#stream7)&gt; | Promise used to return the result.|
 
 **Example**
+
   ```js
   fileio.createStream(path, "r+").then(function(stream){
       console.info("Stream opened");
@@ -2070,6 +2259,7 @@ Opens a file stream based on the file path. This API uses an asynchronous callba
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                  | Yes  | Application sandbox path of the file.                                  |
@@ -2077,6 +2267,7 @@ Opens a file stream based on the file path. This API uses an asynchronous callba
 | callback | AsyncCallback&lt;[Stream](#stream7)&gt; | Yes  | Callback invoked when the stream is open asynchronously.                                  |
 
 **Example**
+
   ```js
   fileio.createStream(path, "r+", function(err, stream){
       // Do something.
@@ -2093,17 +2284,20 @@ Synchronously opens a stream based on the file path.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file.                                  |
 | mode   | string | Yes  | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
+
   | Type               | Description       |
   | ------------------ | --------- |
   | [Stream](#stream7) | Stream opened.|
 
 **Example**
+
   ```js
   let ss = fileio.createStreamSync(path, "r+");
   ```
@@ -2118,17 +2312,20 @@ Opens a file stream based on the file descriptor. This API uses a promise to ret
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | Yes   | File descriptor of the target file.                            |
   | mode | string | Yes   | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
+
   | Type                              | Description       |
   | --------------------------------- | --------- |
   | Promise&lt;[Stream](#stream7)&gt; | Promise used to return the result.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   fileio.fdopenStream(fd, "r+").then(function(stream){
@@ -2148,6 +2345,7 @@ Opens a file stream based on the file descriptor. This API uses an asynchronous 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                                      | Mandatory  | Description                                      |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | File descriptor of the target file.                            |
@@ -2155,6 +2353,7 @@ Opens a file stream based on the file descriptor. This API uses an asynchronous 
   | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt; | Yes   | Callback invoked when the stream is open asynchronously.                           |
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   fileio.fdopenStream(fd, "r+", function (err, stream) {
@@ -2172,17 +2371,20 @@ Synchronously opens a stream based on the file descriptor.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | fd   | number | Yes   | File descriptor of the target file.                            |
   | mode | string | Yes   | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
 
 **Return value**
+
   | Type               | Description       |
   | ------------------ | --------- |
   | [Stream](#stream7) | Stream opened.|
 
 **Example**
+
   ```js
   let fd = fileio.openSync(path);
   let ss = fileio.fdopenStreamSync(fd, "r+");
@@ -2198,6 +2400,7 @@ Changes the file owner based on the file descriptor. This API uses a promise to 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the target file.|
@@ -2205,11 +2408,13 @@ Changes the file owner based on the file descriptor. This API uses a promise to 
   | gid  | number | Yes   | New GID.  |
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   fileio.fchown(fd, stat.uid, stat.gid).then(function() {
@@ -2229,6 +2434,7 @@ Changes the file owner based on the file descriptor. This API uses an asynchrono
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description             |
   | -------- | ------------------------- | ---- | --------------- |
   | fd       | number                    | Yes   | File descriptor of the target file.   |
@@ -2237,6 +2443,7 @@ Changes the file owner based on the file descriptor. This API uses an asynchrono
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the file owner is changed asynchronously.|
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   fileio.fchown(fd, stat.uid, stat.gid, function (err){
@@ -2254,6 +2461,7 @@ Synchronously changes the file owner based on the file descriptor.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name | Type    | Mandatory  | Description          |
   | ---- | ------ | ---- | ------------ |
   | fd   | number | Yes   | File descriptor of the target file.|
@@ -2261,6 +2469,7 @@ Synchronously changes the file owner based on the file descriptor.
   | gid  | number | Yes   | New GID.  |
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   fileio.fchownSync(fd, stat.uid, stat.gid);
@@ -2276,6 +2485,7 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the file.|
@@ -2283,11 +2493,13 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 | gid    | number | Yes  | New GID.                 |
 
 **Return value**
+
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
   | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   fileio.lchown(path, stat.uid, stat.gid).then(function() {
@@ -2307,6 +2519,7 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                          |
 | -------- | ------------------------- | ---- | ------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the file.    |
@@ -2315,6 +2528,7 @@ Changes the file owner (owner of the symbolic link, not the file referred to by 
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the file owner is changed asynchronously.|
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   fileio.lchown(path, stat.uid, stat.gid, function (err){
@@ -2332,6 +2546,7 @@ Synchronously changes the file owner based on the file path and changes the owne
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
 | path   | string | Yes  | Application sandbox path of the file.|
@@ -2339,6 +2554,7 @@ Synchronously changes the file owner based on the file path and changes the owne
 | gid    | number | Yes  | New GID.                 |
 
 **Example**
+
   ```js
   let stat = fileio.statSync(path);
   fileio.lchownSync(path, stat.uid, stat.gid);
@@ -2354,6 +2570,7 @@ Listens for file or directory changes. This API uses an asynchronous callback to
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
 | Name  | Type                             | Mandatory| Description                                                        |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | filename | string                            | Yes  | Application sandbox path of the file.                                  |
@@ -2361,11 +2578,13 @@ Listens for file or directory changes. This API uses an asynchronous callback to
 | callback | AsyncCallback&lt;number&nbsp;&gt; | Yes  | Called each time a change is detected.                            |
 
 **Return value**
+
   | Type                 | Description        |
   | -------------------- | ---------- |
   | [Watcher](#watcher7) | Promise used to return the **Watcher** instance.|
 
 **Example**
+
   ```js
   let filename = path +"/test.txt";
   fileio.createWatcher(filename, 1, function(number){
@@ -2421,11 +2640,13 @@ Checks whether this file is a block special file. A block special file supports 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description              |
   | ------- | ---------------- |
   | boolean | Whether the file is a block special file.|
 
 **Example**
+
   ```js
   let isBLockDevice = fileio.statSync(path).isBlockDevice();
   ```
@@ -2440,11 +2661,13 @@ Checks whether this file is a character special file. A character special file s
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description               |
   | ------- | ----------------- |
   | boolean | Whether the file is a character special file.|
 
 **Example**
+
   ```js
   let isCharacterDevice = fileio.statSync(path).isCharacterDevice();
   ```
@@ -2459,11 +2682,13 @@ Checks whether this file is a directory.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description           |
   | ------- | ------------- |
   | boolean | Whether the file is a directory.|
 
 **Example**
+
   ```js
   let isDirectory = fileio.statSync(path).isDirectory(); 
   ```
@@ -2478,11 +2703,13 @@ Checks whether this file is a named pipe (or FIFO). Named pipes are used for int
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description                   |
   | ------- | --------------------- |
   | boolean | Whether the file is an FIFO.|
 
 **Example**
+
   ```js
   let isFIFO = fileio.statSync(path).isFIFO(); 
   ```
@@ -2497,11 +2724,13 @@ Checks whether this file is a regular file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description             |
   | ------- | --------------- |
   | boolean | Whether the file is a regular file.|
 
 **Example**
+
   ```js
   let isFile = fileio.statSync(path).isFile();
   ```
@@ -2516,11 +2745,13 @@ Checks whether this file is a socket.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description            |
   | ------- | -------------- |
   | boolean | Whether the file is a socket.|
 
 **Example**
+
   ```js
   let isSocket = fileio.statSync(path).isSocket(); 
   ```
@@ -2535,11 +2766,13 @@ Checks whether this file is a symbolic link.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description             |
   | ------- | --------------- |
   | boolean | Whether the file is a symbolic link.|
 
 **Example**
+
   ```js
   let isSymbolicLink = fileio.statSync(path).isSymbolicLink(); 
   ```
@@ -2559,6 +2792,7 @@ Stops the **watcher** instance. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Example**
+
   ```js
   let filename = path +"/test.txt";
   let watcher = await fileio.createWatcher(filename, 1, function(number){
@@ -2579,11 +2813,13 @@ Stops the **watcher** instance. This API uses an asynchronous callback to return
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description                    |
   | -------- | ------------------------- | ---- | ---------------------- |
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when **watcher** is stopped asynchronously.|
 
 **Example**
+
   ```js
   let filename = path +"/test.txt";
   let watcher = await fileio.createWatcher(filename, 1, function(number){
@@ -2608,11 +2844,13 @@ Closes the stream. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type                 | Description           |
   | ------------------- | ------------- |
   | Promise&lt;void&gt; | Promise used to return the stream close result.|
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.close().then(function(){
@@ -2632,11 +2870,13 @@ Closes the stream. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description           |
   | -------- | ------------------------- | ---- | ------------- |
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is closed asynchronously.|
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.close(function (err) {
@@ -2654,6 +2894,7 @@ Synchronously closes the stream.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.closeSync();
@@ -2669,11 +2910,13 @@ Flushes the stream. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type                 | Description           |
   | ------------------- | ------------- |
   | Promise&lt;void&gt; | Promise used to return the stream flushing result.|
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.flush().then(function (){
@@ -2693,11 +2936,13 @@ Flushes the stream. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                       | Mandatory  | Description            |
   | -------- | ------------------------- | ---- | -------------- |
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is asynchronously flushed.|
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.flush(function (err) {
@@ -2715,6 +2960,7 @@ Synchronously flushes the stream.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.flushSync();
@@ -2735,23 +2981,26 @@ Writes data into the stream. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | Yes   | Data to write. It can be a string or data from a buffer.                    |
   | options | Object                          | No   | The options are as follows:<br>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position.<br>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
+
   | Type                   | Description      |
   | --------------------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the length of the data written.|
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
-      console.info("Data written to the stream and size is:"+ number);
+      console.info("Data written to the stream. Size is:"+ number);
   }).catch(function(err){
-      console.info("Failed to write data into the stream. Error:"+ err);
+      console.info("Failed to write data to the stream. Error:"+ err);
   });
   ```
 
@@ -2770,6 +3019,7 @@ Writes data into the stream. This API uses an asynchronous callback to return th
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name  | Type                           | Mandatory| Description                                                        |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
   | buffer   | ArrayBuffer&nbsp;\|&nbsp;string | Yes  | Data to write. It can be a string or data from a buffer.                    |
@@ -2777,12 +3027,13 @@ Writes data into the stream. This API uses an asynchronous callback to return th
   | callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked when the data is written asynchronously.                              |
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
       if (bytesWritten) {
          // Do something
-         console.info("Data written to the stream and size is:"+ bytesWritten);
+         console.info("Data written to the stream. Size is:"+ bytesWritten);
       }
   });
   ```
@@ -2802,17 +3053,20 @@ Synchronously writes data into the stream.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name    | Type                             | Mandatory  | Description                                      |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer&nbsp;\|&nbsp;string | Yes   | Data to write. It can be a string or data from a buffer.                    |
   | options | Object                          | No   | The options are as follows:<br>-&nbsp;**offset** (number): position of the data to write in reference to the start address of the data. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to write. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): start position to write the data in the file. By default, data is written from the current position.<br>-&nbsp;**encoding** (string): format of the string to be encoded. The default value is **utf-8**, which is the only value supported.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
+
   | Type    | Description      |
   | ------ | -------- |
   | number | Length of the data written in the file.|
 
 **Example**
+
   ```js
   let ss= fileio.createStreamSync(path,"r+");
   let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
@@ -2832,17 +3086,20 @@ Reads data from the stream. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | Yes   | Buffer used to store the file read.                             |
   | options | Object      | No   | The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>Constraints: offset + length <= Buffer size |
 
 **Return value**
+
   | Type                                | Description    |
   | ---------------------------------- | ------ |
   | Promise&lt;[ReadOut](#readout)&gt; | Promise used to return the data read.|
 
 **Example**
+
   ```js
   let ss = fileio.createStreamSync(path, "r+");
   ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
@@ -2867,6 +3124,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                                      | Mandatory  | Description                                      |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file read.                             |
@@ -2874,6 +3132,7 @@ Reads data from the stream. This API uses an asynchronous callback to return the
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked when data is read asynchronously from the stream.                        |
 
 **Example**
+
   ```js
   let ss = fileio.createStreamSync(path, "r+");
   ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
@@ -2911,6 +3170,7 @@ Synchronously reads data from the stream.
   | number | Length of the data read.|
 
 **Example**
+
   ```js
   let ss = fileio.createStreamSync(path, "r+");
   let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
@@ -2931,17 +3191,19 @@ Reads the next directory entry. This API uses a promise to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type                              | Description           |
   | -------------------------------- | ------------- |
   | Promise&lt;[Dirent](#dirent)&gt; | Promise used to return the directory entry read.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
       console.log("Read the next directory entry:"+JSON.stringify(dirent));
   }).catch(function(err){
-      console.info("Failed to read data. Error:"+ err);
+      console.info("Failed to read the next directory entry. Error:"+ err);
   });
   ```
 
@@ -2955,11 +3217,13 @@ Reads the next directory entry. This API uses an asynchronous callback to return
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
+
   | Name     | Type                                    | Mandatory  | Description              |
   | -------- | -------------------------------------- | ---- | ---------------- |
   | callback | AsyncCallback&lt;[Dirent](#dirent)&gt; | Yes   | Callback invoked when the next directory entry is asynchronously read.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
@@ -2980,11 +3244,13 @@ Synchronously reads the next directory entry.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type               | Description      |
   | ----------------- | -------- |
   | [Dirent](#dirent) | Directory entry read.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   let dirent = dir.readSync();
@@ -3000,6 +3266,7 @@ Closes a directory. This API uses a promise to return the result. After a direct
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   dir.close().then(function(err){
@@ -3017,6 +3284,7 @@ Closes a directory. This API uses an asynchronous callback to return the result.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   dir.close(function(err){
@@ -3034,6 +3302,7 @@ Closes a directory. After a directory is closed, the file descriptor in Dir will
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   dir.closeSync();
@@ -3062,11 +3331,13 @@ Checks whether this directory entry is a block special file. A block special fil
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description              |
   | ------- | ---------------- |
   | boolean | Whether the directory entry is a block special file.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   let isBLockDevice = dir.readSync().isBlockDevice();
@@ -3082,11 +3353,13 @@ Checks whether a directory entry is a character special file. A character specia
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description               |
   | ------- | ----------------- |
   | boolean | Whether the directory entry is a character special file.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   let isCharacterDevice = dir.readSync().isCharacterDevice(); 
@@ -3102,11 +3375,13 @@ Checks whether a directory entry is a directory.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description           |
   | ------- | ------------- |
   | boolean | Whether the directory entry is a directory.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   let isDirectory = dir.readSync().isDirectory(); 
@@ -3122,11 +3397,13 @@ Checks whether this directory entry is a named pipe (or FIFO). Named pipes are u
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description             |
   | ------- | --------------- |
   | boolean | Whether the directory entry is a FIFO.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   let isFIFO = dir.readSync().isFIFO(); 
@@ -3142,11 +3419,13 @@ Checks whether a directory entry is a regular file.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description             |
   | ------- | --------------- |
   | boolean | Whether the directory entry is a regular file.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   let isFile = dir.readSync().isFile(); 
@@ -3162,11 +3441,13 @@ Checks whether a directory entry is a socket.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description            |
   | ------- | -------------- |
   | boolean | Whether the directory entry is a socket.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(dpath);
   let isSocket = dir.readSync().isSocket(); 
@@ -3182,11 +3463,13 @@ Checks whether a directory entry is a symbolic link.
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Return value**
+
   | Type     | Description             |
   | ------- | --------------- |
   | boolean | Whether the directory entry is a symbolic link.|
 
 **Example**
+
   ```js
   let dir = fileio.opendirSync(path);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
