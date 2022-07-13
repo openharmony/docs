@@ -113,7 +113,7 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt", (err, data) => {
     if (err != undefined) {
         console.info("openFile failed, error message : " + err);
-    }erse {
+    }else {
         console.info("openFile succeed, data : " + data);
         let fd = data;
     }
