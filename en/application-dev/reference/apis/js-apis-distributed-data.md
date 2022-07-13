@@ -1,8 +1,18 @@
 # Distributed Data Management
 
-Distributed data management provides collaboration between databases of different devices for applications. The APIs provided by distributed data management can be used to save data to the distributed database and perform operations such as adding, deleting, modifying, and querying data in the distributed database.
+The distributed data management module implements collaboration between databases of different devices for applications. The APIs provided by distributed data management can be used to save data to distributed databases and perform operations such as adding, deleting, modifying, querying, and synchronizing data in distributed databases.
+
+This module provides the following functions:
+
+- [KVManager](#kvmanager): provides a **KVManager** instance to manage key-value (KV) stores.
+- [KvStoreResultSet<sup>8+</sup>](#kvstoreresultset8): provides methods to obtain the KV store result set and query or move the data read position.
+- [Query<sup>8+</sup>](#query8): provides methods to query data from the database through a **Query** instance by using predicates.
+- [KVStore](#kvstore): provides methods to add data, delete data, and observe data changes and data synchronization through a **KVStore** instance.
+- [SingleKVStore](#singlekvstore): provides methods to query and synchronize data in a single KV store. This class inherits from [KVStore](#kvstore), and data is not distinguished by device.
+- [DeviceKVStore<sup>8+</sup> ](#devicekvstore8): provides methods to query and synchronize data in a device KV store. This class inherits from [KVStore](#kvstore), and data is distinguished by device.
 
 >**NOTE**<br/>
+>
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -17,7 +27,7 @@ import distributedData from '@ohos.data.distributedData';
 
 createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void
 
-Creates a **KVManager** object to manage key-value (KV) stores. This API uses an asynchronous callback to return the result.
+Creates a **KVManager** instance to manage KV stores. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -25,8 +35,8 @@ Creates a **KVManager** object to manage key-value (KV) stores. This API uses an
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| config | [KVManagerConfig](#kvmanagerconfig) | Yes | Configuration of the **KVManager** object, including the bundle name and user information of the caller.|
-| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** object created.|
+| config | [KVManagerConfig](#kvmanagerconfig) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
+| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** instance created.|
 
 **Example**
 ```js
@@ -56,7 +66,7 @@ try {
 
 createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 
-Creates a **KVManager** object to manage KV stores. This API uses a promise to return the result.
+Creates a **KVManager** instance to manage KV stores. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -64,13 +74,13 @@ Creates a **KVManager** object to manage KV stores. This API uses a promise to r
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| config |[KVManagerConfig](#kvmanager) | Yes | Configuration of the **KVManager** object, including the bundle name and user information of the caller.|
+| config |[KVManagerConfig](#kvmanager) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** object created.|
+| Promise&lt;[KVManager](#kvmanager)&gt; | Promise used to return the **KVManager** instance created.|
 
 **Example**
 
@@ -120,11 +130,11 @@ Defines user information.
 
 ## UserType
 
-Defines the user type.
+Enumerates the user types.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | ----- | ------ | ------ |
 | SAME_USER_ID | 0 | User who logs in to different devices using the same account.|
 
@@ -197,7 +207,7 @@ Creates and obtains a KV store. This API uses a promise to return the result.
 
 | Type                                   | Description       |
 | -------------------------------------- | ------------------------ |
-| Promise&lt;T&gt; &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store created.|
+| Promise&lt;T&gt;, &lt;T extends [KVStore](#kvstore)&gt; | Promise used to return the KV store created.|
 
 **Example**
 
@@ -240,7 +250,7 @@ Closes a KV store. This API uses an asynchronous callback to return the result.
 | appId    | string              | Yes  | Bundle name of the app that invokes the KV store.        |
 | storeId  | string  | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | kvStore  | [KVStore](#kvstore) | Yes  | KV store to close.    |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -260,7 +270,7 @@ const options = {
     kvManager.getKVStore('storeId', options, async function (err, store) {
     console.log('getKVStore success');
     kvStore = store;
-    await kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+    kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
         console.log('closeKVStore success');
     });
     });
@@ -290,7 +300,7 @@ Closes a KV store. This API uses a promise to return the result.
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise\<void> | Promise used to return the result. If the KV store is closed, **true** will be returned. Otherwise, **false** will be returned.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -310,7 +320,7 @@ const options = {
     kvManager.getKVStore('storeId', options).then(async (store) => {
     console.log('getKVStore success');
     kvStore = store;
-    await kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+    kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
         console.log('closeKVStore success');
     }).catch((err) => {
         console.log('closeKVStore err ' + JSON.stringify(err));
@@ -338,7 +348,7 @@ Deletes a KV store. This API uses an asynchronous callback to return the result.
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.    |
 | storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result. If the KV store is deleted, **true** will be returned. Otherwise, **false** will be returned.  |
+| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -358,7 +368,7 @@ try {
     kvManager.getKVStore('store', options, async function (err, store) {
         console.log('getKVStore success');
         kvStore = store;
-        await kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
+        kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
             console.log('deleteKVStore success');
         });
     });
@@ -387,7 +397,7 @@ Deletes a KV store. This API uses a promise to return the result.
 
 | Type         | Description           |
 | ------------- | -------------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the KV store is deleted, **true** will be returned. Otherwise, **false** will be returned.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -407,7 +417,7 @@ try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
         console.log('getKVStore success');
         kvStore = store;
-        await kvManager.deleteKVStore('appId', 'storeId').then(() => {
+        kvManager.deleteKVStore('appId', 'storeId').then(() => {
             console.log('deleteKVStore success');
         }).catch((err) => {
             console.log('deleteKVStore err ' + JSON.stringify(err));
@@ -425,7 +435,7 @@ try {
 
 getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
-Obtains the IDs of all the KV stores that are created using [getKVStore](#getkvstore) and have not been deleted using [deleteKVStore](#deletekvstore8). This API uses an asynchronous callback to return the result.
+Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore) and have not been deleted by [deleteKVStore()](#deletekvstore8). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -434,7 +444,7 @@ Obtains the IDs of all the KV stores that are created using [getKVStore](#getkvs
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
-| callback | AsyncCallback&lt;void&gt; | Yes  |Callback used to return the KV store IDs obtained. |
+| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback used to return the KV store IDs obtained. |
 
 **Example**
 
@@ -455,7 +465,7 @@ try {
 
 getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
-Obtains the IDs of all the KV stores that are created using [getKVStore](#getkvstore) and have not been deleted using [deleteKVStore](#deletekvstore8). This API uses a promise to return the result.
+Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore) and have not been deleted by [deleteKVStore()](#deletekvstore8). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -494,7 +504,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to the **distributedDataServiceDie** events. This API uses a synchronous callback to return the result.
+Subscribes to service status changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -502,8 +512,8 @@ Subscribes to the **distributedDataServiceDie** events. This API uses a synchron
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | string | Yes   | Name of the event to subscribe to. The value is **distributedDataServiceDie**, which indicates the service status change event.|
-| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked when the distributed data service is dead.   |
+| event  | string | Yes   | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates service status changes.|
+| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked to return service status changes.|
 
 **Example**
 
@@ -526,7 +536,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-Unsubscribes from the **distributedDataServiceDie** events. This API uses a synchronous callback to return the result.
+Unsubscribes from the service status changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -534,8 +544,8 @@ Unsubscribes from the **distributedDataServiceDie** events. This API uses a sync
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | string | Yes   | Name of the event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates the service status change event.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return the **distributedDataServiceDie** events.   |
+| event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates service status changes.|
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return service status changes.|
 
 
 **Example**
@@ -561,41 +571,41 @@ Provides KV store configuration.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
 | backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
-| autoSync  | boolean | No|Whether to automatically synchronize database files. By default, database files are not automatically synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
+| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
 | kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 | schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
 ## KVStoreType
 
-Defines the KV store types.
+Enumerates the KV store types.
 
 
-| Name | Default Value| Description                   |
+| Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
-| DEVICE_COLLABORATION  | 0 | Device KV store. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION  | 1 | Single KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
-| MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| DEVICE_COLLABORATION  | 0 | Device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
+| SINGLE_VERSION  | 1 | Single KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| MULTI_VERSION   | 2 | Multi-version KV store. This type is not supported currently.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
 ## SecurityLevel
 
-Defines the KV store security levels.
+Enumerates the KV store security levels.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Default Value| Description                   |
+| Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
 | NO_LEVEL  | 0 | No security level is set for the KV store.  |
-| S0  | 1 | The KV store security level is public. |
-| S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database. |
-| S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database. |
-| S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused on the database. |
-| S4  | 6 | The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database. |
+| S0  | 1 | The KV store security level is public.|
+| S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, a KV store that contains system data such as wallpapers.|
+| S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, a KV store that contains information created by users or call records, such as audio or video clips.|
+| S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused on the database. For example, a KV store that contains information such as user fitness, health, and location data.|
+| S4  | 6 | The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, a KV store that contains information such as authentication credentials and financial data.|
 
 
 ## Constants
@@ -604,18 +614,18 @@ Defines the KV store constants.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Default Value| Description                   |
+| Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
-| MAX_KEY_LENGTH  | 1024 | Maximum length (in bytes) of a key in the KV store.  |
-| MAX_VALUE_LENGTH  | 4194303 | Maximum length (in bytes) of a value in the KV store. |
-| MAX_KEY_LENGTH_DEVICE  | 896 | Maximum length of the device coordinate key. |
-| MAX_STORE_ID_LENGTH  | 128 | Maximum length (in bytes) of a KV store ID. |
-| MAX_QUERY_LENGTH  | 512000 | Maximum query length. |
-| MAX_BATCH_SIZE  | 128 | Maximum size of a batch operation. |
+| MAX_KEY_LENGTH  | 1024 | Maximum length of a key in the KV store, in bytes. |
+| MAX_VALUE_LENGTH  | 4194303 | Maximum length of a value in the KV store, in bytes. |
+| MAX_KEY_LENGTH_DEVICE  | 896 | Maximum length of a device key, in bytes.|
+| MAX_STORE_ID_LENGTH  | 128 | Maximum length of a KV store ID, in bytes. |
+| MAX_QUERY_LENGTH  | 512000 | Maximum query length, in bytes.|
+| MAX_BATCH_SIZE  | 128 | Maximum number of batch operations.|
 
 ## Schema<sup>8+</sup> ##
 
-Defines a database schema. When creating or opening a KV store, you can create a **Schema** object and put it into **Options**.
+Defines the schema of a KV store. You can create a **Schema** object and place it in [Options](#options) when creating or opening a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -644,7 +654,7 @@ Represents a **Schema** instance, which provides the methods for defining the va
 | ---   | ----  | ----------------------- |
 | nullable<sup>8+</sup>  | boolean | Whether the database field can be null.  |
 | default<sup>8+</sup>  | string | Default value of a **FieldNode**.|
-| type<sup>8+</sup>  | number | Value to store.|
+| type<sup>8+</sup>  | number | Value of the data type corresponding to the specified node.|
 
 ### constructor<sup>8+</sup> ###
 
@@ -692,7 +702,7 @@ try {
     node.appendChild(child1);
     node.appendChild(child2);
     node.appendChild(child3);
-    console.log("appendNode " + node.toJson());
+    console.log("appendNode " + JSON.stringify(node));
     child1 = null;
     child2 = null;
     child3 = null;
@@ -705,14 +715,16 @@ try {
 
 ## KvStoreResultSet<sup>8+</sup> ##
 
-Provides methods to obtain the KV store result set and query or move the data read position. Before calling any method in **KvStoreResultSet**, you must use **KvStore** to create a **KvStore** instance.
+Provides methods to obtain the KV store result sets, and query and move the data read position.
+
+Before calling any method in **KvStoreResultSet**, you must use [getKVStore](#getkvstore) to obtain a **KVStore** object.
 
 
 ### getCount<sup>8+</sup> ###
 
 getCount(): number
 
-Obtains the number of rows in the result set.
+Obtains the total number of rows in the result set.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -720,7 +732,7 @@ Obtains the number of rows in the result set.
 
 | Type  | Description              |
 | ------ | --------------    |
-| number |Number of rows obtained.         |
+| number |Total number of rows obtained.         |
 
 **Example**
 
@@ -729,15 +741,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed:' + err);
     });
     const count = resultSet.getCount();
-    console.log("GetCount " + count);
+    console.log("getCount succeed:" + count);
 } catch (e) {
-    console.log("GetCount fail " + e);
+    console.log("getCount failed: " + e);
 }
 ```
 
@@ -762,15 +774,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed:' + err);
     });
     const position = resultSet.getPosition();
-    console.log("getPosition " + position);
+    console.log("getPosition succeed:" + position);
 } catch (e) {
-    console.log("GetPosition fail " + e);
+    console.log("getPosition failed: " + e);
 }
 ```
 
@@ -779,7 +791,7 @@ try {
 
 moveToFirst(): boolean
 
-Moves the data read position to the first row.
+Moves the data read position to the first row. If the result set is empty, **false** will be returned.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -796,15 +808,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToFirst();
-    console.log("moveToFirst " + moved);
+    const moved1 = resultSet.moveToFirst();
+    console.log("moveToFirst succeed: " + moved1);
 } catch (e) {
-    console.log("MoveToFirst fail " + e);
+    console.log("moveToFirst failed " + e);
 }
 ```
 
@@ -813,7 +825,7 @@ try {
 
 moveToLast(): boolean
 
-Moves the data read position to the last row.
+Moves the data read position to the last row. If the result set is empty, **false** will be returned.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -830,15 +842,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToLast();
-    console.log("moveToLast " + moved);
+    const moved2 = resultSet.moveToLast();
+    console.log("moveToLast succeed:" + moved2);
 } catch (e) {
-    console.log("moveToLast fail " + e);
+    console.log("moveToLast failed: " + e);
 }
 ```
 
@@ -847,7 +859,7 @@ try {
 
 moveToNext(): boolean
 
-Moves the data read position to the next row.
+Moves the data read position to the next row. If the result set is empty, **false** will be returned.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -864,15 +876,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToNext();
-    console.log("moveToNext " + moved);
+    const moved3 = resultSet.moveToNext();
+    console.log("moveToNext succeed: " + moved3);
 } catch (e) {
-    console.log("moveToNext fail " + e);
+    console.log("moveToNext failed: " + e);
 }
 ```
 
@@ -881,7 +893,7 @@ try {
 
 moveToPrevious(): boolean
 
-Moves the data read position to the previous row.
+Moves the data read position to the previous row. If the result set is empty, **false** will be returned.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -898,15 +910,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToPrevious();
-    console.log("moveToPrevious " + moved);
+    const moved4 = resultSet.moveToPrevious();
+    console.log("moveToPrevious succeed:" + moved4);
 } catch (e) {
-    console.log("moveToPrevious fail " + e);
+    console.log("moveToPrevious failed: " + e);
 }
 ```
 
@@ -938,15 +950,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.move();
-    console.log("move " + moved);
+    const moved5 = resultSet.move();
+    console.log("move succeed:" + moved5);
 } catch (e) {
-    console.log("move fail " + e);
+    console.log("move failed: " + e);
 }
 ```
 
@@ -978,15 +990,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToPosition();
-    console.log("moveToPosition " + moved);
+    const moved6 = resultSet.moveToPosition();
+    console.log("moveToPosition succeed: " + moved6);
 } catch (e) {
-    console.log("moveToPosition fail " + e);
+    console.log("moveToPosition failed: " + e);
 }
 ```
 
@@ -1012,15 +1024,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isFirst();
-    console.log("isFirst " + moved);
+    const isfirst = resultSet.isFirst();
+    console.log("Check isFirst succeed:" + isfirst);
 } catch (e) {
-    console.log("isFirst fail " + e);
+    console.log("Check isFirst failed: " + e);
 }
 ```
 
@@ -1046,15 +1058,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isLast();
-    console.log("isLast " + moved);
+    const islast = resultSet.isLast();
+    console.log("Check isLast succeed: " + islast);
 } catch (e) {
-    console.log("isLast fail " + e);
+    console.log("Check isLast failed: " + e);
 }
 ```
 
@@ -1070,7 +1082,7 @@ Checks whether the data read position is before the first row.
 
 | Type   | Description              |
 | ------  | --------------    |
-| boolean |Returns **true** if the read position is before the first row; returns **false** otherwise. |
+| boolean |Returns **true** if the data read position is before the first row; returns **false** otherwise. |
 
 **Example**
 
@@ -1079,15 +1091,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isBeforeFirst();
-    console.log("isBeforeFirst " + moved);
+    const isbeforefirst = resultSet.isBeforeFirst();
+    console.log("Check isBeforeFirst succeed: " + isbeforefirst);
 } catch (e) {
-    console.log("isBeforeFirst fail " + e);
+    console.log("Check isBeforeFirst failed: " + e);
 }
 ```
 
@@ -1113,15 +1125,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.isAfterLast();
-    console.log("isAfterLast " + moved);
+    const isafterlast = resultSet.isAfterLast();
+    console.log("Check isAfterLast succeed:" + isafterlast);
 } catch (e) {
-    console.log("isAfterLast fail " + e);
+    console.log("Check isAfterLast failed: " + e);
 }
 ```
 
@@ -1130,7 +1142,7 @@ try {
 
 getEntry(): Entry
 
-Obtains a KV pair.
+Obtains the KV pair from the current position.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1147,16 +1159,15 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + err);
+        console.log('getResultSet failed: ' + err);
     });
-    const moved = resultSet.moveToNext();
     const entry  = resultSet.getEntry();
-    console.log("getEntry " + JSON.stringify(entry));
+    console.log("getEntry succeed:" + JSON.stringify(entry));
 } catch (e) {
-    console.log("getEntry fail " + e);
+    console.log("getEntry failed: " + e);
 }
 ```
 
@@ -1180,7 +1191,7 @@ A constructor used to create a **Schema** instance.
 
 reset(): Query
 
-Resets the **Query** object that contains common query options.
+Resets the **Query** object.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1211,7 +1222,7 @@ try {
 
 equalTo(field: string, value: number|string|boolean): Query
 
-Creates a **Query** object to match the specified field whose value is equal to the specified value.
+Creates a **Query** object to match the specified field whose value is equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1219,14 +1230,14 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object reset.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1237,7 +1248,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1254,7 +1265,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1272,7 +1283,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1289,14 +1300,14 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1307,7 +1318,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1324,14 +1335,14 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1342,7 +1353,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1359,14 +1370,14 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1377,7 +1388,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1394,14 +1405,14 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1412,7 +1423,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1423,20 +1434,19 @@ isNull(field: string): Query
 
 Creates a **Query** object to match the specified field whose value is **null**.
 
-
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 **Parameters**
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1447,7 +1457,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1465,14 +1475,14 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | number[]  | Yes   | List of numbers.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1483,7 +1493,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1500,14 +1510,14 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | string[]  | Yes   | List of strings.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1518,7 +1528,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1535,14 +1545,14 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | number[]  | Yes   | List of numbers.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1553,7 +1563,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1570,14 +1580,14 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 | valueList  | string[]  | Yes   | List of strings.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1588,7 +1598,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1605,14 +1615,14 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| valueList  | string  | Yes   | String specified.|
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| value  | string  | Yes   | String specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1623,7 +1633,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1640,14 +1650,14 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
-| valueList  | string  | Yes   | String specified.|
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| value  | string  | Yes   | String specified.|
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1658,7 +1668,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1688,7 +1698,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1718,7 +1728,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1735,13 +1745,13 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1753,7 +1763,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1770,13 +1780,13 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It must start with $ and cannot contain ^. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1788,7 +1798,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1812,7 +1822,7 @@ Creates a **Query** object to specify the number of results and where to start.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1824,7 +1834,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1833,7 +1843,7 @@ try {
 
 isNotNull(field: string): Query
 
-Creates a **Query** object with a specified field that is not null.
+Creates a **Query** object to match the specified field whose value is not **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1841,13 +1851,13 @@ Creates a **Query** object with a specified field that is not null.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field specified.     |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'.     |
 
 **Return value**
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1858,7 +1868,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1875,7 +1885,7 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1888,7 +1898,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1905,7 +1915,7 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1918,7 +1928,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1941,7 +1951,7 @@ Creates a **Query** object with a specified key prefix.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1953,7 +1963,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1976,7 +1986,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1988,7 +1998,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-   console.log("dumplicated calls should be ok :" + e);
+   console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -2012,7 +2022,7 @@ Creates a **Query** object with the device ID as the key prefix.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -2039,7 +2049,7 @@ Obtains the query statement of this **Query** object.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| string |Query statement obtained.|
 
 **Example**
 
@@ -2049,16 +2059,16 @@ try {
     let sql1 = query.getSqlLike();
     console.log("GetSqlLike sql=" + sql1);
 } catch (e) {
-    console.log("dumplicated calls should be ok : " + e);
+    console.log("duplicated calls should be ok : " + e);
 }
 ```
 
 
 ## KVStore
 
-Provides methods to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data synchronization. Before calling any method in **KVStore**, you must use **getKVStore** to obtain a **KVStore** object.
+Provides methods to manage data in a KV store, for example, adding or deleting data and subscribing to data changes or completion of data synchronization.
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
+Before calling any method in **KVStore**, you must use [getKVStore](#getkvstore) to obtain a **KVStore** object.
 
 ### put
 
@@ -2115,7 +2125,7 @@ Adds a KV pair of the specified type to this KV store. This API uses a promise t
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2133,7 +2143,6 @@ try {
     console.log("An unexpected error occurred. Error:" + e);
 }
 ```
-
 
 ### delete
 
@@ -2176,7 +2185,6 @@ try {
 }
 ```
 
-
 ### delete
 
 delete(key: string): Promise&lt;void&gt;
@@ -2195,7 +2203,7 @@ Deletes a KV pair from this KV store. This API uses a promise to return the resu
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2218,13 +2226,11 @@ try {
     console.log("An unexpected error occurred. Error:" + e);
 }
 ```
-
-
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data changes of the specified type. This API uses a synchronous callback to return the result.
+Subscribes to data change notifications of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2232,9 +2238,9 @@ Subscribes to data changes of the specified type. This API uses a synchronous ca
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Name of the event to subscribe to. The value is **dataChange**, which indicates the data change event.      |
+| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates data changes.      |
 | type  |[SubscribeType](#subscribetype) | Yes   |Type of data changes.    |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the result.|
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the data changes.|
 
 **Example**
 
@@ -2250,7 +2256,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to data synchronization completion events. This API uses a synchronous callback to return the result.
+Subscribes to data synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2258,8 +2264,8 @@ Subscribes to data synchronization completion events. This API uses a synchronou
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string | Yes   |Name of the event to subscribe to. The value is **syncComplete**, which indicates the synchronization complete event.      |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback used to return the result.    |
+| event  |string | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates completion of a data synchronization.      |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback used to return the data synchronization result.    |
 
 **Example**
 
@@ -2274,7 +2280,7 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data change events. This API uses a synchronous callback to return the result.
+Unsubscribes from data change notifications.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2282,8 +2288,8 @@ Unsubscribes from data change events. This API uses a synchronous callback to re
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Name of the event to unsubscribe from. The value is **dataChange**, which indicates the data change event.      |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return the result.|
+| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates data changes.      |
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return the data changes.|
 
 **Example**
 
@@ -2333,14 +2339,14 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_string_key', function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
         });
     });
 }catch(e) {
-    console.log('PutBatch e ' + e);
+    console.log('PutBatch e ' + JSON.stringify(e));
 }
 ```
 
@@ -2363,7 +2369,7 @@ Inserts KV pairs in batches to this KV store. This API uses a promise to return 
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2385,7 +2391,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entrys) => {
             console.log('getEntries success');
             console.log('PutBatch ' + JSON.stringify(entries));
         }).catch((err) => {
@@ -2395,7 +2401,7 @@ try {
         console.log('putBatch fail ' + JSON.stringify(err));
     });
 }catch(e) {
-    console.log('PutBatch e ' + e);
+    console.log('PutBatch e ' + JSON.stringify(e));
 }
 ```
 
@@ -2437,7 +2443,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.deleteBatch(keys, async function (err,data) {
+        kvStore.deleteBatch(keys, async function (err,data) {
             console.log('deleteBatch success');
         });
     });
@@ -2465,7 +2471,7 @@ Deletes KV pairs in batches from this KV store. This API uses a promise to retur
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2489,7 +2495,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.deleteBatch(keys).then((err) => {
+        kvStore.deleteBatch(keys).then((err) => {
             console.log('deleteBatch success');
         }).catch((err) => {
             console.log('deleteBatch fail ' + JSON.stringify(err));
@@ -2545,7 +2551,7 @@ try {
         console.log('startTransaction success');
         let entries = putBatchString(10, 'batch_test_string_key');
         console.log('entries: ' + JSON.stringify(entries));
-        await kvStore.putBatch(entries, async function (err,data) {
+        kvStore.putBatch(entries, async function (err,data) {
             console.log('putBatch success');
         });
     });
@@ -2567,7 +2573,7 @@ Starts the transaction in this KV store. This API uses a promise to return the r
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2634,7 +2640,7 @@ Commits the transaction in this KV store. This API uses a promise to return the 
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2696,7 +2702,7 @@ Rolls back the transaction in this KV store. This API uses a promise to return t
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2718,7 +2724,7 @@ try {
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data synchronization, which can be enabled or disable. This API uses an asynchronous callback to return the result.
+Sets data synchronization, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2751,7 +2757,7 @@ try {
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
-Enables or disables data synchronization. This API uses a promise to return the result.
+Sets data synchronization, which can be enabled or disabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2765,7 +2771,7 @@ Enables or disables data synchronization. This API uses a promise to return the 
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2835,7 +2841,7 @@ Sets the data synchronization range. This API uses a promise to return the resul
 
 | Type   | Description      |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise used to return the result.|
+| Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -2857,11 +2863,11 @@ try {
 
 ## SubscribeType
 
-Defines the subscription type.
+Enumerates the subscription types.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Default Value  | Description                   |
+| Name | Value  | Description                   |
 | -----  | ------   | ----------------------- |
 | SUBSCRIBE_TYPE_LOCAL  |0 |Local data changes. |
 | SUBSCRIBE_TYPE_REMOTE |1 |Remote data changes. |
@@ -2894,7 +2900,7 @@ Defines the KV pairs stored in the KV store.
 
 ## Value
 
-Defines the value in a KV pair.
+Defines the **value** object in a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2905,13 +2911,11 @@ Defines the value in a KV pair.
 
 ## ValueType
 
-Enumerates the types of values in KV pairs.
-
-These value types can be used only by internal applications.
+Enumerates the data types.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Default Value  | Description                   |
+| Name | Value  | Description                   |
 | -----  | ------   | ----------------------- |
 | STRING  |0 |String. |
 | INTEGER |1 |Integer. |
@@ -2920,18 +2924,19 @@ These value types can be used only by internal applications.
 | BOOLEAN   |4 |Boolean. |
 | DOUBLE   |5 |Double (double-precision floating point). |
 
-
 ## SingleKVStore
 
-Provides methods to query and synchronize data in a single KV store. This class inherits from **KVStore**. Before calling any method in **SingleKVStore**, you must use [getKVStore](#getkvstore) to obtain a **SingleKVStore** object.
+Provides methods to query and synchronize data in a single KV store. This class inherits from [KVStore](#kvstore).
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
+Data is not distinguished by device in a single KV store. The data written to different devices using the same key will be overwritten. For example, a single KV store can be used to synchronize a user's calendar and contact data between different devices.
+
+Before calling any method in **SingleKVStore**, you must use [getKVStore](#getkvstore) to obtain a **SingleKVStore** instance.
 
 ### get
 
 get(key: string, callback: AsyncCallback&lt;Uint8Array | string | boolean | number&gt;): void
 
-Obtains the value of a specified key. This API uses an asynchronous callback to return the result.
+Obtains the value of the specified key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2940,7 +2945,7 @@ Obtains the value of a specified key. This API uses an asynchronous callback to 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | Yes   |Callback used to return the value obtained. |
+| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;) | Yes   |Callback invoked to return the value obtained. |
 
 **Example**
 
@@ -2969,7 +2974,7 @@ try {
 
 get(key: string): Promise&lt;Uint8Array | string | boolean | number&gt;
 
-Obtains the value of a specified key. This API uses a promise to return the result.
+Obtains the value of the specified key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3012,7 +3017,7 @@ try {
 
 getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified key prefix. This API uses an asynchronous callback to return the result.
+Obtains all KV pairs that match the specified key prefix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3021,7 +3026,7 @@ Obtains the KV pairs that match the specified key prefix. This API uses an async
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | Yes   |Key prefix to match. |
-| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
+| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs obtained. |
 
 **Example**
 
@@ -3042,7 +3047,7 @@ try {
     }
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_number_key', function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -3058,7 +3063,7 @@ try {
 
 getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified key prefix. This API uses a promise to return the result.
+Obtains all KV pairs that match the specified key prefix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3094,7 +3099,7 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entrys) => {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -3124,7 +3129,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| query  |[Query](#query8)   | Yes   |**Query** object to match. |
+| query  |[Query](#query8)   | Yes   |Key prefix to match. |
 | callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
 
 **Example**
@@ -3150,7 +3155,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -3186,6 +3191,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses a 
 **Example**
 
 ```js
+let kvStore;
 try {
     var arr = new Uint8Array([21,31]);
     let entries = [];
@@ -3205,7 +3211,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entrys) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -3220,11 +3226,11 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup><a name="singlekvstore_getresultset"></a> ###
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the result set with the specified key prefix from this single KV store. This API uses an asynchronous callback to return the result.
+Obtains the result set with the specified prefix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3233,7 +3239,7 @@ Obtains the result set with the specified key prefix from this single KV store. 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | Yes   |Key prefix to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback used to return the result set obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the result set obtained.|
 
 **Example**
 
@@ -3255,8 +3261,8 @@ try {
     }
     kvStore.putBatch(entries, async function (err, data) {
         console.log('GetResultSet putBatch success');
-        await kvStore.getResultSet('batch_test_string_key', async function (err, result) {
-            console.log('GetResultSet getResultSet success');
+        kvStore.getResultSet('batch_test_string_key', async function (err, result) {
+            console.log('GetResultSet getResultSet succeed.');
             resultSet = result;
             kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('GetResultSet closeResultSet success');
@@ -3273,7 +3279,7 @@ try {
 
 getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the result set with the specified key prefix from this single KV store. This API uses a promise to return the result.
+Obtains the result set with the specified prefix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3313,10 +3319,10 @@ try {
         console.log('PutBatch putBatch fail ' + JSON.stringify(err));
     });
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('GetResult getResultSet success');
+        console.log('GetResult getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
     kvStore.closeResultSet(resultSet).then((err) => {
         console.log('GetResult closeResultSet success');
@@ -3333,7 +3339,7 @@ try {
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3342,7 +3348,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |Query    | Yes   |**Query** object to match.            |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback used to return the **KvStoreResultSet** object obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
@@ -3366,8 +3372,8 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSet(query, async function (err, result) {
-            console.log('getResultSet success');
+        kvStore.getResultSet(query, async function (err, result) {
+            console.log('getResultSet succeed.');
             resultSet = result;
         });
     });
@@ -3381,7 +3387,7 @@ try {
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses a promise to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3423,10 +3429,10 @@ try {
     const query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet(query).then((result) => {
-        console.log(' getResultSet success');
+        console.log(' getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSet e ' + e);
@@ -3437,7 +3443,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3471,7 +3477,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3485,7 +3491,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API us
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;void&gt; |Promise used to return the result.|
+|Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -3517,7 +3523,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |**Query** object to match.        |
-| callback  |AsyncCallback&lt;number&gt;   | Yes   |Callback used to return the number of results obtained.        |
+| callback  |AsyncCallback&lt;number&gt;   | Yes   |Callback invoked to return the number of results obtained.        |
 
 **Example**
 
@@ -3540,8 +3546,8 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSize(query, async function (err, resultSize) {
-            console.log('getResultSet success');
+        kvStore.getResultSize(query, async function (err, resultSize) {
+            console.log('getResultSet succeed.');
         });
     });
 } catch(e) {
@@ -3595,9 +3601,9 @@ try {
     const query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSize(query).then((resultSize) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSize e ' + e);
@@ -3630,12 +3636,12 @@ try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
         console.log('put success');
         const deviceid = 'no_exist_device_id';
-        await kvStore.removeDeviceData(deviceid, async function (err,data) {
+        kvStore.removeDeviceData(deviceid, async function (err,data) {
             if (err == undefined) {
                 console.log('removeDeviceData success');
             } else {
                 console.log('removeDeviceData fail');
-                await kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                kvStore.get(KEY_TEST_STRING_ELEMENT, async function (err,data) {
                     console.log('RemoveDeviceData get success');
                 });
             }
@@ -3665,7 +3671,7 @@ Deletes data of a device. This API uses a promise to return the result.
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;void&gt; |Promise used to return the result.|
+|Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -3700,7 +3706,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the synchronization completion events. This API uses a synchronous callback to return the result.
+Subscribes to the data synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3708,8 +3714,8 @@ Subscribes to the synchronization completion events. This API uses a synchronous
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Name of the event to subscribe to. The value is **syncComplete**, which indicates the synchronization complete event.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback used to return the synchronization result.   |
+| event  |string   | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates completion of a data synchronization.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback invoked to return the synchronization result.   |
 
 **Example**
 
@@ -3736,7 +3742,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization completion events. This API uses a synchronous callback to return the result.
+Unsubscribes from the data synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3744,7 +3750,7 @@ Unsubscribes from the synchronization completion events. This API uses a synchro
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Name of the event to unsubscribe from. The value is **syncComplete**, which indicates the synchronization complete event.   |
+| event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates completion of a data synchronization.   |
 | syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return the synchronization result.   |
 
 **Example**
@@ -3767,7 +3773,7 @@ try {
 
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
-Manually triggers KV store synchronization synchronously.
+Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3777,8 +3783,8 @@ Manually triggers KV store synchronization synchronously.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | Yes   |IDs of the devices to be synchronized. These devices must be in the same networking environment.   |
-| mode  |[SyncMode](#syncmode)   | Yes  |Data synchronization mode.   |
+| deviceIdList  |string[]  | Yes   |IDs of the devices to be synchronized. These devices must be in the same networking environment.  |
+| mode  |[SyncMode](#syncmode)   | Yes  |Synchronization mode.   |
 | allowedDelayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
 
 **Example**
@@ -3792,7 +3798,7 @@ kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the default delay of database synchronization. This API uses an asynchronous callback to return the result.
+Sets the default delay allowed for KV store synchronization. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3822,7 +3828,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-Sets the default delay of database synchronization. This API uses a promise to return the result.
+Sets the default delay allowed for KV store synchronization. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3837,7 +3843,7 @@ Sets the default delay of database synchronization. This API uses a promise to r
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;void&gt; |Promise used to return the result.|
+|Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -3868,7 +3874,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes   |Callback used to return the security level obtained.   |
+| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes   |Callback invoked to return the security level obtained.   |
 
 **Example**
 
@@ -3916,15 +3922,19 @@ try {
 
 ## DeviceKVStore<sup>8+</sup> ##
 
-Provides methods to manage distributed data by device in the distributed system. This class inherits from **KVStore** and provides data query and synchronization methods. Before calling any method in **DeviceKVStore**, you must use [getKVStore](#getkvstore) to obtain a **DeviceKVStore** object.
+Provides methods to query and synchronize data in a device KV store. This class inherits from [KVStore](#kvstore).
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
+Data is distinguished by device in a device KV store. Each device can only write and modify its own data. Data of other devices is read-only and cannot be modified.
+
+For example, a device KV store can be used to implement image sharing between devices. The images of other devices can be viewed, but not be modified or deleted.
+
+Before calling any method in **DeviceKVStore**, you must use [getKVStore](#getkvstore) to obtain a **DeviceKVStore** object.
 
 ### get<sup>8+</sup> ###
 
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
 
-Obtains the string value that matches the specified key for a device. This API uses an asynchronous callback to return the result.
+Obtains a string value that matches the specified device ID and key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -3959,7 +3969,7 @@ try{
 
 get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
 
-Obtains the string value that matches the specified key for a device. This API uses a promise to return the result.
+Obtains a string value that matches the specified device ID and key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -3974,7 +3984,7 @@ Obtains the string value that matches the specified key for a device. This API u
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;boolean\|string\|number\|Uint8Array&gt; |Promise used to return the value obtained.|
+|Promise&lt;boolean\|string\|number\|Uint8Array&gt; |Promise used to return the string value obtained.|
 
 **Example**
 
@@ -4003,7 +4013,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified key prefix for a device. This API uses an asynchronous callback to return the result.
+Obtains all KV pairs that match the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4035,7 +4045,7 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        await kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4051,7 +4061,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified key prefix for a device. This API uses a promise to return the result.
+Obtains all KV pairs that match the specified device ID and key prefix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4088,7 +4098,7 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        await kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4142,11 +4152,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        expect(err == undefined).assertTrue();
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        await kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4202,7 +4211,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entrys) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4221,7 +4230,7 @@ try {
 
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-Obtains the KV pairs that match the specified **Query** object for a device. This API uses an asynchronous callback to return the result.
+Obtains the KV pairs that match the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4231,7 +4240,7 @@ Obtains the KV pairs that match the specified **Query** object for a device. Thi
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback used to return the KV pairs obtained.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4254,11 +4263,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        expect(err == undefined).assertTrue();
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        await kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+        kvStore.getEntries('localDeviceId', query, function (err,entrys) {
             console.log('getEntries success');
             console.log('entrys.length: ' + entrys.length);
             console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
@@ -4275,7 +4283,7 @@ try {
 
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
-Obtains the KV pairs that match the specified **Query** object for a device. This API uses a promise to return the result.
+Obtains the KV pairs that match the specified device ID and **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4316,7 +4324,7 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        await kvStore.getEntries('localDeviceId', query).then((entrys) => {
+        kvStore.getEntries('localDeviceId', query).then((entrys) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4331,11 +4339,11 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup><a name="devicekvstore_getresultset"></a> ###
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This API uses an asynchronous callback to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4345,7 +4353,7 @@ Obtains the **KvStoreResultSet** object that matches the specified key prefix fo
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback used to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -4354,9 +4362,9 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async function (err, result) {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
-        await kvStore.closeResultSet(resultSet, function (err, data) {
+        kvStore.closeResultSet(resultSet, function (err, data) {
             console.log('closeResultSet success');
         })
     });
@@ -4370,7 +4378,7 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified key prefix for a device. This API uses a promise to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified device ID and key prefix. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4394,10 +4402,10 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
     kvStore.closeResultSet(resultSet).then((err) => {
         console.log('closeResultSet success');
@@ -4414,7 +4422,7 @@ try {
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4423,7 +4431,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback used to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -4448,10 +4456,10 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        await kvStore.getResultSet(query, async function (err, result) {
-            console.log('getResultSet success');
+        kvStore.getResultSet(query, async function (err, result) {
+            console.log('getResultSet succeed.');
             resultSet = result;
-            await kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('closeResultSet success');
             })
         });
@@ -4466,7 +4474,7 @@ try {
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object. This API uses a promise to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4510,10 +4518,10 @@ try {
     query.prefixKey("batch_test");
     console.log("GetResultSet " + query.getSqlLike());
     kvStore.getResultSet(query).then((result) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
     kvStore.closeResultSet(resultSet).then((err) => {
         console.log('closeResultSet success');
@@ -4530,7 +4538,7 @@ try {
 
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This API uses an asynchronous callback to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4540,7 +4548,7 @@ Obtains the **KvStoreResultSet** object that matches the specified **Query** obj
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback used to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)[]&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -4564,10 +4572,10 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSet('localDeviceId', query, async function (err, result) {
-            console.log('getResultSet success');
+        kvStore.getResultSet('localDeviceId', query, async function (err, result) {
+            console.log('getResultSet succeed.');
             resultSet = result;
-            await kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err, data) {
                 console.log('closeResultSet success');
             })
         });
@@ -4582,7 +4590,7 @@ try {
 
 getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
-Obtains the **KvStoreResultSet** object that matches the specified **Query** object for a device. This API uses a promise to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified device ID and **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4625,10 +4633,10 @@ try {
     const query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSet('localDeviceId', query).then((result) => {
-        console.log('GetResultSet getResultSet success');
+        console.log('GetResultSet getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('GetResultSet getResultSet fail ' + JSON.stringify(err));
+        console.log('GetResultSet getResultSet failed: ' + JSON.stringify(err));
     });
     query.deviceId('localDeviceId');
     console.log("GetResultSet " + query.getSqlLike());
@@ -4648,7 +4656,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4683,7 +4691,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4697,7 +4705,7 @@ Closes the **KvStoreResultSet** object obtained by **getResultSet**. This API us
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;void&gt; |Promise used to return the result.|
+|Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -4730,7 +4738,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback used to return the number of results obtained.   |
+| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.   |
 
 **Example**
 
@@ -4754,8 +4762,8 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        await kvStore.getResultSize(query, async function (err, resultSize) {
-            console.log('getResultSet success');
+        kvStore.getResultSize(query, async function (err, resultSize) {
+            console.log('getResultSet succeed.');
         });
     });
 } catch(e) {
@@ -4810,9 +4818,9 @@ try {
     query.prefixKey("batch_test");
     query.deviceId('localDeviceId');
     kvStore.getResultSize(query).then((resultSize) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSize e ' + e);
@@ -4824,7 +4832,7 @@ try {
 
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the number of results that matches the specified **Query** object for a device. This API uses an asynchronous callback to return the result.
+Obtains the number of results that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4834,7 +4842,7 @@ Obtains the number of results that matches the specified **Query** object for a 
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device.   |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback used to return the number of results obtained.   |
+| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.   |
 
 **Example**
 
@@ -4857,8 +4865,8 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        await kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
-            console.log('getResultSet success');
+        kvStore.getResultSize('localDeviceId', query, async function (err, resultSize) {
+            console.log('getResultSet succeed.');
         });
     });
 } catch(e) {
@@ -4871,7 +4879,7 @@ try {
 
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
-Obtains the number of results that matches the specified **Query** object for a device. This API uses a promise to return the result.
+Obtains the number of results that matches the specified device ID and **Query** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4913,9 +4921,9 @@ try {
     var query = new distributedData.Query();
     query.prefixKey("batch_test");
     kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
-        console.log('getResultSet success');
+        console.log('getResultSet succeed.');
     }).catch((err) => {
-        console.log('getResultSet fail ' + JSON.stringify(err));
+        console.log('getResultSet failed: ' + JSON.stringify(err));
     });
 }catch(e) {
     console.log('GetResultSize e ' + e);
@@ -4927,7 +4935,7 @@ try {
 
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes data of a device from this KV store. This API uses an asynchronous callback to return the result.
+Deletes data of the specified device from this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4948,12 +4956,12 @@ try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err,data) {
         console.log('RemoveDeviceData  put success');
         const deviceid = 'no_exist_device_id';
-        await kvStore.removeDeviceData(deviceid, async function (err,data) {
+        kvStore.removeDeviceData(deviceid, async function (err,data) {
             if (err == undefined) {
                 console.log('removeDeviceData success');
             } else {
                 console.log('removeDeviceData fail');
-                await kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
+                kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, async function (err,data) {
                     console.log('RemoveDeviceData get success');
                 });
             }
@@ -4969,7 +4977,7 @@ try {
 
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
-Removes data of a device from this KV store. This API uses a promise to return the result.
+Deletes data of the specified device from this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4983,7 +4991,7 @@ Removes data of a device from this KV store. This API uses a promise to return t
 
 | Type   | Description      |
 | ------  | -------   |
-|Promise&lt;void&gt; |Promise used to return the result.|
+|Promise&lt;void&gt; |Promise that returns no value.|
 
 **Example**
 
@@ -5018,7 +5026,7 @@ try {
 
 sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
-Manually triggers KV store synchronization synchronously.
+Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5029,7 +5037,7 @@ Manually triggers KV store synchronization synchronously.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceIdList    |string[]               | Yes   |IDs of the devices to be synchronized.|
-| mode            |[SyncMode](#syncmode)  | Yes   |Data synchronization mode, which can be **PUSH**, **PULL**, or **PUSH_PULL**. |
+| mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
 | allowedDelayMs  |number                 | No   |Allowed synchronization delay time, in ms. |
 
 **Example**
@@ -5057,7 +5065,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the synchronization completion events. This API uses a synchronous callback to return the result.
+Subscribes to the data synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5065,12 +5073,13 @@ Subscribes to the synchronization completion events. This API uses a synchronous
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event    |string      | Yes   |Name of the event to subscribe to. The value is **syncComplete**, which indicates the synchronization complete event.|
+| event    |string      | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates the data synchronization complete event.|
 | syncCallback            |Callback<Array&lt;[string, number]&gt;> | Yes   |Callback used to return the synchronization result. |
 
 **Example**
 
 ```js
+let kvStore;
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
@@ -5092,7 +5101,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization completion events. This API uses a synchronous callback to return the result.
+Unsubscribes from the synchronization complete events. This API uses a synchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5100,7 +5109,7 @@ Unsubscribes from the synchronization completion events. This API uses a synchro
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event         |string                           | Yes   |Name of the event to unsubscribe from. The value is **syncComplete**, which indicates the synchronization complete event.|
+| event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates the data synchronization complete event.|
 | syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return the synchronization result. |
 
 **Example**
@@ -5118,14 +5127,13 @@ try {
 }
 ```
 
-
 ## SyncMode
 
-Defines the synchronization mode.
+Enumerates the synchronization modes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name      | Default Value    | Description                   |
+| Name      | Value    | Description                   |
 | -----      | ------    | ----------------------- |
 | PULL_ONLY  |0          |Pull data from the peer end to the local end only.|
 | PUSH_ONLY  |1          |Push data from the local end to the peer end only.|
