@@ -1,8 +1,8 @@
-## 支持的开发板列表
+# 支持的开发板列表
 
-当前社区共支持17款开发板，具体如下：
+当前社区共支持17款开发板，具体如下；更详细的开发板信息展示，请参考：http://ci.openharmony.cn/developBoard/list。
 
-### 标准系统开发板
+## 标准系统开发板
 
 | 开发板型号 | 芯片型号 | 主要能力 | 典型应用场景 | 开发板代码仓及社区每日构建版本获取地址 |
 | ---------- | -------- | -------- | ------------ | -------------------------------------- |
@@ -13,14 +13,14 @@
 |扬帆开发板|RK3399|扬帆开发板基于RK3399芯片平台；RK3399的CPU采用big.LITTLE核心架构，采用双核Cortex-A72大核+四核Cortex-A53小核结构。在整数，浮点数，内存，整体性能，功耗和核心面积方面都进行了重大改进。RK3399的GPU采用四核ARM的新一代高端图像处理器Mali-T860，集成了更多的带宽压缩技术（如智能叠加，ASTC和本地像素存储），并支持更多的图形和计算接口。|互动广告机、互动数字标牌、智能自助终端、智能零售终端、工控主机、机器人设备等。|代码仓：<br/>[device_soc_rockchip](https://gitee.com/openharmony/device_soc_rockchip)<br/>[device_board_isoftstone](https://gitee.com/openharmony/device_board_isoftstone)<br/>[vendor_isoftstone](https://gitee.com/openharmony/vendor_isoftstone)<br/>社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailys/dailybuilds|
 |致远开发板|T507|致远开发板搭载了全志工业级T507芯片，该芯片集成四核CortexTM – A53 CPU、G31 MP2 GPU、多路视频输出接口（RGB/2*LVDS/HDMI/CVBS OUT）、多路视频输入接口（MIPI CSI/BT656/BT1120），支持4K@60fps H.265解码，4K@25fps H.264解码，DI，3D降噪，自动调色系统和梯形校正模块可以提供提供流畅的用户体验和专业的视觉效果|工业控制、智能驾舱、智慧家居、智慧电力、在线教育等。|代码仓：<br/>[device_soc_allwinner](https://gitee.com/openharmony/device_soc_allwinner)<br/>[device_board_isoftstone](https://gitee.com/openharmony/device_board_isoftstone)<br/>[vendor_isoftstone](https://gitee.com/openharmony/vendor_isoftstone)<br/>社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailys/dailybuilds|
 
-### 小型系统开发板
+## 小型系统开发板
 
 | 开发板型号 | 芯片型号 | 主要能力 | 典型应用场景 | 开发板代码仓及社区每日构建版本获取地址 |
 | ---------- | -------- | -------- | ------------ | -------------------------------------- |
 |Hispark_Taurus|Hi3516DV300|Hi3516DV300是新一代Smart HD IP摄像机SOC，集成新一代ISP(Image Signal Processor)、H.265视频压缩编码器、高性能NNIE引擎，在低码率、高画质、智能处理和分析、低功耗等方面有较好的性能。|带屏智能设备，如带屏冰箱、车机等。|代码仓：<br/>[device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br/>[device_board_hisilicon](https://gitee.com/openharmony/device_board_hisilicon)<br/>[vendor_hisilicon](https://gitee.com/openharmony/vendor_hisilicon)<br/>社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailys/dailybuilds|
 |BearPi-HM Micro|STM32MP157A|BearPi-HM Micro开发板是一块高度集成并可运行OpenHarmony系统的开发板，板载高性能的工业级处理器STM32MP157芯片，搭配4.3寸LCD电容式触摸屏，并板载wifi电路及标准的E53接口，标准的E53接口可扩展智能加湿器、智能台灯、智能安防、智能烟感等案例。|智慧家居、智能硬件、中控屏等。|代码仓：<br/>[device_soc_st](https://gitee.com/openharmony/device_soc_st)<br/>[device_board_bearpi](https://gitee.com/openharmony/device_board_bearpi)<br/>[vendor_bearpi](https://gitee.com/openharmony/vendor_bearpi)<br/>社区每日构建版本获取地址：<br/>http://ci.openharmony.cn/dailys/dailybuilds|
 
-### 轻量系统开发板
+## 轻量系统开发板
 
 | 开发板型号 | 芯片型号 | 主要能力 | 典型应用场景 | 开发板代码仓及社区每日构建版本获取地址 |
 | ---------- | -------- | -------- | ------------ | -------------------------------------- |
