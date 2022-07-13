@@ -3,13 +3,6 @@
 
 ## setTimeout
 
-## 导入模块
-
-
-```
-import Time from '@ohos.Time';
-```
-
 setTimeout(handler[,delay[,…args]]): number
 
 设置一个定时器，该定时器在定时器到期后执行一个函数。
