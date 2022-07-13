@@ -1,12 +1,16 @@
 # Preferences Development
 
+> **NOTE**
+>
+> This feature is supported since API Version 9. For the versions earlier than API Version 9, use [Lightweight Storage](../reference/apis/js-apis-data-storage.md) APIs.
+
 ## When to Use
 
 Preferences are ideal for storing data frequently used by applications, but not for storing a large amount of data or data with frequent changes. The application data is persistently stored on a device in the form of files. Note that the instance accessed by an application contains all data of the file. The data is always loaded to the memory of the device until the application removes it from the memory. The application can perform data operations using the **Preferences** APIs.
 
 ## Available APIs
 
-Preferences provide capabilities for processing data in the form of key-value (KV) pairs and support data persistence, modification, and query. In KV pairs, keys are of the string type, and values can be of the number, string, or Boolean type.
+Preferences provide capabilities for processing data in the form of key-value (KV) pairs and support data persistence, modification, and query. In KV pairs, keys are of the string type, and values can be of the number, string, or Boolean type. For more APIs related to preferences, see [Preferences](../reference/apis/js-apis-data-preferences.md).
 
 ### Creating a Preferences Instance
 
@@ -26,7 +30,7 @@ Call the **put()** method to add or modify data in a **Preferences** instance.
 
 | Class   | API                                            | Description                                           |
 | ------- | -------------------------------------------------- | ----------------------------------------------- |
-| Preferences | put(key: string, value: ValueType): Promise\<void> | Writes data of the number, string, and Boolean types.|
+| Preferences | put(key: string, value: ValueType): Promise\<void> | Writes data with the value type of number, string, boolean, Array\<number>, Array\<string>, or Array\<boolean>.|
 
 ### Reading Data
 
@@ -36,7 +40,7 @@ Call the **get()** method to read data from a **Preferences** instance.
 
 | Class   | API                                                    | Description                                           |
 | ------- | ---------------------------------------------------------- | ----------------------------------------------- |
-| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | Reads data of the number, string, and Boolean types.|
+| Preferences | get(key: string, defValue: ValueType): Promise\<ValueType> | Obtains data with the value type of number, string, boolean, Array\<number>, Array\<string>, or Array\<boolean>.|
 
 ### Storing Data Persistently
 
@@ -67,7 +71,7 @@ Use the following APIs to delete a **Preferences** instance or data file.
 
 | Package             | API                                              | Description                                                        |
 | ----------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
-| ohos.data.preferences | deletePreferences(context: Context, name: string): Promise<void>;     | Deletes a **Preferences** instance from the cache and deletes its file from the device.|
+| ohos.data.preferences | deletePreferences(context: Context, name: string): Promise\<void>;     | Deletes a **Preferences** instance from the cache and deletes its file from the device.|
 | ohos.data.preferences | removePreferencesFromCache(context: Context, name: string): Promise\<void>; | Removes a **Preferences** instance from the memory to release memory.
 
 ## How to Develop
@@ -91,8 +95,8 @@ Use the following APIs to delete a **Preferences** instance or data file.
 
    ```js
    promise.then((preferences) => {
-       let getPromise = preferences.put('startup', 'auto')
-       getPromise.then(() => {
+       let putPromise = preferences.put('startup', 'auto')
+       putPromise.then(() => {
            console.info("Put the value of startup successfully.")
        }).catch((err) => {
            console.info("Failed to put the value of startup with err: " + err)
