@@ -2315,7 +2315,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2355,7 +2355,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -3721,7 +3721,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
     let resultSet;
@@ -3761,7 +3761,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;Kv
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let resultSet;
@@ -3770,7 +3770,7 @@ try {
     kvStore.getResultSet(predicates) .then((result) => {
         console.log(' GetResultSet success');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, fun ction (err, data) {
+        kvStore.closeResultSet(resultSet, function (err, data) {
             console.log(' closeResultSet success');
         })
     });
@@ -4206,7 +4206,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {
@@ -5515,7 +5515,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {
