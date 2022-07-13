@@ -4,7 +4,7 @@
 
 ### 功能简介
 
-HiSysEvent打点提供了事件埋点功能，开发者可以通过在关键路径埋点来记录系统在运行过程中的重要信息。
+HiSysEvent打点提供了事件埋点功能，开发者可以通过在关键路径埋点来记录系统在运行过程中的重要信息。同时，HiSysEvent打点也提供了以事件领域为单位的HiSysEvent打点屏蔽机制，方便开发者评估及调试HiSysEvent打点操作的影响。
 
 ### 运作机制
 
@@ -22,13 +22,21 @@ HiSysEvent打点提供了事件埋点功能，开发者可以通过在关键路�
 
 c++事件埋点开发能力如下：HiSysEvent类，具体的API详见接口文档 。
 
-**表1** c++事件埋点API接口功能介绍
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 在OpenHarmony-3.2-Beta3版本中，为避免打点风暴事件引发性能问题，对HiSysEvent打点进行了管控，表1中的HiSysEvent::Write打点API接口被表2中的HiSysEventWrite宏接口取代。HiSysEvent::Write接口已废弃，请使用HiSysEventWrite宏完成HiSysEvent事件打点。
+
+**表1** c++事件埋点API接口功能介绍（已废弃）
 
 | 接口名                                                       | 描述                   |
 | ------------------------------------------------------------ | ---------------------- |
 | template&lt;typename...&nbsp;Types&gt;&nbsp;<br>static&nbsp;int&nbsp;Write(const&nbsp;std::string&nbsp;&amp;domain,&nbsp;const&nbsp;std::string&nbsp;&amp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Types...&nbsp;keyValues) | 将打点事件数据进行落盘 |
 
- **表2** c++事件类型API接口介绍
+**表2** c++事件埋点API接口功能介绍
+| 接口名                                                       | 描述                   |
+| ------------------------------------------------------------ | ---------------------- |
+| HiSysEventWrite(domain, eventName, type, ...)                | 将打点事件数据进行落盘|
+
+ **表3** c++事件类型API接口介绍
 
 | 接口名    | 描述         |
 | --------- | ------------ |
@@ -41,7 +49,7 @@ c++事件埋点开发能力如下：HiSysEvent类，具体的API详见接口文�
 
 kernel事件埋点开发能力如下：
 
-**表3** kernel事件埋点API接口功能介绍
+**表4** kernel事件埋点API接口功能介绍
 
 | 接口名                                                       | 描述                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
@@ -51,7 +59,7 @@ kernel事件埋点开发能力如下：
 | int hisysevent_put_string(struct hiview_hisysevent *event, const char *key, const char *value); | 将字符串类型的事件参数添加到事件对象 |
 | int hisysevent_write(struct hiview_hisysevent *event);       | 将事件对象数据进行落盘               |
 
-**表4** kernel事件类型API接口介绍
+**表5** kernel事件类型API接口介绍
 
 | 接口名    | 描述         |
 | --------- | ------------ |
@@ -67,7 +75,7 @@ kernel事件埋点开发能力如下：
 1. 在需要埋点的地方直接调用埋点接口，并传入相应事件参数即可：
 
    ```c++
-   HiSysEvent::Write(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
+   HiSysEventWrite(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
    ```
 
 #### kernel埋点开发步骤
@@ -100,6 +108,36 @@ kernel事件埋点开发能力如下：
    hisysevent_destroy(&event);
    ```
 
+#### 事件领域屏蔽的步骤
+
+1. 在相应的文件中定义名称为“DOMAIN_MASKS”，内容形如“DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n”，共有三种屏蔽场景：
+
+- 只屏蔽当前源码文件中的相应事件领域的HiSysEvent打点，在该cpp文件引入hisysevent.h头文件之前定义宏DOMAIN_MASKS即可。
+   ```c++
+   #define DOMAIN_MASKS "DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n"
+   #include "hisysevent.h"
+   ```
+
+- 屏蔽整个模块相应事件领域的HiSysEvent打点，在模块的BUILD.gn文件中定义宏DOMAIN_MASKS即可。
+   ```gn
+   config("module_a"){
+     cflags_cc += ["-DDOMAIN_MASKS=\"DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n\""]
+   }
+   ```
+
+- 全局屏蔽相应事件领域的HiSysEvent打点，则在/build/config/compiler/BUILD.gn中定义宏DIMAIN_MASKS即可。
+   ```gn
+     cflags_cc += ["-DDOMAIN_MASKS=\"DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n\""]
+   ```
+
+2. 通过HiSysEventWrite宏完成HiSysEvent打点操作：
+   ```c++
+   constexpr char DOMAIN[] = "DOMAIN_NAME_1";
+   const std::string eventName = "EVENT_NAME1";
+   OHOS:HiviewDFX::HiSysEvent::EventType eventType = OHOS:HiviewDFX::HiSysEvent::EventType::FAULT;
+   HiSysEventWrite(domain, eventName, eventType); //因为DOMAIN_NAME_1事件领域已经在DOMAIN_MASKS中定义，所以该HiSysEvent打点不会执行。
+   ```
+
 ### 开发实例
 
 #### c++埋点开发实例
@@ -114,14 +152,13 @@ kernel事件埋点开发能力如下：
 
 2. 在业务模块的应用启动函数StartAbility()中，调用埋点接口并传入对应事件参数：
 
-
    ```c++
    #include "hisysevent.h"
 
    int StartAbility()
    {
        ... // 其他业务逻辑
-       int ret = HiSysEvent::Write(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
+       int ret = HiSysEventWrite(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
        ... // 其他业务逻辑
    }
    ```
@@ -132,35 +169,64 @@ kernel事件埋点开发能力如下：
 
 1. 在设备启动函数device_boot()中，构建一个启动事件对象，然后将事件进行上报，最后销毁事件对象。
 
-```c
-#include <dfx/hiview_hisysevent.h>
+    ```c
+    #include <dfx/hiview_hisysevent.h>
 
-#include <linux/errno.h>
-#include <linux/printk.h>
+    #include <linux/errno.h>
+    #include <linux/printk.h>
 
-int device_boot()
-{
-    ... // 其他业务逻辑
-    struct hiview_hisysevent *event = NULL;
-    int ret = 0;
+    int device_boot()
+    {
+        ... // 其他业务逻辑
+        struct hiview_hisysevent *event = NULL;
+        int ret = 0;
 
-    event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
-    if (!event) {
-        pr_err("failed to create event");
-        return -EINVAL;
+        event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
+        if (!event) {
+            pr_err("failed to create event");
+            return -EINVAL;
+        }
+        ret = hisysevent_put_string(event, "MSG", "This is a test message");
+        if (ret != 0) {
+            pr_err("failed to put sting to event, ret=%d", ret);
+            goto hisysevent_end;
+        }
+        ret = hisysevent_write(event);
+
+    hisysevent_end:
+        hisysevent_destroy(&event);
+        ... // 其他业务逻辑
     }
-    ret = hisysevent_put_string(event, "MSG", "This is a test message");
-    if (ret != 0) {
-        pr_err("failed to put sting to event, ret=%d", ret);
-        goto hisysevent_end;
-    }
-    ret = hisysevent_write(event);
+    ```
 
-hisysevent_end:
-    hisysevent_destroy(&event);
+#### 事件领域屏蔽的开发实例
+
+- 假设业务模块中，需要在某个cpp文件中屏蔽名称分别为AAFWK和POWER的事件领域的打点，在该cpp文件引入hisysevent.h头文件之前，定义名称为DOMAIN_MASKS的宏：
+    ```c++
+
+    #define DOMAIN_MASKS "AAFWK|POWER"
+
+    #include "hisysevent.h"
     ... // 其他业务逻辑
-}
-```
+    HiSysEventWrite(OHOS:HiviewDFX::HiSysEvent::Domain::AAFWK, "JS_ERROR", OHOS:HiviewDFX::HiSysEvent::EventType::FAULT, "MODULE", "com.ohos.module"); // 该HiSysEvent打点操作不会执行
+    ... // 其他业务逻辑
+    HiSysEventWrite(OHOS:HiviewDFX::HiSysEvent::Domain::POWER, "POWER_RUNNINGLOCK", OHOS:HiviewDFX::HiSysEvent::EventType::FAULT, "NAME", "com.ohos.module"); // 该HiSysEvent打点操作不会执行
+
+    ```
+
+- 假设需要在整个业务模块中屏蔽名称分别为AAFWK和POWER的事件领域的打点，在模块的BUILG.gn文件中定义名称为DOMAIN_MASKS的宏：
+    ```gn
+    config("module_a") {
+      ... // 其他配置项
+      cflags_cc += ["-DDOMAIN_MASKS=\"AAFWK|POWER\""]
+    }
+    ```
+
+- 假设需要在整个系统中屏蔽名称分别为AAFWK和POWER的事件领域的打点，则直接在/build/config/compiler/BUILD.gn文件中定义名称为DOMAIN_MASKS的宏：
+    ```gn
+    ... // 其他配置项
+    cflags_cc += ["-DDOMAIN_MASKS=\"AAFWK|POWER\""]
+    ```
 
 # 参考
 
