@@ -353,7 +353,7 @@ metaData示例：
 | uri              | 表示Ability的统一资源标识符。该标签最大长度为255。           | 字符串     | 可缺省，对于data类型的Ability不可缺省。                  |
 | launchType       | 表示Ability的启动模式，支持“standard”和“singleton”两种模式：<br />standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br />singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用“singleton”模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串     | 可缺省，缺省值为“singleton”。                            |
 | visible          | 表示Ability是否可以被其他应用调用。<br />true：可以被其他应用调用。<br />false：不能被其他应用调用。 | 布尔类型   | 可缺省，缺省值为“false”。                                |
-| permissions      | 表示其他应用的Ability调用此Ability时需要申请的权限。通常采用反向域名格式，取值可以是系统预定义的权限，也可以是开发者自定义的权限。 | 字符串数组 | 可缺省，缺省值为空。                                     |
+| permissions      | 表示其他应用的Ability调用此Ability时需要申请的权限集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 可缺省，缺省值为空。                                     |
 | skills           | 表示Ability能够接收的want的特征。                            | 对象数组   | 可缺省，缺省值为空。                                     |
 | deviceCapability | 表示Ability运行时要求设备具有的能力，采用字符串数组的格式表示。 | 字符串数组 | 可缺省，缺省值为空。                                     |
 | metaData         | 元数据，参考表13。                                           | 对象       | 可缺省，缺省值为空。                                     |
