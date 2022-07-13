@@ -201,7 +201,7 @@ Obtains the connection state of a profile.
 
 | Name      | Type       | Mandatory  | Description                                   |
 | --------- | --------- | ---- | ------------------------------------- |
-| ProfileId | profileId | Yes   | ID of the profile to obtain, for example, **PROFILE_A2DP_SOURCE**.|
+| ProfileId | profileId | Yes   | ID of the target profile, for example, **PROFILE_A2DP_SOURCE**.|
 
 **Return value**
 
@@ -447,7 +447,7 @@ Sets the device pairing confirmation.
 
 | Name   | Type     | Mandatory  | Description                              |
 | ------ | ------- | ---- | -------------------------------- |
-| device | string  | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| device | string  | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX:XX.|
 | accept | boolean | Yes   | Whether to accept the pairing request. The value **true** means to accept the pairing request, and the value **false** means the opposite.       |
 
 **Return value**
@@ -1039,9 +1039,9 @@ let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 
 ## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
 
-getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile
+getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
-Obtains a profile instance. **HidHostProfile** is added in API version 9.
+Obtains a profile instance. API version 9 is added with **HidHostProfile** and **PanProfile**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1055,7 +1055,7 @@ Obtains a profile instance. **HidHostProfile** is added in API version 9.
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#A2dpSourceProfile), [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile), or [HidHostProfile](#HidHostProfile) | Profile object obtained. **A2dpSourceProfile**, **HandsFreeAudioGatewayProfile**, and **HidHostProfile** are supported.|
+| [A2dpSourceProfile](#A2dpSourceProfile), [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile), [HidHostProfile](#HidHostProfile), or [PanProfile](#PanProfile)| Profile instance obtained, which can be **A2dpSourceProfile**, **HandsFreeAudioGatewayProfile**, **HidHostProfile**, or **PanProfile**.|
 
 **Example**
 
@@ -1344,7 +1344,7 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device to connect.|
+| device | string | Yes   | Address of the target device.|
 
 **Return value**
 
@@ -1374,7 +1374,7 @@ Disconnects an A2DP connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| device | string | Yes   | Address of the remote device to disconnect.|
+| device | string | Yes   | Address of the target device.|
 
 **Return value**
 
@@ -1734,6 +1734,162 @@ function onReceiveEvent(data) {
 let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
+```
+
+
+## PanProfile
+
+Before using a method of **PanProfile**, you need to create an instance of this class by using the **getProfile()** method.
+
+
+### disconnect<sup>9+</sup><a name="disconnect"></a>
+
+disconnect(device: string): boolean
+
+Disconnects from the Personal Area Network (PAN) service of a device.
+
+This is a system API.
+
+**Required permissions**: ohos.permission.USE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| device | string | Yes   | Address of the target device.|
+
+**Return value**
+
+| Type     | Description                 |
+| --------------------- | --------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let ret = panProfile.disconnect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### on('connectionStateChange')<sup>9+</sup>
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Subscribes to the PAN connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a PAN connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the PAN connection state change event.                              |
+
+**Return value**
+
+No value is returned.
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+panProfile.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')<sup>9+</sup>
+
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+Unsubscribes from the PAN connection state change events.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                                     |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a PAN connection state change event.|
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback used to return the PAN connection state change event.                                     |
+
+**Return value**
+
+No value is returned.
+
+**Example**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+panProfile.on('connectionStateChange', onReceiveEvent);
+panProfile.off('connectionStateChange', onReceiveEvent);
+```
+
+
+### setTethering<sup>9+</sup><a name="setTethering"></a>
+
+setTethering(value: boolean): boolean
+
+Sets tethering.
+
+This is a system API.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| value | boolean | Yes   | Whether to set tethering over a Bluetooth PAN.|
+
+**Return value**
+
+| Type     | Description                 |
+| --------------------- | --------------------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+```js
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let ret = panProfile.setTethering(true);
+```
+
+
+### isTetheringOn<sup>9+</sup><a name="isTetheringOn"></a>
+
+isTetheringOn(): boolean
+
+Obtains the tethering status.
+
+This is a system API.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type     | Description                 |
+| --------------------- | --------------------------------- |
+| boolean | Returns **true** if tethering is available over a Bluetooth PAN; return **false** otherwise.|
+
+**Example**
+
+```js
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let ret = panProfile.isTetheringOn();
 ```
 
 
@@ -2346,6 +2502,7 @@ let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
+
 ### on('connectStateChange')
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
@@ -2562,7 +2719,7 @@ gattClientDevice.getServices().then(result => {
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
-Reads the characteristic value of the specific service of the remote BLE device. This API uses an asynchronous callback to return the result.
+Reads the characteristic value of the specific service of the peer BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2616,7 +2773,7 @@ device.readCharacteristicValue(characteristic, readCcc);
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
-Reads the characteristic value of the specific service of the remote BLE device. This API uses a promise to return the result.
+Reads the characteristic value of the specific service of the peer BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2663,7 +2820,7 @@ device.readCharacteristicValue(characteristic);
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses an asynchronous callback to return the result.
+Reads the descriptor contained in the specific characteristic of the peer BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2707,7 +2864,7 @@ device.readDescriptorValue(descriptor, readDesc);
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
-Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses a promise to return the result.
+Reads the descriptor contained in the specific characteristic of the peer BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3154,7 +3311,7 @@ Enumerates the scan modes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value | Description             |
+| Name                                      | Default Value  | Description             |
 | ---------------------------------------- | ---- | --------------- |
 | SCAN_MODE_NONE                           | 0    | No scan mode.        |
 | SCAN_MODE_CONNECTABLE                    | 1    | Connectable mode.       |
@@ -3169,7 +3326,7 @@ Enumerates the pairing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                | Default Value | Description    |
+| Name                | Default Value  | Description    |
 | ------------------ | ---- | ------ |
 | BOND_STATE_INVALID | 0    | Invalid pairing.|
 | BOND_STATE_BONDING | 1    | Pairing. |
@@ -3195,7 +3352,7 @@ Enumerates the SPP link types.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name        | Default Value | Description           |
+| Name        | Default Value  | Description           |
 | ---------- | ---- | ------------- |
 | SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link type.|
 
