@@ -74,7 +74,7 @@
 | onRenderExited(callback: (event?: { renderExitReason:  [RenderExitReason](#renderexitreason枚举说明) }) => void) | <p>应用渲染进程异常退出时触发该回调。<br/>- renderExitReason：渲染进程进程异常退出的具体原因。</p> |
 | onShowFileSelector(callback: (event?: { result: [FileSelectorResult](#fileselectorresult对象说明), fileSelector:  [FileSelectorParam](#fileselectorparam对象说明) }) => void) | <p>调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮<br/>- result：用于通知Web组件文件选择的结果。<br/>- fileSelector：文件选择器的相关信息。</p> |
 | onUrlLoadIntercept(callback: (event?: { data:string \| [WebResourceRequest](#webresourcerequest对象说明) }) => boolean) | <p>当Web组件加载url之前触发该回调，用于是否阻止此次访问。callback返回true表示阻止此次加载，否则允许此次加载。<br/>- data：url的相关信息。</p> |
-| onInterceptRequest<sup>9+</sup>(callback: (event?: { request: [WebResourceRequest](#webresourcerequest对象说明)}) => [WebResourceResponse](#webresourceresponse对象说明)): WebAttribute; | <p>当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。callback返回响应数据为空表示按原来方式加载，否则加载响应数据。<br/>- request：url请求的相关信息。</p> |
+| onInterceptRequest<sup>9+</sup>(callback: (event?: { request: [WebResourceRequest](#webresourcerequest对象说明)}) => [WebResourceResponse](#webresourceresponse对象说明)) | <p>当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。callback返回响应数据为空表示按原来方式加载，否则加载响应数据。<br/>- request：url请求的相关信息。</p> |
 
 ## ConsoleMessage对象说明
 
@@ -146,7 +146,7 @@ Web组件返回的请求/响应头对象。
 | setResponseEncoding<sup>9+</sup>(encoding: string)      | 设置资源响应的编码。             |
 | setResponseMimeType<sup>9+</sup>(mimeType: string)      | 设置资源响应的媒体（MIME）类型。 |
 | setReasonMessage<sup>9+</sup>(reason: string)           | 设置资源响应的状态码描述。       |
-| setResponseHeader<sup>9+</sup>(header: Array<Header>)   | 设置资源响应头。                 |
+| setResponseHeader<sup>9+</sup>(header: Array\<[Header](#header对象说明)\>)   | 设置资源响应头。                 |
 | setResponseCode<sup>9+</sup>(code: number)              | 设置资源响应的状态码。           |
 
 ## RenderExitReason枚举说明
