@@ -96,7 +96,7 @@ OH内核态层 = OH Linux内核 + OH内核态特性（可选特性或者必选�
    # 配置编译环境,使用工程项目自带的clang
    export PATH=$PROJ_ROOT/prebuilts/clang/ohos/linux-x86_64/llvm/bin:$PROJ_ROOT/prebuilts/gcc/linux-x86/arm/gcc-linaro-7.5.0-arm-linux-gnueabi/bin/:$PATH
    export MAKE_OPTIONS="ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- CC=clang HOSTCC=clang"
-   export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_standard
+   export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_linux
    ```
 
 3. 注释掉clang不识别的flag。
