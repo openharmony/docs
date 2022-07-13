@@ -200,7 +200,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      }
      ```
 
-   - 马达效果模型使用HCS作为配置描述源码，hcs配置文件字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
+   - 马达效果模型使用HCS作为配置描述源码，hcs配置文件字段详细介绍参考[配置管理](driver-hdf-manage.md)。
 
      ```hcs
      /* 马达数据配置模板（vibrator_config.hcs） */
