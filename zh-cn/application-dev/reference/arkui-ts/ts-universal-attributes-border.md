@@ -31,16 +31,30 @@
   | -------- | -------- | -------- | -------- | -------- |
   | width | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 边框宽度。 |
   | color | [ResourceColor](../../ui/ts-types.md) | 'Black' | 否 | 边框颜色。 |
-  | radius | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 边框角度。 |
+  | radius | [Length](../../ui/ts-types.md#长度类型)\| EdgeRadiuses<sup>9+</sup> | 0 | 否 | 边框角度。 |
   | style | BorderStyle | BorderStyle.Solid | 否 | 边框样式。 |
 
 
+- EdgeRadiuses<sup>9+</sup>对象说明
+  
+  引用该对象时，至少传入一个参数。
+  
+  | 名称        | 参数类型 | 必填 | 默认值 | 描述             |
+  | ----------- | -------- | ---- | ------ | ---------------- |
+  | topLeft     | length   | 否   | 0      | 左上角圆角半径。 |
+  | topRight    | length   | 否   | 0      | 右上角圆角半径。 |
+  | bottomLeft  | length   | 否   | 0      | 左下角圆角半径。 |
+  | bottomRight | length   | 否   | 0      | 右下角圆角半径。 |
+  
+  
+  
 - BorderStyle枚举说明
-  | 名称 | 描述 | 
+  
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Dotted | 显示为一系列圆点，圆点半径为borderWidth的一半。 | 
-  | Dashed | 显示为一系列短的方形虚线。 | 
-  | Solid | 显示为一条实线。 | 
+  | Dotted | 显示为一系列圆点，圆点半径为borderWidth的一半。 |
+  | Dashed | 显示为一系列短的方形虚线。 |
+  | Solid | 显示为一条实线。 |
 
 
 ## 示例
@@ -55,6 +69,10 @@ struct BorderExample {
       // 线段
       Text('dashed')
         .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE).borderRadius(10)
+        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+      Text('dashed')
+        .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE)
+        .borderRadius({ topLeft: 10, topRight: 20, bottomLeft: 30, bottomRight: 60 })
         .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
       // 点线
       Text('dotted')
