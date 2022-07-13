@@ -273,7 +273,7 @@ int32_t CodecDaiHwParams(const struct AudioCard *card, const struct AudioPcmHwPa
 
 #### Codec注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)指导。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf.md)指导。
 
 填充g_codecDriverEntry结构体，moduleName与device_info.hcs中的moduleName匹配，实现Bind、Init、Release函数指针。 
 
@@ -331,7 +331,7 @@ static void CodecDriverRelease(struct HdfDeviceObject *device)
 
 #### HCS配置流程<a name="section4115"></a>
 
-hcs中配置驱动节点、加载顺序、服务名称等。hcs语法可参考HDF框架的[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
+hcs中配置驱动节点、加载顺序、服务名称等。hcs语法可参考HDF框架的[配置管理](driver-hdf-manage.md)。
 
 标准系统配置文件路径：
 
@@ -779,7 +779,7 @@ int32_t Tfa9879DaiHwParams(const struct AudioCard *card, const struct AudioPcmHw
 
 #### Accessory注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf.md)。
 
 填充g_tfa9879DriverEntry结构体，moduleName与device_info.hcs中的moduleName匹配，实现Bind、Init、Release函数指针。 
 
@@ -900,7 +900,7 @@ int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 
 #### Platform注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver/driver-hdf.md)。
 
 - 填充g_platformDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
@@ -1064,7 +1064,7 @@ int32_t DaiStartup(const struct AudioCard *card, const struct DaiDevice *device)
 
 #### Dai注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf.md)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf.md)。
 
 - 填充g_daiDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
