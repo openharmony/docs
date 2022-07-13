@@ -50,7 +50,7 @@ Light驱动模型支持获取系统中所有灯的信息，动态配置闪烁模
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Light抽象驱动开发（主要由Bind、Init、Release、Dispatch函数接口实现），资源配置及HCS配置文件解析。完成Light驱动的设备信息配置。
 
    - 调用HDF_INIT将驱动入口注册到HDF框架中。在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
-     Light驱动模型使用HCS配置文件作为配置描述源码。HCS配置字段详细介绍请参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
+     Light驱动模型使用HCS配置文件作为配置描述源码。HCS配置字段详细介绍请参考[配置管理](driver-hdf-manage.md)。
      其Driver Entry入口函数定义如下:
 
      ```c
