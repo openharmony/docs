@@ -470,7 +470,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
   | 参数名     | 类型   | 必填 | 说明 |
   | ---------- | ------ | ---- | ---- |
-  | userId | string | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。|
+  | userId | number | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。|
 
 **返回值：**
 
@@ -481,7 +481,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 **示例：**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   }).catch(function(err){
@@ -507,13 +507,13 @@ getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | string                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
+  | userId | number                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
   | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | 是   | 返回各类别数据大小之后的回调 |
 
 **示例：**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
       // do something
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
