@@ -1,5 +1,7 @@
 # 辅助功能
 
+本模块提供辅助功能查询能力，包括获取辅助应用列表、辅助应用启用状态、无障碍字幕配置等。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从 API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -34,6 +36,7 @@ import accessibility from '@ohos.accessibility';
 | haptic | 表示具有触觉反馈。 |
 | spoken  | 表示具有语音反馈。 |
 | visual | 表示具有视觉反馈。 |
+| all<sup>9+</sup> | 表示以上所有类别。 |
 
 ## AccessibilityAbilityInfo
 
@@ -48,6 +51,7 @@ import accessibility from '@ohos.accessibility';
 | id | number | 是 | 否 | ability&nbsp;id。 |
 | name | string | 是 | 否 | ability 名。 |
 | bundleName | string | 是 | 否 | 包名。 |
+| targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | 是 | 否 | 关注的目标包名。 |
 | abilityTypes | Array&lt;[AbilityType](#abilitytype)&gt; | 是 | 否 | 辅助应用类型。 |
 | capabilities | Array&lt;[Capability](#capability)&gt; | 是 | 否 | 辅助应用能力列表。 |
 | description | string | 是 | 否 | 辅助应用描述。 |
