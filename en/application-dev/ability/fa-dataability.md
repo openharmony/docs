@@ -129,7 +129,7 @@ The basic dependency packages include:
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
    import ohos_data_rdb from '@ohos.data.rdb'
-
+   
    var urivar = "dataability:///com.ix.DataAbility"
    var DAHelper = featureAbility.acquireDataAbilityHelper(
     urivar
@@ -283,9 +283,3 @@ The basic dependency packages include:
     ]
    );
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop Data abilities:
-
-- [`DataAbility`: Creation and Access of Data Abilities (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/DataAbility)

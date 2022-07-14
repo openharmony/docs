@@ -348,9 +348,3 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 Now you've got a widget shown below.
 
 ![fa-form-example](figures/fa-form-example.png)
-
-## Samples
-
-The following samples are provided to help you better understand how to develop a widget on the FA model:
-- [`FormAbility`: FA Model Widget (JS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/FormAbility)
-- [`FormLauncher`: Widget Host (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/FormLauncher)

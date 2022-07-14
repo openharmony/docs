@@ -256,10 +256,3 @@ function cancelCallback(err) {
 
 Notification.cancel(1, "label", cancelCallback)
 ```
-
-
-## Samples
-
-The following sample is provided to help you better understand how to develop notification functions:
-
-[`Notification`: Notification (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)

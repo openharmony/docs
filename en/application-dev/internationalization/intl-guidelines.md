@@ -301,9 +301,3 @@ According to grammars in certain languages, the singular or plural form of a nou
    ```
    var options = numberFormat.resolvedOptions();
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop internationalization capabilities:
-
--[`International`: Internationalization (JS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/UI/International)
