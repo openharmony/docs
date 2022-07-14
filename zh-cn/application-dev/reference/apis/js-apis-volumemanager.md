@@ -205,7 +205,11 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
   ```js
   let uuid = "";
-  let volume = await volumemanager.getVolumeByUuid(uuid);
+  volumemanager.getVolumeByUuid(uuid).then(function(volume) {
+      console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
+  }).catch(function(error){
+      console.info("getVolumeByUuid failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.getVolumeByUuid
@@ -260,7 +264,11 @@ getVolumeById(id: string): Promise&lt;Volume&gt;
 
   ```js
   let id = "";
-  let volume = await volumemanager.getVolumeById(id);
+  volumemanager.getVolumeById(id).then(function(volume) {
+      console.info("getVolumeById successfully:" + JSON.stringify(volume));
+  }).catch(function(error){
+      console.info("getVolumeById failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.getVolumeById
@@ -317,7 +325,11 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
   ```js
   let uuid = "";
   let description = "";
-  let bool = await volumemanager.setVolumeDescription(uuid, description);
+  volumemanager.setVolumeDescription(uuid, description).then(function() {
+      console.info("setVolumeDescription successfully");
+  }).catch(function(error){
+      console.info("setVolumeDescription failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.setVolumeDescription
@@ -374,7 +386,11 @@ format(volId: string): Promise&lt;void&gt;
 
   ```js
   let volId = "";
-  let bool = await volumemanager.format(volId);
+  volumemanager.format(volId).then(function() {
+      console.info("format successfully");
+  }).catch(function(error){
+      console.info("format failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.format
@@ -431,7 +447,11 @@ partition(volId: string, fstype: string): Promise&lt;void&gt;
   ```js
   let volId = "";
   let fstype = "";
-  let bool = await volumemanager.partition(volId, fstype);
+  volumemanager.partition(volId, fstype).then(function() {
+      console.info("partition successfully");
+  }).catch(function(error){
+      console.info("partition failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.partition
@@ -457,7 +477,7 @@ partition(volId: string, fstype : string, callback: AsyncCallback&lt;void&gt;): 
   ```js
   let volId = "";
   let fstype = "";
-  volumemanager.format(volId, fstype, (error, bool) => {
+  volumemanager.partition(volId, fstype, (error, bool) => {
       // do something    
   });
   ```
