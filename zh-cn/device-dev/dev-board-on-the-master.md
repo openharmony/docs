@@ -1,6 +1,7 @@
-# 支持的开发板列表
+# OpenHarmony开发板列表
 
-当前社区共支持17款开发板，具体如下；更详细的开发板信息展示，请参考：http://ci.openharmony.cn/developBoard/list。
+当前社区共支持17款开发板，详见下表。
+更详细的开发板信息展示，请参考：http://ci.openharmony.cn/developBoard/list
 
 ## 标准系统开发板
 
