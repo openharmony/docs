@@ -44,20 +44,22 @@ let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
 + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;
 
-onCreate(want: Want, callback: AsyncCallback<void>) {
-    rdb.getRdbStore(this.context, {
-        name: DB_NAME
-    }, 1, function (err, data) {
-        console.log('getRdbStore done, data : ' + data);
-        rdbStore = data;
-        rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-            console.log('executeSql done, error message : ' + err);
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    onCreate(want: Want, callback: AsyncCallback<void>) {
+        rdb.getRdbStore(this.context, {
+            name: DB_NAME
+        }, 1, function (err, data) {
+            console.log('getRdbStore done, data : ' + data);
+            rdbStore = data;
+            rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
+                console.log('executeSql done, error message : ' + err);
+            });
+            if (callback) {
+                callback();
+            }
         });
-        if (callback) {
-            callback();
-        }
-    });
-}
+    }
+};
 ```
 
 ## getFileTypes
@@ -79,11 +81,13 @@ getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Ar
 **示例：**
 
 ```ts
-getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>) {
-    let err = {"code":0};
-    let ret = new Array("type01", "type02", "type03");
-    callback(err, ret);
-}
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>) {
+        let err = {"code":0};
+        let ret = new Array("type01", "type02", "type03");
+        callback(err, ret);
+    }
+};
 ```
 
 ## openFile
@@ -105,11 +109,13 @@ openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): voi
 **示例：**
 
 ```ts
-openFile(uri: string, mode: string, callback: AsyncCallback<number>) {
-    let err = {"code":0};
-    let fd = 0;
-    callback(err,fd);
-}
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    openFile(uri: string, mode: string, callback: AsyncCallback<number>) {
+        let err = {"code":0};
+        let fd = 0;
+        callback(err,fd);
+    }
+};
 ```
 
 ## insert
@@ -131,18 +137,20 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-insert(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
-    if (value == null) {
-        console.info('invalid valueBuckets');
-        return;
-    }
-    rdbStore.insert(TBL_NAME, value, function (err, ret) {
-        console.info('callback ret:' + ret);
-        if (callback != undefined) {
-            callback(err, ret);
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    insert(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
+        if (value == null) {
+            console.info('invalid valueBuckets');
+            return;
         }
-    });
-}
+        rdbStore.insert(TBL_NAME, value, function (err, ret) {
+            console.info('callback ret:' + ret);
+            if (callback != undefined) {
+                callback(err, ret);
+            }
+        });
+    }
+};
 ```
 
 ## update
@@ -165,16 +173,18 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
-update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
-    if (predicates == null || predicates == undefined) {
-        return;
-    }
-    rdbStore.update(TBL_NAME, value, predicates, function (err, ret) {
-        if (callback != undefined) {
-            callback(err, ret);
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
+        if (predicates == null || predicates == undefined) {
+            return;
         }
-    });
-}
+        rdbStore.update(TBL_NAME, value, predicates, function (err, ret) {
+            if (callback != undefined) {
+                callback(err, ret);
+            }
+        });
+    }
+};
 ```
 
 ## delete
@@ -196,16 +206,18 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback<number>) {
-    if (predicates == null || predicates == undefined) {
-        return;
-    }
-    rdbStore.delete(TBL_NAME, predicates, function (err, ret) {
-        if (callback != undefined) {
-            callback(err, ret);
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback<number>) {
+        if (predicates == null || predicates == undefined) {
+            return;
         }
-    });
-}
+        rdbStore.delete(TBL_NAME, predicates, function (err, ret) {
+            if (callback != undefined) {
+                callback(err, ret);
+            }
+        });
+    }
+};
 ```
 
 ## query
@@ -228,19 +240,21 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
-query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: AsyncCallback<Object>) {
-    if (predicates == null || predicates == undefined) {
-        return;
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: AsyncCallback<Object>) {
+        if (predicates == null || predicates == undefined) {
+            return;
+        }
+        rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
+            if (resultSet != undefined) {
+                console.info('resultSet.rowCount: ' + resultSet.rowCount);
+            }
+            if (callback != undefined) {
+                callback(err, resultSet);
+            }
+        });
     }
-    rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
-        if (resultSet != undefined) {
-            console.info('resultSet.rowCount: ' + resultSet.rowCount);
-        }
-        if (callback != undefined) {
-            callback(err, resultSet);
-        }
-    });
-}
+};
 ```
 
 ## getType
@@ -261,11 +275,13 @@ getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-getType(uri: string, callback: AsyncCallback<string>) {
-    let err = {"code":0};
-    let ret = "image";
-    callback(err, ret);
-}
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    getType(uri: string, callback: AsyncCallback<string>) {
+        let err = {"code":0};
+        let ret = "image";
+        callback(err, ret);
+    }
+};
 ```
 
 ## BatchInsert
@@ -287,20 +303,22 @@ BatchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-batchInsert(uri: string, valueBuckets: Array<ValuesBucket>, callback: AsyncCallback<number>) {
-    if (valueBuckets == null || valueBuckets.length == undefined) {
-        console.info('invalid valueBuckets');
-        return;
-    }
-    let resultNum = valueBuckets.length
-    valueBuckets.forEach(vb => {
-        rdbStore.insert(TBL_NAME, vb, function (err, ret) {
-            if (callback != undefined) {
-                callback(err, resultNum);
-            }
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    batchInsert(uri: string, valueBuckets: Array<ValuesBucket>, callback: AsyncCallback<number>) {
+        if (valueBuckets == null || valueBuckets.length == undefined) {
+            console.info('invalid valueBuckets');
+            return;
+        }
+        let resultNum = valueBuckets.length
+        valueBuckets.forEach(vb => {
+            rdbStore.insert(TBL_NAME, vb, function (err, ret) {
+                if (callback != undefined) {
+                    callback(err, resultNum);
+                }
+            });
         });
-    });
-}
+    }
+};
 ```
 
 ## normalizeUri
@@ -321,11 +339,13 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-normalizeUri(uri: string, callback: AsyncCallback<string>) {
-    let err = {"code":0};
-    let ret = "normalize+" + uri;
-    callback(err, ret);
-}
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    normalizeUri(uri: string, callback: AsyncCallback<string>) {
+        let err = {"code":0};
+        let ret = "normalize+" + uri;
+        callback(err, ret);
+    }
+};
 ```
 
 ## denormalizeUri
@@ -346,9 +366,11 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-denormalizeUri(uri: string, callback: AsyncCallback<string>) {
-    let err = {"code":0};
-	let ret = "denormalize+" + uri;
-	callback(err, ret);
-}
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+    denormalizeUri(uri: string, callback: AsyncCallback<string>) {
+        let err = {"code":0};
+        let ret = "denormalize+" + uri;
+        callback(err, ret);
+    }
+};
 ```
