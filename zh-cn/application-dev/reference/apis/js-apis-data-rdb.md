@@ -979,12 +979,12 @@ const valueBucket = {
     "SALARY": 100.5,
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
-rdbStore.insert("EMPLOYEE", valueBucket, function (status, rowId) {
-    if (status) {
-        console.log("Insert is failed");
-        return;
+rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
+    if (err) {
+        console.info("Insert failed, err: " + err)
+        return
     }
-    console.log("Insert is successful, rowId = " + rowId);
+    console.log("Insert first done: " + ret)
 })
 ```
 
@@ -1017,107 +1017,13 @@ const valueBucket = {
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
 let promise = rdbStore.insert("EMPLOYEE", valueBucket)
-promise.then((rowId) => {
-    console.log("Insert is successful, rowId = " + rowId);
-}).catch((status) => {
-    console.log("Insert is failed");
+promise.then(async (ret) => {
+    console.log("Insert first done: " + ret)
+}).catch((err) => {
+    console.log("Insert failed, err: " + err)
 })
 ```
 
-### batchInsert<sup>9+</sup>
-
-batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
-
-向目标表中插入一组数据，结果以callback形式返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是 | 表示要插入到表中的一组数据。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。如果操作成功，返回最后插入的行ID，否则返回-1。 |
-
-**示例：**
-```js
-const valueBucket1 = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5])
-}
-const valueBucket2 = {
-    "NAME": "Jack",
-    "AGE": 19,
-    "SALARY": 101.5,
-    "CODES": new Uint8Array([6, 7, 8, 9, 10])
-}
-const valueBucket3 = {
-    "NAME": "Tom",
-    "AGE": 20,
-    "SALARY": 102.5,
-    "CODES": new Uint8Array([11, 12, 13, 14, 15])
-}
-
-var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, rowId) {
-    if (status) {
-        console.log("bathInsert is failed, status = " + status);
-        return;
-    }
-    console.log("bathInsert is successful, last insertion rowId = " + rowId);
-})
-```
-
-### batchInsert<sup>9+</sup>
-
-batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
-
-向目标表中插入一组数据，结果以Promise形式返回。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
-
-**参数：**
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| table | string | 是 | 指定的目标表名。 |
-| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是 | 表示要插入到表中的一组数据。 |
-
-**返回值**：
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;number&gt; | 指定Promise回调函数。如果操作成功，返回最后插入的行ID，否则返回-1。 |
-
-**示例：**
-```js
-const valueBucket1 = {
-    "NAME": "Lisa",
-    "AGE": 18,
-    "SALARY": 100.5,
-    "CODES": new Uint8Array([1, 2, 3, 4, 5])
-}
-const valueBucket2 = {
-    "NAME": "Jack",
-    "AGE": 19,
-    "SALARY": 101.5,
-    "CODES": new Uint8Array([6, 7, 8, 9, 10])
-}
-const valueBucket3 = {
-    "NAME": "Tom",
-    "AGE": 20,
-    "SALARY": 102.5,
-    "CODES": new Uint8Array([11, 12, 13, 14, 15])
-}
-
-var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
-let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
-promise.then((rowId) => {
-    console.log("bathInsert is successful, last insertion rowId = " + rowId);
-}).catch((status) => {
-    console.log("bathInsert is failed, status = " + status);
-})
-```
 
 ### update
 

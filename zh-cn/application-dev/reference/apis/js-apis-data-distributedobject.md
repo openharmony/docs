@@ -253,11 +253,12 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local", (result)=>{
+g_object.save("local", (status, result)=>{
+    console.log("save status = " + status);
     console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
+    console.info("save sessionId: " + result.sessionId);
+    console.info("save version: " + result.version);
+    console.info("save deviceId:  " + result.deviceId);
 });
 ```
 
@@ -354,7 +355,7 @@ revokeSave(): Promise&lt;SaveSuccessResponse&gt;
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.revokeSave("local").then((result)=>{
+g_object.revokeSave().then((result)=>{
     console.log("revokeSave callback");
     console.log("sessionId" + result.sessionId);
 }, ()=>{
