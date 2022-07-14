@@ -12,7 +12,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 ## 获取源码概述
 
-本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/hpm-part/Readme-CN.md)的形式开放，开发者可以通过如下其中一种方式获取：
+本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../hpm-part/Readme-CN.md)的形式开放，开发者可以通过如下其中一种方式获取：
 
 - **获取方式1**：从码云代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 
@@ -100,7 +100,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 - **OpenHarmony发布版本代码获取**
 
-  OpenHarmony发布版本获取源码方式请参考[Release Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)。
+  OpenHarmony发布版本获取源码方式请参考[Release Notes](../../release-notes/Readme.md)。
 
 
 ## 获取方式2：从DevEco Marketplace获取
@@ -181,7 +181,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 为了获得更好的下载性能，您可以选择从以下站点的镜像库获取源码或者对应的解决方案。
 
-本部分只提供OpenHarmony LTS最新版本和最新发布版本的源码获取方式， 其他版本获取源码方式以及具体版本信息请参考[Release Notes](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/Readme.md)。
+本部分只提供OpenHarmony LTS最新版本和最新发布版本的源码获取方式， 其他版本获取源码方式以及具体版本信息请参考[Release Notes](../../release-notes/Readme.md)。
 
   **表1** 获取源码路径
 
@@ -200,7 +200,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 | Hi3861解决方案（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz.sha256) |
 | Hi3516解决方案-LiteOS（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256) |
 | Hi3516解决方案-Linux（二进制） | 3.2 Beta1 | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz.sha256) |
-| RELEASE-NOTES | 3.2 Beta1 | [站点](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-beta1.md) | - |
+| RELEASE-NOTES | 3.2 Beta1 | [站点](../../release-notes/OpenHarmony-v3.2-beta1.md) | - |
 | **编译工具链** | **版本信息** | **下载站点** | **SHA256校验码** |
 | 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/) | - |
 

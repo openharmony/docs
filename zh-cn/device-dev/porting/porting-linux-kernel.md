@@ -222,7 +222,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 **用例编译和测试方法**
 
-  通过[hdc_std工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)把用例执行文件推送到设备中，然后执行用例即可，操作步骤如下：
+  通过[hdc_std工具](../subsystems/subsys-toolchain-hdc-guide.md)把用例执行文件推送到设备中，然后执行用例即可，操作步骤如下：
 1. 编译hdf测试用例。
 
 2. 用hdc_std工具推送测试文件到设备中。
@@ -243,7 +243,7 @@ HDF（Hardware Driver Foundation)自测试用例，用于测试HDF框架和外�
 
 2. 将测试文件移动到目标移植设备上（以树莓派为例）。
   
-   方法一：使用[hdc_std工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)。
+   方法一：使用[hdc_std工具](../subsystems/subsys-toolchain-hdc-guide.md)。
 
    1. 先在树莓派里新建data/test目录。
          
