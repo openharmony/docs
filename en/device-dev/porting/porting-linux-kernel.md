@@ -1,12 +1,12 @@
-# A Method for Rapidly Porting the OpenHarmony Linux Kernel<a name="EN-US_TOPIC_0000001162545194"></a>
+# A Method for Rapidly Porting the OpenHarmony Linux Kernel
 
-## Overview<a name="section28051350151118"></a>
+## Overview
 
 This document describes how to quickly port OpenHarmony to a third-party chip platform by using the existing capabilities of the Linux kernel of the third-party chip platform.
 
-## Overall Porting Approach<a name="section994883124"></a>
+## Overall Porting Approach
 
-### Kernel Mode Layer and User Mode Layer<a name="section953481431217"></a>
+### Kernel Mode Layer and User Mode Layer
 
 For easy description, we divide the OpenHarmony architecture into two parts:
 
@@ -20,7 +20,7 @@ The user mode layer includes other parts except the OpenHarmony kernel layer. It
 
 The user mode layer of OpenHarmony is loosely coupled with the third-party chip platform and is easy to port. The kernel and HDF at the kernel mode layer are closely coupled with the third-party chip platform and are difficult to port. This document focus on the porting of the kernel mode layer. In addition, it describes only the quick porting of the Linux kernel. It does not include the porting of LiteOS.
 
-### Composition of the Kernel Mode Layer<a name="section81437528121"></a>
+### Composition of the Kernel Mode Layer
 
 The OpenHarmony kernel mode layer can be further divided as follows:
 
@@ -51,7 +51,7 @@ The standard LTS Linux kernel and third-party SoC chip platform code constitute 
 
 In the following, we elaborate how to port OpenHarmony that uses with the third-party Linux kernel.
 
-### Overall Porting Process<a name="section86060191"></a>
+### Overall Porting Process
 
 The porting process is as follows:
 
@@ -59,11 +59,11 @@ The porting process is as follows:
 2.  Port the OpenHarmony basic kernel-mode code.
 3.  Port OpenHarmony mandatory kernel-mode features \(such as HDF\).
 
-## Procedure<a name="section98871341171310"></a>
+## Procedure
 
 The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to port OpenHarmony to Raspberry Pi.
 
-### Setting Up the Environment<a name="section16584650181314"></a>
+### Setting Up the Environment
 
 1.  Copy the third-party kernel code to the OpenHarmony build environment.
 
@@ -84,8 +84,8 @@ The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to 
     # Configure the build environment, and use clang provided by the project to build the Raspberry Pi kernel source code.
     export PATH=$PROJ_ROOT/prebuilts/clang/ohos/linux-x86_64/llvm/bin:$PROJ_ROOT/prebuilts/gcc/linux-x86/arm/gcc-linaro-7.5.0-arm-linux-gnueabi/bin/:$PATH
     export MAKE_OPTIONS="ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- CC=clang HOSTCC=clang"
-    export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_standard
-    ```
+   export PRODUCT_PATH=vendor/hisilicon/hispark_taurus_linux
+   ```
 
 3.  Comment out the flags that cannot be recognized by **clang**.
 
@@ -96,7 +96,7 @@ The following uses Raspberry Pi 3b \(BCM2837\) as an example to describe how to 
     ```
 
 
-### Porting Basic Kernel-Mode Code<a name="section95112081716"></a>
+### Porting Basic Kernel-Mode Code
 
 Currently, the basic kernel-mode code of OpenHarmony is related to the log service. The lightweight kernel log service code includes the following:
 
@@ -125,7 +125,7 @@ Enable the CONFIG macros **CONFIG\_HILOG** and **CONFIG\_HIEVENT** in the kernel
 
 For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openharmony/hiviewdfx_hilog_lite/blob/master/README.md).
 
-### Porting the HDF Feature<a name="section12971205681710"></a>
+### Porting the HDF Feature
 
 1.  Install HDF patches.
 
@@ -185,14 +185,14 @@ For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openh
     ![](figures/menuconfig.png)
 
 
-### Building the Image<a name="section1681965561911"></a>
+### Building the Image
 
 ```
 # Run the following command:
 make ${MAKE_OPTIONS} -j33 zImage
 ```
 
-### \(Optional\) Building and Running HDF Test Cases<a name="section460792312204"></a>
+### \(Optional\) Building and Running HDF Test Cases
 
 **Overview**
 
