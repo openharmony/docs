@@ -341,101 +341,101 @@ WebGL2RenderingContextBase
 
   | Method| Return Value Type| 
 | -------- | -------- |
-| copyBufferSubData(readTarget:&nbsp;GLenum,&nbsp;writeTarget:&nbsp;GLenum,&nbsp;readOffset:&nbsp;GLintptr,&nbsp;writeOffset:&nbsp;GLintptr,&nbsp;size:&nbsp;GLsizeiptr) | void | 
-| getBufferSubData(target:&nbsp;GLenum,&nbsp;srcByteOffset:&nbsp;GLintptr,&nbsp;dstBuffer:&nbsp;ArrayBufferView,&nbsp;dstOffset?:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint) | void | 
-| blitFramebuffer(srcX0:&nbsp;GLint,&nbsp;srcY0:&nbsp;GLint,&nbsp;srcX1:&nbsp;GLint,&nbsp;srcY1:&nbsp;GLint,&nbsp;dstX0:&nbsp;GLint,&nbsp;dstY0:&nbsp;GLint,&nbsp;dstX1:&nbsp;GLint,&nbsp;dstY1:&nbsp;GLint,&nbsp;mask:&nbsp;GLbitfield,&nbsp;filter:&nbsp;GLenum) | void | 
-| framebufferTextureLayer(target:&nbsp;GLenum,&nbsp;attachment:&nbsp;GLenum,&nbsp;texture:&nbsp;WebGLTexture&nbsp;\|&nbsp;null,&nbsp;level:&nbsp;GLint,&nbsp;layer:&nbsp;GLint) | void | 
-| invalidateFramebuffer(target:&nbsp;GLenum,&nbsp;attachments:&nbsp;GLenum[]) | void | 
-| invalidateSubFramebuffer(target:&nbsp;GLenum,&nbsp;attachments:&nbsp;GLenum[],&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
-| readBuffer(src:&nbsp;GLenum) | void | 
-| getInternalformatParameter(target:&nbsp;GLenum,&nbsp;internalformat:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum) | any | 
-| renderbufferStorageMultisample(target:&nbsp;GLenum,&nbsp;samples:&nbsp;GLsizei,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
-| texStorage2D(target:&nbsp;GLenum,&nbsp;levels:&nbsp;GLsizei,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
-| texStorage3D(target:&nbsp;GLenum,&nbsp;levels:&nbsp;GLsizei,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei) | void | 
-| texImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pboOffset:&nbsp;GLintptr) | void | 
-| texImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| texImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null) | void | 
-| texImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset:&nbsp;GLuint) | void | 
-| texSubImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;zoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pboOffset:&nbsp;GLintptr) | void | 
-| texSubImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;zoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| texSubImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;zoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null,&nbsp;srcOffset?:&nbsp;GLuint) | void | 
-| copyTexSubImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;zoffset:&nbsp;GLint,&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
-| compressedTexImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;imageSize:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr) | void | 
-| compressedTexImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLengthOverride?:&nbsp;GLuint) | void | 
-| compressedTexSubImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;zoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;imageSize:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr) | void | 
-| compressedTexSubImage3D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;zoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;depth:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLengthOverride?:&nbsp;GLuint) | void | 
-| getFragDataLocation(program:&nbsp;WebGLProgram,&nbsp;name:&nbsp;string) | GLint | 
-| uniform1ui(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v0:&nbsp;GLuint) | void | 
-| uniform2ui(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v0:&nbsp;GLuint,&nbsp;v1:&nbsp;GLuint) | void | 
-| uniform3ui(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v0:&nbsp;GLuint,&nbsp;v1:&nbsp;GLuint,&nbsp;v2:&nbsp;GLuint) | void | 
-| uniform4ui(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v0:&nbsp;GLuint,&nbsp;v1:&nbsp;GLuint,&nbsp;v2:&nbsp;GLuint,&nbsp;v3:&nbsp;GLuint) | void | 
-| uniform1uiv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Uint32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform2uiv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Uint32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform3uiv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Uint32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform4uiv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Uint32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix3x2fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix4x2fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix2x3fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix4x3fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix2x4fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix3x4fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| vertexAttribI4i(index:&nbsp;GLuint,&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;z:&nbsp;GLint,&nbsp;w:&nbsp;GLint) | void | 
-| vertexAttribI4iv(index:&nbsp;GLuint,&nbsp;values:&nbsp;Int32List) | void | 
-| vertexAttribI4ui(index:&nbsp;GLuint,&nbsp;x:&nbsp;GLuint,&nbsp;y:&nbsp;GLuint,&nbsp;z:&nbsp;GLuint,&nbsp;w:&nbsp;GLuint) | void | 
-| vertexAttribI4uiv(index:&nbsp;GLuint,&nbsp;values:&nbsp;Uint32List) | void | 
-| vertexAttribIPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr) | void | 
-| vertexAttribDivisor(index:&nbsp;GLuint,&nbsp;divisor:&nbsp;GLuint) | void | 
-| drawArraysInstanced(mode:&nbsp;GLenum,&nbsp;first:&nbsp;GLint,&nbsp;count:&nbsp;GLsizei,&nbsp;instanceCount:&nbsp;GLsizei) | void | 
-| drawElementsInstanced(mode:&nbsp;GLenum,&nbsp;count:&nbsp;GLsizei,&nbsp;type:&nbsp;GLenum,&nbsp;offset:&nbsp;GLintptr,&nbsp;instanceCount:&nbsp;GLsizei) | void | 
-| drawRangeElements(mode:&nbsp;GLenum,&nbsp;start:&nbsp;GLuint,&nbsp;end:&nbsp;GLuint,&nbsp;count:&nbsp;GLsizei,&nbsp;type:&nbsp;GLenum,&nbsp;offset:&nbsp;GLintptr) | void | 
-| drawBuffers(buffers:&nbsp;GLenum[]) | void | 
-| clearBufferfv(buffer:&nbsp;GLenum,&nbsp;drawbuffer:&nbsp;GLint,&nbsp;values:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint) | void | 
-| clearBufferiv(buffer:&nbsp;GLenum,&nbsp;drawbuffer:&nbsp;GLint,&nbsp;values:&nbsp;Int32List,&nbsp;srcOffset?:&nbsp;GLuint) | void | 
-| clearBufferuiv(buffer:&nbsp;GLenum,&nbsp;drawbuffer:&nbsp;GLint,&nbsp;values:&nbsp;Uint32List,&nbsp;srcOffset?:&nbsp;GLuint) | void | 
-| clearBufferfi(buffer:&nbsp;GLenum,&nbsp;drawbuffer:&nbsp;GLint,&nbsp;depth:&nbsp;GLfloat,&nbsp;stencil:&nbsp;GLint) | void | 
-| createQuery() | WebGLQuery&nbsp;\|&nbsp;null | 
-| deleteQuery(query:&nbsp;WebGLQuery&nbsp;\|&nbsp;null) | void | 
-| isQuery(query:&nbsp;WebGLQuery&nbsp;\|&nbsp;null) | GLboolean | 
-| beginQuery(target:&nbsp;GLenum,&nbsp;query:&nbsp;WebGLQuery) | void | 
-| endQuery(target:&nbsp;GLenum) | void | 
-| getQuery(target:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum) | WebGLQuery&nbsp;\|&nbsp;null | 
-| getQueryParameter(query:&nbsp;WebGLQuery,&nbsp;pname:&nbsp;GLenum) | any | 
-| createSampler() | WebGLSampler&nbsp;\|&nbsp;null | 
-| deleteSampler(sampler:&nbsp;WebGLSampler&nbsp;\|&nbsp;null) | void | 
-| isSampler(sampler:&nbsp;WebGLSampler&nbsp;\|&nbsp;null) | GLboolean | 
-| bindSampler(unit:&nbsp;GLuint,&nbsp;sampler:&nbsp;WebGLSampler&nbsp;\|&nbsp;null) | void | 
-| samplerParameteri(sampler:&nbsp;WebGLSampler,&nbsp;pname:&nbsp;GLenum,&nbsp;param:&nbsp;GLint) | void | 
-| samplerParameterf(sampler:&nbsp;WebGLSampler,&nbsp;pname:&nbsp;GLenum,&nbsp;param:&nbsp;GLfloat) | void; | 
-| getSamplerParameter(sampler:&nbsp;WebGLSampler,&nbsp;pname:&nbsp;GLenum) | any | 
-| fenceSync(condition:&nbsp;GLenum,&nbsp;flags:&nbsp;GLbitfield) | WebGLSync&nbsp;\|&nbsp;null | 
-| isSync(sync:&nbsp;WebGLSync&nbsp;\|&nbsp;null) | GLboolean | 
-| deleteSync(sync:&nbsp;WebGLSync&nbsp;\|&nbsp;null) | void | 
-| clientWaitSync(sync:&nbsp;WebGLSync,&nbsp;flags:&nbsp;GLbitfield,&nbsp;timeout:&nbsp;GLuint64) | GLenum | 
-| waitSync(sync:&nbsp;WebGLSync,&nbsp;flags:&nbsp;GLbitfield,&nbsp;timeout:&nbsp;GLint64) | void | 
-| getSyncParameter(sync:&nbsp;WebGLSync,&nbsp;pname:&nbsp;GLenum) | any | 
-| createTransformFeedback() | WebGLTransformFeedback&nbsp;\|&nbsp;null | 
-| deleteTransformFeedback(tf:&nbsp;WebGLTransformFeedback&nbsp;\|&nbsp;null) | void | 
-| isTransformFeedback(tf:&nbsp;WebGLTransformFeedback&nbsp;\|&nbsp;null) | GLboolean | 
-| bindTransformFeedback(target:&nbsp;GLenum,&nbsp;tf:&nbsp;WebGLTransformFeedback&nbsp;\|&nbsp;null) | void | 
-| beginTransformFeedback(primitiveMode:&nbsp;GLenum) | void | 
+| copyBufferSubData(readTarget: GLenum, writeTarget: GLenum, readOffset: GLintptr, writeOffset: GLintptr, size: GLsizeiptr) | void | 
+| getBufferSubData(target: GLenum, srcByteOffset: GLintptr, dstBuffer: ArrayBufferView, dstOffset?: GLuint, length?: GLuint) | void | 
+| blitFramebuffer(srcX0: GLint, srcY0: GLint, srcX1: GLint, srcY1: GLint, dstX0: GLint, dstY0: GLint, dstX1: GLint, dstY1: GLint, mask: GLbitfield, filter: GLenum) | void | 
+| framebufferTextureLayer(target: GLenum, attachment: GLenum, texture: WebGLTexture \| null, level: GLint, layer: GLint) | void | 
+| invalidateFramebuffer(target: GLenum, attachments: GLenum[]) | void | 
+| invalidateSubFramebuffer(target: GLenum, attachments: GLenum[], x: GLint, y: GLint, width: GLsizei, height: GLsizei) | void | 
+| readBuffer(src: GLenum) | void | 
+| getInternalformatParameter(target: GLenum, internalformat: GLenum, pname: GLenum) | any | 
+| renderbufferStorageMultisample(target: GLenum, samples: GLsizei, internalformat: GLenum, width: GLsizei, height: GLsizei) | void | 
+| texStorage2D(target: GLenum, levels: GLsizei, internalformat: GLenum, width: GLsizei, height: GLsizei) | void | 
+| texStorage3D(target: GLenum, levels: GLsizei, internalformat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei) | void | 
+| texImage3D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, format: GLenum, type: GLenum, pboOffset: GLintptr) | void | 
+| texImage3D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| texImage3D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, format: GLenum, type: GLenum, srcData: ArrayBufferView \| null) | void | 
+| texImage3D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, format: GLenum, type: GLenum, srcData: ArrayBufferView, srcOffset: GLuint) | void | 
+| texSubImage3D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, type: GLenum, pboOffset: GLintptr) | void | 
+| texSubImage3D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| texSubImage3D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, type: GLenum, srcData: ArrayBufferView \| null, srcOffset?: GLuint) | void | 
+| copyTexSubImage3D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, x: GLint, y: GLint, width: GLsizei, height: GLsizei) | void | 
+| compressedTexImage3D(target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, imageSize: GLsizei, offset: GLintptr) | void | 
+| compressedTexImage3D(target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, srcData: ArrayBufferView, srcOffset?: GLuint, srcLengthOverride?: GLuint) | void | 
+| compressedTexSubImage3D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, imageSize: GLsizei, offset: GLintptr) | void | 
+| compressedTexSubImage3D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: GLenum, srcData: ArrayBufferView, srcOffset?: GLuint, srcLengthOverride?: GLuint) | void | 
+| getFragDataLocation(program: WebGLProgram, name: string) | GLint | 
+| uniform1ui(location: WebGLUniformLocation \| null, v0: GLuint) | void | 
+| uniform2ui(location: WebGLUniformLocation \| null, v0: GLuint, v1: GLuint) | void | 
+| uniform3ui(location: WebGLUniformLocation \| null, v0: GLuint, v1: GLuint, v2: GLuint) | void | 
+| uniform4ui(location: WebGLUniformLocation \| null, v0: GLuint, v1: GLuint, v2: GLuint, v3: GLuint) | void | 
+| uniform1uiv(location: WebGLUniformLocation \| null, data: Uint32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform2uiv(location: WebGLUniformLocation \| null, data: Uint32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform3uiv(location: WebGLUniformLocation \| null, data: Uint32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform4uiv(location: WebGLUniformLocation \| null, data: Uint32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix3x2fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix4x2fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix2x3fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix4x3fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix2x4fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix3x4fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| vertexAttribI4i(index: GLuint, x: GLint, y: GLint, z: GLint, w: GLint) | void | 
+| vertexAttribI4iv(index: GLuint, values: Int32List) | void | 
+| vertexAttribI4ui(index: GLuint, x: GLuint, y: GLuint, z: GLuint, w: GLuint) | void | 
+| vertexAttribI4uiv(index: GLuint, values: Uint32List) | void | 
+| vertexAttribIPointer(index: GLuint, size: GLint, type: GLenum, stride: GLsizei, offset: GLintptr) | void | 
+| vertexAttribDivisor(index: GLuint, divisor: GLuint) | void | 
+| drawArraysInstanced(mode: GLenum, first: GLint, count: GLsizei, instanceCount: GLsizei) | void | 
+| drawElementsInstanced(mode: GLenum, count: GLsizei, type: GLenum, offset: GLintptr, instanceCount: GLsizei) | void | 
+| drawRangeElements(mode: GLenum, start: GLuint, end: GLuint, count: GLsizei, type: GLenum, offset: GLintptr) | void | 
+| drawBuffers(buffers: GLenum[]) | void | 
+| clearBufferfv(buffer: GLenum, drawbuffer: GLint, values: Float32List, srcOffset?: GLuint) | void | 
+| clearBufferiv(buffer: GLenum, drawbuffer: GLint, values: Int32List, srcOffset?: GLuint) | void | 
+| clearBufferuiv(buffer: GLenum, drawbuffer: GLint, values: Uint32List, srcOffset?: GLuint) | void | 
+| clearBufferfi(buffer: GLenum, drawbuffer: GLint, depth: GLfloat, stencil: GLint) | void | 
+| createQuery() | WebGLQuery \| null | 
+| deleteQuery(query: WebGLQuery \| null) | void | 
+| isQuery(query: WebGLQuery \| null) | GLboolean | 
+| beginQuery(target: GLenum, query: WebGLQuery) | void | 
+| endQuery(target: GLenum) | void | 
+| getQuery(target: GLenum, pname: GLenum) | WebGLQuery \| null | 
+| getQueryParameter(query: WebGLQuery, pname: GLenum) | any | 
+| createSampler() | WebGLSampler \| null | 
+| deleteSampler(sampler: WebGLSampler \| null) | void | 
+| isSampler(sampler: WebGLSampler \| null) | GLboolean | 
+| bindSampler(unit: GLuint, sampler: WebGLSampler \| null) | void | 
+| samplerParameteri(sampler: WebGLSampler, pname: GLenum, param: GLint) | void | 
+| samplerParameterf(sampler: WebGLSampler, pname: GLenum, param: GLfloat) | void; | 
+| getSamplerParameter(sampler: WebGLSampler, pname: GLenum) | any | 
+| fenceSync(condition: GLenum, flags: GLbitfield) | WebGLSync \| null | 
+| isSync(sync: WebGLSync \| null) | GLboolean | 
+| deleteSync(sync: WebGLSync \| null) | void | 
+| clientWaitSync(sync: WebGLSync, flags: GLbitfield, timeout: GLuint64) | GLenum | 
+| waitSync(sync: WebGLSync, flags: GLbitfield, timeout: GLint64) | void | 
+| getSyncParameter(sync: WebGLSync, pname: GLenum) | any | 
+| createTransformFeedback() | WebGLTransformFeedback \| null | 
+| deleteTransformFeedback(tf: WebGLTransformFeedback \| null) | void | 
+| isTransformFeedback(tf: WebGLTransformFeedback \| null) | GLboolean | 
+| bindTransformFeedback(target: GLenum, tf: WebGLTransformFeedback \| null) | void | 
+| beginTransformFeedback(primitiveMode: GLenum) | void | 
 | endTransformFeedback() | void | 
-| transformFeedbackVaryings(program:&nbsp;WebGLProgram,&nbsp;varyings:&nbsp;string[],&nbsp;bufferMode:&nbsp;GLenum) | void | 
-| getTransformFeedbackVarying(program:&nbsp;WebGLProgram,&nbsp;index:&nbsp;GLuint) | WebGLActiveInfo&nbsp;\|&nbsp;null | 
+| transformFeedbackVaryings(program: WebGLProgram, varyings: string[], bufferMode: GLenum) | void | 
+| getTransformFeedbackVarying(program: WebGLProgram, index: GLuint) | WebGLActiveInfo \| null | 
 | pauseTransformFeedback() | void | 
 | resumeTransformFeedback() | void | 
-| bindBufferBase(target:&nbsp;GLenum,&nbsp;index:&nbsp;GLuint,&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null) | void | 
-| bindBufferRange(target:&nbsp;GLenum,&nbsp;index:&nbsp;GLuint,&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null,&nbsp;offset:&nbsp;GLintptr,&nbsp;size:&nbsp;GLsizeiptr) | void | 
-| getIndexedParameter(target:&nbsp;GLenum,&nbsp;index:&nbsp;GLuint) | any | 
-| getUniformIndices(program:&nbsp;WebGLProgram,&nbsp;uniformNames:&nbsp;string[]) | GLuint[]&nbsp;\|&nbsp;null | 
-| getActiveUniforms(program:&nbsp;WebGLProgram,&nbsp;uniformIndices:&nbsp;GLuint[],&nbsp;pname:&nbsp;GLenum) | any | 
-| getUniformBlockIndex(program:&nbsp;WebGLProgram,&nbsp;uniformBlockName:&nbsp;string) | GLuint | 
-| getActiveUniformBlockParameter(program:&nbsp;WebGLProgram,&nbsp;uniformBlockIndex:&nbsp;GLuint,&nbsp;pname:&nbsp;GLenum) | any | 
-| getActiveUniformBlockName(program:&nbsp;WebGLProgram,&nbsp;uniformBlockIndex:&nbsp;GLuint) | string&nbsp;\|&nbsp;null | 
-| uniformBlockBinding(program:&nbsp;WebGLProgram,&nbsp;uniformBlockIndex:&nbsp;GLuint,&nbsp;uniformBlockBinding:&nbsp;GLuint) | void | 
-| createVertexArray() | WebGLVertexArrayObject&nbsp;\|&nbsp;null | 
-| deleteVertexArray(vertexArray:&nbsp;WebGLVertexArrayObject&nbsp;\|&nbsp;null) | void | 
-| isVertexArray(vertexArray:&nbsp;WebGLVertexArrayObject&nbsp;\|&nbsp;null) | GLboolean | 
-| bindVertexArray(array:&nbsp;WebGLVertexArrayObject&nbsp;\|&nbsp;null) | void | 
+| bindBufferBase(target: GLenum, index: GLuint, buffer: WebGLBuffer \| null) | void | 
+| bindBufferRange(target: GLenum, index: GLuint, buffer: WebGLBuffer \| null, offset: GLintptr, size: GLsizeiptr) | void | 
+| getIndexedParameter(target: GLenum, index: GLuint) | any | 
+| getUniformIndices(program: WebGLProgram, uniformNames: string[]) | GLuint[] \| null | 
+| getActiveUniforms(program: WebGLProgram, uniformIndices: GLuint[], pname: GLenum) | any | 
+| getUniformBlockIndex(program: WebGLProgram, uniformBlockName: string) | GLuint | 
+| getActiveUniformBlockParameter(program: WebGLProgram, uniformBlockIndex: GLuint, pname: GLenum) | any | 
+| getActiveUniformBlockName(program: WebGLProgram, uniformBlockIndex: GLuint) | string \| null | 
+| uniformBlockBinding(program: WebGLProgram, uniformBlockIndex: GLuint, uniformBlockBinding: GLuint) | void | 
+| createVertexArray() | WebGLVertexArrayObject \| null | 
+| deleteVertexArray(vertexArray: WebGLVertexArrayObject \| null) | void | 
+| isVertexArray(vertexArray: WebGLVertexArrayObject \| null) | GLboolean | 
+| bindVertexArray(array: WebGLVertexArrayObject \| null) | void | 
 
 
 ## WebGL2RenderingContextOverloads
@@ -444,36 +444,36 @@ WebGL2RenderingContextOverloads
 
   | Method| Return Value Type| 
 | -------- | -------- |
-| bufferData(target:&nbsp;GLenum,&nbsp;size:&nbsp;GLsizeiptr,&nbsp;usage:&nbsp;GLenum) | void | 
-| bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;BufferSource&nbsp;\|&nbsp;null,&nbsp;usage:&nbsp;GLenum) | void | 
-| bufferSubData(target:&nbsp;GLenum,&nbsp;dstByteOffset:&nbsp;GLintptr,&nbsp;srcData:&nbsp;BufferSource) | void | 
-| bufferData(target:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;usage:&nbsp;GLenum,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint) | void | 
-| bufferSubData(target:&nbsp;GLenum,&nbsp;dstByteOffset:&nbsp;GLintptr,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset:&nbsp;GLuint,&nbsp;length?:&nbsp;GLuint) | void | 
-| texImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pixels:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null) | void | 
-| texImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| texSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pixels:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null) | void | 
-| texSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| texImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pboOffset:&nbsp;GLintptr) | void | 
-| texImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| texImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset:&nbsp;GLuint) | void | 
-| texSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pboOffset:&nbsp;GLintptr) | void | 
-| texSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| texSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset:&nbsp;GLuint) | void | 
-| compressedTexImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;imageSize:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr) | void | 
-| compressedTexImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLengthOverride?:&nbsp;GLuint) | void | 
-| compressedTexSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;imageSize:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr) | void | 
-| compressedTexSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;srcData:&nbsp;ArrayBufferView,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLengthOverride?:&nbsp;GLuint) | void | 
-| uniform1fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform2fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform3fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform4fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform1iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Int32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform2iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Int32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform3iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Int32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniform4iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;data:&nbsp;Int32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix2fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix3fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| uniformMatrix4fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;data:&nbsp;Float32List,&nbsp;srcOffset?:&nbsp;GLuint,&nbsp;srcLength?:&nbsp;GLuint) | void | 
-| readPixels(x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;dstData:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null) | void | 
-| readPixels(x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;offset:&nbsp;GLintptr) | void | 
-| readPixels(x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;dstData:&nbsp;ArrayBufferView,&nbsp;dstOffset:&nbsp;GLuint) | void | 
+| bufferData(target: GLenum, size: GLsizeiptr, usage: GLenum) | void | 
+| bufferData(target: GLenum, srcData: BufferSource \| null, usage: GLenum) | void | 
+| bufferSubData(target: GLenum, dstByteOffset: GLintptr, srcData: BufferSource) | void | 
+| bufferData(target: GLenum, srcData: ArrayBufferView, usage: GLenum, srcOffset: GLuint, length?: GLuint) | void | 
+| bufferSubData(target: GLenum, dstByteOffset: GLintptr, srcData: ArrayBufferView, srcOffset: GLuint, length?: GLuint) | void | 
+| texImage2D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 
+| texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 
+| texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| texImage2D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, pboOffset: GLintptr) | void | 
+| texImage2D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| texImage2D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, srcData: ArrayBufferView, srcOffset: GLuint) | void | 
+| texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pboOffset: GLintptr) | void | 
+| texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, srcData: ArrayBufferView, srcOffset: GLuint) | void | 
+| compressedTexImage2D(target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, border: GLint, imageSize: GLsizei, offset: GLintptr) | void | 
+| compressedTexImage2D(target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, border: GLint, srcData: ArrayBufferView, srcOffset?: GLuint, srcLengthOverride?: GLuint) | void | 
+| compressedTexSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, imageSize: GLsizei, offset: GLintptr) | void | 
+| compressedTexSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, srcData: ArrayBufferView, srcOffset?: GLuint, srcLengthOverride?: GLuint) | void | 
+| uniform1fv(location: WebGLUniformLocation \| null, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform2fv(location: WebGLUniformLocation \| null, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform3fv(location: WebGLUniformLocation \| null, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform4fv(location: WebGLUniformLocation \| null, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform1iv(location: WebGLUniformLocation \| null, data: Int32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform2iv(location: WebGLUniformLocation \| null, data: Int32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform3iv(location: WebGLUniformLocation \| null, data: Int32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniform4iv(location: WebGLUniformLocation \| null, data: Int32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix2fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix3fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| uniformMatrix4fv(location: WebGLUniformLocation \| null, transpose: GLboolean, data: Float32List, srcOffset?: GLuint, srcLength?: GLuint) | void | 
+| readPixels(x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, dstData: ArrayBufferView \| null) | void | 
+| readPixels(x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, offset: GLintptr) | void | 
+| readPixels(x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, dstData: ArrayBufferView, dstOffset: GLuint) | void | 
