@@ -71,7 +71,7 @@
   表5 数据表删除API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | 删除数据。<ul><li> deletedRows：删除的记录条数。 </li><li> predicates：Rdb谓词，指定了删除操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
+  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | 删除数据。<ul><li> deletedRows：删除的记录条数。 </li><li> predicates：Rdb谓词，指定了删除操作的表名和条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置删除条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul></li></ul> |
 
 - 更新
 
@@ -92,7 +92,7 @@
   表7 数据表查询API
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
-  | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | 查询数据。<ul><li> predicates：谓词，可以设置查询条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置更新条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul> <li> columns：规定查询返回的列。</li></ul></li></ul> |
+  | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | 查询数据。<ul><li> predicates：谓词，可以设置查询条件。AbsRdbPredicates的实现类有两个：RdbPredicates和RawRdbPredicates。<ul><li> RdbPredicates：支持调用谓词提供的equalTo等接口，设置查询条件。</li><li> RawRdbPredicates：仅支持设置表名、where条件子句、whereArgs三个参数，不支持equalTo等接口调用。 </li></ul> <li> columns：规定查询返回的列。</li></ul></li></ul> |
   | RdbStore | std::unique_ptr<AbsSharedResultSet> QuerySql(const std::string &sql, const std::vector\<std::string\> &selectionArgs = std::vector\<std::string\>()) | 执行原生的用于查询操作的SQL语句。<ul><li> sql：原生用于查询的sql语句。</li><li> selectionArgs：sql语句中占位符参数的值，若select语句中没有使用占位符，该参数可以设置为null。</li></ul> |
 
 ### 查询结果集的使用
@@ -129,28 +129,28 @@
 
 用户根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名。
 
-表9 根据本地表名获取指定远程设备的分布式表名
+表10 根据本地表名获取指定远程设备的分布式表名
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | std::string ObtainDistributedTableName(const std::string& device, const std::string& table) | 根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名。<ul><li> device：远程设备ID </li><li> table：本地表名</li></ul>
 
 ### 在设备之间同步数据
 
-表10 在设备之间同步数据
+表11 在设备之间同步数据
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | bool Sync(const SyncOption& option, const AbsRdbPredicates& predicate, const SyncCallback& callback) | 在设备之间同步数据。<ul><li> option：同步选项；mode：同步模式(PUSH表示数据从本地设备推送到远程设备/PULL表示数据从远程设备拉至本地设备)；isBlock：是否阻塞 </li><li> callback：指定的callback回调函数</li></ul>
 
 ### 注册数据库的观察者
 
-表10 注册数据库的观察者
+表12 注册数据库的观察者
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | bool Subscribe(const SubscribeOption& option, RdbStoreObserver *observer) | 注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。<ul><li> option：订阅类型；</li><li> observer：指分布式数据库中数据更改事件的观察者</li></ul>
 
 ### 从数据库中删除指定类型的指定观察者
 
-表10 从数据库中删除指定类型的指定观察者
+表13 从数据库中删除指定类型的指定观察者
 | 类名 | 接口名 | 描述 |
 |  ----  |  ----  |  ----  |
 | RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | 从数据库中删除指定类型的指定观察者。<ul><li> option：订阅类型；</li><li> observer：指已注册的数据更改观察者</li></ul>
@@ -163,7 +163,7 @@
 
   关系型数据库提供了备份数据库文件的接口，通过databasePath指定的备份文件名（支持路径）备份当前数据库文件。通过返回值判断是否备份成功，成功时返回0，失败时则返回相应的错误码。
 
-  表11 数据库备份API
+  表14 数据库备份API
 
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
@@ -173,7 +173,7 @@
 
   关系型数据库提供了恢复数据库文件的接口，通过backupPath指定的备份文件名（支持路径）恢复当前数据库文件。通过返回值判断是否恢复成功，成功时返回0，失败时则返回相应的错误码。
 
-  表12 数据库恢复API
+  表15 数据库恢复API
 
   | 类名 | 接口名 | 描述 |
   |  ----  |  ----  |  ----  |
