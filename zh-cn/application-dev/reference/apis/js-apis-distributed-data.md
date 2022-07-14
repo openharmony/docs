@@ -1827,10 +1827,12 @@ limit(total: number, offset: number): Query
 **示例：**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {

@@ -123,8 +123,3 @@
       console.error(error);
     }
     ```
-## Samples
-
-The following sample is provided to help you better understand how to develop sensors:
-
-- [`Sensor`: sensor (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)
