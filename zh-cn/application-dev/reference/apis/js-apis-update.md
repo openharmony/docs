@@ -776,7 +776,7 @@ let policy = {
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
 updater.setUpgradePolicy(policy, (err, value) => {
-  console.log(`setUpgradePolicy result: ${value?}`);
+  console.log(`setUpgradePolicy result: ${value}`);
 });
 ```
 
@@ -811,7 +811,7 @@ let policy = {
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
 updater.setUpgradePolicy(policy).then(result => {
-  console.log(`setUpgradePolicy &{result}`);
+  console.log(`setUpgradePolicy ${result}`);
 }).catch(err => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
