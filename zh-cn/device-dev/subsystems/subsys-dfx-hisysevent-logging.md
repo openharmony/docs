@@ -8,7 +8,7 @@ HiSysEvent打点提供了事件埋点功能，开发者可以通过在关键路�
 
 ### 运作机制
 
-在进行HiSysEvent事件埋点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)。
+在进行HiSysEvent事件埋点之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](subsys-dfx-hisysevent-logging-config.md)。
 
 ## 开发指导
 
