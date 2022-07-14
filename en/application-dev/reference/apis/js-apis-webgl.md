@@ -426,7 +426,7 @@ WebGLRenderingContextBase
 | CONTEXT_LOST_WEBGL | GLenum | Yes| 
 | UNPACK_COLORSPACE_CONVERSION_WEBGL | GLenum | Yes| 
 | BROWSER_DEFAULT_WEBGL | GLenum | Yes| 
-| canvas | HTMLCanvasElement&nbsp;\|&nbsp;OffscreenCanvas | Yes| 
+| canvas | HTMLCanvasElement \| OffscreenCanvas | Yes| 
 | drawingBufferWidth | GLsizei | Yes| 
 | drawingBufferHeight | GLsizei | Yes| 
 
@@ -435,124 +435,124 @@ WebGLRenderingContextBase
 
   | Method| Return Value Type| 
 | -------- | -------- |
-| getContextAttributes() | WebGLContextAttributes&nbsp;\|&nbsp;null | 
+| getContextAttributes() | WebGLContextAttributes \| null | 
 | isContextLost() | boolean | 
-| getSupportedExtensions() | string[]&nbsp;\|&nbsp;null | 
-| getExtension(name:&nbsp;string) | any | 
-| activeTexture(texture:&nbsp;GLenum) | void | 
-| attachShader(program:&nbsp;WebGLProgram,&nbsp;shader:&nbsp;WebGLShader) | void | 
-| bindAttribLocation(program:&nbsp;WebGLProgram,&nbsp;index:&nbsp;GLuint,&nbsp;name:&nbsp;string) | void | 
-| bindBuffer(target:&nbsp;GLenum,&nbsp;buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null) | void | 
-| bindFramebuffer(target:&nbsp;GLenum,&nbsp;framebuffer:&nbsp;WebGLFramebuffer&nbsp;\|&nbsp;null) | void | 
-| bindRenderbuffer(target:&nbsp;GLenum,&nbsp;renderbuffer:&nbsp;WebGLRenderbuffer&nbsp;\|&nbsp;null) | void | 
-| bindTexture(target:&nbsp;GLenum,&nbsp;texture:&nbsp;WebGLTexture&nbsp;\|&nbsp;null) | void | 
-| blendColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf) | void | 
-| blendEquation(mode:&nbsp;GLenum) | void | 
-| blendEquationSeparate(modeRGB:&nbsp;GLenum,&nbsp;modeAlpha:&nbsp;GLenum) | void | 
-| blendFunc(sfactor:&nbsp;GLenum,&nbsp;dfactor:&nbsp;GLenum) | void | 
-| blendFuncSeparate(srcRGB:&nbsp;GLenum,&nbsp;dstRGB:&nbsp;GLenum,&nbsp;srcAlpha:&nbsp;GLenum,&nbsp;dstAlpha:&nbsp;GLenum) | void | 
-| checkFramebufferStatus(target:&nbsp;GLenum) | GLenum | 
-| clear(mask:&nbsp;GLbitfield) | void | 
-| clearColor(red:&nbsp;GLclampf,&nbsp;green:&nbsp;GLclampf,&nbsp;blue:&nbsp;GLclampf,&nbsp;alpha:&nbsp;GLclampf) | void | 
-| clearDepth(depth:&nbsp;GLclampf) | void | 
-| clearStencil(s:&nbsp;GLint) | void | 
-| colorMask(red:&nbsp;GLboolean,&nbsp;green:&nbsp;GLboolean,&nbsp;blue:&nbsp;GLboolean,&nbsp;alpha:&nbsp;GLboolean) | void | 
-| compileShader(shader:&nbsp;WebGLShader) | void | 
-| copyTexImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLenum,&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint) | void | 
-| copyTexSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
-| createBuffer() | WebGLBuffer&nbsp;\|&nbsp;null | 
-| createFramebuffer() | WebGLFramebuffer&nbsp;\|&nbsp;null | 
-| createProgram() | WebGLProgram&nbsp;\|&nbsp;null | 
-| createRenderbuffer() | WebGLRenderbuffer&nbsp;\|&nbsp;null | 
-| createShader(type:&nbsp;GLenum) | WebGLShader&nbsp;\|&nbsp;null | 
-| createTexture() | WebGLTexture&nbsp;\|&nbsp;null | 
-| cullFace(mode:&nbsp;GLenum) | void | 
-| deleteBuffer(buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null) | void | 
-| deleteFramebuffer(framebuffer:&nbsp;WebGLFramebuffer&nbsp;\|&nbsp;null) | void | 
-| deleteProgram(program:&nbsp;WebGLProgram&nbsp;\|&nbsp;null) | void | 
-| deleteRenderbuffer(renderbuffer:&nbsp;WebGLRenderbuffer&nbsp;\|&nbsp;null) | void | 
-| deleteShader(shader:&nbsp;WebGLShader&nbsp;\|&nbsp;null) | void | 
-| deleteTexture(texture:&nbsp;WebGLTexture&nbsp;\|&nbsp;null) | void | 
-| depthFunc(func:&nbsp;GLenum) | void | 
-| depthMask(flag:&nbsp;GLboolean) | void | 
-| depthRange(zNear:&nbsp;GLclampf,&nbsp;zFar:&nbsp;GLclampf) | void | 
-| detachShader(program:&nbsp;WebGLProgram,&nbsp;shader:&nbsp;WebGLShader) | void | 
-| disable(cap:&nbsp;GLenum) | void | 
-| disableVertexAttribArray(index:&nbsp;GLuint) | void | 
-| drawArrays(mode:&nbsp;GLenum,&nbsp;first:&nbsp;GLint,&nbsp;count:&nbsp;GLsizei) | void | 
-| drawElements(mode:&nbsp;GLenum,&nbsp;count:&nbsp;GLsizei,&nbsp;type:&nbsp;GLenum,&nbsp;offset:&nbsp;GLintptr) | void | 
-| enable(cap:&nbsp;GLenum) | void | 
-| enableVertexAttribArray(index:&nbsp;GLuint) | void | 
+| getSupportedExtensions() | string[] \| null | 
+| getExtension(name: string) | any | 
+| activeTexture(texture: GLenum) | void | 
+| attachShader(program: WebGLProgram, shader: WebGLShader) | void | 
+| bindAttribLocation(program: WebGLProgram, index: GLuint, name: string) | void | 
+| bindBuffer(target: GLenum, buffer: WebGLBuffer \| null) | void | 
+| bindFramebuffer(target: GLenum, framebuffer: WebGLFramebuffer \| null) | void | 
+| bindRenderbuffer(target: GLenum, renderbuffer: WebGLRenderbuffer \| null) | void | 
+| bindTexture(target: GLenum, texture: WebGLTexture \| null) | void | 
+| blendColor(red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf) | void | 
+| blendEquation(mode: GLenum) | void | 
+| blendEquationSeparate(modeRGB: GLenum, modeAlpha: GLenum) | void | 
+| blendFunc(sfactor: GLenum, dfactor: GLenum) | void | 
+| blendFuncSeparate(srcRGB: GLenum, dstRGB: GLenum, srcAlpha: GLenum, dstAlpha: GLenum) | void | 
+| checkFramebufferStatus(target: GLenum) | GLenum | 
+| clear(mask: GLbitfield) | void | 
+| clearColor(red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf) | void | 
+| clearDepth(depth: GLclampf) | void | 
+| clearStencil(s: GLint) | void | 
+| colorMask(red: GLboolean, green: GLboolean, blue: GLboolean, alpha: GLboolean) | void | 
+| compileShader(shader: WebGLShader) | void | 
+| copyTexImage2D(target: GLenum, level: GLint, internalformat: GLenum, x: GLint, y: GLint, width: GLsizei, height: GLsizei, border: GLint) | void | 
+| copyTexSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, x: GLint, y: GLint, width: GLsizei, height: GLsizei) | void | 
+| createBuffer() | WebGLBuffer \| null | 
+| createFramebuffer() | WebGLFramebuffer \| null | 
+| createProgram() | WebGLProgram \| null | 
+| createRenderbuffer() | WebGLRenderbuffer \| null | 
+| createShader(type: GLenum) | WebGLShader \| null | 
+| createTexture() | WebGLTexture \| null | 
+| cullFace(mode: GLenum) | void | 
+| deleteBuffer(buffer: WebGLBuffer \| null) | void | 
+| deleteFramebuffer(framebuffer: WebGLFramebuffer \| null) | void | 
+| deleteProgram(program: WebGLProgram \| null) | void | 
+| deleteRenderbuffer(renderbuffer: WebGLRenderbuffer \| null) | void | 
+| deleteShader(shader: WebGLShader \| null) | void | 
+| deleteTexture(texture: WebGLTexture \| null) | void | 
+| depthFunc(func: GLenum) | void | 
+| depthMask(flag: GLboolean) | void | 
+| depthRange(zNear: GLclampf, zFar: GLclampf) | void | 
+| detachShader(program: WebGLProgram, shader: WebGLShader) | void | 
+| disable(cap: GLenum) | void | 
+| disableVertexAttribArray(index: GLuint) | void | 
+| drawArrays(mode: GLenum, first: GLint, count: GLsizei) | void | 
+| drawElements(mode: GLenum, count: GLsizei, type: GLenum, offset: GLintptr) | void | 
+| enable(cap: GLenum) | void | 
+| enableVertexAttribArray(index: GLuint) | void | 
 | finish() | void | 
 | flush() | void | 
-| framebufferRenderbuffer(target:&nbsp;GLenum,&nbsp;attachment:&nbsp;GLenum,&nbsp;renderbuffertarget:&nbsp;GLenum,&nbsp;renderbuffer:&nbsp;WebGLRenderbuffer&nbsp;\|&nbsp;null) | void | 
-| framebufferTexture2D(target:&nbsp;GLenum,&nbsp;attachment:&nbsp;GLenum,&nbsp;textarget:&nbsp;GLenum,&nbsp;texture:&nbsp;WebGLTexture&nbsp;\|&nbsp;null,&nbsp;level:&nbsp;GLint) | void | 
-| frontFace(mode:&nbsp;GLenum) | void | 
-| generateMipmap(target:&nbsp;GLenum) | void | 
-| getActiveAttrib(program:&nbsp;WebGLProgram,&nbsp;index:&nbsp;GLuint) | WebGLActiveInfo&nbsp;\|&nbsp;null | 
-| getActiveUniform(program:&nbsp;WebGLProgram,&nbsp;index:&nbsp;GLuint) | WebGLActiveInfo&nbsp;\|&nbsp;null | 
-| getAttachedShaders(program:&nbsp;WebGLProgram) | WebGLShader[]&nbsp;\|&nbsp;null | 
-| getAttribLocation(program:&nbsp;WebGLProgram,&nbsp;name:&nbsp;string) | GLint | 
-| getBufferParameter(target:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum) | any | 
-| getParameter(pname:&nbsp;GLenum) | any | 
+| framebufferRenderbuffer(target: GLenum, attachment: GLenum, renderbuffertarget: GLenum, renderbuffer: WebGLRenderbuffer \| null) | void | 
+| framebufferTexture2D(target: GLenum, attachment: GLenum, textarget: GLenum, texture: WebGLTexture \| null, level: GLint) | void | 
+| frontFace(mode: GLenum) | void | 
+| generateMipmap(target: GLenum) | void | 
+| getActiveAttrib(program: WebGLProgram, index: GLuint) | WebGLActiveInfo \| null | 
+| getActiveUniform(program: WebGLProgram, index: GLuint) | WebGLActiveInfo \| null | 
+| getAttachedShaders(program: WebGLProgram) | WebGLShader[] \| null | 
+| getAttribLocation(program: WebGLProgram, name: string) | GLint | 
+| getBufferParameter(target: GLenum, pname: GLenum) | any | 
+| getParameter(pname: GLenum) | any | 
 | getError() | GLenum | 
-| getFramebufferAttachmentParameter(target:&nbsp;GLenum,&nbsp;attachment:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum) | any | 
-| getProgramParameter(program:&nbsp;WebGLProgram,&nbsp;pname:&nbsp;GLenum) | any | 
-| getProgramInfoLog(program:&nbsp;WebGLProgram) | string&nbsp;\|&nbsp;null | 
-| getRenderbufferParameter(target:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum) | any | 
-| getShaderParameter(shader:&nbsp;WebGLShader,&nbsp;pname:&nbsp;GLenum) | any | 
-| getShaderPrecisionFormat(shadertype:&nbsp;GLenum,&nbsp;precisiontype:&nbsp;GLenum) | WebGLShaderPrecisionFormat&nbsp;\|&nbsp;null | 
-| getShaderInfoLog(shader:&nbsp;WebGLShader) | string&nbsp;\|&nbsp;null | 
-| getShaderSource(shader:&nbsp;WebGLShader) | string&nbsp;\|&nbsp;null | 
-| getTexParameter(target:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum) | any | 
-| getUniform(program:&nbsp;WebGLProgram,&nbsp;location:&nbsp;WebGLUniformLocation) | any | 
-| getUniformLocation(program:&nbsp;WebGLProgram,&nbsp;name:&nbsp;string) | WebGLUniformLocation&nbsp;\|&nbsp;null | 
-| getVertexAttrib(index:&nbsp;GLuint,&nbsp;pname:&nbsp;GLenum) | any | 
-| getVertexAttribOffset(index:&nbsp;GLuint,&nbsp;pname:&nbsp;GLenum) | GLintptr | 
-| hint(target:&nbsp;GLenum,&nbsp;mode:&nbsp;GLenum) | void | 
-| isBuffer(buffer:&nbsp;WebGLBuffer&nbsp;\|&nbsp;null) | GLboolean | 
-| isEnabled(cap:&nbsp;GLenum) | GLboolean | 
-| isFramebuffer(framebuffer:&nbsp;WebGLFramebuffer&nbsp;\|&nbsp;null) | GLboolean | 
-| isProgram(program:&nbsp;WebGLProgram&nbsp;\|&nbsp;null) | GLboolean | 
-| isRenderbuffer(renderbuffer:&nbsp;WebGLRenderbuffer&nbsp;\|&nbsp;null) | GLboolean | 
-| isShader(shader:&nbsp;WebGLShader&nbsp;\|&nbsp;null) | GLboolean | 
-| isTexture(texture:&nbsp;WebGLTexture&nbsp;\|&nbsp;null) | GLboolean | 
-| lineWidth(width:&nbsp;GLfloat) | void | 
-| linkProgram(program:&nbsp;WebGLProgram) | void | 
-| pixelStorei(pname:&nbsp;GLenum,&nbsp;param:&nbsp;GLint&nbsp;\|&nbsp;GLboolean) | void | 
-| polygonOffset(factor:&nbsp;GLfloat,&nbsp;units:&nbsp;GLfloat) | void | 
-| renderbufferStorage(target:&nbsp;GLenum,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
-| sampleCoverage(value:&nbsp;GLclampf,&nbsp;invert:&nbsp;GLboolean) | void | 
-| scissor(x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
-| shaderSource(shader:&nbsp;WebGLShader,&nbsp;source:&nbsp;string) | void | 
-| stencilFunc(func:&nbsp;GLenum,&nbsp;ref:&nbsp;GLint,&nbsp;mask:&nbsp;GLuint) | void | 
-| stencilFuncSeparate(face:&nbsp;GLenum,&nbsp;func:&nbsp;GLenum,&nbsp;ref:&nbsp;GLint,&nbsp;mask:&nbsp;GLuint) | void | 
-| stencilMask(mask:&nbsp;GLuint) | void | 
-| stencilMaskSeparate(face:&nbsp;GLenum,&nbsp;mask:&nbsp;GLuint) | void | 
-| stencilOp(fail:&nbsp;GLenum,&nbsp;zfail:&nbsp;GLenum,&nbsp;zpass:&nbsp;GLenum) | void | 
-| stencilOpSeparate(face:&nbsp;GLenum,&nbsp;fail:&nbsp;GLenum,&nbsp;zfail:&nbsp;GLenum,&nbsp;zpass:&nbsp;GLenum) | void | 
-| texParameterf(target:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum,&nbsp;param:&nbsp;GLfloat) | void | 
-| texParameteri(target:&nbsp;GLenum,&nbsp;pname:&nbsp;GLenum,&nbsp;param:&nbsp;GLint) | void | 
-| uniform1f(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLfloat) | void | 
-| uniform2f(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLfloat,&nbsp;y:&nbsp;GLfloat) | void | 
-| uniform3f(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLfloat,&nbsp;y:&nbsp;GLfloat,&nbsp;z:&nbsp;GLfloat) | void | 
-| uniform4f(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLfloat,&nbsp;y:&nbsp;GLfloat,&nbsp;z:&nbsp;GLfloat,&nbsp;w:&nbsp;GLfloat) | void | 
-| uniform1i(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLint) | void | 
-| uniform2i(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint) | void | 
-| uniform3i(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;z:&nbsp;GLint) | void | 
-| uniform4i(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;z:&nbsp;GLint,&nbsp;w:&nbsp;GLint) | void | 
-| useProgram(program:&nbsp;WebGLProgram&nbsp;\|&nbsp;null) | void | 
-| validateProgram(program:&nbsp;WebGLProgram) | void | 
-| vertexAttrib1f(index:&nbsp;GLuint,&nbsp;x:&nbsp;GLfloat) | void | 
-| vertexAttrib2f(index:&nbsp;GLuint,&nbsp;x:&nbsp;GLfloat,&nbsp;y:&nbsp;GLfloat) | void | 
-| vertexAttrib3f(index:&nbsp;GLuint,&nbsp;x:&nbsp;GLfloat,&nbsp;y:&nbsp;GLfloat,&nbsp;z:&nbsp;GLfloat) | void | 
-| vertexAttrib4f(index:&nbsp;GLuint,&nbsp;x:&nbsp;GLfloat,&nbsp;y:&nbsp;GLfloat,&nbsp;z:&nbsp;GLfloat,&nbsp;w:&nbsp;GLfloat) | void | 
-| vertexAttrib1fv(index:&nbsp;GLuint,&nbsp;values:&nbsp;Float32List) | void | 
-| vertexAttrib2fv(index:&nbsp;GLuint,&nbsp;values:&nbsp;Float32List) | void | 
-| vertexAttrib3fv(index:&nbsp;GLuint,&nbsp;values:&nbsp;Float32List) | void | 
-| vertexAttrib4fv(index:&nbsp;GLuint,&nbsp;values:&nbsp;Float32List) | void | 
-| vertexAttribPointer(index:&nbsp;GLuint,&nbsp;size:&nbsp;GLint,&nbsp;type:&nbsp;GLenum,&nbsp;normalized:&nbsp;GLboolean,&nbsp;stride:&nbsp;GLsizei,&nbsp;offset:&nbsp;GLintptr) | void | 
-| viewport(x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei) | void | 
+| getFramebufferAttachmentParameter(target: GLenum, attachment: GLenum, pname: GLenum) | any | 
+| getProgramParameter(program: WebGLProgram, pname: GLenum) | any | 
+| getProgramInfoLog(program: WebGLProgram) | string \| null | 
+| getRenderbufferParameter(target: GLenum, pname: GLenum) | any | 
+| getShaderParameter(shader: WebGLShader, pname: GLenum) | any | 
+| getShaderPrecisionFormat(shadertype: GLenum, precisiontype: GLenum) | WebGLShaderPrecisionFormat \| null | 
+| getShaderInfoLog(shader: WebGLShader) | string \| null | 
+| getShaderSource(shader: WebGLShader) | string \| null | 
+| getTexParameter(target: GLenum, pname: GLenum) | any | 
+| getUniform(program: WebGLProgram, location: WebGLUniformLocation) | any | 
+| getUniformLocation(program: WebGLProgram, name: string) | WebGLUniformLocation \| null | 
+| getVertexAttrib(index: GLuint, pname: GLenum) | any | 
+| getVertexAttribOffset(index: GLuint, pname: GLenum) | GLintptr | 
+| hint(target: GLenum, mode: GLenum) | void | 
+| isBuffer(buffer: WebGLBuffer \| null) | GLboolean | 
+| isEnabled(cap: GLenum) | GLboolean | 
+| isFramebuffer(framebuffer: WebGLFramebuffer \| null) | GLboolean | 
+| isProgram(program: WebGLProgram \| null) | GLboolean | 
+| isRenderbuffer(renderbuffer: WebGLRenderbuffer \| null) | GLboolean | 
+| isShader(shader: WebGLShader \| null) | GLboolean | 
+| isTexture(texture: WebGLTexture \| null) | GLboolean | 
+| lineWidth(width: GLfloat) | void | 
+| linkProgram(program: WebGLProgram) | void | 
+| pixelStorei(pname: GLenum, param: GLint \| GLboolean) | void | 
+| polygonOffset(factor: GLfloat, units: GLfloat) | void | 
+| renderbufferStorage(target: GLenum, internalformat: GLenum, width: GLsizei, height: GLsizei) | void | 
+| sampleCoverage(value: GLclampf, invert: GLboolean) | void | 
+| scissor(x: GLint, y: GLint, width: GLsizei, height: GLsizei) | void | 
+| shaderSource(shader: WebGLShader, source: string) | void | 
+| stencilFunc(func: GLenum, ref: GLint, mask: GLuint) | void | 
+| stencilFuncSeparate(face: GLenum, func: GLenum, ref: GLint, mask: GLuint) | void | 
+| stencilMask(mask: GLuint) | void | 
+| stencilMaskSeparate(face: GLenum, mask: GLuint) | void | 
+| stencilOp(fail: GLenum, zfail: GLenum, zpass: GLenum) | void | 
+| stencilOpSeparate(face: GLenum, fail: GLenum, zfail: GLenum, zpass: GLenum) | void | 
+| texParameterf(target: GLenum, pname: GLenum, param: GLfloat) | void | 
+| texParameteri(target: GLenum, pname: GLenum, param: GLint) | void | 
+| uniform1f(location: WebGLUniformLocation \| null, x: GLfloat) | void | 
+| uniform2f(location: WebGLUniformLocation \| null, x: GLfloat, y: GLfloat) | void | 
+| uniform3f(location: WebGLUniformLocation \| null, x: GLfloat, y: GLfloat, z: GLfloat) | void | 
+| uniform4f(location: WebGLUniformLocation \| null, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat) | void | 
+| uniform1i(location: WebGLUniformLocation \| null, x: GLint) | void | 
+| uniform2i(location: WebGLUniformLocation \| null, x: GLint, y: GLint) | void | 
+| uniform3i(location: WebGLUniformLocation \| null, x: GLint, y: GLint, z: GLint) | void | 
+| uniform4i(location: WebGLUniformLocation \| null, x: GLint, y: GLint, z: GLint, w: GLint) | void | 
+| useProgram(program: WebGLProgram \| null) | void | 
+| validateProgram(program: WebGLProgram) | void | 
+| vertexAttrib1f(index: GLuint, x: GLfloat) | void | 
+| vertexAttrib2f(index: GLuint, x: GLfloat, y: GLfloat) | void | 
+| vertexAttrib3f(index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat) | void | 
+| vertexAttrib4f(index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat) | void | 
+| vertexAttrib1fv(index: GLuint, values: Float32List) | void | 
+| vertexAttrib2fv(index: GLuint, values: Float32List) | void | 
+| vertexAttrib3fv(index: GLuint, values: Float32List) | void | 
+| vertexAttrib4fv(index: GLuint, values: Float32List) | void | 
+| vertexAttribPointer(index: GLuint, size: GLint, type: GLenum, normalized: GLboolean, stride: GLsizei, offset: GLintptr) | void | 
+| viewport(x: GLint, y: GLint, width: GLsizei, height: GLsizei) | void | 
 
 
 ## WebGLRenderingContextOverloads
@@ -561,24 +561,24 @@ WebGLRenderingContextOverloads
 
   | Method| Return Value Type| 
 | -------- | -------- |
-| bufferData(target:&nbsp;GLenum,&nbsp;size:&nbsp;GLsizeiptr,&nbsp;usage:&nbsp;GLenum) | void | 
-| bufferData(target:&nbsp;GLenum,&nbsp;data:&nbsp;BufferSource&nbsp;\|&nbsp;null,&nbsp;usage:&nbsp;GLenum) | void | 
-| bufferSubData(target:&nbsp;GLenum,&nbsp;offset:&nbsp;GLintptr,&nbsp;data:&nbsp;BufferSource) | void | 
-| compressedTexImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLenum,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;data:&nbsp;ArrayBufferView) | void | 
-| compressedTexSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;data:&nbsp;ArrayBufferView) | void | 
-| readPixels(x:&nbsp;GLint,&nbsp;y:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pixels:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null) | void; | 
-| texImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;border:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pixels:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null) | void | 
-| texImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;internalformat:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| texSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;width:&nbsp;GLsizei,&nbsp;height:&nbsp;GLsizei,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;pixels:&nbsp;ArrayBufferView&nbsp;\|&nbsp;null) | void | 
-| texSubImage2D(target:&nbsp;GLenum,&nbsp;level:&nbsp;GLint,&nbsp;xoffset:&nbsp;GLint,&nbsp;yoffset:&nbsp;GLint,&nbsp;format:&nbsp;GLenum,&nbsp;type:&nbsp;GLenum,&nbsp;source:&nbsp;TexImageSource) | void | 
-| uniform1fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Float32List) | void | 
-| uniform2fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Float32List) | void | 
-| uniform3fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Float32List) | void | 
-| uniform4fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Float32List) | void | 
-| uniform1iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Int32List) | void | 
-| uniform2iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Int32List) | void | 
-| uniform3iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Int32List) | void | 
-| uniform4iv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;v:&nbsp;Int32List) | void | 
-| uniformMatrix2fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;value:&nbsp;Float32List) | void | 
-| uniformMatrix3fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;value:&nbsp;Float32List) | void | 
-| uniformMatrix4fv(location:&nbsp;WebGLUniformLocation&nbsp;\|&nbsp;null,&nbsp;transpose:&nbsp;GLboolean,&nbsp;value:&nbsp;Float32List) | void | 
+| bufferData(target: GLenum, size: GLsizeiptr, usage: GLenum) | void | 
+| bufferData(target: GLenum, data: BufferSource \| null, usage: GLenum) | void | 
+| bufferSubData(target: GLenum, offset: GLintptr, data: BufferSource) | void | 
+| compressedTexImage2D(target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, border: GLint, data: ArrayBufferView) | void | 
+| compressedTexSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, data: ArrayBufferView) | void | 
+| readPixels(x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 
+| texImage2D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 
+| texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 
+| texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, format: GLenum, type: GLenum, source: TexImageSource) | void | 
+| uniform1fv(location: WebGLUniformLocation \| null, v: Float32List) | void | 
+| uniform2fv(location: WebGLUniformLocation \| null, v: Float32List) | void | 
+| uniform3fv(location: WebGLUniformLocation \| null, v: Float32List) | void | 
+| uniform4fv(location: WebGLUniformLocation \| null, v: Float32List) | void | 
+| uniform1iv(location: WebGLUniformLocation \| null, v: Int32List) | void | 
+| uniform2iv(location: WebGLUniformLocation \| null, v: Int32List) | void | 
+| uniform3iv(location: WebGLUniformLocation \| null, v: Int32List) | void | 
+| uniform4iv(location: WebGLUniformLocation \| null, v: Int32List) | void | 
+| uniformMatrix2fv(location: WebGLUniformLocation \| null, transpose: GLboolean, value: Float32List) | void | 
+| uniformMatrix3fv(location: WebGLUniformLocation \| null, transpose: GLboolean, value: Float32List) | void | 
+| uniformMatrix4fv(location: WebGLUniformLocation \| null, transpose: GLboolean, value: Float32List) | void | 
