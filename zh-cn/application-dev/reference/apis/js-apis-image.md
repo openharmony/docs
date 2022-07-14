@@ -63,8 +63,13 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 const color = new ArrayBuffer(96);
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
-        })
+image.createPixelMap(color, opts, (error,pixelmap) => {
+    if(error) {
+        console.log('Failed to create pixelmap.');
+    } else {
+        console.log('Succeeded in creating pixelmap.');
+    }
+})
 ```
 
 ## PixelMap<sup>7+</sup>
