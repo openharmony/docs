@@ -2033,15 +2033,10 @@ img.release().then(() =>{
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称      | 默认值 | 描述              |
-| --------- | ------ | ----------------- |
+| --------- | ------ | ---------------- |
 | UNKNOWN   | 0      | 未知格式。        |
+| RGB_565   | 2      | 格式为RGB_565。   |
 | RGBA_8888 | 3      | 格式为RGBA_8888。 |
-| BGRA_8888 | 4      | 格式为BGRA_8888。 |
-| RGB_888   | 5      | 格式为RGB_888。   |
-| ALPHA_8   | 6      | 格式为ALPHA_8。   |
-| RGBA_F16  | 7      | 格式为RGBA_F16。  |
-| NV21      | 8      | 格式为NV21。      |
-| NV12      | 9      | 格式为NV12。      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2147,11 +2142,6 @@ PixelMap的初始化选项。
 | GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。               |
 | GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。     |
 | GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。     |
-| DateTimeOriginal  | "2022:06:02 15:51:35"   | 拍摄时间。               |
-| ExposureTime      | "1/33 sec."             | 曝光时间。               |
-| SceneType         | "Directly photographed" | 拍摄场景，默认直接拍摄。 |
-| ISOSpeedRatings   | "400"                   | ISO 曝光度，默认值为400。|
-| FNumber           | "f/1.8"                 | 光圈值。                 |
 
 ## ImageFormat<sup>9+</sup>
 
