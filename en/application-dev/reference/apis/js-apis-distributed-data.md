@@ -1828,10 +1828,12 @@ Creates a **Query** object to specify the number of results and where to start.
 **Example**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
@@ -2520,7 +2522,7 @@ try {
 ### putBatch<sup>9+</sup>
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
-  
+
 Writes values to this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core

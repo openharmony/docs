@@ -134,7 +134,7 @@ You can use either of the following methods to connect to a Service ability:
 
     ```javascript
     import prompt from '@system.prompt'
-
+    
     let mRemote;
     function onConnectCallback(element, remote){
         console.log('onConnectLocalService onConnectDone element: ' + element);
@@ -161,13 +161,13 @@ You can use either of the following methods to connect to a Service ability:
         }).catch((e) => {
             console.log('sendRequest error:' + e);
         });
-
+    
     }
-
+    
     function onDisconnectCallback(element){
         console.log('ConnectAbility onDisconnect Callback')
     }
-
+    
     function onFailedCallback(code){
         console.log('ConnectAbility onFailed Callback')
     }
@@ -196,7 +196,7 @@ You can use either of the following methods to connect to a Service ability:
 
     ```javascript
     import rpc from "@ohos.rpc";
-
+    
     let mMyStub;
     export default {
         onStart() {
@@ -424,9 +424,3 @@ export default {
     }
 };
 ```
-
-## Samples
-
-The following samples are provided to help you better understand how to develop a Service ability:
-- [`ServiceAbility`: Service Ability Creation and Use (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
-- [`DMS`: Distributed Demo (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
