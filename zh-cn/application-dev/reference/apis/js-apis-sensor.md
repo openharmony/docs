@@ -1959,7 +1959,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-      for (var i=0; i < data.length; i++) {
+      for (var i=0; i < data.rotation.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
   })
@@ -1992,7 +1992,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
   const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise success');
-          for (var i=0; i < data.length; i++) {
+          for (var i=0; i < data.rotation.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
@@ -2419,11 +2419,11 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型   | 可读   | 可写   | 说明                 |
-| ---- | ------ | ---- | ---- | ------------------ |
-| x    | number | 是    | 是    | x轴环境磁场强度，单位 : μT。  |
-| y    | number | 是    | 是    | y轴环境磁场强度，单位 : μT。  |
-| z    | number | 是    | 是    | z轴环境磁场强度，单位 : μT。。 |
+| 名称 | 参数类型 | 可读 | 可写 | 说明                         |
+| ---- | -------- | ---- | ---- | ---------------------------- |
+| x    | number   | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
+| y    | number   | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
+| z    | number   | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
 
 
 ## MagneticFieldUncalibratedResponse
