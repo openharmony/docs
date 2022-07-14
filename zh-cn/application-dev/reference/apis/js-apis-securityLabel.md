@@ -18,7 +18,10 @@ import securityLabel from '@ohos.securityLabel';
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-let path = context.getFilesDir();
+let path = '';
+context.getFilesDir().then((data) => {
+    path = data;
+})
 ```
 
 ## securityLabel.setSecurityLabel
