@@ -144,15 +144,15 @@ obj-$(CONFIG_HIEVENT)           += hievent/
 1. 打HDF补丁。
    在Linux内核打HDF补丁时，执行补丁shell脚本合入HDF补丁。
 
-   1. 配置HDF补丁脚本的三个变量参数。
+   1. 配置HDF补丁脚本的四个变量参数。
    2. 获取patch_hdf.sh脚本。
-   3. 执行patch_hdf.sh脚本依次传入三个变量参数。
+   3. 执行patch_hdf.sh脚本依次传入四个变量参数。
 
-   patch_hdf.sh脚本三个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为hdf补丁文件。
+   patch_hdf.sh脚本四个参数含义为：第一个入参为工程根目录路径，第二入参为内核目录路径，第三个入参为内核版本路径，第四个参数是当前设备名。
 
      
    ```
-   ./patch_hdf.sh [工程根目录路径] [内核目录路径] [hdf补丁文件]
+   ./patch_hdf.sh [工程根目录路径] [内核目录路径] [内核补丁路径] [设备名]
    ```
 
    以树莓派3b为示例介绍：
@@ -163,7 +163,8 @@ obj-$(CONFIG_HIEVENT)           += hievent/
    PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
    PROJ_ROOT  # 指定工程根目录路径 \
    PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b  # 打补丁的内核目录路径 \
-   PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch  # HDF补丁文件
+   PROJ_ROOT/kernel/linux/patches/linux-4.19 # 内核补丁路径.\
+   hi3516dv300 # 设备名.
    ```
 
 2. 配置config。
