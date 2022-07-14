@@ -11,7 +11,7 @@
 
 ## Audio驱动框架介绍
 
-Audio驱动框架基于[HDF驱动框架](https://device.harmonyos.com/cn/docs/documentation/guide/driver-hdf-overview-0000001051715456)实现。Audio驱动架构组成：
+Audio驱动框架基于[HDF驱动框架](driver-hdf.md)实现。Audio驱动架构组成：
 
 ![](figures/Audio框架图.png)
 
@@ -900,7 +900,7 @@ int32_t Hi3516DmaPointer(struct PlatformData *data, uint32_t *pointer);
 
 #### Platform注册绑定到HDF
 
-此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver/driver-hdf.md)。
+此处依赖HDF框架的驱动实现方式，具体流程可参考[HDF驱动框架](driver-hdf.md)。
 
 - 填充g_platformDriverEntry结构体
 - moduleName与device_info.hcs中的moduleName匹配
