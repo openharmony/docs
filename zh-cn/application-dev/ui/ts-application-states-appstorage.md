@@ -60,7 +60,7 @@ struct ComponentA {
   @StorageProp('languageCode') lang: string = 'en'
   private label: string = 'count'
 
-  private aboutToAppear() {
+  aboutToAppear() {
     this.label = (this.lang === 'zh') ? '数' : 'Count'
   }
 
