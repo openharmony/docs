@@ -21,7 +21,7 @@ import data_rdb from '@ohos.data.rdb';
 
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以callback形式返回。
+获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -51,7 +51,7 @@ data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
-获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，结果以Promise形式返回。
+获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -85,7 +85,7 @@ promise.then(async (rdbStore) => {
 
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除数据库，结果以callback形式返回。
+删除数据库，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -111,7 +111,7 @@ data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
-使用指定的数据库文件配置删除数据库，结果以Promise形式返回。
+使用指定的数据库文件配置删除数据库，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -960,7 +960,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void
 
-向目标表中插入一行数据，结果以callback形式返回。
+向目标表中插入一行数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -979,12 +979,12 @@ const valueBucket = {
     "SALARY": 100.5,
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
-rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
-    if (err) {
-        console.info("Insert failed, err: " + err)
-        return
+rdbStore.insert("EMPLOYEE", valueBucket, function (status, rowId) {
+    if (status) {
+        console.log("Insert is failed");
+        return;
     }
-    console.log("Insert first done: " + ret)
+    console.log("Insert is successful, rowId = " + rowId);
 })
 ```
 
@@ -993,7 +993,7 @@ rdbStore.insert("EMPLOYEE", valueBucket, function (err, ret) {
 
 insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
-向目标表中插入一行数据，结果以Promise形式返回。
+向目标表中插入一行数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1017,19 +1017,113 @@ const valueBucket = {
     "CODES": new Uint8Array([1, 2, 3, 4, 5]),
 }
 let promise = rdbStore.insert("EMPLOYEE", valueBucket)
-promise.then(async (ret) => {
-    console.log("Insert first done: " + ret)
-}).catch((err) => {
-    console.log("Insert failed, err: " + err)
+promise.then((rowId) => {
+    console.log("Insert is successful, rowId = " + rowId);
+}).catch((status) => {
+    console.log("Insert is failed");
 })
 ```
 
+### batchInsert<sup>9+</sup>
+
+batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;):void
+
+向目标表中插入一组数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| table | string | 是 | 指定的目标表名。 |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是 | 表示要插入到表中的一组数据。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 指定callback回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**示例：**
+```js
+const valueBucket1 = {
+    "NAME": "Lisa",
+    "AGE": 18,
+    "SALARY": 100.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5])
+}
+const valueBucket2 = {
+    "NAME": "Jack",
+    "AGE": 19,
+    "SALARY": 101.5,
+    "CODES": new Uint8Array([6, 7, 8, 9, 10])
+}
+const valueBucket3 = {
+    "NAME": "Tom",
+    "AGE": 20,
+    "SALARY": 102.5,
+    "CODES": new Uint8Array([11, 12, 13, 14, 15])
+}
+
+var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
+    if (status) {
+        console.log("bathInsert is failed, status = " + status);
+        return;
+    }
+    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+})
+```
+
+### batchInsert<sup>9+</sup>
+
+batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&gt;
+
+向目标表中插入一组数据，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| table | string | 是 | 指定的目标表名。 |
+| values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是 | 表示要插入到表中的一组数据。 |
+
+**返回值**：
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | 指定Promise回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**示例：**
+```js
+const valueBucket1 = {
+    "NAME": "Lisa",
+    "AGE": 18,
+    "SALARY": 100.5,
+    "CODES": new Uint8Array([1, 2, 3, 4, 5])
+}
+const valueBucket2 = {
+    "NAME": "Jack",
+    "AGE": 19,
+    "SALARY": 101.5,
+    "CODES": new Uint8Array([6, 7, 8, 9, 10])
+}
+const valueBucket3 = {
+    "NAME": "Tom",
+    "AGE": 20,
+    "SALARY": 102.5,
+    "CODES": new Uint8Array([11, 12, 13, 14, 15])
+}
+
+var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
+let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
+promise.then((insertNum) => {
+    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+}).catch((status) => {
+    console.log("bathInsert is failed, status = " + status);
+})
+```
 
 ### update
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1064,7 +1158,7 @@ rdbStore.update(valueBucket, predicates, function (err, ret) {
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
-根据RdbPredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。
+根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1100,7 +1194,7 @@ promise.then(async (ret) => {
 ### update<sup>9+</sup>
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
-根据DataSharePredicates的指定实例对象更新数据库中的数据，结果以callback形式返回。
+根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1135,7 +1229,7 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 
 update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Promise&lt;number&gt;
 
-根据DataSharePredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。
+根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1175,7 +1269,7 @@ promise.then(async (ret) => {
 delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 
-根据RdbPredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。
+根据RdbPredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1203,7 +1297,7 @@ rdbStore.delete(predicates, function (err, rows) {
 
 delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
-根据RdbPredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。
+根据RdbPredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1234,7 +1328,7 @@ promise.then((rows) => {
 delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
 
-根据DataSharePredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。
+根据DataSharePredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1262,7 +1356,7 @@ rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
 
 delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
-根据DataSharePredicates的指定实例对象从数据库中删除数据，结果以Promise形式返回。
+根据DataSharePredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1294,7 +1388,7 @@ promise.then((rows) => {
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，结果以callback形式返回。
+根据指定条件查询数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1324,7 +1418,7 @@ rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (e
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-根据指定条件查询数据库中的数据，结果以Promise形式返回。
+根据指定条件查询数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1356,7 +1450,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定条件查询数据库中的数据，结果以callback形式返回。
+根据指定条件查询数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1386,7 +1480,7 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 
 query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-根据指定条件查询数据库中的数据，结果以Promise形式返回。
+根据指定条件查询数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1419,7 +1513,7 @@ promise.then((resultSet) => {
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定SQL语句查询数据库中的数据，结果以callback形式返回。
+根据指定SQL语句查询数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1447,7 +1541,7 @@ rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", 
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
-根据指定SQL语句查询数据库中的数据，结果以Promise形式返回。
+根据指定SQL语句查询数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1478,7 +1572,7 @@ promise.then((resultSet) => {
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
-执行包含指定参数但不返回值的SQL语句，结果以callback形式返回。
+执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1506,7 +1600,7 @@ rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
-执行包含指定参数但不返回值的SQL语句，结果以Promise形式返回。
+执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1625,7 +1719,7 @@ try {
 
 backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 
-以指定名称备份数据库，结果以callback形式返回。
+以指定名称备份数据库，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1650,7 +1744,7 @@ rdbStore.backup("dbBackup.db", function(err) {
 
 backup(destName:string): Promise&lt;void&gt;
 
-以指定名称备份数据库，结果以promise形式返回。
+以指定名称备份数据库，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1678,7 +1772,7 @@ promiseBackup.then(()=>{
 
 restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 
-从指定的数据库备份文件恢复数据库，结果以callback形式返回。
+从指定的数据库备份文件恢复数据库，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1703,7 +1797,7 @@ rdbStore.restore("dbBackup.db", function(err) {
 
 restore(srcName:string): Promise&lt;void&gt;
 
-从指定的数据库备份文件恢复数据库，结果以promise形式返回。
+从指定的数据库备份文件恢复数据库，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1731,7 +1825,7 @@ promiseRestore.then(()=>{
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-设置分布式列表，结果以callback形式返回。
+设置分布式列表，使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1759,7 +1853,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
-设置分布式列表，结果以Promise形式返回。
+设置分布式列表，使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1789,7 +1883,7 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 结果以callback形式返回。
+根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名, 使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1818,7 +1912,7 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，结果以Promise形式返回。
+根据本地表名获取指定远程设备的分布式表名。在查询远程设备数据库时，需要使用分布式表名，使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1849,7 +1943,7 @@ promise.then((tableName) => {
 
 sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-在设备之间同步数据, 结果以callback形式返回。
+在设备之间同步数据, 使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1883,7 +1977,7 @@ rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, resul
 
  sync(mode: SyncMode, predicates: RdbPredicates): Promise&lt;Array&lt;[string, number]&gt;&gt;
 
-在设备之间同步数据，结果以Promise形式返回。
+在设备之间同步数据，使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1952,7 +2046,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-从数据库中删除指定类型的指定观察者, 结果以callback形式返回。
+从数据库中删除指定类型的指定观察者, 使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
