@@ -208,11 +208,11 @@
                         importance
                     </td>
                     <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        当前服务优先级
+                        标准系统：当前服务优先级<br>小型系统：标记服务重要性
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
                         标准系统中: 服务优先级取值范围 [-20， 19]，超出为无效设置。<br>
-                        小型系统中：0 : 非重要进程；非0 : 重要进程
+                        小型系统中：0 :不重启系统 ；非0 : 重启系统。
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         小型系统和标准系统
