@@ -31,7 +31,7 @@ Blank(min?:  Length)
 
 | 名称 | 参数类型 | 默认值 | 描述 | 
 | -------- | -------- | -------- | -------- |
-| color | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 0x00000000 | 设置空白填充的填充颜色。 | 
+| color | [ResourceColor](../../ui/ts-types.md) | 0x00000000 | 设置空白填充的填充颜色。 | 
 
 >  **说明：**
 > - 不支持通用属性方法。
