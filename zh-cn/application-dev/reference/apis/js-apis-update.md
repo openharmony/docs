@@ -339,7 +339,7 @@ var versionDigestInfo = {
 
 // 下载选项
 var downloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 }
 updater.download(versionDigestInfo, downloadOptions, (err) => {
@@ -380,7 +380,7 @@ var versionDigestInfo = {
 
 // 下载选项
 var downloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 }
 updater.download(versionDigestInfo, downloadOptions).then(() => {
@@ -418,7 +418,7 @@ var versionDigestInfo = {
 
 // 恢复下载选项
 var resumeDownloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 }
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
@@ -458,7 +458,7 @@ var versionDigestInfo = {
 
 // 恢复下载选项
 var resumeDownloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 }
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
   console.log(`resumeDownload start`);
@@ -773,7 +773,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
 updater.setUpgradePolicy(policy, (err, value) => {
   console.log(`setUpgradePolicy result: ${value?}`);
@@ -808,11 +808,11 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
-updater.setUpgradePolicy(policy).then(result => 
+updater.setUpgradePolicy(policy).then(result => {
   console.log(`setUpgradePolicy &{result}`);
-).catch(err => {
+}).catch(err => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1095,7 +1095,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 ```
 var upgradeFiles = [{
-  fileType: update.update.ComponentType.OTA, // OTA包
+  fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }]
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
