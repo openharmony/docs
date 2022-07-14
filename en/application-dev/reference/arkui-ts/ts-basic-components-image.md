@@ -15,7 +15,7 @@ ohos.permission.INTERNET (to use Internet images)
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -25,15 +25,15 @@ Image(src: string | PixelMap | Resource)
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | src | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](../../ui/ts-types.md#resource-type) | Yes | - | Image address, which can be the address of an Internet or a local image.<br/>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>\- The following image formats are supported: png, jpg, bmp, svg, gif.<br/>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string. <br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability. |
+  | src | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](../../ui/ts-types.md#resource-type) | Yes | - | Image address, which can be the address of an Internet or a local image.<br/>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>\- The following image formats are supported: png, jpg, bmp, svg, gif.<br/>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string. <br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability. |
 
 
 ## Attributes
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| alt | string | - | Placeholder image displayed during loading. Both local and Internal URIs are supported. |
-| objectFit | ImageFit | ImageFit.Cover | Image scale type. |
+| alt | string \| [Resource](../../ui/ts-types.md#resource-type) | - | Placeholder image displayed during loading. Both local and Internal URIs are supported. |
+| objectFit | ImageFit | Cover | Image scale type. |
 | objectRepeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | ImageRepeat.NoRepeat | Whether the image is repeated.<br/>**NOTE**<br/>This attribute is not applicable to SVG images. |
 | interpolation | ImageInterpolation | None | Interpolation effect of the image. This attribute is valid only when the image is zoomed in.<br/>**NOTE**<br/>- This attribute is not applicable to SVG images.<br/>- This attribute is not applicable to a **PixelMap** object. |
 | renderMode | ImageRenderMode | Original | Rendering mode of the image.<br/>**NOTE**<br/>This attribute is not applicable to SVG images. |
