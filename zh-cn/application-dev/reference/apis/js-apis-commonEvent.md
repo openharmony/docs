@@ -46,6 +46,7 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_PACKAGE_CHANGED                                 | usual.event.PACKAGE_CHANGED                                 | 无                                                           | 指示应用包已更改的公共事件的动作（例如，包中的组件已启用或禁用）。  |
 | COMMON_EVENT_PACKAGE_RESTARTED                               | usual.event.PACKAGE_RESTARTED                               | 无                                                           | 表示用户重启应用包并杀死其所有进程的普通事件的动作。    |
 | COMMON_EVENT_PACKAGE_DATA_CLEARED                            | usual.event.PACKAGE_DATA_CLEARED                            | 无                                                           | 用户清除应用包数据的公共事件的动作。        |
+| COMMON_EVENT_PACKAGE_CACHE_CLEARED<sup>9+</sup>              | usual.event.PACKAGE_CACHE_CLEARED                           | 无                                                           | 用户清除应用包缓存数据的公共事件的动作。        |
 | COMMON_EVENT_PACKAGES_SUSPENDED                              | usual.event.PACKAGES_SUSPENDED                              | 无                                                           | 表示应用包已挂起的公共事件的动作。          |
 | COMMON_EVENT_PACKAGES_UNSUSPENDED                            | usual.event.PACKAGES_UNSUSPENDED                            | 无                                                           | 表示应用包未挂起的公共事件的动作。        |
 | COMMON_EVENT_MY_PACKAGE_SUSPENDED                            | usual.event.MY_PACKAGE_SUSPENDED                            | 无                                                           | 应用包被挂起的公共事件的动作。          |
