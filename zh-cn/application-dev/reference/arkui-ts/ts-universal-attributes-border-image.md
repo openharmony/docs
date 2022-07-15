@@ -43,13 +43,10 @@
 @Entry
 @Component
 struct Index {
-  @State message: string = 'This is\nborderImage.'
-  @State message2: string = 'This is\ngradient color.'
-
   build() {
     Row() {
       Column() {
-        Text(this.message).textAlign(TextAlign.Center)
+        Text('This is\nborderImage.').textAlign(TextAlign.Center)
           .borderImage({
             source: "borderOrigin.png",
             slice: {top:"31%", bottom:"31%", left:"31%", right:"31%"},
@@ -58,8 +55,26 @@ struct Index {
             repeat: RepeatMode.Repeat,
             fill: false
           });
-        Text(this.message2).textAlign(TextAlign.Center)
-          .margin(10)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_borderImage](figures/borderImage.png)
+
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Text('This is\ngradient color.').textAlign(TextAlign.Center)
           .borderImage({
             source: {angle:90,
               direction: GradientDirection.Left,
@@ -77,4 +92,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_borderImage](figures/borderImage.png)
+![zh-cn_image_borderImageGradient](figures/borderImageGradient.png)
