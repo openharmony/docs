@@ -3,9 +3,11 @@
 Lightweight storage provides applications with data processing capability and allows applications to perform lightweight data storage and query. Data is stored in key-value (KV) pairs. Keys are of the string type, and values can be of the number, string, or Boolean type.
 
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> 
 
 
 ## Modules to Import
@@ -33,20 +35,20 @@ Reads the specified file and loads its data to the **Storage** instance for data
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | [Storage](#storage) | **Storage** instance used for data storage operations.|
+| Type| Description|
+| -------- | -------- |
+| [Storage](#storage) | **Storage** instance used for data storage operations.|
 
 **Example**
   ```js
   import data_storage from '@ohos.data.storage'
   
-  var path = '/data/storage/el2/database/test_storage'
+  let path = '/data/storage/el2/database'
   let storage = data_storage.getStorageSync(path + '/mystore')
   storage.putSync('startup', 'auto')
   storage.flushSync()
@@ -63,19 +65,19 @@ Reads the specified file and loads its data to the **Storage** instance for data
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
-  | callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
+| callback | AsyncCallback&lt;[Storage](#storage)&gt; | Yes| Callback used to return the execution result.|
 
 **Example**
   ```js
   import data_storage from '@ohos.data.storage'
   
-  var path = '/data/storage/el2/database/test_storage'
+  let path = '/data/storage/el2/database'
   data_storage.getStorage(path + '/mystore', function (err, storage) {
       if (err) {
-          console.info("Get the storage failed, path: " + path + '/mystore')
+          console.info("Failed to get the storage. Path: " + path + '/mystore')
           return;
       }
       storage.putSync('startup', 'auto')
@@ -93,27 +95,27 @@ Reads the specified file and loads its data to the **Storage** instance for data
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[Storage](#storage)&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[Storage](#storage)&gt; | Promise used to return the result.|
 
 **Example**
   ```js
   import data_storage from '@ohos.data.storage'
   
-  var path = '/data/storage/el2/database/test_storage'
+  let path = '/data/storage/el2/database'
   
   let getPromise = data_storage.getStorage(path + '/mystore')
   getPromise.then((storage) => {
       storage.putSync('startup', 'auto')
       storage.flushSync()
   }).catch((err) => {
-      console.info("Get the storage failed, path: " + path + '/mystore')
+      console.info("Failed to get the storage. Path: " + path + '/mystore')
   })
   ```
 
@@ -127,12 +129,13 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
 
 **Example**
   ```js
+  let path = '/data/storage/el2/database'
   data_storage.deleteStorageSync(path + '/mystore')
   ```
 
@@ -146,13 +149,14 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
+  let path = '/data/storage/el2/database'
   data_storage.deleteStorage(path + '/mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
@@ -172,17 +176,18 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
+  let path = '/data/storage/el2/database'
   let promisedelSt = data_storage.deleteStorage(path + '/mystore')
   promisedelSt.then(() => {
       console.info("Deleted successfully.")
@@ -201,12 +206,13 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
 
 **Example**
   ```js
+  let path = '/data/storage/el2/database'
   data_storage.removeStorageFromCacheSync(path + '/mystore')
   ```
 
@@ -220,13 +226,14 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
+  let path = '/data/storage/el2/database'
   data_storage.removeStorageFromCache(path + '/mystore', function (err) {
       if (err) {
           console.info("Removed storage from cache failed with err: " + err)
@@ -246,17 +253,18 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | path | string | Yes| Path of the target file.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| Path of the target file.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
+  let path = '/data/storage/el2/database'
   let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
   promiserevSt.then(() => {
       console.info("Removed storage from cache successfully.")
@@ -280,15 +288,15 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | defValue | [ValueType](#valuetype) | Yes| Default value to be returned if the value of the specified key does not exist. It can be a number, string, or Boolean value.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| defValue | [ValueType](#valuetype) | Yes| Default value to be returned if the value of the specified key does not exist. It can be a number, string, or Boolean value.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | ValueType | Value corresponding to the specified key. If the value is null or not in the default value format, the default value is returned.|
+| Type| Description|
+| -------- | -------- |
+| ValueType | Value corresponding to the specified key. If the value is null or not in the default value format, the default value is returned.|
 
 **Example**
   ```js
@@ -306,11 +314,11 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
-  | callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
+| callback | AsyncCallback&lt;ValueType&gt; | Yes| Callback used to return the execution result.|
 
 **Example**
   ```js
@@ -340,9 +348,9 @@ Obtains the value corresponding to a key. If the value is null or not in the def
 | defValue | [ValueType](#valuetype) | Yes| Default value to be returned. It can be a number, string, or Boolean value.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;ValueType&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;ValueType&gt; | Promise used to return the result.|
 
 **Example**
   ```js
@@ -364,10 +372,10 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
 
 **Example**
   ```js
@@ -384,11 +392,11 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -411,15 +419,15 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
@@ -441,14 +449,14 @@ Checks whether the storage object contains data with a given key.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -468,15 +476,15 @@ Checks whether the storage object contains data with a given key. This API uses 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the execution result.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the storage object contains data with the specified key; returns **false** otherwise.|
 
 **Example**
   ```js
@@ -501,14 +509,14 @@ Checks whether the storage object contains data with a given key. This API uses 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
   ```js
@@ -532,9 +540,9 @@ Deletes data with the specified key from this storage object.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
 
 **Example**
   ```js
@@ -551,10 +559,10 @@ Deletes data with the specified key from this storage object. This API uses an a
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data. It cannot be empty.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data. It cannot be empty.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -577,14 +585,14 @@ Deletes data with the specified key from this storage object. This API uses a pr
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | key | string | Yes| Key of the data.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| key | string | Yes| Key of the data.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
@@ -620,9 +628,9 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -645,9 +653,9 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
@@ -683,9 +691,9 @@ Clears this **Storage** object. This API uses an asynchronous callback to return
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -708,9 +716,9 @@ Clears this **Storage** object. This API uses a promise to return the result.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
@@ -732,10 +740,10 @@ Subscribes to data changes. The **StorageObserver** needs to be implemented. Whe
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | type | string | Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| type | string | Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.|
 
 **Example**
   ```js
@@ -757,10 +765,10 @@ Unsubscribes from data changes.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-  | Name| Type| Description|
-  | -------- | -------- | -------- |
-  | type | string | Event type. The value **change** indicates data change events.|
-  | callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| type | string | Event type. The value **change** indicates data change events.|
+| callback | Callback&lt;[StorageObserver](#storageobserver)&gt; | Callback used to return data changes.|
 
 **Example**
   ```js
