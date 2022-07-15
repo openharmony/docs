@@ -1,6 +1,14 @@
 # Relational Database
 
+The relational database (RDB) manages data based on relational models. With the underlying SQLite database, the RDB provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB offers a series of methods for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
+
+This module provides the following RDB-related functions:
+
+- [RdbPredicates](#rdbpredicates): predicates indicating the nature, feature, or relationship of a data entity in an RDB store. It is used to define the operation conditions for an RDB store.
+- [RdbStore](#rdbstore): provides APIs for managing an RDB store.
+
 > **NOTE**<br/>
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -11,71 +19,9 @@ import data_rdb from '@ohos.data.rdb';
 
 ## data_rdb.getRdbStore
 
-getRdbStore(config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
-
-Obtains a relational database (RDB) store. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
-| version | number | Yes| RDB store version.|
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes| Callback invoked to return the RDB store obtained.|
-
-**Example**
-
-```js
-const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(STORE_CONFIG, 1, function (err, rdbStore) {
-    if (err) {
-        console.info("Failed to get RdbStore, err: " + err)
-        return
-    }
-    console.log("Got RdbStore successfully.")
-})
-```
-## data_rdb.getRdbStore
-
-getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
-
-Obtains an RDB store. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
-| version | number | Yes| RDB store version.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the RDB store obtained.|
-
-**Example**
-
-```js
-const STORE_CONFIG = { name: "RdbTest.db" }
-let promise = data_rdb.getRdbStore(STORE_CONFIG, 1);
-promise.then(async (rdbStore) => {
-    console.log("Got RdbStore successfully.")
-}).catch((err) => {
-    console.log("Failed to get RdbStore, err: " + err)
-})
-```
-
-
-## data_rdb.getRdbStore<sup>8+</sup>
-
 getRdbStore(context: Context, config: StoreConfig, version: number, callback: AsyncCallback&lt;RdbStore&gt;): void
 
-Obtains a RDB store. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
+Obtains an RDB store. This API uses an asynchronous callback to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -83,7 +29,7 @@ Obtains a RDB store. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
 | version | number | Yes| RDB store version.|
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes| Callback invoked to return the RDB store obtained.|
@@ -101,7 +47,7 @@ data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
 })
 ```
 
-## data_rdb.getRdbStore<sup>8+</sup>
+## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
 
@@ -113,7 +59,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
 | version | number | Yes| RDB store version.|
 
@@ -137,58 +83,6 @@ promise.then(async (rdbStore) => {
 
 ## data_rdb.deleteRdbStore
 
-deleteRdbStore(name: string, callback: AsyncCallback&lt;void&gt;): void
-
-Deletes an RDB store. This API uses an asynchronous callback to return the result. 
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the RDB store to delete.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
-
-**Example**
-```js
-data_rdb.deleteRdbStore("RdbTest.db", function (err, rdbStore) {
-    if (err) {
-        console.info("Failed to delete RdbStore, err: " + err)
-        return
-    }
-    console.log("Deleted RdbStore successfully.")
-})
-```
-  ## data_rdb.deleteRdbStore
-
-deleteRdbStore(name: string): Promise&lt;void&gt;
-
-Deletes an RDB store. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the RDB store to delete.|
-
-**Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
-
-**Example**
-```js
-let promise = data_rdb.deleteRdbStore("RdbTest.db")
-promise.then(()=>{
-    console.log("Deleted RdbStore successfully.")
-}).catch((err) => {
-    console.info("Failed to delete RdbStore, err: " + err)
-})
-```
-
-## data_rdb.deleteRdbStore<sup>8+</sup>
-
 deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes an RDB store. This API uses an asynchronous callback to return the result. 
@@ -198,7 +92,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | name | string | Yes| Name of the RDB store to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
@@ -213,7 +107,7 @@ data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
 })
 ```
 
-## data_rdb.deleteRdbStore<sup>8+</sup>
+## data_rdb.deleteRdbStore
 
 deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
@@ -224,7 +118,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context<sup>8+</sup> | Context | Yes| Context of the app or functionality.<br>For the definition of **Context** of API version 8, see [Context](js-apis-Context.md).<br>For the definition of **Context** of API version 9, see [Context](js-apis-ability-context.md).|
+| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | name | string | Yes| Name of the RDB store to delete.|
 
 **Return value**
@@ -234,7 +128,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 **Example**
 ```js
-let promise = data_rdb.deleteRdbStore("RdbTest.db")
+let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
 promise.then(()=>{
     console.log("Deleted RdbStore successfully.")
 }).catch((err) => {
@@ -1285,7 +1179,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose")
 rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
     if (err) {
-        console.info("Query failed, err: " + err)
+        console.info("Failed to query data, err: " + err)
         return
     }
     console.log("ResultSet column names: " + resultSet.columnNames)
@@ -1322,7 +1216,7 @@ Queries data in the database based on specified conditions. This API uses a prom
       console.log("ResultSet column names: " + resultSet.columnNames)
       console.log("ResultSet column count: " + resultSet.columnCount)
   }).catch((err) => {
-      console.info("Query failed, err: " + err)
+      console.info("Failed to query data, err: " + err)
   })
   ```
 
@@ -1346,7 +1240,7 @@ Queries data in the RDB store using the specified SQL statement. This API uses a
 ```js
 rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
     if (err) {
-        console.info("Query failed, err: " + err)
+        console.info("Failed to query data, err: " + err)
         return
     }
     console.log("ResultSet column names: " + resultSet.columnNames)
@@ -1381,7 +1275,7 @@ promise.then((resultSet) => {
     console.log("ResultSet column names: " + resultSet.columnNames)
     console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
-    console.info("Query failed, err: " + err)
+    console.info("Failed to query data, err: " + err)
 })
 ```
 
@@ -1406,7 +1300,7 @@ Runs the SQL statement that contains the specified parameters but does not retur
 const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
 rdbStore.executeSql(SQL_CREATE_TABLE, null, function(err) {
     if (err) {
-        console.info("ExecuteSql failed, err: " + err)
+        console.info("Failed to execute SQL, err: " + err)
         return
     }
     console.info('Create table done.')
@@ -1440,7 +1334,7 @@ let promise = rdbStore.executeSql(SQL_CREATE_TABLE)
 promise.then(() => {
     console.info('Create table done.')
 }).catch((err) => {
-    console.info("ExecuteSql failed, err: " + err)
+    console.info("Failed to execute SQL, err: " + err)
 })
 ```
 
@@ -1611,12 +1505,12 @@ Obtains the distributed table name for a remote device based on the local table 
 
 **Example**
 ```js
-rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
+rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
     if (err) {
-        console.info('Failed to obtain distributed table name, err: ' + err)
+        console.info('Failed to obtain DistributedTableName, err: ' + err)
         return
     }
-    console.info('Obtained distributed table name successfully, tableName=.' + tableName)
+    console.info('Obtained DistributedTableName successfully, tableName=.' + tableName)
 })
 ```
 
@@ -1644,11 +1538,11 @@ Obtains the distributed table name for a remote device based on the local table 
 
 **Example**
 ```js
-let promise = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
+let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
 promise.then((tableName) => {
-    console.info('Obtained distributed table name successfully, tableName= ' + tableName)
+    console.info('Obtained DistributedTableName successfully, tableName=' + tableName)
 }).catch((err) => {
-    console.info('Failed to obtain distributed table name, err: ' + err)
+    console.info('Failed to obtain DistributedTableName, err: ' + err)
 })
 ```
 
@@ -1671,9 +1565,9 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 
 **Example**
 ```js
-let predicates = new rdb.RdbPredicates('EMPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.inDevices(['12345678abcde'])
-rdbStore.sync(rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
+rdbStore.sync(data_rdb.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
     if (err) {
         console.log('Sync failed, err: ' + err)
         return
@@ -1749,7 +1643,7 @@ function storeObserver(devices) {
     }
 }
 try {
-    rdbStore.on('DataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+    rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
     console.log('Failed to register observer')
 }
@@ -1781,7 +1675,7 @@ function storeObserver(devices) {
     }
 }
 try {
-    rdbStore.off('DataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
+    rdbStore.off('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
 } catch (err) {
     console.log('Failed to unregister observer')
 }
