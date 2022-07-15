@@ -302,7 +302,7 @@ sendScreenLockEvent(event: String, parameter: number): Promise<boolean>
 **示例**：
   
   ```js
-  screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((err, result) => {
+  screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
       console.log('sending result:' + result);
   });
   ```
