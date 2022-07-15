@@ -185,11 +185,3 @@ export class AudioRecorderDemo {
   }
 }
 ```
-
-## Samples
-
-The following samples are provided to help you better understand how to develop audio recording:
-
-- [`Recorder`: Recorder (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
-- [`eTsAudioPlayer`: Audio Player (eTS)](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
-- [Audio Player](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

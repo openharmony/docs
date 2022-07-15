@@ -78,29 +78,29 @@ To create Page abilities for an application in the stage model, you must impleme
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-
+   
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-
+   
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-
+   
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
     }
-
+   
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-
+   
     onForeground() {
         console.log("MainAbility onForeground")
     }
-
+   
     onBackground() {
         console.log("MainAbility onBackground")
     }
@@ -318,7 +318,3 @@ struct Index {
   }
 }
 ```
-
-## Samples
-The following sample is provided to help you better understand how to develop an ability on the stage model:
-- [`StageCallAbility`: Stage Call Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

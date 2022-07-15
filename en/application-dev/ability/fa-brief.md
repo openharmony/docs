@@ -34,17 +34,3 @@ Currently, the **app.js** file provides only the **onCreate** and **onDestroy** 
 An application exclusively uses an independent process, and an ability exclusively uses an independent thread. When an ability is started for the first time, an application process as well as a thread for this ability is created. After the application is started, other abilities in the application are started, and a thread is created for every of these started abilities. Each ability is bound to an independent JSRuntime instance. In this way, abilities are isolated from each other.
 
 ![fa-threading-model](figures/fa-threading-model.png)
-## Samples
-The following sample is provided to help you better understand how to develop abilities:
-
-- [`DistributeCalc`: Distributed Calculator (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/Preset/DistributeCalc)
-- [`DistributeGraffiti`: Distributed Graffiti (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/DistributedGraffiti)
-
-- [Remote FA Startup](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteStartFA)
-- [Distributed News App](https://gitee.com/openharmony/codelabs/tree/master/Distributed/NewsDemo)
-- [Synced Sketchpad (eTS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)
-- [Distributed Authentication (JS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/GameAuthOpenH)
-- [Distributed Game Controller (eTS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/HandleGameApplication)
-- [Distributed Mail System (eTS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OHMailETS)
-- [Distributed Jigsaw Puzzle (eTS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OpenHarmonyPictureGame)
-- [Distributed Control (eTS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteControllerETS)

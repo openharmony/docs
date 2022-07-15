@@ -1817,10 +1817,12 @@ Creates a **Query** object to specify the number of results and where to start.
 **Example**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
