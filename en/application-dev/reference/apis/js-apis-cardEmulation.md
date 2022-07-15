@@ -1,12 +1,12 @@
 # Standard NFC Card Emulation
 
-Implements Near-Field Communication (NFC) card emulation.
+The cardEmulation module implements Near-Field Communication (NFC) card emulation.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-## **Modules to Import**
+## Modules to Import
 
 ```
 import cardEmulation from '@ohos.nfc.cardEmulation';
