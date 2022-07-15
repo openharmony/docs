@@ -24,7 +24,7 @@ After the user grants permissions to the app, the app can access the data or per
 
 The figure below shows the process.
 
-![](figures/figure1.png)
+![](figures/permission-workflow.png)
 
 ## When to Use
 
