@@ -1,15 +1,17 @@
 # 升级
 
-> **说明：**
->
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 升级范围：升级整个系统，包括内置的资源、预置应用；第三方的应用不在升级的范围。
 
 升级依赖：升级分为SD卡升级和在线升级两种。
 
 - SD卡升级依赖升级包和SD卡安装。
 - 在线升级依赖设备厂商部署的用于管理升级包的服务器。服务器由设备厂商部署，IP由调用者传入，请求的request接口是固定的，由设备厂商开发。
+
+> **说明：**
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -339,7 +341,7 @@ var versionDigestInfo = {
 
 // 下载选项
 var downloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 }
 updater.download(versionDigestInfo, downloadOptions, (err) => {
@@ -380,7 +382,7 @@ var versionDigestInfo = {
 
 // 下载选项
 var downloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 }
 updater.download(versionDigestInfo, downloadOptions).then(() => {
@@ -418,7 +420,7 @@ var versionDigestInfo = {
 
 // 恢复下载选项
 var resumeDownloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 }
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
@@ -458,7 +460,7 @@ var versionDigestInfo = {
 
 // 恢复下载选项
 var resumeDownloadOptions = {
-  allowNetwork: update.NetType.CELLULAR_AND_WIFI, // 允许所有网络下载
+  allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 }
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
   console.log(`resumeDownload start`);
@@ -773,10 +775,10 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
 updater.setUpgradePolicy(policy, (err, value) => {
-  console.log(`setUpgradePolicy result: ${value?}`);
+  console.log(`setUpgradePolicy result: ${value}`);
 });
 ```
 
@@ -808,11 +810,11 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
-  autoUpgradeInterval: [ 120, 240 ], // 自动升级时间段，用分钟表示
+  autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
-updater.setUpgradePolicy(policy).then(result => 
-  console.log(`setUpgradePolicy &{result}`);
-).catch(err => {
+updater.setUpgradePolicy(policy).then(result => {
+  console.log(`setUpgradePolicy ${result}`);
+}).catch(err => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
@@ -1095,7 +1097,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 ```
 var upgradeFiles = [{
-  fileType: update.update.ComponentType.OTA, // OTA包
+  fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }]
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
