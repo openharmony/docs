@@ -27,7 +27,7 @@ import AbilityContext from '@ohos.application.Ability'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-  | 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | resourceManager | resmgr.ResourceManager; | 是 | 否 | ResourceManager对象。 |
 | applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 |
@@ -47,7 +47,11 @@ createBundleContext(bundleName: string): Context;
 
 创建指定应用上下文。
 
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -116,6 +120,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 创建指定应用上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

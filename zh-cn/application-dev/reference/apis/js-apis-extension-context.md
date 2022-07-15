@@ -17,3 +17,6 @@ ExtensionContext模块提供扩展的上下文的能力，包括允许访问特�
 | -------- | -------- | -------- | -------- | -------- |
 | currentHapModuleInfo | HapModuleInfo | 是 | 否 | 当前Hap包的信息。  | 
 | config   | Configuration | 是 | 否 | 模块的配置信息。 |
+| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md) | 是 | 否 | 服务扩展信息。 |
+
+

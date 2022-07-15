@@ -628,7 +628,7 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### printSync
+### printSync<sup>9+</sup>
 
 printSync(msg: string): void
 
@@ -654,7 +654,7 @@ abilityDelegator.printSync(msg);
 
 
 
-### print
+### print<sup>9+</sup>
 
 print(msg: string, callback: AsyncCallback\<void>): void
 
@@ -683,7 +683,7 @@ abilityDelegator.print(msg, (err : any) => {
 
 
 
-### print
+### print<sup>9+</sup>
 
 print(msg: string): Promise\<void>
 
