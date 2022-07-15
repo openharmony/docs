@@ -317,7 +317,3 @@ struct Index {
   }
 }
 ```
-
-## Samples
-The following sample is provided to help you better understand how to develop an ability on the stage model:
-- [`StageCallAbility`: Stage Call Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

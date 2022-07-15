@@ -50,7 +50,7 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
       onRemoteRequest(code, data, reply, option) {
       }
     }
-
+    
     class ServiceExt extends ServiceExtensionAbility {
         console.log('onCreate, want:' + want.abilityName);
       }
@@ -69,7 +69,3 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
       }
     }
     ```
-## Samples
-
-The following sample is provided to help you better understand how to develop Service Extension abilities:
-- [`ServiceExtAbility`: Stage Extension Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)
