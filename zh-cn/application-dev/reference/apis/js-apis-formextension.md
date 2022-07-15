@@ -213,7 +213,7 @@ onConfigurationUpdated(config: Configuration): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](#section188911144124715) | 是 | 表示需要更新的配置信息。 | 
+  | config | [Configuration](js-apis-configuration.md) | 是 | 表示需要更新的配置信息。 | 
 
 **示例：**
     

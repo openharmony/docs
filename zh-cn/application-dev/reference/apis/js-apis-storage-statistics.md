@@ -1,11 +1,11 @@
 # 应用空间统计
 
+该模块提供空间查询相关的常用功能：包括对内外卡的空间查询，对应用分类数据统计的查询，对应用数据的查询等。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
-
-该模块提供空间查询相关的常用功能：包括对内外卡的空间查询，对应用分类数据统计的查询，对应用数据的查询等。
 
 ## 导入模块
 
@@ -470,7 +470,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
   | 参数名     | 类型   | 必填 | 说明 |
   | ---------- | ------ | ---- | ---- |
-  | userId | string | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。|
+  | userId | number | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。|
 
 **返回值：**
 
@@ -481,7 +481,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 **示例：**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   }).catch(function(err){
@@ -507,13 +507,13 @@ getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | string                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
+  | userId | number                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
   | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | 是   | 返回各类别数据大小之后的回调 |
 
 **示例：**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
       // do something
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));

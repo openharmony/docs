@@ -66,6 +66,7 @@ You can use any of the following methods to acquire the OpenHarmony source code:
 
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**
+>
 >Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 -   **Obtaining OpenHarmony master code**
@@ -88,7 +89,7 @@ You can use any of the following methods to acquire the OpenHarmony source code:
 
 -   **Obtaining OpenHarmony release code**
 
-    For details about how to obtain the source code of an OpenHarmony release, see the [Release-Notes](../../release-notes/Readme.md).
+    For details about how to obtain the source code of an OpenHarmony release, see the [Release Notes](https://gitee.com/openharmony/docs/blob/master/en/release-notes/Readme.md).
 
 
 ## Method 2: Acquiring Source Code from DevEco Marketplace<a name="section463013147412"></a>
@@ -167,7 +168,7 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
 To ensure the download performance, you are advised to download the source code or the corresponding solution from the image library of the respective site listed in the table below.
 
-The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release-Notes](../../release-notes/Readme.md). 
+The table below provides only the sites for downloading the latest OpenHarmony LTS code. For details about how to obtain the source code of earlier versions, see the [Release Notes](https://gitee.com/openharmony/docs/blob/master/en/release-notes/Readme.md). 
 
 **Table 1**  Sites for acquiring source code 
 
@@ -193,6 +194,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 ## Method 4: Acquiring Source Code from the GitHub Image Repository<a name="section23448418360"></a>
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**
+>
 > The image repository is synchronized at 23:00 (UTC +8:00) every day.
 
 Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)

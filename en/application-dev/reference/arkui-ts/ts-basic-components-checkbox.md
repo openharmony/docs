@@ -1,10 +1,10 @@
 # Checkbox
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<Checkbox>** component is used to enable or disable an option.
+
+> **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
@@ -12,7 +12,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 ## APIs
 
@@ -30,7 +30,7 @@ Checkbox( name?: string,  group?: string )
 
 | Name         | Type| Default Value| Description|
 | ------------- | ------- | ------ | -------- |
-| select        | bool   | false | Whether the check box is selected.|
+| select        | boolean   | false | Whether the check box is selected.|
 | selectedColor | Color | - | Color of the check box when it is selected.|
 
 ## Events
@@ -41,7 +41,8 @@ Checkbox( name?: string,  group?: string )
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CheckboxExample {

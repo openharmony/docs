@@ -110,9 +110,34 @@
 ## 构建第二个页面
 
 1. 创建第二个页面。
-   在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets &gt; MainAbility**”，右键点击“**pages**”文件夹，选择“**New &gt; Page**”，命名为“**second**”，点击“**Finish**”，即完成第二个页面的创建。可以看到文件目录结构如下：
+    - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets &gt; MainAbility**”，右键点击“**pages**”文件夹，选择“**New &gt; eTS File**”，命名为“**second**”，点击“**Finish**”。可以看到文件目录结构如下：
 
-   ![zh-cn_image_0000001223397122](figures/zh-cn_image_0000001223397122.png)
+    ![zh-cn_image_0000001223397122](figures/zh-cn_image_0000001223397122.png)
+
+    > 说明：
+    >
+    > 开发者也可以在右键点击“**pages**”文件夹时，选择“**new > Page**”，则无需手动配置相关页面的路由。
+
+    - 配置第二个页面的路由。在config.json文件中的“module - js - pages”下配置第二个页面的路由“pages/second”。示例如下：
+    
+    ```
+      {
+        ...
+          "module": {
+           ...
+            "js": [
+              {
+                ...
+                "pages": [
+                "pages/index",
+                "pages/second"
+              ]
+                ...
+              }
+          ]
+        }
+      }
+    ```
 
 2. 添加文本及按钮。
    参照第一个页面，在第二个页面添加Text组件、Button组件等，并设置其样式。“**second.ets**”文件的示例如下：

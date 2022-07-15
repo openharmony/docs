@@ -36,5 +36,8 @@
 | uid<sup>8+</sup>           | number                                                       | 是   | 否   | 应用程序的uid。                                                |
 | entityType<sup>8+</sup>    | string                                                       | 是   | 否   | 应用程序的实体类型。                                           |
 | fingerprint<sup>9+</sup>   | string                                                       | 是   | 否   | 应用程序的签名证书指纹信息，即开发者申请的签名证书的sha256值。 |
+| iconResource<sup>9+</sup> | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的图标资源信息。 |
+| labelResource<sup>9+</sup> | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的标签资源信息。 |
+| descriptionResource<sup>9+</sup> | [Resource](js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的描述资源信息。 |
 | appDistributionType<sup>9+</sup>   | string                                                       | 是   | 否   | 应用程序签名证书的分发类型，分为：app_gallery、enterprise、os_integration和crowdtesting。    |
 | appProvisionType<sup>9+</sup>   | string                                                       | 是   | 否   | 应用程序签名证书文件的类型，分为debug和release两种类型。|

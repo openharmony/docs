@@ -1,6 +1,8 @@
 #    OS Account Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+The osAccount module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
+
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -76,7 +78,7 @@ This is a system API and cannot be called by third-party applications.
 
 activateOsAccount(localId: number): Promise&lt;void&gt;
 
-Activates an OS account. This API uses a promise to return the result asynchronously.
+Activates an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -135,7 +137,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 
 isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
-Checks whether multiple OS accounts are supported. This API uses a promise to return the result asynchronously.
+Checks whether multiple OS accounts are supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -188,7 +190,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 
 isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account is activated. This API uses a promise to return the result asynchronously.
+Checks whether an OS account is activated. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -251,7 +253,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 
 isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boolean&gt;
 
-Checks whether the specified constraint is enabled for an OS account. This API uses a promise to return the result asynchronously.
+Checks whether the specified constraint is enabled for an OS account. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -310,7 +312,7 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 
 isTestOsAccount(): Promise&lt;boolean&gt;
 
-Checks whether this OS account is a test account. This API uses a promise to return the result asynchronously.
+Checks whether this OS account is a test account. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -386,7 +388,7 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 
 isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
-Checks whether an OS account has been verified. This API uses a promise to return the result asynchronously.
+Checks whether an OS account has been verified. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -451,7 +453,7 @@ This is a system API and cannot be called by third-party applications.
 
 removeOsAccount(localId: number): Promise&lt;void&gt;
 
-Removes an OS account. This API uses a promise to return the result asynchronously.
+Removes an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -522,7 +524,7 @@ This is a system API and cannot be called by third-party applications.
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-Sets or removes constraints for an OS account. This API uses a promise to return the result asynchronously.
+Sets or removes constraints for an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -591,7 +593,7 @@ This is a system API and cannot be called by third-party applications.
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-Sets a name for an OS account. This API uses a promise to return the result asynchronously.
+Sets a name for an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -655,7 +657,7 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 
 getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
-Obtains the number of OS accounts created. This API uses a promise to return the result asynchronously.
+Obtains the number of OS accounts created. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -706,7 +708,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
-Obtains the ID of the OS account to which the current process belongs. This API uses a promise to return the result asynchronously.
+Obtains the ID of the OS account to which the current process belongs. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -757,7 +759,7 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 
 getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the process UID. This API uses a promise to return the result asynchronously.
+Obtains the OS account ID based on the process UID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -817,7 +819,7 @@ Obtains the OS account ID based on domain account information. This API uses an 
 
 getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&gt;
 
-Obtains the OS account ID based on domain account information. This API uses a promise to return the result asynchronously.
+Obtains the OS account ID based on domain account information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -877,7 +879,7 @@ This is a system API and cannot be called by third-party applications.
 
 queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
-Obtains the maximum number of OS accounts that can be created. This API uses a promise to return the result asynchronously.
+Obtains the maximum number of OS accounts that can be created. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -932,7 +934,7 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all constraints enabled for an OS account. This API uses a promise to return the result asynchronously.
+Obtains all constraints enabled for an OS account. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -972,6 +974,8 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                              |
@@ -992,11 +996,13 @@ This is a system API and cannot be called by third-party applications.
 
 queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
-Obtains information about all the OS accounts created. This API uses a promise to return the result asynchronously.
+Obtains information about all the OS accounts created. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **Return Value**
 
@@ -1046,7 +1052,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 
 queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
-Obtains information about all activated OS accounts. This API uses a promise to return the result asynchronously.
+Obtains information about all activated OS accounts. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1101,7 +1107,7 @@ This is a system API and cannot be called by third-party applications.
 
 createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInfo&gt;
 
-Creates an OS account. This API uses a promise to return the result asynchronously.
+Creates an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1168,7 +1174,7 @@ This is a system API and cannot be called by third-party applications.
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
 
-Creates an OS account and associates it with the specified domain account. This API uses a promise to return the result asynchronously.
+Creates an OS account and associates it with the specified domain account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1231,7 +1237,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-Obtains information about the OS account to which the current process belongs. This API uses a promise to return the result asynchronously.
+Obtains information about the OS account to which the current process belongs. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1288,7 +1294,7 @@ This is a system API and cannot be called by third-party applications.
 
 queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
-Obtains information about an OS account. This API uses a promise to return the result asynchronously.
+Obtains information about an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1348,7 +1354,7 @@ Obtains the type of the OS account to which the current process belongs. This AP
 
 getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
-Obtains the type of the OS account to which the current process belongs. This API uses a promise to return the result asynchronously.
+Obtains the type of the OS account to which the current process belongs. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1399,7 +1405,7 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 
 getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
-Obtains the ID of this distributed virtual device. This API uses a promise to return the result asynchronously.
+Obtains the ID of this distributed virtual device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1456,7 +1462,7 @@ This is a system API and cannot be called by third-party applications.
 
 getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
-Obtains the profile photo of an OS account. This API uses a promise to return the result asynchronously.
+Obtains the profile photo of an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1526,7 +1532,7 @@ This is a system API and cannot be called by third-party applications.
 
 setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
-Sets a profile photo for an OS account. This API uses a promise to return the result asynchronously.
+Sets a profile photo for an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1593,7 +1599,7 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 
 getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
-Obtains the OS account ID based on the SN. This API uses a promise to return the result asynchronously.
+Obtains the OS account ID based on the SN. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1651,7 +1657,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 
 getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
-Obtains the SN of an OS account based on the account ID. This API uses a promise to return the result asynchronously.
+Obtains the SN of an OS account based on the account ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1769,7 +1775,7 @@ This is a system API and cannot be called by third-party applications.
 
 getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
 
-Obtains the bundle ID based on the UID. This API uses a promise to return the result asynchronously.
+Obtains the bundle ID based on the UID. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1824,7 +1830,7 @@ This is a system API and cannot be called by third-party applications.
 
 isMainOsAccount(): Promise&lt;boolean&gt;;
 
-Checks whether the current process belongs to the main OS account. This API uses a promise to return the result asynchronously.
+Checks whether the current process belongs to the main OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1877,7 +1883,7 @@ This is a system API and cannot be called by third-party applications.
 
 queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
-Obtains the constraint source information of an OS account. This API uses a promise to return the result asynchronously.
+Obtains the constraint source information of an OS account. This API uses a promise to return the result.
 
 This is a system API and cannot be called by third-party applications.
 

@@ -1,5 +1,7 @@
 # 性能打点
 
+本模块提供了追踪进程轨迹。
+
 > **说明：**
 > - 从API Version 8开始，该接口不再维护，推荐使用新接口[`@ohos.hiTraceMeter`](js-apis-hitracemeter.md)。
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。

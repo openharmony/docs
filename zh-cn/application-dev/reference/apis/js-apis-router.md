@@ -1,5 +1,7 @@
 # 页面路由
 
+本模块提供通过不同的url访问不同的页面，包括跳转到应用内的指定页面、用应用内的某个页面替换当前页面、返回上一页面或指定的页面等。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明**
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -17,7 +19,7 @@ import router from '@ohos.router'
 
 ## router.push
 
-push(options: RouterOptions): void
+push(options: RouterOptions, mode?: RouterMode): void
 
 跳转到应用内的指定页面。
 
@@ -66,7 +68,7 @@ push(options: RouterOptions): void
 
 ## router.replace
 
-replace(options: RouterOptions): void
+replace(options: RouterOptions, mode?: RouterMode): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 

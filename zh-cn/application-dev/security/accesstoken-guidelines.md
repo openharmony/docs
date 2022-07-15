@@ -24,9 +24,13 @@
 
 ## 权限申请声明
 
-### config.json文件声明
+应用需要在工程配置文件中，对需要的权限逐个声明，没有在配置文件中声明的权限，应用将无法获得授权。Ability框架提供了两种模型，分别为FA模型和Stage模型，更多信息可以参考[Ability框架概述](../ability/ability-brief.md)。
 
-应用需要在config.json文件中对需要的权限逐个进行声明。没有在config.json中声明的权限，应用无法获得此应用授权。
+不同的Ability框架模型的应用包结构不同，所使用的配置文件不同，请开发者在申请权限时注意区分。
+
+### FA模型
+
+使用FA模型的应用，需要在config.json文件中声明权限。
 
 **config.json标签说明：**
 
@@ -37,6 +41,41 @@
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
 | abilities | 标识需要使用到该权限的元能力，标签为数组形式。               |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
+
+**示例：**
+
+```json
+{
+    "module" : {
+        "reqPermissions":[
+           {
+                "name" : "ohos.permission.PERMISSION1",
+                "reason": "$string:reason",
+                "usedScene": {
+                     "abilities": [
+                         "FormAbility"
+                     ],
+                     "when":"inuse"
+                }
+            },
+           {
+                "name" : "ohos.permission.PERMISSION2",
+                "reason": "$string:reason",
+                "usedScene": {
+                     "abilities": [
+                         "FormAbility"
+                     ],
+                     "when":"always"
+                }
+            }
+        ],
+    }
+}
+```
+
+### Stage模型
+
+使用Stage模型的应用，需要在module.json5文件中声明权限。
 
 **示例：**
 
@@ -68,11 +107,12 @@
     }
 }
 ```
+
 ## ACL方式声明
 
 如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于应用此时应用的APL等级，用户的最佳做法是使用ACL方式。
 
-在config.json文件声明的基础上，应用还需要在[profile文件](../quick-start/app-provision-structure.md)中声明不满足申请条件部分的权限。该场景中，用户应该在字段"acls"中做声明如下：
+在配置文件声明的基础上，应用还需要在[profile文件](../quick-start/app-provision-structure.md)中声明不满足申请条件部分的权限。该场景中，用户应该在字段"acls"中做声明如下：
 ```json
 {
     "version-name": "1.0.0",

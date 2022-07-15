@@ -118,13 +118,13 @@ I2C模块适配的三个环节是配置属性文件，实例化驱动入口，�
              deviceMatchAttr = "hdf_platform_i2c_manager";
          }
          device1 :: deviceNode {
-             policy = 0;                              // 等于0，不需要发布服务
-             priority = 55;                           // 驱动启动优先级
-             permission = 0644;                       // 驱动创建设备节点权限
-             moduleName = "hi35xx_i2c_driver";        //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
-             serviceName = "HI35XX_I2C_DRIVER";       //【必要】驱动对外发布服务的名称，必须唯一
-             deviceMatchAttr = "hisilicon_hi35xx_i2c";//【必要】用于配置控制器私有数据，要与i2c_config.hcs中对应控制器保持一致
-                                                     // 具体的控制器信息在 i2c_config.hcs中
+             policy = 0;                               // 等于0，不需要发布服务
+             priority = 55;                            // 驱动启动优先级
+             permission = 0644;                        // 驱动创建设备节点权限
+             moduleName = "hi35xx_i2c_driver";         //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
+             serviceName = "HI35XX_I2C_DRIVER";        //【必要】驱动对外发布服务的名称，必须唯一
+             deviceMatchAttr = "hisilicon_hi35xx_i2c"; //【必要】用于配置控制器私有数据，要与i2c_config.hcs中对应控制器保持一致
+                                                       // 具体的控制器信息在 i2c_config.hcs中
          }
          }
      }
@@ -138,8 +138,8 @@ I2C模块适配的三个环节是配置属性文件，实例化驱动入口，�
      root {
      platform {
          i2c_config {
-         match_attr = "hisilicon_hi35xx_i2c";//【必要】需要和device_info.hcs中的deviceMatchAttr值一致
-         template i2c_controller {           //模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
+         match_attr = "hisilicon_hi35xx_i2c";  //【必要】需要和device_info.hcs中的deviceMatchAttr值一致
+         template i2c_controller {             //模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
              bus = 0;                          // 【必要】i2c 识别号
              reg_pbase = 0x120b0000;           // 【必要】物理基地址
              reg_size = 0xd1;                  // 【必要】寄存器位宽

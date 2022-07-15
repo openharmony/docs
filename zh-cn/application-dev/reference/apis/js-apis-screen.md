@@ -50,12 +50,12 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 **返回值：** 
 | 类型                                          | 说明                                      |
 | --------------------------------------------- | ----------------------------------------- |
-| Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise对象。返回当前创建的屏幕对象集合。 |
+| Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise对象。返回当前获取的屏幕对象集合。 |
 
 **示例：**
 ```js
 var screenClass = null;
-let promise = screen.getAllScreen();
+let promise = screen.getAllScreens();
 promise.then((data) => {
     screenClass = data[0];
     console.log('Succeeded in getting all screens . Data:'+ JSON.stringify(data));
@@ -404,7 +404,7 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 **返回值：**
 | 类型                   | 说明                                  |
 | ---------------------- | ------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前自动转屏是否处于锁定状态 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前自动转屏处于锁定状态；返回false表示当前自动转屏不处于锁定状态。 |
 
 **示例：**
 ```js
@@ -426,7 +426,7 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名    | 类型                          | 必填 | 说明                                                         |
 | --------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当查询自动转屏锁定状态成功，err为undefined，否则为错误对象。 |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示当前自动转屏处于锁定状态；返回false表示当前自动转屏不处于锁定状态。 |
 
 **示例：**
 
@@ -641,7 +641,7 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名     | 类型                      | 必填 | 说明                                                         |
 | ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| densityDpi | number                    | 是   | 像素密度。                                                   |
+| densityDpi | number                    | 是   | 像素密度。支持的输入范围为80-640。                           |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕的像素密度成功，err为undefined，否则为错误对象。 |
 
 **示例：**
@@ -663,9 +663,9 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 参数名     | 类型   | 必填 | 说明       |
-| ---------- | ------ | ---- | ---------- |
-| densityDpi | number | 是   | 像素密度。 |
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| densityDpi | number | 是   | 像素密度。支持的输入范围为80-640。 |
 
 **返回值：**
 

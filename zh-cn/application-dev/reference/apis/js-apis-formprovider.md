@@ -189,6 +189,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 **示例：**
 
 ```js
+import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     moduleName : "entry"
 };
@@ -224,6 +225,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 **示例：**
 
 ```js
+import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     moduleName : "entry"
 };

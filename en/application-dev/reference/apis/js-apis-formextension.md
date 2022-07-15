@@ -213,7 +213,7 @@ Called when the configuration of the environment where the ability is running is
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | config | [Configuration](#section188911144124715) | Yes| New configuration.| 
+  | config | [Configuration](js-apis-configuration.md) | Yes| New configuration.| 
 
 **Example**
     

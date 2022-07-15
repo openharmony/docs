@@ -1,6 +1,6 @@
 # Key Event
 
-Represents key events reported by an input device.
+The Key Event module provides key events reported by an input device.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.

@@ -123,52 +123,52 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    - 挂载成功后执行下列命令可列出用例所有条目：
 
      
-   ```
-   cd nfs
-   ./cctest --list
-   ```
+     ```
+     cd nfs
+     ./cctest --list
+     ```
 
-   上述命令执行结果部分展示：
-
+     上述命令执行结果部分展示：
+ 
      
-   ```
-   test-bignum/Assign<
-   test-bignum/ShiftLeft<
-   test-bignum/AddUInt64<
-   test-bignum/AddBignum<
-   test-bignum/SubtractBignum<
-   test-bignum/MultiplyUInt32<
-   test-bignum/MultiplyUInt64<
-   test-bignum/MultiplyPowerOfTen<
-   test-bignum/DivideModuloIntBignum<
-   test-bignum/Compare<
-   test-bignum/PlusCompare<
-   test-bignum/Square<
-   test-bignum/AssignPowerUInt16<
-   test-bignum-dtoa/BignumDtoaVariousDoubles<
-   test-bignum-dtoa/BignumDtoaShortestVariousFloats<
-   test-bignum-dtoa/BignumDtoaGayShortest<
-   test-bignum-dtoa/BignumDtoaGayShortestSingle<
-   test-bignum-dtoa/BignumDtoaGayFixed<
-   test-bignum-dtoa/BignumDtoaGayPrecision<
-   test-conversions/DoubleToShortest<
-   test-conversions/DoubleToShortestSingle<
-   ...
-   ```
+     ```
+     test-bignum/Assign<
+     test-bignum/ShiftLeft<
+     test-bignum/AddUInt64<
+     test-bignum/AddBignum<
+     test-bignum/SubtractBignum<
+     test-bignum/MultiplyUInt32<
+     test-bignum/MultiplyUInt64<
+     test-bignum/MultiplyPowerOfTen<
+     test-bignum/DivideModuloIntBignum<
+     test-bignum/Compare<
+     test-bignum/PlusCompare<
+     test-bignum/Square<
+     test-bignum/AssignPowerUInt16<
+     test-bignum-dtoa/BignumDtoaVariousDoubles<
+     test-bignum-dtoa/BignumDtoaShortestVariousFloats<
+     test-bignum-dtoa/BignumDtoaGayShortest<
+     test-bignum-dtoa/BignumDtoaGayShortestSingle<
+     test-bignum-dtoa/BignumDtoaGayFixed<
+     test-bignum-dtoa/BignumDtoaGayPrecision<
+     test-conversions/DoubleToShortest<
+     test-conversions/DoubleToShortestSingle<
+     ...
+     ```
 
    - 以test-bignum条目为例，执行下列命令开始测试：
 
      
-   ```
-   ./cctest test-bignum
-   ```
+     ```
+     ./cctest test-bignum
+     ```
 
-   测试结果如下则表示通过：
+     测试结果如下则表示通过：
 
      
-   ```
-   Ran 13 tests.
-   ```
+     ```
+     Ran 13 tests.
+     ```
 
 
 ## 将该库编译添加到OpenHarmony工程中
@@ -189,103 +189,103 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    - **新增的BUILD.gn文件实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony平台时只需修改路径即可**。
 
      
-   ```
-   import("config.gni")
-   group("double-conversion") {
-       if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-           deps = [":make"]
-       }
-   }
-   if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-       action("make") {
-           script = "//third_party/double-conversion/build_thirdparty.py"
-           outputs = ["$root_out_dir/log_dc.txt"]
-           exec_path = rebase_path(rebase_path("./build", ohos_third_party_dir))
-           command = "rm * .* -rf && $CMAKE_TOOLS_PATH/cmake .. $CMAKE_FLAG $CMAKE_TOOLCHAIN_FLAG && make -j"
-           args = [
-               "--path=$exec_path",
-               "--command=${command}"
-           ]
-       }
-   }
-   ```
+     ```
+     import("config.gni")
+     group("double-conversion") {
+         if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+             deps = [":make"]
+         }
+     }
+     if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+         action("make") {
+             script = "//third_party/double-conversion/build_thirdparty.py"
+             outputs = ["$root_out_dir/log_dc.txt"]
+             exec_path = rebase_path(rebase_path("./build", ohos_third_party_dir))
+             command = "rm * .* -rf && $CMAKE_TOOLS_PATH/cmake .. $CMAKE_FLAG $CMAKE_TOOLCHAIN_FLAG && make -j"
+             args = [
+                 "--path=$exec_path",
+                 "--command=${command}"
+             ]
+         }
+     }
+     ```
 
    - **新增的config.gni用于配置该库，实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时只需修改CMAKE_FLAG的配置即可。**
 
      
-   ```
-   #CMAKE_FLAG: config compile feature
-   CMAKE_FLAG = "-DBUILD_TESTING=ON -DCMAKE_CXX_STANDARD=11"
+     ```
+     #CMAKE_FLAG: config compile feature
+     CMAKE_FLAG = "-DBUILD_TESTING=ON -DCMAKE_CXX_STANDARD=11"
    
-   #toolchain：follow up-layer，depend on $ohos_build_compiler
-   if (ohos_build_compiler == "clang") {
-       CMAKE_TOOLCHAIN_FLAG = "-DOHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
-   } else {
-       CMAKE_TOOLCHAIN_FLAG = ""
-   }
+     #toolchain：follow up-layer，depend on $ohos_build_compiler
+     if (ohos_build_compiler == "clang") {
+         CMAKE_TOOLCHAIN_FLAG = "-DOHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
+     } else {
+         CMAKE_TOOLCHAIN_FLAG = ""
+     }
    
-   #CMake tools path,no need setting if this path already joined to $PATH.
-   CMAKE_TOOLS_PATH = "setting CMake tools path..."
-   ```
+     #CMake tools path,no need setting if this path already joined to $PATH.
+     CMAKE_TOOLS_PATH = "setting CMake tools path..."
+     ```
 
    - **新增的build_thirdparty.py实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时无需修改即可使用。**
 
      
-   ```
-   import os
-   import sys
-   from subprocess import Popen
-   import argparse
-   import shlex
+     ```
+     import os
+     import sys
+     from subprocess import Popen
+     import argparse
+     import shlex
    
-   def cmd_exec(command):
-       cmd = shlex.split(command)
-       proc = Popen(cmd)
-       proc.wait()
-       ret_code = proc.returncode
-       if ret_code != 0:
-           raise Exception("{} failed, return code is {}".format(cmd, ret_code))
+     def cmd_exec(command):
+         cmd = shlex.split(command)
+         proc = Popen(cmd)
+         proc.wait()
+         ret_code = proc.returncode
+         if ret_code != 0:
+             raise Exception("{} failed, return code is {}".format(cmd, ret_code))
    
-   def main():
-       parser = argparse.ArgumentParser()
-       parser.add_argument('--path', help='Build path.')
-       parser.add_argument('--command', help='Build command.')
-       parser.add_argument('--enable', help='enable python.', nargs='*')
-       args = parser.parse_args()
+     def main():
+         parser = argparse.ArgumentParser()
+         parser.add_argument('--path', help='Build path.')
+         parser.add_argument('--command', help='Build command.')
+         parser.add_argument('--enable', help='enable python.', nargs='*')
+         args = parser.parse_args()
    
-       if args.enable:
-           if args.enable[0] == 'false':
+         if args.enable:
+             if args.enable[0] == 'false':
                return
    
-       if args.path:
-           curr_dir = os.getcwd()
-           os.chdir(args.path)
-           if args.command:
-               if '&&' in args.command:
-                   command = args.command.split('&&')
-                   for data in command:
+         if args.path:
+             curr_dir = os.getcwd()
+             os.chdir(args.path)
+             if args.command:
+                 if '&&' in args.command:
+                     command = args.command.split('&&')
+                     for data in command:
                        cmd_exec(data)
                else:
                    cmd_exec(args.command)
            os.chdir(curr_dir)
    
-   if __name__ == '__main__':
-       sys.exit(main())
-   ```
+      if __name__ == '__main__':
+         sys.exit(main())
+     ```
 
    - 在配置文件中添加开关控制该库编译，默认设为关闭
 
-   在//build/lite/ohos_var.gni文件中添加下列配置：
+     在//build/lite/ohos_var.gni文件中添加下列配置：
 
      
-   ```
-   declare_args() {
-       ohos_build_thirdparty_migrated_from_fuchisa = true
-   }
-   ```
+     ```
+     declare_args() {
+         ohos_build_thirdparty_migrated_from_fuchisa = true
+      }
+     ```
 
 3. 编译构建
-   - 手动单独构建：
+   手动单独构建：
 
    执行下列命令
 

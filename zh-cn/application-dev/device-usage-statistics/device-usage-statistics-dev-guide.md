@@ -44,7 +44,7 @@ import stats from '@ohos.bundleState';
         ...,
         "reqPermissions": [
             {
-            "name": "ohos.permission.BUNDLE_ACTIVE_INFO"
+                "name": "ohos.permission.BUNDLE_ACTIVE_INFO"
             }
         ]
     }
@@ -56,13 +56,13 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.queryBundleActiveStates(0, 20000000000000).then( res => {
+    stats.queryBundleActiveStates(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryBundleActiveStates promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleActiveStates promise failed, because: ' + err.code);
     });
 
@@ -86,7 +86,7 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.queryBundleStateInfos(0, 20000000000000).then( res => {
+    stats.queryBundleStateInfos(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
         let i = 1;
         for (let key in res){
@@ -94,7 +94,7 @@ import stats from '@ohos.bundleState';
             console.log('BUNDLE_ACTIVE queryBundleStateInfos promise result ' + JSON.stringify(res[key]));
             i++;
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise failed, because: ' + err.code);
     });
 
@@ -120,13 +120,13 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
+    stats.queryCurrentBundleActiveStates(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
     });
 
@@ -150,13 +150,13 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
+    stats.queryBundleStateInfoByInterval(0, 0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise failed, because: ' + err.code);
     });
 
@@ -180,9 +180,9 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // promise方式
-    stats.queryAppUsagePriorityGroup().then( res => {
+    stats.queryAppUsagePriorityGroup().then(res => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
     });
 
@@ -202,9 +202,9 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.isIdleState("com.ohos.camera").then( res => {
+    stats.isIdleState("com.ohos.camera").then(res => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
     });
 
@@ -224,18 +224,18 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.getRecentlyUsedModules(1000).then( res => {
+    stats.getRecentlyUsedModules(1000).then(res => {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err=> {
+    }).catch(err=> {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
     });
 
     // 无maNum参数异步方法promise方式
-    stats.getRecentlyUsedModules().then( res => {
+    stats.getRecentlyUsedModules().then(res => {
         console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
@@ -246,7 +246,7 @@ import stats from '@ohos.bundleState';
     });
 
     // 异步方法callback方式
-    stats.getRecentlyUsedModules(1000,(err, res) => {
+    stats.getRecentlyUsedModules(1000, (err, res) => {
         if(err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {
@@ -260,7 +260,7 @@ import stats from '@ohos.bundleState';
 
     // 无maNum参数异步方法callback方式
     stats.getRecentlyUsedModules((err, res) => {
-        if(err) {
+        if (err) {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
         } else {
             console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
@@ -278,10 +278,10 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.queryAppNotificationNumber(0, 20000000000000).then( res => {
+    stats.queryAppNotificationNumber(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise success.');
         console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise result ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise failed, because: ' + err.code);
     });
 
@@ -302,10 +302,10 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // 异步方法promise方式
-    stats.queryBundleActiveEventStates(0, 20000000000000).then( res => {
+    stats.queryBundleActiveEventStates(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise success.');
         console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise result ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise failed, because: ' + err.code);
     });
 
@@ -326,9 +326,9 @@ import stats from '@ohos.bundleState';
      import stats from '@ohos.bundleState'
 
      // 无参异步方法promise方式
-     stats.queryAppUsagePriorityGroup().then( res => {
+     stats.queryAppUsagePriorityGroup().then(res => {
          console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
-     }).catch( err => {
+     }).catch(err => {
          console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
      });
 
@@ -342,15 +342,15 @@ import stats from '@ohos.bundleState';
      });
 
      //有参异步promise方式
-     stats.queryAppUsagePriorityGroup(this.bundleName).then( res => {
+     stats.queryAppUsagePriorityGroup(this.bundleName).then(res => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
-     }).catch( err => {
+     }).catch(err => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
      });
 
      //有参异步方法callback方式
      stats.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
-         if(err) {
+         if (err) {
              console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
          } else {
              console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
@@ -364,14 +364,14 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     //异步方法promise
-    stats.setBundleGroup(this.bundleName, this.newGroup).then( () => {
+    stats.setBundleGroup(this.bundleName, this.newGroup).then(() => {
         console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded.');
     }).catch( err => {
         console.log('BUNDLE_ACTIVE SetBundleGroup promise failed. because: ' + err.code);
     });
     //异步方法callback
     stats.setBundleGroup(this.bundleName, this.newGroup, (err) => {
-        if(err) {
+        if (err) {
             console.log('BUNDLE_ACTIVE SetBundleGroup callback failed. because: ' + err.code);
         } else {
             console.log('BUNDLE_ACTIVE SetBundleGroup callback succeeded.');
@@ -385,7 +385,7 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     //异步方法promise形式
-    let onBundleGroupChanged = (err,res) =>{
+    let onBundleGroupChanged = (err,res) => {
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result oldGroup is : ' + res.oldGroup);
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result newGroup is : ' + res.newGroup);
@@ -393,13 +393,13 @@ import stats from '@ohos.bundleState';
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result userId is : ' + res.userId);
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result bundleName is : ' + res.bundleName);
     };
-    stats.registerGroupCallBack(onBundleGroupChanged).then( () => {
+    stats.registerGroupCallBack(onBundleGroupChanged).then(() => {
         console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise succeeded.');
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise failed. because: ' + err.code);
     });
     //异步方法callback形式
-    let onBundleGroupChanged = (err,res) =>{
+    let onBundleGroupChanged = (err,res) => {
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s oldGroup is : ' + res.oldGroup);
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s newGroup is : ' + res.newGroup);
@@ -407,8 +407,8 @@ import stats from '@ohos.bundleState';
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s userId is : ' + res.userId);
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s bundleName is : ' + res.bundleName);
     };
-    stats.registerGroupCallBack(onBundleGroupChanged, (err)=>{
-        if(err) {
+    stats.registerGroupCallBack(onBundleGroupChanged, (err) => {
+        if (err) {
             console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback failed, because: ' + err.code);
         } else {
             console.log('BUNDLE_ACTIVE RegisterGroupCallBack callback success.');
@@ -422,14 +422,14 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     //promise
-    stats.unRegisterGroupCallBack().then( () => {
+    stats.unRegisterGroupCallBack().then(() => {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded.');
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise failed. because: ' + err.code);
     });
     //callback
-    stats.unRegisterGroupCallBack((err)=>{
-        if(err) {
+    stats.unRegisterGroupCallBack((err) => {
+        if (err) {
             console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback failed, because: ' + err.code);
         } else {
             console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback success.');

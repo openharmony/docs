@@ -659,7 +659,7 @@ distinct(): DataSharePredicates
 
 ```ts
 let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").distinct("NAME")
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
 ## limit

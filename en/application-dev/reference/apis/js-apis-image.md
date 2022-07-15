@@ -34,6 +34,7 @@ Creates a **PixelMap** object. This API uses a promise to return the result.
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
@@ -60,6 +61,7 @@ Creates a **PixelMap** object. This API uses an asynchronous callback to return 
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -100,10 +102,11 @@ Reads image pixel map data and writes the data to an **ArrayBuffer**. This API u
 **Example**
 
 ```js
-pixelmap.readPixelsToBuffer(ReadBuffer).then(() => {
-    console.log('readPixelsToBuffer succeeded.'); // Called if the condition is met.
+const readBuffer = new ArrayBuffer(400);
+pixelmap.readPixelsToBuffer(readBuffer).then(() => {
+    console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
 }).catch(error => {
-    console.log('readPixelsToBuffer failed.'); // Called if no condition is met.
+    ('Failed to read image pixel data.'); // Called if no condition is met.
 })
 ```
 
@@ -125,11 +128,12 @@ Reads image pixel map data and writes the data to an **ArrayBuffer**. This API u
 **Example**
 
 ```js
-pixelmap.readPixelsToBuffer(ReadBuffer, (err, res) => {
+const readBuffer = new ArrayBuffer(400);
+pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
-        console.log('readPixelsToBuffer failed.'); // Called if the condition is met.
+        console.log('Failed to read image pixel data.');  // Called if no condition is met.
     } else {
-        console.log('readPixelsToBuffer succeeded.'); // Called if the condition is met.
+        console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
     }
 })
 ```
@@ -157,10 +161,11 @@ Reads image pixel map data in an area. This API uses a promise to return the dat
 **Example**
 
 ```js
-pixelmap.readPixels(Area).then((data) => {
-    console.log('readPixels succeeded.'); // Called if the condition is met.
+const area = new ArrayBuffer(400);
+pixelmap.readPixels(area).then(() => {
+    console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
 }).catch(error => {
-    console.log('readPixels failed.'); // Called if no condition is met.
+    console.log('Failed to read the image data in the area.'); // Called if no condition is met.
 })
 ```
 
@@ -182,6 +187,8 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 **Example**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -222,6 +229,7 @@ Writes image pixel map data to an area. This API uses a promise to return the op
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -233,7 +241,7 @@ image.createPixelMap(color, opts)
             stride: 8,
             region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
         }
-        var bufferArr = new Uint8Array(area.pixels);
+        let bufferArr = new Uint8Array(area.pixels);
         for (var i = 0; i < bufferArr.length; i++) {
             bufferArr[i] = i + 1;
         }
@@ -269,13 +277,18 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 **Example**
 
 ```js
-pixelmap.writePixels(Area, () => {
-    const readArea = {
-        pixels: new ArrayBuffer(20),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-    }
+const area = new ArrayBuffer(400);
+pixelmap.writePixels(area, (error) => {
+    if (error!=undefined) {
+		console.info('Failed to write pixelmap into the specified area.');
+	} else {
+	    const readArea = {
+            pixels: new ArrayBuffer(20),
+            offset: 0,
+            stride: 8,
+            region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+        }
+	}
 })
 ```
 
@@ -302,7 +315,10 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```js
-PixelMap.writeBufferToPixels(color).then(() => {
+const color = new ArrayBuffer(96);
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Unit8Array(color);
+pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
@@ -327,7 +343,10 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 **Example**
 
 ```js
-PixelMap.writeBufferToPixels(color, function(err) {
+const color = new ArrayBuffer(96);\
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Unit8Array(color);
+pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
@@ -354,7 +373,8 @@ Obtains pixel map information of this image. This API uses a promise to return t
 **Example**
 
 ```js
-PixelMap.getImageInfo().then(function(info) {
+const pixelMap = new ArrayBuffer(400);
+pixelMap.getImageInfo().then(function(info) {
     console.log("Succeeded in obtaining the image pixel map information.");
 }).catch((err) => {
     console.error("Failed to obtain the image pixel map information.");
@@ -379,9 +399,7 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 
 ```js
 pixelmap.getImageInfo((imageInfo) => { 
-    console.log("getImageInfo succeeded.");
-}).catch((err) => {
-    console.error("getImageInfo failed.");
+    console.log("Succeeded in obtaining the image pixel map information..");
 })
 ```
 
@@ -402,7 +420,10 @@ Obtains the number of bytes per line of the image pixel map.
 **Example**
 
 ```js
-image.createPixelMap(clolr, opts, (err,pixelmap) => {
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
 })
 ```
@@ -444,11 +465,14 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 **Example**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
-	    console.log('release succeeded.');
+	    console.log('Succeeded in releasing pixelmap object.');
     }).catch(error => {
-	    console.log('release failed.');
+	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -470,11 +494,14 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
-	    console.log('release succeeded.');
+	    console.log('Succeeded in releasing pixelmap object.');
     }).catch(error => {
-	    console.log('release failed.');
+	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -589,9 +616,7 @@ Obtains information about this image. This API uses an asynchronous callback to 
 
 ```js
 imageSourceApi.getImageInfo(imageInfo => { 
-    console.log('getImageInfo succeeded.');
-}).catch(error => {
-	console.log('getImageInfo failed.');
+    console.log('Succeeded in obtaining the image information.');
 })
 ```
 
@@ -620,9 +645,9 @@ Obtains information about an image with the specified index. This API uses a pro
 ```js
 imageSourceApi.getImageInfo(0)
     .then(imageInfo => {
-		console.log('getImageInfo succeeded.');
+		console.log('Succeeded in obtaining the image information.');
 	}).catch(error => {
-		console.log('getImageInfo failed.');
+		console.log('Failed to obtain the image information.');
 	})
 ```
 
@@ -652,9 +677,7 @@ Obtains the value of a property with the specified index in this image. This API
 ```js
 imageSourceApi.getImageProperty("BitsPerSample")
     .then(data => {
-		console.log('getImageProperty succeeded.');
-	}).catch(error => {
-		console.log('getImageProperty failed.');
+		console.log('Succeeded in getting the value of the specified attribute key of the image.');
 	})
 ```
 
@@ -678,9 +701,9 @@ Obtains the value of a property with the specified index in this image. This API
 ```js
 imageSourceApi.getImageProperty("BitsPerSample",(error,data) => { 
     if(error) {
-        console.log('getImageProperty failed.');
+        console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('getImageProperty succeeded.');
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -704,11 +727,12 @@ Obtains the value of a property in this image. This API uses an asynchronous cal
 **Example**
 
 ```js
-imageSourceApi.getImageProperty("BitsPerSample",Property,(error,data) => { 
+const property = new ArrayBuffer(400);
+imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => { 
     if(error) {
-        console.log('getImageProperty failed.');
+        console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('getImageProperty succeeded.');
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -737,9 +761,9 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 
 ```js
 imageSourceApi.createPixelMap().then(pixelmap => {
-    console.log('createPixelMap succeeded.');
+    console.log('Succeeded in creating pixelmap object through image decoding parameters.');
 }).catch(error => {
-    console.log('createPixelMap failed.');
+    console.log('Failed to create pixelmap object through image decoding parameters.');
 })
 ```
 
@@ -761,9 +785,9 @@ Creates a **PixelMap** object based on the default parameters. This API uses an 
 
 ```js
 imageSourceApi.createPixelMap(pixelmap => { 
-    console.log('createPixelMap succeeded.');
+    console.log('Succeeded in creating pixelmap object.');
 }).catch(error => {
-    console.log('createPixelMap failed.');
+    console.log('Failed to create pixelmap object.');
 })
 ```
 
@@ -785,11 +809,10 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 **Example**
 
 ```js
+const decodingOptions = new ArrayBuffer(400);
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
-    console.log('createPixelMap succeeded.');
-}).catch(error => {
-    console.log('createPixelMap failed.');
-}) 
+    console.log('Succeeded in creating pixelmap object.');
+})
 ```
 
 ### release
@@ -811,8 +834,6 @@ Releases this **ImageSource** instance. This API uses an asynchronous callback t
 ```js
 imageSourceApi.release(() => { 
     console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
 })
 ```
 
@@ -834,9 +855,9 @@ Releases this **ImageSource** instance. This API uses a promise to return the re
 
 ```js
 imageSourceApi.release().then(()=>{
-    console.log('release succeeded.');
+    console.log('Succeeded in releasing the image source instance.');
 }).catch(error => {
-    console.log('release failed.');
+    console.log('Failed to release the image source instance.');
 })
 ```
 
@@ -891,8 +912,9 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 };
-imagePackerApi.packing(ImageSourceApi, packOpts, data => {})
+let packOpts = { format:"image/jpeg", quality:98 };
+const imageSourceApi = new ArrayBuffer(400);
+imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
 
 ### packing
@@ -919,8 +941,9 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(ImageSourceApi, packOpts)
+let packOpts = { format:"image/jpeg", quality:98 }
+const imageSourceApi = new ArrayBuffer(400);
+imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data => {
         console.log('packing succeeded.');
 	}).catch(error => {
@@ -947,11 +970,12 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(PixelMapApi, packOpts, data => { 
-    console.log('packing succeeded.');
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
+imagePackerApi.packing(pixelMapApi, packOpts, data => { 
+    console.log('Succeeded in packing the image.');
 }).catch(error => {
-	console.log('packing failed.');
+	console.log('Failed to pack the image.');
 })
 ```
 
@@ -979,12 +1003,13 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(PixelMapApi, packOpts)
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
+imagePackerApi.packing(pixelMapApi, packOpts)
     .then( data => {
-	    console.log('packing succeeded.');
+	    console.log('Succeeded in packing the image.');
 	}).catch(error => {
-	    console.log('packing failed.');
+	    console.log('Failed to pack the image..');
 	})
 ```
 
@@ -1006,9 +1031,7 @@ Releases this **ImagePacker** instance. This API uses an asynchronous callback t
 
 ```js
 imagePackerApi.release(()=>{ 
-    console.log('release succeeded.');
-}).catch(error => {
-	console.log('release failed.');
+    console.log('Succeeded in releasing image packaging.');
 })
 ```
 
@@ -1030,9 +1053,9 @@ Releases this **ImagePacker** instance. This API uses a promise to return the re
 
 ```js
 imagePackerApi.release().then(()=>{
-    console.log('release succeeded.');
+    console.log('Succeeded in releasing image packaging.');
 }).catch((error)=>{ 
-    console.log('release failed.'); 
+    console.log('Failed to release image packaging.'); 
 }) 
 ```
 
@@ -1098,7 +1121,7 @@ Obtains a surface ID for the camera or other components. This API uses an asynch
 **Example**
 
 ```js
- receiver.getReceivingSurfaceId((err, id) => { 
+receiver.getReceivingSurfaceId((err, id) => { 
     if(err) {
         console.log('getReceivingSurfaceId failed.');
     } else {
@@ -1513,7 +1536,7 @@ Defines image decoding options.
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
-| index              | number                              | Yes  | Yes  | Index of the image to decode.    |
+| index              | number                             | Yes  | Yes  | Index of the image to decode.  |
 
 ## Region<sup>7+</sup>
 
@@ -1536,7 +1559,7 @@ Defines the option for image packing.
 | Name   | Type  | Readable| Writable| Description          |
 | ------- | ------ | ---- | ---- | -------------- |
 | format  | string | Yes  | Yes  | Format of the packed image.    |
-| quality | number | Yes  | Yes  | Quality of the packed image.|
+| quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100.|
 
 ## GetImagePropertyOptions<sup>7+</sup>
 

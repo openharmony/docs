@@ -20,7 +20,12 @@
 
 ## 接口
 
-Grid()
+Grid(value:{scroller?: Scroller})
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | - | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 
 
 ## 属性

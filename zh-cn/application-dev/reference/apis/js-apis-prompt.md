@@ -1,6 +1,9 @@
 # 弹窗
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明**
+创建并显示文本提示框、对话框和操作菜单。
+
+> **说明：**
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -8,9 +11,6 @@
 ```
 import prompt from '@ohos.prompt'
 ```
-## 权限列表
-
-无
 
 ## prompt.showToast
 
@@ -46,7 +46,7 @@ showToast(options: ShowToastOptions): void
 | -------- | -------------- | ---- | ---------------------------------------- |
 | message  | string         | 是    | 显示的文本信息。                                 |
 | duration | number         | 否    | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
-| bottom   | &lt;length&gt; | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
+| bottom   | string | number | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
 
 ## prompt.showDialog
 
@@ -208,7 +208,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 ## prompt.showActionMenu
 
-showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
+showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
 创建并显示操作菜单，菜单响应后同步返回结果。
 
@@ -259,7 +259,7 @@ showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
 | 名称      | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
 | title   | string | 否    | 标题文本。                                    |
-| buttons | Array  | 是    | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
+| buttons | Array&lt;[Button](#button)&gt;  | 是    | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
 ## ActionMenuSuccessResponse
 
@@ -270,4 +270,15 @@ showActionMenu(options: ActionMenuOptions): Promise\<ActionMenuSuccessResponse>
 | 名称    | 类型     | 必填   | 说明                       |
 | ----- | ------ | ---- | ------------------------ |
 | index | number | 否    | 选中按钮在buttons数组中的索引，从0开始。 |
+
+## Button
+
+菜单中的菜单项按钮。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
+
+| 名称    | 类型     | 必填   | 说明                       |
+| ----- | ------ | ---- | ------------------------ |
+| text | string | 是    | 按钮文本内容。 |
+| color | string | 是    | 按钮文本颜色。 |
 

@@ -3249,7 +3249,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDoNotDisturbDateChange<sup>8+</sup>
 
-onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate8)) => void
+onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](#donotdisturbdate8)) => void
 
 免打扰时间选项变更回调函数。
 
@@ -3261,7 +3261,7 @@ onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbda
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | Notification.[DoNotDisturbDate](#donotdisturbdate8) | 是 | 回调返回免打扰时间选项变更。 |
+| mode | notification.[DoNotDisturbDate](#donotdisturbdate8) | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 ```javascript

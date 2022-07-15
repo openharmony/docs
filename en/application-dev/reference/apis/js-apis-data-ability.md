@@ -1,6 +1,8 @@
 # DataAbilityPredicates
 
-> **NOTE**
+**DataAbility** provides APIs for creating predicates, which implement different query methods for relational database (RDB) stores.
+
+> **NOTE**<br/>
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -24,15 +26,15 @@ Creates an **RdbPredicates** object from a **DataAbilityPredicates** object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Table name in the RDB store.|
-| dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | Yes| **DataAbilityPredicates** object.  |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | name | string | Yes| Name of a database table.|
+  | dataAbilityPredicates | [DataAbilityPredicates](#dataabilitypredicates) | Yes| **DataAbilityPredicates** object.  |
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | **RdbPredicates** object created.|
+  | Type| Description|
+  | -------- | -------- |
+  | rdb.[RdbPredicates](js-apis-data-rdb.md#rdbpredicates) | **RdbPredicates** object created.|
 
 **Example**
   ```js
@@ -58,15 +60,15 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -85,15 +87,15 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -112,9 +114,9 @@ Adds a left parenthesis to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a left parenthesis.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a left parenthesis.|
 
 **Example**
   ```js
@@ -138,9 +140,9 @@ Adds a right parenthesis to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a right parenthesis.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with a right parenthesis.|
 
 **Example**
   ```js
@@ -164,9 +166,9 @@ Adds the OR condition to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the OR condition.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the OR condition.|
 
 **Example**
   ```js
@@ -187,9 +189,9 @@ Adds the AND condition to this **DataAbilityPredicates**.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the AND condition.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object with the AND condition.|
 
 **Example**
   ```js
@@ -210,15 +212,15 @@ Sets a **DataAbilityPredicates** object to match a string containing the specifi
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -237,15 +239,15 @@ Sets a **DataAbilityPredicates** object to match a string that starts with the s
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -264,15 +266,15 @@ Sets a **DataAbilityPredicates** object to match a string that ends with the spe
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```
@@ -291,14 +293,14 @@ Sets a **DataAbilityPredicates** object to match the field whose value is null.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -317,14 +319,14 @@ Sets a **DataAbilityPredicates** object to match the field whose value is not nu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -343,15 +345,15 @@ Sets a **DataAbilityPredicates** object to match a string that is similar to the
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -370,15 +372,15 @@ Sets a **DataAbilityPredicates** object to match the specified string.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | string | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -392,21 +394,21 @@ Sets a **DataAbilityPredicates** object to match the specified string.
 between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value within the specified range.
+Sets a **DataAbilityPredicates** object to match a field whose data type is **ValueType** and value is within the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
+  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -425,16 +427,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
+  | high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -453,15 +455,15 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -480,15 +482,15 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -507,15 +509,15 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -534,15 +536,15 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -561,14 +563,14 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -587,14 +589,14 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -613,9 +615,9 @@ Sets a **DataAbilityPredicates** object to filter out duplicate records.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that can filter out duplicate records.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that can filter out duplicate records.|
 
 **Example**
   ```js
@@ -634,14 +636,14 @@ Set a **DataAbilityPredicates** object to specify the maximum number of records.
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | number | Yes| Maximum number of records.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | value | number | Yes| Maximum number of records.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the maximum number of records.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the maximum number of records.|
 
 **Example**
   ```js
@@ -660,14 +662,14 @@ Sets a **DataAbilityPredicates** object to specify the start position of the ret
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the start position of the returned result.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the start position of the returned result.|
 
 **Example**
   ```js
@@ -686,14 +688,14 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| fields | Array&lt;string&gt; | Yes| Names of columns to group.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | fields | Array&lt;string&gt; | Yes| Names of columns to group.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that groups rows with the same value.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that groups rows with the same value.|
 
 **Example**
   ```js
@@ -705,20 +707,20 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 
 indexedBy(field: string): DataAbilityPredicates
 
+
 Sets a **DataAbilityPredicates** object to specify the index column.
 
-**System capability**:  SystemCapability.DistributedDataManager.DataShare.Core 
-
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| indexName | string | Yes| Name of the index column.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | indexName | string | Yes| Name of the index column.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the index column.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the index column.|
 
 **Example**
   ```js
@@ -737,16 +739,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array<
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js
@@ -765,16 +767,16 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array<
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| field | string | Yes| Column name in the table.|
-| value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | field | string | Yes| Column name in the table.|
+  | value | Array&lt;[ValueType](#valuetype)&gt; | Yes| Array of **ValueType**s to match.|
 
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+  | Type| Description|
+  | -------- | -------- |
+  | [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
 
 **Example**
   ```js

@@ -5,7 +5,7 @@
     Apply the HDF patches based on the kernel version in the  **kernel/linux/build**  repository. For details, see the method for applying the HDF patch in  **kernel.mk**.
 
     ```
-    $(OHOS_BUILD_HOME)/drivers/adapter/khdf/linux/patch_hdf.sh $(OHOS_BUILD_HOME) $(KERNEL_SRC_TMP_PATH) $(HDF_PATCH_FILE)
+    $(OHOS_BUILD_HOME)/drivers/hdf_core/adapter/khdf/linux/patch_hdf.sh $(OHOS_BUILD_HOME) $(KERNEL_SRC_TMP_PATH) $(KERNEL_PATCH_PATH) $(DEVICE_NAME)
     ```
 
 2.  Apply the chip driver patches.

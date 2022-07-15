@@ -29,6 +29,3 @@ In addition, the following differences exist in the development process:
 
 
 For details about the two models, see [FA Model Overview](fa-brief.md) and [Stage Model Overview](stage-brief.md).
-## Samples
-The following sample is provided to help you better understand how to develop abilities:
-- [Intra- and Inter-page Navigation](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)

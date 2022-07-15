@@ -2,14 +2,15 @@
 
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 
 Provides the HAP module information.
 
-
+## HapModuleInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -35,4 +36,4 @@ Provides the HAP module information.
 | mainElementName<sup>9+</sup>      | string                                                       | Yes  | No  | Information about the main ability.     |
 | extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | Yes  | No  | Information about the Extension ability.|
 | metadata<sup>9+</sup>             | Array\<[Metadata](js-apis-bundle-Metadata.md)>               | Yes  | No  | Metadata of the ability.     |
-| hashValue<sup>9+</sup>            | string                                                       | Yes  | No  | The hash value of the module.     |
+| hashValue<sup>9+</sup>            | string                                                       | Yes  | No  | Hash value of the module.     |

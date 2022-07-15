@@ -1,140 +1,109 @@
-# I3C<a name="1"></a>
+# I3C
 
+## Introduction
 
-## Overview<a name="section1"></a>
+### Function
 
-The Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient bidirectional 2-wire synchronous serial bus protocol developed by the Mobile Industry Processor Interface (MIPI) Alliance.
+Improved Inter-Integrated Circuit (I3C) is a simple and cost-efficient two-wire bidirectional synchronous serial bus protocol developed by the Mobile Industry Processor Interface (MIPI) Alliance.
 
-I3C is backward compatible with legacy Inter-Integrated Circuit (I2C). Moreover, it provides the in-band interrupt (IBI) function and supports hot-join of I3C devices. This eliminates the need for adding an extra interrupt line to implement interrupts in I2C.
+I3C is a two-wire bidirectional serial bus, optimized for multiple sensor target devices and controlled by only one I3C controller at a time. It is backward compatible with Inter-Integrated circuit (I2C) target devices, but features higher speed and lower power consumption. Moreover, I3C supports in-band interrupts (IBIs), hot-joins of target devices, and controller switchover. The IBIs over the serial bus eliminates the need for an extra interrupt line to complete interrupts in I2C. I2C devices, I3C target devices, and the I3C secondary controller can co-exist on the same I3C bus.
 
-The I2C device, I3C slave device, and I3C secondary master device can coexist on the I3C bus.
+The I3C driver APIs provide a set of common functions for I3C transfer, including:
+- Opening and closing an I3C controller
+- Obtaining and setting I3C controller parameters
+- Performing custom I3C message transfer by using a message array
+- Requesting and releasing an IBI
 
-The I3C APIs provide a set of common functions for I3C transfer, including:
+### Basic Concepts
 
--   Opening and closing an I3C controller
--   Obtaining and setting I3C controller parameters
--   Performing custom I3C message transfer by using a message array
--   Requesting and releasing an IBI
+- IBI
+  
+  When there is no start signal on the serial clock (SCL) line, the I3C target device can pull down the serial data (SDA) line to make the controller send an SCL start signal, which initiates an IBI request. If multiple target devices send interrupt requests at the same time, the I3C controller arbitrates the requests based on the target device addresses. The request with a lower address is responded first.
+  
+- Dynamic Address Assignment (DAA)
 
-[Figure 1](#fig1) shows the I3C physical connection.
-**Figure 1** I3C physical connection<a name="fig1"></a><br/>
+  The I3C controller can dynamically allocate addresses to target devices to avoid address conflicts. Before addresses are allocated, each I3C device connected to a I3C bus must be uniquely identified in either of the following ways:
+
+  - The device has an I2C compliant static address that can be used by the host.
+  - The device has a 48-bit temporary ID. 
+
+  The host must use a 48-bit temporary ID unless the device has a static IP address.
+
+- Common Command Code (CCC)
+
+  All I3C devices support CCC. The CCC can be sent to a specific I3C target device or all I3C target devices.
+
+- Bus Characteristic Register (BCR)
+
+  Each I3C device connected to an I3C bus has a read-only BCR, which describes the I3C compliant device's role and capabilities for use in DAA and CCC.
+
+- Device Characteristic Register (DCR)
+
+  Each I3C device connected to an I3C bus has a read-only DCR, which describes the I3C compliant device type (such as accelerometers, gyroscope, and others) for use in DAA and DCC.
+
+### Working Principles
+
+In the Hardware Driver Foundation (HDF), the I3C module uses the unified service mode for API adaptation. In this mode, a service is used as the I3C manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type, for example, when there are more than 10 I3C controllers. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed.
+
+Multiple devices, such as I2C target device, I3C target device, and I3C secondary controller, can be connected to an I3C bus. However, the I3C bus must have only one controller.
+
+**Figure 1** I3C physical connection 
 ![](figures/I3C_physical_connection.png "I3C_physical_connection")
 
-## Available APIs<a name="section2"></a>
+### Constraints
+
+Currently, the I3C module supports only the kernels (LiteOS) of mini and small systems.
+
+## Usage Guidelines
+
+### When to Use
+
+I3C can connect to one or more I3C or I2C target devices. It is used to:
+- Communicate with sensors, such as gyroscopes, barometers, and image sensors that support the I3C protocol.
+- Communicate with devices with other ports (such as UART serial ports) through software or hardware protocols.
+
+### Available APIs
 
 **Table 1** I3C driver APIs
 
-<a name="table1"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.63%"><p>Category</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.03%"><p>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.339999999999996%"><p>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>I3C controller management</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cOpen</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Opens an I3C controller.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>I3cClose</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Closes an I3C controller.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" valign="top" width="18.63%"><p>I3C transfer</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cTransfer</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%"><p>Customizes an I3C transfer.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor=ffffff rowspan="2" valign="top" width="18.63%"><p>I3C controller configuration</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cSetConfig</p>
-</td>
-<td class="cellrowborder"valign="top" width="53.339999999999996%">Sets an I3C controller.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>I3cGetConfig</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Obtains the I3C controller configuration.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor=ffffff rowspan="2" valign="top" width="18.63%"><p>I3C IBI</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>I3cRequestIbi</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Requests an IBI.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>I3cFreeIbi</p>
-</td>
-<td class="cellrowborder" valign="top"><p>Releases an IBI.</p>
-</td>
-</tr>
-</table>
+| API       | Description             |
+| ------------- | ----------------- |
+| I3cOpen       | Opens an I3C controller.    |
+| I3cClose      | Closes an I3C controller.    |
+| I3cTransfer   | Performs custom transfer.       |
+| I3cSetConfig  | Sets the I3C controller.    |
+| I3cGetConfig  | Obtains the I3C controller configuration. |
+| I3cRequestIbi | Requests an IBI.     |
+| I3cFreeIbi    | Releases an IBI.     |
 
+>![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
+>All APIs described in this document can be called only in kernel mode.
 
+### How to Develop
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br/>
->
->All functions described in this document can be called only in the kernel space.
+The figure below illustrates the use of I3C driver APIs.
 
-## Usage Guidelines<a name="section3"></a>
-
-### How to Use<a name="section4"></a>
-
-[Figure 2](#fig2) shows how I3C works.
-
-**Figure 2** How I3C works<a name="fig2"></a><br/>
+**Figure 2** Process of using I3C driver APIs 
 ![](figures/I3C_usage_flowchart.png "I3C_usage_flowchart")
 
-### Opening an I3C Controller<a name="section5"></a>
+#### Opening an I3C Controller
 
-Before I3C communication, call **I3cOpen** to open an I3C controller.
+Before I3C communication, call **I3cOpen()** to open an I3C controller.
 ```c
 DevHandle I3cOpen(int16_t number);
 ```
 
 **Table 2** Description of I3cOpen
 
-<a name="table2"></a>
+| Name      | Description           |
+| ---------- | ------------------- |
+| number     | I3C controller number. |
+| **Return Value**| **Description**     |
+| NULL       | The operation failed.  |
+| Controller handle| The operation is successful. The handle of the I3C controller opened is returned. |
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="20.66%"><p>Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="79.34%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="20.66%"><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>I3C controller ID.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>NULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>Failed to open the I3C controller.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>Controller handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>Handle of the I3C controller opened.</p>
-</td>
-</tr>
-</tbody>
-</table>
-
-The following example opens I3C controller 1 of the eight I3C controllers (numbered from 0 to 7) in the system.
+Example: Open I3C controller 1 of the eight I3C controllers numbered from 0 to 7 in the system.
 
 ```c
 DevHandle i3cHandle = NULL; /* I3C controller handle. /
@@ -147,7 +116,7 @@ if (i3cHandle == NULL) {
 }
 ```
 
-### Performing I3C Communication<a name="section6"></a>
+#### Performing I3C Communication
 
 Call **I3cTransfer()** to transfer messages.
 ```c
@@ -156,53 +125,18 @@ int32_t I3cTransfer(DevHandle handle, struct I3cMsg *msgs, int16_t count, enum T
 
 **Table 3** Description of I3cTransfer
 
-<a name="table3"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>msgs</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the message structure array of the data to be transmitted.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>count</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Length of the message array.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>mode</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Transmission mode, where the value <b>0</b> indicates the I2C mode, <b>1</b> indicates the I3C mode, and <b>2</b> indicates transmission of the Common Command Code (CCC).
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Positive integer</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Number of message structures successfully transferred.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation failed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Description                                    |
+| ---------- | -------------------------------------------- |
+| handle     | I3C controller handle.                               |
+| msgs       | Pointer to the message array of the data to transfer.                  |
+| count      | Length of the message array.                                |
+| mode       | Transmission mode. The value **0** indicates I2C mode, **1** indicates I3C mode, and **2** indicates CCC transmission. |
+| **Return Value**| **Description**                              |
+| Positive integer    | The operation is successful. The number of message structures that are successfully transmitted is returned.                    |
+| Negative value      | The operation failed.                                    |
 
-The I3C messages are of the I3cMsg type. Each message structure indicates a read or write operation. A message array is used to perform multiple read or write operations.
+The I3C messages are of the I3cMsg type. Each message structure indicates a read or write operation. A message array can be used to perform multiple read or write operations.
 
 ```c
 int32_t ret;
@@ -225,13 +159,14 @@ if (ret != 2) {
 }
 ```
 
->![](../public_sys-resources/icon-caution.gif) **Caution**
->
+>![](./public_sys-resources/icon-caution.gif) **Caution**<br>
 >-   The device address in the **I3cMsg** structure does not contain the read/write flag bit. The read/write information is passed by the read/write control bit in the member variable **flags**.
 >-   The **I3cTransfer()** function does not limit the number of message structures or the length of data in each message structure. The I3C controller determines these two limits.
 >-   Using **I3cTransfer()** may cause the system to sleep. Do not call it in the interrupt context.
 
-### Obtaining the I3C Controller Configuration<a name="section7"></a>
+#### Obtaining the I3C Controller Configuration
+
+Call **I3cGetConfig()** to obtain the configuration of an I3C controller.
 
 ```c
 int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
@@ -239,43 +174,30 @@ int32_t I3cGetConfig(DevHandle handle, struct I3cConfig *config);
 
 **Table 4** Description of I3cGetConfig
 
-<a name="table4"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>config</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the I3C controller configuration.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Failed to obtain the I3C controller configuration.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Description      |
+| ---------- | -------------- |
+| handle     | I3C controller handle. |
+| config     | Pointer to the I3C controller configuration. |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
-### Configuring an I3C Controller<a name="section8"></a>
+The following is an example of obtaining the I3C controller configuration:
+
+```c
+struct I3cConfig config;
+
+ret = I3cGetConfig(i3cHandle, &config);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: Get config fail!", __func__);
+    return HDF_FAILURE;
+}
+```
+
+#### Setting an I3C Controller
+
+Call **I3cSetConfig()** to set an I3C controller.
 
 ```c
 int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
@@ -283,43 +205,32 @@ int32_t I3cSetConfig(DevHandle handle, struct I3cConfig *config);
 
 **Table 5** Description of I3cSetConfig
 
-<a name="table5"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>config</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Pointer to the I3C controller configuration.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Failed to configure the I3C controller.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Description      |
+| ---------- | -------------- |
+| handle     | I3C controller handle. |
+| config     | Pointer to the I3C controller configuration. |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
-### Requesting an IBI<a name="section9"></a>
+The following is an example of setting an I3C controller:
+
+```c
+struct I3cConfig config;
+
+config->busMode = I3C_BUS_HDR_MODE;
+config->curMaster = NULL;
+ret = I3cSetConfig(i3cHandle, &config);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("%s: Set config fail!", __func__);
+    return HDF_FAILURE;
+}
+```
+
+#### Requesting an IBI
+
+Call **I3cRequestIbi()** to request an IBI.
 
 ```c
 int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t payload);
@@ -327,51 +238,18 @@ int32_t I3cRequestIbi(DevHandle handle, uint16_t addr, I3cIbiFunc func, uint32_t
 
 **Table 6** Description of I3cRequestIbi
 
-<a name="table6"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>addr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C device address.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>func</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Callback used to return the IBI.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>payload</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>IBI payload.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder"valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p> Failed to request the IBI.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Description      |
+| ---------- | -------------- |
+| handle     | I3C controller handle. |
+| addr       | I3C device address.   |
+| func       | Callback used to return the IBI.   |
+| payload    | IBI payload.   |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
+
+The following is an example:
 
 ```c
 static int32_t TestI3cIbiFunc(DevHandle handle, uint16_t addr, struct I3cIbiData data)
@@ -388,7 +266,7 @@ int32_t I3cTestRequestIbi(void)
     DevHandle i3cHandle = NULL;
     int32_t ret;
 
-    /* Open an I3C controller. */
+    /* Open the I3C controller. */
     i3cHandle = I3cOpen(1);
     if (i3cHandle == NULL) {
         HDF_LOGE("I3cOpen: failed\n");
@@ -407,7 +285,9 @@ int32_t I3cTestRequestIbi(void)
 }
 ```
 
-### Releasing an IBI<a name="section10"></a>
+#### Releasing an IBI
+
+Call **I3cFreeIbi()** to release an IBI.
 
 ```c
 int32_t I3cFreeIbi(DevHandle handle, uint16_t addr);
@@ -415,47 +295,22 @@ int32_t I3cFreeIbi(DevHandle handle, uint16_t addr);
 
 **Table 7** Description of I3cFreeIbi
 
-<a name="table7"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong>Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C controller handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>addr</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C device address.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Failed to release the IBI.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Description      |
+| ---------- | -------------- |
+| handle     | I3C controller handle. |
+| addr       | I3C device address.   |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
+
+The following is an example:
 
 ```c
 I3cFreeIbi(i3cHandle, 0x3F); /* Release an IBI. */
 ```
 
-### Closing an I3C controller<a name="section11"></a>
+#### Closing an I3C Controller
 
 Call **I3cClose()** to close the I3C controller after the communication is complete.
 ```c
@@ -464,28 +319,18 @@ void I3cClose(DevHandle handle);
 
 **Table 8** Description of I3cClose
 
-<a name="table4"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p> Parameter</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>I3C controller handle.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Name      | Description      |
+| ---------- | -------------- |
+| handle     | I3C controller handle. |
 
+The following is an example:
 
 ```c
-I3cClose(i3cHandle); /* Close an I3C controller. */
+I3cClose(i3cHandle); /* Close the I3C controller. */
 ```
 
-## Example<a name="section12""></a>
+## Development Example
 
 This following example shows how to use I3C APIs to manage an I3C device on a Hi3516D V300 development board.
 
@@ -503,10 +348,9 @@ The sample code is as follows:
 
 ```c
 #include "i3c_if.h"          /* Header file for I3C standard APIs */
-#include "i3c_ccc.h"         /* Header file for I3C CCC */
 #include "hdf_log.h"         /* Header file for log APIs */
 ##include "osal_io.h"         /* Header file for I/O read and write APIs */
-##include "osal_time.h"       /* Header file for delay and sleep APIs */
+#include "osal_time.h"       /* Header file for delay and sleep APIs */
 
 /* Define a device structure to hold information. */
 struct TestI3cDevice {
@@ -516,7 +360,7 @@ struct TestI3cDevice {
     DevHandle i3cHandle;          /* I3C controller handle */ 
 };
 
-/* Use I3cTransfer to encapsulate a register read/write helper function. Use flag to indicate a read or write operation. */
+/* Use I3cTransfer() to encapsulate a register read/write helper function. Use flag to indicate a read or write operation. */
 static int TestI3cReadWrite(struct TestI3cDevice *testDevice, unsigned int regAddr,
     unsigned char *regData, unsigned int dataLen, uint8_t flag)
 {
@@ -539,7 +383,7 @@ static int TestI3cReadWrite(struct TestI3cDevice *testDevice, unsigned int regAd
     msgs[0].buf = regBuf;
 
     msgs[1].addr = testDevice->addr;
-    msgs[1].flags = (flag == 1) ? I3C_FLAG_READ: 0; /* Add a read flag bit to read data. */
+    msgs[1].flags = (flag == 1) ? I3C_FLAG_READ : 0; /* Add the read flag. */
     msgs[1].len = dataLen;
     msgs[1].buf = regData;
 

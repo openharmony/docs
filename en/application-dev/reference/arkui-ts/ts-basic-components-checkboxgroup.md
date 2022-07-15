@@ -1,9 +1,10 @@
 # CheckboxGroup
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
 The **\<CheckboxGroup>** component is used to select or deselect all check boxes in a group.
+
+> **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
@@ -11,7 +12,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 ## APIs
 
@@ -27,19 +28,19 @@ Creates a check box group so that you can select or deselect all check boxes in 
 
 ## Attributes
 
-| Name| Type| Default Value| Description| 
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| selectAll | bool | false | Whether to select all.| 
-| selectedColor | Color | - | Color of the selected check box.| 
+| selectAll | boolean | false | Whether to select all.|
+| selectedColor | Color | - | Color of the selected check box.|
 
 ## Events
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| onChange (callback: (names: Array&lt;string&gt;, status: SelectStatus) => void ) |Triggered when the selection status of the check box group or any check box wherein changes.<br>- **names**: names of all selected check boxes in the group.<br>- **status**: selection status.| 
+| onChange (callback: (names: Array&lt;string&gt;, status: SelectStatus) => void ) |Triggered when the selection status of the check box group or any check box wherein changes.<br>- **names**: names of all selected check boxes in the group.<br>- **status**: selection status.|
 
 - SelectStatus enums
-  | Name | Description| 
+  | Name | Description|
   | ----- | -------------------- |
   | All   | All check boxes in the group are selected.|
   | Part  | Some check boxes in the group are selected.|
@@ -48,7 +49,8 @@ Creates a check box group so that you can select or deselect all check boxes in 
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CheckboxExample {

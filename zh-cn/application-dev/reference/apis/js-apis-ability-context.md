@@ -40,8 +40,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -70,8 +68,6 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 启动Ability。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -105,8 +101,6 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 启动Ability。通过Promise返回结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -239,7 +233,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 ## AbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void;
 
 启动一个Ability并在该Ability帐号销毁时返回执行结果（callback形式）。
 

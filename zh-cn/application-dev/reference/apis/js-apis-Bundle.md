@@ -115,7 +115,7 @@ getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallb
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -342,7 +342,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, c
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -639,7 +639,7 @@ getAbilityInfo(bundleName: string, moduleName: string, abilityName: string): Pro
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -681,7 +681,7 @@ getAbilityInfo(bundleName: string, moduleName: string, abilityName: string, call
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -794,7 +794,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -836,7 +836,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED，ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1347,7 +1347,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Pro
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1388,7 +1388,7 @@ getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, call
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 
@@ -1518,7 +1518,7 @@ queryExtensionAbilityInfos(want: Want, extensionType: number, extensionFlags: nu
 
 **需要权限：**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
 
 **系统能力：**
 

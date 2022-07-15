@@ -1039,9 +1039,9 @@ let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 
 ## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
 
-getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile
+getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
-通过ProfileId，获取profile的对象实例，API9新增了HidHostProfile。
+通过ProfileId，获取profile的对象实例，API9新增了HidHostProfile，PanProfile。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1055,7 +1055,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#A2dpSourceProfile)或 [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile)或[HidHostProfile](#HidHostProfile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile。 |
+| [A2dpSourceProfile](#A2dpSourceProfile)或 [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile)或[HidHostProfile](#HidHostProfile)或[PanProfile](#PanProfile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
 
 **示例：**
 
@@ -1734,6 +1734,162 @@ function onReceiveEvent(data) {
 let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
+```
+
+
+## PanProfile
+
+使用PanProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
+
+
+### disconnect<sup>9+</sup><a name="disconnect"></a>
+
+disconnect(device: string): boolean
+
+断开连接设备的Pan服务。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.USE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| device | string | 是    | 远端设备地址。 |
+
+**返回值：**
+
+| 类型      | 说明                  |
+| --------------------- | --------------------------------- |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let ret = panProfile.disconnect('XX:XX:XX:XX:XX:XX');
+```
+
+
+### on('connectionStateChange')<sup>9+</sup>
+
+on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+订阅Pan连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 是    | 表示回调函数的入参。                               |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+panProfile.on('connectionStateChange', onReceiveEvent);
+```
+
+
+### off('connectionStateChange')<sup>9+</sup>
+
+off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+
+取消订阅Pan连接状态变化事件。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                      |
+| -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type     | string                                                | 是   | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否   | 表示回调函数的入参。                                      |
+
+**返回值：**
+
+无
+
+**示例：**
+
+```js
+function onReceiveEvent(data) {
+    console.info('pan state = '+ JSON.stringify(data));
+}
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+panProfile.on('connectionStateChange', onReceiveEvent);
+panProfile.off('connectionStateChange', onReceiveEvent);
+```
+
+
+### setTethering<sup>9+</sup><a name="setTethering"></a>
+
+setTethering(value: boolean): boolean
+
+设置网络共享状态。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明      |
+| ------ | ------ | ---- | ------- |
+| value | boolean | 是    | 是否设置蓝牙共享。 |
+
+**返回值：**
+
+| 类型      | 说明                  |
+| --------------------- | --------------------------------- |
+| boolean | 成功返回true，失败返回false。 |
+
+**示例：**
+
+```js
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let ret = panProfile.setTethering(true);
+```
+
+
+### isTetheringOn<sup>9+</sup><a name="isTetheringOn"></a>
+
+isTetheringOn(): boolean
+
+获取网络共享状态。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**返回值：**
+
+| 类型      | 说明                  |
+| --------------------- | --------------------------------- |
+| boolean | 网络共享开启返回true，网络共享关闭返回false。 |
+
+**示例：**
+
+```js
+let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let ret = panProfile.isTetheringOn();
 ```
 
 

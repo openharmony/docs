@@ -88,9 +88,3 @@ In this example, an application event is logged after the application startup ex
    ```
 
 2. Tap the run button on the application UI to run the project.
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the application event logging feature:
-
-- [`JsDotTest`: Event Logging Test (JavaScript) (API 8)](https://gitee.com/openharmony/app_samples/tree/master/DFX/JsDotTest)

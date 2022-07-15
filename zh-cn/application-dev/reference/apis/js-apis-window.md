@@ -109,7 +109,7 @@ import window from '@ohos.window';
 | UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。 |
 | PORTRAIT                              | 1    | 表示竖屏显示模式。             |
 | LANDSCAPE                             | 2    | 表示横屏显示模式。   |
-| PORTAIT_INVERTED                      | 3    | 表示反向竖屏显示模式。   |
+| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。   |
 | LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。 |
 | AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。 |
 | AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。 |
@@ -2071,7 +2071,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 **示例：** 
 
 ```js
-let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
+let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
 promise.then((data)=> {
     console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data));
 }).catch((err)=>{

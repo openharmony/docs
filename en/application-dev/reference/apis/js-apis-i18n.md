@@ -1,9 +1,9 @@
-# Internationalization – i18n
+# Internationalization – I18N
 
 > **NOTE**<br>
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This module contains enhanced i18n APIs, which are not defined in ECMA 402.
+> - This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N interfaces that are not defined in ECMA 402. For details about the basic I18N capabilities, see [Intl](js-apis-intl.md).
 
 
 ## Modules to Import

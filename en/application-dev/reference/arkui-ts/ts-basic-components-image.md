@@ -149,8 +149,6 @@ struct ImageExample1 {
 @Entry
 @Component
 struct ImageExample2 {
-  @State width: number = 100
-  @State height: number = 100
 
   build() {
     Column({ space: 10 }) {

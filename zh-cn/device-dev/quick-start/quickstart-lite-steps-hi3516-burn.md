@@ -9,7 +9,7 @@ Hi3516DV300支持USB烧录、网口烧录和串口烧录三种方式，本文采
 
 ## 导入源码
 
-在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](quickstart-lite-env-setup.md)的情况下，您还需要通过以下步骤将编译好的源码导入Windows下，方可进行烧录。
+在编译完成后，[保证Windows系统可以远程访问Ubuntu环境](quickstart-lite-env-setup.md)的情况下，您还需要通过以下步骤将编译好的源码导入DevEco Device Tool，方可进行烧录。
 
 1. 打开DevEco Device Tool，进入Home页，点击**Import Project**打开工程。
 
@@ -32,7 +32,7 @@ Hi3516DV300支持USB烧录、网口烧录和串口烧录三种方式，本文采
 
 完成源码导入后，通过以下步骤进行烧录：
 
-1. 请连接好电脑和待烧录开发板，需要连接USB口和串口，具体可参考[Hi3516DV300开发板介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-lite-introduction-hi3516.md)。
+1. 请连接好电脑和待烧录开发板，需要连接USB口和串口，具体可参考[Hi3516DV300开发板介绍](quickstart-lite-introduction-hi3516.md)。
 
 2. 根据[Hi3516DV300开发板串口驱动安装指导](https://gitee.com/link?target=https%3A%2F%2Fdevice.harmonyos.com%2Fcn%2Fdocs%2Fdocumentation%2Fguide%2Fhi3516_hi3518-drivers-0000001050743695)、[Hi3516DV300开发板USB驱动安装指导](https://device.harmonyos.com/cn/docs/documentation/guide/usb_driver-0000001058690393)安装USB驱动及USB转串口的驱动。若您的设备中已安装此驱动，请忽略该步骤。
 

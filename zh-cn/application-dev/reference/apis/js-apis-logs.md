@@ -1,5 +1,7 @@
 # 日志打印
 
+本模块提供日志打印能力，包括打印debug级别的日志信息、打印info级别的日志信息、打印warn级别的日志信息和打印error级别的日志信息。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.hilog`](js-apis-hilog.md)。
 

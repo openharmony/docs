@@ -221,7 +221,7 @@ abilitymanager.getExtensionRunningInfos(upperLimit).then((data) => {
 
 getTopAbility(callback: AsyncCallback\<ElementName>): void;
 
-新增获取窗口焦点的ability接口（callback形式）。
+获取窗口焦点的ability接口（callback形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -245,7 +245,7 @@ abilitymanager.getTopAbility((err,data) => {
 
 getTopAbility(): Promise\<ElementName>;
 
-新增获取窗口焦点的ability接口（Promise形式）。
+获取窗口焦点的ability接口（Promise形式）。
  
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
