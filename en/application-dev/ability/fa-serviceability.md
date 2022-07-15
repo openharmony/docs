@@ -394,9 +394,3 @@ export default {
     }
 };
 ```
-
-## Samples
-
-The following samples are provided to help you better understand how to develop a Service ability:
-- [`ServiceAbility`: Service Ability Creation and Use (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
-- [`DMS`: Distributed Demo (eTS) (API7)](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
