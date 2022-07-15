@@ -1,12 +1,12 @@
 # Volume Management
 
+The volumeManager module provides APIs for volume and disk management, including obtaining volume information, mounting or unmounting volumes, partitioning disks, and formatting volumes.
+
 > **NOTE**<br>
 >
 > - The initial APIs of this module are supported since API version 9.
 > - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
-
-Performs volume and disk management, including obtaining volume information, mounting and unmounting volumes, partitioning disks, and formatting volumes.
 
 ## Modules to Import
 
@@ -59,7 +59,7 @@ Asynchronously obtains information about all available volumes. This API uses a 
   ```js
   let uuid = "";
   volumemanager.getAllVolumes(function(error, volumes){
-      // Do something.
+      // Do something
   });
   ```
 
@@ -91,7 +91,7 @@ Asynchronously mounts a volume. This API uses a promise to return the result.
   ```js
   let volumeId = "";
   volumemanager.mount(volumeId).then(function(flag){
-      // Do something.
+      // Do something
   });
   ```
 
@@ -117,7 +117,7 @@ Asynchronously obtains the available space of the specified volume. This API use
   ```js
   let volumeId = "";
   volumemanager.mount(volumeId, function(error, flag){
-      // Do something.
+      // Do something
   });
   ```
 
@@ -148,7 +148,7 @@ Asynchronously unmounts a volume. This API uses a promise to return the result.
   ```js
   let volumeId = "";
   volumemanager.unmount(volumeId).then(function(flag){
-      // Do something.
+      // Do something
   });
   ```
 
@@ -174,7 +174,7 @@ Asynchronously unmounts a volume. This API uses a callback to return the result.
   ```js
   let volumeId = "";
   volumemanager.unmount(volumeId, function(error, flag){
-      // Do something.
+      // Do something
   });
   ```
 
@@ -182,7 +182,7 @@ Asynchronously unmounts a volume. This API uses a callback to return the result.
 
 getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
-Asynchronously obtains volume information based on the Universally unique identifier (UUID). This API uses a promise to return the result.
+Asynchronously obtains volume information based on the universally unique identifier (UUID). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.STORAGE_MANAGER
 
@@ -198,7 +198,7 @@ Asynchronously obtains volume information based on the Universally unique identi
 
   | Type                              | Description                      |
     | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the execution result.|
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
 
 **Example**
 
@@ -229,7 +229,7 @@ Asynchronously obtains volume information based on the UUID. This API uses a cal
   ```js
   let uuid = "";
   volumemanager.getVolumeByUuid(uuid, (error, volume) => {
-      // Do something.    
+      // Do something.   
   });
   ```
 
@@ -253,7 +253,7 @@ Asynchronously obtains volume information based on the volume ID. This API uses 
 
   | Type                              | Description                      |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the execution result.|
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
 
 **Example**
 
@@ -284,7 +284,7 @@ Asynchronously obtains volume information based on the volume ID. This API uses 
   ```js
   let id = "";
   volumemanager.getVolumeById(id, (error, volume) => {
-      // Do something.    
+      // Do something.   
   });
   ```
 
@@ -309,7 +309,7 @@ Asynchronously sets the volume description based on the UUID. This API uses a pr
 
   | Type                   | Description                      |
   | ---------------------- | -------------------------- |
-  | Promise&lt;void&gt; | Promise used to return the volume description.                  |
+  | Promise&lt;void&gt; | Promise used to return the result.                 |
 
 **Example**
 
@@ -335,7 +335,7 @@ Asynchronously sets the volume description based on the UUID. This API uses a ca
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | Yes  | UUID of the volume.           |
   | description | string                                 | Yes  | Volume description.           |
-  | callback   | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the volume description.|
+  | callback   | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.|
 
 **Example**
 
@@ -343,7 +343,7 @@ Asynchronously sets the volume description based on the UUID. This API uses a ca
   let uuid = "";
   let description = "";
   volumemanager.setVolumeDescription(uuid, description, (error, bool) => {
-      // Do something.    
+      // Do something.   
   });
   ```
 
@@ -398,7 +398,7 @@ Asynchronously formats a volume. This API uses a callback to return the result.
   ```js
   let volId = "";
   volumemanager.format(volId, (error, bool) => {
-      // Do something.    
+      // Do something.   
   });
   ```
 
@@ -457,7 +457,7 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
   let volId = "";
   let fstype = "";
   volumemanager.format(volId, fstype, (error, bool) => {
-      // Do something.    
+      // Do something.   
   });
   ```
 
@@ -473,5 +473,5 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
 | uuid        | string  | UUID of the volume.              |
 | description | string  | Description of the volume.          |
 | removable   | boolean | Whether the volume is a removable storage device.|
-| state       | number  | Current volume status.          |
+| state       | number  | Volume state.          |
 | path        | string  | Mount address of the volume.        |
