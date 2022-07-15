@@ -99,13 +99,13 @@ Enumerates the key purposes.
 
 | Name                    | Value  | Description                            |
 | ------------------------ | ---- | -------------------------------- |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt plaintext. |
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt cipher text. |
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt plaintext.|
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt cipher text.|
 | HUKS_KEY_PURPOSE_SIGN    | 4    | Used to sign data.    |
 | HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signed data.  |
 | HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.          |
-| HUKS_KEY_PURPOSE_WRAP    | 32   | Used to wrap data. |
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | Used for unwrap data.   |
+| HUKS_KEY_PURPOSE_WRAP    | 32   | Used to wrap a key.          |
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | Used to unwrap a key.              |
 | HUKS_KEY_PURPOSE_MAC     | 128  | Used to generate a message authentication code (MAC). |
 | HUKS_KEY_PURPOSE_AGREE   | 256  | Used for key agreement.      |
 
@@ -117,14 +117,14 @@ Enumerates the digest algorithms.
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
-| HUKS_DIGEST_NONE       | 0   | No digest algorithm |
-| HUKS_DIGEST_MD5        | 1    | MD5 |
-| HUKS_DIGEST_SM3<sup>9+</sup> | 2 | SM3 |
-| HUKS_DIGEST_SHA1       | 10   | SHA1 |
-| HUKS_DIGEST_SHA224 | 11   | SHA-224 |
-| HUKS_DIGEST_SHA256 | 12  | SHA-256 |
-| HUKS_DIGEST_SHA384  | 13  | SHA-384 |
-| HUKS_DIGEST_SHA512 | 14  | SHA-512 |
+| HUKS_DIGEST_NONE       | 0   | No digest algorithm|
+| HUKS_DIGEST_MD5        | 1    | MD5|
+| HUKS_DIGEST_SM3<sup>9+</sup> | 2 | SM3|
+| HUKS_DIGEST_SHA1       | 10   | SHA1|
+| HUKS_DIGEST_SHA224 | 11   | SHA-224|
+| HUKS_DIGEST_SHA256 | 12  | SHA-256|
+| HUKS_DIGEST_SHA384  | 13  | SHA-384|
+| HUKS_DIGEST_SHA512 | 14  | SHA-512|
 
 ## HuksKeyPadding
 
@@ -134,11 +134,11 @@ Enumerates the padding algorithms.
 
 | Name                  | Value  | Description                                    |
 | ---------------------- | ---- | ---------------------------------------- |
-| HUKS_PADDING_NONE | 0    | No padding algorithm |
-| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP) |
-| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS) |
-| HUKS_PADDING_PKCS1_V1_5 | 3    | PKCS1_V1_5 |
-| HUKS_PADDING_PKCS5 | 4   | Public Key Cryptography Standards (PKCS) #5 |
+| HUKS_PADDING_NONE | 0    | No padding algorithm|
+| HUKS_PADDING_OAEP | 1    | Optimal Asymmetric Encryption Padding (OAEP)|
+| HUKS_PADDING_PSS | 2    | Probabilistic Signature Scheme (PSS)|
+| HUKS_PADDING_PKCS1_V1_5 | 3    | PKCS1_V1_5|
+| HUKS_PADDING_PKCS5 | 4   | Public Key Cryptography Standards (PKCS) #5|
 | HUKS_PADDING_PKCS7 | 5   | PKCS #7|
 
 ## HuksCipherMode
@@ -149,12 +149,12 @@ Enumerates the cipher modes.
 
 | Name         | Value  | Description                 |
 | ------------- | ---- | --------------------- |
-| HUKS_MODE_ECB | 1    | Electronic Code Block (ECB) mode |
-| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode |
-| HUKS_MODE_CTR | 3    | Counter (CTR) mode |
-| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode |
-| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode |
-| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode |
+| HUKS_MODE_ECB | 1    | Electronic Code Block (ECB) mode|
+| HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode|
+| HUKS_MODE_CTR | 3    | Counter (CTR) mode|
+| HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode|
+| HUKS_MODE_CCM | 31   | Counter with CBC-MAC (CCM) mode|
+| HUKS_MODE_GCM | 32   | Galois/Counter (GCM) mode|
 
 ## HuksKeySize
 
@@ -178,7 +178,7 @@ Enumerates the key sizes.
 | HUKS_AES_KEY_SIZE_192              | 196  | AES key of 196 bits       |
 | HUKS_AES_KEY_SIZE_256              | 256  | AES key of 256 bits       |
 | HUKS_AES_KEY_SIZE_512              | 512  | AES key of 512 bits       |
-| HUKS_CURVE25519_KEY_SIZE_256       | 256  | Curve25519 key of 256 bits |
+| HUKS_CURVE25519_KEY_SIZE_256       | 256  | Curve25519 key of 256 bits|
 | HUKS_DH_KEY_SIZE_2048              | 2048 | DH key of 2048 bits       |
 | HUKS_DH_KEY_SIZE_3072              | 3072 | DH key of 3072 bits       |
 | HUKS_DH_KEY_SIZE_4096              | 4096 | DH key of 4096 bits       |
@@ -201,8 +201,8 @@ Enumerates the key algorithms.
 | HUKS_ALG_HKDF             | 51   | HKDF   |
 | HUKS_ALG_PBKDF2           | 52   | PBKDF2 |
 | HUKS_ALG_ECDH             | 100  | ECDH   |
-| HUKS_ALG_X25519           | 101  | X25519 |
-| HUKS_ALG_ED25519          | 102  | ED25519 |
+| HUKS_ALG_X25519           | 101  | X25519  |
+| HUKS_ALG_ED25519          | 102  | ED25519|
 | HUKS_ALG_DH               | 103  | DH     |
 | HUKS_ALG_SM2<sup>9+</sup> | 150  | SM2    |
 | HUKS_ALG_SM3<sup>9+</sup> | 151  | SM3    |
@@ -228,10 +228,10 @@ Enumerates the key generation modes.
 
 | Name                      | Value  | Description                                |
 | -------------------------- | ---- | ------------------------------------ |
-| HUKS_KEY_FLAG_IMPORT_KEY   | 1    | The key is imported by using an API. |
-| HUKS_KEY_FLAG_GENERATE_KEY | 2    | The key is generated by using an API. |
-| HUKS_KEY_FLAG_AGREE_KEY    | 3    | The key is generated by using a key agreement API. |
-| HUKS_KEY_FLAG_DERIVE_KEY   | 4    | The key is derived by using an API. |
+| HUKS_KEY_FLAG_IMPORT_KEY   | 1    | The key is imported by using an API.    |
+| HUKS_KEY_FLAG_GENERATE_KEY | 2    | The key is generated by using an API.    |
+| HUKS_KEY_FLAG_AGREE_KEY    | 3    | The key is generated by using a key agreement API.|
+| HUKS_KEY_FLAG_DERIVE_KEY   | 4    | The key is derived by using an API.|
 
 ## HuksKeyStorageType
 
@@ -268,7 +268,7 @@ Enumerates the algorithm suites used when a wrapped key is imported.
 
 ##  HuksImportKeyType<sup>9+</sup>
 
-Enumerates the types of the key to import. By default, a public key is imported. This field is not required when a symmetric key is imported.
+Enumerates the types of keys to import. By default, a public key is imported. This field is not required when a symmetric key is imported.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -276,7 +276,7 @@ Enumerates the types of the key to import. By default, a public key is imported.
 | ------------------------- | ---- | ------------------------------ |
 | HUKS_KEY_TYPE_PUBLIC_KEY  | 0    | Public key    |
 | HUKS_KEY_TYPE_PRIVATE_KEY | 1    | Private key    |
-| HUKS_KEY_TYPE_KEY_PAIR    | 2    | Public and private key pair |
+| HUKS_KEY_TYPE_KEY_PAIR    | 2    | Public and private key pair|
 
 ## HuksTagType
 
@@ -289,8 +289,8 @@ Enumerates the tag data types.
 | --------------------- | ------- | --------------------------------------- |
 | HUKS_TAG_TYPE_INVALID | 0 << 28 | Invalid tag type                    |
 | HUKS_TAG_TYPE_INT     | 1 << 28 | Number of the int type |
-| HUKS_TAG_TYPE_UINT    | 2 << 28 | Number of the uint type |
-| HUKS_TAG_TYPE_ULONG   | 3 << 28 | bigint          |
+| HUKS_TAG_TYPE_UINT    | 2 << 28 | Number of the uint type|
+| HUKS_TAG_TYPE_ULONG   | 3 << 28 | BigInt          |
 | HUKS_TAG_TYPE_BOOL    | 4 << 28 | Boolean         |
 | HUKS_TAG_TYPE_BYTES   | 5 << 28 | Uint8Array      |
 
@@ -321,8 +321,8 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.              |
 | HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.            |
 | HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.            |
-| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used in key agreement.            |
-| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Alias of the public key during key agreement.            |
+| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used for key agreement.            |
+| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Public key alias used in key agreement.            |
 | HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.            |
 | HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.                |
 | HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.                        |
@@ -342,8 +342,8 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.           |
 | HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.   |
 | HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Device brand.                     |
-| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | Device.                    |
-| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product.                   |
+| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | Device ID.                    |
+| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product name of the device.                   |
 | HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | Device SN.                      |
 | HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | Device IMEI.                    |
 | HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Device MEID.                    |
@@ -352,7 +352,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.         |
 | HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | Device SOCID.                     |
 | HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Device UDID.                      |
-| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security credential used for the attestation.         |
+| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security credential used in the attestation.         |
 | HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.           |
 | HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation.|
 | HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.               |
@@ -801,12 +801,12 @@ async function TestImportWrappedKeyFunc(
     await TestExportFunc(wrappingAlias, genOptions);
 
     /*The following operations do not invoke the HUKS APIs, and the specific implementation is not provided here.
-     * For example, import keyA.
-     * 1. Use ECC to generate a public and private key pair keyB. The public key is keyB_pub, and the private key is keyB_pri.
-     * 2. Use keyB_pri and the public key obtained from wrappingAlias to negotiate the shared key share_key.
-     * 3. Randomly generate a key kek for encrypting keyA using AES-GCM. During the encryption, record nonce1/aad1/ciphertext keyA_enc/encrypted tag1.
-     * 4. Use the share_key to encrypt kek using AES-GCM. During the encryption, record nonce2/aad2/ciphertext kek_enc/encrypted tag2.
-     * 5. Generate the importOptions.inData field in the following format:
+     * For example, import **keyA**.
+     * 1. Use ECC to generate a public and private key pair **keyB**. The public key is **keyB_pub**, and the private key is **keyB_pri**.
+     * 2. Use **keyB_pri** and the public key obtained from **wrappingAlias** to negotiate the shared key **share_key**.
+     * 3. Randomly generate a key **kek** and use it to encrypt **keyA** with AES-GCM. During the encryption, record **nonce1**, **aad1**, ciphertext **keyA_enc**, and encrypted **tag1**.
+     * 4. Use **share_key** to encrypt **kek** with AES-GCM. During the encryption, record **nonce2**, ** aad2**, ciphertext **kek_enc**, and encrypted **tag2**. 
+     * 5. Generate the **importOptions.inData** field in the following format:
      * keyB_pub length (4 bytes) + keyB_pub + aad2 length (4 bytes) + aad2 +
      * nonce2 length (4 bytes) + nonce2 + tag2 length (4 bytes) + tag2 +
      * kek_enc length (4 bytes) + kek_enc + aad1 length (4 bytes) + aad1 +
