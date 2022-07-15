@@ -739,7 +739,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 | width                     | number                   | 是   | 否   | 图片宽度（单位：像素）                                 |
 | height                    | number                   | 是   | 否   | 图片高度（单位：像素）                                 |
 | orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
-| duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：秒）                                   |
+| duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：毫秒）                                   |
 | albumId                   | number                   | 是   | 否   | 文件所归属的相册编号                                   |
 | albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri                                      |
 | albumName                 | string                   | 是   | 否   | 文件所归属相册名称                                     |
