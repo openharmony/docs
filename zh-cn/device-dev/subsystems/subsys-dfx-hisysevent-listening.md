@@ -11,7 +11,7 @@ HiSysEvent提供了跨进程订阅机制，开发者可以通过注册订阅接�
 
 ### 约束与限制
 
-在订阅HiSysEvent事件之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)。
+在订阅HiSysEvent事件之前，需要先完成HiSysEvent打点配置，具体配置方法请参考[《HiSysEvent打点配置指导》](../subsystems/subsys-dfx-hisysevent-logging-config.md)。
 
 
 ## 开发指导

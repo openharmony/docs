@@ -6,18 +6,18 @@
 
 ### 功能简介
 
-组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.js文件中[配置yaml文件的路径](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md#section123181432175135)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.js文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
+组件若有HiSysEvent事件的打点需求，则需要先定义yaml文件并在bundle.js文件中[配置yaml文件的路径](subsys-dfx-hisysevent-logging-config.md#配置yaml文件路径)。OpenHarmony编译框架在编译过程中则会通过python编译脚本解析校验bundle.js文件指定的所有yaml文件。在解析校验之后，编译框架会将这些yaml文件中配置的信息汇总转换成名为hisysevent.def的json文件。最后，将此json文件打包到系统指定路径下，用作HiSysEvent事件落盘的判断依据。
 
 
 ### 基本概念
 
 在配置HiSysEvent打点之前，开发者应了解以下基本概念：
 
-- 事件领域 用于标识事件所属的领域，在yaml文件中以domain为键值指定，可参考yaml文件样例中的[domain](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md#section123181432175123)。
+- 事件领域 用于标识事件所属的领域，在yaml文件中以domain为键值指定，可参考yaml文件样例中的[domain](subsys-dfx-hisysevent-logging-config.md#编写样例)。
 
-- 事件名称 用于指定事件领域包含的所有事件，可参考yaml文件样例中的[EVENT_NAMEA/EVENT_NAMEB](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md#section123181432175123)。
+- 事件名称 用于指定事件领域包含的所有事件，可参考yaml文件样例中的[EVENT_NAMEA/EVENT_NAMEB](subsys-dfx-hisysevent-logging-config.md#编写样例)。
 
-- 参数 用于定义某个事件名称包含的所有键值，可参考yaml文件样例中的[__BASE/NAME1/NAME2](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md#section123181432175123)。
+- 参数 用于定义某个事件名称包含的所有键值，可参考yaml文件样例中的[__BASE/NAME1/NAME2](subsys-dfx-hisysevent-logging-config.md#编写样例)。
 
 
 ### 约束与限制
@@ -71,9 +71,9 @@
 
 - yaml文件样例指定的事件领域名称为MODULEA，该事件领域包含两个事件，名称分别是EVENT_NAMEA和EVENT_NAMEB。
 
-- EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-listening.md)。
+- EVENT_NAMEA被定义成错误类型的严重事件，该事件包含类型为字符串类型的NAME1参数、字符串类型的NAME2参数及无符号短整型类型的NAME3参数，可以通过事件领域MODULEA和事件名称EVENT_NAMEA对其进行[实时订阅](../subsystems/subsys-dfx-hisysevent-listening.md)。
 
-- EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-listening.md)，，所以还可以通过事件标签对该事件进行[实时订阅](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-listening.md)。
+- EVENT_NAMEB被定义成统计类型的一般事件，EVENT_NAMEB包含类型为无符号短整型类型的NAME1参数及整型类型的NAME2参数。因为EVENT_NAMEB在__BASE参数中定义了名称为tag1和tag2的两个事件标签，所以不仅可以通过事件领域MODULEA和事件名称EVENT_NAMEB对其进行[实时订阅](../subsystems/subsys-dfx-hisysevent-listening.md)，所以还可以通过事件标签对该事件进行实时订阅。
     
   ```
   ##########################################
@@ -185,6 +185,6 @@
 
 ### 打点及查询定义的事件
 
-1. 通过[hdc_std工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-toolchain-hdc-guide.md)将hisysevent.def文件推送到至设备的//system/etc/hiview/目录下。
+1. 通过[hdc_std工具](../subsystems/subsys-toolchain-hdc-guide.md)将hisysevent.def文件推送到至设备的//system/etc/hiview/目录下。
 
-2. 触发yaml文件自定义的HiSysEvent事件完成打点，通过[hisysevent -l](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-dfx-hisysevent-tool.md)命令查询历史HiSysEvent事件，确认触发的自定义HiSysEvent事件是否打点成功。
+2. 触发yaml文件自定义的HiSysEvent事件完成打点，通过“[hisysevent -l](../subsystems/subsys-dfx-hisysevent-tool.md)”命令查询历史HiSysEvent事件，确认触发的自定义HiSysEvent事件是否打点成功。
