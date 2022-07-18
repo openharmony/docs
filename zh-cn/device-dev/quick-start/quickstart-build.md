@@ -1,5 +1,4 @@
 ﻿# 编译形态整体说明
-[wifiiot_hispark_pegasus](https://gitee.com/openharmony/vendor_hisilicon/blob/master/hispark_pegasus/config.json)
 **编译构建支持的产品列表**  (点击链接可知道具体产品配置及其相关差异)
 
 | 编译形态                      | 开发板           | 主芯片      | 内核         | 系统类型     |
