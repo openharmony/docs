@@ -17,6 +17,14 @@
 import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
 ```
 
+## 属性
+
+**系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| -------- | -------- | -------- | -------- | -------- |
+| context | [ExtensionContext](js-apis-extension-context.md)  | 是 | 否 |表示数据共享扩展能力上下文。 | 
+
 ## onCreate
 
 onCreate?(want: Want, callback: AsyncCallback&lt;void&gt;): void
@@ -284,9 +292,9 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
 };
 ```
 
-## BatchInsert
+## batchInsert
 
-BatchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
+batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
 在数据库批量插入时服务端回调此接口，该方法可以选择性重写。
 
