@@ -1,6 +1,6 @@
 # Combination Key
 
-The input consumer module implements listening for key events.
+The Input Consumer module implements listening for key events.
 
 > **NOTE**<br>
 >

@@ -199,7 +199,7 @@
   - [@ohos.multimodalInput.keyCode](js-apis-keycode.md)
   - [@ohos.multimodalInput.keyEvent](js-apis-keyevent.md)
   - [@ohos.multimodalInput.mouseEvent](js-apis-mouseevent.md)
-  - [@ohos.multimodalInput.ToucEvent](js-apis-touchevent.md)
+  - [@ohos.multimodalInput.toucEvent](js-apis-touchevent.md)
   - [@ohos.power](js-apis-power.md)
   - [@ohos.runningLock](js-apis-runninglock.md)
   - [@ohos.sensor](js-apis-sensor.md)

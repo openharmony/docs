@@ -1,6 +1,6 @@
 # Input Event Client
 
-The input event client provides the key injection capability.
+The Input Event Client module provides the key injection capability.
 
 > **NOTE**
 >

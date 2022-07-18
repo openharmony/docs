@@ -1,6 +1,6 @@
 # Input Monitor
 
-The input monitor module implements listening for global touch events.
+The Input Monitor module implements listening for global touch events.
 
 > **NOTE**<br>
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.

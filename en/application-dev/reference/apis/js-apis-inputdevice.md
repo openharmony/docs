@@ -1,7 +1,7 @@
 # Input Device
 
 
-The input device management module is used to listen for the connection, disconnection, and updates of input devices and display information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
+The Input Device module is used to listen for the connection, disconnection, and updates of input devices and display information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
 
 
 > **NOTE**<br>
