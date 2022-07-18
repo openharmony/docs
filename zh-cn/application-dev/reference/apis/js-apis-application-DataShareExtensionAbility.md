@@ -17,15 +17,9 @@
 import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility'
 ```
 
-## 权限
-
-无
-
 ## 属性
 
 **系统能力**：SystemCapability.DistributedDataManager.DataShare.Provider
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
@@ -300,7 +294,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
 
 ## batchInsert
 
-BatchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
+batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
 在数据库批量插入时服务端回调此接口，该方法可以选择性重写。
 
