@@ -1,5 +1,7 @@
 # 图片处理
 
+本模块提供图片处理效果，包括通过属性创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
+
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -63,8 +65,13 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 const color = new ArrayBuffer(96);
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
-        })
+image.createPixelMap(color, opts, (error, pixelmap) => {
+    if(error) {
+        console.log('Failed to create pixelmap.');
+    } else {
+        console.log('Succeeded in creating pixelmap.');
+    }
+})
 ```
 
 ## PixelMap<sup>7+</sup>
@@ -89,9 +96,9 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明                                                         |
-| ------ | ----------- | ---- | ------------------------------------------------------------ |
-| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
+| 参数名 | 类型        | 必填 | 说明                                                                                                  |
+| ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
 
 **返回值：**
 
@@ -102,7 +109,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(400);
+const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
 }).catch(error => {
@@ -120,15 +127,15 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                               |
+| 参数名   | 类型                 | 必填 | 说明                                                                                                  |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                                                                        |
 
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(400);
+const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
         console.log('Failed to read image pixel data.');  //不符合条件则进入
