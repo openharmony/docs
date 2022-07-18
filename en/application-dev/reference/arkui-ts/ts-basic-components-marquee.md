@@ -1,11 +1,12 @@
 # Marquee
 
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **\<Marquee>** component is used to display a scrolling piece of text.
+The **\<Marquee>** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
 
 
 ## Required Permissions
@@ -44,7 +45,8 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MarqueeExample {
@@ -63,6 +65,7 @@ struct MarqueeExample {
         fromStart: this.fromStart,
         src: this.src
       })
+        .width(400)
         .fontColor(Color.White)
         .fontSize(50)
         .allowScale(false)
