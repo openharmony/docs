@@ -90,7 +90,7 @@ This is a system API.
   **Return value**
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
-| Boolean | The value **true** indicates that the touch event has been consumed, and the value **false** indicates the opposite.|
+| Boolean | Result indicating whether the touch event has been consumed by the input monitor. The value **true** indicates that the touch event has been consumed, and the value **false** indicates the opposite.|
 
   **Example**
 
