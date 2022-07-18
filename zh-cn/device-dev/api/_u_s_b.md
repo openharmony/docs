@@ -43,10 +43,10 @@
 
 ### 枚举
 
-  | 枚举 | 描述 | 
+  | 枚举名称 | 描述 | 
 | -------- | -------- |
-| [UsbdBulkCbCmd](#usbdbulkcbcmd)&nbsp;{&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001348413461.xml#xref1485062147083931,link:zh-cn_topic_0000001348413461.xml#gga734dda3df39a921fae88ada278bf35a3a5f84dff517954bbde58a2e1a0b8e8da6](#gga734dda3df39a921fae88ada278bf35a3a5f84dff517954bbde58a2e1a0b8e8da6),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001348413461.xml#xref1983135169083931,link:zh-cn_topic_0000001348413461.xml#gga734dda3df39a921fae88ada278bf35a3ac7fc2d22d4d348c672003c308263b9fb](#gga734dda3df39a921fae88ada278bf35a3ac7fc2d22d4d348c672003c308263b9fb)&nbsp;} | 批量回调命令字。&nbsp;[更多...](#usbdbulkcbcmd) | 
-| [UsbdDeviceAction](#usbddeviceaction)&nbsp;{&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001348413461.xml#xref709354729083931,link:zh-cn_topic_0000001348413461.xml#gga4b7620d940f58152cd17a12401120c16af3ed12ba6838a4ebb16ae0713cb2324f](#gga4b7620d940f58152cd17a12401120c16af3ed12ba6838a4ebb16ae0713cb2324f)&nbsp;=&nbsp;0,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001348413461.xml#xref601390832083931,link:zh-cn_topic_0000001348413461.xml#gga4b7620d940f58152cd17a12401120c16a97801ad0ac063dbb69d698adc19159bf](#gga4b7620d940f58152cd17a12401120c16a97801ad0ac063dbb69d698adc19159bf),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001348413461.xml#xref1423061468083931,link:zh-cn_topic_0000001348413461.xml#gga4b7620d940f58152cd17a12401120c16aecf16e36110fbe276f2a11e91252de20](#gga4b7620d940f58152cd17a12401120c16aecf16e36110fbe276f2a11e91252de20),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001348413461.xml#xref273156642083931,link:zh-cn_topic_0000001348413461.xml#gga4b7620d940f58152cd17a12401120c16a45115ba5d58e4a5358acae70a9fc33d4](#gga4b7620d940f58152cd17a12401120c16a45115ba5d58e4a5358acae70a9fc33d4)&nbsp;} | 主机端和设备端插拔事件。&nbsp;[更多...](#usbddeviceaction) | 
+| [UsbdBulkCbCmd](#usbdbulkcbcmd)&nbsp;{&nbsp;CMD_USBD_BULK_CALLBACK_READ,&nbsp;CMD_USBD_BULK_CALLBACK_WRITE&nbsp;} | 批量回调命令字。&nbsp;[更多...](#usbdbulkcbcmd) | 
+| [UsbdDeviceAction](#usbddeviceaction)&nbsp;{&nbsp;ACT_DEVUP&nbsp;=&nbsp;0,&nbsp;ACT_DEVDOWN,&nbsp;ACT_UPDEVICE,&nbsp;ACT_DOWNDEVICE&nbsp;} | 主机端和设备端插拔事件。&nbsp;[更多...](#usbddeviceaction) | 
 
 
 ### 函数

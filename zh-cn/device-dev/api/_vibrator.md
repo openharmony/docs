@@ -21,11 +21,11 @@
 
 ### 枚举
 
-  | 枚举 | 描述 | 
+  | 枚举名称 | 描述 | 
 | -------- | -------- |
-| [VibratorMode](#vibratormode)&nbsp;{&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref345548910083931,link:zh-cn_topic_0000001295254332.xml#ggadbbc422555ccc89c4d9cf80f5175af2fa5da1f5dd1752e8ef6b8ade59db31f80f](#ggadbbc422555ccc89c4d9cf80f5175af2fa5da1f5dd1752e8ef6b8ade59db31f80f)&nbsp;=&nbsp;0,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref2104752933083931,link:zh-cn_topic_0000001295254332.xml#ggadbbc422555ccc89c4d9cf80f5175af2fa34c456f3c8038b601c4a0276f639f666](#ggadbbc422555ccc89c4d9cf80f5175af2fa34c456f3c8038b601c4a0276f639f666)&nbsp;=&nbsp;1,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref1052158260083931,link:zh-cn_topic_0000001295254332.xml#ggadbbc422555ccc89c4d9cf80f5175af2faa548af2d7414a81a8036e77b9bcd6606](#ggadbbc422555ccc89c4d9cf80f5175af2faa548af2d7414a81a8036e77b9bcd6606)&nbsp;} | 枚举马达振动模式。&nbsp;[更多...](#vibratormode) | 
-| [VibratorStatus](#vibratorstatus)&nbsp;{&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref5450017161315,link:#p181591120650](#p181591120650)&nbsp;=&nbsp;0,&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref051613315133,link:#p515914207520](#p515914207520)&nbsp;=&nbsp;-1,&nbsp;&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref2512150161418,link:#p015972013512](#p015972013512)&nbsp;&nbsp;=&nbsp;-2,&nbsp;&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref11358630181410,link:#p14260156580](#p14260156580)=&nbsp;-3} | 枚举马达振动模式。[更多...](#vibratorstatus) | 
-| [VibratorInfo](#vibratorinfo)&nbsp;{&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref2475651914,link:#p16982125191511](#p16982125191511),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref477718919205,link:#p79831625101517](#p79831625101517),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref8162413102010,link:#p1798317259153](#p1798317259153),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref15221157205,link:#p196672031811](#p196672031811),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref51801717132019,link:#p14421742189](#p14421742189),&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001295254332.xml#xref99362189209,link:#p61323771819](#p61323771819)} | 定义马达参数。[更多...](#vibratorinfo) | 
+| [VibratorMode](#vibratormode)&nbsp;{&nbsp;VIBRATOR_MODE_ONCE&nbsp;=&nbsp;0,&nbsp;VIBRATOR_MODE_PRESET&nbsp;=&nbsp;1,&nbsp;VIBRATOR_MODE_BUTT&nbsp;} | 枚举马达振动模式。&nbsp;[更多...](#vibratormode) | 
+| [VibratorStatus](#vibratorstatus)&nbsp;{&nbsp;VIBRATOR_SUCCESS&nbsp;=&nbsp;0,&nbsp;VIBRATOR_NOT_PERIOD&nbsp;=&nbsp;-1,&nbsp;&nbsp;VIBRATOR_NOT_INTENSITY&nbsp;&nbsp;=&nbsp;-2,&nbsp;&nbsp;VIBRATOR_NOT_FREQUENCY=&nbsp;-3} | 枚举马达振动模式。[更多...](#vibratorstatus) | 
+| [VibratorInfo](#vibratorinfo)&nbsp;{&nbsp;isSupportIntensity,&nbsp;isSupportFrequency,&nbsp;intensityMaxValue,&nbsp;intensityMinValue,&nbsp;frequencyMaxValue,&nbsp;frequencyMinValue} | 定义马达参数。[更多...](#vibratorinfo) | 
 
 
 ### 函数

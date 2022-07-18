@@ -37,10 +37,10 @@
 
 ### 枚举
 
-  | 枚举 | 描述 | 
+  | 枚举名称 | 描述 | 
 | -------- | -------- |
-| [UsbdBulkCbCmd](_u_s_b.md#usbdbulkcbcmd)&nbsp;{&nbsp;[CMD_USBD_BULK_CALLBACK_READ](_u_s_b.md#gga734dda3df39a921fae88ada278bf35a3a5f84dff517954bbde58a2e1a0b8e8da6),&nbsp;[CMD_USBD_BULK_CALLBACK_WRITE](_u_s_b.md#gga734dda3df39a921fae88ada278bf35a3ac7fc2d22d4d348c672003c308263b9fb)&nbsp;} | 批量回调命令字。&nbsp;[更多...](_u_s_b.md#usbdbulkcbcmd) | 
-| [UsbdDeviceAction](_u_s_b.md#usbddeviceaction)&nbsp;{&nbsp;[ACT_DEVUP](_u_s_b.md#gga4b7620d940f58152cd17a12401120c16af3ed12ba6838a4ebb16ae0713cb2324f)&nbsp;=&nbsp;0,&nbsp;[ACT_DEVDOWN](_u_s_b.md#gga4b7620d940f58152cd17a12401120c16a97801ad0ac063dbb69d698adc19159bf),&nbsp;[ACT_UPDEVICE](_u_s_b.md#gga4b7620d940f58152cd17a12401120c16aecf16e36110fbe276f2a11e91252de20),&nbsp;[ACT_DOWNDEVICE](_u_s_b.md#gga4b7620d940f58152cd17a12401120c16a45115ba5d58e4a5358acae70a9fc33d4)&nbsp;} | 主机端和设备端插拔事件。&nbsp;[更多...](_u_s_b.md#usbddeviceaction) | 
+| [UsbdBulkCbCmd](_u_s_b.md#usbdbulkcbcmd)&nbsp;{&nbsp;CMD_USBD_BULK_CALLBACK_READ,&nbsp;CMD_USBD_BULK_CALLBACK_WRITE&nbsp;} | 批量回调命令字。&nbsp;[更多...](_u_s_b.md#usbdbulkcbcmd) | 
+| [UsbdDeviceAction](_u_s_b.md#usbddeviceaction)&nbsp;{&nbsp;ACT_DEVUP&nbsp;=&nbsp;0,&nbsp;ACT_DEVDOWN,&nbsp;ACT_UPDEVICE,&nbsp;ACT_DOWNDEVICE&nbsp;} | 主机端和设备端插拔事件。&nbsp;[更多...](_u_s_b.md#usbddeviceaction) | 
 
 
 ## **详细描述**
