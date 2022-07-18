@@ -130,8 +130,8 @@
 | ResultSet | goToPreviousRow():&nbsp;boolean | 将结果集向前移动一行。 |
 | ResultSet | getColumnIndex(columnName:&nbsp;string):&nbsp;number | 根据指定的列名获取列索引。 |
 | ResultSet | getColumnName(columnIndex:&nbsp;number):&nbsp;string | 根据指定的列索引获取列名。 |
-| ResultSet | goToFirstRow():&nbsp;boolean | 判断结果集当前位置是否在第一行。 |
-| ResultSet | goToLastRow():&nbsp;boolean | 判断结果集当前位置是否在最后一行。 |
+| ResultSet | goToFirstRow():&nbsp;boolean | 将结果集移动到第一行。 |
+| ResultSet | goToLastRow():&nbsp;boolean | 将结果集移动到最后一行。 |
 | ResultSet | getString(columnIndex:&nbsp;number):&nbsp;string | 获取当前行指定列的值，以String类型返回。 |
 | ResultSet | getBlob(columnIndex:&nbsp;number):&nbsp;Uint8Array | 获取当前行指定列的值，以字节数组形式返回。 |
 | ResultSet | getDouble(columnIndex:&nbsp;number):&nbsp;number | 获取当前行指定列的值，以double型返回。 |
