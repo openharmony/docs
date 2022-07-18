@@ -1,7 +1,5 @@
 # 图片处理
 
-本模块提供图片处理效果，包括通过属性创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
-
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -65,13 +63,8 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 const color = new ArrayBuffer(96);
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (error, pixelmap) => {
-    if(error) {
-        console.log('Failed to create pixelmap.');
-    } else {
-        console.log('Succeeded in creating pixelmap.');
-    }
-})
+image.createPixelMap(color, opts, (pixelmap) => {
+        })
 ```
 
 ## PixelMap<sup>7+</sup>
@@ -2034,11 +2027,17 @@ img.release().then(() =>{
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称      | 默认值 | 描述              |
-| --------- | ------ | ---------------- |
-| UNKNOWN   | 0      | 未知格式。        |
-| RGB_565   | 2      | 格式为RGB_565。   |
-| RGBA_8888 | 3      | 格式为RGBA_8888。 |
+| 名称             | 默认值 | 描述              |
+| ---------------- | ------ | ----------------- |
+| UNKNOWN<sup>7+   | 0      | 未知格式。        |
+| RGB_565<sup>7+   | 2      | 格式为RGB_565     |
+| RGBA_8888<sup>7+ | 3      | 格式为RGBA_8888。 |
+| BGRA_8888<sup>9+ | 4      | 格式为BGRA_8888。 |
+| RGB_888<sup>9+   | 5      | 格式为RGB_888。   |
+| ALPHA_8<sup>9+   | 6      | 格式为ALPHA_8。   |
+| RGBA_F16<sup>9+  | 7      | 格式为RGBA_F16。  |
+| NV21<sup>9+      | 8      | 格式为NV21。      |
+| NV12<sup>9+      | 9      | 格式为NV12。      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2134,16 +2133,21 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称              | 默认值                  | 说明                     |
-| ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE   | "BitsPerSample"         | 每个像素比特数。         |
-| ORIENTATION       | "Orientation"           | 图片方向。               |
-| IMAGE_LENGTH      | "ImageLength"           | 图片长度。               |
-| IMAGE_WIDTH       | "ImageWidth"            | 图片宽度。               |
-| GPS_LATITUDE      | "GPSLatitude"           | 图片纬度。               |
-| GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。               |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。     |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。     |
+| 名称                     | 默认值                  | 说明                     |
+| ------------------------ | ----------------------- | ------------------------ |
+| BITS_PER_SAMPLE<sup>7+   | "BitsPerSample"         | 每个像素比特数。         |
+| ORIENTATION<sup>7+       | "Orientation"           | 图片方向。               |
+| IMAGE_LENGTH<sup>7+      | "ImageLength"           | 图片长度。               |
+| IMAGE_WIDTH<sup>7+       | "ImageWidth"            | 图片宽度。               |
+| GPS_LATITUDE<sup>7+      | "GPSLatitude"           | 图片纬度。               |
+| GPS_LONGITUDE<sup>7+     | "GPSLongitude"          | 图片经度。               |
+| GPS_LATITUDE_REF<sup>7+  | "GPSLatitudeRef"        | 纬度引用，例如N或S。     |
+| GPS_LONGITUDE_REF<sup>7+ | "GPSLongitudeRef"       | 经度引用，例如W或E。     |
+| DateTimeOriginal<sup>9+  | "2022:06:02 15:51:35"   | 拍摄时间。               |
+| ExposureTime<sup>9+      | "1/33 sec."             | 曝光时间。               |
+| SceneType<sup>9+         | "Directly photographed" | 拍摄场景，默认直接拍摄。 |
+| ISOSpeedRatings<sup>9+   | "400"                   | ISO 曝光度，默认值为400。|
+| FNumber<sup>9+           | "f/1.8"                 | 光圈值。                 |
 
 ## ImageFormat<sup>9+</sup>
 
