@@ -2039,12 +2039,6 @@ img.release().then(() =>{
 | UNKNOWN<sup>7+   | 0      | 未知格式。        |
 | RGB_565<sup>7+   | 2      | 格式为RGB_565     |
 | RGBA_8888<sup>7+ | 3      | 格式为RGBA_8888。 |
-| BGRA_8888<sup>9+ | 4      | 格式为BGRA_8888。 |
-| RGB_888<sup>9+   | 5      | 格式为RGB_888。   |
-| ALPHA_8<sup>9+   | 6      | 格式为ALPHA_8。   |
-| RGBA_F16<sup>9+  | 7      | 格式为RGBA_F16。  |
-| NV21<sup>9+      | 8      | 格式为NV21。      |
-| NV12<sup>9+      | 9      | 格式为NV12。      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2150,11 +2144,6 @@ PixelMap的初始化选项。
 | GPS_LONGITUDE<sup>7+     | "GPSLongitude"          | 图片经度。               |
 | GPS_LATITUDE_REF<sup>7+  | "GPSLatitudeRef"        | 纬度引用，例如N或S。     |
 | GPS_LONGITUDE_REF<sup>7+ | "GPSLongitudeRef"       | 经度引用，例如W或E。     |
-| DateTimeOriginal<sup>9+  | "2022:06:02 15:51:35"   | 拍摄时间。               |
-| ExposureTime<sup>9+      | "1/33 sec."             | 曝光时间。               |
-| SceneType<sup>9+         | "Directly photographed" | 拍摄场景，默认直接拍摄。 |
-| ISOSpeedRatings<sup>9+   | "400"                   | ISO 曝光度，默认值为400。|
-| FNumber<sup>9+           | "f/1.8"                 | 光圈值。                 |
 
 ## ImageFormat<sup>9+</sup>
 
