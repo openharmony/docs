@@ -20,7 +20,7 @@ Obtains an **AccountManager** instance.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 | Type                             | Description                    |
 | --------------------------------- | ------------------------ |
 | [AccountManager](#accountmanager) | Obtains an **AccountManager** instance.|
@@ -92,7 +92,7 @@ This is a system API and cannot be called by third-party applications.
 | ------- | ------ | ---- | -------------------- |
 | localId | number | Yes  | ID of the OS account to activate.|
 
-**Return Value**
+**Return value**
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
@@ -141,7 +141,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                                        |
 | :--------------------- | :----------------------------------------------------------- |
@@ -202,7 +202,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
 | ------- | ------ | ---- | ------------ |
 | localId | number | Yes  | ID of the target OS account.|
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                                        |
 | :--------------------- | :----------------------------------------------------------- |
@@ -266,7 +266,7 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 | localId    | number | Yes  | ID of the target OS account.                   |
 | constraint | string | Yes  | [Constraint](#constraints) specified.|
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                                        |
 | :--------------------- | :----------------------------------------------------------- |
@@ -316,7 +316,7 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                                        |
 | :--------------------- | :----------------------------------------------------------- |
@@ -400,7 +400,7 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 | ------- | ------ | ---- | ------------------ |
 | localId | number | No  | ID of the target OS account.|
 
-**Return Value**
+**Return value**
 
 | Type                  | Description                                                        |
 | :--------------------- | :----------------------------------------------------------- |
@@ -467,7 +467,7 @@ This is a system API and cannot be called by third-party applications.
 | ------- | ------ | ---- | -------------------- |
 | localId | number | Yes  | ID of the OS account to remove.|
 
-**Return Value**
+**Return value**
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
@@ -540,7 +540,7 @@ This is a system API and cannot be called by third-party applications.
 | constraints | Array&lt;string&gt; | Yes  | List of [constraints](#constraints) to set or remove.|
 | enable      | boolean             | Yes  | Set or remove constraints. The value **true** means to set constraints, and **false** means to remove constraints.                    |
 
-**Return Value**
+**Return value**
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
@@ -608,7 +608,7 @@ This is a system API and cannot be called by third-party applications.
 | localId   | number | Yes  | ID of the target OS account.|
 | localName | string | Yes  | Account name to set.    |
 
-**Return Value**
+**Return value**
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
@@ -663,7 +663,7 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -712,7 +712,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -769,7 +769,7 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 | ------ | ------ | ---- | --------- |
 | uid    | number | Yes  | Process UID.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -831,7 +831,7 @@ Obtains the OS account ID based on domain account information. This API uses a p
 | ---------- | --------------------------------------- | ---- | ------------ |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -885,7 +885,7 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -946,7 +946,7 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 | ------- | ------ | ---- | ------------ |
 | localId | number | Yes  | ID of the target OS account.|
 
-**Return Value**
+**Return value**
 
 | Type                              | Description                                                        |
 | :--------------------------------- | :----------------------------------------------------------- |
@@ -1004,7 +1004,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
-**Return Value**
+**Return value**
 
 | Type                                                       | Description                                                        |
 | :---------------------------------------------------------- | :----------------------------------------------------------- |
@@ -1056,7 +1056,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                              | Description                                                        |
 | :--------------------------------- | :----------------------------------------------------------- |
@@ -1122,7 +1122,7 @@ This is a system API and cannot be called by third-party applications.
 | localName | string                          | Yes  | Name of the OS account to create.|
 | type      | [OsAccountType](#osaccounttype) | Yes  | Type of the OS account to create.|
 
-**Return Value**
+**Return value**
 
 | Type                                          | Description                                                        |
 | :--------------------------------------------- | :----------------------------------------------------------- |
@@ -1189,7 +1189,7 @@ This is a system API and cannot be called by third-party applications.
 | type       | [OsAccountType](#osaccounttype)         | Yes  | Type of the OS account to create.|
 | domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.          |
 
-**Return Value**
+**Return value**
 
 | Type                                          | Description                                                        |
 | :--------------------------------------------- | :----------------------------------------------------------- |
@@ -1243,7 +1243,7 @@ Obtains information about the OS account to which the current process belongs. T
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                                          | Description                                                        |
 | :--------------------------------------------- | :----------------------------------------------------------- |
@@ -1308,7 +1308,7 @@ This is a system API and cannot be called by third-party applications.
 | ------- | ------ | ---- | -------------------- |
 | localId | number | Yes  | ID of the target OS account.|
 
-**Return Value**
+**Return value**
 
 | Type                                          | Description                                                        |
 | :--------------------------------------------- | :----------------------------------------------------------- |
@@ -1358,7 +1358,7 @@ Obtains the type of the OS account to which the current process belongs. This AP
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                                          | Description                                                        |
 | :--------------------------------------------- | :----------------------------------------------------------- |
@@ -1411,7 +1411,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1476,7 +1476,7 @@ This is a system API and cannot be called by third-party applications.
 | ------- | ------ | ---- | ------------ |
 | localId | number | Yes  | ID of the target OS account.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1547,7 +1547,7 @@ This is a system API and cannot be called by third-party applications.
 | localId | number | Yes  | ID of the target OS account.|
 | photo   | string | Yes  | Profile photo information.  |
 
-**Return Value**
+**Return value**
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
@@ -1609,7 +1609,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 | ------------ | ------ | ---- | ---------- |
 | serialNumber | number | Yes  | Account SN.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1667,7 +1667,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 | ------- | ------ | ---- | ------------ |
 | localId | number | Yes  | ID of the target OS account.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1787,7 +1787,7 @@ This is a system API and cannot be called by third-party applications.
 | ------- | ------ | ---- | ------------ |
 | uid     | number | Yes  |  Process UID.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1836,7 +1836,7 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
@@ -1898,7 +1898,7 @@ This is a system API and cannot be called by third-party applications.
 | localId     | number | Yes  |  ID of the target OS account.|
 | constraint     | string | Yes  |  Name of the [constraint](#constraints) to query.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
