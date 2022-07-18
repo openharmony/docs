@@ -966,7 +966,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array<[CellInformation](#cellInformation)\>\> | 是   | 回调函数，返回小区信息。 |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数，返回小区信息。 |
 
 **示例：**
 
@@ -994,7 +994,7 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<Array<[CellInformation](#cellInformation)\>\> | 是   | 回调函数，返回小区信息。               |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数，返回小区信息。               |
 
 **示例：**
 
@@ -1026,9 +1026,9 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 **返回值：**
 
-| 类型                                                   | 说明                    |
-| ------------------------------------------------------ | ----------------------- |
-| Promise\<Array<[CellInformation](#cellInformation)\>\> | 以Promise形式返回结果。 |
+| 类型                                                    | 说明                    |
+| ------------------------------------------------------- | ----------------------- |
+| Promise\<Array<[CellInformation](#cellinformation8)\>\> | 以Promise形式返回结果。 |
 
 **示例：**
 
@@ -1058,7 +1058,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 | 参数名   | 类型                                                        | 必填 | 说明               |
 | -------- | ----------------------------------------------------------- | ---- | ------------------ |
-| options  | [NetworkSelectionModeOptions](#networkSelectionModeOptions) | 是   | 网络选择模式选项。 |
+| options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | 是   | 网络选择模式选项。 |
 | callback | AsyncCallback\<void\>                                       | 是   | 回调函数。         |
 
 **示例：**
@@ -1097,7 +1097,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
 | 参数名  | 类型                                                        | 必填 | 说明               |
 | ------- | ----------------------------------------------------------- | ---- | ------------------ |
-| options | [NetworkSelectionModeOptions](#networkSelectionModeOptions) | 是   | 网络选择模式选项。 |
+| options | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | 是   | 网络选择模式选项。 |
 
 **返回值：**
 
@@ -1145,7 +1145,7 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NetworkSearchResult](#networkSearchResult)\> | 是   | 回调函数。返回网络搜索信息。           |
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。返回网络搜索信息。           |
 
 **示例：**
 
@@ -1177,7 +1177,7 @@ getNetworkSearchInformation\(slotId: number\): Promise<void\>
 
 | 类型                                                   | 说明                    |
 | ------------------------------------------------------ | ----------------------- |
-| Promise\<[NetworkSearchResult](#networkSearchResult)\> | 以Promise形式返回结果。 |
+| Promise\<[NetworkSearchResult](#networksearchresult)\> | 以Promise形式返回结果。 |
 
 **示例：**
 
@@ -1202,9 +1202,9 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
 **参数：**
 
-| 参数名   | 类型                                           | 必填 | 说明       |
-| -------- | ---------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NrOptionMode](#nrOptionMode)\> | 是   | 回调函数。 |
+| 参数名   | 类型                                            | 必填 | 说明       |
+| -------- | ----------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。 |
 
 **示例：**
 
@@ -1227,10 +1227,10 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
 **参数：**
 
-| 参数名   | 类型                                           | 必填 | 说明                                   |
-| -------- | ---------------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NrOptionMode](#nrOptionMode)\> | 是   | 回调函数。                             |
+| 参数名   | 类型                                            | 必填 | 说明                                   |
+| -------- | ----------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -1260,9 +1260,9 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
 **返回值：**
 
-| 类型                                     | 说明                    |
-| ---------------------------------------- | ----------------------- |
-| Promise\<[NrOptionMode](#nrOptionMode)\> | 以Promise形式返回结果。 |
+| 类型                                      | 说明                    |
+| ----------------------------------------- | ----------------------- |
+| Promise\<[NrOptionMode](#nroptionmode8)\> | 以Promise形式返回结果。 |
 
 **示例：**
 
@@ -1352,9 +1352,9 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                      |
-| --------------- | ------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
 
 **示例：**
 
@@ -1444,9 +1444,9 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 **返回值：**
 
-| 类型            | 说明                      |
-| --------------- | ------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
 
 **示例：**
 
@@ -1474,16 +1474,16 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 **参数：**
 
-| 参数名      | 类型                                          | 必填 | 说明                                   |
-| ----------- | --------------------------------------------- | ---- | -------------------------------------- |
-| slotId      | number                                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| networkMode | [PreferredNetworkMode](#preferredNetworkMode) | 是   | 设置首选网络模式                       |
-| callback    | AsyncCallback\<void\>                         | 是   | 回调函数。                             |
+| 参数名      | 类型                                           | 必填 | 说明                                   |
+| ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
+| slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式                       |
+| callback    | AsyncCallback\<void\>                          | 是   | 回调函数。                             |
 
 **示例：**
 
 ```js
-radio.setPreferredNetwork(0, , (err, data) => {
+radio.setPreferredNetwork(0, 1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1502,21 +1502,21 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 
 **参数：**
 
-| 参数名      | 类型                                          | 必填 | 说明                                   |
-| ----------- | --------------------------------------------- | ---- | -------------------------------------- |
-| slotId      | number                                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| networkMode | [PreferredNetworkMode](#preferredNetworkMode) | 是   | 设置首选网络模式                       |
+| 参数名      | 类型                                           | 必填 | 说明                                   |
+| ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
+| slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式                       |
 
 **返回值：**
 
-| 类型            | 说明                      |
-| --------------- | ------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
 
 **示例：**
 
 ```js
-let promise = radio.setPreferredNetwork(0, );
+let promise = radio.setPreferredNetwork(0, 1);
 promise.then(data => {
     console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1538,10 +1538,10 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填 | 说明                                   |
-| -------- | ------------------------------------- | ---- | -------------------------------------- |
-| slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<PreferredNetworkMode\> | 是   | 回调函数。                             |
+| 参数名   | 类型                                                         | 必填 | 说明                                   |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -1706,8 +1706,8 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
-| 名称                                                      | 值   | 说明                                           |
-| --------------------------------------------------------- | ---- | ---------------------------------------------- |
+| 名称                                                      | 值   | 说明                                          |
+| --------------------------------------------------------- | ---- | --------------------------------------------- |
 | PREFERRED_NETWORK_MODE_GSM                                | 1    | 首选GSM网络模式。                             |
 | PREFERRED_NETWORK_MODE_WCDMA                              | 2    | 首选WCDMA网络模式。                           |
 | PREFERRED_NETWORK_MODE_LTE                                | 3    | 首选LTE网络模式。                             |
@@ -1717,7 +1717,7 @@ promise.then(data => {
 | PREFERRED_NETWORK_MODE_CDMA                               | 7    | 首选CDMA网络模式。                            |
 | PREFERRED_NETWORK_MODE_EVDO                               | 8    | 首选EVDO网络模式。                            |
 | PREFERRED_NETWORK_MODE_EVDO_CDMA                          | 9    | 首选EVDO CDMA网络模式。                       |
-| PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA                | 10   | 首选WCDMA GSM EVDO CDMA网络模式。              |
+| PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA                | 10   | 首选WCDMA GSM EVDO CDMA网络模式。             |
 | PREFERRED_NETWORK_MODE_LTE_EVDO_CDMA                      | 11   | 首选LTE EVDO CDMA网络模式。                   |
 | PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM_EVDO_CDMA            | 12   | 首选LTE WCDMA GSM EVDO CDMA网络模式。         |
 | PREFERRED_NETWORK_MODE_TDSCDMA                            | 13   | 首选TDSCDMA网络模式。                         |
@@ -1741,7 +1741,7 @@ promise.then(data => {
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | 首选NR LTE TDSCDMA WCDMA网络模式。            |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | 首选NR LTE TDSCDMA WCDMA GSM网络模式。        |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | 首选NR LTE TDSCDMA WCDMA GSM网络模式。        |
-| PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | 首选网络模式最大值                             |
+| PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | 首选网络模式最大值。                          |
 
 ## CellInformation<sup>8+</sup>
 
@@ -1756,8 +1756,8 @@ promise.then(data => {
 | networkType       | [NetworkType](#networkType)                                  | 获取服务单元的网络类型。                                     |
 | isCamped          | boolean                                                      | 获取服务单元的状态。                                         |
 | timeStamp         | number                                                       | 获取单元格信息时获取时间戳。                                 |
-| signalInformation | [SignalInformation](#signalInformation)                      | 信号信息。                                                  |
-| data              | [CdmaCellInformation](#cdmaCellInformation) \| [GsmCellInformation](#gsmCellInformation) \| [LteCellInformation](#lteCellInformation) \| [NrCellInformation](#nrCellInformation) \| [TdscdmaCellInformation](#tdscdmaCellInformation) | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
+| signalInformation | [SignalInformation](#signalinformation)                      | 信号信息。                                                   |
+| data              | [CdmaCellInformation](#cdmacellinformation) \| [GsmCellInformation](#gsmcellinformation) \| [LteCellInformation](#ltecellinformation) \| [NrCellInformation](#nrcellinformation) \| [TdscdmaCellInformation](#tdscdmacellinformation) | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1929,7 +1929,7 @@ Nr的选择模式。
 | 名称               | 类型                                          | 说明                                   |
 | ------------------ | --------------------------------------------- | -------------------------------------- |
 | slotId             | number                                        | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| selectMode         | [NetworkSelectionMode](#networkSelectionMode) | 网络选择模式。                        |
-| networkInformation | [NetworkInformation](#networkInformation)     | 网络信息。                            |
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) | 网络选择模式。                        |
+| networkInformation | [NetworkInformation](#networkinformation)    | 网络信息。                            |
 | resumeSelection    | boolean                                       | 继续选择。                             |
 

@@ -611,15 +611,15 @@ answer\(callId: number, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明                                            |
+| -------- | ------------------------- | ---- | ----------------------------------------------- |
+| callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **示例：**
 
 ```js
-call.dial(1, (err, data) => {
+call.answer(1, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -639,9 +639,9 @@ answer(callId?: number\): Promise<void\>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                            |
-| ------ | ------ | ---- | ------------------------------- |
-| callId | number | 否   | 呼叫Id。自API 9起，它是可选的。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| callId | number | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。 |
 
 **返回值：**
 
@@ -697,10 +697,10 @@ hangup\(callId: number, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明                                            |
+| -------- | ------------------------- | ---- | ----------------------------------------------- |
+| callId   | number                    | 是   | 呼叫id。可以通过订阅callDetailsChange事件获得。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **示例：**
 
@@ -723,9 +723,9 @@ hangup\(callId?: number\): Promise<void\>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                              |
-| ------ | ------ | ---- | --------------------------------- |
-| callId | number | 否   | 呼叫id。自API 9以来，它是可选的。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| callId | number | 否   | 呼叫id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。 |
 
 **返回值：**
 
@@ -781,10 +781,10 @@ reject\(options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 **参数：**
 
-| 参数名   | 类型                                          | 必填 | 说明           |
-| -------- | --------------------------------------------- | ---- | -------------- |
-| options  | [RejectMessageOptions](#RejectMessageOptions) | 是   | 拒绝消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                     | 是   | 回调函数。     |
+| 参数名   | 类型                                           | 必填 | 说明           |
+| -------- | ---------------------------------------------- | ---- | -------------- |
+| options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。 |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。     |
 
 **示例：**
 
@@ -810,10 +810,10 @@ reject(callId: number, callback: AsyncCallback<void\>): <void\>
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| callId   | number                    | 是   | 呼叫Id。   |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明                                            |
+| -------- | ------------------------- | ---- | ----------------------------------------------- |
+| callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **返回值：**
 
@@ -844,11 +844,11 @@ reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<vo
 
 **参数：**
 
-| 参数名   | 类型                                          | 必填 | 说明           |
-| -------- | --------------------------------------------- | ---- | -------------- |
-| callId   | number                                        | 是   | 呼叫Id。       |
-| options  | [RejectMessageOptions](#RejectMessageOptions) | 是   | 拒绝消息选项。 |
-| callback | AsyncCallback&lt;void&gt;                     | 是   | 回调函数。     |
+| 参数名   | 类型                                           | 必填 | 说明                                            |
+| -------- | ---------------------------------------------- | ---- | ----------------------------------------------- |
+| callId   | number                                         | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
+| options  | [RejectMessageOptions](#rejectmessageoptions7) | 是   | 拒绝消息选项。                                  |
+| callback | AsyncCallback&lt;void&gt;                      | 是   | 回调函数。                                      |
 
 **示例：**
 
@@ -874,10 +874,10 @@ reject(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
 **参数：**
 
-| 参数名  | 类型                                          | 必填 | 说明                              |
-| ------- | --------------------------------------------- | ---- | --------------------------------- |
-| callId  | number                                        | 否   | 呼叫Id。自API 9以来，它是可选的。 |
-| options | [RejectMessageOptions](#RejectMessageOptions) | 否   | 拒绝消息选项。                    |
+| 参数名  | 类型                                           | 必填 | 说明                                                         |
+| ------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callId  | number                                         | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。 |
+| options | [RejectMessageOptions](#rejectmessageoptions7) | 否   | 拒绝消息选项。                                               |
 
 **返回值：**
 
@@ -1080,7 +1080,7 @@ promise.then(data => {
 
 combineConference\(callId: number, callback: AsyncCallback<void\>\): void
 
-组合会议。使用callback异步回调。
+合并通话，将两通电话合并成会议电话。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1106,7 +1106,7 @@ call.combineConference(1, (err, data) => {
 
 combineConference\(callId: number\): Promise<void\>
 
-组合会议。使用Promise异步回调。
+合并通话，将两通电话合并成会议电话。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1255,7 +1255,7 @@ promise.then(data => {
 
 ## call.getCallIdListForConference<sup>7+</sup>
 
-getCallIdListForConference\(callId: number, callback: AsyncCallback**<**Array<string\>>\): void
+getCallIdListForConference\(callId: number, callback: AsyncCallback<Array<string\>>\): void
 
 获取会议的呼叫Id列表。使用callback异步回调。
 
@@ -1314,7 +1314,7 @@ promise.then(data => {
 
 ## call.getCallWaitingStatus<sup>7+</sup>
 
-getCallWaitingStatus\(slotId: number, callback: AsyncCallback**<**CallWaitingStatus>\): void
+getCallWaitingStatus\(slotId: number, callback: AsyncCallback<CallWaitingStatus\>\): void
 
 获取呼叫等待状态。使用callback异步回调。
 
@@ -1324,10 +1324,10 @@ getCallWaitingStatus\(slotId: number, callback: AsyncCallback**<**CallWaitingSta
 
 **参数：**
 
-| 参数名   | 类型                           | 必填 | 说明                                   |
-| -------- | ------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<Array<string\>\> | 是   | 回调函数。返回呼叫等待状态。           |
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
+| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | 是   | 回调函数。<br/>返回呼叫等待状态。<br/>- 0：禁用呼叫等待 <br/>- 1：启用呼叫等待 |
 
 **示例：**
 
@@ -1356,9 +1356,9 @@ getCallWaitingStatus\(slotId: number\): Promise<CallWaitingStatus\>
 
 **返回值：**
 
-| 类型                                                    | 说明                                |
-| ------------------------------------------------------- | ----------------------------------- |
-| Promise&lt;[CallWaitingStatus](#CallWaitingStatus7)&gt; | 以Promise形式异步返回呼叫等待状态。 |
+| 类型                                                    | 说明                                                         |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;[CallWaitingStatus](#callwaitingstatus7)&gt; | 以Promise形式异步返回呼叫等待状态。<br/>- 0：禁用呼叫等待 <br/>- 1：启用呼叫等待 |
 
 **示例：**
 
@@ -1383,11 +1383,11 @@ setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback<void\
 
 **参数：**
 
-| 参数名   | 类型                           | 必填 | 说明                                   |
-| -------- | ------------------------------ | ---- | -------------------------------------- |
-| slotId   | number                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| activate | boolean                        | 是   | 是否激活。                             |
-| callback | AsyncCallback<Array<string\>\> | 是   | 回调函数。                             |
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
+| activate | boolean              | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待<br/>- true：启用呼叫等待 |
+| callback | AsyncCallback<void\> | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -1410,10 +1410,10 @@ setCallWaiting\(slotId: number, activate: boolean\): Promise<void\>
 
 **参数：**
 
-| 参数名   | 类型    | 必填 | 说明                                   |
-| -------- | ------- | ---- | -------------------------------------- |
-| slotId   | number  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| activate | boolean | 是   | 是否激活。                             |
+| 参数名   | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| slotId   | number  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
+| activate | boolean | 是   | 呼叫等待是否处于启用状态。<br/>- false：禁用呼叫等待<br/>- true：启用呼叫等待 |
 
 **返回值：**
 
@@ -1608,9 +1608,9 @@ promise.then(data => {
 });
 ```
 
-## call.on<sup>7+</sup>
+## call.on('callDetailsChange')<sup>7+</sup>
 
-on\(type: 'callDetailsChange', callback: Callback**<**CallAttributeOptions>\): void
+on\(type: 'callDetailsChange', callback: Callback<CallAttributeOptions\>\): void
 
 订阅callDetailsChange事件。使用callback异步回调。
 
@@ -1620,10 +1620,10 @@ on\(type: 'callDetailsChange', callback: Callback**<**CallAttributeOptions>\): v
 
 **参数：**
 
-| 参数名   | 类型                                                        | 必填 | 说明             |
-| -------- | ----------------------------------------------------------- | ---- | ---------------- |
-| type     | 'callDetailsChange'                                         | 是   | 调用的细节变化。 |
-| callback | Callback**<**[CallAttributeOptions](#CallAttributeOptions)> | 是   | 回调函数。       |
+| 参数名   | 类型                                                    | 必填 | 说明                       |
+| -------- | ------------------------------------------------------- | ---- | -------------------------- |
+| type     | string                                                  | 是   | 通话时监听通话详情的变化。 |
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 是   | 回调函数。                 |
 
 **示例：**
 
@@ -1633,9 +1633,9 @@ call.on('callDetailsChange', (err, data) => {
 });
 ```
 
-## call.on<sup>8+</sup>
+## call.on('callEventChange')<sup>8+</sup>
 
-on\(type: 'callEventChange', callback: Callback**<**CallEventOptions>\): void
+on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 
 订阅callEventChange事件。使用callback异步回调。
 
@@ -1645,10 +1645,10 @@ on\(type: 'callEventChange', callback: Callback**<**CallEventOptions>\): void
 
 **参数：**
 
-| 参数名   | 类型                                                | 必填 | 说明           |
-| -------- | --------------------------------------------------- | ---- | -------------- |
-| type     | 'callEventChange'                                   | 是   | 调用事件改变。 |
-| callback | Callback**<**[CallEventOptions](#CallEventOptions)> | 是   | 回调函数。     |
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| type     | string                                           | 是   | 通话时监听通话事件的变化。 |
+| callback | Callback<[CallEventOptions](#calleventoptions8)> | 是   | 回调函数。                 |
 
 **示例：**
 
@@ -1658,9 +1658,9 @@ call.on('callEventChange', (err, data) => {
 });
 ```
 
-## call.on<sup>8+</sup>
+## call.on('callDisconnectedCause')<sup>8+</sup>
 
-on\(type: 'callDisconnectedCause', callback: Callback**<**DisconnectedDetails>\): void
+on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): void
 
 订阅callDisconnectedCause事件。使用callback异步回调。
 
@@ -1670,10 +1670,10 @@ on\(type: 'callDisconnectedCause', callback: Callback**<**DisconnectedDetails>\)
 
 **参数：**
 
-| 参数名   | 类型                                                       | 必填 | 说明                 |
-| -------- | ---------------------------------------------------------- | ---- | -------------------- |
-| type     | 'callDisconnectedCause'                                    | 是   | 调用断开连接的原因。 |
-| callback | Callback**<**[DisconnectedDetails](#DisconnectedDetails8)> | 是   | 回调函数。           |
+| 参数名   | 类型                                                   | 必填 | 说明                       |
+| -------- | ------------------------------------------------------ | ---- | -------------------------- |
+| type     | string                                                 | 是   | 通话时监听断开连接的原因。 |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails8)> | 是   | 回调函数。                 |
 
 **示例：**
 
@@ -1683,7 +1683,7 @@ call.on('callDisconnectedCause', (err, data) => {
 });
 ```
 
-## call.on<sup>9+</sup>
+## call.on('mmiCodeResult')<sup>9+</sup>
 
 on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 
@@ -1695,10 +1695,10 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 
 **参数：**
 
-| 参数名   | 类型                                             | 必填 | 说明        |
-| -------- | ------------------------------------------------ | ---- | ----------- |
-| type     | 'mmiCodeResult'                                  | 是   | MMI码结果。 |
-| callback | Callback**<**[MmiCodeResults](#MmiCodeResults9)> | 是   | 回调函数。  |
+| 参数名   | 类型                                         | 必填 | 说明                  |
+| -------- | -------------------------------------------- | ---- | --------------------- |
+| type     | string                                       | 是   | 通话时监听MMI码结果。 |
+| callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 是   | 回调函数。            |
 
 **示例：**
 
@@ -1708,9 +1708,9 @@ isNewCallAllowedcall.on('mmiCodeResult', (err, data) => {
 });
 ```
 
-## call.off<sup>7+</sup>
+## call.off('callDetailsChange')<sup>7+</sup>
 
-off\(type: 'callDetailsChange', callback?: Callback**<**CallAttributeOptions>\): void
+off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): void
 
 取消订阅callDetailsChange事件。使用callback异步回调。
 
@@ -1720,10 +1720,10 @@ off\(type: 'callDetailsChange', callback?: Callback**<**CallAttributeOptions>\):
 
 **参数：**
 
-| 参数名   | 类型                                                        | 必填 | 说明             |
-| -------- | ----------------------------------------------------------- | ---- | ---------------- |
-| type     | 'callDetailsChange'                                         | 是   | 调用的细节变化。 |
-| callback | Callback**<**[CallAttributeOptions](#CallAttributeOptions)> | 否   | 回调函数。       |
+| 参数名   | 类型                                                     | 必填 | 说明                               |
+| -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                   | 是   | 通话结束时取消监听通话详情的变化。 |
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 否   | 回调函数。                         |
 
 **示例：**
 
@@ -1733,7 +1733,7 @@ call.off('callDetailsChange', (err, data) => {
 });
 ```
 
-## call.off<sup>8+</sup>
+## call.off('callEventChange')<sup>8+</sup>
 
 off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 
@@ -1745,10 +1745,10 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 
 **参数：**
 
-| 参数名   | 类型                                                | 必填 | 说明           |
-| -------- | --------------------------------------------------- | ---- | -------------- |
-| type     | 'callEventChange'                                   | 是   | 调用事件改变。 |
-| callback | Callback**<**[CallEventOptions](#CallEventOptions)> | 否   | 回调函数。     |
+| 参数名   | 类型                                             | 必填 | 说明                               |
+| -------- | ------------------------------------------------ | ---- | ---------------------------------- |
+| type     | string                                           | 是   | 通话结束时取消监听通话事件的变化。 |
+| callback | Callback<[CallEventOptions](#calleventoptions8)> | 否   | 回调函数。                         |
 
 **示例：**
 
@@ -1758,9 +1758,9 @@ call.off('callEventChange', (err, data) => {
 });
 ```
 
-## call.off<sup>8+</sup>
+## call.off('callDisconnectedCause')<sup>8+</sup>
 
-off\(type: 'callDisconnectedCause', callback?: Callback**<**DisconnectedDetails>\): void
+off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\): void
 
 取消订阅callDisconnectedCause事件。使用callback异步回调。
 
@@ -1773,7 +1773,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback**<**DisconnectedDetails>
 | 参数名   | 类型                                                       | 必填 | 说明                 |
 | -------- | ---------------------------------------------------------- | ---- | -------------------- |
 | type     | 'callDisconnectedCause'                                    | 是   | 调用断开连接的原因。 |
-| callback | Callback**<**[DisconnectedDetails](#DisconnectedDetails8)> | 否   | 回调函数。           |
+| callback | Callback**<**[DisconnectedDetails](#disconnecteddetails8)> | 否   | 回调函数。           |
 
 **示例：**
 
@@ -1783,7 +1783,7 @@ call.off('callDisconnectedCause', (err, data) => {
 });
 ```
 
-## call.off<sup>9+</sup>
+## call.off('mmiCodeResult')<sup>9+</sup>
 
 off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 
@@ -1798,7 +1798,7 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 | 参数名   | 类型                                             | 必填 | 说明        |
 | -------- | ------------------------------------------------ | ---- | ----------- |
 | type     | 'mmiCodeResult'                                  | 是   | MMI码结果。 |
-| callback | Callback**<**[MmiCodeResults](#MmiCodeResults9)> | 否   | 回调函数。  |
+| callback | Callback<[MmiCodeResults](#mmicoderesults9)> | 否   | 回调函数。  |
 
 **示例：**
 
@@ -1812,7 +1812,7 @@ call.off('mmiCodeResult', (err, data) => {
 
 isNewCallAllowed\(callback: AsyncCallback<boolean\>\): void
 
-是否允许新通话。使用callback异步回调。
+判断是否允许再拨打一通新电话。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1837,7 +1837,7 @@ call.isNewCallAllowed((err, data) => {
 
 isNewCallAllowed\(\): Promise<boolean\>
 
-是否允许新通话。使用Promise异步回调。
+判断是否允许再拨打一通新电话。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1864,7 +1864,7 @@ promise.then(data => {
 
 separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 
-分离会议。使用callback异步回调。
+断开会议电话。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1890,7 +1890,7 @@ call.separateConference(1, (err, data) => {
 
 separateConference\(callId: number\): Promise<void\>
 
-分离会议。使用Promise异步回调。
+断开会议电话。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1934,8 +1934,8 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType, callback: A
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| type     | [CallRestrictionType](#CallRestrictionType8)                 | 是   | 呼叫限制类型。                        |
-| callback | AsyncCallback&lt;[RestrictionStatus](#RestrictionStatus8)&gt; | 是   | 回调函数。返回限制状态。               |
+| type     | [CallRestrictionType](#callrestrictiontype8)                 | 是   | 呼叫限制类型。                        |
+| callback | AsyncCallback&lt;[RestrictionStatus](#restrictionstatus8)&gt; | 是   | 回调函数。返回限制状态。               |
 
 **示例：**
 
@@ -1961,13 +1961,13 @@ getCallRestrictionStatus\(slotId: number, type: CallRestrictionType\): Promise<R
 | 参数名 | 类型                                         | 必填 | 说明                                   |
 | ------ | -------------------------------------------- | ---- | -------------------------------------- |
 | slotId | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| type   | [CallRestrictionType](#CallRestrictionType8) | 是   | 呼叫限制类型。                        |
+| type   | [CallRestrictionType](#callrestrictiontype8) | 是   | 呼叫限制类型。                        |
 
 **返回值：**
 
 | 类型                                                    | 说明                        |
 | ------------------------------------------------------- | --------------------------- |
-| Promise&lt;[RestrictionStatus](#RestrictionStatus8)&gt; | 以Promise形式异步返回结果。 |
+| Promise&lt;[RestrictionStatus](#restrictionstatus8)&gt; | 以Promise形式异步返回结果。 |
 
 **示例：**
 
@@ -1995,7 +1995,7 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo, callback: AsyncCa
 | 参数名   | 类型                                        | 必填 | 说明                                   |
 | -------- | ------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| info     | [CallRestrictionInfo](#CallRestrictionInfo) | 是   | 呼叫限制信息。                         |
+| info     | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
 | callback | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。                             |
 
 **示例：**
@@ -2024,10 +2024,10 @@ setCallRestriction\(slotId: number, info: CallRestrictionInfo\): Promise<void\>
 
 **参数：**
 
-| 参数名 | 类型                                        | 必填 | 说明                                   |
-| ------ | ------------------------------------------- | ---- | -------------------------------------- |
-| slotId | number                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| info   | [CallRestrictionInfo](#CallRestrictionInfo) | 是   | 呼叫限制信息。                         |
+| 参数名 | 类型                                         | 必填 | 说明                                   |
+| ------ | -------------------------------------------- | ---- | -------------------------------------- |
+| slotId | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| info   | [CallRestrictionInfo](#callrestrictioninfo8) | 是   | 呼叫限制信息。                         |
 
 **返回值：**
 
@@ -2066,8 +2066,8 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| type     | [CallTransferType](#CallTransferType8)                       | 是   | 呼叫转移类型。                         |
-| callback | AsyncCallback&lt;[CallTransferResult](#CallTransferResult)&gt; | 是   | 回调函数。返回呼叫转移信息。           |
+| type     | [CallTransferType](#calltransfertype8)                       | 是   | 呼叫转移类型。                         |
+| callback | AsyncCallback&lt;[CallTransferResult](#calltransferresult8)&gt; | 是   | 回调函数。返回呼叫转移信息。           |
 
 **示例：**
 
@@ -2096,13 +2096,13 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 | 参数名 | 类型                                   | 必填 | 说明                                   |
 | ------ | -------------------------------------- | ---- | -------------------------------------- |
 | slotId | number                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| type   | [CallTransferType](#CallTransferType8) | 是   | 呼叫转移类型。                         |
+| type   | [CallTransferType](#calltransfertype8) | 是   | 呼叫转移类型。                         |
 
 **返回值：**
 
-| 类型                                                     | 说明                        |
-| -------------------------------------------------------- | --------------------------- |
-| Promise&lt;[CallTransferResult](#CallTransferResult)&gt; | 以Promise形式异步返回结果。 |
+| 类型                                                      | 说明                        |
+| --------------------------------------------------------- | --------------------------- |
+| Promise&lt;[CallTransferResult](#calltransferresult8)&gt; | 以Promise形式异步返回结果。 |
 
 **示例：**
 
@@ -2133,7 +2133,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo, callback: AsyncCallback
 | 参数名   | 类型                                  | 必填 | 说明                                   |
 | -------- | ------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| info     | [CallTransferInfo](#CallTransferInfo) | 是   | 呼叫转移信息。                        |
+| info     | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。                             |
 
 **示例：**
@@ -2165,7 +2165,7 @@ setCallTransfer\(slotId: number, info: CallTransferInfo): Promise<void\>
 | 参数名 | 类型                                  | 必填 | 说明                                   |
 | ------ | ------------------------------------- | ---- | -------------------------------------- |
 | slotId | number                                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| info   | [CallTransferInfo](#CallTransferInfo) | 是   | 呼叫转移信息。                        |
+| info   | [CallTransferInfo](#calltransferinfo8) | 是   | 呼叫转移信息。                        |
 
 **返回值：**
 
@@ -2249,7 +2249,7 @@ promise.then(data => {
 
 setMuted\(callback: AsyncCallback<void\>\): void
 
-设置静音。使用callback异步回调。
+设置通话中的静音。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2274,7 +2274,7 @@ call.setMuted((err, data) => {
 
 setMuted\(\): Promise<void\>
 
-设置静音。使用Promise异步回调。
+设置通话中的静音。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2301,7 +2301,7 @@ promise.then(data => {
 
 cancelMuted(callback: AsyncCallback<void\>): void
 
-取消静音。使用callback异步回调。
+取消通话中的静音。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2326,7 +2326,7 @@ call.cancelMuted((err, data) => {
 
 cancelMuted(): Promise<void\>
 
-设置静音。使用Promise异步回调。
+取消通话中的静音。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2353,7 +2353,7 @@ promise.then(data => {
 
 setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 
-设置音频设备。使用callback异步回调。
+设置通话音频设备。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2363,7 +2363,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback<void\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| device   | [AudioDevice](#AudioDevice8) | 是   | 音频设备。 |
+| device   | [AudioDevice](#audiodevice8) | 是   | 音频设备。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
 
 **示例：**
@@ -2379,7 +2379,7 @@ call.setAudioDevice(1, (err, data) => {
 
 setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: AsyncCallback<void\>\): void
 
-设置音频设备。使用callback异步回调。
+设置通话音频设备。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2389,8 +2389,8 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 
 | 参数名   | 类型                                       | 必填 | 说明           |
 | -------- | ------------------------------------------ | ---- | -------------- |
-| device   | [AudioDevice](#AudioDevice8)               | 是   | 音频设备。     |
-| options  | [AudioDeviceOptions](#AudioDeviceOptions9) | 是   | 音频设备参数。 |
+| device   | [AudioDevice](#audiodevice8)               | 是   | 音频设备。     |
+| options  | [AudioDeviceOptions](#audiodeviceoptions9) | 是   | 音频设备参数。 |
 | callback | AsyncCallback&lt;void&gt;                  | 是   | 回调函数。     |
 
 **示例：**
@@ -2407,9 +2407,9 @@ call.setAudioDevice(1, bluetoothAddress, (err, value) => {
 
 ## call.setAudioDevice<sup>8+</sup>
 
-setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions**): **Promise<void\>
+setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions): Promise<void\>
 
-设置音频设备。使用Promise异步回调。
+设置通话音频设备。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2419,14 +2419,14 @@ setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions**): **Promise<v
 
 | 参数名  | 类型                                       | 必填 | 说明               |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| device  | [AudioDevice](#AudioDevice8)               | 是   | 音频设备。         |
-| options | [AudioDeviceOptions](#AudioDeviceOptions9) | 否   | 音频设备参数参数。 |
+| device  | [AudioDevice](#audiodevice8)               | 是   | 音频设备。         |
+| options | [AudioDeviceOptions](#audiodeviceoptions9) | 否   | 音频设备参数参数。 |
 
 **返回值：**
 
-| 类型                | 说明                                                |
-| ------------------- | --------------------------------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回设置结果。 |
 
 **示例：**
 
@@ -2434,7 +2434,7 @@ setAudioDevice(device: AudioDevice, options?: AudioDeviceOptions**): **Promise<v
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-let promise = call.setAudioDevice(1, audioDeviceOptions);s
+let promise = call.setAudioDevice(1, audioDeviceOptions);
 promise.then(data => {
     console.log(`setAudioDevice success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2517,7 +2517,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode, callback: AsyncCallback<voi
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
 | callId   | number                       | 是   | 呼叫Id。       |
-| mode     | [ImsCallMode](#ImsCallMode8) | 是   | Ims呼叫模式。 |
+| mode     | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。     |
 
 **示例：**
@@ -2543,7 +2543,7 @@ updateImsCallMode(callId: number, mode: ImsCallMode): Promise<void\>
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | callId | number                       | 是   | 呼叫Id。       |
-| mode   | [ImsCallMode](#ImsCallMode8) | 是   | Ims呼叫模式。 |
+| mode   | [ImsCallMode](#imscallmode8) | 是   | Ims呼叫模式。 |
 
 **返回值：**
 
@@ -2745,10 +2745,10 @@ promise.then(data => {
 | 参数名     | 类型                               | 必填 | 说明                                                         |
 | ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | extras     | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
-| accountId  | number                             | 否   | 帐户Id                                                       |
-| videoState | [VideoStateType](#VideoStateType7) | 否   | 视频状态类型                                                 |
-| dialScene  | [DialScene](#DialScene8)           | 否   | 拨号场景                                                     |
-| dialType   | [DialType](#DialType8)             | 否   | 拨号类型                                                     |
+| accountId  | number                             | 否   | 帐户Id。从API version 8开始支持。此接口为系统接口。          |
+| videoState | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。从API version 8开始支持。此接口为系统接口。    |
+| dialScene  | [DialScene](#dialscene8)           | 否   | 拨号场景。从API version 8开始支持。此接口为系统接口。        |
+| dialType   | [DialType](#dialtype8)             | 否   | 拨号类型。从API version 8开始支持。此接口为系统接口。        |
 
 ## CallState
 
@@ -2785,19 +2785,19 @@ promise.then(data => {
 
 ## ImsCallMode<sup>8+</sup>
 
-ims调用模式。
+IP多媒体系统调用模式。
 
 此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 名称                   | 值   | 说明             |
-| ---------------------- | ---- | ---------------- |
-| CALL_MODE_AUDIO_ONLY   | 0    | 仅限音频呼叫模式 |
-| CALL_MODE_SEND_ONLY    | 1    | 仅发送呼叫模式   |
-| CALL_MODE_RECEIVE_ONLY | 2    | 仅接收呼叫模式   |
-| CALL_MODE_SEND_RECEIVE | 3    | 发送接收呼叫模式 |
-| CALL_MODE_VIDEO_PAUSED | 4    | 视频暂停呼叫模式 |
+| 名称                   | 值   | 说明               |
+| ---------------------- | ---- | ------------------ |
+| CALL_MODE_AUDIO_ONLY   | 0    | 仅限音频呼叫       |
+| CALL_MODE_SEND_ONLY    | 1    | 仅发送呼叫         |
+| CALL_MODE_RECEIVE_ONLY | 2    | 仅接收呼叫         |
+| CALL_MODE_SEND_RECEIVE | 3    | 允许发送和接收呼叫 |
+| CALL_MODE_VIDEO_PAUSED | 4    | 暂停视频呼叫       |
 
 ## AudioDevice<sup>8+</sup>
 
@@ -2813,7 +2813,6 @@ ims调用模式。
 | DEVICE_SPEAKER       | 1    | 扬声器设备 |
 | DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
 | DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
-| DEVICE_MIC           | 4    | 麦克风设备   |
 
 ## CallRestrictionType<sup>8+</sup>
 
@@ -2823,16 +2822,16 @@ ims调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 名称                                          | 值   | 说明                   |
-| --------------------------------------------- | ---- | ---------------------- |
-| RESTRICTION_TYPE_ALL_INCOMING                 | 0    | 限制所有传入类型       |
-| RESTRICTION_TYPE_ALL_OUTGOING                 | 1    | 限制所有传出类型       |
-| RESTRICTION_TYPE_INTERNATIONAL                | 2    | 限制国际类型           |
-| RESTRICTION_TYPE_INTERNATIONAL_EXCLUDING_HOME | 3    | 限制国际不包括住宅类型 |
-| RESTRICTION_TYPE_ROAMING_INCOMING             | 4    | 限制漫游传入类型       |
-| RESTRICTION_TYPE_ALL_CALLS                    | 5    | 限制所有调用类型       |
-| RESTRICTION_TYPE_OUTGOING_SERVICES            | 6    | 限制传出服务类型       |
-| RESTRICTION_TYPE_INCOMING_SERVICES            | 7    | 限制传入服务类型       |
+| 名称                                          | 值   | 说明                       |
+| --------------------------------------------- | ---- | -------------------------- |
+| RESTRICTION_TYPE_ALL_INCOMING                 | 0    | 限制所有呼入               |
+| RESTRICTION_TYPE_ALL_OUTGOING                 | 1    | 限制所有呼出               |
+| RESTRICTION_TYPE_INTERNATIONAL                | 2    | 限制国际通话               |
+| RESTRICTION_TYPE_INTERNATIONAL_EXCLUDING_HOME | 3    | 限制除归属国以外的国际通话 |
+| RESTRICTION_TYPE_ROAMING_INCOMING             | 4    | 限制漫游呼入               |
+| RESTRICTION_TYPE_ALL_CALLS                    | 5    | 限制所有通话               |
+| RESTRICTION_TYPE_OUTGOING_SERVICES            | 6    | 限制传出业务               |
+| RESTRICTION_TYPE_INCOMING_SERVICES            | 7    | 限制呼入业务               |
 
 ## CallTransferInfo<sup>8+</sup>
 
@@ -2845,8 +2844,8 @@ ims调用模式。
 | 参数名      | 类型                                                 | 必填 | 说明             |
 | ----------- | ---------------------------------------------------- | ---- | ---------------- |
 | transferNum | string                                               | 是   | 转移编号         |
-| type        | [CallTransferType](#CallTransferType8)               | 是   | 呼叫转移类型     |
-| settingType | [CallTransferSettingType](#CallTransferSettingType8) | 是   | 设置呼叫转移类型 |
+| type        | [CallTransferType](#calltransfertype8)               | 是   | 呼叫转移类型     |
+| settingType | [CallTransferSettingType](#calltransfersettingtype8) | 是   | 设置呼叫转移类型 |
 
 ## CallTransferType<sup>8+</sup>
 
@@ -2856,12 +2855,12 @@ ims调用模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 名称                        | 值   | 说明             |
-| --------------------------- | ---- | ---------------- |
-| TRANSFER_TYPE_UNCONDITIONAL | 0    | 无条件转移类型   |
-| TRANSFER_TYPE_BUSY          | 1    | 忙线转移类型     |
-| TRANSFER_TYPE_NO_REPLY      | 2    | 无回复转移类型   |
-| TRANSFER_TYPE_NOT_REACHABLE | 3    | 无法访问转移类型 |
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ------------ |
+| TRANSFER_TYPE_UNCONDITIONAL | 0    | 无条件转移   |
+| TRANSFER_TYPE_BUSY          | 1    | 忙线转移     |
+| TRANSFER_TYPE_NO_REPLY      | 2    | 无回复转移   |
+| TRANSFER_TYPE_NOT_REACHABLE | 3    | 无法访问转移 |
 
 ## CallTransferSettingType<sup>8+</sup>
 
@@ -2891,13 +2890,13 @@ ims调用模式。
 | accountNumber   | string                                   | 是   | 帐号号码       |
 | speakerphoneOn  | boolean                                  | 是   | 扬声器接通电话 |
 | accountId       | number                                   | 是   | 帐户Id         |
-| videoState      | [VideoStateType](#VideoStateType7)       | 是   | 视频状态类型   |
+| videoState      | [VideoStateType](#videostatetype7)       | 是   | 视频状态类型   |
 | startTime       | number                                   | 是   | 开始时间       |
 | isEcc           | boolean                                  | 是   | 是否是Ecc      |
-| callType        | [CallType](#CallType7)                   | 是   | 通话类型       |
+| callType        | [CallType](#calltype7)                   | 是   | 通话类型       |
 | callId          | number                                   | 是   | 呼叫Id         |
-| callState       | [DetailedCallState](#DetailedCallState7) | 是   | 详细呼叫状态   |
-| conferenceState | [ConferenceState](#ConferenceState7)     | 是   | 会议状态       |
+| callState       | [DetailedCallState](#detailedcallstate7) | 是   | 详细呼叫状态   |
+| conferenceState | [ConferenceState](#conferencestate7)     | 是   | 会议状态       |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -2972,9 +2971,9 @@ ims调用模式。
 
 | 参数名   | 类型                                         | 必填 | 说明         |
 | -------- | -------------------------------------------- | ---- | ------------ |
-| type     | [CallRestrictionType](#CallRestrictionType8) | 是   | 呼叫限制类型 |
+| type     | [CallRestrictionType](#callrestrictiontype8) | 是   | 呼叫限制类型 |
 | password | string                                       | 是   | 密码         |
-| mode     | [CallRestrictionMode](#CallRestrictionMode8) | 是   | 呼叫限制模式 |
+| mode     | [CallRestrictionMode](#callrestrictionmode8) | 是   | 呼叫限制模式 |
 
 ## CallRestrictionMode<sup>8+</sup>
 
@@ -2999,7 +2998,7 @@ ims调用模式。
 
 | 参数名  | 类型                                       | 必填 | 说明           |
 | ------- | ------------------------------------------ | ---- | -------------- |
-| eventId | [CallAbilityEventId](#CallAbilityEventId8) | 是   | 呼叫能力事件Id |
+| eventId | [CallAbilityEventId](#callabilityeventid8) | 是   | 呼叫能力事件Id |
 
 ## CallAbilityEventId<sup>8+</sup>
 
@@ -3064,7 +3063,7 @@ ims调用模式。
 
 | 参数名 | 类型                               | 必填 | 说明     |
 | ------ | ---------------------------------- | ---- | -------- |
-| status | [TransferStatus](#TransferStatus8) | 是   | 转移状态 |
+| status | [TransferStatus](#transferstatus8) | 是   | 转移状态 |
 | number | string                             | 是   | 号码     |
 
 ## CallWaitingStatus<sup>7+</sup>
@@ -3147,7 +3146,7 @@ MMI码结果。
 
 | 名称    | 类型                             | 必填 | 说明            |
 | ------- | -------------------------------- | ---- | --------------- |
-| result  | [MmiCodeResult](#MmiCodeResult9) | 是   | MMI码结果 |
+| result  | [MmiCodeResult](#mmicoderesult9) | 是   | MMI码结果 |
 | message | string                           | 是   | MMI码消息 |
 
 ## MmiCodeResult<sup>9+</sup>
@@ -3163,7 +3162,7 @@ MMI码结果。
 | MMI_CODE_SUCCESS | 0    | 表示MMI码成功 |
 | MMI_CODE_FAILED  | 1    | 表示MMI码失败 |
 
-## AudioDeviceOptions
+## AudioDeviceOptions<sup>9+</sup>
 
 音频设备选项。
 

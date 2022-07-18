@@ -522,7 +522,7 @@ getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo\>): voi
 | 参数名   | 类型                                                | 必填 | 说明                                   |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[IccAccountInfo](#IccAccountInfo7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -555,7 +555,7 @@ getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
 | 类型                                         | 说明                                       |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#IccAccountInfo7)\> | 以Promise形式返回指定卡槽SIM卡的账户信息。 |
+| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的账户信息。 |
 
 **示例：**
 
@@ -584,7 +584,7 @@ getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo\>>): vo
 
 | 参数名   | 类型                                                        | 必填 | 说明       |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#IccAccountInfo7)\>\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 是   | 回调函数。 |
 
 **示例：**
 
@@ -611,7 +611,7 @@ getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#IccAccountInfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的账户信息列表。 |
+| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的账户信息列表。 |
 
 **示例：**
 
@@ -1089,8 +1089,8 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数。                                                   |
-| options  | [LockInfo](#LockInfo8)                                      | 是   | 锁信息。<br/>lockType: [LockType](#LockType8)<br/>password: string<br/>state: [LockState](#LockState8) |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                                                   |
+| options  | [LockInfo](#lockinfo8)                                      | 是   | 锁信息。<br/>lockType: [LockType](#locktype8)<br/>password: string<br/>state: [LockState](#lockstate8) |
 
 **示例：**
 
@@ -1123,13 +1123,13 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 | 参数名  | 类型                   | 必填 | 说明                                                         |
 | ------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | slotId  | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| options | [LockInfo](#LockInfo8) | 是   | 锁信息。<br/>lockType: [LockType](#LockType8)<br/>password: string<br/>state: [LockState](#LockState8) |
+| options | [LockInfo](#lockinfo8) | 是   | 锁信息。<br/>lockType: [LockType](#locktype8)<br/>password: string<br/>state: [LockState](#lockstate8) |
 
 **返回值：**
 
 | 类型                                                 | 说明                                         |
 | ---------------------------------------------------- | -------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
 
 **示例：**
 
@@ -1162,8 +1162,8 @@ getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockSta
 | 参数名   | 类型                                      | 必填 | 说明                                    |
 | -------- | ----------------------------------------- | ---- | --------------------------------------- |
 | slotId   | number                                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
-| callback | AsyncCallback\<[LockState](#LockState8)\> | 是   | 回调函数。                              |
-| options  | [LockType](#LockType8)                    | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
+| callback | AsyncCallback\<[LockState](#lockstate8)\> | 是   | 回调函数。                              |
+| options  | [LockType](#locktype8)                    | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
 
 **示例：**
 
@@ -1189,13 +1189,13 @@ getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 | 参数名  | 类型                   | 必填 | 说明                                    |
 | ------- | ---------------------- | ---- | --------------------------------------- |
 | slotId  | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
-| options | [LockType](#LockType8) | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
+| options | [LockType](#locktype8) | 是   | 锁类型。<br/>- 1: PIN锁<br/>- 2: PIN2锁 |
 
 **返回值：**
 
 | 类型                               | 说明                                         |
 | ---------------------------------- | -------------------------------------------- |
-| Promise<[LockState](#LockState8)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
+| Promise<[LockState](#lockstate8)\> | 以Promise形式返回获取指定卡槽SIM卡的锁状态。 |
 
 **示例：**
 
@@ -1225,7 +1225,7 @@ alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback
 | 参数名   | 类型                                                        | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                             |
 | newPin   | string                                                      | 是   | 新密码。                               |
 | oldPin   | string                                                      | 是   | 旧密码。                               |
 
@@ -1262,7 +1262,7 @@ alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResp
 
 | 类型                                                 | 说明                                          |
 | ---------------------------------------------------- | --------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
 
 **示例：**
 
@@ -1292,7 +1292,7 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallb
 | 参数名   | 类型                                                        | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                             |
 | newPin2  | string                                                      | 是   | 新密码。                               |
 | oldPin2  | string                                                      | 是   | 旧密码。                               |
 
@@ -1329,7 +1329,7 @@ alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusR
 
 | 类型                                                 | 说明                                          |
 | ---------------------------------------------------- | --------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回指定卡槽SIM卡的Pin是否成功。 |
 
 **示例：**
 
@@ -1360,7 +1360,7 @@ unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | pin      | string                                                       | 是   | SIM卡的密码                            |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)> | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -1395,7 +1395,7 @@ unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
 
 | 类型                                                 | 说明                                               |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
 
 **示例：**
 
@@ -1428,7 +1428,7 @@ unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<Loc
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | newPin   | string                                                       | 是   | 重置SIM卡的密码                        |
 | puk      | string                                                       | 是   | SIM卡密码的解锁密码                    |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -1465,7 +1465,7 @@ unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusRespo
 
 | 类型                                                 | 说明                                               |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
 
 **示例：**
 
@@ -1498,7 +1498,7 @@ promise.then(data => {
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | pin2     | string                                                       | 是   | SIM卡的密码                            |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -1533,7 +1533,7 @@ unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
 
 | 类型                                                  | 说明                                               |
 | ----------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
 
 **示例：**
 
@@ -1566,7 +1566,7 @@ unlockPuk2(slotId: number,newPin2: string,puk2: string ,callback: AsyncCallback<
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | newPin2  | string                                                       | 是   | 重置SIM卡的密码                        |
 | puk2     | string                                                       | 是   | SIM卡密码的解锁密码                    |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | 是   | 回调函数。                             |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -1603,7 +1603,7 @@ unlockPuk2slotId: number,newPin2: string,puk2: string): Promise&lt;LockStatusRes
 
 | 类型                                                 | 说明                                               |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回获取指定卡槽的SIM卡锁状态的响应。 |
 
 **示例：**
 
@@ -2100,7 +2100,7 @@ getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\
 | 参数名   | 类型                                                      | 必填 | 说明                                   |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<Array<[OperatorConfig](#OperatorConfig8)\>> | 是   | 回调函数。                             |
+| callback | AsyncCallback<Array<[OperatorConfig](#operatorconfig8)\>> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -2164,7 +2164,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallba
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
 | type     | ContactType                                                  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| callback | AsyncCallback<Array<[DiallingNumbersInfo](#DiallingNumbersInfo8)\>> | 是   | 回调函数。                                                 |
+| callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 是   | 回调函数。                                                 |
 
 **示例：**
 
@@ -2198,7 +2198,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<Dialli
 
 | 类型                                                         | 说明                           |
 | ------------------------------------------------------------ | ------------------------------ |
-| Promise<Array<[DiallingNumbersInfo](#DiallingNumbersInfo8)\>> | 以Promise形式返回Icc拨号号码。 |
+| Promise<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 以Promise形式返回Icc拨号号码。 |
 
 **示例：**
 
@@ -2228,8 +2228,8 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
 | callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
 
 **示例：**
@@ -2264,8 +2264,8 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
 
 **返回值：**
 
@@ -2307,8 +2307,8 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
 | callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
 
 **示例：**
@@ -2343,8 +2343,8 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
 
 **返回值：**
 
@@ -2386,8 +2386,8 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
 | callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
 
 **示例：**
@@ -2422,8 +2422,8 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#ContactType8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#DiallingNumbersInfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
 
 **返回值：**
 
@@ -2595,8 +2595,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<L
 | 参数名   | 类型                                                       | 必填 | 说明                                   |
 | -------- | ---------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                     | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| lockInfo | [PersoLockInfo](#PersoLockInfo8)                           | 是   | 定制锁类型信息                         |
-| callback | AsyncCallback<[LockStatusResponse](#LockStatusResponse7)\> | 是   | 回调函数                               |
+| lockInfo | [PersoLockInfo](#persolockinfo8)                           | 是   | 定制锁类型信息                         |
+| callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数                               |
 
 **示例：**
 
@@ -2628,13 +2628,13 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusRespon
 | 参数名   | 类型                             | 必填 | 说明                                   |
 | -------- | -------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| lockInfo | [PersoLockInfo](#PersoLockInfo8) | 是   | 定制锁类型信息                         |
+| lockInfo | [PersoLockInfo](#persolockinfo8) | 是   | 定制锁类型信息                         |
 
 **返回值：**
 
 | 类型                                                 | 说明                      |
 | ---------------------------------------------------- | ------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | 以Promise形式返回锁状态。 |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | 以Promise形式返回锁状态。 |
 
 **示例：**
 
@@ -2873,9 +2873,9 @@ SIM卡状态。
 
 | 名称     | 类型                     | 说明   |
 | -------- | ------------------------ | ------ |
-| lockType | [LockType](#LockType8)   | 锁类型 |
+| lockType | [LockType](#locktype8)   | 锁类型 |
 | password | string                   | 密码   |
-| state    | [LockState](#LockState8) | 锁状态 |
+| state    | [LockState](#lockstate8) | 锁状态 |
 
 ## **PersoLockInfo**<sup>8+</sup>
 
@@ -2887,7 +2887,7 @@ SIM卡状态。
 
 | 名称     | 类型                             | 说明         |
 | -------- | -------------------------------- | ------------ |
-| lockType | [PersoLockType](#PersoLockType8) | 定制锁的类型 |
+| lockType | [PersoLockType](#persolocktype8) | 定制锁的类型 |
 | password | string                           | 密码         |
 
 ## **IccAccountInfo**<sup>7+</sup>

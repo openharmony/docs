@@ -444,7 +444,7 @@ promise.then(data => {
 
 addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
-添加SIM卡短信，使用callback方式作为异步方法。
+添加SIM卡消息，使用callback方式作为异步方法。
 
 此接口为系统接口。
 
@@ -454,10 +454,10 @@ addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 参数名   | 类型                                     | 必填 | 说明                                                         |
-| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [SimMessageOptions](#SimMessageOptions7) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status: [SimMessageStatus](#SimMessageStatus7) |
-| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。                                                   |
+| 参数名   | 类型                                     | 必填 | 说明            |
+| -------- | ---------------------------------------- | ---- | --------------- |
+| options  | [SimMessageOptions](#simmessageoptions7) | 是   | SIM卡消息选项。 |
+| callback | AsyncCallback&lt;void&gt;                | 是   | 回调函数。      |
 
 **示例：**
 
@@ -478,7 +478,7 @@ sms.addSimMessage(simMessageOptions, (err, data) => {
 
 addSimMessage(options: SimMessageOptions): Promise<void\>
 
-添加SIM卡短信，使用Promise方式作为异步方法。
+添加SIM卡消息，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -488,9 +488,9 @@ addSimMessage(options: SimMessageOptions): Promise<void\>
 
 **参数：**
 
-| 参数名  | 类型                                     | 必填 | 说明                                                         |
-| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [SimMessageOptions](#SimMessageOptions7) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status: [SimMessageStatus](#SimMessageStatus7) |
+| 参数名  | 类型                                     | 必填 | 说明            |
+| ------- | ---------------------------------------- | ---- | --------------- |
+| options | [SimMessageOptions](#simmessageoptions7) | 是   | SIM卡消息选项。 |
 
 **返回值：**
 
@@ -519,7 +519,7 @@ promise.then(data => {
 
 delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>): void
 
-删除SIM卡短信，使用callback方式作为异步方法。
+删除SIM卡消息，使用callback方式作为异步方法。
 
 此接口为系统接口。
 
@@ -550,7 +550,7 @@ sms.delSimMessage(slotId, msgIndex, (err, data) => {
 
 delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 
-删除SIM卡短信，使用Promise方式作为异步方法。
+删除SIM卡信息，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -588,7 +588,7 @@ promise.then(data => {
 
 updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\>): void
 
-更新SIM卡短信，使用callback方式作为异步方法。
+更新SIM卡消息，使用callback方式作为异步方法。
 
 此接口为系统接口。
 
@@ -598,10 +598,10 @@ updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                                         |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [UpdateSimMessageOptions](#UpdateSimMessageOptions7) | 是   | slotId: number<br/>msgIndex: number<br/>newStatus: [SimMessageStatus](#SimMessageStatus7)<br/>pdu: string<br/>smsc: string |
-| callback | AsyncCallback&lt;void&gt;                            | 是   | 回调函数。                                                   |
+| 参数名   | 类型                                                 | 必填 | 说明                |
+| -------- | ---------------------------------------------------- | ---- | ------------------- |
+| options  | [UpdateSimMessageOptions](#updatesimmessageoptions7) | 是   | 更新SIM卡消息选项。 |
+| callback | AsyncCallback&lt;void&gt;                            | 是   | 回调函数。          |
 
 **示例：**
 
@@ -623,7 +623,7 @@ sms.updateSimMessage(updateSimMessageOptions, (err, data) => {
 
 updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
-更新SIM卡短信，使用Promise方式作为异步方法。
+更新SIM卡消息，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -633,9 +633,9 @@ updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
 **参数：**
 
-| 参数名  | 类型                                                 | 必填 | 说明                                                         |
-| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [UpdateSimMessageOptions](#UpdateSimMessageOptions7) | 是   | slotId: number<br/>msgIndex: number<br/>newStatus: [SimMessageStatus](#SimMessageStatus7)<br/>pdu: string<br/>smsc: string |
+| 参数名  | 类型                                                 | 必填 | 说明                |
+| ------- | ---------------------------------------------------- | ---- | ------------------- |
+| options | [UpdateSimMessageOptions](#updatesimmessageoptions7) | 是   | 更新SIM卡消息选项。 |
 
 **返回值：**
 
@@ -665,7 +665,7 @@ promise.then(data => {
 
 getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\>>): void
 
-获取所有SIM卡短信，使用callback方式作为异步方法。
+获取所有SIM卡消息，使用callback方式作为异步方法。
 
 此接口为系统接口。
 
@@ -678,7 +678,7 @@ getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\
 | 参数名   | 类型                                                        | 必填 | 说明                                      |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                                                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<Array<[SimShortMessage](#SimShortMessage8)\>> | 是   | 回调函数。                                |
+| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage8)\>> | 是   | 回调函数。                                |
 
 **示例：**
 
@@ -694,7 +694,7 @@ sms.getAllSimMessages(slotId, (err, data) => {
 
 getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
-获取所有SIM卡短信，使用Promise方式作为异步方法。
+获取所有SIM卡消息，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -712,7 +712,7 @@ getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
 | 类型                                                    | 说明                               |
 | ------------------------------------------------------- | ---------------------------------- |
-| PromiseArray<[SimShortMessage](#SimShortMessage8)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
+| PromiseArray<[SimShortMessage](#simshortmessage8)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
 
 **示例：**
 
@@ -730,7 +730,7 @@ promise.then(data => {
 
 setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
-设置CB配置，使用callback方式作为异步方法。
+设置小区广播配置，使用callback方式作为异步方法。
 
 此接口为系统接口。
 
@@ -740,10 +740,10 @@ setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                                                         |
-| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| options  | [CBConfigOptions](#CBConfigOptions8) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status:  [SimMessageStatus](#SimMessageStatus7) |
-| callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。                                                   |
+| 参数名   | 类型                                 | 必填 | 说明         |
+| -------- | ------------------------------------ | ---- | ------------ |
+| options  | [CBConfigOptions](#cbconfigoptions8) | 是   | 小区广播配置选项。 |
+| callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。   |
 
 **示例：**
 
@@ -764,7 +764,7 @@ sms.setCBConfig(cbConfigOptions, (err, data) => {
 
 setCBConfig(options: CBConfigOptions): Promise<void\>
 
-设置CB配置，使用Promise方式作为异步方法。
+设置小区广播配置，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -774,9 +774,9 @@ setCBConfig(options: CBConfigOptions): Promise<void\>
 
 **参数：**
 
-| 参数名  | 类型                                 | 必填 | 说明                                                         |
-| ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [CBConfigOptions](#CBConfigOptions8) | 是   | slotId: number<br/>smsc: string<br/>pdu: string<br/>status:  [SimMessageStatus](#SimMessageStatus7) |
+| 参数名  | 类型                                 | 必填 | 说明         |
+| ------- | ------------------------------------ | ---- | ------------ |
+| options | [CBConfigOptions](#cbconfigoptions8) | 是   | 小区广播配置选项。 |
 
 **返回值：**
 
@@ -818,7 +818,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string                                                       | 是   | 消息                                      |
 | force7bit | boolean                                                      | 是   | 强转7位                                   |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#&lt;SmsSegmentsInfo8)&gt; | 是   | 回调函数                                  |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#&lt;smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
 
 **示例：**
 
@@ -850,9 +850,9 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 
 **返回值：**
 
-| 类型                                                         | 说明                          |
-| ------------------------------------------------------------ | ----------------------------- |
-| Promise&lt;&lt;[SmsSegmentsInfo](#&lt;SmsSegmentsInfo8)&gt;&gt; | 以Promise形式返回短信段信息。 |
+| 类型                                                    | 说明                          |
+| ------------------------------------------------------- | ----------------------------- |
+| Promise&lt;[SmsSegmentsInfo](#&lt;smssegmentsinfo8)&gt; | 以Promise形式返回短信段信息。 |
 
 **示例：**
 
@@ -985,7 +985,7 @@ decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsI
 | 参数名          | 类型                                                    | 必填 | 说明           |
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
 | mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名 |
-| callback        | AsyncCallback&lt;[MmsInformation](#MmsInformation8)&gt; | 是   | 回调函数。     |
+| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 回调函数。     |
 
 **示例：**
 
@@ -1017,7 +1017,7 @@ decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
 
 | 类型                                                      | 说明                        |
 | --------------------------------------------------------- | --------------------------- |
-| Promise&lt;&lt;[MmsInformation](#MmsInformation8)&gt;&gt; | 以Promise形式返回彩信信息。 |
+| Promise&lt;&lt;[MmsInformation](#mmsinformation8)&gt;&gt; | 以Promise形式返回彩信信息。 |
 
 **示例：**
 
@@ -1043,10 +1043,10 @@ encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                                                         |
-| -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| mms      | [MmsInformation](#MmsInformation8)  | 是   | messageType: [MessageType](#MessageType8)<br/>mmsType : [MmsSendReq](#MmsSendReq8) \|[MmsSendConf](#MmsSendConf8)\|[MmsNotificationInd](#MmsNotificationInd8)\|<br/>[MmsRespInd](#MmsRespInd8)\|[MmsRetrieveConf](#MmsRetrieveConf8)\|[MmsAcknowledgeInd](#MmsAcknowledgeInd8)\|<br/>[MmsDeliveryInd](#MmsDeliveryInd8)\|[MmsReadOrigInd](#MmsReadOrigInd8)\|[MmsReadRecInd](#MmsReadRecInd8)<br/>attachment?: Array<[MmsAttachment](#MmsAttachment8)\> |
-| callback | AsyncCallback&lt;Array<number\>&gt; | 是   | 回调函数。                                                   |
+| 参数名   | 类型                                | 必填 | 说明       |
+| -------- | ----------------------------------- | ---- | ---------- |
+| mms      | [MmsInformation](#mmsinformation8)  | 是   | 彩信信息。 |
+| callback | AsyncCallback&lt;Array<number\>&gt; | 是   | 回调函数。 |
 
 **示例：**
 
@@ -1078,9 +1078,9 @@ encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
 **参数：**
 
-| 参数名 | 类型                               | 必填 | 说明                                                         |
-| ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| mms    | [MmsInformation](#MmsInformation8) | 是   | messageType: [MessageType](#MessageType8)<br/>mmsType : [MmsSendReq](#MmsSendReq8) \|[MmsSendConf](#MmsSendConf8)\|[MmsNotificationInd](#MmsNotificationInd8)\|<br/>[MmsRespInd](#MmsRespInd8)\|[MmsRetrieveConf](#MmsRetrieveConf8)\|[MmsAcknowledgeInd](#MmsAcknowledgeInd8)\|<br/>[MmsDeliveryInd](#MmsDeliveryInd8)\|[MmsReadOrigInd](#MmsReadOrigInd8)\|[MmsReadRecInd](#MmsReadRecInd8)<br/>attachment?: Array<[MmsAttachment](#MmsAttachment8)\> |
+| 参数名 | 类型                               | 必填 | 说明       |
+| ------ | ---------------------------------- | ---- | ---------- |
+| mms    | [MmsInformation](#mmsinformation8) | 是   | 彩信信息。 |
 
 **返回值：**
 
@@ -1206,11 +1206,11 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
-| 参数名      | 类型                                                         | 必填 | 说明     |
-| ----------- | ------------------------------------------------------------ | ---- | -------- |
-| messageType | [MessageType](#MessageType8)                                 | 是   | 消息类型 |
-| mmsType     | [MmsSendReq](#MmsSendReq8) \|[MmsSendConf](#MmsSendConf8) \|[MmsNotificationInd](#MmsNotificationInd8) \|[MmsRespInd](#MmsRespInd8) \|[MmsRetrieveConf](#MmsRetrieveConf8)\|[MmsAcknowledgeInd](#MmsAcknowledgeInd8)\|[MmsDeliveryInd](#MmsDeliveryInd8)\|[MmsReadOrigInd](#MmsReadOrigInd8)\|[MmsReadRecInd](#MmsReadOrigInd8) | 是   | 彩信类型 |
-| attachment  | Array<[MmsAttachment](#MmsAttachment8)\>                     | 否   | 附件     |
+| 参数名      | 类型                                                         | 必填 | 说明      |
+| ----------- | ------------------------------------------------------------ | ---- | --------- |
+| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型  |
+| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigInd8)\|[MmsReadRecInd](#mmsreadorigind8) | 是   | pdu头类型 |
+| attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | 否   | 附件      |
 
 ## MmsSendReq<sup>8+</sup>
 
@@ -1222,18 +1222,18 @@ promise.then(data => {
 
 | 参数名           | 类型                                 | 必填 | 说明         |
 | ---------------- | ------------------------------------ | ---- | ------------ |
-| from             | [MmsAddress](#MmsAddress8)           | 是   | 彩信来源     |
+| from             | [MmsAddress](#mmsaddress8)           | 是   | 彩信来源     |
 | transactionId    | string                               | 是   | 事务ID       |
 | contentType      | string                               | 是   | 内容类型     |
-| version          | [MmsVersionType](#MmsVersionType8)   | 是   | 版本         |
-| to               | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 发送至       |
+| version          | [MmsVersionType](#mmsversiontype8)   | 是   | 版本         |
+| to               | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 发送至       |
 | date             | number                               | 否   | 日期         |
-| cc               | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 抄送         |
-| bcc              | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 暗抄送       |
+| cc               | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 抄送         |
+| bcc              | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 暗抄送       |
 | subject          | string                               | 否   | 主题         |
 | messageClass     | number                               | 否   | 消息类       |
 | expiry           | number                               | 否   | 到期         |
-| priority         | [MmsPriorityType](#MmsPriorityType8) | 否   | 优先         |
+| priority         | [MmsPriorityType](#mmsprioritytype8) | 否   | 优先         |
 | senderVisibility | number                               | 否   | 发件人可见性 |
 | deliveryReport   | number                               | 否   | 交付报告     |
 | readReport       | number                               | 否   | 阅读报告     |
@@ -1250,7 +1250,7 @@ promise.then(data => {
 | ------------- | ---------------------------------- | ---- | -------- |
 | responseState | number                             | 是   | 响应状态 |
 | transactionId | string                             | 是   | 事务ID   |
-| version       | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
+| version       | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
 | messageId     | string                             | 否   | 消息ID   |
 
 ## MmsNotificationInd<sup>8+</sup>
@@ -1268,8 +1268,8 @@ promise.then(data => {
 | messageSize     | number                             | 是   | 消息大小 |
 | expiry          | number                             | 是   | 到期     |
 | contentLocation | string                             | 是   | 内容位置 |
-| version         | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
-| from            | [MmsAddress](#MmsAddress8)         | 否   | 来源     |
+| version         | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
+| from            | [MmsAddress](#mmsaddress8)         | 否   | 来源     |
 | subject         | string                             | 否   | 主题     |
 | deliveryReport  | number                             | 否   | 状态报告 |
 | contentClass    | number                             | 否   | 内容类   |
@@ -1285,8 +1285,8 @@ promise.then(data => {
 | 参数名        | 类型                               | 必填 | 说明     |
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | 是   | 事务ID   |
-| version       | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
-| reportAllowed | [ReportType](#ReportType8)         | 否   | 允许报告 |
+| version       | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
+| reportAllowed | [ReportType](#reporttype8)         | 否   | 允许报告 |
 
 ## MmsRetrieveConf<sup>8+</sup>
 
@@ -1302,12 +1302,12 @@ promise.then(data => {
 | messageId      | string                               | 是   | 消息ID   |
 | date           | number                               | 是   | 日期     |
 | contentType    | string                               | 是   | 内容类型 |
-| to             | Array<[MmsAddress](#MmsAddress8)\>   | 是   | 发送至   |
-| version        | [MmsVersionType](#MmsVersionType8)   | 是   | 版本     |
-| from           | [MmsAddress](#MmsAddress8)           | 否   | 来源     |
-| cc             | Array<[MmsAddress](#MmsAddress8)\>   | 否   | 抄送     |
+| to             | Array<[MmsAddress](#mmsaddress8)\>   | 是   | 发送至   |
+| version        | [MmsVersionType](#mmsversiontype8)   | 是   | 版本     |
+| from           | [MmsAddress](#mmsaddress8)           | 否   | 来源     |
+| cc             | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 抄送     |
 | subject        | string                               | 否   | 主题     |
-| priority       | [MmsPriorityType](#MmsPriorityType8) | 否   | 优先级   |
+| priority       | [MmsPriorityType](#mmsPrioritytype8) | 否   | 优先级   |
 | deliveryReport | number                               | 否   | 状态报告 |
 | readReport     | number                               | 否   | 阅读报告 |
 | retrieveStatus | number                               | 否   | 检索状态 |
@@ -1323,10 +1323,10 @@ promise.then(data => {
 
 | 参数名     | 类型                               | 必填 | 说明     |
 | ---------- | ---------------------------------- | ---- | -------- |
-| version    | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
+| version    | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
 | messageId  | string                             | 是   | 消息ID   |
-| to         | Array<[MmsAddress](#MmsAddress8)\> | 是   | 发送至   |
-| from       | [MmsAddress](#MmsAddress8)         | 是   | 来源     |
+| to         | Array<[MmsAddress](#mmsaddress8)\> | 是   | 发送至   |
+| from       | [MmsAddress](#mmsaddress8)         | 是   | 来源     |
 | date       | number                             | 是   | 日期     |
 | readStatus | number                             | 是   | 阅读状态 |
 
@@ -1342,14 +1342,14 @@ promise.then(data => {
 | ----------------------- | ------------------------------------ | ---- | ------------------ |
 | contentId               | string                               | 是   | 内容ID             |
 | contentLocation         | string                               | 是   | 内容位置           |
-| contentDisposition      | [DispositionType](#DispositionType8) | 是   | 内容处理           |
+| contentDisposition      | [DispositionType](#dispositiontype8) | 是   | 内容处理           |
 | contentTransferEncoding | string                               | 是   | 内容传输编码       |
 | contentType             | string                               | 是   | 内容类型           |
 | isSmil                  | boolean                              | 是   | 同步多媒体集成语言 |
 | path                    | string                               | 否   | 路径               |
 | inBuff                  | Array<number\>                       | 否   | 缓冲区中           |
 | fileName                | string                               | 否   | 文件名             |
-| charset                 | [MmsCharSets](#MmsCharSets8)         | 否   | 字符集             |
+| charset                 | [MmsCharSets](#mmscharsets8)         | 否   | 字符集             |
 
 ## MmsAddress<sup>8+</sup>
 
@@ -1362,7 +1362,7 @@ promise.then(data => {
 | 参数名  | 类型                         | 必填 | 说明   |
 | ------- | ---------------------------- | ---- | ------ |
 | address | string                       | 是   | 地址   |
-| charset | [MmsCharSets](#MmsCharSets8) | 是   | 字符集 |
+| charset | [MmsCharSets](#mmscharsets8) | 是   | 字符集 |
 
 ## MessageType<sup>8+</sup>
 
@@ -1479,7 +1479,7 @@ promise.then(data => {
 | enable         | boolean              | 是   | 可行         |
 | startMessageId | number               | 是   | 消息起始ID   |
 | endMessageId   | number               | 是   | 消息结束ID   |
-| ranType        | [RanType](#RanType7) | 是   | 手机网络制式 |
+| ranType        | [RanType](#rantype7) | 是   | 手机网络制式 |
 
 ## SimMessageStatus<sup>7+</sup>
 
@@ -1538,7 +1538,7 @@ SIM卡消息选项。
 | slotId | number                                 | 是   | 卡槽ID         |
 | smsc   | string                                 | 是   | 短消息业务中心 |
 | pdu    | string                                 | 是   | 协议数据单元   |
-| status | [SimMessageStatus](#SimMessageStatus7) | 是   | 状态           |
+| status | [SimMessageStatus](#simmessagestatus7) | 是   | 状态           |
 
 ## UpdateSimMessageOptions<sup>7+</sup>
 
@@ -1552,7 +1552,7 @@ SIM卡消息选项。
 | --------- | -------------------------------------- | ---- | -------------- |
 | slotId    | number                                 | 是   | 卡槽ID         |
 | msgIndex  | number                                 | 是   | 消息索引       |
-| newStatus | [SimMessageStatus](#SimMessageStatus7) | 是   | 新状态         |
+| newStatus | [SimMessageStatus](#simmessagestatus7) | 是   | 新状态         |
 | pdu       | string                                 | 是   | 协议数据单元   |
 | smsc      | string                                 | 是   | 短消息业务中心 |
 
@@ -1566,8 +1566,8 @@ SIM卡短消息。
 
 | 参数名           | 类型                                   | 必填 | 说明          |
 | ---------------- | -------------------------------------- | ---- | ------------- |
-| shortMessage     | [ShortMessage](#ShortMessage)          | 是   | 短消息        |
-| simMessageStatus | [SimMessageStatus](#SimMessageStatus7) | 是   | SIM卡消息状态 |
+| shortMessage     | [ShortMessage](#shortmessage)          | 是   | 短消息        |
+| simMessageStatus | [SimMessageStatus](#simmessagestatus7) | 是   | SIM卡消息状态 |
 | indexOnSim       | number                                 | 是   | SIM卡索引     |
 
 ## MmsDeliveryInd<sup>8+</sup>
@@ -1582,9 +1582,9 @@ SIM卡短消息。
 | --------- | ---------------------------------- | ---- | ------ |
 | messageId | string                             | 是   | 消息ID |
 | date      | number                             | 是   | 日期   |
-| to        | Array<[MmsAddress](#MmsAddress8)\> | 是   | 发送至 |
+| to        | Array<[MmsAddress](#mmsaddress8)\> | 是   | 发送至 |
 | status    | number                             | 是   | 状态   |
-| version   | [MmsVersionType](#MmsVersionType8) | 是   | 版本   |
+| version   | [MmsVersionType](#mmsversiontype8) | 是   | 版本   |
 
 ## MmsRespInd<sup>8+</sup>
 
@@ -1598,5 +1598,20 @@ SIM卡短消息。
 | ------------- | ---------------------------------- | ---- | -------- |
 | transactionId | string                             | 是   | 事件ID   |
 | status        | number                             | 是   | 状态     |
-| version       | [MmsVersionType](#MmsVersionType8) | 是   | 版本     |
-| reportAllowed | [ReportType](#ReportType8)         | 否   | 允许报告 |
+| version       | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
+| reportAllowed | [ReportType](#reporttype8)         | 否   | 允许报告 |
+
+## SmsSegmentsInfo<sup>8+</sup>
+
+短信段信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名               | 类型                                     | 必填 | 说明         |
+| -------------------- | ---------------------------------------- | ---- | ------------ |
+| splitCount           | number                                   | 是   | 拆分计数     |
+| encodeCount          | number                                   | 是   | 编码计数     |
+| encodeCountRemaining | number                                   | 是   | 剩余编码计数 |
+| scheme               | [SmsEncodingScheme](#smsencodingscheme8) | 是   | 短信编码方案 |
