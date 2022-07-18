@@ -273,7 +273,7 @@ Codec MIME类型枚举。
 
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放|
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
 | duration    | number                    | 是   | 否   | 音频时长。                                                   |
