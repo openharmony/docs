@@ -33,7 +33,7 @@
 | [qemu_xtensa_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_xtensa_mini_system_demo/config.json)  | esp32           | qemu        | liteos_m    | mini        |
 | [qemu_riscv_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_riscv_mini_system_demo/config.json)   | ricsv32_virt    | qemu        | liteos_m    | mini        |
 | [qemu_ca7_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_ca7_mini_system_demo/config.json)     | arm_virt        | qemu        | liteos_a    | small       |
-| [qemu_small_system_demo]https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_small_system_demo/config.json()        | arm_virt        | qemu        | liteos_a    | small       |
+| [qemu_small_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_small_system_demo/config.json)        | arm_virt        | qemu        | liteos_a    | small       |
 | [qemu_arm_linux_min](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_arm_linux_min/config.json)            | qemu-arm-linux  | qemu        | linux       | standard    |
 | [qemu_arm_linux_headless](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_arm_linux_headless/config.json)       | qemu-arm-linux  | qemu        | linux       | standard    |
 | [iotlink_demo](https://gitee.com/openharmony/vendor_chipsea/blob/master/iotlink_demo/config.json)                  | cst85_wblink    | chipsea     | liteos_m    | mini        |
