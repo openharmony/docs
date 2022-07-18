@@ -31,89 +31,87 @@ import Want from '@ohos.application.Want';
 
 **示例：**
 
-```  js
-  var want = {
-      "deviceId": "", // deviceId为空表示本设备
-      "bundleName": "com.extreme.test",
-      "abilityName": "MainAbility",
-      "moduleName": "entry" // moduleName非必选
-  };
-  this.context.startAbility(want, (error) => {
-      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.log("error.code = " + error.code)
-  })
-```
+- 基础用法
 
-## 传递FD数据
+  ```  js
+    var want = {
+        "deviceId": "", // deviceId为空表示本设备
+        "bundleName": "com.extreme.test",
+        "abilityName": "MainAbility",
+        "moduleName": "entry" // moduleName非必选
+    };
+    this.context.startAbility(want, (error) => {
+        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+        console.log("error.code = " + error.code)
+    })
+  ```
 
-**示例：**
+- 传递FD数据，FD表示文件描述符(FileDescriptor)
 
-```  js
-  var fd;
-  try {
-      fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
-  } catch(e) {
-      console.log("openSync fail:" + JSON.stringify(e));
-  }
-  var want = {
-      "deviceId": "", // deviceId为空表示本设备
-      "bundleName": "com.extreme.test",
-      "abilityName": "MainAbility",
-      "moduleName": "entry" // moduleName非必选
-      "parameters": {
-        "keyFd":{"type":"FD", "value":fd}
-      }
-  };
-  this.context.startAbility(want, (error) => {
-      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.log("error.code = " + error.code)
-  })
-```
-
-## 传递RemoteObject数据
-
-**示例：**
-
-```  js
-  class Stub extends rpc.RemoteObject {
-    constructor(des) {
-        if (typeof des == 'string') {
-            super(des);
-        } else {
-            return null;
+  ```  js
+    var fd;
+    try {
+        fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
+    } catch(e) {
+        console.log("openSync fail:" + JSON.stringify(e));
+    }
+    var want = {
+        "deviceId": "", // deviceId为空表示本设备
+        "bundleName": "com.extreme.test",
+        "abilityName": "MainAbility",
+        "moduleName": "entry" // moduleName非必选
+        "parameters": {
+          "keyFd":{"type":"FD", "value":fd}
         }
-    }
+    };
+    this.context.startAbility(want, (error) => {
+        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+        console.log("error.code = " + error.code)
+    })
+  ```
 
-    onRemoteRequest(code, data, reply, option) {
-        if (code === 1) {
-            console.log('onRemoteRequest called')
-            let token = data.readInterfaceToken();
-            let num = data.readInt();
-            this.method();
-            return true;
-        }
-        return false;
-    }
+- 传递RemoteObject数据
 
-    method() {
-        console.log('method called');
-    }
-  }
-
-  var remoteObject = new Stub('want-test');
-  var want = {
-      "deviceId": "", // deviceId为空表示本设备
-      "bundleName": "com.extreme.test",
-      "abilityName": "MainAbility",
-      "moduleName": "entry" // moduleName非必选
-      "parameters": {
-        "keyRemoteObject":{"type":"RemoteObject", "value":remoteObject}
+  ```  js
+    class Stub extends rpc.RemoteObject {
+      constructor(des) {
+          if (typeof des == 'string') {
+              super(des);
+          } else {
+              return null;
+          }
       }
-  };
-  this.context.startAbility(want, (error) => {
-      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-      console.log("error.code = " + error.code)
-  })
-```
+
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log('onRemoteRequest called')
+              let token = data.readInterfaceToken();
+              let num = data.readInt();
+              this.method();
+              return true;
+          }
+          return false;
+      }
+
+      method() {
+          console.log('method called');
+      }
+    }
+
+    var remoteObject = new Stub('want-test');
+    var want = {
+        "deviceId": "", // deviceId为空表示本设备
+        "bundleName": "com.extreme.test",
+        "abilityName": "MainAbility",
+        "moduleName": "entry" // moduleName非必选
+        "parameters": {
+          "keyRemoteObject":{"type":"RemoteObject", "value":remoteObject}
+        }
+    };
+    this.context.startAbility(want, (error) => {
+        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+        console.log("error.code = " + error.code)
+    })
+  ```
 
 
