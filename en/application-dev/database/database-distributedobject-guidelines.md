@@ -6,6 +6,7 @@ The distributed data objects allow data across devices to be processed like loca
 
 
 ## Available APIs
+For details about the APIs related to the distributed data object, see [Distributed Data Object](../reference/apis/js-apis-data-distributedobject.md).
 
 ### Creating a Distributed Data Object Instance
 
@@ -93,7 +94,7 @@ The following example shows how to implement a distributed data object synchroni
    // After learning that the device goes online, the remote object synchronizes data. That is, name changes to jack and age to 18.
    ```
    
-4. Observe the data changes of the distributed data object. You can subscribe to data changes of the remote object. When the data in the remote object changes, a callback will be called to return the data changes.
+4. Observe the data changes of the distributed data object. You can subscribe to data changes of the peer object. When the data in the peer object changes, a callback will be called to return the data changes.
 
    The sample code is as follows:
    
@@ -107,7 +108,7 @@ The following example shows how to implement a distributed data object synchroni
         });
         }
     } 
-   
+
     // To refresh the page in changeCallback, correctly bind (this) to the changeCallback.
     local_object.on("change", this.changeCallback.bind(this));
    ```
@@ -138,13 +139,13 @@ The following example shows how to implement a distributed data object synchroni
    ```js
    console.info("name " + local_object["name"]); 
    ```
-7. Unsubscribe from data changes. You can specify the callback to unsubscribe from. If you do not specify the callback, all data change callbacks of the distributed data object will be unsubscribed from.
+7. Unsubscribe from data changes. You can specify the callback to unregister. If you do not specify the callback, all data change callbacks of the distributed data object will be unregistered.
 
    The sample code is as follows:
    ```js
-   // Unsubscribe from the specified data change callback.
+   // Unregister the specified data change callback.
    local_object.off("change", changeCallback);
-   // Unsubscribe from all data change callbacks. 
+   // Unregister all data change callbacks. 
    local_object.off("change"); 
    ```
 8. Subscribe to the status (online/offline) changes of the distributed data object. A callback will be invoked to report the status change when the target distributed data object goes online or offline.
@@ -156,13 +157,13 @@ The following example shows how to implement a distributed data object synchroni
    
     local_object.on("status", this.statusCallback);
    ```
-9. Unsubscribe from the status changes of the distributed data object. You can specify the callback to unsubscribe from. If you do not specify the callback, this API unsubscribes from all callbacks of this distributed data object.
+9. Unsubscribe from the status changes of the distributed data object. You can specify the callback to unregister. If you do not specify the callback, this API unregisters all callbacks of this distributed data object.
    
     The sample code is as follows:
    ```js
-   // Unsubscribe from the specified status change callback.
+   // Unregister the specified status change callback.
    local_object.off("status", statusCallback);
-   // Unsubscribe from all status change callbacks.
+   // Unregister all status change callbacks.
    local_object.off("status");
    ```
 10. Remove a distributed data object from the synchronization network. Data changes on the local object will not be synchronized to the removed distributed data object.
@@ -171,4 +172,12 @@ The following example shows how to implement a distributed data object synchroni
        ```js
        local_object.setSessionId("");
        ```
+## Development Example
 
+The following example is provided for you to better understand the development of distributed data objects:
+
+- [Distributed Notepad](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
+
+
+When an event of the Notepad app occurs on a device, such as a note is added, the tile or content of a note is changed, or the event list is cleared, the change will be synchronized to other devices in the trusted network.
+ 
