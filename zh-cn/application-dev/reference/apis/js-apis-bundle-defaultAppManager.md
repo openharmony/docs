@@ -95,7 +95,7 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -140,7 +140,7 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -180,7 +180,7 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -219,7 +219,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -267,7 +267,7 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -316,7 +316,7 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -364,7 +364,7 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -403,7 +403,7 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -443,7 +443,7 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
-**System API：** 此接口为系统接口
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
