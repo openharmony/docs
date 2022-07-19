@@ -210,6 +210,16 @@
 | RdbStore |restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void| 从指定的数据库备份文件恢复数据库，结果以callback形式返回。<br/>-&nbsp;srcName：指定数据库的备份文件名。<br/>-&nbsp;callback：指定callback回调函数。 |
 | RdbStore |restore(srcName:string): Promise&lt;void&gt;| 从指定的数据库备份文件恢复数据库，结果以promise形式返回。<br/>-&nbsp;srcName：指定数据库的备份文件名。 |
 
+**事务**
+
+**表15** 事务
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |beginTransaction():void| 在开始执行SQL语句之前，开始事务。 |
+| RdbStore |commit():void| 提交已执行的SQL语句。 |
+| RdbStore |rollBack():void| 回滚已经执行的SQL语句。 |
+
 ## 开发步骤
 
 1. 创建数据库。
