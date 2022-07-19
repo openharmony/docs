@@ -96,9 +96,9 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明                                                         |
-| ------ | ----------- | ---- | ------------------------------------------------------------ |
-| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
+| 参数名 | 类型        | 必填 | 说明                                                                                                  |
+| ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
 
 **返回值：**
 
@@ -109,7 +109,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(400);
+const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
 }).catch(error => {
@@ -127,15 +127,15 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                               |
+| 参数名   | 类型                 | 必填 | 说明                                                                                                  |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                                                                        |
 
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(400);
+const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
         console.log('Failed to read image pixel data.');  //不符合条件则进入
@@ -2035,7 +2035,7 @@ img.release().then(() =>{
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称      | 默认值 | 描述              |
-| --------- | ------ | ---------------- |
+| --------- | ------ | ----------------- |
 | UNKNOWN   | 0      | 未知格式。        |
 | RGB_565   | 2      | 格式为RGB_565。   |
 | RGBA_8888 | 3      | 格式为RGBA_8888。 |
