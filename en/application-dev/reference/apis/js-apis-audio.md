@@ -2264,7 +2264,43 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 ```
 import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
+import featureAbility from '@ohos.ability.featureAbility'
 
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data)=> {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
+var bufferSize;
+audioRenderer.getBufferSize().then((data)=> {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info.('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
+    });
+console.info('Buffer size:'+bufferSize);
+var context = featureAbility.getContext();
+var path = await context.getCacheDir();
+var filePath = path+"/StarWars10s-2C-48000-4SW.wav"
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
@@ -2296,7 +2332,42 @@ Writes the buffer. This API uses a promise to return the result.
 ```
 import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
+import featureAbility from '@ohos.ability.featureAbility'
 
+var audioStreamInfo = {
+    samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels:audio.AudioChannel.CHANNEL_2,
+    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data) => {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
+var bufferSize;
+audioRenderer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
+    });
+console.info('BufferSize: ' + bufferSize);
+var context = featureAbility.getContext();
+var path = await context.getCacheDir();
 var filePath = 'data/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -2399,12 +2470,39 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 **Example**
 
 ```
+import audio from '@ohos.multimedia.audio';
+import fileio from '@ohos.fileio';
+
+var audioStreamInfo = {
+    samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels:audio.AudioChannel.CHANNEL_2,
+    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data) => {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
 var bufferSize;
-await audioRenderer.getBufferSize().then(async function (data) => {
-    console.info('AudioFrameworkRenderLog: getBufferSize :SUCCESS '+data);
+audioRenderer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
     bufferSize=data;
 }).catch((err) => {
-    console.info('AudioFrameworkRenderLog: getBufferSize :ERROR : '+err.message);
+    console.info('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
 });
 ```
 
@@ -2597,7 +2695,7 @@ Subscribes to mark reached events. When the number of frames rendered reaches th
 
 ```
 audioRenderer.on('markReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -2644,7 +2742,7 @@ Subscribes to period reached events. When the period of frame rendering reaches 
 
 ```
 audioRenderer.on('periodReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -2878,13 +2976,35 @@ Starts capturing. This API uses a promise to return the result.
 **Example**
 
 ```
+import audio from '@ohos.multimedia.audio';
+import fileio from '@ohos.fileio';
+
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioCapturerInfo = {
+    source: audio.SourceType.SOURCE_TYPE_MIC,
+    capturerFlags = 1
+}
+
+var audioCapturer;
+audio.createAudioCapturer(audioCapturerOptions).then((data) => {
+    audioCapturer = data;
+    console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR: '+err.message);
+    });
 audioCapturer.start().then(() => {
     console.info('AudioFrameworkRecLog: ---------START---------');
-    console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-    console.info('AudioFrameworkRecLog: AudioCapturer : STATE : '+audioCapturer.state);
-    console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+    console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
+    console.info('AudioFrameworkRecLog: AudioCapturer: STATE: '+audioCapturer.state);
+    console.info('AudioFrameworkRecLog: Capturer started: SUCCESS ');
     if ((audioCapturer.state == audio.AudioState.STATE_RUNNING)) {
-        stateFlag = true;
+        console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
     }
 }).catch((err) => {
     console.info('AudioFrameworkRecLog: Capturer start :ERROR : '+err.message);
@@ -2937,15 +3057,13 @@ Stops capturing. This API uses a promise to return the result.
 
 ```
 audioCapturer.stop().then(() => {
-    console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-    console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
-    if ((audioCapturer.state == audioCapturer.AudioState.STATE_STOPPED)){
-        stateFlag=true;
-        console.info('AudioFrameworkRecLog: resultFlag : '+stateFlag);
+    console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
+    console.info('AudioFrameworkRecLog: Capturer stopped: SUCCESS');
+    if ((audioCapturer.state == audio.AudioState.STATE_STOPPED)){
+        console.info('AudioFrameworkRecLog: State is Stopped': ');
     }
 }).catch((err) => {
-    console.info('AudioFrameworkRecLog: Capturer stop:ERROR : '+err.message);
-    stateFlag=false;
+    console.info('AudioFrameworkRecLog: Capturer stop: ERROR: '+err.message);
 });
 ```
 
@@ -2997,13 +3115,9 @@ audioCapturer.release().then(() => {
     console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : '+audioCapturer.state);
-    stateFlag=true;
     console.info('AudioFrameworkRecLog: stateFlag : '+stateFlag);
-    expect(stateFlag).assertTrue();
-    done();
 }).catch((err) => {
-    console.info('AudioFrameworkRecLog: Capturer stop:ERROR : '+err.message);
-    stateFlag=false
+    console.info('AudioFrameworkRecLog: Capturer stop: ERROR: '+err.message);
 });
 ```
 
@@ -3027,6 +3141,13 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: EROOR: '+err.message);
+    });
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
@@ -3059,6 +3180,14 @@ Reads the buffer. This API uses a promise to return the result.
 **Example**
 
 ```
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: ERROR '+err.message);
+    });
+console.info('Buffer size: ' + bufferSize);
 audioCapturer.read(bufferSize, true).then((buffer) => {
     console.info('buffer read successfully');
 }).catch((err) => {
@@ -3162,15 +3291,12 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 **Example**
 
 ```
-audioCapturer.getBufferSize().then((bufferSize) => {
-    if (!err) {
-        console.log('BufferSize : ' + bufferSize);
-        audioCapturer.read(bufferSize, true).then((buffer) => {
-            console.info('Buffer read is ' + buffer );
-        }).catch((err) => {
-            console.info('ERROR : '+err.message);
-        });
-    }
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize :SUCCESS '+ data);
+    bufferSize = data;
+}).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize :ERROR : '+ err.message);
 });
 ```
 
@@ -3195,7 +3321,7 @@ Subscribes to mark reached events. When the number of frames captured reaches th
 
 ```
 audioCapturer.on('markReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -3241,7 +3367,7 @@ Subscribes to mark reached events. When the period of frame capturing reaches th
 
 ```
 audioCapturer.on('periodReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
