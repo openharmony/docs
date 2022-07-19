@@ -7,6 +7,8 @@ The Distributed Data Service (DDS) implements synchronization of application dat
 
 ## Available APIs
 
+For details about the APIs related to distributed data, see [Distributed Data Management](../reference/apis/js-apis-distributed-data.md).
+
 The table below describes the APIs provided by the OpenHarmony DDS module.
 
 **Table 1** APIs provided by the DDS
@@ -90,10 +92,10 @@ The following uses a single KV store as an example to describe the development p
    }
    ```
 
-   > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br/>
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
    > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (**kvStore** in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
 
-4.  Subscribe to changes in the distributed data.<br/>
+4. Subscribe to changes in the distributed data.<br/>
    The following is the sample code for subscribing to the data changes of a single KV store:
    ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
@@ -175,3 +177,7 @@ The following uses a single KV store as an example to describe the development p
        }
    });
    ```
+## Samples
+The following samples are provided to help you better understand the distributed data development:
+- [`KvStore`: Distributed Database (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
+- [Distributed Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)
