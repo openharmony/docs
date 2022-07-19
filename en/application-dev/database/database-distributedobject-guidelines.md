@@ -6,6 +6,7 @@ The distributed data objects allow data across devices to be processed like loca
 
 
 ## Available APIs
+For details about the APIs related to the distributed data object, see [Distributed Data Object](../reference/apis/js-apis-data-distributedobject.md).
 
 ### Creating a Distributed Data Object Instance
 
@@ -183,7 +184,7 @@ The following example shows how to implement a distributed data object synchroni
    
     local_object.on("status", this.statusCallback);
    ```
-10. Unsubscribe from the status changes of the distributed data object. <br>You can specify the callback to unregister. If you do not specify the callback, this API unregister all callbacks of this distributed data object.
+10. Unsubscribe from the status changes of the distributed data object. <br>You can specify the callback to unregister. If you do not specify the callback, this API unregisters all callbacks of this distributed data object.
    
     The sample code is as follows:
    ```js
