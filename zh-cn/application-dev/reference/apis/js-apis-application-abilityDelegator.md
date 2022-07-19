@@ -32,7 +32,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是       | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | 是       | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1)实例 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
 
 **示例：**
@@ -69,7 +69,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1)实例 |
 
 **返回值：**
 
@@ -111,7 +111,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1)实例 |
 | callback | AsyncCallback\<void>                                         | 是   | 表示指定的回调方法                                           |
 
 **示例：**
@@ -148,7 +148,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 名称    | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1)实例 |
 
 **返回值：**
 
@@ -190,7 +190,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1)实例 |
 | callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
 **示例：**
@@ -227,7 +227,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1)实例 |
 | timeout  | number                                                       | 是   | 最大等待时间，单位毫秒（ms）                                 |
 | callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | 是   | 表示指定的回调方法                                           |
 
@@ -266,7 +266,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor)实例 |
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1)实例 |
 | timeout | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
 
 **返回值：**
