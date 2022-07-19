@@ -230,7 +230,7 @@ dump(params: Array\<string>): Array\<string>;
 
 转储客户端信息时调用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 

@@ -662,7 +662,7 @@ DAHelper.delete(
 
 ## DataAbilityHelper.delete
 
-delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
+delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
 
 从数据库中删除一个或多个数据记录（Promise形式）。
 
@@ -741,7 +741,7 @@ DAHelper.update(
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
 
 更新数据库中的数据记录（Promise形式）。
 
@@ -825,7 +825,7 @@ DAHelper.query(
 
 ## DataAbilityHelper.query
 
-query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
+query(uri: string, columns?: Array<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>;
 
 查询数据库中的数据（Promise形式）。
 
@@ -934,6 +934,10 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
 ```
 ## PacMap
 
+[key: string]: number | string | boolean | Array\<string | number | boolean> | null;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
 | 名称 | 参数类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | 是 | 数据存储在键值对中。 |
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| 数据存储在键值对中。|
