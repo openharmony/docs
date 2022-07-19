@@ -2103,7 +2103,7 @@ Creates a **PhotoOutput** instance. This API uses an asynchronous callback to re
 
 | Name     | Type                                       | Mandatory| Description                               |
 | --------- | ------------------------------------------- | ---- | ----------------------------------- |
-| surfaceId | string                                      | Yes  | Surface ID received from **ImageReceiver**.  |
+| surfaceId | string                                      | Yes  | Surface ID received from [ImageReceiver](js-apis-image.md#imagereceiver9). |
 | callback  | AsyncCallback<[PhotoOutput](#photooutput)\> | Yes  | Callback used to return the **PhotoOutput** instance.|
 
 **Example**
@@ -2130,7 +2130,7 @@ Creates a **PhotoOutput** instance. This API uses a promise to return the instan
 
 | Name     | Type  | Mandatory| Description                             |
 | --------- | ------ | ---- | --------------------------------- |
-| surfaceId | string | Yes  | Surface ID received from **ImageReceiver**.|
+| surfaceId | string | Yes  | Surface ID received from [ImageReceiver](js-apis-image.md#imagereceiver9). |
 
 **Return value**
 
