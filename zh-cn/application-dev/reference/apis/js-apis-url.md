@@ -31,7 +31,7 @@ URLSearchParams的构造函数。
 
 ```js
 var objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
-var objectParams1 = new Url.URLSearchParams({"fod" : 1 , "bard" : 2});
+var objectParams1 = new Url.URLSearchParams({"fod" : '1' , "bard" : '2'});
 var objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
 var urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
 var params = new Url.URLSearchParams(urlObject.search);
@@ -58,7 +58,7 @@ append(name: string, value: string): void
 ```js
 let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
-paramsObject.append('fod', 3);
+paramsObject.append('fod', '3');
 ```
 
 
@@ -110,7 +110,7 @@ getAll(name: string): string[]
 ```js
 let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
 let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1)); 
-paramsObject.append('fod', 3); // Add a second value for the fod parameter.
+paramsObject.append('fod', '3'); // Add a second value for the fod parameter.
 console.log(params.getAll('fod')) // Output ["1","3"].
 ```
 
@@ -196,10 +196,9 @@ get(name: string): string | null
 **示例：**
 
 ```js
-var paramsOject = new Url.URLSearchParams(document.location.search.substring(1)); 
+var paramsOject = new Url.URLSearchParams('name=Jonathan&age=18'); 
 var name = paramsOject.get("name"); // is the string "Jonathan" 
 var age = parseInt(paramsOject.get("age"), 10); // is the number 18
-var address = paramsOject.get("address"); // null
 ```
 
 
@@ -252,7 +251,7 @@ set(name: string, value: string): void
 ```js
 let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
-paramsObject.set('baz', 3); // Add a third parameter.
+paramsObject.set('baz', '3'); // Add a third parameter.
 ```
 
 
@@ -364,7 +363,7 @@ toString(): string
 ```js
 let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLSearchParams(url.search.slice(1)); 
-params.append('fod', 3);
+params.append('fod', '3');
 console.log(params.toString());
 ```
 

@@ -473,7 +473,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 lwIP组件的源码在`//third_party/lwip`，OpenHarmony在kernel中做了定制化，`//kernel/liteos_m/components/net/lwip-2.1`，包括一些接口的重定义，结构体的重定义等。
 
-移植过程可参考：[lwIP组件适配](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-chip-board-lwip.md)
+移植过程可参考：[lwIP组件适配](porting-chip-board-lwip.md)
 
 本案例在config.json中设置lwIP的路径如下：
 

@@ -67,7 +67,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
 
 1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成马达抽象驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，配置资源和HCS解析。
 
-   - 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出马达驱动模型，使用HCS作为配置描述源码。HCS配置字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。其中Driver Entry入口函数定义如下：
+   - 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出马达驱动模型，使用HCS作为配置描述源码。HCS配置字段详细介绍参考[配置管理](driver-hdf-manage.md)。其中Driver Entry入口函数定义如下：
 
      ```c
      /* 注册马达抽象驱动入口数据结构体对象 */
@@ -200,7 +200,7 @@ Vibrator驱动模型为上层马达硬件服务层提供稳定的马达控制能
      }
      ```
 
-   - 马达效果模型使用HCS作为配置描述源码，hcs配置文件字段详细介绍参考[配置管理](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md)。
+   - 马达效果模型使用HCS作为配置描述源码，hcs配置文件字段详细介绍参考[配置管理](driver-hdf-manage.md)。
 
      ```hcs
      /* 马达数据配置模板（vibrator_config.hcs） */

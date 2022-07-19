@@ -55,7 +55,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 **示例：**
 ```js
 var screenClass = null;
-let promise = screen.getAllScreen();
+let promise = screen.getAllScreens();
 promise.then((data) => {
     screenClass = data[0];
     console.log('Succeeded in getting all screens . Data:'+ JSON.stringify(data));

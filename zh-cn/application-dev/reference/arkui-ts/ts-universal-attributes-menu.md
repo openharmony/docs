@@ -17,7 +17,7 @@
 | 名称                           | 参数类型                                     | 默认值  | 描述                                 |
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------- |
 | bindMenu                     | Array<MenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | -    | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持文本和自定义两种功能。 |
-| bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](../../ui/ts-types.md)<br>responseType:&nbsp;ResponseType | -    | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。  |
+| bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](../../ui/ts-types.md),<br>responseType:&nbsp;ResponseType | -    | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。  |
 
 
 - MenuItem

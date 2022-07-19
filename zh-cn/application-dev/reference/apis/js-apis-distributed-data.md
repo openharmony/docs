@@ -39,6 +39,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
+
 Stage模型下的示例：
 ```ts
 import AbilityStage from '@ohos.application.Ability'
@@ -116,6 +117,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
 
 **示例：**
+
 Stage模型下的示例：
 ```ts
 import AbilityStage from '@ohos.application.Ability'
@@ -636,17 +638,16 @@ try {
 
 用于提供创建数据库的配置信息。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。     |
-| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。     |
-| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。     |
-| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
-| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。 |
-| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。 |
+| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
+| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -813,7 +814,7 @@ try {
         console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:ed: ' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const count = resultSet.getCount();
     console.log("getCount succeed:" + count);
@@ -846,7 +847,7 @@ try {
         console.log('getResultSet succeeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:ed: ' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const position = resultSet.getPosition();
     console.log("getPosition succeed:" + position);
@@ -1896,10 +1897,12 @@ limit(total: number, offset: number): Query
 **示例：**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
@@ -2314,7 +2317,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2354,7 +2357,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2588,7 +2591,7 @@ try {
 ### putBatch<sup>9+</sup>
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
-  
+
 将值写入KvStore数据库，并通过callback方式返回，此方法为异步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
@@ -3720,7 +3723,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
     let resultSet;
@@ -3760,7 +3763,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;Kv
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let resultSet;
@@ -3769,7 +3772,7 @@ try {
     kvStore.getResultSet(predicates) .then((result) => {
         console.log(' GetResultSet success');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, fun ction (err, data) {
+        kvStore.closeResultSet(resultSet, function (err, data) {
             console.log(' closeResultSet success');
         })
     });
@@ -4205,7 +4208,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {
@@ -5514,7 +5517,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {

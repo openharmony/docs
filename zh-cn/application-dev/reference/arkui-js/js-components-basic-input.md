@@ -23,7 +23,7 @@
 | -------------------------------- | ----------------------- | --------- | ---- | ---------------------------------------- |
 | type                             | string                  | text<br/> | 否    | input组件类型，可选值为text，email，date，time，number，password，button，checkbox，radio。<br/>其中text，email，date，time，number，password这六种类型之间支持动态切换修改。<br/>button，checkbox，radio不支持动态修改。可选值定义如下：<br/>-&nbsp;button：定义可点击的按钮；<br/>-&nbsp;checkbox：定义多选框；<br/>-&nbsp;radio：定义单选按钮，允许在多个拥有相同name值的选项中选中其中一个；<br/>-&nbsp;text：定义一个单行的文本字段；<br/>-&nbsp;email：定义用于e-mail地址的字段；<br/>-&nbsp;date：定义&nbsp;date&nbsp;控件（包括年、月、日，不包括时间）；<br/>-&nbsp;time：定义用于输入时间的控件（不带时区）；<br/>-&nbsp;number：定义用于输入数字的字段；<br/>-&nbsp;password：定义密码字段（字段中的字符会被遮蔽）。 |
 | checked                          | boolean                 | false     | 否    | 当前组件是否选中，仅type为checkbox和radio生效。         |
-| name                             | string                  | -         | 否    | input组件的名称。                              |
+| name                             | string                  | -         | 否    | input组件的名称。<br>type为radio时，name为必填。            |
 | value                            | string                  | -         | 否    | input组件的value值，当类型为radio时必填且相同name值的选项该值唯一。 |
 | placeholder                      | string                  | -         | 否    | 设置提示文本的内容，仅在type为text\|email\|date\|time\|number\|password时生效。 |
 | maxlength                        | number                  | -         | 否    | 输入框可输入的最多字符数量，不填表示不限制输入框中字符数量。           |

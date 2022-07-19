@@ -84,9 +84,3 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
       }
    })
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop vibrators:
-
-- [`Vibrator`: vibrator (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Vibrator)

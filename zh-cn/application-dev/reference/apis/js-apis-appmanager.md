@@ -518,7 +518,7 @@ app.killProcessesByBundleName(bundleName)
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string, callback: AsyncCallback<void>);
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 通过包名清除应用数据。
 
@@ -552,7 +552,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback<void>);
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string): Promise<void>;
+clearUpApplicationData(bundleName: string): Promise\<void>;
 
 通过包名清除应用数据。
 

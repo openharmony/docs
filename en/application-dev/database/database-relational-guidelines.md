@@ -2,7 +2,7 @@
 
 ## When to Use
 
-On the basis of the SQLite database, the relational database (RDB) allows you to operate data with or without native SQL statements. In OpenHarmony, an RDB is also called RDB store.
+A relational database (RDB) store allows you to operate local data with or without native SQL statements based on SQLite.
 
 
 ## Available APIs
@@ -11,7 +11,7 @@ For details about RDB APIs, see [Relational Database](../reference/apis/js-apis-
 
 ### Creating or Deleting an RDB Store
 
-The following table describes the APIs available for creating and deleting an RDB store.
+The table below describes the APIs available for creating and deleting an RDB store.
 
 **Table 1** APIs for creating and deleting an RDB store
 
@@ -56,8 +56,8 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   
   | Class| API| Description|
   | -------- | -------- | -------- |
-  | RdbStore | delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the database based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.<br>- **predicates**: conditions for deleting data.<br>- **callback**: callback invoked to return the number of rows updated.|
-  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the database based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>- **predicates**: conditions for deleting data.|
+  | RdbStore | delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.<br>- **predicates**: conditions for deleting data.<br>- **callback**: callback invoked to return the number of rows updated.|
+  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>- **predicates**: conditions for deleting data.|
   
 - **Querying data**
 
@@ -70,8 +70,8 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
 
   | Class| API| Description|
   | -------- | -------- | -------- |
-  | RdbStore | query(predicates: RdbPredicates, columns: Array, callback: AsyncCallback&lt;ResultSet&gt;): void | Queries data in the RDB store based on the specified **RdbPredicates** object. This API uses a callback to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.<br>- **callback**: callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
-  | RdbStore | query(predicates: RdbPredicates, columns: Array): Promise&lt;ResultSet&gt; | Queries data in the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
+  | RdbStore | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;): void | Queries data in the RDB store based on the specified **RdbPredicates** object. This API uses a callback to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.<br>- **callback**: callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+  | RdbStore | query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | Queries data in the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
   | RdbStore | querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store using the specified SQL statement. This API uses a callback to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.<br>- **callback**: callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
   | RdbStore | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | Queries data in the RDB store using the specified SQL statement. This API uses a promise to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.|
 
@@ -167,7 +167,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 **Synchronizing Data Between Devices**
 
-**Table 10** APIs for cross-device data synchronization
+**Table 10** APIs for synchronizing data between devices
 
 | Class| API| Description|
 | -------- | -------- | -------- |
@@ -251,9 +251,9 @@ You can obtain the distributed table name for a remote device based on the local
 
    (1) Create an **RdbPredicates** object to specify query conditions.
 
-   (2) Call the query() API to query data.
+   (2) Call the **query()** API to query data.
 
-   (3) Call the resultSet() API to obtain the result.
+   (3) Call the **resultSet()** API to obtain the result.
 
    The sample code is as follows:
 
@@ -283,7 +283,7 @@ You can obtain the distributed table name for a remote device based on the local
         }
     ```
 
-    (2) Obtain the application permissions.
+    (2) Obtain the required permissions.
 
     (3) Set the distributed tables.
 

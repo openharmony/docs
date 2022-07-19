@@ -64,18 +64,23 @@ kernel/
 │	├── linux-4.19						# OpenHarmony linux-4.19 common kernel
 │	├── linux-5.10						# OpenHarmony linux-5.10 common kernel
 │	├── build
-│	│	├── BUILD.gn					# GN file of the build framework
+│	│	├── BUILD.gn						# GN file of the build framework
 │	│	├── kernel.mk					# Kernel build file
 │	│	└── ohos.build					# Kernel build component file
 │	├── patches
 │	│	├── linux-4.19					# linux-4.19 patches
+│	│	│   ├── common_patch
+│	│	│   │		└── hdf.patch			# linux-4.19 HDF patches
 │	│	│   └── hi3516dv300_patch
-│	│	│   		├── hi3516dv300.patch	# linux-4.19 Hi3516D V300 SOC patches
-│	│	│   		└── hdf.patch			# linux-4.19 Hi3516D V300 HDF patches
+│	│	│   		└── hi3516dv300.patch		# linux-4.19 Hi3516D V300 SOC patches
 │	│	└── linux-5.10
+│	│	    ├── common_patch
+│	│	    │		└── hdf.patch			# linux-5.10 HDF patches
 │	│	    └── hi3516dv300_patch
-│	│	    		├── hi3516dv300.patch	# linux-5.10 Hi3516D V300 SOC patches
-│	│	    		└── hdf.patch			# linux-5.10 Hi3516D V300 HDF patches
+│	│	    │		└── hi3516dv300.patch		# linux-5.10 Hi3516D V300 SOC patches
+│	│	    └── rkrk3568_patch
+│	│	    		├── kernel.patch			# linux-5.10 rk3568 SOC patches
+│	│	    		└── hdf.patch			# linux-5.10 rk3568 customized HDF patches
 │	└── config
 │		├── linux-4.19
 │		│   └── arch
@@ -151,7 +156,7 @@ For details, see "Usage" in LiteOS-A Kernel [README](https://gitee.com/openharmo
 	Apply the HDF kernel patches matching your kernel version. For details, see the method in **kernel.mk** in the **kernel/linux/build** repository.
 	
 	```
-	$(OHOS_BUILD_HOME)/drivers/adapter/khdf/linux/patch_hdf.sh $(OHOS_BUILD_HOME) $(KERNEL_SRC_TMP_PATH) $(HDF_PATCH_FILE)
+	$(OHOS_BUILD_HOME)/drivers/hdf_core/adapter/khdf/linux/patch_hdf.sh $(OHOS_BUILD_HOME) $(KERNEL_SRC_TMP_PATH) $(KERNEL_PATCH_PATH) $(DEVICE_NAME)
 	```
 
 2. Apply the chip driver patches.

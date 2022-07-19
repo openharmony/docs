@@ -1,8 +1,8 @@
-# EnterpriseAdminExtentionAbility
+# EnterpriseAdminExtensionAbility
 
 本模块提供企业管理员应用拓展能力。
 
-企业管理员应用需要存在一个EnterpriseAdminExtentionAbility并重写相关接口，以此具备模块提供的各项能力，比如接收由系统发送的该应用被激活或者去激活的通知。
+企业管理员应用需要存在一个EnterpriseAdminExtensionAbility并重写相关接口，以此具备模块提供的各项能力，比如接收由系统发送的该应用被激活或者去激活的通知。
 
 > **说明：**
 > 
@@ -13,10 +13,10 @@
 ## 导入模块
 
 ```ts
-import EnterpriseAdminExtentionAbility from '@ohos.EnterpriseAdminExtentionAbility'
+import EnterpriseAdminExtensionAbility from '@ohos.EnterpriseAdminExtensionAbility'
 ```
 
-## EnterpriseAdminExtentionAbility.onAdminEnabled
+## EnterpriseAdminExtensionAbility.onAdminEnabled
 
 onAdminEnabled(): void
 
@@ -33,7 +33,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-## EnterpriseAdminExtentionAbility.onAdminDisabled
+## EnterpriseAdminExtensionAbility.onAdminDisabled
 
 onAdminDisabled(): void
 

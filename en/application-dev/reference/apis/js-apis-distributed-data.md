@@ -569,17 +569,16 @@ try {
 
 Provides KV store configuration.
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.    |
-| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.    |
-| backup  | boolean | No|Whether to back up database files. By default, database files are backed up.     |
-| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
-| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.|
-| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set. |
-| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.|
+| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
+| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
 ## KVStoreType
@@ -1829,10 +1828,12 @@ Creates a **Query** object to specify the number of results and where to start.
 **Example**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
@@ -2521,7 +2522,7 @@ try {
 ### putBatch<sup>9+</sup>
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
-  
+
 Writes values to this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core

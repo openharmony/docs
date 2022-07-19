@@ -1,28 +1,15 @@
 # statfs
 
-> **NOTE:**<br>
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The statfs module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
 
-This module provides information related to the file system. It provides JS APIs to obtain the total number of bytes and the number of idle bytes of the file system.
+> **NOTE**<br>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
 import statfs from '@ohos.statfs';
 ```
-
-## Guidelines
-
-Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the application sandbox. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
-
-Application sandbox path of a file or directory = Application directory + File name or directory name
-
-For example, if the application directory obtained by using **getOrCreateLocalDir** is **dir** and the file name is **xxx.txt**, the application sandbox path of the file is as follows:
-
-```js
-let path = dir + "xxx.txt";
-```
-
 ## statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
@@ -72,8 +59,12 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 - Example
 
   ```js
-  statfs.getFreeBytes(path, function(err, number){
-      console.info("getFreeBytes callback successfully:"+ number);
+   import featureAbility from '@ohos.ability.featureAbility';
+  let context = featureAbility.getContext();
+  context.getFilesDir().then(function (path) {
+      statfs.getFreeBytes(path, function(err, number){
+          console.info("Got free bytes successfully:"+ number);
+      });
   });
   ```
 
@@ -126,7 +117,11 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 - Example
 
   ```js
-  statfs.getTotalBytes(path, function(err, number){
-      console.info("getTotalBytes callback successfully:"+ number);
+  import featureAbility from '@ohos.ability.featureAbility';
+  let context = featureAbility.getContext();
+  context.getFilesDir().then(function (path) {
+      statfs.getTotalBytes(path, function(err, number){
+          console.info("Got total bytes successfully:"+ number);
+      });
   });
   ```

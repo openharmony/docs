@@ -15,13 +15,11 @@ ServiceExtensionContext模块是ServiceExtension的上下文环境，继承自Ex
 
 ## 属性
 
-表示访问应用程序资源的能力。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| resourceManager | resmgr.ResourceManager; | 是 | 否 | ResourceManager对象。 |
+| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md) | 是 | 否 | 服务扩展信息。 |
 
 ## startAbility
 
@@ -59,7 +57,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 ## startAbility
 
-startAbility(want: Want): Promise&lt;void&gt;;
+startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 启动Ability。通过Promise返回结果。
 
@@ -72,6 +70,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | want | [Want](js-apis-application-Want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
+  | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
 
 **返回值：**
 

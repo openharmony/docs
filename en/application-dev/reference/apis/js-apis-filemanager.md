@@ -1,10 +1,11 @@
 # User File Access and Management
+
+The fileManager module provides APIs for accessing and managing user files. It interworks with the underlying file management services to implement media library and external card management, and provides capabilities for applications to query and create user files.
+
 >**NOTE**<br/>
 >
 >- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >- The APIs of this module are system APIs and cannot be called by third-party applications. Currently, these APIs can be called only by **filepicker**.
-
-Provides service APIs for accessing and managing user files. It interworks with the underlying file management services to implement media library and external card management, and provides capabilities for applications to query and create user files.
 
 ## Modules to Import
 

@@ -15,7 +15,7 @@ import resourceManager from '@ohos.resourceManager';
 
 ## 使用说明
 
-从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其接口，无需再导入包，此方式FA模型不适用。
+从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其内部获取资源的接口，无需再导入包，此方式FA模型不适用。
 
 ```
 this.context.resourceManager;
@@ -1173,7 +1173,7 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
   ```
-  resourceManager.getStringByName("test", (error, value) => {
+  this.context.resourceManager.getStringByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -1202,7 +1202,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 **示例：**
   ```
-  resourceManager.getStringByName("test").then(value => {
+  this.context.resourceManager.getStringByName("test").then(value => {
       let string = value;
   }).catch(error => {
       console.log("getStringByName promise error is " + error);
@@ -1225,7 +1225,7 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 **示例：** 
   ```
-  resourceManager.getStringArrayByName("test", (error, value) => {
+  this.context.resourceManager.getStringArrayByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -1254,7 +1254,7 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **示例：** 
   ```
-  resourceManager.getStringArrayByName("test").then(value => {
+  this.context.resourceManager.getStringArrayByName("test").then(value => {
       let strArray = value;
   }).catch(error => {
       console.log("getStringArrayByName promise error is " + error);
@@ -1277,7 +1277,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **示例：** 
   ```
-  resourceManager.getMediaByName("test", (error, value) => {
+  this.context.resourceManager.getMediaByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -1306,7 +1306,7 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 **示例：** 
   ```
-  resourceManager.getMediaByName("test").then(value => {
+  this.context.resourceManager.getMediaByName("test").then(value => {
       let media = value;
   }).catch(error => {
       console.log("getMediaByName promise error is " + error);
@@ -1329,7 +1329,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **示例：** 
   ```
-  resourceManager.getMediaBase64ByName("test", (error, value) => {
+  this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -1358,7 +1358,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 **示例：** 
   ```
-  resourceManager.getMediaByName("test").then(value => {
+  this.context.resourceManager.getMediaBase64ByName("test").then(value => {
       let media = value;
   }).catch(error => {
       console.log("getMediaBase64ByName promise error is " + error);
@@ -1382,7 +1382,7 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 **示例：** 
   ```
-  resourceManager.getPluralStringByName("test", 1, (error, value) => {
+  this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -1412,7 +1412,7 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 **示例：** 
   ```
-  resourceManager.getPluralStringByName("test", 1).then(value => {
+  this.context.resourceManager.getPluralStringByName("test", 1).then(value => {
       let str = value;
   }).catch(error => {
       console.log("getPluralStringByName promise error is " + error);
@@ -1439,7 +1439,7 @@ getStringSync(resId: number): string
 
 **示例：** 
   ```
-  resourceManager.getStringSync($r('app.string.test').id);
+  this.context.resourceManager.getStringSync($r('app.string.test').id);
   ```
 
 ### getStringSync<sup>9+</sup>
@@ -1490,7 +1490,7 @@ getStringByNameSync(resName: string): string
 
 **示例：** 
   ```
-  resourceManager.getStringByNameSync("test");
+  this.context.resourceManager.getStringByNameSync("test");
   ```
 
 ### getBoolean<sup>9+</sup>
@@ -1513,7 +1513,7 @@ getBoolean(resId: number): boolean
 
 **示例：** 
   ```
-  resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+  this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
   ```
 ### getBoolean<sup>9+</sup>
 
@@ -1563,7 +1563,7 @@ getBooleanByName(resName: string): boolean
 
 **示例：** 
   ```
-  resourceManager.getBooleanByName("boolean_test");
+  this.context.resourceManager.getBooleanByName("boolean_test");
   ```
 
 ### getNumber<sup>9+</sup>
@@ -1586,8 +1586,8 @@ getNumber(resId: number): number
 
 **示例：** 
   ```
-  resourceManager.getNumber($r('app.integer.integer_test').id);
-  resourceManager.getNumber($r('app.float.float_test').id);
+  this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+  this.context.resourceManager.getNumber($r('app.float.float_test').id);
   ```
 
 ### getNumber<sup>9+</sup>
@@ -1638,6 +1638,6 @@ getNumberByName(resName: string): number
 
 **示例：** 
   ```
-  resourceManager.getNumberByName("integer_test");
-  resourceManager.getNumberByName("float_test");
+  this.context.resourceManager.getNumberByName("integer_test");
+  this.context.resourceManager.getNumberByName("float_test");
   ```

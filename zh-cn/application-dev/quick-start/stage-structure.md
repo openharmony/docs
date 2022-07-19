@@ -163,25 +163,25 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 
 表3 module对象内部结构
 
-| 属性名称            | 含义                                                         | 数据类型   | 是否可缺省                            |
-| ------------------- | ------------------------------------------------------------ | ---------- | ------------------------------------- |
-| name                | 该标签标识当前module的名字，module打包成hap后，表示hap的名称，标签值采用字符串表示（最大长度31个字节），该名称在整个应用要唯一。 | 字符串     | 该标签不可缺省。                      |
-| type                | 该标签表示当前hap的类型。类型有三种，分别是entry、feature和har。 | 字符串     | 该标签不可缺省。                      |
-| srcEntrance         | 该标签表示hap所对应的入口js代码路径，标签值为字符串（最长为127字节）。 | 字符串     | 该标签可缺省。                        |
-| description         | 该标签标识hap包的描述信息，标签值是是字符串类型或对描述内容的资源索引，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。            |
-| process             | 该标签标识hap的进程名，标签值为字符串类型（最长为31个字节）。如果在hap标签下配置了process，该应用的所有ability都运行在该进程中。 | 字符串     | 可缺省，缺省为hap的名称。             |
-| mainElement         | 该标签标识hap的入口ability名称或者extension名称。只有配置为mainElement的ability或者extension才允许在服务中心露出。创建OpenHarmony原子化服务时，该标签不可缺省。 | 字符串     | OpenHarmony应用下，该标签可缺省。     |
-| deviceTypes         | 该标签标识hap可以运行在哪类设备上，标签值采用字符串数组的表示，系统预定义的设备类型见表4。<br />与syscap不同的是，deviceTypes是以设备类型为粒度，而syscap是以设备能力(例如蓝牙、wifi)为粒度。 | 字符串数组 | 该标签不可缺省，可以为空值。          |
-| deliveryWithInstall | 该标签标识当前hap是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 | 布尔值     | 该标签不可缺省。                      |
-| installationFree    | 表示当前HAP是否支持免安装特性。所有Hap包都需要配置不可缺省。<br/>true :表示支持免安装特性，且符合免安装约束。<br/>false :表示不支持免安装特性。<br/><br/>当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为true。<br/>当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务需求配置true或false。 | 布尔值     | 该标签不可缺省。                      |
-| virtualMachine      | 该标签用于标识当前hap运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。<br/>该标签值为字符串。如果目标虚拟机类型为方舟虚拟机，则其值为”ark”； 如果目标虚拟机类型不是方舟虚拟机，则其值为”default”。该标签由IDE构建hap的时候自动插入。解包工具解析时，如果hap包没有该标签，设置该标签值为”default”。 | 字符串     | 该标签可缺省，缺省值为“default”。     |
-| uiSyntax            | syntax定义该JS Component的语法类型。<br />hml标识该JS Component使用hml/css/js进行开发；<br/>ets标识该JS Component使用ets声明式语法进行开发。 | 字符串     | 该标签可缺省，默认值为hml             |
-| pages               | 该标签是一个profile资源，用于列举JS Component中每个页面信息。pages使用参考pages示例。 | 对象       | 在有ability的场景下，该标签不可缺省。 |
-| metadata            | 该标签标识Hap的自定义元信息，标签值为数组类型，该标签下的配置只对当前module、或者ability、或者extensionAbility生效。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。            |
-| abilities           | 描述元能力的配置信息，标签值为数组类型，该标签下的配置只对当前ability生效。abilities参考[abilities对象内部结构](#abilities对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。            |
-| extensionAbilities  | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionAbility对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。            |
-| requestPermissions  | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestPermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。            |
-| testRunner          | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testRunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                    |
+| 属性名称             | 含义                                                         | 数据类型   | 是否可缺省                                        |
+| -------------------- | ------------------------------------------------------------ | ---------- | ------------------------------------------------- |
+| name                 | 该标签标识当前module的名字，module打包成hap后，表示hap的名称，标签值采用字符串表示（最大长度31个字节），该名称在整个应用要唯一。 | 字符串     | 该标签不可缺省。                                  |
+| type                 | 该标签表示当前hap的类型。类型有三种，分别是entry、feature和har。 | 字符串     | 该标签不可缺省。                                  |
+| srcEntrance          | 该标签表示hap所对应的入口js代码路径，标签值为字符串（最长为127字节）。 | 字符串     | 该标签可缺省。                                    |
+| description          | 该标签标识hap包的描述信息，标签值是是字符串类型或对描述内容的资源索引，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。                        |
+| process              | 该标签标识hap的进程名，标签值为字符串类型（最长为31个字节）。如果在hap标签下配置了process，该应用的所有ability都运行在该进程中。 | 字符串     | 可缺省，缺省为hap的名称。                         |
+| mainElement          | 该标签标识hap的入口ability名称或者extension名称。只有配置为mainElement的ability或者extension才允许在服务中心露出。创建OpenHarmony原子化服务时，该标签不可缺省。 | 字符串     | OpenHarmony应用下，该标签可缺省。                 |
+| deviceTypes          | 该标签标识hap可以运行在哪类设备上，标签值采用字符串数组的表示，系统预定义的设备类型见表4。<br />与syscap不同的是，deviceTypes是以设备类型为粒度，而syscap是以设备能力(例如蓝牙、wifi)为粒度。 | 字符串数组 | 该标签不可缺省，可以为空值。                      |
+| deliveryWithInstall  | 该标签标识当前hap是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 | 布尔值     | 该标签不可缺省。                                  |
+| installationFree     | 表示当前HAP是否支持免安装特性。所有Hap包都需要配置不可缺省。<br/>true :表示支持免安装特性，且符合免安装约束。<br/>false :表示不支持免安装特性。<br/><br/>当entry.hap该字段配置为true时，与该entry.hap相关的所有feature.hap该字段也需要配置为true。<br/>当entry.hap该字段配置为false时，与该entry.hap相关的各feature.hap该字段可按业务需求配置true或false。 | 布尔值     | 该标签不可缺省。                                  |
+| virtualMachine       | 该标签用于标识当前hap运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。<br/>该标签值为字符串。如果目标虚拟机类型为方舟虚拟机，则其值为”ark”； 如果目标虚拟机类型不是方舟虚拟机，则其值为”default”。该标签由IDE构建hap的时候自动插入。解包工具解析时，如果hap包没有该标签，设置该标签值为”default”。 | 字符串     | 该标签可缺省，缺省值为“default”。                 |
+| uiSyntax(deprecated) | syntax定义该JS Component的语法类型。<br />hml标识该JS Component使用hml/css/js进行开发；<br/>ets标识该JS Component使用ets声明式语法进行开发。 | 字符串     | 该标签可缺省，默认值为hml，该字段从API9开始废弃。 |
+| pages                | 该标签是一个profile资源，用于列举JS Component中每个页面信息。pages使用参考pages示例。 | 对象       | 在有ability的场景下，该标签不可缺省。             |
+| metadata             | 该标签标识Hap的自定义元信息，标签值为数组类型，该标签下的配置只对当前module、或者ability、或者extensionAbility生效。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                        |
+| abilities            | 描述元能力的配置信息，标签值为数组类型，该标签下的配置只对当前ability生效。abilities参考[abilities对象内部结构](#abilities对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                        |
+| extensionAbilities   | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionAbility对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。                        |
+| requestPermissions   | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestPermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                        |
+| testRunner           | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testRunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                                |
 
 表4 deviceTypes对象的系统预定义设备
 
@@ -283,7 +283,7 @@ abilities描述ability的配置信息，标签值为数组类型。
 | launchType      | 该标签标示ability的启动模式，标签值可选“standard”、“singleton”、“specified”。该标签缺省为"singleton"。standard表示普通多实例，specified表示指定实例，运行时由ability内部业务决定是否创建多实例，singleton表示单实例。 | 字符串     | 可缺省，该标签缺省为"singleton"                               |
 | description     | 该标签标识ability的描述，标签值是是字符串类型或对描述内容的资源索引，要求采用用资源索引方式，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。                                   |
 | icon            | 该标签标识ability图标，标签值为资源文件的索引。该标签可缺省，缺省值为空。<br/>如果ability被配置为MainElement，该标签必须配置。 | 字符串     | 该标签可缺省，缺省值为空。<br/>如果ability被配置为MainElement，该标签必须配置。 |
-| permissions     | 该标签标识被其它应用的ability调用时需要申请的权限的集合，字符串数组类型，每个数组元素为一个权限名称，通常采用反向域名方式表示（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。该标签可缺省，缺省值为空。 | 字符串数组 | 该标签可缺省，缺省值为空。                                   |
+| permissions     | 该标签标识被其它应用的ability调用时需要申请的权限的集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。                                   |
 | metadata        | 该标签表示ability的元信息。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | visible         | 该标签标识ability是否可以被其它应用调用，为布尔类型，true表示可以被其它应用调用， false表示不可以被其它应用调用。 | 布尔值     | 该标签可缺省，缺省值为false。                                |
 | continuable     | 该标签标识ability是否可以迁移，为布尔类型，true表示可以被迁移， false表示不可以被迁移。 | 布尔值     | 该标签可缺省，缺省值为false。                                |

@@ -127,7 +127,6 @@
   - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-ValuesBucket.md)
-  - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
 - 文件管理
 
@@ -201,6 +200,7 @@
   - [@ohos.power (系统电源管理)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
+  - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.update (升级)](js-apis-update.md)

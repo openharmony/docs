@@ -50,21 +50,21 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
 
 2. Obtain the string representing a **Locale** object.<br>
    Call the **toString** method to obtain the string representing a **Locale** object, which includes the language, region, and other options.
-     
+   
    ```
    var localeStr = localeObj.toString();
    ```
 
 3. Maximize locale information.<br>
    Call the **maximize** method to maximize locale information; that is, supplement the missing script and region information.
-     
+   
    ```
    var maximizedLocale = localeObj.maximize();
    ```
 
 4. Minimize locale information.<br>
    Call the **minimize** method to minimize locale information; that is, delete the unnecessary script and region information.
-     
+   
    ```
    var minimizedLocale = localeObj.minimize();
    ```
@@ -105,7 +105,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
 
 2. Format the date and time.<br>
    Call the **format** method to format the date and time in the **DateTimeFormat** object. This method returns a string representing the formatting result.
-     
+   
    ```
    Date date = new Date();
    var formatResult = dateTimeFormat.format(date);
@@ -113,7 +113,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
 
 3. Format a period.<br>
    Call the **formatRange** method to format the period in the **DateTimeFormat** object. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
-     
+   
    ```
    Date startDate = new Date();
    Date endDate = new Date();
@@ -122,7 +122,7 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
 
 4. Obtain attributes of the **DateTimeFormat** object.<br>
    Call the **resolvedOptions** method to obtain attributes of the **DateTimeFormat** object. This method will return an array that contains all attributes and values of the object.
-     
+   
    ```
    var options = dateTimeFormat.resolvedOptions();
    ```
@@ -162,7 +162,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format numbers for
 
 2. Format a number.<br>
    Call the **format** method to format a number. A string is returned as the formatting result.
-     
+   
    ```
    var number = 1234.5678
    var formatResult = numberFormat.format(number);
@@ -170,7 +170,7 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format numbers for
 
 3. Obtain attributes of the **NumberFormat** object.<br>
    Call the **resolvedOptions** method to obtain attributes of the **NumberFormat** object. This method will return an array that contains all attributes and values of the object.
-     
+   
    ```
    var options = numberFormat.resolvedOptions();
    ```
@@ -209,7 +209,7 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
 
 2. Compare two strings.<br>
    Call the **compare** method to compare two input strings. This method returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths.
-     
+   
    ```
    var str1 = "first string";
    var str2 = "second string";
@@ -218,7 +218,7 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
 
 3. Obtain attributes of the **Collator** object.<br>
    Call the **resolvedOptions** method to obtain attributes of the **Collator** object. This method will return an array that contains all attributes and values of the object.
-     
+   
    ```
    var options = collator.resolvedOptions();
    ```
@@ -256,7 +256,7 @@ Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singu
 
 2. Determine the singular-plural type.<br>
    Call the **select** method to determine the singular-plural type of an input number. This method will return a string representing the singular-plural type, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
-     
+   
    ```
    var number = 1234.5678
    var categoryResult = plurals.select(number);
@@ -297,7 +297,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
 
 2. Format the relative time.<br>
    Call the **format** method to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. This method returns a string representing the formatting result.
-     
+   
    ```
    var number = 2;
    var unit = "year"
@@ -306,7 +306,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
 
 3. Obtain each part of the relative time format.<br>
    Upon obtaining each part of the relative time format, customize the relative time formatting result.
-     
+   
    ```
    var number = 2;
    var unit = "year"
@@ -315,13 +315,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
 
 4. Obtain attributes of the **RelativeTimeFormat** object.<br>
    Call the **resolvedOptions** method to obtain attributes of the **RelativeTimeFormat** object. This method will return an array that contains all attributes and values of the object. For a full list of attributes, see [ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md).
-     
+   
    ```
    var options = numberFormat.resolvedOptions();
    ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop internationalization capabilities:
-
--[`International`: Internationalization (JS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/UI/International)

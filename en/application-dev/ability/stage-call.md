@@ -247,7 +247,3 @@ try {
     Logger.error(TAG, `caller release failed with ${error}`)
 }
 ```
-
-## Samples
-The following sample is provided to help you better understand how to develop an ability call in the stage model:
-- [`StageCallAbility`: Stage Call Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

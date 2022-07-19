@@ -1,9 +1,9 @@
 # Security Label
 
+The secuityLabel module provides APIs to manage file data security levels, including obtaining and setting file data security levels.
+
 > **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-Manages file data security levels, including obtaining and setting file data security levels.
 
 ## Modules to Import
 

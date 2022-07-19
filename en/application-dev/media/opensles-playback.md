@@ -1,13 +1,9 @@
 # OpenSL ES Audio Playback Development
 
- 
-
 ## When to Use
 
 You can use OpenSL ES to develop the audio playback function in OpenHarmony. Currently, only some [OpenSL ES APIs](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h) are implemented. If an API that has not been implemented is called, **SL_RESULT_FEATURE_UNSUPPORTED** will be returned.
-
  
-
 ## How to Develop
 
 To use OpenSL ES to develop the audio playback function in OpenHarmony, perform the following steps:
@@ -20,8 +16,6 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
     #include <OpenSLES_Platform.h>
     ```
 
-    
-
 2. Use the **slCreateEngine** API to obtain an **engine** instance.
 
     ```c++
@@ -30,16 +24,12 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
     (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
     ```
 
-    
-
 3. Obtain the **engineEngine** instance of the **SL_IID_ENGINE** interface.
 
     ```c++
     SLEngineItf engineEngine = nullptr;
     (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineEngine);
     ```
-
-    
 
 4. Configure the player and create an **AudioPlayer** instance.
 
@@ -66,16 +56,12 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
     (*pcmPlayerObject)->Realize(pcmPlayerObject, SL_BOOLEAN_FALSE);
     ```
 
-    
-
 5. Obtain the **bufferQueueItf** instance of the **SL_IID_OH_BUFFERQUEUE** interface.
 
     ```
     SLOHBufferQueueItf bufferQueueItf;
     (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
     ```
-
-    
 
 6. Open an audio file and register the **BufferQueueCallback** function.
 
@@ -101,8 +87,6 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
     (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
 
-    
-
 7. Obtain the **playItf** instance of the **SL_PLAYSTATE_PLAYING** interface and start playback.
 
     ```c++
@@ -110,8 +94,6 @@ To use OpenSL ES to develop the audio playback function in OpenHarmony, perform 
     (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_PLAY, &playItf);
     (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PLAYING);
     ```
-
-    
 
 8. Stop audio playback.
 

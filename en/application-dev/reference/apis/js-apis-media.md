@@ -274,7 +274,7 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 | Name       | Type                     | Readable| Writable| Description                                                        |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MPEG-4, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MPEG-4, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | currentTime | number                    | Yes  | No  | Current audio playback position.                                        |
 | duration    | number                    | Yes  | No  | Audio duration.                                                  |
@@ -501,7 +501,7 @@ Subscribes to the audio buffering update event.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'bufferingUpdate' in this example.       |
+| type     | string   | Yes  | Event type, which is 'bufferingUpdate' in this case.       |
 | callback | function | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
 
 **Example**
@@ -525,7 +525,7 @@ Subscribes to the audio playback events.
 
 | Name  | Type      | Mandatory| Description                                                        |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Type of the event to subscribe to. The following events are supported: 'play' \| 'pause' \| 'stop' \| 'reset' \| 'dataLoad' \| 'finish' \| 'volumeChange'<br>- The 'play' event is triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- The 'pause' event is triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- The 'stop' event is triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- The 'reset' event is triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- The 'dataLoad' event is triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- The 'finish' event is triggered when the audio playback is finished.<br>- The 'volumeChange' event is triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed.|
+| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed. |
 | callback | () => void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -598,7 +598,7 @@ Subscribes to the 'timeUpdate' event.
 
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| type     | string            | Yes  | Type of the event to subscribe to, which is 'timeUpdate' in this API.<br>The 'timeUpdate' event is triggered when the [seek()](#audioplayer_seek) API is called.|
+| type     | string            | Yes  | Event type, which is 'timeUpdate' in this case.<br>The 'timeUpdate' event is triggered when the [seek()](#audioplayer_seek) API is called.|
 | callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. The input parameter of the callback is the time when the seek operation is successful.            |
 
 **Example**
@@ -626,7 +626,7 @@ Subscribes to the audio playback error event.
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during audio playback.|
+| type     | string        | Yes  | Event type, which is 'error' in this case.<br>The 'error' event is triggered when an error occurs during audio playback.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
@@ -656,7 +656,7 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 
 ## VideoPlayer<sup>8+</sup>
 
-Provides APIs to manage and play video. Before calling an API of the **VideoPlayer** class, you must call [createVideoPlayer()](#mediacreatevideoplayer8) to create a [VideoPlayer](#videoplayer8) instance.
+Provides APIs to manage and play video. Before calling an API of **VideoPlayer**, you must call [createVideoPlayer()](#mediacreatevideoplayer8) to create a [VideoPlayer](#videoplayer8) instance.
 
 For details about the video playback demo, see [Video Playback Development](../../media/video-playback.md).
 
@@ -666,7 +666,7 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback path (under development)<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>3. HLS network playback: http://xx or https://xx<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                                        |
 | duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live streaming mode.                              |
@@ -1003,7 +1003,8 @@ Seeks to the specified playback position. The next key frame at the specified po
 **Example**
 
 ```js
-videoPlayer.seek((seekTime, err) => {
+let seekTime = 5000;
+videoPlayer.seek(seekTime, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('seek success!');
     } else {
@@ -1031,7 +1032,10 @@ Seeks to the specified playback position. This API uses a callback to return the
 **Example**
 
 ```js
-videoPlayer.seek((seekTime, seekMode, err) => {
+import media from '@ohos.multimedia.media'
+let seekTime = 5000;
+let seekMode = media.SeekMode.SEEK_NEXT_SYNC;
+videoPlayer.seek(seekTime, seekMode, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('seek success!');
     } else {
@@ -1064,6 +1068,7 @@ Seeks to the specified playback position. If **mode** is not specified, the next
 **Example**
 
 ```js
+let seekTime = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime indicates the position after the seek operation is complete.
     console.info('seek success');
 }).catch((error) => {
@@ -1095,7 +1100,8 @@ Sets the volume. This API uses a callback to return the result.
 **Example**
 
 ```js
-videoPlayer.setVolume((vol, err) => {
+let vol = 0.5;
+videoPlayer.setVolume(vol, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('setVolume success!');
     } else {
@@ -1127,6 +1133,7 @@ Sets the volume. This API uses a promise to return the result.
 **Example**
 
 ```js
+let vol = 0.5;
 videoPlayer.setVolume(vol).then() => {
     console.info('setVolume success');
 }).catch((error) => {
@@ -1278,7 +1285,10 @@ Sets the video playback speed. This API uses a callback to return the result.
 **Example**
 
 ```js
-videoPlayer.setSpeed((speed:number, err) => {
+import media from '@ohos.multimedia.media'
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
+
+videoPlayer.setSpeed(speed, (err, result) => {
     if (typeof (err) == 'undefined') {
         console.info('setSpeed success!');
     } else {
@@ -1310,8 +1320,70 @@ Sets the video playback speed. This API uses a promise to return the result.
 **Example**
 
 ```js
+import media from '@ohos.multimedia.media'
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
+
 videoPlayer.setSpeed(speed).then() => {
     console.info('setSpeed success');
+}).catch((error) => {
+   console.info(`video catchCallback, error:${error.message}`);
+});
+```
+
+### selectBitrate<sup>9+</sup>
+
+selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
+
+Selects a bit rate from available bit rates. This API uses a callback to return the result. The available bit rates can be obtained by calling [availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>).
+
+**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                      |
+| -------- | ---------------------- | ---- | ---------------------------------------------------------- |
+| bitrate  | number                 | Yes  | Bit rate to select, which is used in the HLS multi-bit rate scenario. The unit is bit/s.              |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the set value is returned, the operation is successful; otherwise, the operation fails.|
+
+**Example**
+
+```js
+let bitrate = 1024000;
+videoPlayer.selectBitrate(bitrate, (err, result) => {
+    if (typeof (err) == 'undefined') {
+        console.info('selectBitrate success!');
+    } else {
+        console.info('selectBitrate fail!');
+    }
+});
+```
+
+### selectBitrate<sup>9+</sup>
+
+selectBitrate(bitrate:number): Promise\<number>
+
+Selects a bit rate from available bit rates. This API uses a promise to return the result. The available bit rates can be obtained by calling [availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>).
+
+**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                        |
+| ------- | ------ | ---- | -------------------------------------------- |
+| bitrate | number | Yes  | Bit rate to select, which is used in the HLS multi-bit rate scenario. The unit is bit/s.|
+
+**Return value**
+
+| Type            | Description                     |
+| ---------------- | ------------------------- |
+| Promise\<number> | Promise used to return the result.|
+
+**Example**
+
+```js
+let bitrate = 1024000;
+videoPlayer.selectBitrate(bitrate).then() => {
+    console.info('selectBitrate success');
 }).catch((error) => {
    console.info(`video catchCallback, error:${error.message}`);
 });
@@ -1329,7 +1401,7 @@ Subscribes to the video playback completion event.
 
 | Name  | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'playbackCompleted' in this example.|
+| type     | string   | Yes  | Event type, which is 'playbackCompleted' in this case.|
 | callback | function | Yes  | Callback invoked when the event is triggered.                                 |
 
 **Example**
@@ -1352,7 +1424,7 @@ Subscribes to the video buffering update event.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'bufferingUpdate' in this example.       |
+| type     | string   | Yes  | Event type, which is 'bufferingUpdate' in this case.       |
 | callback | function | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
 
 **Example**
@@ -1376,7 +1448,7 @@ Subscribes to the frame rendering start event.
 
 | Name  | Type           | Mandatory| Description                                                        |
 | -------- | --------------- | ---- | ------------------------------------------------------------ |
-| type     | string          | Yes  | Type of the event to subscribe to, which is 'startRenderFrame' in this example.|
+| type     | string          | Yes  | Event type, which is 'startRenderFrame' in this case.|
 | callback | Callback\<void> | Yes  | Callback invoked when the event is triggered.                          |
 
 **Example**
@@ -1399,7 +1471,7 @@ Subscribes to the video width and height change event.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to, which is 'videoSizeChanged' in this example.|
+| type     | string   | Yes  | Event type, which is 'videoSizeChanged' in this case.|
 | callback | function | Yes  | Callback invoked when the event is triggered. **width** indicates the video width, and **height** indicates the video height.   |
 
 **Example**
@@ -1423,7 +1495,7 @@ Subscribes to the video playback error event.
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during video playback.|
+| type     | string        | Yes  | Event type, which is 'error' in this case.<br>The 'error' event is triggered when an error occurs during video playback.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
@@ -1435,6 +1507,31 @@ videoPlayer.on('error', (error) => {      // Set the 'error' event callback.
     console.info(`video error called, errMessage is ${error.message}`);// Print the detailed description of the error type.
 });
 videoPlayer.setVolume(3);  // Set volume to an invalid value to trigger the 'error' event.
+```
+
+### on('availableBitrateCollected')<sup>9+</sup>
+
+on(type: 'availableBitrateCollected', callback: (bitrates: Array<number>) => void): void
+
+Subscribes to the video playback bit rate reporting event.
+
+**System capability**: SystemCapability.Multimedia.Media.VideoPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is 'availableBitrateCollected' in this case. This event is reported only once when the playback starts.|
+| callback | function | Yes  | Callback used to return supported bit rates, in an array.     |
+
+**Example**
+
+```js
+videoPlayer.on('availableBitrateCollected', (bitrates) => {
+    for (let i = 0; i < bitrates.length; i++) {
+        console.info('case availableBitrateCollected bitrates: '  + bitrates[i]);  // Print bit rates.
+    }
+});
 ```
 
 ## VideoPlayState<sup>8+</sup>
@@ -1512,7 +1609,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
 
 ## AudioRecorder
 
-Implements audio recording. Before calling an API of the **AudioRecorder** class, you must call [createAudioRecorder()](#mediacreateaudiorecorder) to create an [AudioRecorder](#audiorecorder) instance.
+Implements audio recording. Before calling an API of **AudioRecorder**, you must call [createAudioRecorder()](#mediacreateaudiorecorder) to create an [AudioRecorder](#audiorecorder) instance.
 
 For details about the audio recording demo, see [Audio Recording Development](../../media/audio-recorder.md).
 
@@ -1530,7 +1627,7 @@ Prepares for recording.
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [AudioRecorderConfig](#audiorecorderconfig) | Yes  | Audio recording parameters, including the audio output URI, [encoding format](#audioencoder), sampling rate, number of audio channels, and [output format](#audiooutputformat).|
+| config | [AudioRecorderConfig](#audiorecorderconfig) | Yes  | Audio recording parameters, including the audio output URI, encoding format, sampling rate, number of audio channels, and output format.|
 
 **Example**
 
@@ -1668,7 +1765,7 @@ Subscribes to the audio recording events.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Type of the event to subscribe to. The following events are supported: 'prepare'\|'start'\|  'pause' \| 'resume' \|'stop'\|'release'\|'reset'<br>- The 'prepare' event is triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- The 'start' event is triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- The 'pause' event is triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- The 'resume' event is triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- The 'stop' event is triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- The 'release' event is triggered when the [release](#audiorecorder_release) API is called and the recording resource is released.<br>- The 'reset' event is triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset.|
+| type     | string   | Yes  | Event type. The following events are supported: 'prepare'\|'start'\|  'pause' \| 'resume' \|'stop'\|'release'\|'reset'<br>- The 'prepare' event is triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- The 'start' event is triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- The 'pause' event is triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- The 'resume' event is triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- The 'stop' event is triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- The 'release' event is triggered when the [release](#audiorecorder_release) API is called and the recording resource is released.<br>- The 'reset' event is triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset.|
 | callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -1726,7 +1823,7 @@ Subscribes to the audio recording error event.
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during audio recording.|
+| type     | string        | Yes  | Event type, which is 'error' in this case.<br>The 'error' event is triggered when an error occurs during audio recording.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
@@ -1748,15 +1845,15 @@ Describes audio recording configurations.
 
 | Name                 | Type                               | Mandatory| Description                                                        |
 | --------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioEncoder          | [AudioEncoder](#audioencoder)           | No  | Audio encoding format. The default value is **AAC_LC**.                            |
+| audioEncoder<sup>(deprecated)</sup>          | [AudioEncoder](#audioencoder)           | No  | Audio encoding format. The default value is **AAC_LC**.<br>**Note**: This parameter is deprecated since API version 8. Use **audioEncoderMime** instead.                            |
 | audioEncodeBitRate    | number                                  | No  | Audio encoding bit rate. The default value is **48000**.                             |
 | audioSampleRate       | number                                  | No  | Audio sampling rate. The default value is **48000**.                             |
 | numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.                                 |
-| format                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.                        |
+| format<sup>(deprecated)</sup>                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.<br>**Note**: This parameter is deprecated since API version 8. Use **fileFormat** instead.                        |
 | location              | [Location](#location)                   | No  | Geographical location of the recorded audio.                                        |
-| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![en-us_image_0000001164217678](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
-| audioEncoderMime      | [CodecMimeType](#codecmimetype8)        | No  | Audio encoding format.                                              |
-
+| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
+| audioEncoderMime<sup>8+</sup>      | [CodecMimeType](#codecmimetype8)        | No  | Audio encoding format.          |
+| fileFormat<sup>8+</sup>      | [ContainerFormatType](#containerformattype8)        | No  | Audio encoding format.        |
 
 ## AudioEncoder<sup>(deprecated)</sup>
 
@@ -1773,13 +1870,13 @@ Enumerates the audio encoding formats.
 | AMR_NB  | 1      | AMR-NB.<br>This API is defined but not implemented yet.|
 | AMR_WB  | 2      | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is defined but not implemented yet.|
 | AAC_LC  | 3      | Advanced Audio Coding Low Complexity (AAC-LC).|
-| HE_AAC  | 4      | High-Efficiency Advanced&nbsp;Audio&nbsp;Coding (HE_AAC).<br>This API is defined but not implemented yet.|
+| HE_AAC  | 4      | High-Efficiency Advanced Audio Coding (HE_AAC).<br>This API is defined but not implemented yet.|
 
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
 > **NOTE**
-> This API is deprecated since API version 8. You are advised to use [ContainerFormatType ](#containerformattype8) instead.
+> This API is deprecated since API version 8. You are advised to use [ContainerFormatType](#containerformattype8) instead.
 
 Enumerates the audio output formats.
 
@@ -1805,7 +1902,7 @@ For details about the video recording demo, see [Video Recording Development](..
 
 | Name              | Type                                  | Readable| Writable| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| state<sup>8+</sup> | [VideoRecordState](#videorecordstate9) | Yes  | No  | Video recording state.|
+| state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | Yes  | No  | Video recording state.|
 
 ### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
 
@@ -2346,7 +2443,7 @@ Subscribes to the video recording error event.
 
 | Name  | Type         | Mandatory| Description                                                        |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | Yes  | Type of the event to subscribe to, which is 'error' in this API.<br>The 'error' event is triggered when an error occurs during video recording.|
+| type     | string        | Yes  | Event type, which is 'error' in this case.<br>The 'error' event is triggered when an error occurs during video recording.|
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                                      |
 
 **Example**
@@ -2388,7 +2485,7 @@ Describes the video recording parameters.
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video.                                        |
 | location        | [Location](#location)                          | No  | Geographical location of the recorded video.                                        |
-| url             | string                                         | Yes  | Video output URL. Supported: fd://xx&nbsp;(fd&nbsp;number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
+| url             | string                                         | Yes  | Video output URL. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
 
 ## AudioSourceType<sup>9+</sup>
 
