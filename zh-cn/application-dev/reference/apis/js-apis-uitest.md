@@ -1865,6 +1865,8 @@ async function demo() {
 
 ## WindowMode<sup>9+</sup>
 
+**系统能力**：SystemCapability.Test.UiTest
+
 窗口的窗口模式。
 
 | 名称       | 说明       |
@@ -1872,4 +1874,4 @@ async function demo() {
 | FULLSCREEN | 全屏模式。 |
 | PRIMARY    | 主窗口。   |
 | SECONDARY  | 第二窗口。 |
-| FLOAT      | 浮动窗口。 |
+| FLOATING   | 浮动窗口。 |
