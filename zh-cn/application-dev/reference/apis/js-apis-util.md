@@ -215,7 +215,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| input | Unit8Array | 是 | 符合格式需要解码的数组。 |
+| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
 | options | Object | 否 | 解码相关选项参数。 |
 
   **表2** options
