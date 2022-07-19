@@ -26,7 +26,7 @@ getNativeHeapSize(): bigint
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| bigint | 返回native heap内存总大小。 |
+| bigint | 返回native heap内存总大小，单位为kB。 |
 
 
 **示例：**
@@ -49,7 +49,7 @@ getNativeHeapAllocatedSize(): bigint
 **返回值：**
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| bigint | 返回native heap内存的已分配内存。 |
+| bigint | 返回native heap内存的已分配内存，单位为kB。 |
 
 
 **示例：**
@@ -72,7 +72,7 @@ getNativeHeapFreeSize(): bigint
 **返回值：**
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
-| bigint | 返回native heap内存的空闲内存。 |
+| bigint | 返回native heap内存的空闲内存，单位为kB。 |
 
 
 **示例：**
@@ -93,7 +93,7 @@ getPss(): bigint
 **返回值：**
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| bigint | 返回应用进程PSS内存大小。 |
+| bigint | 返回应用进程PSS内存大小，单位为kB。 |
 
 
 **示例：**
@@ -114,7 +114,7 @@ getSharedDirty(): bigint
 **返回值：**
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| bigint | 返回进程的共享脏内存大小。 |
+| bigint | 返回进程的共享脏内存大小，单位为kB。 |
 
 
 **示例：**
@@ -134,7 +134,7 @@ getPrivateDirty(): bigint
 **返回值：**
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| bigint | 返回进程的私有脏内存大小。 |
+| bigint | 返回进程的私有脏内存大小，单位为kB。 |
 
 
 **示例：**
