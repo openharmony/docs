@@ -2017,6 +2017,8 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 
 约束来源类型信息。
 
+此接口为系统接口。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
 | 参数名      | 类型   | 必填 | 说明       |
@@ -2027,6 +2029,8 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 ## ConstraintSourceType<sup>9+</sup>
 
 枚举，约束来源类型。
+
+此接口为系统接口。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
