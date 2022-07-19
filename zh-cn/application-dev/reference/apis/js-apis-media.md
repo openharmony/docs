@@ -275,8 +275,8 @@ Codec MIME类型枚举。
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br>3、https网络播放: https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
-| currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
-| duration    | number                    | 是   | 否   | 音频时长。                                                   |
+| currentTime | number                    | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
+| duration    | number                    | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
 | state       | [AudioState](#audiostate) | 是   | 否   | 音频播放的状态。                                             |
 
 ### play<a name=audioplayer_play></a>
@@ -617,7 +617,7 @@ audioPlayer.seek(30000);    //seek到30000ms的位置
 
 on(type: 'error', callback: ErrorCallback): void
 
-开始订阅音频播放错误事件。
+开始订阅音频播放错误事件，当上报error错误事件后，用户需处理error事件，退出播放操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -667,11 +667,11 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br/>3、https网络播放: https://xx<br/>3、hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
-| currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置。                                         |
-| duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式。                               |
+| currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms）。                       |
+| duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，单位为毫秒（ms），返回-1表示直播模式。             |
 | state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | 是   | 否   | 视频播放的状态。                                             |
-| width<sup>8+</sup>       | number                             | 是   | 否   | 视频宽。                                                     |
-| height<sup>8+</sup>      | number                             | 是   | 否   | 视频高。                                                     |
+| width<sup>8+</sup>       | number                             | 是   | 否   | 视频宽，单位为像素（px）。                                   |
+| height<sup>8+</sup>      | number                             | 是   | 否   | 视频高，单位为像素（px）。                                   |
 
 ### setDisplaySurface<sup>8+</sup>
 
@@ -1486,7 +1486,7 @@ videoPlayer.on('videoSizeChanged', (width, height) => {
 
 on(type: 'error', callback: ErrorCallback): void
 
-开始监听视频播放错误事件。
+开始监听视频播放错误事件，当上报error错误事件后，用户需处理error事件，退出播放操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1814,7 +1814,7 @@ audioRecorder.prepare(audioRecorderConfig)                                      
 
 on(type: 'error', callback: ErrorCallback): void
 
-开始订阅音频录制错误事件。
+开始订阅音频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -2434,7 +2434,7 @@ videoRecorder.reset().then(() => {
 
 on(type: 'error', callback: ErrorCallback): void
 
-开始订阅视频录制错误事件。
+开始订阅视频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
