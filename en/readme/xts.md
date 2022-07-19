@@ -322,7 +322,8 @@ The HCPPTest framework is enhanced and adapted based on the open-source framewor
 
     Test suites are built along with the version build. The ACTS is built together with the debug version.
 
-    >![](public_sys-resources/icon-note.gif) **NOTE:** 
+    >![](public_sys-resources/icon-note.gif) **NOTE** 
+    >
     >The ACTS for the small system is independently built to an executable file \(.bin\) and archived in the **suites\\acts** directory of the build result.
 
 
