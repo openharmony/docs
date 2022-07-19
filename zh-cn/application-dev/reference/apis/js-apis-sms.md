@@ -418,9 +418,9 @@ splitMessage(content: string): Promise<Array<string\>>
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                                 |
-| ------- | ------ | ---- | ------------------------------------ |
-| content | string | 是   | 指示短消息内容，不能为{@code null}。 |
+| 参数名  | 类型   | 必填 | 说明                         |
+| ------- | ------ | ---- | ---------------------------- |
+| content | string | 是   | 指示短消息内容，不能为null。 |
 
 **返回值：**
 
@@ -817,7 +817,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string                                                       | 是   | 消息                                      |
-| force7bit | boolean                                                      | 是   | 强转7位                                   |
+| force7bit | boolean                                                      | 是   | 是否使用7bit编码                          |
 | callback  | AsyncCallback&lt;[SmsSegmentsInfo](#&lt;smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
 
 **示例：**
@@ -846,7 +846,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 | --------- | ------- | ---- | ----------------------------------------- |
 | slotId    | number  | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string  | 是   | 消息                                      |
-| force7bit | boolean | 是   | 强转7位                                   |
+| force7bit | boolean | 是   | 是否使用7bit编码                          |
 
 **返回值：**
 
