@@ -1285,7 +1285,7 @@ async function demo() {
 
 ### triggerCombineKeys<sup>9+</sup>
 
-triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
+triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 UiDriver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，UiDriver对象找到组合键并点击ctrl+c。
 
