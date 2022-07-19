@@ -16,6 +16,7 @@ import fileio from '@ohos.fileio';
 ## Guidelines
 
 Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the application sandbox as follows:
+
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
  let context = featureAbility.getContext();
@@ -353,55 +354,8 @@ Synchronously closes a file.
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   fileio.closeSync(fd);
-  ```
-
-
-## fileio.close<sup>7+</sup>
-
-close(): Promise&lt;void&gt;
-
-Closes the stream. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.FileManagement.File.FileIO
-
-**Return value**
-
-  | Type                 | Description                          |
-  | ------------------- | ---------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
-
-**Example**
-
-  ```js
-  fileio.close().then(function(){
-      console.info("File stream closed");
-  }).catch(function(err){
-      console.info("Failed to close the file stream. Error:"+ err);
-  });
-  ```
-
-
-## fileio.close<sup>7+</sup>
-
-close(callback: AsyncCallback&lt;void&gt;): void
-
-Closes the stream. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.File.FileIO
-
-**Parameters**
-
-  | Name     | Type                       | Mandatory  | Description           |
-  | -------- | ------------------------- | ---- | ------------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the stream is closed asynchronously.|
-
-**Example**
-
-  ```js
-  fileio.close(function(err){
-      // Do something.
-  });
   ```
 
 
@@ -430,6 +384,8 @@ Copies a file. This API uses a promise to return the result.
 **Example**
 
   ```js
+  let src = path;
+  let dest = src + 'tgt';
   fileio.copyFile(src, dest).then(function(){
       console.info("File copied");
   }).catch(function(err){
@@ -458,6 +414,8 @@ Copies a file. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
+  let src = path;
+  let dest = src + 'tgt';
   fileio.copyFile(src, dest, function (err) {
       // Do something.
   });
@@ -483,6 +441,8 @@ Synchronously copies a file.
 **Example**
 
   ```js
+  let src = path;
+  let dest = src + 'tgt';
   fileio.copyFileSync(src, dest);
   ```
 
@@ -957,7 +917,7 @@ Writes data into a file. This API uses a promise to return the result.
   ```js
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
-       console.info("Data written to file and size is:"+ number);
+       console.info("Data written to the file. Size is:"+ number);
   }).catch(function(err){
       console.info("Failed to write data to the file. Error:"+ err);
   });
@@ -992,7 +952,7 @@ Writes data into a file. This API uses an asynchronous callback to return the re
   let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
       if (bytesWritten) {
-         console.info("Data written to file and size is:"+ bytesWritten);
+         console.info("Data written to the file. Size is:"+ bytesWritten);
       }
   });
   ```
@@ -1059,7 +1019,7 @@ Calculates the hash value of a file. This API uses a promise to return the resul
   ```js
   fileio.hash(path, "sha256").then(function(str){
       console.info("Calculated file hash:"+ str);
-  }).catch(function(error){
+  }).catch(function(err){
       console.info("Failed to calculate the file hash. Error:"+ err);
   });
   ```
@@ -1116,7 +1076,7 @@ Changes file permissions. This API uses a promise to return the result.
 **Example**
 
   ```js
-  fileio.chmod(path, mode).then(function() {
+  fileio.chmod(path, 0o700).then(function() {
       console.info("File permissions changed");
   }).catch(function(err){
       console.info("Failed to change file permissions. Error:"+ err);
@@ -1143,7 +1103,7 @@ Changes file permissions. This API uses an asynchronous callback to return the r
 **Example**
 
   ```js
-  fileio.chmod(path, mode, function (err) {
+  fileio.chmod(path, 0o700, function (err) {
       // Do something.
   });
   ```
@@ -1167,7 +1127,7 @@ Synchronously changes file permissions.
 **Example**
 
   ```js
-  fileio.chmodSync(path, mode);
+  fileio.chmodSync(path, 0o700);
   ```
 
 
@@ -1194,10 +1154,11 @@ Obtains file information based on the file descriptor. This API uses a promise t
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   fileio.fstat(fd).then(function(stat){
-      console.info("File information obtained:"+ JSON.stringify(stat));
+      console.info("Obtained file info:"+ JSON.stringify(stat));
   }).catch(function(err){
-      console.info("Failed to obtain file information. Error:"+ err);
+      console.info("Failed to obtain file info. Error:"+ err);
   });
   ```
 
@@ -1307,7 +1268,9 @@ Truncates a file based on the file descriptor. This API uses an asynchronous cal
 **Example**
 
   ```js
-  fileio.ftruncate(fd, len, function(err){
+  let fd = fileio.openSync(path);
+  let len = 5;
+  fileio.ftruncate(fd, 5, function(err){
       // Do something.
   });
   ```
@@ -1331,6 +1294,8 @@ Synchronously truncates a file based on the file descriptor.
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
+  let len = 5;
   fileio.ftruncateSync(fd, len);
   ```
 
@@ -1347,7 +1312,7 @@ Truncates a file based on the file path. This API uses a promise to return the r
 
 | Name| Type  | Mandatory| Description                            |
 | ------ | ------ | ---- | -------------------------------- |
-| path   | string | Yes  | Application sandbox path of the file to truncate.      |
+| path   | string | Yes  | Application sandbox path of the file to truncate.|
 | len    | number | No  | File length, in bytes, after truncation.|
 
 **Return value**
@@ -1359,6 +1324,7 @@ Truncates a file based on the file path. This API uses a promise to return the r
 **Example**
 
   ```js
+  let len = 5;
   fileio.truncate(path, len).then(function(){
       console.info("File truncated");
   }).catch(function(err){
@@ -1386,6 +1352,7 @@ Truncates a file based on the file path. This API uses an asynchronous callback 
 **Example**
 
   ```js
+  let len = 5;
   fileio.truncate(path, len, function(err){
       // Do something.
   });
@@ -1410,6 +1377,7 @@ Synchronously truncates a file based on the file path.
 **Example**
 
   ```js
+  let len = 5;
   fileio.truncateSync(path, len);
   ```
 
@@ -1443,9 +1411,9 @@ Reads the text content of a file. This API uses a promise to return the result.
 
   ```js
   fileio.readText(path).then(function(str) {
-      console.info("Read file text:"+ str);
+      console.info("Read text:"+ str);
   }).catch(function(err){
-      console.info("Failed to read text. Error:"+ err);
+      console.info("Failed to read the text. Error:"+ err);
   });
   ```
 
@@ -1467,13 +1435,13 @@ Reads the text content of a file. This API uses an asynchronous callback to retu
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | Yes  | Application sandbox path of the file to read.                                  |
-| options  | Object                      | No  | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- &nbsp;**encoding**: format of the string to be encoded. The default value is &nbsp;**utf-8**, which is the only value supported.|
+| options  | Object                      | Yes  | The options are as follows:<br>-&nbsp;**position** (number): position of the data to read in the file. By default, data is read from the current position.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>- &nbsp;**encoding**: format of the string to be encoded. The default value is &nbsp;**utf-8**, which is the only value supported.|
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the content read.                        |
 
 **Example**
 
   ```js
-  fileio.readText(path, function(err, str){
+  fileio.readText(path, { position: 1, encoding: 'UTF-8' }, function(err, str){
       // Do something.
   });
   ```
@@ -1537,7 +1505,7 @@ Obtains link information. This API uses a promise to return the result.
   fileio.lstat(path).then(function(stat){
       console.info("Got link info:"+ JSON.stringify(stat));
   }).catch(function(err){
-      console.info("Failed to obtain the link status. Error:"+ err);
+      console.info("Failed to obtain link info. Error:"+ err);
   });
   ```
 
@@ -1593,76 +1561,6 @@ Synchronously obtains the link information.
   ```
 
 
-## fileio.read<sup>7+</sup>
-
-read(buffer: ArrayBuffer, options?: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}): Promise&lt;ReadOut&gt;
-
-Reads data from a file. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.FileManagement.File.FileIO
-
-**Parameters**
-
-  | Name | Type       | Mandatory| Description                                                        |
-  | ------- | ----------- | ---- | ------------------------------------------------------------ |
-  | buffer  | ArrayBuffer | Yes  | Buffer used to store the file data read.                          |
-  | options | Object      | No  | The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>Constraints: offset + length <= Buffer size|
-
-**Return value**
-
-  | Type                                | Description    |
-  | ---------------------------------- | ------ |
-  | Promise&lt;[ReadOut](#readout)&gt; | Promise used to return the data read.|
-
-**Example**
-
-  ```js
-  fileio.read(new ArrayBuffer(4096)).then(function(readout){
-      console.info("Read file data");
-      console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-  }).catch(function(err){
-      console.info("Failed to read file data. Error:"+ err);
-  });
-  ```
-
-
-## fileio.read<sup>7+</sup>
-
-read(buffer: ArrayBuffer, options: {
-    position?: number;
-    offset?: number;
-    length?: number;
-}, callback: AsyncCallback&lt;ReadOut&gt;): void
-
-Reads data from a file. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.FileManagement.File.FileIO
-
-**Parameters**
-
-  | Name     | Type                                      | Mandatory  | Description                                      |
-  | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-  | buffer   | ArrayBuffer                              | Yes   | Buffer used to store the file data read.                       |
-  | options  | Object                                   | No   | The options are as follows:<br>-&nbsp;**offset** (number): position to store the data read in the buffer in reference to the start address of the buffer. The default value is **0**.<br>-&nbsp;**length** (number): length of the data to read. The default value is the buffer length minus the offset.<br>Constraints: offset + length <= Buffer size|
-  | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | Yes   | Callback invoked when the data is read asynchronously from the file.                         |
-
-**Example**
-
-  ```js
-  let buf = new ArrayBuffer(4096);
-  fileio.read(buf, function (err, readOut) {
-      if (readOut) {
-          console.info("Read file data");
-          console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
-      }
-  });
-  ```
-
-
 ## fileio.rename<sup>7+</sup>
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
@@ -1687,6 +1585,8 @@ Renames a file. This API uses a promise to return the result.
 **Example**
 
   ```js
+  let oldPath = path;
+  let newPath = oldPath + '123';
   fileio.rename(oldPath, newPath).then(function() {
       console.info("File renamed");
   }).catch(function(err){
@@ -1714,6 +1614,8 @@ Renames a file. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
+  let oldPath = path;
+  let newPath = oldPath + '123';
   fileio.rename(oldPath, newPath, function(err){
   });
   ```
@@ -1737,6 +1639,8 @@ Synchronously renames a file.
 **Example**
 
   ```js
+  let oldPath = path;
+  let newPath = oldPath + '123';
   fileio.renameSync(oldPath, newPath);
   ```
 
@@ -1764,6 +1668,7 @@ Flushes data of a file to disk. This API uses a promise to return the result.
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   fileio.fsync(fd).then(function(){
       console.info("Data flushed");
   }).catch(function(err){
@@ -1790,6 +1695,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   fileio.fsync(fd, function(err){
       // Do something.
   });
@@ -1813,6 +1719,7 @@ Flushes data of a file to disk in synchronous mode.
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   fileio.fsyncSync(fd);
   ```
 
@@ -1840,6 +1747,7 @@ Flushes data of a file to disk. This API uses a promise to return the result. **
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   fileio.fdatasync(fd).then(function(err) {
       console.info("Data flushed");
   }).catch(function(err){
@@ -1866,6 +1774,7 @@ Flushes data of a file to disk. This API uses an asynchronous callback to return
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   fileio.fdatasync (fd, function (err) {
       // Do something.
   });
@@ -1889,6 +1798,7 @@ Synchronizes data in a file in synchronous mode.
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   let stat = fileio.fdatasyncSync(fd);
   ```
 
@@ -1917,6 +1827,8 @@ Creates a symbolic link based on the file path. This API uses a promise to retur
 **Example**
 
   ```js
+  let target = path;
+  let srcPath = target + 'aaa';
   fileio.symlink(target, srcPath).then(function() {
       console.info("Symbolic link created");
   }).catch(function(err){
@@ -1944,6 +1856,8 @@ Creates a symbolic link based on the file path. This API uses an asynchronous ca
 **Example**
 
   ```js
+  let target = path;
+  let srcPath = target + 'aaa';
   fileio.symlink(target, srcPath, function (err) {
       // Do something.
   });
@@ -1968,6 +1882,8 @@ Synchronously creates a symbolic link based on a specified path.
 **Example**
 
   ```js
+  let target = path;
+  let srcPath = target + 'aaa';
   fileio.symlinkSync(target, srcPath);
   ```
 
@@ -2083,7 +1999,7 @@ Creates a temporary directory. This API uses a promise to return the result.
   fileio.mkdtemp(path + "XXXX").then(function(path){
       console.info("Temporary directory created:"+ path);
   }).catch(function(err){
-      console.info("Failed to create a temporary directory. Error:"+ err);
+      console.info("Failed to create the temporary directory. Error:"+ err);
   });
   ```
 
@@ -2163,6 +2079,8 @@ Changes file permissions based on the file descriptor. This API uses a promise t
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
+  let mode = 0o700;
   fileio.fchmod(fd, mode).then(function() {
       console.info("File permissions changed");
   }).catch(function(err){
@@ -2190,6 +2108,8 @@ Changes file permissions based on the file descriptor. This API uses an asynchro
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
+  let mode = 0o700;
   fileio.fchmod(fd, mode, function (err) {
       // Do something.
   });
@@ -2214,6 +2134,8 @@ Synchronously changes the file permissions based on the file descriptor.
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
+  let mode = 0o700;
    fileio.fchmodSync(fd, mode);
   ```
 
@@ -2416,6 +2338,7 @@ Changes the file owner based on the file descriptor. This API uses a promise to 
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   let stat = fileio.statSync(path);
   fileio.fchown(fd, stat.uid, stat.gid).then(function() {
       console.info("File owner changed");
@@ -2445,6 +2368,7 @@ Changes the file owner based on the file descriptor. This API uses an asynchrono
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   let stat = fileio.statSync(path);
   fileio.fchown(fd, stat.uid, stat.gid, function (err){
       // Do something.
@@ -2471,6 +2395,7 @@ Synchronously changes the file owner based on the file descriptor.
 **Example**
 
   ```js
+  let fd = fileio.openSync(path);
   let stat = fileio.statSync(path);
   fileio.fchownSync(fd, stat.uid, stat.gid);
   ```
@@ -2854,7 +2779,7 @@ Closes the stream. This API uses a promise to return the result.
   ```js
   let ss= fileio.createStreamSync(path, "r+");
   ss.close().then(function(){
-      console.info("Stream closed");
+      console.info("File stream closed");
   }).catch(function(err){
       console.info("Failed to close the file stream. Error:"+ err);
   });
@@ -3102,7 +3027,7 @@ Reads data from the stream. This API uses a promise to return the result.
 
   ```js
   let ss = fileio.createStreamSync(path, "r+");
-  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readout){
+  ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut){
       console.info("Read data successfully");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
@@ -3179,7 +3104,7 @@ Synchronously reads data from the stream.
 
 ## Dir
 
-Manages directories. Before calling a method of the **Dir** class, use the [opendir()](#fileioopendir) method synchronously or asynchronously to create a **Dir** instance.
+Manages directories. Before calling a method of the **Dir** class, use the **opendir()** method synchronously or asynchronously to create a **Dir** instance.
 
 
 ### read
@@ -3449,7 +3374,7 @@ Checks whether a directory entry is a socket.
 **Example**
 
   ```js
-  let dir = fileio.opendirSync(dpath);
+  let dir = fileio.opendirSync(path);
   let isSocket = dir.readSync().isSocket(); 
   ```
 
