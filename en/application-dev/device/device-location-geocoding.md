@@ -5,7 +5,7 @@
 
 Describing a location using coordinates is accurate, but neither intuitive nor user-friendly. With the geocoding and reverse geocoding capabilities, you will be able to convert geographic description into specific coordinates and vice versa.
 
-The geographic description of a location includes several attributes, for example, country, administrative region, street, house number, and address.
+The geographic description helps users understand a location easily by providing several key attributes, for example, country, administrative region, street, house number, and address.
 
 
 ## Available APIs
