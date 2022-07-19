@@ -1,10 +1,9 @@
 # TimePicker
 
+滚动选择时间的组件。
+
 >  **说明：**
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-选择时间的滑动选择器组件。
 
 
 ## 权限列表
@@ -31,22 +30,22 @@ TimePicker(options?: TimePickerOptions)
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 | 
+| 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| useMilitaryTime | boolean | false | 展示时间是否为24小时制，不支持动态修改。 | 
+| useMilitaryTime | boolean | false | 展示时间是否为24小时制，不支持动态修改。 |
 
 
 ## 事件
 
-| 名称 | 功能描述 | 
-| -------- | -------- | 
-| onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | 选择时间时触发该事件。 | 
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | 选择时间时触发该事件。 |
 
 ### TimePickerResult对象说明
-  | 名称 | 参数类型 | 描述 | 
-  | -------- | -------- | -------- |
-  | hour | number | 选中时间的时。 | 
-  | minute | number | 选中时间的分。 | 
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| hour | number | 选中时间的时。 |
+| minute | number | 选中时间的分。 |
 
 
 ## 示例

@@ -30,6 +30,7 @@
   - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
   - [@ohos.application.uriPermissionManager (uriPermissionManager)](js-apis-uripermissionmanager.md)
   - [@ohos.application.Want (Want)](js-apis-application-Want.md)
+  - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](js-apis-application-WindowExtensionAbility.md)
   - [@ohos.wantAgent (WantAgent模块)](js-apis-wantAgent.md)
   - ability/[dataAbilityHelper (DataAbilityHelper模块)](js-apis-dataAbilityHelper.md)
   - app/[context (Context模块)](js-apis-Context.md)
@@ -82,6 +83,7 @@
 
   - [@ohos.display (屏幕属性)](js-apis-display.md)
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
+  - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
   - [@ohos.window (窗口)](js-apis-window.md)
   - [webgl (WebGL)](js-apis-webgl.md)
@@ -125,7 +127,6 @@
   - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-ValuesBucket.md)
-  - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
 - 文件管理
 
@@ -199,6 +200,7 @@
   - [@ohos.power (系统电源管理)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
+  - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.update (升级)](js-apis-update.md)

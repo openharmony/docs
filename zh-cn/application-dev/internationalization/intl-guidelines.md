@@ -207,7 +207,7 @@
      另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md)。
    
    ```js
-   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"};
+   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
    ```
 
 2. 比较字符串。
@@ -254,7 +254,7 @@
      另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md)。
    
    ```js
-   var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"};
+   var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
 2. 计算数字单复数类别。

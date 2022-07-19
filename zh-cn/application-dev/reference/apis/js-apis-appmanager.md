@@ -1,6 +1,6 @@
 # appManager
 
-appManager模块提供服务功能的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
+appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
 > **说明：**
 > 
@@ -518,7 +518,7 @@ app.killProcessesByBundleName(bundleName)
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string, callback: AsyncCallback<void>);
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 通过包名清除应用数据。
 
@@ -552,7 +552,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback<void>);
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string): Promise<void>;
+clearUpApplicationData(bundleName: string): Promise\<void>;
 
 通过包名清除应用数据。
 

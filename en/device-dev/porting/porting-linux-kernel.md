@@ -131,14 +131,14 @@ For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openh
 
     Run the shell script to apply HDF patches.
 
-    1.  Set the three variables in the **patch\_hdf.sh** script.
+    1.  Set the four variables in the **patch\_hdf.sh** script.
     2.  Obtain the **patch\_hdf.sh** script.
-    3.  Run the **patch\_hdf.sh** script to pass the three variables in sequence.
+    3.  Run the **patch\_hdf.sh** script to pass the four variables in sequence.
 
     Run the following command:
 
     ```
-    ./patch_hdf.sh [Project root directory path] [Kernel directory path] [HDF patch file]
+    ./patch_hdf.sh [Project root directory path] [Kernel directory path] [Kernel patch path] [Device name]
     ```
 
     The following uses Raspberry Pi 3b as an example:
@@ -148,7 +148,8 @@ For details about how to use the logs, see [Hilog\_lite](https://gitee.com/openh
     PROJ_ROOT/drivers/adapter/khdf/linux/patch_hdf.sh \
     PROJ_ROOT # Specify the path of the project root directory.\
     PROJ_ROOT/out/KERNEL_OBJ/kernel/src_tmp/linux-rpi3b # Specify the kernel directory for applying the patch.\
-    PROJ_ROOT/kernel/linux/patches/linux-4.19/hi3516dv300_patch/hdf.patch # HDF patch file.
+    PROJ_ROOT/kernel/linux/patches/linux-4.19 # Kernel patch patch.\
+    hi3516dv300 # Device name.
     ```
 
 2.  Configure the **config** file.

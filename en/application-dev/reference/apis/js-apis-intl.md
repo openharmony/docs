@@ -1,10 +1,9 @@
-# Internationalization – intl
+# Internationalization – Intl
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This module contains standard i18n APIs, which are defined in ECMA 402.
-
+> - This module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N interfaces defined in ECMA 402. For details about the enhanced I18N capabilities, see [I18N](js-apis-i18n.md).
 
 ## Modules to Import
 

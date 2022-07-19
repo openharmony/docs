@@ -1,5 +1,7 @@
 # 插值计算
 
+设置动画插值曲线，用于构造阶梯曲线对象、构造三阶贝塞尔曲线对象和构造弹簧曲线对象。
+
 > **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
@@ -48,10 +50,10 @@ stepsCurve(count: number, end: boolean)：ICurve
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                                         |
-  | ------ | ------- | ----| ------------------------------------------------------------ |
-  | count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
-  | end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false:在起点发生阶跃变化。 |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ----| ------------------------------------------------------------ |
+| count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
+| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false:在起点发生阶跃变化。 |
 
 **返回值：**
 
@@ -77,12 +79,12 @@ cubicBezierCurve(x1: number, y1: number, x2: number, y2: number)：ICurve
 
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明             |
-  | ---- | ------ | ---- | -------------- |
-  | x1   | number | 是    | 确定贝塞尔曲线第一点横坐标。 |
-  | y1   | number | 是    | 确定贝塞尔曲线第一点纵坐标。 |
-  | x2   | number | 是    | 确定贝塞尔曲线第二点横坐标。 |
-  | y2   | number | 是    | 确定贝塞尔曲线第二点纵坐标。 |
+| 参数名  | 类型     | 必填   | 说明             |
+| ---- | ------ | ---- | -------------- |
+| x1   | number | 是    | 确定贝塞尔曲线第一点横坐标。 |
+| y1   | number | 是    | 确定贝塞尔曲线第一点纵坐标。 |
+| x2   | number | 是    | 确定贝塞尔曲线第二点横坐标。 |
+| y2   | number | 是    | 确定贝塞尔曲线第二点纵坐标。 |
 
 **返回值：**
 
@@ -185,10 +187,10 @@ steps(count: number, end: boolean): string
 
 **参数：**
 
-  | 参数名 | 类型    | 必填 | 说明                                                         |
-  | ------ | ------- | ----| ------------------------------------------------------------ |
-  | count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
-  | end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false:在起点发生阶跃变化。 |
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ----| ------------------------------------------------------------ |
+| count  | number  | 是   | 阶梯的数量，需要为正整数。                                   |
+| end    | boolean | 是   | 在每个间隔的起点或是终点发生阶跃变化。<br>-true：在终点发生阶跃变化。<br>-false:在起点发生阶跃变化。 |
 
 
 ## Curves.cubicBezier<sup>(deprecated)</sup>
@@ -200,12 +202,12 @@ cubicBezier(x1: number, y1: number, x2: number, y2: number): string
 
 
 **参数：**
-  | 参数名  | 类型     | 必填   | 说明             |
-  | ---- | ------ | ---- | -------------- |
-  | x1   | number | 是    | 确定贝塞尔曲线第一点横坐标。 |
-  | y1   | number | 是    | 确定贝塞尔曲线第一点纵坐标。 |
-  | x2   | number | 是    | 确定贝塞尔曲线第二点横坐标。 |
-  | y2   | number | 是    | 确定贝塞尔曲线第二点纵坐标。 |
+| 参数名  | 类型     | 必填   | 说明             |
+| ---- | ------ | ---- | -------------- |
+| x1   | number | 是    | 确定贝塞尔曲线第一点横坐标。 |
+| y1   | number | 是    | 确定贝塞尔曲线第一点纵坐标。 |
+| x2   | number | 是    | 确定贝塞尔曲线第二点横坐标。 |
+| y2   | number | 是    | 确定贝塞尔曲线第二点纵坐标。 |
 
 
 ## Curves.spring<sup>(deprecated)</sup>
@@ -227,21 +229,21 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 
 ## Curve枚举说明
 
-  | 名称                  | 描述                                       |
-  | ------------------- | ---------------------------------------- |
-  | Linear              | 表示动画从头到尾的速度都是相同的。                        |
-  | Ease                | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25,&nbsp;0.1,&nbsp;0.25,&nbsp;1.0)。 |
-  | EaseIn              | 表示动画以低速开始，CubicBezier(0.42,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 |
-  | EaseOut             | 表示动画以低速结束，CubicBezier(0.0,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 |
-  | EaseInOut           | 表示动画以低速开始和结束，CubicBezier(0.42,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 |
-  | FastOutSlowIn       | 标准曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
-  | LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
-  | FastOutLinearIn     | 加速曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 |
-  | ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0)。 |
-  | Sharp               | 锐利曲线，cubic-bezier(0.33,&nbsp;0.0,&nbsp;0.67,&nbsp;1.0)。 |
-  | Rhythm              | 节奏曲线，cubic-bezier(0.7,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
-  | Smooth              | 平滑曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.4,&nbsp;1.0)。 |
-  | Friction            | 阻尼曲线，CubicBezier(0.2,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
+| 名称                  | 描述                                       |
+| ------------------- | ---------------------------------------- |
+| Linear              | 表示动画从头到尾的速度都是相同的。                        |
+| Ease                | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25,&nbsp;0.1,&nbsp;0.25,&nbsp;1.0)。 |
+| EaseIn              | 表示动画以低速开始，CubicBezier(0.42,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 |
+| EaseOut             | 表示动画以低速结束，CubicBezier(0.0,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 |
+| EaseInOut           | 表示动画以低速开始和结束，CubicBezier(0.42,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 |
+| FastOutSlowIn       | 标准曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
+| LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
+| FastOutLinearIn     | 加速曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 |
+| ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0)。 |
+| Sharp               | 锐利曲线，cubic-bezier(0.33,&nbsp;0.0,&nbsp;0.67,&nbsp;1.0)。 |
+| Rhythm              | 节奏曲线，cubic-bezier(0.7,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
+| Smooth              | 平滑曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.4,&nbsp;1.0)。 |
+| Friction            | 阻尼曲线，CubicBezier(0.2,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
 
 
 ## 整体示例

@@ -12,23 +12,23 @@
 
 1. 配置宏LOSCFG_ENABLE_MAGICKEY。
 
-魔法键依赖于宏LOSCFG_ENABLE_MAGICKEY，使用时通过menuconfig在配置项中开启“Enable  MAGIC KEY”：
+   魔法键依赖于宏LOSCFG_ENABLE_MAGICKEY，使用时通过menuconfig在配置项中开启“Enable  MAGIC KEY”：
 
-  Debug ---&gt; Enable MAGIC KEY；若关闭该选项，则魔法键失效。
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 1. 可以在menuconfig中，将光标移动到LOSCFG_ENABLE_MAGICKEY上，输入“？”，查看帮助信息。
+   Debug ---&gt; Enable MAGIC KEY；若关闭该选项，则魔法键失效。
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > 可以在menuconfig中，将光标移动到LOSCFG_ENABLE_MAGICKEY上，输入“？”，查看帮助信息。
 
 2. 输入“ctrl + r”键，打开魔法键检测功能。
 
-在连接UART或者USB转虚拟串口的情况下，输入“ctrl + r” 键，打开魔法键检测功能，输出 “Magic key on”；再输入一次后，则关闭魔法键检测功能，输出“Magic key off”。魔法键功能如下：
+   在连接UART或者USB转虚拟串口的情况下，输入“ctrl + r” 键，打开魔法键检测功能，输出 “Magic key on”；再输入一次后，则关闭魔法键检测功能，输出“Magic key off”。魔法键功能如下：
 
-- ctrl + z：帮助键，输出相关魔法键简单介绍；
+   - ctrl + z：帮助键，输出相关魔法键简单介绍；
 
-- ctrl + t：输出任务相关信息；
+   - ctrl + t：输出任务相关信息；
 
-- ctrl + p：系统主动进入panic，输出panic相关信息后，系统会挂住；
+   - ctrl + p：系统主动进入panic，输出panic相关信息后，系统会挂住；
 
-- ctrl + e：系统进行简单完整性内存池检查，检查出错会输出相关错误信息，检查正常会输出“system memcheck  over, all passed!”。
+   - ctrl + e：系统进行简单完整性内存池检查，检查出错会输出相关错误信息，检查正常会输出“system memcheck  over, all passed!”。
 
-> ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
-> 魔法键检测功能打开情况下，如果需要通过UART或者USB转虚拟串口输入特殊字符需避免与魔法键值重复，否则魔法键会被误触发，而原有设计功能可能出现错误。
+   > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
+   > 魔法键检测功能打开情况下，如果需要通过UART或者USB转虚拟串口输入特殊字符需避免与魔法键值重复，否则魔法键会被误触发，而原有设计功能可能出现错误。

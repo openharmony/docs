@@ -161,20 +161,20 @@
 
       - 准备工作
 
-      1. init从cmdline中读取required fstab，若获取失败，则尝试读fstab.required文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
-      2. 创建接收内核上报uevent事件广播消息的socket，从/proc/cmdline里读取default_boot_device。
-      3. 带着fstab信息和socket句柄遍历/sys/devices目录，准备开始触发内核上报uevent事件。
+        1. init从cmdline中读取required fstab，若获取失败，则尝试读fstab.required文件，从中获取必须挂载的块设备的PARTNAME，例如system和vendor.
+        2. 创建接收内核上报uevent事件广播消息的socket，从/proc/cmdline里读取default_boot_device。
+        3. 带着fstab信息和socket句柄遍历/sys/devices目录，准备开始触发内核上报uevent事件。
 
       - 触发事件
 
-      1. 通过ueventd触发内核上报uevent事件
-      2. 匹配uevent事件中的partitionName与required fstab中的device信息。
-      3. 匹配成功后将会进一步处理，格式化设备节点路径，准备开始创建设备节点。
+        1. 通过ueventd触发内核上报uevent事件
+        2. 匹配uevent事件中的partitionName与required fstab中的device信息。
+        3. 匹配成功后将会进一步处理，格式化设备节点路径，准备开始创建设备节点。
 
       - 创建节点
 
-      1. 为了便于用户态下对设备节点的访问以及提高设备节点的可读性，会对即将创建的required块设备节点同时创建软链接，这就需要先格式化软链接的路径。
-      2. 以上工作都完成后，将执行最后的创建设备节点的步骤，根据传入的uevent中的主次设备号、前置步骤中构建的设备节点路径和软链接路径等创建设备节点，并创建相应软链接。
+        1. 为了便于用户态下对设备节点的访问以及提高设备节点的可读性，会对即将创建的required块设备节点同时创建软链接，这就需要先格式化软链接的路径。
+        2. 以上工作都完成后，将执行最后的创建设备节点的步骤，根据传入的uevent中的主次设备号、前置步骤中构建的设备节点路径和软链接路径等创建设备节点，并创建相应软链接。
 
       至此，块设备节点创建完毕。
 

@@ -53,7 +53,7 @@
 | name                  | string                  | 是   | 是   | 需要使用的权限名称   |
 | reason                | string                  | 是   | 是   | 描述申请权限的原因   |
 | reasonId<sup>9+</sup> | number                  | 是   | 是   | 描述申请权限的原因ID |
-| usedScene             | [UsedScene](#UsedScene) | 是   | 是   | 权限使用的场景和时机 |
+| usedScene             | [UsedScene](#usedscene) | 是   | 是   | 权限使用的场景和时机 |
 
 
 

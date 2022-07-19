@@ -523,7 +523,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -565,7 +565,7 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -605,7 +605,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -650,7 +650,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -685,7 +685,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -744,7 +744,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
 | width                     | number                   | 是   | 否   | 图片宽度（单位：像素）                                 |
 | height                    | number                   | 是   | 否   | 图片高度（单位：像素）                                 |
 | orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
-| duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：秒）                                   |
+| duration<sup>8+</sup>     | number                   | 是   | 否   | 持续时间（单位：毫秒）                                   |
 | albumId                   | number                   | 是   | 否   | 文件所归属的相册编号                                   |
 | albumUri<sup>8+</sup>     | string                   | 是   | 否   | 文件所归属相册uri                                      |
 | albumName                 | string                   | 是   | 否   | 文件所归属相册名称                                     |
@@ -2137,12 +2137,12 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称  | 默认值 | 说明 |
-| ----- | ------ | ---- |
-| FILE  | 1      | 文件 |
-| IMAGE | 3      | 图片 |
-| VIDEO | 4      | 视频 |
-| AUDIO | 5      | 音频 |
+| 名称  |  说明 |
+| ----- |  ---- |
+| FILE  |  文件 |
+| IMAGE |  图片 |
+| VIDEO |  视频 |
+| AUDIO |  音频 |
 
 ## FileKey<sup>8+</sup>
 
@@ -2178,14 +2178,14 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称          | 默认值 | 说明               |
-| ------------- | ------ | ------------------ |
-| DIR_CAMERA    | 0      | 表示Camera文件路径 |
-| DIR_VIDEO     | 1      | 表示视频路径       |
-| DIR_IMAGE     | 2      | 表示图片路径       |
-| DIR_AUDIO     | 3      | 表示音频路径       |
-| DIR_DOCUMENTS | 4      | 表示文档路径       |
-| DIR_DOWNLOAD  | 5      | 表示下载路径       |
+| 名称          |  说明               |
+| ------------- |  ------------------ |
+| DIR_CAMERA    |  表示Camera文件路径 |
+| DIR_VIDEO     |  表示视频路径       |
+| DIR_IMAGE     |  表示图片路径       |
+| DIR_AUDIO     |  表示音频路径       |
+| DIR_DOCUMENTS |  表示文档路径       |
+| DIR_DOWNLOAD  |  表示下载路径       |
 
 ## DeviceType<sup>8+</sup>
 
@@ -2193,15 +2193,15 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称         | 默认值 | 说明       |
-| ------------ | ------ | ---------- |
-| TYPE_UNKNOWN | 0      | 未识别设备 |
-| TYPE_LAPTOP  | 1      | 笔记本电脑 |
-| TYPE_PHONE   | 2      | 手机       |
-| TYPE_TABLET  | 3      | 平板电脑   |
-| TYPE_WATCH   | 4      | 智能手表   |
-| TYPE_CAR     | 5      | 车载设备   |
-| TYPE_TV      | 6      | 电视设备   |
+| 名称         |  说明       |
+| ------------ |  ---------- |
+| TYPE_UNKNOWN |  未识别设备 |
+| TYPE_LAPTOP  |  笔记本电脑 |
+| TYPE_PHONE   |  手机       |
+| TYPE_TABLET  |  平板电脑   |
+| TYPE_WATCH   |  智能手表   |
+| TYPE_CAR     |  车载设备   |
+| TYPE_TV      |  电视设备   |
 
 ## MediaFetchOptions<sup>7+</sup>
 

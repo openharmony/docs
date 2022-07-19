@@ -137,7 +137,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 
 分别对应Trace启动(LOS_TraceStart)、停止(LOS_TraceStop)、清除记录(LOS_TraceReset)、dump记录(LOS_TraceRecordDump)、设置事件过滤掩码(LOS_TraceEventMaskSet)
 
-具体的使用方法参见[用户态编程实例](https://gitee.com/openharmony/docs/blob/70744e1e0e34d66e11108a00c8db494eea49dd02/zh-cn/device-dev/kernel/kernel-small-debug-trace.md#section4.2.2)。
+具体的使用方法参见[用户态编程实例](kernel-small-debug-trace.md#用户态)。
 
 
 ## 开发指导
@@ -186,7 +186,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 - LOS_TraceRecordDump —— trace_dump
 
 
-## 内核态编程实例
+### 内核态编程实例
 
 本实例实现如下功能：
 
@@ -201,7 +201,7 @@ LiteOS-A内核的Trace模块提供下面几种功能，接口详细信息可以�
 5. 格式化输出trace数据。
 
 
-## 内核态示例代码
+### 内核态示例代码
 
 实例代码如下：
 
@@ -253,7 +253,7 @@ LOS_MODULE_INIT(Example_Trace_test, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ```
 
 
-## 结果验证
+### 结果验证
 
 输出结果如下：
 

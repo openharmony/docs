@@ -33,6 +33,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData, cal
 
   ```js
   import formBindingData from '@ohos.application.formBindingData'
+  import FormExtension from '@ohos.application.FormExtension'
   export default class MyFormExtension extends FormExtension {
       onUpdate(formId) {
           console.log('FormExtension onUpdate, formId:' + formId);
@@ -71,6 +72,7 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 
   ```js
   import formBindingData from '@ohos.application.formBindingData'
+  import FormExtension from '@ohos.application.FormExtension'
   export default class MyFormExtension extends FormExtension {
       onUpdate(formId) {
           console.log('FormExtension onUpdate, formId:' + formId);

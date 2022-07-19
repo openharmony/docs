@@ -1,6 +1,6 @@
 #  	App Account Management
 
-Provides app account management, including adding, deleting, querying, modifying, and authorizing app accounts, writing data to disks, and synchronizing data.
+The **appAccount** module provides APIs for app account management. You can use the APIs to add, delete, query, modify, and authorize app accounts, write data to disks, and synchronize data.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -64,7 +64,7 @@ Adds an app account to the **AppAccountManager** service. This API uses an async
 
 addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
 
-Adds the account name and additional information (information that can be converted into the string type, such as token) of this app to the **AppAccountManager** service. This API uses an asynchronous callback to return the result.
+Adds an app account name and additional information (information that can be converted into the string type, such as token) to the **AppAccountManager** service. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -91,7 +91,7 @@ Adds the account name and additional information (information that can be conver
 
 addAccount(name: string, extraInfo: string): Promise&lt;void&gt;
 
-Adds the account name and additional information (information that can be converted into the string type, such as token) of this app to the **AppAccountManager** service. This API uses a promise to return the result.
+Adds an app account name and additional information (information that can be converted into the string type, such as token) to the **AppAccountManager** service. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -978,7 +978,7 @@ Unsubscribes from the account change events. This API uses an asynchronous callb
 
 authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
-Authenticates an app account to obtain the Open Authorization (OAuth) token. This API uses an asynchronous callback to return the result.
+Authenticates an app account to obtain an Open Authorization (OAuth) token. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -986,7 +986,7 @@ Authenticates an app account to obtain the Open Authorization (OAuth) token. Thi
 
 | Name     | Type                   | Mandatory  | Description             |
 | -------- | --------------------- | ---- | --------------- |
-| name     | string                | Yes   | Name of the app account to authenticate.    |
+| name     | string                | Yes   | Name of the target app account.    |
 | owner    | string                | Yes   | Owner of the app account. The value is the bundle name of the app. |
 | authType | string                | Yes   | Authentication type.          |
 | options  | {[key: string]: any}  | Yes   | Options for the authentication.      |
@@ -1578,7 +1578,7 @@ Checks whether an app account is authorized to access an app. This API uses an a
 | Name     | Type                        | Mandatory | Description            |
 | ---------- | ---------------------------- | ----- | ---------------- |
 | name       | string                       | Yes   | Name of the target app account.  |
-| bundleName | string                       | Yes   | Bundle name of the app to check. |
+| bundleName | string                       | Yes   | Bundle name of the app to access.|
 | callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result.  |
 
 **Example**
@@ -1604,7 +1604,7 @@ Checks whether an app account is authorized to access an app. This API uses a pr
 | Name     | Type  | Mandatory  | Description            |
 | ---------- | ------ | ----- | ---------------- |
 | name       | string | Yes   | Name of the target app account.  |
-| bundleName | string | Yes   | Bundle name of the app to check. |
+| bundleName | string | Yes   | Bundle name of the app to access.|
 
 **Parameters**
 
@@ -2002,7 +2002,7 @@ Represents the options for setting authenticator properties.
 
 | Name    | Type                   | Mandatory | Description          |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key:string]: Object} | No   | Authenticator properties to set.     |
+| properties | {[key:string]: Object} | No   | Authenticator properties.     |
 | parameters | {[key:string]: Object} | No   | Customized parameters.|
 
 ## Constants<sup>8+</sup>
@@ -2037,7 +2037,7 @@ Enumerates the result codes.
 | ----------------------------------- | ----- | ------------ |
 | SUCCESS                             | 0     | The operation is successful.     |
 | ERROR_ACCOUNT_NOT_EXIST             | 10001 | The app account does not exist.  |
-| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | The app account service is abnormal. |
+| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | The **AppAccountManager** service is abnormal. |
 | ERROR_INVALID_PASSWORD              | 10003 | The password is invalid.     |
 | ERROR_INVALID_REQUEST               | 10004 | The request is invalid.     |
 | ERROR_INVALID_RESPONSE              | 10005 | The response is invalid.     |
@@ -2063,7 +2063,7 @@ Provides OAuth authenticator callbacks.
 
 onResult: (code: number, result: {[key: string]: any}) =&gt; void
 
-Returns the result of an authentication request.
+Called to return the result of an authentication request.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2093,7 +2093,7 @@ Returns the result of an authentication request.
 
 onRequestRedirected: (request: Want) =&gt; void
 
-Redirects a request.
+Called to redirect a request.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2126,7 +2126,7 @@ Redirects a request.
 
 onRequestContinued: () =&gt; void
 
-Continues to process the request.
+Called to continue to process the request.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2183,7 +2183,7 @@ Authenticates an app account to obtain the OAuth access token. This API uses an 
 
 verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthenticatorCallback): void;
 
-Verifies the app account credential. This API uses an asynchronous callback to return the result.
+Verifies the credential of an app account. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2191,7 +2191,7 @@ Verifies the app account credential. This API uses an asynchronous callback to r
 | Name             | Type                   | Mandatory  | Description             |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | Yes   | Name of the target app account.             |
-| options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | Yes   | Optional for credential verification.           |
+| options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | Yes   | Options for credential verification.           |
 | callback  | [AuthenticatorCallback](#authenticatorcallback8)    | Yes   | Authenticator callback invoked to return the verification result.|
 
 ### setProperties<sup>9+</sup>

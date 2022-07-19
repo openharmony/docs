@@ -43,7 +43,7 @@ The **vendor** directory is in the internal structure of **vendor/{Product solut
 
 ```
 vendor                       # Product solution vendor
-└── example                   # Name of the product solution vendor
+└── example                  # Name of the product solution vendor
     └── wifiiot              # Product name
           ├── hals           # OS adaptation of the product solution vendor
           ├── BUILD.gn       # Product building script

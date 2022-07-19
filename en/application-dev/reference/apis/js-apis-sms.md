@@ -6,7 +6,7 @@
 
 ## Modules to Import
 
-```
+```js
 import sms from '@ohos.telephony.sms';
 ```
 
@@ -22,13 +22,13 @@ Creates an SMS message instance based on the protocol data unit (PDU) and the sp
 
 | Name       | Type                                              | Mandatory| Description                                                        |
 | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pdu           | Array&lt;number&gt;                                | Yes  | PDU, which is obtained from the received SMS message.                          |
+| pdu           | Array&lt;number&gt;                                | Yes  | Protocol data unit, which is obtained from the received SMS message.                          |
 | specification | string                                             | Yes  | SMS protocol type. <br>- **3gpp**: GSM/UMTS/LTE SMS<br>- **3gpp2**: CDMA SMS|
 | callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
-```
+```js
 const specification = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
 const pdu = [0x08, 0x91];
@@ -50,10 +50,10 @@ Creates an SMS message instance based on the PDU and the specified SMS protocol.
 
 | Name       | Type               | Mandatory| Description                                                        |
 | ------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| pdu           | Array&lt;number&gt; | Yes  | PDU, which is obtained from the received SMS message.                          |
+| pdu           | Array&lt;number&gt; | Yes  | Protocol data unit, which is obtained from the received SMS message.                          |
 | specification | string              | Yes  | SMS protocol type. <br>- **3gpp**: GSM/UMTS/LTE SMS<br>- **3gpp2**: CDMA SMS|
 
-**Return Value**
+**Return value**
 
 | Type                                        | Description                             |
 | -------------------------------------------- | --------------------------------- |
@@ -61,7 +61,7 @@ Creates an SMS message instance based on the PDU and the specified SMS protocol.
 
 **Example**
 
-```
+```js
 const specification = '3gpp';
 // Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
 const pdu = [0x08, 0x91];
@@ -87,11 +87,11 @@ Sends an SMS message.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message. For details, see [SendMessageOptions](#sendmessageoptions).|
+| options | [SendMessageOptions](#sendmessageoptions) | Yes  | Options (including the callback) for sending an SMS message.|
 
 **Example**
 
-```
+```js
 let sendCallback = function (err, data) {    
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
@@ -120,11 +120,11 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 | Name  | Type                       | Mandatory| Description                                    |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Example**
 
-```
+```js
 sms.getDefaultSmsSlotId((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -139,7 +139,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-**Return Value**
+**Return value**
 
 | Type           | Description                                                        |
 | --------------- | ------------------------------------------------------------ |
@@ -147,7 +147,7 @@ Obtains the default slot of the SIM card used to send SMS messages. This API use
 
 **Example**
 
-```
+```js
 let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -156,6 +156,68 @@ promise.then(data => {
 });
 ```
 
+## sms.setDefaultSmsSlotId<sup>7+</sup>
+
+setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
+
+Sets the default slot of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
+
+**Example**
+
+```js
+sms.setDefaultSmsSlotId(0,(err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sms.setDefaultSmsSlotId<sup>7+</sup>
+
+setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
+
+Sets the default slot of the SIM card used to send SMS messages. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
+
+**Return value**
+
+| Type          | Description                           |
+| -------------- | ------------------------------- |
+| Promise\<void\> | Promise that returns no value.       |
+
+**Example**
+
+```js
+let promise = sms.setDefaultSmsSlotId(0);
+promise.then(data => {
+    console.log(`setDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`setDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## sms.setSmscAddr<sup>7+</sup>
 
@@ -163,23 +225,23 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 Sets the short message service center (SMSC) address. This API uses an asynchronous callback to return the result.
 
+This is a system API.
+
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
-
-This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
 | Name  | Type                     | Mandatory| Description                                     |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                    | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
-| smscAddr | string                    | Yes  | SMSC address.                        |
+| smscAddr | string                    | Yes  | SMSC address.                       |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                               |
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 sms.setSmscAddr(slotId, smscAddr, (err,data) => {
@@ -190,24 +252,24 @@ sms.setSmscAddr(slotId, smscAddr, (err,data) => {
 
 ## sms.setSmscAddr<sup>7+</sup>
 
-setSmscAddr\(slotId: number, smscAddr: string\): Promise<void\>
+setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 Sets the SMSC address. This API uses a promise to return the result.
+
+This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
-
-This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
 | Name  | Type  | Mandatory| Description                                     |
 | -------- | ------ | ---- | ----------------------------------------- |
 | slotId   | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
-| smscAddr | string | Yes  | SMSC address.                        |
+| smscAddr | string | Yes  | SMSC address.                       |
 
-**Return Value**
+**Return value**
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
@@ -215,7 +277,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let smscAddr = '+861xxxxxxxxxx';
 let promise = sms.setSmscAddr(slotId, smscAddr);
@@ -233,11 +295,11 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 Obtains the SMSC address. This API uses an asynchronous callback to return the result.
 
+This is a system API.
+
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
-
-This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -248,7 +310,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 sms.getSmscAddr(slotId, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -262,11 +324,11 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 Obtains the SMSC address. This API uses a promise to return the result.
 
+This is a system API.
+
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
 
 **System capability**: SystemCapability.Telephony.SmsMms
-
-This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -274,7 +336,7 @@ This is a system API and cannot be called by third-party applications.
 | ------ | ------ | ---- | ----------------------------------------- |
 | slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                                         |
 | --------------------- | --------------------------------------------- |
@@ -282,7 +344,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
 
-```
+```js
 let slotId = 0;
 let promise = sms.getSmscAddr(slotId);
 promise.then(data => {
@@ -300,13 +362,13 @@ Checks whether the current device can send and receive SMS messages. This API wo
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
-**Return Value**
+**Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | boolean | - **true**: The device can send and receive SMS messages.<br>- **false**: The device cannot send or receive SMS messages.|
 
-```
+```js
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 ```
@@ -319,13 +381,13 @@ Defines an SMS message instance.
 
 | Name                  | Type                                   | Description                                                        |
 | ------------------------ | --------------------------------------- | ------------------------------------------------------------ |
-| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>**TP-Reply-Path**: the path in which the device can reply to the SMS message through the originating SMSC.|
+| hasReplyPath             | boolean                                 | Whether the received SMS contains **TP-Reply-Path**. The default value is **false**.<br>TP-Reply-Path: The device returns a response based on the SMSC that sends the SMS message.|
 | isReplaceMessage         | boolean                                 | Whether the received SMS message is a **replace short message**. The default value is **false**.<br>For details, see section 9.2.3.9 in **3GPP TS 23.040**.|
 | isSmsStatusReportMessage | boolean                                 | Whether the received SMS message is an SMS delivery status report. The default value is **false**.<br>**SMS-Status-Report**: a message sent from the SMSC to the mobile station to show the SMS message delivery status.|
-| messageClass             | [ShortMessageClass](#shortmessageclass) | SMS message type.                                                  |
+| messageClass             | [ShortMessageClass](#shortmessageclass) | Enumerates SMS message types.                                                  |
 | pdu                      | Array&lt;number&gt;                     | PDU in the SMS message.                           |
-| protocolId               | number                                  | ID of the protocol used for sending SMS messages.                                  |
-| scAddress                | string                                  | Address of the short message service center (SMSC).                                |
+| protocolId               | number                                  | Protocol identifier used for delivering the SMS message.                                  |
+| scAddress                | string                                  | SMSC address.                                |
 | scTimestamp              | number                                  | SMSC timestamp.                                                |
 | status                   | number                                  | SMS message status sent by the SMSC in the **SMS-STATUS-REPORT** message.|
 | visibleMessageBody       | string                                  | SMS message body.                                                  |
@@ -334,7 +396,7 @@ Defines an SMS message instance.
 
 ## ShortMessageClass
 
-SMS message type.
+Enumerates SMS message types.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -374,12 +436,12 @@ Provides the callback for the SMS message sending result. It consists of three p
 | ---------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | isLastPart | boolean                         | No  | Whether this SMS message is the last part of a long SMS message. The value **true** indicates that this SMS message is the last part of a long SMS message, and value **false** indicates the opposite. The default value is **false**.|
 | result     | [SendSmsResult](#sendsmsresult) | Yes  | SMS message sending result.                                              |
-| url        | string                          | Yes  | URI for storing sent SMS messages.                                         |
+| url        | string                          | Yes  | URI for storing the sent SMS message.                                         |
 
 
 ## IDeliveryShortMessageCallback
 
-Provides the callback for the SMS message sending result. Return the SMS delivery report.
+Provides the callback for  the SMS message delivery report.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -396,7 +458,7 @@ Enumerates SMS message sending results.
 
 | Name                                | Value  | Description                                                  |
 | ------------------------------------ | ---- | ------------------------------------------------------ |
-| SEND_SMS_SUCCESS                     | 0    | SMS message sent successfully.                                        |
-| SEND_SMS_FAILURE_UNKNOWN             | 1    | Failed to send the SMS message due to unknown reasons.                              |
+| SEND_SMS_SUCCESS                     | 0    | The SMS message is sent successfully.                                        |
+| SEND_SMS_FAILURE_UNKNOWN             | 1    | Failed to send the SMS message due to an unknown reason.                              |
 | SEND_SMS_FAILURE_RADIO_OFF           | 2    | Failed to send the SMS message because the modem is shut down.                  |
 | SEND_SMS_FAILURE_SERVICE_UNAVAILABLE | 3    | Failed to send the SMS message because the network is unavailable or SMS message sending or receiving is not supported.|

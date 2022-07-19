@@ -52,7 +52,7 @@ The table below lists the length of `sizeof` and `print` in ILP32 and LP64 to sh
 | unsigned long int  | 4            | %lu         | **8**       | %lu        | Differences exist.|
 | long long          | 8            | %lld        | 8           | %lld       |        |
 | unsigned long long | 8            | %llu        | 8           | %llu       |        |
-| type *             | 4            | %p          | **8**       | %p         | Differences exist.|
+| type \*             | 4            | %p          | **8**       | %p         | Differences exist.|
 | pid_t              | 4            | %d          | 4           | %d         |        |
 | socklen_t          | 4            | %u          | 4           | %u         |        |
 | off_t              | 4            | %zd         | **8**       | %zd        | Differences exist.|
@@ -121,7 +121,7 @@ Although uint64\_t has a fixed length, **sizeof(Foo)** is different due to align
 | double           | 8     | 8     | %lf     | Used for double-precision floating point numbers.|
 | bool             | 1     | 1     | %d      | Used for Boolean.|
 | uintptr_t        | **4** | **8** | %zu     | Used for pointer storage. Different lengths are defined for 32- and 64-bit OSs.|
-| type *           | **4** | **8** | %p      | Variable-length type. It is equivalent to uintptr_t, which is recommended for type conversion.|
+| type \*           | **4** | **8** | %p      | Variable-length type. It is equivalent to uintptr_t, which is recommended for type conversion.|
 | nullptr_t        | **4** | **8** | %p      | Used for pointer initialization.|
 | pid_t            | 4     | 4     | %d      | Built-in for the Linux kernel. It has a fixed length.|
 | socklen_t        | 4     | 4     | %u      | Built-in for the Linux kernel. It has a fixed length.|
@@ -353,13 +353,13 @@ p = (int32_t *)malloc(sizeof(p) * ELEMENTS_NUMBER);
 [Example]
 
 ```c
-#pragma pack(push) # Save the current alignment mode.
-#pragma pack(1) # Set the alignment mode to 1-byte alignment.
+#pragma pack(push) // Save the current alignment mode.
+#pragma pack(1) // Set the alignment mode to 1-byte alignment.
 struct test
 {
     ......
 };
-#pragma pack(pop) # Restore the previous alignment mode.
+#pragma pack(pop) // Restore the previous alignment mode.
 ```
 
 #### [Rule] Uniform the message structures related to multi-device communication. For compatibility purposes, 1-byte alignment is preferred. Do not use 8-byte alignment or 64-bit data types to avoid errors during communication with a 32-bit OS.
@@ -492,9 +492,9 @@ printf("t2 = %lu\n", t2);
 
 t1 is a signed negative 32-bit number, which must be extended with signs. The most significant bits of the negative number are all fs, and the value after extension is 0xffffffffffffffff. t2 is an unsigned 64-bit number, the value of which is a large positive number.
 
-#### [Rule] When a pointer is used as the base address and the offset is calculated by byte, the pointer must be forcibly converted to a single-byte pointer such as uintptr_t or uint8_t *.
+#### [Rule] When a pointer is used as the base address and the offset is calculated by byte, the pointer must be forcibly converted to a single-byte pointer such as uintptr_t or uint8_t \*.
 
-[Description] If the pointer is converted to an integer of the uint32_t type, the pointer may be truncated. This will not occur if the pointer is converted to uintptr_t. The pointer can also be converted to a single-byte pointer such as uint8_t * and char *. In this case, the offset is considered as bytes. A one-byte offset will be carried out for the void * type. To clarify the type, you are advised to use the type that is more specific.
+[Description] If the pointer is converted to an integer of the uint32_t type, the pointer may be truncated. This will not occur if the pointer is converted to uintptr_t. The pointer can also be converted to a single-byte pointer such as uint8_t \* and char \*. In this case, the offset is considered as bytes. A one-byte offset will be carried out for the void \* type. To clarify the type, you are advised to use the type that is more specific.
 
 [Example]
 
@@ -503,13 +503,13 @@ t1 is a signed negative 32-bit number, which must be extended with signs. The mo
 void *pPkt = (void *)((uint32_t)MSG_GET_DATA_ADDR(msgAddr) + OFFSET);
 
 // Correct
-void *pPkt = (void *)((uintptr_t)MSG_GET_DATA_ADDR(msgAddr) + OFFSET);// C
+void *pPkt = (void *)((uintptr_t)MSG_GET_DATA_ADDR(msgAddr) + OFFSET); // C
 void *pPkt = reinterpret_cast<void *>(reinterpret_cast<uintptr_t>(MSG_GET_DATA_ADDR(msgAddr)) + OFFSET); // C++
 ```
 
 #### [Rule] Mutual assignment is forbidden between pointers and uint32_t, including function parameter passing.
 
-[Description] If the variable to be defined is a length-variable pointer, use void *. If the variable to be defined is a pointer or an integer, use uintptr_t.
+[Description] If the variable to be defined is a length-variable pointer, use void \*. If the variable to be defined is a pointer or an integer, use uintptr_t.
 
 [Example] Conversion between pointers and integers
 

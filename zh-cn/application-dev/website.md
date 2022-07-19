@@ -253,6 +253,9 @@
     - 分布式数据对象
       - [分布式数据对象概述](database/database-distributedobject-overview.md)
       - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
+    - 数据共享
+      - [数据共享概述](database/database-datashare-overview.md)
+      - [数据共享开发指导](database/database-datashare-guidelines.md)
   - 任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)

@@ -23,8 +23,6 @@ The attributes below can be used to set the motion path of the component in a tr
 @Entry
 @Component
 struct MotionPathExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
   @State toggle: boolean = true
 
   build() {

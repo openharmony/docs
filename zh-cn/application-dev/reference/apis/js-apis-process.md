@@ -92,7 +92,7 @@ getOutput(): Promise&lt;Uint8Array&gt;
 ```js
 var child = process.runCmd('ls');
 var result = child.wait();
-child.getOutput.then(val=>{
+child.getOutput().then(val=>{
     console.log("child.getOutput = " + val);
 })
 ```
@@ -119,7 +119,7 @@ getErrorOutput(): Promise&lt;Uint8Array&gt;
 ```js
 var child = process.runCmd('madir test.text');
 var result = child.wait();
-child.getErrorOutput.then(val=>{
+child.getErrorOutput().then(val=>{
     console.log("child.getErrorOutput= " + val);
 })
 ```
@@ -286,7 +286,7 @@ getThreadPriority(v: number): number
 **示例：**
 
 ```js
-var tid = process.getTid();
+var tid = process.tid;
 var pres = process.getThreadPriority(tid);
 ```
 
@@ -617,5 +617,5 @@ kill(signal: number, pid: number): boolean
 
 ```js
 var pres = process.pid
-var result = that.kill(28, pres)
+var result = process.kill(28, pres)
 ```

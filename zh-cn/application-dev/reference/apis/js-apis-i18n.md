@@ -1,5 +1,8 @@
 # 国际化-I18n
 
+ 本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。
+[Intl模块](js-apis-intl.md)提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -668,6 +671,31 @@ format(number: string): string
   ```
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
   phonenumberfmt.format("15812312312");
+  ```
+
+
+### getLocationName<sup>8+</sup>
+
+static getLocationName(number: string, locale: string): string
+
+获取电话号码归属地。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名    | 类型     | 必填   | 说明         |
+| ------ | ------ | ---- | ---------- |
+| number | string | 是    | 电话号码 |
+| locale | string | 是    | 区域ID |
+
+**返回值：** 
+| 类型     | 说明         |
+| ------ | ---------- |
+| string | 电话号码归属地。 |
+
+**示例：** 
+  ```
+  var location = i18n.PhoneNumberFormat.getLocationName('15812312345', 'zh-CN');
   ```
 
 

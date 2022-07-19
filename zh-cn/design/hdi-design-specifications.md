@@ -60,7 +60,7 @@ interface IVibrator {
 当对原有接口进行不破坏向后兼容的修改时，如在最后追加新增接口、新增枚举定义、修改变量名称等，只需要增加`minor`版本号，新的包名为`ohos.hdi.vibrator.v1_1`。如：
 
 ```cpp
-package ohos.hdi.vibrator.v1_0;
+package ohos.hdi.vibrator.v1_1;
 interface IVibrator {
    ...
    SetModulationParameter([in] unsigned int vibrationPeriod, [in] int intensity, [in] int freq);
@@ -71,7 +71,7 @@ interface IVibrator {
 如果对原有接口进行更名、修改变量列表等不向后兼容修改时，需要增加`major`版本号，新的包名为`ohos.hdi.vibrator.v2_0`。如：
 
 ```cpp
-package ohos.hdi.vibrator.v1_0;
+package ohos.hdi.vibrator.v2_0;
 interface IVibrator {
    ...
    SetModulationParameter([in] unsigned int vibrationPeriod, [in] int intensity, [in] int frequency, [int] time);

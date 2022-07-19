@@ -1,6 +1,6 @@
 # List
 
->  **说明：**
+> **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -26,7 +26,7 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
   | -------- | -------- | -------- | -------- | -------- |
   | space | number&nbsp;\|&nbsp;string | 否 | 0 | 列表项间距。 |
   | initialIndex | number | 否 | 0 | 设置当前List初次加载时视口起始位置显示的item，即显示第一个item，如设置的序号超过了最后一个item的序号，则设置不生效。 |
-  | scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | - | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
+  | scroller | [Scroller](ts-container-scroll.md#scroller) | 否 | - | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 
 
 ## 属性

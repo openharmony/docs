@@ -53,9 +53,9 @@ STATE           COMM       PID  PRIO    CPU  // 线程信息（状态/名称/pid
 
 关联线程组提供了设备节点和ioctl接口用于查询和配置分组信息，其中设备节点路径为`/dev/sched_rtg_ctrl`。
 
-| 设备节点                | request             | 描述                  |
-| ------------------- | ------------------- | ------------------- |
-| /dev/sched_rtg_ctrl | CMD_ID_SET_RTG      | 创建分组，添加/更新/删除分组中线程  |
-|                     | CMD_ID_SET_CONFIG   | 配置全局分组属性，例如最大实时分组个数 |
-|                     | CMD_ID_SET_RTG_ATTR | 配置指定分组属性，例如分组线程优先级  |
-|                     | CMD_ID_SET_MIN_UTIL | 设置分组最小utilization值  |
+ | request             | 描述                  |
+| ------------------- | ------------------- |
+| CMD_ID_SET_RTG      | 创建分组，添加/更新/删除分组中线程  |
+| CMD_ID_SET_CONFIG   | 配置全局分组属性，例如最大实时分组个数 |
+ | CMD_ID_SET_RTG_ATTR | 配置指定分组属性，例如分组线程优先级  |
+  | CMD_ID_SET_MIN_UTIL | 设置分组最小utilization值  |

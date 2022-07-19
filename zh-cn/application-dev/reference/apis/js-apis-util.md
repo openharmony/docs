@@ -90,17 +90,21 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
   async function promiseFn() {
       return Promise.reject('value');
   }
+  var err = "type err";
   var cb = util.callbackWrapper(promiseFn);
   cb((err, ret) => {
       console.log(err);
       console.log(ret);
-  })
+  }, err)
   ```
 
 
-## util.promiseWrapper
+## util.promiseWrapper<sup>(deprecated)</sup>
 
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
+
+> **说明：**<br/>
+> 从API Version 9开始废弃，建议使用[util.promiseWrapper9+](#utilpromisewrapper9)替代。
 
 对异步函数处理并返回一个promise的版本。
 
@@ -118,6 +122,35 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 **示例：**
   ```js
+  function aysnFun() {
+    return 0;
+  }
+  let newPromiseObj = util.promiseWrapper(aysnFun);
+  newPromiseObj().then(res => {
+    console.log(res);
+  })
+  ```
+
+## util.promiseWrapper<sup>9+</sup>
+
+promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
+
+对异步函数处理并返回一个promise的函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| original | Function | 是 | 异步函数。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的函数。 |
+
+**示例：**
+  ```js
   function aysnFun(str1, str2, callback) {
       if (typeof str1 === 'string' && typeof str2 === 'string') {
           callback(null, str1 + str2);
@@ -125,12 +158,11 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
           callback('type err');
       }
   }
-  let newPromiseObj = util.promiseWrapper(aysnFun)("Hello", 'World');
-  newPromiseObj.then(res => {
+  let newPromiseObj = util.promiseWrapper(aysnFun);
+  newPromiseObj("Hello", 'World').then(res => {
       console.log(res);
   })
   ```
-
 
 ## TextDecoder
 
@@ -286,10 +318,11 @@ encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 
 **示例：**
   ```js
-  var that = new util.TextEncoder();
-  var buffer = new ArrayBuffer(4);
-  this.dest = new Uint8Array(buffer);
-  var result = that.encodeInto("abcd", this.dest);
+  var that = new util.TextEncoder()
+  var buffer = new ArrayBuffer(4)
+  var dest = new Uint8Array(buffer)
+  var result = new Object()
+  result = that.encodeInto('abcd', dest)
   ```
 
 ## RationalNumber<sup>8+</sup>
@@ -336,7 +369,7 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 **示例：**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var rational = rationalNumer.creatRationalFromString("3/4");
+  var rational = util.RationalNumber.createRationalFromString("3/4");
   ```
 
 
@@ -361,7 +394,7 @@ compareTo​(another: RationalNumber): number​
 **示例：**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var rational = rationalNumer.creatRationalFromString("3/4");
+  var rational = util.RationalNumber.createRationalFromString("3/4");
   var result = rationalNumber.compareTo(rational);
   ```
 
@@ -407,7 +440,7 @@ equals​(obj: Object): boolean
 **示例：**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var rational = rationalNumer.creatRationalFromString("3/4");
+  var rational = util.RationalNumber.createRationalFromString("3/4");
   var result = rationalNumber.equals(rational);
   ```
 
@@ -434,7 +467,7 @@ static getCommonDivisor​(number1: number,number2: number): number
 **示例：**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getCommonDivisor(4,6);
+  var result = util.RationalNumber.getCommonDivisor(4,6);
   ```
 
 
@@ -671,7 +704,7 @@ clear(): void
   ```js
   var pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.size();
+  var result = pro.length;
   pro.clear();
   ```
 
@@ -953,14 +986,6 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
   	{
   		super();
   	}
-  	static getInstance()
-  	{
-  		if(this.instance ==  null)
-  		{
-  			this.instance = new ChildLruBuffer();
-  		}
-  		return this.instance;  
-  	}
   	afterRemoval(isEvict, key, value, newValue)
   	{
   		if (isEvict === false)
@@ -969,7 +994,8 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
   		}
   	}
   }
-  ChildLruBuffer.getInstance().afterRemoval(false,10,30,null);
+  var lru = new ChildLruBuffer();
+  lru.afterRemoval(false,10,30,null);
   ```
 
 
@@ -1062,7 +1088,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
   ```js
   var pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro[symbol.iterator]();
+  var result = pro[Symbol.iterator]();
   ```
 
 
@@ -1550,7 +1576,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
   var rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          console.log(val[i])
+          console.log(val[i].toString())
       }
   })
   ```
@@ -1609,7 +1635,7 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
   var rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          console.log(val[i])
+          console.log(val[i].toString())
       }
   })
   ```
@@ -1653,7 +1679,7 @@ isAnyArrayBuffer(value: Object): boolean
 **示例：**
   ```js
   var that = new util.types();
-  var result = that.isAnyArrayBuffer(new ArrayBuffer([]));
+  var result = that.isAnyArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1733,7 +1759,7 @@ isArrayBuffer(value: Object): boolean
 **示例：**
   ```js
   var that = new util.types();
-  var result = that.isArrayBuffer(new ArrayBuffer([]));
+  var result = that.isArrayBuffer(new ArrayBuffer(0));
   ```
 
 

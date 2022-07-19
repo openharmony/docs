@@ -1,5 +1,7 @@
 # 媒体查询
 
+提供根据不同媒体类型定义不同的样式。
+
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >

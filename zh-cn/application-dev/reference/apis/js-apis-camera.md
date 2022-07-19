@@ -2103,7 +2103,7 @@ createPhotoOutput(surfaceId: string, callback: AsyncCallback<PhotoOutput\>): voi
 
 | 名称      | 类型                                        | 必填 | 说明                                |
 | --------- | ------------------------------------------- | ---- | ----------------------------------- |
-| surfaceId | string                                      | 是   | 从ImageReceiver获取的Surface ID。   |
+| surfaceId | string                                      | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的Surface ID。   |
 | callback  | AsyncCallback<[PhotoOutput](#photooutput)\> | 是   | 回调函数，用于获取PhotoOutput实例。 |
 
 **示例：**
@@ -2130,7 +2130,7 @@ createPhotoOutput(surfaceId: string): Promise<PhotoOutput\>
 
 | 名称      | 类型   | 必填 | 说明                              |
 | --------- | ------ | ---- | --------------------------------- |
-| surfaceId | string | 是   | 从ImageReceiver获取的Surface ID。 |
+| surfaceId | string | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的Surface ID。 |
 
 **返回值：**
 

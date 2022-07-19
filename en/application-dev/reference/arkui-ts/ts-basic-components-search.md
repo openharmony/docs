@@ -1,9 +1,10 @@
 #  Search
 
-> **NOTE**<br>
+The **\<Search>** component provides an input area for users to search.
+> **NOTE**
+>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<Search>** component provides an input area for users to search.
 
 ## Required Permissions
 
@@ -11,7 +12,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 ## APIs
 
@@ -41,21 +42,21 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 | Name | Description |
 | -------- | -------- |
-| onSubmit(callback: (value: string) => void) | Triggered when users click the search icon or the search button, or tap the search button on a soft keyboard.<br> -**value**: current text input. |
-| onChange(callback: (value: string) => void) | Triggered when the input in the text box changes.<br> -**value**: current text input. |
-| onCopy(callback: (value: string) => void) | Triggered when data is copied to the pasteboard.<br> -**value**: text copied. |
-| onCut(callback: (value: string) => void) | Triggered when data is cut from the pasteboard.<br> -**value**: text cut. |
-| onPaste(callback: (value: string) => void) | Triggered when data is pasted from the pasteboard.<br> -**value**: text pasted. |
+| onSubmit(callback: (value: string) => void) | Triggered when users click the search icon or the search button, or tap the search button on a soft keyboard.<br> - **value**: current text input. |
+| onChange(callback: (value: string) => void) | Triggered when the input in the text box changes.<br> - **value**: current text input. |
+| onCopy(callback: (value: string) => void) | Triggered when data is copied to the pasteboard.<br> - **value**: text copied. |
+| onCut(callback: (value: string) => void) | Triggered when data is cut from the pasteboard.<br> - **value**: text cut. |
+| onPaste(callback: (value: string) => void) | Triggered when data is pasted from the pasteboard.<br> - **value**: text pasted. |
 
 ## SearchController
 
 Defines the controller of the **\<Search>** component.
 
-#### Objects to Import
+### Objects to Import
 ```
 controller: SearchController = new SearchController()
 ```
-#### caretPosition
+### caretPosition
 
 caretPosition(value: number): void
 

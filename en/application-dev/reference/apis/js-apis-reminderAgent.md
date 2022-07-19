@@ -1,6 +1,11 @@
-# Reminder Agent
+# reminderAgent
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+The **reminderAgent** module provides APIs for publishing scheduled reminders through the reminder agent.
+
+You can set your application to use the reminder agent APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks. When the created reminders are published, the timing and pop-up notification functions of your application will be taken over by the reminder agent in the background when your application is frozen or exits.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,13 +28,13 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Asynchronous callback used to return the published reminder's ID.|
 
 **Example**
-  ```js
+```js
   let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
@@ -37,7 +42,7 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
   reminderAgent.publishReminder(timer, (err, reminderId) => {
       console.log("callback, reminderId = " + reminderId);
   });
-  ```
+```
 
 
 ## reminderAgent.publishReminder
@@ -46,20 +51,22 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 Publishes an agent-powered reminder. This API uses a promise callback to return the result.
 
+**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
+
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| reminderReq | [ReminderRequest](#reminderrequest) | Yes| Reminder to be published.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the published reminder's ID.|
 
 **Example**
-  ```js
+```js
   let timer = {
       reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
       triggerTimeInSeconds: 10
@@ -67,7 +74,7 @@ Publishes an agent-powered reminder. This API uses a promise callback to return 
   reminderAgent.publishReminder(timer).then((reminderId) => {
       console.log("promise, reminderId = " + reminderId);
   });
-  ```
+```
 
 
 ## reminderAgent.cancelReminder
@@ -261,7 +268,7 @@ reminderAgent.cancelAllReminders().then(() => {
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void
 
-Adds a reminder notification slot. This API uses an asynchronous callback to return the result.
+Adds a notification slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -269,7 +276,7 @@ Adds a reminder notification slot. This API uses an asynchronous callback to ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot to add, only support set its type attribute.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
@@ -290,7 +297,7 @@ reminderAgent.addNotificationSlot(mySlot, (err, data) => {
 
 addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
-Adds a reminder notification slot. This API uses a promise to return the result.
+Adds a notification slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -298,7 +305,7 @@ Adds a reminder notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| notification slot to add, only support set its type attribute.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
 
 **Return value**
 
@@ -332,7 +339,7 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
+| slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
@@ -358,7 +365,7 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the reminder notification slot to remove.|
+| slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
 
 **Return value**
 

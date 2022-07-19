@@ -1,5 +1,7 @@
 # 布局约束
 
+通过组件的宽高比和显示优先级约束组件显示效果。
+
 >  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
@@ -12,10 +14,10 @@
 ## 属性
 
 
-| 名称 | 参数说明 | 默认值 | 描述 | 
+| 名称 | 参数说明 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| aspectRatio | number | - | 指定当前组件的宽高比。 | 
-| displayPriority | number | - | 设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;仅在Row/Column/Flex(单行)容器组件中生效。 | 
+| aspectRatio | number | - | 指定当前组件的宽高比。 |
+| displayPriority | number | - | 设置当前组件在布局容器中显示的优先级，当父容器空间不足时，低优先级的组件会被隐藏。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;仅在Row/Column/Flex(单行)容器组件中生效。 |
 
 
 ## 示例
@@ -75,7 +77,7 @@ struct AspectRatioExample {
 **图2** 横屏显示<br>
 ![zh-cn_image_0000001174264382](figures/zh-cn_image_0000001174264382.gif)
 
-```
+```ts
 class ContainerInfo {
   label : string = ''
   size : string = ''
@@ -92,13 +94,15 @@ struct DisplayPriorityExample {
   private container : ContainerInfo[] = [
     {label: 'Big container', size: '90%'},
     {label: 'Middle container', size: '50%'},
-    {label: 'Small container', size: '30%'}]
+    {label: 'Small container', size: '30%'}
+  ]
   private children : ChildInfo[] = [
     {text: '1\n(priority:2)', priority: 2},
     {text: '2\n(priority:1)', priority: 1},
     {text: '3\n(priority:3)', priority: 3},
     {text: '4\n(priority:1)', priority: 1},
-    {text: '5\n(priority:2)', priority: 2}]
+    {text: '5\n(priority:2)', priority: 2}
+  ]
   @State currentIndex : number = 0
 
   build() {

@@ -11,9 +11,9 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 
 | 类/接口 | 方法 | 功能说明 | 
 | -------- | -------- | -------- |
-| IRemoteBroker | sptr&lt;IRemoteObject&gt;&nbsp;AsObject() | 返回通信对象。派生类需要实现，Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 | 
-| IRemoteStub | virtual&nbsp;int&nbsp;OnRemoteRequest(uint32_t&nbsp;code,&nbsp;MessageParcel&nbsp;&amp;data,&nbsp;MessageParcel&nbsp;&amp;reply,&nbsp;MessageOption&nbsp;&amp;option) | 请求处理方法，派生类需要重写，处理Proxy的请求并返回结果。 | 
-| IRemoteProxy |  | 业务Proxy类派生自IRemoteProxy类。 | 
+| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。派生类需要实现，Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 | 
+| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 | 
+| IRemoteProxy |  | 业务Proxy类，派生自IRemoteProxy类。 | 
 
 
 ## 开发步骤
@@ -21,6 +21,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 **Native侧开发步骤**
 
 1. 定义IPC接口ITestAbility
+
    SA接口继承IPC基类接口IRemoteBroker，接口里定义描述符、业务函数和消息码，其中业务函数在Proxy端和Stub端都需要实现。
 
    ```
@@ -34,6 +35,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```
 
 2. 定义和实现服务端TestAbilityStub
+
    该类是和IPC框架相关的实现，需要继承 IRemoteStub&lt;ITestAbility&gt;。Stub端作为接收请求的一端，需重写OnRemoteRequest方法用于接收客户端调用。
 
    ```
@@ -72,6 +74,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    ```
 
 4. 定义和实现客户端 TestAbilityProxy
+
    该类是Proxy端实现，继承IRemoteProxy&lt;ITestAbility&gt;，调用SendRequest接口向Stub端发送请求，对外暴露服务端提供的能力。
 
    ```
@@ -98,8 +101,9 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
     }
    ```
 
-5. SA 注册与启动
-   SA 需要将自己的 TestAbilityStub实例通过 AddSystemAbility接口注册到 SystemAbilityManager，设备内与分布式的注册参数不同。
+5. SA注册与启动
+
+   SA需要将自己的TestAbilityStub实例通过AddSystemAbility接口注册到SystemAbilityManager，设备内与分布式的注册参数不同。
 
    ```
    // 注册到本设备内
@@ -113,7 +117,8 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    int result = samgr->AddSystemAbility(saId, new TestAbility(), saExtra);
    ```
 
-6. SA 获取与调用
+6. SA获取与调用
+
    通过SystemAbilityManager的GetSystemAbility方法可获取到对应SA的代理IRemoteObject，然后构造TestAbilityProxy即可。
 
    ```
@@ -122,7 +127,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
    sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // 使用iface_cast宏转换成具体类型
    
-   // 获取其他设备注册的SA的Proxy
+   // 获取其他设备注册的SA的proxy
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, deviceId); // deviceId是指定设备的标识符
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy

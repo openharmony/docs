@@ -34,7 +34,7 @@ want操作的常数。
 |  ACTION_SEND_SMS                            | ohos.want.action.sendSms                 | 指示启动发送sms的页面功能的操作。                               |
 | ACTION_CHOOSE                               | ohos.want.action.choose                  | 指示启动页面功能以打开联系人或图片的操作。                       |
 | ACTION_IMAGE_CAPTURE<sup>8+</sup>           | ohos.want.action.imageCapture            | 指示启动页面拍照功能的操作。                                    |
-| ACTION_VIDEO_CAPTUR<sup>8+</sup>            | ohos.want.action.videoCapture            | 指示启动页面功能以拍摄视频的操作。                               |
+| ACTION_VIDEO_CAPTURE<sup>8+</sup>            | ohos.want.action.videoCapture            | 指示启动页面功能以拍摄视频的操作。                               |
 | ACTION_SELECT                               | ohos.want.action.select                  | 指示显示应用程序选择对话框的操作。                               |
 | ACTION_SEND_DATA                            | ohos.want.action.sendData                | 指示发送单个数据记录的操作。       |
 | ACTION_SEND_MULTIPLE_DATA                   | ohos.want.action.sendMultipleData        | 指示发送多个数据记录的操作。                                  |
@@ -46,8 +46,6 @@ want操作的常数。
 |  ACTION_FILE_SELECT<sup>7+</sup>            | ohos.action.fileSelect                   | 指示选择文件的操作。                                          |
 |  PARAMS_STREAM<sup>7+</sup>                 | ability.params.stream                    | 指示与连接发送数据一起使用时，包含与意图相关联的数据流的URI。     |
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
-| ACTION_MARKER_DOWNLOAD        | ohos.want.action.marketDownload        | 表示从应用程序市场下载应用程序的行为。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。  |
-
 
 ## wantConstant.Entity
 
@@ -81,8 +79,8 @@ Flags说明。
 | FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 指示URI上可能持久化的授权。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                                     |
 | FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 按照前缀匹配的方式验证URI权限。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                                |
 | FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 支持分布式调度系统中的多设备启动。                               |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。         |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。                                             |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 指示无论主机应用程序是否已启动，都将启动使用服务模板的功能。         |
+| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是可拉回的。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                                             |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 如果未安装指定的功能，请安装该功能。                              |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 如果未安装，使用后台模式安装该功能。                              |
 | FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 指示清除其他任务的操作。可以为传递给 **[ohos.app.Context](js-apis-ability-context.md)** 中**startAbility**方法的**Want**设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |

@@ -146,21 +146,21 @@ Text($r('app.string.string_world'))
     .fontSize($r('app.float.font_world'))
 }
 
-Text($r('app.string.message_arrive', "five of the clock")) //引用string资源，$r的第二个参数用于替换%s
+Text($r('app.string.message_arrive', "five of the clock")) // 引用string资源，$r的第二个参数用于替换%s
     .fontColor($r('app.color.color_hello'))
     .fontSize($r('app.float.font_hello'))
 }
 
-Text($r('app.plural.eat_apple', 5, 5)) //plural$r引用，第一个指定plural资源，第二个参数指定单复数的数量，此处第三个数字为对%d的替换
+Text($r('app.plural.eat_apple', 5, 5))       // plural$r引用，第一个指定plural资源，第二个参数指定单复数的数量，此处第三个数字为对%d的替换
     .fontColor($r('app.color.color_world'))
     .fontSize($r('app.float.font_world'))
 }
 
-Image($r('app.media.my_background_image')) //media资源的$r引用
+Image($r('app.media.my_background_image'))  // media资源的$r引用
 
-Image($rawfile('test.png')) //rawfile$r引用rawfile目录下图片
+Image($rawfile('test.png'))                 // rawfile$r引用rawfile目录下图片
 
-Image($rawfile('newDir/newTest.png')) //rawfile$r引用rawfile目录下图片
+Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下图片
 ```
 
 

@@ -33,7 +33,7 @@
 
 | 名称          | 类型                         | 默认值             | 必填   | 描述                                       |
 | ----------- | -------------------------- | --------------- | ---- | ---------------------------------------- |
-| text-color  | &lt;color&gt;              | \#ff007dff<br/> | 否    | 按钮的文本颜色。                                 |
+| text-color  | &lt;color&gt;              | \#007dff<br/> | 否    | 按钮的文本颜色。                                 |
 | font-size   | &lt;length&gt;             | 16px<br/>       | 否    | 按钮的文本尺寸。                                 |
 | allow-scale | boolean                    | true            | 否    | 按钮的文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br/>如果在config描述文件中针对ability配置了fontSize的config-changes标签，则应用不会重启而直接生效。 |
 | font-style  | string                     | normal          | 否    | 按钮的字体样式。                                 |

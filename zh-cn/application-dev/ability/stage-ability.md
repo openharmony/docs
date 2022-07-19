@@ -78,29 +78,29 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-   
+
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-   
+
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-   
+
         windowStage.loadContent("pages/index").then((data) => {
             console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
         }).catch((error) => {
             console.error("MainAbility load content failed with error: " + JSON.stringify(error))
         })
     }
-   
+
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-   
+
     onForeground() {
         console.log("MainAbility onForeground")
     }
-   
+
     onBackground() {
         console.log("MainAbility onBackground")
     }
@@ -300,7 +300,7 @@ export default class MainAbility extends Ability {
 
 在自定义组件中获取包含页面信息的want参数并根据uri做路由处理：
 ```ts
-import router from '@system.router'
+import router from '@ohos.router'
 
 @Entry
 @Component

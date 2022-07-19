@@ -1,5 +1,7 @@
 # 输入法服务
 
+  本模块的作用是拉通应用和输入法，保证应用可以通过输入法进行文本输入，以及应用与输入法服务的绑定、应用对输入法的显示和隐藏请求、监听输入法当前的状态等等。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -13,7 +15,7 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 常量值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Miscservices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -50,7 +52,7 @@ getInputMethodEngine(): InputMethodEngine
 
 获取服务端实例。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -70,7 +72,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 获取客户端监听实例。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -94,7 +96,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -118,7 +120,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 取消订阅输入法绑定成功事件。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -141,7 +143,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 订阅输入法事件。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -164,7 +166,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 取消订阅输入法事件。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -190,7 +192,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 订阅硬键盘事件，使用callback回调返回按键信息。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -215,7 +217,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 取消订阅硬键盘事件。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -236,7 +238,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 订阅光标变化事件，使用callback回调返回光标信息。
 
-  **系统能力**： SystemCapability.Miscservices.InputMethodFramework
+  **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -261,7 +263,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 取消订阅光标变化事件。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -282,7 +284,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 订阅文本选择变化事件，使用callback回调返回文本选择信息。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -305,7 +307,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 取消订阅文本选择变化事件。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -327,7 +329,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 订阅文本变化事件，使用callback回调返回当前文本内容。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -350,7 +352,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 取消订阅文本变化事件。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -375,7 +377,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -397,7 +399,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 隐藏输入法。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -421,7 +423,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标前固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -444,7 +446,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 获取光标前固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -471,7 +473,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 获取光标后固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -494,7 +496,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 获取光标后固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -521,7 +523,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标前固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -543,7 +545,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 删除光标前固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
   
@@ -570,7 +572,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 删除光标后固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -593,7 +595,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 删除光标后固定长度的文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -618,7 +620,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 发送功能键。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
   **参数：**
 
@@ -641,7 +643,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 发送功能键。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -668,7 +670,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 插入文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -691,7 +693,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 插入文本。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -718,7 +720,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 获取编辑框属性值。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -739,7 +741,7 @@ getEditorAttribute(): EditorAttribute
 
 获取编辑框属性值。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -757,7 +759,7 @@ getEditorAttribute(): EditorAttribute
 
 编辑框属性值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Miscservices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称         | 参数类型 | 可读 | 可写 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
@@ -768,7 +770,7 @@ getEditorAttribute(): EditorAttribute
 
 按键属性值。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Miscservices.InputMethodFramework
+**系统能力**：以下各项对应的系统能力均为SystemCapability.MiscServices.InputMethodFramework
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |

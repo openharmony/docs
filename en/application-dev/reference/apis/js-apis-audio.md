@@ -1,13 +1,16 @@
 # Audio Management
 
->  **NOTE**<br/>
->  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The **Audio** module provides basic audio management capabilities, including audio volume and audio device management, and audio data collection and rendering.
 
 This module provides the following common audio-related functions:
 
 - [AudioManager](#audiomanager): audio management.
 - [AudioRenderer](#audiorenderer8): audio rendering, used to play Pulse Code Modulation (PCM) audio data.
 - [AudioCapturer](#audiocapturer8): audio capture, used to record PCM audio data.
+
+>  **NOTE**
+>
+>  The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -254,7 +257,7 @@ Enumerates the audio interruption modes.
 
 | Name                        | Default Value| Description      |
 | ---------------------------- | ------ | ---------- |
-| SHARE_MODE      | 0      | Share mode.|
+| SHARE_MODE      | 0      | Shared mode.|
 | INDEPENDENT_MODE| 1      | Independent mode.    |
 
 ## DeviceFlag
@@ -578,7 +581,7 @@ Describes the device connection status and device information.
 
 | Name             | Type                                             | Mandatory| Description              |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
-| type              | [DeviceChangeType](#devicechangetype)          | Yes  | Device connection status.|
+| type              | [DeviceChangeType](#devicechangetype)             | Yes  | Device connection status.|
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes  | Device information.        |
 
 ## DeviceChangeType
@@ -649,6 +652,8 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 
 Sets the volume for a stream. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -676,6 +681,8 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
 setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 Sets the volume for a stream. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1041,6 +1048,8 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the ringer mode. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
 **Parameters**
@@ -1067,6 +1076,8 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 Sets the ringer mode. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
@@ -1148,6 +1159,8 @@ Sets an audio parameter. This API uses an asynchronous callback to return the re
 
 This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
 
+**Required permissions**: ohos.permission.MODIFY_AUDIO_SETTINGS
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
@@ -1177,6 +1190,8 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 Sets an audio parameter. This API uses a promise to return the result.
 
 This API is used to extend the audio configuration based on the hardware capability. The supported audio parameters vary according to the device and can be obtained from the device manual. The example below is for reference only.
+
+**Required permissions**: ohos.permission.MODIFY_AUDIO_SETTINGS
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -1434,6 +1449,8 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Mutes or unmutes the microphone. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.MICROPHONE
+
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 **Parameters**
@@ -1460,6 +1477,8 @@ audioManager.setMicrophoneMute(true, (err) => {
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 Mutes or unmutes the microphone. This API uses a promise to return the result.
+
+**Required permissions:** ohos.permission.MICROPHONE
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1489,6 +1508,8 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether the microphone is muted. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.MICROPHONE
+
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 **Parameters**
@@ -1514,6 +1535,8 @@ audioManager.isMicrophoneMute((err, value) => {
 isMicrophoneMute(): Promise&lt;boolean&gt;
 
 Checks whether the microphone is muted. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MICROPHONE
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1546,7 +1569,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Type of event to subscribe to. The value **volumeChange** means the system volume change event, which is triggered when a system volume change is detected.|
+| type     | string                                 | Yes  | Event type. The value **volumeChange** means the system volume change event, which is triggered when a system volume change is detected.|
 | callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
 
 **Example**
@@ -1573,7 +1596,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Type of event to subscribe to. The value **ringerModeChange** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
+| type     | string                                    | Yes  | Event type. The value **ringerModeChange** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
 | callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the updated ringer mode.                                                  |
 
 **Example**
@@ -1596,7 +1619,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Type of event to subscribe to. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
+| type     | string                                               | Yes  | Event type. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
 | callback | Callback<[DeviceChangeAction](#DeviceChangeAction)\> | Yes  | Callback used to return the device update details.                        |
 
 **Example**
@@ -1622,7 +1645,7 @@ Unsubscribes from device change events.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Type of event to unsubscribe from. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
+| type     | string                                              | Yes  | Event type. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
 | callback | Callback<[DeviceChangeAction](#DeviceChangeAction)> | No  | Callback used to return the device update details.                        |
 
 **Example**
@@ -1645,7 +1668,7 @@ Subscribes to audio interruption events. When the application's audio is interru
 
 | Name   | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Type of event to subscribe to. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| type      | string                                        | Yes  | Event type. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptaction)> | Yes  | Callback invoked for the audio interruption event.                                      |
 
@@ -1681,7 +1704,7 @@ Unsubscribes from audio interruption events.
 
 | Name   | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Type of event to unsubscribe from. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| type      | string                                        | Yes  | Event type. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptaction)> | No  | Callback invoked for the audio interruption event.                                      |
 
@@ -2250,7 +2273,43 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 ```
 import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
+import featureAbility from '@ohos.ability.featureAbility'
 
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data)=> {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
+var bufferSize;
+audioRenderer.getBufferSize().then((data)=> {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info.('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
+    });
+console.info('Buffer size:'+bufferSize);
+var context = featureAbility.getContext();
+var path = await context.getCacheDir();
+var filePath = path+"/StarWars10s-2C-48000-4SW.wav"
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
@@ -2282,7 +2341,42 @@ Writes the buffer. This API uses a promise to return the result.
 ```
 import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
+import featureAbility from '@ohos.ability.featureAbility'
 
+var audioStreamInfo = {
+    samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels:audio.AudioChannel.CHANNEL_2,
+    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data) => {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
+var bufferSize;
+audioRenderer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
+    });
+console.info('BufferSize: ' + bufferSize);
+var context = featureAbility.getContext();
+var path = await context.getCacheDir();
 var filePath = 'data/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -2385,12 +2479,39 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 **Example**
 
 ```
+import audio from '@ohos.multimedia.audio';
+import fileio from '@ohos.fileio';
+
+var audioStreamInfo = {
+    samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels:audio.AudioChannel.CHANNEL_2,
+    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data) => {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
 var bufferSize;
-await audioRenderer.getBufferSize().then(async function (data) => {
-    console.info('AudioFrameworkRenderLog: getBufferSize :SUCCESS '+data);
+audioRenderer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
     bufferSize=data;
 }).catch((err) => {
-    console.info('AudioFrameworkRenderLog: getBufferSize :ERROR : '+err.message);
+    console.info('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
 });
 ```
 
@@ -2519,7 +2640,8 @@ Sets the audio interruption mode for the application. This API uses a promise to
 **Example**
 
 ```
-audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
+const audioManager = audio.getAudioManager();
+audioManager.setInterruptMode(audio.InterruptMode.SHARE_MODE).then(() => {
     console.log('Promise returned to indicate a successful volume setting.');
 });
 ```
@@ -2541,7 +2663,8 @@ Sets the audio interruption mode for the application. This API uses a callback t
 **Example**
 
 ```
-audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
+const audioManager = audio.getAudioManager();
+audioManager.setInterruptMode(audio.InterruptMode.SHARE_MODE,()=>{
     console.log('Callback returned to indicate a successful volume setting.');
 });
 ```
@@ -2557,7 +2680,7 @@ Subscribes to audio interruption events. This API uses a callback to get interru
 
 | Name  | Type                                        | Mandatory| Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | Yes  | Type of event to subscribe to. The value **interrupt** means the audio interruption event, which is triggered when audio playback is interrupted.|
+| type     | string                                       | Yes  | Event type. The value **interrupt** means the audio interruption event, which is triggered when audio playback is interrupted.|
 | callback | Callback<[InterruptEvent](#interruptevent9)> | Yes  | Callback used to return the audio interruption event.                                    |
 
 **Example**
@@ -2623,7 +2746,7 @@ Subscribes to mark reached events. When the number of frames rendered reaches th
 
 | Name  | Type                    | Mandatory| Description                                     |
 | :------- | :----------------------- | :--- | :---------------------------------------- |
-| type     | string                   | Yes  | Type of event to subscribe to. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
+| type     | string                   | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
 | frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.        |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.                   |
 
@@ -2631,7 +2754,7 @@ Subscribes to mark reached events. When the number of frames rendered reaches th
 
 ```
 audioRenderer.on('markReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -2650,7 +2773,7 @@ Unsubscribes from mark reached events.
 
 | Name| Type  | Mandatory| Description                                             |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | Yes  | Type of event to unsubscribe from. The value is fixed at **markReach**.|
+| type   | string | Yes  | Event type. The value is fixed at **markReach**.|
 
 **Example**
 
@@ -2670,7 +2793,7 @@ Subscribes to period reached events. When the period of frame rendering reaches 
 
 | Name  | Type                    | Mandatory| Description                                       |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | Yes  | Type of event to subscribe to. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter.|
+| type     | string                   | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter.|
 | frame    | number                   | Yes  | Period during which frame rendering is listened. The value must be greater than **0**.          |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.                     |
 
@@ -2678,7 +2801,7 @@ Subscribes to period reached events. When the period of frame rendering reaches 
 
 ```
 audioRenderer.on('periodReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -2696,7 +2819,7 @@ Unsubscribes from period reached events.
 
 | Name| Type  | Mandatory| Description                                               |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| type   | string | Yes  | Type of event to unsubscribe from. The value is fixed at **periodReach**.|
+| type   | string | Yes  | Event type. The value is fixed at **periodReach**.|
 
 **Example**
 
@@ -2716,7 +2839,7 @@ Subscribes to state change events.
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Type of event to subscribe to. The value **stateChange** means the state change event.|
+| type     | string                     | Yes  | Event type. The value **stateChange** means the state change event.|
 | callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
 
 **Example**
@@ -2912,13 +3035,35 @@ Starts capturing. This API uses a promise to return the result.
 **Example**
 
 ```
+import audio from '@ohos.multimedia.audio';
+import fileio from '@ohos.fileio';
+
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioCapturerInfo = {
+    source: audio.SourceType.SOURCE_TYPE_MIC,
+    capturerFlags = 1
+}
+
+var audioCapturer;
+audio.createAudioCapturer(audioCapturerOptions).then((data) => {
+    audioCapturer = data;
+    console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR: '+err.message);
+    });
 audioCapturer.start().then(() => {
     console.info('AudioFrameworkRecLog: ---------START---------');
-    console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-    console.info('AudioFrameworkRecLog: AudioCapturer : STATE : '+audioCapturer.state);
-    console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+    console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
+    console.info('AudioFrameworkRecLog: AudioCapturer: STATE: '+audioCapturer.state);
+    console.info('AudioFrameworkRecLog: Capturer started: SUCCESS ');
     if ((audioCapturer.state == audio.AudioState.STATE_RUNNING)) {
-        stateFlag = true;
+        console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
     }
 }).catch((err) => {
     console.info('AudioFrameworkRecLog: Capturer start :ERROR : '+err.message);
@@ -2971,15 +3116,13 @@ Stops capturing. This API uses a promise to return the result.
 
 ```
 audioCapturer.stop().then(() => {
-    console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-    console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
+    console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
+    console.info('AudioFrameworkRecLog: Capturer stopped: SUCCESS');
     if ((audioCapturer.state == audio.AudioState.STATE_STOPPED)){
-        stateFlag=true;
-        console.info('AudioFrameworkRecLog: resultFlag : '+stateFlag);
+        console.info('AudioFrameworkRecLog: State is Stopped': ');
     }
 }).catch((err) => {
-    console.info('AudioFrameworkRecLog: Capturer stop:ERROR : '+err.message);
-    stateFlag=false;
+    console.info('AudioFrameworkRecLog: Capturer stop: ERROR: '+err.message);
 });
 ```
 
@@ -3031,11 +3174,9 @@ audioCapturer.release().then(() => {
     console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : '+audioCapturer.state);
-    stateFlag=true;
     console.info('AudioFrameworkRecLog: stateFlag : '+stateFlag);
 }).catch((err) => {
-    console.info('AudioFrameworkRecLog: Capturer stop:ERROR : '+err.message);
-    stateFlag=false
+    console.info('AudioFrameworkRecLog: Capturer stop: ERROR: '+err.message);
 });
 ```
 
@@ -3059,6 +3200,13 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: EROOR: '+err.message);
+    });
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
@@ -3091,6 +3239,14 @@ Reads the buffer. This API uses a promise to return the result.
 **Example**
 
 ```
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: ERROR '+err.message);
+    });
+console.info('Buffer size: ' + bufferSize);
 audioCapturer.read(bufferSize, true).then((buffer) => {
     console.info('buffer read successfully');
 }).catch((err) => {
@@ -3194,12 +3350,12 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 **Example**
 
 ```
-await audioCapturer.getBufferSize().then(async function (bufferSize) {
-    console.info('AudioFrameworkRecordLog: getBufferSize :SUCCESS '+ bufferSize);
-    var buffer = await audioCapturer.read(bufferSize, true);
-    console.info('Buffer read is ' + buffer );
-    }).catch((err) => {
-    console.info('AudioFrameworkRecordLog: getBufferSize :ERROR : '+err.message);
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize :SUCCESS '+ data);
+    bufferSize = data;
+}).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize :ERROR : '+ err.message);
 });
 ```
 
@@ -3216,7 +3372,7 @@ Subscribes to mark reached events. When the number of frames captured reaches th
 
 | Name  | Type                   | Mandatory| Description                                      |
 | :------- | :---------------------- | :--- | :----------------------------------------- |
-| type     | string                  | Yes  | Type of event to subscribe to. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
+| type     | string                  | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
 | frame    | number                  | Yes  | Number of frames to trigger the event. The value must be greater than **0**.          |
 | callback | position: number) => {} | Yes  | Callback invoked when the event is triggered.|
 
@@ -3224,7 +3380,7 @@ Subscribes to mark reached events. When the number of frames captured reaches th
 
 ```
 audioCapturer.on('markReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -3242,7 +3398,7 @@ Unsubscribes from mark reached events.
 
 | Name| Type  | Mandatory| Description                                         |
 | :----- | :----- | :--- | :-------------------------------------------- |
-| type   | string | Yes  | Type of event to unsubscribe from. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
+| type   | string | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
 
 **Example**
 
@@ -3262,7 +3418,7 @@ Subscribes to mark reached events. When the period of frame capturing reaches th
 
 | Name  | Type                    | Mandatory| Description                                       |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | Yes  | Type of event to subscribe to. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
+| type     | string                   | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
 | frame    | number                   | Yes  | Period during which frame capturing is listened. The value must be greater than **0**.           |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.   |
 
@@ -3270,7 +3426,7 @@ Subscribes to mark reached events. When the period of frame capturing reaches th
 
 ```
 audioCapturer.on('periodReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -3288,7 +3444,7 @@ Unsubscribes from period reached events.
 
 | Name| Type  | Mandatory| Description                                           |
 | :----- | :----- | :--- | :---------------------------------------------- |
-| type   | string | Yes  | Type of event to unsubscribe from. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
+| type   | string | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
 
 **Example**
 
@@ -3308,7 +3464,7 @@ Subscribes to state change events.
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Type of event to subscribe to. The value **stateChange** means the state change event.|
+| type     | string                     | Yes  | Event type. The value **stateChange** means the state change event.|
 | callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
 
 **Example**

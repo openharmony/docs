@@ -1,14 +1,8 @@
 # 权限定义列表
 
-在符合[应用申请和使用权限的基本原则](accesstoken-overview.md#基本原则)的基础上，可以根据下图判断应用是否可以申请某权限。
+在申请目标权限前，建议开发者先阅读[访问控制开发概述-权限的工作流程](accesstoken-overview.md#权限的工作流程)。对权限的工作流程有基本的了解后，再结合下表判断应用能否申请目标权限，提高开发效率。
 
-![](figures/permission-application-process.png)
-
-1. 应用APL等级与权限等级的匹配关系请参考[访问控制开发概述-权限等级说明](accesstoken-overview.md#权限等级说明)。
-2. 权限的授权方式分为user_grant（用户授权）和system_grant（系统授权），具体请参考[访问控制开发概述-权限类型说明](accesstoken-overview.md#权限类型说明)。
-3. 应用可以通过ACL（访问控制列表）方式申请高级别的权限，具体请参考[访问控制开发概述-访问控制列表说明](accesstoken-overview.md#访问控制列表acl说明)。
-
-以下给出当前系统定义的权限信息列表。权限的使用示例请参考[访问控制开发指导](accesstoken-guidelines.md)。
+权限的使用示例请参考[访问控制开发指导](accesstoken-guidelines.md)。
 
 | 权限名                                                   | 权限级别     | 授权方式     | ACL使能 | 权限说明                                                     |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------------------------ |
@@ -26,10 +20,7 @@
 | ohos.permission.REMOVE_CACHE_FILES                       | system_basic | system_grant | TRUE    | 允许清理指定应用的缓存。                                     |
 | ohos.permission.REBOOT                                   | system_basic | system_grant | TRUE    | 允许应用重启设备。                                           |
 | ohos.permission.RUNNING_LOCK                             | normal       | system_grant | TRUE    | 允许应用获取运行锁，保证应用在后台的持续运行。               |
-| ohos.permission.ENROLL_BIOMETRIC                         | system_core  | system_grant | FALSE   | 允许应用录入或删除生物特征数据。                             |
 | ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | FALSE   | 允许应用使用生物特征识别能力进行身份认证。                   |
-| ohos.permission.ACCESS_BIOMETRIC_INTERNAL                | system_core  | system_grant | FALSE   | 允许应用申请或释放生物特征识别的资源。                       |
-| ohos.permission.RESET_BIOMETRIC_LOCKOUT                  | system_core  | system_grant | FALSE   | 允许应用重置生物特征识别的认证失败计数。                     |
 | ohos.permission.SET_TIME                                 | system_basic | system_grant | TRUE    | 允许应用修改系统时间。                                       |
 | ohos.permission.SET_TIME_ZONE                            | system_basic | system_grant | TRUE    | 允许应用修改系统时区。                                       |
 | ohos.permission.DOWNLOAD_SESSION_MANAGER                 | system_core  | system_grant | TRUE    | 允许应用管理下载任务会话。                                   |
@@ -137,3 +128,5 @@
 | ohos.permission.MANAGE_DISPOSED_APP_STATUS               | system_core  | system_grant | TRUE    | 允许设置和查询应用的处置状态。                               |
 | ohos.permission.ACCESS_IDS                               | system_core  | system_grant | TRUE    | 允许应用查询设备的唯一标识符信息。                               |
 | ohos.permission.DUMP                                     | system_core  | system_grant | TRUE    | 允许导出系统基础信息和SA服务信息。                               |
+| ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | 允许不同设备之间进行组网处理。                                   |
+| ohos.permission.ACCESS_DLP_FILE                          | system_core  | system_grant | TRUE    | 允许对DLP文件进行权限配置和管理。                                |

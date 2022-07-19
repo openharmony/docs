@@ -1,10 +1,9 @@
 # Button
 
+按钮组件，可快速创建不同样式的按钮。
+
 >  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-提供按钮组件。
 
 
 ## 权限列表
@@ -23,10 +22,10 @@
 
   **表1** options参数说明
   
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | type | ButtonType | 否 | Capsule | 描述按钮风格。 | 
-  | stateEffect | boolean | 否 | true | 按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。 | 
+  | type | ButtonType | 否 | Capsule | 描述按钮风格。 |
+  | stateEffect | boolean | 否 | true | 按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。 |
 
 
 - Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
@@ -49,11 +48,11 @@
 | stateEffect | boolean | true | 状态切换时是否开启切换效果，当状态置为false时，点击效果关闭。 |
 
 - ButtonType枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 | 
-  | Circle | 圆形按钮。 | 
-  | Normal | 普通按钮（默认不带圆角）。 | 
+  | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
+  | Circle | 圆形按钮。 |
+  | Normal | 普通按钮（默认不带圆角）。 |
 
 >  **说明：**
 > - 按钮圆角通过[通用属性borderRadius设置](ts-universal-attributes-border.md)（不支持通过border接口设置圆角）。

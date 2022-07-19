@@ -1,10 +1,9 @@
 # TextInput
 
+可以输入单行文本并支持响应输入事件的组件。
+
 >  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-提供单行文本输入组件。
 
 
 ## 权限列表
@@ -19,12 +18,13 @@
 
 ## 接口
 
-TextInput(value?:{placeholder?: string controller?: TextInputController})
+TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, controller?: TextInputController})
 
 - 参数
   | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
   | ----------------------- | ---------------------------------------- | ---- | ---- | --------------- |
-  | placeholder             | string                                   | 否    | -    | 无输入时的提示文本。      |
+  | placeholder             | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                   | 否    | -    | 无输入时的提示文本。      |
+  | text             | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                   | 否    | -    | 设置提示文本的当前值。      |
   | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | -    | 设置TextInput控制器。 |
 
 

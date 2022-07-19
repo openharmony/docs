@@ -275,7 +275,7 @@ UINT32 Example_TskCaseEntry(VOID)
 ```
 
 
-### 结果验证
+ **结果验证** 
 
 编译运行得到的结果为：
 

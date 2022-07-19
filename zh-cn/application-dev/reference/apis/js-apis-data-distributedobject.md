@@ -253,11 +253,12 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local", (result)=>{
+g_object.save("local", (status, result)=>{
+    console.log("save status = " + status);
     console.log("save callback");
-    console.info("save sessionId " + result.sessionId);
-    console.info("save version " + result.version);
-    console.info("save deviceId " + result.deviceId);
+    console.info("save sessionId: " + result.sessionId);
+    console.info("save version: " + result.version);
+    console.info("save deviceId:  " + result.deviceId);
 });
 ```
 
@@ -306,7 +307,7 @@ g_object.save("local").then((result)=>{
 
 ### revokeSave<sup>9+</sup>
 
-revokeSave(callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
+revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
 撤回保存的分布式数据对象。使用callback方式作为异步方法。
 
@@ -333,7 +334,7 @@ g_object.revokeSave((result, data) =>{
 
 ### revokeSave<sup>9+</sup>
 
-revokeSave(): Promise&lt;SaveSuccessResponse&gt;
+revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
 撤回保存的分布式数据对象。使用Promise方式作为异步方法。
 
@@ -354,7 +355,7 @@ revokeSave(): Promise&lt;SaveSuccessResponse&gt;
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.revokeSave("local").then((result)=>{
+g_object.revokeSave().then((result)=>{
     console.log("revokeSave callback");
     console.log("sessionId" + result.sessionId);
 }, ()=>{

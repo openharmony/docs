@@ -29,7 +29,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
@@ -59,7 +59,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。 |
+| context | Context | 是 |应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 
@@ -92,7 +92,7 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | name | string | 是 | 数据库名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
@@ -118,7 +118,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | name | string | 是 | 数据库名称。 |
 
 **返回值**：
@@ -781,13 +781,6 @@ distinct(): RdbPredicates
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").distinct("NAME")
-let promise = rdbStore.query(predicates, ["NAME"])
-promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.log("Query err.")
-})
 ```
 
 
@@ -1133,7 +1126,7 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 ```
 ### update<sup>9+</sup>
 
-update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Promise&lt;number&gt;
+update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 根据DataSharePredicates的指定实例对象更新数据库中的数据，结果以Promise形式返回。
 
@@ -1231,7 +1224,7 @@ promise.then((rows) => {
 
 ### delete<sup>9+</sup>
 
-delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
+delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
 
 根据DataSharePredicates的指定实例对象从数据库中删除数据，结果以callback形式返回。
@@ -1354,7 +1347,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 ### query<sup>9+</sup>
 
-query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
+query(predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定条件查询数据库中的数据，结果以callback形式返回。
 
@@ -1384,7 +1377,7 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 
 ### query<sup>9+</sup>
 
-query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+query(predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，结果以Promise形式返回。
 

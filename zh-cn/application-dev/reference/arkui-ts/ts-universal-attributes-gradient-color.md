@@ -1,5 +1,7 @@
 # 颜色渐变
 
+设置组件的颜色渐变效果。
+
 >  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
@@ -22,17 +24,17 @@
 - GradientDirection枚举说明<br>
   GradientDirection用于描述渐变方向。
 
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Left | 从右向左。 | 
-  | Top | 从下向上。 | 
-  | Right | 从左向右。 | 
-  | Bottom | 从上向下。 | 
-  | LeftTop | 左上。 | 
-  | LeftBottom | 左下。 | 
-  | RightTop | 右上。 | 
-  | RightBottom | 右下。 | 
-  | None | 无。 | 
+  | Left | 从右向左。 |
+  | Top | 从下向上。 |
+  | Right | 从左向右。 |
+  | Bottom | 从上向下。 |
+  | LeftTop | 左上。 |
+  | LeftBottom | 左下。 |
+  | RightTop | 右上。 |
+  | RightBottom | 右下。 |
+  | None | 无。 |
 
 
 ## 示例

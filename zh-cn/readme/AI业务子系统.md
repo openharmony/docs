@@ -84,7 +84,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
     ```
     #include "plugin/i_plugin.h
-    class KWSPlugin : public IPlugin {       # Keywords Spotting Plugin（KWSPlugin）继承IPlugin算法插件基类public:
+    class KWSPlugin : public IPlugin {       // Keywords Spotting Plugin（KWSPlugin）继承IPlugin算法插件基类public:
         KWSPlugin();
         ~KWSPlugin();
     
