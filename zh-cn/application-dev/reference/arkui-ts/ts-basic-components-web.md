@@ -75,6 +75,7 @@
 | onShowFileSelector(callback: (event?: { result: [FileSelectorResult](#fileselectorresult对象说明), fileSelector:  [FileSelectorParam](#fileselectorparam对象说明) }) => void) | <p>调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮<br/>- result：用于通知Web组件文件选择的结果。<br/>- fileSelector：文件选择器的相关信息。</p> |
 | onUrlLoadIntercept(callback: (event?: { data:string \| [WebResourceRequest](#webresourcerequest对象说明) }) => boolean) | <p>当Web组件加载url之前触发该回调，用于是否阻止此次访问。callback返回true表示阻止此次加载，否则允许此次加载。<br/>- data：url的相关信息。</p> |
 | onInterceptRequest<sup>9+</sup>(callback: (event?: { request: [WebResourceRequest](#webresourcerequest对象说明)}) => [WebResourceResponse](#webresourceresponse对象说明)) | <p>当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。callback返回响应数据为空表示按原来方式加载，否则加载响应数据。<br/>- request：url请求的相关信息。</p> |
+| onHttpAuthRequest<sup>9+</sup>(callback: (event?: { handler: [HttpAuthHandler](#httpAuthHandler对象说明), host: string, realm: string}) => boolean) | <p>通知收到http auth认证请求。callback返回false表示此次认证失败，否则成功。<br/>- handler：通知Web组件用户操作行为。<br/>- host：HTTP身份验证凭据应用的主机。<br/>- realm：HTTP身份验证凭据应用的领域。</p> |
 
 ## ConsoleMessage对象说明
 
@@ -199,6 +200,16 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | FileOpenMultipleMode | 打开上传多个文件。   |
 | FileOpenFolderMode   | 打开上传文件夹模式。 |
 | FileSaveMode         | 文件保存模式。       |
+
+## HttpAuthHandler对象说明
+
+Web组件返回的http auth认证请求确认或取消和使用缓冲密码认证功能对象。
+
+| 接口名称                                         | 功能描述                                                |
+| -------------------------------------------------| ------------------------------------------------------ |
+| cancel(): void                                   | <p>通知Web组件用户取消HTTP认证操作。</p>                 |
+| confirm(userName: string, pwd: string): boolean  | <p>通知Web组件用户使用userName和pwd进行HTTP认证操作。</p> |
+| isHttpAuthInfoSaved(): boolean     | <p>通知Web组件用户使用服务器缓存的账号密码认证，若没有缓存返回false。</p> |
 
 ## WebController
 
@@ -411,6 +422,59 @@ saveCookieSync(): boolean
   | 参数类型 | 说明                               |
   | -------- | ---------------------------------- |
   | boolean  | 同步内存cookie到磁盘操作是否成功。 |
+
+## WebDataBase<sup>9+</sup>
+web组件数据库管理对象。
+
+### existHttpAuthCredentials<sup>9+</sup>
+
+static existHttpAuthCredentials(): boolean
+
+判断是否存在任何已保存的HTTP身份验证凭据，该方法为同步方法。存在返回true，否则返回false。
+
+- 返回值 
+  | 参数类型  | 说明                                |
+  | -------- | ----------------------------------- |
+  | boolean  | 是否存在任何已保存的HTTP身份验证凭据。存在返回true，不存在返回false |
+
+### deleteHttpAuthCredentials<sup>9+</sup>
+
+static deleteHttpAuthCredentials(): void
+
+清除所有已保存的HTTP身份验证凭据，该方法为同步方法。
+
+### getHttpAuthCredentials<sup>9+</sup>
+
+static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
+
+检索给定主机和领域的HTTP身份验证凭据，该方法为同步方法。检索成功返回一个包含用户名和密码的组数，检索不成功返回空数组。
+
+- 参数说明
+
+  | 参数名  | 参数类型 | 必填  | 默认值 | 参数描述                    |
+  | ------ | -------- | ---- | ------ | -------------------------- |
+  | host   | string   | 是   | -      | HTTP身份验证凭据应用的主机。 |
+  | realm  | string   | 是   | -      | HTTP身份验证凭据应用的领域。 |
+- 返回值 
+  | 参数类型          | 说明                                          |
+  | ---------------- | --------------------------------------------- |
+  | Array\<string\>  | 包含用户名和密码的组数，检索失败返回空数组。 |
+
+### saveHttpAuthCredentials<sup>9+</sup>
+
+static saveHttpAuthCredentials(host: string, realm: string, username: string, password: string): void
+
+保存给定主机和领域的HTTP身份验证凭据，该方法为同步方法。
+
+- 参数说明
+
+  | 参数名    | 参数类型 | 必填  | 默认值 | 参数描述                    |
+  | -------- | -------- | ---- | ------ | -------------------------- |
+  | host     | string   | 是   | -      | HTTP身份验证凭据应用的主机。 |
+  | realm    | string   | 是   | -      | HTTP身份验证凭据应用的领域。 |
+  | username | string   | 是   | -      | 用户名。                    |
+  | password | string   | 是   | -      | 密码。                      |
+
 ## 示例
 
 ```ts
