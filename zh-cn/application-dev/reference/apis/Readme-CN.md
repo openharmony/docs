@@ -38,6 +38,7 @@
   - application/[ExtensionContext (ExtensionContext)](js-apis-extension-context.md)
   - application/[ExtensionRunningInfo (ExtensionRunningInfo)](js-apis-extensionrunninginfo.md)
   - application/[FormExtensionContext (FormExtensionContext)](js-apis-formextensioncontext.md)
+  - application/[MissionInfo (MissionInfo)](js-apis-application-missionInfo.md)
   - application/[MissionSnapshot (MissionSnapshot)](js-apis-application-MissionSnapshot.md)
   - application/[PermissionRequestResult (PermissionRequestResult)](js-apis-permissionrequestresult.md)
   - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
@@ -120,6 +121,7 @@
   - [@ohos.environment (目录环境能力)](js-apis-environment.md)
   - [@ohos.fileio (文件管理)](js-apis-fileio.md)
   - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
+  - [@ohos.securityLabel (数据标签)](js-apis-securityLabel.md)
   - [@ohos.statfs (statfs)](js-apis-statfs.md)
   - [@ohos.storageStatistics (应用空间统计)](js-apis-storage-statistics.md)
   - [@ohos.volumeManager (卷管理)](js-apis-volumemanager.md)
@@ -136,9 +138,9 @@
 
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
-  - [@ohos.request (上传下载)](js-apis-request.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
+  - [@ohos.request (上传下载)](js-apis-request.md)
 - 通信与连接
 
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
