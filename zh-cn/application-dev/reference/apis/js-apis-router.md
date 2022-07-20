@@ -429,7 +429,7 @@ getParams(): Object
 
 路由跳转选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.FULL。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -444,7 +444,7 @@ getParams(): Object
 
 路由跳转模式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.FULL。
 
 | 名称 | 描述 |
 | -------- | -------- |
