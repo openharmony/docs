@@ -14,7 +14,7 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| linearGradient | {<br/>angle?:&nbsp;[Angle](../../ui/ts-types.md),<br/>direction?:&nbsp;GradientDirection,<br/>colors:&nbsp;Array&lt;[ColorStop](../../ui/ts-types.md)&gt;<br/>repeating?:&nbsp;boolean<br/>} | - | 线性渐变。<br/>angle:&nbsp;线性渐变的角度。<br/>direction:&nbsp;线性渐变的方向。<br/>colors:&nbsp;为渐变的颜色描述。<br/>repeating:&nbsp;为渐变的颜色重复着色。 |
+| linearGradient | {<br/>angle?:&nbsp;[Angle](../../ui/ts-types.md),<br/>direction?:&nbsp;GradientDirection,<br/>colors:&nbsp;Array&lt;[ColorStop](../../ui/ts-types.md)&gt;<br/>repeating?:&nbsp;boolean<br/>} | - | 线性渐变。<br/>angle:&nbsp;线性渐变的角度。<br/>direction:&nbsp;线性渐变的方向，设置angle后不生效。<br/>colors:&nbsp;为渐变的颜色描述。<br/>repeating:&nbsp;为渐变的颜色重复着色。 |
 | sweepGradient | {<br/>center:&nbsp;Point,<br/>start?:&nbsp;angle,<br/>end?:&nbsp;angle,<br/>colors:&nbsp;Array&lt;[ColorStop](../../ui/ts-types.md)&gt;<br/>repeating?:&nbsp;boolean<br/>} | - | 角度渐变。<br/>center：为角度渐变的中心点。<br/>start：角度渐变的起点。<br/>end：角度渐变的终点。<br/>colors:&nbsp;为渐变的颜色描述。<br/>repeating:&nbsp;为渐变的颜色重复着色。 |
 | radialGradient | {<br/>center:&nbsp;Point,<br/>radius:&nbsp;Length,<br/>colors:&nbsp;Array&lt;[ColorStop](../../ui/ts-types.md)&gt;<br/>repeating:&nbsp;boolean<br/>} | - | 径向渐变。<br/>center：径向渐变的中心点。<br/>radius：径向渐变的半径。<br/>colors:&nbsp;为渐变的颜色描述。<br/>repeating:&nbsp;为渐变的颜色重复着色。 |
 
@@ -49,7 +49,6 @@ struct ColorGradientExample {
         .height(50)
         .linearGradient({
           angle: 90,
-          direction: GradientDirection.Left,
           colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]
         })
       Text('sweepGradient').fontSize(12).width('90%').fontColor(0xCCCCCC)
