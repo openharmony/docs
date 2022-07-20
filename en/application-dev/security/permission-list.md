@@ -1,14 +1,8 @@
 # Permission List
 
-On the basis of the [principles for app permission management](accesstoken-overview.md#basic-principles), apply for permissions for an app by following the procedure illustrated in the figure below.
+Before applying for required permissions, read and understand the [permission workflow](accesstoken-overview.md#permission-workflow). Then, determine whether the app can apply for the target permissions based on the table below.
 
-![](figures/permission-application-process.png)
-
-1. For details about the mapping between the app's ability privilege level (APL) and permission level, see [Permission Levels](accesstoken-overview.md#permission-levels).
-2. Permissions can be authorized by the user (user_grant) or the system (system_grant). For details, see [Permission Authorization Modes](accesstoken-overview.md#permission-authorization-modes).
-3. In principle, an app with a lower APL cannot apply for higher permissions by default. The Access Control List (ACL) makes low-level apps have high-level permissions. For details, see [ACL](accesstoken-overview.md#acl).
-
-The following lists the permissions defined by the system. For details about permission usage examples, see [Access Control Development](accesstoken-guidelines.md).
+For details about permission usage examples, see [Access Control Development](accesstoken-guidelines.md).
 
 | Permission                                                  | APL    | Authorization Mode    | Enable ACL| Description                                                    |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------------------------ |
@@ -26,10 +20,7 @@ The following lists the permissions defined by the system. For details about per
 | ohos.permission.REMOVE_CACHE_FILES                       | system_basic | system_grant | TRUE    | Allows the cache of the specified app to be cleared.                                    |
 | ohos.permission.REBOOT                                   | system_basic | system_grant | TRUE    | Allows an app to restart the device.                                          |
 | ohos.permission.RUNNING_LOCK                             | normal       | system_grant | TRUE    | Allows an app to obtain a running lock.              |
-| ohos.permission.ENROLL_BIOMETRIC                         | system_core  | system_grant | FALSE   | Allows an app to add or remove biometric data.                            |
 | ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | FALSE   | Allows an app to use biometric recognition for identity authentication.                  |
-| ohos.permission.ACCESS_BIOMETRIC_INTERNAL                | system_core  | system_grant | FALSE   | Allows an app to apply for or release biometric recognition resources.                      |
-| ohos.permission.RESET_BIOMETRIC_LOCKOUT                  | system_core  | system_grant | FALSE   | Allows an app to reset the maximum number of failures allowed before biometric authentication is locked.                    |
 | ohos.permission.SET_TIME                                 | system_basic | system_grant | TRUE    | Allows an app to set the system time.                                      |
 | ohos.permission.SET_TIME_ZONE                            | system_basic | system_grant | TRUE    | Allows an app to set the system time zone.                                      |
 | ohos.permission.DOWNLOAD_SESSION_MANAGER                 | system_core  | system_grant | TRUE    | Allows an app to manage the download sessions.                                  |
@@ -136,3 +127,5 @@ The following lists the permissions defined by the system. For details about per
 | ohos.permission.SET_DEFAULT_APPLICATION                  | system_core  | system_grant | TRUE    | Allows an app to set and reset default apps.                                |
 | ohos.permission.MANAGE_DISPOSED_APP_STATUS               | system_core  | system_grant | TRUE    | Allows an app to set and query the app handling state.                              |
 | ohos.permission.ACCESS_IDS                               | system_core  | system_grant | TRUE    | Allows an app to query the unique identifier of a device.                              |
+| ohos.permission.DUMP                                     | system_core  | system_grant | TRUE    | Allows the basic system information and SA service information to be exported.                              |
+| ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | Allows networking between different devices.                                  |

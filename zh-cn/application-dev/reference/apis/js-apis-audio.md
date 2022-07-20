@@ -2276,7 +2276,43 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 ```
 import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
+import featureAbility from '@ohos.ability.featureAbility'
 
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data)=> {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
+var bufferSize;
+audioRenderer.getBufferSize().then((data)=> {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info.('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
+    });
+console.info('Buffer size:'+bufferSize);
+var context = featureAbility.getContext();
+var path = await context.getCacheDir();
+var filePath = path+"/StarWars10s-2C-48000-4SW.wav"
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
@@ -2308,7 +2344,42 @@ write(buffer: ArrayBuffer): Promise\<number>
 ```
 import audio from '@ohos.multimedia.audio';
 import fileio from '@ohos.fileio';
+import featureAbility from '@ohos.ability.featureAbility'
 
+var audioStreamInfo = {
+    samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels:audio.AudioChannel.CHANNEL_2,
+    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data) => {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
+var bufferSize;
+audioRenderer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
+    });
+console.info('BufferSize: ' + bufferSize);
+var context = featureAbility.getContext();
+var path = await context.getCacheDir();
 var filePath = 'data/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -2411,12 +2482,39 @@ getBufferSize(): Promise\<number>
 **示例：**
 
 ```
+import audio from '@ohos.multimedia.audio';
+import fileio from '@ohos.fileio';
+
+var audioStreamInfo = {
+    samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels:audio.AudioChannel.CHANNEL_2,
+    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_SPEECH,
+    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    rendererFlags: 1
+}
+
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+var audioRenderer;
+audio.createAudioRenderer(audioRendererOptions).then((data) => {
+    audioRenderer = data;
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRenderLog: AudioRenderer Created: ERROR: '+err.message);
+    });
 var bufferSize;
-await audioRenderer.getBufferSize().then(async function (data) => {
-    console.info('AudioFrameworkRenderLog: getBufferSize :SUCCESS '+data);
+audioRenderer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRenderLog: getBufferSize: SUCCESS '+data);
     bufferSize=data;
 }).catch((err) => {
-    console.info('AudioFrameworkRenderLog: getBufferSize :ERROR : '+err.message);
+    console.info('AudioFrameworkRenderLog: getBufferSize: ERROR: '+err.message);
 });
 ```
 
@@ -2545,7 +2643,8 @@ setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
 **示例：**
 
 ```
-audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE).then(() => {
+const audioManager = audio.getAudioManager();
+audioManager.setInterruptMode(audio.InterruptMode.SHARE_MODE).then(() => {
     console.log('Promise returned to indicate a successful volume setting.');
 });
 ```
@@ -2567,7 +2666,8 @@ setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
 **示例：**
 
 ```
-audioManager.setInterruptMode(audio.InterruptType.SHARE_MODE,()=>{
+const audioManager = audio.getAudioManager();
+audioManager.setInterruptMode(audio.InterruptMode.SHARE_MODE,()=>{
     console.log('Callback returned to indicate a successful volume setting.');
 });
 ```
@@ -2657,7 +2757,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 
 ```
 audioRenderer.on('markReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -2704,7 +2804,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 
 ```
 audioRenderer.on('periodReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -2938,13 +3038,35 @@ start(): Promise<void\>
 **示例：**
 
 ```
+import audio from '@ohos.multimedia.audio';
+import fileio from '@ohos.fileio';
+
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_2,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioCapturerInfo = {
+    source: audio.SourceType.SOURCE_TYPE_MIC,
+    capturerFlags = 1
+}
+
+var audioCapturer;
+audio.createAudioCapturer(audioCapturerOptions).then((data) => {
+    audioCapturer = data;
+    console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: AudioCapturer Created: ERROR: '+err.message);
+    });
 audioCapturer.start().then(() => {
     console.info('AudioFrameworkRecLog: ---------START---------');
-    console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
-    console.info('AudioFrameworkRecLog: AudioCapturer : STATE : '+audioCapturer.state);
-    console.info('AudioFrameworkRecLog: Capturer started :SUCCESS ');
+    console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
+    console.info('AudioFrameworkRecLog: AudioCapturer: STATE: '+audioCapturer.state);
+    console.info('AudioFrameworkRecLog: Capturer started: SUCCESS ');
     if ((audioCapturer.state == audio.AudioState.STATE_RUNNING)) {
-        stateFlag = true;
+        console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
     }
 }).catch((err) => {
     console.info('AudioFrameworkRecLog: Capturer start :ERROR : '+err.message);
@@ -2997,15 +3119,13 @@ stop(): Promise<void\>
 
 ```
 audioCapturer.stop().then(() => {
-    console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
-    console.info('AudioFrameworkRecLog: Capturer stopped : SUCCESS');
+    console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
+    console.info('AudioFrameworkRecLog: Capturer stopped: SUCCESS');
     if ((audioCapturer.state == audio.AudioState.STATE_STOPPED)){
-        stateFlag=true;
-        console.info('AudioFrameworkRecLog: resultFlag : '+stateFlag);
+        console.info('AudioFrameworkRecLog: State is Stopped': ');
     }
 }).catch((err) => {
-    console.info('AudioFrameworkRecLog: Capturer stop:ERROR : '+err.message);
-    stateFlag=false;
+    console.info('AudioFrameworkRecLog: Capturer stop: ERROR: '+err.message);
 });
 ```
 
@@ -3057,11 +3177,9 @@ audioCapturer.release().then(() => {
     console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
     console.info('AudioFrameworkRecLog: AudioCapturer : STATE : '+audioCapturer.state);
-    stateFlag=true;
     console.info('AudioFrameworkRecLog: stateFlag : '+stateFlag);
 }).catch((err) => {
-    console.info('AudioFrameworkRecLog: Capturer stop:ERROR : '+err.message);
-    stateFlag=false
+    console.info('AudioFrameworkRecLog: Capturer stop: ERROR: '+err.message);
 });
 ```
 
@@ -3085,6 +3203,13 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 **示例：**
 
 ```
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: EROOR: '+err.message);
+    });
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
     if (!err) {
         console.log("Success in reading the buffer data");
@@ -3117,6 +3242,14 @@ read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 **示例：**
 
 ```
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: SUCCESS '+data);
+    bufferSize = data;
+    }).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize: ERROR '+err.message);
+    });
+console.info('Buffer size: ' + bufferSize);
 audioCapturer.read(bufferSize, true).then((buffer) => {
     console.info('buffer read successfully');
 }).catch((err) => {
@@ -3220,12 +3353,12 @@ getBufferSize(): Promise<number\>
 **示例：**
 
 ```
-await audioCapturer.getBufferSize().then(async function (bufferSize) {
-    console.info('AudioFrameworkRecordLog: getBufferSize :SUCCESS '+ bufferSize);
-    var buffer = await audioCapturer.read(bufferSize, true);
-    console.info('Buffer read is ' + buffer );
-    }).catch((err) => {
-    console.info('AudioFrameworkRecordLog: getBufferSize :ERROR : '+err.message);
+var bufferSize;
+audioCapturer.getBufferSize().then((data) => {
+    console.info('AudioFrameworkRecLog: getBufferSize :SUCCESS '+ data);
+    bufferSize = data;
+}).catch((err) => {
+    console.info('AudioFrameworkRecLog: getBufferSize :ERROR : '+ err.message);
 });
 ```
 
@@ -3250,7 +3383,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 
 ```
 audioCapturer.on('markReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });
@@ -3296,7 +3429,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 
 ```
 audioCapturer.on('periodReach', 1000, (position) => {
-    if (position == "1000") {
+    if (position == 1000) {
         console.log('ON Triggered successfully');
     }
 });

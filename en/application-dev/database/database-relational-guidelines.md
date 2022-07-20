@@ -34,7 +34,7 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   
   | Class| API| Description|
   | -------- | -------- | -------- |
-  | RdbStore | insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table. This API uses a callback to return the result.<br>- **table**: name of the target table.<br>- **values**: data to be inserted into the table.<br>- **callback**: callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+  | RdbStore | insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table. This API uses a callback to return the result.<br>- **table**: name of the target table.<br>- **values**: data to be inserted into the table.<br>- **callback**: callback invoked to return the result. If the operation is successful, the row ID will be returned; otherwise, **-1** will be returned.|
   | RdbStore | insert(table: string, values: ValuesBucket): Promise&lt;number&gt; | Inserts a row of data into a table. This API uses a promise to return the result.<br>- **table**: name of the target table.<br>- **values**: data to be inserted into the table.|
   
 - **Updating data**
@@ -190,7 +190,7 @@ You can obtain the distributed table name for a remote device based on the local
 | -------- | -------- | -------- |
 | RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback\<Array\<string>>): void;| Unregisters the observer of the specified type for the RDB store. This API uses a callback to return the result.<br>- **type**: subscription type. **SUBSCRIBE_TYPE_REMOTE** means to subscribe to remote data changes.<br>- **observer**: observer to unregister.|
 
-### Backing Up and Restore an RDB Store
+### Backing Up and Restoring an RDB Store
 
 **Backing Up an RDB Store**
 
@@ -198,8 +198,8 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore |backup(destName:string, callback: AsyncCallback&lt;void&gt;):void| Backs up the RDB store with the specified name. This API uses an asynchronous callback to return the result.<br>- **destName**: name of the RDB backup file.<br>- **callback**: callback invoked to return the result.|
-| RdbStore |backup(destName:string): Promise&lt;void&gt;| Backs up the RDB store with the specified name. This API uses a promise to return the result.<br>- **destName**: name of the RDB backup file.|
+| RdbStore |backup(destName:string, callback: AsyncCallback&lt;void&gt;):void| Backs up an RDB store. This API uses an asynchronous callback to return the result.<br>- **destName**: name of the RDB backup file.<br>- **callback**: callback invoked to return the result.|
+| RdbStore |backup(destName:string): Promise&lt;void&gt;| Backs up an RDB store. This API uses a promise to return the result.<br>- **destName**: name of the RDB backup file.|
 
 **Restoring an RDB Store**
 
@@ -207,8 +207,8 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore |restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void| Restores an RDB store using the specified backup file. This API uses an asynchronous callback to return the result.<br>- **srcName**: name of the RDB backup file.<br>- **callback**: callback invoked to return the result.|
-| RdbStore |restore(srcName:string): Promise&lt;void&gt;| Restores an RDB store using the specified backup file. This API uses a promise to return the result.<br>- **srcName**: name of the RDB backup file.|
+| RdbStore |restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void| Restores an RDB store using a backup file. This API uses an asynchronous callback to return the result.<br>- **srcName**: name of the RDB backup file.<br>- **callback**: callback invoked to return the result.|
+| RdbStore |restore(srcName:string): Promise&lt;void&gt;| Restores an RDB store using a backup file. This API uses a promise to return the result.<br>- **srcName**: name of the RDB backup file.|
 
 ## How to Develop
 
@@ -270,7 +270,7 @@ You can obtain the distributed table name for a remote device based on the local
         const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"))
         resultSet.close()
     })
-    ```
+   ```
 
 4. Set the distributed tables to be synchronized.
 

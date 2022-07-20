@@ -1,6 +1,6 @@
 # Distributed Data Object
 
-Provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices.
+The distributedDataObject module provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices.
 
 > **NOTE**<br/>
 >
@@ -23,9 +23,9 @@ Creates a distributed data object.
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| source | object | Yes| Attribute of the distributed data object to create.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | source | object | Yes| Attribute of the distributed data object to create.|
 
 **Return value**
 | Type| Description|
@@ -33,12 +33,11 @@ Creates a distributed data object.
 | [DistributedObject](#distributedobject) | Distributed data object created.|
 
 **Example**
-  ```js
-  import distributedObject from '@ohos.data.distributedDataObject';
-  // Create a distributed data object, which contains attributes of four types, namely, string, number, boolean, and object.
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
-                 parent:{mother:"jack mom",father:"jack Dad"}});
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+// Create a distributed data object, which contains attributes of four types, namely, string, number, boolean, and object.
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
+```
 
 
 ## distributedObject.genSessionId
@@ -50,15 +49,15 @@ Creates a random session ID.
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| string | Session ID created.|
+  | Type| Description|
+  | -------- | -------- |
+  | string | Session ID created.|
 
 **Example**
-  ```js
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var sessionId = distributedObject.genSessionId();
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+var sessionId = distributedObject.genSessionId();
+```
 
 ## SaveSuccessResponse<sup>9+</sup>
 
@@ -98,27 +97,26 @@ Sets a session ID for synchronization. Automatic synchronization is performed fo
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | sessionId | string | No| ID of a distributed data object on a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the session ID is set successfully;<br>returns **false** otherwise. |
 
 **Example**
 
-  ```js
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, 
-                 parent:{mother:"jack mom",father:"jack Dad"}});
-  // Add g_object to the distributed network.
-  g_object.setSessionId(distributedObject.genSessionId());
-  // Remove g_object from the distributed network.
-  g_object.setSessionId("");
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});;
+// Add g_object to the distributed network.
+g_object.setSessionId(distributedObject.genSessionId());
+// Remove g_object from the distributed network.
+g_object.setSessionId("");
+```
 
 
 ### on('change')
@@ -130,15 +128,15 @@ Subscribes to the changes of this distributed data object.
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data changes.|
-| callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type to subscribe to. The value is **change**, which indicates data changes.|
+  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.changeCallback = (sessionId, changeData) => {
     console.info("change" + sessionId);
     if (changeData != null && changeData != undefined) {
@@ -159,16 +157,16 @@ Unsubscribes from the changes of this distributed data object.
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes.|
-| callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback to be unregistered. If this parameter is not set, all data change callbacks of the object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type to unsubscribe from. The value is **change**, which indicates data changes.|
+  | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | No| Callback to be unregistered. If this parameter is not set, all data change callbacks of the object will be unregistered.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 
 **Example**
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 // Unregister the specified data change callback.
 g_object.off("change", globalThis.changeCallback);
 // Unregister all data change callbacks.
@@ -184,10 +182,10 @@ Subscribes to the status change (online or offline) of this distributed data obj
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to subscribe to. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback used to return the status change.<br>**sessionId**: session ID of the distributed data object.<br>**networkId**: object device ID, that is, **deviceId**.<br>**status** indicates the object status, which can be online or offline. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type to subscribe to. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+  | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | Yes| Callback used to return the status change.<br>**sessionId**: session ID of the distributed data object.<br>**networkId**: object device ID, that is, **deviceId**.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
 ```js
@@ -195,7 +193,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 g_object.on("status", globalThis.statusCallback);
 ```
 
@@ -209,16 +207,16 @@ Unsubscribes from the status change (online or offline) of this distributed data
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to unsubscribe from. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
-| callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback used to return the status change. If this parameter is not specified, this API unsubscribes from all callbacks of this distributed data object.<br>**sessionId**: session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the status, which can be online or offline.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type to unsubscribe from. The value is **status**, which indicates the status change (online or offline) of the distributed data object.|
+  | callback | Callback<{ sessionId: string, deviceId: string, status: 'online' \| 'offline' }> | No| Callback used to return the status change. If this parameter is not specified, this API unsubscribes from all callbacks of this distributed data object.<br>**sessionId**: session ID of the distributed data object.<br>**deviceId** indicates the device ID of the distributed data object.<br>**status** indicates the status, which can be online or offline.|
 
 
 **Example**
 ```js
 import distributedObject from '@ohos.data.distributedDataObject'; 
-var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false,parent:{mother:"jack mom",father:"jack Dad"}});
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
@@ -245,24 +243,24 @@ The saved data will be released in the following cases:
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates the local device.|
-| callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse)&gt; | Yes| Callback used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates the local device.|
+  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
-
-  ```ts
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
-  g_object.setSessionId("123456");
-  g_object.save("local", (result)=>{
-      console.log("save callback");
-      console.info("save sessionId " + result.sessionId);
-      console.info("save version " + result.version);
-      console.info("save deviceId " + result.deviceId);
-  });
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
+g_object.setSessionId("123456");
+g_object.save("local", (status, result)=>{
+    console.log("save status = " + status);
+    console.log("save callback");
+    console.info("save sessionId: " + result.sessionId);
+    console.info("save version: " + result.version);
+    console.info("save deviceId:  " + result.deviceId);
+});
+```
 
 ### save<sup>9+</sup>
 
@@ -281,31 +279,31 @@ The saved data will be released in the following cases:
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | deviceId | string | Yes| ID of the device where the data is saved. The default value is **local**, which indicates the local device. |
 
-  **Return value**
+**Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[SaveSuccessResponse](#savesuccessresponse)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Promise used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
 
-  ```ts
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
-  g_object.setSessionId("123456");
-  g_object.save("local").then((result)=>{
-      console.log("save callback");
-      console.info("save sessionId " + result.sessionId);
-      console.info("save version " + result.version);
-      console.info("save deviceId " + result.deviceId);
-  }, ()=>{
-      console.error("save failed");
-  });
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
+g_object.setSessionId("123456");
+g_object.save("local").then((result)=>{
+    console.log("save callback");
+    console.info("save sessionId " + result.sessionId);
+    console.info("save version " + result.version);
+    console.info("save deviceId " + result.deviceId);
+}, ()=>{
+    console.error("save failed");
+});
+```
 
 ### revokeSave<sup>9+</sup>
 
@@ -319,20 +317,20 @@ If the object is stored on another device, the data on the local device will be 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse)&gt; | No| Callback used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | No| Callback used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Example**
 
-  ```ts
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
-  g_object.setSessionId("123456");
-  g_object.revokeSave((result, data) =>{
-    console.log("revokeSave callback");
-  });
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
+g_object.setSessionId("123456");
+g_object.revokeSave((result, data) =>{
+  console.log("revokeSave callback");
+});
+```
 
 ### revokeSave<sup>9+</sup>
 
@@ -345,22 +343,22 @@ If the object is stored on another device, the data on the local device will be 
 
 **System capability**: SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-  **Return value**
+**Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Promise used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Example**
 
-  ```ts
-  import distributedObject from '@ohos.data.distributedDataObject';
-  var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
-  g_object.setSessionId("123456");
-  g_object.revokeSave("local").then((result)=>{
-      console.log("revokeSave callback");
-      console.log("sessionId" + result.sessionId);
-  }, ()=>{
-      console.error("revokeSave failed");
-  });
-  ```
+```js
+import distributedObject from '@ohos.data.distributedDataObject';
+var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
+g_object.setSessionId("123456");
+g_object.revokeSave().then((result)=>{
+    console.log("revokeSave callback");
+    console.log("sessionId" + result.sessionId);
+}, ()=>{
+    console.error("revokeSave failed");
+});
+```

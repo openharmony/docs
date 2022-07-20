@@ -328,6 +328,240 @@ promise.then((data) => {
 });
 ```
 
+## data.enableCellularData
+
+enableCellularData(callback: AsyncCallback<void\>): void
+
+启用蜂窝数据服务，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+data.enableCellularData((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.enableCellularData
+
+enableCellularData(): Promise<void\>
+
+启用蜂窝数据服务，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let promise = data.enableCellularData();
+promise.then((data) => {
+    console.log(`enableCellularData success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`enableCellularData fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.disableCellularData
+
+disableCellularData(callback: AsyncCallback<void\>): void
+
+禁用蜂窝数据服务，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+data.disableCellularData((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.disableCellularData
+
+disableCellularData(): Promise<void\>
+
+禁用蜂窝数据服务，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型            | 说明                        |
+| --------------- | --------------------------- |
+| Promise\<void\> | 以Promise形式返回禁用结果。 |
+
+**示例：**
+
+```js
+let promise = data.disableCellularData();
+promise.then((data) => {
+    console.log(`disableCellularData success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.enableCellularDataRoaming
+
+enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
+
+启用蜂窝数据漫游，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                     |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
+
+**示例：**
+
+```js
+data.enableCellularDataRoaming(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.enableCellularDataRoaming
+
+enableCellularDataRoaming(slotId: number): Promise<void\>
+
+启用蜂窝数据漫游，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<void\> | 以Promise形式返回启用结果 |
+
+**示例：**
+
+```js
+let promise = data.enableCellularDataRoaming(0);
+promise.then((data) => {
+    console.log(`enableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.disableCellularDataRoaming
+
+disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
+
+禁用蜂窝数据漫游，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                     |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| slotId   | number                | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。                               |
+
+**示例：**
+
+```js
+data.disableCellularDataRoaming(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.disableCellularDataRoaming
+
+disableCellularDataRoaming(slotId: number): Promise<void\>
+
+禁用蜂窝数据漫游，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | 是   | 卡槽ID。<br />0：卡槽1。<br />1：卡槽2。 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+| Promise\<void\> | 以Promise形式返回禁用结果 |
+
+**示例：**
+
+```js
+let promise = data.disableCellularDataRoaming(0);
+promise.then((data) => {
+    console.log(`disableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## DataFlowType
 
 描述蜂窝数据流类型。 

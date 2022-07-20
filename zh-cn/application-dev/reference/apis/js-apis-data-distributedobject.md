@@ -307,7 +307,7 @@ g_object.save("local").then((result)=>{
 
 ### revokeSave<sup>9+</sup>
 
-revokeSave(callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
+revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
 撤回保存的分布式数据对象。使用callback方式作为异步方法。
 
@@ -334,7 +334,7 @@ g_object.revokeSave((result, data) =>{
 
 ### revokeSave<sup>9+</sup>
 
-revokeSave(): Promise&lt;SaveSuccessResponse&gt;
+revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
 撤回保存的分布式数据对象。使用Promise方式作为异步方法。
 

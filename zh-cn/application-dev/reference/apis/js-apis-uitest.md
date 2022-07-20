@@ -1285,7 +1285,7 @@ async function demo() {
 
 ### triggerCombineKeys<sup>9+</sup>
 
-triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
+triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 UiDriver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，UiDriver对象找到组合键并点击ctrl+c。
 
@@ -1865,6 +1865,8 @@ async function demo() {
 
 ## WindowMode<sup>9+</sup>
 
+**系统能力**：SystemCapability.Test.UiTest
+
 窗口的窗口模式。
 
 | 名称       | 说明       |
@@ -1872,4 +1874,4 @@ async function demo() {
 | FULLSCREEN | 全屏模式。 |
 | PRIMARY    | 主窗口。   |
 | SECONDARY  | 第二窗口。 |
-| FLOAT      | 浮动窗口。 |
+| FLOATING   | 浮动窗口。 |

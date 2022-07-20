@@ -182,7 +182,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
+| context<sup>9+<sup> | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
 | bundleName | string | 是  | 调用方的包名。 |
 
@@ -2301,7 +2301,7 @@ try {
 
 ### delete<sup>9+</sup>
 
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;): void
+delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
 
 从数据库中删除符合predicates条件的键值对，并通过callback方式返回，此方法为异步方法。
 
@@ -2381,7 +2381,7 @@ try {
 
 ### on('dataChange')
 
-on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
 订阅指定类型的数据变更通知。
 
@@ -2393,7 +2393,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
 | type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
 
 **示例：**
 
@@ -2431,7 +2431,7 @@ kvStore.on('syncComplete', function (data) {
 
 ### off('dataChange')<sup>8+</sup>
 
-off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
+off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 取消订阅数据变更通知。
 
@@ -2442,7 +2442,7 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
 
 **示例：**
 
