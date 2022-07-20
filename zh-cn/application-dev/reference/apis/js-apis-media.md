@@ -105,6 +105,7 @@ media.createVideoPlayer().then((video) => {
 createAudioRecorder(): AudioRecorder
 
 创建音频录制的实例来控制音频的录制。
+一台设备只允许创建一个录制实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
