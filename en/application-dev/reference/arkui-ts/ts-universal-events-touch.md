@@ -1,5 +1,6 @@
 # Touch Event
 
+A touch event is triggered when a finger is pressed, slides, or is lifted from a component.
 
 > **NOTE**
 >
@@ -13,48 +14,50 @@ None
 
 ## Events
 
-| Name | Bubbling Supported | Description |
-| -------- | -------- | -------- |
-| onTouch(callback: (event?: TouchEvent) =&gt; void) | Yes | Invoked when a touch action is triggered. For details about **event**, see [TouchEvent](#touchevent). |
+| Name                                      | Bubbling Supported| Description                                    |
+| ---------------------------------------- | ---- | ---------------------------------------- |
+| onTouch(callback:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | Yes   | Invoked when a touch action is triggered. For details about **event**, see [TouchEvent](#touchevent).|
 
 
 ## TouchEvent
 
 - Attributes
-  | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | type | TouchType | Type of a touch event. |
-  | touches | Array&lt;[TouchObject](#touchobject)&gt; | All finger information. |
-  | changedTouches | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed. |
-  | timestamp | number | Timestamp of the event. |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Target of the event. |
+  | Name               | Type                                      | Description          |
+  | ------------------- | ---------------------------------------- | ------------ |
+  | type                | TouchType                                | Type of the touch event.    |
+  | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.     |
+  | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.|
+  | timestamp           | number                                   | Timestamp of the event.      |
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Target of the event.    |
+
 
 - APIs
-  | API | Description |
-  | -------- | -------- |
-  | stopPropagation(): void | Bubbling of the stop event. |
+  | Name                  | Description   |
+  | ---------------------- | ------- |
+  | stopPropagation(): void| Stops the event from bubbling upwards or downwards.|
+
 
 ## TouchObject
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| type | [TouchType](#touchtype) | Type of a touch event. |
-| id | number | Unique identifier of a finger. |
-| screenX | number | X coordinate of the touch point relative to the left edge of the screen. |
-| screenY | number | Y coordinate of the touch point relative to the upper edge of the device screen. |
-| x | number | X coordinate of the touch point relative to the left edge of the element to touch. |
-| y | number | Y coordinate of the touch point relative to the upper edge of the element to touch. |
+| Name   | Type                         | Description                 |
+| ------- | --------------------------- | ------------------- |
+| type    | [TouchType](#touchtype-enums) | Type of the touch event.           |
+| id      | number                      | Unique identifier of a finger.           |
+| screenX | number                      | X-coordinate of the touch point relative to the left edge of the screen. |
+| screenY | number                      | Y-coordinate of the touch point relative to the upper edge of the device screen. |
+| x       | number                      | X-coordinate of the touch point relative to the left edge of the element being touched. |
+| y       | number                      | Y-coordinate of the touch point relative to the upper edge of the element being touched. |
 
-## TouchType
-| Name | Description |
-| -------- | -------- |
-| Down | Trigger a touch event when a finger is pressed. |
-| Up | Trigger a touch event when a finger is lifted. |
-| Move | Trigger a touch event when a finger moves on the screen in pressed state. |
-| Cancel | Trigger an event when a touch event is canceled. |
+
+## TouchType Enums
+| Name    | Description             |
+| ------ | --------------- |
+| Down   | A finger is pressed.       |
+| Up     | A finger is lifted.       |
+| Move   | A finger moves on the screen in pressed state.|
+| Cancel | A touch event is canceled.     |
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
