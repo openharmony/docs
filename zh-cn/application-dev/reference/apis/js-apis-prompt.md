@@ -44,7 +44,7 @@ showToast(options: ShowToastOptions): void
 
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| message  | string         | 是    | 显示的文本信息。                                 |
+| message  | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 是    | 显示的文本信息。 |
 | duration | number         | 否    | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
 | bottom   | string | number | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
 
@@ -148,8 +148,8 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 | 名称      | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| title   | string | 否    | 标题文本。                                    |
-| message | string | 否    | 内容文本。                                    |
+| title   | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 否    | 标题文本。                                    |
+| message | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 否    | 内容文本。                                    |
 | buttons | Array  | 否    | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
 
 ## ShowDialogSuccessResponse 
@@ -258,7 +258,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 | 名称      | 类型     | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| title   | string | 否    | 标题文本。                                    |
+| title   | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 否    | 标题文本。                                    |
 | buttons | Array&lt;[Button](#button)&gt;  | 是    | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。大于6个按钮时弹窗不显示。 |
 
 ## ActionMenuSuccessResponse
@@ -279,6 +279,6 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 | 名称    | 类型     | 必填   | 说明                       |
 | ----- | ------ | ---- | ------------------------ |
-| text | string | 是    | 按钮文本内容。 |
-| color | string | 是    | 按钮文本颜色。 |
+| text | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 是    | 按钮文本内容。 |
+| color | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 是    | 按钮文本颜色。 |
 
