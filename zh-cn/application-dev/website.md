@@ -28,8 +28,6 @@
   - Ability开发
      - [Ability框架概述](ability/ability-brief.md)
 
-     - [应用上下文Context概述](ability/context-userguide.md)
-
      - FA模型
 
        - [FA模型综述](ability/fa-brief.md)
@@ -372,30 +370,25 @@
 
      - [调试助手使用指导](notification/assistant-guidelines.md)
   - 窗口管理
-     * 窗口
+    - 窗口
+      - [窗口开发概述](windowmanager/window-overview.md)
+      -  [窗口开发指导](windowmanager/window-guidelines.md)
 
-     	*  [窗口开发概述](windowmanager/window-overview.md)
+    - 屏幕属性
 
-     	*  [窗口开发指导](windowmanager/window-guidelines.md)
+      - [屏幕属性开发概述](windowmanager/display-overview.md)
 
-     * 屏幕属性
+      - [屏幕属性开发指导](windowmanager/display-guidelines.md)
 
-       * [屏幕属性开发概述](windowmanager/display-overview.md)
+    - 屏幕截图
 
-       * [屏幕属性开发指导](windowmanager/display-guidelines.md)
+      - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
 
-     * 屏幕截图
-
-       * [屏幕截图开发概述](windowmanager/screenshot-overview.md)
-
-       * [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
+      - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
 
   - WebGL
-    
-
-     - [WebGL开发概述](webgl/webgl-overview.md)
-
-     - [WebGL开发指导](webgl/webgl-guidelines.md)
+    - [WebGL开发概述](webgl/webgl-overview.md)
+    - [WebGL开发指导](webgl/webgl-guidelines.md)
 
   - 媒体
      - 音频
@@ -411,18 +404,12 @@
          - [音频采集开发指导](media/audio-capturer.md)
 
      - 视频
-
        - [视频播放开发指导](media/video-playback.md)
-
        - [视频录制开发指导](media/video-recorder.md)
-
      - 图片
-
        - [图片开发指导](media/image.md)
-
   - 安全
     
-
      - 访问控制  
 
        - [访问控制开发概述](security/accesstoken-overview.md)
@@ -444,8 +431,6 @@
        - [HUKS开发指导](security/huks-guidelines.md)
 
      - Hap包签名工具
-
-       - [Hap包签名工具概述](security/hapsigntool-overview.md)
 
        - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
 
@@ -519,35 +504,33 @@
        - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
   - 设备管理
 
-
      - USB服务
-    
+      
        - [USB服务开发概述](device/usb-overview.md)
-    
+      
        - [USB服务开发指导](device/usb-guidelines.md)
-    
+      
      - 位置
-    
+      
        - [位置开发概述](device/device-location-overview.md)
-    
+      
        - [获取设备的位置信息](device/device-location-info.md)
-    
+      
        - [（逆）地理编码转化](device/device-location-geocoding.md)
-    
+      
      - 传感器
-    
+      
        - [传感器开发概述](device/sensor-overview.md)
-    
+      
        - [传感器开发指导](device/sensor-guidelines.md)
-    
+      
      - 振动
-    
+      
        - [振动开发概述](device/vibrator-overview.md)
-    
+      
        - [振动开发指导](device/vibrator-guidelines.md)
 
   - 设备使用信息统计
-    
 
      - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
 
@@ -580,7 +563,6 @@
 
        - [I18n开发指导](internationalization/i18n-guidelines.md)
 
-  - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API相关指导
     
 
@@ -1099,8 +1081,7 @@
     
      - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
 
-  - 接口参考
-     - [开发说明](reference/apis/development-intro.md)
+  - 接口参考（JS及TS API）
      - Ability框架
 
        - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-DataUriUtils.md)
@@ -1447,4 +1428,40 @@
          - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
        
          - [console (日志打印)](reference/apis/js-apis-logs.md)
+  - 接口参考（Native API）
+    - OpenHarmony Native API
 
+      - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
+      - [Native_Bundle](reference/native-apis/_native___bundle.md)
+      - [HiLog](reference/native-apis/_hi_log.md)
+      - [NativeWindow](reference/native-apis/_native_window.md)
+      - [Drawing](reference/native-apis/_drawing.md)
+      - [Rawfile](reference/native-apis/rawfile.md)
+      
+      - 头文件
+        - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
+        - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
+        - [drawing_canvas.h](reference/native-apis/drawing__canvas_8h.md)
+        - [drawing_color.h](reference/native-apis/drawing__color_8h.md)
+        - [drawing_font_collection.h](reference/native-apis/drawing__font__collection_8h.md)
+        - [drawing_path.h](reference/native-apis/drawing__path_8h.md)
+        - [drawing_pen.h](reference/native-apis/drawing__pen_8h.md)
+        - [drawing_text_declaration.h](reference/native-apis/drawing__text__declaration_8h.md)
+        - [drawing_text_typography.h](reference/native-apis/drawing__text__typography_8h.md)
+        - [drawing_types.h](reference/native-apis/drawing__types_8h.md)
+        - [external_window.h](reference/native-apis/external__window_8h.md)
+        - [log.h](reference/native-apis/log_8h.md)
+        - [native_interface_bundle.h](reference/native-apis/native__interface__bundle_8h.md)
+        - [native_interface_xcomponent.h](reference/native-apis/native__interface__xcomponent_8h.md)
+        - [raw_dir.h](reference/native-apis/raw__dir_8h.md)
+        - [raw_file.h](reference/native-apis/raw__file_8h.md)
+  
+      - 结构体
+        - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
+        - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
+        - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
+        - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
+        - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
+- [Native API标准库](reference/native-lib/third_party_libc/musl.md)
+    
+- [Node_API](reference/native-lib/third_party_napi/napi.md)
