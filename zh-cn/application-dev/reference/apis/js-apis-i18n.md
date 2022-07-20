@@ -118,7 +118,8 @@ getSystemLanguage(): string
 
 setSystemLanguage(language: string): boolean
 
-设置系统语言。<br>
+设置系统语言。
+
 该接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
@@ -211,7 +212,8 @@ getSystemRegion(): string
 
 setSystemRegion(region: string): boolean
 
-设置系统区域。<br>
+设置系统区域。
+
 该接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
@@ -257,7 +259,8 @@ getSystemLocale(): string
 
 setSystemLocale(locale: string): boolean
 
-设置系统Locale。<br>
+设置系统Locale。
+
 该接口为系统接口。 
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
@@ -674,7 +677,7 @@ format(number: string): string
   ```
 
 
-### getLocationName<sup>8+</sup>
+### getLocationName<sup>9+</sup>
 
 static getLocationName(number: string, locale: string): string
 
@@ -750,6 +753,30 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 **示例：** 
   ```
   i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  ```
+
+
+### getDateOrder<sup>9+</sup>
+
+static getDateOrder(locale: string): string
+
+获取某一区域的日期的年、月、日排列顺序。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名      | 类型                     | 必填   | 说明                                       |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
+
+**返回值：** 
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| string | 返回某一区域的日期的年、月、日排列顺序 |
+
+**示例：** 
+  ```
+  i18n.Util.getDateOrder("zh-CN");
   ```
 
 
@@ -1486,10 +1513,10 @@ getTimeZone(zoneID?: string): TimeZone
   ```
 
 
-## TimeZone<sup>8+</sup>
+## TimeZone
 
 
-### getID<sup>8+</sup>
+### getID
 
 getID(): string
 
@@ -1509,7 +1536,7 @@ getID(): string
   ```
 
 
-### getDisplayName<sup>8+</sup>
+### getDisplayName
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
@@ -1535,7 +1562,7 @@ getDisplayName(locale?: string, isDST?: boolean): string
   ```
 
 
-### getRawOffset<sup>8+</sup>
+### getRawOffset
 
 getRawOffset(): number
 
@@ -1555,7 +1582,7 @@ getRawOffset(): number
   ```
 
 
-### getOffset<sup>8+</sup>
+### getOffset
 
 getOffset(date?: number): number
 
@@ -1666,7 +1693,8 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 setUsingLocalDigit(flag: boolean): boolean
 
-设置是否打开本地数字开关。<br>
+设置是否打开本地数字开关。
+
 该接口为系统接口。
 
 **需要权限**：ohos.permission.UPDATE_CONFIGURATION
@@ -1705,4 +1733,75 @@ getUsingLocalDigit(): boolean
 **示例：** 
   ```
   var status = i18n.getUsingLocalDigit();
+  ```
+
+
+## Transliterator<sup>9+</sup>
+
+
+### getAvailableIDs<sup>9+</sup>
+
+static getAvailableIDs(): string[]
+
+获取音译支持的ID列表。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+| 类型     | 说明           |
+| ------ | ------------ |
+| string[] | 音译支持的ID列表。 |
+
+**示例：** 
+  ```
+  i18n.Transliterator.getAvailableIDs();
+  ```
+
+
+### getInstance<sup>9+</sup>
+
+static getInstance(id: string): Transliterator
+
+创建音译对象。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名    | 类型      | 必填   | 说明                   |
+| ------ | ------- | ---- | -------------------- |
+| id | string  | 是    | 音译支持的ID。                |
+
+**返回值：** 
+| 类型     | 说明            |
+| ------ | ------------- |
+| [Transliterator](#transliterator9) | 音译对象。 |
+
+**示例：** 
+  ```
+  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  ```
+
+
+### transform<sup>9+</sup>
+
+transform(text: string): string
+
+将输入字符串从源格式转换为目标格式。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+| 参数名    | 类型      | 必填   | 说明                   |
+| ------ | ------- | ---- | -------------------- |
+| text | string  | 是    | 输入字符串。                |
+
+**返回值：** 
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 转换后的字符串。 |
+
+**示例：** 
+  ```
+  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  transliterator.transform("中国");
   ```
