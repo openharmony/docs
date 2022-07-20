@@ -247,7 +247,7 @@
       - [关系型数据库开发指导](database/database-relational-guidelines.md)
     - 轻量级数据存储
       - [轻量级数据存储概述](database/database-storage-overview.md)
-  - [轻量级数据存储开发指导](database/database-storage-guidelines.md)
+      - [轻量级数据存储开发指导](database/database-storage-guidelines.md)
   - 分布式数据对象
     - [分布式数据对象概述](database/database-distributedobject-overview.md)
     - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
@@ -802,5 +802,5 @@
         - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
         - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
         - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
-- [Native API标准库](reference/native-lib/third_party_libc/musl.md)
-- [Node_API](reference/native-lib/third_party_napi/napi.md)
+    - [Native API标准库](reference/native-lib/third_party_libc/musl.md)
+    - [Node_API](reference/native-lib/third_party_napi/napi.md)
