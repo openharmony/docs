@@ -30,7 +30,7 @@
 | [qemu_cksy_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_csky_mini_system_demo/config.json)    | SmartL_E802     | qemu        | liteos_m    | mini        |
 | [qemu_cm55_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_cm55_mini_system_demo/config.json)    | arm_mps3_an547  | qemu        | liteos_m    | mini        |
 | [qemu_xtensa_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_xtensa_mini_system_demo/config.json)  | esp32           | qemu        | liteos_m    | mini        |
-| [qemu_riscv_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_riscv_mini_system_demo/config.json)   | ricsv32_virt    | qemu        | liteos_m    | mini        |
+| [qemu_riscv_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_riscv32_mini_system_demo/config.json)   | ricsv32_virt    | qemu        | liteos_m    | mini        |
 | [qemu_ca7_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_ca7_mini_system_demo/config.json)     | arm_virt        | qemu        | liteos_a    | small       |
 | [qemu_small_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_small_system_demo/config.json)        | arm_virt        | qemu        | liteos_a    | small       |
 | [qemu_arm_linux_min](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_arm_linux_min/config.json)            | qemu-arm-linux  | qemu        | linux       | standard    |
