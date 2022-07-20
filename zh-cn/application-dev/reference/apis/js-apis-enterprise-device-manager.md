@@ -22,7 +22,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 ohos.permission.MANAGE_ADMIN
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -65,7 +65,7 @@ ohos.permission.MANAGE_ADMIN
 
 **系统能力：**
 
- SystemCapability.Customation.EnterpriseDeviceManager
+ SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -107,7 +107,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 ohos.permission.MANAGE_ADMIN
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -153,7 +153,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
 ohos.permission.MANAGE_ADMIN
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -190,7 +190,7 @@ ohos.permission.MANAGE_ADMIN
 
 **系统能力：**
 
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -226,7 +226,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<boolean>
 ohos.permission.MANAGE_ADMIN
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -262,7 +262,7 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Callback形式返回是否去激活成功。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -291,7 +291,7 @@ disableSuperAdmin(bundleName: String): Promise\<boolean>
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Promise形式返回是否去激活成功。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -323,7 +323,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -356,7 +356,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 **系统能力：**
 
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -389,7 +389,7 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -425,7 +425,7 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 以异步方法根据给定的包名判断设备超级管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -454,7 +454,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 以异步方法根据给定的包名判断设备超级管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
 
@@ -486,7 +486,7 @@ getDeviceSettingsManager(callback: AsyncCallback&lt;DeviceSettingsManager&gt;): 
 获取DeviceSettingsManager对象，使用callback形式返回DeviceSettingsManager对象。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数：**
 
@@ -523,7 +523,7 @@ getDeviceSettingsManager(): Promise&lt;DeviceSettingsManager&gt;
 获取DeviceSettingsManager对象，使用Promise形式返回DeviceSettingsManager对象。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **返回值：**
 
@@ -556,7 +556,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 设置设备管理员应用的企业信息，使用callback形式返回是否设置成功。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数：**
 
@@ -592,7 +592,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise&lt;boole
 设置设备管理员应用的企业信息，使用Promise形式返回是否设置成功。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数：**
 
@@ -633,7 +633,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 获取设备管理员应用的企业信息，使用callback形式返回设备管理员应用的企业信息。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数：**
 
@@ -666,7 +666,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 获取设备管理员应用的企业信息，使用Promise形式返回设备管理员应用的企业信息。
 
 **系统能力：**
-SystemCapability.Customation.EnterpriseDeviceManager
+SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数：**
 
@@ -700,7 +700,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 设备管理员应用的企业信息
 
 **系统能力：**
-以下各项对应系统能力均为SystemCapability.Customation.EnterpriseDeviceManager
+以下各项对应系统能力均为SystemCapability.Customization.EnterpriseDeviceManager
 | 名称          | 读写属性 | 类型     | 必填   | 描述                |
 | ----------- | ---- | ------ | ---- | ----------------- |
 | name        | 只读   | string | 是    | 表示设备管理员应用所属企业的名称。 |
@@ -711,7 +711,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 设备管理员应用的管理员类型。
 
 **系统能力：**
-以下各项对应系统能力均为SystemCapability.Customation.EnterpriseDeviceManager
+以下各项对应系统能力均为SystemCapability.Customization.EnterpriseDeviceManager
 | 名称                | 默认值  | 说明    |
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通管理员 |
