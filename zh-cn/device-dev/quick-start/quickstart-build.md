@@ -27,7 +27,7 @@
 | [mini_distributed_music_player](https://gitee.com/openharmony/vendor_bestechnic/blob/master/mini_distributed_music_player/config.json) | v200zr          | bes2600     | liteos_m    | mini        |
 | [niobe407](https://gitee.com/openharmony/vendor_talkweb/blob/master/niobe407/config.json)                      | niobe407        | stm32f4xx   | liteos_m    | mini        |
 | [qemu_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_mini_system_demo/config.json)         | arm_mps2_an386  | qemu        | liteos_m    | mini        |
-| [qemu_cksy_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_cksy_mini_system_demo/config.json)    | SmartL_E802     | qemu        | liteos_m    | mini        |
+| [qemu_cksy_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_csky_mini_system_demo/config.json)    | SmartL_E802     | qemu        | liteos_m    | mini        |
 | [qemu_cm55_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_cm55_mini_system_demo/config.json)    | arm_mps3_an547  | qemu        | liteos_m    | mini        |
 | [qemu_xtensa_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_xtensa_mini_system_demo/config.json)  | esp32           | qemu        | liteos_m    | mini        |
 | [qemu_riscv_mini_system_demo](https://gitee.com/openharmony/vendor_ohemu/blob/master/qemu_riscv_mini_system_demo/config.json)   | ricsv32_virt    | qemu        | liteos_m    | mini        |
