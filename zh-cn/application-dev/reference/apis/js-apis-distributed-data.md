@@ -844,7 +844,7 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet succeeed.');
+        console.log('getResultSet succeeded.');
         resultSet = result;
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
@@ -2522,10 +2522,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -2574,7 +2574,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
             console.log('PutBatch ' + JSON.stringify(entries));
         }).catch((err) => {
@@ -3313,10 +3313,10 @@ try {
     }
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_number_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -3365,12 +3365,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -3421,10 +3421,10 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -3477,7 +3477,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4480,10 +4480,10 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -4533,12 +4533,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entrieys[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -4590,10 +4590,10 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -4646,7 +4646,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4701,10 +4701,10 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+        kvStore.getEntries('localDeviceId', query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         })
     });
     console.log('GetEntries success');
@@ -4759,7 +4759,7 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query).then((entrys) => {
+        kvStore.getEntries('localDeviceId', query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
