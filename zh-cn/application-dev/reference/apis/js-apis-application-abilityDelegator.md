@@ -654,7 +654,7 @@ abilityDelegator.printSync(msg);
 
 
 
-### print<sup>9+</sup>
+### print
 
 print(msg: string, callback: AsyncCallback\<void>): void
 
@@ -683,7 +683,7 @@ abilityDelegator.print(msg, (err : any) => {
 
 
 
-### print<sup>9+</sup>
+### print
 
 print(msg: string): Promise\<void>
 
