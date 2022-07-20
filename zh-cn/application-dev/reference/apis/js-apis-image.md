@@ -925,6 +925,33 @@ let path = this.context.getApplicationContext().fileDirs + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
+## image.createImageSource<sup>9+</sup>
+
+createImageSource(uri: string, options: SourceOptions): ImageSource
+
+通过传入的uri创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明                                |
+| ------- | ------------------------------- | ---- | ----------------------------------- |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。  |
+| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。|
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+```js
+、、、、、、、、、、、
+```
+
 ## image.createImageSource<sup>7+</sup>
 
 createImageSource(fd: number): ImageSource
@@ -948,7 +975,34 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(0)
+const imageSourceApi = image.createImageSource(0);
+```
+
+## image.createImageSource<sup>9+</sup>
+
+createImageSource(fd: number, options: SourceOptions): ImageSource
+
+通过传入文件描述符来创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明                                |
+| ------- | ------------------------------- | ---- | ----------------------------------- |
+| fd      | number                          | 是   | 文件描述符fd。                      |
+| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。|
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+```js
+。。。。。。。。。。。。。。。。。。。。。
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -972,9 +1026,62 @@ const buf = new ArrayBuffer(96);
 const imageSourceApi = image.createImageSource(buf);
 ```
 
+## image.createImageSource<sup>9+</sup>
+
+createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
+
+通过缓冲区创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明                                 |
+| ------ | -------------------------------- | ---- | ------------------------------------ |
+| buf    | ArrayBuffer                      | 是   | 图像缓冲区数组。                     |
+| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+```js
+.........................
+```
+
 ## image.CreateIncrementalSource<sup>9+</sup>
 
-function CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer): ImageSource
+
+通过缓冲区以增量的方式创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型        | 必填 | 说明      |
+| ------- | ------------| ---- | ----------|
+| buf     | ArrayBuffer | 是   | 增量数据。|
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [ImageSource](#imagesource) | 返回图片源，失败时返回undefined。 |
+
+**示例：**
+
+```js
+。。。。。。。。。。。。。。。。。。
+```
+
+## image.CreateIncrementalSource<sup>9+</sup>
+
+CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1211,7 +1318,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc")
 
 ### modifyImageProperty<sup>9+</sup>
 
-modifyImageProperty(key: string, value: string, callback: AsyncCallback<void>): void
+modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
 通过指定的键修改图片属性的值，callback形式返回结果。
 
@@ -1266,7 +1373,7 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
 
 ### updateData<sup>9+</sup>
 
-updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback<void>): void
+updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback\<void>): void
 
 更新增量数据，callback形式返回结果。
 
@@ -1423,7 +1530,7 @@ createImagePacker(): ImagePacker
 
 创建ImagePacker实例。
 
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
 
@@ -2064,6 +2171,19 @@ img.release().then(() =>{
 | CENTER_CROP     | 1      | 缩放图像以填充目标图像区域并居中裁剪区域外的效果。 |
 | FIT_TARGET_SIZE | 2      | 图像适合目标尺寸的效果。                           |
 
+## SourceOptions<sup>9+</sup>
+
+ImageSource的初始化选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+
+| 名称                           | 类型                               | 可读 | 可写 | 说明               |
+| ------------------------------ | ---------------------------------- | ---- | ---- | ------------------ |
+| sourceDensity<sup>9+</sup>     | number                             | 是   | 是   | ImageSource的密度。|
+| sourcePixelFormat<sup>8+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 图片像素格式。     |
+| sourceSize<sup>8+</sup>        | [Size](#size)                      | 是   | 是   | 图像像素大小。     |
+
+
 ## InitializationOptions<sup>8+</sup>
 
 PixelMap的初始化选项。
@@ -2112,9 +2232,9 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImagePacker
 
-| 名称    | 类型   | 可读 | 可写 | 说明           |
-| ------- | ------ | ---- | ---- | -------------- |
-| format  | string | 是   | 是   | 目标格式。     |
+| 名称    | 类型   | 可读 | 可写 | 说明                                                |
+| ------- | ------ | ---- | ---- | --------------------------------------------------- |
+| format  | string | 是   | 是   | 目标格式。                                          |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
