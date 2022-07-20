@@ -32,7 +32,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 var screenClass = null;
 screen.getAllScreens((err, data) => {
     if (err.code) {
-        console.error('Failed to get all screens . Cuase:  ' + JSON.stringify(err));
+        console.error('Failed to get all screens . Cause:  ' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in getting all screens . Data:' + JSON.stringify(data));
