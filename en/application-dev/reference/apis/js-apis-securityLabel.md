@@ -13,12 +13,15 @@ import securityLabel from '@ohos.securityLabel';
 
 ## Usage
 
-Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the application sandbox. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
+Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the application sandbox as follows:
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
-let path = context.getFilesDir();
+let path = '';
+context.getFilesDir().then((data) => {
+    path = data;
+})
 ```
 
 ## securityLabel.setSecurityLabel
