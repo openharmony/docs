@@ -367,7 +367,7 @@ import wantAgent from '@ohos.wantAgent';
 
 let mContext = null;
 
-function startBackgroundRunning() {
+function startContinuousTask() {
     let wantAgentInfo = {
         // 点击通知后，将要执行的动作列表
         wants: [
