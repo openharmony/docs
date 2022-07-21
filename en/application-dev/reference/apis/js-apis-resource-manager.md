@@ -1141,7 +1141,7 @@ Obtains the string corresponding to the specified resource name. This API return
   resourceManager.getStringByNameSync("test");
   ```
 
- ### getBoolean<sup>9+</sup>
+### getBoolean<sup>9+</sup>
 
 getBoolean(resId: number): boolean
 
@@ -1187,7 +1187,7 @@ Obtains the Boolean result corresponding to the specified resource name. This AP
   resourceManager.getBooleanByName("boolean_test");
   ```
 
- ### getNumber<sup>9+</sup>
+### getNumber<sup>9+</sup>
 
 getNumber(resId: number): number
 
