@@ -412,7 +412,7 @@ let getDataType = resultSet.getDataType(columnIndex);
 console.info('resultSet.getDataType: ' + getDataType);
 ```
 
-### DataType
+## DataType
 
 数据类型枚举。
 
