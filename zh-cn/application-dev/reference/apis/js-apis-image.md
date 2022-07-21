@@ -82,9 +82,9 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称                    | 类型    | 可读 | 可写 | 说明                       |
-| ----------------------- | ------- | ---- | ---- | -------------------------- |
-| isEditable<sup>7+</sup> | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
+| 名称       | 类型    | 可读 | 可写 | 说明                       |
+| ---------- | ------- | ---- | ---- | -------------------------- |
+| isEditable | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -103,7 +103,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **返回值：**
 
 | 类型           | 说明                                            |
-| :------------- | :---------------------------------------------- |
+| -------------- | ----------------------------------------------- |
 | Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
 
 **示例：**
@@ -279,7 +279,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
-| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback  | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -1218,8 +1218,8 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 **返回值：**
 
-| 类型             | 说明                                                         |
-| ---------------- | ------------------------------------------------------------ |
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
 | Promise\<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
 
 **示例：**
@@ -1268,11 +1268,11 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                                         |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                                               | 是   | 图片属性名。                                                 |
-| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | 是   | 图片属性，包括图片序号与默认属性值。                         |
-| callback | AsyncCallback\<string>                               | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。 |
+| 参数名   | 类型                                                 | 必填 | 说明                                                          |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
+| key      | string                                               | 是   | 图片属性名。                                                  |
+| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | 是   | 图片属性，包括图片序号与默认属性值。                          |
+| callback | AsyncCallback\<string>                               | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。|
 
 **示例：**
 
@@ -1600,8 +1600,8 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **返回值：**
 
 | 类型                         | 说明                                          |
-| :--------------------------- | :-------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| ---------------------------- | --------------------------------------------- |
+| Promise\<ArrayBuffer>        | Promise实例，用于异步获取压缩或打包后的数据。 |
 
 **示例：**
 
@@ -1661,9 +1661,9 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 **返回值：**
 
-| 类型                         | 说明                                          |
-| :--------------------------- | :-------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| 类型                  | 说明                                         |
+| --------------------- | -------------------------------------------- |
+| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。|
 
 **示例：**
 
@@ -1710,9 +1710,9 @@ release(): Promise\<void>
 
 **返回值：**
 
-| 类型           | 说明                                                    |
-| :------------- | :------------------------------------------------------ |
-| Promise\<void> | Promise实例，用于异步获取释放结果，失败时返回错误信息。 |
+| 类型           | 说明                                                   |
+| -------------- | ------------------------------------------------------ |
+| Promise\<void> | Promise实例，用于异步获取释放结果，失败时返回错误信息。|
 
 **示例：**
 
@@ -1763,11 +1763,11 @@ var receiver = image.createImageReceiver(8192, 8, 4, 8);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
 
-| 名称                  | 类型                         | 可读 | 可写 | 说明               |
-| --------------------- | ---------------------------- | ---- | ---- | ------------------ |
-| size<sup>9+</sup>     | [Size](#size)                | 是   | 否   | 图片大小。         |
-| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。 |
-| format<sup>9+</sup>   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
+| 名称     | 类型                         | 可读 | 可写 | 说明               |
+| -------- | ---------------------------- | ---- | ---- | ------------------ |
+| size     | [Size](#size)                | 是   | 否   | 图片大小。         |
+| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
+| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
 
 ### getReceivingSurfaceId<sup>9+</sup>
 
@@ -1992,11 +1992,11 @@ receiver.release().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称                  | 类型               | 可读 | 可写 | 说明                                               |
-| --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect<sup>9+</sup> | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size<sup>9+</sup>     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
-| format<sup>9+</sup>   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
+| 名称     | 类型               | 可读 | 可写 | 说明                                               |
+| -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
+| clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
+| size>    | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| format   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
 
 ### getComponent<sup>9+</sup>
 
@@ -2179,11 +2179,11 @@ ImageSource的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称                           | 类型                               | 可读 | 可写 | 说明               |
-| ------------------------------ | ---------------------------------- | ---- | ---- | ------------------ |
-| sourceDensity<sup>9+</sup>     | number                             | 是   | 是   | ImageSource的密度。|
-| sourcePixelFormat<sup>8+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 图片像素格式。     |
-| sourceSize<sup>8+</sup>        | [Size](#size)                      | 是   | 是   | 图像像素大小。     |
+| 名称              | 类型                               | 可读 | 可写 | 说明               |
+| ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
+| sourceDensity     | number                             | 是   | 是   | ImageSource的密度。|
+| sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 图片像素格式。     |
+| sourceSize        | [Size](#size)                      | 是   | 是   | 图像像素大小。     |
 
 
 ## InitializationOptions<sup>8+</sup>
@@ -2195,10 +2195,10 @@ PixelMap的初始化选项。
 | 名称                     | 类型                               | 可读 | 可写 | 说明           |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
-| editable<sup>8+</sup>    | boolean                            | 是   | 是   | 是否可编辑。   |
-| pixelFormat<sup>8+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
+| editable                 | boolean                            | 是   | 是   | 是否可编辑。   |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
-| size<sup>8+</sup>        | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
+| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
 ## DecodingOptions<sup>7+</sup>
 
