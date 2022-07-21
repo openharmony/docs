@@ -1,5 +1,7 @@
 # SMS
 
+The SMS module provides basic SMS management functions. You can create and send SMS messages, and obtain and set the default SIM card for sending and receiving SMS messages. Besides, you can obtain and set the SMSC address, and check whether the current device can send and receive SMS messages.
+
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -206,7 +208,7 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void\> | Promise that returns no value.       |
+| Promise\<void\> | Promise used to return the result. |
 
 **Example**
 
