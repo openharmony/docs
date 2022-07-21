@@ -20,9 +20,9 @@
    
    ![zh-cn_image_0000001220852754](figures/zh-cn_image_0000001220852754.png)
    
-4. 在“ipcamera_hispark_taurus”配置页签中，设置源码的编译类型**build_type**，默认为“debug“类型，请根据需要进行修改。然后点击**Save**按钮进行保存。
+4. 在“hi3516dv300”配置页签中，设置源码的编译类型**build_type**，默认为“debug“类型，请根据需要进行修改。然后点击**Save**按钮进行保存。
 
-   ![zh-cn_image_0000001221172710](figures/zh-cn_image_0000001221172710.png)
+   ![zh-cn_image_0000001221172711](figures/zh-cn_image_0000001221172711.png)
 
 5. 在“PROJECT TASKS”中，点击对应开发板下的**Build**按钮，执行编译。
 

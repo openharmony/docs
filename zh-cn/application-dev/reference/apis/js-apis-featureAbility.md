@@ -327,8 +327,6 @@ featureAbility.terminateSelfWithResult(
 });
 ```
 
-
-
 ## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
@@ -350,8 +348,6 @@ import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus()
 ```
 
-
-
 ## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(): Promise\<boolean>
@@ -369,13 +365,11 @@ hasWindowFocus(): Promise\<boolean>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
     console.info("==========================>hasWindowFocus=======================>");
 });
 ```
-
-
 
 ## featureAbility.getWant
 
@@ -397,8 +391,6 @@ getWant(callback: AsyncCallback\<Want>): void
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant()
 ```
-
-
 
 ## featureAbility.getWant
 
@@ -445,8 +437,6 @@ var context = featureAbility.getContext()
 context.getBundleName()
 ```
 
-
-
 ## featureAbility.terminateSelf<sup>7+</sup>
 
 terminateSelf(callback: AsyncCallback\<void>): void
@@ -467,8 +457,6 @@ terminateSelf(callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf()
 ```
-
-
 
 ## featureAbility.terminateSelf<sup>7+</sup>
 
@@ -508,18 +496,6 @@ connectAbility(request: Want, options:ConnectOptions): number
 | request | [Want](js-apis-application-Want.md)  | 是    | 表示被连接的ServiceAbility。 |
 | options | [ConnectOptions](#connectoptions) | 是    | 被指定的回调方法。             |
 
-## Want
-
-want类型说明
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
-
-| 名称          | 读写属性 | 类型     | 必填   | 描述                                       |
-| ----------- | ---- | ------ | ---- | ---------------------------------------- |
-| deviceId    | 只读   | string | 否    | 表示被连接的ServiceAbility的设备id，缺省表示连接本地的ServiceAbility。 |
-| bundleName  | 只读   | string | 是    | 表示被连接的ServiceAbility的包名。                 |
-| abilityName | 只读   | string | 是    | 表示被连接的ServiceAbility的类名。                 |
-
 ## ConnectOptions
 
 ConnectOptions类型说明
@@ -528,9 +504,9 @@ ConnectOptions类型说明
 
 | 名称           | 读写属性 | 类型       | 必填   | 描述                        |
 | ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect    | 只读   | function | 是    | 连接成功时的回调函数。               |
-| onDisconnect | 只读   | function | 是    | 连接失败时的回调函数。               |
-| onFailed     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
+| onConnect<sup>7+</sup>    | 只读   | function | 是    | 连接成功时的回调函数。               |
+| onDisconnect<sup>7+</sup> | 只读   | function | 是    | 连接失败时的回调函数。               |
+| onFailed<sup>7+</sup>     | 只读   | function | 是    | ConnectAbility调用失败时的回调函数。 |
 
 **返回值：**
 

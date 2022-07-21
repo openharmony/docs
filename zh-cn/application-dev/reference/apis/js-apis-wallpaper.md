@@ -638,7 +638,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 **示例：**
   
   ```js
-  wallpaper.getPixelMap(WALLPAPER_SYSTEM).then((data) => {
+  wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + data);
       console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + JSON.stringify(data));
   }).catch((err) => {

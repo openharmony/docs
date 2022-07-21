@@ -264,13 +264,12 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 ## BundleStats<sup>9+</sup>
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
 该接口为系统接口，三方应用不支持调用
-
-
-### 属性
 
 | 名称      | 类型   | 说明           |
 | --------- | ------ | -------------- |
@@ -470,7 +469,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 
   | 参数名     | 类型   | 必填 | 说明 |
   | ---------- | ------ | ---- | ---- |
-  | userId | string | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。|
+  | userId | number | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。|
 
 **返回值：**
 
@@ -481,7 +480,7 @@ getUserStorageStats(userId? : number): Promise&lt;StorageStats&gt;
 **示例：**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   }).catch(function(err){
@@ -507,13 +506,13 @@ getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):
 
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | string                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
+  | userId | number                               | 否   | 用户id <br/>确认当前用户：<br/>-&nbsp;有值：表示指定用户。<br/>-&nbsp;无值：表示当前用户。                       |
   | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | 是   | 返回各类别数据大小之后的回调 |
 
 **示例：**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
       // do something
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
@@ -523,13 +522,12 @@ getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):
 
 ## StorageStats<sup>9+</sup>
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
 该接口为系统接口，三方应用不支持调用
-
-
-### 属性
 
 | 名称      | 类型   | 说明           |
 | --------- | ------ | -------------- |

@@ -348,7 +348,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 ## appManager.getForegroundApplications<sup>8+</sup>
 
-getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
+getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
 获取前台进程的应用程序。
 
@@ -518,7 +518,7 @@ app.killProcessesByBundleName(bundleName)
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string, callback: AsyncCallback<void>);
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 
 通过包名清除应用数据。
 
@@ -552,7 +552,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback<void>);
 
 ## appManager.clearUpApplicationData<sup>8+</sup>
 
-clearUpApplicationData(bundleName: string): Promise<void>;
+clearUpApplicationData(bundleName: string): Promise\<void>;
 
 通过包名清除应用数据。
 
@@ -587,6 +587,144 @@ clearUpApplicationData(bundleName: string): Promise<void>;
     })
 
   ```
+
+## ApplicationStateObserver.onForegroundApplicationChanged<sup>8+</sup>
+
+onForegroundApplicationChanged(appStateData: AppStateData): void;
+
+将在前台或后台应用程序更改时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appStateData | [AppStateData](#appstatedata) | 否 | 状态更改的应用程序信息。 |
+
+**示例：**
+    
+```js
+import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
+const foregroundApplicationInfo = ApplicationStateObserver.onForegroundApplicationChanged();
+console.log('-------- foregroundApplicationInfo: ---------', foregroundApplicationInfo);
+```
+
+## ApplicationStateObserver.onAbilityStateChanged<sup>8+</sup>
+
+onAbilityStateChanged(abilityStateData: AbilityStateData): void;
+
+将在能力状态更改时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| abilityStateData | [AbilityStateData](#abilitystatedata) | 否 | 状态更改的能力信息。 |
+
+**示例：**
+    
+```js
+import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
+const abilityStateChangedInfo = ApplicationStateObserver.onAbilityStateChanged();
+console.log('-------- abilityStateChangedInfo: ---------', abilityStateChangedInfo);
+```
+
+## ApplicationStateObserver.onProcessCreated<sup>8+</sup>
+
+onProcessCreated(processData: ProcessData): void;
+
+将在创建进程时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+
+**示例：**
+    
+```js
+import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
+const processCreatedInfo = ApplicationStateObserver.onProcessCreated();
+console.log('-------- processCreatedInfo: ---------', processCreatedInfo);
+```
+
+## ApplicationStateObserver.onProcessDied<sup>8+</sup>
+
+onProcessDied(processData: ProcessData): void;
+
+将在进程终止时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | ProcessData | 否 | 进程信息。 |
+
+**示例：**
+    
+```js
+import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
+const processDiedInfo = ApplicationStateObserver.onProcessDied();
+console.log('-------- processDiedInfo: ---------', processDiedInfo);
+```
+
+## AppStateData
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| bundleName<sup>8+</sup>     | 只读     | string               | 否   | 包名。                                |
+| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
+| state<sup>8+</sup>  | 只读     | number               | 否   | 进程信息。 |
+
+## AbilityStateData
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+| 名称                     | 类型     | 可读 | 可写 | 说明                       |
+| ----------------------- | ---------| ---- | ---- | ------------------------- |
+| pid<sup>8+</sup>                     | number   | 是   | 否   | 进程ID。                    |
+| bundleName<sup>8+</sup>              | string   | 是   | 否  | 应用包名。                  |
+| abilityName<sup>8+</sup>             | string   | 是   | 否   | Ability名称。               |
+| uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
+| state<sup>8+</sup>                   | number   | 是   | 否   | 应用程序信息。                |
+| moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP包的名称。    |
+| abilityType<sup>8+</sup> | string   | 是   | 否   | 能力类型、页面或服务等。    |
+
+## ProcessData
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+| 名称                     | 类型     | 可读 | 可写 | 说明                       |
+| ----------------------- | ---------| ---- | ---- | ------------------------- |
+| pid<sup>8+</sup>         | number   | 是   | 否   | 进程ID。                    |
+| bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
+| uid<sup>8+</sup>         | number   | 是   | 否   | 用户ID。                  |
+
+
 
 ## ProcessRunningInfo
 

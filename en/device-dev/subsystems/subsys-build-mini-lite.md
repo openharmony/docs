@@ -110,9 +110,7 @@ The following example shows how to define attributes of the sensor component of 
       "features": [],                            # Configurable features of the component
       "deps": {                      
         "components": [                          # Other components on which the component depends
-          "samgr_lite",
-          "ipc_lite"
-
+          "samgr_lite"
         ],
         "third_party": [                         # Open-source third-party software on which the component depends
           "bounds_checking_function"

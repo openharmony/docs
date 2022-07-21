@@ -55,7 +55,7 @@ applications/sample/hello
    ```
 
 3. 添加新组件。
-   修改文件**build/lite/components/applications.json**，添加组件hello_world_app的配置，如下所示为applications.json文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
+   修改文件**build/lite/components/communication.json**，添加组件hello_world_app的配置，如下所示为communication.json文件片段，"\#\#start\#\#"和"\#\#end\#\#"之间为新增配置（"\#\#start\#\#"和"\#\#end\#\#"仅用来标识位置，添加完配置后删除这两行）：
 
      
    ```

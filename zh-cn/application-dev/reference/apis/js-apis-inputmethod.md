@@ -74,7 +74,53 @@ getInputMethodSetting(): InputMethodSetting
 ```js
   var InputMethodSetting = inputMethod.getInputMethodSetting();
 ```
+## inputMethod.switchInputMethod<sup>9+</sup>
 
+switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolean&gt;): void;
+
+
+**系统能力**：SystemCapability.Miscservices.InputMethodFramework
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  |target | [InputmethodProperty](#inputmethodproperty8) | 是 | 传入要切换的目标输入法。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法切换是否成功。 |
+
+
+**示例：**
+
+```js
+  inputMethod.switchInputMethod({packageName:"com.ohos.inputApp", methodId:"InputDemoService"}).then(res => {
+     prompt.showToast({message:"切换输入法成功" + this.imeList[this.flag].packageName, duration: 200});
+ });
+```
+## inputMethod.switchInputMethod<sup>9+</sup>
+switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
+
+
+**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  |target |  [InputmethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
+
+**返回值：**
+  | 类型                                      | 说明                         |
+  | ----------------------------------------- | ---------------------------- |
+  | [Promise](#Promise) | 回调返回切换后的输入法。 |
+
+**示例：**
+
+
+```js
+  inputMethod.switchInputMethod({packageName:"com.ohos.inputApp", methodId:"InputDemoService"}).then(res => {
+     prompt.showToast({message:"切换输入法成功" + this.imeList[this.flag].packageName, duration: 200});
+ });
+```
 ## InputMethodController
 
 下列API示例中都需使用[getInputMethodController](#getInputMethodController)回调获取到InputMethodController实例，再通过此实例调用对应方法。

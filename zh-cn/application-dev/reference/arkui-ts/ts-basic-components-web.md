@@ -27,8 +27,6 @@
 > **说明：**
 >
 > - 不支持转场动画；
-> - 不支持多实例；
-> - 仅支持本地音视频播放。
 
 ## 属性
 | 名称               | 参数类型                                                     | 默认值            | 描述                                                         |
@@ -74,6 +72,8 @@
 | onRenderExited(callback: (event?: { renderExitReason:  [RenderExitReason](#renderexitreason枚举说明) }) => void) | <p>应用渲染进程异常退出时触发该回调。<br/>- renderExitReason：渲染进程进程异常退出的具体原因。</p> |
 | onShowFileSelector(callback: (event?: { result: [FileSelectorResult](#fileselectorresult对象说明), fileSelector:  [FileSelectorParam](#fileselectorparam对象说明) }) => void) | <p>调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮<br/>- result：用于通知Web组件文件选择的结果。<br/>- fileSelector：文件选择器的相关信息。</p> |
 | onUrlLoadIntercept(callback: (event?: { data:string \| [WebResourceRequest](#webresourcerequest对象说明) }) => boolean) | <p>当Web组件加载url之前触发该回调，用于是否阻止此次访问。callback返回true表示阻止此次加载，否则允许此次加载。<br/>- data：url的相关信息。</p> |
+| onInterceptRequest<sup>9+</sup>(callback: (event?: { request: [WebResourceRequest](#webresourcerequest对象说明)}) => [WebResourceResponse](#webresourceresponse对象说明)) | <p>当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。callback返回响应数据为空表示按原来方式加载，否则加载响应数据。<br/>- request：url请求的相关信息。</p> |
+| onHttpAuthRequest<sup>9+</sup>(callback: (event?: { handler: [HttpAuthHandler](#httpauthhandlersup9sup), host: string, realm: string}) => boolean) | <p>通知收到http auth认证请求。callback返回false表示此次认证失败，否则成功。<br/>- handler：通知Web组件用户操作行为。<br/>- host：HTTP身份验证凭据应用的主机。<br/>- realm：HTTP身份验证凭据应用的域。</p> |
 
 ## ConsoleMessage对象说明
 
@@ -141,6 +141,12 @@ Web组件返回的请求/响应头对象。
 | getResponseEncoding(): string                           | 获取资源响应的编码。             |
 | getResponseHeader(): Array\<[Header](#header对象说明)\> | 获取资源响应头。                 |
 | getResponseMimeType(): string                           | 获取资源响应的媒体（MIME）类型。 |
+| setResponseData<sup>9+</sup>(data: string)              | 设置资源响应数据。               |
+| setResponseEncoding<sup>9+</sup>(encoding: string)      | 设置资源响应的编码。             |
+| setResponseMimeType<sup>9+</sup>(mimeType: string)      | 设置资源响应的媒体（MIME）类型。 |
+| setReasonMessage<sup>9+</sup>(reason: string)           | 设置资源响应的状态码描述。       |
+| setResponseHeader<sup>9+</sup>(header: Array\<[Header](#header对象说明)\>)   | 设置资源响应头。                 |
+| setResponseCode<sup>9+</sup>(code: number)              | 设置资源响应的状态码。           |
 
 ## RenderExitReason枚举说明
 
@@ -192,6 +198,59 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | FileOpenMultipleMode | 打开上传多个文件。   |
 | FileOpenFolderMode   | 打开上传文件夹模式。 |
 | FileSaveMode         | 文件保存模式。       |
+
+ ## HitTestType枚举说明
+
+  | 名称          | 描述                                      |
+  | ------------- | ----------------------------------------- |
+  | EditText      | 可编辑的区域。                            |
+  | Email         | 电子邮件地址。                            |
+  | HttpAnchor    | 超链接，其src为http。                     |
+  | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
+  | Img           | HTML::img标签。                           |
+  | Map           | 地理地址。                                |
+  | Unknown       | 未知内容。                                |
+
+## HttpAuthHandler<sup>9+</sup>
+
+Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。
+
+### cancel<sup>9+</sup>
+
+cancel(): void
+
+通知Web组件用户取消HTTP认证操作。
+
+### confirm<sup>9+</sup>
+
+confirm(userName: string, pwd: string): boolean
+
+使用用户名和密码进行HTTP认证操作。
+
+- 参数
+
+  | 参数名     | 参数类型  | 必填 | 默认值  | 参数描述        |
+  | --------   | -------- | ---- | ------ | -------------- |
+  | userName   | string   | 是   | -      | HTTP认证用户名。|
+  | pwd        | string   | 是   | -      | HTTP认证密码。  |
+
+- 返回值
+
+  | 参数类型  | 说明                            |
+  | -------- | ------------------------------- |
+  | boolean  | 认证成功返回true，失败返回false。 |
+
+### isHttpAuthInfoSaved<sup>9+</sup>
+
+isHttpAuthInfoSaved(): boolean
+
+通知Web组件用户使用服务器缓存的账号密码认证。
+
+- 返回值
+
+  | 参数类型  | 说明                                  |
+  | -------- | ------------------------------------- |
+  | boolean  | 存在密码认证成功返回true，其他返回false。|
 
 ## WebController
 
@@ -257,23 +316,76 @@ forward(): void
 
 按照历史栈，前进一个页面。一般结合accessForward一起使用。
 
+### backOrForward<sup>9+</sup>
+
+backOrForward(step: number): void
+
+按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
+
+- 参数
+  | 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+  | ---- | ------ | ---- | ---- | ---------------------------------------- |
+  | step | number | 是    |-    |需要前进或后退的步长。 |
+
 ### getHitTest
 
 getHitTest(): HitTestType
 
 获取当前被点击区域的元素类型。	
 
-- HitTestType枚举说明
+- 返回值
+  | 参数类型 | 说明               |
+  | -------- | ------------------ |
+  | [HitTestType](#hittesttype枚举说明)  | 被点击区域的元素类型。 |
 
-  | 名称          | 描述                                      |
-  | ------------- | ----------------------------------------- |
-  | EditText      | 可编辑的区域。                            |
-  | Email         | 电子邮件地址。                            |
-  | HttpAnchor    | 超链接。其src为http。                     |
-  | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
-  | Img           | HTML::img标签。                           |
-  | Map           | 地理地址。                                |
-  | Unknown       | 未知内容。                                |
+### getHitTestValue<sup>9+</sup>
+getHitTestValue(): HitTestValue
+
+获取当前被点击区域的元素信息。
+
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | [HitTestValue](#hittestvaluesup9sup) | 点击区域的元素信息。 |
+
+### getWebId<sup>9+</sup>
+getWebId(): number
+
+获取当前Web组件的索引值，用于多个Web组件的管理。
+
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | number | 当前Web组件的索引值。 |
+
+### getTitle<sup>9+</sup>
+getTitle(): string
+
+获取当前网页的标题。
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | string | 当前网页的标题。 |
+
+### getPageHeight<sup>9+</sup>
+getPageHeight(): number
+
+获取当前网页的页面高度。
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | number | 当前网页的页面高度。 |
+
+
+
+### getDefaultUserAgent<sup>9+</sup>
+getDefaultUserAgent(): string
+
+获取当前默认用户代理。
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | string | 默认用户代理。 |
 
 ### loadData
 
@@ -323,6 +435,33 @@ onActive(): void
 onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。
+
+### zoom
+zoom(factor: number): void
+
+调整当前网页的缩放比例。
+- 参数
+  | 参数名 | 参数类型 | 必填 | 参数描述 |
+  |--------|----------|------|---------|
+  | factor | number | 是 | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
+
+### zoomIn<sup>9+</sup>
+zoomIn(): boolean
+
+调用此接口将当前网页进行放大，比列20%。
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 放大操作是否成功执行。 |
+
+### zoomOut<sup>9+</sup>
+zoomOut(): boolean
+
+调用此接口将当前网页进行缩小，比列20%。
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 缩小操作是否成功执行。 |
 
 ### refresh
 
@@ -378,6 +517,28 @@ getCookieManager(): WebCookie
   | 参数类型  | 说明                                                     |
   | --------- | -------------------------------------------------------- |
   | WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
+
+## HitTestValue<sup>9+</sup>
+提供点击区域的元素信息。
+
+### getType<sup>9+</sup>
+getType(): HitTestType
+
+获取当前被点击区域的元素类型。
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | [HitTestType](#hittesttype枚举说明) | 当前被点击区域的元素类型。 |
+
+### getExtra<sup>9+</sup>
+getExtra(): string
+
+若被点击区域为图片或链接，则附加参数信息为其url地址。
+- 返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | string | 点击区域的附加参数信息。 |
+
 ## WebCookie
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 ### setCookie
@@ -385,7 +546,7 @@ setCookie(url: string, value: string): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
 
-- 参数说明
+- 参数
 
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
@@ -404,6 +565,149 @@ saveCookieSync(): boolean
   | 参数类型 | 说明                               |
   | -------- | ---------------------------------- |
   | boolean  | 同步内存cookie到磁盘操作是否成功。 |
+
+## WebDataBase<sup>9+</sup>
+web组件数据库管理对象。
+
+### existHttpAuthCredentials<sup>9+</sup>
+
+static existHttpAuthCredentials(): boolean
+
+判断是否存在任何已保存的HTTP身份验证凭据，该方法为同步方法。存在返回true，不存在返回false。
+
+- 返回值 
+  | 参数类型  | 说明                                |
+  | -------- | ----------------------------------- |
+  | boolean  | 是否存在任何已保存的HTTP身份验证凭据。存在返回true，不存在返回false |
+
+### deleteHttpAuthCredentials<sup>9+</sup>
+
+static deleteHttpAuthCredentials(): void
+
+清除所有已保存的HTTP身份验证凭据，该方法为同步方法。
+
+### getHttpAuthCredentials<sup>9+</sup>
+
+static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
+
+检索给定主机和域的HTTP身份验证凭据，该方法为同步方法。检索成功返回一个包含用户名和密码的组数，检索不成功返回空数组。
+
+- 参数
+
+  | 参数名  | 参数类型 | 必填  | 默认值 | 参数描述                    |
+  | ------ | -------- | ---- | ------ | -------------------------- |
+  | host   | string   | 是   | -      | HTTP身份验证凭据应用的主机。 |
+  | realm  | string   | 是   | -      | HTTP身份验证凭据应用的域。 |
+- 返回值 
+  | 参数类型          | 说明                                          |
+  | ---------------- | --------------------------------------------- |
+  | Array\<string\>  | 包含用户名和密码的组数，检索失败返回空数组。 |
+
+### saveHttpAuthCredentials<sup>9+</sup>
+
+static saveHttpAuthCredentials(host: string, realm: string, username: string, password: string): void
+
+保存给定主机和域的HTTP身份验证凭据，该方法为同步方法。
+
+- 参数
+
+  | 参数名    | 参数类型 | 必填  | 默认值 | 参数描述                    |
+  | -------- | -------- | ---- | ------ | -------------------------- |
+  | host     | string   | 是   | -      | HTTP身份验证凭据应用的主机。 |
+  | realm    | string   | 是   | -      | HTTP身份验证凭据应用的域。 |
+  | username | string   | 是   | -      | 用户名。                    |
+  | password | string   | 是   | -      | 密码。                      |
+
+## WebStorage<sup>9+</sup>
+通过WebStorage可管理Web SQL数据库接口和HTML5 Web存储接口，每个应用中的所有Web组件共享一个WebStorage。
+### deleteAllData<sup>9+</sup>
+static deleteAllData(): void
+
+清除Web SQL数据库当前使用的所有存储。
+### deleteOrigin<sup>9+</sup>
+static deleteOrigin(origin : string): void
+
+清除指定源所使用的存储。
+- 参数
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  |---------|---------|-----|-----|
+  | origin | string | 是 | 指定源的字符串索引。 |
+
+### getOrigins<sup>9+</sup>
+static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>) : void
+
+以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
+- 参数
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  |---------|---------|-----|----|
+  | callback | AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | 是 | 以数组方式返回源的信息，信息内容参考WebStorageOrigin。|
+
+### getOrigins<sup>9+</sup>
+static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>
+
+以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
+- 返回值
+  | 类型 | 说明 |
+  |------|------|
+  | Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | Promise实例，用于获取当前所有源的信息，信息内容参考WebStorageOrigin。 |
+
+### getOriginQuota<sup>9+</sup>
+static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
+
+使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
+- 参数
+  | 参数名 |  参数类型 | 必填 | 说明 |
+  |----------|-----------|------|------|
+  | origin | string | 是 | 指定源的字符串索引 |
+  | callback | AsyncCallback<number> | 是 | 指定源的存储配额。 |
+
+### getOriginQuota<sup>9+</sup>
+static getOriginQuota(origin : string) : Promise<number>
+
+以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
+- 参数
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  |----------|---------|------|-------|
+  | origin | string | 是 | 指定源的字符串索引。 |
+
+- 返回值
+  | 类型 | 说明 |
+  |------|------|
+  | Promise<number> | Promise实例，用于获取指定源的存储配额。 |
+
+### getOriginUsage<sup>9+</sup>
+static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
+
+以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
+- 参数
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  |----------|----------|------|------|
+  | origin | string | 是 | 指定源的字符串索引。 |
+  | callback | AsyncCallback<number> | 是 | 指定源的存储量。 |
+
+### getOriginUsage<sup>9+</sup>
+static getOriginUsage(origin : string) : Promise<number>
+
+以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
+- 参数
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  |----------|----------|------|------|
+  | origin | string | 是 | 指定源的字符串索引。 |
+
+- 返回值
+  | 类型 | 说明 |
+  |------|------|
+  | Promise<number> | Promise实例，用于获取指定源的存储量。 |
+
+## WebStorageOrigin<sup>9+</sup>
+提供Web SQL数据库的使用信息。
+- 参数
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  |----------|----------|------|------|
+  | origin | string | 是 | 指定源的字符串索引。 |
+  | usage | number | 是 | 指定源的存储量。 |
+  | quota | number | 是 | 指定源的存储配额。 |
+
 ## 示例
 
 ```ts

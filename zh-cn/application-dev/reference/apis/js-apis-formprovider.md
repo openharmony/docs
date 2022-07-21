@@ -189,6 +189,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 **示例：**
 
 ```js
+import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     moduleName : "entry"
 };
@@ -224,6 +225,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 **示例：**
 
 ```js
+import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     moduleName : "entry"
 };
@@ -236,13 +238,13 @@ formProvider.getFormsInfo(filter).then((data) => {
 
 ## requestPublishForm<sup>9+</sup>
 
-requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;string&gt;): &lt;void&gt;;
+requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void;
 
 请求发布一张卡片到使用方。
 
-**系统能力：**
+**系统能力：** SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -276,13 +278,13 @@ SystemCapability.Ability.Form
 
 ## requestPublishForm<sup>9+</sup>
 
-requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): &lt;void&gt;;
+requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void;
 
 请求发布一张卡片到使用方。
 
-**系统能力：**
+**系统能力：** SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -317,9 +319,9 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 请求发布一张卡片到使用方。
 
-**系统能力：**
+**系统能力：** SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -359,6 +361,8 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void;
 查询是否支持发布一张卡片到使用方。
 
 **系统能力：** SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -401,6 +405,8 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;;
 查询是否支持发布一张卡片到使用方。
 
 **系统能力：** SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
