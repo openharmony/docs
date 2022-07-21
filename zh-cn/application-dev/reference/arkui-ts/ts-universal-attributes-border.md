@@ -23,7 +23,7 @@
 | border       | BorderOptions | -                       | 统一边框样式设置接口。   |
 | borderStyle  | BorderStyle   | &nbsp;BorderStyle.Solid | 设置元素的边框样式。     |
 | borderWidth  | Length        | 0                       | 设置元素的边框宽度。     |
-| borderColor  | Color         | -                       | 设置元素的边框颜色。     |
+| borderColor  | [ResourceColor](../../ui/ts-types.md)         | -                       | 设置元素的边框颜色。     |
 | borderRadius | Length        | 0                       | 设置元素的边框圆角半径。 |
 
 - BorderOptions属性说明
