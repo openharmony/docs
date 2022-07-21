@@ -3718,7 +3718,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | predicates  | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
 
 **示例：**
 
@@ -4202,7 +4202,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| query  |[Query](#querysup8sup)   | 是   |表示数据库的查询谓词条件  |
+| query  |[Query](#query8)   | 是   |表示数据库的查询谓词条件  |
 | delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**

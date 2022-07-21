@@ -44,7 +44,10 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 });
 ```
 
-## 属性
+## DataShareResultSet
+提供通过查询数据库生成的结果集的相关访问方法。
+
+### 属性
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -55,7 +58,7 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 | rowCount    | number        | 是   | 结果集中的行数。         |
 | isClosed    | boolean       | 是   | 标识当前结果集是否关闭。 |
 
-## goToFirstRow
+### goToFirstRow
 
 goToFirstRow(): boolean
 
@@ -76,7 +79,7 @@ let isGoTOFirstRow = resultSet.goToFirstRow();
 console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
 ```
 
-## goToLastRow
+### goToLastRow
 
 goToLastRow(): boolean
 
@@ -97,7 +100,7 @@ let isGoToLastRow = resultSet.goToLastRow();
 console.info('resultSet.goToLastRow: ' + isGoToLastRow);
 ```
 
-## goToNextRow
+### goToNextRow
 
 goToNextRow(): boolean
 
@@ -118,7 +121,7 @@ let isGoToNextRow = resultSet.goToNextRow();
 console.info('resultSet.goToNextRow: ' + isGoToNextRow);
 ```
 
-## goToPreviousRow
+### goToPreviousRow
 
 goToPreviousRow(): boolean
 
@@ -139,7 +142,7 @@ let isGoToPreviousRow = resultSet.goToPreviousRow();
 console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
 ```
 
-## goTo
+### goTo
 
 goTo(offset:number): boolean
 
@@ -167,7 +170,7 @@ let isGoTo = resultSet.goTo(goToNum);
 console.info('resultSet.goTo: ' + isGoTo);
 ```
 
-## goToRow
+### goToRow
 
 goToRow(position: number): boolean
 
@@ -195,7 +198,7 @@ let isGoToRow = resultSet.goToRow(goToRowNum);
 console.info('resultSet.goToRow: ' + isGoToRow);
 ```
 
-## getBlob
+### getBlob
 
 getBlob(columnIndex: number): Uint8Array
 
@@ -224,7 +227,7 @@ let getBlob = resultSet.getBlob(columnIndex);
 console.info('resultSet.getBlob: ' + getBlob);
 ```
 
-## getString
+### getString
 
 getString(columnIndex: number): *string*
 
@@ -253,7 +256,7 @@ let getString = resultSet.getString(columnIndex);
 console.info('resultSet.getString: ' + getString);
 ```
 
-## getLong
+### getLong
 
 getLong(columnIndex: number): number
 
@@ -282,7 +285,7 @@ let getLong = resultSet.getLong(columnIndex);
 console.info('resultSet.getLong: ' + getLong);
 ```
 
-## getDouble
+### getDouble
 
 getDouble(columnIndex: number): number
 
@@ -311,7 +314,7 @@ let getDouble = resultSet.getDouble(columnIndex);
 console.info('resultSet.getDouble: ' + getDouble);
 ```
 
-## close
+### close
 
 close(): void
 
@@ -325,7 +328,7 @@ close(): void
 resultSet.close();
 ```
 
-## getColumnIndex
+### getColumnIndex
 
 getColumnIndex(columnName: string): number
 
@@ -353,7 +356,7 @@ let getColumnIndex = resultSet.getColumnIndex(ColumnName)
 console.info('resultSet.getColumnIndex: ' + getColumnIndex);
 ```
 
-## getColumnName
+### getColumnName
 
 getColumnName(columnIndex: number): *string*
 
@@ -381,7 +384,7 @@ let getColumnName = resultSet.getColumnName(columnIndex)
 console.info('resultSet.getColumnName: ' + getColumnName);
 ```
 
-## getDataType
+### getDataType
 
 getDataType(columnIndex: number): DataType
 
@@ -409,7 +412,7 @@ let getDataType = resultSet.getDataType(columnIndex);
 console.info('resultSet.getDataType: ' + getDataType);
 ```
 
-## DataType
+### DataType
 
 数据类型枚举。
 
