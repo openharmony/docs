@@ -12,6 +12,64 @@
 
 无
 
+## MessageLevel枚举说明
+
+| 名称  | 描述       |
+| ----- | :--------- |
+| Debug | 调试级别。 |
+| Error | 错误级别。 |
+| Info  | 消息级别。 |
+| Log   | 日志级别。 |
+| Warn  | 警告级别。 |
+
+## RenderExitReason枚举说明
+
+onRenderExited接口返回的渲染进程退出的具体原因。
+
+| 名称                       | 描述                         |
+| -------------------------- | ---------------------------- |
+| ProcessAbnormalTermination | 渲染进程异常退出。           |
+| ProcessWasKilled           | 收到SIGKILL，或被手动终止。  |
+| ProcessCrashed             | 渲染进程崩溃退出，如段错误。 |
+| ProcessOom                 | 程序内存不足。               |
+| ProcessExitUnknown         | 其他原因。                   |
+
+## MixedMode枚举说明
+
+| 名称       | 描述                                                        |
+| ---------- | ----------------------------------------------------------- |
+| All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
+| Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。            |
+| None       | 不允许加载HTTP和HTTPS混合内容。                             |
+
+## CacheMode枚举说明
+| 名称    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| Default | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
+| None    | 加载资源使用cache，如果cache中无该资源则从网络中获取。       |
+| Online  | 加载资源不使用cache，全部从网络中获取。                      |
+| Only    | 只从cache中加载资源。                                        |
+
+## FileSelectorMode枚举说明
+| 名称                 | 描述                 |
+| -------------------- | -------------------- |
+| FileOpenMode         | 打开上传单个文件。   |
+| FileOpenMultipleMode | 打开上传多个文件。   |
+| FileOpenFolderMode   | 打开上传文件夹模式。 |
+| FileSaveMode         | 文件保存模式。       |
+
+ ## HitTestType枚举说明
+
+  | 名称          | 描述                                      |
+  | ------------- | ----------------------------------------- |
+  | EditText      | 可编辑的区域。                            |
+  | Email         | 电子邮件地址。                            |
+  | HttpAnchor    | 超链接，其src为http。                     |
+  | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
+  | Img           | HTML::img标签。                           |
+  | Map           | 地理地址。                                |
+  | Unknown       | 未知内容。                                |
+
 ## 接口
 
 -   Web\(options: { src: string, controller?: WebController }\)
@@ -28,23 +86,166 @@
 >
 > - 不支持转场动画；
 
-## 属性
-| 名称               | 参数类型                                                     | 默认值            | 描述                                                         |
-| ------------------ | ------------------------------------------------------------ | ----------------- | ------------------------------------------------------------ |
-| domStorageAccess   | boolean                                                      | false             | 设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。 |
-| fileAccess         | boolean                                                      | false             | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件， 默认启用。 |
-| fileFromUrlAccess  | boolean                                                      | true              | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容，默认未启用。 |
-| imageAccess        | boolean                                                      | true              | 设置是否允许自动加载图片资源，默认允许。                     |
-| javaScriptProxy    | { <br>  object: object, <br/> name: string, <br/> methodList: Array\<string\>, <br/> controller: WebController <br>} | -                 | 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。 <br/> - object: 参与注册的对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean。<br/> - name: 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。<br/> - methodList: 参与注册的应用侧JavaScript对象的方法。<br/> - controller: 控制器。 |
-| javaScriptAccess   | boolean                                                      | true              | 设置是否允许执行JavaScript脚本，默认允许执行。               |
-| mixedMode          | [MixedMode](#mixedmode枚举说明)                              | MixedMode.None    | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。 |
-| onlineImageAccess  | boolean                                                      | true              | 设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。 |
-| zoomAccess         | boolean                                                      | true              | 设置是否支持手势进行缩放，默认允许执行缩放。                 |
-| overviewModeAccess | boolean                                                      | true              | 设置是否使用概览模式加载网页，默认使用该方式。               |
-| databaseAccess     | boolean                                                      | false             | 设置是否开启数据库存储API权限，默认不开启。                  |
-| cacheMode          | [CacheMode](#cachemode枚举说明)                              | CacheMode.Default | 设置缓存模式。                                               |
-| textZoomAtio       | number                                                       | 100               | 设置页面的文本缩放百分比，默认为100%。                       |
-| userAgent          | string                                                       | -                 | 设置用户代理。                                               |
+## WebAttribute
+
+web组件的网络属性。
+
+### domStorageAccess
+
+domStorageAccess(domStorageAccess: boolean)
+
+设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | domStorageAccess    | boolean   | 是   | -      | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
+
+### fileAccess
+
+fileAccess(fileAccess: boolean)
+
+设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件， 默认启用。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | fileAccess    | boolean   | 是   | -      | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件。 |
+
+### fileFromUrlAccess<sup>9+</sup>
+
+fileFromUrlAccess(fileFromUrlAccess: boolean)
+
+设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容，默认未启用。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | fileFromUrlAccess    | boolean   | 是   | -      | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容。 |
+
+### imageAccess
+
+imageAccess(imageAccess: boolean)
+
+设置是否允许自动加载图片资源，默认允许。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | imageAccess    | boolean   | 是   | -      | 设置是否允许自动加载图片资源。 |
+
+### javaScriptProxy
+
+javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
+    controller: WebController })
+
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | object    | object   | 是   | -      | 参与注册的对象。只能声明方法，不能声明属性。 |
+  | name    | string   | 是   | -      | 注册对象的名称，与window中调用的对象名一致。 |
+  | methodList    | Array\<string\>   | 是   | -      | 参与注册的应用侧JavaScript对象的方法。|
+ 
+### javaScriptAccess
+
+javaScriptAccess(javaScriptAccess: boolean)
+
+设置是否允许执行JavaScript脚本，默认允许执行。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | javaScriptAccess    | boolean   | 是   | -      | 是否允许执行JavaScript脚本。 |
+
+### mixedMode
+
+mixedMode(mixedMode: MixedMode)
+
+设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | mixedMode    | [MixedMode](#mixedmode枚举说明)   | 是   | -      | 要设置的混合内容。 |
+
+### onlineImageAccess
+
+onlineImageAccess(onlineImageAccess: boolean)
+
+设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源），默认允许访问。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | onlineImageAccess    | boolean   | 是   | -      | 设置是否允许从网络加载图片资源。 |
+
+### zoomAccess
+
+zoomAccess(zoomAccess: boolean)
+
+设置是否支持手势进行缩放，默认允许执行缩放。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | zoomAccess    | boolean   | 是   | -      | 设置是否支持手势进行缩放。 |
+
+### overviewModeAccess
+
+overviewModeAccess(overviewModeAccess: boolean)
+
+设置是否使用概览模式加载网页，默认使用该方式。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | overviewModeAccess    | boolean   | 是   | -      | 设置是否使用概览模式加载网页。 |
+
+### databaseAccess
+
+databaseAccess(databaseAccess: boolean)
+
+设置是否开启数据库存储API权限，默认不开启。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | databaseAccess    | boolean   | 是   | -      | 设置是否开启数据库存储API权限。 |
+
+### cacheMode
+
+cacheMode(cacheMode: CacheMode)
+
+设置缓存模式。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | cacheMode    | [CacheMode](#cachemode枚举说明)   | 是   | -      | 要设置的缓存模式。 |
+
+### textZoomAtio
+
+textZoomAtio(textZoomAtio: number)
+
+设置页面的文本缩放百分比，默认为100%。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | textZoomAtio    | number   | 是   | -      | 要设置的页面的文本缩放百分比。 |
+
+### userAgent
+
+userAgent(userAgent: string)
+
+设置用户代理。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | userAgent    | string   | 是   | -      | 要设置的用户代理。 |
 
 >  **说明：**
 >
@@ -75,53 +276,167 @@
 | onInterceptRequest<sup>9+</sup>(callback: (event?: { request: [WebResourceRequest](#webresourcerequest对象说明)}) => [WebResourceResponse](#webresourceresponse对象说明)) | <p>当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。callback返回响应数据为空表示按原来方式加载，否则加载响应数据。<br/>- request：url请求的相关信息。</p> |
 | onHttpAuthRequest<sup>9+</sup>(callback: (event?: { handler: [HttpAuthHandler](#httpauthhandlersup9sup), host: string, realm: string}) => boolean) | <p>通知收到http auth认证请求。callback返回false表示此次认证失败，否则成功。<br/>- handler：通知Web组件用户操作行为。<br/>- host：HTTP身份验证凭据应用的主机。<br/>- realm：HTTP身份验证凭据应用的域。</p> |
 
-## ConsoleMessage对象说明
+## ConsoleMessage
 
-| 接口名称                                                 | 功能描述                       |
-| -------------------------------------------------------- | ------------------------------ |
-| getLineNumber(): number                                  | 获取ConsoleMessage的行数。     |
-| getMessage(): string                                     | 获取ConsoleMessage的日志信息。 |
-| getMessageLevel(): [MessageLevel](#messagelevel枚举说明) | 获取ConsoleMessage的信息级别。 |
-| getSourceId(): string                                    | 获取网页源文件路径和名字。     |
+Web组件获取控制台信息对象。
 
-## MessageLevel枚举说明
+### getLineNumber
 
-| 名称  | 描述       |
-| ----- | :--------- |
-| Debug | 调试级别。 |
-| Error | 错误级别。 |
-| Info  | 消息级别。 |
-| Log   | 日志级别。 |
-| Warn  | 警告级别。 |
+getLineNumber(): number
 
-## JsResult对象说明
+获取ConsoleMessage的行数。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | number   | 返回ConsoleMessage的行数。 |
+
+### getMessage
+
+getMessage(): string
+
+获取ConsoleMessage的日志信息。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回ConsoleMessage的日志信息。 |
+
+### getMessageLevel
+
+getMessageLevel(): MessageLevel
+
+获取ConsoleMessage的信息级别。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | [MessageLevel](#messagelevel枚举说明)   | 返回ConsoleMessage的信息级别。 |
+
+### getSourceId
+
+getSourceId(): string
+
+获取网页源文件路径和名字。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回网页源文件路径和名字。 |
+
+## JsResult
 
 Web组件返回的弹窗确认或弹窗取消功能对象。
 
-| 接口名称                                               | 功能描述                                         |
-| ------------------------------------------------------ | ------------------------------------------------ |
-| handleCancel(): void                                   | <p>通知Web组件用户取消弹窗操作。</p>             |
-| handleConfirm(): void                                  | <p>通知Web组件用户确认弹窗操作。</p>             |
-| handlePromptConfirm<sup>9+</sup>(result: string): void | <p>通知Web组件用户确认弹窗操作及对话框内容。</p> |
+### handleCancel
 
-## WebResourceError对象说明
+handleCancel(): void
 
-| 接口名称               | 功能描述                 |
-| ---------------------- | ------------------------ |
-| getErrorCode(): number | 获取加载资源的错误码。   |
-| getErrorInfo(): string | 获取加载资源的错误信息。 |
+通知Web组件用户取消弹窗操作。
 
-## WebResourceRequest对象说明
+### handleConfirm
 
-| 接口名称                                               | 功能描述                                 |
-| ------------------------------------------------------ | ---------------------------------------- |
-| getRequestHeader(): Array\<[Header](#header对象说明)\> | 获取资源请求头信息。                     |
-| getRequestUrl(): string                                | 获取资源请求的URL信息。                  |
-| isMainFrame(): boolean                                 | 判断资源请求是否为主frame。              |
-| isRedirect(): boolean                                  | 判断资源请求是否被服务端重定向。         |
-| isRequestGesture(): boolean                            | 获取资源请求是否与手势（如点击）相关联。 |
+handleConfirm(): void
 
-## Header对象说明
+通知Web组件用户确认弹窗操作。
+
+### handlePromptConfirm<sup>9+</sup>
+
+handlePromptConfirm(result: string): void
+
+通知Web组件用户确认弹窗操作及对话框内容。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | result    | string   | 是   | -      | 用户输入的对话框内容。 |
+
+## WebResourceError
+
+web组件资源管理错误信息对象。
+
+### getErrorCode
+
+getErrorCode(): number
+
+获取加载资源的错误码。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | number   | 返回加载资源的错误码。 |
+
+### getErrorInfo
+
+getErrorInfo(): string
+
+获取加载资源的错误信息。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回加载资源的错误信息。 |
+
+## WebResourceRequest
+
+web组件获取资源请求对象。
+
+### getRequestHeader
+
+getResponseHeader() : Array\<Header\>
+
+获取资源请求头信息。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | Array\<[Header](#header)\>   | 返回资源请求头信息。 |
+
+### getRequestUrl
+
+getRequestUrl(): string
+
+获取资源请求的URL信息。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回资源请求的URL信息。 |
+
+### isMainFrame
+
+isMainFrame(): boolean
+
+判断资源请求是否为主frame。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | boolean   | 返回资源请求是否为主frame。 |
+
+### isRedirect
+
+isRedirect(): boolean
+
+判断资源请求是否被服务端重定向。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | boolean   | 返回资源请求是否被服务端重定向。 |
+
+### isRequestGesture
+
+isRequestGesture(): boolean
+
+获取资源请求是否与手势（如点击）相关联。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | boolean   | 返回资源请求是否与手势（如点击）相关联。 |
+
+## Header
 
 Web组件返回的请求/响应头对象。
 
@@ -131,85 +446,204 @@ Web组件返回的请求/响应头对象。
 | headerValue | string   | 请求/响应头的value。 |
 
 
-## WebResourceResponse对象说明
+## WebResourceResponse
 
-| 接口名称                                                | 功能描述                         |
-| ------------------------------------------------------- | -------------------------------- |
-| getReasonMessage(): string                              | 获取资源响应的状态码描述。       |
-| getResponseCode(): number                               | 获取资源响应的状态码。           |
-| getResponseData(): string                               | 获取资源响应数据。               |
-| getResponseEncoding(): string                           | 获取资源响应的编码。             |
-| getResponseHeader(): Array\<[Header](#header对象说明)\> | 获取资源响应头。                 |
-| getResponseMimeType(): string                           | 获取资源响应的媒体（MIME）类型。 |
-| setResponseData<sup>9+</sup>(data: string)              | 设置资源响应数据。               |
-| setResponseEncoding<sup>9+</sup>(encoding: string)      | 设置资源响应的编码。             |
-| setResponseMimeType<sup>9+</sup>(mimeType: string)      | 设置资源响应的媒体（MIME）类型。 |
-| setReasonMessage<sup>9+</sup>(reason: string)           | 设置资源响应的状态码描述。       |
-| setResponseHeader<sup>9+</sup>(header: Array\<[Header](#header对象说明)\>)   | 设置资源响应头。                 |
-| setResponseCode<sup>9+</sup>(code: number)              | 设置资源响应的状态码。           |
+web组件资源响应对象。
 
-## RenderExitReason枚举说明
+### getReasonMessage
 
-onRenderExited接口返回的渲染进程退出的具体原因。
+getReasonMessage(): string
 
-| 名称                       | 描述                         |
-| -------------------------- | ---------------------------- |
-| ProcessAbnormalTermination | 渲染进程异常退出。           |
-| ProcessWasKilled           | 收到SIGKILL，或被手动终止。  |
-| ProcessCrashed             | 渲染进程崩溃退出，如段错误。 |
-| ProcessOom                 | 程序内存不足。               |
-| ProcessExitUnknown         | 其他原因。                   |
+获取资源响应的状态码描述。
 
-## MixedMode枚举说明
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回资源响应的状态码描述。 |
 
-| 名称       | 描述                                                        |
-| ---------- | ----------------------------------------------------------- |
-| All        | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
-| Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。            |
-| None       | 不允许加载HTTP和HTTPS混合内容。                             |
+### getResponseCode
 
-## CacheMode枚举说明
-| 名称    | 描述                                                         |
-| ------- | ------------------------------------------------------------ |
-| Default | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
-| None    | 加载资源使用cache，如果cache中无该资源则从网络中获取。       |
-| Online  | 加载资源不使用cache，全部从网络中获取。                      |
-| Only    | 只从cache中加载资源。                                        |
+getResponseCode(): number
 
-## FileSelectorResult对象说明
+获取资源响应的状态码。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | number   | 返回资源响应的状态码。 |
+
+### getResponseData
+
+getResponseData(): string
+
+获取资源响应数据。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回资源响应数据。 |
+
+### getResponseEncoding
+
+getResponseEncoding(): string
+
+获取资源响应的编码。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回资源响应的编码。 |
+
+### getResponseHeader
+
+getResponseHeader() : Array\<Header\>
+
+获取资源响应头。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | Array\<[Header](#header)\>   | 返回资源响应头。 |
+
+### getResponseMimeType
+
+getResponseMimeType(): string
+
+获取资源响应的媒体（MIME）类型。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回资源响应的媒体（MIME）类型。 |
+
+### setResponseData<sup>9+</sup>
+
+setResponseData(data: string)
+
+设置资源响应数据。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | data    | string   | 是   | -      | 要设置的资源响应数据。 |
+
+### setResponseEncoding<sup>9+</sup>
+
+setResponseEncoding(encoding: string)
+
+设置资源响应的编码。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | encoding    | string   | 是   | -      | 要设置的资源响应的编码。 |
+
+### setResponseMimeType<sup>9+</sup>
+
+setResponseMimeType(mimeType: string)
+
+设置资源响应的媒体（MIME）类型。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | mimeType    | string   | 是   | -      | 要设置的资源响应的媒体（MIME）类型。 |
+
+### setReasonMessage<sup>9+</sup>
+
+setReasonMessage(reason: string)
+
+设置资源响应的状态码描述。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | reason    | string   | 是   | -      | 要设置的资源响应的状态码描述。 |
+
+### setResponseHeader<sup>9+</sup>
+
+setResponseHeader(header: Array\<Header\>)
+
+设置资源响应头。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | header    | Array\<[Header](#header)\>   | 是   | -      | 要设置的资源响应头。 |
+
+### setResponseCode<sup>9+</sup>
+
+setResponseCode(code: number)
+
+设置资源响应的状态码。
+
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | code    | number   | 是   | -      | 要设置的资源响应的状态码。 |
+
+## FileSelectorResult<sup>9+</sup>
+
 通知Web组件的文件选择结果。
 
-| 接口名称                                       | 功能描述                                                     |
-| ---------------------------------------------- | ------------------------------------------------------------ |
-| handleFileList(fileList: Array\<string>): void | 通知Web组件进行文件选择操作。fileList: 需要进行操作的文件列表。 |
+### handleFileList<sup>9+</sup>
 
-## FileSelectorParam对象说明
-| 接口名称                         | 功能描述                 |
-| -------------------------------- | ------------------------ |
-| getTitle(): string               | 获取文件选择器标题。     |
-| getMode(): FileSelectorMode      | 获取文件选择器的模式。   |
-| getAcceptType(): Array\<string\> | 获取文件过滤类型。       |
-| isCapture(): boolean             | 获取是否调用多媒体能力。 |
+handleFileList(fileList: Array\<string\>): void
 
-## FileSelectorMode枚举说明
-| 名称                 | 描述                 |
-| -------------------- | -------------------- |
-| FileOpenMode         | 打开上传单个文件。   |
-| FileOpenMultipleMode | 打开上传多个文件。   |
-| FileOpenFolderMode   | 打开上传文件夹模式。 |
-| FileSaveMode         | 文件保存模式。       |
+通知Web组件进行文件选择操作。
 
- ## HitTestType枚举说明
+- 参数
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
+  | ------ | -------- | ---- | ------ | ------------------------- |
+  | fileList    | Array\<string\>   | 是   | -      | 需要进行操作的文件列表。 |
 
-  | 名称          | 描述                                      |
-  | ------------- | ----------------------------------------- |
-  | EditText      | 可编辑的区域。                            |
-  | Email         | 电子邮件地址。                            |
-  | HttpAnchor    | 超链接，其src为http。                     |
-  | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
-  | Img           | HTML::img标签。                           |
-  | Map           | 地理地址。                                |
-  | Unknown       | 未知内容。                                |
+## FileSelectorParam<sup>9+</sup>
+
+web组件获取文件对象
+
+### getTitle<sup>9+</sup>
+
+getTitle(): string
+
+获取文件选择器标题。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | string   | 返回文件选择器标题。 |
+
+### getMode<sup>9+</sup>
+
+getMode(): FileSelectorMode
+
+获取文件选择器的模式。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | [FileSelectorMode](#FileSelectorMode枚举说明)   | 返回文件选择器的模式。 |
+
+### getAcceptType<sup>9+</sup>
+
+getAcceptType(): Array\<string\>
+
+获取文件过滤类型。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | Array\<string\>   | 返回文件过滤类型。 |
+
+### isCapture<sup>9+</sup>
+
+isCapture(): boolean
+
+获取是否调用多媒体能力。
+
+- 返回值 
+  | 参数类型 | 说明                 |
+  | -------- | -------------------- |
+  | boolean   | 返回是否调用多媒体能力。 |
 
 ## HttpAuthHandler<sup>9+</sup>
 
@@ -294,13 +728,13 @@ accessStep(step: number): boolean
 
 ### backward
 
-backward(): void
+backward()
 
 按照历史栈，后退一个页面。一般结合accessBackward一起使用。
 
 ### deleteJavaScriptRegister
 
-deleteJavaScriptRegister(name: string): void
+deleteJavaScriptRegister(name: string)
 
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。
 
@@ -312,7 +746,7 @@ deleteJavaScriptRegister(name: string): void
 
 ### forward
 
-forward(): void
+forward()
 
 按照历史栈，前进一个页面。一般结合accessForward一起使用。
 
@@ -389,7 +823,7 @@ getDefaultUserAgent(): string
 
 ### loadData
 
-loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: string, historyUrl?: string }): void
+loadData(options: { data: string, mimeType: string, encoding: string, baseUrl?: string, historyUrl?: string })
 
 baseUrl为空时，通过”data“协议加载指定的一段字符串。
 
@@ -409,7 +843,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
 
 ### loadUrl
 
-loadUrl(options:{ url: string, headers?: Array\<Header\> }): void
+loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 
 使用指定的http头加载指定的URL。
 
@@ -465,13 +899,13 @@ zoomOut(): boolean
 
 ### refresh
 
-refresh(): void
+refresh()
 
 调用此接口通知Web组件刷新网页。
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> }): void
+registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用refresh接口生效。
 
@@ -485,7 +919,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 ### runJavaScript
 
-runJavaScript(options: { script: string, callback?: (result: string) => void }): void
+runJavaScript(options: { script: string, callback?: (result: string) => void })
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
@@ -498,7 +932,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void }):
 
 ### stop
 
-stop(): void
+stop()
 
 停止页面加载。
 
@@ -508,7 +942,7 @@ clearHistory(): void
 
 删除所有前进后退记录。
 
-### getCookieManager
+### getCookieManager<sup>9+</sup>
 
 getCookieManager(): WebCookie
 
@@ -540,8 +974,10 @@ getExtra(): string
   | string | 点击区域的附加参数信息。 |
 
 ## WebCookie
+
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
-### setCookie
+
+### setCookie<sup>9+</sup>
 setCookie(url: string, value: string): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
@@ -557,7 +993,7 @@ setCookie(url: string, value: string): boolean
   | -------- | -------------------- |
   | boolean  | 设置cookie是否成功。 |
 
-### saveCookieSync
+### saveCookieSync<sup>9+</sup>
 saveCookieSync(): boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
