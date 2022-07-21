@@ -297,6 +297,8 @@ getTaskInfo(): Promise\<TaskInfo>
 
 **系统能力**：SystemCapability.Update.UpdateService
 
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
 **返回值：**
 
 | 类型                                       | 说明               |
@@ -754,7 +756,7 @@ updater.getUpgradePolicy().then(policy => {
 
 ### setUpgradePolicy
 
-setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
+setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 设置升级策略。使用callback异步回调。
 
@@ -767,7 +769,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<number>): void
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | policy | [UpgradePolicy](#upgradepolicy) | 是    | 升级策略 |
-| callback | AsyncCallback\<number> | 是    | 回调函数，返回设置结果对象 |
+| callback | AsyncCallback\<void> | 是    | 回调函数，返回设置结果对象 |
 
 **示例：**
 
@@ -777,14 +779,14 @@ let policy = {
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
-updater.setUpgradePolicy(policy, (err, value) => {
-  console.log(`setUpgradePolicy result: ${value}`);
+updater.setUpgradePolicy(policy, (err) => {
+  console.log(`setUpgradePolicy result: ${err}`);
 });
 ```
 
 ### setUpgradePolicy
 
-setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
+setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 设置升级策略。使用Promise异步回调。
 
@@ -802,7 +804,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<number>
 
 | 类型               | 说明              |
 | ---------------- | --------------- |
-| Promise\<number> | Promise对象，返回设置结果对象。 |
+| Promise\<void> | Promise对象，返回设置结果对象。 |
 
 **示例：**
 
@@ -812,8 +814,8 @@ let policy = {
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
 }
-updater.setUpgradePolicy(policy).then(result => {
-  console.log(`setUpgradePolicy ${result}`);
+updater.setUpgradePolicy(policy).then(() => {
+  console.log(`setUpgradePolicy success`);
 }).catch(err => {
   console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
@@ -850,6 +852,8 @@ terminateUpgrade(): Promise\<void>
 终止升级。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
 
 **返回值：**
 
@@ -890,11 +894,9 @@ var eventClassifyInfo = {
   extraInfo: ""
 }
 
-function onTaskUpdate(eventInfo): void {
-  console.log(`on eventInfo id `, eventInfo.eventId);
-}
-
-updater.on(eventClassifyInfo, onTaskUpdate);
+updater.on(eventClassifyInfo, (eventInfo) => {
+  console.log("updater on " + JSON.stringify(eventInfo));
+});
 ```
 
 ### off
@@ -919,11 +921,9 @@ var eventClassifyInfo = {
   extraInfo: ""
 }
 
-function onTaskUpdate(eventInfo): void {
-  console.log(`on eventInfo id `, eventInfo.eventId);
-}
-
-updater.off(eventClassifyInfo, onTaskUpdate);
+updater.off(eventClassifyInfo, (eventInfo) => {
+  console.log("updater off " + JSON.stringify(eventInfo));
+});
 ```
 
 ## Restorer
@@ -982,7 +982,7 @@ restorer.factoryReset().then(() => {
 
 ### verifyUpgradePackage
 
-verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: AsyncCallback\<number>): void
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: AsyncCallback\<void>): void
 
 校验升级包。使用callback异步回调。
 
@@ -996,7 +996,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 | -------- | ---------------------------------------- | ---- | --------- |
 | upgradeFile | [UpgradeFile](#upgradefile) | 是    | 升级文件 |
 | certsFile | string | 是    | 证书文件路径 |
-| callback | AsyncCallback\<number> | 是    | 回调函数，返回升级包校验结果对象 |
+| callback | AsyncCallback\<void> | 是    | 回调函数，返回升级包校验结果对象 |
 
 **示例：**
 
@@ -1006,14 +1006,14 @@ var upgradeFile = {
   filePath: "path" // 本地升级包路径
 }
 
-localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err, result) => {
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
 
 ### verifyUpgradePackage
 
-verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<number>
+verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void>
 
 校验升级包。使用Promise异步回调。
 
@@ -1032,7 +1032,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<numb
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<number> | Promise对象，返回升级包校验结果对象。 |
+| Promise\<void> | Promise对象，返回升级包校验结果对象。 |
 
 **示例:**
 
@@ -1041,8 +1041,8 @@ var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }
-localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(result => {
-  console.log(`verifyUpgradePackage result: ${result}`);
+localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
+  console.log(`verifyUpgradePackage success`);
 }).catch(err => {
   console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
 });
@@ -1368,7 +1368,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | progress         | number | 是    | 进度    |
 | installMode         | number | 是    | 安装模式    |
 | errorMessages         |  Array\<[ErrorMessage](#errormessage)>  | 否    | 错误信息    |
-| versionComponets         | Array\<[VersionComponet](#versioncomponet)> | 是    | 版本组件    |
+| versionComponents         | Array\<[VersionComponent](#versioncomponent)> | 是    | 版本组件    |
 
 ## ErrorMessage
 
@@ -1405,8 +1405,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 ## UpgradeTaskCallback
 
-### onTaskUpdate
-onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
+### (eventInfo: [EventInfo](#eventinfo)): void
 
 事件回调。
 
@@ -1434,7 +1433,7 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
-| FIRWARE   | 1 | 固件  |
+| FIRMWARE   | 1 | 固件  |
 
 ## ComponentType
 
@@ -1504,8 +1503,8 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 | ------------------- | ---- | -------- |
 | DOWNLOAD   | 1 | 下载  |
 | INSTALL   | 2 | 安装  |
-| APPLY   | 4 | 生效  |
 | DOWNLOAD_AND_INSTALL   | 3 | 下载并安装  |
+| APPLY   | 4 | 生效  |
 | INSTALL_AND_APPLY   | 6 | 安装并生效  |
 
 ## UpgradeStatus
@@ -1518,11 +1517,11 @@ onTaskUpdate(eventInfo: [EventInfo](#eventinfo)): void
 | ------------------- | ---- | -------- |
 | WAITING_DOWNLOAD   | 20 | 待下载  |
 | DOWNLOADING   | 21 | 下载中  |
-| DOWNLOAD_PAUSE   | 22 | 下载暂停  |
+| DOWNLOAD_PAUSED   | 22 | 下载暂停  |
 | DOWNLOAD_FAIL   | 23 | 下载失败  |
 | WAITING_INSTALL   | 30 | 待安装  |
 | UPDATING   | 31 | 更新中  |
-| WATING_APPLY   | 40 | 待生效  |
+| WAITING_APPLY   | 40 | 待生效  |
 | APPLYING   | 21 | 生效中  |
 | UPGRADE_SUCCESS   | 50 | 升级成功  |
 | UPGRADE_FAIL   | 51 | 升级失败  |
