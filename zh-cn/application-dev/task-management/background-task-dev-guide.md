@@ -140,7 +140,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     }
     ```
 
-2. 申请长时任务
+2. 申请长时任务。
 
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -170,7 +170,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     });
     ```
 
-3. 停止长时任务
+3. 停止长时任务。
 
     ```js
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -206,9 +206,9 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     }
     ```
 
-2. 申请长时任务
+2. 申请长时任务。
 
-    ```js
+    ```ts
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
     import wantAgent from '@ohos.wantAgent';
 
@@ -235,9 +235,9 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
     });
     ```
 
-3. 停止长时任务
+3. 停止长时任务。
 
-    ```js
+    ```ts
     import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
     backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
@@ -358,9 +358,9 @@ export default {
 基于Stage模型：
 
 Stage模型的相关信息参考[Stage模型综述](../ability/stage-brief.md)。
-当应用需要在后台执行长时任务时，使Ability在后台被创建并运行。使用方式参考[Call调用开发指导](../ability/stage-call.md)。
+当应用需要在后台执行长时任务时，可以通过Call的方式在后台创建并运行Ability。使用方式参考[Call调用开发指导](../ability/stage-call.md)。
 
-```js
+```ts
 import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
