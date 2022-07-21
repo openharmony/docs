@@ -949,7 +949,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-、、、、、、、、、、、
+const imageSourceApi = image.createImageSource('/sdcard/test.jpg');
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1002,7 +1002,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-。。。。。。。。。。。。。。。。。。。。。
+const imageSourceApi = image.createImageSource(fd);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1050,7 +1050,8 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-.........................
+const data = new ArrayBuffer(112);
+const imageSourceApi = image.createImageSource(data);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1076,7 +1077,8 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 **示例：**
 
 ```js
-。。。。。。。。。。。。。。。。。。
+const buf = new ArrayBuffer(96);
+const imageSourceApi = image.CreateIncrementalSource(buf);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -2188,15 +2190,15 @@ ImageSource的初始化选项。
 
 PixelMap的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Code
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称                   | 类型                               | 可读 | 可写 | 说明           |
-| ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup> | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
-| editable               | boolean                            | 是   | 是   | 是否可编辑。   |
-| pixelFormat            | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
-| scaleMode<sup>9+</sup> | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
-| size                   | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
+| 名称                     | 类型                               | 可读 | 可写 | 说明           |
+| ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
+| editable<sup>8+</sup>    | boolean                            | 是   | 是   | 是否可编辑。   |
+| pixelFormat<sup>8+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
+| size<sup>8+</sup>        | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
 ## DecodingOptions<sup>7+</sup>
 
