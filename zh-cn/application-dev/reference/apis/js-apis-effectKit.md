@@ -42,10 +42,10 @@ createEffect(source: image.PixelMap): Filter
 ```js
 import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
 image.createPixelMap(color, opts)
-    .then((pixelmap) => {
-        let headFilter = effectKit.createEffect(pixelmap)
+    .then((pixelMap) => {
+        let headFilter = effectKit.createEffect(pixelMap)
     })
 ```
 
@@ -74,13 +74,12 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 ```js
 import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+image.createPixelMap(color, opts, (pixelMap) => {
     effectKit.createColorPicker(pixelMap).then(colorPicker => {
             console.info("color picker=" + colorPicker);
-        })
-        .catch(ex => console.error(".error=" + ex.toString()))
     })
+    .catch(ex => console.error(".error=" + ex.toString()))
 })
 ```
 
@@ -104,15 +103,15 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 ```js
 import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
-    effectKit.createColorPicker(pixelMap, (error, colorPicker) ) {
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+image.createPixelMap(color, opts, (pixelMap) => {
+    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
         if(error) {
             console.log('Failed to create color picker.');
         } else {
             console.log('Succeeded in creating color picker.');
         }
-    })
+    }) 
 })
 ```
 
@@ -152,7 +151,7 @@ getMainColor(): Promise\<Color>
 ```js
 colorPicker.getMainColor().then(color => {
     console.log('Succeeded in getting main color.')
-    console.info("color[ARGB]=" + color.alpha "," + color.red + "," + color.green + "," + color.blue);
+    console.info("color[ARGB]=" + color.alpha + "," + color.red + "," + color.green + "," + color.blue);
 }).catch(error => {
     console.log('Failed to get main color.');
 })
@@ -175,8 +174,8 @@ getMainColorSync(): Color
 **示例：**
 
 ```js
-let color = colorPicker.getMainColorSync()
-console.log('get main color =' + color)
+let color = colorPicker.getMainColorSync();
+console.log('get main color =' + color);
 ```
 
 ## Filter
@@ -208,11 +207,11 @@ blur(radius: number): Filter
 ```js
 import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
 image.createPixelMap(color, opts)
-    .then((pixelmap) => {
+    .then((pixelMap) => {
         let radius = 5;
-        let headFilter = effectKit.createEffect(pixelmap)
+        let headFilter = effectKit.createEffect(pixelMap)
         if (headFilter != null) {
             headFilter.blur(radius)
         }
@@ -244,11 +243,11 @@ brightness(bright: number): Filter
 ```js
 import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
 image.createPixelMap(color, opts)
-    .then((pixelmap) => {
+    .then((pixelMap) => {
         let bright = 0.5;
-        let headFilter = effectKit.createEffect(pixelmap)
+        let headFilter = effectKit.createEffect(pixelMap)
         if (headFilter != null) {
             headFilter.brightness(bright)
         }
@@ -274,10 +273,10 @@ grayscale(): Filter
 ```js
 import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
 image.createPixelMap(color, opts)
-    .then((pixelmap) => {
-        let headFilter = effectKit.createEffect(pixelmap)
+    .then((pixelMap) => {
+        let headFilter = effectKit.createEffect(pixelMap)
         if (headFilter != null) {
             headFilter.grayscale()
         }
@@ -303,9 +302,9 @@ getPixelMap(): image.PixelMap
 ```js
 import image from "@ohos.multimedia.image"
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
 image.createPixelMap(color, opts)
-    .then((pixelmap) => {
-        let pixel = effectKit.createEffect(pixelmap).grayscale().getPixelMap()
+    .then((pixelMap) => {
+        let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap()
     })
 ```
