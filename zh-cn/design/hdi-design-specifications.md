@@ -24,6 +24,7 @@
 | 版本  | 变更说明               |
 | ---  | --------------------- |
 | v1.0 Beta | 初始试行版本               |
+| v1.0  | 发布正式版本               |
 
 
 ## 范围与定义
@@ -85,13 +86,13 @@ interface IVibrator {
 
 Table 1 接口评审&管控角色
 
-| **涉及角色**    | **API治理中的职责**                                    |
+| **涉及角色**    | **HDI接口治理中的职责**                                    |
 | ----------- | ------------------------------------------------ |
-| Contributor | API的设计和交付主体，负责API相关的代码与设计文档提交。                   |
-| Committer   | API相关的代码评审，涉及API提交预审。                            |
-| 领域SIG       | 新增API相关的代码提交评审，领域SIG评审通过即可合入。<br>变更API相关的代码提交预审。 |
-| Driver SIG  | 变更API相关的代码提交评审。                                  |
-| PMC         | API Version计划发布、API治理章程修订评审发布等。                  |
+| Contributor | HDI的设计和交付主体，负责HDI相关的代码与设计文档提交。                   |
+| Committer   | HDI相关的代码评审，涉及HDI提交预审。                            |
+| 领域SIG     | 新增/变更HDI相关的代码提交，本领域SIG首先进行评审。 |
+| Driver SIG  | 新增/变更HDI相关的代码提交评审。                                  |
+| PMC         | HDI设计规范修订评审发布等。                  |
 
 #### 设备接口发布
 
@@ -101,8 +102,8 @@ Table 1 接口评审&管控角色
 
     主要过程说明：
 
-    1. HDI评审申请、代码提交（Owner：Contributor），所有涉及HDI新增或变更需同步提交相应的API评审文档，详细说明API的需求来源、场景与使用方法、权限设计、隐私保护澄清等，详见后面的API评审申请要素。为避免后续的返工，Contributor可以在正式的API评审申请、代码提交之前，先通过邮件方式将API设计文档提交Committer、领域SIG、API SIG等相关人员预审。
-    2. 代码评审（Owner：Committer），代码评审和API预审，涉及API提交Code Review通过后，还需要进一步领域SIG评审。
+    1. HDI评审申请、代码提交（Owner：Contributor），所有涉及HDI新增或变更需同步提交相应的HDI评审文档，详细说明HDI的需求来源、场景与使用方法、权限设计、隐私保护澄清等，详见后面的评审申请要素。为避免后续的返工，Contributor可以在正式的HDI评审申请、代码提交之前，先通过邮件方式将HDI相关设计文档提交Committer、领域SIG、Driver SIG等相关人员预审。
+    2. 代码评审（Owner：Committer），代码评审和接口预审，涉及HDI的提交Code Review通过后，还需要进一步领域SIG评审。
     3. 领域SIG评审（Owner：领域SIG），涉及新增/变更HDI相关接口的代码提交，领域SIG评审通过后，还需要进一步提交Driver SIG。
     4. HDI评审（Owner：Driver SIG），对新增/变更HDI相关的代码提交进行接口评审，评审通过即可合入代码。
     5. 评审完成。
@@ -131,7 +132,7 @@ Table 1 接口评审&管控角色
 
         - 对废弃接口增加标识废弃标记。
 
-        - 废弃API至少保留4个OpenHarmony API版本
+        - 废弃HDI至少保留4个OpenHarmony API版本
 
 ## 接口设计约束
 
