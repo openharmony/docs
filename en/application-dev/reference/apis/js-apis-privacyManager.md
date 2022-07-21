@@ -1,11 +1,11 @@
 # Privacy Management
 
-Provides APIs for privacy management, such as management of permission usage records.
+The **PrivacyManager** module provides APIs for privacy management, such as management of permission usage records.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
 
@@ -19,7 +19,6 @@ import privacyManager from '@ohos.privacyManager';
 addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number): Promise&lt;number&gt;
 
 Adds a permission usage record when an application protected by the permission is called by another service or application. This API uses a promise to return the result.
-
 The permission usage record includes the application identity of the invoker, name of the permission used, and number of successful and failed accesses to the application.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
@@ -41,10 +40,6 @@ The permission usage record includes the application identity of the invoker, na
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the result. If **0** is returned, the record is added successfully. If **-1** is returned, the record fails to be added.|
 
-```
-
-```
-
 **Example**
 
 ```js
@@ -59,7 +54,6 @@ privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED
 addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number, callback: AsyncCallback&lt;number&gt;): void
 
 Adds a permission usage record when an application protected by the permission is called by another service or application. This API uses an asynchronous callback to return the result.
-
 The permission usage record includes the application identity of the invoker, name of the permission used, and number of successful and failed accesses to the application.
 
 **Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
@@ -202,7 +196,7 @@ Represents the permission usage records of all applications.
 
 ## BundleUsedRecord
 
-Represents the application access records of an application.
+Represents the permission access records of an application.
 
 **System capability**: SystemCapability.Security.AccessToken
 
@@ -212,11 +206,11 @@ Represents the application access records of an application.
 | isRemote | boolean         | No   | Whether the token ID belongs to a remote device. The default value is **false**.|
 | deviceId  | string         | No   | ID of the device hosting the target application.                                |
 | bundleName | string         | No   | Bundle name of the target application.|
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#PermissionUsedRecord)&gt;         | No   | Permission usage records of the specified application obtained.                                |
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#PermissionUsedRecord)&gt;         | No   | Permission usage records of the target application.                                |
 
 ## PermissionUsedRecord
 
-Represents the access records of a permission.
+Represents the usage records of a permission.
 
 **System capability**: SystemCapability.Security.AccessToken
 
@@ -225,8 +219,8 @@ Represents the access records of a permission.
 | permissionName  | string         | No   | Name of the permission.                                |
 | accessCount | number         | No   | Total number of times that the permission is accessed.|
 | rejectCount | number         | No   | Total number of times that the access to the permission is rejected.|
-| lastAccessTime | number         | No   | Last time when the permission was accessed, in ms.|
-| lastRejectTime | number         | No   | Last time when the access to the permission was rejected, in ms.|
+| lastAccessTime | number         | No   | Last time when the permission was accessed, accurate to ms.|
+| lastRejectTime | number         | No   | Last time when the access to the permission was rejected, accurate to ms.|
 | lastAccessDuration | number         | No   | Last access duration, in ms.|
 | accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | No   | Access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |
 | rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | No   | Rejected records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_SUMMARY**. By default, 10 records are provided.                                |

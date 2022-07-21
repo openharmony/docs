@@ -13,6 +13,7 @@
   - [@ohos.application.appManager](js-apis-appmanager.md)
   - [@ohos.application.Configuration](js-apis-configuration.md)
   - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
+  - [@ohos.application.DataShareExtensionAbility](js-apis-application-DataShareExtensionAbility.md)
   - [@ohos.ability.featureAbility](js-apis-featureAbility.md)
   - [@ohos.application.formBindingData](js-apis-formbindingdata.md)
   - [@ohos.application.FormExtension](js-apis-formextension.md)
@@ -121,11 +122,14 @@
 - Data Management
 
   - [@ohos.data.dataAbility ](js-apis-data-ability.md)
+  - [@ohos.data.dataShare](js-apis-data-dataShare.md)
+  - [@ohos.data.dataSharePredicates](js-apis-data-dataSharePredicates.md)
+  - [@ohos.data.dataShareResultSet](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedData](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.preferences](js-apis-data-preferences.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
-  - [@ohos.settings](js-apis-settings.md)
+  - [@ohos.data.ValuesBucket](js-apis-data-ValuesBucket.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
 
 - File Management
@@ -205,6 +209,7 @@
   - [@ohos.power](js-apis-power.md)
   - [@ohos.runningLock](js-apis-runninglock.md)
   - [@ohos.sensor](js-apis-sensor.md)
+  - [@ohos.settings](js-apis-settings.md)
   - [@ohos.systemParameter](js-apis-system-parameter.md)
   - [@ohos.thermal](js-apis-thermal.md)
   - [@ohos.update](js-apis-update.md)
