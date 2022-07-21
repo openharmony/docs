@@ -685,7 +685,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.dataAbility'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -825,7 +825,7 @@ DAHelper.query(
 
 ## DataAbilityHelper.query
 
-query(uri: string, columns?: Array<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>;
+query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>;
 
 查询数据库中的数据（Promise形式）。
 
@@ -932,6 +932,77 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
     console.info('Operation succeeded: ' + data);
 });
 ```
+
+## DataAbilityHelper.executeBatch
+
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
+
+查询数据库中的数据。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 名称            | 类型                                         | 必填 | 描述                                             |
+| ----------    | ---------------------------------             | ---- | ------------------------------------------------ |
+| uri           | string                                        | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
+| operations    |  Array\<[DataAbilityOperation](#dataabilityoperation)>               | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](#dataabilityresult)>>    | 是   |在数组 DataAbilityResult中返回每个操作的结果。      |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+// 根据DataAbilityOperation列表选择要对数据库做的操作
+let op=new Array();
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + err);
+        return;
+    }
+    console.info('Operation succeeded: ' + data);
+});
+```
+
+## DataAbilityHelper.executeBatch
+
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>;
+
+查询数据库中的数据。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**参数：**
+
+| 名称          | 类型                            | 必填 | 描述                                             |
+| ----------    | -------------------------------| ---- | ------------------------------------------------ |
+| uri           | string                         | 是   | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。|
+| operations    |  Array\<[DataAbilityOperation](#dataabilityoperation)>  | 是   | 指示数据操作列表，其中可以包含对数据库的多个操作。   |
+
+**返回值：**
+
+| 类型 | 说明 |
+|------ | ------- |
+|Promise\<Array\<[DataAbilityResult](#dataabilityresult)>> | 在数组 DataAbilityResult中返回每个操作的结果。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+// 根据DataAbilityOperation列表选择要对数据库做的操作
+let op=new Array();
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility",op ).then((data) => {
+    console.info('Operation succeeded: ' + data);
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + error);
+});
+
+```
+
 ## PacMap
 
 [key: string]: number | string | boolean | Array\<string | number | boolean> | null;
@@ -941,3 +1012,27 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
 | 名称 | 参数类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
 | [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| 数据存储在键值对中。|
+
+## DataAbilityOperation
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+
+| 名称       | 参数类型     | 可读    |   可写    |     必填|       说明      |
+| --------  | --------    | -------- | -------- | --------| --------        |
+| uri   | string | 是      |     否    |      是    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  | 
+| type   | featureAbility.DataAbilityOperationType | 是      |     否    |      是    | 指示操作类型。  | 
+| valuesBucket?   |  rdb.ValuesBucket | 是      |     否    |      否    | 指示要设置的数据值。  | 
+| valueBackReferences?   | rdb.ValuesBucket | 是      |     否    |      否    | 指示包含一组键值对的valuesBucket对象。  | 
+| predicates?   | dataAbility.DataAbilityPredicates | 是      |     否    |      否    | 指示要设置的筛选条件。如果此参数为空，则所有数据记录。  | 
+| predicatesBackReferences?   | Map\<number, number> | 是      |     否    |      否    | 指示用作谓词中筛选条件的反向引用。  | 
+| interrupted?   | boolean | 是      |     否    |      否    | 指定是否可以中断批处理操作。  | 
+| expectedCount?   | number | 是      |     否    |      否    | 指示要更新或删除的预期行数。  | 
+
+## DataAbilityResult
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+
+| 名称       | 参数类型  | 可读      |   可写     |     必填    |       说明   |
+| --------  | --------  | --------  | --------  | --------    | --------    |
+| uri?      | string    | 是        |     否     |      否    | 指定待处理的DataAbility。例："dataability:///com.example.xxx.xxxx"。  | 
+| count?     | number    | 是        |     否     |      否    | 指示受操作影响的行数。  | 

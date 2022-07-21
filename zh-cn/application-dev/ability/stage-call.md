@@ -19,7 +19,7 @@ Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis
 |接口名|描述|
 |:------|:------|
 |startAbilityByCall(want: Want): Promise\<Caller>|获取指定通用组件的Caller通信接口，拉起指定通用组件并将其切换到后台。|
-|on(method: string, callback: CaleeCallBack): void|通用组件Callee注册method对应的callback方法。|
+|on(method: string, callback: CalleeCallBack): void|通用组件Callee注册method对应的callback方法。|
 |off(method: string): void|通用组件Callee去注册method的callback方法。|
 |call(method: string, data: rpc.Sequenceable): Promise\<void>|向通用组件Callee发送约定序列化数据。|
 |callWithResult(method: string, data: rpc.Sequenceable): Promise\<rpc.MessageParcel>|向通用组件Callee发送约定序列化数据, 并将返回的约定序列化数据带回。|

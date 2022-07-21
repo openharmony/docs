@@ -984,7 +984,7 @@ context.getHapModuleInfo().then((data) => {
 
 ## Context.getAppVersionInfo<sup>7+</sup>
 
-getAppVersionInfo(callback: AsyncCallback<AppVersionInfo>): void
+getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
 获取应用的版本信息（callback形式）。
 

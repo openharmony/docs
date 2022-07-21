@@ -362,7 +362,7 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
     });
   ```
 
-## missionManager.getLowResolutionMissionSnapShot
+## missionManager.getLowResolutionMissionSnapShot<sup>9+</sup>
 
 getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback\<MissionSnapshot>): void;
 
@@ -401,7 +401,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
   ```
 
 
-## missionManager.getLowResolutionMissionSnapShot
+## missionManager.getLowResolutionMissionSnapShot<sup>9+</sup>
 
 getLowResolutionMissionSnapShot(deviceId: string, missionId: number): Promise\<MissionSnapshot>;
 
