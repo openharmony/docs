@@ -105,6 +105,7 @@ media.createVideoPlayer().then((video) => {
 createAudioRecorder(): AudioRecorder
 
 创建音频录制的实例来控制音频的录制。
+一台设备只允许创建一个录制实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -125,6 +126,7 @@ let audioRecorder = media.createAudioRecorder();
 createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>): void
 
 异步方式创建视频录制实例。通过注册回调函数获取返回值。
+一台设备只允许创建一个录制实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -154,6 +156,7 @@ media.createVideoRecorder((error, video) => {
 createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 异步方式创建视频录制实例。通过Promise获取返回值。
+一台设备只允许创建一个录制实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
