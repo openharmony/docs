@@ -4164,7 +4164,7 @@ kvStore.off('dataChange', function (data) {
 ### sync<sup>7+</sup>
 
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -4176,9 +4176,9 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
+| deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode  |[SyncMode](#syncmode)   | 是   |同步模式。    |
-| allowedDelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
+| DelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**
 
@@ -5459,7 +5459,7 @@ try {
 
 ### sync<sup>8+</sup> ###
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -5471,9 +5471,9 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
+| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| allowedDelayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
+| DelayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
 
 **示例：**
 
