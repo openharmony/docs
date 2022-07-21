@@ -116,6 +116,8 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 ### 开发步骤
 
+基于FA模型：
+
 1. 新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为“service”。
 
     ```
@@ -182,7 +184,75 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
     ```
 
+基于Stage模型：
+
+1. 新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限、后台模式类型。
+
+    ```
+    "module": {
+      "abilities": [
+        {
+          "backgroundModes": [
+            "dataTransfer",
+            "location"
+          ], // 后台模式类型
+        }
+      ],
+      "reqPermissions": [
+        {
+          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
+        }
+      ]
+    }
+    ```
+
+2. 申请长时任务
+
+    ```js
+    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import wantAgent from '@ohos.wantAgent';
+
+    let wantAgentInfo = {
+        wants: [
+            {
+                bundleName: "com.example.myapplication",
+                abilityName: "com.example.myapplication.MainAbility"
+            }
+        ],
+        operationType: wantAgent.OperationType.START_ABILITY,
+        requestCode: 0,
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
+
+    // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+        backgroundTaskManager.startBackgroundRunning(this.context,
+            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+            console.info("Operation startBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error("Operation startBackgroundRunning failed Cause: " + err);
+        });
+    });
+    ```
+
+3. 停止长时任务
+
+    ```js
+    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+    backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+        console.info("Operation stopBackgroundRunning succeeded");
+    }).catch((err) => {
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+    });
+
+    ```
+
+
 ### 开发实例
+
+基于FA模型：
+
 基于FA的Service Ability使用，参考[ServiceAbility开发指导](../ability/fa-serviceability.md)。
 
 当不需要与后台执行的长时任务交互时，可以采用startAbility()方法启动Service Ability。并在Service Ability的onStart回调方法中，调用长时任务的申请接口，声明此服务需要在后台长时运行。当任务执行完，再调用长时任务取消接口，及时释放资源。
@@ -281,6 +351,130 @@ export default {
     },
     onCommand(want, restart, startId) {
         console.info('ServiceAbility onCommand');
+    }
+};
+```
+
+基于Stage模型：
+
+Stage模型的相关信息参考[Stage模型综述](../ability/stage-brief.md)。
+当应用需要在后台执行长时任务时，使Ability在后台被创建并运行。使用方式参考[Call调用开发指导](../ability/stage-call.md)。
+
+```js
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import wantAgent from '@ohos.wantAgent';
+
+let mContext = null;
+
+function startBackgroundRunning() {
+    let wantAgentInfo = {
+        // 点击通知后，将要执行的动作列表
+        wants: [
+            {
+                bundleName: "com.example.myapplication",
+                abilityName: "com.example.myapplication.MainAbility"
+            }
+        ],
+        // 点击通知后，动作类型
+        operationType: wantAgent.OperationType.START_ABILITY,
+        // 使用者自定义的一个私有值
+        requestCode: 0,
+        // 点击通知后，动作执行属性
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
+
+    // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+        backgroundTaskManager.startBackgroundRunning(mContext,
+            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+            console.info("Operation startBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error("Operation startBackgroundRunning failed Cause: " + err);
+        });
+    });
+}
+
+function stopContinuousTask() {
+    backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
+        console.info("Operation stopBackgroundRunning succeeded");
+    }).catch((err) => {
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+    });
+}
+
+class MySequenceable {
+    num: number = 0;
+    str: String = "";
+
+    constructor(num, string) {
+        this.num = num;
+        this.str = string;
+    }
+
+    marshalling(messageParcel) {
+        messageParcel.writeInt(this.num);
+        messageParcel.writeString(this.str);
+        return true;
+    }
+
+    unmarshalling(messageParcel) {
+        this.num = messageParcel.readInt();
+        this.str = messageParcel.readString();
+        return true;
+    }
+}
+
+function sendMsgCallback(data) {
+    console.info('BgTaskAbility funcCallBack is called ' + data)
+    let receivedData = new Mysequenceable(0, "")
+    data.readSequenceable(receivedData)
+    console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
+    if (receivedData.str === 'start_bgtask') {
+        startContinuousTask()
+    } else if (receivedData.str === 'stop_bgtask') {
+        stopContinuousTask();
+    }
+    return new Mysequenceable(10, "Callee test");
+}
+
+export default class BgTaskAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.info("[Demo] BgTaskAbility onCreate")
+        this.callee.on("test", sendMsgCallback);
+
+        try {
+            this.callee.on(MSG_SEND_METHOD, sendMsgCallback)
+        } catch (error) {
+            console.error(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
+        }
+        mContext = this.context;
+    }
+
+    onDestroy() {
+        console.info("[Demo] BgTaskAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        console.info("[Demo] BgTaskAbility onWindowStageCreate")
+
+        windowStage.loadContent("pages/second").then((data)=> {
+            console.info(`load content succeed with data ${JSON.stringify(data)}`)
+        }).catch((error)=>{
+            console.error(`load content failed with error ${JSON.stringify(error)}`)
+        })
+    }
+
+    onWindowStageDestroy() {
+        console.info("[Demo] BgTaskAbility onWindowStageDestroy")
+    }
+
+    onForeground() {
+        console.info("[Demo] BgTaskAbility onForeground")
+    }
+
+    onBackground() {
+        console.info("[Demo] BgTaskAbility onBackground")
     }
 };
 ```
