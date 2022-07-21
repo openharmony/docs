@@ -10,7 +10,7 @@
 
 - 在构造组件时通过构造参数初始化，例如：
   ```
-  MyComponent(counter: $myCounter)
+  MyComponent({counter: $myCounter})
   ```
 
 
