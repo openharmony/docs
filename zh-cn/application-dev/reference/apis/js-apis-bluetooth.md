@@ -1837,7 +1837,7 @@ panProfile.off('connectionStateChange', onReceiveEvent);
 
 ### setTethering<sup>9+</sup><a name="setTethering"></a>
 
-setTethering(value: boolean): boolean
+setTethering(enable: boolean): void
 
 设置网络共享状态。
 
@@ -1874,8 +1874,6 @@ isTetheringOn(): boolean
 获取网络共享状态。
 
 此接口为系统接口。
-
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2709,7 +2707,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```js
 // Promise 模式
-gattClientDevice.getServices().then(result => {
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+device.connect();
+device.getServices().then(result => {
     console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
@@ -3536,7 +3536,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceSolicitationUuidMask<sup>9+</sup> | string      | 是   | 是   | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
 | serviceData<sup>9+</sup>                 | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
 | serviceDataMask<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
-| manufacturerId<sup>9+</sup>              | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
+| manufactureId<sup>9+</sup>               | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
 | manufactureData<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
 | manufactureDataMask<sup>9+</sup>         | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
 
@@ -3828,7 +3828,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 ## ProfileId<sup>8+</sup><a name="ProfileId"></a>
 
-蓝牙profile枚举，API9新增PROFILE_HID_HOST。
+蓝牙profile枚举，API9新增PROFILE_HID_HOST，PROFILE_PAN_NETWORK。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3837,3 +3837,4 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | PROFILE_A2DP_SOURCE              | 0x0001 | 表示A2DP profile。 |
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。  |
 | PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | 表示HID profile。  |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | 表示PAN profile。  |
