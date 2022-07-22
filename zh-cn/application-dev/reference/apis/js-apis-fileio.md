@@ -22,10 +22,9 @@ import fileio from '@ohos.fileio';
  ```js
 import Ability from '@ohos.application.Ability';
 class MainAbility extends Ability {
-    let path = '';
     onWindowStageCreate(windowStage) {
         let context = this.context;
-        path = context.filesDir;
+        let path = context.filesDir;
     }
 }
  ```
@@ -37,9 +36,8 @@ class MainAbility extends Ability {
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
  let context = featureAbility.getContext();
- let path = '';
  context.getFilesDir().then((data) => {
-      path = data;
+      let path = data;
  })
  ```
  
