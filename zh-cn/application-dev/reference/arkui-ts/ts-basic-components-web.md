@@ -65,7 +65,7 @@ domStorageAccess(domStorageAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .domStorageAccess(true)
       }
     }
@@ -92,7 +92,7 @@ fileAccess(fileAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .fileAccess(true)
       }
     }
@@ -119,7 +119,7 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .fileFromUrlAccess(true)
       }
     }
@@ -146,7 +146,7 @@ imageAccess(imageAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .imageAccess(true)
       }
     }
@@ -187,9 +187,10 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
     }
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
+        .javaScriptAccess(true)
         .javaScriptProxy({
-          obj: this.testObj,
+          object: this.testObj,
           name: "objName",
           methodList: ["test", "toString"],
           controller: this.controller,
@@ -219,7 +220,7 @@ javaScriptAccess(javaScriptAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .javaScriptAccess(true)
       }
     }
@@ -242,13 +243,13 @@ mixedMode(mixedMode: MixedMode)
   // xxx.ets
   @Entry
   @Component
-  @State mode:MixedMode = MixedMode.All;
   struct WebComponent {
     controller:WebController = new WebController();
+    @State mode:MixedMode = MixedMode.All;
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .mixedMode(mode)
+        Web({src:'www.gitee.com', controller:this.controller})
+        .mixedMode(this.mode)
       }
     }
   }
@@ -265,7 +266,6 @@ onlineImageAccess(onlineImageAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | onlineImageAccess    | boolean   | 是   | -      | 设置是否允许从网络加载图片资源。 |
 
-## onlineImageAccess
 **示例：**
   ```ts
   // xxx.ets
@@ -302,7 +302,7 @@ zoomAccess(zoomAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .zoomAccess(true)
       }
     }
@@ -329,7 +329,7 @@ overviewModeAccess(overviewModeAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .overviewModeAccess(true)
       }
     }
@@ -355,7 +355,7 @@ databaseAccess(databaseAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'https://webkit.org/demos/sticky-notes/index.html', controller:this.controller})
         .databaseAccess(true)
       }
     }
@@ -378,13 +378,13 @@ cacheMode(cacheMode: CacheMode)
   // xxx.ets
   @Entry
   @Component
-  @State mode:CacheMode = CacheMode.None;
   struct WebComponent {
     controller:WebController = new WebController();
+    @State mode:CacheMode = CacheMode.None;
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .cacheMode(mode)
+        Web({src:'www.gitee.com', controller:this.controller})
+        .cacheMode(this.mode)
       }
     }
   }
@@ -406,13 +406,13 @@ textZoomAtio(textZoomAtio: number)
   // xxx.ets
   @Entry
   @Component
-  @State atio:Number = 100;
   struct WebComponent {
     controller:WebController = new WebController();
+    @State atio:number = 150;
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .textZoomAtio(atio)
+        Web({src:'www.gitee.com', controller:this.controller})
+        .textZoomAtio(this.atio)
       }
     }
   }
@@ -434,13 +434,13 @@ userAgent(userAgent: string)
   // xxx.ets
   @Entry
   @Component
-  @State userAgent:String = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
   struct WebComponent {
     controller:WebController = new WebController();
+    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .userAgent(userAgent)
+        Web({src:'www.gitee.com', controller:this.controller})
+        .userAgent(this.userAgent)
       }
     }
   }
@@ -481,23 +481,23 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onAlert((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-             value: 'onAlert',
-             action: () => {
-               result.handleConfirm()
-             }
-            },
-            cancel: () => {
-               result.handleCancel()
-            }
+        Web({src:'www.gitee.com', controller:this.controller})
+          .onAlert((event) => {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onAlert',
+                action: () => {
+                  event.result.handleConfirm()
+                }
+              },
+              cancel: () => {
+                event.result.handleCancel()
+              }
+            })
+            return true;
           })
-          return true;
-        })
       }
     }
   }
@@ -527,16 +527,18 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onBeforeUnload((event) => {
-          console.log("event.url:" +url);
-          console.log("event.message:" +message);
-          console.log("event.result:" +result);
-          return false;
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onBeforeUnload((event) => {
+            console.log("event.url:" + event.url);
+            console.log("event.message:" + event.message);
+            console.log("event.result:" + event.result);
+            return false;
+          })
+      }
     }
   }
   ```
@@ -565,29 +567,31 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onConfirm((event) => {
-          console.log("event.url:" +url);
-          console.log("event.message:" +message);
-          console.log("event.result:" +result);
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-            value: 'onConfirm',
-            action: () => {
-               result.handleConfirm()
-            }
-            },
-            cancel: () => {
-           result.handleCancel()
-            }
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onConfirm((event) => {
+            console.log("event.url:" + event.url);
+            console.log("event.message:" + event.message);
+            console.log("event.result:" + event.result);
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                  event.result.handleConfirm()
+                }
+              },
+              cancel: () => {
+                event.result.handleCancel()
+              }
+            })
+            return true;
           })
-          return true;
-        })
+      }
     }
   }
   ```
@@ -617,7 +621,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
         .onPrompt((event) => {
           console.log("url:" + event.url);
           console.log("message:" + event.message);
@@ -651,17 +655,19 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onConsole((event) => {
-          console.log('getMessage:' +message.getMessage());
-          console.log('getSourceId:' +message.getSourceId());
-          console.log('getLineNumber:' +message.getLineNumber());
-          console.log('getMessageLevel:' +message.getMessageLevel());
-          return false;
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onConsole((event) => {
+            console.log('getMessage:' + event.message.getMessage());
+            console.log('getSourceId:' + event.message.getSourceId());
+            console.log('getLineNumber:' + event.message.getLineNumber());
+            console.log('getMessageLevel:' + event.message.getMessageLevel());
+            return false;
+          })
+      }
     }
   }
   ```
@@ -684,17 +690,19 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onDownloadStart((event)=>{
-          console.log('url:' +url);
-          console.log('userAgent:' +userAgent);
-          console.log('contentDisposition:' +contentDisposition);
-          console.log('contentLength:' +contentLength);
-          console.log('mimetype:' +mimetype);
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onDownloadStart((event) => {
+            console.log('url:' + event.url);
+            console.log('userAgent:' + event.userAgent);
+            console.log('contentDisposition:' + event.contentDisposition);
+            console.log('contentLength:' + event.contentLength);
+            console.log('mimetype:' + event.mimetype);
+          })
+      }
     }
   }
   ```
@@ -717,24 +725,26 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onErrorReceive((event)=>{
-          console.log('getErrorInfo:' +error.getErrorInfo());
-          console.log('getErrorCode:' +error.getErrorCode());
-          console.log('url:' +request.getRequestUrl());
-          console.log('isMainFrame:' +request.isMainFrame());
-          console.log('isRedirect:' +request.isRedirect());
-          console.log('isRequestGesture:' +request.isRequestGesture());
-          console.log('getRequestHeader_headerKey:' +request.getRequestHeader().toString());
-          let result =request.getRequestHeader();
-          console.log('The request header result size is '+ result.length);
-          for ( let i of result) {
-            console.log('The request header key is : '+i.headerKey+', value is : '+i.headerValue);
-          }
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onErrorReceive((event) => {
+            console.log('getErrorInfo:' + event.error.getErrorInfo());
+            console.log('getErrorCode:' + event.error.getErrorCode());
+            console.log('url:' + event.request.getRequestUrl());
+            console.log('isMainFrame:' + event.request.isMainFrame());
+            console.log('isRedirect:' + event.request.isRedirect());
+            console.log('isRequestGesture:' + event.request.isRequestGesture());
+            console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString());
+            let result = event.request.getRequestHeader();
+            console.log('The request header result size is ' + result.length);
+            for (let i of result) {
+              console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue);
+            }
+          })
+      }
     }
   }
   ```
@@ -757,31 +767,33 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onHttpErrorReceive((event)=>{
-          console.log('url:' +request.getRequestUrl());
-          console.log('isMainFrame:' +request.isMainFrame());
-          console.log('isRedirect:' +request.isRedirect());
-          console.log('isRequestGesture:' +request.isRequestGesture());
-          console.log('getResponseData:' +response.getResponseData());
-          console.log('getResponseEncoding:' +response.getResponseEncoding());
-          console.log('getResponseMimeType:' +response.getResponseMimeType());
-          console.log('getResponseCode:' +response.getResponseCode());
-          console.log('getReasonMessage:' +response.getReasonMessage());
-          let result =request.getRequestHeader();
-          console.log('The request header result size is '+ result.length);
-          for ( let i of result) {
-            console.log('The request header key is : '+i.headerKey+' , value is : '+i.headerValue);
-          }
-          let resph =response.getResponseHeader();
-          console.log('The response header result size is '+ resph.length);
-          for ( let i of resph) {
-            console.log('The response header key is : '+i.headerKey+' , value is : '+i.headerValue);
-          }
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onHttpErrorReceive((event) => {
+            console.log('url:' + event.request.getRequestUrl());
+            console.log('isMainFrame:' + event.request.isMainFrame());
+            console.log('isRedirect:' + event.request.isRedirect());
+            console.log('isRequestGesture:' + event.request.isRequestGesture());
+            console.log('getResponseData:' + event.response.getResponseData());
+            console.log('getResponseEncoding:' + event.response.getResponseEncoding());
+            console.log('getResponseMimeType:' + event.response.getResponseMimeType());
+            console.log('getResponseCode:' + event.response.getResponseCode());
+            console.log('getReasonMessage:' + event.response.getReasonMessage());
+            let result = event.request.getRequestHeader();
+            console.log('The request header result size is ' + result.length);
+            for (let i of result) {
+              console.log('The request header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+            }
+            let resph = event.response.getResponseHeader();
+            console.log('The response header result size is ' + resph.length);
+            for (let i of resph) {
+              console.log('The response header key is : ' + i.headerKey + ' , value is : ' + i.headerValue);
+            }
+          })
+      }
     }
   }
   ```
@@ -804,13 +816,15 @@ onPageBegin(callback: (event?: { url: string }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onPageBegin((event) => {
-          console.log('url:' +url);
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onPageBegin((event) => {
+            console.log('url:' + event.url);
+          })
+      }
     }
   }
   ```
@@ -833,13 +847,15 @@ onPageEnd(callback: (event?: { url: string }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onPageEnd((event) => {
-          console.log('url:' +url);
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onPageEnd((event) => {
+            console.log('url:' + event.url);
+          })
+      }
     }
   }
   ```
@@ -861,13 +877,15 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onProgressChange((event) => {
-          console.log('newProgress:' +newProgress)
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onProgressChange((event) => {
+            console.log('newProgress:' + event.newProgress)
+          })
+      }
     }
   }
   ```
@@ -889,13 +907,15 @@ onTitleReceive(callback: (event?: { title: string }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onTitleReceive((event) => {
-          console.log('title:' +title)
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onTitleReceive((event) => {
+            console.log('title:' + event.title)
+          })
+      }
     }
   }
   ```
@@ -918,13 +938,15 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onRefreshAccessedHistory((event) => {
-          console.log('url:' +url + ' isReload:' +isRefreshed);
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onRefreshAccessedHistory((event) => {
+            console.log('url:' + event.url + ' isReload:' + event.refreshed);
+          })
+      }
     }
   }
   ```
@@ -946,13 +968,15 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'chrome://crash/', controller:this.controller})
-        .onRenderExited((event) => {
-          console.log('reason:' +renderExitReason);
-        })
+        Web({ src: 'chrome://crash/', controller: this.controller })
+          .onRenderExited((event) => {
+            console.log('reason:' + event.renderExitReason);
+          })
+      }
     }
   }
   ```
@@ -975,30 +999,32 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onShowFileSelector((event) => {
-          AlertDialog.show({
-            title:fileSelector.getTitle(),
-            message: 'isCapture:' +fileSelector.isCapture() + " mode:" +fileSelector.getMode() + 'acceptType:' +fileSelector.getAcceptType(),
-            confirm: {
-              value: 'upload',
-              action: () => {
-                let fileList: Array<string> = [
-                  '/data/storage/el2/base/test',
-                ]
-               result.handleFileList(fileList)
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onShowFileSelector((event) => {
+            AlertDialog.show({
+              title: event.fileSelector.getTitle(),
+              message: 'isCapture:' + event.fileSelector.isCapture() + " mode:" + event.fileSelector.getMode() + 'acceptType:' + event.fileSelector.getAcceptType(),
+              confirm: {
+                value: 'upload',
+                action: () => {
+                  let fileList: Array<string> = [
+                    '/data/storage/el2/base/test',
+                  ]
+                  event.result.handleFileList(fileList)
+                }
+              },
+              cancel: () => {
+                let fileList: Array<string> = []
+                event.result.handleFileList(fileList)
               }
-            },
-            cancel: () => {
-              let fileList: Array<string> = []
-             result.handleFileList(fileList)
-            }
+            })
+            return true;
           })
-          return true;
-        })
+      }
     }
   }
   ```
@@ -1025,14 +1051,16 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onUrlLoadIntercept((event) => {
-          console.log('onUrlLoadIntercept ' +data.toString())
-          return true;
-        })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+          .onUrlLoadIntercept((event) => {
+            console.log('onUrlLoadIntercept ' + event.data.toString())
+            return true;
+          })
+      }
     }
   }
   ```
@@ -1060,29 +1088,40 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
+    responseweb: WebResourceResponse = new WebResourceResponse();
+    heads:Header[] = new Array();
+    @State webdata: string = "<!DOCTYPE html>\n" +
+    "<html>\n"+
+    "<head>\n"+
+    "<title>intercept test</title>\n"+
+    "</head>\n"+
+    "<body>\n"+
+    "<h1>intercept test</h1>\n"+
+    "</body>\n"+
+    "</html>"
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
-        .onInterceptRequest((e) => {
-          console.log('url:' + e.request.getRequestUrl());
-          var head1:Header = {
-            headerKey:"Connection",
-            headerValue:"keep-alive"
-          }
-          var head2:Header = {
-            headerKey:"Cache-Control",
-            headerValue:"no-cache"
-          }
-          var length = this.heads.push(head1);
-          length = this.heads.push(head2);
-          this.responseweb.setResponseHeader(this.heads);
-          this.responseweb.setResponseData(this.webdata);
-          this.responseweb.setResponseEncoding('utf-8');
-          this.responseweb.setResponseMimeType('text/html');
-          this.responseweb.setResponseCode(200);
-          this.responseweb.setReasonMessage('OK');
-          return this.responseweb;
-        })
+        Web({src:'www.gitee.com', controller:this.controller})
+          .onInterceptRequest((event) => {
+            console.log('url:' + event.request.getRequestUrl());
+            var head1:Header = {
+              headerKey:"Connection",
+              headerValue:"keep-alive"
+            }
+            var head2:Header = {
+              headerKey:"Cache-Control",
+              headerValue:"no-cache"
+            }
+            var length = this.heads.push(head1);
+            length = this.heads.push(head2);
+            this.responseweb.setResponseHeader(this.heads);
+            this.responseweb.setResponseData(this.webdata);
+            this.responseweb.setResponseEncoding('utf-8');
+            this.responseweb.setResponseMimeType('text/html');
+            this.responseweb.setResponseCode(200);
+            this.responseweb.setReasonMessage('OK');
+            return this.responseweb;
+          })
       }
     }
   }
@@ -1581,15 +1620,17 @@ accessBackward(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('accessBackward')
-        .onClick(() => {
-          let result = this.controller.accessBackward();
-          console.log('result:' + result);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let result = this.controller.accessBackward();
+            console.log('result:' + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1611,15 +1652,17 @@ accessForward(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('accessForward')
-        .onClick(() => {
-          let result = this.controller.accessForward();
-          console.log('result:' + result);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let result = this.controller.accessForward();
+            console.log('result:' + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1647,16 +1690,18 @@ accessStep(step: number): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     @State steps: number = 2;
+  
     build() {
       Column() {
         Button('accessStep')
-        .onClick(() => {
-          let result = this.controller.accessStep(this.steps);
-          console.log('result:' + result);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let result = this.controller.accessStep(this.steps);
+            console.log('result:' + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1673,14 +1718,16 @@ backward(): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('backward')
-        .onClick(() => {
-          this.controller.backward();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.backward();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1697,14 +1744,16 @@ forward(): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('forward')
-        .onClick(() => {
-          this.controller.forward();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.forward();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1733,7 +1782,7 @@ backOrForward(step: number): void
         .onClick(() => {
           this.controller.backOrForward();
         })
-        Web({src:'www.example.com', controller:this.controller})
+        Web({src:'www.gitee.com', controller:this.controller})
     }
   }
   ```
@@ -1755,15 +1804,17 @@ deleteJavaScriptRegister(name: string)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     @State name: string = 'Object';
+  
     build() {
       Column() {
         Button('deleteJavaScriptRegister')
-        .onClick(() => {
-          this.controller.deleteJavaScriptRegister(this.name);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.deleteJavaScriptRegister(this.name);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1785,15 +1836,17 @@ getHitTest(): HitTestType
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('getHitTest')
-        .onClick(() => {
-          let hitType = this.controller.getHitTest();
-          console.log("hitType: " + hitType);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let hitType = this.controller.getHitTest();
+            console.log("hitType: " + hitType);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1814,16 +1867,18 @@ getHitTestValue(): HitTestValue
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('getHitTestValue')
-        .onClick(() => {
-          let hitValue = this.controller.getHitTestValue();
-          console.log("hitType: " + hitValue.getType());
-          console.log("extra: " + hitValue.getExtra());
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let hitValue = this.controller.getHitTestValue();
+            console.log("hitType: " + hitValue.getType());
+            console.log("extra: " + hitValue.getExtra());
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1844,15 +1899,17 @@ getWebId(): number
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('getWebId')
-        .onClick(() => {
-          let id = this.controller.getWebId();
-          console.log("id: " + id);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let id = this.controller.getWebId();
+            console.log("id: " + id);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1873,15 +1930,17 @@ getTitle(): string
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('getTitle')
-        .onClick(() => {
-          let title = this.controller.getTitle();
-          console.log("title: " + title);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let title = this.controller.getTitle();
+            console.log("title: " + title);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1902,15 +1961,17 @@ getPageHeight(): number
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('getPageHeight')
-        .onClick(() => {
-          let pageHeight = this.controller.getPageHeight();
-          console.log("pageHeight: " + pageHeight);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let pageHeight = this.controller.getPageHeight();
+            console.log("pageHeight: " + pageHeight);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1931,15 +1992,17 @@ getDefaultUserAgent(): string
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('getDefaultUserAgent')
-        .onClick(() => {
-          let userAgent = this.controller.getDefaultUserAgent();
-          console.log("userAgent: " + userAgent);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let userAgent = this.controller.getDefaultUserAgent();
+            console.log("userAgent: " + userAgent);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1969,18 +2032,20 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('loadData')
-        .onClick(() => {
-          this.controller.loadData({
-            data: "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
-            mimeType: "text/html",
-            encoding: "UTF-8"
-          });
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.loadData({
+              data: "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+              mimeType: "text/html",
+              encoding: "UTF-8"
+            });
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2007,14 +2072,16 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('loadUrl')
-        .onClick(() => {
-          this.controller.loadUrl('https://gitee.com/');
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.loadUrl({ url: 'https://gitee.com/' });
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+      }
     }
   }
   ```
@@ -2031,14 +2098,16 @@ onActive(): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('onActive')
-        .onClick(() => {
-          this.controller.onActive();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.onActive();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2055,14 +2124,16 @@ onInactive(): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('onInactive')
-        .onClick(() => {
-          this.controller.onInactive();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.onInactive();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2083,15 +2154,17 @@ zoom(factor: number): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     @State factor: number = 1;
+  
     build() {
       Column() {
         Button('zoom')
-        .onClick(() => {
-          this.controller.zoom(this.factor);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.zoom(this.factor);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2112,15 +2185,17 @@ zoomIn(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('zoomIn')
-        .onClick(() => {
-          let result = this.controller.zoomIn();
-          console.log("result: " + result);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let result = this.controller.zoomIn();
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2141,15 +2216,17 @@ zoomOut(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('zoomOut')
-        .onClick(() => {
-          let result = this.controller.zoomOut();
-          console.log("result: " + result);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let result = this.controller.zoomOut();
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2166,14 +2243,16 @@ refresh()
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('refresh')
-        .onClick(() => {
-          this.controller.refresh();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.refresh();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2200,7 +2279,6 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
     controller: WebController = new WebController()
     testObj = {
       test: (data) => {
-        prompt.showToast({ message: "test: " + data, duration: 2000 })
         return "ArkUI Web Component";
       },
       toString: () => {
@@ -2210,14 +2288,6 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
     build() {
       Column() {
         Row() {
-          Button('htmlTest').onClick(() => {
-            this.controller.runJavaScript({ script: "htmlTest()"})
-          })
-  
-          Button('refresh').onClick(() => {
-            this.controller.refresh()
-          })
-  
           Button('Register JavaScript To Window').onClick(() => {
             this.controller.registerJavaScriptProxy({
               object: this.testObj,
@@ -2234,6 +2304,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
   ```
   
   ```html
+  <!-- index.html -->
   <!DOCTYPE html>
   <html>
       <meta charset="utf-8">
@@ -2242,7 +2313,6 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
       </body>
       <script type="text/javascript">
       function htmlTest() {
-          // 调用主应用注入的objName.test方法
           str = objName.test("test function");
           console.log('objName.test result:'+ str);
       }
@@ -2291,6 +2361,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
   ```
 
   ```html
+  <!-- index.html -->
   <!DOCTYPE html>
   <html>
     <meta charset="utf-8">
@@ -2319,14 +2390,16 @@ stop()
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('stop')
-        .onClick(() => {
-          this.controller.stop();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.stop();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2343,14 +2416,16 @@ clearHistory(): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('clearHistory')
-        .onClick(() => {
-          this.controller.clearHistory();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            this.controller.clearHistory();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2372,14 +2447,16 @@ getCookieManager(): WebCookie
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('getCookieManager')
-        .onClick(() => {
-          let cookieManager = this.controller.getCookieManager();
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let cookieManager = this.controller.getCookieManager();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2433,15 +2510,17 @@ setCookie(url: string, value: string): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('setCookie')
-        .onClick(() => {
-          let result = this.controller.getCookieManager().setCookie("http://www.example.com", "a=b");
-          console.log("result: " + result);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let result = this.controller.getCookieManager().setCookie("http://www.baidu.com", "a=b");
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2462,15 +2541,17 @@ saveCookieSync(): boolean
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
         Button('saveCookieSync')
-        .onClick(() => {
-          let result = this.controller.getCookieManager().saveCookieSync();
-          console.log("result: " + result);
-        })
-        Web({src:'www.example.com', controller:this.controller})
+          .onClick(() => {
+            let result = this.controller.getCookieManager().saveCookieSync();
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -2493,8 +2574,22 @@ static existHttpAuthCredentials(): boolean
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  let result = web.WebDataBase.existHttpAuthCredentials();
-  console.log('result: ' + result);
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('existHttpAuthCredentials')
+          .onClick(() => {
+            let result = web.WebDataBase.existHttpAuthCredentials();
+            console.log('result: ' + result);
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
+    }
+  }
   ```
 
 ### deleteHttpAuthCredentials<sup>9+</sup>
@@ -2507,7 +2602,21 @@ static deleteHttpAuthCredentials(): void
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  web.WebDataBase.deleteHttpAuthCredentials();
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('deleteHttpAuthCredentials')
+          .onClick(() => {
+            web.WebDataBase.deleteHttpAuthCredentials();
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
+    }
+  }
   ```
 
 ### getHttpAuthCredentials<sup>9+</sup>
@@ -2531,14 +2640,27 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  host: string = "www.spincast.org";
-  realm: string = "protected example";
-  username_password: string[];
-  this.username_password = web.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
-  console.log('num: ' + this.username_password.length);
-  ForEach(this.username_password, (item) => {
-    console.log('username_password: ' + item);
-  }, item => item)
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    host: string = "www.spincast.org";
+    realm: string = "protected example";
+    username_password: string[];
+    build() {
+      Column() {
+        Button('getHttpAuthCredentials')
+          .onClick(() => {
+            this.username_password = web.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
+            console.log('num: ' + this.username_password.length);
+            ForEach(this.username_password, (item) => {
+              console.log('username_password: ' + item);
+            }, item => item)
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
+    }
+  }
   ```
 
 ### saveHttpAuthCredentials<sup>9+</sup>
@@ -2559,9 +2681,22 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  host: string = "www.spincast.org";
-  realm: string = "protected example";
-  web.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    host: string = "www.spincast.org";
+    realm: string = "protected example";
+    build() {
+      Column() {
+        Button('saveHttpAuthCredentials')
+          .onClick(() => {
+            web.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+          })
+        Web({ src: 'www.gitee.com', controller: this.controller })
+      }
+    }
+  }
   ```
 
 ## WebStorage<sup>9+</sup>
@@ -2575,7 +2710,21 @@ static deleteAllData(): void
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  web.WebStorage.deleteAllData();
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('deleteAllData')
+          .onClick(() => {
+            web.WebStorage.deleteAllData();
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        .databaseAccess(true)
+      }
+    }
+  }
   ```
 
 ### deleteOrigin<sup>9+</sup>
@@ -2592,8 +2741,22 @@ static deleteOrigin(origin : string): void
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  origin: string = "origin";
-  web.WebStorage.deleteOrigin(origin);
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "origin";
+    build() {
+      Column() {
+        Button('getHttpAuthCredentials')
+          .onClick(() => {
+            web.WebStorage.deleteOrigin(this.origin);
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        .databaseAccess(true)
+      }
+    }
+  }
   ```
 
 ### getOrigins<sup>9+</sup>
@@ -2610,18 +2773,33 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageor
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  web.WebStorage.getOrigins((error, origins) => {
-    if (error) {
-      console.log('error: ' + error);
-      return;
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "origin";
+    build() {
+      Column() {
+        Button('getOrigins')
+          .onClick(() => {
+            web.WebStorage.getOrigins((error, origins) => {
+              if (error) {
+                console.log('error: ' + error);
+                return;
+              }
+              for (let i = 0; i < origins.length; i++) {
+                console.log('origin: ' + origins[i].origin);
+                console.log('usage: ' + origins[i].usage);
+                console.log('quota: ' + origins[i].quota);
+              }
+            })
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        .databaseAccess(true)
+      }
     }
-    for (let i = 0; i < origins.length; i++) {
-      consloe.log('origin: ' + origins[i].origin);
-      console.log('usage: ' + origins[i].usage);
-      console.log('quota: ' + origins[i].quota);
-    }
-  })
-```
+  }
+  ```
 
 ### getOrigins<sup>9+</sup>
 static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>
@@ -2637,17 +2815,32 @@ static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  web.WebStorage.getOrigins()
-  .then(origins => {
-    for (let i = 0; i < origins.length; i++) {
-      consloe.log('origin: ' + origins[i].origin);
-      console.log('usage: ' + origins[i].usage);
-      console.log('quota: ' + origins[i].quota);
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "origin";
+    build() {
+      Column() {
+        Button('getOrigins')
+          .onClick(() => {
+            web.WebStorage.getOrigins()
+              .then(origins => {
+                for (let i = 0; i < origins.length; i++) {
+                  console.log('origin: ' + origins[i].origin);
+                  console.log('usage: ' + origins[i].usage);
+                  console.log('quota: ' + origins[i].quota);
+                }
+              })
+              .catch(error => {
+                console.log('error: ' + error);
+              })
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+          .databaseAccess(true)
+      }
     }
-  })
-  .catch(error => {
-    console.log('error: ' + error);
-  })
+  }
   ```
 
 ### getOriginQuota<sup>9+</sup>
@@ -2665,14 +2858,28 @@ static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  origin: string = "origin";
-  web.WebStorage.getOriginQuota(origin, (error, quota) => {
-    if (error) {
-      console.log('error: ' + error);
-      return;
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "origin";
+    build() {
+      Column() {
+        Button('getOriginQuota')
+          .onClick(() => {
+            web.WebStorage.getOriginQuota(this.origin, (error, quota) => {
+              if (error) {
+                console.log('error: ' + error);
+                return;
+              }
+              console.log('quota: ' + quota);
+            })
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+          .databaseAccess(true)
+      }
     }
-    consloe.log('quota: ' + quota);
-  })
+  }
   ```
 
 ### getOriginQuota<sup>9+</sup>
@@ -2694,13 +2901,28 @@ static getOriginQuota(origin : string) : Promise<number>
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  web.WebStorage.getOriginQuota()
-  .then(quota => {
-    consloe.log('quota: ' + quota);
-  })
-  .catch(error => {
-    console.log('error: ' + error);
-  })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "origin";
+    build() {
+      Column() {
+        Button('getOriginQuota')
+          .onClick(() => {
+            web.WebStorage.getOriginQuota(this.origin)
+              .then(quota => {
+                console.log('quota: ' + quota);
+              })
+              .catch(error => {
+                console.log('error: ' + error);
+              })
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+          .databaseAccess(true)
+      }
+    }
+  }
   ```
 
 ### getOriginUsage<sup>9+</sup>
@@ -2718,14 +2940,28 @@ static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  origin: string = "origin";
-  web.WebStorage.getOriginUsage(origin, (error, usage) => {
-    if (error) {
-      console.log('error: ' + error);
-      return;
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "origin";
+    build() {
+      Column() {
+        Button('getOriginUsage')
+          .onClick(() => {
+            web.WebStorage.getOriginUsage(this.origin, (error, usage) => {
+              if (error) {
+                console.log('error: ' + error);
+                return;
+              }
+              consloe.log('usage: ' + usage);
+            })
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+          .databaseAccess(true)
+      }
     }
-    consloe.log('usage: ' + usage);
-  })
+  }
   ```
 
 ### getOriginUsage<sup>9+</sup>
@@ -2747,13 +2983,28 @@ static getOriginUsage(origin : string) : Promise<number>
   ```ts
   // xxx.ets
   import web from '@ohos.web';
-  web.WebStorage.getOriginUsage()
-  .then(usage => {
-    consloe.log('usage: ' + usage);
-  })
-  .catch(error => {
-    console.log('error: ' + error);
-  })
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "origin";
+    build() {
+      Column() {
+        Button('getOriginQuota')
+          .onClick(() => {
+            web.WebStorage.getOriginUsage(this.origin)
+              .then(usage => {
+                console.log('usage: ' + usage);
+              })
+              .catch(error => {
+                console.log('error: ' + error);
+              })
+          })
+        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+          .databaseAccess(true)
+      }
+    }
+  }
   ```
 
 ## WebStorageOrigin<sup>9+</sup>
