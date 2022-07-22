@@ -108,10 +108,10 @@ Obtains all the key-value pairs based on the specified key.
 **Example**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1)); 
-paramsObject.append('fod', 3); // Add a second value for the fod parameter.
-console.log(params.getAll('fod')) // Output ["1","3"].
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new Url.URLSearchParams(urlObject.search.slice(1));
+params.append('fod', '3'); // Add a second value for the fod parameter.
+console.log(params.getAll('fod').toString()) // Output ["1","3"].
 ```
 
 
