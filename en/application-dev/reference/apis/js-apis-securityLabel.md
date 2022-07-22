@@ -1,9 +1,9 @@
 # Security Label
 
-The secuityLabel module provides APIs to manage file data security levels, including obtaining and setting file data security levels.
-
 > **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+The **secuityLabel** module provides APIs to manage file data security levels, including obtaining and setting file data security levels.
 
 ## Modules to Import
 
@@ -13,7 +13,7 @@ import securityLabel from '@ohos.securityLabel';
 
 ## Usage
 
-Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the application sandbox. For details, see [getOrCreateLocalDir of the Context module](js-apis-Context.md).
+Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the application sandbox as follows:
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
