@@ -151,16 +151,16 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
 
 **示例：**
   ```js
-  function aysnFun(str1, str2, callback) {
-      if (typeof str1 === 'string' && typeof str2 === 'string') {
-          callback(null, str1 + str2);
-      } else {
-          callback('type err');
-      }
+  function aysnFun(str1, str2) {
+    if (typeof str1 === 'object' && typeof str2 === 'object') {
+      return str2
+    } else {
+      return str1
+    }
   }
   let newPromiseObj = util.promiseWrapper(aysnFun);
-  newPromiseObj("Hello", 'World').then(res => {
-      console.log(res);
+  newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
+    console.log(res);
   })
   ```
 
