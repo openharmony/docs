@@ -669,7 +669,7 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    
            // Initialize the shader.
            if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
-               console.log('Failed to intialize shaders.');
+               console.log('Failed to initialize shaders.');
                return;
            }
    
