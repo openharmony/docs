@@ -16,7 +16,7 @@ Create a **Preferences** instance for data operations. A **Preferences** instanc
 
 | Class| Method| Description|
 | --- | ----- | ----|
-| PreferencesHelper | static std::shared_ptr<Preferences> GetPreferences(const std::string &path, int &errCode); | Creates a **Preferences** instance. <br/>**path**: storage path of the application data. <br/>**errCode**: error code. <br/>Return value: **Preferences** instance created.|
+| PreferencesHelper | static std::shared_ptr<Preferences> GetPreferences(const std::string &path, int &errCode); | Creates a **Preferences** instance. <br>**path**: storage path of the application data.<br>**errCode**: error code.<br>Return value: **Preferences** instance created.|
 
 **Writing Data**
 
@@ -26,13 +26,13 @@ Call the **put()** method to add or modify data in a **Preferences** instance.
 
 | Class| Method| Description|
 | --- | ----- | ----|
-| Preferences | int PutInt(const std::string &key, int value); | **key**: key of the data to write. It cannot be empty. <br/>**value**: value of the data to write. <br/>Return value: error code.|
-| Preferences | int PutString(const std::string &key, const std::string &value); | **key**: key of the data to write. It cannot be empty. <br/>**value**: value of the data to write. <br/>Return value: error code.|
-| Preferences | int PutBool(const std::string &key, bool value); | **key**: key of the data to write. It cannot be empty. <br/>**value**: value of the data to write. <br/>Return value: error code.|
-| Preferences | int PutLong(const std::string &key, int64_t value); | **key**: key of the data to write. It cannot be empty. <br/>**value**: value of the data to write. <br/>Return value: error code.|
-| Preferences | int PutFloat(const std::string &key, float value); | **key**: key of the data to write. It cannot be empty. <br/>**value**: value of the data to write. <br/>Return value: error code.|
-| Preferences | int PutDouble(const std::string &key, double value); | **key**: key of the data to write. It cannot be empty. <br/>**value**: value of the data to write. <br/>Return value: error code.|
-| Preferences | int PutStringSet(const std::string &key, const std::set\<std::string\> &value); | **key**: key of the data to write. It cannot be empty. <br/>**value**: value of the data to write. <br/>Return value: error code.|
+| Preferences | int PutInt(const std::string &key, int value); | **key**: key of the data to write. It cannot be empty.<br>**value**: value of the data to write.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
+| Preferences | int PutString(const std::string &key, const std::string &value); | **key**: key of the data to write. It cannot be empty.<br>**value**: value of the data to write.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
+| Preferences | int PutBool(const std::string &key, bool value); | **key**: key of the data to write. It cannot be empty.<br>**value**: value of the data to write.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
+| Preferences | int PutLong(const std::string &key, int64_t value); | **key**: key of the data to write. It cannot be empty.<br>**value**: value of the data to write.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
+| Preferences | int PutFloat(const std::string &key, float value); | **key**: key of the data to write. It cannot be empty.<br>**value**: value of the data to write.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
+| Preferences | int PutDouble(const std::string &key, double value); | **key**: key of the data to write. It cannot be empty.<br>**value**: value of the data to write.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
+| Preferences | int PutStringSet(const std::string &key, const std::set\<std::string\> &value); | **key**: key of the data to write. It cannot be empty.<br>**value**: value of the data to write.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
 
 **Reading Data**
 
@@ -42,17 +42,17 @@ Call the **get()** method to read data from a **Preferences** instance.
 
 | Class| Method| Description|
 | --- | ----- | ----|
-| Preferences | bool GetBool(const std::string &key, bool defValue); | **key**: key of the data to read. It cannot be empty. <br/>**defValue**: default value to return if the operation fails or the value does not exist. <br/>Return value: Returns the value read if the operation is successful; returns **defValue** otherwise.|
-| Preferences | std::string GetString(const std::string &key, const std::string &defValue); | **key**: key of the data to read. It cannot be empty. <br/>**defValue**: default value to return if the operation fails or the value does not exist. <br/>Return value: Returns the value read if the operation is successful; returns **defValue** otherwise.|
-| Preferences | bool GetBool(const std::string &key, bool defValue); | **key**: key of the data to read. It cannot be empty. <br/>**defValue**: default value to return if the operation fails or the value does not exist. <br/>Return value: Returns the value read if the operation is successful; returns **defValue** otherwise.|
-| Preferences | float GetFloat(const std::string &key, float defValue); | **key**: key of the data to read. It cannot be empty. <br/>**defValue**: default value to return if the operation fails or the value does not exist. <br/>Return value: Returns the value read if the operation is successful; returns **defValue** otherwise.|
-| Preferences | double GetDouble(const std::string &key, double defValue); | **key**: key of the data to read. It cannot be empty. <br/>**defValue**: default value to return if the operation fails or the value does not exist. <br/>Return value: Returns the value read if the operation is successful; returns **defValue** otherwise.|
-| Preferences | int64_t GetLong(const std::string &key, int64_t defValue); | **key**: key of the data to read. It cannot be empty. <br/>**defValue**: default value to return if the operation fails or the value does not exist. <br/>Return value: Returns the value read if the operation is successful; returns **defValue** otherwise.|
-| Preferences | std::set\<std::string\> GetStringSet(const std::string &key, std::set\<std::string\> &defValue); | **key**: key of the data to read. It cannot be empty. <br/>**defValue**: default value to return if the operation fails or the value does not exist. <br/>Return value: Returns the value read if the operation is successful; returns **defValue** otherwise.|
+| Preferences | int GetInt(const std::string &key, const int defValue = 0); | **key**: key of the data to read. It cannot be empty.<br>**defValue**: default value to return if the operation fails or the value does not exist.<br>Return value: value obtained.|
+| Preferences | std::string GetString(const std::string &key, const std::string &defValue = {}); | **key**: key of the data to read. It cannot be empty.<br>**defValue**: default value to return if the operation fails or the value does not exist.<br>Return value: value obtained.|
+| Preferences | bool GetBool(const std::string &key, const bool defValue = false); | **key**: key of the data to read. It cannot be empty.<br>**defValue**: default value to return if the operation fails or the value does not exist.<br>Return value: value obtained.|
+| Preferences | float GetFloat(const std::string &key, const float defValue = 0); | **key**: key of the data to read. It cannot be empty.<br>**defValue**: default value to return if the operation fails or the value does not exist.<br>Return value: value obtained.|
+| Preferences | double GetDouble(const std::string &key, const double defValue = 0); | **key**: key of the data to read. It cannot be empty.<br>**defValue**: default value to return if the operation fails or the value does not exist.<br>Return value: value obtained.|
+| Preferences | int64_t GetLong(const std::string &key, const int64_t defValue = 0); | **key**: key of the data to read. It cannot be empty.<br>**defValue**: default value to return if the operation fails or the value does not exist.<br>Return value: value obtained.|
+| Preferences | std::set\<std::string\> GetStringSet(const std::string &key, const std::set\<std::string\> &defValue = {}); | **key**: key of the data to read. It cannot be empty.<br>**defValue**: default value to return if the operation fails or the value does not exist.<br>Return value: value obtained.|
 
 **Storing Data Persistently**
 
-Call the **flush()** or **flushSync** method to write the cached data back to its text file for persistent storage.
+Call the **Flush()** or **FlushSync()** method to write the cached data back to its text file for persistent storage.
 
 **Table 4** APIs for data persistence
 
@@ -65,12 +65,12 @@ Call the **flush()** or **flushSync** method to write the cached data back to it
 
 Specify **PreferencesObserver** as the callback to subscribe to data changes. When the value of the subscribed key is changed and the **flush()** method is executed, **PreferencesObserver** will be invoked.
 
-**Table 5** APIs for subscribing to data changes
+**Table 5** APIs for observing data changes
 
 | Class| Method| Description|
 | --- | ----- | ----|
-| Preferences | void RegisterObserver(std::shared_ptr<PreferencesObserver> preferencesObserver); | Subscribes to data changes. <br/>**preferencesObserver**: callback invoked to return the data changes.|
-| Preferences | void UnRegisterObserver(std::shared_ptr<PreferencesObserver> preferencesObserver); | Unsubscribes from data changes. <br/>**preferencesObserver**: callback used to report data changes.|
+| Preferences | void RegisterObserver(std::shared_ptr<PreferencesObserver> preferencesObserver); | Subscribes to data changes. <br>**preferencesObserver**: callback invoked to return the data changes.|
+| Preferences | void UnRegisterObserver(std::shared_ptr<PreferencesObserver> preferencesObserver); | Unsubscribes from data changes. <br>**preferencesObserver**: callback used to report data changes.|
 
 **Deleting Data**
 
@@ -80,8 +80,8 @@ Use the following APIs to delete a **Preferences** instance or data file.
 
 | Class| Method| Description|
 | --- | ----- | ----|
-| PreferencesHelper | int DeletePreferences(const std::string &path); | Deletes a **Preferences** instance from the memory and deletes its file from the device. <br/>**path**: storage path of the application data. <br/>Return value: error code.|
-| PreferencesHelper | int RemovePreferencesFromCache(const std::string &path); | Deletes a **Preferences** instance from the memory. <br/>**path**: storage path of the application data. <br/>Return value: error code.|
+| PreferencesHelper | int DeletePreferences(const std::string &path); | Deletes a **Preferences** instance from the memory and deletes its file from the device. <br>**path**: storage path of the application data.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
+| PreferencesHelper | int RemovePreferencesFromCache(const std::string &path); | Deletes a **Preferences** instance from the memory. <br>**path**: storage path of the application data.<br>Return value: Returns **0** if the operation is successful; returns the error code otherwise.|
 
 ## How to Develop
 
@@ -122,14 +122,13 @@ Use the following APIs to delete a **Preferences** instance or data file.
 
 5. Store data persistently.
 
-   Use the **flush()** or **flushSync()** method to flush data in the **Preferences** instance to its file.
+   Use the **Flush()** or **FlushSync()** method to flush data in the **Preferences** instance to its file.
 
     ```C++
     int err = pref->FlushSync();
     EXPECT_EQ(ret, E_OK);
     ```
    
-
 6. Subscribe to data changes.
 
     Specify **PreferencesObserver** as the callback to subscribe to data changes for an application. When the value of the subscribed key is changed and the **flush()** or **flushSync()** method is executed, **PreferencesObserver** will be invoked. Unregister the **PreferencesObserver** when it is no longer required.
@@ -144,7 +143,7 @@ Use the following APIs to delete a **Preferences** instance or data file.
         std::atomic_int notifyTimes;
         static const std::vector<std::string> NOTIFY_KEYS_VECTOR;
     };
-
+    
     PreferencesObserverCounter::~PreferencesObserverCounter() {}
     
     void PreferencesObserverCounter::OnChange(Preferences &preferences, const std::string &key)
@@ -156,7 +155,7 @@ Use the following APIs to delete a **Preferences** instance or data file.
             }
         }
     }
-
+    
     const std::vector<std::string> PreferencesObserverCounter::NOTIFY_KEYS_VECTOR = { PreferencesTest::KEY_TEST_INT_ELEMENT,
         PreferencesTest::KEY_TEST_LONG_ELEMENT, PreferencesTest::KEY_TEST_FLOAT_ELEMENT,
         PreferencesTest::KEY_TEST_BOOL_ELEMENT, PreferencesTest::KEY_TEST_STRING_ELEMENT };
@@ -167,17 +166,17 @@ Use the following APIs to delete a **Preferences** instance or data file.
     std::shared_ptr<PreferencesObserver> counter =
         std::make_shared<PreferencesObserverCounter>();
     pref->RegisterObserver(counter); // Register a callback to return data changes.
-
+    
     pref->PutString(PreferencesTest::KEY_TEST_STRING_ELEMENT, "test");
     pref->Flush(); // Trigger the onChanged callback of the counter.
     EXPECT_EQ(static_cast<PreferencesObserverCounter *>(counter.get())->notifyTimes, 1);
-
+    
     /* same value */
     pref->PutInt(PreferencesTest::KEY_TEST_INT_ELEMENT, 2);
     pref->PutString(PreferencesTest::KEY_TEST_STRING_ELEMENT, "test");
     pref->Flush();
     EXPECT_EQ(static_cast<PreferencesObserverCounter *>(counter.get())->notifyTimes, 2);
-
+    
     pref->UnRegisterObserver(counter); // Unregister the callback for data changes.
     ```
 
