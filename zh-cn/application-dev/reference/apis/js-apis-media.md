@@ -277,7 +277,8 @@ Codec MIME类型枚举。
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
-| loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
+| loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。          
+| audioInterruptMode<sup>9+</sup>        | [InterruptMode](#interruptmode9)                   | 是   | 是   | 音频焦点模型。       |
 | currentTime | number                    | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
 | duration    | number                    | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
 | state       | [AudioState](#audiostate) | 是   | 否   | 音频播放的状态。                                             |
@@ -656,6 +657,17 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | stopped            | string | 音频播放停止。 |
 | error<sup>8+</sup> | string | 错误状态。     |
 
+## InterruptMode<sup>9+</sup>
+
+枚举，焦点模型。
+
+**系统能力：** SystemCapability.Multimedia.Audio.InterruptMode
+
+| 名称                         | 默认值 | 描述       |
+| ---------------------------- | ------ | ---------- |
+| SHARE_MODE      | 0      | 共享焦点模式。 |
+| INDEPENDENT_MODE| 1      | 独立焦点模式。     |
+
 ## VideoPlayer<sup>8+</sup>
 
 视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#mediacreatevideoplayer8)构建一个[VideoPlayer](#videoplayer8)实例。
@@ -670,6 +682,8 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
+| videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | 是   | 是   | 视频缩放模式。       |
+| audioInterruptMode<sup>9+</sup>        | [InterruptMode](#interruptmode9)                   | 是   | 是   | 音频焦点模型。       |
 | currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms）。                       |
 | duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，单位为毫秒（ms），返回-1表示直播模式。             |
 | state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | 是   | 否   | 视频播放的状态。                                             |
@@ -1575,6 +1589,17 @@ videoPlayer.on('availableBitrateCollected', (bitrates) => {
 | SPEED_FORWARD_1_25_X | 2    | 表示视频播放正常播速的1.25倍。 |
 | SPEED_FORWARD_1_75_X | 3    | 表示视频播放正常播速的1.75倍。 |
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
+
+## VideoScaleType<sup>9+</sup>
+
+枚举，视频缩放模式。
+
+**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+
+| 名称                         | 默认值 | 描述       |
+| ---------------------------- | ------ | ---------- |
+| VIDEO_SCALE_TYPE_FIT     | 0      | 视频拉伸至与窗口等大。 |
+| VIDEO_SCALE_TYPE_FIT_CROP| 1      | 保持视频宽高比拉伸至填满窗口，内容可能会有裁剪。     |
 
 ## MediaDescription<sup>8+</sup>
 
