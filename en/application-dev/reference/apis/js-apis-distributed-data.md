@@ -488,7 +488,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 let kvManager;
 try {
     console.log('GetAllKVStoreId');
-    kvManager.getAllKVStoreId('apppId').then((data) => {
+    kvManager.getAllKVStoreId('appId').then((data) => {
         console.log('getAllKVStoreId success');
         console.log('size = ' + data.length);
     }).catch((err) => {
@@ -3887,7 +3887,7 @@ try {
         console.log('getSecurityLevel success');
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -3917,7 +3917,7 @@ try {
         console.log('getSecurityLevel fail ' + JSON.stringify(err));
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
