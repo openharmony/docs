@@ -2231,6 +2231,10 @@ Captures a photo with the specified capture settings. This API uses an asynchron
 **Example**
 
 ```js
+let settings:PhotoCaptureSetting = {
+    quality = 1,
+    rotation = 0
+}
 photoOutput.capture(settings, (err) => {
     if (err) {
         console.error('Failed to capture the photo ${err.message}');

@@ -2231,6 +2231,10 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
+let settings:PhotoCaptureSetting = {
+    quality = 1,
+    rotation = 0
+}
 photoOutput.capture(settings, (err) => {
     if (err) {
         console.error('Failed to capture the photo ${err.message}');
