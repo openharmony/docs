@@ -14,14 +14,13 @@
 
 ## 接口
 
-  Web(options: { src: string, controller?: WebController })
+Web(options: { src: string, controller?: WebController })
 
 **参数：**
-
-    | 参数名     | 参数类型                        | 必填 | 默认值 | 参数描述       |
-    | ---------- | ------------------------------- | ---- | ------ | -------------- |
-    | src        | string                          | 是   | -      | 网页资源地址。 |
-    | controller | [WebController](#webcontroller) | 否   | -      | 控制器。       |
+  | 参数名     | 参数类型                        | 必填 | 默认值 | 参数描述       |
+  | ---------- | ------------------------------- | ---- | ------ | -------------- |
+  | src        | string                          | 是   | -      | 网页资源地址。 |
+  | controller | [WebController](#webcontroller) | 否   | -      | 控制器。       |
 
 **示例：**
   ```ts
