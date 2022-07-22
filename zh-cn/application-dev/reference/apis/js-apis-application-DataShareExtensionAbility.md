@@ -145,6 +145,15 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     insert(uri, valueBucket, callback) {
         if (value == null) {
@@ -181,6 +190,15 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     update(uri, predicates, valueBucket, callback) {
         if (predicates == null || predicates == undefined) {
@@ -214,6 +232,15 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     delete(uri, predicates, callback) {
         if (predicates == null || predicates == undefined) {
@@ -248,6 +275,15 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     query(uri, predicates, columns, callback) {
         if (predicates == null || predicates == undefined) {
@@ -311,6 +347,15 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     batchInsert(uri, valueBuckets, callback) {
         if (valueBuckets == null || valueBuckets.length == undefined) {
