@@ -65,7 +65,7 @@ domStorageAccess(domStorageAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .domStorageAccess(true)
       }
     }
@@ -92,7 +92,7 @@ fileAccess(fileAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .fileAccess(true)
       }
     }
@@ -119,7 +119,7 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .fileFromUrlAccess(true)
       }
     }
@@ -146,7 +146,7 @@ imageAccess(imageAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .imageAccess(true)
       }
     }
@@ -187,7 +187,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
     }
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .javaScriptAccess(true)
         .javaScriptProxy({
           object: this.testObj,
@@ -220,7 +220,7 @@ javaScriptAccess(javaScriptAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .javaScriptAccess(true)
       }
     }
@@ -248,7 +248,7 @@ mixedMode(mixedMode: MixedMode)
     @State mode:MixedMode = MixedMode.All;
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .mixedMode(this.mode)
       }
     }
@@ -302,7 +302,7 @@ zoomAccess(zoomAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .zoomAccess(true)
       }
     }
@@ -329,7 +329,7 @@ overviewModeAccess(overviewModeAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .overviewModeAccess(true)
       }
     }
@@ -383,7 +383,7 @@ cacheMode(cacheMode: CacheMode)
     @State mode:CacheMode = CacheMode.None;
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .cacheMode(this.mode)
       }
     }
@@ -411,7 +411,7 @@ textZoomAtio(textZoomAtio: number)
     @State atio:number = 150;
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .textZoomAtio(this.atio)
       }
     }
@@ -439,7 +439,7 @@ userAgent(userAgent: string)
     @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .userAgent(this.userAgent)
       }
     }
@@ -481,7 +481,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
           .onAlert((event) => {
             AlertDialog.show({
               title: 'title',
@@ -531,7 +531,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url);
             console.log("event.message:" + event.message);
@@ -571,7 +571,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onConfirm((event) => {
             console.log("event.url:" + event.url);
             console.log("event.message:" + event.message);
@@ -621,7 +621,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
         .onPrompt((event) => {
           console.log("url:" + event.url);
           console.log("message:" + event.message);
@@ -659,7 +659,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onConsole((event) => {
             console.log('getMessage:' + event.message.getMessage());
             console.log('getSourceId:' + event.message.getSourceId());
@@ -694,7 +694,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onDownloadStart((event) => {
             console.log('url:' + event.url);
             console.log('userAgent:' + event.userAgent);
@@ -729,7 +729,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onErrorReceive((event) => {
             console.log('getErrorInfo:' + event.error.getErrorInfo());
             console.log('getErrorCode:' + event.error.getErrorCode());
@@ -771,7 +771,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onHttpErrorReceive((event) => {
             console.log('url:' + event.request.getRequestUrl());
             console.log('isMainFrame:' + event.request.isMainFrame());
@@ -820,7 +820,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onPageBegin((event) => {
             console.log('url:' + event.url);
           })
@@ -851,7 +851,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
             console.log('url:' + event.url);
           })
@@ -881,7 +881,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onProgressChange((event) => {
             console.log('newProgress:' + event.newProgress)
           })
@@ -911,7 +911,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onTitleReceive((event) => {
             console.log('title:' + event.title)
           })
@@ -942,7 +942,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
             console.log('url:' + event.url + ' isReload:' + event.refreshed);
           })
@@ -1003,7 +1003,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onShowFileSelector((event) => {
             AlertDialog.show({
               title: event.fileSelector.getTitle(),
@@ -1055,7 +1055,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
   
     build() {
       Column() {
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onUrlLoadIntercept((event) => {
             console.log('onUrlLoadIntercept ' + event.data.toString())
             return true;
@@ -1101,7 +1101,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
     "</html>"
     build() {
       Column() {
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
           .onInterceptRequest((event) => {
             console.log('url:' + event.request.getRequestUrl());
             var head1:Header = {
@@ -1629,7 +1629,7 @@ accessBackward(): boolean
             let result = this.controller.accessBackward();
             console.log('result:' + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1661,7 +1661,7 @@ accessForward(): boolean
             let result = this.controller.accessForward();
             console.log('result:' + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1700,7 +1700,7 @@ accessStep(step: number): boolean
             let result = this.controller.accessStep(this.steps);
             console.log('result:' + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1726,7 +1726,7 @@ backward(): void
           .onClick(() => {
             this.controller.backward();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1752,7 +1752,7 @@ forward(): void
           .onClick(() => {
             this.controller.forward();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1782,7 +1782,7 @@ backOrForward(step: number): void
         .onClick(() => {
           this.controller.backOrForward();
         })
-        Web({src:'www.gitee.com', controller:this.controller})
+        Web({src:'www.example.com', controller:this.controller})
     }
   }
   ```
@@ -1813,7 +1813,7 @@ deleteJavaScriptRegister(name: string)
           .onClick(() => {
             this.controller.deleteJavaScriptRegister(this.name);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1845,7 +1845,7 @@ getHitTest(): HitTestType
             let hitType = this.controller.getHitTest();
             console.log("hitType: " + hitType);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1877,7 +1877,7 @@ getHitTestValue(): HitTestValue
             console.log("hitType: " + hitValue.getType());
             console.log("extra: " + hitValue.getExtra());
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1908,7 +1908,7 @@ getWebId(): number
             let id = this.controller.getWebId();
             console.log("id: " + id);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1939,7 +1939,7 @@ getTitle(): string
             let title = this.controller.getTitle();
             console.log("title: " + title);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -1970,7 +1970,7 @@ getPageHeight(): number
             let pageHeight = this.controller.getPageHeight();
             console.log("pageHeight: " + pageHeight);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2001,7 +2001,7 @@ getDefaultUserAgent(): string
             let userAgent = this.controller.getDefaultUserAgent();
             console.log("userAgent: " + userAgent);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2044,7 +2044,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
               encoding: "UTF-8"
             });
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2106,7 +2106,7 @@ onActive(): void
           .onClick(() => {
             this.controller.onActive();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2132,7 +2132,7 @@ onInactive(): void
           .onClick(() => {
             this.controller.onInactive();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2163,7 +2163,7 @@ zoom(factor: number): void
           .onClick(() => {
             this.controller.zoom(this.factor);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2194,7 +2194,7 @@ zoomIn(): boolean
             let result = this.controller.zoomIn();
             console.log("result: " + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2225,7 +2225,7 @@ zoomOut(): boolean
             let result = this.controller.zoomOut();
             console.log("result: " + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2251,7 +2251,7 @@ refresh()
           .onClick(() => {
             this.controller.refresh();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2398,7 +2398,7 @@ stop()
           .onClick(() => {
             this.controller.stop();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2424,7 +2424,7 @@ clearHistory(): void
           .onClick(() => {
             this.controller.clearHistory();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2455,7 +2455,7 @@ getCookieManager(): WebCookie
           .onClick(() => {
             let cookieManager = this.controller.getCookieManager();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2519,7 +2519,7 @@ setCookie(url: string, value: string): boolean
             let result = this.controller.getCookieManager().setCookie("http://www.baidu.com", "a=b");
             console.log("result: " + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2550,7 +2550,7 @@ saveCookieSync(): boolean
             let result = this.controller.getCookieManager().saveCookieSync();
             console.log("result: " + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2586,7 +2586,7 @@ static existHttpAuthCredentials(): boolean
             let result = web.WebDataBase.existHttpAuthCredentials();
             console.log('result: ' + result);
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2613,7 +2613,7 @@ static deleteHttpAuthCredentials(): void
           .onClick(() => {
             web.WebDataBase.deleteHttpAuthCredentials();
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2657,7 +2657,7 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
               console.log('username_password: ' + item);
             }, item => item)
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2693,7 +2693,7 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
           .onClick(() => {
             web.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
           })
-        Web({ src: 'www.gitee.com', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
