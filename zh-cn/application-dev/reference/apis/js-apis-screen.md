@@ -231,7 +231,7 @@ screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
 ## Screen
 屏幕实例。
 
-下列API示例中都需先使用[getAllScreens()](#screengetallscreens)、[createVirtualScreen()](#screencreatevirtualscreen)中的任一方法获取到Screen实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[getAllScreens()](#screengetallscreens)方法获取到Screen实例，再通过此实例调用对应方法。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -241,7 +241,7 @@ screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
-| orientation       | [Orientation](#rientation)                     | 是   | 否   | 屏幕方向。             |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
 
 ### setOrientation
 setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
