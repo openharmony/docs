@@ -14,7 +14,7 @@
 
 ## 接口
 
--   Web(options: { src: string, controller?: WebController })
+    Web(options: { src: string, controller?: WebController })
 
     **参数：**
     | 参数名     | 参数类型                        | 必填 | 默认值 | 参数描述       |
@@ -39,7 +39,7 @@
 
 > **说明：**
 >
-> - 不支持转场动画；
+> 不支持转场动画；
 
 ## 属性
 
