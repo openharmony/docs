@@ -252,7 +252,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，焦点模型。
 
-**系统能力：** SystemCapability.Multimedia.Audio.InterruptMode
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 | 名称                         | 默认值 | 描述       |
 | ---------------------------- | ------ | ---------- |
@@ -336,9 +336,9 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SAMPLE_FORMAT_INVALID | -1     | 无效格式。                 |
 | SAMPLE_FORMAT_U8      | 0      | 无符号8位整数。            |
 | SAMPLE_FORMAT_S16LE   | 1      | 带符号的16位整数，小尾数。 |
-| SAMPLE_FORMAT_S24LE   | 2      | 带符号的24位整数，小尾数。 |
-| SAMPLE_FORMAT_S32LE   | 3      | 带符号的32位整数，小尾数。 |
-| SAMPLE_FORMAT_F32LE   | 4      | 带符号的32位整数，小尾数。 |
+| SAMPLE_FORMAT_S24LE   | 2      | 带符号的24位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| SAMPLE_FORMAT_S32LE   | 3      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| SAMPLE_FORMAT_F32LE   | 4      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 
 ## AudioChannel<sup>8+</sup>
 
@@ -2640,7 +2640,7 @@ audioRenderer.getRenderRate().then((renderRate) => {
 ```
 ### setInterruptMode<sup>9+</sup>
 
-setInterruptMode(interruptMode: InterruptMode): Promise&lt;void&gt;
+setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 
 设置应用的焦点模型。使用Promise异步回调。
 
@@ -2668,7 +2668,7 @@ audioManager.setInterruptMode(audio.InterruptMode.SHARE_MODE).then(() => {
 ```
 ### setInterruptMode<sup>9+</sup>
 
-setInterruptMode(interruptMode: InterruptMode, callback: Callback\<void>): void
+setInterruptMode(mode: InterruptMode, callback: Callback\<void>): void
 
 设置应用的焦点模型。使用Callback回调返回执行结果。
 
