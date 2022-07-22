@@ -338,6 +338,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SAMPLE_FORMAT_S16LE   | 1      | 带符号的16位整数，小尾数。 |
 | SAMPLE_FORMAT_S24LE   | 2      | 带符号的24位整数，小尾数。 |
 | SAMPLE_FORMAT_S32LE   | 3      | 带符号的32位整数，小尾数。 |
+| SAMPLE_FORMAT_F32LE   | 4      | 带符号的32位整数，小尾数。 |
 
 ## AudioChannel<sup>8+</sup>
 
@@ -408,6 +409,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_MEDIA                 | 1      | 音频。     |
 | STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
 | STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | 通知铃声。 |
+
+## FocusType
+
+枚举焦点类型。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Core
+
+| 名称                               | 默认值  | 描述       |
+| ---------------------------------- | ------ | ---------- |
+| FOCUS_TYPE_RECORDING               | 0      | 录制类型。  |
+
 
 ## AudioState<sup>8+</sup>
 
@@ -1849,6 +1861,12 @@ audioManager.getAudioScene().then((value) => {
 | ---------- | ------------------------- | ---- | ---- | ---------- |
 | deviceRole | [DeviceRole](#devicerole) | 是   | 否   | 设备角色。 |
 | deviceType | [DeviceType](#devicetype) | 是   | 否   | 设备类型。 |
+| id            | number                 | 是   | 否   | 设备id。  |
+| name          | string                 | 是   | 否   | 设备名称。 |
+| address       | string                 | 是   | 否   | 设备地址。 |
+| sampleRates   | Array&lt;number&gt;    | 是   | 否   | 支持的采样率。 |
+| channelCounts | Array&lt;number&gt;    | 是   | 否   | 支持的通道数。 |
+| channelMasks  | Array&lt;number&gt;    | 是   | 否   | 支持的通道掩码。 |
 
 ## AudioDeviceDescriptors
 
