@@ -362,10 +362,11 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
+import bundle from '@ohos.bundle'
 var context = featureAbility.getContext();
-var orientation="UNSPECIFIED"
+var orientation=bundle.DisplayOrientation.UNSPECIFIED
 context.setDisplayOrientation(orientation, (err) => {
-       console.log('---------- setDisplayOrientation fail, err: -----------', err);
+    console.log('---------- setDisplayOrientation fail, err: -----------', err);
 });
 ```
 
@@ -388,8 +389,10 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>;
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
+import bundle from '@ohos.bundle'
 var context = featureAbility.getContext();
-context.setDisplayOrientation().then((data) => {
+var orientation=bundle.DisplayOrientation.UNSPECIFIED
+context.setDisplayOrientation(orientation).then((data) => {
     console.info("=======================>setDisplayOrientationCallback====================>");
     console.info("====>data====>" + JSON.stringify(data));
 });
@@ -446,7 +449,8 @@ setShowOnLockScreen(show: boolean): Promise\<void>;
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.setShowOnLockScreen().then((data) => {
+var show=true
+context.setShowOnLockScreen(show).then((data) => {
     console.info("=======================>setShowOnLockScreenCallback====================>");
     console.info("====>data====>" + JSON.stringify(data));
 });
@@ -473,7 +477,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
 var wakeUp=true
-context.setWakeUpScreen(show, (err) => {
+context.setWakeUpScreen(wakeUp, (err) => {
        console.log('---------- setWakeUpScreen fail, err: -----------', err);
 });
 ```
@@ -503,7 +507,8 @@ setWakeUpScreen(wakeUp: boolean): Promise\<void>;
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext();
-context.setWakeUpScreen().then((data) => {
+var wakeUp=true
+context.setWakeUpScreen(wakeUp).then((data) => {
     console.info("=======================>setWakeUpScreenCallback====================>");
     console.info("====>data====>" + JSON.stringify(data));
 });
@@ -1214,7 +1219,7 @@ context.printDrawnCompleted().then((data) => {
 
 ## PermissionOptions<sup>7+</sup>
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 读写属性 | 类型   | 必填 | 描述   |
 | ---- | -------- | ------ | ---- | ------ |
@@ -1223,7 +1228,7 @@ context.printDrawnCompleted().then((data) => {
 
 ## PermissionRequestResult<sup>7+</sup>
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称        | 读写属性 | 类型           | 必填 | 描述               |
 | ----------- | -------- | -------------- | ---- | ------------------ |
@@ -1232,6 +1237,8 @@ context.printDrawnCompleted().then((data) => {
 | authResults | 只读     | Array\<number> | 是   | 请求权限的结果。    |
 
 ## AppVersionInfo<sup>7+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称             | 类型 | 可读    | 可写   | 说明 |
 | ------          | ------ | ------| ------ | ------    |
