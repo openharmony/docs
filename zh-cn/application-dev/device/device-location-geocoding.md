@@ -39,13 +39,30 @@
    import geolocation from '@ohos.geolocation';
    ```
 
-2. 获取转化结果。
+2. 查询geoCoder服务是否可用。
+   - 调用isGeoServiceAvailable查询geoCoder服务是否可用，如果服务可用再继续进行步骤3。
+        
+      ```
+      geolocation.isGeoServiceAvailable((err, data) => {
+          if (err) {
+              console.log('isGeoServiceAvailable err: ' + JSON.stringify(err));
+          } else {
+              console.log('isGeoServiceAvailable data: ' + JSON.stringify(data));
+          }
+      });
+      ```
+
+3. 获取转化结果。
    - 调用getAddressesFromLocation，坐标转化地理位置信息。
         
       ```
       var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
-      geolocation.getAddressesFromLocation(reverseGeocodeRequest, (data) => {
-          console.log('getAddressesFromLocation: ' + JSON.stringify(data));
+      geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
+          if (err) {
+              console.log('getAddressesFromLocation err: ' + JSON.stringify(err));
+          } else {
+              console.log('getAddressesFromLocation data: ' + JSON.stringify(data));
+          }
       });
       ```
 
@@ -54,8 +71,12 @@
         
       ```
       var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
-      geolocation.getAddressesFromLocationName(geocodeRequest, (data) => {
-          console.log('getAddressesFromLocationName: ' + JSON.stringify(data));
+      geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
+          if (err) {
+              console.log('getAddressesFromLocationName err: ' + JSON.stringify(err));
+          } else {
+              console.log('getAddressesFromLocationName data: ' + JSON.stringify(data));
+          }
       });
       ```
 
