@@ -31,7 +31,7 @@ Web(options: { src: string, controller?: WebController })
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
       }
     }
   }
@@ -65,7 +65,7 @@ domStorageAccess(domStorageAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .domStorageAccess(true)
       }
     }
@@ -92,7 +92,7 @@ fileAccess(fileAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .fileAccess(true)
       }
     }
@@ -119,7 +119,7 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .fileFromUrlAccess(true)
       }
     }
@@ -146,7 +146,7 @@ imageAccess(imageAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .imageAccess(true)
       }
     }
@@ -187,7 +187,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
     }
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .javaScriptAccess(true)
         .javaScriptProxy({
           object: this.testObj,
@@ -220,7 +220,7 @@ javaScriptAccess(javaScriptAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .javaScriptAccess(true)
       }
     }
@@ -248,7 +248,7 @@ mixedMode(mixedMode: MixedMode)
     @State mode:MixedMode = MixedMode.All;
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .mixedMode(this.mode)
       }
     }
@@ -275,7 +275,7 @@ onlineImageAccess(onlineImageAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .onlineImageAccess(true)
       }
     }
@@ -302,7 +302,7 @@ zoomAccess(zoomAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .zoomAccess(true)
       }
     }
@@ -329,7 +329,7 @@ overviewModeAccess(overviewModeAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .overviewModeAccess(true)
       }
     }
@@ -355,7 +355,7 @@ databaseAccess(databaseAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'https://webkit.org/demos/sticky-notes/index.html', controller:this.controller})
+        Web({ src:'https://webkit.org/demos/sticky-notes/index.html', controller:this.controller })
         .databaseAccess(true)
       }
     }
@@ -383,7 +383,7 @@ cacheMode(cacheMode: CacheMode)
     @State mode:CacheMode = CacheMode.None;
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .cacheMode(this.mode)
       }
     }
@@ -411,7 +411,7 @@ textZoomAtio(textZoomAtio: number)
     @State atio:number = 150;
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .textZoomAtio(this.atio)
       }
     }
@@ -439,7 +439,7 @@ userAgent(userAgent: string)
     @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .userAgent(this.userAgent)
       }
     }
@@ -481,7 +481,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
           .onAlert((event) => {
             AlertDialog.show({
               title: 'title',
@@ -621,7 +621,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
         .onPrompt((event) => {
           console.log("url:" + event.url);
           console.log("message:" + event.message);
@@ -1101,7 +1101,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
     "</html>"
     build() {
       Column() {
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
           .onInterceptRequest((event) => {
             console.log('url:' + event.request.getRequestUrl());
             var head1:Header = {
@@ -1155,7 +1155,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
     httpAuth:boolean = false;
     build() {
       Column() {
-        Web({src:'http://httpbin.org/basic-auth/2222/2222', controller:this.controller})
+        Web({ src:'http://httpbin.org/basic-auth/2222/2222', controller:this.controller })
         .onHttpAuthRequest((event) => {
           AlertDialog.show({
             title: 'title',
@@ -1357,7 +1357,7 @@ Web组件返回的请求/响应头对象。
 
 ## WebResourceResponse
 
-web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttpauthrequest)。
+web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
 
 ### getReasonMessage
 
@@ -1493,7 +1493,7 @@ setResponseCode(code: number)
 
 ## FileSelectorResult<sup>9+</sup>
 
-通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselector)。
+通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselectorsup9sup)。
 
 ### handleFileList<sup>9+</sup>
 
@@ -1508,7 +1508,7 @@ handleFileList(fileList: Array\<string\>): void
 
 ## FileSelectorParam<sup>9+</sup>
 
-web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector)。
+web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselectorsup9sup)。
 
 ### getTitle<sup>9+</sup>
 
@@ -1530,7 +1530,7 @@ getMode(): FileSelectorMode
 **返回值：** 
   | 类型 | 说明                 |
   | -------- | -------------------- |
-  | [FileSelectorMode](#FileSelectorMode枚举说明)   | 返回文件选择器的模式。 |
+  | [FileSelectorMode](#fileselectormode枚举说明)   | 返回文件选择器的模式。 |
 
 ### getAcceptType<sup>9+</sup>
 
@@ -1556,7 +1556,7 @@ isCapture(): boolean
 
 ## HttpAuthHandler<sup>9+</sup>
 
-Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequest)。
+Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequestsup9sup)。
 
 ### cancel<sup>9+</sup>
 
@@ -1782,7 +1782,7 @@ backOrForward(step: number): void
         .onClick(() => {
           this.controller.backOrForward();
         })
-        Web({src:'www.example.com', controller:this.controller})
+        Web({ src:'www.example.com', controller:this.controller })
     }
   }
   ```
@@ -2064,7 +2064,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
   | 参数名  | 参数类型                           | 必填 | 默认值 | 参数描述              |
   | ------- | ---------------------------------- | ---- | ------ | --------------------- |
   | url     | string                             | 是   | -      | 需要加载的 URL。      |
-  | headers | Array\<[Header](#header对象说明)\> | 否   | []     | URL的附加HTTP请求头。 |
+  | headers | Array\<[Header](#header)\> | 否   | []     | URL的附加HTTP请求头。 |
 
 **示例：**
   ```ts
@@ -2078,7 +2078,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
       Column() {
         Button('loadUrl')
           .onClick(() => {
-            this.controller.loadUrl({ url: 'https://gitee.com/' });
+            this.controller.loadUrl({ url: 'www.example.com' });
           })
         Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
       }
@@ -2760,7 +2760,7 @@ static deleteOrigin(origin : string): void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>) : void
+static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -2802,7 +2802,7 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageor
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>
+static getOrigins() : Promise<Array<[WebStorageOrigin]>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
