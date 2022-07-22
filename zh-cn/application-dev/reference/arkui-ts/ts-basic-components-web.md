@@ -990,8 +990,8 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 **参数：**
   | 参数名 | 参数类型 | 参数描述                  |
   | ------ | -------- | ------------------------- |
-  | result | [  FileSelectorResult](#fileselectorresultsup9sup) |  用于通知Web组件文件选择的结果。 |
-  | fileSelector | [  FileSelectorParam](#fileselectorparamsup9sup) | 文件选择器的相关信息。 |
+  | result | [FileSelectorResult](#fileselectorresultsup9sup) |  用于通知Web组件文件选择的结果。 |
+  | fileSelector | [FileSelectorParam](#fileselectorparamsup9sup) | 文件选择器的相关信息。 |
 
   **示例：**
   ```ts
@@ -1493,7 +1493,7 @@ setResponseCode(code: number)
 
 ## FileSelectorResult<sup>9+</sup>
 
-通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselectorsup9sup)。
+通知Web组件的文件选择结果。
 
 ### handleFileList<sup>9+</sup>
 
@@ -1508,7 +1508,7 @@ handleFileList(fileList: Array\<string\>): void
 
 ## FileSelectorParam<sup>9+</sup>
 
-web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselectorsup9sup)。
+web组件获取文件对象。
 
 ### getTitle<sup>9+</sup>
 
