@@ -83,6 +83,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -115,6 +116,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -140,6 +142,7 @@ fileAccess(fileAccess: boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -165,6 +168,7 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -190,6 +194,7 @@ imageAccess(imageAccess: boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -218,6 +223,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
  
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -259,6 +265,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -284,6 +291,7 @@ mixedMode(mixedMode: MixedMode)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   @State mode:MixedMode = MixedMode.All;
   struct WebComponent {
@@ -311,6 +319,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 ## onlineImageAccess
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -336,6 +345,7 @@ zoomAccess(zoomAccess: boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -361,6 +371,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -385,6 +396,7 @@ databaseAccess(databaseAccess: boolean)
   | databaseAccess    | boolean   | 是   | -      | 设置是否开启数据库存储API权限。 |
 
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -410,6 +422,7 @@ cacheMode(cacheMode: CacheMode)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   @State mode:CacheMode = CacheMode.None;
   struct WebComponent {
@@ -436,6 +449,7 @@ textZoomAtio(textZoomAtio: number)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   @State atio:Number = 100;
   struct WebComponent {
@@ -462,6 +476,7 @@ userAgent(userAgent: string)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   @State userAgent:String = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
   struct WebComponent {
@@ -503,6 +518,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -550,6 +566,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -586,6 +603,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -633,6 +651,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -668,6 +687,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -699,6 +719,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -730,6 +751,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -768,6 +790,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -813,6 +836,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -840,6 +864,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -866,6 +891,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -892,6 +918,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -919,6 +946,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -945,6 +973,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -972,6 +1001,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1020,6 +1050,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1052,6 +1083,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1103,12 +1135,14 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 
   - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
+    httpAuth:boolean = false;
     build() {
       Column() {
-        Web({src:'www.baidu.com', controller:this.controller})
+        Web({src:'http://httpbin.org/basic-auth/2222/2222', controller:this.controller})
         .onHttpAuthRequest((event) => {
           AlertDialog.show({
             title: 'title',
@@ -1116,20 +1150,20 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
             confirm: {
               value: 'onConfirm',
               action: () => {
-                this.httpAuth =handler.isHttpAuthInfoSaved();
+                this.httpAuth = event.handler.isHttpAuthInfoSaved();
                 if (this.httpAuth == false) {
                   web.WebDataBase.saveHttpAuthCredentials(
-                   host,
-                   realm,
-                    "2222",
-                    "2222"
+                   event.host,
+                   event.realm,
+                   "2222",
+                   "2222"
                   )
-                 handler.confirm("111", "2222");
+                  event.handler.cancel();
                 }
               }
             },
             cancel: () => {
-             handler.cancel();
+             event.handler.cancel();
             }
           })
           return true;
@@ -1572,6 +1606,7 @@ accessBackward(): boolean
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1601,6 +1636,7 @@ accessForward(): boolean
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1636,6 +1672,7 @@ accessStep(step: number): boolean
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1660,6 +1697,7 @@ backward(): void
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1682,6 +1720,7 @@ forward(): void
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1709,6 +1748,7 @@ backOrForward(step: number): void
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1737,6 +1777,7 @@ deleteJavaScriptRegister(name: string)
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1765,6 +1806,7 @@ getHitTest(): HitTestType
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1792,6 +1834,7 @@ getHitTestValue(): HitTestValue
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1820,6 +1863,7 @@ getWebId(): number
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1846,6 +1890,7 @@ getTitle(): string
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1872,6 +1917,7 @@ getPageHeight(): number
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1899,6 +1945,7 @@ getDefaultUserAgent(): string
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1936,6 +1983,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1973,6 +2021,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -1995,6 +2044,7 @@ onActive(): void
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2017,6 +2067,7 @@ onInactive(): void
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2043,6 +2094,7 @@ zoom(factor: number): void
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2069,6 +2121,7 @@ zoomIn(): boolean
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2095,6 +2148,7 @@ zoomOut(): boolean
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2118,6 +2172,7 @@ refresh()
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2148,6 +2203,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct Index {
     controller: WebController = new WebController()
@@ -2219,6 +2275,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
@@ -2267,6 +2324,7 @@ stop()
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2289,6 +2347,7 @@ clearHistory(): void
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2315,6 +2374,7 @@ getCookieManager(): WebCookie
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2372,6 +2432,7 @@ setCookie(url: string, value: string): boolean
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
@@ -2398,6 +2459,7 @@ saveCookieSync(): boolean
 
 - 示例代码
   ```js
+  @Entry
   @Component
   struct WebComponent {
     controller:WebController = new WebController();
