@@ -118,7 +118,7 @@ getSystemLanguage(): string
 
 setSystemLanguage(language: string): boolean
 
-设置系统语言。
+设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
 
 该接口为系统接口。
 
