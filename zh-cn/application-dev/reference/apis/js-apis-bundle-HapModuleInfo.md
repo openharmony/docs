@@ -7,7 +7,7 @@
 
 
 
-Hap模块信息
+Hap模块信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取
 
 ## HapModuleInfo
 
@@ -35,4 +35,5 @@ Hap模块信息
 | mainElementName<sup>9+</sup>      | string                                                       | 是   | 否   | 入口ability信息      |
 | extensionAbilityInfo<sup>9+</sup> | Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)> | 是   | 否   | extensionAbility信息 |
 | metadata<sup>9+</sup>             | Array\<[Metadata](js-apis-bundle-Metadata.md)>               | 是   | 否   | Ability的元信息      |
-| hashValue<sup>9+</sup>            | string                                                       | 是   | 否   | Module的Hash值      |
+| hashValue<sup>9+</sup>            | string                                                       | 是   | 否   | Module的Hash值<br />通过传入GET_BUNDLE_WITH_HASH_VALUE获取 |
+
