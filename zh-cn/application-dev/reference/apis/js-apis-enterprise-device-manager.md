@@ -603,8 +603,8 @@ SystemCapability.Customization.EnterpriseDeviceManager
 
 **返回值：**
 
-| 类型                 | 说明                    |
-| ------------------ | --------------------- |
+| 类型                | 说明                    |
+| ----------------- | --------------------- |
 | Promise\<boolean> | Promise方式返回是否设置企业信息成功 |
 
 **示例：**
@@ -701,17 +701,19 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 **系统能力：**
 以下各项对应系统能力均为SystemCapability.Customization.EnterpriseDeviceManager
-| 名称          | 读写属性 | 类型     | 必填   | 描述                |
-| ----------- | ---- | ------ | ---- | ----------------- |
-| name        | 只读   | string | 是    | 表示设备管理员应用所属企业的名称。 |
-| description | 只读   | string | 是    | 表示设备管理员应用所属企业的描述。 |
+
+| 名称          | 读写属性 | 类型     | 必填  | 描述                |
+| ----------- | ---- | ------ | --- | ----------------- |
+| name        | 只读   | string | 是   | 表示设备管理员应用所属企业的名称。 |
+| description | 只读   | string | 是   | 表示设备管理员应用所属企业的描述。 |
 
 ## AdminType
 
 设备管理员应用的管理员类型。
 
 **系统能力：**
-以下各项对应系统能力均为SystemCapability.Customization.EnterpriseDeviceManager
+以下各项对应系统能力均为SystemCapability.Customization.EnterpriseDeviceManager 
+
 | 名称                | 默认值  | 说明    |
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通管理员 |
