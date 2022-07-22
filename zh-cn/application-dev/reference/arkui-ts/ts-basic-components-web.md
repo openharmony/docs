@@ -17,13 +17,12 @@
 -   Web(options: { src: string, controller?: WebController })
 
     **参数：**
-
     | 参数名     | 参数类型                        | 必填 | 默认值 | 参数描述       |
     | ---------- | ------------------------------- | ---- | ------ | -------------- |
     | src        | string                          | 是   | -      | 网页资源地址。 |
     | controller | [WebController](#webcontroller) | 否   | -      | 控制器。       |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -57,7 +56,7 @@ domStorageAccess(domStorageAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | domStorageAccess    | boolean   | 是   | -      | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -84,7 +83,7 @@ fileAccess(fileAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | fileAccess    | boolean   | 是   | -      | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -111,7 +110,7 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | fileFromUrlAccess    | boolean   | 是   | -      | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -138,7 +137,7 @@ imageAccess(imageAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | imageAccess    | boolean   | 是   | -      | 设置是否允许自动加载图片资源。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -168,7 +167,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   | name    | string   | 是   | -      | 注册对象的名称，与window中调用的对象名一致。 |
   | methodList    | Array\<string\>   | 是   | -      | 参与注册的应用侧JavaScript对象的方法。|
  
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -211,7 +210,7 @@ javaScriptAccess(javaScriptAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | javaScriptAccess    | boolean   | 是   | -      | 是否允许执行JavaScript脚本。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -238,7 +237,7 @@ mixedMode(mixedMode: MixedMode)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | mixedMode    | [MixedMode](#mixedmode枚举说明)   | 是   | -      | 要设置的混合内容。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -267,7 +266,7 @@ onlineImageAccess(onlineImageAccess: boolean)
   | onlineImageAccess    | boolean   | 是   | -      | 设置是否允许从网络加载图片资源。 |
 
 ## onlineImageAccess
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -294,7 +293,7 @@ zoomAccess(zoomAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | zoomAccess    | boolean   | 是   | -      | 设置是否支持手势进行缩放。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -321,7 +320,7 @@ overviewModeAccess(overviewModeAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | overviewModeAccess    | boolean   | 是   | -      | 设置是否使用概览模式加载网页。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -374,7 +373,7 @@ cacheMode(cacheMode: CacheMode)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | cacheMode    | [CacheMode](#cachemode枚举说明)   | 是   | -      | 要设置的缓存模式。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -402,7 +401,7 @@ textZoomAtio(textZoomAtio: number)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | textZoomAtio    | number   | 是   | -      | 要设置的页面的文本缩放百分比。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -430,7 +429,7 @@ userAgent(userAgent: string)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | userAgent    | string   | 是   | -      | 要设置的用户代理。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -473,7 +472,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
   |----------|------|
   | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -522,7 +521,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
   |----------|------|
   | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -560,7 +559,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
   |----------|------|
   | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -609,7 +608,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   |----------|------|
   | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -646,7 +645,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
   |----------|------|
   | boolean | 当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -679,7 +678,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
   | mimetype | string | 服务器返回内容媒体类型（MIME）信息。 |
   | contentLength | contentLength | 服务器返回文件的长度。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -712,7 +711,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
   | request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。 |
   | error | [WebResourceError](#webresourceerror) | 网页加载资源错误的封装信息 。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -752,7 +751,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
   | request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。 |
   | error | [WebResourceError](#webresourceerror) | 网页加载资源错误的封装信息 。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -799,7 +798,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
   | ------ | -------- | ------------------------- |
   | url | string | 页面的URL地址。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -828,7 +827,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
   | ------ | -------- | ------------------------- |
   | url | string | 页面的URL地址。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -856,7 +855,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
   | ------ | -------- | ------------------------- |
   | newProgress | number | 新的加载进度，取值范围为0到100的整数。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -884,7 +883,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
   | ------ | -------- | ------------------------- |
   | title | string | document标题内容。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -913,7 +912,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
   | url | string | 访问的url。 |
   | isRefreshed | boolean | true表示该页面是被重新加载的，false表示该页面是新加载的。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -941,7 +940,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   | ------ | -------- | ------------------------- |
   | renderExitReason | [RenderExitReason](#renderexitreason枚举说明) | 渲染进程进程异常退出的具体原因。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -970,7 +969,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
   | result | [FileSelectorResult](#fileselectorresultsup9sup) |  用于通知Web组件文件选择的结果。 |
   | fileSelector | [FileSelectorParam](#fileselectorparamsup9sup) | 文件选择器的相关信息。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1020,7 +1019,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
   |----------|------|
   | boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1054,7 +1053,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
   |----------|------|
   | [WebResourceResponse](#webresourceresponse) | 返回响应数据为空表示按原来方式加载，否则加载响应数据。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1107,7 +1106,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   |----------|------|
   | boolean | 返回false表示此次认证失败，否则成功。 |
 
-  **示例代码：**
+  **示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1540,7 +1539,6 @@ confirm(userName: string, pwd: string): boolean
   | pwd        | string   | 是   | -      | HTTP认证密码。  |
 
 **返回值：**
-
   | 类型  | 说明                            |
   | -------- | ------------------------------- |
   | boolean  | 认证成功返回true，失败返回false。 |
@@ -1552,7 +1550,6 @@ isHttpAuthInfoSaved(): boolean
 通知Web组件用户使用服务器缓存的账号密码认证。
 
 **返回值：**
-
   | 类型  | 说明                                  |
   | -------- | ------------------------------------- |
   | boolean  | 存在密码认证成功返回true，其他返回false。|
@@ -1574,12 +1571,11 @@ accessBackward(): boolean
 当前页面是否可后退，即当前页面是否有返回历史记录。
 
 **返回值：**
-
   | 类型  | 说明                                  |
   | -------- | ------------------------------------- |
   | boolean  | 可以后退返回true,否则返回false。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1605,12 +1601,11 @@ accessForward(): boolean
 当前页面是否可前进，即当前页面是否有前进历史记录。
 
 **返回值：**
-
   | 类型  | 说明                                  |
   | -------- | ------------------------------------- |
   | boolean  | 可以前进返回true,否则返回false。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1642,12 +1637,11 @@ accessStep(step: number): boolean
   | step   | number   | 是   | -      | 要跳转的步数，正数代表前进，负数代表后退。 |
 
 **返回值：**
-
   | 类型 | 说明               |
   | -------- | ------------------ |
   | boolean  | 页面是否前进或后退 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1673,7 +1667,7 @@ backward(): void
 
 按照历史栈，后退一个页面。一般结合accessBackward一起使用。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1697,7 +1691,7 @@ forward(): void
 
 按照历史栈，前进一个页面。一般结合accessForward一起使用。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1726,7 +1720,7 @@ backOrForward(step: number): void
   | ---- | ------ | ---- | ---- | ---------------------------------------- |
   | step | number | 是    |-    |需要前进或后退的步长。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1751,12 +1745,11 @@ deleteJavaScriptRegister(name: string)
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。
 
 **参数：**
-
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                                     |
   | ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
   | name   | string   | 是   | -      | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1786,7 +1779,7 @@ getHitTest(): HitTestType
   | -------- | ------------------ |
   | [HitTestType](#hittesttype枚举说明)  | 被点击区域的元素类型。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1815,7 +1808,7 @@ getHitTestValue(): HitTestValue
   |----------|------|
   | [HitTestValue](#hittestvaluesup9sup) | 点击区域的元素信息。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1845,7 +1838,7 @@ getWebId(): number
   |----------|------|
   | number | 当前Web组件的索引值。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1874,7 +1867,7 @@ getTitle(): string
   |----------|------|
   | string | 当前网页的标题。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1903,7 +1896,7 @@ getPageHeight(): number
   |----------|------|
   | number | 当前网页的页面高度。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1932,7 +1925,7 @@ getDefaultUserAgent(): string
   |----------|------|
   | string | 默认用户代理。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1962,7 +1955,6 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
 当baseUrl为“http/https"协议时，编码后的data字符串将被Web组件以类似loadUrl的方式以非编码字符串处理。
 
 **参数：**
-
   | 参数名     | 参数类型 | 必填 | 默认值 | 参数描述                                                     |
   | ---------- | -------- | ---- | ------ | ------------------------------------------------------------ |
   | data       | string   | 是   | -      | 按照”Base64“或者”URL"编码后的一段字符串。                    |
@@ -1971,7 +1963,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
   | baseUrl    | string   | 否   | -      | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
   | historyUrl | string   | 否   | -      | 历史记录URL。非空时，可被历史记录管理，实现前后后退功能。当baseUrl为空时，此属性无效。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2004,13 +1996,12 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 而通过registerJavaScriptProxy注入的对象，在loadUrl导航到新的页面也会有效。
 
 **参数：**
-
   | 参数名  | 参数类型                           | 必填 | 默认值 | 参数描述              |
   | ------- | ---------------------------------- | ---- | ------ | --------------------- |
   | url     | string                             | 是   | -      | 需要加载的 URL。      |
   | headers | Array\<[Header](#header对象说明)\> | 否   | []     | URL的附加HTTP请求头。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2034,7 +2025,7 @@ onActive(): void
 
 调用此接口通知Web组件进入前台激活状态。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2058,7 +2049,7 @@ onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2086,7 +2077,7 @@ zoom(factor: number): void
   |--------|----------|------|---------|
   | factor | number | 是 | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2115,7 +2106,7 @@ zoomIn(): boolean
   |----------|------|
   | boolean | 放大操作是否成功执行。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2144,7 +2135,7 @@ zoomOut(): boolean
   |----------|------|
   | boolean | 缩小操作是否成功执行。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2169,7 +2160,7 @@ refresh()
 
 调用此接口通知Web组件刷新网页。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2194,14 +2185,13 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用refresh接口生效。
 
 **参数：**
-
   | 参数名     | 参数类型        | 必填 | 默认值 | 参数描述                                                     |
   | ---------- | --------------- | ---- | ------ | ------------------------------------------------------------ |
   | object     | object          | 是   | -      | 参与注册的应用侧JavaScript对象。只能声明方法，不能声明属性 。其中方法的参数和返回类型只能为string，number，boolean |
   | name       | string          | 是   | -      | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
   | methodList | Array\<string\> | 是   | -      | 参与注册的应用侧JavaScript对象的方法。                       |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2268,13 +2258,12 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
 **参数：**
-
   | 参数名   | 参数类型                 | 必填 | 默认值 | 参数描述                                                     |
   | -------- | ------------------------ | ---- | ------ | ------------------------------------------------------------ |
   | script   | string                   | 是   | -      | JavaScript脚本。                                             |
   | callback | (result: string) => void | 否   | -      | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2324,7 +2313,7 @@ stop()
 
 停止页面加载。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2348,7 +2337,7 @@ clearHistory(): void
 
 删除所有前进后退记录。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2377,7 +2366,7 @@ getCookieManager(): WebCookie
   | --------- | -------------------------------------------------------- |
   | WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2428,17 +2417,17 @@ setCookie(url: string, value: string): boolean
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
 
 **参数：**
-
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
   | url    | string   | 是   | -      | 要设置的cookie所属的url。 |
   | value  | string   | 是   | -      | cookie的值。              |
+
 **返回值：** 
   | 类型 | 说明                 |
   | -------- | -------------------- |
   | boolean  | 设置cookie是否成功。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2467,7 +2456,7 @@ saveCookieSync(): boolean
   | -------- | ---------------------------------- |
   | boolean  | 同步内存cookie到磁盘操作是否成功。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -2500,7 +2489,7 @@ static existHttpAuthCredentials(): boolean
   | -------- | ----------------------------------- |
   | boolean  | 是否存在任何已保存的HTTP身份验证凭据。存在返回true，不存在返回false |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2514,7 +2503,7 @@ static deleteHttpAuthCredentials(): void
 
 清除所有已保存的HTTP身份验证凭据，该方法为同步方法。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2528,17 +2517,17 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
 检索给定主机和域的HTTP身份验证凭据，该方法为同步方法。检索成功返回一个包含用户名和密码的组数，检索不成功返回空数组。
 
 **参数：**
-
   | 参数名  | 参数类型 | 必填  | 默认值 | 参数描述                    |
   | ------ | -------- | ---- | ------ | -------------------------- |
   | host   | string   | 是   | -      | HTTP身份验证凭据应用的主机。 |
   | realm  | string   | 是   | -      | HTTP身份验证凭据应用的域。 |
+
 **返回值：** 
   | 类型          | 说明                                          |
   | ---------------- | --------------------------------------------- |
   | Array\<string\>  | 包含用户名和密码的组数，检索失败返回空数组。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2559,7 +2548,6 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 保存给定主机和域的HTTP身份验证凭据，该方法为同步方法。
 
 **参数：**
-
   | 参数名    | 参数类型 | 必填  | 默认值 | 参数描述                    |
   | -------- | -------- | ---- | ------ | -------------------------- |
   | host     | string   | 是   | -      | HTTP身份验证凭据应用的主机。 |
@@ -2567,7 +2555,7 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
   | username | string   | 是   | -      | 用户名。                    |
   | password | string   | 是   | -      | 密码。                      |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2583,7 +2571,7 @@ static deleteAllData(): void
 
 清除Web SQL数据库当前使用的所有存储。
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2594,12 +2582,13 @@ static deleteAllData(): void
 static deleteOrigin(origin : string): void
 
 清除指定源所使用的存储。
+
 **参数：**
   | 参数名 | 参数类型 | 必填 | 说明 |
   |---------|---------|-----|-----|
   | origin | string | 是 | 指定源的字符串索引。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2611,12 +2600,13 @@ static deleteOrigin(origin : string): void
 static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
+
 **参数：**
   | 参数名 | 参数类型 | 必填 | 说明 |
   |---------|---------|-----|----|
   | callback | AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | 是 | 以数组方式返回源的信息，信息内容参考WebStorageOrigin。|
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2631,17 +2621,19 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageor
       console.log('quota: ' + origins[i].quota);
     }
   })
+```
 
 ### getOrigins<sup>9+</sup>
 static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
+
 **返回值：**
   | 类型 | 说明 |
   |------|------|
   | Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | Promise实例，用于获取当前所有源的信息，信息内容参考WebStorageOrigin。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2662,13 +2654,14 @@ static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)
 static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
 
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
+
 **参数：**
   | 参数名 |  参数类型 | 必填 | 说明 |
   |----------|-----------|------|------|
   | origin | string | 是 | 指定源的字符串索引 |
   | callback | AsyncCallback<number> | 是 | 指定源的存储配额。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2686,6 +2679,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
 static getOriginQuota(origin : string) : Promise<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
+
 **参数：**
   | 参数名 | 参数类型 | 必填 | 说明 |
   |----------|---------|------|-------|
@@ -2696,7 +2690,7 @@ static getOriginQuota(origin : string) : Promise<number>
   |------|------|
   | Promise<number> | Promise实例，用于获取指定源的存储配额。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2713,13 +2707,14 @@ static getOriginQuota(origin : string) : Promise<number>
 static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
 
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
+
 **参数：**
   | 参数名 | 参数类型 | 必填 | 说明 |
   |----------|----------|------|------|
   | origin | string | 是 | 指定源的字符串索引。 |
   | callback | AsyncCallback<number> | 是 | 指定源的存储量。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2737,6 +2732,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
 static getOriginUsage(origin : string) : Promise<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
+
 **参数：**
   | 参数名 | 参数类型 | 必填 | 说明 |
   |----------|----------|------|------|
@@ -2747,7 +2743,7 @@ static getOriginUsage(origin : string) : Promise<number>
   |------|------|
   | Promise<number> | Promise实例，用于获取指定源的存储量。 |
 
-**示例代码：**
+**示例：**
   ```ts
   // xxx.ets
   import web from '@ohos.web';
@@ -2761,7 +2757,9 @@ static getOriginUsage(origin : string) : Promise<number>
   ```
 
 ## WebStorageOrigin<sup>9+</sup>
+
 提供Web SQL数据库的使用信息。
+
 **参数：**
   | 参数名 | 参数类型 | 必填 | 说明 |
   |----------|----------|------|------|
