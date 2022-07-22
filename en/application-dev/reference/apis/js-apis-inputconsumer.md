@@ -1,5 +1,6 @@
 # Combination Key
 
+The input consumer module implements listening for key events.
 
 > **NOTE**<br>
 >
@@ -22,23 +23,23 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 
 Enables listening for combination key events. When a combination key event that meets the specified conditions occurs, **KeyOptions** will be passed as an input parameter to **callback**.
 
-**System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+This is a system API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the key input event to listen for. Only **key** is supported.|
-| keyOptions | [KeyOptions](#keyoption) | Yes| Key option, which specifies the condition for combination key input.|
-| callback | Callback&lt;KeyOptions&gt; | Yes| Callback used to return the result. When a key input event that meets the specified options occurs, **keyOptions** will be passed as an input parameter to **callback**.|
+| keyOptions | [keyOptions](#keyoptions) | Yes| Key option, which specifies the condition for combination key input.|
+| callback | Callback&lt;[keyOptions](#keyoptions)&gt; | Yes| Callback used to return the result. When a key input event that meets the specified options occurs, **keyOptions** will be passed as an input parameter to **callback**.|
 
 **Example**
 
 ```
-let keyOptions = { preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0 }
-let callback = function (keyOptions) {
-  console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
-    "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
+let keyOptions = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
+let callback = function(keyOptions) {
+    console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
+                 "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
 }
 inputConsumer.on('key', keyOptions, callback);
 ```
@@ -50,6 +51,8 @@ off(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): 
 
 Stops listening for combination key events.
 
+This is a system API.
+
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
 **Parameters**
@@ -57,16 +60,16 @@ Stops listening for combination key events.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the key input event to listen for. Only **key** is supported.|
-| keyOptions | [KeyOptions](#keyoption) | Yes| Key options passed to the key input event when listening starts.|
-| callback | Callback&lt;KeyOptions&gt; | Yes| Callback function passed to the key input event with the key options when listening starts.|
+| keyOptions | [keyOptions](#keyoptions) | Yes| Key options passed to the key input event when listening starts.|
+| callback | Callback&lt;[keyOptions](#keyoptions)&gt; | Yes| Callback function passed to the key input event with the key option when listening starts.|
 
 **Example**
 
 ```
-let keyOptions = { preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0 }
-let callback = function (keyOptions) {
-  console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
-    "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
+let keyOptions = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
+let callback = function(keyOptions) {
+    console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
+                 "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
 }
 inputConsumer.off('key', keyOptions, callback);
 ```
@@ -75,6 +78,8 @@ inputConsumer.off('key', keyOptions, callback);
 ## KeyOptions
 
 Defines the key options that are met when a combination key input event occurs.
+
+This is a system API.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 

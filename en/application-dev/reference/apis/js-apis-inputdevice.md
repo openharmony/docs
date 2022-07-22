@@ -41,7 +41,7 @@ inputDevice.getDeviceIds((ids)=>{
 
 ## inputDevice.getDeviceIds
 
-function getDeviceIds(): Promise<Array\<number>>
+getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
 
@@ -51,7 +51,7 @@ Obtains the IDs of all input devices. This API uses a promise to return the resu
 
 | Parameter                    | Description                |
 | ---------------------- | ------------------ |
-| Promise\<Array\<number>> | Promise used to return the result.|
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -91,17 +91,23 @@ inputDevice.getDevice(1, (inputDevice)=>{
 
 ## inputDevice.getDevice
 
-function getDevice(deviceId: number): Promise\<InputDeviceData>
+getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 Obtains the information about an input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description           |
+| -------- | ------ | ---- | ------------ |
+| deviceId | number | Yes   | ID of the input device.|
+
 **Return value**
 
 | Parameter                      | Description                |
 | ------------------------ | ------------------ |
-| Promise\<InputDeviceData> | Promise used to return the result.|
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -121,21 +127,15 @@ Defines the information about an input device.
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
 | Name      | Type                              | Description                                                        |
-| ---------- | -------------------------- | ---------------------------------------------------- |
-| id            | number                         | Unique identifier of an input device. If the same physical device is repeatedly inserted and removed, its ID changes. |
-| name       | string                            | Name of the input device.  |
-| sources    | Array&lt;[SourceType](#sourcetype)&gt; | Source types of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad. |
-| axisRanges | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device. |
-| bus           | number                           | Bus type of the input device. |
-| product    | number                        | Product information of the input device. |
-| vendor     | number                        | Vendor information of the input device. |
-| version     | number                        | Version information of the input device. |
-| phys        | string                            | Physical address of the input device. |
-| uniq        | string                            | Unique ID of the input device. |
+| -------------------- | -------------------------------------- | ---------------------------------------- |
+| id                   | number                                 | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.       |
+| name                 | string                                 | Name of the input device.                                |
+| sources              | Array&lt;[SourceType](#sourcetype)&gt; | Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
+| axisRanges           | Array&lt;[axisRanges](#axisrange)&gt;  | Axis information of the input device.                               |
 
-## AxisType
+## AxisType<sup>9+</sup>
 
-Defines the axis type of an input device, which is **NULL**.
+Defines the axis type of an input device.
 
 ## AxisRange
 
@@ -154,7 +154,7 @@ Defines the axis information of an input device.
 
 ## SourceType
 
-Enumerates the input source types. For example, if a mouse reports an x-axis event, the source of the x-axis is the mouse.
+Enumerates the input source types of the axis. For example, if a mouse reports an x-axis event, the source of the x-axis is the mouse.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
