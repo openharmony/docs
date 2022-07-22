@@ -15,7 +15,8 @@
 对组件化的深入描述，请参考深入理解组件化。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
+>
 > - 自定义组件必须定义build方法。
 > 
 > - 自定义组件禁止自定义构造函数。
@@ -78,11 +79,11 @@ struct ParentComponent {
         }
     }
 
-    private aboutToAppear() {
+    aboutToAppear() {
         console.log('ParentComponent: Just created, about to become rendered first time.')
     }
 
-    private aboutToDisappear() {
+    aboutToDisappear() {
         console.log('ParentComponent: About to be removed from the UI.')
     }
 }
