@@ -97,7 +97,7 @@
 | ohos.permission.EDM_MANAGE_DATETIME                      | normal       | system_grant | FALSE   | 允许设备管理员应用设置系统时间。                             |
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | 允许应用读取Tag卡片。                                        |
 | ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | 允许应用实现卡模拟功能。                                     |
-| ohos.permission.PERMISSION_USED_STATS                    | system_core  | system_grant | TRUE    | 允许系统应用访问权限使用记录。                               |
+| ohos.permission.PERMISSION_USED_STATS                    | system_basic | system_grant | TRUE    | 允许系统应用访问权限使用记录。                               |
 | ohos.permission.NOTIFICATION_AGENT_CONTROLLER            | system_core  | system_grant | TRUE    | 允许应用发送代理通知。                                       |
 | ohos.permission.ANSWER_CALL                              | system_basic | user_grant   | TRUE    | 允许应用接听来电。                                           |
 | ohos.permission.READ_CALENDAR                            | normal       | user_grant   | TRUE    | 允许应用读取日历信息。                                       |

@@ -2720,7 +2720,7 @@ stop(): Promise&lt;void&gt;
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop().then(function(){
@@ -2747,7 +2747,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop(function(){
@@ -3125,7 +3125,6 @@ read(): Promise&lt;Dirent&gt;
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
       console.log("read succeed:"+JSON.stringify(dirent));
   }).catch(function(err){
@@ -3151,7 +3150,6 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
@@ -3178,7 +3176,6 @@ readSync(): Dirent
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   let dirent = dir.readSync();
   ```
 
@@ -3194,7 +3191,6 @@ close(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close().then(function(err){
       console.info("close dir successfully");
   });
@@ -3212,7 +3208,6 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close(function(err){
       console.info("close dir successfully");
   });
@@ -3230,7 +3225,6 @@ closeSync(): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.closeSync();
   ```
 

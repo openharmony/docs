@@ -215,7 +215,7 @@ UINT32 ExampleQueue(VOID)
         printf("create queue failure, error: %x\n", ret);
     }
 
-    printf("create the queue succes.\n");
+    printf("create the queue success.\n");
     LOS_TaskUnlock();
     return ret;
 }

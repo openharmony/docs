@@ -68,6 +68,7 @@
         - [QRCode](ts-basic-components-qrcode.md)
         - [Radio](ts-basic-components-radio.md)
         - [Rating](ts-basic-components-rating.md)
+        - [RemoteWindow](ts-basic-components-remotewindow.md)
         - [RichText](ts-basic-components-richtext.md)
         - [ScrollBar](ts-basic-components-scrollbar.md)
         - [Search](ts-basic-components-search.md)

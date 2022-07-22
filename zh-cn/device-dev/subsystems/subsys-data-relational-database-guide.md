@@ -179,6 +179,18 @@
   |  ----  |  ----  |  ----  |
   | RdbStore | int Restore(const std::string backupPath, const std::vector&lt;uint8_t&gt; &newKey) | 恢复数据库文件。<ul><li>backupPath：指定的备份文件名。 </li><li> newKey：数据库的加密密钥。注意：当前只支持非加密数据库的恢复。</li></ul> |
 
+### 事务
+
+  事务（Transaction）是一个对数据库执行工作单元。通过返回值判断事务是否成功，成功时返回0，失败时则返回相应的错误码。
+
+  表16 事务API
+
+  | 类名 | 接口名 | 描述 |
+  |  ----  |  ----  |  ----  |
+  | RdbStore | int BeginTransaction() | 开启一个事务。 |
+  | RdbStore | int Commit() | 保存更改。 |
+  | RdbStore | int RollBack() | 回滚所做的更改。 |
+
 ## 约束与限制
 
 无。

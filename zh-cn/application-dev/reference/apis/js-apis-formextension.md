@@ -225,7 +225,7 @@ onConfigurationUpdated(config: Configuration): void;
   }
   ```
 
-  ## FormExtension.onAcquireFormState
+## FormExtension.onAcquireFormState
 
 onAcquireFormState?(want: Want): formInfo.FormState;
 

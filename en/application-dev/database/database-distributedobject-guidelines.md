@@ -7,6 +7,8 @@ The distributed data objects allow data across devices to be processed like loca
 
 ## Available APIs
 
+For details about the APIs related to the distributed data object, see [Distributed Data Object](../reference/apis/js-apis-data-distributedobject.md).
+
 ### Creating a Distributed Data Object Instance
 
 Call **createDistributedObject()** to create a distributed data object instance. You can specify the attributes of the instance in **source**.
@@ -15,7 +17,7 @@ Call **createDistributedObject()** to create a distributed data object instance.
 **Table 1** API for creating a distributed data object instance
 | Package| API| Description|
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.<br>-&nbsp;**source**: attributes of the **distributedObject** set.<br>-&nbsp;**DistributedObject**: returns the distributed object created.|
+| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | Creates a distributed data object instance for data operations.<br>- **source**: attributes of the **distributedObject** set.<br>- **DistributedObject**: returns the distributed object created.| 
 
 ### Generating a Session ID
 
@@ -33,16 +35,16 @@ Call **setSessionId()** to set a session ID for a distributed data object. The s
 **Table 3** API for setting a session ID
 | Class| API| Description|
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for distributed data objects.<br>&nbsp;**sessionId**: session ID of a distributed object in a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | Sets a session ID for distributed data objects.<br> **sessionId**: session ID of a distributed object in a trusted network. To remove a distributed data object from the network, set this parameter to "" or leave it empty.|
 
 ### Observing Data Changes
 
 Call **on()** to subscribe to data changes of a distributed data object. When the data changes, a callback will be invoked to return the data changes. You can use **off()** to unsubscribe from the data changes.
 
 **Table 4** APIs for observing data changes of a distributed data object
-| Class| API| Description|
+| Class| API| Description| 
 | -------- | -------- | -------- |
-| DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Subscribes to data changes.|
+| DistributedDataObject| on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Subscribes to data changes.| 
 | DistributedDataObject| off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void | Unsubscribes from data changes. **Callback**: specifies callback used to return changes of the distributed data object. If this parameter is not specified, all callbacks related to data changes will be unregistered.|
 
 ### Observing Online or Offline Status
@@ -67,13 +69,13 @@ The saved data will be released in the following cases:
 - The application has been uninstalled.
 - Data is successfully restored.
 
-**Table 6** APIs for saving a distributed data object and revoking the saving
+**Table 6** APIs for saving a distributed data object and revoking the saving operation
 | Class| API| Description|
 | -------- | -------- | -------- |
 | DistributedDataObject | save(deviceId: string): Promise&lt;SaveSuccessResponse&gt; | Saves a distributed data object. This API uses a promise to return the result.|
 | DistributedDataObject| save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | Saves a distributed data object. This API uses an asynchronous callback to return the result.|
-| DistributedDataObject | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the data saving operation. This API uses an asynchronous callback to return the result. |
-| DistributedDataObject| revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt; | Revokes the data saving operation. This API uses a promise to return the result. |
+| DistributedDataObject | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | Revokes the data saving operation. This API uses an asynchronous callback to return the result.|
+| DistributedDataObject| revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt; | Revokes the data saving operation. This API uses a promise to return the result.|
 
 ## How to Develop
 
@@ -157,7 +159,7 @@ The following example shows how to implement a distributed data object synchroni
     local_object.on("change", this.changeCallback.bind(this));
    ```
    
-6. Modify object attributes. <br>The object attributes support basic data types (such as number, Boolean, and string) and complex data types (array and nested basic types). 
+6. Modify object attributes. <br>The object attributes support basic data types (such as number, Boolean, and string) and complex data types (array and nested basic types).
    
    The sample code is as follows:
    ```js
@@ -205,41 +207,39 @@ The following example shows how to implement a distributed data object synchroni
 10. Save a distributed data object and revoke the data saving operation.
 
     - Callback
-
-
-    ```js
-     // Save a distributed data object.
-     local_object.save("local", (result, data)=>{
-         console.log("save callback");
-         console.info("save sessionId " + data.sessionId);
-         console.info("save version " + data.version);
-         console.info("save deviceId " + data.deviceId);
-     });
-     // Revoke the data saving operation.
-     local_object.revokeSave((result, data) =>{
-     console.log("revokeSave callback");
-     console.info("revokeSave sessionId " + data.sessionId);
-     });
-    ```
-    - Promise
-
-    ```js
-     // Save a distributed data object.
-     g_object.save("local").then((result)=>{
-         console.info("save sessionId " + result.sessionId);
-         console.info("save version " + result.version);
-         console.info("save deviceId " + result.deviceId);
-     }, (result)=>{
-         console.info("save local failed.");
-     });
-     // Revoke the data saving operation.
-     g_object.revokeSave().then((result)=>{
-         console.info("revokeSave success.");
-     }, (result)=>{
-         console.info("revokeSave failed.");
-     });
-    ```
-11. Unsubscribe from the status changes of the distributed data object. <br>You can specify the callback to unregister. If you do not specify the callback, this API unregister all callbacks of this distributed data object.
+    
+       ```js
+        // Save a distributed data object.
+        local_object.save("local", (result, data)=>{
+            console.log("save callback");
+            console.info("save sessionId " + data.sessionId);
+            console.info("save version " + data.version);
+            console.info("save deviceId " + data.deviceId);
+        });
+        // Revoke the data saving operation.
+        local_object.revokeSave((result, data) =>{
+        console.log("revokeSave callback");
+        console.info("revokeSave sessionId " + data.sessionId);
+        });
+       ```
+       - Promise
+       ```js
+        // Save a distributed data object.
+        g_object.save("local").then((result)=>{
+            console.info("save sessionId " + result.sessionId);
+            console.info("save version " + result.version);
+            console.info("save deviceId " + result.deviceId);
+        }, (result)=>{
+            console.info("save local failed.");
+        });
+        // Revoke the data saving operation.
+        g_object.revokeSave().then((result)=>{
+            console.info("revokeSave success.");
+        }, (result)=>{
+            console.info("revokeSave failed.");
+        });
+       ```
+11. Unsubscribe from the status changes of the distributed data object. <br>You can specify the callback to unregister. If you do not specify the callback, this API unregisters all callbacks of this distributed data object.
 
     The sample code is as follows:
        ```js

@@ -82,6 +82,7 @@
   - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
 - 图形图像
 
+  - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.display (屏幕属性)](js-apis-display.md)
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.screen (屏幕)](js-apis-screen.md)

@@ -19,14 +19,14 @@ CanvasRenderingContext2D(setting: RenderingContextSetting)
 
 ### RenderingContextSettings
 
-RenderingContextSettings(antialias?: bool)
+RenderingContextSettings(antialias?: boolean)
 
 用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
 
 - 参数
   | 参数名       | 参数类型 | 必填   | 默认值   | 参数描述             |
   | --------- | ---- | ---- | ----- | ---------------- |
-  | antialias | bool | 否    | false | 表明canvas是否开启抗锯齿。 |
+  | antialias | boolean | 否    | false | 表明canvas是否开启抗锯齿。 |
 
 
 ## 属性

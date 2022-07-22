@@ -1347,7 +1347,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 
 ### query<sup>9+</sup>
 
-query(predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 根据指定条件查询数据库中的数据，结果以callback形式返回。
 
@@ -1356,6 +1356,7 @@ query(predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;str
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| table | string | 是 | 指定的目标表名。 |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
@@ -1377,7 +1378,7 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 
 ### query<sup>9+</sup>
 
-query(predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，结果以Promise形式返回。
 
@@ -1386,6 +1387,7 @@ query(predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;st
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
+| table | string | 是 | 指定的目标表名。 |
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是 | DataSharePredicates的实例对象指定的查询条件。 |
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
@@ -1584,7 +1586,7 @@ rdbStore.commit()
 
 ### rollBack<sup>8+</sup>
 
-rollBack():void;
+rollBack():void
 
 回滚已经执行的SQL语句。
 
