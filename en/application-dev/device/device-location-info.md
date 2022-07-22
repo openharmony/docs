@@ -123,7 +123,7 @@ To learn more about the APIs for obtaining device location information, see [Geo
      The following example instantiates the **RequestParam** object for navigation:
    
    ```
-   var requestInfo = {'scenario': 0x301, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   var requestInfo = {'scenario': geolocation.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
    **Method 2:**
@@ -152,7 +152,7 @@ To learn more about the APIs for obtaining device location information, see [Geo
      The following example instantiates the **RequestParam** object for the location accuracy priority policy:
    
    ```
-   var requestInfo = {'priority': 0x201, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   var requestInfo = {'priority': geolocation.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
 4. Instantiate the **Callback** object for the system to report location results.
@@ -179,8 +179,12 @@ To learn more about the APIs for obtaining device location information, see [Geo
    If your application does not need the real-time device location, it can use the last known device location cached in the system instead.
    
    ```
-   geolocation.getLastLocation((data) => {
-       console.log('getLastLocation: data: ' + JSON.stringify(data));
+   geolocation.getLastLocation((err, data) => {
+       if (err) {
+           console.log('getLastLocation: err: ' + JSON.stringify(err));
+       } else {
+           console.log('getLastLocation: data: ' + JSON.stringify(data));
+       }
    });
    ```
 
