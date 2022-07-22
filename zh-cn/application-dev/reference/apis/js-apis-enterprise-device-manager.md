@@ -605,7 +605,7 @@ SystemCapability.Customization.EnterpriseDeviceManager
 
 | 类型                 | 说明                    |
 | ------------------ | --------------------- |
-| Promise\<boolean>; | Promise方式返回是否设置企业信息成功 |
+| Promise\<boolean> | Promise方式返回是否设置企业信息成功 |
 
 **示例：**
 
