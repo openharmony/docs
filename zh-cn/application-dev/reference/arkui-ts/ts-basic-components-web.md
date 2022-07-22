@@ -985,13 +985,13 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
 onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => void)
 
-调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮.
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
 
 **参数：**
   | 参数名 | 参数类型 | 参数描述                  |
   | ------ | -------- | ------------------------- |
-  | result | [FileSelectorResult](#fileselectorresultsup9sup) |  用于通知Web组件文件选择的结果。 |
-  | fileSelector | [FileSelectorParam](#fileselectorparamsup9sup) | 文件选择器的相关信息。 |
+  | result | [  FileSelectorResult](#fileselectorresultsup9sup) |  用于通知Web组件文件选择的结果。 |
+  | fileSelector | [  FileSelectorParam](#fileselectorparamsup9sup) | 文件选择器的相关信息。 |
 
   **示例：**
   ```ts
