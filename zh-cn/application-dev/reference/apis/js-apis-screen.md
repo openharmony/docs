@@ -531,7 +531,7 @@ screen.setScreenRotationLocked(isLocked, (err, data) => {
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
-| orientation       | [Orientation](#rientation)                     | 是   | 否   | 屏幕方向。             |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
 
 ### setOrientation
 setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void

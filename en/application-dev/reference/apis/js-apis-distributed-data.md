@@ -3650,7 +3650,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Predicates** 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | predicates  | Predicates    | Yes   |**Predicates** object to match. If this parameter is **null**, define the processing logic.            |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
@@ -4134,7 +4134,7 @@ Synchronizes the KV store manually. This API uses a synchronous mode. For detail
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
 | mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
-| query  |[Query](#querysup8sup)   | Yes  |**Query** object to match. |
+| query  |[Query](#query8)   | Yes  |**Query** object to match. |
 | delayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
 
 **Example**
