@@ -18,6 +18,8 @@ setController(controller: WindowAnimationController): void
 
 设置窗口动画控制器。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -54,11 +56,15 @@ windowAnimationManager.setController(controller)
 
 窗口动画控制器。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 ### onStartAppFromLauncher
 
 onStartAppFromLauncher(startingWindowTarget: WindowAnimationTarget,finishCallback: WindowAnimationFinishedCallback): void
 
 从桌面启动应用时的回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名               | 类型                                                         | 必填 | 说明               |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
@@ -81,6 +87,8 @@ onStartAppFromRecent(startingWindowTarget: WindowAnimationTarget,finishCallback:
 
 从最近任务列表启动应用时的回调。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 | 参数名               | 类型                                                         | 必填 | 说明               |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | 是   | 动画目标窗口。     |
@@ -102,6 +110,8 @@ onStartAppFromOther(startingWindowTarget: WindowAnimationTarget,finishCallback: 
 
 从除了桌面和最近任务列表以外其他地方启动应用时的回调。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 | 参数名               | 类型                                                         | 必填 | 说明               |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | 是   | 动画目标窗口。     |
@@ -122,6 +132,8 @@ var controller = {
 onAppTransition(fromWindowTarget: WindowAnimationTarget, toWindowTarget: WindowAnimationTarget,finishCallback: WindowAnimationFinishedCallback): void
 
 应用转场时的回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名               | 类型                            | 必填 | 说明             |
 | -------------------- | ------------------------------- | ---- | ---------------- |
@@ -146,6 +158,8 @@ onMinimizeWindow(minimizingWindowTarget: WindowAnimationTarget,finishCallback: W
 
 最小化窗口时的回调。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 | 参数名               | 类型                            | 必填 | 说明             |
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | minimizingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | 是   | 动画目标窗口。    |
@@ -167,6 +181,8 @@ onCloseWindow(closingWindowTarget: WindowAnimationTarget,finishCallback: WindowA
 
 关闭窗口时的回调。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 | 参数名               | 类型                            | 必填 | 说明             |
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | closingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | 是   | 动画目标窗口。    |
@@ -187,6 +203,8 @@ var controller = {
 onScreenUnlock(finishCallback: [WindowAnimationFinishedCallback](#windowanimationfinishedcallback)): void
 
 屏幕解锁时的回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名         | 类型                                                         | 必填 | 说明               |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------ |
@@ -211,6 +229,8 @@ onAnimationFinish():void
 
 结束本次动画。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 **示例：**
 
 ```js
@@ -224,6 +244,8 @@ var controller = {
 ## WindowAnimationTarget
 动画目标窗口，用来实现动画。
 
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
 | bundleName  | string | 动画目标窗口所对应的包名。 |
@@ -232,6 +254,8 @@ var controller = {
 
 ## RRect
 圆角矩形。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
