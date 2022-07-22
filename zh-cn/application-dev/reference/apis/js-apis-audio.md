@@ -36,6 +36,24 @@ getAudioManager(): AudioManager
 var audioManager = audio.getAudioManager();
 ```
 
+## audio.getStreamManager<sup>9+</sup>
+
+getStreamManager(): AudioStreamManager
+
+获取 **AudioStreamManager** 接口.
+
+**系统能力**: SystemCapability.Multimedia.Audio.Core
+
+**返回值**
+| 类型                                             | 说明                             |
+| -------------------------------------------------| ------------------------------- |
+| [AudioStreamManager](#audiostreammanagersup9sup) | **AudioStreamManager** 实例。    |
+
+**示例**
+```
+var audioStreamManager = audio.getStreamManager();
+```
+
 ## audio.createAudioRenderer<sup>8+</sup>
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
@@ -331,14 +349,14 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                  | 默认值 | 描述                       |
-| --------------------- | ------ | -------------------------- |
-| SAMPLE_FORMAT_INVALID | -1     | 无效格式。                 |
-| SAMPLE_FORMAT_U8      | 0      | 无符号8位整数。            |
-| SAMPLE_FORMAT_S16LE   | 1      | 带符号的16位整数，小尾数。 |
-| SAMPLE_FORMAT_S24LE   | 2      | 带符号的24位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
-| SAMPLE_FORMAT_S32LE   | 3      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
-| SAMPLE_FORMAT_F32LE   | 4      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| 名称                                | 默认值 | 描述                       |
+| ---------------------------------- | ------ | -------------------------- |
+| SAMPLE_FORMAT_INVALID              | -1     | 无效格式。                 |
+| SAMPLE_FORMAT_U8                   | 0      | 无符号8位整数。            |
+| SAMPLE_FORMAT_S16LE                | 1      | 带符号的16位整数，小尾数。 |
+| SAMPLE_FORMAT_S24LE                | 2      | 带符号的24位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| SAMPLE_FORMAT_S32LE                | 3      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
+| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | 带符号的32位整数，小尾数。 <br>由于系统限制，该采样格式仅部分设备支持，请根据实际情况使用。|
 
 ## AudioChannel<sup>8+</sup>
 
@@ -412,13 +430,13 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 ## FocusType
 
-枚举焦点类型。
+表示焦点类型的枚举。
 
 **系统能力**: SystemCapability.Multimedia.Audio.Core
 
-| 名称                               | 默认值  | 描述       |
-| ---------------------------------- | ------ | ---------- |
-| FOCUS_TYPE_RECORDING               | 0      | 录制类型。  |
+| 名称                               | 默认值  | 描述                            |
+| ---------------------------------- | ------ | ------------------------------- |
+| FOCUS_TYPE_RECORDING               | 0      |  在录制场景使用，可打断其他音频。  |
 
 
 ## AudioState<sup>8+</sup>
@@ -521,6 +539,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | content       | [ContentType](#contenttype) | 是   | 媒体类型。       |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
 | rendererFlags | number                      | 是   | 音频渲染器标志。 |
+
+## AudioRendererFlag<sup>9+</sup>
+
+枚举，决定输出策略的音频渲染器标志。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Core
+
+| 名称              | 默认值        | 说明                   |
+| ------------------| ------------ | ---------------------- |
+| FLAG_NONE         | 0            | 无特殊策略。            |
+| FLAG_LOW_LATENCY  | 1            | 使用低延迟进程的标志。   |
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -627,6 +656,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | :------------ | :------------------------ | :--- | :--------------- |
 | source        | [SourceType](#sourcetype) | 是   | 音源类型。       |
 | capturerFlags | number                    | 是   | 音频采集器标志。 |
+
+## AudioRendererDataInfo<sup>9+</sup>
+
+描述渲染器数据信息。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+| 名称    | 类型        | 必填    | 说明                     |
+| ------- | ----------- | -------| ------------------------ |
+| buffer  | ArrayBuffer | 是     | 要填充的缓冲区。          |
+| flags   | number      | 是     | 缓冲区扩展信息。          |
 
 ## SourceType<sup>8+</sup><a name="sourcetype"></a>
 
@@ -1851,22 +1891,406 @@ audioManager.getAudioScene().then((value) => {
 });
 ```
 
+## AudioStreamManager<sup>9+</sup>
+
+实现音频流管理。 在**AudioStreamManager**调用任何API之前, 必须使用[getStreamManager](#audiogetstreammanagersup9sup) 创建一个 **AudioStreamManager** 实例.
+
+### getCurrentAudioRendererInfoArray<sup>9+</sup>
+
+getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeInfoArray&gt;): void;
+
+获取当前现有音频渲染器流的信息。此API使用异步回调返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数**
+
+| 名称     | 类型                                 | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| callback | AsyncCallback<<a href="#audiorendererchangeinfoarray">AudioRendererChangeInfoArray</a>> | 是  |  Callback用于返回当前现有音频渲染器的信息。 |
+
+**示例**
+```
+audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
+    console.info('[GET_RENDERER_STATE_1_CALLBACK] **** Get Callback Called ****');
+    if (err) {
+        console.log('getCurrentAudioRendererInfoArray :ERROR: '+err.message);
+        resultFlag = false;
+    }
+    else {
+        if (AudioRendererChangeInfoArray !=null) {
+            for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
+                AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+                console.info('StreamId for '+i+' is:'+AudioRendererChangeInfo.streamId);
+                console.info('ClientUid for '+i+' is:'+AudioRendererChangeInfo.clientUid);
+                console.info('Content '+i+' is:'+AudioRendererChangeInfo.rendererInfo.content);
+                console.info('Stream'+i+' is:'+AudioRendererChangeInfo.rendererInfo.usage);
+                console.info('Flag'+i+' is:'+AudioRendererChangeInfo.rendererInfo.rendererFlags); 
+                console.info('State for '+i+' is:'+AudioRendererChangeInfo.rendererState);
+
+                var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
+                for (let j=0;j<AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+                    console.info('Id:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].id);
+                    console.info('Type:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
+                    console.info('Role:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
+                    console.info('Name:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].name);
+                    console.info('Address:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].address);
+                    console.info('SampleRates:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
+                    console.info('ChannelCount'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
+                    console.info('ChannelMask:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+                }
+            }
+        }
+    }
+});
+```
+
+### getCurrentAudioRendererInfoArray<sup>9+</sup>
+
+getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;;
+
+获取当前现有音频渲染器的信息。此API使用Promise返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值**
+
+| 类型                                                                              | 说明                                    |
+| ---------------------------------------------------------------------------------| --------------------------------------- |
+| Promise<<a href="#audiorendererchangeinfoarry">AudioRendererChangeInfoArray</a>> | Promise用于返回当前现有音频渲染器的信息。  |
+
+**示例**
+```
+await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
+    console.info('[GET_RENDERER_STATE_3_PROMISE] ######### Get Promise is called ##########');
+    if (AudioRendererChangeInfoArray!=null) {
+        for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
+            AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+            console.info('StreamId for '+i+' is:'+AudioRendererChangeInfo.streamId);
+            console.info('ClientUid for '+i+' is:'+AudioRendererChangeInfo.clientUid);
+            console.info('Content '+i+' is:'+AudioRendererChangeInfo.rendererInfo.content);
+            console.info('Stream'+i+' is:'+AudioRendererChangeInfo.rendererInfo.usage);
+            console.info('Flag'+i+' is:'+AudioRendererChangeInfo.rendererInfo.rendererFlags); 
+            console.info('State for '+i+' is:'+AudioRendererChangeInfo.rendererState);
+
+            var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
+            for (let j=0;j<AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+                console.info('Id:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].id);
+                console.info('Type:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
+                console.info('Role:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
+                console.info('Name:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].name);
+                console.info('Address:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].address);
+                console.info('SampleRates:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
+                console.info('ChannelCounts'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
+                console.info('ChannnelMask:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+            }
+        }
+    }
+}).catch((err) => {
+    console.log('getCurrentAudioRendererInfoArray :ERROR: '+err.message);
+    resultFlag = false;
+});
+```
+
+### getCurrentAudioCapturerInfoArray<sup>9+</sup>
+
+getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeInfoArray&gt;): void;
+
+获取当前现有音频捕捉器的信息。此API使用异步回调返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数**
+
+| 名称       | 类型                                 | 必填      | 说明                                                      |
+| ---------- | ----------------------------------- | --------- | -------------------------------------------------------- |
+| callback   | AsyncCallback<<a href="#audiocapturerchangeinfoarray">AudioCapturerChangeInfoArray</a>> | 是   | Callback用于返回当前现有音频捕获器流的信息。 |
+
+**示例**
+```
+audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
+    console.info('[GET_CAPTURER_STATE_1_CALLBACK] **** Get Callback Called ****');
+    if (err) {
+        console.log('getCurrentAudioCapturerInfoArray :ERROR: '+err.message);
+        resultFlag = false;
+    }
+    else {
+        if (AudioCapturerChangeInfoArray !=null) {
+            for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
+                console.info('StreamId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
+                console.info('ClientUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
+                console.info('Source for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
+                console.info('Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+                console.info('State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);
+
+                var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
+                for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+                    console.info('Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+                    console.info('Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+                    console.info('Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+                    console.info('Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
+                    console.info('Address:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+                    console.info('SampleRates:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+                    console.info('ChannelCounts'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+                    console.info('ChannelMask:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+                }
+            }
+        }
+    }
+});
+```
+
+### getCurrentAudioCapturerInfoArray<sup>9+</sup>
+
+getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;;
+
+获取当前现有音频捕捉器的信息。此API使用Promise返回结果。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**返回值**
+
+| 类型                                                                              | 说明                                 |
+| ----------------------------------------------------------------------------------| ----------------------------------- |
+| Promise<<a href="#audiocapturerchangeinfoarray">AudioCapturerChangeInfoArray</a>> | Promise用于返回当前现有音频捕获器的信息。|
+
+**示例**
+```
+await audioStreamManagerCB.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+    console.info('AFCapturerChangeLog: [GET_CAP_STA_1_PR] **** Get Promise Called ****');
+    if (AudioCapturerChangeInfoArray!=null) {
+        for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
+            console.info('StreamId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
+            console.info('ClientUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
+            console.info('Source for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
+            console.info('Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+            console.info('State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);
+
+            var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
+            for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+                console.info('Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+                console.info('Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+                console.info('Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+                console.info('Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name)
+                console.info('Address:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+                console.info('SampleRates:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+                console.info('ChannelCounts'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+                console.info('ChannelMask:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+            }
+        }
+    }
+}).catch((err) => {
+    console.log('getCurrentAudioCapturerInfoArray :ERROR: '+err.message);
+    resultFlag = false;
+});
+```
+
+### on('audioRendererChange')<sup>9+</sup>
+
+on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void;
+
+监听音频渲染器更改事件。
+
+当音频渲染器发生任何更改时，注册的客户端将收到回调。
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数**
+
+| 名称     | 类型        | 必填      | 说明                                                                              |
+| -------- | ---------- | --------- | -------------------------------------------------------------------------------- |
+| type     | string     | 是        | 要侦听的事件的类型。仅支持AudioRenderChange事件。|
+| callback | Callback<<a href="#audiorendererchangeinfoarry">AudioRendererChangeInfoArray</a>> | 是  |  渲染器流更改调用回调。|
+
+**示例**
+```
+audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+    for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
+        AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+        console.info('## RendererChange on is called for '+i+' ##');
+        console.info('StreamId for '+i+' is:'+AudioRendererChangeInfo.streamId);
+        console.info('ClientUid for '+i+' is:'+AudioRendererChangeInfo.clientUid);
+        console.info('Content for '+i+' is:'+AudioRendererChangeInfo.rendererInfo.content);
+        console.info('Stream for '+i+' is:'+AudioRendererChangeInfo.rendererInfo.usage);
+        console.info('Flag '+i+' is:'+AudioRendererChangeInfo.rendererInfo.rendererFlags);
+        console.info('State for '+i+' is:'+AudioRendererChangeInfo.rendererState);
+
+        var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
+        for (let j=0;j<AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+            console.info('Id:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].id);
+            console.info('Type:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
+            console.info('Role:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
+            console.info('Name:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].name);
+            console.info('Address:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].address);
+            console.info('SampleRates:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
+            console.info('ChannelCounts'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
+            console.info('ChannelMask:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+        }
+    }
+});
+```
+
+### off('audioRendererChange')<sup>9+</sup>
+
+off(type: "audioRendererChange");
+
+取消订阅音频渲染器更改事件。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数**
+
+| 名称     | 类型     | 必填 | 说明              |
+| -------- | ------- | ---- | ---------------- |
+| type     | string  | 是   | 关闭渲染器的监听。 |
+
+**示例**
+```
+audioStreamManagerCB.off('audioRendererChange');
+console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called #########');
+```
+
+### on('audioCapturerChange')<sup>9+</sup>
+
+on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void;
+
+监听音频捕获器更改事件。
+
+当音频捕获器发生任何更改时，注册的客户端将收到回调。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Capturer
+
+**参数**
+
+| 名称     | 类型     | 必填      | 说明                                                                                           |
+| -------- | ------- | --------- | --------------------------------------------------------------------------------------------- |
+| type     | string  | 是        | 要侦听的事件的类型。仅支持audioCapturerChange事件。                                              |
+| callback | Callback<<a href="#audiocapturerchangeinfoarry">AudioCapturerChangeInfoArray</a>> | 是  | 捕捉器流状态更改调用的回调。 |
+
+**示例**
+```
+audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
+    for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
+        console.info(' ## CapChange on is called for element '+i+' ##');
+        console.info('StreamId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
+        console.info('ClientUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
+        console.info('Source for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
+        console.info('Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+        console.info('State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);
+
+        for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+            console.info('Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+            console.info('Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+            console.info('Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+            console.info('Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
+            console.info('Address:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+            console.info('SampleRates:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+            console.info('ChannelCounts'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+            console.info('ChannelMask:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+        }
+    }
+});
+```
+
+### off('audioCapturerChange')<sup>9+</sup>
+
+off(type: "audioCapturerChange");
+
+取消订阅音频捕获器更改事件。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Capturer
+
+**参数**
+
+| 名称      | 类型     | 必填 | 说明                         |
+| -------- | -------- | --- | ---------------------------- |
+| type     | string   |是   | 关闭捕捉器的监听。             |
+
+**示例**
+```
+audioStreamManager.off('audioCapturerChange');
+console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is called #########');
+
+```
+
+### isAudioRendererLowLatencySupported<sup>9+</sup>
+
+isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo, callback: Callback&lt;boolean&gt;): void;;
+
+检查系统是否支持音频渲染器中的低延迟配置。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数**
+
+| 名称       |  类型                   | 必填      | 说明                                    |
+| ---------- | ----------------------- | -------- | --------------------------------------- |
+| streaminfo | AudioStreamInfo         |  是      | 音频渲染器流信息。                        |
+| callback   | Callback&lt;boolean&gt; |  是      | callback用于返回当前现有音频渲染器的信息。 |
+
+**示例**
+```
+var audioManager = audio.getAudioManager();
+
+var AudioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_1,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var streamManagerCB = audioManager.getStreamManager();
+streamManagerCB.isAudioRendererLowLatencySupported(AudioStreamInfo, (result) => {
+    console.info('isAudioRendererLowLatencySupported success var = ' + result);
+});
+````
+
+### isAudioRendererLowLatencySupported<sup>9+</sup>
+
+isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo): Promise&lt;boolean&gt;;
+
+检查系统是否支持音频渲染器中的低延迟配置。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数**
+
+| 类型                                                  | 必填    | 说明                                 |
+| ----------------------------------------------------- | -------| ------------------------------------ |
+| (streaminfo: AudioStreamInfo): Promise&lt;boolean&gt; | 是     | Promise用于返回当前现有音频渲染器的信息。|
+
+**示例**
+```
+var audioManager = audio.getAudioManager();
+
+var AudioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+    channels: audio.AudioChannel.CHANNEL_1,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var streamManager = await audioManager.getStreamManager();
+var result = streamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
+console.info('isAudioRendererLowLatencySupported success var =' + result);
+```
+
 ## AudioDeviceDescriptor
 
 描述音频设备。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称       | 类型                    | 可读 | 可写 | 说明       |
-| ---------- | ------------------------- | ---- | ---- | ---------- |
-| deviceRole | [DeviceRole](#devicerole) | 是   | 否   | 设备角色。 |
-| deviceType | [DeviceType](#devicetype) | 是   | 否   | 设备类型。 |
-| id            | number                 | 是   | 否   | 设备id。  |
-| name          | string                 | 是   | 否   | 设备名称。 |
-| address       | string                 | 是   | 否   | 设备地址。 |
-| sampleRates   | Array&lt;number&gt;    | 是   | 否   | 支持的采样率。 |
-| channelCounts | Array&lt;number&gt;    | 是   | 否   | 支持的通道数。 |
-| channelMasks  | Array&lt;number&gt;    | 是   | 否   | 支持的通道掩码。 |
+| 名称                        | 类型                       | 可读 | 可写 | 说明       |
+| -------------------------- | ------------------------- | ---- | ---- | ---------- |
+| deviceRole                 | [DeviceRole](#devicerole) | 是   | 否   | 设备角色。 |
+| deviceType                 | [DeviceType](#devicetype) | 是   | 否   | 设备类型。 |
+| id<sup>9+</sup>            | number                    | 是   | 否   | 设备id。  |
+| name<sup>9+</sup>          | string                    | 是   | 否   | 设备名称。 |
+| address<sup>9+</sup>       | string                    | 是   | 否   | 设备地址。 |
+| sampleRates<sup>9+</sup>   | Array&lt;number&gt;       | 是   | 否   | 支持的采样率。 |
+| channelCounts<sup>9+</sup> | Array&lt;number&gt;       | 是   | 否   | 支持的通道数。 |
+| channelMasks<sup>9+</sup>  | Array&lt;number&gt;       | 是   | 否   | 支持的通道掩码。 |
 
 ## AudioDeviceDescriptors
 
@@ -2876,6 +3300,40 @@ audioRenderer.on('stateChange', (state) => {
 });
 ```
 
+on(type: "dataRequest", callback: Callback<AudioRendererDataInfo>): void;
+
+订阅音频数据requeset事件回调。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数**
+
+| 名称     | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | --------- | ------------------------------------------------------------------- |
+| type     | string  | 是       | 事件类型。值**dataRequest**表示数据请求事件。 |
+| callback | [AudioRendererDataInfo](#audiorendererdatainfosup9sup) | 是  | 需要音频数据时调用回调。|
+
+**示例**
+```
+const path = '/data/storage/el2/ba  se/haps/entry/cache/PinkPanther60-44100-1c.wav';
+    let ss = fileio.createStreamSync(path, 'r');
+
+    let discardHeader = new ArrayBuffer(44);
+    ss.readSync(discardHeader);
+    let rlen = 0;
+    audioRenderer.on('dataRequest', (audioRendererDataInfo) => {
+        var viewObject = new DataView(audioRendererDataInfo.buffer);
+        rlen += ss.readSync(viewObject.buffer);
+        console.info('AudioRenderLog: bytes read from file: ' + rlen);
+    })
+```
+
+## AudioRendererChangeInfoArray<sup>9+</sup><a name="audiorendererchangeinfoarray"></a>
+
+AudioRenderChangeInfo数组，只读。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
 ## AudioCapturer<sup>8+</sup>
 
 提供音频采集的相关接口。在调用AudioCapturer的接口前，需要先通过[createAudioCapturer](#audiocreateaudiocapturer8)创建实例。
@@ -3500,3 +3958,9 @@ audioCapturer.on('stateChange', (state) => {
     }
 });
 ```
+
+## AudioCapturerChangeInfoArray<sup>9+</sup><a name="audiocapturerchangeinfoarray"></a>
+
+AudioCapturerChangeInfo数组，只读。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Capturer
