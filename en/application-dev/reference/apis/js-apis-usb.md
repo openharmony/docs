@@ -126,8 +126,8 @@ Checks whether the application has the permission to access the device.
 
 - **Example**
   ```js
-  let divicesName="1-1";
-  let bool = usb.hasRight(divicesName);
+  let devicesName="1-1";
+  let bool = usb.hasRight(devicesName);
   console.log(bool);
   ```
 
@@ -152,8 +152,8 @@ Requests the temporary permission for the application to access the USB device.
 
 - **Example**
   ```js
-  let divicesName="1-1";
-  usb.requestRight(divicesName).then((ret) => {
+  let devicesName="1-1";
+  usb.requestRight(devicesName).then((ret) => {
     console.log(`requestRight = ${JSON.stringify(ret)}`);
   });
   ```
