@@ -72,7 +72,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## 接口
 
--   Web\(options: { src: string, controller?: WebController }\)
+-   Web(options: { src: string, controller?: WebController })
 
     表1 options参数说明
 
@@ -81,12 +81,24 @@ onRenderExited接口返回的渲染进程退出的具体原因。
     | src        | string                          | 是   | -      | 网页资源地址。 |
     | controller | [WebController](#webcontroller) | 否   | -      | 控制器。       |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+      }
+    }
+  }
+  ```
 
 > **说明：**
 >
 > - 不支持转场动画；
 
-## WebAttribute
+## 属性
 
 web组件的网络属性。
 
@@ -101,6 +113,20 @@ domStorageAccess(domStorageAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | domStorageAccess    | boolean   | 是   | -      | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .domStorageAccess(true)
+      }
+    }
+  }
+  ```
+
 ### fileAccess
 
 fileAccess(fileAccess: boolean)
@@ -111,6 +137,20 @@ fileAccess(fileAccess: boolean)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
   | fileAccess    | boolean   | 是   | -      | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)访问应用中rawfile路径的文件。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .fileAccess(true)
+      }
+    }
+  }
+  ```
 
 ### fileFromUrlAccess<sup>9+</sup>
 
@@ -123,6 +163,20 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | fileFromUrlAccess    | boolean   | 是   | -      | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-application-resource-access.md#资源引用)的内容。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .fileFromUrlAccess(true)
+      }
+    }
+  }
+  ```
+
 ### imageAccess
 
 imageAccess(imageAccess: boolean)
@@ -133,6 +187,20 @@ imageAccess(imageAccess: boolean)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
   | imageAccess    | boolean   | 是   | -      | 设置是否允许自动加载图片资源。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .imageAccess(true)
+      }
+    }
+  }
+  ```
 
 ### javaScriptProxy
 
@@ -148,6 +216,36 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   | name    | string   | 是   | -      | 注册对象的名称，与window中调用的对象名一致。 |
   | methodList    | Array\<string\>   | 是   | -      | 参与注册的应用侧JavaScript对象的方法。|
  
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    testObj = {
+      test: (data1, data2, data3) => {
+        console.log("data1:" + data1);
+        console.log("data2:" + data2);
+        console.log("data3:" + data3);
+        return "AceString";
+      },
+      toString: () => {
+        console.log('LY111111 ets toString' + "interface instead.");
+      }
+    }
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .javaScriptProxy({
+          obj: this.testObj,
+          name: "objName",
+          methodList: ["test", "toString"],
+          controller: this.controller,
+        })
+      }
+    }
+  }
+  ```
+
 ### javaScriptAccess
 
 javaScriptAccess(javaScriptAccess: boolean)
@@ -158,6 +256,20 @@ javaScriptAccess(javaScriptAccess: boolean)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
   | javaScriptAccess    | boolean   | 是   | -      | 是否允许执行JavaScript脚本。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .javaScriptAccess(true)
+      }
+    }
+  }
+  ```
 
 ### mixedMode
 
@@ -170,6 +282,21 @@ mixedMode(mixedMode: MixedMode)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | mixedMode    | [MixedMode](#mixedmode枚举说明)   | 是   | -      | 要设置的混合内容。 |
 
+- 示例代码
+  ```js
+  @Component
+  @State mode:MixedMode = MixedMode.All;
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .mixedMode(mode)
+      }
+    }
+  }
+  ```
+
 ### onlineImageAccess
 
 onlineImageAccess(onlineImageAccess: boolean)
@@ -180,6 +307,21 @@ onlineImageAccess(onlineImageAccess: boolean)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
   | onlineImageAccess    | boolean   | 是   | -      | 设置是否允许从网络加载图片资源。 |
+
+## onlineImageAccess
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onlineImageAccess(true)
+      }
+    }
+  }
+  ```
 
 ### zoomAccess
 
@@ -192,6 +334,20 @@ zoomAccess(zoomAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | zoomAccess    | boolean   | 是   | -      | 设置是否支持手势进行缩放。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .zoomAccess(true)
+      }
+    }
+  }
+  ```
+
 ### overviewModeAccess
 
 overviewModeAccess(overviewModeAccess: boolean)
@@ -202,6 +358,20 @@ overviewModeAccess(overviewModeAccess: boolean)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
   | overviewModeAccess    | boolean   | 是   | -      | 设置是否使用概览模式加载网页。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .overviewModeAccess(true)
+      }
+    }
+  }
+  ```
 
 ### databaseAccess
 
@@ -214,6 +384,19 @@ databaseAccess(databaseAccess: boolean)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | databaseAccess    | boolean   | 是   | -      | 设置是否开启数据库存储API权限。 |
 
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .databaseAccess(true)
+      }
+    }
+  }
+  ```
+
 ### cacheMode
 
 cacheMode(cacheMode: CacheMode)
@@ -224,6 +407,21 @@ cacheMode(cacheMode: CacheMode)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                  |
   | ------ | -------- | ---- | ------ | ------------------------- |
   | cacheMode    | [CacheMode](#cachemode枚举说明)   | 是   | -      | 要设置的缓存模式。 |
+
+- 示例代码
+  ```js
+  @Component
+  @State mode:CacheMode = CacheMode.None;
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .cacheMode(mode)
+      }
+    }
+  }
+  ```
 
 ### textZoomAtio
 
@@ -236,6 +434,21 @@ textZoomAtio(textZoomAtio: number)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | textZoomAtio    | number   | 是   | -      | 要设置的页面的文本缩放百分比。 |
 
+- 示例代码
+  ```js
+  @Component
+  @State atio:Number = 100;
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .textZoomAtio(atio)
+      }
+    }
+  }
+  ```
+
 ### userAgent
 
 userAgent(userAgent: string)
@@ -247,6 +460,21 @@ userAgent(userAgent: string)
   | ------ | -------- | ---- | ------ | ------------------------- |
   | userAgent    | string   | 是   | -      | 要设置的用户代理。 |
 
+- 示例代码
+  ```js
+  @Component
+  @State userAgent:String = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .userAgent(userAgent)
+      }
+    }
+  }
+  ```
+
 >  **说明：**
 >
 >  通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
@@ -255,30 +483,664 @@ userAgent(userAgent: string)
 
 不支持通用事件。
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onAlert(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页触发alert()告警弹窗时触发回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（只有确认场景），并且根据用户的确认操作调用JsResult通知Web组件。<br />- url：当前显示弹窗所在网页的URL。<br />- message：弹窗中显示的信息。<br />- result：通知Web组件用户操作行为。</p> |
-| onBeforeUnload(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>刷新或关闭场景下，在即将离开当前页面时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。<br />- url：当前显示弹窗所在网页的URL。<br />- message：弹窗中显示的信息。<br />- result：通知Web组件用户操作行为。</p> |
-| onConfirm(callback: (event?: { url: string; message: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页调用confirm()告警时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。<br />- url：当前显示弹窗所在网页的URL。<br />- message：弹窗中显示的信息。<br />- result：通知Web组件用户操作行为。</p> |
-| onPrompt<sup>9+</sup>(callback: (event?: { url: string; message: string; value: string; result: [JsResult](#jsresult对象说明) }) => boolean) | <p>网页调用prompt()告警时触发此回调。<br />当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。<br />- url：当前显示弹窗所在网页的URL。<br />- message：弹窗中显示的信息。<br />- value：对话框中的默认值。<br />- result：通知Web组件用户操作行为，及对话框内容。</p> |
-| onConsole(callback: (event?: { message: [ConsoleMessage](#consolemessage对象说明) }) => boolean) | <p>通知宿主应用JavaScript console消息。<br/>- message：触发的控制台信息。</p> |
-| onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void) | <p>网页的下载任务开始时触发该回调。<br />- url：文件下载的URL。<br />- userAgent：下载的用户代理（UA）名称。<br />- contentDisposition：服务器返回的 Content-Disposition响应头，可能为空。<br />- mimetype：服务器返回内容媒体类型（MIME）信息。<br />- contentLength：服务器返回文件的长度。</p> |
-| onErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror对象说明), error: [WebResourceError](#webresourceerror对象说明) }) => void) | <p>网页加载遇到错误时触发该回调。<br/>出于性能考虑，建议此回调中尽量执行简单逻辑。<br/>- request：网页请求的封装信息。<br/>- error：网页加载资源错误的封装信息 。</p> |
-| onHttpErrorReceive(callback: (event?: { request: [WebResourceRequest](#webresourceerror对象说明), response: [WebResourceResponse](#webresourceresponse对象说明) }) => void) | <p>网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。<br/>- request：网页请求的封装信息。<br/>- response：网页响应的封装信息</p> |
-| onPageBegin(callback: (event?: { url: string }) => void)     | <p>网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。<br/>- url：页面的URL地址。</p> |
-| onPageEnd(callback: (event?: { url: string }) => void)       | <p>网页加载完成时触发该回调，且只在主frame触发。<br/>- url：页面的URL地址。</p> |
-| onProgressChange(callback: (event?: { newProgress: number }) => void) | <p>网页加载进度变化时触发该回调。<br/>- newProgress：新的加载进度，取值范围为0到100的整数。</p> |
-| onTitleReceive(callback: (event?: { title: string }) => void) | <p>网页document标题更改时触发该回调。<br/>- title：document标题内容。</p> |
-| onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void) | <p>加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。<br/>- url：访问的url。<br/>- isRefreshed：true表示该页面是被重新加载的，false表示该页面是新加载的。</p> |
-| onRenderExited(callback: (event?: { renderExitReason:  [RenderExitReason](#renderexitreason枚举说明) }) => void) | <p>应用渲染进程异常退出时触发该回调。<br/>- renderExitReason：渲染进程进程异常退出的具体原因。</p> |
-| onShowFileSelector(callback: (event?: { result: [FileSelectorResult](#fileselectorresult对象说明), fileSelector:  [FileSelectorParam](#fileselectorparam对象说明) }) => void) | <p>调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮<br/>- result：用于通知Web组件文件选择的结果。<br/>- fileSelector：文件选择器的相关信息。</p> |
-| onUrlLoadIntercept(callback: (event?: { data:string \| [WebResourceRequest](#webresourcerequest对象说明) }) => boolean) | <p>当Web组件加载url之前触发该回调，用于是否阻止此次访问。callback返回true表示阻止此次加载，否则允许此次加载。<br/>- data：url的相关信息。</p> |
-| onInterceptRequest<sup>9+</sup>(callback: (event?: { request: [WebResourceRequest](#webresourcerequest对象说明)}) => [WebResourceResponse](#webresourceresponse对象说明)) | <p>当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。callback返回响应数据为空表示按原来方式加载，否则加载响应数据。<br/>- request：url请求的相关信息。</p> |
-| onHttpAuthRequest<sup>9+</sup>(callback: (event?: { handler: [HttpAuthHandler](#httpauthhandlersup9sup), host: string, realm: string}) => boolean) | <p>通知收到http auth认证请求。callback返回false表示此次认证失败，否则成功。<br/>- handler：通知Web组件用户操作行为。<br/>- host：HTTP身份验证凭据应用的主机。<br/>- realm：HTTP身份验证凭据应用的域。</p> |
+### onAlert
+
+onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+
+网页触发alert()告警弹窗时触发回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 当前显示弹窗所在网页的URL。|
+  | message | string | 弹窗中显示的信息。 |
+  | result | [JsResult](#jsresult) |  通知Web组件用户操作行为。|
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onAlert((event) => {
+          AlertDialog.show({
+            title: 'title',
+            message: 'text',
+            confirm: {
+             value: 'onAlert',
+             action: () => {
+               result.handleConfirm()
+             }
+            },
+            cancel: () => {
+               result.handleCancel()
+            }
+          })
+          return true;
+        })
+      }
+    }
+  }
+  ```
+
+### onBeforeUnload
+
+onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+
+刷新或关闭场景下，在即将离开当前页面时触发此回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 当前显示弹窗所在网页的URL。|
+  | message | string | 弹窗中显示的信息。 |
+  | result | [JsResult](#jsresult) |  通知Web组件用户操作行为。|
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onBeforeUnload((event) => {
+          console.log("event.url:" +url);
+          console.log("event.message:" +message);
+          console.log("event.result:" +result);
+          return false;
+        })
+    }
+  }
+  ```
+
+### onConfirm
+
+onConfirm(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+
+网页调用confirm()告警时触发此回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 当前显示弹窗所在网页的URL。|
+  | message | string | 弹窗中显示的信息。 |
+  | result | [JsResult](#jsresult) |  通知Web组件用户操作行为。|
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onConfirm((event) => {
+          console.log("event.url:" +url);
+          console.log("event.message:" +message);
+          console.log("event.result:" +result);
+          AlertDialog.show({
+            title: 'title',
+            message: 'text',
+            confirm: {
+            value: 'onConfirm',
+            action: () => {
+               result.handleConfirm()
+            }
+            },
+            cancel: () => {
+           result.handleCancel()
+            }
+          })
+          return true;
+        })
+    }
+  }
+  ```
+
+### onPrompt<sup>9+</sup>
+
+onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 当前显示弹窗所在网页的URL。|
+  | message | string | 弹窗中显示的信息。 |
+  | result | [JsResult](#jsresult) |  通知Web组件用户操作行为。|
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 当回调返回false时，触发默认弹窗。当回调返回true时，系统应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onPrompt((event) => {
+          console.log("url:" + event.url);
+          console.log("message:" + event.message);
+          console.log("value:" + event.value);
+          console.log("result:" + event.result);
+          return true;
+        })
+    }
+  }
+  ```
+
+### onConsole
+
+onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
+
+通知宿主应用JavaScript console消息。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | message | [ConsoleMessage](#consolemessage) | 触发的控制台信息。 |
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onConsole((event) => {
+          console.log('getMessage:' +message.getMessage());
+          console.log('getSourceId:' +message.getSourceId());
+          console.log('getLineNumber:' +message.getLineNumber());
+          console.log('getMessageLevel:' +message.getMessageLevel());
+          return false;
+        })
+    }
+  }
+  ```
+
+### onDownloadStart
+
+onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 文件下载的URL。 |
+  | contentDisposition | string | 服务器返回的 Content-Disposition响应头，可能为空。 |
+  | mimetype | string | 服务器返回内容媒体类型（MIME）信息。 |
+  | contentLength | contentLength | 服务器返回文件的长度。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onDownloadStart((event)=>{
+          console.log('url:' +url);
+          console.log('userAgent:' +userAgent);
+          console.log('contentDisposition:' +contentDisposition);
+          console.log('contentLength:' +contentLength);
+          console.log('mimetype:' +mimetype);
+        })
+    }
+  }
+  ```
+
+### onErrorReceive
+
+onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
+
+网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。 |
+  | error | [WebResourceError](#webresourceerror) | 网页加载资源错误的封装信息 。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onErrorReceive((event)=>{
+          console.log('getErrorInfo:' +error.getErrorInfo());
+          console.log('getErrorCode:' +error.getErrorCode());
+          console.log('url:' +request.getRequestUrl());
+          console.log('isMainFrame:' +request.isMainFrame());
+          console.log('isRedirect:' +request.isRedirect());
+          console.log('isRequestGesture:' +request.isRequestGesture());
+          console.log('getRequestHeader_headerKey:' +request.getRequestHeader().toString());
+          let result =request.getRequestHeader();
+          console.log('The request header result size is '+ result.length);
+          for ( let i of result) {
+            console.log('The request header key is : '+i.headerKey+', value is : '+i.headerValue);
+          }
+        })
+    }
+  }
+  ```
+
+### onHttpErrorReceive
+
+onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: WebResourceResponse }) => void)
+
+网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。 |
+  | error | [WebResourceError](#webresourceerror) | 网页加载资源错误的封装信息 。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onHttpErrorReceive((event)=>{
+          console.log('url:' +request.getRequestUrl());
+          console.log('isMainFrame:' +request.isMainFrame());
+          console.log('isRedirect:' +request.isRedirect());
+          console.log('isRequestGesture:' +request.isRequestGesture());
+          console.log('getResponseData:' +response.getResponseData());
+          console.log('getResponseEncoding:' +response.getResponseEncoding());
+          console.log('getResponseMimeType:' +response.getResponseMimeType());
+          console.log('getResponseCode:' +response.getResponseCode());
+          console.log('getReasonMessage:' +response.getReasonMessage());
+          let result =request.getRequestHeader();
+          console.log('The request header result size is '+ result.length);
+          for ( let i of result) {
+            console.log('The request header key is : '+i.headerKey+' , value is : '+i.headerValue);
+          }
+          let resph =response.getResponseHeader();
+          console.log('The response header result size is '+ resph.length);
+          for ( let i of resph) {
+            console.log('The response header key is : '+i.headerKey+' , value is : '+i.headerValue);
+          }
+        })
+    }
+  }
+  ```
+
+### onPageBegin
+
+onPageBegin(callback: (event?: { url: string }) => void)
+
+	
+网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 页面的URL地址。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onPageBegin((event) => {
+          console.log('url:' +url);
+        })
+    }
+  }
+  ```
+
+### onPageEnd
+
+onPageEnd(callback: (event?: { url: string }) => void)
+
+	
+网页加载完成时触发该回调，且只在主frame触发。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 页面的URL地址。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onPageEnd((event) => {
+          console.log('url:' +url);
+        })
+    }
+  }
+  ```
+
+### onProgressChange
+
+onProgressChange(callback: (event?: { newProgress: number }) => void)
+
+网页加载进度变化时触发该回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | newProgress | number | 新的加载进度，取值范围为0到100的整数。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onProgressChange((event) => {
+          console.log('newProgress:' +newProgress)
+        })
+    }
+  }
+  ```
+
+### onTitleReceive
+
+onTitleReceive(callback: (event?: { title: string }) => void)
+
+网页document标题更改时触发该回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | title | string | document标题内容。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onTitleReceive((event) => {
+          console.log('title:' +title)
+        })
+    }
+  }
+  ```
+
+### onRefreshAccessedHistory
+
+onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void)
+
+加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | url | string | 访问的url。 |
+  | isRefreshed | boolean | true表示该页面是被重新加载的，false表示该页面是新加载的。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onRefreshAccessedHistory((event) => {
+          console.log('url:' +url + ' isReload:' +isRefreshed);
+        })
+    }
+  }
+  ```
+
+### onRenderExited
+
+onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void)
+
+应用渲染进程异常退出时触发该回调。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | renderExitReason | [RenderExitReason](#renderexitreason枚举说明) | 渲染进程进程异常退出的具体原因。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'chrome://crash/', controller:this.controller})
+        .onRenderExited((event) => {
+          console.log('reason:' +renderExitReason);
+        })
+    }
+  }
+  ```
+
+### onShowFileSelector<sup>9+</sup>
+
+onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => void)
+
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮.
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | result | [FileSelectorResult](#fileselectorresultsup9sup) |  用于通知Web组件文件选择的结果。 |
+  | fileSelector | [FileSelectorParam](#fileselectorparamsup9sup) | 文件选择器的相关信息。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onShowFileSelector((event) => {
+          AlertDialog.show({
+            title:fileSelector.getTitle(),
+            message: 'isCapture:' +fileSelector.isCapture() + " mode:" +fileSelector.getMode() + 'acceptType:' +fileSelector.getAcceptType(),
+            confirm: {
+              value: 'upload',
+              action: () => {
+                let fileList: Array<string> = [
+                  '/data/storage/el2/base/test',
+                ]
+               result.handleFileList(fileList)
+              }
+            },
+            cancel: () => {
+              let fileList: Array<string> = []
+             result.handleFileList(fileList)
+            }
+          })
+          return true;
+        })
+    }
+  }
+  ```
+
+### onUrlLoadIntercept
+
+onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
+
+当Web组件加载url之前触发该回调，用于是否阻止此次访问。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | data | string / [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onUrlLoadIntercept((event) => {
+          console.log('onUrlLoadIntercept ' +data.toString())
+          return true;
+        })
+    }
+  }
+  ```
+
+### onInterceptRequest<sup>9+</sup>
+
+onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
+
+当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | [WebResourceResponse](#webresourceresponse) | 返回响应数据为空表示按原来方式加载，否则加载响应数据。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onInterceptRequest((e) => {
+          console.log('url:' + e.request.getRequestUrl());
+          var head1:Header = {
+            headerKey:"Connection",
+            headerValue:"keep-alive"
+          }
+          var head2:Header = {
+            headerKey:"Cache-Control",
+            headerValue:"no-cache"
+          }
+          var length = this.heads.push(head1);
+          length = this.heads.push(head2);
+          this.responseweb.setResponseHeader(this.heads);
+          this.responseweb.setResponseData(this.webdata);
+          this.responseweb.setResponseEncoding('utf-8');
+          this.responseweb.setResponseMimeType('text/html');
+          this.responseweb.setResponseCode(200);
+          this.responseweb.setReasonMessage('OK');
+          return this.responseweb;
+        })
+      }
+    }
+  }
+  ```
+
+### onHttpAuthRequest<sup>9+</sup>
+
+onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, realm: string}) => boolean)
+
+通知收到http auth认证请求。
+
+- event参数
+  | 参数名 | 参数类型 | 参数描述                  |
+  | ------ | -------- | ------------------------- |
+  | handler | [HttpAuthHandler](#httpauthhandlersup9sup) | 通知Web组件用户操作行为。 |
+  | host | string | HTTP身份验证凭据应用的主机。 |
+  | realm | string | HTTP身份验证凭据应用的域。 |
+
+- 事件返回值
+  | 参数类型 | 说明 |
+  |----------|------|
+  | boolean | 返回false表示此次认证失败，否则成功。 |
+
+  - 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({src:'www.baidu.com', controller:this.controller})
+        .onHttpAuthRequest((event) => {
+          AlertDialog.show({
+            title: 'title',
+            message: 'text',
+            confirm: {
+              value: 'onConfirm',
+              action: () => {
+                this.httpAuth =handler.isHttpAuthInfoSaved();
+                if (this.httpAuth == false) {
+                  web.WebDataBase.saveHttpAuthCredentials(
+                   host,
+                   realm,
+                    "2222",
+                    "2222"
+                  )
+                 handler.confirm("111", "2222");
+                }
+              }
+            },
+            cancel: () => {
+             handler.cancel();
+            }
+          })
+          return true;
+        })
+    }
+  }
+  ```
 
 ## ConsoleMessage
 
-Web组件获取控制台信息对象。
+Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
 
 ### getLineNumber
 
@@ -326,7 +1188,7 @@ getSourceId(): string
 
 ## JsResult
 
-Web组件返回的弹窗确认或弹窗取消功能对象。
+Web组件返回的弹窗确认或弹窗取消功能对象。示例代码参考[onAlert事件](#onalert)。
 
 ### handleCancel
 
@@ -353,7 +1215,7 @@ handlePromptConfirm(result: string): void
 
 ## WebResourceError
 
-web组件资源管理错误信息对象。
+web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getErrorCode
 
@@ -379,7 +1241,7 @@ getErrorInfo(): string
 
 ## WebResourceRequest
 
-web组件获取资源请求对象。
+web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
 ### getRequestHeader
 
@@ -448,7 +1310,7 @@ Web组件返回的请求/响应头对象。
 
 ## WebResourceResponse
 
-web组件资源响应对象。
+web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttpauthrequest)。
 
 ### getReasonMessage
 
@@ -584,7 +1446,7 @@ setResponseCode(code: number)
 
 ## FileSelectorResult<sup>9+</sup>
 
-通知Web组件的文件选择结果。
+通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselector)。
 
 ### handleFileList<sup>9+</sup>
 
@@ -599,7 +1461,7 @@ handleFileList(fileList: Array\<string\>): void
 
 ## FileSelectorParam<sup>9+</sup>
 
-web组件获取文件对象
+web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector)。
 
 ### getTitle<sup>9+</sup>
 
@@ -647,7 +1509,7 @@ isCapture(): boolean
 
 ## HttpAuthHandler<sup>9+</sup>
 
-Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。
+Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequest)。
 
 ### cancel<sup>9+</sup>
 
@@ -702,11 +1564,57 @@ accessBackward(): boolean
 
 当前页面是否可后退，即当前页面是否有返回历史记录。
 
+- 返回值
+
+  | 参数类型  | 说明                                  |
+  | -------- | ------------------------------------- |
+  | boolean  | 可以后退返回true,否则返回false。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('accessBackward')
+        .onClick(() => {
+          let result = this.controller.accessBackward();
+          console.log('result:' + result);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### accessForward
 
 accessForward(): boolean
 
 当前页面是否可前进，即当前页面是否有前进历史记录。
+
+- 返回值
+
+  | 参数类型  | 说明                                  |
+  | -------- | ------------------------------------- |
+  | boolean  | 可以前进返回true,否则返回false。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('accessForward')
+        .onClick(() => {
+          let result = this.controller.accessForward();
+          console.log('result:' + result);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### accessStep
 
@@ -726,11 +1634,94 @@ accessStep(step: number): boolean
   | -------- | ------------------ |
   | boolean  | 页面是否前进或后退 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    @State steps: number = 2;
+    build() {
+      Column() {
+        Button('accessStep')
+        .onClick(() => {
+          let result = this.controller.accessStep(this.steps);
+          console.log('result:' + result);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### backward
 
-backward()
+backward(): void
 
 按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('backward')
+        .onClick(() => {
+          this.controller.backward();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
+### forward
+
+forward(): void
+
+按照历史栈，前进一个页面。一般结合accessForward一起使用。
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('forward')
+        .onClick(() => {
+          this.controller.forward();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
+### backOrForward<sup>9+</sup>
+
+backOrForward(step: number): void
+
+按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
+
+- 参数
+  | 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+  | ---- | ------ | ---- | ---- | ---------------------------------------- |
+  | step | number | 是    |-    |需要前进或后退的步长。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('backOrForward')
+        .onClick(() => {
+          this.controller.backOrForward();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### deleteJavaScriptRegister
 
@@ -744,22 +1735,22 @@ deleteJavaScriptRegister(name: string)
   | ------ | -------- | ---- | ------ | ------------------------------------------------------------ |
   | name   | string   | 是   | -      | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
 
-### forward
-
-forward()
-
-按照历史栈，前进一个页面。一般结合accessForward一起使用。
-
-### backOrForward<sup>9+</sup>
-
-backOrForward(step: number): void
-
-按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
-
-- 参数
-  | 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
-  | ---- | ------ | ---- | ---- | ---------------------------------------- |
-  | step | number | 是    |-    |需要前进或后退的步长。 |
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    @State name: string = 'Object';
+    build() {
+      Column() {
+        Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          this.controller.deleteJavaScriptRegister(this.name);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### getHitTest
 
@@ -772,6 +1763,23 @@ getHitTest(): HitTestType
   | -------- | ------------------ |
   | [HitTestType](#hittesttype枚举说明)  | 被点击区域的元素类型。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('getHitTest')
+        .onClick(() => {
+          let hitType = this.controller.getHitTest();
+          console.log("hitType: " + hitType);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### getHitTestValue<sup>9+</sup>
 getHitTestValue(): HitTestValue
 
@@ -781,6 +1789,24 @@ getHitTestValue(): HitTestValue
   | 参数类型 | 说明 |
   |----------|------|
   | [HitTestValue](#hittestvaluesup9sup) | 点击区域的元素信息。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('getHitTestValue')
+        .onClick(() => {
+          let hitValue = this.controller.getHitTestValue();
+          console.log("hitType: " + hitValue.getType());
+          console.log("extra: " + hitValue.getExtra());
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### getWebId<sup>9+</sup>
 getWebId(): number
@@ -792,6 +1818,23 @@ getWebId(): number
   |----------|------|
   | number | 当前Web组件的索引值。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('getWebId')
+        .onClick(() => {
+          let id = this.controller.getWebId();
+          console.log("id: " + id);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### getTitle<sup>9+</sup>
 getTitle(): string
 
@@ -800,6 +1843,23 @@ getTitle(): string
   | 参数类型 | 说明 |
   |----------|------|
   | string | 当前网页的标题。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('getTitle')
+        .onClick(() => {
+          let title = this.controller.getTitle();
+          console.log("title: " + title);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### getPageHeight<sup>9+</sup>
 getPageHeight(): number
@@ -810,16 +1870,49 @@ getPageHeight(): number
   |----------|------|
   | number | 当前网页的页面高度。 |
 
-
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('getPageHeight')
+        .onClick(() => {
+          let pageHeight = this.controller.getPageHeight();
+          console.log("pageHeight: " + pageHeight);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### getDefaultUserAgent<sup>9+</sup>
 getDefaultUserAgent(): string
 
 获取当前默认用户代理。
+
 - 返回值
   | 参数类型 | 说明 |
   |----------|------|
   | string | 默认用户代理。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('getDefaultUserAgent')
+        .onClick(() => {
+          let userAgent = this.controller.getDefaultUserAgent();
+          console.log("userAgent: " + userAgent);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### loadData
 
@@ -841,6 +1934,26 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
   | baseUrl    | string   | 否   | -      | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
   | historyUrl | string   | 否   | -      | 历史记录URL。非空时，可被历史记录管理，实现前后后退功能。当baseUrl为空时，此属性无效。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('loadData')
+        .onClick(() => {
+          this.controller.loadData({
+            data: "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+            mimeType: "text/html",
+            encoding: "UTF-8"
+          });
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### loadUrl
 
 loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
@@ -858,11 +1971,43 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
   | url     | string                             | 是   | -      | 需要加载的 URL。      |
   | headers | Array\<[Header](#header对象说明)\> | 否   | []     | URL的附加HTTP请求头。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('loadUrl')
+        .onClick(() => {
+          this.controller.loadUrl('https://gitee.com/');
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### onActive
 
 onActive(): void
 
 调用此接口通知Web组件进入前台激活状态。
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('onActive')
+        .onClick(() => {
+          this.controller.onActive();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### onInactive
 
@@ -870,14 +2015,48 @@ onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('onInactive')
+        .onClick(() => {
+          this.controller.onInactive();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### zoom
 zoom(factor: number): void
 
 调整当前网页的缩放比例。
+
 - 参数
   | 参数名 | 参数类型 | 必填 | 参数描述 |
   |--------|----------|------|---------|
   | factor | number | 是 | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    @State factor: number = 1;
+    build() {
+      Column() {
+        Button('zoom')
+        .onClick(() => {
+          this.controller.zoom(this.factor);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### zoomIn<sup>9+</sup>
 zoomIn(): boolean
@@ -888,6 +2067,23 @@ zoomIn(): boolean
   |----------|------|
   | boolean | 放大操作是否成功执行。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('zoomIn')
+        .onClick(() => {
+          let result = this.controller.zoomIn();
+          console.log("result: " + result);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### zoomOut<sup>9+</sup>
 zoomOut(): boolean
 
@@ -897,11 +2093,44 @@ zoomOut(): boolean
   |----------|------|
   | boolean | 缩小操作是否成功执行。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('zoomOut')
+        .onClick(() => {
+          let result = this.controller.zoomOut();
+          console.log("result: " + result);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### refresh
 
 refresh()
 
 调用此接口通知Web组件刷新网页。
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('refresh')
+        .onClick(() => {
+          this.controller.refresh();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### registerJavaScriptProxy
 
@@ -917,6 +2146,64 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
   | name       | string          | 是   | -      | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
   | methodList | Array\<string\> | 是   | -      | 参与注册的应用侧JavaScript对象的方法。                       |
 
+- 示例代码
+  ```js
+  @Component
+  struct Index {
+    controller: WebController = new WebController()
+    testObj = {
+      test: (data) => {
+        prompt.showToast({ message: "test: " + data, duration: 2000 })
+        return "ArkUI Web Component";
+      },
+      toString: () => {
+        console.log('Web Component toString');
+      }
+    }
+    build() {
+      Column() {
+        Row() {
+          Button('htmlTest').onClick(() => {
+            this.controller.runJavaScript({ script: "htmlTest()"})
+          })
+  
+          Button('refresh').onClick(() => {
+            this.controller.refresh()
+          })
+  
+          Button('Register JavaScript To Window').onClick(() => {
+            this.controller.registerJavaScriptProxy({
+              object: this.testObj,
+              name: "objName",
+              methodList: ["test", "toString"],
+            });
+          })
+        }
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .javaScriptAccess(true)
+      }
+    }
+  }
+  ```
+  
+  ```html
+  <!DOCTYPE html>
+  <html>
+      <meta charset="utf-8">
+      <body>
+          Hello world!
+      </body>
+      <script type="text/javascript">
+      function htmlTest() {
+          // 调用主应用注入的objName.test方法
+          str = objName.test("test function");
+          console.log('objName.test result:'+ str);
+      }
+  </script>
+  </html>
+  
+  ```
+
 ### runJavaScript
 
 runJavaScript(options: { script: string, callback?: (result: string) => void })
@@ -930,17 +2217,91 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
   | script   | string                   | 是   | -      | JavaScript脚本。                                             |
   | callback | (result: string) => void | 否   | -      | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    @State webResult: string = ''
+    build() {
+      Column() {
+        Text(this.webResult).fontSize(20)
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .onPageEnd(e => {
+          this.controller.runJavaScript({
+            script: 'test()',
+            callback: (result: string)=> {
+              this.webResult = result
+              console.info(`The test() return value is: ${result}`)
+            }});
+          console.info('url: ', e.url);
+        })
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <meta charset="utf-8">
+    <body>
+        Hello world!
+    </body>
+    <script type="text/javascript">
+    function test() {
+        console.log('Ark WebComponent');
+        return "This value is from index.html"
+    }
+    </script>
+  </html>
+
+  ```
+
 ### stop
 
 stop()
 
 停止页面加载。
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('stop')
+        .onClick(() => {
+          this.controller.stop();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### clearHistory
 
 clearHistory(): void
 
 删除所有前进后退记录。
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('clearHistory')
+        .onClick(() => {
+          this.controller.clearHistory();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ### getCookieManager<sup>9+</sup>
 
@@ -952,8 +2313,24 @@ getCookieManager(): WebCookie
   | --------- | -------------------------------------------------------- |
   | WebCookie | web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('getCookieManager')
+        .onClick(() => {
+          let cookieManager = this.controller.getCookieManager();
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ## HitTestValue<sup>9+</sup>
-提供点击区域的元素信息。
+提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvaluesup9sup)。
 
 ### getType<sup>9+</sup>
 getType(): HitTestType
@@ -993,6 +2370,23 @@ setCookie(url: string, value: string): boolean
   | -------- | -------------------- |
   | boolean  | 设置cookie是否成功。 |
 
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('setCookie')
+        .onClick(() => {
+          let result = this.controller.getCookieManager().setCookie("http://www.baidu.com", "a=b");
+          console.log("result: " + result);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
+
 ### saveCookieSync<sup>9+</sup>
 saveCookieSync(): boolean
 
@@ -1001,6 +2395,23 @@ saveCookieSync(): boolean
   | 参数类型 | 说明                               |
   | -------- | ---------------------------------- |
   | boolean  | 同步内存cookie到磁盘操作是否成功。 |
+
+- 示例代码
+  ```js
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Button('saveCookieSync')
+        .onClick(() => {
+          let result = this.controller.getCookieManager().saveCookieSync();
+          console.log("result: " + result);
+        })
+        Web({src:'www.baidu.com', controller:this.controller})
+    }
+  }
+  ```
 
 ## WebDataBase<sup>9+</sup>
 web组件数据库管理对象。
@@ -1016,11 +2427,24 @@ static existHttpAuthCredentials(): boolean
   | -------- | ----------------------------------- |
   | boolean  | 是否存在任何已保存的HTTP身份验证凭据。存在返回true，不存在返回false |
 
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  let result = web.WebDataBase.existHttpAuthCredentials();
+  console.log('result: ' + result);
+  ```
+
 ### deleteHttpAuthCredentials<sup>9+</sup>
 
 static deleteHttpAuthCredentials(): void
 
 清除所有已保存的HTTP身份验证凭据，该方法为同步方法。
+
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  web.WebDataBase.deleteHttpAuthCredentials();
+  ```
 
 ### getHttpAuthCredentials<sup>9+</sup>
 
@@ -1039,6 +2463,19 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
   | ---------------- | --------------------------------------------- |
   | Array\<string\>  | 包含用户名和密码的组数，检索失败返回空数组。 |
 
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  host: string = "www.spincast.org";
+  realm: string = "protected example";
+  username_password: string[];
+  this.username_password = web.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
+  console.log('num: ' + this.username_password.length);
+  ForEach(this.username_password, (item) => {
+    console.log('username_password: ' + item);
+  }, item => item)
+  ```
+
 ### saveHttpAuthCredentials<sup>9+</sup>
 
 static saveHttpAuthCredentials(host: string, realm: string, username: string, password: string): void
@@ -1054,12 +2491,27 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
   | username | string   | 是   | -      | 用户名。                    |
   | password | string   | 是   | -      | 密码。                      |
 
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  host: string = "www.spincast.org";
+  realm: string = "protected example";
+  web.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+  ```
+
 ## WebStorage<sup>9+</sup>
 通过WebStorage可管理Web SQL数据库接口和HTML5 Web存储接口，每个应用中的所有Web组件共享一个WebStorage。
 ### deleteAllData<sup>9+</sup>
 static deleteAllData(): void
 
 清除Web SQL数据库当前使用的所有存储。
+
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  web.WebStorage.deleteAllData();
+  ```
+
 ### deleteOrigin<sup>9+</sup>
 static deleteOrigin(origin : string): void
 
@@ -1068,6 +2520,13 @@ static deleteOrigin(origin : string): void
   | 参数名 | 参数类型 | 必填 | 说明 |
   |---------|---------|-----|-----|
   | origin | string | 是 | 指定源的字符串索引。 |
+
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  origin: string = "origin";
+  web.WebStorage.deleteOrigin(origin);
+  ```
 
 ### getOrigins<sup>9+</sup>
 static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>) : void
@@ -1078,6 +2537,21 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin](#webstorageor
   |---------|---------|-----|----|
   | callback | AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | 是 | 以数组方式返回源的信息，信息内容参考WebStorageOrigin。|
 
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  web.WebStorage.getOrigins((error, origins) => {
+    if (error) {
+      console.log('error: ' + error);
+      return;
+    }
+    for (let i = 0; i < origins.length; i++) {
+      consloe.log('origin: ' + origins[i].origin);
+      console.log('usage: ' + origins[i].usage);
+      console.log('quota: ' + origins[i].quota);
+    }
+  })
+
 ### getOrigins<sup>9+</sup>
 static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>>
 
@@ -1086,6 +2560,22 @@ static getOrigins() : Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)
   | 类型 | 说明 |
   |------|------|
   | Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | Promise实例，用于获取当前所有源的信息，信息内容参考WebStorageOrigin。 |
+
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  web.WebStorage.getOrigins()
+  .then(origins => {
+    for (let i = 0; i < origins.length; i++) {
+      consloe.log('origin: ' + origins[i].origin);
+      console.log('usage: ' + origins[i].usage);
+      console.log('quota: ' + origins[i].quota);
+    }
+  })
+  .catch(error => {
+    console.log('error: ' + error);
+  })
+  ```
 
 ### getOriginQuota<sup>9+</sup>
 static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
@@ -1096,6 +2586,19 @@ static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
   |----------|-----------|------|------|
   | origin | string | 是 | 指定源的字符串索引 |
   | callback | AsyncCallback<number> | 是 | 指定源的存储配额。 |
+
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  origin: string = "origin";
+  web.WebStorage.getOriginQuota(origin, (error, quota) => {
+    if (error) {
+      console.log('error: ' + error);
+      return;
+    }
+    consloe.log('quota: ' + quota);
+  })
+  ```
 
 ### getOriginQuota<sup>9+</sup>
 static getOriginQuota(origin : string) : Promise<number>
@@ -1111,6 +2614,18 @@ static getOriginQuota(origin : string) : Promise<number>
   |------|------|
   | Promise<number> | Promise实例，用于获取指定源的存储配额。 |
 
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  web.WebStorage.getOriginQuota()
+  .then(quota => {
+    consloe.log('quota: ' + quota);
+  })
+  .catch(error => {
+    console.log('error: ' + error);
+  })
+  ```
+
 ### getOriginUsage<sup>9+</sup>
 static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
 
@@ -1120,6 +2635,19 @@ static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
   |----------|----------|------|------|
   | origin | string | 是 | 指定源的字符串索引。 |
   | callback | AsyncCallback<number> | 是 | 指定源的存储量。 |
+
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  origin: string = "origin";
+  web.WebStorage.getOriginUsage(origin, (error, usage) => {
+    if (error) {
+      console.log('error: ' + error);
+      return;
+    }
+    consloe.log('usage: ' + usage);
+  })
+  ```
 
 ### getOriginUsage<sup>9+</sup>
 static getOriginUsage(origin : string) : Promise<number>
@@ -1135,6 +2663,18 @@ static getOriginUsage(origin : string) : Promise<number>
   |------|------|
   | Promise<number> | Promise实例，用于获取指定源的存储量。 |
 
+- 示例代码
+  ```js
+  import web from '@ohos.web';
+  web.WebStorage.getOriginUsage()
+  .then(usage => {
+    consloe.log('usage: ' + usage);
+  })
+  .catch(error => {
+    console.log('error: ' + error);
+  })
+  ```
+
 ## WebStorageOrigin<sup>9+</sup>
 提供Web SQL数据库的使用信息。
 - 参数
@@ -1143,45 +2683,3 @@ static getOriginUsage(origin : string) : Promise<number>
   | origin | string | 是 | 指定源的字符串索引。 |
   | usage | number | 是 | 指定源的存储量。 |
   | quota | number | 是 | 指定源的存储配额。 |
-
-## 示例
-
-```ts
-// webComponent.ets
-@Entry
-@Component
-struct WebComponent {
-  @State javaScriptAccess: boolean = true;
-  @State fileAccess: boolean = true;
-  controller: WebController = new WebController();
-  build() {
-    Column() {
-      Web({ src: $rawfile('index.html'), controller: this.controller })
-      .javaScriptAccess(this.javaScriptAccess)
-      .fileAccess(this.fileAccess)
-      .onPageEnd(e => {
-        // test() 在 index.html 中已定义
-        this.controller.runJavaScript({ script: 'test()' });
-        console.log("url: ", e.url);
-      })
-    }
-  }
-}
-```
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<body>
-    Hello world!
-</body>
-<script type="text/javascript">
-	function test() {
-		console.log('Ark WebComponent');
-	}
-</script>
-</html>
-```
-
-![](figures/Web.png)
