@@ -1,10 +1,10 @@
 # Using Native APIs in Application Projects
 
-OpenHarmony applications use JavaScript (JS) when calling native APIs. The native APIs (NAPIs) provided by the **arkui_napi** repository are used to implement the interaction with JS. Currently, the **arkui_napi** repository supports some third-party **Node.js** interfaces. The names of the NAPIs are the same as those in the third-party **Node.js**. For details about the interfaces supported, see `libnapi.ndk.json` in this repository.
+OpenHarmony applications use JavaScript (JS) when calling native APIs. The native APIs (NAPIs) provided by the [ace_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository are used to implement interaction with JS. Currently, the **ace_napi** repository supports some third-party **Node.js** interfaces. The names of the NAPIs are the same as those in the third-party **Node.js**. For details about the interfaces supported, see `libnapi.ndk.json` in this repository.
 
 ## How to Develop
 
-The IDE has a default project that uses NAPIs. You can choose `File` > `New` > `Create Project` to create a `Native C++` project. The **cpp** directory is generated in the **main** directory. You can use the NAPIs provided by the **arkui_napi** repository for development.
+The IDE has a default project that uses NAPIs. You can choose `File` > `New` > `Create Project` to create a `Native C++` project. The **cpp** directory is generated in the **main** directory. You can use the NAPIs provided by the **ace_napi** repository for development.
 
 You can `import` the native .so that contains the JS processing logic. For example, `import hello from 'libhello.so'` to use the **libhello.so** capability. Then, the JS object created using the NAPI can be passed to the `hello` object of the application to call the native capability.
 
@@ -74,7 +74,7 @@ export default storage;
 
 ### Implementation
 
-You can obtain the complete code from `sample/native_module_storage/` in the **arkui_napi** repository.
+You can obtain the complete code from `sample/native_module_storage/` in the [OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository.
 
 #### Registering the Module
 
@@ -212,7 +212,7 @@ static napi_value JSStorageGet(napi_env env, napi_callback_info info)
 
     napi_create_async_work(
         env, nullptr, resource,
-        // Callback 1: This callback contains the service logic to be asynchronously executed and is asynchronously executed by the NAPI. Do not operate JS objects using theNAPI because the execution is asynchronous.
+        // Callback 1: This callback contains the service logic to be asynchronously executed and is asynchronously executed by the NAPI. Do not operate JS objects using the NAPI because the execution is asynchronous.
         [](napi_env env, void* data) {
             StorageAsyncContext* asyncContext = (StorageAsyncContext*)data;
             auto itr = gKeyValueStorage.find(asyncContext->key);
@@ -307,7 +307,7 @@ export class NetServer {
 
 ### Implementation
 
-You can obtain the complete code from `sample/native_module_netserver/` in the **arkui_napi** repository.
+You can obtain the complete code from `sample/native_module_netserver/` in the [OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository.
 
 #### Registering the Module
 
@@ -494,7 +494,7 @@ This example describes how to invoke a JS callback in a non-JS thread. For examp
 
 ### Implementation
 
-You can obtain the complete code from `sample/native_module_callback/` in the **arkui_napi** repository.
+You can obtain the complete code from `sample/native_module_callback/` in the [OpenHarmony/arkui_napi](https://gitee.com/openharmony/arkui_napi/tree/master) repository.
 
 #### Registering the Module
 
@@ -562,7 +562,7 @@ void callbackTest(CallbackContext* context)
     uv_queue_work(
         loop,
         work,
-        // This callback is executed in another common thread to process tasks asynchronously. After the callback is complete, execute the next callback. In this scenario, the callback does not need to execute any task.
+        // This callback is executed in another common thread to process tasks asynchronously. After the callback is complete, execute the next callback. In this scenario, this callback does not need to execute any task.
         [](uv_work_t* work) {},
         // This callback is executed in the JS thread bound to env.
         [](uv_work_t* work, int status) {
