@@ -2399,7 +2399,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```js
 // Promise 模式
-gattClientDevice.getServices().then(result => {
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+device.connect();
+device.getServices().then(result => {
     console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
