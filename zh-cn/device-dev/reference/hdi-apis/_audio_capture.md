@@ -19,8 +19,8 @@
 | attr | 音频属性能力接口，详情参考[AudioAttribute](_audio_attribute.md) | 
 | scene | 音频场景能力接口，详情参考[AudioScene](_audio_scene.md) | 
 | volume | 音频音量能力接口，详情参考[AudioVolume](_audio_volume.md) | 
-| (&nbsp;[CaptureFrame](#captureframe)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621449.xml#xref1398623145083931,link:zh-cn_topic_0000001357621449.xml](zh-cn_topic_0000001357621449.xml)&nbsp;\*capture,&nbsp;void&nbsp;\*frame,&nbsp;uint64_t&nbsp;requestBytes,&nbsp;uint64_t&nbsp;\*replyBytes) | 从音频驱动中录制（capture）一帧输入数据（录音，音频上行数据）&nbsp;[更多...](#captureframe) | 
-| (&nbsp;[GetCapturePosition](#getcaptureposition)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621449.xml#xref599411735083931,link:zh-cn_topic_0000001357621449.xml](zh-cn_topic_0000001357621449.xml)&nbsp;\*capture,&nbsp;uint64_t&nbsp;\*frames,&nbsp;struct&nbsp;[AudioTimeStamp](_audio_time_stamp.md)&nbsp;\*time) | 获取音频输入帧数的上一次计数&nbsp;[更多...](#getcaptureposition) | 
+| (&nbsp;[CaptureFrame](#captureframe)&nbsp;)(struct&nbsp;AudioCapture&nbsp;\*capture,&nbsp;void&nbsp;\*frame,&nbsp;uint64_t&nbsp;requestBytes,&nbsp;uint64_t&nbsp;\*replyBytes) | 从音频驱动中录制（capture）一帧输入数据（录音，音频上行数据）&nbsp;[更多...](#captureframe) | 
+| (&nbsp;[GetCapturePosition](#getcaptureposition)&nbsp;)(struct&nbsp;AudioCapture&nbsp;\*capture,&nbsp;uint64_t&nbsp;\*frames,&nbsp;struct&nbsp;[AudioTimeStamp](_audio_time_stamp.md)&nbsp;\*time) | 获取音频输入帧数的上一次计数&nbsp;[更多...](#getcaptureposition) | 
 
 
 ## **详细描述**
