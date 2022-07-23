@@ -63,7 +63,7 @@ int32_t(* IWiFiSta::setScanningMacAddress) (const struct IWiFiSta *staFeature, u
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| staFeature | 输入参数，STA特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001304541952.xml#xref557822862083932,link:zh-cn_topic_0000001304541952.xml](zh-cn_topic_0000001304541952.xml)。 | 
+| staFeature | 输入参数，STA特性。 | 
 | scanMac | 输入参数，设置STA扫描的MAC地址。 | 
 | len | 输入参数，MAC地址的长度。 | 
 
