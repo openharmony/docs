@@ -17,13 +17,13 @@
 | -------- | -------- |
 | [ifName](#ifname)&nbsp;[[IFNAME_MAX_LEN](_w_l_a_n.md#ga63637ece87095ff8d153f650434ecf97)] | 网卡名称。 | 
 | **type** | 特性的类型，参考[FeatureType](_w_l_a_n.md#featuretype)。 | 
-| (&nbsp;[getNetworkIfaceName](#getnetworkifacename)&nbsp;)(const&nbsp;struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1160037662083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)&nbsp;\*baseFeature) | 根据基本特性获取网卡名称。&nbsp;[更多...](#getnetworkifacename) | 
-| (&nbsp;[getFeatureType](#getfeaturetype)&nbsp;)(const&nbsp;struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref2042681197083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)&nbsp;\*baseFeature) | 获取基本特性的类型[FeatureType](_w_l_a_n.md#featuretype)。&nbsp;[更多...](#getfeaturetype) | 
-| (&nbsp;[setMacAddress](#setmacaddress)&nbsp;)(const&nbsp;struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1120460385083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)&nbsp;\*baseFeature,&nbsp;unsigned&nbsp;char&nbsp;\*mac,&nbsp;uint8_t&nbsp;len) | 根据传入参数设置对应网卡的MAC地址。&nbsp;[更多...](#setmacaddress) | 
-| (&nbsp;[getDeviceMacAddress](#getdevicemacaddress)&nbsp;)(const&nbsp;struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref330712474083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)&nbsp;\*baseFeature,&nbsp;unsigned&nbsp;char&nbsp;\*mac,&nbsp;uint8_t&nbsp;len) | 获取设备的MAC地址。&nbsp;[更多...](#getdevicemacaddress) | 
-| (&nbsp;[getValidFreqsWithBand](#getvalidfreqswithband)&nbsp;)(const&nbsp;struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1369279207083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)&nbsp;\*baseFeature,&nbsp;int32_t&nbsp;band,&nbsp;int32_t&nbsp;\*freqs,&nbsp;uint32_t&nbsp;count,&nbsp;uint32_t&nbsp;\*num) | 获取指定频段（2.4G或者5G）下支持的频率。&nbsp;[更多...](#getvalidfreqswithband) | 
-| (&nbsp;[setTxPower](#settxpower)&nbsp;)(const&nbsp;struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1878860227083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)&nbsp;\*baseFeature,&nbsp;int32_t&nbsp;power) | 设置发射功率。&nbsp;[更多...](#settxpower) | 
-| (&nbsp;[getChipId](#getchipid)&nbsp;)(const&nbsp;struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref407053875083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)&nbsp;\*baseFeature,&nbsp;uint8_t&nbsp;\*chipId) | 获得当前驱动的芯片ID。&nbsp;[更多...](#getchipid) | 
+| (&nbsp;[getNetworkIfaceName](#getnetworkifacename)&nbsp;)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*baseFeature) | 根据基本特性获取网卡名称。&nbsp;[更多...](#getnetworkifacename) | 
+| (&nbsp;[getFeatureType](#getfeaturetype)&nbsp;)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*baseFeature) | 获取基本特性的类型[FeatureType](_w_l_a_n.md#featuretype)。&nbsp;[更多...](#getfeaturetype) | 
+| (&nbsp;[setMacAddress](#setmacaddress)&nbsp;)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*baseFeature,&nbsp;unsigned&nbsp;char&nbsp;\*mac,&nbsp;uint8_t&nbsp;len) | 根据传入参数设置对应网卡的MAC地址。&nbsp;[更多...](#setmacaddress) | 
+| (&nbsp;[getDeviceMacAddress](#getdevicemacaddress)&nbsp;)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*baseFeature,&nbsp;unsigned&nbsp;char&nbsp;\*mac,&nbsp;uint8_t&nbsp;len) | 获取设备的MAC地址。&nbsp;[更多...](#getdevicemacaddress) | 
+| (&nbsp;[getValidFreqsWithBand](#getvalidfreqswithband)&nbsp;)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*baseFeature,&nbsp;int32_t&nbsp;band,&nbsp;int32_t&nbsp;\*freqs,&nbsp;uint32_t&nbsp;count,&nbsp;uint32_t&nbsp;\*num) | 获取指定频段（2.4G或者5G）下支持的频率。&nbsp;[更多...](#getvalidfreqswithband) | 
+| (&nbsp;[setTxPower](#settxpower)&nbsp;)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*baseFeature,&nbsp;int32_t&nbsp;power) | 设置发射功率。&nbsp;[更多...](#settxpower) | 
+| (&nbsp;[getChipId](#getchipid)&nbsp;)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*baseFeature,&nbsp;uint8_t&nbsp;\*chipId) | 获得当前驱动的芯片ID。&nbsp;[更多...](#getchipid) | 
 | (&nbsp;[getIfNamesByChipId](#getifnamesbychipid)&nbsp;)(const&nbsp;uint8_t&nbsp;chipId,&nbsp;char&nbsp;\*\*ifNames,&nbsp;uint32_t&nbsp;\*num) | 通过芯片ID获得当前芯片所有的网卡名称。&nbsp;[更多...](#getifnamesbychipid) | 
 
 
@@ -58,7 +58,7 @@ int32_t(* IWiFiBaseFeature::getChipId) (const struct IWiFiBaseFeature *baseFeatu
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| baseFeature | 输入参数，基本特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref473855951083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)。 | 
+| baseFeature | 输入参数，基本特性。 | 
 | chipId | 输出参数，获得的芯片ID。 | 
 
 **返回：**
@@ -83,7 +83,7 @@ int32_t(* IWiFiBaseFeature::getDeviceMacAddress) (const struct IWiFiBaseFeature 
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| baseFeature | 输入参数，基本特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1226402066083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)。 | 
+| baseFeature | 输入参数，基本特性。 | 
 | mac | 输出参数，获得的MAC地址。 | 
 | len | 输入参数，获得的MAC地址长度。 | 
 
@@ -109,7 +109,7 @@ int32_t(*IWiFiBaseFeature::getFeatureType) (const struct IWiFiBaseFeature *baseF
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| baseFeature | 输入参数，基本特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1934582661083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)。 | 
+| baseFeature | 输入参数，基本特性。 | 
 
 **返回：**
 
@@ -159,7 +159,7 @@ const char*(* IWiFiBaseFeature::getNetworkIfaceName) (const struct IWiFiBaseFeat
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| baseFeature | 输入参数，基本特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1207169342083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)。 | 
+| baseFeature | 输入参数，基本特性。 | 
 
 **返回：**
 
@@ -183,7 +183,7 @@ int32_t(* IWiFiBaseFeature::getValidFreqsWithBand) (const struct IWiFiBaseFeatur
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| baseFeature | 输入参数，基本特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1345697859083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)。 | 
+| baseFeature | 输入参数，基本特性。 | 
 | band | 输入参数，指定的一个频段。 | 
 | freqs | 输出参数，保存支持的频率。 | 
 | count | 输入参数，频率数组的元素个数。 | 
@@ -223,7 +223,7 @@ int32_t(* IWiFiBaseFeature::setMacAddress) (const struct IWiFiBaseFeature *baseF
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| baseFeature | 输入参数，基本特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref1858718007083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)。 | 
+| baseFeature | 输入参数，基本特性。 | 
 | mac | 输入参数，设置的MAC地址。 | 
 | len | 输入参数，设置的MAC地址长度。 | 
 
@@ -249,7 +249,7 @@ int32_t(* IWiFiBaseFeature::setTxPower) (const struct IWiFiBaseFeature *baseFeat
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| baseFeature | 输入参数，基本特性[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357621445.xml#xref793467134083932,link:zh-cn_topic_0000001357621445.xml](zh-cn_topic_0000001357621445.xml)。 | 
+| baseFeature | 输入参数，基本特性。 | 
 | power | 输入参数，设置的发射功率。 | 
 
 **返回：**
