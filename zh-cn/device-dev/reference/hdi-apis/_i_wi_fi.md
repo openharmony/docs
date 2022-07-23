@@ -15,8 +15,8 @@
 
   | Public&nbsp;属性 | 描述 | 
 | -------- | -------- |
-| (&nbsp;[start](#start)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357382009.xml#xref459063066083932,link:zh-cn_topic_0000001357382009.xml](zh-cn_topic_0000001357382009.xml)&nbsp;\*iwifi) | 创建HAL和驱动之间的通道及获取驱动网卡信息，该函数调用在创建IWiFi实体后进行。&nbsp;[更多...](#start) | 
-| (&nbsp;[stop](#stop)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357382009.xml#xref1577893620083932,link:zh-cn_topic_0000001357382009.xml](zh-cn_topic_0000001357382009.xml)&nbsp;\*iwifi) | 销毁HAL和驱动之间的通道，该函数调用在销毁IWiFi实体前进行。&nbsp;[更多...](#stop) | 
+| (&nbsp;[start](#start)&nbsp;)(struct&nbsp;IWiFi&nbsp;\*iwifi) | 创建HAL和驱动之间的通道及获取驱动网卡信息，该函数调用在创建IWiFi实体后进行。&nbsp;[更多...](#start) | 
+| (&nbsp;[stop](#stop)&nbsp;)(struct&nbsp;IWiFi&nbsp;\*iwifi) | 销毁HAL和驱动之间的通道，该函数调用在销毁IWiFi实体前进行。&nbsp;[更多...](#stop) | 
 | (&nbsp;[getSupportFeature](#getsupportfeature)&nbsp;)(uint8_t&nbsp;\*supType,&nbsp;uint32_t&nbsp;size) | 获取该设备支持的WLAN特性（不考虑当前的使用状态）。&nbsp;[更多...](#getsupportfeature) | 
 | (&nbsp;[getSupportCombo](#getsupportcombo)&nbsp;)(uint64_t&nbsp;\*combo,&nbsp;uint32_t&nbsp;size) | 获取多网卡共存情况。&nbsp;[更多...](#getsupportcombo) | 
 | (&nbsp;[createFeature](#createfeature)&nbsp;)(int32_t&nbsp;type,&nbsp;struct&nbsp;[IWiFiBaseFeature](_i_wi_fi_base_feature.md)&nbsp;\*\*ifeature) | 根据输入类型创建对应的特性[IWiFiBaseFeature](_i_wi_fi_base_feature.md)。&nbsp;[更多...](#createfeature) | 
