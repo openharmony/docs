@@ -18,7 +18,7 @@
 | (&nbsp;[GetAllAdapters](#getalladapters)&nbsp;)(struct&nbsp;AudioAdapterManager&nbsp;\*manager,&nbsp;struct&nbsp;[AudioAdapterDescriptor](_audio_adapter_descriptor.md)&nbsp;\*\*descs,&nbsp;int&nbsp;\*size) | 获取音频驱动中支持的所有适配器的列表&nbsp;[更多...](#getalladapters) | 
 | (&nbsp;[LoadAdapter](#loadadapter)&nbsp;)(struct&nbsp;AudioAdapterManager&nbsp;\*manager,&nbsp;const&nbsp;struct&nbsp;[AudioAdapterDescriptor](_audio_adapter_descriptor.md)&nbsp;\*desc,&nbsp;struct&nbsp;[AudioAdapter](_audio_adapter.md)&nbsp;\*\*adapter) | 加载一个音频适配器（声卡）的驱动&nbsp;[更多...](#loadadapter) | 
 | (&nbsp;[UnloadAdapter](#unloadadapter)&nbsp;)(struct&nbsp;AudioAdapterManager&nbsp;\*manager,&nbsp;struct&nbsp;[AudioAdapter](_audio_adapter.md)&nbsp;\*adapter) | 卸载音频适配器（声卡）的驱动&nbsp;[更多...](#unloadadapter) | 
-| (&nbsp;[ReleaseAudioManagerObject](#releaseaudiomanagerobject)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001304382264.xml#xref1843940824083931,link:zh-cn_topic_0000001304382264.xml](zh-cn_topic_0000001304382264.xml)&nbsp;\*object) | 释放音频管理接口对象&nbsp;[更多...](#releaseaudiomanagerobject) | 
+| (&nbsp;[ReleaseAudioManagerObject](#releaseaudiomanagerobject)&nbsp;)(struct&nbsp;AudioManager&nbsp;\*object) | 释放音频管理接口对象&nbsp;[更多...](#releaseaudiomanagerobject) | 
 
 
 ## **详细描述**
