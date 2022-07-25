@@ -58,7 +58,7 @@ TimePicker(options?: TimePickerOptions)
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('08-00')
+  private selectedTime: Date = new Date('7/22/2022 8:00:00')
 
   build() {
     Column() {
