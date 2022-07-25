@@ -75,22 +75,38 @@
 
 - [`BringApp`：拉起系统应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/BringApp)
 
+- [`Chat`：聊天示例应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/AppSample/Chat)
+
+- [`Shopping`：购物示例应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/AppSample/Shopping)
+
+- [`Lottie`：Lottie（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Lottie)
+
 - [`Clock`：简单时钟（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Preset/Clock)
 
 - [`Flybird`：小鸟避障游戏（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/Flybird)
 
 - [`News`：新闻浏览（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/News)
 
-- [极简声明式UI范式（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
+- [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
 
-- [购物应用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
+- [`Game2048`：2048游戏（eTS）（API9）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/Game2048)
 
-- [转场动画的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)
+- [`TransitionAnimation`：转场动画(eTS)（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/TransitionAnimation)
 
-- [基础组件Slider的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)
+- [`PatternLock`：图案密码锁组件（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/PatternLock)
 
-- [弹窗（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
+- [`Search`：Search组件（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Search)
 
-- [一次开发多端部署（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)
+- [`QRCode`：二维码（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/QRCode)
+
+- [极简声明式UI范式（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
+
+- [购物应用（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
+
+- [转场动画的使用（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)
+
+- [基础组件Slider的使用（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)
+
+- [弹窗（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
 
 - [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/CustomComponent)
