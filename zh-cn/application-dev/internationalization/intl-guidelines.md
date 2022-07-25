@@ -327,3 +327,5 @@ Intl开发指导提供了ECMA 402中定义的国际化能力接口的使用方�
 针对Intl开发，有以下相关实例可供参考：
 
 -[`International`：国际化（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/International)
+
+-[`International`：国际化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/International)
