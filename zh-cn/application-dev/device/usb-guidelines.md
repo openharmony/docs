@@ -153,3 +153,6 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
+## 相关实例
+针对USB管理开发，有以下相关实例可供参考：
+- [`USBManager`：USB管理（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/device/USBManager)
