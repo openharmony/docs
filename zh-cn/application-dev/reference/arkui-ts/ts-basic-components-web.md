@@ -990,8 +990,8 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 **参数：**
   | 参数名 | 参数类型 | 参数描述                  |
   | ------ | -------- | ------------------------- |
-  | result | <a href="#fileselectorresultsup9sup">FileSelectorResult</a> |  用于通知Web组件文件选择的结果。 |
-  | fileSelector | <a href="#fileselectorparamsup9sup">FileSelectorParam</a> | 文件选择器的相关信息。 |
+  | result | [FileSelectorResult](#fileselectorresult9) |  用于通知Web组件文件选择的结果。 |
+  | fileSelector | [FileSelectorParam](#fileselectorparam9) | 文件选择器的相关信息。 |
 
   **示例：**
   ```ts
@@ -1136,7 +1136,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 **参数：**
   | 参数名 | 参数类型 | 参数描述                  |
   | ------ | -------- | ------------------------- |
-  | handler | [HttpAuthHandler](#httpauthhandlersup9sup) | 通知Web组件用户操作行为。 |
+  | handler | [HttpAuthHandler](#httpauthhandler9) | 通知Web组件用户操作行为。 |
   | host | string | HTTP身份验证凭据应用的主机。 |
   | realm | string | HTTP身份验证凭据应用的域。 |
 
@@ -1493,7 +1493,7 @@ setResponseCode(code: number)
 
 ## FileSelectorResult<sup>9+</sup>
 
-通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselectorsup9sup)。
+通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
 ### handleFileList<sup>9+</sup>
 
@@ -1508,7 +1508,7 @@ handleFileList(fileList: Array\<string\>): void
 
 ## FileSelectorParam<sup>9+</sup>
 
-web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselectorsup9sup)。
+web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
 ### getTitle<sup>9+</sup>
 
@@ -1556,7 +1556,7 @@ isCapture(): boolean
 
 ## HttpAuthHandler<sup>9+</sup>
 
-Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequestsup9sup)。
+Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequest9)。
 
 ### cancel<sup>9+</sup>
 
@@ -1859,7 +1859,7 @@ getHitTestValue(): HitTestValue
 **返回值：**
   | 类型 | 说明 |
   |----------|------|
-  | [HitTestValue](#hittestvaluesup9sup) | 点击区域的元素信息。 |
+  | [HitTestValue](#hittestvalue9) | 点击区域的元素信息。 |
 
 **示例：**
   ```ts
@@ -2462,7 +2462,7 @@ getCookieManager(): WebCookie
   ```
 
 ## HitTestValue<sup>9+</sup>
-提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvaluesup9sup)。
+提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue9)。
 
 ### getType<sup>9+</sup>
 getType(): HitTestType
@@ -2767,7 +2767,7 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
 **参数：**
   | 参数名 | 参数类型 | 必填 | 说明 |
   |---------|---------|-----|----|
-  | callback | AsyncCallback<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | 是 | 以数组方式返回源的信息，信息内容参考WebStorageOrigin。|
+  | callback | AsyncCallback<Array<[WebStorageOrigin](#webstorageorigin9)>> | 是 | 以数组方式返回源的信息，信息内容参考WebStorageOrigin。|
 
 **示例：**
   ```ts
@@ -2809,7 +2809,7 @@ static getOrigins() : Promise<Array<[WebStorageOrigin]>>
 **返回值：**
   | 类型 | 说明 |
   |------|------|
-  | Promise<Array<[WebStorageOrigin](#webstorageoriginsup9sup)>> | Promise实例，用于获取当前所有源的信息，信息内容参考WebStorageOrigin。 |
+  | Promise<Array<[WebStorageOrigin](#webstorageorigin9)>> | Promise实例，用于获取当前所有源的信息，信息内容参考WebStorageOrigin。 |
 
 **示例：**
   ```ts
