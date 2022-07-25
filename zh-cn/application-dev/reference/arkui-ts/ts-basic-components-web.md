@@ -355,7 +355,7 @@ databaseAccess(databaseAccess: boolean)
     controller:WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'https://webkit.org/demos/sticky-notes/index.html', controller:this.controller })
+        Web({ src:'www.example.com', controller:this.controller })
         .databaseAccess(true)
       }
     }
@@ -1155,7 +1155,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
     httpAuth:boolean = false;
     build() {
       Column() {
-        Web({ src:'http://httpbin.org/basic-auth/2222/2222', controller:this.controller })
+        Web({ src:'www.example.com', controller:this.controller })
         .onHttpAuthRequest((event) => {
           AlertDialog.show({
             title: 'title',
@@ -2080,7 +2080,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
           .onClick(() => {
             this.controller.loadUrl({ url: 'www.example.com' });
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -2516,7 +2516,7 @@ setCookie(url: string, value: string): boolean
       Column() {
         Button('setCookie')
           .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("http://www.baidu.com", "a=b");
+            let result = this.controller.getCookieManager().setCookie("www.example.com", "a=b");
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2720,7 +2720,7 @@ static deleteAllData(): void
           .onClick(() => {
             web.WebStorage.deleteAllData();
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
       }
     }
@@ -2752,7 +2752,7 @@ static deleteOrigin(origin : string): void
           .onClick(() => {
             web.WebStorage.deleteOrigin(this.origin);
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
       }
     }
@@ -2794,7 +2794,7 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
               }
             })
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
       }
     }
@@ -2836,7 +2836,7 @@ static getOrigins() : Promise<Array<[WebStorageOrigin]>>
                 console.log('error: ' + error);
               })
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .databaseAccess(true)
       }
     }
@@ -2875,7 +2875,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
               console.log('quota: ' + quota);
             })
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .databaseAccess(true)
       }
     }
@@ -2918,7 +2918,7 @@ static getOriginQuota(origin : string) : Promise<number>
                 console.log('error: ' + error);
               })
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .databaseAccess(true)
       }
     }
@@ -2957,7 +2957,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
               consloe.log('usage: ' + usage);
             })
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .databaseAccess(true)
       }
     }
@@ -3000,7 +3000,7 @@ static getOriginUsage(origin : string) : Promise<number>
                 console.log('error: ' + error);
               })
           })
-        Web({ src: 'https://webkit.org/demos/sticky-notes/index.html', controller: this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .databaseAccess(true)
       }
     }
