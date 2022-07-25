@@ -436,4 +436,7 @@ import stats from '@ohos.bundleState';
         }
     });
     ```
+## 相关实例
+针对设备使用信息统计，有以下相关实例可供参考：
+- [`DeviceUsageStatistics`：设备使用信息统计（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/device/DeviceUsageStatistics)
 
