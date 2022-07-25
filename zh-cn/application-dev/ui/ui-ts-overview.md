@@ -89,7 +89,7 @@
 
 - [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
 
-- [`Game2048`：2048游戏（eTS）（API9）](https://gitee.com/openharmony/app_samples/blob/master/ETSUI/Game2048)
+- [`Game2048`：2048游戏（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Game2048)
 
 - [`TransitionAnimation`：转场动画(eTS)（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/TransitionAnimation)
 
