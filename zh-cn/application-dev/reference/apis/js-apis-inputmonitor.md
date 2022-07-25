@@ -29,9 +29,9 @@ on(type: "touch", receiver: TouchEventReceiver): void
 
 此接口为系统接口。
 
-**需要权限：**ohos.permission.INPUT_MONITORING
+**需要权限：** ohos.permission.INPUT_MONITORING
 
-**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
 | 参数     | 类型                                      | 必填 | 说明                            |
@@ -84,9 +84,9 @@ off(type: "touch", receiver?: TouchEventReceiver): void
 
 此接口为系统接口。
 
-**需要权限：**ohos.permission.INPUT_MONITORING
+**需要权限：** ohos.permission.INPUT_MONITORING
 
-**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
 | 参数     | 类型                                      | 必填 | 说明                            |
@@ -106,9 +106,9 @@ off(type: "mouse", receiver?: Callback&lt;MouseEvent&gt;): void
 
 此接口为系统接口。
 
-**需要权限：**ohos.permission.INPUT_MONITORING
+**需要权限：** ohos.permission.INPUT_MONITORING
 
-**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
 
@@ -131,7 +131,7 @@ inputMonitor.off("mouse");
 
 此接口为系统接口。
 
-**系统能力：**SystemCapability.MultimodalInput.Input.InputMonitor
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
 
   **参数：**
 | 参数         | 类型                                       | 必填   | 说明                                       |
