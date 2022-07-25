@@ -284,3 +284,5 @@ let alarm : reminderAgent.ReminderRequestAlarm = {
 - [`AlarmClock`：后台代理提醒（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)
 
 - [`FlipClock`：翻页时钟（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/CompleteApps/FlipClock)
+
+- [闹钟应用（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)
