@@ -225,9 +225,9 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| descriptionOptions | [DescriptionOptions](#descriptionOptions) | 是    | 描述文件选项 |
-| callback | AsyncCallback\<Array\<[ComponentDescription](#componentDescription)>>) | 是    | 回调函数，返回新版本描述文件 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+| callback | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回新版本描述文件 |
 
 **示例：**
 
@@ -263,14 +263,14 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versionDigestInfo) | 是    | 版本摘要信息 |
-| descriptionOptions | [DescriptionOptions](#descriptionOptions) | 是    | 描述文件选项 |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
 
 **返回值：**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<Array\<[ComponentDescription](#componentDescription)>> | Promise对象，返回新版本描述文件 |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回新版本描述文件 |
 
 **示例：**
 
@@ -361,8 +361,8 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| descriptionOptions | [DescriptionOptions](#descriptionOptions) | 是    | 描述文件选项 |
-| callback | AsyncCallback\<Array\<[ComponentDescription](#componentDescription)>>) | 是    | 回调函数，返回当前版本描述文件 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+| callback | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回当前版本描述文件 |
 
 **示例：**
 
@@ -393,13 +393,13 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| descriptionOptions | [DescriptionOptions](#descriptionOptions) | 是    | 描述文件选项 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
 
 **返回值：**
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise\<Array\<[ComponentDescription](#componentDescription)>> | Promise对象，返回当前版本描述文件 |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回当前版本描述文件 |
 
 **示例：**
 
@@ -1396,7 +1396,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| format              | [DescriptionFormat](#descriptionFormat)   | 是    | 描述文件格式  |
+| format              | [DescriptionFormat](#descriptionformat)   | 是    | 描述文件格式  |
 | language              |  string  | 是    | 描述文件语言  |
 
 ## ComponentDescription
@@ -1408,7 +1408,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
 | componentId              |  string  | 是    | 描述文件标识  |
-| descriptionInfo              |  [DescriptionInfo](#descriptionInfo)  | 是    | 描述文件信息  |
+| descriptionInfo              |  [DescriptionInfo](#descriptioninfo)  | 是    | 描述文件信息  |
 
 ## DescriptionInfo
 
