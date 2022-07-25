@@ -43,4 +43,4 @@
 
 - [rating（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 
-- [简易视频播放器（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+- [简易视频播放器（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
