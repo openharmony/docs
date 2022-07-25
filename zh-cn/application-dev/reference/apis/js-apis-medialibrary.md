@@ -136,7 +136,7 @@ let imagesfetchOp = {
     selectionArgs: [imageType.toString()],
 };
 media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
-    console.info("getFileAssets successfully:"+ JSON.stringify(dir));
+    console.info("getFileAssets successfully: image number is "+ fetchFileResult.getCount());
 }).catch(function(err){
     console.info("getFileAssets failed with error:"+ err);
 });
@@ -900,7 +900,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -937,7 +937,7 @@ open(mode: string): Promise&lt;number&gt;
 
 **注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -977,7 +977,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1018,7 +1018,7 @@ close(fd: number): Promise&lt;void&gt;
 
 关闭当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1671,8 +1671,6 @@ async function example() {
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
 
-**需要权限**：ohos.permission.READ_MEDIA
-
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数**：
@@ -1708,8 +1706,6 @@ async function example() {
  getNextObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
-
-**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1846,8 +1842,6 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
 
-**需要权限**：ohos.permission.READ_MEDIA
-
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数**：
@@ -1889,8 +1883,6 @@ async function example() {
 getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 获取文件检索结果中的所有文件资产。此方法使用Callback回调来返回FileAsset结果集。
-
-**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2119,8 +2111,9 @@ async function example() {
 ## PeerInfo<sup>8+</sup>
 
 注册设备的信息。
+此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
 | 名称       | 类型                       | 可读 | 可写 | 说明             |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
@@ -2165,7 +2158,7 @@ async function example() {
 | TITLE         | title               | 文件标题                                                   |
 | ARTIST        | artist              | 作者                                                       |
 | AUDIOALBUM    | audio_album         | 专辑                                                       |
-| DURATION      | duration            | 持续时间（单位：秒）                                       |
+| DURATION      | duration            | 持续时间（单位：毫秒）                                       |
 | WIDTH         | width               | 图片宽度（单位：像素）                                     |
 | HEIGHT        | height              | 图片高度（单位：像素）                                     |
 | ORIENTATION   | orientation         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
@@ -2190,8 +2183,9 @@ async function example() {
 ## DeviceType<sup>8+</sup>
 
 枚举，设备类型。
+此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
 | 名称         |  说明       |
 | ------------ |  ---------- |
@@ -2221,6 +2215,7 @@ async function example() {
 ## Size<sup>8+</sup>
 
 图片尺寸。
+系统能力： 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称     | 类型     | 可读   | 可写   | 说明       |
 | ------ | ------ | ---- | ---- | -------- |
