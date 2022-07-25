@@ -75,6 +75,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 150px;
 }
 .rect{
   width: 200px;
@@ -90,7 +91,7 @@
   }
   /* 可以通过百分比指定动画运行的中间状态 */
   50% {    
-  background-color: \#f76160;    
+  background-color: #f76160;    
   transform:translate(100px) rotate(60deg) scale(1.3);  
   }  
   to {
