@@ -208,6 +208,6 @@ export default {
 
 针对Image开发，有以下相关实例可供参考：
 
-- [image、image-animator（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJsDemo)
+- [image、image-animator（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJsDemo)
 
-- [图片编辑模板](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+- [图片编辑模板（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)

@@ -374,4 +374,6 @@ struct FlexExample {
 
 针对弹性布局开发，有以下相关实例可供参考：
 
-- [弹性布局（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts)
+- [弹性布局（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts)
+
+- [ArkUI常用布局容器对齐方式（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/LayoutAlignmentDemo)
