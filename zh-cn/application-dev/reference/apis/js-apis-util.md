@@ -60,7 +60,7 @@ getErrorString(errno: number): string
 
 **示例：**
   ```js
-  var errnum = 10; // 10：a system error number
+  var errnum = 10; // 10 : a system error number
   var result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
