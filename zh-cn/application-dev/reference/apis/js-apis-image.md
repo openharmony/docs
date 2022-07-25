@@ -1449,11 +1449,9 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap(pixelmap => { 
-    console.log('Succeeded in creating pixelmap object.');
-}).catch(error => {
-    console.log('Failed to create pixelmap object.');
-})
+imageSourceApi.createPixelMap((err, pixelmap) => {
+                    console.info('Succeeded in creating pixelmap object.')；
+                })
 ```
 
 ### createPixelMap<sup>7+</sup>
