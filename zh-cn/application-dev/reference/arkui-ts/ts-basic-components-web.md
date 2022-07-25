@@ -182,7 +182,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
         return "AceString";
       },
       toString: () => {
-        console.log('LY111111 ets toString' + "interface instead.");
+        console.log('toString' + "interface instead.");
       }
     }
     build() {
