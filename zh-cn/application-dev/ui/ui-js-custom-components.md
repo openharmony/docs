@@ -105,4 +105,4 @@
 
 - [`JSUICustomComponent`：自定义组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JSUICustomComponent)
 
-- [自定义组件（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponet)
+- [自定义组件（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponet)
