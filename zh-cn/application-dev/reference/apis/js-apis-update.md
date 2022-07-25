@@ -1379,7 +1379,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| componentId              | number   | 是    | 升级包标识  |
+| componentId              | number   | 是    | 组件标识  |
 | componentType              | [ComponentType](#componentyype)   | 是    | 组件类型  |
 | upgradeAction              | [UpgradeAction](#upgradeaction)   | 是    | 升级方式  |
 | displayVersion              | string   | 是    | 显示版本号  |
@@ -1401,13 +1401,13 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 ## ComponentDescription
 
-升级包描述文件。
+组件描述文件。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
-| componentId              |  string  | 是    | 描述文件标识  |
+| componentId              |  string  | 是    | 组件标识  |
 | descriptionInfo              |  [DescriptionInfo](#descriptioninfo)  | 是    | 描述文件信息  |
 
 ## DescriptionInfo
@@ -1612,7 +1612,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 ## ComponentType
 
-升级包类型。
+组件类型。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
