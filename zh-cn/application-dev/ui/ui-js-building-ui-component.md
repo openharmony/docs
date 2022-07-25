@@ -41,6 +41,6 @@
 
 - [`JsVideo`：视频播放（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo)
 
-- [rating（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
+- [rating（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 
-- [简易视频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+- [简易视频播放器（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
