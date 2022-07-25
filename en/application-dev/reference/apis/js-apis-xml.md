@@ -146,7 +146,7 @@ thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
 thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy");
-endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/html4/">Happy</h:table>
+thatSer.endElement(); // => <h:table importance="high" xmlns:h="http://www.w3.org/TR/html4/">Happy</h:table>
 ```
 
 

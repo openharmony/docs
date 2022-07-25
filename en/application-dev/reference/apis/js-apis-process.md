@@ -92,7 +92,7 @@ This is a system API and cannot be called by third-party applications.
 ```js
 var child = process.runCmd('ls');
 var result = child.wait();
-child.getOutput.then(val=>{
+child.getOutput().then(val=>{
     console.log("child.getOutput = " + val);
 })
 ```
@@ -119,7 +119,7 @@ This is a system API and cannot be called by third-party applications.
 ```js
 var child = process.runCmd('madir test.text');
 var result = child.wait();
-child.getErrorOutput.then(val=>{
+child.getErrorOutput().then(val=>{
     console.log("child.getErrorOutput= " + val);
 })
 ```
@@ -286,7 +286,7 @@ Obtains the thread priority based on the specified TID.
 **Example**
 
 ```js
-var tid = process.getTid();
+var tid = process.tid;
 var pres = process.getThreadPriority(tid);
 ```
 
@@ -617,5 +617,5 @@ Sends a signal to the specified process to terminate it.
 
 ```js
 var pres = process.pid
-var result = that.kill(28, pres)
+var result = process.kill(28, pres)
 ```
