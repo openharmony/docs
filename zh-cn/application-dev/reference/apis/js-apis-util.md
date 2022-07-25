@@ -104,7 +104,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 > **说明：**<br/>
-> 从API Version 9开始废弃，建议使用[util.promiseWrapper9+](#utilpromisewrapper9)替代。
+> 从API Version 9开始废弃，建议使用[util.promisify9+](#utilpromisify9)替代。
 
 对异步函数处理并返回一个promise的版本。
 
@@ -131,9 +131,9 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
   })
   ```
 
-## util.promiseWrapper<sup>9+</sup>
+## util.promisify<sup>9+</sup>
 
-promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
+promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 对异步函数处理并返回一个promise的函数。
 
@@ -158,7 +158,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
       return str1
     }
   }
-  let newPromiseObj = util.promiseWrapper(aysnFun);
+  let newPromiseObj = util.promisify(aysnFun);
   newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
     console.log(res);
   })
