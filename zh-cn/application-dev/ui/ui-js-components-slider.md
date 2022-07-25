@@ -219,4 +219,4 @@ export default{
 
 - [`Slider`：滑动条（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Slider)
 
-- [slider（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
+- [slider（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
