@@ -101,5 +101,7 @@ try {
 }
 ```
 
-完整[示例工程](https://gitee.com/openharmony/windowmanager/tree/master/AppDemo/window/immersive)。
+## 相关实例
+针对窗口开发，有以下相关实例可供参考：
+- [`Window`：窗口（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Graphics/Window)
 
