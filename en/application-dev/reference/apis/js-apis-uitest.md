@@ -1,7 +1,16 @@
 # UiTest
 
->**NOTE**<br>The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The **UiTest** module provides APIs that you can use to simulate UI actions during testing, such as clicks, double-clicks, long-clicks, and swipes.
+
+This module provides the following functions:
+
+- [By](#by): provides UI component feature description APIs for component filtering and matching.
+- [UiComponent](#uicomponent): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+- [UiDriver](#uidriver): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
+
+>**NOTE**
 >
+>The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -12,14 +21,14 @@ import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
 
 ## By
 
-The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.<br>
+The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
 The API capabilities provided by the **By** class exhibit the following features: <br>1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [By.isBefore](#byisbefore) and [By.isAfter](#byisafter) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
 ```js
 BY.text('123').type('button')
 ```
 
-### By.text
+### text
 
 text(txt: string, pattern?: MatchPattern): By
 
@@ -128,11 +137,11 @@ let by = BY.type('button') // Use the static constructor BY to create a By objec
 ```
 
 
-### By.clickable
+### clickable
 
 clickable(b?: bool): By
 
-Specifies the clickable attribute of the target component.
+Specifies the clickable status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -151,7 +160,7 @@ Specifies the clickable attribute of the target component.
 **Example**
 
 ```js
-let by = BY.clickable(true) // Use the static constructor BY to create a By object and specify the clickable status attribute of the target component.
+let by = BY.clickable(true) // Use the static constructor BY to create a By object and specify the clickable status of the target component.
 ```
 
 
@@ -159,7 +168,7 @@ let by = BY.clickable(true) // Use the static constructor BY to create a By obje
 
 scrollable(b?: bool): By
 
-Specifies the scrollable status attribute of the target component.
+Specifies the scrollable status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -178,14 +187,14 @@ Specifies the scrollable status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.scrollable(true) // Use the static constructor BY to create a By object and specify the scrollable status attribute of the target component.
+let by = BY.scrollable(true) // Use the static constructor BY to create a By object and specify the scrollable status of the target component.
 ```
 
 ### By.enabled
 
 enabled(b?: bool): By
 
-Specifies the enabled status attribute of the target component.
+Specifies the enabled status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -204,14 +213,14 @@ Specifies the enabled status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the enabled status attribute of the target component.
+let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the enabled status of the target component.
 ```
 
 ### By.focused
 
 focused(b?: bool): By
 
-Specifies the focused status attribute of the target component.
+Specifies the focused status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -230,14 +239,14 @@ Specifies the focused status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.focused(true) // Use the static constructor BY to create a By object and specify the focused status attribute of the target component.
+let by = BY.focused(true) // Use the static constructor BY to create a By object and specify the focused status of the target component.
 ```
 
 ### By.selected
 
 selected(b?: bool): By
 
-Specifies the selected status attribute of the target component.
+Specifies the selected status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -256,7 +265,7 @@ Specifies the selected status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.selected(true) // Use the static constructor BY to create a By object and specify the selected status attribute of the target component.
+let by = BY.selected(true) // Use the static constructor BY to create a By object and specify the selected status of the target component.
 ```
 
 ### By.isBefore
@@ -315,6 +324,7 @@ let by = BY.isAfter(BY.text('123')) // Use the static constructor BY to create a
 
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
+
 
 ### UiComponent.click
 
@@ -639,7 +649,7 @@ async function demo() {
 
 ### UiComponent.scrollSearch
 
-scrollSearch(by: By): Promise\<UiComponent>
+scrollSearch(by:By): Promise\<UiComponent>
 
 Scrolls on this component to search for the target component (applicable to component that support scrolling, such as **\<List>**).
 
@@ -667,12 +677,14 @@ async function demo() {
 }
 ```
 
+
+
 ## UiDriver
 
-The **UiDriver** class is the main entry to the **uitest** test framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
+The **UiDriver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
 All APIs provided by this class, except for **UiDriver.create()**, use a promise to return the result and must be invoked using **await**.
 
-### UiDriver.create
+### create
 
 static create(): UiDriver
 
@@ -746,7 +758,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.findComponents
+### findComponents
 
 findComponents(by: By): Promise\<Array\<UiComponent>>
 
@@ -850,8 +862,8 @@ Clicks a specific point of this **UiDriver** object based on the given coordinat
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X-coordinate of the target point.|
+| y      | number | Yes  | Y-coordinate of the target point.|
 
 **Example**
 
@@ -874,8 +886,8 @@ Double-clicks a specific point of this **UiDriver** object based on the given co
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X-coordinate of the target point.|
+| y      | number | Yes  | Y-coordinate of the target point.|
 
 **Example**
 
@@ -886,7 +898,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.longClick
+### longClick
 
 longClick(x: number, y: number): Promise\<void>
 
@@ -898,8 +910,8 @@ Long-clicks a specific point of this **UiDriver** object based on the given coor
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X-coordinate of the target point.|
+| y      | number | Yes  | Y-coordinate of the target point.|
 
 **Example**
 
@@ -912,7 +924,7 @@ async function demo() {
 
 ### UiDriver.swipe
 
-swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void>
+swipe(startx: number, starty: number, endx: number, endy: number, speed: number): Promise\<void>
 
 Swipes on this **UiDriver** object from the start point to the end point based on the given coordinates.
 
@@ -920,12 +932,13 @@ Swipes on this **UiDriver** object from the start point to the end point based o
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| startx | number | Yes  | X coordinate of the start point.|
-| starty | number | Yes  | Y coordinate of the start point.|
-| endx   | number | Yes  | X coordinate of the end point.|
-| endy   | number | Yes  | Y coordinate of the end point.|
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| startx | number | Yes  | X-coordinate of the start point.  |
+| starty | number | Yes  | Y-coordinate of the start point.  |
+| endx   | number | Yes  | X-coordinate of the end point.  |
+| endy   | number | Yes  | Y-coordinate of the end point.  |
+| speed  | number | No  | Scroll speed, in pixels/s. The default value is **600**.|
 
 **Example**
 
@@ -965,6 +978,7 @@ async function demo() {
 }
 ```
 
+
 ## MatchPattern
 
 Enumerates the match patterns supported for component attributes.
@@ -977,5 +991,3 @@ Enumerates the match patterns supported for component attributes.
 | CONTAINS    | 1    | Containing the given value.  |
 | STARTS_WITH | 2    | Starting from the given value.|
 | ENDS_WITH   | 3    | Ending with the given value.|
-
-### 
