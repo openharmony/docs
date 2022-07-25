@@ -318,4 +318,4 @@ export default {
 
 针对Input开发，有以下相关实例可供参考：
 
-- [input、label（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)
+- [input、label（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)
