@@ -349,7 +349,7 @@ updater.getCurrentVersionInfo().then(info => {
 
 ###  getCurrentVersionDescription
 
-getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void;
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void
 
 获取当前版本描述文件。使用callback异步回调。
 
@@ -381,7 +381,7 @@ updater.getCurrentVersionDescription(descriptionOptions, (err, info) => {
 
 ### getCurrentVersionDescription
 
-getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>;
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>
 
 获取当前版本描述文件。使用Promise异步回调。
 
@@ -419,7 +419,7 @@ updater.getCurrentVersionDescription(descriptionOptions).then(info => {
 
 ###  getTaskInfo
 
-getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise<Array<ComponentDescription>>;
+getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 获取升级任务信息。使用callback异步回调。
 
