@@ -621,4 +621,4 @@ export default {
 
 - [`Chart`：图表组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
 
-- [chart（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)
+- [chart（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)
