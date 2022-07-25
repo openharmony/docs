@@ -10,7 +10,7 @@ Input是交互式组件，用于接收用户数据。其类型可设置为日期
 ```
 <!-- xxx.hml -->
 <div class="container">       
-  <input type="text">             Please enter the content  </input>
+  <input type="text">Please enter the content</input>
 </div>
 ```
 
@@ -212,9 +212,9 @@ import prompt from '@system.prompt'
    }, 
    buttonClick(e){ 
      if(this.value.length > 6){ 
-       this.$element("input").showError({        error:  'Up to 6 characters are allowed.'       }); 
+       this.$element("input").showError({error:  'Up to 6 characters are allowed.'}); 
       }else if(this.value.length == 0){ 
-        this.$element("input").showError({         error:this.value + 'This field cannot be left empty.'       }); 
+        this.$element("input").showError({error:this.value + 'This field cannot be left empty.'}); 
       }else{ 
         prompt.showToast({ 
           message: "success " 
@@ -318,4 +318,4 @@ export default {
 
 针对Input开发，有以下相关实例可供参考：
 
-- [input、label（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)
+- [input、label（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/InputApplication)
