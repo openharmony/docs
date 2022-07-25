@@ -188,7 +188,7 @@ UART模块适配HDF框架的三个环节是配置属性文件，实例化驱动�
       #define UART_STATE_NOT_OPENED 0
       #define UART_STATE_OPENING    1
       #define UART_STATE_USEABLE    2
-      #define UART_STATE_SUSPENED   3
+      #define UART_STATE_SUSPENDED  3
           uint32_t flags;                     // 状态标志
       #define UART_FLG_DMA_RX       (1 << 0)
       #define UART_FLG_DMA_TX       (1 << 1)
