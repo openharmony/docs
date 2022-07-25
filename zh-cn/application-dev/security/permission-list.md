@@ -132,4 +132,10 @@
 | ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | 允许不同设备之间进行组网处理。                                   |
 | ohos.permission.ACCESS_DLP_FILE                          | system_core  | system_grant | TRUE    | 允许对DLP文件进行权限配置和管理。                                |
 | ohos.permission.PROVISIONING_MESSAGE                     | system_core  | system_grant | TRUE    | 允许激活超级设备管理器应用。                                     |
-| ohos.permission.ACCESS_SYSTEM_SETTINGS                     | system_basic  | system_grant | TRUE    | 允许应用接入或拉起系统设置界面。                                     |
+| ohos.permission.ACCESS_SYSTEM_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用接入或拉起系统设置界面。                                     |
+| ohos.permission.READ_IMAGEVIDEO                          | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的图片或视频文件。                         |
+| ohos.permission.READ_AUDIO                               | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的音频文件。                               |
+| ohos.permission.READ_DOCUMENT                            | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的文档。                                   |
+| ohos.permission.WRITE_IMAGEVIDEO                         | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的图片或视频文件。                         |
+| ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的音频文件。                               |
+| ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的文档。                                   |
