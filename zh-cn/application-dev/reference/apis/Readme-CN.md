@@ -44,6 +44,13 @@
     - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
     - [@ohos.application.Want (Want)](js-apis-application-Want.md)
     - [@ohos.wantAgent (WantAgent模块)](js-apis-wantAgent.md)
+    - [@ohos.application.AccessibilityExtensionAbility (AccessibilityExtensionContext)](js-apis-accessibility-extension-context.md)
+    - [@ohos.application.abilityManager (AbilityManager)](js-apis-application-abilityManager.md)
+    - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](js-apis-application-AccessibilityExtensionAbility.md)
+    - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-EnvironmentCallback.md)
+    - [@ohos.continuation.continuationManager (ContinuationExtraParams)](js-apis-continuation-continuationExtraParams.md)
+    - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
+    - [@ohos.application.errorManager (ErrorManager)](js-apis-errorManager.md)
     - application/[abilityDelegator (AbilityDelegator)](js-apis-application-abilityDelegator.md)
     - application/[abilityDelegatorArgs (AbilityDelegatorArgs)](js-apis-application-abilityDelegatorArgs.md)
     - application/[abilityMonitor (AbilityMonitor)](js-apis-application-abilityMonitor.md)
@@ -52,6 +59,8 @@
     - application/[MissionSnapshot (MissionSnapshot)](js-apis-application-MissionSnapshot.md)
     - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
     - application/[shellCmdResult (ShellCmdResult)](js-apis-application-shellCmdResult.md)
+    - bundle/[DispatchInfo (DispatchInfo)](js-apis-dispatchInfo.md)
+    - continuation/[ContinuationResult (ContinuationResult)](js-apis-continuation-continuationResult.md)
 - 公共事件与通知
 
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
@@ -65,6 +74,8 @@
   - [@ohos.bundle.defaultAppManager (Bundle模块)](js-apis-bundle-defaultAppManager.md)
   - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
+  - [@ohos.distributedBundle (distributedBundle模块(JS端SDK接口))](js-apis-Bundle-distributedBundle.md)
+  - [@ohos.bundle.innerBundleManager (innerBundleManager模块(JS端SDK接口))](js-apis-Bundle-InnerBundleManager.md)
   - bundle/[AbilityInfo (AbilityInfo)](js-apis-bundle-AbilityInfo.md)
   - bundle/[ApplicationInfo (ApplicationInfo)](js-apis-bundle-ApplicationInfo.md)
   - bundle/[BundleInfo (BundleInfo)](js-apis-bundle-BundleInfo.md)
@@ -73,6 +84,12 @@
   - bundle/[HapModuleInfo (HapModuleInfo)](js-apis-bundle-HapModuleInfo.md)
   - bundle/[Metadata (Metadata)](js-apis-bundle-Metadata.md)
   - bundle/[ModuleInfo (ModuleInfo)](js-apis-bundle-ModuleInfo.md)
+  - bundle/[BundleInstaller (BundleInstaller)](js-apis-bundle-BundleInstaller.md)
+  - bundle/[ElementName (ElementName)](js-apis-bundle-ElementName.md)
+  - bundle/[LauncherAbilityInfo (LauncherAbilityInfo)](js-apis-bundle-LauncherAbilityInfo.md)
+  - bundle/[PermissionDef (PermissionDef)](js-apis-bundle-PermissionDef.md)
+  - bundle/[RemoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundle-remoteAbilityInfo.md)
+  - bundle/[ShortcutInfo (ShortcutInfo)](js-apis-bundle-ShortcutInfo.md)
 - UI界面
 
   - [@ohos.animator (动画)](js-apis-animator.md)
@@ -106,6 +123,7 @@
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
+  - [@ohos.distributedMissionManager (distributedMissionManager)](js-apis-distributedMissionManager.md)
 - 定制管理
 
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
