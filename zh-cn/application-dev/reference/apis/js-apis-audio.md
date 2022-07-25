@@ -617,7 +617,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 描述设备连接状态变化和设备信息。
 
-**系统能力：**SystemCapability.Multimedia.Audio.Device
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称              | 类型                                              | 必填 | 说明               |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
@@ -2243,7 +2243,7 @@ var streamManagerCB = audioManager.getStreamManager();
 streamManagerCB.isAudioRendererLowLatencySupported(AudioStreamInfo, (result) => {
     console.info('isAudioRendererLowLatencySupported success var = ' + result);
 });
-````
+```
 
 ### isAudioRendererLowLatencySupported<sup>9+</sup>
 
