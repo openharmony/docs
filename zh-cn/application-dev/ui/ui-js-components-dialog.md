@@ -327,4 +327,4 @@ export default {
 
 - [`JsDialog`：页面弹窗（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
 
-- [dialog（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)
+- [dialog（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)
