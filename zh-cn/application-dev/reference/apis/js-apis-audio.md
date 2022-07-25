@@ -3317,7 +3317,6 @@ on(type: "dataRequest", callback: Callback<AudioRendererDataInfo>): void;
 ```
 const path = '/data/storage/el2/ba  se/haps/entry/cache/PinkPanther60-44100-1c.wav';
     let ss = fileio.createStreamSync(path, 'r');
-
     let discardHeader = new ArrayBuffer(44);
     ss.readSync(discardHeader);
     let rlen = 0;
