@@ -1972,7 +1972,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-      for (var i=0; i < data.rotation.length; i++) {
+      for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
   })
@@ -2005,7 +2005,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
   const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise success');
-          for (var i=0; i < data.rotation.length; i++) {
+          for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
@@ -2172,7 +2172,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
                         err.message);
           return;
       }
-      for (var i=0; i < data.length; i++) {
+      for (var i=0; i < data.rotation.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }
   })
@@ -2206,7 +2206,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.length; i++) {
+          for (var i=0; i < data.rotation.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
