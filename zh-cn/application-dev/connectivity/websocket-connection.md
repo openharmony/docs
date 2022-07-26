@@ -83,3 +83,8 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
        }
    });
    ```
+
+## 相关实例
+
+针对WebSocket连接的开发，有以下相关实例可供参考：
+- [`WebSocket`：WebSocket（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Network/WebSocket)
