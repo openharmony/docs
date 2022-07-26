@@ -587,15 +587,3 @@ You can set multiple transform attributes at the same time to apply different tr
 > - When using the shorthand notion, note that the animation effect varies according to the sequence of the style values.
 > 
 > - The style values in the transform attribute used when the animation starts and ends must be in one-to-one mapping. Only the styles that have value mappings are played.
-## Samples
-
-The following samples are provided to help you better understand how to develop animations with the **transform** attribute: 
-
-- [`JsAnimation`: Animation App (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
-- [`JsAnimationStyle`: JS Animation and Custom Font Styles (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimationStyle)
-
-- [`Clock`: Clock (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
-
-- [Animation Styles (JavaScaript)](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
-
-- [Common Image Operations](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageJsDemo)

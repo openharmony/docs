@@ -302,7 +302,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_SCREENLOCK | number | 是 | 否 | 屏幕锁定键 |
 | KEYCODE_DIRECTION_ROTATE_DISPLAY | number | 是 | 否 | 方向旋转显示键 |
 | KEYCODE_CYCLEWINDOWS | number | 是 | 否 | Windows循环键 |
-| KEYCODE_COMPUTER | number | 是 | 否 | 计算机按键 |
+| KEYCODE_COMPUTER | number | 是 | 否 | 按键 |
 | KEYCODE_EJECTCLOSECD | number | 是 | 否 | 弹出CD键 |
 | KEYCODE_ISO | number | 是 | 否 | ISO键 |
 | KEYCODE_MOVE | number | 是 | 否 | 移动键 |
