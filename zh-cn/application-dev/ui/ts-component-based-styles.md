@@ -4,7 +4,7 @@
 
 @Styles装饰器将新的属性函数添加到基本组件上，如Text、Column、Button等。当前@Styles仅支持通用属性。通过@Styles装饰器可以快速定义并复用组件的自定义样式。
 
-@Styles可以定义在组件内或组件外，在组件外定义时需带上function关键字，组件内定义时不需要。
+@Styles可以定义在组件内或组件外，在组件外定义时需在方法前添加function关键字，组件内定义时不需要添加function关键字。
 
 
 ```
