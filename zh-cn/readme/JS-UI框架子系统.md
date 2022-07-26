@@ -114,7 +114,7 @@ JS UI开发框架源代码在/foundation/ace下，目录结构如下图所示：
 
 [arkui\_ace\_engine](https://gitee.com/openharmony/arkui_ace_engine)
 
-[arkui\\_ace\_engine\_lite](https://gitee.com/openharmony/arkui_ace_engine_lite)
+[arkui\_ace\_engine\_lite](https://gitee.com/openharmony/arkui_ace_engine_lite)
 
 [ace\_napi](https://gitee.com/openharmony/ace_napi)
 
