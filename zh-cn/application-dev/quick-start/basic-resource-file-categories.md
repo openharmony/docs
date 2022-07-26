@@ -75,7 +75,4 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 | --------- | ---------------------------------------- | ---------------------------------------- |
 | element   | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media     | 表示媒体资源，包括图片、音频、视频等非文本格式的文件。              | 文件名可自定义，例如：icon.png。                     |
-| animation | 表示动画资源，采用XML文件格式。                        | 文件名可自定义，例如：zoom_in.xml。                  |
-| layout    | 表示布局资源，采用XML文件格式。                        | 文件名可自定义，例如：home_layout.xml。              |
-| graphic   | 表示可绘制资源，采用XML文件格式。                       | 文件名可自定义，例如：notifications_dark.xml。       |
 | profile   | 表示其他类型文件，以原始文件形式保存。                      | 文件名可自定义。                                 |
