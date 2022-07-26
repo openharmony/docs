@@ -1,8 +1,10 @@
 # ErrorCode
 
+The **ErrorCode** module defines the error codes that can be used when the ability is started. 
+
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -12,7 +14,7 @@ import errorCode from '@ohos.ability.errorCode'
 
 ## ErrorCode
 
-Defines the error code used when the ability is started.
+Defines the error codes used when the ability is started.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
