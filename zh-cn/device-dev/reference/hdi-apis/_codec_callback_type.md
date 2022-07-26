@@ -16,9 +16,9 @@
   | Public&nbsp;属性 | 描述 | 
 | -------- | -------- |
 | [remote](_codec.md#remote) | 指向HdfRemoteService的指针。&nbsp;[更多...](_codec.md#remote) | 
-| (&nbsp;[EventHandler](_codec.md#eventhandler)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001304382300.xml#xref452479393083931,link:zh-cn_topic_0000001304382300.xml](zh-cn_topic_0000001304382300.xml)&nbsp;\*self,&nbsp;enum&nbsp;OMX_EVENTTYPE&nbsp;event,&nbsp;struct&nbsp;[EventInfo](_event_info.md)&nbsp;\*info) | 事件上报。&nbsp;[更多...](_codec.md#eventhandler) | 
-| (&nbsp;[EmptyBufferDone](_codec.md#emptybufferdone)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001304382300.xml#xref1077915705083931,link:zh-cn_topic_0000001304382300.xml](zh-cn_topic_0000001304382300.xml)&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;const&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | 上报输入buffer编码或者解码处理完毕。&nbsp;[更多...](_codec.md#emptybufferdone) | 
-| (&nbsp;[FillBufferDone](_codec.md#fillbufferdone)&nbsp;)(struct&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001304382300.xml#xref1123615867083931,link:zh-cn_topic_0000001304382300.xml](zh-cn_topic_0000001304382300.xml)&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | 上报输出buffer填充完毕。&nbsp;[更多...](_codec.md#fillbufferdone) | 
+| (&nbsp;[EventHandler](_codec.md#eventhandler)&nbsp;)(struct&nbsp;CodecCallbackType&nbsp;\*self,&nbsp;enum&nbsp;OMX_EVENTTYPE&nbsp;event,&nbsp;struct&nbsp;[EventInfo](_event_info.md)&nbsp;\*info) | 事件上报。&nbsp;[更多...](_codec.md#eventhandler) | 
+| (&nbsp;[EmptyBufferDone](_codec.md#emptybufferdone)&nbsp;)(struct&nbsp;CodecCallbackType&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;const&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | 上报输入buffer编码或者解码处理完毕。&nbsp;[更多...](_codec.md#emptybufferdone) | 
+| (&nbsp;[FillBufferDone](_codec.md#fillbufferdone)&nbsp;)(struct&nbsp;CodecCallbackType&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | 上报输出buffer填充完毕。&nbsp;[更多...](_codec.md#fillbufferdone) | 
 
 
 ## **详细描述**
