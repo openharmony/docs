@@ -24,8 +24,8 @@ RenderingContextSettings(antialias?: boolean)
 用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
 
 - 参数
-  | 参数名       | 参数类型 | 必填   | 默认值   | 参数描述             |
-  | --------- | ---- | ---- | ----- | ---------------- |
+  | 参数名       | 参数类型    | 必填   | 默认值   | 参数描述             |
+  | --------- | ------- | ---- | ----- | ---------------- |
   | antialias | boolean | 否    | false | 表明canvas是否开启抗锯齿。 |
 
 
@@ -1746,17 +1746,17 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number,
 进行图像绘制。
 
 - 参数
-  | 参数      | 类型                                       | 必填   | 默认值  | 描述                            |
-  | ------- | ---------------------------------------- | ---- | ---- | ----------------------------- |
-  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。 |
-  | sx      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。          |
-  | sy      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。          |
-  | sWidth  | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。                |
-  | sHeight | number                                   | 否    | 0    | 裁切源图像时需要裁切的高度。                |
-  | dx      | number                                   | 是    | 0    | 绘制区域左上角在x轴的位置。                |
-  | dy      | number                                   | 是    | 0    | 绘制区域左上角在y&nbsp;轴的位置。          |
-  | dWidth  | number                                   | 否    | 0    | 绘制区域的宽度。                      |
-  | dHeight | number                                   | 否    | 0    | 绘制区域的高度。                      |
+  | 参数      | 类型                                       | 必填   | 默认值  | 描述                                       |
+  | ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。            |
+  | sx      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。                     |
+  | sy      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。                     |
+  | sWidth  | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。                           |
+  | sHeight | number                                   | 否    | 0    | 裁切源图像时需要裁切的高度。                           |
+  | dx      | number                                   | 是    | 0    | 绘制区域左上角在x轴的位置。                           |
+  | dy      | number                                   | 是    | 0    | 绘制区域左上角在y&nbsp;轴的位置。                     |
+  | dWidth  | number                                   | 否    | 0    | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。 |
+  | dHeight | number                                   | 否    | 0    | 绘制区域的高度。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。 |
 
 
 - 示例

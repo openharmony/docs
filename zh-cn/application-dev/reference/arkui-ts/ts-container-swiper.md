@@ -35,7 +35,7 @@ Swiper(value:{controller?: SwiperController})
 | autoPlay                    | boolean                                  | false      | 子组件是否自动播放，自动播放状态下，导航点不可操作。               |
 | interval                    | number                                   | 3000       | 使用自动播放时播放的时间间隔，单位为毫秒。                    |
 | indicator                   | boolean                                  | true       | 是否启用导航点指示器。                              |
-| loop                        | boolean                                  | true       | 是否开启循环。                                  |
+| loop                        | boolean                                  | true       | 是否开启循环。<br>设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。 |
 | duration                    | number                                   | 400        | 子组件切换的动画时长，单位为毫秒。                        |
 | vertical                    | boolean                                  | false      | 是否为纵向滑动。                                 |
 | itemSpace                   | Length                                   | 0          | 设置子组件与子组件之间间隙。                           |
