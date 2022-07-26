@@ -40,16 +40,16 @@ var audioManager = audio.getAudioManager();
 
 getStreamManager(): AudioStreamManager
 
-获取 **AudioStreamManager** 接口.
+获取音频流管理器实例。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**返回值**
+**返回值：**
 | 类型                                             | 说明                             |
 | -------------------------------------------------| ------------------------------- |
-| [AudioStreamManager](#audiostreammanagersup9sup) | **AudioStreamManager** 实例。    |
+| [AudioStreamManager](#audiostreammanager9)       | 返回音频流管理器实例。            |
 
-**示例**
+**示例：**
 ```
 var audioStreamManager = audio.getStreamManager();
 ```
@@ -62,7 +62,7 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**参数**：
+**参数：**：
 
 | 参数名   | 类型                                            | 必填 | 说明             |
 | -------- | ----------------------------------------------- | ---- | ---------------- |
@@ -428,11 +428,11 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
 | STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | 通知铃声。 |
 
-## FocusType
+## FocusType<sup>9+</sup>
 
 表示焦点类型的枚举。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Core
+**系统能力：**: SystemCapability.Multimedia.Audio.Core
 
 | 名称                               | 默认值  | 描述                            |
 | ---------------------------------- | ------ | ------------------------------- |
@@ -659,7 +659,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 ## AudioRendererDataInfo<sup>9+</sup>
 
-描述渲染器数据信息。
+音频渲染器的数据信息。
 
 **系统能力**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -1893,23 +1893,23 @@ audioManager.getAudioScene().then((value) => {
 
 ## AudioStreamManager<sup>9+</sup>
 
-实现音频流管理。 在**AudioStreamManager**调用任何API之前, 必须使用[getStreamManager](#audiogetstreammanagersup9sup) 创建一个 **AudioStreamManager** 实例.
+管理音频流。在使用AudioStreamManager的API前，需要使用[getStreamManager](#audiogetstreammanager9)获取AudioStreamManager实例。
 
 ### getCurrentAudioRendererInfoArray<sup>9+</sup>
 
-getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeInfoArray&gt;): void;
+getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeInfoArray&gt;): void
 
-获取当前现有音频渲染器流的信息。此API使用异步回调返回结果。
+获取当前音频渲染器的信息。使用callback异步回调。
 
 **系统能力**: SystemCapability.Multimedia.Audio.Renderer
 
-**参数**
+**参数：**
 
 | 名称     | 类型                                 | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| callback | AsyncCallback<<a href="#audiorendererchangeinfoarray">AudioRendererChangeInfoArray</a>> | 是  |  Callback用于返回当前现有音频渲染器的信息。 |
+| callback | AsyncCallback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | 是     |  回调函数，返回当前音频渲染器的信息。 |
 
-**示例**
+**示例：**
 ```
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
     console.info('[GET_RENDERER_STATE_1_CALLBACK] **** Get Callback Called ****');
@@ -1947,19 +1947,19 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererCha
 
 ### getCurrentAudioRendererInfoArray<sup>9+</sup>
 
-getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;;
+getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 
-获取当前现有音频渲染器的信息。此API使用Promise返回结果。
+获取当前音频渲染器的信息。使用Promise异步回调。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**返回值**
+**返回值：**
 
 | 类型                                                                              | 说明                                    |
 | ---------------------------------------------------------------------------------| --------------------------------------- |
-| Promise<<a href="#audiorendererchangeinfoarry">AudioRendererChangeInfoArray</a>> | Promise用于返回当前现有音频渲染器的信息。  |
+| Promise<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)>          | Promise对象，返回当前音频渲染器信息。      |
 
-**示例**
+**示例：**
 ```
 await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
     console.info('[GET_RENDERER_STATE_3_PROMISE] ######### Get Promise is called ##########');
@@ -1994,19 +1994,19 @@ await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (Audi
 
 ### getCurrentAudioCapturerInfoArray<sup>9+</sup>
 
-getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeInfoArray&gt;): void;
+getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeInfoArray&gt;): void
 
-获取当前现有音频捕捉器的信息。此API使用异步回调返回结果。
+获取当前音频采集器的信息。使用callback异步回调。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**参数**
+**参数：**
 
 | 名称       | 类型                                 | 必填      | 说明                                                      |
 | ---------- | ----------------------------------- | --------- | -------------------------------------------------------- |
-| callback   | AsyncCallback<<a href="#audiocapturerchangeinfoarray">AudioCapturerChangeInfoArray</a>> | 是   | Callback用于返回当前现有音频捕获器流的信息。 |
+| callback   | AsyncCallback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是    | 回调函数，返回当前音频采集器的信息。 |
 
-**示例**
+**示例：**
 ```
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
     console.info('[GET_CAPTURER_STATE_1_CALLBACK] **** Get Callback Called ****');
@@ -2042,19 +2042,19 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerCha
 
 ### getCurrentAudioCapturerInfoArray<sup>9+</sup>
 
-getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;;
+getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
-获取当前现有音频捕捉器的信息。此API使用Promise返回结果。
+获取当前音频采集器的信息。使用Promise异步回调。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**返回值**
+**返回值：**
 
-| 类型                                                                              | 说明                                 |
-| ----------------------------------------------------------------------------------| ----------------------------------- |
-| Promise<<a href="#audiocapturerchangeinfoarray">AudioCapturerChangeInfoArray</a>> | Promise用于返回当前现有音频捕获器的信息。|
+| 类型                                                                         | 说明                                 |
+| -----------------------------------------------------------------------------| ----------------------------------- |
+| Promise<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)>      | Promise对象，返回当前音频渲染器信息。  |
 
-**示例**
+**示例：**
 ```
 await audioStreamManagerCB.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
     console.info('AFCapturerChangeLog: [GET_CAP_STA_1_PR] **** Get Promise Called ****');
@@ -2087,22 +2087,20 @@ await audioStreamManagerCB.getCurrentAudioCapturerInfoArray().then( function (Au
 
 ### on('audioRendererChange')<sup>9+</sup>
 
-on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void;
+on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
 监听音频渲染器更改事件。
 
-当音频渲染器发生任何更改时，注册的客户端将收到回调。
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**System capability**: SystemCapability.Multimedia.Audio.Renderer
+**参数：**
 
-**参数**
+| 名称     | 类型        | 必填      | 说明                                                                     |
+| -------- | ---------- | --------- | ------------------------------------------------------------------------ |
+| type     | string     | 是        | 事件类型，支持的事件`'audioRendererChange'`：当音频渲染器发生更改时触发。     |
+| callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarry9)> | 是  |  回调函数。        |
 
-| 名称     | 类型        | 必填      | 说明                                                                              |
-| -------- | ---------- | --------- | -------------------------------------------------------------------------------- |
-| type     | string     | 是        | 要侦听的事件的类型。仅支持AudioRenderChange事件。|
-| callback | Callback<<a href="#audiorendererchangeinfoarry">AudioRendererChangeInfoArray</a>> | 是  |  渲染器流更改调用回调。|
-
-**示例**
+**示例：**
 ```
 audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
     for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
@@ -2134,17 +2132,17 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
 
 off(type: "audioRendererChange");
 
-取消订阅音频渲染器更改事件。
+监听音频渲染器更改事件。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**参数**
+**参数：**
 
 | 名称     | 类型     | 必填 | 说明              |
 | -------- | ------- | ---- | ---------------- |
-| type     | string  | 是   | 关闭渲染器的监听。 |
+| type     | string  | 是   | 事件类型，支持的事件`'audioRendererChange'`：音频渲染器更改事件。 |
 
-**示例**
+**示例：**
 ```
 audioStreamManagerCB.off('audioRendererChange');
 console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called #########');
@@ -2152,22 +2150,22 @@ console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called ##
 
 ### on('audioCapturerChange')<sup>9+</sup>
 
-on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void;
+on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
 监听音频捕获器更改事件。
 
 当音频捕获器发生任何更改时，注册的客户端将收到回调。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Capturer
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-**参数**
+**参数：**
 
 | 名称     | 类型     | 必填      | 说明                                                                                           |
-| -------- | ------- | --------- | --------------------------------------------------------------------------------------------- |
-| type     | string  | 是        | 要侦听的事件的类型。仅支持audioCapturerChange事件。                                              |
-| callback | Callback<<a href="#audiocapturerchangeinfoarry">AudioCapturerChangeInfoArray</a>> | 是  | 捕捉器流状态更改调用的回调。 |
+| -------- | ------- | --------- | ------------------------------------------------------------------- ---- |
+| type     | string  | 是        | 事件类型，支持的事件`'audioCapturerChange'`：当音频采集器发生更改时触发。     |
+| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarry9)> | 是     | 回调函数。   |
 
-**示例**
+**示例：**
 ```
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
     for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
@@ -2196,17 +2194,17 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 off(type: "audioCapturerChange");
 
-取消订阅音频捕获器更改事件。
+监听音频捕获器更改事件。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Capturer
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-**参数**
+**参数：**
 
-| 名称      | 类型     | 必填 | 说明                         |
-| -------- | -------- | --- | ---------------------------- |
-| type     | string   |是   | 关闭捕捉器的监听。             |
+| 名称      | 类型     | 必填 | 说明                                                          |
+| -------- | -------- | --- | ------------------------------------------------------------- |
+| type     | string   |是   | 事件类型，支持的事件`'audioCapturerChange'`：音频采集器更改事件。 |
 
-**示例**
+**示例：**
 ```
 audioStreamManager.off('audioCapturerChange');
 console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is called #########');
@@ -2215,20 +2213,21 @@ console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is cal
 
 ### isAudioRendererLowLatencySupported<sup>9+</sup>
 
-isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo, callback: Callback&lt;boolean&gt;): void;;
+isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo, callback: Callback&lt;boolean&gt;): void;
 
-检查系统是否支持音频渲染器中的低延迟配置。
+检查系统是否支持音频渲染器中的低延迟配置。使用callback异步回调。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**参数**
+**参数：**
 
 | 名称       |  类型                   | 必填      | 说明                                    |
 | ---------- | ----------------------- | -------- | --------------------------------------- |
-| streaminfo | AudioStreamInfo         |  是      | 音频渲染器流信息。                        |
-| callback   | Callback&lt;boolean&gt; |  是      | callback用于返回当前现有音频渲染器的信息。 |
+| streaminfo | [AudioStreamInfo](#audiostreaminfo8)         |  是      | 音频渲染器流信息。  |
+| callback   | Callback&lt;boolean&gt; |  是      | 返回系统是否支持音频渲染器中的低延迟配置。 |
 
-**示例**
+**示例：**
+
 ```
 var audioManager = audio.getAudioManager();
 
@@ -2247,19 +2246,26 @@ streamManagerCB.isAudioRendererLowLatencySupported(AudioStreamInfo, (result) => 
 
 ### isAudioRendererLowLatencySupported<sup>9+</sup>
 
-isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo): Promise&lt;boolean&gt;;
+isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo): Promise&lt;boolean&gt;
 
 检查系统是否支持音频渲染器中的低延迟配置。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**参数**
+**参数：**
 
-| 类型                                                  | 必填    | 说明                                 |
-| ----------------------------------------------------- | -------| ------------------------------------ |
-| (streaminfo: AudioStreamInfo): Promise&lt;boolean&gt; | 是     | Promise用于返回当前现有音频渲染器的信息。|
+| 参数名     | 类型                                  | 必填 | 说明         |
+| ---------- | ------------------------------------ | ---- | ------------|
+| streaminfo | [AudioStreamInfo](#audiostreaminfo8) | 是   | 数据流信息   |
 
-**示例**
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ------------------- | ---------------------------------------------------- |
+| Promise&lt;void&gt; | Promise方式异步返回系统是否支持音频渲染器中的低延迟配置。 |
+
+**示例：**
+
 ```
 var audioManager = audio.getAudioManager();
 
@@ -2275,6 +2281,130 @@ var result = streamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
 console.info('isAudioRendererLowLatencySupported success var =' + result);
 ```
 
+## AudioRendererChangeInfo<sup>9+</sup>
+
+描述音频渲染器更改信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Renderer
+
+| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
+| streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
+| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。 |
+| rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
+| rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。                     |
+
+**示例：**
+
+```
+import audio from '@ohos.multimedia.audio';
+
+var audioStreamManager;
+var audioStreamManagerCB;
+
+await audioManager.getStreamManager().then(async function (data) {
+    audioStreamManager = data;
+    console.info(Tag+'Get AudioStream Manager : Success ');
+}).catch((err) => {
+    console.info(Tag+'Get AudioStream Manager : ERROR : '+err.message);
+});
+
+audioManager.getStreamManager((err, data) => {
+    if (err) {
+        console.error(Tag+'Get AudioStream Manager : ERROR : '+err.message);
+    }
+    else {
+        audioStreamManagerCB = data;
+        console.info(Tag+'Get AudioStream Manager : Success ');
+    }
+        });
+
+audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+    for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
+        console.info(Tag+'## RendererChange on is called for '+i+' ##');
+        console.info(Tag+'StreamId for '+i+' is:'+AudioRendererChangeInfoArray[i].streamId);
+        console.info(Tag+'ClientUid for '+i+' is:'+AudioRendererChangeInfoArray[i].clientUid);
+        console.info(Tag+'Content for '+i+' is:'+AudioRendererChangeInfoArray[i].rendererInfo.content);
+        console.info(Tag+'Stream for '+i+' is:'+AudioRendererChangeInfoArray[i].rendererInfo.usage);
+        console.info(Tag+'Flag '+i+' is:'+AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags);
+        console.info(Tag+'State for '+i+' is:'+AudioRendererChangeInfoArray[i].rendererState);
+		var devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
+		for (let j=0;j<AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
+			console.info(Tag+'Id:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].id);
+			console.info(Tag+'Type:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceType);
+			console.info(Tag+'Role:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+			console.info(Tag+'Name:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].name);
+			console.info(Tag+'Addr:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].address);
+			console.info(Tag+'SR:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+			console.info(Tag+'C'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+			console.info(Tag+'CM:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+		}
+        if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
+            resultFlag = true;
+            console.info(Tag+'[RENDERER-CHANGE-ON-001] ResultFlag for '+i+' is:'+resultFlag);
+        }
+    }
+});
+```
+
+## AudioRendererChangeInfoArray<sup>9+</sup>
+
+AudioRenderChangeInfo数组，只读。
+
+**系统能力：**: SystemCapability.Multimedia.Audio.Renderer
+
+## AudioCapturerChangeInfo<sup>9+</sup>
+
+描述音频捕获器更改信息。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
+
+| 名称               | 类型                                       | 可读 | 可写 | 说明                          |
+| -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
+| streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
+| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。 |
+| capturerInfo       | [AudioCapturerInfo](#audiocaptureinfo8)   | 是   | 否   | 音频渲染器信息。               |
+| capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。                     |
+
+**示例：**
+
+```
+import audio from '@ohos.multimedia.audio';
+
+const audioManager = audio.getAudioManager();
+audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
+    for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
+        console.info(Tag+' ## CapChange on is called for element '+i+' ##');
+		console.info(Tag+'StrId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
+		console.info(Tag+'CUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
+		console.info(Tag+'Src for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
+		console.info(Tag+'Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+		console.info(Tag+'State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);
+		var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
+		for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+			console.info(Tag+'Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+			console.info(Tag+'Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+			console.info(Tag+'Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+			console.info(Tag+'Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
+			console.info(Tag+'Addr:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+			console.info(Tag+'SR:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+			console.info(Tag+'C'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+			console.info(Tag+'CM:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+		}
+        if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
+            resultFlag = true;
+            console.info(Tag+'[CAPTURER-CHANGE-ON-001] ResultFlag for element '+i +' is: '+ resultFlag);
+        }
+    }
+});
+```
+
+## AudioCapturerChangeInfoArray<sup>9+</sup>
+
+AudioCapturerChangeInfo数组，只读。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
 ## AudioDeviceDescriptor
 
 描述音频设备。
@@ -2282,15 +2412,15 @@ console.info('isAudioRendererLowLatencySupported success var =' + result);
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
 | 名称                        | 类型                       | 可读 | 可写 | 说明       |
-| -------------------------- | ------------------------- | ---- | ---- | ---------- |
-| deviceRole                 | [DeviceRole](#devicerole) | 是   | 否   | 设备角色。 |
-| deviceType                 | [DeviceType](#devicetype) | 是   | 否   | 设备类型。 |
-| id<sup>9+</sup>            | number                    | 是   | 否   | 设备id。  |
-| name<sup>9+</sup>          | string                    | 是   | 否   | 设备名称。 |
-| address<sup>9+</sup>       | string                    | 是   | 否   | 设备地址。 |
-| sampleRates<sup>9+</sup>   | Array&lt;number&gt;       | 是   | 否   | 支持的采样率。 |
-| channelCounts<sup>9+</sup> | Array&lt;number&gt;       | 是   | 否   | 支持的通道数。 |
-| channelMasks<sup>9+</sup>  | Array&lt;number&gt;       | 是   | 否   | 支持的通道掩码。 |
+| -------------------------- | -------------------------- | ---- | ---- | ---------- |
+| deviceRole                 | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 |
+| deviceType                 | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 |
+| id<sup>9+</sup>            | number                     | 是   | 否   | 设备id。  |
+| name<sup>9+</sup>          | string                     | 是   | 否   | 设备名称。 |
+| address<sup>9+</sup>       | string                     | 是   | 否   | 设备地址。 |
+| sampleRates<sup>9+</sup>   | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
+| channelCounts<sup>9+</sup> | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 |
+| channelMasks<sup>9+</sup>  | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 |
 
 ## AudioDeviceDescriptors
 
@@ -2346,7 +2476,7 @@ getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 
 获取当前被创建的音频渲染器的信息，使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2371,7 +2501,7 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 
 获取当前被创建的音频渲染器的信息，使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2400,7 +2530,7 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
 获取音频流信息，使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2426,7 +2556,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 
 获取音频流信息，使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2454,7 +2584,7 @@ start(callback: AsyncCallback<void\>): void
 
 启动音频渲染器。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2480,7 +2610,7 @@ start(): Promise<void\>
 
 启动音频渲染器。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2504,7 +2634,7 @@ pause(callback: AsyncCallback\<void>): void
 
 暂停渲染。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2530,7 +2660,7 @@ pause(): Promise\<void>
 
 暂停渲染。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2554,7 +2684,7 @@ drain(callback: AsyncCallback\<void>): void
 
 检查缓冲区是否已被耗尽。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2580,7 +2710,7 @@ drain(): Promise\<void>
 
 检查缓冲区是否已被耗尽。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2604,7 +2734,7 @@ stop(callback: AsyncCallback\<void>): void
 
 停止渲染。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2630,7 +2760,7 @@ stop(): Promise\<void>
 
 停止渲染。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2654,7 +2784,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放音频渲染器。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2680,7 +2810,7 @@ release(): Promise\<void>
 
 释放渲染器。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2704,7 +2834,7 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 
 写入缓冲区。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2773,7 +2903,7 @@ write(buffer: ArrayBuffer): Promise\<number>
 
 写入缓冲区。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2843,7 +2973,7 @@ getAudioTime(callback: AsyncCallback\<number>): void
 
 获取时间戳（从 1970 年 1 月 1 日开始）。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2865,7 +2995,7 @@ getAudioTime(): Promise\<number>
 
 获取时间戳（从 1970 年 1 月 1 日开始）。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2889,7 +3019,7 @@ getBufferSize(callback: AsyncCallback\<number>): void
 
 获取音频渲染器的最小缓冲区大小。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2913,7 +3043,7 @@ getBufferSize(): Promise\<number>
 
 获取音频渲染器的最小缓冲区大小。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -2966,7 +3096,7 @@ setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 
 设置音频渲染速率。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -2993,7 +3123,7 @@ setRenderRate(rate: AudioRendererRate): Promise\<void>
 
 设置音频渲染速率。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -3023,7 +3153,7 @@ getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
 获取当前渲染速率。使用callback方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -3045,7 +3175,7 @@ getRenderRate(): Promise\<AudioRendererRate>
 
 获取当前渲染速率。使用Promise方式异步返回结果。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **返回值：**
 
@@ -3072,9 +3202,9 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型                                | 必填 | 说明                                                     |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。                                             |
+| 参数名     | 类型                                | 必填   | 说明        |
+| ---------- | ---------------------------------- | ------ | ---------- |
+| mode       | [InterruptMode](#InterruptMode)    | 是     | 焦点模型。  |
 
 **返回值：**
 
@@ -3100,10 +3230,10 @@ setInterruptMode(mode: InterruptMode, callback: Callback\<void>): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                                                     |
-| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-|interruptMode | [InterruptMode](#InterruptMode) | 是   | 焦点模型。|
-|callback | Callback\<void>  | 是  |回调返回执行结果。|
+| 参数名   | 类型                                | 必填   | 说明            |
+| ------- | ----------------------------------- | ------ | -------------- |
+|mode     | [InterruptMode](#InterruptMode)     | 是     | 焦点模型。|
+|callback | Callback\<void>                     | 是     |回调返回执行结果。|
 
 **示例：**
 
@@ -3119,7 +3249,7 @@ on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
@@ -3304,16 +3434,16 @@ on(type: "dataRequest", callback: Callback<AudioRendererDataInfo>): void;
 
 订阅音频数据requeset事件回调。
 
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**参数**
+**参数：**
 
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | --------- | ------------------------------------------------------------------- |
 | type     | string  | 是       | 事件类型。值**dataRequest**表示数据请求事件。 |
-| callback | [AudioRendererDataInfo](#audiorendererdatainfosup9sup) | 是  | 需要音频数据时调用回调。|
+| callback | [AudioRendererDataInfo](#audiorendererdatainfo9) | 是  | 需要音频数据时调用回调。|
 
-**示例**
+**示例：**
 ```
 const path = '/data/storage/el2/ba  se/haps/entry/cache/PinkPanther60-44100-1c.wav';
     let ss = fileio.createStreamSync(path, 'r');
@@ -3326,12 +3456,6 @@ const path = '/data/storage/el2/ba  se/haps/entry/cache/PinkPanther60-44100-1c.w
         console.info('AudioRenderLog: bytes read from file: ' + rlen);
     })
 ```
-
-## AudioRendererChangeInfoArray<sup>9+</sup><a name="audiorendererchangeinfoarray"></a>
-
-AudioRenderChangeInfo数组，只读。
-
-**系统能力**: SystemCapability.Multimedia.Audio.Renderer
 
 ## AudioCapturer<sup>8+</sup>
 
@@ -3477,7 +3601,7 @@ start(callback: AsyncCallback<void\>): void
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-**参数**
+**参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | :------- | :------------------- | :--- | :----------------------------- |
@@ -3667,7 +3791,7 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
-**参数**
+**参数：**
 
 | 参数名         | 类型                        | 必填 | 说明                             |
 | :------------- | :-------------------------- | :--- | :------------------------------- |
@@ -3957,9 +4081,3 @@ audioCapturer.on('stateChange', (state) => {
     }
 });
 ```
-
-## AudioCapturerChangeInfoArray<sup>9+</sup><a name="audiocapturerchangeinfoarray"></a>
-
-AudioCapturerChangeInfo数组，只读。
-
-**系统能力**: SystemCapability.Multimedia.Audio.Capturer
