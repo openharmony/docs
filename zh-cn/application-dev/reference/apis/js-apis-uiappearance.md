@@ -64,6 +64,12 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | 是 | 指定系统深色模式配置 |
 
+**返回值：**
+
+| 类型   | 说明                           |
+| ------ | ------------------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。|
+
 **示例：** 
   ```ts
 uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
