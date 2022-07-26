@@ -616,8 +616,3 @@ export default {
 ```
 
 ![en-us_image_0000001232162328](figures/en-us_image_0000001232162328.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;chart&gt;** component:
-
-[`Chart`: chart (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/chart)
