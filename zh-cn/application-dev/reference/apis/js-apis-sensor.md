@@ -1,7 +1,5 @@
 # 传感器
 
-## 模块说明
-
 sensor模块提供订阅传感器数据基本能力，包括订阅、取消订阅传感器数据，获取传感器列表，以及通用的传感器算法接口如通过气压值计算海拔高度、通过旋转矩阵计算设备方向等。
 
 传感器是指用于侦测环境中所发生事件或变化，并将此消息发送至其他电子设备（如中央处理器）的设备，通常由敏感组件和转换组件组成。传感器是实现物联网智能化的重要基石，为实现全场景智慧化战略，支撑“1+8+N”产品需求，需要构筑统一的传感器管理框架，达到为各产品/业务提供低时延、低功耗的感知数据的目的。根据用途可分为以下六大类：
@@ -60,7 +58,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，推荐使用sensor.on.LINEAR_ACCELEROMETER
+从API Version9开始该接口不再维护，推荐使用sensor.on.LINEAR_ACCELEROMETER<sup>9+</sup>
 
 **需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
 
@@ -536,7 +534,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用sensor.on.HEART_BEAT_RATE
+从API Version9开始该接口不再维护，推荐使用sensor.on.HEART_BEAT_RATE<sup>9+</sup>
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
@@ -671,7 +669,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 监听线性加速度传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用sensor.once.LINEAR_ACCELEROMETER
+从API Version9开始该接口不再维护，推荐使用sensor.once.LINEAR_ACCELEROMETER<sup>9+</sup>
 
 **需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
 
@@ -1135,7 +1133,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用sensor.once.HEART_BEAT_RATE
+从API Version9开始该接口不再维护，推荐使用sensor.once.HEART_BEAT_RATE<sup>9+</sup>
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
@@ -1446,7 +1444,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，推荐使用sensor.off.HEART_BEAT_RATE
+从API Version9开始该接口不再维护，推荐使用sensor.off.HEART_BEAT_RATE<sup>9+</sup>
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA
 
@@ -1524,7 +1522,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，推荐使用sensor.off.LINEAR_ACCELEROMETER
+从API Version9开始该接口不再维护，推荐使用sensor.off.LINEAR_ACCELEROMETER<sup>9+</sup>
 
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
