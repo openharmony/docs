@@ -105,7 +105,7 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 > **Introduce**<br/>
-> Starting from API version 9, it is recommended to use [util.promisewrapper9 +] (\utilpromisewrapper9) instead.
+> Deprecated starting from API version 9, it is recommended to use [util.promisify9 +] (\utilpromisify9) instead.
 
 Processes an asynchronous function and returns a promise version.
 
@@ -132,9 +132,9 @@ Processes an asynchronous function and returns a promise version.
   })
   ```
 
-## util.promiseWrapper<sup>9+</sup>
+## util.promisify<sup>9+</sup>
 
-promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
+promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 Processes an asynchronous function and returns a promise function.
 
@@ -159,7 +159,7 @@ Processes an asynchronous function and returns a promise function.
       return str1
     }
   }
-  let newPromiseObj = util.promiseWrapper(aysnFun);
+  let newPromiseObj = util.promisify(aysnFun);
   newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
     console.log(res);
   })
