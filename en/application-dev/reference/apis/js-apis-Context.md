@@ -1,19 +1,16 @@
 # Context
 
+The **Context** module provides context for abilities or applications. It allows access to application-specific resources, as well as permission requests and verification.
+
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.  
+>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
 > The APIs of this module can be used only in the FA model.
-
-## Modules to Import
-
-```js
-import featureAbility from '@ohos.ability.featureAbility'
-```
 
 ## Usage
 
-The **Context** object is created in a **featureAbility** and returned through its **getContext()** API. Therefore, you must import the **@ohos.ability.featureAbility** package before using the Context module. An example is as follows:
+The **Context** object is created in a **featureAbility** and returned through its **getContext()** API. Therefore, you must import the **@ohos.ability.featureAbility** package before using the **Context** module. An example is as follows:
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
@@ -91,7 +88,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 | ---------- | --------------------------------------- | ---- | ------------------------------------- |
 | permission | string                                  | Yes  | Name of the permission to verify.                     |
 | options    | [PermissionOptions](#permissionoptions) | Yes  | Permission options.                           |
-| callback   | AsyncCallback\<number>                  | Yes  | Callback used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
+| callback   | AsyncCallback\<number>                  | Yes  | Callback used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite.|
 
 **Example**
 
@@ -119,7 +116,7 @@ Verifies whether the current PID and UID have the given permission. This API use
 | Name      | Type                  | Mandatory| Description                                 |
 | ---------- | ---------------------- | ---- | ------------------------------------- |
 | permission | string                 | Yes  | Name of the permission to verify.                     |
-| callback   | AsyncCallback\<number> | Yes  | Callback used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
+| callback   | AsyncCallback\<number> | Yes  | Callback used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite.|
 
 **Example**
 
@@ -148,7 +145,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 
 | Type            | Description                                                       |
 | ---------------- | ----------------------------------------------------------- |
-| Promise\<number> | Promise used to return the permission verification result. The value **0** indicates that the PID and UID have the given permission, and the value **-1** indicates that the PID and UID do not have the given permission.|
+| Promise\<number> | Promise used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite.|
 
 **Example**
 
@@ -255,7 +252,7 @@ context.getApplicationInfo().then((data) => {
 
 getBundleName(callback: AsyncCallback\<string>): void
 
-Obtains the bundle name of the current ability. This API uses an asynchronous callback to return the result.
+Obtains the bundle name of this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -279,7 +276,7 @@ context.getBundleName()
 
 getBundleName(): Promise\<string>
 
-Obtains the bundle name of the current ability. This API uses a promise to return the result.
+Obtains the bundle name of this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -357,7 +354,7 @@ context.getProcessInfo().then((data) => {
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
-Obtains the **ohos.bundle.ElementName** object of the current ability. This API uses an asynchronous callback to return the result.
+Obtains the **ohos.bundle.ElementName** object of this ability. This API uses an asynchronous callback to return the result.
 
 This API is available only to Page abilities.
 
@@ -383,7 +380,7 @@ context.getElementName()
 
 getElementName(): Promise\<ElementName>
 
-Obtains the **ohos.bundle.ElementName** object of the current ability. This API uses a promise to return the result.
+Obtains the **ohos.bundle.ElementName** object of this ability. This API uses a promise to return the result.
 
 This API is available only to Page abilities.
 
@@ -510,7 +507,7 @@ context.getCallingBundle().then((data) => {
 
 getCacheDir(callback: AsyncCallback\<string>): void
 
-Obtains the cache directory of the application on the internal storage. This API uses an asynchronous callback to return the result.
+Obtains the cache directory of the application in the internal storage. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -538,7 +535,7 @@ context.getCacheDir((err, data) => {
 
 getCacheDir(): Promise\<string>
 
-Obtains the cache directory of the application on the internal storage. This API uses a promise to return the result.
+Obtains the cache directory of the application in the internal storage. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -563,7 +560,7 @@ context.getCacheDir().then((data) => {
 
 getFilesDir(callback: AsyncCallback\<string>): void
 
-Obtains the file directory of the application on the internal storage. This API uses an asynchronous callback to return the result.
+Obtains the file directory of the application in the internal storage. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -591,7 +588,7 @@ context.getFilesDir((err, data) => {
 
 getFilesDir(): Promise\<string>
 
-Obtains the file directory of the application on the internal storage. This API uses a promise to return the result.
+Obtains the file directory of the application in the internal storage. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -732,7 +729,7 @@ Obtains the **ModuleInfo** object of the application. This API uses an asynchron
 
 | Name    | Type                  | Mandatory| Description                     |
 | -------- | ---------------------- | ---- | ------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](#hapmoduleinfo)> | Yes  | Callback used to return the **ModuleInfo** object.|
+| callback | AsyncCallback\<[HapModuleInfo](#hapmoduleinfo)>> | Yes  | Callback used to return the **ModuleInfo** object.|
 
 **Example**
 
@@ -776,7 +773,7 @@ context.getHapModuleInfo().then((data) => {
 
 getAppVersionInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
-Obtains the version information of the application. This API uses an asynchronous callback to return the result.
+Obtains the version information of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -804,7 +801,7 @@ context.getAppVersionInfo((err, data) => {
 
 getAppVersionInfo(): Promise\<AppVersionInfo>
 
-Obtains the version information of the application. This API uses a promise to return the result.
+Obtains the version information of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -828,7 +825,7 @@ context.getAppVersionInfo().then((data) => {
 
 getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
-Obtains information of the current ability. This API uses an asynchronous callback to return the result.
+Obtains information about this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -856,7 +853,7 @@ context.getAbilityInfo((err, data) => {
 
 getAbilityInfo(): Promise\<AbilityInfo>
 
-Obtains information of the current ability. This API uses a promise to return the result.
+Obtains information about this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -920,26 +917,27 @@ var context = featureAbility.getContext().getApplicationContext();
 
 Describes the HAP module information.
 
-| Name              | Type| Readable| Writable| Description|
-| ------ | ------ | ------ | ------ | ------ |
-| name             | string        | Yes  | No  | Module name.          |
-| description      | string        | Yes  | No  | Module description.      |
-| descriptionId    | number        | Yes  | No  | Module description ID.        |
-| icon             | string        | Yes  | No  | Module icon.          |
-| label            | string        | Yes  | No  | Module label.          |
-| labelId          | number        | Yes  | No  | Module label ID.        |
-| iconId           | number        | Yes  | No  | Module icon ID.        |
-| backgroundImg    | string        | Yes  | No  | Module background image.      |
-| supportedModes   | number        | Yes  | No  | Running modes supported by the module.    |
-| reqCapabilities  | Array\<string> | Yes  | No  | Capabilities required for module running.|
-| deviceTypes      | Array\<string> | Yes  | No  | Device types supported by the module.|
-| abilityInfo      | Array\<AbilityInfo> | Yes  | No  | Ability information. |
-| moduleName       | string        | Yes  | No  | Module name.            |
-| mainAbilityName  | string        | Yes  | No  | Name of the main ability.   |
-| installationFree | boolean       | Yes  | No  | Whether installation-free is supported.    |
-| mainElementName | string | Yes| No| Information about the main ability.|
+| Name             | Type                | Readable | Writable | Description                               |
+| ---------------- | ------------------- | -------- | -------- | ----------------------------------------- |
+| name             | string              | Yes      | No       | Module name.                              |
+| description      | string              | Yes      | No       | Module description.                       |
+| descriptionId    | number              | Yes      | No       | Module description ID.                    |
+| icon             | string              | Yes      | No       | Module icon.                              |
+| label            | string              | Yes      | No       | Module label.                             |
+| labelId          | number              | Yes      | No       | Module label ID.                          |
+| iconId           | number              | Yes      | No       | Module icon ID.                           |
+| backgroundImg    | string              | Yes      | No       | Module background image.                  |
+| supportedModes   | number              | Yes      | No       | Running modes supported by the module.    |
+| reqCapabilities  | Array\<string>      | Yes      | No       | Capabilities required for module running. |
+| deviceTypes      | Array\<string>      | Yes      | No       | Device types supported by the module.     |
+| abilityInfo      | Array\<AbilityInfo> | Yes      | No       | Ability information.                      |
+| moduleName       | string              | Yes      | No       | Module name.                              |
+| mainAbilityName  | string              | Yes      | No       | Name of the main ability.                 |
+| installationFree | boolean             | Yes      | No       | Whether installation-free is supported.   |
+| mainElementName  | string              | Yes      | No       | Information about the main ability.       |
 
 ## AppVersionInfo<sup>7+</sup>
+
 
 | Name            | Type| Readable   | Writable  | Description|
 | ------          | ------ | ------| ------ | ------    |

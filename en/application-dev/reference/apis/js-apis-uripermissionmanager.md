@@ -1,11 +1,10 @@
 # uriPermissionManager
 
+The **uriPermissionManager** module implements URI permission management.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-
-Implements URI permission management.
 
 
 ## Modules to Import
@@ -77,7 +76,7 @@ SystemCapability.Ability.AbilityRuntime.Core
   import WantConstant from '@ohos.ability.wantConstant';
   let accessTokenId =1
   let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
-  UriPermissionManager.verifyUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId)
+  UriPermissionManager.verifyUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, accessTokenId)
   .then((data) => {
       console.log('Verification succeeded.' + data)
   }).catch((error) => {

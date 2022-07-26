@@ -1,5 +1,9 @@
 # TestRunner
 
+The **TestRunner** module provides a test framework. You can use the APIs of this module to prepare the unit test environment and run test cases.
+
+To implement your own unit test framework, extend this class and override its APIs.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
@@ -9,8 +13,6 @@
 ```js
 import TestRunner from '@ohos.application.testRunner'
 ```
-
-
 
 ## TestRunner.onPrepare
 
@@ -23,10 +25,11 @@ Prepares the unit test environment to run test cases.
 **Example**
 
 ```js
-export default class UserTestRunner extends TestRunner {
+export default class UserTestRunner implements TestRunner {
     onPrepare() {
         console.log("Trigger onPrepare")
     }
+onRun(){}
 };
 ```
 
@@ -43,9 +46,10 @@ Runs test cases.
 **Example**
 
 ```js
-export default class UserTestRunner extends TestRunner {
-    onRun() {
-        console.log("Trigger onRun")
+export default class UserTestRunner implements TestRunner {
+    onPrepare() {
+       console.log("Trigger onRun")
     }
+onRun(){}
 };
 ```
