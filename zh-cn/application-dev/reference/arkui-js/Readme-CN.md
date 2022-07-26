@@ -1,6 +1,6 @@
 # 基于JS扩展的类Web开发范式
 
-- 通用
+- 组件通用信息
     - [通用属性](js-components-common-attributes.md)
     - [通用样式](js-components-common-styles.md)
     - [通用事件](js-components-common-events.md)
