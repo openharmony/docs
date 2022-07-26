@@ -1449,11 +1449,9 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap(pixelmap => { 
-    console.log('Succeeded in creating pixelmap object.');
-}).catch(error => {
-    console.log('Failed to create pixelmap object.');
-})
+imageSourceApi.createPixelMap((err, pixelmap) => {
+                    console.info('Succeeded in creating pixelmap object.')；
+                })
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1995,7 +1993,7 @@ receiver.release().then(() => {
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size>    | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
 | format   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
 
 ### getComponent<sup>9+</sup>
