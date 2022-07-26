@@ -1,6 +1,6 @@
 # Ability Access Control
 
-Provides program permission management capabilities, including authentication, authorization, and revocation.
+The **AbilityAccessCtrl** module provides APIs for application permission management, including authentication, authorization, and revocation.
 
 > **NOTE**
 >
@@ -67,6 +67,36 @@ let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSIT
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
+```
+
+### verifyAccessTokenSync<sup>9+</sup>
+
+verifyAccessTokenSync(tokenID: number, permissionName: string): GrantStatus
+
+Checks whether an application has been granted the specified permission. This API synchronously returns the result.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                      |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | Yes  | ID of the application.             |
+| permissionName | string | Yes  | Name of the permission to verify.|
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| [GrantStatus](#grantstatus) | Permission grant state.|
+
+**Example**
+
+```js
+var AtManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0;
+let data = verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+console.log(`data->${JSON.stringify(data)}`);
 ```
 
 ### grantUserGrantedPermission
