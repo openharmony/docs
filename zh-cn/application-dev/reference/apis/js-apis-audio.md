@@ -2154,8 +2154,6 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 
 监听音频捕获器更改事件。
 
-当音频捕获器发生任何更改时，注册的客户端将收到回调。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **参数：**
@@ -2294,6 +2292,12 @@ console.info('isAudioRendererLowLatencySupported success var =' + result);
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
 | rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。                     |
 
+## AudioRendererChangeInfoArray<sup>9+</sup>
+
+AudioRenderChangeInfo数组，只读。
+
+**系统能力：**: SystemCapability.Multimedia.Audio.Renderer
+
 **示例：**
 
 ```
@@ -2347,12 +2351,6 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
 });
 ```
 
-## AudioRendererChangeInfoArray<sup>9+</sup>
-
-AudioRenderChangeInfo数组，只读。
-
-**系统能力：**: SystemCapability.Multimedia.Audio.Renderer
-
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
 描述音频捕获器更改信息。
@@ -2365,6 +2363,12 @@ AudioRenderChangeInfo数组，只读。
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。 |
 | capturerInfo       | [AudioCapturerInfo](#audiocaptureinfo8)   | 是   | 否   | 音频渲染器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。                     |
+
+## AudioCapturerChangeInfoArray<sup>9+</sup>
+
+AudioCapturerChangeInfo数组，只读。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **示例：**
 
@@ -2398,12 +2402,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
     }
 });
 ```
-
-## AudioCapturerChangeInfoArray<sup>9+</sup>
-
-AudioCapturerChangeInfo数组，只读。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 ## AudioDeviceDescriptor
 
