@@ -780,12 +780,18 @@ USB设备侧功能。
 
 **系统能力**：SystemCapability.USB.USBManager
 
-| 名称 | 值   | 说明       |
-| ---- | ---- | ---------- |
-| NONE | 0    | 没有功能。 |
-| ACM  | 1    | acm功能。  |
-| ECM  | 2    | ecm功能。  |
-| HDC  | 4    | hdc功能。  |
+| 名称         | 值   | 说明       |
+| ------------ | ---- | ---------- |
+| NONE         | 0    | 没有功能。 |
+| ACM          | 1    | acm功能。  |
+| ECM          | 2    | ecm功能。  |
+| HDC          | 4    | hdc功能。  |
+| MTP          | 8    | 暂不支持。 |
+| PTP          | 16   | 暂不支持。 |
+| RNDIS        | 32   | 暂不支持。 |
+| MIDI         | 64   | 暂不支持。 |
+| AUDIO_SOURCE | 128  | 暂不支持。 |
+| NCM          | 256  | 暂不支持。 |
 
 ## PortModeType<sup>9+</sup>
 
@@ -830,3 +836,4 @@ USB端口模式类型。
 | NONE   | 0    | 无。         |
 | HOST   | 1    | 主设备角色。 |
 | DEVICE | 2    | 从设备角色。 |
+
