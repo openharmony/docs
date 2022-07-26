@@ -319,8 +319,3 @@ export default {
 
 
 ![en-us_image_0000001267767861](figures/en-us_image_0000001267767861.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;list&gt;** component:
-
-[`JsList`: JSList Offerings (API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsList)
