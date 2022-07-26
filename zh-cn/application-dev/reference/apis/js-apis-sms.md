@@ -1479,7 +1479,7 @@ promise.then(data => {
 | enable         | boolean              | 是   | 可行         |
 | startMessageId | number               | 是   | 消息起始ID   |
 | endMessageId   | number               | 是   | 消息结束ID   |
-| ranType        | [RanType](#rantype7) | 是   | 手机网络制式 |
+| ranType        | [RanType](#rantype7) | 是   | 设备网络制式 |
 
 ## SimMessageStatus<sup>7+</sup>
 
@@ -1499,7 +1499,7 @@ SIM卡消息状态。
 
 ## RanType<sup>7+</sup>
 
-手机网络制式。
+设备网络制式。
 
 此接口为系统接口。
 
