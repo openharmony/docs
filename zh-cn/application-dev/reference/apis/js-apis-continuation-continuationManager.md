@@ -1,10 +1,10 @@
 # continuationManager
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 continuationManager模块提供了流转/协同入口管理服务能力，包括连接/取消流转管理服务，注册/解注册设备连接变化监听，拉起互联面板，更新连接状态。
+
+> **说明：**
+> 
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -85,6 +85,12 @@ register(options?: ContinuationExtraParams): Promise\<number>;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<number> | Promise形式返回流转管理服务连接后生成的token。 |
 
 **示例：**
 
@@ -302,6 +308,12 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
   | token | number | 是 | 注册后的token。 |
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回接口调用结果。 |
+
 **示例：**
 
   ```js
@@ -363,6 +375,12 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
   | deviceId | string | 是 | 设备ID。 |
   | status | [DeviceConnectState](#deviceconnectstate) | 是 | 设备连接状态。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回接口调用结果。 |
+
 **示例：**
 
   ```js
@@ -416,6 +434,12 @@ unregister(token: number): Promise\<void>;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | number | 是 | 注册后的token。 |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回接口调用结果。 |
 
 **示例：**
 
