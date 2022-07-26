@@ -287,8 +287,3 @@ export default {
 ```
 
 ![en-us_image_0000001267887849](figures/en-us_image_0000001267887849.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;text&gt;** component:
-
-- [`JsTextComponents`:  JavaScript Basic Components (API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsBasicComponents)
