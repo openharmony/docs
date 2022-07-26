@@ -60,7 +60,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，推荐使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer)
+从API Version9开始该接口不再维护，推荐使用sensor.on.LINEAR_ACCELEROMETER
 
 **需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
 
@@ -536,7 +536,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用[sensor.on.HEART_BEAT_RATE](#heart_beat_rate)
+从API Version9开始该接口不再维护，推荐使用sensor.on.HEART_BEAT_RATE
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
@@ -671,7 +671,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 监听线性加速度传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer)
+从API Version9开始该接口不再维护，推荐使用sensor.once.LINEAR_ACCELEROMETER
 
 **需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
 
@@ -1135,7 +1135,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用[sensor.once.HEART_BEAT_RATE](#HEART_BEAT_RATE)
+从API Version9开始该接口不再维护，推荐使用sensor.once.HEART_BEAT_RATE
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA 
 
@@ -1446,7 +1446,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，推荐使用[sensor.off.HEART_BEAT_RATE](#heart_beat_rate)
+从API Version9开始该接口不再维护，推荐使用sensor.off.HEART_BEAT_RATE
 
 **需要权限**：ohos.permission.READ_HEALTH_DATA
 
@@ -1524,7 +1524,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，推荐使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer)
+从API Version9开始该接口不再维护，推荐使用sensor.off.LINEAR_ACCELEROMETER
 
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
