@@ -211,6 +211,88 @@ updater.getNewVersionInfo().then(info => {
 });
 ```
 
+###  getNewVersionDescription
+
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void
+
+获取新版本描述文件。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+| callback | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回新版本描述文件 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+}
+
+// 描述文件选项
+var descriptionOptions = {
+  format: DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+}
+
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
+  console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
+  console.log(`getNewVersionDescription err ${JSON.stringify(err)}`);
+});
+```
+
+### getNewVersionDescription
+
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>;
+
+获取新版本描述文件。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | 是    | 版本摘要信息 |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+
+**返回值：**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回新版本描述文件 |
+
+**示例：**
+
+```
+// 版本摘要信息
+var versionDigestInfo = {
+  versionDigest: "versionDigest" // 检测结果中的版本摘要信息
+}
+
+// 描述文件选项
+var descriptionOptions = {
+  format: DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+}
+
+updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
+  console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
+}).catch(err => {
+  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
+});
+```
+
 ###  getCurrentVersionInfo
 
 getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
@@ -262,6 +344,76 @@ updater.getCurrentVersionInfo().then(info => {
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
 }).catch(err => {
   console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
+});
+```
+
+###  getCurrentVersionDescription
+
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: AsyncCallback\<Array\<ComponentDescription>>): void
+
+获取当前版本描述文件。使用callback异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+| callback | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | 是    | 回调函数，返回当前版本描述文件 |
+
+**示例：**
+
+```
+// 描述文件选项
+var descriptionOptions = {
+  format: DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+}
+
+updater.getCurrentVersionDescription(descriptionOptions, (err, info) => {
+  console.log(`getCurrentVersionDescription info ${JSON.stringify(info)}`);
+  console.log(`getCurrentVersionDescription err ${JSON.stringify(err)}`);
+});
+```
+
+### getCurrentVersionDescription
+
+getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>
+
+获取当前版本描述文件。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+**需要权限**：ohos.permission.UPDATE_SYSTEM，该权限为系统权限
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明        |
+| -------- | ---------------------------------------- | ---- | --------- |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | 是    | 描述文件选项 |
+
+**返回值：**
+
+| 类型                                       | 说明               |
+| ---------------------------------------- | ---------------- |
+| Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise对象，返回当前版本描述文件 |
+
+**示例：**
+
+```
+// 描述文件选项
+var descriptionOptions = {
+  format: DescriptionFormat.STANDARD, // 标准格式
+  language: "zh-cn" // 中文
+}
+
+updater.getCurrentVersionDescription(descriptionOptions).then(info => {
+  console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
+}).catch(err => {
+  console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1227,6 +1379,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
+| componentId              | number   | 是    | 组件标识  |
 | componentType              | [ComponentType](#componentyype)   | 是    | 组件类型  |
 | upgradeAction              | [UpgradeAction](#upgradeaction)   | 是    | 升级方式  |
 | displayVersion              | string   | 是    | 显示版本号  |
@@ -1234,6 +1387,28 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | size              | number   | 是    | 升级包大小  |
 | effectiveMode              | [EffectiveMode](#effectivemode)   | 是    | 生效模式  |
 | descriptionInfo              | [DescriptionInfo](#descriptioninfo)   | 是    | 版本描述文件信息  |
+
+## DescriptionOptions
+
+描述文件选项。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| format              | [DescriptionFormat](#descriptionformat)   | 是    | 描述文件格式  |
+| language              |  string  | 是    | 描述文件语言  |
+
+## ComponentDescription
+
+组件描述文件。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 名称                  | 参数类型                        | 必填   | 说明      |
+| ------------------- | --------------------------- | ---- | ------- |
+| componentId              |  string  | 是    | 组件标识  |
+| descriptionInfo              |  [DescriptionInfo](#descriptioninfo)  | 是    | 描述文件信息  |
 
 ## DescriptionInfo
 
@@ -1437,7 +1612,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 ## ComponentType
 
-升级包类型。
+组件类型。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -1478,6 +1653,17 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | ------------------- | ---- | -------- |
 | CONTENT   | 0 | 内容  |
 | URI   | 1 | 链接  |
+
+## DescriptionFormat
+
+描述文件格式。
+
+**系统能力**：SystemCapability.Update.UpdateService
+
+| 参数名                 | 默认值  | 说明       |
+| ------------------- | ---- | -------- |
+| STANDARD   | 0 | 标准格式  |
+| SIMPLIFIED   | 1 | 简易格式  |
 
 ## NetType
 
