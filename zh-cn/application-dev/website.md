@@ -305,7 +305,7 @@
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
-  - 一次开发多端部署
+  - 一次开发，多端部署
     - [前言](key-features/multi-device-app-dev/about-this-document.md)
     - [简介](key-features/multi-device-app-dev/introduction.md)
     - 应用UX设计
