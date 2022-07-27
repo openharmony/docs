@@ -13,16 +13,17 @@ A struct decorated by @Component has the componentization capability and can ser
 - Data-driven update: The UI of custom components can be automatically updated based on the data of state variables.
 
 
-For details about componentization, see [About @Component](ts-function-build.md).
+For details about componentization, see [About @Component](ts-custom-component-initialization.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - The build method must be defined for a custom component.
-> 
+> **NOTE**
+>
+> - The **build** method must be defined for a custom component.
+>
 > - Custom constructors are prohibited for custom components.
 
 
-The following code illustrates how to create a custom component named MyComponent:
+The following code illustrates how to create a custom component named **MyComponent**:
 
 ```
 @Component
@@ -37,10 +38,10 @@ struct MyComponent {
 ```
 
 
-The build method of MyComponent is executed during initial rendering. When the component status changes, the build method will be executed again.
+The **build** method of **MyComponent** is executed during initial rendering. When the component status changes, the build method will be executed again.
 
 
-The following code illustrates how to use MyComponent:
+The following code illustrates how to use **MyComponent**:
 
 ```
 @Component
@@ -55,8 +56,7 @@ struct ParentComponent {
 }
 ```
 
-
-MyComponent can be applied multiple times and reused in different components, as shown in the code below:
+**MyComponent** can be applied multiple times and reused in different components, as shown in the code below:
 
 ```
 @Component
@@ -76,11 +76,11 @@ struct ParentComponent {
         }
     }
 
-    private aboutToAppear() {
+    aboutToAppear() {
         console.log('ParentComponent: Just created, about to become rendered first time.')
     }
 
-    private aboutToDisappear() {
+    aboutToDisappear() {
         console.log('ParentComponent: About to be removed from the UI.')
     }
 }
