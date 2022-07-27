@@ -235,4 +235,4 @@ export default {
 
 针对toolbar开发，有以下相关实例可供参考：
 
-- [`toolbar`：工具栏（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/toolbar)
+- [`Toolbar`：工具栏（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Toolbar)
