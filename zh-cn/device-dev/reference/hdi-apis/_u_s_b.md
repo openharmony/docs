@@ -96,6 +96,8 @@
 | [OHOS::USB::UsbdSubscriber::DeviceEvent](#deviceevent)&nbsp;(const&nbsp;[UsbInfo](_o_h_o_s_1_1_u_s_b_1_1_usb_info.md)&nbsp;&amp;info)=0 | 设备事件。&nbsp;[更多...](#deviceevent) | 
 | [OHOS::USB::UsbdSubscriber::PortChangedEvent](#portchangedevent)&nbsp;(int32_t&nbsp;portId,&nbsp;int32_t&nbsp;powerRole,&nbsp;int32_t&nbsp;dataRole,&nbsp;int32_t&nbsp;mode)=0 | 端口改变事件。&nbsp;[更多...](#portchangedevent) | 
 | [OHOS::USB::UsbdSubscriber::OnRemoteRequest](#onremoterequest)&nbsp;(uint32_t&nbsp;code,&nbsp;MessageParcel&nbsp;&amp;data,&nbsp;MessageParcel&nbsp;&amp;reply,&nbsp;MessageOption&nbsp;&amp;option)&nbsp;override | 远程请求。&nbsp;[更多...](#onremoterequest) | 
+| [OHOS::USB::UsbdSubscriber::ParserUsbInfo](#parserusbinfo)&nbsp;(MessageParcel&nbsp;&amp;data,&nbsp;MessageParcel&nbsp;&amp;reply,&nbsp;MessageOption&nbsp;&amp;option,&nbsp;UsbInfo&nbsp;&amp;info) | 解析USB设备信息。&nbsp;[更多...](#parserusbinfo) | 
+| [OHOS::USB::UsbdSubscriber::ParserPortInfo](#parserportinfo)&nbsp;(MessageParcel&nbsp;&amp;data,&nbsp;MessageParcel&nbsp;&amp;reply,&nbsp;MessageOption&nbsp;&amp;option,&nbsp;PortInfo&nbsp;&amp;info) | 解析USB设备端口信息。&nbsp;[更多...](#parserportinfo) | 
 
 
 ### 变量
@@ -1039,6 +1041,75 @@ int32_t OHOS::USB::UsbdClient::OpenDevice (const UsbDev & dev)
   | 名称 | 描述 | 
 | -------- | -------- |
 | dev | 输入参数，USB设备地址信息，详见[UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)。 | 
+
+**返回：**
+
+0 表示操作成功。
+
+非零值 表示操作失败。
+
+**Since：**
+
+3.0
+
+**Version：**
+
+1.0
+
+
+### ParserUsbInfo()
+
+  
+```
+static int32_t OHOS::USB::UsbdSubscriber::ParserUsbInfo(MessageParcel &data, MessageParcel &reply, MessageOption &option, UsbInfo &info)
+```
+
+**描述：**
+
+解析USB设备信息。
+
+**参数：**
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| data | 输入参数，命令字。| 
+| reply | 输出参数，返回的数据。 |
+| option | 输入参数，选项数据。|
+| info | 输出参数，USB设备信息。|
+
+**返回：**
+
+0 表示操作成功。
+
+非零值 表示操作失败。
+
+**Since：**
+
+3.0
+
+**Version：**
+
+1.0
+
+### ParserPortInfo()
+
+  
+```
+static int32_t OHOS::USB::UsbdSubscriber::ParserPortInfo(MessageParcel &data, MessageParcel &reply, MessageOption &option, PortInfo &info)
+```
+
+**描述：**
+
+解析USB设备端口信息。
+
+**参数：**
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| data | 输入参数，命令字。| 
+| reply | 输出参数，返回的数据。 |
+| option | 输入参数，选项数据。|
+| info | 输出参数，USB设备端口信息。|
 
 **返回：**
 
