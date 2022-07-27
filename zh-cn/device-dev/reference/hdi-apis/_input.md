@@ -55,6 +55,7 @@
   | 函数 | 描述 | 
 | -------- | -------- |
 | [GetInputInterface](#getinputinterface)&nbsp;([IInputInterface](_i_input_interface.md)&nbsp;\*\*interface) | Input服务通过调用此接口获取操作Input设备的所有接口。&nbsp;[更多...](#getinputinterface) | 
+| [ReleaseInputInterface](#releaseinputinterface)&nbsp;([IInputInterface](_i_input_interface.md)&nbsp;\*\*inputInterface) | Input服务通过调用此接口释放操作Input设备的所有接口。&nbsp;[更多...](#releaseinputinterface) | 
 
 
 ## **详细描述**
@@ -178,6 +179,37 @@ Input服务通过调用此接口获取操作Input设备的所有接口。
   | 名称 | 描述 | 
 | -------- | -------- |
 | interface | 对Input设备进行接口操作的指针，通常在Input服务启动后，通过调用此函数获取Input设备操作接口。 | 
+
+**返回：**
+
+INPUT_SUCCESS 表示执行成功。
+
+其他值表示执行失败，具体错误码查看**RetSatus**。
+
+**Since：**
+
+1.0
+
+**Version：**
+
+1.0
+
+### ReleaseInputInterface()
+
+  
+```
+int32_t ReleaseInputInterface (IInputInterface *inputInterface)
+```
+
+**描述：**
+
+Input服务通过调用此接口释放操作Input设备的所有接口。
+
+**参数：**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| inputInterface| 对Input设备进行接口操作的指针。 | 
 
 **返回：**
 
