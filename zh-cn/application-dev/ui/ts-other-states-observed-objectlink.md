@@ -120,7 +120,7 @@ struct ViewB {
 ### 案例2
 
 ```ts
-//父组件ViewB中的类对象ClassA与子组件ViewA保持数据同步时，可以使用@ObjectLink和@Observed，绑定该数据对象的父组件和其他子组件同步更新
+// 父组件ViewB中的类对象ClassA与子组件ViewA保持数据同步时，可以使用@ObjectLink和@Observed，绑定该数据对象的父组件和其他子组件同步更新
 var nextID: number = 0;
 @Observed
 class ClassA {

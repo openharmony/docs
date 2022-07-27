@@ -7,14 +7,14 @@
 
 通过调用animate方法获得animation对象，animation对象支持动画属性、动画方法和动画事件。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div id="content" class="box" onclick="Show"></div>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -30,7 +30,7 @@
 }
 ```
 
-```
+```js
 /* xxx.js */
 export default {
   data: {
@@ -60,23 +60,23 @@ export default {
 
 ![zh-cn_image_0000001175235138](figures/zh-cn_image_0000001175235138.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->-   使用animate方法时必须传入Keyframes和Options参数。
->-   多次调用animate方法时，采用replace策略，即最后一次调用时传入的参数生效。
+> **说明：**
+> -   使用animate方法时必须传入Keyframes和Options参数。
+> -   多次调用animate方法时，采用replace策略，即最后一次调用时传入的参数生效。
 
 
 ## 设置动画参数
 
 在获取动画对象后，通过设置参数Keyframes设置动画在组件上的样式。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
    <div id="content" class="box" onclick="Show"></div>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -92,7 +92,7 @@ export default {
 }
 ```
 
-```
+```js
 /* xxx.js */
 export default {
   data: {
@@ -138,21 +138,21 @@ export default {
 
 ![zh-cn_image_0000001174916742](figures/zh-cn_image_0000001174916742.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - translate、scale和rtotate的先后顺序会影响动画效果。
-> 
+>
 > - transformOrigin只对scale和rtotate起作用。
 
 在获取动画对象后，通过设置参数Options来设置动画的属性。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
    <div id="content" class="box" onclick="Show"></div>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -168,7 +168,7 @@ export default {
 }
 ```
 
-```
+```js
 /* xxx.js */
 export default {
   data: {
@@ -206,15 +206,15 @@ export default {
 
 ![zh-cn_image_0000001220396499](figures/zh-cn_image_0000001220396499.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > direction：指定动画的播放模式。
-> 
+>
 > normal： 动画正向循环播放。
-> 
+>
 > reverse： 动画反向循环播放。
-> 
+>
 > alternate：动画交替循环播放，奇数次正向播放，偶数次反向播放。
-> 
+>
 > alternate-reverse：动画反向交替循环播放，奇数次反向播放，偶数次正向播放。
 
 
@@ -222,7 +222,7 @@ export default {
 
 animation对象支持动画事件和动画方法。可以通过添加开始和取消事件，调用播放、暂停、倒放和结束方法实现预期动画。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
  <div id="content" style="width: 350px;height: 350px;margin-top: 100px;background: linear-gradient(pink, purple);">
@@ -238,7 +238,7 @@ animation对象支持动画事件和动画方法。可以通过添加开始和�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -270,8 +270,8 @@ button{
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default {
   data: {
@@ -348,7 +348,7 @@ export default {
 
 通过改变playStat的属性实现动画状态的改变。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div id="content" style="width: 350px;height: 350px;margin-top: 100px;background: linear-gradient(pink, purple);">
@@ -362,7 +362,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -394,8 +394,8 @@ button{
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default {
   data: {

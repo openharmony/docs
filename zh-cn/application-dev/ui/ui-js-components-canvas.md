@@ -17,7 +17,7 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -32,7 +32,7 @@ canvas{
 
 ![zh-cn_image_0000001222984605](figures/zh-cn_image_0000001222984605.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - Canvas组件默认背景色与父组件的背景色一致。
 >
 > - Canvas默认宽高为width: 300px，height: 150px。
@@ -43,7 +43,7 @@ canvas{
 Canvas组件设置宽（width）、高（height）、背景色（background-color）及边框样式（border）。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas></canvas>
@@ -51,7 +51,7 @@ Canvas组件设置宽（width）、高（height）、背景色（background-colo
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -75,7 +75,7 @@ canvas{
 Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataURL方法返回的图片信息），打印在下方文本区域内。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas1" onlongpress="getUrl"></canvas>
@@ -85,7 +85,7 @@ Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataU
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width:100%;
@@ -112,7 +112,7 @@ Canvas添加长按事件，长按后可获取Canvas组件的dataUrl值（toDataU
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -137,7 +137,7 @@ export default {
 
 ![zh-cn_image_0000001222985331](figures/zh-cn_image_0000001222985331.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 画布不支持在onInit和onReady中进行创建。
 
 ## 相关实例
