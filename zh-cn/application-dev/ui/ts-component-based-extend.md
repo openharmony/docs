@@ -3,7 +3,8 @@
 @Extend装饰器将新的属性函数添加到内置组件上，如Text、Column、Button等。通过@Extend装饰器可以快速定义并复用组件的自定义样式。
 
 
-```
+```ts
+// xxx.ets
 @Extend(Text) function fancy(fontSize: number) {
   .fontColor(Color.Red)
   .fontSize(fontSize)
@@ -25,5 +26,5 @@ struct FancyUse {
 ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > @Extend装饰器不能用在自定义组件struct定义框内。

@@ -5,7 +5,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
 
 ## 页面结构
 
-```
+```html
 <!-- xxx.hml -->
 <div class="item-container">
   <text class="item-title">Image Show</text>
@@ -18,19 +18,19 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
 
 ## 数据绑定
 
-```
+```html
 <!-- xxx.hml -->
 <div onclick="changeText">
   <text> {{content[1]}} </text>
 </div>
 ```
-```
+```css
 /*xxx.css*/
 .container{
     margin: 200px;
 }
 ```
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -42,7 +42,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 针对数组内的数据修改，请使用splice方法生效数据绑定变更。
 >
 > - hml文件中的js表达式不支持ES6语法。
@@ -60,7 +60,7 @@ export default {
 - "funcName(a,b)"：函数参数例如a，b可以是常量，或者是在JS文件中的data中定义的变量（前面不用写this.）。
 
 - 示例
-  ```
+  ```html
   <!-- xxx.hml -->
   <div class="container">
       <text class="title">{{count}}</text>
@@ -75,7 +75,7 @@ export default {
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
     data: {
@@ -93,7 +93,7 @@ export default {
   };
   ```
 
-  ```
+  ```css
   /* xxx.css */
   .container {
       display: flex;
@@ -135,11 +135,11 @@ export default {
 - 绑定冒泡事件：on:{event}.bubble。on:{event}等价于on:{event}.bubble。
 
 - 绑定并阻止冒泡事件向上冒泡：grab:{event}.bubble。grab:{event}等价于grab:{event}.bubble。
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > **说明：**
   > 详细冒泡事件说明参见[通用事件](../reference/arkui-js/js-components-common-events.md)章节。
 
 - 示例
-  ```
+  ```html
   <!-- xxx.hml -->
   <div>
      <!-- 使用事件冒泡模式绑定事件回调函数。5+ -->;
@@ -157,7 +157,7 @@ export default {
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
       clickfunc: function(e) {
@@ -169,7 +169,7 @@ export default {
   }
   ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 采用旧写法(onclick)的事件绑定在最小API版本6以下时采用不冒泡处理，在最小API版本为6及6以上时采用冒泡处理。
 
 ## 捕获事件绑定<sup>5+</sup>
@@ -183,7 +183,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
 - 绑定并阻止事件向下传递：grab:{event}.capture。
 
 - 示例
-  ```
+  ```html
   <!-- xxx.hml -->
   <div>
       <!-- 使用事件捕获模式绑定事件回调函数。5+ -->    
@@ -193,7 +193,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   export default {
       touchstartfuc: function(e) {
@@ -205,7 +205,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
 
 ## 列表渲染
 
-```
+```html
 <!-- xxx.hml -->
 <div class="array-container" style="flex-direction: column;margin: 200px;">
   <!-- div列表渲染 -->
@@ -225,7 +225,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
 
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -252,7 +252,7 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 
 - for="(i, v) in array"：其中元素索引为i，元素变量为v，遍历数组对象array。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 数组中的每个元素必须存在tid指定的数据属性，否则运行时可能会导致异常。
 >
 > - 数组中被tid指定的属性要保证唯一性，如果不是则会造成性能损耗。比如，示例中只有id和name可以作为tid字段，因为它们属于唯一字段。
@@ -265,7 +265,7 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 
 条件渲染分为2种：if/elif/else和show。两种写法的区别在于：第一种写法里if为false时，组件不会在vdom中构建，也不会渲染，而第二种写法里show为false时虽然也不渲染，但会在vdom中构建；另外，当使用if/elif/else写法时，节点必须是兄弟节点，否则编译无法通过。实例如下：
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="btn" type="capsule" value="toggleShow" onclick="toggleShow"></button>
@@ -276,7 +276,7 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -289,7 +289,7 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -309,7 +309,7 @@ export default {
 
 优化渲染优化：show方法。当show为true时，节点正常渲染；当为false时，仅仅设置display样式为none。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="btn" type="capsule" value="toggle" onclick="toggle"></button>
@@ -317,7 +317,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -330,7 +330,7 @@ export default {
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -342,7 +342,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 禁止在同一个元素上同时设置for和if属性。
 
 ![zh-cn_image_0000001118642005](figures/zh-cn_image_0000001118642005.gif)
@@ -351,7 +351,7 @@ export default {
 
 &lt;block&gt;控制块使得循环渲染和条件渲染变得更加灵活；block在构建时不会被当作真实的节点编译。注意block标签只支持for和if属性。
 
-```
+```html
 <!-- xxx.hml -->
 <list>
   <block for="glasses">
@@ -367,7 +367,7 @@ export default {
 </list>
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -385,7 +385,7 @@ export default {
 
 HML可以通过element引用模板文件，详细介绍可参考[自定义组件](../reference/arkui-js/js-components-custom-basic-usage.md)章节。
 
-```
+```html
 <!-- template.hml -->
 <div class="item"> 
   <text>Name: {{name}}</text>
@@ -393,7 +393,7 @@ HML可以通过element引用模板文件，详细介绍可参考[自定义组件
 </div>
 ```
 
-```
+```html
 <!-- index.hml -->
 <element name='comp' src='../../common/template.hml'></element>
 <div>

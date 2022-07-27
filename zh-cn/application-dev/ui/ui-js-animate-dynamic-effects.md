@@ -3,7 +3,7 @@
 
 通过设置插值器来实现动画效果。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 从API Version 6 开始支持。
 
 
@@ -11,7 +11,7 @@
 
 通过createAnimator创建一个动画对象，通过设置参数options来设置动画的属性。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div style="width: 300px;height: 300px;margin-top: 100px;background: linear-gradient(pink, purple);transform: translate({{translateVal}});">
@@ -22,7 +22,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -44,8 +44,8 @@ button{
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 import animator from '@ohos.animator';
 export default {
   data: {
@@ -78,7 +78,7 @@ export default {
 
 ![zh-cn_image_0000001174756776](figures/zh-cn_image_0000001174756776.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 使用createAnimator创建动画对象时必须传入options参数。
 >
 > - begin插值起点，不设置时默认为0。
@@ -90,7 +90,7 @@ export default {
 
 animator支持事件和接口，可以通过添加frame、cancel、repeat、finish事件和调用update、play、pause、cancel、reverse、finish接口自定义动画效果。animator支持的事件和接口具体见动画中的[createAnimator](../reference/apis/js-apis-animator.md)。
 
-```
+```html
 <!-- xxx.hml -->
 <div style="flex-direction: column;align-items: center;width: 100%;height: 100%;">
   <div style="width:200px;height: 200px;margin-top: 100px;background: linear-gradient(#b30d29, #dcac1b);
@@ -113,7 +113,7 @@ animator支持事件和接口，可以通过添加frame、cancel、repeat、fini
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 button{
   width: 200px;
@@ -150,8 +150,8 @@ button{
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 import animator from '@ohos.animator';
 import prompt from '@system.prompt';
 export default {
@@ -234,5 +234,5 @@ export default {
 
 ![zh-cn_image_0000001220635059](figures/zh-cn_image_0000001220635059.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 在调用update接口的过程中可以使用这个接口更新动画参数，入参与createAnimator一致。

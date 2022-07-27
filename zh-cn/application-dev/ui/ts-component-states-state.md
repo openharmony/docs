@@ -18,7 +18,8 @@
 
 ## 简单类型的状态属性示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MyComponent {
@@ -42,8 +43,9 @@ struct MyComponent {
 
 ## 复杂类型的状态变量示例
 
-```
+```ts
 // Customize the status data class.
+// xxx.ets
 class Model {
     value: string
     constructor(value: string) {
@@ -97,6 +99,6 @@ struct MyComponent {
 - EntryComponent中有多个MyComponent组件实例，第一个MyComponent内部状态的更改不会影响第二个MyComponent；
 
 - 创建MyComponent实例时通过变量名给组件内的变量进行初始化，如：
-  ```
+  ```ts
   MyComponent({title: {value: 'Hello, World 2'}, count: 7})
   ```

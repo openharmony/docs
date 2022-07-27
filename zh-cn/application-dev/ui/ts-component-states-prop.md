@@ -16,7 +16,8 @@
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ParentComponent {
@@ -65,5 +66,5 @@ struct CountDownComponent {
 
 在上述示例中，当按“+1”或“-1”按钮时，父组件状态发生变化，重新执行build方法，此时将创建一个新的CountDownComponent组件。父组件的countDownStartValue状态属性被用于初始化子组件的@Prop变量，当按下子组件的“Try again”按钮时，其@Prop变量count将被更改，CountDownComponent重新渲染。但是count值的更改不会影响父组件的countDownStartValue值。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：** 
+> **说明：** 
 > 创建新组件实例时，必须初始化其所有@Prop变量。

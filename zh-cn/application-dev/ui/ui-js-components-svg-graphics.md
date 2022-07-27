@@ -6,8 +6,8 @@ Svg组件可以用来绘制常见图形和线段，如矩形（&lt;rect&gt;）�
 
 在本场景中，绘制各种图形拼接组成一个小房子。
 
-  
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg width="1000" height="1000">
@@ -25,8 +25,8 @@ Svg组件可以用来绘制常见图形和线段，如矩形（&lt;rect&gt;）�
 </div>
 ```
 
-  
-```
+
+```css
 /* xxx.css */
 .container {
   width: 100%;

@@ -5,7 +5,7 @@
 
 
 - 以下是简单的Column示例：
-  ```
+  ```ts
   Column() {
       Text('Hello')
           .fontSize(100)
@@ -18,7 +18,7 @@
 
 
 - 可以嵌套多个子组件：
-  ```
+  ```ts
   Column() {
       Column() {
           Button() {

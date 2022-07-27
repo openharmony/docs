@@ -12,7 +12,6 @@ Button通过调用接口来创建，接口调用有以下两种形式：
 
   `Button(options?: {type?: ButtonType, stateEffect?: boolean})`，该接口用于创建包含子组件的按钮，其中type用于设置Button类型，stateEffect属性设置Button是否开启点击效果。
 
-
   ```
   Button({ type: ButtonType.Normal, stateEffect: true }) {
     Row() {
@@ -22,12 +21,12 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   }.borderRadius(8).backgroundColor(0x317aff).width(90)
   ```
 
+
   ![zh-cn_image_0000001260555857](figures/zh-cn_image_0000001260555857.png)
 
 - 创建不包含子组件的按钮
 
   `Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })`，该接口用于创建不包含子组件的按钮，其中label确定所创建的Button是否包含子组件。
-
 
   ```
   Button('Ok', { type: ButtonType.Normal, stateEffect: true })
@@ -35,6 +34,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
     .backgroundColor(0x317aff)
     .width(90)
   ```
+
 
   ![zh-cn_image_0000001215796030](figures/zh-cn_image_0000001215796030.png)
 
@@ -45,7 +45,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
 
 - 胶囊按钮（默认类型）
 
-  ```
+  ```ts
   Button('Disable', { type: ButtonType.Capsule, stateEffect: false })
     .backgroundColor(0x317aff)
     .width(90)
@@ -55,7 +55,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
 
 - 圆形按钮
 
-  ```
+  ```ts
   Button('Circle', { type: ButtonType.Circle, stateEffect: false })
     .backgroundColor(0x317aff)
     .width(90)
@@ -71,7 +71,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
   一般使用通用属性来自定义按钮样式。例如通过borderRadius属性设置按钮的边框弧度。
 
 
-  ```
+  ```ts
   Button('circle border', { type: ButtonType.Normal })
     .borderRadius(20)
   ```
@@ -82,7 +82,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
   通过添加文本样式设置按钮文本的展示样式。
 
 
-  ```
+  ```ts
   Button('font style', { type: ButtonType.Normal })
     .fontSize(20)
     .fontColor(Color.Red)
@@ -95,7 +95,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
   添加backgroundColor属性设置按钮的背景颜色。
 
 
-  ```
+  ```ts
   Button('background color').backgroundColor(0xF55A42)
   ```
 
@@ -105,7 +105,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
   为删除操作创建一个按钮。
 
 
-  ```
+  ```ts
   Button({ type: ButtonType.Circle, stateEffect: true }) {
     Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
   }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
@@ -119,7 +119,7 @@ Button有三种可选类型，分别为Capsule（胶囊类型）、Circle（圆�
 Button组件通常用于触发某些操作，可以在绑定onClick事件来响应点击操作后的自定义行为。
 
 
-```
+```ts
 Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   .onClick(()=>{
     console.info('Button onClick')
@@ -133,7 +133,8 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   可以将按钮用于启动操作的任何用户界面元素。按钮会根据用户的操作触发相应的事件。如，在List容器里边通过点击按钮进行页面跳转：
 
-  ```
+  ```ts
+  // xxx.js  
   import router from '@ohos.router'
 
   @Entry
@@ -173,8 +174,9 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   在用户登录/注册页面，用户的登录或注册的提交操作会用按钮。
 
 
-  ```
-  @Entry
+  ```ts
+// xxx.js  
+@Entry
   @Component
   struct ButtonCase2 {
     build() {

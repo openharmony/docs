@@ -1,14 +1,14 @@
-# Swiper开发指导
+# swiper开发指导
 
 
-Swiper为滑动容器，提供切换显示子组件的能力。具体用法请参考[Swiper](../reference/arkui-js/js-components-container-swiper.md)。
+swiper为滑动容器，提供切换显示子组件的能力。具体用法请参考[swiper](../reference/arkui-js/js-components-container-swiper.md)。
 
 
-## 创建Swiper组件
+## 创建swiper组件
 
-在pages/index目录下的hml文件中创建一个Swiper组件。
+在pages/index目录下的hml文件中创建一个swiper组件。
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper>
@@ -25,7 +25,7 @@ Swiper为滑动容器，提供切换显示子组件的能力。具体用法请�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -56,16 +56,16 @@ text{
 ![zh-cn_image_0000001181495038](figures/zh-cn_image_0000001181495038.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> Swiper组件支持除&lt;list&gt;之外的子组件。
+> **说明：**
+> swiper组件支持除&lt;list&gt;之外的子组件。
 
 
 ## 添加属性
 
-Swiper组件当不开启循环播放（loop="false"）时添加自动播放属性（autoplay），设置自动播放时播放时间间隔（interval），页面会自动切换并停留在最后一个子组件页面。添加digital属性启用数字导航点，设置切换时为渐隐滑动效果（scrolleffect="fade"））。
+swiper组件当不开启循环播放（loop="false"）时添加自动播放属性（autoplay），设置自动播放时播放时间间隔（interval），页面会自动切换并停留在最后一个子组件页面。添加digital属性启用数字导航点，设置切换时为渐隐滑动效果（scrolleffect="fade"））。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper index="1"  autoplay="true" interval="2000" indicator="true" digital="true" duration="500"
@@ -87,7 +87,7 @@ Swiper组件当不开启循环播放（loop="false"）时添加自动播放属�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -115,20 +115,20 @@ text{
 
 ![zh-cn_image_0000001181655292](figures/zh-cn_image_0000001181655292.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 设置indicator（是否启用导航点指示器）属性为true时digital（是否启用数字导航点）属性才会生效。
-> 
-> - Swiper子组件的个数大于等于2时设置的loop属性才会生效。
-> 
+>
+> - swiper子组件的个数大于等于2时设置的loop属性才会生效。
+>
 > - scrolleffect属性仅在loop属性值为false时生效。
 
 
 ## 设置样式
 
-设置Swiper组件的宽高，导航点指示器的直径大小（indicator-size）、颜色（indicator-color）、相对位置（ndicator-top）及选中时的颜色（indicator-selected-color）。
+设置swiper组件的宽高，导航点指示器的直径大小（indicator-size）、颜色（indicator-color）、相对位置（ndicator-top）及选中时的颜色（indicator-selected-color）。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper index="1" autoplay="true" interval="2000"  duration="500" >
@@ -146,7 +146,7 @@ text{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -184,10 +184,10 @@ text{
 
 ## 绑定事件
 
-创建两个text组件添加点击事件，当点击后就调用showPrevious（显示上一个子组件）或showNext（显示下一个子组件）方法。添加select组件下拉选择时触发change事件后调用swiperTo方法跳转到指定轮播页面。Swiper组件绑定change（当前显示的组件索引变化时触发）和finish（切换动画结束时触发）事件。
+创建两个text组件添加点击事件，当点击后就调用showPrevious（显示上一个子组件）或showNext（显示下一个子组件）方法。添加select组件下拉选择时触发change事件后调用swiperTo方法跳转到指定轮播页面。swiper组件绑定change（当前显示的组件索引变化时触发）和finish（切换动画结束时触发）事件。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper interval="2000" onchange="change" loop="false" onanimationfinish="finish" id="swiper">
@@ -218,7 +218,7 @@ text{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -259,7 +259,8 @@ select{
 ```
 
 
-```
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default{
   change(e){
@@ -285,10 +286,10 @@ export default{
 
 ## 场景示例
 
-本场景中使用Swiper创建一个轮播图，在轮播图底部制作一个缩略图，点击缩略图后调用swipeTo方法切换到对应的轮播图。
+本场景中使用swiper创建一个轮播图，在轮播图底部制作一个缩略图，点击缩略图后调用swipeTo方法切换到对应的轮播图。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper duration="500" indicator="false" id="swiper" onchange="change">
@@ -305,7 +306,7 @@ export default{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -340,8 +341,8 @@ swiper{
 ```
 
 
-```
-// index.js
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default {
   data:{
@@ -367,6 +368,6 @@ export default {
 
 ## 相关实例
 
-针对Swiper开发，有以下相关实例可供参考：
+针对swiper开发，有以下相关实例可供参考：
 
-- [`Swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Swiper)
+- [`swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/swiper)

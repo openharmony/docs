@@ -3,7 +3,7 @@
 @Watch用于监听状态变量的变化，语法结构为：
 
 
-```
+```ts
 @State @Watch("onChanged") count : number = 0
 ```
 
@@ -14,7 +14,8 @@
 装饰器@State、@Prop、@Link、@ObjectLink、@Provide、@Consume、@StorageProp以及@StorageLink装饰的变量可以监听其变化。
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CompA {

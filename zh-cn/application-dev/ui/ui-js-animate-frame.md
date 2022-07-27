@@ -6,7 +6,7 @@
 
 runframe在调用requestAnimationFrame时传入带有timestamp参数的回调函数step，将step中的timestamp赋予起始的startTime。当timestamp与startTime的差值小于规定的时间时将再次调用requestAnimationFrame，最终动画将会停止。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <tabs onchange="changecontent">
@@ -25,7 +25,7 @@ runframe在调用requestAnimationFrame时传入带有timestamp参数的回调函
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -39,8 +39,8 @@ button{
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     timer: null,
@@ -95,7 +95,7 @@ export default {
 
 ![zh-cn_image_0000001174756860](figures/zh-cn_image_0000001174756860.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > requestAnimationFrame函数在调用回调函数时在第一个参数位置传入timestamp时间戳，表示requestAnimationFrame开始去执行回调函数的时刻。
 
 
@@ -103,7 +103,7 @@ export default {
 
 通过cancelAnimationFrame函数取消逐帧回调，在调用cancelAnimationFrame函数时取消requestAnimationFrame函数的请求。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <tabs onchange="changecontent">
@@ -122,7 +122,7 @@ export default {
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -136,8 +136,8 @@ button{
 }
 ```
 
-```
-/* xxx.js */
+```js
+// xxx.js
 export default {
   data: {
     timer: null,
@@ -184,5 +184,5 @@ export default {
 
 ![zh-cn_image_0000001220316655](figures/zh-cn_image_0000001220316655.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 在调用该函数时需传入一个具有标识id的参数。
