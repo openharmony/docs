@@ -1311,7 +1311,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "abc")
+imageSourceApi.modifyImageProperty("ImageWidth", "120")
             .then(() => {
                 const w = imageSourceApi.getImageProperty("ImageWidth")
                 console.info('w', w);
@@ -1337,7 +1337,7 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 **示例：**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "abc",() => {})
+imageSourceApi.modifyImageProperty("ImageWidth", "120",() => {})
 ```
 
 ### updateData<sup>9+</sup>
