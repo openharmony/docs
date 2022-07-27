@@ -1618,6 +1618,8 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 此接口为系统接口，三方应用不支持调用。
 
+目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
