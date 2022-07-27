@@ -1687,7 +1687,7 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 
 setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -1717,7 +1717,7 @@ bundle.setDisposedStatus(bundleName, status, caller)
 
 setDisposedStatus(bundleName: string, status: number): Promise\<void>;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -1753,7 +1753,7 @@ bundle.setDisposedStatus(bundleName, status).then(data=>{
 
 getDisposedStatus(bundleName: string, callback: AsyncCallback\<number>): void;
 
-此接口为系统接口，以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -1779,9 +1779,9 @@ bundle.getDisposedStatus(bundleName, caller)
 
 ## bundle.getDisposedStatus<sup>9+</sup>
 
-getDisposedStatus(bundleName: string): Promise\<number>;
+getDisposedStatus(bundleName: string, status: number): Promise\<void>;
 
-此接口为系统接口，以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
