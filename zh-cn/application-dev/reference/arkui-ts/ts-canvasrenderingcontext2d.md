@@ -258,7 +258,7 @@ struct MiterLimit {
 // xxx.ets
 @Entry
 @Component
-struct Font {
+struct Fonts {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   
