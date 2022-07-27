@@ -15,10 +15,10 @@
 
   | Public&nbsp;属性 | 描述 | 
 | -------- | -------- |
-| (&nbsp;[RegisterReportCallback](#registerreportcallback)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputReportEventCb](_input_report_event_cb.md)&nbsp;\*callback) | 注册对应设备的回调函数&nbsp;[更多...](#registerreportcallback) | 
-| (&nbsp;[UnregisterReportCallback](#unregisterreportcallback)&nbsp;)(uint32_t&nbsp;devIndex) | 注销对应设备的回调函数&nbsp;[更多...](#unregisterreportcallback) | 
-| (&nbsp;[RegisterHotPlugCallback](#registerhotplugcallback)&nbsp;)([InputReportEventCb](_input_report_event_cb.md)&nbsp;\*callback) | 注册Input设备的热插拔回调函数&nbsp;[更多...](#registerhotplugcallback) | 
-| (&nbsp;[UnregisterHotPlugCallback](#unregisterhotplugcallback)&nbsp;)(void) | 注销Input设备的热插拔回调函数&nbsp;[更多...](#unregisterhotplugcallback) | 
+| (&nbsp;[RegisterReportCallback](#registerreportcallback)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputHostCb](_input_report_event_cb.md)&nbsp;\*callback) | 注册对应设备的回调函数。&nbsp;[更多...](#registerreportcallback) | 
+| (&nbsp;[UnregisterReportCallback](#unregisterreportcallback)&nbsp;)(uint32_t&nbsp;devIndex) | 注销对应设备的回调函数。&nbsp;[更多...](#unregisterreportcallback) | 
+| (&nbsp;[RegisterHotPlugCallback](#registerhotplugcallback)&nbsp;)([InputHostCb](_input_report_event_cb.md)&nbsp;\*callback) | 注册Input设备的热插拔回调函数。&nbsp;[更多...](#registerhotplugcallback) | 
+| (&nbsp;[UnregisterHotPlugCallback](#unregisterhotplugcallback)&nbsp;)(void) | 注销Input设备的热插拔回调函数。&nbsp;[更多...](#unregisterhotplugcallback) | 
 
 
 ## **详细描述**
@@ -35,7 +35,7 @@
 
   
 ```
-int32_t(* InputReporter::RegisterHotPlugCallback) (InputReportEventCb *callback)
+int32_t(* InputReporter::RegisterHotPlugCallback) (InputHostCb *callback)
 ```
 
 **描述：**
@@ -48,20 +48,20 @@ Input服务通过此接口注册回调函数到hdi中，所有Input设备由此�
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| callback | 回调函数的函数指针 | 
+| callback | 输入参数，回调函数的函数指针。 | 
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
 
 
 ### RegisterReportCallback
 
   
 ```
-int32_t(* InputReporter::RegisterReportCallback) (uint32_t devIndex, InputReportEventCb *callback)
+int32_t(* InputReporter::RegisterReportCallback) (uint32_t devIndex, InputEventCb *callback)
 ```
 
 **描述：**
@@ -74,14 +74,14 @@ Input服务通过此接口注册数据回调函数到hdi中，hdi通过此回调
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
-| callback | 回调函数的函数指针 | 
+| devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
+| callback | 输入参数，回调函数的函数指针。 | 
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
 
 
 ### UnregisterHotPlugCallback
@@ -93,19 +93,13 @@ int32_t(* InputReporter::UnregisterHotPlugCallback) (void)
 
 **描述：**
 
-注销Input设备的热插拔回调函数
-
-**参数：**
-
-  | 名称 | 描述 | 
-| -------- | -------- |
-| 无 | - | 
+注销Input设备的热插拔回调函数。
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
 
 
 ### UnregisterReportCallback
@@ -117,16 +111,16 @@ int32_t(* InputReporter::UnregisterReportCallback) (uint32_t devIndex)
 
 **描述：**
 
-注销对应设备的回调函数
+注销对应设备的回调函数。
 
 **参数：**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备 | 
+| devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。| 
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
