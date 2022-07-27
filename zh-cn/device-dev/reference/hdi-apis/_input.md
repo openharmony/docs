@@ -33,12 +33,12 @@
   | 宏定义 | 描述 | 
 | -------- | -------- |
 | **MAX_INPUT_DEV_NUM**&nbsp;&nbsp;&nbsp;32 | Input设备最大数量。 | 
-| **MAX_NODE_PATH_LEN**&nbsp;&nbsp;&nbsp;64 | 节点路径最大长度。 | 
+| **DEV_NAME_LEN**&nbsp;&nbsp;&nbsp;64 | Input设备名称长度。 | 
 | **CHIP_INFO_LEN**&nbsp;&nbsp;&nbsp;10 | 芯片信息长度。 | 
 | **CHIP_NAME_LEN**&nbsp;&nbsp;&nbsp;10 | 芯片名称长度。 | 
 | **VENDOR_NAME_LEN**&nbsp;&nbsp;&nbsp;10 | 厂商名称长度。 | 
 | **SELF_TEST_RESULT_LEN**&nbsp;&nbsp;&nbsp;20 | 自测结果长度。 | 
-
+| **DEV_MANAGER_SERVICE_NAME**&nbsp;&nbsp;&nbsp;"hdf_input_host" | Input设备节点服务名称。 | 
 
 ### 枚举
 
