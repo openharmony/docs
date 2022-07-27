@@ -138,7 +138,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
 
-## continuationManager.on("deviceConnect")
+## continuationManager.on("deviceConnect")<sup>9+</sup>
 
 on(type: "deviceConnect", token: number, callback: Callback\<Array\<ContinuationResult>>): void;
 
@@ -167,7 +167,7 @@ on(type: "deviceConnect", token: number, callback: Callback\<Array\<Continuation
   });
   ```
 
-## continuationManager.on("deviceDisconnect")
+## continuationManager.on("deviceDisconnect")<sup>9+</sup>
 
 on(type: "deviceDisconnect", token: number, callback: Callback\<Array\<string>>): void;
 
@@ -195,7 +195,7 @@ on(type: "deviceDisconnect", token: number, callback: Callback\<Array\<string>>)
   });
   ```
 
-## continuationManager.off("deviceConnect")
+## continuationManager.off("deviceConnect")<sup>9+</sup>
 
 off(type: "deviceConnect", token: number): void;
 
@@ -216,7 +216,7 @@ off(type: "deviceConnect", token: number): void;
   continuationManager.off("deviceConnect", token);
   ```
 
-## continuationManager.off("deviceDisconnect")
+## continuationManager.off("deviceDisconnect")<sup>9+</sup>
 
 off(type: "deviceDisconnect", token: number): void;
 
