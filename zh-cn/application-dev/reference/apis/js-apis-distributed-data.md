@@ -4164,7 +4164,7 @@ kvStore.off('dataChange', function (data) {
 ### sync<sup>7+</sup>
 
 
-sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -4178,7 +4178,7 @@ sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode  |[SyncMode](#syncmode)   | 是   |同步模式。    |
-| DelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
+| delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**
 
@@ -4536,7 +4536,7 @@ try {
         kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.log('getEntries success');
             console.log('entries.length: ' + entries.length);
-            console.log('entries[0]: ' + JSON.stringify(entrieys[0]));
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
             console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
             console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
@@ -5459,7 +5459,7 @@ try {
 
 ### sync<sup>8+</sup> ###
 
-sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -5473,7 +5473,7 @@ sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| DelayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
+| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
 
 **示例：**
 
