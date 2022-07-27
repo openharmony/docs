@@ -41,26 +41,26 @@ int32_t(* InputManager::CloseInputDevice) (uint32_t devIndex)
 
 **描述：**
 
-Input服务关闭对应设备的设备文件
+Input服务关闭对应设备的设备文件。
 
 **参数：**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备 | 
+| devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。| 
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
 
 
 ### GetInputDevice
 
   
 ```
-int32_t(* InputManager::GetInputDevice) (uint32_t devIndex, DeviceInfo **devInfo)
+int32_t(* InputManager::GetInputDevice) (uint32_t devIndex, InputDeviceInfo **devInfo)
 ```
 
 **描述：**
@@ -71,21 +71,21 @@ Input服务获取对应ID的设备信息。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
-| devInfo | 即devIndex对应设备的设备信息，具体参考**DeviceInfo**。 | 
+| devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
+| devInfo | 输出参数，即devIndex对应的设备的设备信息，具体参考**DeviceInfo**。 | 
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
 
 
 ### GetInputDeviceList
 
   
 ```
-int32_t(* InputManager::GetInputDeviceList) (uint32_t *devNum, DeviceInfo **devList, uint32_t size)
+int32_t(* InputManager::GetInputDeviceList) (uint32_t *devNum, InputDeviceInfo **devList, uint32_t size)
 ```
 
 **描述：**
@@ -96,15 +96,15 @@ Input服务获取所有Input设备列表的设备信息。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devNum | 当前已经注册过的所有Input设备的总数。 | 
-| devInfo | Input设备列表所对应的设备信息，具体参考**DeviceInfo**。 | 
-| size | 即指定deviceList数组对应的元素个数。 | 
+| devNum | 输出参数，当前已经注册过的所有Input设备的总数。 | 
+| devInfo | 输出参数，Input设备列表所对应的设备信息，具体参考**DeviceInfo**。 | 
+| size | 输入参数，即指定deviceList数组对应的元素个数。| 
 
 返回：
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
 
 
 ### OpenInputDevice
@@ -116,26 +116,26 @@ int32_t(* InputManager::OpenInputDevice) (uint32_t devIndex)
 
 **描述：**
 
-Input服务打开对应设备的设备文件
+Input服务打开对应设备的设备文件。
 
 **参数：**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
 
 
 ### ScanInputDevice
 
   
 ```
-int32_t(* InputManager::ScanInputDevice) (DevDesc *staArr, uint32_t arrLen)
+int32_t(* InputManager::ScanInputDevice) (InputDevDesc *staArr, uint32_t arrLen)
 ```
 
 **描述：**
@@ -146,11 +146,11 @@ Input服务用于扫描所有在线设备。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| staArr | 存放Input设备扫描信息的数组，信息包含设备索引以及设备类型。 | 
-| arrLen | staArr数组的长度信息。 | 
+| staArr | 输出参数，存放Input设备扫描信息的数组，信息包含设备索引以及设备类型。 | 
+| arrLen | 输入参数，staArr数组的长度信息。 | 
 
 **返回：**
 
-Returns INPUT_SUCCESS 表示执行成功。
+INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看**RetSatus**。
