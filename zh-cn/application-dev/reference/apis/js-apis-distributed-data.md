@@ -4536,7 +4536,7 @@ try {
         kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.log('getEntries success');
             console.log('entries.length: ' + entries.length);
-            console.log('entries[0]: ' + JSON.stringify(entrieys[0]));
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
             console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
             console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
