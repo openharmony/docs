@@ -5,8 +5,7 @@
 
 **所属模块:**
 
-[Audio](_audio.md)[更多...](union_audio_scene_descriptor_1_1_scene_desc.md)
-
+[Audio](_audio.md)
 
 ## **汇总**
 
