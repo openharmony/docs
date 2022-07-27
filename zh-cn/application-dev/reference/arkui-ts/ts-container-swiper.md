@@ -35,7 +35,7 @@ Swiper(value:{controller?: SwiperController})
 | autoPlay                    | boolean                                  | false      | 子组件是否自动播放，自动播放状态下，导航点不可操作。               |
 | interval                    | number                                   | 3000       | 使用自动播放时播放的时间间隔，单位为毫秒。                    |
 | indicator                   | boolean                                  | true       | 是否启用导航点指示器。                              |
-| loop                        | boolean                                  | true       | 是否开启循环。                                  |
+| loop                        | boolean                                  | true       | 是否开启循环。 <br>设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。 |
 | duration                    | number                                   | 400        | 子组件切换的动画时长，单位为毫秒。                        |
 | vertical                    | boolean                                  | false      | 是否为纵向滑动。                                 |
 | itemSpace                   | Length                                   | 0          | 设置子组件与子组件之间间隙。                           |
@@ -45,7 +45,7 @@ Swiper(value:{controller?: SwiperController})
 | indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;Length,<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>size?:&nbsp;Length,<br/>color?:&nbsp;Color,<br/>selectedColor?:&nbsp;Color<br/>} | -          | 设置indicator样式：<br/>-&nbsp;left:&nbsp;设置导航点距离Swiper组件左边的距离。<br/>-&nbsp;top:&nbsp;设置导航点距离Swiper组件顶部的距离。<br/>-&nbsp;right:&nbsp;设置导航点距离Swiper组件右边的距离。<br/>-&nbsp;bottom:&nbsp;设置导航点距离Swiper组件底部的距离。<br/>-&nbsp;size:&nbsp;设置导航点的直径。<br/>-&nbsp;color:&nbsp;设置导航点的颜色。<br/>-&nbsp;selectedColor:&nbsp;设置选中的导航点的颜色。 |
 
 
-### SwiperController
+## SwiperController
 
 Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，然后通过它控制翻页。
 
@@ -96,7 +96,7 @@ struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     let list = []
     for (var i = 1; i <= 10; i++) {
       list.push(i.toString());

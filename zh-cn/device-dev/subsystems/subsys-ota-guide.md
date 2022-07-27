@@ -273,7 +273,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
    - API的使用方法，见本文“API应用场景”和API文档的OTA接口章节。
    - 如果需要适配开发板，请参考HAL层头文件：base\update\ota_lite\hals\hal_hota_board.h。
 
-2. 标准系统请参考[JS参考规范](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
+2. 标准系统请参考[JS参考规范](../../application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
 
 
 ## API应用场景-默认场景

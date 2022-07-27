@@ -10,7 +10,7 @@
    1. 拷贝include/mbedtls/config.h到ports目录下，并修改打开MBEDTLS_ENTROPY_HARDWARE_ALT开关。
    2. 在ports目录下创建entropy_poll_alt.c文件include并实现entropy_poll.h中的硬件随机数接口
    3. 在BUILD.gn中的mbedtls_sources中增加刚才适配的entropy_poll_alt.c的路径
-   4. 在BIULD.gn中的lite_library("mbedtls_static")中增加一行MBEDTLS_CONFIG_FILE指定新配置文件的位置
+   4. 在BUILD.gn中的lite_library("mbedtls_static")中增加一行MBEDTLS_CONFIG_FILE指定新配置文件的位置
          
        ```
        lite_library("mbedtks_static") {

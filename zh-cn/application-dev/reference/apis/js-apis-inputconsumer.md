@@ -25,6 +25,8 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 
 此接口为系统接口。
 
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
+
 **参数：** 
 
 | 参数 | 类型 | 必填 | 说明 |

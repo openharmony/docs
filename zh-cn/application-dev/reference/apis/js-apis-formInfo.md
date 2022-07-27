@@ -22,8 +22,6 @@ import formInfo from '@ohos.application.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
-
 | 名称        | 读写属性 | 类型                 | 描述                                                         |
 | ----------- | -------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | 只读     | string               | 表示卡片所属包的包名。                           |
@@ -51,8 +49,6 @@ SystemCapability.Ability.Form
 
 **系统能力**：SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
-
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | JS      | 1    | 卡片类型为JS。   |
@@ -62,8 +58,6 @@ SystemCapability.Ability.Form
 枚举，卡片支持的颜色模式。
 
 **系统能力**：SystemCapability.Ability.Form
-
-SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -77,8 +71,6 @@ SystemCapability.Ability.Form
 
 **系统能力**：SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
-
 | 名称        | 读写属性 | 类型                 | 描述                                                         |
 | ----------- | -------- | -------------------- | ------------------------------------------------------------ |
 | formState  | 只读     | [FormState](#formstate)               | 表示卡片状态。                          |
@@ -89,8 +81,6 @@ SystemCapability.Ability.Form
 枚举，卡片状态。
 
 **系统能力**：SystemCapability.Ability.Form
-
-SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
@@ -103,8 +93,6 @@ SystemCapability.Ability.Form
 枚举，卡片参数。
 
 **系统能力**：SystemCapability.Ability.Form
-
-SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |

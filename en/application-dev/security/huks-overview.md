@@ -1,16 +1,16 @@
 # HUKS Overview
 
-### Introduction
+## Introduction
 
 OpenHarmony Universal KeyStore (HUKS) provides KeyStore (KS) capabilities for applications, including key management and key cryptography operations. HUKS also provides APIs for applications to import or generate keys.
 
-### Basic Concepts
+## Basic Concepts
 
 - HUKS provides key management functions, including encryption and decryption, signing and signature verification, key agreement and derivation, and Hash-based Message Authentication Code (HMAC) calculation.
 - HUKS supports the following algorithms: AES and RSA in encryption and decryption, RSA, ECC, DSA, and ED25519 in signing and signature verification, PBKDF2 in key derivation, and DH, ECDH, and X25519 in key agreement.
 - HUKS uses the OpenSSL and Mbed TLS algorithm libraries.
 
-### Working Principles
+## Working Principles
 
 HUKS manages keys through the following operations:
 
@@ -20,8 +20,9 @@ HUKS manages keys through the following operations:
 
 - **Finish**: processes all data transferred to HUKS and then releases resources.
 
-    >**NOTICE**<br/>The **Abort** operation is invoked to terminate the use of the key when an error occurs in the **Init**, **Update**, or **Finish** operation.
+> **NOTICE**<br>
+> The **Abort** operation must be invoked to terminate the use of the key when an error occurs in the **Init**, **Update**, or **Finish** operation.
 
 
-### Constraints
+## Constraints
 N/A

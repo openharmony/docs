@@ -296,6 +296,225 @@ context.getBundleName().then((data) => {
 });
 ```
 
+## Context.getDisplayOrientation<sup>7+</sup>
+
+getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
+
+获取此能力的当前显示方向（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                          |
+| -------- | ---------------------- | ---- | ----------------------------- |
+| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 是   | 表示屏幕显示方向。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getDisplayOrientation()
+```
+
+## Context.getDisplayOrientation<sup>7+</sup>
+
+getDisplayOrientation(): Promise\<bundle.DisplayOrientation>;
+
+获取此能力的当前显示方向（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 表示屏幕显示方向。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getDisplayOrientation().then((data) => {
+    console.info("=======================>getDisplayOrientationCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.setDisplayOrientation<sup>7+</sup>
+
+setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCallback\<void>): void
+
+设置当前能力的显示方向（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                          |
+| -------- | ---------------------- | ---- | ----------------------------- |
+| orientation |  [bundle.DisplayOrientation](js-apis-bundle.md#displayorientation) | 是   | 指示当前能力的新方向。。 |
+| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 是   | 表示屏幕显示方向。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+import bundle from '@ohos.bundle'
+var context = featureAbility.getContext();
+var orientation=bundle.DisplayOrientation.UNSPECIFIED
+context.setDisplayOrientation(orientation, (err) => {
+    console.log('---------- setDisplayOrientation fail, err: -----------', err);
+});
+```
+
+## Context.setDisplayOrientation<sup>7+</sup>
+
+setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>;
+
+设置当前能力的显示方向（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| orientation |  [bundle.DisplayOrientation](js-apis-bundle.md#displayorientation) | 是   | 指示当前能力的新方向。。 |
+| Promise\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 表示屏幕显示方向。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+import bundle from '@ohos.bundle'
+var context = featureAbility.getContext();
+var orientation=bundle.DisplayOrientation.UNSPECIFIED
+context.setDisplayOrientation(orientation).then((data) => {
+    console.info("=======================>setDisplayOrientationCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.setShowOnLockScreen<sup>7+</sup>
+
+setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
+
+设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                          |
+| -------- | ---------------------- | ---- | ----------------------------- |
+| show |  boolean | 是   | 指定是否在锁屏顶部显示此功能。值true表示在锁屏上显示，值false表示不显示。 |
+| callback | AsyncCallback\<void> | 是   | 返回回调结果。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+var show=true
+context.setShowOnLockScreen(show, (err) => {
+       console.log('---------- setShowOnLockScreen fail, err: -----------', err);
+});
+```
+
+## Context.setShowOnLockScreen<sup>7+</sup>
+
+setShowOnLockScreen(show: boolean): Promise\<void>;
+
+设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                          |
+| -------- | ---------------------- | ---- | ----------------------------- |
+| show |  boolean | 是   | 指定是否在锁屏顶部显示此功能。值true表示在锁屏上显示，值false表示不显示。 |
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+|  Promise\<void>| 使用Promise形式返回结果 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+var show=true
+context.setShowOnLockScreen(show).then((data) => {
+    console.info("=======================>setShowOnLockScreenCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.setWakeUpScreen<sup>7+</sup>
+
+setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
+
+设置恢复此功能时是否唤醒屏幕。（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                          |
+| -------- | ---------------------- | ---- | ----------------------------- |
+| wakeUp |  boolean | 是   | 指定是否唤醒屏幕。值true表示唤醒它，值false表示不唤醒它。 |
+| callback | AsyncCallback\<void> | 是   | 返回回调结果。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+var wakeUp=true
+context.setWakeUpScreen(wakeUp, (err) => {
+       console.log('---------- setWakeUpScreen fail, err: -----------', err);
+});
+```
+
+## Context.setWakeUpScreen<sup>7+</sup>
+
+setWakeUpScreen(wakeUp: boolean): Promise\<void>; 
+
+设置恢复此功能时是否唤醒屏幕。（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                          |
+| -------- | ---------------------- | ---- | ----------------------------- |
+| wakeUp |  boolean | 是   | 指定是否唤醒屏幕。值true表示唤醒它，值false表示不唤醒它。 |
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+|  Promise\<void>| 使用Promise形式返回结果 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+var wakeUp=true
+context.setWakeUpScreen(wakeUp).then((data) => {
+    console.info("=======================>setWakeUpScreenCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+
 
 
 ## Context.getProcessInfo<sup>7+</sup>
@@ -728,7 +947,7 @@ getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
 | 名称     | 类型                   | 必填 | 描述                      |
 | -------- | ---------------------- | ---- | ------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](#hapmoduleinfo)> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回应用的ModuleInfo对象。|
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)> | 是   | 回调函数，可以在回调函数中处理接口返回值，返回应用的ModuleInfo对象。|
 
 **示例：**
 
@@ -756,7 +975,7 @@ getHapModuleInfo(): Promise\<HapModuleInfo>
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<[HapModuleInfo](#hapmoduleinfo)> | 返回应用的ModuleInfo对象。 |
+| Promise\<[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)> | 返回应用的ModuleInfo对象。 |
 
 **示例：**
 
@@ -770,7 +989,7 @@ context.getHapModuleInfo().then((data) => {
 
 ## Context.getAppVersionInfo<sup>7+</sup>
 
-getAppVersionInfo(callback: AsyncCallback\<HapModuleInfo>): void
+getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
 获取应用的版本信息（callback形式）。
 
@@ -893,9 +1112,114 @@ import featureAbility from '@ohos.ability.featureAbility'
 var context = featureAbility.getContext().getApplicationContext();
 ```
 
-## PermissionOptions<sup>7+</sup>
+## Context.isUpdatingConfigurations<sup>7+</sup>
+
+isUpdatingConfigurations(callback: AsyncCallback\<boolean>): void;
+
+检查此能力的配置是否正在更改（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<boolean> | 是   | 如果该能力的配置正在更改，则为true，否则为false。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.isUpdatingConfigurations((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.isUpdatingConfigurations<sup>7+</sup>
+
+isUpdatingConfigurations(): Promise\<boolean>;
+
+检查此能力的配置是否正在更改（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+|Promise\<boolean> | 如果该能力的配置正在更改，则为true，否则为false。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.isUpdatingConfigurations().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+## Context.printDrawnCompleted<sup>7+</sup>
+
+printDrawnCompleted(callback: AsyncCallback\<void>): void;
+
+通知系统绘制此页面功能所需的时间（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称     | 类型                   | 必填 | 描述                      |
+| -------- | ---------------------- | ---- | ------------------------- |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。|
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.printDrawnCompleted((err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+});
+```
+
+## Context.printDrawnCompleted<sup>7+</sup>
+
+printDrawnCompleted(): Promise\<void>;
+
+通知系统绘制此页面功能所需的时间（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型            | 说明                      |
+| --------------- | ------------------------- |
+|Promise\<void> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.printDrawnCompleted().then((data) => {
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
+
+## PermissionOptions<sup>7+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 读写属性 | 类型   | 必填 | 描述   |
 | ---- | -------- | ------ | ---- | ------ |
@@ -904,7 +1228,7 @@ var context = featureAbility.getContext().getApplicationContext();
 
 ## PermissionRequestResult<sup>7+</sup>
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称        | 读写属性 | 类型           | 必填 | 描述               |
 | ----------- | -------- | -------------- | ---- | ------------------ |
@@ -912,30 +1236,9 @@ var context = featureAbility.getContext().getApplicationContext();
 | permissions | 只读     | Array\<string> | 是   | 用户传入的权限。     |
 | authResults | 只读     | Array\<number> | 是   | 请求权限的结果。    |
 
-## HapModuleInfo<sup>7+</sup>
-
-Hap模块信息
-
-| 名称               | 类型 | 可读 | 可写 | 说明 |
-| ------ | ------ | ------ | ------ | ------ |
-| name             | string        | 是   | 否   | 模块名称。           |
-| description      | string        | 是   | 否   | 模块描述信息。       |
-| descriptionId    | number        | 是   | 否   | 描述信息ID。         |
-| icon             | string        | 是   | 否   | 模块图标。           |
-| label            | string        | 是   | 否   | 模块标签。           |
-| labelId          | number        | 是   | 否   | 模块标签ID。         |
-| iconId           | number        | 是   | 否   | 模块图标ID。         |
-| backgroundImg    | string        | 是   | 否   | 模块背景图片。       |
-| supportedModes   | number        | 是   | 否   | 模块支持的模式。     |
-| reqCapabilities  | Array\<string> | 是   | 否   | 模块运行需要的能力。 |
-| deviceTypes      | Array\<string> | 是   | 否   | 支持运行的设备类型。 |
-| abilityInfo      | Array\<AbilityInfo> | 是   | 否   | Ability信息。  |
-| moduleName       | string        | 是   | 否   | 模块名。             |
-| mainAbilityName  | string        | 是   | 否   | 入口Ability名称。    |
-| installationFree | boolean       | 是   | 否   | 是否支持免安装。     |
-| mainElementName | string | 是 | 否 | 入口ability信息。 |
-
 ## AppVersionInfo<sup>7+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称             | 类型 | 可读    | 可写   | 说明 |
 | ------          | ------ | ------| ------ | ------    |

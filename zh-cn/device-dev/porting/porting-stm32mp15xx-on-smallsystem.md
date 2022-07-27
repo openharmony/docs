@@ -122,7 +122,7 @@ vendor
 
 内核移植需要完成`LiteOS-A Kconfig`适配、`gn`的编译构建和内核启动最小适配。
 
-详细移植步骤参考：[LiteOS-A内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-smallchip-kernel-a.md)
+详细移植步骤参考：[LiteOS-A内核移植](porting-smallchip-kernel-a.md)
 ### Kconfig适配
 1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/drivers/Kconfig中添加芯片、产品名称、厂商名称相关配置。
     ```
@@ -266,7 +266,7 @@ vendor
     }
     ```
 ### 内核启动适配
-1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/board/os_adapt.c中添加以下内核启动相关代码，详细解释参考[LiteOS-A内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-smallchip-kernel-a.md)。
+1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/board/os_adapt.c中添加以下内核启动相关代码，详细解释参考[LiteOS-A内核移植](porting-smallchip-kernel-a.md)。
     ```
     ...
     void SystemInit(void)

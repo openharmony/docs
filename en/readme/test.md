@@ -1,4 +1,4 @@
-# Test 
+# Test
 OpenHarmony provides a comprehensive auto-test framework for designing test cases. Detecting defects in the development process can improve code quality.
 
 This document describes how to use the OpenHarmony test framework.
@@ -46,19 +46,19 @@ subsystem # Subsystem
 │   │       ├── moduletest  # Module test
 │   │       ...
 │   │            
-│   ├── moduleB  # Module B
+│   ├── moduleB  # Module B  
 │   ├── test               
 │   │   └── resource  # Dependency resources   
 │   │       ├── moduleA  # Module A
 │   │       │   ├── ohos_test.xml # Resource configuration file
-│   │       ... └── 1.txt  # Resources  
+│   │       ... └── 1.txt  # Resource file  
 │   │            
-│   ├── ohos_build  # Build entry configuration
+│   ├── ohos_build  # Build entry configuration 
 │   ...
 │
 ...
 ```
-> **NOTE:** Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
+> **NOTE**<br>Test cases are classified into common test cases and device-specific test cases. You are advised to place common test cases in the **common** directory and device-specific test cases in the directories of the related devices.
 
 ###  Writing Test Cases
 This test framework supports test cases written in multiple programming languages and provides different templates for different languages.
@@ -119,7 +119,7 @@ Example:
     {
         // Step 1 Call the function to obtain the result.
         int actual = Sub(4, 0);
-    
+
         // Step 2 Use an assertion to compare the obtained result with the expected result.
         EXPECT_EQ(4, actual);
     }
@@ -132,7 +132,7 @@ Example:
     2. Add the test framework header file and namespace.
 	    ```
     	#include <gtest/gtest.h>
-    	
+    
     	using namespace testing::ext;
     	```
     3. Add the header file of the test class.
@@ -148,28 +148,28 @@ Example:
     	    void SetUp();
     	    void TearDown();
     	};
-        
+    
     	void CalculatorSubTest::SetUpTestCase(void)
     	{
     	    // Set a setup function, which will be called before all test cases.
     	}
-        
+    
     	void CalculatorSubTest::TearDownTestCase(void)
     	{
     	    // Set a teardown function, which will be called after all test cases.
     	}
-        
+    
     	void CalculatorSubTest::SetUp(void)
     	{
     	    // Set a setup function, which will be called before each test case.
     	}
-        
+    
     	void CalculatorSubTest::TearDown(void)
     	{
     	    // Set a teardown function, which will be called after each test case.
     	}
     	```
-	    > **NOTE**: When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
+	    > **NOTE**<br>When defining a test suite, ensure that the test suite name is the same as the target to build and uses the upper camel case style.
 
     5. Add implementation of the test cases, including test case comments and logic.
 	    ```
@@ -183,7 +183,7 @@ Example:
     	{
     	    // Step 1 Call the function to obtain the test result.
     	    int actual = Sub(4, 0);
-        
+
     	    // Step 2 Use an assertion to compare the obtained result with the expected result.
     	    EXPECT_EQ(4, actual);
     	}
@@ -201,7 +201,7 @@ Example:
 	- *B* indicates the test case name, which is in the *Function*\_*No.* format. The *No.* is a three-digit number starting from **001**.
 	- *C* indicates the test case level. There are five test case levels: guard-control level 0 and non-guard-control level 1 to level 4. Of levels 1 to 4, a smaller value indicates a more important function verified by the test case.
 
-	    **NOTE**:
+	    **NOTE**<br>
 	- The expected result of each test case must have an assertion.
 	- The test case level must be specified.
 	- It is recommended that the test be implemented step by step according to the template.
@@ -262,7 +262,7 @@ Example:
         it("appInfoTest001", 0, function () {
             // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-    
+
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
         })
@@ -276,7 +276,7 @@ Example:
     2. Import the APIs and JSUnit test library to test.
 	    ```
     	import app from '@system.app'
-    	
+    
     	import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
     	```
     3. Define the test suite (test class).
@@ -313,7 +313,7 @@ Example:
     	 it("appInfoTest001", 0, function () {
     	    // Step 1 Call the function to obtain the test result.
             var info = app.getInfo()
-    	
+
             // Step 2 Use an assertion to compare the obtained result with the expected result.
             expect(info != null).assertEqual(true)
     	 })
@@ -372,7 +372,7 @@ The following provides templates for different languages for your reference.
     	```
     	module_output_path = "subsystem_examples/calculator"
     	```
-    	> **NOTE**: The output path is ***Part name*/*Module name***.
+    	> **NOTE**<br>The output path is ***Part name*/*Module name***.
     
     4. Configure the directories for dependencies.
     
@@ -383,7 +383,7 @@ The following provides templates for different languages for your reference.
     	  include_dirs = [ "../../../include" ]
     	}
     	```
-    	> **NOTE**: Generally, the dependency directories are configured here and directly referenced in the build script of the test case.
+    	> **NOTE**<br>Generally, the dependency directories are configured here and directly referenced in the build script of the test case.
     
     5. Set the output build file for the test cases.
     
@@ -406,15 +406,16 @@ The following provides templates for different languages for your reference.
     	}
     	```
 
-	    > **NOTE:** Set the test type based on actual requirements. The following test types are available:
-    	> - **ohos_unittest**: unit test
-    	> - **ohos_moduletest**: module test
-    	> - **ohos_systemtest**: system test
-    	> - **ohos_performancetest**: performance test
-    	> - **ohos_securitytest**: security test
-    	> - **ohos_reliabilitytest**: reliability test
-    	> - **ohos_distributedtest**: distributed test
-
+	    > **NOTE**<br>Set the test type based on actual requirements. The following test types are available:
+    	 >
+    	 > - **ohos_unittest**: unit test
+    	 > - **ohos_moduletest**: module test
+    	 > - **ohos_systemtest**: system test
+    	 > - **ohos_performancetest**: performance test
+    	 > - **ohos_securitytest**: security test
+    	 > - **ohos_reliabilitytest**: reliability test
+         > - **ohos_distributedtest**: distributed test
+    	
     7. Group the test case files by test type.
     
     	```
@@ -423,7 +424,7 @@ The following provides templates for different languages for your reference.
     	  deps = [":CalculatorSubTest"]
     	}
     	```
-    	> **NOTE**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
+    	> **NOTE**<br>Grouping test cases by test type allows you to execute a specific type of test cases when required.
     
 - **Test case build file example (JavaScript)**
 
@@ -462,7 +463,7 @@ The following provides templates for different languages for your reference.
     	```
     	module_output_path = "subsystem_examples/app_info"
     	```
-    	> **NOTE**: The output path is ***Part name*/*Module name***.
+    	> **NOTE**<br>The output path is ***Part name*/*Module name***.
     	
     4. Set the output build file for the test cases.
     
@@ -470,7 +471,7 @@ The following provides templates for different languages for your reference.
     	ohos_js_unittest("GetAppInfoJsTest") {
     	}
     	```
-    	> **NOTE**<br/>
+    	> **NOTE**<br>
     	>- Use the **ohos\_js\_unittest** template to define the JavaScript test suite. Pay attention to the difference between JavaScript and C++.
     	>- The file generated for the JavaScript test suite must be in .hap format and named after the test suite name defined here. The test suite name must end with **JsTest**.
     
@@ -496,8 +497,8 @@ The following provides templates for different languages for your reference.
     	      "name": "1.0"
     	    },
     	    "apiVersion": {
-    	           "compatible": 4,
-    	         "target": 5 // Set it based on the tested SDK version. In this example, SDK5 is used.
+    	      "compatible": 4,
+    	      "target": 5 // Set it based on the tested SDK version. In this example, SDK5 is used.
     	    }
     	  },
     	  "deviceConfig": {},
@@ -554,7 +555,7 @@ The following provides templates for different languages for your reference.
     	  deps = [ ":GetAppInfoJsTest" ]
     	}
     	```
-    	> **NOTE**: Grouping test cases by test type allows you to execute a specific type of test cases when required.
+    	> **NOTE**<br>Grouping test cases by test type allows you to execute a specific type of test cases when required.
     
 #### Configuring ohos.build
 
@@ -575,7 +576,7 @@ Configure the part build file to associate with specific test cases.
     ]
  }
 ```
-> **NOTE**: **test_list** contains the test cases of the corresponding module.
+> **NOTE**<br>**test_list** contains the test cases of the corresponding module.
 
 ### Configuring Test Case Resources
 Test case resources include external file resources, such as image files, video files, and third-party libraries, required for test case execution.
@@ -656,7 +657,7 @@ Before executing test cases, you need to modify the configuration based on the d
   </NFS>
 </user_config>
 ```
->**NOTE**: If HDC is connected to the device before the test cases are executed, you only need to configure the device IP address and port number, and retain the default settings for other parameters.
+>**NOTE**<br>If HDC is connected to the device before the test cases are executed, you only need to configure the device IP address and port number, and retain the default settings for other parameters.
 
 ### Executing Test Cases on Windows
 #### Building Test Cases
@@ -667,7 +668,7 @@ Test cases cannot be built on Windows. You need to run the following command to 
 ```
 When the build is complete, the test cases are automatically saved in **out/hispark_taurus/packages/phone/images/tests**.
 
->**NOTE:** In the command, **hispark_taurus_standard** is the product supported by the current version, and **make_test** indicates all test cases. You can set the build options based on requirements:
+>**NOTE**<br>In the command, **hispark_taurus_standard** indicates the product supported by the current version, and **make_test** indicates all test cases. You can set the build options based on requirements:<br>
 > -  --**product-name**: specifies the name of the product to build. It is mandatory.
 > - --**build-target**: specifies the target to build. It is optional. 
 
@@ -676,7 +677,7 @@ When the build is complete, the test cases are automatically saved in **out/hisp
 
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
 	
->**NOTE**: Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
+>**NOTE**<br>Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
 
 3. Modify the **user_config.xml** file.
 	```
@@ -689,7 +690,7 @@ When the build is complete, the test cases are automatically saved in **out/hisp
 	  <dir>D:\Test\testcase\tests</dir>
 	</test_cases>
 	```
-	>**NOTE**: `<testcase>` indicates whether to build test cases. `<dir>` indicates the path for searching for test cases.
+	>**NOTE**<br>`<testcase>` indicates whether to build test cases. `<dir>` indicates the path for searching for test cases.
 
 #### Executing Test Cases
 1. Start the test framework.
@@ -698,7 +699,7 @@ When the build is complete, the test cases are automatically saved in **out/hisp
 	```
 2. Select the product.
 
-    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **hispark_taurus_standard**.
+    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **Hi3516DV300**.
 
 3. Execute test cases.
 
@@ -723,13 +724,13 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	hdc_std kill
 	hdc_std -m -s 0.0.0.0:8710
 	```
-	>**NOTE**: The IP address and port number are default values.
+	>**NOTE**<br>The IP address and port number are default values.
 
 2. On the HDC client, run the following command:
 	```
 	hdc_std -s xx.xx.xx.xx:8710 list targets
 	```
-	>**NOTE**: Enter the IP address of the device to test.
+	>**NOTE**<br>Enter the IP address of the device to test.
 
 #### Executing Test Cases
 1. Start the test framework.
@@ -738,7 +739,7 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	```
 2. Select the product.
 
-    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **hispark_taurus_standard**.
+    After the test framework starts, you are asked to select a product. Select the development board to test, for example, **Hi3516DV300**.
 
 3. Execute test cases.
 
@@ -764,7 +765,7 @@ You can obtain the test result in the following directory:
 ```
 test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 ```
->**NOTE**: The folder for test reports is automatically generated.
+>**NOTE**<br>The folder for test reports is automatically generated.
 
 The folder contains the following files:
 | Type| Description|

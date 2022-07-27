@@ -1777,7 +1777,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): Object
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas id="getImageData" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1813,7 +1813,7 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas  style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas id="getImageData" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 

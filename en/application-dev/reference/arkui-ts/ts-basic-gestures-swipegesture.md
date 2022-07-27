@@ -1,7 +1,9 @@
 # SwipeGesture
 
+**\<SwipeGesture>** is used to implement a swipe gesture, which can be recognized when the swipe speed is 100 vp/s or higher.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This gesture is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -33,13 +35,13 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | Name | Description |
 | -------- | -------- |
-| onAction(callback:(event?: GestureEvent) =&gt; void) | Callback invoked when a swipe gesture is recognized. |
+| onAction(callback:(event?: GestureEvent) =&gt; void) | Invoked when a swipe gesture is recognized. |
 
 
 - GestureEvent attributes related to the swipe gesture  
   | Name | Type | Description |
   | -------- | -------- | -------- |
-  | angle | number | Angle of the swipe gesture.<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**NOTE**<br/>>&nbsp;Angle calculation method: After the swipe gesture is identified, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction. Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1). The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees. |
+  | angle | number | Angle of the swipe gesture.<br/>**NOTE**<br/>Angle calculation method: After a swipe gesture is recognized, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction. Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1). The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees. |
   | speed | number | Speed of the swipe gesture. |
 
 ![en-us_image_0000001231374559](figures/en-us_image_0000001231374661.png)

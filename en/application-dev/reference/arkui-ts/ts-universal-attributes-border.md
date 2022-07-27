@@ -1,15 +1,19 @@
 # Border
 
-You can set border styles for components.
 >  **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > The border of a component is displayed above the content of its child components since API version 9.
 
+
+You can set border styles for components.
+
+
 ## Required Permissions
 
 None
+
 
 ## Attributes
 
@@ -27,11 +31,25 @@ None
   | -------- | -------- | -------- | -------- | -------- |
   | width | [Length](../../ui/ts-types.md) | 0 | No| Border width.|
   | color | [ResourceColor](../../ui/ts-types.md) | 'Black' | No| Border color.|
-  | radius | [Length](../../ui/ts-types.md) | 0 | No| Border radius.|
+  | radius | [Length](../../ui/ts-types.md)\| EdgeRadiuses<sup>9+</sup> | 0 | No| Border radius.|
   | style | BorderStyle | BorderStyle.Solid | No| Border style.|
 
 
+- EdgeRadiuses<sup>9+</sup>
+  
+  To reference this object, at least one parameter must be passed.
+  
+  | Name       | Type| Mandatory| Default Value| Description            |
+  | ----------- | -------- | ---- | ------ | ---------------- |
+  | topLeft     | length   | No  | 0      | Radius of the upper-left rounded corner.|
+  | topRight    | length   | No  | 0      | Radius of the upper-right rounded corner.|
+  | bottomLeft  | length   | No  | 0      | Radius of the lower-left rounded corner.|
+  | bottomRight | length   | No  | 0      | Radius of the lower-right rounded corner.|
+  
+  
+  
 - BorderStyle enums
+  
   | Name| Description|
   | -------- | -------- |
   | Dotted | Dotted border. The radius of a dot is half of **borderWidth**.|
@@ -51,6 +69,10 @@ struct BorderExample {
       // Dashed border
       Text('dashed')
         .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE).borderRadius(10)
+        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+      Text('dashed')
+        .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE)
+        .borderRadius({ topLeft: 10, topRight: 20, bottomLeft: 30, bottomRight: 60 })
         .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
       // Dotted border
       Text('dotted')

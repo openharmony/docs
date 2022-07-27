@@ -29,7 +29,7 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or functionality.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
 | version | number | Yes| RDB store version.|
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes| Callback invoked to return the RDB store obtained.|
@@ -59,7 +59,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or functionality.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | Context | Yes|Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
 | version | number | Yes| RDB store version.|
 
@@ -92,7 +92,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or functionality.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | name | string | Yes| Name of the RDB store to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
@@ -118,7 +118,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or functionality.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | name | string | Yes| Name of the RDB store to delete.|
 
 **Return value**
@@ -1018,7 +1018,7 @@ const valueBucket = {
 }
 let promise = rdbStore.insert("EMPLOYEE", valueBucket)
 promise.then(async (ret) => {
-    console.log("Insert first done: " + ret)
+    console.log("Inserted first row: " + ret)
 }).catch((err) => {
     console.log("Failed to insert data, err: " + err)
 })
@@ -1029,16 +1029,16 @@ promise.then(async (ret) => {
 
 update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
-Updates data in the database based on the specified RdbPredicates object. This API uses an asynchronous callback to return the result.
+Updates data in the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1064,14 +1064,14 @@ rdbStore.update(valueBucket, predicates, function (err, ret) {
 
 update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
-Updates data in the database based on the specified RdbPredicates object. This API uses a promise to return the result.
+Updates data in the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
 
 **Return value**
@@ -1100,7 +1100,7 @@ promise.then(async (ret) => {
 ### update<sup>9+</sup>
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
-Updates data in the database based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
+Updates data in the RDB store based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1108,9 +1108,9 @@ Updates data in the database based on the specified **DataSharePredicates** obje
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)| Yes|  Update conditions specified by the **DataSharePredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1135,7 +1135,7 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 
 update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Promise&lt;number&gt;
 
-Updates data in the database based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
+Updates data in the RDB store based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1143,7 +1143,7 @@ Updates data in the database based on the specified **DataSharePredicates** obje
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
+| values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Update conditions specified by the **DataSharePredicates** object.|
 
 **Return value**
@@ -1175,7 +1175,7 @@ promise.then(async (ret) => {
 delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 
-Deletes data from the database based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.
+Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1203,7 +1203,7 @@ rdbStore.delete(predicates, function (err, rows) {
 
 delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
-Deletes data from the database based on the specified **RdbPredicates** object. This API uses a promise to return the result.
+Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1215,7 +1215,7 @@ Deletes data from the database based on the specified **RdbPredicates** object. 
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; |  Promise used to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1234,7 +1234,7 @@ promise.then((rows) => {
 delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
 
-Deletes data from the database based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
+Deletes data from the RDB store based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1262,7 +1262,7 @@ rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
 
 delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
-Deletes data from the database based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
+Deletes data from the RDB store based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1275,7 +1275,7 @@ Deletes data from the database based on the specified **DataSharePredicates** ob
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; |  Promise used to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1294,7 +1294,7 @@ promise.then((rows) => {
 
 query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data in the database based on specified conditions. This API uses an asynchronous callback to return the result.
+Queries data in the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1324,7 +1324,7 @@ rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (e
 
 query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-Queries data in the database based on specified conditions. This API uses a promise to return the result.
+Queries data in the RDB store based on specified conditions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1356,7 +1356,7 @@ Queries data in the database based on specified conditions. This API uses a prom
 
 query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-Queries data in the database based on specified conditions. This API uses an asynchronous callback to return the result.
+Queries data in the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1386,7 +1386,7 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 
 query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
-Queries data in the database based on specified conditions. This API uses a promise to return the result.
+Queries data in the RDB store based on specified conditions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1625,14 +1625,14 @@ try {
 
 backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 
-Backs up the database with the specified name. This API uses an asynchronous callback to return the result.
+Backs up an RDB store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| destName | string | Yes| Name of the database backup file.|
+| destName | string | Yes| Name of the RDB store backup file.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Example**
@@ -1650,14 +1650,14 @@ rdbStore.backup("dbBackup.db", function(err) {
 
 backup(destName:string): Promise&lt;void&gt;
 
-Backs up the database with the specified name. This API uses a promise to return the result.
+Backs up an RDB store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| destName | string | Yes| Name of the database backup file.|
+| destName | string | Yes| Name of the RDB store backup file.|
 
 **Return value**
 | Type| Description|
@@ -1678,14 +1678,14 @@ promiseBackup.then(()=>{
 
 restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 
-Restores a database from a specified database backup file. This API uses an asynchronous callback to return the result.
+Restores an RDB store using a backup file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| srcName | string | Yes| Name of the database backup file.|
+| srcName | string | Yes| Name of the RDB store backup file.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Example**
@@ -1703,14 +1703,14 @@ rdbStore.restore("dbBackup.db", function(err) {
 
 restore(srcName:string): Promise&lt;void&gt;
 
-Restores a database from a specified database backup file. This API uses a promise to return the result.
+Restores an RDB store using a backup file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| srcName | string | Yes| Name of the database backup file.|
+| srcName | string | Yes| Name of the RDB store backup file.|
 
 **Return value**
 | Type| Description|
@@ -1809,7 +1809,7 @@ rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, 
         console.info('Failed to obtain DistributedTableName, err: ' + err)
         return
     }
-    console.info('Obtained DistributedTableName successfully, tableName=.' + tableName)
+    console.info('Obtained distributed table name successfully, tableName=.' + tableName)
 })
 ```
 
@@ -1839,7 +1839,7 @@ Obtains the distributed table name for a remote device based on the local table 
 ```js
 let promise = rdbStore.obtainDistributedTableName("12345678abcde", "EMPLOYEE")
 promise.then((tableName) => {
-    console.info('Obtained DistributedTableName successfully, tableName= ' + tableName)
+    console.info('Obtained distributed table name successfully, tableName= ' + tableName)
 }).catch((err) => {
     console.info('Failed to obtain DistributedTableName, err: ' + err)
 })

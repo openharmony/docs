@@ -408,6 +408,8 @@ UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属�
 
 坐标点信息。
 
+**系统能力**：SystemCapability.Test.UiTest
+
 | 名称 | 参数类型 | 可读 | 可写 | 描述             |
 | ---- | -------- | ---- | ---- | ---------------- |
 | X    | number   | 是   | 否   | 坐标点的横坐标。 |
@@ -416,6 +418,8 @@ UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属�
 ### Rect<sup>9+</sup>
 
 控件的边框信息。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称    | 参数类型 | 可读 | 可写 | 描述                      |
 | ------- | -------- | ---- | ---- | ------------------------- |
@@ -1281,7 +1285,7 @@ async function demo() {
 
 ### triggerCombineKeys<sup>9+</sup>
 
-triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
+triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 UiDriver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，UiDriver对象找到组合键并点击ctrl+c。
 
@@ -1469,7 +1473,7 @@ UiTest中，UiWindow类代表了UI界面上的一个窗口，提供窗口属性�
 
 窗口的标志属性信息。
 
-**系统能力**：SystemCapability.Test.UiTest 
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 参数类型 | 必填 | 可读 | 可写 | 描述                       |
 | ---------- | -------- | ---- | ---- | ---- | -------------------------- |
@@ -1833,7 +1837,7 @@ async function demo() {
 
 控件属性支持的匹配模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Test.UiTest
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称        | 值   | 说明           |
 | ----------- | ---- | -------------- |
@@ -1845,6 +1849,8 @@ async function demo() {
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
+
+**系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 说明     |
 | ---------- | -------- |
@@ -1859,6 +1865,8 @@ async function demo() {
 
 ## WindowMode<sup>9+</sup>
 
+**系统能力**：SystemCapability.Test.UiTest
+
 窗口的窗口模式。
 
 | 名称       | 说明       |
@@ -1866,4 +1874,4 @@ async function demo() {
 | FULLSCREEN | 全屏模式。 |
 | PRIMARY    | 主窗口。   |
 | SECONDARY  | 第二窗口。 |
-| FLOAT      | 浮动窗口。 |
+| FLOATING   | 浮动窗口。 |

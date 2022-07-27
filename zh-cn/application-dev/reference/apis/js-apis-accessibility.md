@@ -1,5 +1,7 @@
 # 辅助功能
 
+本模块提供辅助功能查询能力，包括获取辅助应用列表、辅助应用启用状态、无障碍字幕配置等。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从 API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -13,7 +15,7 @@ import accessibility from '@ohos.accessibility';
 
 辅助应用状态类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -25,7 +27,7 @@ import accessibility from '@ohos.accessibility';
 
 无障碍辅助应用类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -34,12 +36,13 @@ import accessibility from '@ohos.accessibility';
 | haptic | 表示具有触觉反馈。 |
 | spoken  | 表示具有语音反馈。 |
 | visual | 表示具有视觉反馈。 |
+| all<sup>9+</sup> | 表示以上所有类别。 |
 
 ## AccessibilityAbilityInfo
 
 辅助应用信息。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 ### 属性
 
@@ -48,6 +51,7 @@ import accessibility from '@ohos.accessibility';
 | id | number | 是 | 否 | ability&nbsp;id。 |
 | name | string | 是 | 否 | ability 名。 |
 | bundleName | string | 是 | 否 | 包名。 |
+| targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | 是 | 否 | 关注的目标包名。 |
 | abilityTypes | Array&lt;[AbilityType](#abilitytype)&gt; | 是 | 否 | 辅助应用类型。 |
 | capabilities | Array&lt;[Capability](#capability)&gt; | 是 | 否 | 辅助应用能力列表。 |
 | description | string | 是 | 否 | 辅助应用描述。 |
@@ -57,7 +61,7 @@ import accessibility from '@ohos.accessibility';
 
 应用所支持的目标动作。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -82,7 +86,7 @@ import accessibility from '@ohos.accessibility';
 
 辅助应用能力类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -96,7 +100,7 @@ import accessibility from '@ohos.accessibility';
 
 字幕字体边缘类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -110,7 +114,7 @@ import accessibility from '@ohos.accessibility';
 
 字幕字体。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -127,7 +131,7 @@ import accessibility from '@ohos.accessibility';
 
 字幕风格。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -159,7 +163,7 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 注册字幕配置启用的监听函数。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 - 参数：
 
@@ -182,7 +186,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 注册字幕风格变化的监听函数。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 - 参数：
 
@@ -205,7 +209,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 移除字幕配置启用的监听函数。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 - 参数：
 
@@ -226,7 +230,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 移除字幕风格变化的监听函数。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 - 参数：
 
@@ -245,7 +249,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 界面变更事件。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 ### 属性
 
@@ -290,7 +294,7 @@ constructor(jsonObject)
 
 无障碍事件类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -310,7 +314,7 @@ constructor(jsonObject)
 
 文本无障碍导航移动粒度。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -324,7 +328,7 @@ constructor(jsonObject)
 
 窗口变化类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -340,7 +344,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 
 查询辅助应用列表。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 参数：
 
@@ -383,7 +387,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 
 查询辅助应用列表。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 参数：
 
@@ -422,7 +426,7 @@ getCaptionsManager(): CaptionsManager
 
 获取无障碍字幕配置。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Hearing
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
 - 返回值：
 
@@ -448,7 +452,7 @@ on(type: 'accessibilityStateChange' | 'touchGuideStateChange', callback: Callbac
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Vision |
+  | type | string | 是 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision |
   | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
 
 - 示例
@@ -471,7 +475,7 @@ off(type: ‘accessibilityStateChange ’ | ‘touchGuideStateChange’, callbac
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type |  string | 否 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.Barrierfree.Accessibility.Vision |
+  | type |  string | 否 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision |
   | callback | Callback&lt;boolean&gt; | 否 | 要取消的监听回调函数。 |
 
 - 示例
@@ -488,7 +492,7 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 
 判断是否启用了辅助功能。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 返回值：
 
@@ -513,7 +517,7 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断是否启用了辅助功能。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 参数
 
@@ -539,7 +543,7 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
 
 判断触摸浏览模式是否开启。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 返回值：
 
@@ -564,7 +568,7 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断触摸浏览模式是否开启。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 参数
 
@@ -590,7 +594,7 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 发送无障碍事件。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 参数：
 
@@ -621,7 +625,7 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 发送无障碍事件。
 
-**系统能力**：SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 - 参数：
 

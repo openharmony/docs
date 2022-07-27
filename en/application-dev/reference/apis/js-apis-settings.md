@@ -1,16 +1,15 @@
 # Settings
 
+This module provides APIs for setting data items.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-This module provides APIs for setting data items.
-
-
 ## Modules to Import
 
-```typescript
+```ts
 import settings from '@ohos.settings';
 ```
 
@@ -28,7 +27,8 @@ Obtains the URI of a data item.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: settings.display.SCREEN_BRIGHTNESS_STATUS<br> </li>  <li>Time format: settings.date.TIME_FORMAT<br> </li></ul> <li>Custom data items</li></ul>|
+| settings.display.SCREEN_BRIGHTNESS_STATUS | string | Yes| Brightness of the target data item.|
+| settings.date.TIME_FORMAT | string | Yes| Time format of the target data item. Data |
 
 **Return value**
 
@@ -38,7 +38,7 @@ Obtains the URI of a data item.
 
 **Example**
 
-```typescript
+```ts
  // Obtain the URI of a data item.
  let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);  
 ```
@@ -67,7 +67,7 @@ Obtains the value of a data item.
 
 **Example**
 
-```typescript
+```ts
   import featureAbility from '@ohos.ability.featureAbility';
 
 // Obtain the value of settings.display.SCREEN_BRIGHTNESS_STATUS (this data item already exists in the database).
@@ -95,7 +95,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 | -------- | -------- | -------- | -------- |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | Yes| **DataAbilityHelper** class.|
 | name | string | Yes| Name of the target data item. Data items can be classified as follows:<br> <ul><li>Existing data items in the database, for example:<br></li> <ul><li>Brightness: **settings.display.SCREEN_BRIGHTNESS_STATUS**<br> </li>  <li>Time format: **settings.date.TIME_FORMAT**<br> </li></ul> <li>Custom data items</li></ul> |
-| value | string | Yes| Value of the data item.|
+| value | string | Yes| Value of the data item.The value of range with the service.|
 
 **Return value**
 
@@ -105,7 +105,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **Example**
 
-```typescript
+```ts
   import featureAbility from '@ohos.ability.featureAbility';
 
 // Update the value of settings.display.SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the setValueSync 

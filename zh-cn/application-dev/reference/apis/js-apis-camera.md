@@ -347,7 +347,7 @@ cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
 
 ```js
 async function getCameraInfo("cameraId") {
-    var cameraManager = await camera.getCameraManager();
+    var cameraManager = await camera.getCameraManager(context);
     var cameras = await cameraManager.getCameras();
     var cameraObj = cameras[0];
     var cameraId = cameraObj.cameraId;
@@ -2231,6 +2231,10 @@ capture(setting: PhotoCaptureSetting, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
+let settings:PhotoCaptureSetting = {
+    quality = 1,
+    rotation = 0
+}
 photoOutput.capture(settings, (err) => {
     if (err) {
         console.error('Failed to capture the photo ${err.message}');
@@ -2359,7 +2363,7 @@ on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
 **示例：**
 
 ```js
-photoOutput.on('frameShutter', (frameShutterInfo) => {
+photoOutput.on('frameShutter', (err, frameShutterInfo) => {
     console.log('photo capture end, captureId : ' + frameShutterInfo.captureId);
     console.log('Timestamp for frame : ' + frameShutterInfo.timestamp);
 })
@@ -2383,7 +2387,7 @@ on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
 **示例：**
 
 ```js
-photoOutput.on('captureEnd', (captureEndInfo) => {
+photoOutput.on('captureEnd', (err, captureEndInfo) => {
     console.log('photo capture end, captureId : ' + captureEndInfo.captureId);
     console.log('frameCount : ' + captureEndInfo.frameCount);
 })
@@ -2407,7 +2411,7 @@ on(type: 'error', callback: ErrorCallback<PhotoOutputError\>): void
 **示例：**
 
 ```js
-photoOutput.on('error', (photoOutputError) => {
+photoOutput.on('error', (err, photoOutputError) => {
     console.log('Photo output error code: ' + photoOutputError.code);
 })
 ```

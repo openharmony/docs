@@ -49,10 +49,10 @@ let xml =
     '</note>';
 let conv = new convertxml.ConvertXML();
 let options = {trim : false, declarationKey:"_declaration",
-               instructionKey : "_instruction", attributesKey : "_attributes",
-               textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
-               commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
-               nameKey : "_name", elementsKey : "_elements"}
+    instructionKey : "_instruction", attributesKey : "_attributes",
+    textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
+    commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
+    nameKey : "_name", elementsKey : "_elements"}
 let result = JSON.stringify(conv.convert(xml, options));
 console.log(result)
 ```

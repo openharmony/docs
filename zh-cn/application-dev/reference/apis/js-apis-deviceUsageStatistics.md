@@ -125,15 +125,6 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```javascript
-//有bundleName的callback
-bundleState.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
-    if(err) {
-        console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
-    } else {
-        console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
-    }
-});
-//无bundleName的callback
 bundleState.queryAppUsagePriorityGroup((err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
@@ -566,7 +557,8 @@ queryAppUsagePriorityGroup(bundleName? : string): Promise&lt;number&gt;
 
 ```javascript
 //有bundleName的promise
-bundleState.queryAppUsagePriorityGroup(this.bundleName).then( res => {
+let bundleName = "com.ohos.camera";
+bundleState.queryAppUsagePriorityGroup(bundleName).then( res => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch( err => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
@@ -602,7 +594,8 @@ queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;numb
 
 ```javascript
 //有bundleName的callback
-bundleState.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
+let bundleName = "com.ohos.camera";
+bundleState.queryAppUsagePriorityGroup(bundleName, (err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
     } else {

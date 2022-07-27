@@ -1,12 +1,14 @@
 # DataAbility开发指导
+
 ## 场景介绍
+
 基于Data模板的Ability（以下简称“Data”），有助于应用管理其自身和其他应用存储数据的访问，并提供与其他应用共享数据的方法。Data既可用于同设备不同应用的数据共享，也支持跨设备不同应用的数据共享。
 
 Data提供方可以自定义数据的增、删、改、查，以及文件打开等功能，并对外提供这些接口。
 
 ## URI介绍
 
-Data的提供方和使用方都通过URI（Uniform Resource Identifier）来标识一个具体的数据，例如数据库中的某个表或磁盘上的某个文件。HarmonyOS的URI仍基于URI通用标准，格式如下：
+Data的提供方和使用方都通过URI（Uniform Resource Identifier）来标识一个具体的数据，例如数据库中的某个表或磁盘上的某个文件。OpenHarmony的URI仍基于URI通用标准，格式如下：
 
 ![fa-dataability-uri](figures/fa-dataability-uri.png)
 
@@ -21,10 +23,9 @@ URI示例：
 - 跨设备场景：dataability://*device_id*/*com.domainname.dataability.persondata*/*person*/*10*
 - 本地设备：dataability:///*com.domainname.dataability.persondata*/*person*/*10*
 
-```
-说明
-本地设备的“device_id”字段为空，因此在“dataability:”后面有三个“/”。
-```
+> 说明
+> 
+> 本地设备的“device_id”字段为空，因此在“dataability:”后面有三个“/”。
 
 ## 接口说明
 

@@ -2,85 +2,85 @@
 
 ## When to Use
 
-On the basis of the SQLite database, the RDB allows you to operate data with or without native SQL statements. In OpenHarmony, an RDB is also called RDB store.
+A relational database (RDB) store allows you to operate local data with or without native SQL statements based on SQLite.
 
 ## Available APIs
 ### Creating and Deleting an RDB Store
 
-The following table describes APIs available for creating and deleting an RDB store.
+The table below describes the APIs for creating and deleting an RDB store.
 
 **Table 1** APIs for creating and deleting an RDB store
 
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStoreConfig | RdbStoreConfig(const std::string &path, <br> StorageMode storageMode = StorageMode::MODE_DISK, <br> bool readOnly = false, <br> const std::vector<uint8_t> &encryptKey = std::vector<uint8_t>(), <br> const std::string &journalMode = "", <br> const std::string &syncMode = "", <br> const std::string &databaseFileType = "", <br> const std::string &databaseFileSecurityLevel = "") | Configures an RDB store, including setting the name, storage mode, log mode, synchronization mode, and read-only mode, and encrypting the RDB store.<br/> -&nbsp;**path**: path of the database.<br/> -&nbsp;**readOnly**: whether the database is read-only.<br/> -&nbsp; **storageMode**: storage mode.<br/> -&nbsp;**encryptKey**: key used for database encryption.<br/> -&nbsp;**journalMode**: database logging mode.<br/> -&nbsp;**syncMode**: data synchronization mode.<br/> -&nbsp;**databaseFileType**: database type.<br/> -&nbsp;**databaseFileSecurityLevel**: security level. |
-| RdbOpenCallback | int OnCreate(RdbStore &rdbStore) | Called when an RDB store is created. You can add the method for initializing the table structure and add initialization data used by your application in the callback.|
+| RdbStoreConfig | RdbStoreConfig(const std::string &path, <br> StorageMode storageMode = StorageMode::MODE_DISK, <br> bool readOnly = false, <br> const std::vector<uint8_t> &encryptKey = std::vector<uint8_t>(), <br> const std::string &journalMode = "", <br> const std::string &syncMode = "", <br> const std::string &databaseFileType = "", <br> const std::string &databaseFileSecurityLevel = "") | Configures an RDB store, including setting the RDB store name, storage mode, log mode, synchronization mode, and read-only mode, and whether to encrypt the RDB store.<br/> - **path**: path of the RDB store. <br>- **readOnly**: whether the RDB store is read-only. <br>- **storageMode**: storage mode. <br>- **encryptKey**: key used to encrypt the RDB store. <br>- **journalMode**: logging mode. <br>- **syncMode**: data synchronization mode. <br>- **databaseFileType**: RDB store type. <br>- **databaseFileSecurityLevel**: security level of the RDB store.|
+| RdbOpenCallback | int OnCreate(RdbStore &rdbStore) | Called when an RDB store is created. You can add the method for initializing the table structure and initialization data used by your application in this callback.|
 | RdbOpenCallback | int OnUpgrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | Called when the RDB store is upgraded.|
 | RdbOpenCallback | int OnDowngrade(RdbStore &rdbStore, int currentVersion, int targetVersion) | Called when the RDB store is downgraded.|
 | RdbHelper | std::shared_ptr\<RdbStore\> GetRdbStore(const RdbStoreConfig &config, int version, RdbOpenCallback &openCallback, int &errCode) | Creates or obtains an RDB store.|
-| RdbHelper | int DeleteRdbStore(const std::string &path) | Deletes the specified RDB store.|
+| RdbHelper | int DeleteRdbStore(const std::string &path) | Deletes an RDB store.|
 
 ### Encrypting an RDB Store
 
-The RDB provides the database encryption capability. When creating an RDB store, you can add a key for security purposes. After that, the RDB store can be accessed only with the correct key.
+When creating an RDB store, you can add a key for security purposes. After that, the RDB store can be accessed only with the correct key.
 
 **Table 2** API for changing the key
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | int ChangeEncryptKey(const std::vector<uint8_t> &newKey) | Changes the encryption key for an RDB store. <br>Note: The encryption key can be changed only for an encrypted RDB store.|
+| RdbStore | int ChangeEncryptKey(const std::vector<uint8_t> &newKey) | Changes the encryption key for an RDB store. <br>Note that the encryption key can be changed only for an encrypted RDB store.|
 
 ### Using Predicates
 
-The RDB provides **AbsRdbPredicates** for you to set database operation conditions. The **AbsRdbPredicates** has the following child classes:
+The RDB store provides **AbsRdbPredicates** for you to set database operation conditions. The **AbsRdbPredicates** class has the following child classes:
 
-- **RdbPredicates**: With this class, you do not need to write complex SQL statements. Instead, you can combine SQL statements simply by calling methods in this class, such as **equalTo**, **notEqualTo**, **groupBy**, **orderByAsc**, and **beginsWith**.
-- **RawRdbPredicates**: With this class, you can set **whereClause** and **whereArgs**, but cannot call methods such as **equalTo**.
+- **RdbPredicates**: allows you to combine SQL statements by simply calling methods in this class, such as **equalTo**, **notEqualTo**, **groupBy**, **orderByAsc**, and **beginsWith**. With this class, you do not need to write complex SQL statements.
+- **RawRdbPredicates**: allows you to write complex SQL statements, such as setting **whereClause** and **whereArgs**. However, this class does not support APIs such as **equalTo**.
 
-  **Table 3** APIs for RDB store predicates 
+  **Table 3** APIs for setting RDB predicates 
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbPredicates | AbsPredicates *EqualTo(std::string field, std::string value) | Sets the **AbsPredicates** to match the field that is equal to the specified value.|
-  | RdbPredicates | AbsPredicates *NotEqualTo(std::string field, std::string value) | Sets the **AbsPredicates** to match the field that is not equal to the specified value.|
-  | RdbPredicates | AbsPredicates *BeginsWith(std::string field, std::string value) | Sets the **AbsPredicates** to match the field that starts with the specified value.|
-  | RdbPredicates | AbsPredicates *Between(std::string field, std::string low, std::string high) | Sets the **AbsPredicates** to match the field that is within the range specified by **low** and **high**.|
-  | RdbPredicates | AbsPredicates *OrderByAsc(std::string field) | Sets the **AbsPredicates** to match the column with values sorted in ascending order.|
+  | RdbPredicates | AbsPredicates *EqualTo(std::string field, std::string value) | Sets an **AbsPredicates** to match the field that is equal to the specified value.|
+  | RdbPredicates | AbsPredicates *NotEqualTo(std::string field, std::string value) | Sets an **AbsPredicates** to match the field that is not equal to the specified value.|
+  | RdbPredicates | AbsPredicates *BeginsWith(std::string field, std::string value) | Sets an **AbsPredicates** to match the field that starts with the specified value.|
+  | RdbPredicates | AbsPredicates *Between(std::string field, std::string low, std::string high) | Sets an **AbsPredicates** to match the field that is within the range specified by **low** and **high**.|
+  | RdbPredicates | AbsPredicates *OrderByAsc(std::string field) | Sets an **AbsPredicates** that sorts values in ascending order.|
   | RdbPredicates | void SetWhereClause(std::string whereClause) | Sets **whereClause**.|
   | RdbPredicates | void SetWhereArgs(std::vector\<std::string\> whereArgs) | Sets **whereArgs**, which indicates the value of the placeholder in **whereClause**.|
-  | RdbPredicates | AbsRdbPredicates *InDevices(std::vector<std::string>& devices) | Sets the **AbsPredicates** to specify the remote devices on the network with databases to be synchronized.|
-  | RdbPredicates | AbsRdbPredicates *InAllDevices() | Sets the **AbsPredicates** to connect to all remote devices on the network when synchronizing distributed databases.|
+  | RdbPredicates | AbsRdbPredicates *InDevices(std::vector<std::string>& devices) | Sets an **AbsPredicates** to specify the remote devices on the network with databases to be synchronized.|
+  | RdbPredicates | AbsRdbPredicates *InAllDevices() | Sets an **AbsPredicates** to connect to all remote devices on the network when synchronizing distributed databases.|
 
 
 ### Managing Data in an RDB Store
 
-The RDB provides APIs for inserting, deleting, updating, and querying data in the local RDB store.
+You can use the APIs provided by the RDB to insert, delete, update, and query local data.
 
 - Inserting data
 
-  The RDB provides an API for inserting data through **ValuesBucket** in a data table. If the data is added, the row number of the data inserted is returned; otherwise, **-1** is returned.
+  Call **int Insert()** to insert data through **ValuesBucket**. If data is inserted, the row number of the data inserted is returned; otherwise, **-1** is returned.
 
-  **Table 4** APIs for inserting data tables
+  **Table 4** API for inserting data
 
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Insert(int64_t &outRowId, const std::string &table, const ValuesBucket &initialValues) | Inserts data based on the passed table name and data in **ValuesBucket**. <br/>-&nbsp;**table**: specifies the name of the target table.<br/> -&nbsp;**initialValues**: specifies the data, stored in **ValuesBucket**, to insert. A series of **put()** methods, such as **PutString(const std::string &columnName, const std::string &value)** and **PutDouble(const std::string &columnName, double value)**, are provided to add data to **ValuesBucket**. |
+  | RdbStore | int Insert(int64_t &outRowId, const std::string &table, const ValuesBucket &initialValues) | Inserts data based on the passed table name and data in **ValuesBucket**. <br/>- **table**: name of the target table. <br/>- **initialValues**: data to insert. The data is stored in **ValuesBucket**. A series of **put()** methods, such as **PutString(const std::string &columnName, const std::string &value)** and **PutDouble(const std::string &columnName, double value)**, are provided to add data to **ValuesBucket**. |
 
 - Deleting data
   
-  Call the **delete()** method to delete data meeting the conditions specified by **AbsRdbPredicates**. If the data is deleted, the row number of the deleted data is returned; otherwise, **0** is returned.
+  Call **delete()** to delete the data that meets the conditions specified by **AbsRdbPredicates**. If data is deleted, the row number of the deleted data is returned; otherwise, **0** is returned.
 
   **Table 5** API for deleting data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data. <br/>-&nbsp;**deletedRows**: specifies the number of rows to delete.<br/> -&nbsp;**predicates**: specifies the table name and conditions for deleting the data.<br/>  **AbsRdbPredicates** has the following classes:<br/> -&nbsp;**RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**.<br/> -&nbsp;**RawRdbPredicates**: specifies the table name, **whereClause** and **whereArgs** only. |
+  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data.<br> - **deletedRows**: number of rows to delete.<br> - **predicates**: table name and conditions for deleting the data. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. |
 
 - Updating data
 
-  Call the **update()** method to modify data based on the passed data and the conditions specified by **AbsRdbPredicates**. If the data is updated, the row number of the updated data is returned; otherwise, **0** is returned.
+  Call **update()** to update data based on the passed data and the conditions specified by **AbsRdbPredicates**. If data is updated, the row number of the updated data is returned; otherwise, **0** is returned.
 
   **Table 6** API for updating data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Update(int &changedRows, const ValuesBucket &values, const AbsRdbPredicates &predicates) | Updates the data that meets the conditions specified by predicates.<br/> -&nbsp;**changedRows**: specifies the number of rows to update.<br/> -&nbsp;**values**: specifies the new data stored in **ValuesBucket**.<br/> -&nbsp;**predicates**: specifies the table name and conditions for the update operation.  **AbsRdbPredicates** has the following classes: <br/>-&nbsp;**RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**.<br/> -&nbsp;**RawRdbPredicates**: specifies the table name, **whereClause** and **whereArgs** only. |
+  | RdbStore | int Update(int &changedRows, const ValuesBucket &values, const AbsRdbPredicates &predicates) | Updates the data that meets the conditions specified by predicates.<br> - **changedRows**: number of rows to update.<br> - **values**: new data stored in **ValuesBucket**.<br> - **predicates**: table name and conditions for the update operation. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. |
 
 - Querying data
 
@@ -92,72 +92,92 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   **Table 7** APIs for querying data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | Queries data. <br/>-&nbsp;**predicates**: specifies the query conditions.  **AbsRdbPredicates** has the following classes: <br/>-&nbsp;**RdbPredicates**: specifies update conditions by calling its methods, such as **equalTo**. <br/>-&nbsp;**RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. <br/>-&nbsp;**columns**: specifies the number of columns returned. |
-  | RdbStore | std::unique_ptr<AbsSharedResultSet> QuerySql(const std::string &sql, const std::vector\<std::string\> &selectionArgs = std::vector\<std::string\>()) | Executes the native SQL statements to query data. <br/>-&nbsp;**sql**: specifies the native SQL statement. <br/>-&nbsp;**selectionArgs**: specifies the parameter values corresponding to the placeholders in the SQL statements. Set it to **null** if the **select** statement has no placeholder. |
+  | RdbStore | std::unique_ptr<AbsSharedResultSet> Query(const AbsRdbPredicates &predicates, const std::vector\<std::string\> columns) | Queries data.<br> - **predicates**: query conditions. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies query conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only.<br> - **columns**: number of columns returned. |
+  | RdbStore | std::unique_ptr<AbsSharedResultSet> QuerySql(const std::string &sql, const std::vector\<std::string\> &selectionArgs = std::vector\<std::string\>()) | Executes the native SQL statements to query data.<br> - **sql**: native SQL statement.<br> - **selectionArgs**: parameter values corresponding to the placeholders in the SQL statements. Set it to **null** if the **select** statement has no placeholder. |
 
-### Using the Result Set
+### Obtaining the Query Result
 
-A result set can be regarded as rows of data in the queried results. It allows you to traverse and access the data you have queried. The following table describes the external APIs of **ResultSet**.
+You can use the APIs provided by **ResultSet** to traverse and access the data you have queried. A result set can be regarded as a row of data in the queried result. The table below describes the APIs of **ResultSet**.
 
-**Table 8** APIs for using the result set
+**Table 8** APIs of **ResultSet**
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| ResultSet | int GoTo(int offset) | Moves the result set forwards or backwards by the specified offset relative to its current position.|
-| ResultSet | int GoToRow(int position) | Moves the result set to the specified row.|
-| ResultSet | int GoToNextRow() | Moves the result set to the next row.|
-| ResultSet | int GoToPreviousRow() | Moves the result set to the previous row.|
+| ResultSet | int GoTo(int offset) | Moves forwards or backwards by the specified offset relative to its current position.|
+| ResultSet | int GoToRow(int position) | Moves to the specified row.|
+| ResultSet | int GoToNextRow() | Moves to the next row.|
+| ResultSet | int GoToPreviousRow() | Moves to the previous row.|
 | ResultSet | int IsStarted(bool &result) | Checks whether the result set has been moved.|
 | ResultSet | int IsEnded(bool &result) | Checks whether the result set is moved after the last line.|
 | ResultSet | int IsAtFirstRow(bool &result) | Checks whether the result set is located in the first row.|
 | ResultSet | int IsAtLastRow(bool &result) | Checks whether the result set is located in the last row.|
-| ResultSet | int GetRowCount(int &count) | Obtains the number of rows in the result set.|
-| ResultSet | int GetColumnCount(int &count) | Obtains the number of columns in the result set.|
-| ResultSet | int GetString(int columnIndex, std::string &value) | Obtains the values in the specified column of the current row, in strings.|
-| ResultSet | int GetBlob(int columnIndex, std::vector\<uint8_t\> &blob) | Obtains the values in the specified column of the current row, in a byte array.|
-| ResultSet | int GetDouble(int columnIndex, double &value) | Obtains the values in the specified column of the current row, in double.|
+| ResultSet | int GetRowCount(int &count) | Obtains the number of rows of this result set.|
+| ResultSet | int GetColumnCount(int &count) | Obtains the number of columns of this result set.|
+| ResultSet | int GetString(int columnIndex, std::string &value) | Obtains the value in the specified column of the current row, in strings.|
+| ResultSet | int GetBlob(int columnIndex, std::vector\<uint8_t\> &blob) | Obtains the value in the specified column of the current row, in a byte array.|
+| ResultSet | int GetDouble(int columnIndex, double &value) | Obtains the value in the specified column of the current row, in double.|
 
-### Setting a List of Distributed Tables
+### Setting Distributed Tables
 
-You can set a list of distributed tables for data operations across devices.
+Call **bool SetDistributedTables()** to set distributed tables for data operations across devices.
 
-**Table 9** API for setting a distributed table list
+**Table 9** API for setting distributed tables
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool SetDistributedTables(const std::vector<std::string>& tables) | Sets a list of distributed tables.<br/> -&nbsp;**tables**: specifies the names of the distributed tables to set. |
+| RdbStore | bool SetDistributedTables(const std::vector<std::string>& tables) | Sets distributed tables.<br> - **tables**: names of the distributed tables to set.
 
 ### Obtaining the Distributed Table Name for a Remote Device
 
-When querying the RDB store of a remote device, you need to use the distributed table name. You can obtain the distributed table name of a remote device based on the local table name.
+You can obtain the distributed table name for a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.<br>
 
 **Table 10** API for obtaining the distributed table name of a remote device
-
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | std::string ObtainDistributedTableName(const std::string& device, const std::string& table) | Obtains the distributed table name of a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.<br> -&nbsp;**device**: specifies the ID of the remote device.<br/> -&nbsp;**table**: specifies the name of the local table. |
+| RdbStore | std::string ObtainDistributedTableName(const std::string& device, const std::string& table) | Obtains the distributed table name of a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.<br> - **device**: ID of the remote device. <br>- **table**: name of the local table.
 
 ### Synchronizing Data Between Devices
 
-**Table 11** API for cross-device data synchronization
-
+**Table 11** API for synchronizing data between devices
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool Sync(const SyncOption& option, const AbsRdbPredicates& predicate, const SyncCallback& callback) | Synchronizes data between devices.<br/> -&nbsp;**option**: specifies synchronization options, which include the following: <br/>**mode**: specifies how data is synchronized. The value **push** means to push data from the local device to the remote device; the value **pull** means to pull data from the remote device to the local device. <br/>**isBlock**: specifies whether the invocation of this function is blocked. <br/>-&nbsp;**callback**: specifies the callback used to return the result. |
+| RdbStore | bool Sync(const SyncOption& option, const AbsRdbPredicates& predicate, const SyncCallback& callback) | Synchronizes data between devices. <br>- **option**: synchronization options, which include **mode** and **isBlock**. **mode** specifies how data is synchronized. The value **push** means to push data from the local device to the remote device; the value **pull** means to pull data from the remote device to the local device. **isBlock** specifies whether the invocation of this function is blocked. <br>- **callback**: callback used to return the result.
 
 ### Registering an RDB Store Observer
 
 **Table 12** API for registering an observer
-
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool Subscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Registers an observer for this RDB store to subscribe to distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes.<br/> -&nbsp;**option**: specifies the subscription type.<br/>-&nbsp;**observer**: specifies the observer of data changes in the RDB store. |
+| RdbStore | bool Subscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Registers an observer for this RDB store to listen for distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes. <br>- **option**: subscription type.<br>- **observer**: observer that listens for data changes in the RDB store.
 
 ### Unregistering an RDB Store Observer
 
 **Table 13** API for unregistering an observer
-
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Unregisters the observer of the specified type to unsubscribe from distributed data changes.<br/> -&nbsp;**option**: specifies the subscription type to unregister.<br/>-&nbsp;**observer**: specifies the observer to unregister. |
+| RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Unregisters the observer of the specified type. <br>- **option**: subscription type to unregister.<br>- **observer**: observer to unregister.
+
+### Backing Up and Restoring an RDB Store
+
+You can use the APIs provided by **rdbStore** to back up and restore local database files.
+
+- Backing up an RDB store
+
+  Call **int Backup()** to back up the current database file. **databasePath** specifies the name or path of the backup file to be generated. If the backup is successful, **0** is returned; otherwise, an error code is returned.
+
+  Table 14 API for backing up an RDB store
+
+  | Class| API| Description|
+  |  ----  |  ----  |  ----  |
+  | RdbStore | int Backup(const std::string databasePath, const std::vector&lt;uint8_t&gt; destEncryptKey) | Backs up the current database file.<br> - **databasePath**: name or path of the backup file to generate.<br> - **destEncryptKey**: key used to encrypt the RDB store. Currently, only non-encrypted RDB stores can be backed up. |
+
+- Restoring an RDB store
+
+  Call **int Restore()** to restore an RDB from the backup file. **backupPath** specifies the name or path of the backup file. If the restore is successful, **0** is returned; otherwise, an error code is returned.
+
+  Table 15 API for restoring an RDB store
+
+  | Class| API| Description|
+  |  ----  |  ----  |  ----  |
+  | RdbStore | int Restore(const std::string backupPath, const std::vector&lt;uint8_t&gt; &newKey) | Restore an RDB store.<br> - **backupPath**: name or path of the backup file.<br> - **newKey**: key used to encrypt the RDB store. Currently, only non-encrypted RDB stores can be restored. |
 
 ## Constraints
 
@@ -237,7 +257,7 @@ None.
 
 4. Set the distributed tables to be synchronized.
 
-    Call the **SetDistributedTables()** method to set the distributed tables to be synchronized.
+    a. Call the **SetDistributedTables()** method to set the distributed tables to be synchronized.
 
     The sample code is as follows:
 
@@ -306,4 +326,18 @@ None.
    ```
     std::string tableName = store->ObtainDistributedTableName("123456789abcd", "test");
     auto resultSet = store->QuerySql("SELECT * from ?;", tableName);
+   ```
+
+8. Back up and restore an RDB store.
+
+   a. Back up the current RDB store.
+
+   b. Restore the RDB store from the specified backup file.
+
+   The sample code is as follows:
+   ```
+    std::string backupName = "backup.db"; // Name of the database backup file to generate.
+    std::vector<uint8_t> key; // Key used to encrypt the RDB store.
+    int errno = store->Backup(backupName, key);
+    errno = store->Restore(backupName, key);
    ```

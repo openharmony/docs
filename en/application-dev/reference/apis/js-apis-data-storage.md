@@ -13,7 +13,7 @@ Lightweight storage provides applications with data processing capability and al
 ## Modules to Import
 
 ```js
-import dataStorage from '@ohos.data.storage';
+import data_storage from '@ohos.data.storage';
 ```
 
 ## Constants
@@ -26,7 +26,7 @@ import dataStorage from '@ohos.data.storage';
 | MAX_VALUE_LENGTH | string | Yes| No| Maximum length of a value. It must be less than 8192 bytes.|
 
 
-## dataStorage.getStorageSync
+## data_storage.getStorageSync
 
 getStorageSync(path: string): Storage
 
@@ -46,24 +46,17 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Example**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
-      if (err) {
-          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      let storage = dataStorage.getStorageSync(path + '/mystore')
-      storage.putSync('startup', 'auto')
-      storage.flushSync()
-  });
+  let path = '/data/storage/el2/database'
+  let storage = data_storage.getStorageSync(path + '/mystore')
+  storage.putSync('startup', 'auto')
+  storage.flushSync()
+  
   ```
 
 
-## dataStorage.getStorage
+## data_storage.getStorage
 
 getStorage(path: string, callback: AsyncCallback&lt;Storage&gt;): void
 
@@ -79,29 +72,21 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Example**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
+  let path = '/data/storage/el2/database'
+  data_storage.getStorage(path + '/mystore', function (err, storage) {
       if (err) {
-          console.error('getFilesDir failed. err: ' + JSON.stringify(err));
+          console.info("Failed to get the storage. Path: " + path + '/mystore')
           return;
       }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      dataStorage.getStorage(path + '/mystore', function (err, storage) {
-          if (err) {
-              console.info("Get the storage failed, path: " + path + '/mystore')
-              return;
-          }
-          storage.putSync('startup', 'auto')
-          storage.flushSync()
-      })
-  });
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  })
   ```
 
 
-## dataStorage.getStorage
+## data_storage.getStorage
 
 getStorage(path: string): Promise&lt;Storage&gt;
 
@@ -121,28 +106,21 @@ Reads the specified file and loads its data to the **Storage** instance for data
 
 **Example**
   ```js
-  import dataStorage from '@ohos.data.storage'
-  import featureAbility from '@ohos.ability.featureAbility'
+  import data_storage from '@ohos.data.storage'
   
-  var context = featureAbility.getContext()
-  context.getFilesDir((err, path) => {
-      if (err) {
-          console.info("Get the storage failed, path: " + path + '/mystore')
-          return;
-      }
-      console.info('getFilesDir successful. path:' + JSON.stringify(path));
-      let promisegetSt = dataStorage.getStorage(path + '/mystore')
-      promisegetSt.then((storage) => {
-          storage.putSync('startup', 'auto')
-          storage.flushSync()
-      }).catch((err) => {
-          console.info("Get the storage failed, path: " + path + '/mystore')
-      })
-  });
+  let path = '/data/storage/el2/database'
+  
+  let getPromise = data_storage.getStorage(path + '/mystore')
+  getPromise.then((storage) => {
+      storage.putSync('startup', 'auto')
+      storage.flushSync()
+  }).catch((err) => {
+      console.info("Failed to get the storage. Path: " + path + '/mystore')
+  })
   ```
 
 
-## dataStorage.deleteStorageSync
+## data_storage.deleteStorageSync
 
 deleteStorageSync(path: string): void
 
@@ -157,11 +135,12 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 
 **Example**
   ```js
-  dataStorage.deleteStorageSync(path + '/mystore')
+  let path = '/data/storage/el2/database'
+  data_storage.deleteStorageSync(path + '/mystore')
   ```
 
 
-## dataStorage.deleteStorage
+## data_storage.deleteStorage
 
 deleteStorage(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -173,11 +152,12 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Path of the target file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
-  dataStorage.deleteStorage(path + '/mystore', function (err) {
+  let path = '/data/storage/el2/database'
+  data_storage.deleteStorage(path + '/mystore', function (err) {
       if (err) {
           console.info("Deleted failed with err: " + err)
           return
@@ -187,7 +167,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
   ```
 
 
-## dataStorage.deleteStorage
+## data_storage.deleteStorage
 
 deleteStorage(path: string): Promise&lt;void&gt;
 
@@ -203,11 +183,12 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
-  let promisedelSt = dataStorage.deleteStorage(path + '/mystore')
+  let path = '/data/storage/el2/database'
+  let promisedelSt = data_storage.deleteStorage(path + '/mystore')
   promisedelSt.then(() => {
       console.info("Deleted successfully.")
   }).catch((err) => {
@@ -216,7 +197,7 @@ Deletes the singleton **Storage** instance of a file from the memory, and delete
   ```
 
 
-## dataStorage.removeStorageFromCacheSync
+## data_storage.removeStorageFromCacheSync
 
 removeStorageFromCacheSync(path: string): void
 
@@ -231,11 +212,12 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 
 **Example**
   ```js
-  dataStorage.removeStorageFromCacheSync(path + '/mystore')
+  let path = '/data/storage/el2/database'
+  data_storage.removeStorageFromCacheSync(path + '/mystore')
   ```
 
 
-## dataStorage.removeStorageFromCache
+## data_storage.removeStorageFromCache
 
 removeStorageFromCache(path: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -247,11 +229,12 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | path | string | Yes| Path of the target file.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
-  dataStorage.removeStorageFromCache(path + '/mystore', function (err) {
+  let path = '/data/storage/el2/database'
+  data_storage.removeStorageFromCache(path + '/mystore', function (err) {
       if (err) {
           console.info("Removed storage from cache failed with err: " + err)
           return
@@ -261,7 +244,7 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
   ```
 
 
-## dataStorage.removeStorageFromCache
+## data_storage.removeStorageFromCache
 
 removeStorageFromCache(path: string): Promise&lt;void&gt;
 
@@ -277,11 +260,12 @@ Removes the singleton **Storage** instance of a file from the cache. The removed
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
-  let promiserevSt = dataStorage.removeStorageFromCache(path + '/mystore')
+  let path = '/data/storage/el2/database'
+  let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
   promiserevSt.then(() => {
       console.info("Removed storage from cache successfully.")
   }).catch((err) => {
@@ -412,7 +396,7 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data. It cannot be empty.|
   | value | [ValueType](#valuetype) | Yes| New value to store. It can be a number, string, or Boolean value.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -443,7 +427,7 @@ Obtains the **Storage** instance corresponding to the specified file, writes dat
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
@@ -578,7 +562,7 @@ Deletes data with the specified key from this storage object. This API uses an a
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | key | string | Yes| Key of the data. It cannot be empty.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -608,7 +592,7 @@ Deletes data with the specified key from this storage object. This API uses a pr
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
@@ -646,7 +630,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -671,7 +655,7 @@ Saves the modification of this object to the **Storage** instance and synchroniz
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js
@@ -709,7 +693,7 @@ Clears this **Storage** object. This API uses an asynchronous callback to return
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback that returns no value.|
 
 **Example**
   ```js
@@ -734,7 +718,7 @@ Clears this **Storage** object. This API uses a promise to return the result.
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```js

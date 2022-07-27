@@ -44,7 +44,7 @@
 > 
 > 发送信号：
 > 
-> a. 进程接收信号存在默认行为，单不支持POSIX标准所给出的STOP及COTINUE、COREDUMP功能。
+> a. 进程接收信号存在默认行为，单不支持POSIX标准所给出的STOP及CONTINUE、COREDUMP功能。
 > 
 > b. 进程无法屏蔽SIGSTOP、SIGKILL、SIGCONT信号。
 > 

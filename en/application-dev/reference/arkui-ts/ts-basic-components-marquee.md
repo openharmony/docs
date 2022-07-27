@@ -1,11 +1,12 @@
 # Marquee
 
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **\<Marquee>** component is used to display a scrolling piece of text.
+The **\<Marquee>** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
 
 
 ## Required Permissions
@@ -15,7 +16,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -23,28 +24,29 @@ None
 Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string })
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+    | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | start | boolean | Yes | - | Whether to start scrolling. | 
-  | step | number | No | 6 | Scrolling step. | 
-  | loop | number | No | -1 | Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously. | 
-  | fromStart | boolean | No | true | Whether the text scrolls from the start. | 
-  | src | string | Yes | - | Text to scroll. | 
+  | start | boolean | Yes| - | Whether to start scrolling.|
+  | step | number | No| 6 | Scrolling step.|
+  | loop | number | No| -1 | Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.|
+  | fromStart | boolean | No| true | Whether the text scrolls from the start.|
+  | src | string | Yes| - | Text to scroll.|
 
 
 ## Events
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| onStart(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee starts scrolling. | 
-| onBounce(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee has reached the end. | 
-| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee has finished scrolling. | 
+| onStart(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee starts scrolling.|
+| onBounce(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee has reached the end.|
+| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee has finished scrolling.|
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MarqueeExample {
@@ -63,6 +65,7 @@ struct MarqueeExample {
         fromStart: this.fromStart,
         src: this.src
       })
+        .width(400)
         .fontColor(Color.White)
         .fontSize(50)
         .allowScale(false)

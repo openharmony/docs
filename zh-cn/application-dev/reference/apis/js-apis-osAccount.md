@@ -801,7 +801,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 | 参数名     | 类型                                    | 必填 | 说明                                         |
 | ---------- | --------------------------------------- | ---- | -------------------------------------------- |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。                                 |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。                                 |
 | callback   | AsyncCallback&lt;number&gt;             | 是   | 回调结果，返回的是和域帐号关联的系统帐号ID。 |
 
 **示例：**
@@ -829,7 +829,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 | 参数名     | 类型                                    | 必填 | 说明         |
 | ---------- | --------------------------------------- | ---- | ------------ |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。 |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。 |
 
 **返回值：**
 
@@ -1156,7 +1156,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 | 参数名     | 类型                                                 | 必填 | 说明                                       |
 | :--------- | ---------------------------------------------------- | ---- | ------------------------------------------ |
 | type       | [OsAccountType](#osaccounttype)                      | 是   | 创建的系统帐号的类型。                     |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo)              | 是   | 域帐号信息。                               |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域帐号信息。                               |
 | callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
 
 **示例：**
@@ -1187,7 +1187,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | 参数名     | 类型                                    | 必填 | 说明                   |
 | ---------- | --------------------------------------- | ---- | ---------------------- |
 | type       | [OsAccountType](#osaccounttype)         | 是   | 创建的系统帐号的类型。 |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | 是   | 域帐号信息。           |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。           |
 
 **返回值：**
 
@@ -1932,7 +1932,7 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 | isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态                  |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整              |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息                    |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo)                      | 否   | 域帐号信息                        |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息                        |
 
 ## DomainAccountInfo<sup>8+</sup>
 
@@ -2017,6 +2017,8 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 
 约束来源类型信息。
 
+此接口为系统接口。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 
 | 参数名      | 类型   | 必填 | 说明       |
@@ -2027,6 +2029,8 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 ## ConstraintSourceType<sup>9+</sup>
 
 枚举，约束来源类型。
+
+此接口为系统接口。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
 

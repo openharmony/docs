@@ -287,7 +287,7 @@ Defines the information about an input device.
 
 | Name      | Type                     | Description                               |
 | -------- | ------------------------- | --------------------------------- |
-| type     | [ChangeType](#changetype) | Device change type, which indicates whether an input device is inserted or removed.                    |
+| type     | [ChangedType](#changedtype) | Device change type, which indicates whether an input device is inserted or removed.                    |
 | deviceId | number                    | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
 
 ## InputDeviceData

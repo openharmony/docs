@@ -11,7 +11,7 @@ AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命�
 ## 导入模块
 
 ```js
-import AbilityLifecycleCallback from "@ohos.application.abilityLifecycleCallback";
+import AbilityLifecycleCallback from "@ohos.application.AbilityLifecycleCallback";
 ```
 
 

@@ -91,17 +91,21 @@ Calls back an asynchronous function. In the callback, the first parameter indica
   async function promiseFn() {
       return Promise.reject('value');
   }
+  var err = "type err";
   var cb = util.callbackWrapper(promiseFn);
   cb((err, ret) => {
       console.log(err);
       console.log(ret);
-  })
+  }, err)
   ```
 
 
-## util.promiseWrapper
+## util.promiseWrapper<sup>(deprecated)</sup>
 
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
+
+> **Introduce**<br/>
+> Deprecated starting from API version 9, it is recommended to use [util.promisify9 +] (\utilpromisify9) instead.
 
 Processes an asynchronous function and returns a promise version.
 
@@ -119,16 +123,45 @@ Processes an asynchronous function and returns a promise version.
 
 **Example**
   ```js
-  function aysnFun(str1, str2, callback) {
-      if (typeof str1 === 'string' && typeof str2 === 'string') {
-          callback(null, str1 + str2);
-      } else {
-          callback('type err');
-      }
+  function aysnFun() {
+    return 0;
   }
-  let newPromiseObj = util.promiseWrapper(aysnFun)("Hello", 'World');
-  newPromiseObj.then(res => {
-      console.log(res);
+  let newPromiseObj = util.promiseWrapper(aysnFun);
+  newPromiseObj().then(res => {
+    console.log(res);
+  })
+  ```
+
+## util.promisify<sup>9+</sup>
+
+promisify(original: (err: Object, value: Object) =&gt; void): Function
+
+Processes an asynchronous function and returns a promise function.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| original | Function | Yes| Asynchronous function.|
+
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise version.|
+
+**Example**
+  ```js
+  function aysnFun(str1, str2) {
+    if (typeof str1 === 'object' && typeof str2 === 'object') {
+      return str2
+    } else {
+      return str1
+    }
+  }
+  let newPromiseObj = util.promisify(aysnFun);
+  newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
+    console.log(res);
   })
   ```
 
@@ -287,10 +320,11 @@ Stores the UTF-8 encoded text.
 
 **Example**
   ```js
-  var that = new util.TextEncoder();
-  var buffer = new ArrayBuffer(4);
-  this.dest = new Uint8Array(buffer);
-  var result = that.encodeInto("abcd", this.dest);
+  var that = new util.TextEncoder()
+  var buffer = new ArrayBuffer(4)
+  var dest = new Uint8Array(buffer)
+  var result = new Object()
+  result = that.encodeInto('abcd', dest)
   ```
 
 ## RationalNumber<sup>8+</sup>
@@ -337,7 +371,7 @@ Creates a **RationalNumber** object based on the given string.
 **Example**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var rational = rationalNumer.creatRationalFromString("3/4");
+  var rational = util.RationalNumber.createRationalFromString("3/4");
   ```
 
 
@@ -362,7 +396,7 @@ Compares this **RationalNumber** object with a given object.
 **Example**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var rational = rationalNumer.creatRationalFromString("3/4");
+  var rational = util.RationalNumber.createRationalFromString("3/4");
   var result = rationalNumber.compareTo(rational);
   ```
 
@@ -408,7 +442,7 @@ Checks whether this **RationalNumber** object equals the given object.
 **Example**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var rational = rationalNumer.creatRationalFromString("3/4");
+  var rational = util.RationalNumber.createRationalFromString("3/4");
   var result = rationalNumber.equals(rational);
   ```
 
@@ -435,7 +469,7 @@ Obtains the greatest common divisor of two specified integers.
 **Example**
   ```js
   var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getCommonDivisor(4,6);
+  var result = util.RationalNumber.getCommonDivisor(4,6);
   ```
 
 
@@ -672,7 +706,7 @@ Clears key-value pairs from this buffer. The **afterRemoval()** method will be c
   ```js
   var pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.size();
+  var result = pro.length;
   pro.clear();
   ```
 
@@ -948,19 +982,12 @@ Performs subsequent operations after a value is removed.
 **Example**
   ```js
   var arr = [];
+  var arr = [];
   class ChildLruBuffer extends util.LruBuffer
   {
   	constructor()
   	{
   		super();
-  	}
-  	static getInstance()
-  	{
-  		if(this.instance ==  null)
-  		{
-  			this.instance = new ChildLruBuffer();
-  		}
-  		return this.instance;  
   	}
   	afterRemoval(isEvict, key, value, newValue)
   	{
@@ -970,7 +997,8 @@ Performs subsequent operations after a value is removed.
   		}
   	}
   }
-  ChildLruBuffer.getInstance().afterRemoval(false,10,30,null);
+  var lru = new ChildLruBuffer();
+  lru.afterRemoval(false,10,30,null);
   ```
 
 
@@ -1063,7 +1091,7 @@ Obtains a two-dimensional array in key-value pairs.
   ```js
   var pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro[symbol.iterator]();
+  var result = pro[Symbol.iterator]();
   ```
 
 
@@ -1551,7 +1579,7 @@ Encodes the input content asynchronously.
   var rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          console.log(val[i])
+          console.log(val[i].toString())
       }
   })
   ```
@@ -1610,7 +1638,7 @@ Decodes the input content asynchronously.
   var rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
-          console.log(val[i])
+          console.log(val[i].toString())
       }
   })
   ```
@@ -1654,7 +1682,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 **Example**
   ```js
   var that = new util.types();
-  var result = that.isAnyArrayBuffer(new ArrayBuffer([]));
+  var result = that.isAnyArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1734,7 +1762,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 **Example**
   ```js
   var that = new util.types();
-  var result = that.isArrayBuffer(new ArrayBuffer([]));
+  var result = that.isArrayBuffer(new ArrayBuffer(0));
   ```
 
 

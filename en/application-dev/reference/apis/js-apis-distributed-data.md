@@ -489,7 +489,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 let kvManager;
 try {
     console.log('GetAllKVStoreId');
-    kvManager.getAllKVStoreId('apppId').then((data) => {
+    kvManager.getAllKVStoreId('appId').then((data) => {
         console.log('getAllKVStoreId success');
         console.log('size = ' + data.length);
     }).catch((err) => {
@@ -569,17 +569,16 @@ try {
 
 Provides KV store configuration.
 
-**System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.    |
-| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.    |
-| backup  | boolean | No|Whether to back up database files. By default, database files are backed up.     |
-| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
-| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.|
-| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set. |
-| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.|
+| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
+| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
 ## KVStoreType
@@ -776,7 +775,7 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet succeeed.');
+        console.log('getResultSet succeeded.');
         resultSet = result;
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
@@ -1829,10 +1828,12 @@ Creates a **Query** object to specify the number of results and where to start.
 **Example**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
@@ -2452,10 +2453,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -2504,7 +2505,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
             console.log('PutBatch ' + JSON.stringify(entries));
         }).catch((err) => {
@@ -2521,7 +2522,7 @@ try {
 ### putBatch<sup>9+</sup>
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
-  
+
 Writes values to this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -3244,10 +3245,10 @@ try {
     }
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_number_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -3296,12 +3297,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -3352,10 +3353,10 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -3408,7 +3409,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -3649,7 +3650,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Predicates** 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | predicates  | Predicates    | Yes   |**Predicates** object to match. If this parameter is **null**, define the processing logic.            |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
@@ -4133,7 +4134,7 @@ Synchronizes the KV store manually. This API uses a synchronous mode. For detail
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
 | mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
-| query  |[Query](#querysup8sup)   | Yes  |**Query** object to match. |
+| query  |[Query](#query8)   | Yes  |**Query** object to match. |
 | delayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
 
 **Example**
@@ -4251,7 +4252,7 @@ try {
         console.log('getSecurityLevel success');
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -4281,7 +4282,7 @@ try {
         console.log('getSecurityLevel fail ' + JSON.stringify(err));
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -4411,10 +4412,10 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -4464,12 +4465,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -4521,10 +4522,10 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -4577,7 +4578,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4632,10 +4633,10 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+        kvStore.getEntries('localDeviceId', query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         })
     });
     console.log('GetEntries success');
@@ -4690,7 +4691,7 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query).then((entrys) => {
+        kvStore.getEntries('localDeviceId', query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));

@@ -13,7 +13,10 @@
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ```
 
-## equalTo
+## DataSharePredicates
+提供用于不同实现不同查询方法的数据共享谓词。
+
+### equalTo
 
 equalTo(field: string, value: ValueType): DataSharePredicates
 
@@ -43,7 +46,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 ```
 
-## notEqualTo
+### notEqualTo
 
 notEqualTo(field: string, value: ValueType): DataSharePredicates
 
@@ -73,7 +76,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.notEqualTo("NAME", "Rose")
 ```
 
-## beginWrap
+### beginWrap
 
 beginWrap(): DataSharePredicates
 
@@ -99,7 +102,7 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-## endWrap
+### endWrap
 
 endWrap(): DataSharePredicates
 
@@ -125,7 +128,7 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-## or
+### or
 
 or(): DataSharePredicates
 
@@ -150,7 +153,7 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("NAME", "Rose")
 ```
 
-## and
+### and
 
 and(): DataSharePredicates
 
@@ -175,7 +178,7 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("SALARY", 200.5)
 ```
 
-## contains
+### contains
 
 contains(field: string, value: string): DataSharePredicates
 
@@ -203,7 +206,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.contains("NAME", "os")
 ```
 
-## beginsWith
+### beginsWith
 
 beginsWith(field: string, value: string): DataSharePredicates
 
@@ -231,7 +234,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.beginsWith("NAME", "os")
 ```
 
-## endsWith
+### endsWith
 
 endsWith(field: string, value: string): DataSharePredicates
 
@@ -259,7 +262,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.endsWith("NAME", "os")
 ```
 
-## isNull
+### isNull
 
 isNull(field: string): DataSharePredicates
 
@@ -288,7 +291,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.isNull("NAME")
 ```
 
-## isNotNull
+### isNotNull
 
 isNotNull(field: string): DataSharePredicates
 
@@ -317,7 +320,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.isNotNull("NAME")
 ```
 
-## like
+### like
 
 like(field: string, value: string): DataSharePredicates
 
@@ -347,7 +350,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.like("NAME", "%os%")
 ```
 
-## unlike
+### unlike
 
 unlike(field: string, value: string): DataSharePredicates
 
@@ -377,7 +380,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.unlike("NAME", "%os%")
 ```
 
-## glob
+### glob
 
 glob(field: string, value: string): DataSharePredicates
 
@@ -405,7 +408,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.glob("NAME", "?h*g")
 ```
 
-## between
+### between
 
 between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
@@ -434,7 +437,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.between("AGE", 10, 50)
 ```
 
-## notBetween
+### notBetween
 
 notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
@@ -463,7 +466,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.notBetween("AGE", 10, 50)
 ```
 
-## greaterThan
+### greaterThan
 
 greaterThan(field: string, value: ValueType): DataSharePredicates
 
@@ -493,7 +496,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.greaterThan("AGE", 10)
 ```
 
-## lessThan
+### lessThan
 
 lessThan(field: string, value: ValueType): DataSharePredicates
 
@@ -523,7 +526,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.lessThan("AGE", 50)
 ```
 
-## greaterThanOrEqualTo
+### greaterThanOrEqualTo
 
 greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
@@ -553,7 +556,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.greaterThanOrEqualTo("AGE", 10)
 ```
 
-## lessThanOrEqualTo
+### lessThanOrEqualTo
 
 lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
@@ -583,7 +586,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.lessThanOrEqualTo("AGE", 50)
 ```
 
-## orderByAsc
+### orderByAsc
 
 orderByAsc(field: string): DataSharePredicates
 
@@ -612,7 +615,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.orderByAsc("AGE")
 ```
 
-## orderByDesc
+### orderByDesc
 
 orderByDesc(field: string): DataSharePredicates
 
@@ -641,7 +644,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.orderByDesc("AGE")
 ```
 
-## distinct
+### distinct
 
 distinct(): DataSharePredicates
 
@@ -659,10 +662,10 @@ distinct(): DataSharePredicates
 
 ```ts
 let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").distinct("NAME")
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
-## limit
+### limit
 
 limit(total: number, offset: number): DataSharePredicates
 
@@ -692,7 +695,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose").limit(10, 3)
 ```
 
-## groupBy
+### groupBy
 
 groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 
@@ -719,7 +722,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.groupBy(["AGE", "NAME"])
 ```
 
-## indexedBy
+### indexedBy
 
 indexedBy(field: string): DataSharePredicates
 
@@ -746,7 +749,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.indexedBy("SALARY_INDEX")
 ```
 
-## in
+### in
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
@@ -776,7 +779,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.in("AGE", [18, 20])
 ```
 
-## notIn
+### notIn
 
 notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
@@ -806,7 +809,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.notIn("NAME", ["Lisa", "Rose"])
 ```
 
-## prefixKey
+### prefixKey
 
 prefixKey(prefix: string): DataSharePredicates
 
@@ -833,7 +836,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.prefixKey("NAME")
 ```
 
-## inKeys
+### inKeys
 
 inKeys(keys: Array&lt;string&gt;): DataSharePredicates
 

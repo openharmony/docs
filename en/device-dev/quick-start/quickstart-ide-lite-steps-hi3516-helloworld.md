@@ -58,7 +58,7 @@ Perform the steps below in the source code directory:
 
 3. Add a component.
 
-   Modify the **build/lite/components/applications.json** file and add the configuration of **hello_world_app**. The following code snippet is a snippet of the **applications.json** file: The configuration between \#\#start\#\# and \#\#end\#\# is new. (\#\#start\#\# and \#\#end\#\# are only used to identify the location. After the configuration is complete, delete these lines.)
+   Modify the **build/lite/components/communication.json** file and add the configuration of **hello_world_app**. The following code snippet is a snippet of the **communication.json** file: The configuration between \#\#start\#\# and \#\#end\#\# is new. (\#\#start\#\# and \#\#end\#\# are only used to identify the location. After the configuration is complete, delete these lines.)
 
      
    ```

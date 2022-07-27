@@ -1,5 +1,7 @@
 # Cellular Data
 
+The cellular data module provides basic mobile data management functions. You can obtain and set the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
+
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -78,7 +80,7 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.                |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -110,7 +112,7 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise<\void\> | Promise that returns no value.       |
+| Promise<\void\> | Promise used to return the result. |
 
 **Example**
 
@@ -174,7 +176,7 @@ promise.then((data) => {
 
 getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
-Obtains the connection status of the packet switched (PS) domain. This API uses an asynchronous callback to return the result.
+Obtains the connection status of the PS domain. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CellularData
 
@@ -342,14 +344,14 @@ Defines the cellular data flow type.
 
 ## DataConnectState
 
-Describes the connection status of a cellular data link.
+Describes the connection status of a cellular data connection.
 
 **System capability**: SystemCapability.Telephony.CellularData
 
 | Name                   | Value  | Description                      |
 | ----------------------- | ---- | -------------------------- |
-| DATA_STATE_UNKNOWN      | -1   | The status of the cellular data link is unknown.    |
-| DATA_STATE_DISCONNECTED | 0    | The cellular data link is disconnected.    |
-| DATA_STATE_CONNECTING   | 1    | The cellular data link is being connected.|
-| DATA_STATE_CONNECTED    | 2    | The cellular data link is connected.  |
-| DATA_STATE_SUSPENDED    | 3    | The cellular data link is suspended.  |
+| DATA_STATE_UNKNOWN      | -1   | The status of the cellular data connection is unknown.    |
+| DATA_STATE_DISCONNECTED | 0    | The cellular data connection is disconnected.   |
+| DATA_STATE_CONNECTING   | 1    | The cellular data connection is being established.|
+| DATA_STATE_CONNECTED    | 2    | The cellular data connection is established.  |
+| DATA_STATE_SUSPENDED    | 3    | The cellular data connection is suspended.  |

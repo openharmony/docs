@@ -1,5 +1,5 @@
 # 窗口扩展能力
-WindowExtensionAbility基于ExtensionAbility，WindowExtensionAbility中展示的内容作为一个控件(AbilityComponent)内容展示在其他应用窗口中，实现在一个窗口中展示多个应用程序内容的功能。
+WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示的内容可作为一个控件(AbilityComponent)内容展示在其他应用窗口中。
 
 > **说明：**
 >
@@ -7,7 +7,7 @@ WindowExtensionAbility基于ExtensionAbility，WindowExtensionAbility中展示�
 > 
 > 本模块接口为系统接口。
 >
->本模块接口仅可在Stage模型下使用。 
+> 本模块接口仅可在Stage模型下使用。 
 
 ## 导入模块
 
@@ -17,7 +17,7 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 ## 属性
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明                      |
 | --------- | -------- | ---- | ---- | ------------------------- |
@@ -29,7 +29,7 @@ onConnect(want: Want): rpc.RemoteObject
 
 当窗口扩展组件第一次连接ability时回调。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -86,7 +86,7 @@ onDisconnect(want: Want): void
 
 当所有连接到窗口扩展组件的ability断开连接时回调。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -112,7 +112,7 @@ onWindowReady(window: Window): void
 
 当窗口被创建时回调。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

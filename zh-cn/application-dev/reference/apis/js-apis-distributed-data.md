@@ -39,6 +39,7 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
+
 Stage模型下的示例：
 ```ts
 import AbilityStage from '@ohos.application.Ability'
@@ -116,6 +117,7 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
 
 **示例：**
+
 Stage模型下的示例：
 ```ts
 import AbilityStage from '@ohos.application.Ability'
@@ -180,7 +182,7 @@ export default class MyAbilityStage extends AbilityStage {
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| context | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
+| context<sup>9+<sup> | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
 | bundleName | string | 是  | 调用方的包名。 |
 
@@ -556,7 +558,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 let kvManager;
 try {
     console.log('GetAllKVStoreId');
-    kvManager.getAllKVStoreId('apppId').then((data) => {
+    kvManager.getAllKVStoreId('appId').then((data) => {
         console.log('getAllKVStoreId success');
         console.log('size = ' + data.length);
     }).catch((err) => {
@@ -636,17 +638,16 @@ try {
 
 用于提供创建数据库的配置信息。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。     |
-| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。     |
-| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。     |
-| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
-| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。 |
-| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。 |
+| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
+| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -813,7 +814,7 @@ try {
         console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:ed: ' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const count = resultSet.getCount();
     console.log("getCount succeed:" + count);
@@ -843,10 +844,10 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet succeeed.');
+        console.log('getResultSet succeeded.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:ed: ' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const position = resultSet.getPosition();
     console.log("getPosition succeed:" + position);
@@ -1896,10 +1897,12 @@ limit(total: number, offset: number): Query
 **示例：**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
@@ -2298,7 +2301,7 @@ try {
 
 ### delete<sup>9+</sup>
 
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;): void
+delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
 
 从数据库中删除符合predicates条件的键值对，并通过callback方式返回，此方法为异步方法。
 
@@ -2314,7 +2317,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2354,7 +2357,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2378,7 +2381,7 @@ try {
 
 ### on('dataChange')
 
-on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
 订阅指定类型的数据变更通知。
 
@@ -2390,7 +2393,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotific
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
 | type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
 
 **示例：**
 
@@ -2428,7 +2431,7 @@ kvStore.on('syncComplete', function (data) {
 
 ### off('dataChange')<sup>8+</sup>
 
-off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
+off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 取消订阅数据变更通知。
 
@@ -2439,7 +2442,7 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
 
 **示例：**
 
@@ -2519,10 +2522,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -2571,7 +2574,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
             console.log('PutBatch ' + JSON.stringify(entries));
         }).catch((err) => {
@@ -2588,7 +2591,7 @@ try {
 ### putBatch<sup>9+</sup>
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
-  
+
 将值写入KvStore数据库，并通过callback方式返回，此方法为异步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
@@ -3310,10 +3313,10 @@ try {
     }
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_number_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -3362,12 +3365,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -3418,10 +3421,10 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -3474,7 +3477,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -3715,12 +3718,12 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | predicates  | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
 
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
     let resultSet;
@@ -3760,7 +3763,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;Kv
 **示例：**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let resultSet;
@@ -3769,7 +3772,7 @@ try {
     kvStore.getResultSet(predicates) .then((result) => {
         console.log(' GetResultSet success');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, fun ction (err, data) {
+        kvStore.closeResultSet(resultSet, function (err, data) {
             console.log(' closeResultSet success');
         })
     });
@@ -4161,7 +4164,7 @@ kvStore.off('dataChange', function (data) {
 ### sync<sup>7+</sup>
 
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -4173,9 +4176,9 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
+| deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode  |[SyncMode](#syncmode)   | 是   |同步模式。    |
-| allowedDelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
+| delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**
 
@@ -4199,13 +4202,13 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| query  |[Query](#querysup8sup)   | 是   |表示数据库的查询谓词条件  |
+| query  |[Query](#query8)   | 是   |表示数据库的查询谓词条件  |
 | delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {
@@ -4317,7 +4320,7 @@ try {
         console.log('getSecurityLevel success');
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -4347,7 +4350,7 @@ try {
         console.log('getSecurityLevel fail ' + JSON.stringify(err));
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -4477,10 +4480,10 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -4530,12 +4533,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -4587,10 +4590,10 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -4643,7 +4646,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4698,10 +4701,10 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+        kvStore.getEntries('localDeviceId', query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         })
     });
     console.log('GetEntries success');
@@ -4756,7 +4759,7 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query).then((entrys) => {
+        kvStore.getEntries('localDeviceId', query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -5456,7 +5459,7 @@ try {
 
 ### sync<sup>8+</sup> ###
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -5468,9 +5471,9 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
+| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| allowedDelayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
+| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
 
 **示例：**
 
@@ -5514,7 +5517,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {

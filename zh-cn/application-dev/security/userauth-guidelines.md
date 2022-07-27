@@ -111,3 +111,9 @@ userIAM_userAuth模块提供了用户认证的相关方法，包括检测认证�
        console.error("cancel auth fail");
    }
    ```
+
+## 相关实例
+
+针对用户认证开发，有以下相关实例可供参考：
+
+- [`UserAuth`：用户认证（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Safety/UserAuth)

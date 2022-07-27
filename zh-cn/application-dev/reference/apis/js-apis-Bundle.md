@@ -374,6 +374,466 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 })
 ```
 
+## bundle.getBundleInstaller
+
+getBundleInstaller(): Promise&lt;BundleInstaller&gt;;
+
+获取用于安装包的接口
+
+**需要权限：**
+
+ohos.permission.INSTALL_BUNDLE
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**返回值：**
+
+| 类型                                                         | 说明                                         |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 返回值为Promise对象，Promise中包含安装信息。 |
+
+## bundle.getBundleInstaller
+
+getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void;
+
+获取用于安装包的接口
+
+**需要权限：**
+
+ohos.permission.INSTALL_BUNDLE
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称     | 类型                                                         | 必填 | 描述             |
+| -------- | ------------------------------------------------------------ | ---- | ---------------- |
+| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | 是   | 安装应用程序包。 |
+
+## bundle.cleanBundleCacheFiles<sup>8+</sup>
+
+cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+
+清除指定应用程序的缓存数据
+
+**需要权限：**
+
+ohos.permission.REMOVE_CACHE_FILES
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称       | 类型                | 必填 | 描述                                  |
+| ---------- | ------------------- | ---- | ------------------------------------- |
+| bundleName | string              | 是   | 指示要清除其缓存数据的应用程序包名称. |
+| callback   | AsyncCallback<void> | 是   | 为返回操作结果而调用的回调。          |
+
+## bundle.cleanBundleCacheFiles<sup>8+</sup>
+
+cleanBundleCacheFiles(bundleName: string): Promise&lt;void&gt;
+
+清除指定应用程序的缓存数据
+
+**需要权限：**
+
+ohos.permission.REMOVE_CACHE_FILES
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称       | 类型   | 必填 | 描述                                  |
+| ---------- | ------ | ---- | ------------------------------------- |
+| bundleName | string | 是   | 指示要清除其缓存数据的应用程序包名称. |
+
+**返回值：**
+
+| 类型          | 说明                                 |
+| ------------- | ------------------------------------ |
+| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+
+## bundle.setApplicationEnabled<sup>8+</sup>
+
+setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+设置是否启用指定的应用程序
+
+**需要权限：**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称       | 类型                | 必填 | 描述                                            |
+| ---------- | ------------------- | ---- | ----------------------------------------------- |
+| bundleName | string              | 是   | 应用程序包名称。                                |
+| isEnable   | boolean             | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
+| callback   | AsyncCallback<void> | 是   | 为返回操作结果而调用的回调。                    |
+
+## bundle.setApplicationEnabled<sup>8+</sup>
+
+setApplicationEnabled(bundleName: string, isEnable: boolean): Promise&lt;void&gt;
+
+设置是否启用指定的应用程序
+
+**需要权限：**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称       | 类型    | 必填 | 描述                                            |
+| ---------- | ------- | ---- | ----------------------------------------------- |
+| bundleName | string  | 是   | 应用程序包名称。                                |
+| isEnable   | boolean | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
+
+**返回值：**
+
+| 类型          | 说明                                 |
+| ------------- | ------------------------------------ |
+| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+
+## bundle.setAbilityEnabled<sup>8+</sup>
+
+setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+设置是否启用指定的功能
+
+**需要权限：**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称     | 类型                                         | 必填 | 描述                                            |
+| -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
+| info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability信息。                                   |
+| isEnable | boolean                                      | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
+| callback | AsyncCallback<void>                          | 是   | 为返回操作结果而调用的回调。                    |
+
+## bundle.setAbilityEnabled<sup>8+</sup>
+
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean): Promise&lt;void&gt;
+
+设置是否启用指定的功能
+
+**需要权限：**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称     | 类型                                         | 必填 | 描述                                            |
+| -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
+| info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability信息。                                   |
+| isEnable | boolean                                      | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
+
+**返回值：**
+
+| 类型          | 说明                                 |
+| ------------- | ------------------------------------ |
+| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+
+## bundle.getPermissionDef<sup>8+</sup>
+
+getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void;
+
+按权限名称获取权限的详细信息
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称           | 类型                                                         | 必填 | 描述                                             |
+| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
+| permissionName | string                                                       | 是   | 指定权限的名称。                                 |
+| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef)> | 是   | 程序启动作为入参的回调函数，返回定义的权限信息。 |
+
+## bundle.getPermissionDef<sup>8+</sup>
+
+getPermissionDef(permissionName: string): Promise&lt;PermissionDef&gt;
+
+按权限名称获取权限的详细信息
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称           | 类型   | 必填 | 描述             |
+| -------------- | ------ | ---- | ---------------- |
+| permissionName | string | 是   | 指定权限的名称。 |
+
+**返回值：**
+
+| 类型                                                   | 说明                                                   |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | 返回值为Promise对象，Promise中包含定义的权限信息对象。 |
+
+## bundle.setModuleUpgradeFlag<sup>9+</sup>
+
+setModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag, callback: AsyncCallback&lt;void&gt;):void;
+
+设置模块是否需要升级
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称        | 类型                        | 必填 | 描述                         |
+| ----------- | --------------------------- | ---- | ---------------------------- |
+| bundleName  | string                      | 是   | 应用程序包名称。             |
+| moduleName  | string                      | 是   | 应用程序模块名称。           |
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位       |
+| callback    | AsyncCallback<void>         | 是   | 为返回操作结果而调用的回调。 |
+
+## bundle.setModuleUpgradeFlag<sup>9+</sup>
+
+setModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag): Promise&lt;void&gt;
+
+设置模块是否需要升级
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称        | 类型                        | 必填 | 描述                   |
+| ----------- | --------------------------- | ---- | ---------------------- |
+| bundleName  | string                      | 是   | 应用程序包名称。       |
+| moduleName  | string                      | 是   | 应用程序模块名称。     |
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位 |
+
+**返回值：**
+
+| 类型          | 说明                                 |
+| ------------- | ------------------------------------ |
+| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+
+## bundle.isModuleRemovable<sup>9+</sup>
+
+isModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCallback&lt;boolean&gt;): void;
+
+检查指定模块是否被移除
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称       | 类型                   | 必填 | 描述                                          |
+| ---------- | ---------------------- | ---- | --------------------------------------------- |
+| bundleName | string                 | 是   | 应用程序包名称。                              |
+| moduleName | string                 | 是   | 应用程序模块名称。                            |
+| callback   | AsyncCallback<boolean> | 是   | 程序启动作为入参的回调函数，返回boolean信息。 |
+
+## bundle.isModuleRemovable<sup>9+</sup>
+
+isModuleRemovable(bundleName: string, moduleName: string): Promise&lt;boolean&gt;
+
+检查指定模块是否被移除
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称       | 类型   | 必填 | 描述               |
+| ---------- | ------ | ---- | ------------------ |
+| bundleName | string | 是   | 应用程序包名称。   |
+| moduleName | string | 是   | 应用程序模块名称。 |
+
+**返回值：**
+
+| 类型             | 说明                         |
+| ---------------- | ---------------------------- |
+| Promise<boolean> | Promise形式返回boolean信息。 |
+
+## bundle.getBundlePackInfo<sup>9+</sup>
+
+getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag, callback: AsyncCallback&lt;pack.BundlePackInfo&gt;): void;
+
+基于bundleName和bundleFlags获取bundlePackInfo
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称           | 类型                               | 必填 | 描述                                                 |
+| -------------- | ---------------------------------- | ---- | ---------------------------------------------------- |
+| bundleName     | string                             | 是   | 应用程序包名称。                                     |
+| bundlePackFlag | pack.BundlePackFlag                | 是   | 指示要查询的应用包标志                               |
+| callback       | AsyncCallback<pack.BundlePackInfo> | 是   | 程序启动作为入参的回调函数，返回BundlePackInfo信息。 |
+
+## bundle.getBundlePackInfo<sup>9+</sup>
+
+getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag): Promise&lt;pack.BundlePackInfo&gt;;
+
+基于bundleName和bundleFlags获取bundlePackInfo
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称           | 类型                | 必填 | 描述                   |
+| -------------- | ------------------- | ---- | ---------------------- |
+| bundleName     | string              | 是   | 应用程序包名称。       |
+| bundlePackFlag | pack.BundlePackFlag | 是   | 指示要查询的应用包标志 |
+
+**返回值：**
+
+| 类型                         | 说明                                |
+| ---------------------------- | ----------------------------------- |
+| Promise<pack.BundlePackInfo> | Promise形式返回BundlePackInfo信息。 |
+
+## bundle.getDispatcherVersion<sup>9+</sup>
+
+getDispatcherVersion(callback: AsyncCallback&lt;DispatchInfo&gt;): void;
+
+获取有关dispatcher版本的信息
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称     | 类型                                                   | 必填 | 描述                                                         |
+| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[DispatchInfo](js-apis-dispatchInfo.md)> | 是   | 程序启动作为入参的回调函数，返回[DispatchInfo](js-apis-dispatchInfo.md)信息。 |
+
+## bundle.getDispatcherVersion<sup>9+</sup>
+
+getDispatcherVersion(): Promise&lt;DispatchInfo&gt;;
+
+获取有关dispatcher版本的信息
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**系统API：**
+
+此接口为系统接口，三方应用不支持调用
+
+**返回值：**
+
+| 类型                                             | 说明                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| Promise<[DispatchInfo](js-apis-dispatchInfo.md)> | Promise形式返回[DispatchInfo](js-apis-dispatchInfo.md)信息。 |
 
 ## bundle.getAllApplicationInfo
 
@@ -1693,6 +2153,8 @@ setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<v
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
 
+**系统API：**  此接口为系统接口，三方应用不支持调用
+
 **参数：**
 
 | 名称             | 类型                                | 必填   | 描述                                       |
@@ -1722,6 +2184,8 @@ setDisposedStatus(bundleName: string, status: number): Promise\<void>;
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -1753,11 +2217,11 @@ bundle.setDisposedStatus(bundleName, status).then(data=>{
 
 getDisposedStatus(bundleName: string, callback: AsyncCallback\<number>): void;
 
-此接口为系统接口，以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
-
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -1786,6 +2250,8 @@ getDisposedStatus(bundleName: string): Promise\<number>;
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
+
+**系统API：**  此接口为系统接口，三方应用不支持调用
 
 **参数：**
 
@@ -1897,15 +2363,15 @@ Ability类型
 | LANDSCAPE     | 无    | 屏幕方向--横屏      |
 | PORTRAIT      | 无    | 屏幕方向--竖屏      |
 | FOLLOW_RECENT | 无    | 屏幕方向--紧跟上一个组件 |
-| LANDSCAPE_INVERTED |无    | 屏幕方向--反向横屏     |
-| PORTRAIT_INVERTED |无    | 屏幕方向--反向竖屏     |
-| AUTO_ROTATION |无    | 屏幕方向--随传感器旋转     |
-| AUTO_ROTATION_LANDSCAPE |无    | 屏幕方向--传感器横屏旋转，包括了横屏和反向横屏     |
-| AUTO_ROTATION_PORTRAIT |无    | 屏幕方向--传感器竖屏旋转，包括了竖屏和反向竖屏     |
-| AUTO_ROTATION_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转     |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转为横屏， 包括了横屏和反向横屏     |
-| AUTO_ROTATION_PORTRAIT_RESTRICTED |无    | 屏幕方向--传感器开关打开，方向随可传感器旋转为竖屏， 包括了横屏和反向横屏     |
-| LOCKED |无    | 屏幕方向--传感器开关关闭，方向锁定     |
+| LANDSCAPE_INVERTED<sup>9+</sup> |无    | 屏幕方向--反向横屏     |
+| PORTRAIT_INVERTED<sup>9+</sup> |无    | 屏幕方向--反向竖屏     |
+| AUTO_ROTATION<sup>9+</sup> |无    | 屏幕方向--随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE<sup>9+</sup> |无    | 屏幕方向--传感器横屏旋转，包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT<sup>9+</sup> |无    | 屏幕方向--传感器竖屏旋转，包括了竖屏和反向竖屏     |
+| AUTO_ROTATION_RESTRICTED<sup>9+</sup> |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转     |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED<sup>9+</sup> |无    | 屏幕方向--传感器开关打开，方向可随传感器旋转为横屏， 包括了横屏和反向横屏     |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED<sup>9+</sup> |无    | 屏幕方向--传感器开关打开，方向随可传感器旋转为竖屏， 包括了横屏和反向横屏     |
+| LOCKED<sup>9+</sup> |无    | 屏幕方向--传感器开关关闭，方向锁定     |
 ## LaunchMode
 
 启动模式
@@ -1945,9 +2411,12 @@ ExtensionAbility的类型
 | FILE_SHARE<sup>9+</sup>        | 6    | ExtensionAbility的类型包括文件共享 |
 | STATIC_SUBSCRIBER<sup>9+</sup> | 7    | ExtensionAbility的类型包括订阅者  |
 | WALLPAPER<sup>9+</sup>         | 8    | ExtensionAbility的类型包括墙纸   |
-| BACKUP<sup>9+</sup>            | 9    | ExtensionAbility的类型包括数据备份恢复 |
+| BACKUP<sup>9+</sup> | 9    | ExtensionAbility的类型包括数据备份恢复 |
+| WINDOW<sup>9+</sup> | 10 | ExtensionAbility的类型包括窗口类型扩展信息 |
 | ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | ExtensionAbility的类型包括企业管理员   |
-| UNSPECIFIED<sup>9+</sup>       | 20    | ExtensionAbility未指定类型     |
+| THUMBNAIL<sup>9+</sup> | 13 | ExtensionAbility的类型包括缩略图 |
+| PREVIEW<sup>9+</sup> | 14 | ExtensionAbility的类型包括预览 |
+| UNSPECIFIED<sup>9+</sup>       | 255   | ExtensionAbility未指定类型     |
 
 ## ExtensionFlag<sup>9+</sup>
 
@@ -1994,6 +2463,20 @@ ExtensionAbility的类型
 
 | 名称                 | 类型   | 说明   |
 | ------------------ | ---- | ---- |
-| FULLSCREEN  | 无   | 全屏模式 |
-| SPLIT | 无    | 分屏模式   |
-| FLOATING | 无    | 悬浮模式   |
+| FULL_SCREEN<sup>9+</sup> | 0   | 全屏模式 |
+| SPLIT<sup>9+</sup> | 1    | 分屏模式   |
+| FLOATING<sup>9+</sup> | 2    | 悬浮模式   |
+
+## UpgradeFlag
+
+此项仅供内部系统使用
+
+**系统API：**此接口为系统接口，三方应用不支持调用
+
+**系统能力:**  以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+
+| 名称                          | 值   | 说明             |
+| ----------------------------- | ---- | ---------------- |
+| NOT_UPGRADE<sup>9+</sup>      | 0    | 模块无需升级     |
+| SINGLE_UPGRADE<sup>9+</sup>   | 1    | 单个模块需要升级 |
+| RELATION_UPGRADE<sup>9+</sup> | 2    | 关系模块需要升级 |

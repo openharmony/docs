@@ -32,7 +32,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 var screenClass = null;
 screen.getAllScreens((err, data) => {
     if (err.code) {
-        console.error('Failed to get all screens . Cuase:  ' + JSON.stringify(err));
+        console.error('Failed to get all screens . Cause:  ' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in getting all screens . Data:' + JSON.stringify(data));
@@ -55,7 +55,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 **示例：**
 ```js
 var screenClass = null;
-let promise = screen.getAllScreen();
+let promise = screen.getAllScreens();
 promise.then((data) => {
     screenClass = data[0];
     console.log('Succeeded in getting all screens . Data:'+ JSON.stringify(data));
@@ -531,7 +531,7 @@ screen.setScreenRotationLocked(isLocked, (err, data) => {
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
-| orientation       | [Orientation](#rientation)                     | 是   | 否   | 屏幕方向。             |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
 
 ### setOrientation
 setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void

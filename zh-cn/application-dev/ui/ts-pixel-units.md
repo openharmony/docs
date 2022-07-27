@@ -71,3 +71,10 @@ struct Example {
 ```
 
 ![zh-cn_image_0000001169582302](figures/zh-cn_image_0000001169582302.gif)
+
+
+## 相关实例
+
+基于像素转换，有以下相关实例可供参考：
+
+- [像素转换（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelUnitsDemo)

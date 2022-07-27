@@ -1,7 +1,8 @@
 # Layout Constraints
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,16 +14,17 @@ None
 ## Attributes
 
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| aspectRatio | number | - | Specifies an aspect ratio for the current component. | 
-| displayPriority | number | - | Sets a display priority for the current component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> This parameter is valid only for the Row/Column/Flex (single-row) container component. | 
+| aspectRatio | number | - | Aspect ratio of the current component. |
+| displayPriority | number | - | Display priority of the current component in the container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br/>**NOTE**<br/>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct AspectRatioExample {
@@ -76,8 +78,7 @@ struct AspectRatioExample {
   **Figure2** Landscape display
   ![en-us_image_0000001212218476](figures/en-us_image_0000001212218476.gif)
 
-
-```
+```ts
 class ContainerInfo {
   label : string = ''
   size : string = ''
@@ -94,13 +95,15 @@ struct DisplayPriorityExample {
   private container : ContainerInfo[] = [
     {label: 'Big container', size: '90%'},
     {label: 'Middle container', size: '50%'},
-    {label: 'Small container', size: '30%'}]
+    {label: 'Small container', size: '30%'}
+  ]
   private children : ChildInfo[] = [
     {text: '1\n(priority:2)', priority: 2},
     {text: '2\n(priority:1)', priority: 1},
     {text: '3\n(priority:3)', priority: 3},
     {text: '4\n(priority:1)', priority: 1},
-    {text: '5\n(priority:2)', priority: 2}]
+    {text: '5\n(priority:2)', priority: 2}
+  ]
   @State currentIndex : number = 0
 
   build() {
@@ -128,4 +131,4 @@ struct DisplayPriorityExample {
 
 ```
 
-![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)
+  ![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)
