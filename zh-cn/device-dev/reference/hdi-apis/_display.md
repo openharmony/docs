@@ -268,7 +268,7 @@
 
 ### HotPlugCallback
 
-  
+
 ```
 typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
 ```
@@ -290,7 +290,7 @@ typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
 
 ### RefreshCallback
 
-  
+
 ```
 typedef void(* RefreshCallback) (uint32_t devId, void *data)
 ```
@@ -311,7 +311,7 @@ typedef void(* RefreshCallback) (uint32_t devId, void *data)
 
 ### VBlankCallback
 
-  
+
 ```
 typedef void(* VBlankCallback) (unsigned int sequence, uint64_t ns, void *data)
 ```
@@ -336,7 +336,7 @@ VBlank 事件回调。
 
 ### anonymous enum
 
-  
+
 ```
 anonymous enum
 ```
@@ -359,7 +359,7 @@ anonymous enum
 
 ### BlendType
 
-  
+
 ```
 enum BlendType
 ```
@@ -393,7 +393,7 @@ enum BlendType
 
 ### ColorDataSpace
 
-  
+
 ```
 enum ColorDataSpace
 ```
@@ -450,7 +450,7 @@ enum ColorDataSpace
 
 ### ColorGamut
 
-  
+
 ```
 enum ColorGamut
 ```
@@ -477,7 +477,7 @@ enum ColorGamut
 
 ### ColorKey
 
-  
+
 ```
 enum ColorKey
 ```
@@ -496,7 +496,7 @@ Color key操作类型定义，即硬件加速支持的Color key操作类型。
 
 ### CompositionType
 
-  
+
 ```
 enum CompositionType
 ```
@@ -519,7 +519,7 @@ enum CompositionType
 
 ### Connection
 
-  
+
 ```
 enum Connection
 ```
@@ -537,7 +537,7 @@ enum Connection
 
 ### DispErrCode
 
-  
+
 ```
 enum DispErrCode
 ```
@@ -561,7 +561,7 @@ enum DispErrCode
 
 ### DispPowerStatus
 
-  
+
 ```
 enum DispPowerStatus
 ```
@@ -581,7 +581,7 @@ enum DispPowerStatus
 
 ### GamutMap
 
-  
+
 ```
 enum GamutMap
 ```
@@ -600,7 +600,7 @@ enum GamutMap
 
 ### HDRFormat
 
-  
+
 ```
 enum HDRFormat
 ```
@@ -621,7 +621,7 @@ enum HDRFormat
 
 ### HDRMetadataKey
 
-  
+
 ```
 enum HDRMetadataKey
 ```
@@ -650,7 +650,7 @@ enum HDRMetadataKey
 
 ### InterfaceType
 
-  
+
 ```
 enum InterfaceType
 ```
@@ -677,7 +677,7 @@ enum InterfaceType
 
 ### LayerType
 
-  
+
 ```
 enum LayerType
 ```
@@ -697,7 +697,7 @@ enum LayerType
 
 ### MirrorType
 
-  
+
 ```
 enum MirrorType
 ```
@@ -716,7 +716,7 @@ enum MirrorType
 
 ### PixelFormat
 
-  
+
 ```
 enum PixelFormat
 ```
@@ -767,7 +767,7 @@ enum PixelFormat
 
 ### PresentTimestampType
 
-  
+
 ```
 enum PresentTimestampType
 ```
@@ -785,7 +785,7 @@ enum PresentTimestampType
 
 ### RopType
 
-  
+
 ```
 enum RopType
 ```
@@ -819,7 +819,7 @@ enum RopType
 
 ### TransformType
 
-  
+
 ```
 enum TransformType
 ```
@@ -842,7 +842,7 @@ enum TransformType
 
 ### DeviceInitialize()
 
-  
+
 ```
 int32_t DeviceInitialize (DeviceFuncs **funcs)
 ```
@@ -874,7 +874,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### DeviceUninitialize()
 
-  
+
 ```
 int32_t DeviceUninitialize (DeviceFuncs * funcs)
 ```
@@ -906,7 +906,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GfxInitialize()
 
-  
+
 ```
 int32_t GfxInitialize (GfxFuncs **funcs)
 ```
@@ -938,7 +938,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GfxUninitialize()
 
-  
+
 ```
 int32_t GfxUninitialize (GfxFuncs * funcs)
 ```
@@ -970,7 +970,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GrallocInitialize()
 
-  
+
 ```
 int32_t GrallocInitialize (GrallocFuncs **funcs)
 ```
@@ -1002,7 +1002,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GrallocUninitialize()
 
-  
+
 ```
 int32_t GrallocUninitialize (GrallocFuncs * funcs)
 ```
@@ -1034,7 +1034,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### LayerInitialize()
 
-  
+
 ```
 int32_t LayerInitialize (LayerFuncs **funcs)
 ```
@@ -1062,7 +1062,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### LayerUninitialize()
 
-  
+
 ```
 int32_t LayerUninitialize (LayerFuncs * funcs)
 ```
@@ -1101,7 +1101,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### alpha0 [1/2]
 
-  
+
 ```
 uint8_t LayerAlpha::alpha0
 ```
@@ -1113,7 +1113,7 @@ alpha0值，取值范围：[0, 255]
 
 ### alpha0 [2/2]
 
-  
+
 ```
 uint8_t ISurface::alpha0
 ```
@@ -1125,7 +1125,7 @@ Alpha0值，取值范围：[0,255]
 
 ### alpha1 [1/2]
 
-  
+
 ```
 uint8_t LayerAlpha::alpha1
 ```
@@ -1137,7 +1137,7 @@ alpha1值，取值范围：[0, 255]
 
 ### alpha1 [2/2]
 
-  
+
 ```
 uint8_t ISurface::alpha1
 ```
@@ -1149,7 +1149,7 @@ Alpha1值，取值范围：[0,255]
 
 ### alphaRopType
 
-  
+
 ```
 RopType GfxOpt::alphaRopType
 ```
@@ -1161,7 +1161,7 @@ Alpha的Rop类型
 
 ### bAlphaExt1555
 
-  
+
 ```
 bool ISurface::bAlphaExt1555
 ```
@@ -1173,7 +1173,7 @@ bool ISurface::bAlphaExt1555
 
 ### bAlphaMax255
 
-  
+
 ```
 bool ISurface::bAlphaMax255
 ```
@@ -1185,7 +1185,7 @@ bool ISurface::bAlphaMax255
 
 ### baseAddr
 
-  
+
 ```
 void* __attribute__::baseAddr
 ```
@@ -1197,7 +1197,7 @@ void* __attribute__::baseAddr
 
 ### blendType
 
-  
+
 ```
 BlendType GfxOpt::blendType
 ```
@@ -1209,7 +1209,7 @@ BlendType GfxOpt::blendType
 
 ### bpp
 
-  
+
 ```
 int32_t LayerInfo::bpp
 ```
@@ -1221,7 +1221,7 @@ int32_t LayerInfo::bpp
 
 ### bYCbCrClut
 
-  
+
 ```
 bool ISurface::bYCbCrClut
 ```
@@ -1233,7 +1233,7 @@ CLUT表是否位于 YCbCr 空间
 
 ### cbcrPhyAddr
 
-  
+
 ```
 uint64_t ISurface::cbcrPhyAddr
 ```
@@ -1245,7 +1245,7 @@ CbCr分量地址
 
 ### cbcrStride
 
-  
+
 ```
 int32_t ISurface::cbcrStride
 ```
@@ -1257,7 +1257,7 @@ CbCr分量跨度
 
 ### clutPhyAddr
 
-  
+
 ```
 uint64_t ISurface::clutPhyAddr
 ```
@@ -1269,7 +1269,7 @@ Clut表首地址，用作颜色扩展或颜色校正
 
 ### color [1/3]
 
-  
+
 ```
 uint32_t ILine::color
 ```
@@ -1281,7 +1281,7 @@ uint32_t ILine::color
 
 ### color [2/3]
 
-  
+
 ```
 uint32_t ICircle::color
 ```
@@ -1293,7 +1293,7 @@ uint32_t ICircle::color
 
 ### color [3/3]
 
-  
+
 ```
 uint32_t Rectangle::color
 ```
@@ -1305,7 +1305,7 @@ uint32_t Rectangle::color
 
 ### colorKeyFrom
 
-  
+
 ```
 ColorKey GfxOpt::colorKeyFrom
 ```
@@ -1317,7 +1317,7 @@ ColorKey GfxOpt::colorKeyFrom
 
 ### colorRopType
 
-  
+
 ```
 RopType GfxOpt::colorRopType
 ```
@@ -1329,7 +1329,7 @@ RopType GfxOpt::colorRopType
 
 ### Commit
 
-  
+
 ```
 int32_t(* DeviceFuncs::Commit) (uint32_t devId, int32_t *fence)
 ```
@@ -1356,7 +1356,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### CreateVirtualDisplay
 
-  
+
 ```
 int32_t(* DeviceFuncs::CreateVirtualDisplay) (uint32_t width, uint32_t height, int32_t *format, uint32_t *devId)
 ```
@@ -1369,12 +1369,12 @@ int32_t(* DeviceFuncs::CreateVirtualDisplay) (uint32_t width, uint32_t height, i
 
 **参数:**
 
-  | 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| width | 输入参数，指定显示设备的像素宽度。 | 
-| height | 输入参数，指定显示设备的像素高度。 | 
-| format | 输出参数，指定显示设备的像素格式。&nbsp;详情参考[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001357381993.xml#xref738382043153217,link:zh-cn_topic_0000001347985105.xml#ga60883d4958a60b91661e97027a85072a](zh-cn_topic_0000001347985105.xml#ga60883d4958a60b91661e97027a85072a)，接口实现层可以根据硬件需求，修改format并返回给图形服务。 | 
-| devId | 输出参数，用于接口层返回创建的设备ID。 | 
+| width | 输入参数，指定显示设备的像素宽度。 |
+| height | 输入参数，指定显示设备的像素高度。 |
+| format | 输出参数，指定显示设备的像素格式。详情参考[PixelFormat](#pixelformat)，接口实现层可以根据硬件需求，修改format并返回给图形服务。 |
+| devId | 输出参数，用于接口层返回创建的设备ID。 |
 
 **返回:**
 
@@ -1385,7 +1385,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### CreateWriteBack
 
-  
+
 ```
 int32_t(* DeviceFuncs::CreateWriteBack) (uint32_t *devId, uint32_t width, uint32_t height, int32_t *format)
 ```
@@ -1414,7 +1414,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### data
 
-  
+
 ```
 BufferData LayerBuffer::data
 ```
@@ -1426,7 +1426,7 @@ BufferData LayerBuffer::data
 
 ### DestroyVirtualDisplay
 
-  
+
 ```
 int32_t(* DeviceFuncs::DestroyVirtualDisplay) (uint32_t devId)
 ```
@@ -1452,7 +1452,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### DestroyWriteBack
 
-  
+
 ```
 int32_t(* DeviceFuncs::DestroyWriteBack) (uint32_t devId)
 ```
@@ -1478,7 +1478,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### enableRop
 
-  
+
 ```
 bool GfxOpt::enableRop
 ```
@@ -1490,7 +1490,7 @@ Rop功能使能位
 
 ### enableScale
 
-  
+
 ```
 bool GfxOpt::enableScale
 ```
@@ -1502,7 +1502,7 @@ bool GfxOpt::enableScale
 
 ### enColorFmt
 
-  
+
 ```
 PixelFormat ISurface::enColorFmt
 ```
@@ -1514,7 +1514,7 @@ PixelFormat ISurface::enColorFmt
 
 ### enGlobalAlpha [1/2]
 
-  
+
 ```
 bool LayerAlpha::enGlobalAlpha
 ```
@@ -1526,7 +1526,7 @@ bool LayerAlpha::enGlobalAlpha
 
 ### enGlobalAlpha [2/2]
 
-  
+
 ```
 bool GfxOpt::enGlobalAlpha
 ```
@@ -1538,7 +1538,7 @@ bool GfxOpt::enGlobalAlpha
 
 ### enPixelAlpha [1/2]
 
-  
+
 ```
 bool LayerAlpha::enPixelAlpha
 ```
@@ -1550,7 +1550,7 @@ bool LayerAlpha::enPixelAlpha
 
 ### enPixelAlpha [2/2]
 
-  
+
 ```
 bool GfxOpt::enPixelAlpha
 ```
@@ -1562,7 +1562,7 @@ bool GfxOpt::enPixelAlpha
 
 ### expectedSize
 
-  
+
 ```
 uint32_t AllocInfo::expectedSize
 ```
@@ -1574,7 +1574,7 @@ uint32_t AllocInfo::expectedSize
 
 ### fd
 
-  
+
 ```
 int32_t __attribute__::fd
 ```
@@ -1586,7 +1586,7 @@ int32_t __attribute__::fd
 
 ### fenceId
 
-  
+
 ```
 int32_t LayerBuffer::fenceId
 ```
@@ -1598,7 +1598,7 @@ buffer 的fence号
 
 ### format [1/2]
 
-  
+
 ```
 PixelFormat AllocInfo::format
 ```
@@ -1610,7 +1610,7 @@ PixelFormat AllocInfo::format
 
 ### format [2/2]
 
-  
+
 ```
 PixelFormat VerifyAllocInfo::format
 ```
@@ -1622,7 +1622,7 @@ PixelFormat VerifyAllocInfo::format
 
 ### formatCount
 
-  
+
 ```
 uint32_t HDRCapability::formatCount
 ```
@@ -1634,7 +1634,7 @@ uint32_t HDRCapability::formatCount
 
 ### formats
 
-  
+
 ```
 HDRFormat* HDRCapability::formats
 ```
@@ -1646,7 +1646,7 @@ HDRFormat* HDRCapability::formats
 
 ### freshRate
 
-  
+
 ```
 uint32_t DisplayModeInfo::freshRate
 ```
@@ -1658,7 +1658,7 @@ uint32_t DisplayModeInfo::freshRate
 
 ### gAlpha
 
-  
+
 ```
 uint8_t LayerAlpha::gAlpha
 ```
@@ -1670,7 +1670,7 @@ uint8_t LayerAlpha::gAlpha
 
 ### GetDisplayBacklight
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayBacklight) (uint32_t devId, uint32_t *level)
 ```
@@ -1697,7 +1697,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayCapability
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayCapability) (uint32_t devId, DisplayCapability *info)
 ```
@@ -1724,7 +1724,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayColorGamut
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayColorGamut) (uint32_t devId, ColorGamut *gamut)
 ```
@@ -1749,7 +1749,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayCompChange
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayCompChange) (uint32_t devId, uint32_t *num, uint32_t *Layers, int32_t *type)
 ```
@@ -1778,7 +1778,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayGamutMap
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayGamutMap) (uint32_t devId, GamutMap *gamutMap)
 ```
@@ -1803,7 +1803,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayMode
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayMode) (uint32_t devId, uint32_t *modeId)
 ```
@@ -1830,7 +1830,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayPowerStatus
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayPowerStatus) (uint32_t devId, DispPowerStatus *status)
 ```
@@ -1857,7 +1857,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayProperty
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayProperty) (uint32_t devId, uint32_t id, uint64_t *value)
 ```
@@ -1885,7 +1885,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayReleaseFence
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayReleaseFence) (uint32_t devId, uint32_t *num, uint32_t *layers, int32_t *fences)
 ```
@@ -1914,7 +1914,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplaySupportedColorGamuts
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplaySupportedColorGamuts) (uint32_t devId, uint32_t *num, ColorGamut *gamuts)
 ```
@@ -1940,7 +1940,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplaySupportedModes
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplaySupportedModes) (uint32_t devId, uint32_t *num, DisplayModeInfo *modes)
 ```
@@ -1968,7 +1968,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetHDRCapabilityInfos
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetHDRCapabilityInfos) (uint32_t devId, HDRCapability *info)
 ```
@@ -1993,7 +1993,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetSupportedMetadataKey
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetSupportedMetadataKey) (uint32_t devId, uint32_t *num, HDRMetadataKey *keys)
 ```
@@ -2019,7 +2019,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetWriteBackFrame
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetWriteBackFrame) (uint32_t devId, BufferHandle *buffer, int32_t *fence)
 ```
@@ -2047,7 +2047,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### globalAlpha
 
-  
+
 ```
 uint32_t GfxOpt::globalAlpha
 ```
@@ -2059,7 +2059,7 @@ uint32_t GfxOpt::globalAlpha
 
 ### h
 
-  
+
 ```
 int32_t IRect::h
 ```
@@ -2071,7 +2071,7 @@ int32_t IRect::h
 
 ### hdl
 
-  
+
 ```
 BufferHandle* LayerBuffer::hdl
 ```
@@ -2083,7 +2083,7 @@ BufferHandle* LayerBuffer::hdl
 
 ### height [1/7]
 
-  
+
 ```
 uint32_t DisplayInfo::height
 ```
@@ -2095,7 +2095,7 @@ uint32_t DisplayInfo::height
 
 ### height [2/7]
 
-  
+
 ```
 int32_t LayerInfo::height
 ```
@@ -2107,7 +2107,7 @@ int32_t LayerInfo::height
 
 ### height [3/7]
 
-  
+
 ```
 int32_t LayerBuffer::height
 ```
@@ -2119,7 +2119,7 @@ buffer高度
 
 ### height [4/7]
 
-  
+
 ```
 int32_t ISurface::height
 ```
@@ -2131,7 +2131,7 @@ int32_t ISurface::height
 
 ### height [5/7]
 
-  
+
 ```
 int32_t DisplayModeInfo::height
 ```
@@ -2143,7 +2143,7 @@ int32_t DisplayModeInfo::height
 
 ### height [6/7]
 
-  
+
 ```
 uint32_t AllocInfo::height
 ```
@@ -2155,7 +2155,7 @@ uint32_t AllocInfo::height
 
 ### height [7/7]
 
-  
+
 ```
 uint32_t VerifyAllocInfo::height
 ```
@@ -2167,7 +2167,7 @@ uint32_t VerifyAllocInfo::height
 
 ### id
 
-  
+
 ```
 int32_t DisplayModeInfo::id
 ```
@@ -2179,7 +2179,7 @@ int32_t DisplayModeInfo::id
 
 ### InvokeDisplayCmd
 
-  
+
 ```
 int32_t(* DeviceFuncs::InvokeDisplayCmd) (uint32_t devId,...)
 ```
@@ -2205,7 +2205,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### key
 
-  
+
 ```
 HDRMetadataKey HDRMetaData::key
 ```
@@ -2217,7 +2217,7 @@ HDR元数据关键字
 
 ### maxAverageLum
 
-  
+
 ```
 float HDRCapability::maxAverageLum
 ```
@@ -2229,7 +2229,7 @@ float HDRCapability::maxAverageLum
 
 ### maxLum
 
-  
+
 ```
 float HDRCapability::maxLum
 ```
@@ -2241,7 +2241,7 @@ float HDRCapability::maxLum
 
 ### minLum
 
-  
+
 ```
 float HDRCapability::minLum
 ```
@@ -2253,7 +2253,7 @@ float HDRCapability::minLum
 
 ### mirrorType
 
-  
+
 ```
 MirrorType GfxOpt::mirrorType
 ```
@@ -2265,9 +2265,9 @@ MirrorType GfxOpt::mirrorType
 
 ### name [1/2]
 
-  
+
 ```
-char PropertyObject::名称[PROPERTY_NAME_LEN]
+char PropertyObject::name[PROPERTY_NAME_LEN]
 ```
 
 **描述：**
@@ -2277,9 +2277,9 @@ char PropertyObject::名称[PROPERTY_NAME_LEN]
 
 ### name [2/2]
 
-  
+
 ```
-char DisplayCapability::名称[PROPERTY_NAME_LEN]
+char DisplayCapability::name[PROPERTY_NAME_LEN]
 ```
 
 **描述：**
@@ -2289,7 +2289,7 @@ char DisplayCapability::名称[PROPERTY_NAME_LEN]
 
 ### phyAddr [1/2]
 
-  
+
 ```
 uint64_t BufferData::phyAddr
 ```
@@ -2301,7 +2301,7 @@ uint64_t BufferData::phyAddr
 
 ### phyAddr [2/2]
 
-  
+
 ```
 uint64_t ISurface::phyAddr
 ```
@@ -2313,7 +2313,7 @@ uint64_t ISurface::phyAddr
 
 ### phyHeight
 
-  
+
 ```
 uint32_t DisplayCapability::phyHeight
 ```
@@ -2325,7 +2325,7 @@ uint32_t DisplayCapability::phyHeight
 
 ### phyWidth
 
-  
+
 ```
 uint32_t DisplayCapability::phyWidth
 ```
@@ -2337,7 +2337,7 @@ uint32_t DisplayCapability::phyWidth
 
 ### pitch
 
-  
+
 ```
 int32_t LayerBuffer::pitch
 ```
@@ -2349,7 +2349,7 @@ int32_t LayerBuffer::pitch
 
 ### pixFormat [1/2]
 
-  
+
 ```
 PixelFormat LayerInfo::pixFormat
 ```
@@ -2361,7 +2361,7 @@ PixelFormat LayerInfo::pixFormat
 
 ### pixFormat [2/2]
 
-  
+
 ```
 PixelFormat LayerBuffer::pixFormat
 ```
@@ -2373,7 +2373,7 @@ buffer像素格式
 
 ### PrepareDisplayLayers
 
-  
+
 ```
 int32_t(* DeviceFuncs::PrepareDisplayLayers) (uint32_t devId, bool *needFlushFb)
 ```
@@ -2400,7 +2400,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### propertyCount
 
-  
+
 ```
 uint32_t DisplayCapability::propertyCount
 ```
@@ -2412,7 +2412,7 @@ uint32_t DisplayCapability::propertyCount
 
 ### propId
 
-  
+
 ```
 uint32_t PropertyObject::propId
 ```
@@ -2424,7 +2424,7 @@ uint32_t PropertyObject::propId
 
 ### props
 
-  
+
 ```
 PropertyObject* DisplayCapability::props
 ```
@@ -2436,7 +2436,7 @@ PropertyObject* DisplayCapability::props
 
 ### r
 
-  
+
 ```
 int32_t ICircle::r
 ```
@@ -2448,7 +2448,7 @@ int32_t ICircle::r
 
 ### rect
 
-  
+
 ```
 IRect Rectangle::rect
 ```
@@ -2460,7 +2460,7 @@ IRect Rectangle::rect
 
 ### RegDisplayRefreshCallback
 
-  
+
 ```
 int32_t(* DeviceFuncs::RegDisplayRefreshCallback) (uint32_t devId, RefreshCallback callback, void *data)
 ```
@@ -2488,7 +2488,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### RegDisplayVBlankCallback
 
-  
+
 ```
 int32_t(* DeviceFuncs::RegDisplayVBlankCallback) (uint32_t devId, VBlankCallback callback, void *data)
 ```
@@ -2516,7 +2516,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### RegHotPlugCallback
 
-  
+
 ```
 int32_t(* DeviceFuncs::RegHotPlugCallback) ((HotPlugCallback callback, void *data)
 ```
@@ -2543,7 +2543,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### reserve
 
-  
+
 ```
 int32_t __attribute__::reserve[0]
 ```
@@ -2555,7 +2555,7 @@ reserve数组
 
 ### reserveInts
 
-  
+
 ```
 uint32_t __attribute__::reserveInts
 ```
@@ -2567,7 +2567,7 @@ reserve数组的个数
 
 ### rotAngle
 
-  
+
 ```
 int32_t DisplayInfo::rotAngle
 ```
@@ -2579,7 +2579,7 @@ int32_t DisplayInfo::rotAngle
 
 ### rotateType
 
-  
+
 ```
 TransformType GfxOpt::rotateType
 ```
@@ -2591,7 +2591,7 @@ TransformType GfxOpt::rotateType
 
 ### SetDisplayBacklight
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayBacklight) (uint32_t devId, uint32_t level)
 ```
@@ -2618,7 +2618,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientBuffer
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientBuffer) (uint32_t devId, const BufferHandle *buffer, int32_t fence)
 ```
@@ -2646,7 +2646,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientCrop
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientCrop) (uint32_t devId, IRect *rect)
 ```
@@ -2673,7 +2673,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientDamage
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientDamage) (uint32_t devId, uint32_t num, IRect *rect)
 ```
@@ -2701,7 +2701,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientDestRect
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientDestRect) (uint32_t devId, IRect *rect)
 ```
@@ -2728,7 +2728,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayColorGamut
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayColorGamut) (uint32_t devId, ColorGamut gamut)
 ```
@@ -2753,7 +2753,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayColorTransform
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayColorTransform) (uint32_t devId, const float *matrix)
 ```
@@ -2778,7 +2778,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayGamutMap
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayGamutMap) (uint32_t devId, GamutMap gamutMap)
 ```
@@ -2803,7 +2803,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayMode
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayMode) (uint32_t devId, uint32_t modeId)
 ```
@@ -2830,7 +2830,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayPowerStatus
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayPowerStatus) (uint32_t devId, DispPowerStatus status)
 ```
@@ -2857,7 +2857,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayProperty
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayProperty) (uint32_t devId, uint32_t id, uint64_t value)
 ```
@@ -2885,7 +2885,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayVsyncEnabled
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayVsyncEnabled) (uint32_t devId, bool enabled)
 ```
@@ -2912,7 +2912,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetVirtualDisplayBuffer
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetVirtualDisplayBuffer) (uint32_t devId, BufferHandle *buffer, int32_t fence)
 ```
@@ -2940,7 +2940,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### stride
 
-  
+
 ```
 int32_t ISurface::stride
 ```
@@ -2952,7 +2952,7 @@ int32_t ISurface::stride
 
 ### supportLayers
 
-  
+
 ```
 uint32_t DisplayCapability::supportLayers
 ```
@@ -2964,7 +2964,7 @@ uint32_t DisplayCapability::supportLayers
 
 ### supportWriteBack
 
-  
+
 ```
 bool DisplayCapability::supportWriteBack
 ```
@@ -2976,7 +2976,7 @@ bool DisplayCapability::supportWriteBack
 
 ### time
 
-  
+
 ```
 int64_t PresentTimestamp::time
 ```
@@ -2988,7 +2988,7 @@ int64_t PresentTimestamp::time
 
 ### type [1/3]
 
-  
+
 ```
 LayerType LayerInfo::type
 ```
@@ -3000,7 +3000,7 @@ LayerType LayerInfo::type
 
 ### type [2/3]
 
-  
+
 ```
 InterfaceType DisplayCapability::type
 ```
@@ -3012,7 +3012,7 @@ InterfaceType DisplayCapability::type
 
 ### type [3/3]
 
-  
+
 ```
 PresentTimestampType PresentTimestamp::type
 ```
@@ -3024,7 +3024,7 @@ PresentTimestampType PresentTimestamp::type
 
 ### uOffset
 
-  
+
 ```
 size_t __attribute__::uOffset
 ```
@@ -3036,7 +3036,7 @@ U的偏移量
 
 ### usage [1/2]
 
-  
+
 ```
 uint64_t AllocInfo::usage
 ```
@@ -3048,7 +3048,7 @@ uint64_t AllocInfo::usage
 
 ### usage [2/2]
 
-  
+
 ```
 uint64_t VerifyAllocInfo::usage
 ```
@@ -3060,7 +3060,7 @@ uint64_t VerifyAllocInfo::usage
 
 ### uvStep
 
-  
+
 ```
 size_t __attribute__::uvStep
 ```
@@ -3072,7 +3072,7 @@ UV的step信息
 
 ### uvStride
 
-  
+
 ```
 size_t __attribute__::uvStride
 ```
@@ -3084,7 +3084,7 @@ UV的stride信息
 
 ### value [1/2]
 
-  
+
 ```
 uint64_t PropertyObject::value
 ```
@@ -3096,7 +3096,7 @@ uint64_t PropertyObject::value
 
 ### value [2/2]
 
-  
+
 ```
 float HDRMetaData::value
 ```
@@ -3108,7 +3108,7 @@ float HDRMetaData::value
 
 ### virAddr
 
-  
+
 ```
 void* BufferData::virAddr
 ```
@@ -3120,7 +3120,7 @@ void* BufferData::virAddr
 
 ### virtualDispCount
 
-  
+
 ```
 uint32_t DisplayCapability::virtualDispCount
 ```
@@ -3132,7 +3132,7 @@ uint32_t DisplayCapability::virtualDispCount
 
 ### vOffset
 
-  
+
 ```
 size_t __attribute__::vOffset
 ```
@@ -3144,7 +3144,7 @@ V的偏移量
 
 ### w
 
-  
+
 ```
 int32_t IRect::w
 ```
@@ -3156,7 +3156,7 @@ int32_t IRect::w
 
 ### width [1/7]
 
-  
+
 ```
 uint32_t DisplayInfo::width
 ```
@@ -3168,7 +3168,7 @@ uint32_t DisplayInfo::width
 
 ### width [2/7]
 
-  
+
 ```
 int32_t LayerInfo::width
 ```
@@ -3180,7 +3180,7 @@ int32_t LayerInfo::width
 
 ### width [3/7]
 
-  
+
 ```
 int32_t LayerBuffer::width
 ```
@@ -3192,7 +3192,7 @@ buffer宽度
 
 ### width [4/7]
 
-  
+
 ```
 int32_t ISurface::width
 ```
@@ -3204,7 +3204,7 @@ int32_t ISurface::width
 
 ### width [5/7]
 
-  
+
 ```
 int32_t DisplayModeInfo::width
 ```
@@ -3216,7 +3216,7 @@ int32_t DisplayModeInfo::width
 
 ### width [6/7]
 
-  
+
 ```
 uint32_t AllocInfo::width
 ```
@@ -3228,7 +3228,7 @@ uint32_t AllocInfo::width
 
 ### width [7/7]
 
-  
+
 ```
 uint32_t VerifyAllocInfo::width
 ```
@@ -3240,7 +3240,7 @@ uint32_t VerifyAllocInfo::width
 
 ### x [1/2]
 
-  
+
 ```
 int32_t IRect::x
 ```
@@ -3252,7 +3252,7 @@ int32_t IRect::x
 
 ### x [2/2]
 
-  
+
 ```
 int32_t ICircle::x
 ```
@@ -3264,7 +3264,7 @@ int32_t ICircle::x
 
 ### x0
 
-  
+
 ```
 int32_t ILine::x0
 ```
@@ -3276,7 +3276,7 @@ int32_t ILine::x0
 
 ### x1
 
-  
+
 ```
 int32_t ILine::x1
 ```
@@ -3288,7 +3288,7 @@ int32_t ILine::x1
 
 ### y [1/2]
 
-  
+
 ```
 int32_t IRect::y
 ```
@@ -3300,7 +3300,7 @@ int32_t IRect::y
 
 ### y [2/2]
 
-  
+
 ```
 int32_t ICircle::y
 ```
@@ -3312,7 +3312,7 @@ int32_t ICircle::y
 
 ### y0
 
-  
+
 ```
 int32_t ILine::y0
 ```
@@ -3324,7 +3324,7 @@ int32_t ILine::y0
 
 ### y1
 
-  
+
 ```
 int32_t ILine::y1
 ```
@@ -3336,7 +3336,7 @@ int32_t ILine::y1
 
 ### yOffset
 
-  
+
 ```
 size_t __attribute__::yOffset
 ```
@@ -3348,7 +3348,7 @@ Y的偏移量
 
 ### yStride
 
-  
+
 ```
 size_t __attribute__::yStride
 ```
