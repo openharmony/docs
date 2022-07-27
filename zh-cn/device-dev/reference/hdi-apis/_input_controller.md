@@ -17,7 +17,7 @@
 | -------- | -------- |
 | (&nbsp;[SetPowerStatus](#setpowerstatus)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;uint32_t&nbsp;status) | 设置电源状态&nbsp;[更多...](#setpowerstatus) | 
 | (&nbsp;[GetPowerStatus](#getpowerstatus)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;uint32_t&nbsp;\*status) | 获取电源状态&nbsp;[更多...](#getpowerstatus) | 
-| (&nbsp;[GetDeviceType](#getdevicetype)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;uint32_t&nbsp;\*deviceType) | 获取devIndex对应的input设备的类型&nbsp;[更多...](#getdevicetype) | 
+| (&nbsp;[GetDeviceType](#getdevicetype)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;uint32_t&nbsp;\*deviceType) | 获取devIndex对应的Input设备的类型&nbsp;[更多...](#getdevicetype) | 
 | (&nbsp;[GetChipInfo](#getchipinfo)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;char&nbsp;\*chipInfo,&nbsp;uint32_t&nbsp;length) | 获取器件对应的编码信息&nbsp;[更多...](#getchipinfo) | 
 | (&nbsp;[GetVendorName](#getvendorname)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;char&nbsp;\*vendorName,&nbsp;uint32_t&nbsp;length) | 获取devIndex对应的模组厂商名&nbsp;[更多...](#getvendorname) | 
 | (&nbsp;[GetChipName](#getchipname)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;char&nbsp;\*chipName,&nbsp;uint32_t&nbsp;length) | 获取devIndex对应的驱动芯片名&nbsp;[更多...](#getchipname) | 
@@ -28,7 +28,7 @@
 
 ## **详细描述**
 
-提供input设备业务控制相关的接口。
+提供Input设备业务控制相关的接口。
 
 此类接口包含电源状态的设置、特性的使能、器件信息的获取，以及产线相关的测试功能接口。
 
@@ -53,7 +53,7 @@ int32_t(* InputController::GetChipInfo) (uint32_t devIndex, char *chipInfo, uint
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | chipInfo | 获取的对应设备索引的器件编码信息。 | 
 | length | 保存器件芯片信息的内存长度。 | 
 
@@ -79,7 +79,7 @@ int32_t(* InputController::GetChipName) (uint32_t devIndex, char *chipName, uint
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | chipName | 获取的对应设备索引的驱动芯片名。 | 
 | length | 保存驱动芯片名的内存长度。 | 
 
@@ -99,13 +99,13 @@ int32_t(* InputController::GetDeviceType) (uint32_t devIndex, uint32_t *deviceTy
 
 **描述：**
 
-获取devIndex对应的input设备的类型
+获取devIndex对应的Input设备的类型
 
 **参数：**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | deviceType | 获取的对应设备索引的设备类型，具体参考**InputDevType**。 | 
 
 **返回：**
@@ -126,13 +126,13 @@ int32_t(* InputController::GetPowerStatus) (uint32_t devIndex, uint32_t *status)
 
 获取电源状态
 
-在系统休眠或者唤醒时，input服务或电源管理模块获取电源状态，以便驱动IC能正常进入对应的休眠模式。
+在系统休眠或者唤醒时，Input服务或电源管理模块获取电源状态，以便驱动IC能正常进入对应的休眠模式。
 
 **参数：**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | status | 获取的对应设备索引的电源状态，具体参考**PowerStatus**。 | 
 
 **返回：**
@@ -157,7 +157,7 @@ int32_t(* InputController::GetVendorName) (uint32_t devIndex, char *vendorName, 
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | vendorName | 获取的对应设备索引的模组厂商名。 | 
 | length | 保存模组厂商名的内存长度。 | 
 
@@ -185,7 +185,7 @@ int32_t(* InputController::RunCapacitanceTest) (uint32_t devIndex, uint32_t test
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | testType | 容值测试的测试类型，具体参考**CapacitanceTest**。 | 
 | result | 容值测试的结果，成功则输出“SUCCESS”，失败则返回对应的错误提示&nbsp;。 | 
 | length | 保存容值测试结果的内存长度。 | 
@@ -212,7 +212,7 @@ int32_t(* InputController::RunExtraCommand) (uint32_t devIndex, InputExtraCmd *c
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | cmd | 拓展指令数据包，包括指令编码及参数，具体参考**InputExtraCmd**。 | 
 
 **返回：**
@@ -239,7 +239,7 @@ int32_t(* InputController::SetGestureMode) (uint32_t devIndex, uint32_t gestureM
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | gestureMode | 手势模式的开关状态 | 
 
 **返回：**
@@ -260,14 +260,14 @@ int32_t(* InputController::SetPowerStatus) (uint32_t devIndex, uint32_t status)
 
 设置电源状态
 
-在系统休眠或者唤醒时，input服务或电源管理模块设置电源状态，以使驱动IC能正常进入对应的休眠模式。
+在系统休眠或者唤醒时，Input服务或电源管理模块设置电源状态，以使驱动IC能正常进入对应的休眠模式。
 
 **参数：**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备。 | 
-| status | 设置的电源状态，input服务控制input设备进入resume或者suspend等状态[PowerStatus](_input.md#powerstatus)。 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
+| status | 设置的电源状态，Input服务控制Input设备进入resume或者suspend等状态[PowerStatus](_input.md#powerstatus)。 | 
 
 **返回：**
 
