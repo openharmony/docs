@@ -23,9 +23,9 @@
 
 ## **详细描述**
 
-提供input设备数据上报相关的接口。
+提供Input设备数据上报相关的接口。
 
-此类接口包含input设备的数据上报回调函数的注册和注销。
+此类接口包含Input设备的数据上报回调函数的注册和注销。
 
 
 ## **类成员变量说明**
@@ -40,9 +40,9 @@ int32_t(* InputReporter::RegisterHotPlugCallback) (InputReportEventCb *callback)
 
 **描述：**
 
-注册Input设备的热插拔回调函数
+注册Input设备的热插拔回调函数。
 
-input服务通过此接口注册回调函数到hdi中，所有Input设备由此函数进行热插拔事件上报
+Input服务通过此接口注册回调函数到hdi中，所有Input设备由此函数进行热插拔事件上报。
 
 **参数：**
 
@@ -66,15 +66,15 @@ int32_t(* InputReporter::RegisterReportCallback) (uint32_t devIndex, InputReport
 
 **描述：**
 
-注册对应设备的回调函数
+注册对应设备的回调函数。
 
-input服务通过此接口注册数据回调函数到hdi中，hdi通过此回调函数上报input事件
+Input服务通过此接口注册数据回调函数到hdi中，hdi通过此回调函数上报Input事件。
 
 **参数：**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 | callback | 回调函数的函数指针 | 
 
 **返回：**
@@ -123,7 +123,7 @@ int32_t(* InputReporter::UnregisterReportCallback) (uint32_t devIndex)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | Input设备索引，用于标志多个input设备，取值从0开始，最多支持32个设备 | 
+| devIndex | Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备 | 
 
 **返回：**
 
