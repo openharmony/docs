@@ -94,7 +94,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -119,7 +119,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅供系统应用使用。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
 
 - 参数：
   | 参数名 | 类型 | 必填 | 说明 |
