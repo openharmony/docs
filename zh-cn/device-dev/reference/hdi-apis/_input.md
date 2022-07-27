@@ -22,7 +22,7 @@
 | [InputManager](_input_manager.md) | 提供Input设备管理相关的接口。&nbsp;[更多...](_input_manager.md) | 
 | [IInputInterface](_i_input_interface.md) | 定义用于提供输入设备驱动能力的接口。[更多...](_i_input_interface.md) | 
 | [InputReporter](_input_reporter.md) | 提供Input设备数据上报相关的接口。&nbsp;[更多...](_input_reporter.md) | 
-| [EventPackage](_event_package.md) | Input事件数据包结构。&nbsp;[更多...](_event_package.md) | 
+| [InputEventPackage](_event_package.md) | Input事件数据包结构。&nbsp;[更多...](_event_package.md) | 
 | [InputReportEventCb](_input_report_event_cb.md) | 此结构体定义了输入事件回调函数并提供给Input服务使用。&nbsp;[更多...](_input_report_event_cb.md) | 
 | [DeviceInfo](_device_info.md) | Input设备基础设备信息。&nbsp;[更多...](_device_info.md) | 
 | [InputExtraCmd](_input_extra_cmd.md) | 扩展指令的数据结构。&nbsp;[更多...](_input_extra_cmd.md) | 
