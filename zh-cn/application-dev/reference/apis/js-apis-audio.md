@@ -3233,7 +3233,7 @@ let mode = 0;
 audioRenderer.setInterruptMode(mode).then(data=>{
     console.log("setInterruptMode Success!");
 }).catch(err=>{
-    console.log("setInterruptMode Fail:" + err);
+    console.log("setInterruptMode Fail:" + err.message);
 });
 ```
 ### setInterruptMode<sup>9+</sup>
@@ -3273,7 +3273,7 @@ let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 let mode = 1;
 audioRenderer.setInterruptMode(mode,(err,data)=>{
     if(err){
-        console.log("setInterruptMode Fail:" + err);
+        console.log("setInterruptMode Fail:" + err.message);
     }
     console.log("setInterruptMode Success!");
 });
