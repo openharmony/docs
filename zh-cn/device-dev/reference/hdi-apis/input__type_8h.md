@@ -32,6 +32,10 @@
 | **VENDOR_NAME_LEN**&nbsp;&nbsp;&nbsp;10 | 厂商名称长度。 | 
 | **SELF_TEST_RESULT_LEN**&nbsp;&nbsp;&nbsp;20 | 自测结果长度。 | 
 | **DEV_MANAGER_SERVICE_NAME**&nbsp;&nbsp;&nbsp;"hdf_input_host" | Input设备节点服务名称。 | 
+| **DIV_ROUND_UP(nr, d)**&nbsp;&nbsp;(((nr) + (d) - 1) / (d)) | 向上取整计算公式。|
+| **BYTE_HAS_BITS**&nbsp;&nbsp;8 | 一个字节所包含的比特数。 |
+| **BITS_TO_UINT64(count)**&nbsp;&nbsp;DIV_ROUND_UP(count, BYTE_HAS_BITS * sizeof(uint64_t)) | 比特与64位无符号整数的转换公式。 |
+| **HDF_FF_CNT**&nbsp;&nbsp;(0x7f + 1) | Input设备发送力反馈命令的数量最大值。|
 
 
 ### 枚举
