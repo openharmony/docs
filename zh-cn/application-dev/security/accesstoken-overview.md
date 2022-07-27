@@ -112,7 +112,7 @@ ATM(AccessTokenManager)是OpenHarmony上基于AccessToken构建的统一的应�
 
 在权限B的ACL使能为TRUE的情况下，此时，开发者可以使用ACL方式来申请权限B。
 
-ACL方式的工作流程可以参考[ACL方式使用说明](#ACL方式使用说明)。
+ACL方式的工作流程可以参考[ACL方式使用说明](#acl方式使用说明)。
 权限的ACL使能情况可查阅[权限定义列表](permission-list.md)。
 
 ### ACL方式使用说明
