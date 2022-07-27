@@ -1322,7 +1322,7 @@ writeFloatArray(floatArray: number[]): boolean
 **参数：**
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | floatArray | number[] | 是 | 要写入的浮点数组。 |
+  | floatArray | number[] | 是 | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **返回值：**
     | 类型 | 说明 |
@@ -1398,7 +1398,7 @@ writeDoubleArray(doubleArray: number[]): boolean
 **参数：**
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | doubleArray | number[] | 是 | 要写入的双精度浮点数组。 |
+  | doubleArray | number[] | 是 | 要写入的双精度浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **返回值：**
     | 类型 | 说明 |
