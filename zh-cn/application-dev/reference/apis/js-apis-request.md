@@ -15,7 +15,9 @@ import request from '@ohos.request';
 
 
 ## 限制与约束
+
 在开发FA模型下的应用程序时，需要在config.json配置文件中对应用结构进行声明，在config.json文件中增加network标签，属性标识 "cleartextTraffic": true。即：
+
 ```
 var config = {
   "deviceConfig": {
@@ -28,6 +30,7 @@ var config = {
   }
 }
 ```
+
 在开发stage模型下的应用程序时，需要在module.json和app.json配置文件中对应用结构进行声明，不涉及属性标识 "cleartextTraffic"。
 
 
