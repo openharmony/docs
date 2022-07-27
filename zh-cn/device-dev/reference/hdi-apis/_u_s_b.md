@@ -31,7 +31,7 @@
 
   | 宏定义 | 描述 | 
 | -------- | -------- |
-| [USB_MAX_INTERFACES](#usbmaxinterfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量。 | 
+| [USB_MAX_INTERFACES](#usb\_max\_interfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量。 | 
 
 
 ### 类型定义
@@ -59,7 +59,7 @@
 | [OHOS::USB::UsbInfo::getDevInfoStatus](#getdevinfostatus)&nbsp;()&nbsp;const | 获取USB设备状态。&nbsp;[更多...](#getdevinfostatus) | 
 | [OHOS::USB::UsbInfo::getDevInfoBusNum](#getdevinfobusnum)&nbsp;()&nbsp;const | 获取USB总线编号。&nbsp;[更多...](#getdevinfobusnum) | 
 | [OHOS::USB::UsbInfo::getDevInfoDevNum](#getdevinfodevnum)&nbsp;()&nbsp;const | 获取USB设备编号。&nbsp;[更多...](#getdevinfodevnum) | 
-| **OHOS::USB::UsbdClient::GetInstance**&nbsp;() | 获取实例。 | 
+| [OHOS::USB::UsbdClient::GetInstance](#getinstance)&nbsp;()&nbsp; | 获取实例。&nbsp;[更多...](#getinstance) | 
 | [OHOS::USB::UsbdClient::OpenDevice](#opendevice)&nbsp;(const&nbsp;[UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)&nbsp;&amp;dev) | 打开设备，建立连接。&nbsp;[更多...](#opendevice) | 
 | [OHOS::USB::UsbdClient::CloseDevice](#closedevice)&nbsp;(const&nbsp;[UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)&nbsp;&amp;dev) | 关闭设备，释放与设备相关的所有系统资源。&nbsp;[更多...](#closedevice) | 
 | [OHOS::USB::UsbdClient::GetDeviceDescriptor](#getdevicedescriptor)&nbsp;(const&nbsp;[UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)&nbsp;&amp;dev,&nbsp;std::vector&lt;&nbsp;uint8_t&nbsp;&gt;&nbsp;&amp;descriptor) | 获取设备描述符。&nbsp;[更多...](#getdevicedescriptor) | 
@@ -1632,6 +1632,25 @@ int32_t OHOS::USB::UsbdClient::UnRegBulkCallback (const UsbDev & dev, const UsbP
 0 表示操作成功。
 
 非零值 表示操作失败。
+
+**Since：**
+
+3.0
+
+**Version：**
+
+1.0
+
+### GetInstance()
+
+  
+```
+OHOS::USB::UsbdClient::GetInstance()
+```
+
+**描述：**
+
+获取实例。
 
 **Since：**
 
