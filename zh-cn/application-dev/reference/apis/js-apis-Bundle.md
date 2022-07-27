@@ -1751,10 +1751,9 @@ bundle.setDisposedStatus(bundleName, status).then(data=>{
 
 ## bundle.getDisposedStatus<sup>9+</sup>
 
-getDisposedStatus(bundleName: string, callback: AsyncCallback\<number>): void;
+getDisposedStatus(bundleName: string,, callback: AsyncCallback\<number>): void;
 
-以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果
-
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
