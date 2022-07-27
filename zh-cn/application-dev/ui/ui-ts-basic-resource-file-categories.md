@@ -71,8 +71,62 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 
   **表3** 资源组目录说明
 
-| 资源组目录     | 目录说明                                     | 资源文件                                     |
-| --------- | ---------------------------------------- | ---------------------------------------- |
-| element   | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
-| media     | 表示媒体资源，包括图片、音频、视频等非文本格式的文件。              | 文件名可自定义，例如：icon.png。                     |
-| profile   | 表示其他类型文件，以原始文件形式保存。                      | 文件名可自定义。                                 |
+| 资源组目录   | 目录说明                                     | 资源文件                                     |
+| ------- | ---------------------------------------- | ---------------------------------------- |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
+| media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件。              | 文件名可自定义，例如：icon.png。                     |
+| profile | 表示其他类型文件，以原始文件形式保存。                      | 文件名可自定义。                                 |
+
+### 媒体资源类型说明
+
+表1 图片资源类型说明
+
+| 格式   | 文件后缀名 |
+| ---- | ----- |
+| JPEG | .jpg  |
+| PNG  | .png  |
+| GIF  | .gif  |
+| SVG  | .svg  |
+| WEBP | .webp |
+| BMP  | .bmp  |
+
+表2 音视频资源类型说明
+
+| 格式                                   | 支持的文件类型         |
+| ------------------------------------ | --------------- |
+| H.263                                | .3gp <br>.mp4   |
+| H.264 AVC <br> Baseline Profile (BP) | .3gp <br>.mp4   |
+| MPEG-4 SP                            | .3gp            |
+| VP8                                  | .webm <br> .mkv |
+
+## 创建资源文件
+
+在resources目录下，可按照限定词目录和资源组目录的说明创建子目录和目录内的文件。
+
+同时，DevEco Studio也提供了创建资源目录和资源文件的界面。
+
+- 创建资源目录及资源文件
+
+  在resources目录右键菜单选择“New > Resource File”，此时可同时创建目录和文件。
+
+  文件默认创建在base目录的对应资源组下。如果选择了限定词，则会按照命名规范自动生成限定词+资源组目录，并将文件创建在目录中。
+
+  目录名自动生成，格式固定为“限定词.资源组”，例如创建一个限定词为横竖屏类别下的竖屏，资源组为绘制资源的目录，自动生成的目录名称为“vertical.graphic”。
+
+  ![create-resource-file-1](figures/create-resource-file-1.png)
+
+- 创建资源目录
+
+  在resources目录右键菜单选择“New > Resource Directory”，此时可创建资源目录。
+
+  选择资源组类型，设置限定词，创建后自动生成目录名称。目录名称格式固定为“限定词.资源组”，例如创建一个限定词为横竖屏类别下的竖屏，资源组为绘制资源的目录，自动生成的目录名称为“vertical.graphic”。
+
+  ![create-resource-file-2](figures/create-resource-file-2.png)
+
+- 创建资源文件
+
+  在资源目录的右键菜单选择“New > XXX Resource File”，即可创建对应资源组目录的资源文件。
+
+  例如，在element目录下可新建Element Resource File。
+
+  ![create-resource-file-3](figures/create-resource-file-3.png)
