@@ -703,7 +703,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 
 设置指定流的音量，使用callback方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -733,7 +733,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 设置指定流的音量，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -929,7 +929,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 设置指定音量流静音，使用callback方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -959,7 +959,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 设置指定音量流静音，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY，仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2288,9 +2288,9 @@ console.info('isAudioRendererLowLatencySupported success var =' + result);
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
-| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。 |
+| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口，三方应用不支持调用。 |
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
-| rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。                     |
+| rendererState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口，三方应用不支持调用。|
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
@@ -2360,9 +2360,9 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
-| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。 |
+| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口，三方应用不支持调用。 |
 | capturerInfo       | [AudioCapturerInfo](#audiocaptureinfo8)   | 是   | 否   | 音频渲染器信息。               |
-| capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。                     |
+| capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口，三方应用不支持调用。|
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
 
@@ -2857,7 +2857,7 @@ var audioStreamInfo = {
 
 var audioRendererInfo = {
     content: audio.ContentType.CONTENT_TYPE_SPEECH,
-    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
     rendererFlags: 1
 }
 
@@ -2919,13 +2919,13 @@ import featureAbility from '@ohos.ability.featureAbility'
 var audioStreamInfo = {
     samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
     channels:audio.AudioChannel.CHANNEL_2,
-    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+    sampleFormat:audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType:audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
 var audioRendererInfo = {
     content: audio.ContentType.CONTENT_TYPE_SPEECH,
-    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
     rendererFlags: 1
 }
 
@@ -3058,13 +3058,13 @@ import fileio from '@ohos.fileio';
 var audioStreamInfo = {
     samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
     channels:audio.AudioChannel.CHANNEL_2,
-    sampleFormat.audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-    encodingType.audio.AudioEncodingType.ENCODING_TYPE_RAW
+    sampleFormat:audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+    encodingType:audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
 var audioRendererInfo = {
     content: audio.ContentType.CONTENT_TYPE_SPEECH,
-    usage: audio.streamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+    usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
     rendererFlags: 1
 }
 
@@ -3213,9 +3213,27 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 **示例：**
 
 ```
-const audioManager = audio.getAudioManager();
-audioManager.setInterruptMode(audio.InterruptMode.SHARE_MODE).then(() => {
-    console.log('Promise returned to indicate a successful volume setting.');
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels: audio.AudioChannel.CHANNEL_1,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags: 0
+}
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+let mode = 0;
+audioRenderer.setInterruptMode(mode).then(data=>{
+    console.log("setInterruptMode Success!");
+}).catch(err=>{
+    console.log("setInterruptMode Fail:" + err.message);
 });
 ```
 ### setInterruptMode<sup>9+</sup>
@@ -3236,9 +3254,28 @@ setInterruptMode(mode: InterruptMode, callback: Callback\<void>): void
 **示例：**
 
 ```
-const audioManager = audio.getAudioManager();
-audioManager.setInterruptMode(audio.InterruptMode.SHARE_MODE,()=>{
-    console.log('Callback returned to indicate a successful volume setting.');
+var audioStreamInfo = {
+    samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+    channels: audio.AudioChannel.CHANNEL_1,
+    sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+    encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+var audioRendererInfo = {
+    content: audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags: 0
+}
+var audioRendererOptions = {
+    streamInfo: audioStreamInfo,
+    rendererInfo: audioRendererInfo
+}
+let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+let mode = 1;
+audioRenderer.setInterruptMode(mode,(err,data)=>{
+    if(err){
+        console.log("setInterruptMode Fail:" + err.message);
+    }
+    console.log("setInterruptMode Success!");
 });
 ```
 ### on('interrupt')<sup>9+</sup>
@@ -3649,10 +3686,11 @@ var audioStreamInfo = {
 
 var audioCapturerInfo = {
     source: audio.SourceType.SOURCE_TYPE_MIC,
-    capturerFlags = 1
+    capturerFlags: 1
 }
 
 var audioCapturer;
+var stateFlag;
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
     audioCapturer = data;
     console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
@@ -3772,6 +3810,7 @@ release(): Promise<void\>
 **示例：**
 
 ```
+var stateFlag;
 audioCapturer.release().then(() => {
     console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
     console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
