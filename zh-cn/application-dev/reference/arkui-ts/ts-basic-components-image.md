@@ -234,8 +234,8 @@ struct ImageExample2 {
 @Entry
 @Component
 struct ImageExample3 {
-  @State width: number = 0
-  @State height: number = 0
+  @State widthValue: number = 0
+  @State heightValue: number = 0
   private on: Resource = $r('app.media.image_on')
   private off: Resource = $r('app.media.image_off')
   private on2off: Resource = $r('app.media.image_on2off')
@@ -256,8 +256,8 @@ struct ImageExample3 {
             .height(180).width(180)
             // 图片加载完成后，获取图片尺寸。
             .onComplete((msg: { width: number,height: number }) => {
-              this.width = msg.width
-              this.height = msg.height
+              this.widthValue = msg.width
+              this.heightValue = msg.height
             })
             .onError(() => {
               console.log('load image fail')
