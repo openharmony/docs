@@ -2527,7 +2527,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>**需要权限：** ohos.permission.READ_MEDIA； |
 
 ## AudioSourceType<sup>9+</sup>
 
