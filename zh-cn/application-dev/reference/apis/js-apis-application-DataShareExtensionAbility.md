@@ -156,11 +156,11 @@ let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     insert(uri, valueBucket, callback) {
-        if (value == null) {
+        if (valueBucket == null) {
             console.info('invalid valueBuckets');
             return;
         }
-        rdbStore.insert(TBL_NAME, value, function (err, ret) {
+        rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
             console.info('callback ret:' + ret);
             if (callback != undefined) {
                 callback(err, ret);
@@ -204,7 +204,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
         if (predicates == null || predicates == undefined) {
             return;
         }
-        rdbStore.update(TBL_NAME, value, predicates, function (err, ret) {
+        rdbStore.update(TBL_NAME, valueBucket, predicates, function (err, ret) {
             if (callback != undefined) {
                 callback(err, ret);
             }
