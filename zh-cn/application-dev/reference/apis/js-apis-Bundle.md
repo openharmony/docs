@@ -445,7 +445,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称       | 类型                | 必填 | 描述                                  |
 | ---------- | ------------------- | ---- | ------------------------------------- |
 | bundleName | string              | 是   | 指示要清除其缓存数据的应用程序包名称. |
-| callback   | AsyncCallback<void> | 是   | 为返回操作结果而调用的回调。          |
+| callback   | AsyncCallback\<void> | 是   | 为返回操作结果而调用的回调。          |
 
 ## bundle.cleanBundleCacheFiles<sup>8+</sup>
 
@@ -475,7 +475,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.setApplicationEnabled<sup>8+</sup>
 
@@ -501,7 +501,7 @@ SystemCapability.BundleManager.BundleFramework
 | ---------- | ------------------- | ---- | ----------------------------------------------- |
 | bundleName | string              | 是   | 应用程序包名称。                                |
 | isEnable   | boolean             | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
-| callback   | AsyncCallback<void> | 是   | 为返回操作结果而调用的回调。                    |
+| callback   | AsyncCallback\<void> | 是   | 为返回操作结果而调用的回调。                    |
 
 ## bundle.setApplicationEnabled<sup>8+</sup>
 
@@ -532,11 +532,11 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.setAbilityEnabled<sup>8+</sup>
 
-setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 设置是否启用指定的功能
 
@@ -558,7 +558,7 @@ SystemCapability.BundleManager.BundleFramework
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability信息。                                   |
 | isEnable | boolean                                      | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
-| callback | AsyncCallback<void>                          | 是   | 为返回操作结果而调用的回调。                    |
+| callback | AsyncCallback\<void>                          | 是   | 为返回操作结果而调用的回调。                    |
 
 ## bundle.setAbilityEnabled<sup>8+</sup>
 
@@ -589,7 +589,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.getPermissionDef<sup>8+</sup>
 
@@ -667,7 +667,7 @@ SystemCapability.BundleManager.BundleFramework
 | bundleName  | string                      | 是   | 应用程序包名称。             |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
 | upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位       |
-| callback    | AsyncCallback<void>         | 是   | 为返回操作结果而调用的回调。 |
+| callback    | AsyncCallback\<void>         | 是   | 为返回操作结果而调用的回调。 |
 
 ## bundle.setModuleUpgradeFlag<sup>9+</sup>
 
@@ -695,7 +695,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.isModuleRemovable<sup>9+</sup>
 
@@ -1510,7 +1510,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-以异步方法根据给定的意图获取获取指定用户下Ability信息，使用callback形式返回结果。
+以异步方法根据给定的意图获取指定用户下Ability信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -2147,7 +2147,7 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 
 setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -2179,7 +2179,7 @@ bundle.setDisposedStatus(bundleName, status, caller)
 
 setDisposedStatus(bundleName: string, status: number): Promise\<void>;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -2217,6 +2217,8 @@ bundle.setDisposedStatus(bundleName, status).then(data=>{
 
 getDisposedStatus(bundleName: string, callback: AsyncCallback\<number>): void;
 
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
@@ -2245,7 +2247,7 @@ bundle.getDisposedStatus(bundleName, caller)
 
 getDisposedStatus(bundleName: string): Promise\<number>;
 
-此接口为系统接口，以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
