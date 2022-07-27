@@ -33,10 +33,11 @@
 | AieClientGetOption | GetOption | Obtains algorithm-related configuration items. For KWS, this API can obtain the input and output scale of the KWS model. The input scale is the MFCC feature (fixed value: 4000) required by the KWS model, and the output scale is the confidence (fixed value: 2) of the result. |
 | AieClientRelease | Release | Releases the algorithm model. For KWS, this API releases the specified algorithm model and clears the dynamic memory in the feature processor. |
 
-    >![](../public_sys-resources/icon-note.gif)**NOTE** 
-    >-  The **AieClientInit** and **AieClientDestroy** APIs are used to connect to and disconnect from the server, respectively. They are not called in the plug-in algorithm and therefore do not need to be defined in the plug-in.
-    >-  The KWS plug-in needs to use the **PLUGIN\_INTERFACE\_IMPL** statement to expose the function pointer. Otherwise, the plug-in cannot be properly loaded.
-      
+>![](../public_sys-resources/icon-note.gif)**NOTE** 
+>-  The **AieClientInit** and **AieClientDestroy** APIs are used to connect to and disconnect from the server, respectively. They are not called in the plug-in algorithm and therefore do not need to be defined in the plug-in.
+>-  The KWS plug-in needs to use the **PLUGIN\_INTERFACE\_IMPL** statement to expose the function pointer. Otherwise, the plug-in cannot be properly loaded.
+    
+  
     ```
     PLUGIN_INTERFACE_IMPL(KWSPlugin);
     ```
