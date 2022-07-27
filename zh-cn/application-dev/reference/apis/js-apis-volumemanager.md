@@ -239,7 +239,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 ## volumemanager.getVolumeById
 
-getVolumeById(id: string): Promise&lt;Volume&gt;
+getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
 异步通过卷id获得卷信息，以promise方式返回。
 
@@ -251,7 +251,7 @@ getVolumeById(id: string): Promise&lt;Volume&gt;
 
   | 参数名    | 类型    | 必填  | 说明 |
   | -------- | ------ | ---- | ---- |
-  | id | string | 是   | 卷id |
+  | volumeId | string | 是   | 卷id |
 
 **返回值：**
 
@@ -262,8 +262,8 @@ getVolumeById(id: string): Promise&lt;Volume&gt;
 **示例：**
 
   ```js
-  let id = "";
-  volumemanager.getVolumeById(id).then(function(volume) {
+  let volumeId = "";
+  volumemanager.getVolumeById(volumeId).then(function(volume) {
       console.info("getVolumeById successfully:" + JSON.stringify(volume));
   }).catch(function(error){
       console.info("getVolumeById failed with error:"+ error);
@@ -272,7 +272,7 @@ getVolumeById(id: string): Promise&lt;Volume&gt;
 
 ## volumemanager.getVolumeById
 
-getVolumeById(id: string, callback: AsyncCallback&lt;Volume&gt;): void
+getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 异步通过卷id获得卷信息，以callback方式返回。
 
@@ -282,16 +282,16 @@ getVolumeById(id: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 **参数：**
 
-  | 参数名    | 类型                                                 | 必填 | 说明                 |
-    | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | id | string                                              | 是   | 卷id                 |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
+  | 参数名   | 类型                      | 必填 | 说明                          |
+  | -------- | ------------------------- | ---- | ----------------------------- |
+  | volumeId | string                    | 是   | 卷id                |
+  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷信息之后的回调  |
 
 **示例：**
 
   ```js
-  let id = "";
-  volumemanager.getVolumeById(id, (error, volume) => {
+  let volumeId = "";
+  volumemanager.getVolumeById(volumeId, (error, volume) => {
       // do something    
   });
   ```
@@ -361,7 +361,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 
 ## volumemanager.format
 
-format(volId: string): Promise&lt;void&gt;
+format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
 异步对指定卷进行格式化，以promise方式返回。
 
@@ -373,19 +373,21 @@ format(volId: string): Promise&lt;void&gt;
 
   | 参数名       | 类型   | 必填 | 说明 |
   | ----------- | ------ | ---- | ---- |
-  | volId    | string | 是   | 卷id |
+  | volumeId    | string | 是   | 卷id |
+  | fsType    | string | 是   | 文件系统类型 |
 
 **返回值：**
 
-  | 类型                    | 说明                       |
-    | --------------------- | ----------------------- |
-  | Promise&lt;void&gt; | 对指定卷进行格式化            |
+  | 类型                   | 说明       |
+  | ---------------------- | ---------- |
+  | Promise&lt;void&gt; | 对指定卷进行格式化 |
 
 **示例：**
 
   ```js
-  let volId = "";
-  volumemanager.format(volId).then(function() {
+  let volumeId = "";
+  let fsType = "";
+  volumemanager.format(volumeId, fsType).then(function() {
       console.info("format successfully");
   }).catch(function(error){
       console.info("format failed with error:"+ error);
@@ -394,7 +396,7 @@ format(volId: string): Promise&lt;void&gt;
 
 ## volumemanager.format
 
-format(volId: string, callback: AsyncCallback&lt;void&gt;): void
+format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步对指定卷进行格式化，以callback方式返回。
 
@@ -404,23 +406,25 @@ format(volId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名      | 类型                                     | 必填 | 说明              |
-    | -------- | --------------------------------------- | ---- | ---------------- |
-  | volId   | string                                  | 是   | 卷id            |
-  | callback   | callback:AsyncCallback&lt;void&gt;   | 是   | 对指定卷进行格式化  |
+  | 参数名   | 类型                      | 必填 | 说明                          |
+  | -------- | ------------------------- | ---- | ----------------------------- |
+  | volumeId | string                    | 是   | 卷id                |
+  | fsType    | string | 是   | 文件系统类型 |
+  | callback | callback:AsyncCallback&lt;void&gt;  | 是   | 对指定卷格式化后的回调  |
 
 **示例：**
 
   ```js
-  let volId = "";
-  volumemanager.format(volId, (error, bool) => {
+  let volumeId = "";
+  let fsType = "";
+  volumemanager.format(volumeId, fsType, (error, bool) => {
       // do something    
   });
   ```
 
 ## volumemanager.partition
 
-partition(volId: string, fstype: string): Promise&lt;void&gt;
+partition(diskId: string, type: number): Promise&lt;void&gt;
 
 异步对磁盘进行分区，以promise方式返回。
 
@@ -431,9 +435,9 @@ partition(volId: string, fstype: string): Promise&lt;void&gt;
 **参数：**
 
   | 参数名       | 类型   | 必填 | 说明 |
-    | ----------- | ------ | ---- | ---- |
-  | volId    | string | 是   | 卷所属的磁盘id |
-  | fstype      | string | 是   | 分区类型    |
+  | ----------- | ------ | ---- | ---- |
+  | diskId    | string | 是   | 卷所属的磁盘id |
+  | type      | number | 是   | 分区类型    |
 
 **返回值：**
 
@@ -444,9 +448,9 @@ partition(volId: string, fstype: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let volId = "";
-  let fstype = "";
-  volumemanager.partition(volId, fstype).then(function() {
+  let diskId = "";
+  let type = 0;
+  volumemanager.partition(diskId, type).then(function() {
       console.info("partition successfully");
   }).catch(function(error){
       console.info("partition failed with error:"+ error);
@@ -455,7 +459,7 @@ partition(volId: string, fstype: string): Promise&lt;void&gt;
 
 ## volumemanager.partition
 
-partition(volId: string, fstype : string, callback: AsyncCallback&lt;void&gt;): void
+partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): void
 
 异步对磁盘进行分区，以callback方式返回。
 
@@ -467,16 +471,16 @@ partition(volId: string, fstype : string, callback: AsyncCallback&lt;void&gt;): 
 
   | 参数名      | 类型                                   | 必填 | 说明              |
   | -------- | --------------------------------------- | ---- | ---------------- |
-  | volId   | string                                  | 是   | 卷所属的磁盘id      |
-  | fstype     | string                                  | 是   | 分区类型           |
+  | diskId   | string                                  | 是   | 卷所属的磁盘id      |
+  | type     | number                                  | 是   | 分区类型           |
   | callback | callback:AsyncCallback&lt;void&gt;   | 是   | 对磁盘进行分区      |
 
 **示例：**
 
   ```js
-  let volId = "";
-  let fstype = "";
-  volumemanager.partition(volId, fstype, (error, bool) => {
+  let diskId = "";
+  let type = 0;
+  volumemanager.partition(diskId, type, (error, bool) => {
       // do something    
   });
   ```
@@ -491,6 +495,7 @@ partition(volId: string, fstype : string, callback: AsyncCallback&lt;void&gt;): 
 | ----------- | ------- | -------------------- |
 | id          | string  | 卷id                 |
 | uuid        | string  | 卷uuid               |
+| diskId      | string  | 卷所属的磁盘id        |
 | description | string  | 卷相关描述           |
 | removable   | boolean | 是否为可移动存储设备 |
 | state       | number  | 当前卷状态           |
