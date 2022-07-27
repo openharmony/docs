@@ -116,6 +116,7 @@
 | [OHOS::USB::UsbCtrlTransfer::value](#value) | 请求值 | 
 | [OHOS::USB::UsbCtrlTransfer::index](#index) | 索引 | 
 | [OHOS::USB::UsbCtrlTransfer::timeout](#timeout) | 超时时间 | 
+| [OHOS::USB::UsbInfo::devInfo](#devinfo ) | USB设备信息 | 
 
 
 ## **详细描述**
@@ -1698,6 +1699,17 @@ uint8_t OHOS::USB::UsbDev::devAddr
 **描述：**
 
 USB设备地址
+
+### devInfo
+
+  
+```
+OHOS::USB::UsbInfo devInfo
+```
+
+**描述：**
+
+USB设备信息
 
 
 ### devNum
