@@ -21,7 +21,7 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 ## 接口
 
 
-### getInspectorByKey
+### getInspectorByKey<sup>9+</sup>
 
 getInspectorByKey(id: string): string
 
@@ -37,7 +37,7 @@ getInspectorByKey(id: string): string
   | -------- | -------- |
   | string | 组件属性列表的JSON字符串。 |
 
-### getInspectorTree
+### getInspectorTree<sup>9+</sup>
 
 getInspectorTree(): string
 
@@ -49,7 +49,7 @@ getInspectorTree(): string
   | ------ | ---------------------------------- |
   | string | 组件树及组件属性列表的JSON字符串。 |
 
-### sendEventByKey
+### sendEventByKey<sup>9+</sup>
 
 sendEventByKey(id: string, action: number, params: string): boolean
 
@@ -67,7 +67,7 @@ sendEventByKey(id: string, action: number, params: string): boolean
   | -------- | -------- |
   | boolean | 找不到指定id的组件时返回false，其余情况返回true。 |
 
-### sendTouchEvent
+### sendTouchEvent<sup>9+</sup>
 
 sendTouchEvent(event: TouchObject): boolean
 
@@ -85,7 +85,7 @@ sendTouchEvent(event: TouchObject): boolean
   | ------- | ------------------------------------------- |
   | boolean | 事件发送失败时返回false，其余情况返回true。 |
 
-### sendKeyEvent
+### sendKeyEvent<sup>9+</sup>
 
 sendKeyEvent(event: KeyEvent): boolean
 
@@ -103,7 +103,7 @@ sendKeyEvent(event: KeyEvent): boolean
   | ------- | --------------------------------------------- |
   | boolean | 事件发送失败时时返回false，其余情况返回true。 |
 
-### sendMouseEvent
+### sendMouseEvent<sup>9+</sup>
 
 sendMouseEvent(event: MouseEvent): boolean
 
