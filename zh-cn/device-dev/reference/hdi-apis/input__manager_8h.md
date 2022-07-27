@@ -24,6 +24,7 @@
   | 函数 | 描述 | 
 | -------- | -------- |
 | [GetInputInterface](_input.md#getinputinterface)&nbsp;([IInputInterface](_i_input_interface.md)&nbsp;\*\*interface) | Input服务通过调用此接口获取操作Input设备的所有接口。&nbsp;[更多...](_input.md#getinputinterface) | 
+| [ReleaseInputInterface](_input.md#releaseinputinterface)&nbsp;([IInputInterface](_i_input_interface.md)&nbsp;\*\*inputInterface) | Input服务通过调用此接口释放操作Input设备的所有接口。&nbsp;[更多...](_input.md#releaseinputinterface) | 
 
 
 ## **详细描述**
