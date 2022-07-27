@@ -5,12 +5,6 @@
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the FA model.
 
-## Modules to Import
-
-```js
-import featureAbility from "@ohos.ability.featureAbility";
-```
-
 ## Usage
 
 Import the following modules based on the actual situation before using the current module:
@@ -573,7 +567,7 @@ Inserts multiple data records into the database. This API uses an asynchronous c
 | Name        | Type                   | Mandatory| Description                            |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | Yes  | URI of the data to insert.        |
-| valuesBucket | Array\<rdb.ValuesBucket> | Yes  | Data records to insert.          |
+| valuesBucket | Array<rdb.ValuesBucket> | Yes  | Data records to insert.          |
 | callback     | AsyncCallback\<number>  | Yes  | Callback used to return the number of inserted data records.|
 
 **Example**
