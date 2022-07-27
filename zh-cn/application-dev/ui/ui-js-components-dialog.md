@@ -325,6 +325,6 @@ export default {
 
 针对dialog开发，有以下相关实例可供参考：
 
-- [`Jsdialog`：页面弹窗（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Jsdialog)
+- [`JsDialog`：页面弹窗（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsDialog)
 
-- [dialog（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/dialogDemo)
+- [Dialog（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/DialogDemo)
