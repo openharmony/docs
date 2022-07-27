@@ -17,7 +17,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexDirection.Row（默认值）：主轴为水平方向，子组件从起始端沿着水平方向开始排布。
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.Row }) {
     Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
@@ -33,7 +33,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexDirection.RowReverse：主轴为水平方向，子组件从终点端沿着FlexDirection.Row相反的方向开始排布。
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.RowReverse }) {
     Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
@@ -49,7 +49,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexDirection.Column：主轴为垂直方向，子组件从起始端沿着垂直方向开始排布。
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.Column }) {
     Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
@@ -65,7 +65,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexDirection.ColumnReverse：主轴为垂直方向，子组件从终点端沿着FlexDirection.Column相反的方向开始排布。
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.ColumnReverse }) {
     Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
@@ -86,7 +86,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexWrap.NoWrap : 不换行。如果子元素的宽度总和大于父元素的宽度，则子元素会被压缩宽度。
 
-  ```
+  ```ts
   Flex({ wrap: FlexWrap.NoWrap }) {
     Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
@@ -101,7 +101,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexWrap.Wrap：换行。
 
-  ```
+  ```ts
   Flex({ wrap: FlexWrap.Wrap }) {
     Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
@@ -116,7 +116,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexWrap.WrapReverse：换行，且与行排列方向相反。
 
-  ```
+  ```ts
   Flex({ wrap: FlexWrap.WrapReverse}) {
     Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
@@ -139,7 +139,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexAlign.Start: 元素在主轴方向首端对齐, 第一个元素与行首对齐，同时后续的元素与前一个对齐。
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.Start }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -154,7 +154,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexAlign.Center: 元素在主轴方向中心对齐，第一个元素与行首的距离与最后一个元素与行尾距离相同。
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.Center }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -169,7 +169,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexAlign.End: 元素在主轴方向尾部对齐,  最后一个元素与行尾对齐，其他元素与后一个对齐。
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.End }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -184,7 +184,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexAlign.SpaceBetween:  Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素与行首对齐，最后一个元素与行尾对齐。
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -199,7 +199,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexAlign.SpaceAround:  Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。 第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.SpaceAround }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -214,7 +214,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - FlexAlign.SpaceEvenly:  Flex主轴方向元素等间距布局， 相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -234,7 +234,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - ItemAlign.Auto: 使用Flex容器中默认配置。
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Auto }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -249,7 +249,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - ItemAlign.Start: 交叉轴方向首部对齐。
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Start }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -264,7 +264,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - ItemAlign.Center: 交叉轴方向居中对齐。
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Center }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -279,7 +279,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - ItemAlign.End：交叉轴方向底部对齐。
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.End }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -294,7 +294,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - ItemAlign.Stretch：交叉轴方向拉伸填充，在未设置尺寸时，拉伸到容器尺寸。
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Stretch }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -309,7 +309,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
 - ItemAlign.Baseline：交叉轴方向文本基线对齐。
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Baseline }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -344,7 +344,7 @@ Flex组件用于创建弹性布局，开发者可以通过Flex的接口创建容
 
   可使用弹性布局做出子元素排列方式为水平方向排列，且子元素的总宽度超出父元素的宽度不换行，子元素在水平方向两端对齐，中间间距由除首尾外的子元素平分，竖直方向上子元素居中的效果。
 
-```
+```ts
 @Entry
 @Component
 struct FlexExample {

@@ -3,7 +3,7 @@
 开发框架提供循环渲染（ForEach组件）来迭代数组，并为每个数组项创建相应的组件。当循环渲染的元素较多时，会出现页面加载变慢的情况，出于性能考虑，建议使用[LazyForEach](ui/ts-rending-control-syntax-lazyforeach.md)代替。ForEach定义如下：
 
 
-```
+```ts
 ForEach(
     arr: any[], // Array to be iterated
     itemGenerator: (item: any, index?: number) => void, // child component generator
@@ -20,26 +20,26 @@ ForEach(arr: any[],itemGenerator: (item: any, index?: number) =&gt; void, keyGen
 
 表1 参数说明
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-| -------- | -------- | -------- | -------- | -------- |
-| arr | any[] | 是 | - | 必须是数组，允许空数组，空数组场景下不会创建子组件。同时允许设置返回值为数组类型的函数，例如arr.slice(1,&nbsp;3)，设置的函数不得改变包括数组本身在内的任何状态变量，如Array.splice、Array.sort或Array.reverse这些改变原数组的函数。 | 
-| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是 | - | 生成子组件的lambda函数，为给定数组项生成一个或多个子组件，单个组件和子组件列表必须括在大括号“{....}”中。 | 
-| keyGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;string | 否 | - | 匿名参数，用于给定数组项生成唯一且稳定的键值。当子项在数组中的位置更改时，子项的键值不得更改，当数组中的子项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则ForEach中的所有节点都将重建。 | 
+| 参数名           | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| arr           | any[]                                    | 是    | -    | 必须是数组，允许空数组，空数组场景下不会创建子组件。同时允许设置返回值为数组类型的函数，例如arr.slice(1,&nbsp;3)，设置的函数不得改变包括数组本身在内的任何状态变量，如Array.splice、Array.sort或Array.reverse这些改变原数组的函数。 |
+| itemGenerator | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;void | 是    | -    | 生成子组件的lambda函数，为给定数组项生成一个或多个子组件，单个组件和子组件列表必须括在大括号“{....}”中。 |
+| keyGenerator  | (item:&nbsp;any,&nbsp;index?:&nbsp;number)&nbsp;=&gt;&nbsp;string | 否    | -    | 匿名参数，用于给定数组项生成唯一且稳定的键值。当子项在数组中的位置更改时，子项的键值不得更改，当数组中的子项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则ForEach中的所有节点都将重建。 |
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 必须在容器组件内使用；
-> 
+>
 > - 生成的子组件允许在ForEach的父容器组件中，允许子组件生成器函数中包含if/else条件渲染，同时也允许ForEach包含在if/else条件渲染语句中；
-> 
+>
 > - 子项生成器函数的调用顺序不一定和数组中的数据项相同，在开发过程中不要假设子项生成器和键值生成器函数是否执行以及执行顺序。如下示例可能无法正常工作：
->   ```
+>   ```ts
 >   ForEach(anArray, item => {Text(`${++counter}. item.label`)})
 >   ```
-> 
+>
 >   正确的示例如下：
-> 
->   ```
+>
+>   ```ts
 >   ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
 >           item => Text(`${item.i}. item.data.label`),
 >           item => item.data.id.toString())
@@ -50,7 +50,8 @@ ForEach(arr: any[],itemGenerator: (item: any, index?: number) =&gt; void, keyGen
 
 简单类型数组示例：
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MyComponent {
@@ -76,7 +77,8 @@ struct MyComponent {
 ```
 
 复杂类型数组示例：
-```
+```ts
+// xxx.ets
 class Month {
   year: number
   month: number

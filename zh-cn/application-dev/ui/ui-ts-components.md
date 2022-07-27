@@ -9,14 +9,14 @@
 
 自定义组件的声明方式为：
 
-```
+```ts
 @Component
 struct MyComponent {}
 ```
 
 在IDE创建工程模板中，MyComponent就是一个可以居中显示文字的自定义组件。开发者可以在Component的build方法里描述自己的UI结构，但需要遵循Builder的接口约束。
 
-```
+```ts
 interface Builder {
     build: () => void
 }

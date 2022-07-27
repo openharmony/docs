@@ -19,7 +19,7 @@
 下面我们就分别学习这两种跳转机制来实现食物分类列表页面和食物详情页的链接。
 
 1. 点击FoodListItem后跳转到FoodDetail页面。在FoodListItem内创建Navigator组件，使其子组件都具有路由功能，目标页面target为'pages/FoodDetail'。
-   ```
+   ```ts
    @Component
    struct FoodListItem {
      private foodItem: FoodData
@@ -48,7 +48,7 @@
    ![zh-cn_image_0000001215318403](figures/zh-cn_image_0000001215318403.gif)
 
 2. 点击FoodGridItem后跳转到FoodDetail页面。调用页面路由router模块的push接口，将FoodDetail页面推到路由栈中，实现页面跳转。使用router路由API接口，需要先引入router。
-   ```
+   ```ts
    import router from '@system.router'
 
    @Component
@@ -70,7 +70,7 @@
    ![zh-cn_image_0000001169918548](figures/zh-cn_image_0000001169918548.gif)
 
 3. 在FoodDetail页面增加回到食物列表页面的图标。在resources &gt; base &gt; media文件夹下存入回退图标Back.png。新建自定义组件PageTitle，包含后退的图标和Food Detail的文本，调用路由的router.back()接口，弹出路由栈最上面的页面，即返回上一级页面。
-   ```
+   ```ts
    // FoodDetail.ets
    import router from '@system.router'
 
@@ -96,7 +96,7 @@
    ```
 
 4. 在FoodDetail组件内创建Stack组件，包含子组件FoodImageDisplay和PageTitle子组件，设置其对齐方式为左上对齐TopStart。
-   ```
+   ```ts
    @Entry
    @Component
    struct FoodDetail {
@@ -121,7 +121,7 @@
 我们已经完成了FoodCategoryList页面和FoodDetail页面的跳转和回退，但是点击不同的FoodListItem/FoodGridItem，跳转的FoodDetail页面都是西红柿Tomato的详细介绍，这是因为没有构建起两个页面的数据传递，需要用到携带参数（parameter）路由。
 
 1. 在FoodListItem组件的Navigator设置其params属性，params属性接受key-value的Object。
-   ```
+   ```ts
    // FoodList.ets
    @Component
    struct FoodListItem {
@@ -137,7 +137,7 @@
 
    FoodGridItem调用的routerAPI同样有携带参数跳转的能力，使用方法和Navigator类似。
 
-   ```
+   ```ts
    router.push({
      uri: 'pages/FoodDetail',
      params: { foodData: this.foodItem }
@@ -145,7 +145,7 @@
    ```
 
 2. FoodDetail页面引入FoodData类，在FoodDetail组件内添加foodItem成员变量。
-   ```
+   ```ts
    // FoodDetail.ets
    import { FoodData } from '../model/FoodData'
 
@@ -160,7 +160,7 @@
    ```
 
 3. 获取foodData对应的value。调用router.getParams().foodData来获取到FoodCategoryList页面跳转来时携带的foodDate对应的数据。
-   ```
+   ```ts
    @Entry
    @Component
    struct FoodDetail {
@@ -173,7 +173,7 @@
    ```
 
 4. 重构FoodDetail页面的组件。在构建视图时，FoodDetail页面的食物信息都是直接声明的常量，现在要用传递来的FoodData数据来对其进行重新赋值。整体的FoodDetail.ets代码如下。
-   ```
+   ```ts
    @Component
    struct PageTitle {
        build() {

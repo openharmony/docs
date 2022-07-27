@@ -7,7 +7,8 @@
 @Styles可以定义在组件内或组件外，在组件外定义时需在方法前添加function关键字，组件内定义时不需要添加function关键字。
 
 
-```
+```ts
+// xxx.ets
 @Styles function globalFancy() {
   .backgroundColor(Color.Red)
 }
@@ -39,7 +40,8 @@ struct FancyUse {
 
 在StateStyles内可以直接调用组件外定义的Styles，但需要通过this关键字调用组件内定义的Styles。
 
-```
+```ts
+// xxx.ets
 @Styles function globalFancy() {
   .width(100)
   .height(100)

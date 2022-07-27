@@ -6,7 +6,7 @@
 本节为应用开发人员开发UI提供了参考规范。有关组件的详细信息，请参考组件说明。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 本节所有示例都以TS语言为例，请遵循相应语言的语法要求。
 > 
 > - 示例中的Image、Button、Text、Divider、Row和Column等组件是UI框架中预置的组件控件，仅用于解释UI描述规范。

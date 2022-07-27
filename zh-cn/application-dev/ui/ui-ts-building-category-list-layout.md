@@ -6,7 +6,7 @@
 
 
 1. 在pages目录新建页面FoodCategoryList.ets，将index.ets改名为FoodDetail.ets，并将其添加到config.json文件下的pages标签，位于第一序位的页面为首页。
-   ```
+   ```json
    "js": [
      {
        "pages": [
@@ -22,7 +22,7 @@
    struct FoodListItem {
      build() {}
    }
-   
+
    @Entry
    @Component
    struct FoodList {
@@ -46,13 +46,13 @@
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
-   
+
    @Component
    struct FoodListItem {
      private foodItem: FoodData
      build() {}
    }
-   
+
    @Entry
    @Component
    struct FoodList {
@@ -71,7 +71,7 @@
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
-   
+
    @Component
    struct FoodListItem {
      private foodItem: FoodData
@@ -93,7 +93,7 @@
        .margin({ right: 24, left:32 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodList {
@@ -114,7 +114,7 @@
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
-   
+
    @Component
    struct FoodListItem {
        private foodItem: FoodData
@@ -136,7 +136,7 @@
            .margin({ right: 24, left:32 })
        }
    }
-   
+
    @Entry
    @Component
    struct FoodList {
@@ -182,7 +182,7 @@
    ```
    import { FoodData } from '../model/FoodData'
    import { initializeOnStartup } from '../model/FoodDataModels'
-   
+
    @Component
    struct FoodListItem {
      private foodItem: FoodData
@@ -204,7 +204,7 @@
        .margin({ right: 24, left:32 })
      }
    }
-   
+
    @Entry
    @Component
    struct FoodList {

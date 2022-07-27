@@ -8,14 +8,14 @@
 
 创建Path2D，使用多条线段组合图形。
 
-```
+```html
 <!-- xxx.hml --> 
 <div class="container">
   <canvas ref="canvas"></canvas>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -32,7 +32,7 @@ canvas{
 }
 ```
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -81,7 +81,7 @@ export default {
 先使用createPath2D创建出路径对象，只对path1路径进行描边，所以画布上就只会出现path1的路径图形。点击text组件触发addPath方法会把path2路径对象当参数传入path1中，再对path1对象进行描边（stroke）操作后画布出现path1和path2两个图形。点击change文本改变setTransform属性值为setTransform(2, 0.1, 0.1, 2, 0,0)，图形变大并向左倾斜。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas"></canvas>
@@ -93,7 +93,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -128,7 +128,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -162,7 +162,8 @@ export default {
       this.isAdd = "clearPath2"
     }else{
       this.ctx.clearRect(0,0,600,600)
-      this.ctx.stroke(this.path1);      this.isAdd = "addPath2"
+      this.ctx.stroke(this.path1);      
+      this.isAdd = "addPath2"
     }
   },
   setTransform(){
@@ -170,10 +171,16 @@ export default {
       this.ctx.clearRect(0,0,600,600)
       this.path3 = this.ctx.createPath2D();
       this.path3.arc(150, 150, 100, 0, 6.28)
-      this.path3.setTransform(2, 0.1, 0.1, 2, 0,0);      this.ctx.stroke(this.path3);      this.isChange =  !this.isChange;      this.textName = "back"
+      this.path3.setTransform(2, 0.1, 0.1, 2, 0,0);      
+      this.ctx.stroke(this.path3);      
+      this.isChange =  !this.isChange;      
+      this.textName = "back"
     }else{
       this.ctx.clearRect(0,0,600,600)
-      this.path3.setTransform(0.5, -0.1, -0.1, 0.5, 0,0);this.ctx.stroke(this.path3);this.isChange =  !this.isChange;      this.textName = "change"
+      this.path3.setTransform(0.5, -0.1, -0.1, 0.5, 0,0);
+      this.ctx.stroke(this.path3);
+      this.isChange =  !this.isChange;      
+      this.textName = "change"
     }
   },
 }
