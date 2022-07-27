@@ -17,15 +17,31 @@ import fileio from '@ohos.fileio';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
+**Stage模型**
+
+ ```js
+import Ability from '@ohos.application.Ability';
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let context = this.context;
+        let path = context.filesDir;
+    }
+}
+ ```
+
+ Stage模型context的具体获取方法参见[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-context.md#abilitycontext)。
+
+**FA模型**
+
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
  let context = featureAbility.getContext();
- let path = '';
  context.getFilesDir().then((data) => {
-      path = data;
+      let path = data;
  })
  ```
-
+ 
+ FA模型context的具体获取方法参见[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md#context%E6%A8%A1%E5%9D%97)。
 
 ## fileio.stat
 
