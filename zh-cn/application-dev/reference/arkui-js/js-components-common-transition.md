@@ -49,6 +49,8 @@ PageA跳转到PageB，跳转的共享元素为image， shareid为“shareImage�
   <list>
     <list-item type="description">
       <image src="item.jpg" shareid="shareImage" onclick="jump" class="shared-transition-style"></image>
+    </list-item>
+    <list-item>
       <text onclick="jump">Click on picture to Jump to ths details</text>
     </list-item>
   </list>
@@ -61,7 +63,8 @@ import router from '@system.router';
 export default {
   jump() {
     router.push({
-      uri: 'detailpage',
+      // 路径要与config.json配置里面的相同
+      uri: 'pages/detailpage',
     });
   },
 }
