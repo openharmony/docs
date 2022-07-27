@@ -5,7 +5,7 @@
 
 在工程中，通过```"$r('app.type.name')"```的形式引用应用资源。app代表是应用内resources目录中定义的资源；type代表资源类型（或资源的存放位置），可以取“color”、“float”、“string”、“plural”、“media”，name代表资源命名，由开发者定义资源时确定。
 
-引用rawfile下资源时使用```"$rawfile('filename')"```的形式，当前$rawfile仅支持Image控件引用图片资源，filename需要表示为rawfile目录下的文件相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
+引用rawfile下资源时使用```"$rawfile('filename')"```的形式，filename需要表示为rawfile目录下的文件相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
 
 > **说明：**
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
@@ -63,7 +63,7 @@ Image($r('sys.media.ohos_app_icon'))
 color.json文件的内容如下：
 
 
-```
+```json
 {
     "color": [
         {
@@ -81,7 +81,7 @@ color.json文件的内容如下：
 float.json文件的内容如下：
 
 
-```
+```json
 {
     "float":[
         {
@@ -99,7 +99,7 @@ float.json文件的内容如下：
 string.json文件的内容如下：
 
 
-```
+```json
 {
     "string":[
         {
@@ -121,7 +121,7 @@ string.json文件的内容如下：
 plural.json文件的内容如下：
 
 
-```
+```json
 {
     "plural":[
         {

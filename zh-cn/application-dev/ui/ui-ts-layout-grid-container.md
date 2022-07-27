@@ -50,13 +50,13 @@
 
 - 可以通过参数定义栅格布局的总列数（columns)，间隔（gutter)，两侧边距（margin)。例如栅格容器总共分为6列，列与列间隔为10vp, 两侧边距为20vp：
 
-  ```
+  ```ts
   GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
   ```
 
   栅格容器不设置参数，或者sizeType设置为SizeType.Auto时使用默认的栅格系统定义，如：
 
-  ```
+  ```ts
   GridContainer() {}
   ```
 
@@ -64,10 +64,9 @@
 
 - 也可以通过参数sizeType指定此栅格容器内的组件使用此设备宽度类型的栅格设置，如：
 
-  ```
+  ```ts
   GridContainer({ sizeType: SizeType.SM) {
        Row() {
-
          Text('1')
            .useSizeType({
              xs: { span: 2},
@@ -85,7 +84,7 @@
 
 栅格容器中的组件使用通用属性useSizeType设置不同的设备宽度类型的占用列数和列偏移。其中span表示栅格容器组件占据columns的数量；offest表示列偏移量，指将组件放置在哪一个columns上。 如：
 
-```
+```ts
 GridContainer() {
    Row() {
      Text('1')
@@ -103,7 +102,7 @@ GridContainer() {
 
 使用栅格布局可以灵活地在不同的设备宽度类型下呈现合适的效果，而不必书写大量的代码兼容不同宽度类型的设备。  
 
-```
+```ts
 @Entry
 @Component
 struct GridContainerExample {

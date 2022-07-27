@@ -17,7 +17,7 @@
 click事件作为一个函数定义在js文件中，可以更改isPressed的状态，从而更新显示的image组件。如果isPressed为真，则点赞数加1。该函数在hml文件中对应的div组件上生效，点赞按钮各子组件的样式设置在css文件当中。具体的实现示例如下：
 
 
-```
+```html
 <!-- xxx.hml -->
 <!-- 点赞按钮 -->
 <div>
@@ -29,7 +29,7 @@ click事件作为一个函数定义在js文件中，可以更改isPressed的状�
 ```
 
 
-```
+```css
 /* xxx.css */
 .like {
   width: 104px;
@@ -53,7 +53,7 @@ click事件作为一个函数定义在js文件中，可以更改isPressed的状�
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
