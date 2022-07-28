@@ -133,7 +133,7 @@ back(options?: RouterOptions ): void
 **示例：**
 
 ```js
-router.back({uri:'pages/detail'});    
+router.back({url:'pages/detail'});    
 ```
 
 ## router.clear
@@ -313,7 +313,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams().data1);
+    console.info('showData1:' + router.getParams()[data1]);
   }
 }
 ```

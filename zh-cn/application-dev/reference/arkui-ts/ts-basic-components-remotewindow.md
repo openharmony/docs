@@ -61,13 +61,15 @@ struct RemoteWindowExample {
   @State target: WindowAnimationTarget = undefined // 通过windowAnimationManager获取
 
   build() {
-    RemoteWindow(this.target)
-      .translate({x:100, y:200})
-      .scale({x:0.5, y:0.5})
+    Column() {
+      RemoteWindow(this.target)
+      	.translate({x:100, y:200})
+      	.scale({x:0.5, y:0.5})
       .opacity(0.8)
-      .position({x:px2vp(this.target?.windowBounds.left), y:px2vp(this.target?.windowBounds.top)})
-      .width(px2vp(this.target?.windowBounds.width))
-      .height(px2vp(this.target?.windowBounds.height))
+      	.position({x:px2vp(this.target?.windowBounds.left), y:px2vp(this.target?.windowBounds.top)})
+      	.width(px2vp(this.target?.windowBounds.width))
+      	.height(px2vp(this.target?.windowBounds.height))
+     }
   }
 }
 ```
