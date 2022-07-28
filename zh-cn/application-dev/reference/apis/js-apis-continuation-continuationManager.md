@@ -97,6 +97,7 @@ register(options?: ContinuationExtraParams): Promise\<number>;
 **示例：**
 
   ```js
+  let token = -1;
   let continuationExtraParams = {
     deviceType: ["00E"]
   };
@@ -157,6 +158,7 @@ on(type: "deviceConnect", token: number, callback: Callback\<Array\<Continuation
 **示例：**
 
   ```js
+  let token = 1;
   continuationManager.on("deviceConnect", token, (data) => {
     console.info('onDeviceConnect len: ' + data.length);
     for (let i = 0; i < data.length; i++) {
@@ -186,6 +188,7 @@ on(type: "deviceDisconnect", token: number, callback: Callback\<Array\<string>>)
 **示例：**
 
   ```js
+  let token = 1;
   continuationManager.on("deviceDisconnect", token, (data) => {
     console.info('onDeviceDisconnect len: ' + data.length);
     for (let i = 0; i < data.length; i++) {
@@ -213,6 +216,7 @@ off(type: "deviceConnect", token: number): void;
 **示例：**
 
   ```js
+  let token = 1;
   continuationManager.off("deviceConnect", token);
   ```
 
@@ -234,6 +238,7 @@ off(type: "deviceDisconnect", token: number): void;
 **示例：**
 
   ```js
+  let token = 1;
   continuationManager.off("deviceDisconnect", token);
   ```
 
@@ -255,6 +260,7 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```js
+  let token = 1;
   continuationManager.startDeviceManager(token, (err, data) => {
     if (err.code != 0) {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -283,6 +289,7 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
 **示例：**
 
   ```js
+  let token = 1;
   let continuationExtraParams = {
     deviceType: ["00E"]
   };
@@ -319,6 +326,7 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 **示例：**
 
   ```js
+  let token = 1;
   let continuationExtraParams = {
     deviceType: ["00E"]
   };
@@ -351,6 +359,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 **示例：**
 
   ```js
+  let token = 1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
     if (err.code != 0) {
@@ -386,6 +395,7 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 **示例：**
 
   ```js
+  let token = 1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
     .then((data) => {
@@ -414,6 +424,7 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
   ```js
+  let token = 1;
   continuationManager.unregister(token, (err, data) => {
     if (err.code != 0) {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
@@ -446,6 +457,7 @@ unregister(token: number): Promise\<void>;
 **示例：**
 
   ```js
+  let token = 1;
   continuationManager.unregister(token)
     .then((data) => {
       console.info('unregister finished, ' + JSON.stringify(data));
