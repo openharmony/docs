@@ -292,7 +292,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md).
    
    ```
-   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"};
+   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    ```
 
 2. Format the relative time.<br>
