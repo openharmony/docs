@@ -2133,7 +2133,7 @@ getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
 
 | 类型                                                | 说明                          |
 | --------------------------------------------------- | ----------------------------- |
-| Promise<Array<[OperatorConfig](#OperatorConfig8)\>> | 以Promise形式返回运营商配置。 |
+| Promise<Array<[OperatorConfig](#operatorconfig8)\>> | 以Promise形式返回运营商配置。 |
 
 **示例：**
 
