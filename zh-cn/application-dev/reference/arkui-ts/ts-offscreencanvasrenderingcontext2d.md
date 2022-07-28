@@ -259,7 +259,7 @@ struct MiterLimit {
 ```
 @Entry
 @Component
-struct Font {
+struct Fonts {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
@@ -1877,12 +1877,12 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 以当前canvas指定区域内的像素创建[PixelMap](../apis/js-apis-image.md#pixelmap7)对象。
 - 参数
-  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
+  | 参数 | 类型 | 必填 | 默认值 | 描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | sx | number | 是 | 0 | 需要输出的区域的左上角x坐标。 | 
-  | sy | number | 是 | 0 | 需要输出的区域的左上角y坐标。 | 
-  | sw | number | 是 | 0 | 需要输出的区域的宽度。 | 
-  | sh | number | 是 | 0 | 需要输出的区域的高度。 | 
+  | sx | number | 是 | 0 | 需要输出的区域的左上角x坐标。 |
+  | sy | number | 是 | 0 | 需要输出的区域的左上角y坐标。 |
+  | sw | number | 是 | 0 | 需要输出的区域的宽度。 |
+  | sh | number | 是 | 0 | 需要输出的区域的高度。 |
 
 ### getImageData
 

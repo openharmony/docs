@@ -11,9 +11,9 @@
 
 ## 事件
 
-| 名称 | 支持冒泡 | 功能描述 | 
-| -------- | -------- | -------- | 
-| onAreaChange(event:&nbsp;(oldValue:&nbsp;Area,&nbsp;newValue:&nbsp;Area)&nbsp;=&gt;&nbsp;void) | 否 | 组件区域变化时触发该回调，Area类型说明见[Area对象](ts-universal-events-click.md)介绍。 | 
+| 名称 | 支持冒泡 | 功能描述 |
+| -------- | -------- | -------- |
+| onAreaChange(event:&nbsp;(oldValue:&nbsp;Area,&nbsp;newValue:&nbsp;Area)&nbsp;=&gt;&nbsp;void) | 否 | 组件区域变化时触发该回调，Area类型说明见[Area对象](ts-universal-events-click.md)介绍。 |
 
 
 ## 示例
@@ -23,7 +23,7 @@
 @Component
 struct AreaExample {
   @State value: string = 'Text'
-  @State size: string = ''
+  @State size1: string = ''
 
   build() {
     Column() {
@@ -34,7 +34,7 @@ struct AreaExample {
         })
         .onAreaChange((oldValue: Area, newValue: Area) => {
           console.info(`Ace: on area change, oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
-          this.size = JSON.stringify(newValue)
+          this.size1 = JSON.stringify(newValue)
         })
       Text('new area is: \n' + this.size).margin({ right: 30, left: 30 })
     }
