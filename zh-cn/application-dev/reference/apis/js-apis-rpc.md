@@ -2504,7 +2504,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 ### sendRequest<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
+> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2529,7 +2529,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 ### sendRequest<sup>8+(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
+> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -2677,7 +2677,7 @@ isObjectDead(): boolean
 ### sendRequest<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
+> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2742,7 +2742,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 ### sendRequest<sup>8+(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
+> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -3564,7 +3564,7 @@ RemoteObject构造函数。
 ### sendRequest<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
+> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -3631,7 +3631,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 ### sendRequest<sup>8+(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
+> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
