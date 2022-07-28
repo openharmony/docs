@@ -59,7 +59,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 设备的唯一标识。 |
 | deviceName | string | 是 | 设备名称。 |
-| deviceType | [DeviceType](#deviceType) | 是 | 设备类型。 |
+| deviceType | [DeviceType](#devicetype) | 是 | 设备类型。 |
 | networkId<sup>8+</sup> | string | 是 | 设备网络标识。 |
 
 
@@ -102,12 +102,12 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | subscribeId | number | 是 | 发现标识，用于标识不同的发现周期。 |
-| mode | [DiscoverMode ](#discoverMode) | 否 | 发现模式。 |
-| medium | [ExchangeMedium](#exchangeMedium) | 否 | 发现类型。 |
-| freq | [ExchangeFreq](#exchangeFreq) | 否 | 发现频率。 |
+| mode | [DiscoverMode ](#discovermode) | 否 | 发现模式。 |
+| medium | [ExchangeMedium](#exchangemedium) | 否 | 发现类型。 |
+| freq | [ExchangeFreq](#exchangefreq) | 否 | 发现频率。 |
 | isSameAccount | boolean | 否 | 是否同账号。 |
 | isWakeRemote | boolean | 否 | 是否唤醒设备。 |
-| capability | [SubscribeCap](#subscribeCap) | 否 | 发现能力。 |
+| capability | [SubscribeCap](#subscribecap) | 否 | 发现能力。 |
 
 
 ## DiscoverMode 
@@ -341,7 +341,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | subscribeInfo | [SubscribeInfo](#subscribeInfo) | 是 | 发现信息。 |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是 | 发现信息。 |
 
 - 示例：
   ```js
@@ -389,8 +389,8 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | deviceInfo | [DeviceInfo](#deviceInfo) | 是 | 设备信息。 |
-  | authParam | [AuthParam](#authParam) | 是 | 认证参数。 |
+  | deviceInfo | [DeviceInfo](#deviceinfo) | 是 | 设备信息。 |
+  | authParam | [AuthParam](#authparam) | 是 | 认证参数。 |
   | callback | AsyncCallback<{ deviceId: string, pinToken ?: number }> | 是 | 认证结果回调。 |
 
 - 示例：
@@ -426,11 +426,11 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | deviceInfo | [DeviceInfo](#deviceInfo) | 是 | 设备信息。 |
+  | deviceInfo | [DeviceInfo](#deviceinfo) | 是 | 设备信息。 |
 
 - 示例：
   ```js
-  dmInstance.unAuthenticateDevice(deviceInfo);
+  dmInstance.unAuthenticateDevice(deviceinfo);
   ```
 
 
@@ -445,7 +445,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
 - 参数：
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | authInfo | [AuthInfo](#authInfo) | 是 | 认证信息。 |
+  | authInfo | [AuthInfo](#authinfo) | 是 | 认证信息。 |
   | authInfo | AsyncCallback<{ deviceId: string, level: number }> | 是 | 验证结果回调。 |
 
 - 示例：
@@ -545,7 +545,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消注册设备发现回调。 |
-  | callback | Callback&lt;{&nbsp;subscribeId: number, device: DeviceInfo&nbsp;}&gt; | 是 | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, device: [DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是 | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
 - 示例：
   ```js
