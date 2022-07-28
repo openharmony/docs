@@ -182,7 +182,7 @@
   - Common Event and Notification
   
     - [Common Event and Notification Overview](notification/notification-brief.md)
-  - [Common Event Development](notification/common-event.md)
+    - [Common Event Development](notification/common-event.md)
     - [Notification Development](notification/notification-guidelines.md)
     - Agent-Powered Scheduled Reminder
       - [Agent-Powered Scheduled Reminder Overview](notification/background-agent-scheduled-reminder-overview.md)
@@ -190,13 +190,13 @@
     - [Debugging Assistant Usage](notification/assistant-guidelines.md)
   - Window Manager
     - Window
-    - [Window Overview](windowmanager/window-overview.md)
+      - [Window Overview](windowmanager/window-overview.md)
       - [Window Development](windowmanager/window-guidelines.md)
-  - Display
+    - Display
       - [Display Overview](windowmanager/display-overview.md)
-    - [Display Development](windowmanager/display-guidelines.md)
+      - [Display Development](windowmanager/display-guidelines.md)
     - Screenshot
-    - [Screenshot Overview](windowmanager/screenshot-overview.md)
+      - [Screenshot Overview](windowmanager/screenshot-overview.md)
       - [Screenshot Development](windowmanager/screenshot-guidelines.md)
   - WebGL
     - [WebGL Overview](webgl/webgl-overview.md)
@@ -213,9 +213,9 @@
       - [OpenSL ES Audio Recording Development](media/opensles-capture.md)
       - [Audio Interruption Mode Development](media/audio-interruptmode.md)
     - Video
-    - [Video Playback Development](media/video-playback.md)
+      - [Video Playback Development](media/video-playback.md)
       - [Video Recording Development](media/video-recorder.md)
-  - Image
+    - Image
       - [Image Development](media/image.md)
     - Camera
       - [Camera Development](media/camera.md)
@@ -229,7 +229,7 @@
       - [User Authentication Overview](security/userauth-overview.md)
       - [User Authentication Development](security/userauth-guidelines.md)
     - Key Management
-    - [HUKS Overview](security/huks-overview.md)
+      - [HUKS Overview](security/huks-overview.md)
       - [HUKS Development](security/huks-guidelines.md)
     - hapsigner
       - [hapsigner Overview](security/hapsigntool-overview.md)
@@ -242,14 +242,13 @@
       - [Socket Connection](connectivity/socket-connection.md)
     - IPC & RPC
       - [IPC & RPC Overview](connectivity/ipc-rpc-overview.md)
-    - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
+      - [IPC & RPC Development](connectivity/ipc-rpc-development-guideline.md)
       - [Subscribing to State Changes of a Remote Object](connectivity/subscribe-remote-state.md)
   - Telephony
     - [Telephony Service Overview](telephony/telephony-overview.md)
     - [Redirecting to the Dial Screen](telephony/jumping-to-the-dial-screen.md)
     - [Obtaining Current Cellular Network Signal Information](telephony/cellular-network-signal-info.md)
-  - Data Management
-    
+  - Data Management 
     - Distributed Data Service
       - [Distributed Data Service Overview](database/database-mdds-overview.md)
       - [Distributed Data Service Development](database/database-mdds-guidelines.md)
@@ -259,9 +258,9 @@
     - Preferences
       - [Preferences Overview](database/database-preference-overview.md)
       - [Preferences Development](database/database-preference-guidelines.md)
-  - Distributed Data Object
+    - Distributed Data Object
       - [Distributed Data Object Overview](database/database-distributedobject-overview.md)
-    - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
+      - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
   - Task Management
     - Background Task Management
       - [Background Task Management Overview](task-management/background-task-overview.md)
@@ -270,7 +269,6 @@
       - [Work Scheduler Overview](task-management/work-scheduler-overview.md)
       - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)
   - Device
-  
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
       - [USB Service Development](device/usb-guidelines.md)
@@ -278,46 +276,41 @@
       - [Location Overview](device/device-location-overview.md)
       - [Obtaining Device Location Information](device/device-location-info.md)
       - [Geocoding and Reverse Geocoding Capabilities](device/device-location-geocoding.md)
-  - Sensor
+    - Sensor
       - [Sensor Overview](device/sensor-overview.md)
-    - [Sensor Development](device/sensor-guidelines.md)
+      - [Sensor Development](device/sensor-guidelines.md)
     - Vibrator
       - [Vibrator Overview](device/vibrator-overview.md)
-    - [Vibrator Development](device/vibrator-guidelines.md)
+      - [Vibrator Development](device/vibrator-guidelines.md)
     - Update Service
-    - [Sample Server Overview](device/sample-server-overview.md)
+      - [Sample Server Overview](device/sample-server-overview.md)
       - [Sample Server Development](device/sample-server-guidelines.md)
   - Device Usage Statistics
-  
     - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
     - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-dev-guide.md)
   - DFX
-  
     - Application Event Logging
       - [Overview of Application Event Logging](dfx/hiappevent-overview.md)
       - [Development of Application Event Logging](dfx/hiappevent-guidelines.md)
     - Performance Tracing
-    - [Overview of Performance Tracing](dfx/hitracemeter-overview.md)
+      - [Overview of Performance Tracing](dfx/hitracemeter-overview.md)
       - [Development of Performance Tracing](dfx/hitracemeter-guidelines.md)
-  - Distributed Call Chain Tracing
+    - Distributed Call Chain Tracing
       - [Overview of Distributed Call Chain Tracing](dfx/hitracechain-overview.md)
       - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
     - Error Management
-    - [Development of Error Manager](dfx/errormanager-guidelines.md)
+      - [Development of Error Manager](dfx/errormanager-guidelines.md)
   - Internationalization
-
     - [Internationalization Overview](internationalization/international-overview.md)
-  - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
+    - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
     - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
   - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
-  
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
     - [Drawing Development](napi/drawing-guidelines.md)
     - [Native Window Development](napi/native-window-guidelines.md)
     - [Raw File Development](napi/rawfile-guidelines.md)
 - Tools
-  
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
