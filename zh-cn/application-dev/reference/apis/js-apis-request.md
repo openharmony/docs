@@ -341,6 +341,8 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 ## UploadConfig
 
+**需要权限**：ohos.permission.INTERNET
+
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -354,7 +356,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 ## File
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -366,8 +370,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 ## RequestData
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+**需要权限**：ohos.permission.INTERNET
 
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 表示表单元素的名称。 |
@@ -939,6 +944,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 ## DownloadConfig
 
+**需要权限**：ohos.permission.INTERNET
+
 **系统能力**: SystemCapability.MiscServices.Download
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -954,6 +961,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 
 ## DownloadInfo<sup>7+</sup>
+
+**需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
 
