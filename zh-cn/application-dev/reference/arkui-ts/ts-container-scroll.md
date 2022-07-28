@@ -148,14 +148,20 @@ struct ScrollExample {
         Column() {
           ForEach(this.arr, (item) => {
             Text(item.toString())
-              .width('90%').height(150).backgroundColor(0xFFFFFF)
-              .borderRadius(15).fontSize(16).textAlign(TextAlign.Center)
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
               .margin({ top: 10 })
           }, item => item)
         }.width('100%')
       }
-      .scrollable(ScrollDirection.Vertical).scrollBar(BarState.On)
-      .scrollBarColor(Color.Gray).scrollBarWidth(30)
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(30)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
       })
