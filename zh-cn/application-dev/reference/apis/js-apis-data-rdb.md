@@ -1992,7 +1992,7 @@ try {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-| 名称 | 说明 |
+| 类型 | 说明 |
 | -------- | -------- |
 | number | 表示值类型为数字。 |
 | string | 表示值类型为字符。 |
@@ -2001,13 +2001,13 @@ try {
 
 ## ValuesBucket
 
-用于存储键值对。
+用于存储键值对的类型。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| [key:&nbsp;string] | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | 是 | 用于存储键值对。 |
+| 键类型 | 值类型 |
+| -------- | -------- |
+| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
 
 
 ## SyncMode<sup>8+</sup>
