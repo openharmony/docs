@@ -16,7 +16,7 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| visibility | Visibility | Visibility.Visible | 控制当前组件显示或隐藏。注意，即使组件处于隐藏状态，在页面刷新时仍存在重新创建过程，因此当对性能有严格要求时建议使用if语句代替。|
+| visibility | Visibility | Visibility.Visible | 控制当前组件显示或隐藏。注意，即使组件处于隐藏状态，在页面刷新时仍存在重新创建过程，因此当对性能有严格要求时建议使用[条件渲染](../../ui/ts-rending-control-syntax-if-else.md)代替。|
 
 
 - Visibility枚举说明
