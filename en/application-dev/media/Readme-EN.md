@@ -1,7 +1,6 @@
 # Media
 
 -   Audio
-
     -   [Audio Overview](audio-overview.md)
     -   [Audio Playback Development](audio-playback.md) 
     -   [Audio Recording Development](audio-recorder.md) 
@@ -15,9 +14,9 @@
     - [Video Playback Development](video-playback.md)
     - [Video Recording Development](video-recorder.md)
     
-- Image
+-   Image
   - [Image Development](image.md)
   
-- Camera
+-   Camera
    - [Camera Development](camera.md)
 
