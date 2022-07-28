@@ -19,7 +19,7 @@
   | 类 | 描述 | 
 | -------- | -------- |
 | [IExecutor](interface_pin_i_executor.md) | 定义执行器标准API接口。接口可用于获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。[更多...](interface_pin_i_executor.md) | 
-| [IExecutorCallback](interface_i_executor_callback.md) | 定义异步API接口回调，用于返回异步接口的请求处理结果和信息。使用细节见[IExecutor](interface_i_executor.md)。&nbsp;[更多...](interface_i_executor_callback.md) | 
+| [IExecutorCallback](interface_pin_i_executor_callback.md) | 定义异步API接口回调，用于返回异步接口的请求处理结果和信息。使用细节见[IExecutor](interface_i_executor.md)。&nbsp;[更多...](interface_pin_i_executor_callback.md) | 
 | [IPinAuthInterface](interface_i_pin_auth_interface.md) | 定义获取口令认证驱动的执行器列表接口。&nbsp;[更多...](interface_i_pin_auth_interface.md) | 
 | [ExecutorInfo](_executor_info.md) | 执行器信息。&nbsp;[更多...](_executor_info.md) | 
 | [TemplateInfo](_template_info.md) | 凭据模版信息。&nbsp;[更多...](_template_info.md) | 
