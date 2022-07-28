@@ -1322,7 +1322,7 @@ writeFloatArray(floatArray: number[]): boolean
 **参数：**
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | floatArray | number[] | 是 | 要写入的浮点数组。 |
+  | floatArray | number[] | 是 | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **返回值：**
     | 类型 | 说明 |
@@ -1349,7 +1349,7 @@ readFloatArray(dataIn: number[]) : void
 **参数：**
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | 是 | 要读取的浮点数组。 |
+  | dataIn | number[] | 是 | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 
 **示例：**
@@ -1764,20 +1764,20 @@ readException(): void
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequest(1, data, reply, option)
+  proxy.sendRequestAsync(1, data, reply, option)
       .then(function(errCode) {
           if (errCode === 0) {
-              console.log("sendRequest got result");
+              console.log("sendRequestAsync got result");
               reply.readException();
               let msg = reply.readString();
               console.log("RPCTest: reply msg: " + msg);
           } else {
-              console.log("RPCTest: sendRequest failed, errCode: " + errCode);
+              console.log("RPCTest: sendRequestAsync failed, errCode: " + errCode);
           }
       }).catch(function(e) {
-          console.log("RPCTest: sendRequest got exception: " + e.message);
+          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
       }).finally (() => {
-          console.log("RPCTest: sendRequest ends, reclaim parcel");
+          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
           data.reclaim();
           reply.reclaim();
       });
@@ -2504,7 +2504,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 ### sendRequest<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequest<sup>8+</sup>](#sendrequest8)替代。
+> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2526,11 +2526,35 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | boolean | 返回一个布尔值，true表示成功，false表示失败。|
 
 
-### sendRequest<sup>8+</sup>
+### sendRequest<sup>8+(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
+  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
+  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+
+**返回值：**
+    | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+
+### sendRequestAsync<sup>9+</sup>
+
+sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequestAsync返回时兑现，回复内容在reply报文里。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -2653,7 +2677,7 @@ isObjectDead(): boolean
 ### sendRequest<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequest<sup>8+</sup>](#sendrequest8-2)替代。
+> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -2715,7 +2739,10 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   reply.reclaim();
   ```
 
-### sendRequest<sup>8+</sup>
+### sendRequest<sup>8+(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -2782,6 +2809,72 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       });
   ```
 
+### sendRequestAsync<sup>9+</sup>
+
+sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequestAsync返回时兑现，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
+  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
+  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+
+**返回值：**
+    | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+
+**示例：**
+
+  ```
+  import FA from "@ohos.ability.featureAbility";
+  let proxy;
+  let connect = {
+      onConnect: function(elementName, remoteProxy) {
+          console.log("RpcClient: js onConnect called.");
+          proxy = remoteProxy;
+      },
+      onDisconnect: function(elementName) {
+          console.log("RpcClient: onDisconnect");
+      },
+      onFailed: function() {
+          console.log("RpcClient: onFailed");
+      }
+  };
+  let want = {
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.MainAbility",
+  };
+  FA.connectAbility(want, connect);
+  let option = new rpc.MessageOption();
+  let data = rpc.MessageParcel.create();
+  let reply = rpc.MessageParcel.create();
+  data.writeInt(1);
+  data.writeString("hello");
+  proxy.sendRequestAsync(1, data, reply, option)
+      .then(function(result) {
+          if (result.errCode === 0) {
+              console.log("sendRequestAsync got result");
+              result.reply.readException();
+              let msg = result.reply.readString();
+              console.log("RPCTest: reply msg: " + msg);
+          } else {
+              console.log("RPCTest: sendRequestAsync failed, errCode: " + result.errCode);
+          }
+      }).catch(function(e) {
+          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
+      }).finally (() => {
+          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
+          data.reclaim();
+          reply.reclaim();
+      });
+  ```
 
 ### sendRequest<sup>8+</sup>
 
@@ -3082,7 +3175,7 @@ isObjectDead(): boolean
 | -------- | -------- | -------- |
 | TF_SYNC | 0 | 同步调用。 |
 | TF_ASYNC | 1 | 异步调用。 |
-| TF_ACCEPT_FDS | 0x10 | 指示[sendRequest](#sendrequest8)接口可以返回文件描述符。 |
+| TF_ACCEPT_FDS | 0x10 | 指示[sendRequestAsync](#sendrequestAsync)接口可以返回文件描述符。 |
 | TF_WAIT_TIME | 8 | 等待时间。单位秒。 |
 
 
@@ -3471,7 +3564,7 @@ RemoteObject构造函数。
 ### sendRequest<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendRequest<sup>8+</sup>](#sendrequest8-4)替代。
+> 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-4)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
@@ -3535,7 +3628,10 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   ```
 
 
-### sendRequest<sup>8+</sup>
+### sendRequest<sup>8+(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-3)替代。
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -3604,6 +3700,73 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       });
   ```
 
+### sendRequestAsync<sup>9+</sup>
+
+sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequestAsync返回时兑现，回复内容在reply报文里。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
+  | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
+  | reply | [MessageParcel](#messageparcel) | 是 | 接收应答数据的MessageParcel对象。 |
+  | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
+
+**返回值：**
+    | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+  }
+  let testRemoteObject = new TestRemoteObject("testObject");
+  let option = new rpc.MessageOption();
+  let data = rpc.MessageParcel.create();
+  let reply = rpc.MessageParcel.create();
+  data.writeInt(1);
+  data.writeString("hello");
+  testRemoteObject.sendRequestAsync(1, data, reply, option)
+      .then(function(result) {
+          if (result.errCode === 0) {
+              console.log("sendRequestAsync got result");
+              result.reply.readException();
+              let msg = result.reply.readString();
+              console.log("RPCTest: reply msg: " + msg);
+          } else {
+              console.log("RPCTest: sendRequestAsync failed, errCode: " + result.errCode);
+          }
+      }).catch(function(e) {
+          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
+      }).finally (() => {
+          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
+          data.reclaim();
+          reply.reclaim();
+      });
+  ```
 
 ### sendRequest<sup>8+</sup>
 
@@ -3672,7 +3835,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
 
-sendRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
+sendRequestAsync请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
