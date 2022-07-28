@@ -162,7 +162,7 @@ back(options?: RouterOptions ): void
   // 通过back，返回到detail页面
   export default {    
     backToDetail() {        
-      router.back({uri:'pages/detail/detail'});    
+      router.back({url:'pages/detail/detail'});    
     }
   }
   ```
@@ -334,7 +334,7 @@ getParams(): Object
   // 在detail页面中
   export default {
     onInit() {
-      console.info('showData1:' + router.getParams().data1);
+      console.info('showData1:' + router.getParams()[data1]);
     }
   }
   ```

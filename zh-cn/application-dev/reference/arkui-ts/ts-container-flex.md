@@ -43,7 +43,7 @@ Flex(options?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: F
 - FlexWrap枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
-  | NoWrap | Flex容器的元素单行/列布局，子项允许超出容器。 |
+  | NoWrap | Flex容器的元素单行/列布局，子项不允许超出容器。 |
   | Wrap | Flex容器的元素多行/列排布，子项允许超出容器。 |
   | WrapReverse | Flex容器的元素反向多行/列排布，子项允许超出容器。 |
 
