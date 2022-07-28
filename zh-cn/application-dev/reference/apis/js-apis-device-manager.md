@@ -59,7 +59,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 设备的唯一标识。 |
 | deviceName | string | 是 | 设备名称。 |
-| deviceType | [DeviceType](#deviceType) | 是 | 设备类型。 |
+| deviceType | [DeviceType](#devicetype) | 是 | 设备类型。 |
 | networkId<sup>8+</sup> | string | 是 | 设备网络标识。 |
 
 
