@@ -80,8 +80,7 @@ Defines device information.
 | -------- | -------- | -------- | -------- |
 | deviceId | number | Yes| Unique device identifier.|
 | deviceName | string | Yes| Device name.|
-| deviceType | [DeviceType](#devicetype) | Yes| Device type.|
-| networkId<sup>8+</sup> | string | Yes | Device networkId. |
+| deviceType | number | Yes| Device type.|
 
 
 ## DeviceManager
