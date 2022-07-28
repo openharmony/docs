@@ -2526,7 +2526,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | boolean | 返回一个布尔值，true表示成功，false表示失败。|
 
 
-### sendRequest<sup>8+</sup>
+### sendRequest<sup>8+(deprecated)</sup>
 
 > **说明：**
 > 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
@@ -2550,8 +2550,6 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
-### sendRequest<sup>8+</sup>
-
 ### sendRequestAsync<sup>9+</sup>
 
 sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
@@ -2572,6 +2570,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
     | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
+
+### sendRequest<sup>8+</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -2739,7 +2739,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   reply.reclaim();
   ```
 
-### sendRequest<sup>8+</sup>
+### sendRequest<sup>8+(deprecated)</sup>
 
 > **说明：**
 > 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
@@ -2809,8 +2809,6 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       });
   ```
 
-### sendRequest<sup>8+</sup>
-
 ### sendRequestAsync<sup>9+</sup>
 
 sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
@@ -2877,6 +2875,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
           reply.reclaim();
       });
   ```
+
+### sendRequest<sup>8+</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -3628,7 +3628,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   ```
 
 
-### sendRequest<sup>8+</sup>
+### sendRequest<sup>8+(deprecated)</sup>
 
 > **说明：**
 > 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendRequestAsync9)替代。
@@ -3700,9 +3700,6 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
       });
   ```
 
-
-### sendRequest<sup>8+</sup>
-
 ### sendRequestAsync<sup>9+</sup>
 
 sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
@@ -3770,6 +3767,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
           reply.reclaim();
       });
   ```
+
+### sendRequest<sup>8+</sup>
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
