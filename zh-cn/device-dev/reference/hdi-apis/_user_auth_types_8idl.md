@@ -35,6 +35,7 @@
 | [AuthType](_hdf_user_auth.md#authtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4,&nbsp;ALL&nbsp;=&nbsp;0&nbsp;} | 枚举用户认证凭据类型。&nbsp;[更多...](_hdf_user_auth.md#authtype) | 
 | [ExecutorRole](_hdf_user_auth.md#executorrole)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。&nbsp;[更多...](_hdf_user_auth.md#executorrole) | 
 | [ExecutorSecureLevel](_hdf_user_auth.md#executorsecurelevel)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。&nbsp;[更多...](_hdf_user_auth.md#executorsecurelevel) | 
+| [PinSubType](_hdf_user_auth.md#pinsubtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;PIN\_SIX&nbsp;=&nbsp;10000,&nbsp;PIN\_NUMBER&nbsp;=&nbsp;10001,&nbsp;PIN\_MIX&nbsp;=&nbsp;10002&nbsp;} | 口令认证子类型。&nbsp;[更多...](_hdf_user_auth.md#pinsubtype) | 
 
 
 ### 变量
