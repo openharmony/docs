@@ -791,7 +791,7 @@ off(type: 'change', callback: Callback&lt;StorageObserver&gt;): void
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称    | 说明                 |
+| 类型    | 说明                 |
 | ------- | -------------------- |
 | number  | 表示值类型为数字。   |
 | string  | 表示值类型为字符。   |
