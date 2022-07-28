@@ -3175,7 +3175,7 @@ isObjectDead(): boolean
 | -------- | -------- | -------- |
 | TF_SYNC | 0 | 同步调用。 |
 | TF_ASYNC | 1 | 异步调用。 |
-| TF_ACCEPT_FDS | 0x10 | 指示[sendRequestAsync](#sendrequestAsync9)接口可以返回文件描述符。 |
+| TF_ACCEPT_FDS | 0x10 | 指示[sendRequestAsync](#sendrequestasync9)接口可以返回文件描述符。 |
 | TF_WAIT_TIME | 8 | 等待时间。单位秒。 |
 
 
