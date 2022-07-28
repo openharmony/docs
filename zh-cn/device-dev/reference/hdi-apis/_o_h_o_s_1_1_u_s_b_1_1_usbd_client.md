@@ -54,4 +54,9 @@
 
   | 静态&nbsp;Public&nbsp;成员函数 | 描述 | 
 | -------- | -------- |
-| **GetInstance**&nbsp;() | 获取实例。 | 
+| [GetInstance](\_u\_s\_b.md#getinstance)&nbsp;() | 获取实例。 | 
+
+
+## 详细描述
+
+USB驱动客户端类。
