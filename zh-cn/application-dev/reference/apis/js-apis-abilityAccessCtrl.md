@@ -5,7 +5,7 @@
 
 ## 导入模块
 
-```
+```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 ```
 
@@ -72,6 +72,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 授予应用user grant权限，使用Promise方式异步返回结果。
 
+此接口为系统接口。
+
 **需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
@@ -109,6 +111,8 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 授予应用user grant权限，使用callback回调异步返回结果。
 
+此接口为系统接口。
+
 **需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
@@ -138,6 +142,8 @@ AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_P
 revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
 
 撤销应用user grant权限，使用Promise方式异步返回结果。
+
+此接口为系统接口。
 
 **需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -175,6 +181,8 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 撤销应用user grant权限，使用callback回调异步返回结果。
 
+此接口为系统接口。
+
 **需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 **系统能力：** SystemCapability.Security.AccessToken
@@ -203,6 +211,8 @@ AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_
 getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&gt;
 
 获取指定应用的指定权限的flag，使用Promise方式异步返回结果。
+
+此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or GRANT_SENSITIVE_PERMISSIONS or REVOKE_SENSITIVE_PERMISSIONS
 
