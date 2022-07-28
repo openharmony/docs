@@ -1,6 +1,6 @@
 # 循环渲染
 
-开发框架提供循环渲染（ForEach组件）来迭代数组，并为每个数组项创建相应的组件。当循环渲染的元素较多时，会出现页面加载变慢的情况，出于性能考虑，建议使用[LazyForEach](ui/ts-rending-control-syntax-lazyforeach.md)代替。ForEach定义如下：
+开发框架提供循环渲染（ForEach组件）来迭代数组，并为每个数组项创建相应的组件。当循环渲染的元素较多时，会出现页面加载变慢的情况，出于性能考虑，建议使用[LazyForEach](ts-rending-control-syntax-lazyforeach.md)代替。ForEach定义如下：
 
 
 ```
