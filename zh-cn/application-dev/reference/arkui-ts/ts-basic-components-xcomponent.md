@@ -83,7 +83,8 @@ getXComponentContext(): Object
 
 ## 示例
 
-提供surface类型XComponent，支持相机预览等能力。
+提供surface类型XComponent，支持相机预览等能力。  
+示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ```
 import camera from '@ohos.multimedia.camera';
