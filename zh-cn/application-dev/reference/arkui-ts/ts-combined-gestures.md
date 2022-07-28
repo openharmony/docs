@@ -46,13 +46,13 @@ struct GestureGroupExample {
   @State count: number = 0
   @State offsetX: number = 0
   @State offsetY: number = 0
-  @State borderStyle: BorderStyle = BorderStyle.Solid
+  @State borderStyles: BorderStyle = BorderStyle.Solid
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Text('sequence gesture\n' + 'LongPress onAction:' + this.count + '\nPanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
     }.translate({ x: this.offsetX, y: this.offsetY, z: 5 })
-    .height(100).width(200).padding(10).margin(80).border({ width: 1, style: this.borderStyle })
+    .height(100).width(200).padding(10).margin(80).border({ width: 1, style: this.borderStyles })
     .gesture(
       GestureGroup(GestureMode.Sequence,
         LongPressGesture({ repeat: true })
@@ -65,7 +65,7 @@ struct GestureGroupExample {
           }),
         PanGesture({})
           .onActionStart(() => {
-            this.borderStyle = BorderStyle.Dashed
+            this.borderStyles = BorderStyle.Dashed
             console.log('pan start')
           })
           .onActionUpdate((event: GestureEvent) => {
