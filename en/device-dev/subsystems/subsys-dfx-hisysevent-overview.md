@@ -19,4 +19,4 @@ The key modules of HiSysEvent are described as follows:
 
 ## Reference
 
-For more information about the source code and usage of HiSysEvent, access the HiSysEvent code repository(https://gitee.com/openharmony/hiviewdfx_hisysevent).
+For more information about the source code and usage of HiSysEvent, access the [HiSysEvent code repository](https://gitee.com/openharmony/hiviewdfx_hisysevent).
