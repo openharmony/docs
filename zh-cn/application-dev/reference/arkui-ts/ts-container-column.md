@@ -23,9 +23,9 @@ Column(value:{space?: Length})
 
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | 否 | 0 | 纵向布局元素间距。 | 
+  | space | Length | 否 | 0 | 纵向布局元素间距。 |
 
 
 ## 属性
@@ -33,13 +33,13 @@ Column(value:{space?: Length})
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | alignItems | HorizontalAlign | HorizontalAlign.Center | 设置子组件在水平方向上的对齐格式。 |
-| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | 设置子组件在垂直方向上的对齐格式。 |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | 设置子组件在垂直方向上的对齐格式。 |
 
 - HorizontalAlign枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Start | 按照语言方向起始端对齐。 | 
-  | Center | 居中对齐，默认对齐方式。 | 
+  | Start | 按照语言方向起始端对齐。 |
+  | Center | 居中对齐，默认对齐方式。 |
   | End | 按照语言方向末端对齐。 |
 
 
