@@ -75,7 +75,7 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 设备信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 设备信息。 |
   | options | <a href="#missioncallback">MissionCallback</a> | 是 | 注册的回调方法。 |
 
 **返回值：**
@@ -132,7 +132,7 @@ unregisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 设备信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 设备信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -163,7 +163,7 @@ unregisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 设备信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 设备信息。 |
 
 **返回值：**
 
@@ -202,7 +202,7 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
-  | parameter | <a href="#missionparameter">MissionParameter</a> | 是 | 同步信息。 |
+  | parameter | [MissionParameter](#missionparameter) | 是 | 同步信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -234,7 +234,7 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missionparameter">MissionParameter</a> | 是 | 同步信息。 |
+  | parameter | [MissionParameter](#missionparameter) | 是 | 同步信息。 |
 
 **返回值：**
 
@@ -275,7 +275,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 同步信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 同步信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -305,7 +305,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 同步信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 同步信息。 |
 
 **返回值：**
 
@@ -327,7 +327,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
   })
   ```
 
-## <a id ="missioncallback">MissionCallback</a>
+## MissionCallback
 
 表示开始同步后，建立的回调函数。
 
@@ -341,7 +341,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 | notifySnapshot | function | 是 | 否 | 通知快照变化，返回设备ID，任务ID | 
 | notifyNetDisconnect | function | 是 | 否 | 通知断开连接，返回设备ID，网络状态 | 
 
-## <a id ="missionparameter">MissionParameter</a>
+## MissionParameter
 
 表示同步时所需参数的枚举。
 
