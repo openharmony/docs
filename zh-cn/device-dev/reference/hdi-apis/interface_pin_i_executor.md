@@ -60,7 +60,7 @@ IExecutor::Authenticate ([in] unsigned long scheduleId, [in] unsigned long templ
 | scheduleId | 调度ID，用于标识一次操作请求的调度过程。 | 
 | templateId | 指定要认证的模版ID。 | 
 | extraInfo | 其他相关信息，用于支持信息扩展。 | 
-| callbackObj | 回调对象[IExecutorCallback](interface_i_executor_callback.md)。 | 
+| callbackObj | 回调对象[IExecutorCallback](interface_pin_i_executor_callback.md)。 | 
 
 **返回：**
 
@@ -134,7 +134,7 @@ IExecutor::Enroll ([in] unsigned long scheduleId, [in] unsigned char[] extraInfo
 | -------- | -------- |
 | scheduleId | 调度ID，用于标识一次操作请求的调度过程。 | 
 | extraInfo | 其他相关信息，用于支持信息扩展。 | 
-| callbackObj | 回调对象[IExecutorCallback](interface_i_executor_callback.md)。 | 
+| callbackObj | 回调对象[IExecutorCallback](interface_pin_i_executor_callback.md)。 | 
 
 **返回：**
 
@@ -261,7 +261,7 @@ IExecutor::SendCommand ([in] int commandId, [in] unsigned char[] extraInfo, [in]
 | -------- | -------- |
 | commandId | 操作命令ID[CommandId](_hdf_pin_auth.md#commandid)。 | 
 | extraInfo | 其他相关信息，用于支持信息扩展。 | 
-| callbackObj | 回调对象[IExecutorCallback](interface_i_executor_callback.md)。 | 
+| callbackObj | 回调对象[IExecutorCallback](interface_pin_i_executor_callback.md)。 | 
 
 **返回：**
 
