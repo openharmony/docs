@@ -1566,7 +1566,7 @@ getWindowMode(): Promise\<WindowMode>
 
 | 类型                                             | 说明                                  |
 | ------------------------------------------------ | ------------------------------------- |
-| Promise\<[WindowMode](#WindowMode<sup>9+</sup>)> | 以Promise形式返回窗口的窗口模式信息。 |
+| Promise\<[WindowMode](#windowmode9)> | 以Promise形式返回窗口的窗口模式信息。 |
 
 **示例：**
 
@@ -1695,7 +1695,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<bool>
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | wide      | number                                           | 是   | 以number的形式传入调整后窗口的宽度。                         |
 | height    | number                                           | 是   | 以number的形式传入调整后窗口的高度。                         |
-| direction | [ResizeDirection](#resizedirection<sup>9+</sup>) | 是   | 以[ResizeDirection](#ResizeDirection<sup>9+</sup>)的形式传入窗口调整的方向。 |
+| direction | [ResizeDirection](#resizedirection9) | 是   | 以[ResizeDirection](#resizedirection9)的形式传入窗口调整的方向。 |
 
 **返回值：**
 
