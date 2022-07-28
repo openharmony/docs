@@ -129,7 +129,7 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 
 ## connectedTag.writeNdefTag
 
-writeNdefTag(data: string, callback: AsyncCallback&lt;string&gt;): void
+writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
 写入内容到有源标签，使用callback方式作为异步方法。
 
