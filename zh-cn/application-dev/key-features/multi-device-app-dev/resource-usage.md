@@ -38,7 +38,7 @@
 在工程中，通过 "$r('app.type.name')" 的形式引用应用资源。app代表是应用内resources目录中定义的资源；type 代表资源类型（或资源的存放位置），可以取 color、float、string、plural和media，name代表资源命名，由开发者定义资源时确定。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 可以查看[声明式开发范式资源访问](../../ui/ts-application-resource-access.md)，了解资源访问的更多细节。
+> - 可以查看[声明式开发范式资源访问](../../ui/ts-resource-access.md)，了解资源访问的更多细节。
 > 
 > - 类Web开发范式的资源文件路径及资源限定词的使用与声明式范式不同，详情请参考[类Web开发范式资源限定与访问](../../ui/js-framework-resource-restriction.md)及[类Web开发范式文件组织](../../ui/js-framework-file.md)。
 
