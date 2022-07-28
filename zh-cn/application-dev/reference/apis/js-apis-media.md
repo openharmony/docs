@@ -1365,7 +1365,7 @@ videoPlayer.setSpeed(speed).then() => {
 
 selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
 
-通过回调方式设置码率，通过[availableBitratesCollect](#on('availableBitratesCollect')<sup>9+</sup>)获取当前码流支持的Bitrate。
+通过回调方式设置码率，通过[availableBitratesCollect](#onavailablebitratescollect9)获取当前码流支持的Bitrate。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1393,7 +1393,7 @@ videoPlayer.selectBitrate(bitrate, (err, result) => {
 
 selectBitrate(bitrate:number): Promise\<number>
 
-通过Promise方式设置码率，通过[availableBitratesCollect](#on('availableBitratesCollect')<sup>9+</sup>)获取当前码流支持的Bitrate。
+通过Promise方式设置码率，通过[availableBitratesCollect](#onavailablebitratescollect9)获取当前码流支持的Bitrate。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
