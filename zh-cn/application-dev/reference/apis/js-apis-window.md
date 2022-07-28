@@ -1,17 +1,15 @@
 # 窗口
 
-窗口提供管理窗口的一些基础能力，包括对当前窗口的创建、销毁、各属性设置，以及对各窗口间的管理调度。
+窗口提供管理窗口的一些基础能力，包括对当前窗口的创建、销毁、各属性设置等。
 
 该模块提供以下窗口相关的常用功能：
 
-- [Window](#window)：当前窗口实例，窗口管理器管理的基本单元。
-- [WindowStage](#windowstage9)：窗口管理器。管理各个基本窗口单元。
+[Window](#window)：当前窗口实例，窗口管理器管理的基本单元。
 
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> API 9当前为Canary版本，仅供试用，不保证接口可稳定调用。
+
 
 ## 导入模块
 
@@ -154,7 +152,7 @@ import window from '@ohos.window';
 | focusable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。                 |
 | touchable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。                 |
 | brightness                      | number                    | 是   | 是   | 屏幕亮度， 取值范围为0~1，1表示最大亮度值。  |
-| dimBehindValue<sup>(deprecated)</sup>     | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持|
+| dimBehindValue<sup>7+</sup>     | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。|
 | isKeepScreenOn                  | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。                  |
 | isPrivacyMode<sup>7+</sup>      | boolean                   | 是   | 是   | 隐私模式，默认为false。                      |
 | isRoundCorner<sup>7+</sup>      | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。                |
@@ -238,9 +236,7 @@ promise.then((data)=> {
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-创建子窗口，使用callback异步回调，其中Context详见[Context](js-apis-Context.md)。
-
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用callback异步回调。
+创建子窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -248,7 +244,7 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | Context                                | 是   | 当前应用上下文信息。<br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。 |
+| ctx      | [Context](js-apis-Context.md)                                | 是   | 当前应用上下文信息。 |
 | id       | string                                 | 是   | 窗口id。                                                     |
 | type     | [WindowType](#windowtype)              | 是   | 窗口类型。                                                   |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前创建的子窗口对象。                         |
@@ -272,9 +268,8 @@ var windowClass = null;
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-创建子窗口，使用Promise异步回调，其中Context详见[Context](js-apis-Context.md)。
+创建子窗口，使用Promise异步回调。
 
-从API version 9开始，当Context为[ServiceExtensionContext](js-apis-service-extension-context.md)时，创建系统窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -282,7 +277,7 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 参数名 | 类型                      | 必填 | 说明                                                         |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | Context                   | 是   | 当前应用上下文信息。<br/>API version 8的Context定义见[Context](js-apis-Context.md)。<br/>API version 9的Context定义见[Context](js-apis-service-extension-context.md)。 |
+| ctx    | [Context](js-apis-Context.md)                   | 是   | 当前应用上下文信息。 |
 | id     | string                    | 是   | 窗口id。                                                     |
 | type   | [WindowType](#windowtype) | 是   | 窗口类型。                                                   |
 
@@ -434,7 +429,7 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | Context                                | 是   | 当前应用上下文信息。<br>API version 8的Context定义见[Context](js-apis-Context.md)。<br>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx      | [Context](js-apis-Context.md)                                | 是   | 当前应用上下文信息。                 |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前应用内最后显示的窗口对象。                 |
 
 **示例：** 
@@ -463,7 +458,7 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| ctx    | Context | 是   | 当前应用上下文信息。<br/>API version 8的Context定义见[Context](js-apis-Context.md)。<br/>API version 9的Context定义见[Context](js-apis-ability-context.md)。 |
+| ctx    | [Context](js-apis-Context.md) | 是   | 当前应用上下文信息。 |
 
 **返回值：** 
 
@@ -1768,15 +1763,12 @@ promise.then((data)=> {
 });
 ```
 
-### setDimBehind<sup>(deprecated)</sup>
+### setDimBehind<sup>7+</sup>
 
 setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。
-> 
-> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1799,15 +1791,12 @@ windowClass.setDimBehind(0.5, (err, data) => {
 });
 ```
 
-### setDimBehind<sup>(deprecated)</sup>
+### setDimBehind<sup>7+</sup>
 
 setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃。
-> 
-> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1954,15 +1943,12 @@ promise.then((data) => {
 });
 ```
 
-### setOutsideTouchable<sup>(deprecated)</sup>
+### setOutsideTouchable<sup>7+</sup>
 
 setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置是否允许可点击子窗口之外的区域，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。
-> 
-> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1985,15 +1971,12 @@ windowClass.setOutsideTouchable(true, (err, data) => {
 })
 ```
 
-### setOutsideTouchable<sup>(deprecated)</sup>
+### setOutsideTouchable<sup>7+</sup>
 
 setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
 
-> **说明：** 从API version 9开始废弃。
-> 
-> 从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2142,313 +2125,4 @@ promise.then((data)=> {
 });
 ```
 
-## WindowStageEventType<sup>9+</sup>
 
-WindowStage生命周期。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称       | 默认值 | 说明       |
-| ---------- | ------ | ---------- |
-| FOREGROUND | 1      | 切到前台。 |
-| ACTIVE     | 2      | 获焦状态。 |
-| INACTIVE   | 3      | 失焦状态。 |
-| BACKGROUND | 4      | 切到后台。 |
-
-## WindowStage<sup>9+</sup>
-
-窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
-
-下列API示例中都需在[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)函数中使用WindowStage的实例调用对应方法。
-
-### getMainWindow<sup>9+</sup>
-
-getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
-
-获取该WindowStage实例下的主窗口，使用callback异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：** 
-
-| 参数名   | 类型                                   | 必填 | 说明                                          |
-| -------- | -------------------------------------- | ---- | --------------------------------------------- |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前WindowStage下的主窗口对象。 |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-### getMainWindow<sup>9+</sup>
-
-getMainWindow(): Promise&lt;Window&gt;
-
-获取该WindowStage实例下的主窗口，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：** 
-
-| 类型                             | 说明                                             |
-| -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前WindowStage下的主窗口对象。 |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.getMainWindow();
-        promise.then((data)=> {
-        windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
-```
-### createSubWindow<sup>9+</sup>
-
-createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
-
-创建该WindowStage实例下的子窗口，使用callback异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：** 
-
-| 参数名   | 类型                                   | 必填 | 说明                                          |
-| -------- | -------------------------------------- | ---- | --------------------------------------------- |
-| name     | String                                 | 是   | 子窗口的名字。                                |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | 是   | 回调函数。返回当前WindowStage下的子窗口对象。 |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.createSubWindow("mySubWindow", (err, data) => {
-            if (err.code) {
-                console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
-            windowClass.resetSize(500, 1000);
-        });
-    }
-}
-```
-### createSubWindow<sup>9+</sup>
-
-createSubWindow(name: string): Promise&lt;Window&gt;
-
-创建该WindowStage实例下的子窗口，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| name   | String | 是   | 子窗口的名字。 |
-
-**返回值：** 
-
-| 类型                             | 说明                                             |
-| -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise对象。返回当前WindowStage下的子窗口对象。 |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.createSubWindow("mySubWindow");
-        promise.then((data)=> {
-            windowClass = data;
-            console.info('Succeeded in create sub window. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
-            console.error('Failed to create sub window. Cause: ' + JSON.stringify(err));
-        })
-    }
-}
-```
-### getSubWindow<sup>9+</sup>
-
-getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
-
-获取该WindowStage实例下的所有子窗口，使用callback异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：** 
-
-| 参数名   | 类型                                                | 必填 | 说明                                              |
-| -------- | --------------------------------------------------- | ---- | ------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | 是   | 回调函数。返回当前WindowStage下的所有子窗口对象。 |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.getSubWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-### getSubWindow<sup>9+</sup>
-
-getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
-
-获取该WindowStage实例下的所有子窗口，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：** 
-
-| 类型                                          | 说明                                                 |
-| --------------------------------------------- | ---------------------------------------------------- |
-| Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise对象。返回当前WindowStage下的所有子窗口对象。 |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.getSubWindow();
-        promise.then((data)=> {
-            windowClass = data;
-            console.info('Succeeded in obtaining the sub window. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
-            console.error('Failed to obtain the sub window. Cause: ' + JSON.stringify(err));
-        })
-    }
-}
-```
-### loadContent<sup>9+</sup>
-
-loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
-
-为当前WindowStage的主窗口加载具体页面内容，使用callback异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：** 
-
-| 参数名   | 类型                      | 必填 | 说明                 |
-| -------- | ------------------------- | ---- | -------------------- |
-| path     | string                    | 是   | 设置加载页面的路径。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2", (err, data) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-
-### on('windowStageEvent')<sup>9+</sup>
-
-on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
-
-开启WindowStage生命周期变化的监听。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：** 
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 是   | 回调函数。返回当前的WindowStage生命周期状态。                |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        windowStage.on('windowStageEvent', (data) => {
-            console.info('Succeeded in enabling the listener for window stage event changes. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-
-### off('windowStageEvent')<sup>9+</sup>
-
-off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
-
-关闭WindowStage生命周期变化的监听。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：** 
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'windowStageEvent'，即WindowStage生命周期变化事件。 |
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | 否   | 回调函数。返回当前的WindowStage生命周期状态。                |
-
-**示例：** 
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        windowStage.off('windowStageEvent');
-    }
-}
-```
