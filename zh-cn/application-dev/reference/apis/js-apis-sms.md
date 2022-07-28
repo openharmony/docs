@@ -1307,7 +1307,7 @@ promise.then(data => {
 | from           | [MmsAddress](#mmsaddress8)           | 否   | 来源     |
 | cc             | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 抄送     |
 | subject        | string                               | 否   | 主题     |
-| priority       | [MmsPriorityType](#mmsPrioritytype8) | 否   | 优先级   |
+| priority       | [MmsPriorityType](#mmsprioritytype8) | 否   | 优先级   |
 | deliveryReport | number                               | 否   | 状态报告 |
 | readReport     | number                               | 否   | 阅读报告 |
 | retrieveStatus | number                               | 否   | 检索状态 |
