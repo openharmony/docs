@@ -22,9 +22,9 @@
 Text(content?: string)
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | content | string | 否 | '' | 文本内容，包含子组件Span时不生效，显示Span内容。 | 
+  | content | string | 否 | '' | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。 |
 
 
 ## 属性
@@ -40,33 +40,33 @@ Text(content?: string)
 | textCase | TextCase | TextCase.Normal | 设置文本大小写。 |
 
 - TextAlign枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Center | 文本居中对齐。 | 
-  | Start | 根据文字书写相同的方向对齐。 | 
-  | End | 根据文字书写相反的方向对齐。 | 
+  | Center | 文本居中对齐。 |
+  | Start | 根据文字书写相同的方向对齐。 |
+  | End | 根据文字书写相反的方向对齐。 |
 
 - TextOverflow枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Clip | 文本超长时进行裁剪显示。 | 
-  | Ellipsis | 文本超长时显示不下的文本用省略号代替。 | 
-  | None | 文本超长时不进行裁剪。 | 
+  | Clip | 文本超长时进行裁剪显示。 |
+  | Ellipsis | 文本超长时显示不下的文本用省略号代替。 |
+  | None | 文本超长时不进行裁剪。 |
 
 - TextDecorationType枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Underline | 文字下划线修饰。 | 
-  | LineThrough | 穿过文本的修饰线。 | 
-  | Overline | 文字上划线修饰。 | 
-  | None | 不使用文本装饰线。 | 
+  | Underline | 文字下划线修饰。 |
+  | LineThrough | 穿过文本的修饰线。 |
+  | Overline | 文字上划线修饰。 |
+  | None | 不使用文本装饰线。 |
 
 - TextCase枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Normal | 保持文本原有大小写。 | 
-  | LowerCase | 文本采用全小写。 | 
-  | UpperCase | 文本采用全大写。 | 
+  | Normal | 保持文本原有大小写。 |
+  | LowerCase | 文本采用全小写。 |
+  | UpperCase | 文本采用全大写。 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 不支持Text内同时存在文本内容和Span子组件。（如果同时存在，只显示Span内的内容)。
