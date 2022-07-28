@@ -430,7 +430,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 - 示例：
   ```js
-  dmInstance.unAuthenticateDevice(deviceinfo);
+  dmInstance.unAuthenticateDevice(deviceInfo);
   ```
 
 
