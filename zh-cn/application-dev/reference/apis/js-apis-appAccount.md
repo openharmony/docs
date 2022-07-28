@@ -1952,11 +1952,11 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名    | 类型           | 必填   | 说明             |
-| -------- | -------------- | ---- | ----------------- |
-| authType | string         | 是    | 令牌的鉴权类型。   |
-| token    | string         | 是    | 令牌的取值。       |
-| account  | AppAccountInfo | 否    | 令牌所属的帐号信息。|
+| 参数名               | 类型            | 必填  | 说明              |
+| -------------------- | -------------- | ----- | ---------------- |
+| authType             | string         | 是    | 令牌的鉴权类型。   |
+| token                | string         | 是    | 令牌的取值。       |
+| account<sup>9+</sup> | AppAccountInfo | 否    | 令牌所属的帐号信息。|
 
 ## AuthenticatorInfo<sup>8+</sup>
 

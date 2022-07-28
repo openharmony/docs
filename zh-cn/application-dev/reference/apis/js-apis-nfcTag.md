@@ -21,7 +21,7 @@ getNfcATag(tagInfo: TagInfo): NfcATag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -37,7 +37,7 @@ getNfcBTag(tagInfo: TagInfo): NfcBTag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -53,7 +53,7 @@ getNfcFTag(tagInfo: TagInfo): NfcFTag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -69,7 +69,7 @@ getNfcVTag(tagInfo: TagInfo): NfcVTag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 

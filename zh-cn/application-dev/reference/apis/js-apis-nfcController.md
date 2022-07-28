@@ -19,6 +19,8 @@ isNfcAvailable(): boolean
 
 查询是否有NFC功能
 
+**系统能力**：SystemCapability.Communication.NFC.Core
+
 **返回值：**
 
 | **类型** | **说明** |
@@ -34,7 +36,7 @@ openNfc(): boolean
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -50,7 +52,7 @@ closeNfc(): boolean
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -64,7 +66,7 @@ isNfcOpen(): boolean
 
 查询NFC是否打开。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -78,7 +80,7 @@ getNfcState(): NfcState
 
 查询NFC状态。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -92,7 +94,7 @@ on(type: "nfcStateChange", callback: Callback&lt;NfcState&gt;): void
 
 注册NFC开关状态事件。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数**
   
@@ -109,7 +111,7 @@ off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
 
 取消NFC开关状态事件的注册。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数**
   
@@ -139,6 +141,8 @@ off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
 ## NfcState
 
 表示NFC状态的枚举。
+
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
