@@ -1,11 +1,13 @@
 # AbilityConstant
 
+The **AbilityConstant** module provides ability launch parameters.
+
+The parameters include the initial launch reasons, reasons for the last exit, and ability continuation results.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
-
-Provides parameters related to ability launch.
 
 ## Modules to Import
 
@@ -17,10 +19,10 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | LaunchReason| Yes| Yes| Ability launch reason.|
-| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.|
+| launchReason | LaunchReason| Yes| Yes| Ability launch reason.| 
+| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.| 
 
 ## AbilityConstant.LaunchReason
 

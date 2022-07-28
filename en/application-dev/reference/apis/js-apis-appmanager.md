@@ -1,20 +1,16 @@
 # appManager
 
+The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
-Implements application management.
-
-
 ## Modules to Import
-
 
 ```js
 import app from '@ohos.application.appManager';
 ```
-
 
 ## appManager.isRunningInStabilityTest<sup>8+</sup>
 
@@ -161,9 +157,11 @@ Obtains the memory size of this application. This API uses an asynchronous callb
   ```
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
+getProcessRunningInfos(): Promise<Array\<ProcessRunningInfo>>;
 
 Obtains information about the running processes. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -171,7 +169,7 @@ Obtains information about the running processes. This API uses a promise to retu
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<ProcessRunningInfo>> | Promise used to return the process information.|
+| Promise<Array\<ProcessRunningInfo>> | Promise used to return the process information.|
 
 **Example**
     
@@ -185,9 +183,11 @@ Obtains information about the running processes. This API uses a promise to retu
 
 ## appManager.getProcessRunningInfos<sup>8+</sup>
 
-getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
+getProcessRunningInfos(callback: AsyncCallback<Array\<ProcessRunningInfo>>): void;
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -195,7 +195,7 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInfo>> | No| Callback used to return the process information.|
+| callback | AsyncCallback<Array\<ProcessRunningInfo>> | No| Callback used to return the process information.|
 
 **Example**
     
@@ -206,13 +206,395 @@ Obtains information about the running processes. This API uses an asynchronous c
         })
   ```
 
+## appManager.registerApplicationStateObserver<sup>8+</sup>
+
+registerApplicationStateObserver(observer: ApplicationStateObserver): number;
+
+Registers the application state observer.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| observer | ApplicationStateObserver | No| Numeric code of the observer.|
+
+**Example**
+    
+  ```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
+
+  ```
+## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+
+unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;
+
+Deregisters the application state observer. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+ 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| observerId | number | No| Numeric code of the observer.|
+| callback | AsyncCallback\<void> | No| Callback used to return the result.|
+
+**Example**
+    
+  ```js
+    var observerId = 100;
+
+    function unregisterApplicationStateObserverCallback(err) {
+      if (err) {
+          console.log('------------ unregisterApplicationStateObserverCallback ------------', err);
+      }
+    }
+    app.unregisterApplicationStateObserver(observerId, unregisterApplicationStateObserverCallback);
+  ```
+
+## appManager.unregisterApplicationStateObserver<sup>8+</sup>
+
+unregisterApplicationStateObserver(observerId: number): Promise\<void>;
+
+Deregisters the application state observer. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| observerId | number | No| Numeric code of the observer.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+    
+  ```js
+    var observerId = 100;
+
+    app.unregisterApplicationStateObserver(observerId)
+   .then((data) => {
+       console.log('----------- unregisterApplicationStateObserver success ----------', data);
+   })
+   .catch((err) => {
+       console.log('----------- unregisterApplicationStateObserver fail ----------', err);
+   })
+  ```
+
+## appManager.getForegroundApplications<sup>8+</sup>
+
+getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
+
+Obtains applications that run in the foreground. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<AppStateData>> | No| Callback used to return the application state data.|
+
+**Example**
+    
+  ```js
+    function getForegroundApplicationsCallback(err, data) {
+      if (err) {
+          console.log('--------- getForegroundApplicationsCallback fail ---------', err);
+      } else {
+          console.log('--------- getForegroundApplicationsCallback success ---------', data)
+      }
+    }
+    app.getForegroundApplications(getForegroundApplicationsCallback);
+  ```
+
+## appManager.getForegroundApplications<sup>8+</sup>
+
+getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
+
+Obtains applications that run in the foreground. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<ProcessRunningInfo>> | Promise used to return the application state data.|
+
+**Example**
+    
+  ```js
+    app.getForegroundApplications()
+    .then((data) => {
+        console.log('--------- getForegroundApplications success -------', data);
+    })
+    .catch((err) => {
+        console.log('--------- getForegroundApplications fail -------', err);
+    })
+  ```
+
+## appManager.killProcessWithAccount<sup>8+</sup>
+
+killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
+
+Kills the process by bundle name and account ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Bundle name of an application.| 
+  | accountId | number | Yes| Account ID.| 
+
+**Example**
+
+```js
+var bundleName = 'bundleName';
+var accountId = 0;
+app.killProcessWithAccount(bundleName, accountId)
+   .then((data) => {
+       console.log('------------ killProcessWithAccount success ------------', data);
+   })
+   .catch((err) => {
+       console.log('------------ killProcessWithAccount fail ------------', err);
+   })
+```
+
+
+## appManager.killProcessWithAccount<sup>8+</sup>
+
+killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
+
+Kills the process by bundle name and account ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Bundle name of an application.| 
+  | accountId | number | Yes| Account ID.| 
+  | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.| 
+
+**Example**
+
+```js
+var bundleName = 'bundleName';
+var accountId = 0;
+function killProcessWithAccountCallback(err, data) {
+   if (err) {
+       console.log('------------- killProcessWithAccountCallback fail, err: --------------', err);
+   } else {
+       console.log('------------- killProcessWithAccountCallback success, data: --------------', data);
+   }
+}
+app.killProcessWithAccount(bundleName, accountId, killProcessWithAccountCallback);
+```
+
+## appManager.killProcessesByBundleName<sup>8+</sup>
+
+killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
+
+Kills a process by bundle name. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | No| Bundle name of an application.|
+| callback | AsyncCallback\<void> | No| Callback used to return the result.|
+
+**Example**
+    
+  ```js
+    var bundleName = 'bundleName';
+    function killProcessesByBundleNameCallback(err, data) {
+      if (err) {
+          console.log('------------- killProcessesByBundleNameCallback fail, err: --------------', err);
+      } else {
+          console.log('------------- killProcessesByBundleNameCallback success, data: --------------', data);
+      }
+    }
+    app.killProcessesByBundleName(bundleName, killProcessesByBundleNameCallback);
+  ```
+
+## appManager.killProcessesByBundleName<sup>8+</sup>
+
+killProcessesByBundleName(bundleName: string): Promise\<void>;
+
+Kills a process by bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | No| Bundle name of an application.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+    
+  ```js
+var bundleName = 'bundleName';
+app.killProcessesByBundleName(bundleName)
+   .then((data) => {
+       console.log('------------ killProcessesByBundleName success ------------', data);
+   })
+   .catch((err) => {
+       console.log('------------ killProcessesByBundleName fail ------------', err);
+   })
+
+  ```
+
+## appManager.clearUpApplicationData<sup>8+</sup>
+
+clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
+
+Clears application data by bundle name. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CLEAN_APPLICATION_DATA
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | No| Bundle name of an application.|
+| callback | AsyncCallback\<void> | No| Callback used to return the result.|
+
+**Example**
+    
+  ```js
+    var bundleName = 'bundleName';
+    function clearUpApplicationDataCallback(err, data) {
+      if (err) {
+          console.log('------------- clearUpApplicationDataCallback fail, err: --------------', err);
+      } else {
+          console.log('------------- clearUpApplicationDataCallback success, data: --------------', data);
+      }
+    }
+    app.clearUpApplicationData(bundleName, clearUpApplicationDataCallback);
+
+  ```
+
+## appManager.clearUpApplicationData<sup>8+</sup>
+
+clearUpApplicationData(bundleName: string): Promise\<void>;
+
+Clears application data by bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLEAN_APPLICATION_DATA
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | No| Bundle name of an application.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+    
+  ```js
+  var bundleName = 'bundleName';
+  app.clearUpApplicationData(bundleName)
+    .then((data) => {
+        console.log('------------ clearUpApplicationData success ------------', data);
+    })
+    .catch((err) => {
+        console.log('------------ clearUpApplicationData fail ------------', err);
+    })
+
+  ```
+
 ## ProcessRunningInfo
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name       | Readable/Writable| Type                | Mandatory| Description                                                        |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid<sup>8+</sup>     | Read only    | number               | No  | Process ID.                               |
-| uid<sup>8+</sup>   | Read only    | number               | No  | User ID.|
-| processName<sup>8+</sup>  | Read only    | string               | No  | Process name.|
-| bundleNames<sup>8+</sup>          | Read only    | Array\<string>              | No  | **bundleName** array in the running processes.|
+| pid<sup>9+</sup>     | Read only    | number               | No  | Process ID.                               |
+| uid<sup>9+</sup>   | Read only    | number               | No  | User ID.|
+| processName<sup>9+</sup>  | Read only    | string               | No  | Process name.|
+| bundleNames<sup>9+</sup>          | Read only    | Array\<string>              | No  | **bundleName** array in the running processes.|

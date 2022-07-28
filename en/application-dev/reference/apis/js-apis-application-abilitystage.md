@@ -1,11 +1,13 @@
 # AbilityStage
 
+**AbilityStage** is a runtime class for HAP files.
+
+The **AbilityStage** module notifies you of when you can perform HAP initialization such as resource pre-loading and thread creation during the HAP loading.
+
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
-
-Runtime class for HAP files. It provides APIs to notify you when a HAP file starts loading. You can then initialize the HAP file, for example, pre-load resources and create threads.
 
 ## Modules to Import
 

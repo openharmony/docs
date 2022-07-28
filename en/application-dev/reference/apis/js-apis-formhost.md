@@ -1,10 +1,10 @@
 # FormHost
 
+The **FormHost** module provides APIs related to the widget host, which is an application that displays the widget content and controls the position where the widget is displayed. You can use the APIs to delete, release, and update widgets, send notifications to widgets, and obtain widget information and status.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-Provides APIs related to the widget host.
 
 ## Modules to Import
 
@@ -24,9 +24,11 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Deletes a widget. This API uses an asynchronous callback to return the result. After this API is called, the application can no longer use the widget, and the Widget Manager will not retain the widget information.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -52,9 +54,11 @@ deleteForm(formId: string): Promise&lt;void&gt;;
 
 Deletes a widget. This API uses a promise to return the result. After this API is called, the application can no longer use the widget, and the Widget Manager will not retain the widget information.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -85,9 +89,11 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Releases a widget. This API uses an asynchronous callback to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager still retains the widget cache and storage information.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -113,9 +119,11 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 Releases a widget. This API uses an asynchronous callback to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager retains the storage information about the widget and retains or releases the cache information based on the setting.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -142,9 +150,11 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;;
 
 Releases a widget. This API uses a promise to return the result. After this API is called, the application can no longer use the widget, but the Widget Manager retains the storage information about the widget and retains or releases the cache information based on the setting.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -176,9 +186,11 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Requests a widget update. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -204,9 +216,11 @@ requestForm(formId: string): Promise&lt;void&gt;;
 
 Requests a widget update. This API uses a promise to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -237,9 +251,11 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 Converts a temporary widget to a normal one. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -265,9 +281,11 @@ castTempForm(formId: string): Promise&lt;void&gt;;
 
 Converts a temporary widget to a normal one. This API uses a promise to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -298,9 +316,11 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 Instructs the widget framework to make a widget visible. This API uses an asynchronous callback to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -326,9 +346,11 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget visible. This API uses a promise to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -359,9 +381,11 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 Instructs the widget framework to make a widget invisible. This API uses an asynchronous callback to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -387,9 +411,11 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget invisible. This API uses a promise to return the result. After this API is called, **onVisibilityChange** is invoked to notify the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -420,9 +446,11 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 Instructs the widget framework to make a widget updatable. This API uses an asynchronous callback to return the result. After this API is called, the widget is in the enabled state and can receive updates from the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -448,9 +476,11 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget updatable. This API uses a promise to return the result. After this API is called, the widget is in the enabled state and can receive updates from the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -481,9 +511,11 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 Instructs the widget framework to make a widget not updatable. This API uses an asynchronous callback to return the result. After this API is called, the widget cannot receive updates from the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -509,9 +541,11 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 
 Instructs the widget framework to make a widget not updatable. This API uses a promise to return the result. After this API is called, the widget cannot receive updates from the widget provider.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -542,9 +576,9 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void;
 
 Checks whether the system is ready. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**System capability**: SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -569,9 +603,9 @@ isSystemReady(): Promise&lt;void&gt;;
 
 Checks whether the system is ready. This API uses a promise to return the result.
 
-**System capability**
+**System capability**: SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
@@ -596,9 +630,11 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 Obtains the widget information provided by all applications on the device. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -625,9 +661,11 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
 
 Obtains the widget information provided by all applications on the device. This API uses a promise to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
@@ -652,9 +690,11 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -682,9 +722,11 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 Obtains the widget information provided by a given application on the device. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -713,9 +755,11 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 Obtains the widget information provided by a given application on the device. This API uses a promise to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -746,9 +790,11 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 Deletes invalid widgets from the list. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -776,9 +822,11 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
 
 Deletes invalid widgets from the list. This API uses a promise to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -809,9 +857,11 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 Obtains the widget state. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -843,6 +893,12 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;;
 
 Obtains the widget state. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.REQUIRE_FORM and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name| Type   | Mandatory| Description   |
@@ -854,10 +910,6 @@ Obtains the widget state. This API uses a promise to return the result.
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
 | Promise&lt;[FormStateInfo](js-apis-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state.|
-
-**System capability**
-
-SystemCapability.Ability.Form
 
 **Example**
 
@@ -880,9 +932,9 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
 Subscribes to widget uninstall events.
 
-**System capability**
+**System capability**: SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -906,9 +958,9 @@ off(type: "formUninstall", callback?: Callback&lt;string&gt;): void;
 
 Unsubscribes from widget uninstall events.
 
-**System capability**
+**System capability**: SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -932,9 +984,11 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 Instructs the widgets to make themselves visible. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -961,9 +1015,11 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 Instructs the widgets to make themselves visible. This API uses a promise to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -995,9 +1051,11 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 Instructs the widgets to enable or disable updates. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -1024,9 +1082,11 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 Instructs the widgets to enable or disable updates. This API uses a promise to return the result.
 
-**System capability**
+**Required permissions**: ohos.permission.REQUIRE_FORM
 
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 

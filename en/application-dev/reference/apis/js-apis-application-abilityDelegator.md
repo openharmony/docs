@@ -1,13 +1,21 @@
 # AbilityDelegator
 
+The **AbilityDelegator** module provides APIs for managing **AbilityMonitor** instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **OnCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Modules to Import
+## Usage
 
+The ability delegator can be obtained by calling **getAbilityDelegator** in **AbilityDelegatorRegistry**.
 ```js
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+
+var abilityDelegator;
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+
 ```
 
 ## AbilityDelegator
@@ -24,7 +32,7 @@ Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to r
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes      | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | Yes      | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 | callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
 **Example**
@@ -61,7 +69,7 @@ Adds an **AbilityMonitor** instance. This API uses a promise to return the resul
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 
 **Return value**
 
@@ -103,7 +111,7 @@ Removes an **AbilityMonitor** instance. This API uses an asynchronous callback t
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 | callback | AsyncCallback\<void>                                         | Yes  | Callback used to return the result.                                          |
 
 **Example**
@@ -140,7 +148,7 @@ Removes an **AbilityMonitor** instance. This API uses a promise to return the re
 
 | Name   | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 
 **Return value**
 
@@ -174,7 +182,7 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<Ability>): void
 
-Waits for the ability that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
+Waits for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -182,7 +190,7 @@ Waits for the ability that matches the **AbilityMonitor** instance to reach the 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 | callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the result.                                          |
 
 **Example**
@@ -211,7 +219,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<Ability>): void
 
-Waits a period of time for the ability that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
+Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -219,7 +227,7 @@ Waits a period of time for the ability that matches the **AbilityMonitor** insta
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
+| monitor  | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 | timeout  | number                                                       | Yes  | Maximum waiting time, in milliseconds.                                |
 | callback | AsyncCallback\<[Ability](js-apis-application-ability.md#Ability)> | Yes  | Callback used to return the result.                                          |
 
@@ -250,7 +258,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) =>
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<Ability>
 
-Waits a period of time for the ability that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle and returns the **Ability** instance. This API uses a promise to return the result.
+Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle state and returns the **Ability** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -258,7 +266,7 @@ Waits a period of time for the ability that matches the **AbilityMonitor** insta
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
+| monitor | [AbilityMonitor](js-apis-application-abilityMonitor.md#abilitymonitor-1) | Yes  | [AbilityMonitor](js-apis-application-abilityMonitor.md#AbilityMonitor) instance.|
 | timeout | number                                                       | No  | Maximum waiting time, in milliseconds.                                |
 
 **Return value**
@@ -355,7 +363,7 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 getCurrentTopAbility(callback: AsyncCallback\<Ability>): void
 
-Obtains the top ability of the application. This API uses an asynchronous callback to return the result.
+Obtains the top ability of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -384,7 +392,7 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 getCurrentTopAbility(): Promise\<Ability>
 
-Obtains the top ability of the application. This API uses a promise to return the result.
+Obtains the top ability of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -491,7 +499,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | Ability                 | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation fails.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
 **Example**
 
@@ -529,7 +537,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation fails.|
+| Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
 **Example**
 
@@ -562,7 +570,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | Ability                 | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation fails.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
 **Example**
 
@@ -600,7 +608,7 @@ Schedules the lifecycle state of an ability to **Background**. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation fails.|
+| Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
 
 **Example**
 

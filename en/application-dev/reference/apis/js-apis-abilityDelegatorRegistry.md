@@ -1,5 +1,7 @@
 # AbilityDelegatorRegistry
 
+The **AbilityDelegatorRegistry** module provides APIs for storing the global registers of the registered **AbilityDelegator** and **AbilityDelegatorArgs** objects. You can use the APIs to obtain the **AbilityDelegator** and **AbilityDelegatorArgs** objects of an application.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -23,8 +25,6 @@ Enumerates the ability lifecycle states.
 | FOREGROUND    | 2    | The ability is running in the foreground.  |
 | BACKGROUND    | 3    | The ability is running in the background.  |
 | DESTROY       | 4    | The ability is destroyed.|
-
-
 
 ## AbilityDelegatorRegistry.getAbilityDelegator
 

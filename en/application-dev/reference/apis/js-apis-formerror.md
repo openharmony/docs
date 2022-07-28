@@ -1,10 +1,10 @@
 # FormError
 
+The **FormError** module provides error codes for widgets.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-Provides widget-related error codes.
 
 ## Modules to Import
 
