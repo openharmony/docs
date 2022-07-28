@@ -41,6 +41,7 @@ import window from '@ohos.window';
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
 | TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
 | TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
+| TYPE_DIALOG<sup>9+</sup>  | 16      | 表示模态窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -2020,6 +2021,148 @@ windowClass.off('screenshot', callback)
 
 // 如果通过on开启多个callback进行监听，同时关闭所有监听：
 windowClass.off('screenshot');
+```
+
+### on('dialogTargetTouch')<sup>9+</sup>
+
+on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
+
+开启模态窗口目标窗口的点击事件的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                          |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
+| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
+
+**示例：**
+
+```js
+windowClass.on('dialogTargetTouch', () => {
+    console.info('touch dialog target');
+});
+```
+
+### off('dialogTargetTouch')<sup>9+</sup>
+
+off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
+
+关闭模态窗口目标窗口的点击事件的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                                          |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
+| callback | Callback&lt;void&gt;      | 否   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
+
+**示例：**
+
+```js
+windowClass.off('dialogTargetTouch');
+```
+
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用callback异步回调。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名       | 类型                      | 必填 | 说明                  |
+| ----------- | ------------------------- | ---- | -------------------- |
+| token       | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**示例：** 
+
+```js
+class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor) {
+        super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+        return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+        return true;
+    }
+    isObjectDead(): boolean {
+        return false;
+    }
+}
+let token = new TestRemoteObject("testObject");
+windowClass.bindDialogTarget(token, () => {
+    console.info('Dialog Window Need Destroy.');
+}, (err, data) => {
+    if (err.code) {
+        console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in binding dialog target. Data:' + JSON.stringify(data));
+});
+```
+
+### bindDialogTarget<sup>9+</sup>
+
+bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): Promise&lt;void&gt;
+
+绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用Promise异步回调。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名       | 类型                      | 必填 | 说明                  |
+| ----------- | ------------------------- | ---- | -------------------- |
+| token       | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 是   | 目标窗口token值。 |
+| deathCallback | Callback&lt;void&gt;        | 是   | 模态窗口销毁监听。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：** 
+
+```js
+class TestRemoteObject extends rpc.RemoteObject {
+    constructor(descriptor) {
+        super(descriptor);
+    }
+    addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+        return true;
+    }
+    removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+        return true;
+    }
+    isObjectDead(): boolean {
+        return false;
+    }
+}
+let token = new TestRemoteObject("testObject");
+let promise = windowClass.bindDialogTarget(token, () => {
+    console.info('Dialog Window Need Destroy.');
+});
+promise.then((data)=> {
+    console.info('Succeeded in binding dialog target. Data:' + JSON.stringify(data));
+}).catch((err)=>{
+        console.error('Failed to bind dialog target. Cause:' + JSON.stringify(err));
+});
 ```
 
 ### isSupportWideGamut<sup>8+</sup>
