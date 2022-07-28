@@ -5,6 +5,7 @@
 > **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -22,8 +23,6 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -68,8 +67,6 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -125,8 +122,6 @@ unregisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -155,8 +150,6 @@ unregisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -194,8 +187,6 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -225,8 +216,6 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -266,8 +255,6 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -295,8 +282,6 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -330,8 +315,6 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 | 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | notifyMissionsChanged | function | 是 | 否 | 通知任务变化，返回设备ID。| 
@@ -344,8 +327,6 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | deviceId | string | 是 | 是 | 表示设备ID。| 
@@ -357,8 +338,6 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 表示注册监听时所需参数的枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
