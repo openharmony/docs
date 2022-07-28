@@ -2074,7 +2074,7 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 | 名称     | 类型        | 必填      | 说明                                                                     |
 | -------- | ---------- | --------- | ------------------------------------------------------------------------ |
 | type     | string     | 是        | 事件类型，支持的事件`'audioRendererChange'`：当音频渲染器发生更改时触发。     |
-| callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarry9)> | 是  |  回调函数。        |
+| callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | 是  |  回调函数。        |
 
 **示例：**
 ```
@@ -2136,7 +2136,7 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 | 名称     | 类型     | 必填      | 说明                                                                                           |
 | -------- | ------- | --------- | ------------------------------------------------------------------- ---- |
 | type     | string  | 是        | 事件类型，支持的事件`'audioCapturerChange'`：当音频采集器发生更改时触发。     |
-| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarry9)> | 是     | 回调函数。   |
+| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是     | 回调函数。   |
 
 **示例：**
 ```
@@ -2266,7 +2266,7 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
 | clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口，三方应用不支持调用。 |
-| capturerInfo       | [AudioCapturerInfo](#audiocaptureinfo8)   | 是   | 否   | 音频渲染器信息。               |
+| capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)   | 是   | 否   | 音频渲染器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口，三方应用不支持调用。|
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
