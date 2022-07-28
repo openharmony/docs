@@ -33,39 +33,39 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
   | reverse<sup>8+</sup> | boolean | 否 | false | 设置滑动条取值范围是否反向。 |
 
 - SliderStyle枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | OutSet | 滑块在滑轨上。 | 
-  | InSet | 滑块在滑轨内。 | 
+  | OutSet | 滑块在滑轨上。 |
+  | InSet | 滑块在滑轨内。 |
 
 
 ## 属性
 
 不支持触摸热区设置。
 
-| 名称 | 参数类型 | 默认值 | 描述 | 
+| 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| blockColor | Color | - | 设置滑块的颜色。 | 
-| trackColor | Color | - | 设置滑轨的背景颜色。 | 
-| selectedColor | Color | - | 设置滑轨的已滑动颜色。 | 
-| showSteps | boolean | false | 设置当前是否显示步长刻度值。 | 
-| showTips | boolean | false | 设置滑动时是否显示气泡提示百分比。 | 
+| blockColor | Color | - | 设置滑块的颜色。 |
+| trackColor | Color | - | 设置滑轨的背景颜色。 |
+| selectedColor | Color | - | 设置滑轨的已滑动颜色。 |
+| showSteps | boolean | false | 设置当前是否显示步长刻度值。 |
+| showTips | boolean | false | 设置滑动时是否显示气泡提示百分比。 |
 
 
 ## 事件
 
 通用事件仅支持：OnAppear，OnDisAppear。
 
-| 名称 | 功能描述 | 
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void） | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 | 
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void） | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 |
 
 - SliderChangeMode枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Begin | 用户开始拖动滑块。 | 
-  | Moving | 用户拖动滑块中。 | 
-  | End | 用户结束拖动滑块。 | 
+  | 名称 | 值 | 描述 |
+  | -------- | -------- | -------- |
+  | Begin | 0 | 用户开始拖动滑块。 |
+  | Moving | 1 | 用户拖动滑块中。 |
+  | End | 2 | 用户结束拖动滑块。 |
 
 
 ## 示例
