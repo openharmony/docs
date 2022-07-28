@@ -2,7 +2,8 @@
 
 本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -111,7 +112,7 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 **返回值：**
   | 类型                                      | 说明                         |
   | ----------------------------------------- | ---------------------------- |
-  | [Promise](#Promise) | 回调返回切换后的输入法。 |
+  | Promise\<boolean> | 回调返回切换后的输入法。 |
 
 **示例：**
 
@@ -123,7 +124,7 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 ```
 ## InputMethodController
 
-下列API示例中都需使用[getInputMethodController](#getInputMethodController)回调获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodController](#getinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInput
 
@@ -171,7 +172,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodSetting](#getinputmethodsetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
 ### listInputMethod
 

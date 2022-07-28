@@ -34,9 +34,9 @@ Image(src: string | PixelMap | Resource)
 
 **参数：** 
 
-| 参数名 | 参数类型                                                     | 必填 | 默认值 | 参数描述                                                     |
-| ------ | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是   | -      | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
+| 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| src  | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是    | -    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
 
 ## 属性
 
@@ -45,7 +45,7 @@ Image(src: string | PixelMap | Resource)
 | 名称                    | 参数类型                                     | 默认值                      | 描述                                       |
 | --------------------- | ---------------------------------------- | ------------------------ | ---------------------------------------- |
 | alt                   | string \| [Resource](../../ui/ts-types.md#resource类型) | -                        | 加载时显示的占位图，支持本地图片和网络图片。                   |
-| objectFit             | [ImageFit](#imagefit枚举说明)                | ImageFit.Cover           | 设置图片的缩放类型。                               |
+| objectFit             | ImageFit                                 | ImageFit.Cover           | 设置图片的缩放类型。                               |
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat                 | 设置图片的重复样式。<br/>> **说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | interpolation         | [ImageInterpolation](#imageinterpolation) | ImageInterpolation.None  | 设置图片的插值效果，仅针对图片放大插值。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
 | renderMode            | [ImageRenderMode](#imagerendermode)      | ImageRenderMode.Original | 设置图片渲染的模式。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
