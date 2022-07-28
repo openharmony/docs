@@ -1,10 +1,12 @@
-# distributedMissionManager
+# 分布式任务管理
 
-distributedMissionManager模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端任务列表、停止同步远端任务列表操作。
+分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端任务列表、停止同步远端任务列表操作。
 
 > **说明：**
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -12,9 +14,6 @@ distributedMissionManager模块提供跨设备系统任务管理能力，包括�
 import distributedMissionManager from '@ohos.distributedMissionManager'
 ```
 
-## 权限列表
-
-ohos.permission.MANAGE_MISSIONS
 
 ## distributedMissionManager.registerMissionListener
 
@@ -26,14 +25,12 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 注册监听设备信息。 |
-  | options | <a href="#missioncallback">MissionCallback</a> | 是 | 注册的回调方法。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 注册监听设备信息。 |
+  | options | [MissionCallback](#missioncallback) | 是 | 注册的回调方法。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -72,13 +69,11 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 设备信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 设备信息。 |
   | options | <a href="#missioncallback">MissionCallback</a> | 是 | 注册的回调方法。 |
 
 **返回值：**
@@ -128,14 +123,11 @@ unregisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 设备信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 设备信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -160,13 +152,11 @@ unregisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 设备信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 设备信息。 |
 
 **返回值：**
 
@@ -198,14 +188,11 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
-  | parameter | <a href="#missionparameter">MissionParameter</a> | 是 | 同步信息。 |
+  | parameter | [MissionParameter](#missionparameter) | 是 | 同步信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -231,13 +218,11 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missionparameter">MissionParameter</a> | 是 | 同步信息。 |
+  | parameter | [MissionParameter](#missionparameter) | 是 | 同步信息。 |
 
 **返回值：**
 
@@ -271,14 +256,11 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | listenerId | number | 是 | 系统任务状态监听方法的index值，和监听方法一一对应，由registerMissionListener方法返回。 |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 同步信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 同步信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -302,13 +284,11 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 同步信息。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 同步信息。 |
 
 **返回值：**
 
@@ -330,13 +310,11 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
   })
   ```
 
-## <a id ="missioncallback">MissionCallback</a>
+## MissionCallback
 
 表示开始同步后，建立的回调函数。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
@@ -344,13 +322,11 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 | notifySnapshot | function | 是 | 否 | 通知快照变化，返回设备ID，任务ID | 
 | notifyNetDisconnect | function | 是 | 否 | 通知断开连接，返回设备ID，网络状态 | 
 
-## <a id ="missionparameter">MissionParameter</a>
+## MissionParameter
 
 表示同步时所需参数的枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
@@ -358,13 +334,11 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 | fixConflict | boolean | 是 | 是 | 表示是否存在版本冲突。 | 
 | tag | number | 是 | 是 | 表示特定的标签。 | 
 
-## <a id ="missiondeviceinfo">MissionDeviceInfo</a>
+## MissionDeviceInfo
 
 表示注册监听时所需参数的枚举。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
