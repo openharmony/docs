@@ -17,7 +17,7 @@
 | -------- | -------- |
 | [GetTemplateInfo](interface_i_executor.md#gettemplateinfo)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;templateId,&nbsp;[out]&nbsp;struct&nbsp;[TemplateInfo](_template_info.md)&nbsp;templateInfo) | 获取凭据模版信息。&nbsp;[更多...](interface_i_executor.md#gettemplateinfo) | 
 | [Cancel](interface_i_executor.md#cancel)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId) | 取消操作请求。&nbsp;[更多...](interface_i_executor.md#cancel) | 
-| [h2GetExecutorInfo](#getexecutorinfo)&nbsp;([out]&nbsp;struct&nbsp;[ExecutorInfo](_executor_info.md)&nbsp;executorInfo) | 获取执行器信息，口令认证服务将执行器注册到用户认证框架时需要通过该接口获取对应信息。&nbsp;[更多...](#getexecutorinfo) | 
+| [GetExecutorInfo](#getexecutorinfo)&nbsp;([out]&nbsp;struct&nbsp;[ExecutorInfo](_executor_info.md)&nbsp;executorInfo) | 获取执行器信息，口令认证服务将执行器注册到用户认证框架时需要通过该接口获取对应信息。&nbsp;[更多...](#getexecutorinfo) | 
 | [OnRegisterFinish](#onregisterfinish)&nbsp;([in]&nbsp;unsigned&nbsp;long[]&nbsp;templateIdList,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;frameworkPublicKey,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 完成执行器注册，对口令模版信息进行对账，用于删除无效的口令模板及相关信息。&nbsp;[更多...](#onregisterfinish) | 
 | [OnSetData](interface_i_executor.md#onsetdata)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;authSubType,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;data) | 设置口令数据，口令认证驱动处理注册或认证口令请求时，如果口令数据由口令认证服务获取，需要通过该接口将口令数据传给口令认证驱动。&nbsp;[更多...](interface_i_executor.md#onsetdata) | 
 | [Enroll](#enroll)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;[IExecutorCallback](interface_pin_i_executor_callback.md)&nbsp;callbackObj) | 注册口令。&nbsp;[更多...](#enroll) | 
