@@ -219,6 +219,8 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 
 表示NFC场强状态的枚举。
 
+**系统能力**：SystemCapability.Communication.ConnectedTag
+
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
 | NFC_RF_LEAVE | 0 | NFC离场事件 |
