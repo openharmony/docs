@@ -545,7 +545,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
   | 名称 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消注册设备发现回调。 |
-  | callback | Callback&lt;{&nbsp;subscribeId: number, device: DeviceInfo&nbsp;}&gt; | 是 | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, device: [DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是 | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
 - 示例：
   ```js
