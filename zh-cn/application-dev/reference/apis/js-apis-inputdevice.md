@@ -4,7 +4,8 @@
 输入设备管理模块，用于监听输入设备连接、断开和变化，并查看输入设备相关信息。比如监听鼠标插拔，并获取鼠标的id、name和指针移动速度等信息。
 
 
-> **说明**：<br>
+> **说明**：
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -28,7 +29,7 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 | 参数       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件类型。  |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 是    | 可上报的输入设备事件。 |
+| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 是    | 可上报的输入设备事件。 |
 
 **示例**：
 
@@ -63,7 +64,7 @@ off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 | 参数       | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件类型。  |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | 否    | 可上报的输入设备事件。 |
+| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 可上报的输入设备事件。 |
 
 **示例**：
 
@@ -358,7 +359,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 | touchpad    | string | 表示输入设备是触摸板。 |
 | joystick    | string | 表示输入设备是操纵杆。 |
 
-## ChangeType
+## ChangedType
 
 定义监听设备热插拔事件。
 
