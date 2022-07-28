@@ -818,7 +818,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string                                                       | 是   | 消息                                      |
 | force7bit | boolean                                                      | 是   | 是否使用7bit编码                          |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#&lt;smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
 
 **示例：**
 
@@ -852,7 +852,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 
 | 类型                                                    | 说明                          |
 | ------------------------------------------------------- | ----------------------------- |
-| Promise&lt;[SmsSegmentsInfo](#&lt;smssegmentsinfo8)&gt; | 以Promise形式返回短信段信息。 |
+| Promise&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 以Promise形式返回短信段信息。 |
 
 **示例：**
 
@@ -1209,7 +1209,7 @@ promise.then(data => {
 | 参数名      | 类型                                                         | 必填 | 说明      |
 | ----------- | ------------------------------------------------------------ | ---- | --------- |
 | messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型  |
-| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigInd8)\|[MmsReadRecInd](#mmsreadorigind8) | 是   | pdu头类型 |
+| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | pdu头类型 |
 | attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | 否   | 附件      |
 
 ## MmsSendReq<sup>8+</sup>
