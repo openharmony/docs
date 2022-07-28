@@ -2571,7 +2571,7 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 ## Notification.enableDistributedByBundle<sup>8+</sup>
 
-bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
+enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
 根据应用的包设置应用程序是否支持分布式通知（Promise形式）。
 
@@ -2905,6 +2905,8 @@ enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, ca
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
 **参数：**
 
 | 参数名   | 类型                          | 必填 | 说明                   |
@@ -2931,13 +2933,15 @@ Notification.enableNotificationSlot(
 
 ## Notification.enableNotificationSlot <sup>9+</sup>
 
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise<void> 
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
 
 设定指定类型的渠道使能状态（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
 **参数：**
 
@@ -2968,6 +2972,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
 **参数：**
 
@@ -3001,12 +3007,20 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
 **参数：**
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。   |
 | type   | [SlotType](#slottype)         | 是   | 指定渠道类型。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | 以Promise形式返回指定类型的渠道使能状态。 |
 
 **示例：**
 
@@ -3019,6 +3033,148 @@ Notification.isNotificationSlotEnabled(
       console.log('====================>isNotificationSlotEnabled====================>');
     });
 ```
+
+
+## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
+
+设置是否将通知同步到未安装应用程序的设备(callback形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | 是   | 用户Id。   |
+| enable   | boolean         | 是   | 是否将通知同步到未安装应用程序的设备。true：是。false：否。 |
+| callback | AsyncCallback\<void\>         | 是   | 设置是否将通知同步到未安装应用程序的设备的回调函数。 |
+
+**示例：**
+
+```js
+let userId = 100;
+let enable = true;
+
+function setSyncNotificationEnabledForUninstallAppCallback(err) {
+    console.log('setSyncNotificationEnabledForUninstallAppCallback');
+}
+
+Notification.setSyncNotificationEnabledForUninstallApp(userId, enable, setSyncNotificationEnabledForUninstallAppCallback);
+```
+
+
+## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Promise\<void>
+
+设置是否将通知同步到未安装应用程序的设备(Promise形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | 是   | 用户Id。   |
+| enable   | boolean         | 是   | 是否将通知同步到未安装应用程序的设备。true：是。false：否。 |
+
+**示例：**
+
+```js
+let userId = 100;
+let enable = true;
+
+Notification.setSyncNotificationEnabledForUninstallApp(userId, enable)
+    .then((data) => {
+        console.log('setSyncNotificationEnabledForUninstallApp, data:', data);
+    })
+    .catch((err) => {
+        console.log('setSyncNotificationEnabledForUninstallApp, err:', err);
+    });
+```
+
+
+## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+getSyncNotificationEnabledForUninstallApp(userId: number, callback: AsyncCallback\<boolean>): void
+
+获取是否同步通知到未安装应用程序的设备的结果(callback形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | 是   | 用户Id。   |
+| callback | AsyncCallback\<boolean\>    | 是   | 获取是否同步通知到未安装应用程序的设备的结果的回调函数。true：是。false：否。 |
+
+**示例：**
+
+```js
+let userId = 100;
+
+function getSyncNotificationEnabledForUninstallAppCallback(err, data) {
+    console.log('getSyncNotificationEnabledForUninstallAppCallback, data: ', data);
+}
+
+Notification.getSyncNotificationEnabledForUninstallApp(userId, getSyncNotificationEnabledForUninstallAppCallback);
+```
+
+
+## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+getSyncNotificationEnabledForUninstallApp(userId: number): Promise\<boolean>
+
+获取是否同步通知到未安装应用程序的设备的结果(Promise形式)。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | 是   | 用户Id。   |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | 以Promise形式返回获取是否同步通知到未安装应用程序的设备的结果。true：是。false：否。 |
+
+**示例：**
+
+```js
+let userId = 100;
+
+Notification.getSyncNotificationEnabledForUninstallApp(userId)
+    .then((data) => {
+        console.log('getSyncNotificationEnabledForUninstallApp, data: ', data);
+    })
+    .catch((err) => {
+        console.log('getSyncNotificationEnabledForUninstallApp, err: ', err);
+    });
+```
+
+
 
 ## NotificationSubscriber
 
@@ -3582,6 +3738,8 @@ Notification.subscribe(subscriber, subscribeCallback);
 | distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptions8)                 | 否   | 分布式通知的选项。          |
 | deviceId<sup>8+</sup> | 是  | 否  | string                                        | 否   | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
 | notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflags8)                    | 否   | 获取NotificationFlags。          |
+| removalWantAgent<sup>9+</sup> | 是  | 是  | WantAgent                    | 否   | 当移除通知时，通知将被重定向到的WantAgent实例。          |
+| badgeNumber<sup>9+</sup> | 是  | 是  | number                    | 否   | 应用程序图标上显示的通知数。          |
 
 
 ## DistributedOptions<sup>8+</sup>

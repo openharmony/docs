@@ -7,7 +7,7 @@
 
 
 
-ExtensionAbility信息
+ExtensionAbility信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取
 
 ## ExtensionAbilityInfo
 

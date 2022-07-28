@@ -1,21 +1,20 @@
 # Transition of Shared Elements
 
+Shared element transition can be used for transition between pages, for example, transition from an image on the current page to the next page.
 
 > **NOTE**
+>
 > This animationis supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-Transition of shared elements can be used for transition between pages, for example, transition from an image on the current page to the next page.
-
-
-## Type
+## Attributes
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
 | sharedTransition | id: string,<br/>options?: Object | - | If the same ID is configured for a component on the two pages, this shared component is transited. If this parameter is set to an empty string, no shared elements are transited. |
 
 - options parameters
-    | Name | Type | Default Value | Mandatory | Description |
+  | Name | Type | Default Value | Mandatory | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | duration | number | 1000 | No | Animation duration, in ms. The default duration is 1000 ms. |
   | curve | Curve \| Curves | Linear | No | The default curve is linear. For details about the valid values, see **Curve enums**. |

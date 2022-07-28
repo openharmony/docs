@@ -1,64 +1,79 @@
-# ADC<a name="1"></a>
+# ADC
 
-## Overview<a name="section1"></a>
+## Overview
+
+### Function
 
 An analog-to-digital converter (ADC) is a device that converts analog signals into digital signals.
 
 The ADC APIs provide a set of common functions for ADC data transfer, including:
-- Opening or closing an ADC device
+-  Opening or closing an ADC device
+-  Obtaining the analog-to-digital (AD) conversion result
 
--   Obtaining the analog-to-digital (AD) conversion result
+### Basic Concepts
 
-    **Figure 1** ADC physical connection
-	
-    ![](figures/ADC_physical_connection.png "ADC_physical_connection")
+The ADC converts analog parameters into digital parameters for easy storage and computing. The technical specifications of the ADC include the following:
 
-## Available APIs<a name="section2"></a>
+- Resolution
+  
+  The number of binary bits that can be converted by an ADC. A greater number of bits indicates a higher resolution.
+- Conversion error
+  
+  Difference between the actual and theoretical digital values output by an ADC. It is expressed by a multiple of the least significant bit. Generally, the maximum output error is used.
+- Transition time
+  
+  Time required by an ADC to perform a complete conversion.
+
+### Working Principles
+
+In the Hardware Driver Foundation (HDF), the ADC module uses the unified service mode for API adaptation. In this mode, a service is used as the ADC manager to handle external access requests in a unified manner. The unified service mode applies when the system has multiple device objects of the same type. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed.
+
+The ADC module is divided into the following layers:
+
+- Interface layer: provides APIs for opening or closing a device and writing data.
+- Core layer: provides the capabilities of binding, initializing, and releasing devices.
+- Adaptation layer: implements driver-specific functions.
+
+In addition to the power and ground cables, the ADC requires only one cable to connect to the target device. The figure below shows the physical connection.
+
+**Figure 1** ADC physical connection
+
+
+![](figures/ADC_physical_connection.png "ADC_physical_connection")
+
+### Constraints
+
+Currently, the ADC module supports only the kernels (LiteOS) of mini and small systems.
+
+## Usage Guidelines
+
+### When to Use
+
+An ADC is usually used to convert an analog voltage into a digital parameter, for example, it is used with a microphone to collect sound, used with an NTC resistor to measure temperature, or converts the output of analog sensors into digital parameters.
+
+### Available APIs
+
+The table below describes the APIs of the ADC module. For more details, see API Reference.
 
 **Table 1** APIs of the ADC driver
 
-<a name="table1"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.63%"><p>Category</p>
-</th>
-<th class="cellrowborder" valign="top" width="28.03%"><p>API</p>
-</th>
-<th class="cellrowborder" valign="top" width="53.339999999999996%"><p>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" bgcolor="#ffffff" rowspan="2" valign="top" width="18.63%"><p>Managing ADC devices</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>AdcOpen</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%">Opens an ADC device.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top"><p>AdcClose</p>
-</td>
-<td valign="top"><p>Closes an ADC device.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" bgcolor="#ffffff" valign="top" width="18.63%"><p>Obtaining the conversion result</p>
-</td>
-<td class="cellrowborder" valign="top" width="28.03%"><p>AdcRead</p>
-</td>
-<td class="cellrowborder" valign="top" width="53.339999999999996%"><p>Reads the AD conversion result.</p>
-</td>
-</tr>
-</table>
+| API  | Description            |
+| -------- | ---------------- |
+| AdcOpen  | Opens an ADC device.     |
+| AdcClose | Closes an ADC device.     |
+| AdcRead  | Obtains the AD conversion result.|
 
-## Usage Guidelines<a name="section3"></a>
+### How to Develop
 
-### How to Use<a name="section4"></a>
+The figure below shows the general development process.
 
-The figure below illustrates how to use the APIs.
+ **Figure 2** Process of using ADC APIs 
 
- **Figure 2** Using ADC driver APIs
+![](figures/using-ADC-process.png)
 
-![](figures/using-ADC-process.png "using-ADC-process.png")
 
-### Opening an ADC Device<a name="section5"></a>
+#### Opening an ADC Device.
 
 Call **AdcOpen** to open an ADC device.
 
@@ -68,43 +83,20 @@ DevHandle AdcOpen(int16_t number);
 
 **Table 2** Description of AdcOpen
 
-<a name="table2"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="20.66%"><p> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="79.34%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="20.66%"><p>number</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>ADC device number.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>NULL</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>Failed to open the ADC device.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="20.66%"><p>Device handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="79.34%"><p>Handle of the ADC device opened.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description         |
+| ---------- | ----------------- |
+| number     | ADC device number.        |
+| **Return Value**| **Description**   |
+| NULL       | The operation failed.  |
+| Device handle  | The operation is successful. The handle of the ADC device opened is returned.|
 
-For example, open device 1 of the two ADCs (numbered 0 and 1) in the system.
+Example: Open device 1 of the two ADCs (numbered 0 and 1) in the system.
 
 ```c
 DevHandle adcHandle = NULL; /* ADC device handle /
 
-/* Open the ADC device. */
+/* Open ADC device 1. */
 adcHandle = AdcOpen(1);
 if (adcHandle == NULL) {
     HDF_LOGE("AdcOpen: failed\n");
@@ -112,7 +104,7 @@ if (adcHandle == NULL) {
 }
 ```
 
-### Obtaining the AD Conversion Result<a name="section6"></a>
+#### Obtaining the AD Conversion Result
 
 ```c
 int32_t AdcRead(DevHandle handle, uint32_t channel, uint32_t *val);
@@ -120,48 +112,30 @@ int32_t AdcRead(DevHandle handle, uint32_t channel, uint32_t *val);
 
 **Table 3** Description of AdcRead
 
-<a name="table3"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p><strong> Parameter</strong></p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>ADC device handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>channel</p>
-</td>
-<td class="cellrowborder"valign="top" width="50%"><p>ADC device channel number.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>val</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>AD conversion result.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>0</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>The operation is successful.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>Negative number</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>Failed to obtain the AC conversion result.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter      | Description      |
+| ---------- | -------------- |
+| handle     | ADC device handle.   |
+| channel    | ADC device channel number. |
+| val        | Pointer to the AD conversion result.    |
+| **Return Value**| **Description**|
+| 0          | The operation is successful.      |
+| Negative value      | The operation failed.      |
 
-### Closing an ADC Device<a name="section7"></a>
+Example: Obtain the AD conversion result of channel 1.
+
+```c
+uint32_t value;
+int32_t ret;
+
+ret = AdcRead(adcHandle, 1, &value);
+if (ret != 0) {
+    HDF_LOGE("ADC read fail!\n");
+    return;
+}
+```
+
+#### Closing an ADC Device
 
 Call **AdcClose** to close the ADC device after the ADC communication is complete.
 ```c
@@ -169,31 +143,12 @@ void AdcClose(DevHandle handle);
 ```
 **Table 4** Description of AdcClose
 
-<a name="table4"></a>
 
-<table><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%"><p> Parameter</p>
-</th>
-<th class="cellrowborder" valign="top" width="50%"><p>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr><td class="cellrowborder" valign="top" width="50%"><p>handle</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>ADC device handle.</p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p><strong>Return Value</strong></p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p><strong>Description</strong></p>
-</td>
-</tr>
-<tr><td class="cellrowborder" valign="top" width="50%"><p>None</p>
-</td>
-<td class="cellrowborder" valign="top" width="50%"><p>No value is returned if the ADC device is closed.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Parameter  | Description   |
+| ------ | ----------- |
+| handle | ADC device handle.|
+| **Return Value**| **Description** |
+| N/A    | N/A         |
 
 Example:
 
@@ -201,9 +156,9 @@ Example:
 AdcClose(adcHandle); /* Close the ADC device. */
 ```
 
-## Example<a name="section8"></a>
+### Example
 
-This following example shows how to use ADC APIs to manage an ADC device on a Hi3516D V300 development board.
+This following example shows how to use ADC APIs to manage an ADC device on a Hi3516D V300 board.
 
 The basic hardware information is as follows:
 
@@ -242,7 +197,7 @@ static int32_t TestCaseAdc(void)
     for (i = 0; i < 30; i++) {
         ret = AdcRead(adcHandle, ADC_CHANNEL_NUM, &readBuf[i]);
         if (ret != HDF_SUCCESS) {
-            HDF_LOGE("%s: tp ADC write reg fail!:%d", __func__, ret);
+            HDF_LOGE("%s: Failed to read ADC!:%d", __func__, ret);
             AdcClose(adcHandle);
             return -1;
         }

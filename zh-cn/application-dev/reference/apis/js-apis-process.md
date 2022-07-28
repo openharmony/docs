@@ -232,7 +232,7 @@ is64Bit(): boolean
 **示例：**
 
 ```js
-var ressult = process.is64Bit();
+var result = process.is64Bit();
 ```
 
 

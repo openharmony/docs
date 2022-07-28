@@ -48,14 +48,14 @@ Common compilation modes of user-mode programs include:
     Example:
 
     ```
-    clang --target=arm-liteos --sysroot=prebuilts/lite/sysroot -o helloworld helloworld.c
+    clang --target=arm-liteos --sysroot=sysroot -o helloworld helloworld.c
     ```
 
     Before running the  **clang**  command, install the LLVM compiler. For details, see  [Installing LLVM](../quick-start/quickstart-lite-steps-hi3861-setting.md).
 
     **--target=arm-liteos**: specifies the compilation platform, which is arm-liteos.
 
-    **--sysroot=$\{YOUR\_ROOT\_PATH\}/prebuilts/lite/sysroot**: specifies the directory in which you can search for the header file and the dependent standard libraries.
+    **--sysroot=$\{YOUR\_ROOT\_OUT\_PATH\}/sysroot**: specifies the directory in which you can search for the header file and the dependent standard libraries.
 
 
 A user-mode program can be started in either of the following ways:

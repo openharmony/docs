@@ -558,7 +558,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 let kvManager;
 try {
     console.log('GetAllKVStoreId');
-    kvManager.getAllKVStoreId('apppId').then((data) => {
+    kvManager.getAllKVStoreId('appId').then((data) => {
         console.log('getAllKVStoreId success');
         console.log('size = ' + data.length);
     }).catch((err) => {
@@ -844,7 +844,7 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet succeeed.');
+        console.log('getResultSet succeeded.');
         resultSet = result;
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
@@ -2522,10 +2522,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -2574,7 +2574,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
             console.log('PutBatch ' + JSON.stringify(entries));
         }).catch((err) => {
@@ -3313,10 +3313,10 @@ try {
     }
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_number_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -3365,12 +3365,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -3421,10 +3421,10 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -3477,7 +3477,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -3718,7 +3718,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | predicates  | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultsetsup8sup)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
 
 **示例：**
 
@@ -4164,7 +4164,7 @@ kvStore.off('dataChange', function (data) {
 ### sync<sup>7+</sup>
 
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -4176,9 +4176,9 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
+| deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode  |[SyncMode](#syncmode)   | 是   |同步模式。    |
-| allowedDelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
+| DelayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**
 
@@ -4202,7 +4202,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| query  |[Query](#querysup8sup)   | 是   |表示数据库的查询谓词条件  |
+| query  |[Query](#query8)   | 是   |表示数据库的查询谓词条件  |
 | delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
 
 **示例：**
@@ -4320,7 +4320,7 @@ try {
         console.log('getSecurityLevel success');
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -4350,7 +4350,7 @@ try {
         console.log('getSecurityLevel fail ' + JSON.stringify(err));
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -4480,10 +4480,10 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -4533,12 +4533,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entrieys[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -4590,10 +4590,10 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -4646,7 +4646,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4701,10 +4701,10 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+        kvStore.getEntries('localDeviceId', query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         })
     });
     console.log('GetEntries success');
@@ -4759,7 +4759,7 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query).then((entrys) => {
+        kvStore.getEntries('localDeviceId', query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -5459,7 +5459,7 @@ try {
 
 ### sync<sup>8+</sup> ###
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, DelayMs?: number): void
 
 在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
 
@@ -5471,9 +5471,9 @@ sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
+| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| allowedDelayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
+| DelayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
 
 **示例：**
 

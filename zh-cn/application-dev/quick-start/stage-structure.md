@@ -439,7 +439,7 @@ skills示例
 | description | 该标签标识extensionAbility的描述，标签值是是字符串类型或对描述内容的资源索引，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。    |
 | icon        | 该标签标识extensionAbility图标，标签值为资源文件的索引。如果extensionAbility被配置为MainElement，该标签必须配置。 | 字符串     | 该标签可缺省，缺省值为空。    |
 | label       | 该标签标识extensionAbility对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>如果extensionAbility被配置为MainElement，该标签必须配置，且应用内唯一。 | 字符串     | 该标签不可缺省。              |
-| type        | 该标签标识extensionAbility的类型，取值为form、workScheduler、inputMethod、service、accessibility、dataShare、fileShare、staticSubscriber、wallpaper、backup、window其中之一。 | 字符串     | 该标签不可缺省。              |
+| type        | 该标签标识extensionAbility的类型，取值为form、workScheduler、inputMethod、service、accessibility、dataShare、fileShare、staticSubscriber、wallpaper、backup、window、enterpriseAdmin、thumbnail、preview其中之一。 | 字符串     | 该标签不可缺省。              |
 | permissions | 该标签标识被其它应用的ability调用时需要申请的权限的集合，字符串数组类型，每个数组元素为一个权限名称，通常采用反向域名方式表示（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。 | 字符串数组 | 该标签可缺省，缺省值为空。    |
 | uri         | 该标签标识ability提供的数据uri，为字符数组类型（最大长度255），用反向域名的格式表示。该标签在type为dataShare类型的extensionAbility时，不可缺省。 | 字符串     | 该标签可缺省，缺省值为空。    |
 | skills      | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则 : entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。    |
@@ -528,7 +528,7 @@ forms标签表示卡片的配置，form卡片是可以嵌入桌面上并接收�
 | window            | 该标签标识JS卡片的自适应能力。window结构参考表12。           | 对象       | 可缺省，缺省为空。            |
 | isDefault         | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。 true :默认卡片。 false :非默认卡片。 | 布尔值     | 否                            |
 | colorMode         | 表示卡片的主题样式，取值范围如下 : auto :自适应。 dark :深色主题。 light :浅色主题。 | 字符串     | 可缺省，缺省值为“auto”。      |
-| supportDimensions | 表示卡片支持的外观规格，取值范围 : 1 * 2 :表示1行2列的二宫格。 2 * 2 :表示2行2列的四宫格。 2 * 4 :表示2行4列的八宫格。 4 * 4 :表示4行4列的十六宫格。 | 字符串数组 | 否                            |
+| supportDimensions | 表示卡片支持的外观规格，取值范围 : 1 * 2 :表示1行2列的二宫格。 2 * 1 :表示2行1列的二宫格。 2 * 2 :表示2行2列的四宫格。 2 * 4 :表示2行4列的八宫格。 4 * 4 :表示4行4列的十六宫格。 | 字符串数组 | 否                            |
 | defaultDimension  | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 否                            |
 | updateDuration    | 该标签标识卡片定时刷新的更新频率，单位为30分钟，取值为30的倍数值。卡片的最高频率为每30分钟刷新一次，和定点刷新二选一，二者都配置的情况下，定时优先。 | 数值       | 可缺省，缺省为空。            |
 | metadata          | 该标签表示卡片的自定义信息。metadata内部结构参考表5。        | 对象       | 可缺省，缺省为空。            |

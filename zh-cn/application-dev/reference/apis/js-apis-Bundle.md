@@ -2414,7 +2414,9 @@ ExtensionAbility的类型
 | BACKUP<sup>9+</sup> | 9    | ExtensionAbility的类型包括数据备份恢复 |
 | WINDOW<sup>9+</sup> | 10 | ExtensionAbility的类型包括窗口类型扩展信息 |
 | ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | ExtensionAbility的类型包括企业管理员   |
-| UNSPECIFIED<sup>9+</sup>       | 20    | ExtensionAbility未指定类型     |
+| THUMBNAIL<sup>9+</sup> | 13 | ExtensionAbility的类型包括缩略图 |
+| PREVIEW<sup>9+</sup> | 14 | ExtensionAbility的类型包括预览 |
+| UNSPECIFIED<sup>9+</sup>       | 255   | ExtensionAbility未指定类型     |
 
 ## ExtensionFlag<sup>9+</sup>
 

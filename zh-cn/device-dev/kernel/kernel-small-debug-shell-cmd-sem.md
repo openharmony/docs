@@ -18,7 +18,7 @@ sem [_ID__ / fulldata_]
 | 参数 | 参数说明 | 取值范围 | 
 | -------- | -------- | -------- |
 | ID | 信号量ID。 | [0,&nbsp;1023]或[0x0,&nbsp;0x3FF] | 
-| fulldata | 查询所有在用的信号量信息，打印信息包括如下：SemID,&nbsp;Count,&nbsp;Original&nbsp;Count,&nbsp;Creater&nbsp;TaskEntry,&nbsp;Last&nbsp;Access&nbsp;Time。 | N/A | 
+| fulldata | 查询所有在用的信号量信息，打印信息包括如下：SemID,&nbsp;Count,&nbsp;Original&nbsp;Count,&nbsp;Creator&nbsp;TaskEntry,&nbsp;Last&nbsp;Access&nbsp;Time。 | N/A | 
 
 
 ## 使用指南
@@ -84,7 +84,7 @@ OHOS # sem
 ```
 OHOS # sem fulldata
 Used Semaphore List:
-   SemID    Count    OriginalCount   Creater(TaskEntry)    LastAccessTime
+   SemID    Count    OriginalCount   Creator(TaskEntry)    LastAccessTime
    ------   ------   -------------   ------------------    --------------
    0xb      0x0      0x0             0x404978fc            0xa1
    0xc      0x0      0x0             0x404978fc            0xa1
@@ -120,5 +120,5 @@ Used Semaphore List:
 | SemID | 信号量ID。 | 
 | Count | 信号量使用数。 | 
 | OriginalCount | 信号量原始计数。 | 
-| Creater | 信号量的创建线程的入口函数地址。 | 
+| Creator | 信号量的创建线程的入口函数地址。 | 
 | LastAccessTime | 上次访问时间。 | 

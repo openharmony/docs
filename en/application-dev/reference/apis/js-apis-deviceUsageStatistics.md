@@ -1,6 +1,24 @@
 # Device Usage Statistics
 
-> **NOTE**<br>
+This module provides APIs for collecting statistics on device usage.
+
+System applications can call these APIs to implement the following features:
+
+- Query the usage duration in different time segments, events (foreground, background, start and end of continuous tasks), and the number of notifications, on a per application basis.
+- Query statistics about system events (sleep, wakeup, unlock, and screen lock).
+- Query the bundle group information of applications, including the invoking application itself.
+- Query the idle status of applications, including the invoking application itself.
+- Set the bundle group for other applications.
+- Register and deregister the callback for application group changes.
+
+Third-party applications can call these APIs to implement the following features:
+
+- Query the idle status of the invoking application itself.
+- Query the bundle group information of the invoking application itself.
+- Query the events of the invoking application itself.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -23,7 +41,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 | Name       | Type                          | Mandatory  | Description                                      |
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | Yes   | Bundle name of an application.                          |
-| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the value of **bundleName** is valid, **null** will be returned.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. If the value of <b class="+ topic/ph hi-d/b " id="b597417553714">bundleName</b> is valid, <b class="+ topic/ph hi-d/b " id="b1897411555719">null</b> will be returned.|
 
 **Example**
 
@@ -69,7 +87,7 @@ Checks whether the application specified by **bundleName** is in the idle state.
 
 ## bundleState.queryAppUsagePriorityGroup
 
-queryAppUsagePriorityGroup(): Promise\<number>
+queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
 Queries the priority group of this application. This API uses a promise to return the result.
 
@@ -79,7 +97,7 @@ Queries the priority group of this application. This API uses a promise to retur
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| Promise\<number> | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -93,7 +111,7 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 
 ## bundleState.queryAppUsagePriorityGroup
 
-queryAppUsagePriorityGroup(callback: AsyncCallback\<number>): void
+queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
 Queries the priority group of this application. This API uses an asynchronous callback to return the result.
 
@@ -103,20 +121,11 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 | Name     | Type                   | Mandatory  | Description                        |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<number> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
 ```javascript
-// Callback with bundleName
-bundleState.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
-    if(err) {
-        console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
-    } else {
-        console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
-    }
-});
-// Callback without bundleName
 bundleState.queryAppUsagePriorityGroup((err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
@@ -523,7 +532,7 @@ Obtains the number of FA usage records specified by **maxNum**. This API uses an
 
 ## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
 
-queryAppUsagePriorityGroup(bundleName? : string): Promise<number>
+queryAppUsagePriorityGroup(bundleName? : string): Promise&lt;number&gt;
 
 Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This API uses a promise to return the result.
 
@@ -543,13 +552,14 @@ Queries the priority group of the application specified by **bundleName**. If **
 
 | Type             | Description                         |
 | --------------- | --------------------------- |
-| Promise\<number> | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Example**
 
 ```javascript
 // Promise with bundleName
-bundleState.queryAppUsagePriorityGroup(this.bundleName).then( res => {
+let bundleName = "com.ohos.camera";
+bundleState.queryAppUsagePriorityGroup(bundleName).then( res => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
 }).catch( err => {
     console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
@@ -564,7 +574,7 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 
 ## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
 
-queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback\<number>): void
+queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;number&gt;): void
 
 Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This API uses an asynchronous callback to return the result.
 
@@ -579,13 +589,14 @@ Queries the priority group of the application specified by **bundleName**. If **
 | Name       | Type                   | Mandatory  | Description                                      |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
 | bundleName | string                | No   | Bundle name of the target application. If this parameter is not specified, the priority group of the current application is queried.|
-| callback   | AsyncCallback\<number> | Yes   | Callback used to return the result.              |
+| callback   | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.              |
 
 **Example**
 
 ```javascript
 // Callback with bundleName
-bundleState.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
+let bundleName = "com.ohos.camera";
+bundleState.queryAppUsagePriorityGroup(bundleName, (err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
     } else {
@@ -604,7 +615,7 @@ bundleState.queryAppUsagePriorityGroup((err, res) => {
 
 ## bundleState.setBundleGroup<sup>9+</sup>
 
-setBundleGroup(bundleName: string, newGroup: GroupType): Promise\<void>
+setBundleGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 Sets the group for the application specified by **bundleName**. This API uses a promise to return the result.
 
@@ -618,22 +629,22 @@ Sets the group for the application specified by **bundleName**. This API uses a 
 
 | Name       | Type       | Mandatory  | Description  |
 | ---------- | --------- | ---- | ---- |
-| bundleName | string    | Yes   | Bundle name of the target application.|
-| newGroup   | GroupType | Yes   | Application group.|
+| bundleName | string    | Yes   | Bundle name of an application.|
+| newGroup   | [GroupType](#grouptype) | Yes   | Application group.|
 
 **Return value**
 
 | Type           | Description                       |
 | ------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
 ```javascript
-this.bundleName = "com.example.deviceUsageStatistics";
-this.newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+let bundleName = "com.example.deviceUsageStatistics";
+let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
 
-bundleState.setBundleGroup(this.bundleName, this.newGroup).then( () => {
+bundleState.setBundleGroup(bundleName, newGroup).then( () => {
     console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded.');
 }).catch( err => {
     console.log('BUNDLE_ACTIVE SetBundleGroup promise failed. because: ' + err.code);
@@ -642,7 +653,7 @@ bundleState.setBundleGroup(this.bundleName, this.newGroup).then( () => {
 
 ## bundleState.setBundleGroup<sup>9+</sup>
 
-setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback\<void>): void
+setBundleGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the group for the application specified by **bundleName**. This API uses an asynchronous callback to return the result.
 
@@ -656,17 +667,17 @@ Sets the group for the application specified by **bundleName**. This API uses an
 
 | Name       | Type                 | Mandatory  | Description                       |
 | ---------- | ------------------- | ---- | ------------------------- |
-| bundleName | string              | Yes   | Bundle name of the target application.                     |
-| newGroup   | GroupType           | Yes   | Application group.                     |
-| callback   | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+| bundleName | string              | Yes   | Bundle name of an application.                     |
+| newGroup   | [GroupType](#grouptype)           | Yes   | Application group.                     |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
 ```javascript
-this.bundleName = "com.example.deviceUsageStatistics";
-this.newGroup = stats.GroupType.ACTIVE_GROUP_DAILY;
+let bundleName = "com.example.deviceUsageStatistics";
+let newGroup = bundleState.GroupType.ACTIVE_GROUP_DAILY;
 
-bundleState.setBundleGroup(this.bundleName, this.newGroup, (err) => {
+bundleState.setBundleGroup(bundleName, newGroup, (err) => {
     if(err) {
         console.log('BUNDLE_ACTIVE SetBundleGroup callback failed. because: ' + err.code);
     } else {
@@ -677,9 +688,9 @@ bundleState.setBundleGroup(this.bundleName, this.newGroup, (err) => {
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback\<BundleActiveGroupCallbackInfo>): Promise\<void>
+registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
-Registers a callback for application group changes. When an application group of the user changes, **BundleActiveGroupCallbackInfo** is returned to all applications that have registered the callback. This API uses a promise to return the result.
+Registers a callback for application group changes. When an application group of the user changes, a **[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)** instance is returned to all applications that have registered the callback. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -689,26 +700,26 @@ Registers a callback for application group changes. When an application group of
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory  | Description         |
-| -------- | --------------------------------------- | ---- | ----------- |
-| callback | Callback\<BundleActiveGroupCallbackInfo> | Yes   | Callback for application group changes.|
+| Name  | Type                                                        | Mandatory| Description                                      |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)&gt; | Yes  | Callback used to return the application group changes.|
 
 **Return value**
 
 | Type           | Description                     |
 | ------------- | ----------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
 ```javascript
 let onBundleGroupChanged = (err,res) =>{
     console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result oldGroup is : ' + res.oldGroup);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result newGroup is : ' + res.newGroup);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result changeReason is : ' + res.newGroup);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result userId is : ' + res.userId);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result bundleName is : ' + res.bundleName);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result appUsageOldGroup is : ' + res.appUsageOldGroup);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result appUsageNewGroup is : ' + res.appUsageNewGroup);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result changeReason is : ' + res.changeReason);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result userId is : ' + res.userId);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result bundleName is : ' + res.bundleName);
 };
 bundleState.registerGroupCallBack(onBundleGroupChanged).then( () => {
     console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise succeeded.');
@@ -719,9 +730,9 @@ bundleState.registerGroupCallBack(onBundleGroupChanged).then( () => {
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback\<BundleActiveGroupCallbackInfo>, callback: AsyncCallback\<void>): void
+registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Registers a callback for application group changes. When an application group of the user changes, **BundleActiveGroupCallbackInfo** is returned to all applications that have registered the callback. This API uses an asynchronous callback to return the result.
+Registers a callback for application group changes. When an application group of the user changes, a **[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)** instance is returned to all applications that have registered the callback. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -731,21 +742,21 @@ Registers a callback for application group changes. When an application group of
 
 **Parameters**
 
-| Name     | Type                                     | Mandatory  | Description           |
-| -------- | --------------------------------------- | ---- | ------------- |
-| callback | Callback\<BundleActiveGroupCallbackInfo> | Yes   | Callback for application group changes.  |
-| callback | AsyncCallback\<void>                    | Yes   | Callback used to return the result.|
+| Name  | Type                                                        | Mandatory| Description                                        |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
+| callback | Callback&lt;[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)&gt; | Yes  | Callback used to return the application group changes.  |
+| callback | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```javascript
 let onBundleGroupChanged = (err,res) =>{
     console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result's oldGroup is : ' + res.oldGroup);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result's newGroup is : ' + res.newGroup);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result's changeReason is : ' + res.newGroup);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result's userId is : ' + res.userId);
-    console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result's bundleName is : ' + res.bundleName);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result appUsageOldGroup is : ' + res.appUsageOldGroup);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result appUsageNewGroup is : ' + res.appUsageNewGroup);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result changeReason is : ' + res.changeReason);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result userId is : ' + res.userId);
+    console.log('BUNDLE_ACTIVE RegisterGroupCallBack result bundleName is : ' + res.bundleName);
 };
 bundleState.registerGroupCallBack(onBundleGroupChanged, (err)=>{
     if(err) {
@@ -758,7 +769,7 @@ bundleState.registerGroupCallBack(onBundleGroupChanged, (err)=>{
 
 ## bundleState.unRegisterGroupCallBack<sup>9+</sup>
 
-unRegisterGroupCallBack(): Promise\<void>
+unRegisterGroupCallBack(): Promise&lt;void&gt;
 
 Deregisters the callback for application group changes. This API uses a promise to return the result.
 
@@ -774,7 +785,7 @@ Deregisters the callback for application group changes. This API uses a promise 
 
 | Type           | Description                      |
 | ------------- | ------------------------ |
-| Promise\<void> | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -788,7 +799,7 @@ bundleState.unRegisterGroupCallBack().then( () => {
 
 ## bundleState.unRegisterGroupCallBack<sup>9+</sup>
 
-unRegisterGroupCallBack(callback: AsyncCallback\<void>): void;
+unRegisterGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 Deregisters the callback for application group changes. This API uses an asynchronous callback to return the result.
 
@@ -802,7 +813,7 @@ Deregisters the callback for application group changes. This API uses an asynchr
 
 | Name     | Type                 | Mandatory  | Description            |
 | -------- | ------------------- | ---- | -------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -870,7 +881,7 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and scre
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | Yes   | Start time.                                   |
 | end      | number                                   | Yes   | End time.                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Yes   | Promise used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveEventState](#bundleactiveeventstate9)&gt;&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -982,7 +993,7 @@ Provides the FA widget usage information.
 
 | Name             | Type    | Mandatory  | Description         |
 | ---------------- | ------ | ---- | ----------- |
-| formName         | number | Yes   | Widget name.      |
+| formName         | string | Yes   | Widget name.      |
 | formDimension    | number | Yes   | Widget dimensions.      |
 | formId           | number | Yes   | Widget ID.      |
 | formLastUsedTime | number | Yes   | Last time when the widget was clicked.|
@@ -992,15 +1003,15 @@ Provides the FA widget usage information.
 
 Provides the application group changes returned through a callback.
 
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-| Name             | Type    | Mandatory  | Description      |
-| ---------------- | ------ | ---- | -------- |
-| appUsageOldGroup | number | Yes   | Application group before the change.|
-| appUsageNewGroup | number | Yes   | Application group after the change.|
-| useId            | number | Yes   | User ID.    |
-| changeReason     | number | Yes   | Reason for the group change.  |
-| bundleName       | string | Yes   | Bundle name of an application.    |
+| Name          | Type  | Mandatory| Description            |
+| ---------------- | ------ | ---- | ---------------- |
+| appUsageOldGroup | number | Yes  | Application group before the change.|
+| appUsageNewGroup | number | Yes  | Application group after the change.|
+| userId           | number | Yes  | User ID.          |
+| changeReason     | number | Yes  | Reason for the group change.    |
+| bundleName       | string | Yes  | Bundle name of an application.        |
 
 ## BundleStateInfo
 
@@ -1008,11 +1019,11 @@ Provides the usage duration information of applications.
 
 ### Attributes
 
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
 | Name                     | Type    | Mandatory  | Description                                      |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
-| bundleName               | string | Yes   | Bundle name of the application.                                   |
+| bundleName               | string | Yes   | Bundle name of an application.                                   |
 | abilityPrevAccessTime    | number | Yes   | Last time when the application was used.                            |
 | abilityInFgTotalTime     | number | Yes   | Total time that the application runs in the foreground.                            |
 | id                       | number | No   | User ID.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
@@ -1028,8 +1039,6 @@ Provides the usage duration information of applications.
 merge(toMerge: BundleStateInfo): void
 
 Merges the application usage information that has the same bundle name.
-
-This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.
 
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1047,7 +1056,7 @@ Provides information about an application event.
 
 | Name                  | Type    | Mandatory  | Description                                      |
 | --------------------- | ------ | ---- | ---------------------------------------- |
-| bundleName            | string | Yes   | Bundle name of the application.                                   |
+| bundleName            | string | Yes   | Bundle name of an application.                                   |
 | stateType             | number | Yes   | Application event type.                                 |
 | stateOccurredTime     | number | Yes   | Timestamp when the application event occurs.                             |
 | appUsagePriorityGroup | number | No   | Usage priority group of the application.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
@@ -1092,7 +1101,7 @@ Enumerates the interval types for querying the application usage duration.
 | BY_MONTHLY   | 3    | The system obtains the application usage duration statistics in the specified time frame on a monthly basis.             |
 | BY_ANNUALLY  | 4    | The system obtains the application usage duration statistics in the specified time frame on an annual basis.             |
 
-## GroupType
+## GroupType<sup>9+</sup>
 
 Enumerates the application group types.
 

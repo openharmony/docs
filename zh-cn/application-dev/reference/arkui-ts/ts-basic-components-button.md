@@ -28,7 +28,7 @@
   | stateEffect | boolean | 否 | true | 按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。 |
 
 
-- Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+- Button(label?: [ResourceStr](../../ui/ts-types.md), options?: { type?: ButtonType, stateEffect?: boolean })
 
   使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
@@ -36,7 +36,7 @@
   
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | label | string | 否 | - | 按钮文本内容。 |
+  | label | [ResourceStr](../../ui/ts-types.md) | 否 | - | 按钮文本内容。 |
   | options | Object | 否 | - | 见options参数说明。 |
 
 

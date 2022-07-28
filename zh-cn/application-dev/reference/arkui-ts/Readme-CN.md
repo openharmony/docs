@@ -11,6 +11,7 @@
             - [焦点事件](ts-universal-focus-event.md)
             - [鼠标事件](ts-universal-mouse-key.md)
             - [组件区域变化事件](ts-universal-component-area-change-event.md)
+            - [组件可见区域变化事件](ts-universal-component-visible-area-change-event.md)
         - 通用属性
             - [尺寸设置](ts-universal-attributes-size.md)
             - [位置设置](ts-universal-attributes-location.md)
@@ -68,6 +69,7 @@
         - [QRCode](ts-basic-components-qrcode.md)
         - [Radio](ts-basic-components-radio.md)
         - [Rating](ts-basic-components-rating.md)
+        - [RemoteWindow](ts-basic-components-remotewindow.md)
         - [RichText](ts-basic-components-richtext.md)
         - [ScrollBar](ts-basic-components-scrollbar.md)
         - [Search](ts-basic-components-search.md)

@@ -138,7 +138,7 @@ hb set
 1.  Obtain the Docker image.
 
     ```
-    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker-standard:1.0.0
+    docker pull swr.cn-south-1.myhuaweicloud.com/openharmony-docker/openharmony-docker:1.0.0
     ```
 
 2.  Go to the root directory of OpenHarmony code and run the following command to access the Docker build environment:

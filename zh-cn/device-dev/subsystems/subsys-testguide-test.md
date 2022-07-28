@@ -758,7 +758,7 @@ subsystem  # 子系统
 
     当选择完产品形态，可参考如下指令执行测试用例。
 	```
-	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
+	run -t UT -ts CalculatorSubTest -tc integer_sub_00l
 	```
 	执行命令参数说明：
 	```
@@ -798,7 +798,7 @@ subsystem  # 子系统
 
     测试框架在执行用例时会根据指令找到所需用例，自动实现用例编译，执行过程，完成自动化测试。
 	```
-	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
+	run -t UT -ts CalculatorSubTest -tc integer_sub_00l
 	```
 	执行命令参数说明：
 	```
