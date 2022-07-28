@@ -429,7 +429,7 @@ IUserAuthInterface::GetUserInfo([in] int userId, [out] unsigned long secureUid, 
 | -------- | -------- |
 | userId | 用户ID。 | 
 | secureUid | 安全用户ID。 | 
-| pinSubType | 口令认证子类型&nbsp;{\@link&nbsp;PinSubType}。 | 
+| pinSubType | 口令认证子类型，请参考[PinSubType](_hdf_user_auth.md#pinsubtype)。 | 
 | infos | 注册信息[EnrolledInfo](_enrolled_info.md)。 | 
 
 **返回：**
