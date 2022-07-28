@@ -63,7 +63,7 @@ struct PopupExample {
   @Builder popupBuilder() {
     Row({ space: 2 }) {
       Image('/resource/ic_public_thumbsup.svg').width(24).height(24).margin({ left: -5 })
-      Text('Custom Popup').fontSize(12)
+      Text('Custom Popup').fontSize(10)
     }.width(100).height(50).backgroundColor(Color.White)
   }
 

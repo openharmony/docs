@@ -48,7 +48,7 @@ RichText\(content:string\)
 | \<script>\</script> | 用于定义客户端文本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
 
 ## 示例
-
+示例效果请以真机运行为准，当前IDE预览器不支持。
 ```
 @Entry
 @Component
