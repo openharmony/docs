@@ -1,6 +1,6 @@
-# distributedMissionManager
+# 分布式任务管理
 
-distributedMissionManager模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端任务列表、停止同步远端任务列表操作。
+分布式任务管理模块提供跨设备系统任务管理能力，包括注册系统任务状态监听、取消系统任务状态监听、开始同步远端任务列表、停止同步远端任务列表操作。
 
 > **说明：**
 > 
@@ -12,9 +12,6 @@ distributedMissionManager模块提供跨设备系统任务管理能力，包括�
 import distributedMissionManager from '@ohos.distributedMissionManager'
 ```
 
-## 权限列表
-
-ohos.permission.MANAGE_MISSIONS
 
 ## distributedMissionManager.registerMissionListener
 
@@ -32,8 +29,8 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | parameter | <a href="#missiondeviceinfo">MissionDeviceInfo</a> | 是 | 注册监听设备信息。 |
-  | options | <a href="#missioncallback">MissionCallback</a> | 是 | 注册的回调方法。 |
+  | parameter | [MissionDeviceInfo](#missiondeviceinfo) | 是 | 注册监听设备信息。 |
+  | options | [MissionCallback](#missioncallback) | 是 | 注册的回调方法。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **示例：**
@@ -358,7 +355,7 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 | fixConflict | boolean | 是 | 是 | 表示是否存在版本冲突。 | 
 | tag | number | 是 | 是 | 表示特定的标签。 | 
 
-## <a id ="missiondeviceinfo">MissionDeviceInfo</a>
+## MissionDeviceInfo
 
 表示注册监听时所需参数的枚举。
 
