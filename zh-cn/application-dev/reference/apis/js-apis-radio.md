@@ -1753,7 +1753,7 @@ promise.then(data => {
 
 | 名称              | 类型                                                         | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networkType)                                  | 获取服务单元的网络类型。                                     |
+| networkType       | [NetworkType](#networktype)                                  | 获取服务单元的网络类型。                                     |
 | isCamped          | boolean                                                      | 获取服务单元的状态。                                         |
 | timeStamp         | number                                                       | 获取单元格信息时获取时间戳。                                 |
 | signalInformation | [SignalInformation](#signalinformation)                      | 信号信息。                                                   |
