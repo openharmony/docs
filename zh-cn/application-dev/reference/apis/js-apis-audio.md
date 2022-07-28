@@ -94,8 +94,7 @@ var audioRendererOptions = {
 audio.createAudioRenderer(audioRendererOptions,(err, data) => {
   if (err) {
     console.error(`AudioRenderer Created: Error: ${err.message}`);
-  }
-  else {
+  } else {
     console.info('AudioRenderer Created: Success: SUCCESS');
     let audioRenderer = data;
   }
@@ -193,8 +192,7 @@ var audioCapturerOptions = {
 audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
     console.error(`AudioCapturer Created : Error: ${err.message}`);
-  }
-  else {
+  } else {
     console.info('AudioCapturer Created : Success : SUCCESS');
     let audioCapturer = data;
   }
@@ -1918,8 +1916,7 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererCha
     if (err) {
         console.log('getCurrentAudioRendererInfoArray :ERROR: '+err.message);
         resultFlag = false;
-    }
-    else {
+    } else {
         if (AudioRendererChangeInfoArray !=null) {
             for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
                 AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -2015,8 +2012,7 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerCha
   if (err) {
     console.log('getCurrentAudioCapturerInfoArray :ERROR: '+err.message);
     resultFlag = false;
-  }
-  else {
+  } else {
     if (AudioCapturerChangeInfoArray !=null) {
       for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
         console.info('StreamId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
@@ -2315,8 +2311,7 @@ await audioManager.getStreamManager().then(async function (data) {
 audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(Tag+'Get AudioStream Manager : ERROR : '+err.message);
-  }
-  else {
+  } else {
     audioStreamManagerCB = data;
     console.info(Tag+'Get AudioStream Manager : Success ');
   }
@@ -2443,8 +2438,7 @@ promise.then(function (value) {
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != null && deviceRoleValue != null){
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
-  }
-  else{
+  } else {
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
   }
 });
@@ -2596,8 +2590,7 @@ start(callback: AsyncCallback<void\>): void
 audioRenderer.start((err) => {
   if (err) {
     console.error('Renderer start failed.');
-  } 
-  else {
+  } else {
     console.info('Renderer start success.');
   }
 });
@@ -2647,8 +2640,7 @@ pause(callback: AsyncCallback\<void>): void
 audioRenderer.pause((err) => {
   if (err) {
     console.error('Renderer pause failed');
-  } 
-  else {
+  } else {
     console.log('Renderer paused.');
   }
 });
@@ -2698,8 +2690,7 @@ drain(callback: AsyncCallback\<void>): void
 audioRenderer.drain((err) => {
   if (err) {
     console.error('Renderer drain failed');
-  } 
-  else {
+  } else {
     console.log('Renderer drained.');
   }
 });
@@ -2749,8 +2740,7 @@ stop(callback: AsyncCallback\<void>): void
 audioRenderer.stop((err) => {
   if (err) {
     console.error('Renderer stop failed');
-  } 
-  else {
+  } else {
     console.log('Renderer stopped.');
   }
 });
@@ -2800,8 +2790,7 @@ release(callback: AsyncCallback\<void>): void
 audioRenderer.release((err) => {
   if (err) {
     console.error('Renderer release failed');
-  } 
-  else {
+  } else {
     console.log('Renderer released.');
   }
 });
@@ -2962,8 +2951,7 @@ ss.readSync(buf);
 audioRenderer.write(buf).then((writtenbytes) => {
   if (writtenbytes < 0) {
       console.error('write failed.');
-  } 
-  else {
+  } else {
       console.log('Actual written bytes: ' + writtenbytes);
   }
 }).catch((err) => {
@@ -3115,8 +3103,7 @@ setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err) => {
   if (err) {
     console.error('Failed to set params');
-  } 
-  else {
+  } else {
     console.log('Callback invoked to indicate a successful render rate setting.');
   }
 });
@@ -3331,8 +3318,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
         if (started) {
           isPlay = true;
           console.info('AudioInterruptMusic Renderer started : isPlay : '+isPlay);
-        } 
-        else {
+        } else {
           console.error('AudioInterruptMusic Renderer start failed');
         }
         break;
@@ -3341,8 +3327,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
         if (isPlay == true) {
           isPlay == false;
           console.info('AudioInterruptMusic: Media PAUSE : TRUE');
-        }
-        else {
+        } else {
           isPlay = true;
           console.info('AudioInterruptMusic: Media PLAY : TRUE');
         }
@@ -3540,8 +3525,7 @@ getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 audioCapturer.getCapturerInfo((err, capturerInfo) => {
   if (err) {
     console.error('Failed to get capture info');
-  } 
-  else {
+  } else {
     console.log('Capturer getCapturerInfo:');
     console.log('Capturer source:' + capturerInfo.source);
     console.log('Capturer flags:' + capturerInfo.capturerFlags);
@@ -3572,8 +3556,7 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
     console.info('AudioFrameworkRecLog: Capturer CapturerInfo:');
     console.info('AudioFrameworkRecLog: Capturer SourceType:' + audioParamsGet.source);
     console.info('AudioFrameworkRecLog: Capturer capturerFlags:' + audioParamsGet.capturerFlags);
-  }
-  else {
+  } else {
     console.info('AudioFrameworkRecLog: audioParamsGet is : '+ audioParamsGet);
     console.info('AudioFrameworkRecLog: audioParams getCapturerInfo are incorrect: ');
   }
@@ -3660,8 +3643,7 @@ start(callback: AsyncCallback<void\>): void
 audioCapturer.start((err) => {
   if (err) {
     console.error('Capturer start failed.');
-  } 
-  else {
+  } else {
     console.info('Capturer start success.');
   }
 });
@@ -3742,8 +3724,7 @@ stop(callback: AsyncCallback<void\>): void
 audioCapturer.stop((err) => {
   if (err) {
     console.error('Capturer stop failed');
-  } 
-  else {
+  } else {
     console.log('Capturer stopped.');
   }
 });
@@ -3798,8 +3779,7 @@ release(callback: AsyncCallback<void\>): void
 audioCapturer.release((err) => {
   if (err) {
     console.error('capturer release failed');
-  } 
-  else {
+  } else {
     console.log('capturer released.');
   }
 });
