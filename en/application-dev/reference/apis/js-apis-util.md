@@ -1913,8 +1913,7 @@ Checks whether the input value is of the **native external** type.
 **Example**
   ```js
   var that = new util.types();
-  const data = util.createExternalType();
-  var result = that.isExternal(data);
+  var result = that.isExternal(true);
   ```
 
 
