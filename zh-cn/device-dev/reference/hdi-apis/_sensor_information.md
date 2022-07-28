@@ -13,17 +13,17 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+| Public&nbsp;属性 | 描述 |
 | -------- | -------- |
-| [sensorName](#sensorname)&nbsp;[[SENSOR_NAME_MAX_LEN](_sensor.md#sensornamemaxlen)] | 传感器名称。 | 
-| [vendorName](#vendorname)&nbsp;[[SENSOR_NAME_MAX_LEN](_sensor.md#sensornamemaxlen)] | 传感器设备厂商。 | 
-| [firmwareVersion](#firmwareversion)&nbsp;[[SENSOR_VERSION_MAX_LEN](_sensor.md#sensorversionmaxlen)] | 传感器固件版本号。 | 
-| [hardwareVersion](#hardwareversion)<br/>[[SENSOR_VERSION_MAX_LEN](_sensor.md#sensorversionmaxlen)] | 传感器硬件版本号。 | 
-| [sensorTypeId](#sensortypeid) | 传感器类型编号， | 
-| [sensorId](#sensorid) | 传感器的标识号，有传感器驱动开发者定义。 | 
-| [maxRange](#maxrange) | 传感器的最大量程。 | 
-| [accuracy](#accuracy) | 传感器的精度。 | 
-| [power](#power) | 传感器的功耗。 | 
+| [sensorName](#sensorname)&nbsp;[[SENSOR_NAME_MAX_LEN](_sensor.md#sensornamemaxlen)] | 传感器名称。 |
+| [vendorName](#vendorname)&nbsp;[[SENSOR_NAME_MAX_LEN](_sensor.md#sensornamemaxlen)] | 传感器设备厂商。 |
+| [firmwareVersion](#firmwareversion)&nbsp;[[SENSOR_VERSION_MAX_LEN](_sensor.md#sensorversionmaxlen)] | 传感器固件版本号。 |
+| [hardwareVersion](#hardwareversion)<br/>[[SENSOR_VERSION_MAX_LEN](_sensor.md#sensorversionmaxlen)] | 传感器硬件版本号。 |
+| [sensorTypeId](#sensortypeid) | 传感器类型编号。 |
+| [sensorId](#sensorid) | 传感器的标识号，由传感器驱动开发者定义。 |
+| [maxRange](#maxrange) | 传感器的最大量程。 |
+| [accuracy](#accuracy) | 传感器的精度。 |
+| [power](#power) | 传感器的功耗。 |
 
 
 ## **详细描述**
@@ -42,7 +42,7 @@
 
 ### accuracy
 
-  
+
 ```
 float SensorInformation::accuracy
 ```
@@ -54,7 +54,7 @@ float SensorInformation::accuracy
 
 ### firmwareVersion
 
-  
+
 ```
 char SensorInformation::firmwareVersion[SENSOR_VERSION_MAX_LEN]
 ```
@@ -66,7 +66,7 @@ char SensorInformation::firmwareVersion[SENSOR_VERSION_MAX_LEN]
 
 ### hardwareVersion
 
-  
+
 ```
 char SensorInformation::hardwareVersion[SENSOR_VERSION_MAX_LEN]
 ```
@@ -78,7 +78,7 @@ char SensorInformation::hardwareVersion[SENSOR_VERSION_MAX_LEN]
 
 ### maxRange
 
-  
+
 ```
 float SensorInformation::maxRange
 ```
@@ -90,19 +90,19 @@ float SensorInformation::maxRange
 
 ### sensorId
 
-  
+
 ```
 int32_t SensorInformation::sensorId
 ```
 
 **描述：**
 
-传感器的标识号，有传感器驱动开发者定义。
+传感器的标识号，由传感器驱动开发者定义。
 
 
 ### sensorName
 
-  
+
 ```
 char SensorInformation::sensorName[SENSOR_NAME_MAX_LEN]
 ```
@@ -114,7 +114,7 @@ char SensorInformation::sensorName[SENSOR_NAME_MAX_LEN]
 
 ### sensorTypeId
 
-  
+
 ```
 int32_t SensorInformation::sensorTypeId
 ```
@@ -126,7 +126,7 @@ int32_t SensorInformation::sensorTypeId
 
 ### vendorName
 
-  
+
 ```
 char SensorInformation::vendorName[SENSOR_NAME_MAX_LEN]
 ```
@@ -138,7 +138,7 @@ char SensorInformation::vendorName[SENSOR_NAME_MAX_LEN]
 
 ### power
 
-  
+
 ```
 char SensorInformation::power
 ```
