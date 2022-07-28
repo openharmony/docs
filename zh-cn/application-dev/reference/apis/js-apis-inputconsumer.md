@@ -83,7 +83,7 @@ inputConsumer.off('key', keyOptions, callback);
 
 此接口为系统接口。
 
-**系统能力：**SystemCapability.MultimodalInput.Input.InputConsumer
+**系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
   | 参数 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
