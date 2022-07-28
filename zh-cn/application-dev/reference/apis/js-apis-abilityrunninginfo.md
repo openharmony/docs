@@ -25,9 +25,9 @@ abilitymanager.getAbilityRunningInfos((err,data) => {
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | 是 | 否 | Ability匹配信息  | 
-| pid | number | 是 | 否 | 进程ID。 | 
-| uid | number | 是 | 否 | 用户ID。  | 
-| processName | string | 是 | 否 | 进程名称。  | 
-| startTime | number | 是 | 否 | Ability启动时间。  | 
-| abilityState | [abilityManager.AbilityState](js-apis-abilityManager.md#abilityState) | 是 | 否 | Ability状态。  | 
+| ability | ElementName | 是 | 否 | Ability匹配信息  |
+| pid | number | 是 | 否 | 进程ID。 |
+| uid | number | 是 | 否 | 用户ID。  |
+| processName | string | 是 | 否 | 进程名称。  |
+| startTime | number | 是 | 否 | Ability启动时间。  |
+| abilityState | [abilityManager.AbilityState](js-apis-application-abilityManager.md#abilitystate) | 是 | 否 | Ability状态。  |
