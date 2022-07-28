@@ -23,6 +23,7 @@ zh-cn/device-dev/quick-start/ @li-yan339
 zh-cn/device-dev/driver/ @li-yan339
 zh-cn/device-dev/get-code/ @li-yan339
 zh-cn/device-dev/hpm-part/ @duangavin123_admin
+zh-cn/device-dev/reference/hdi-apis/ @li-yan339
 zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23
 zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23
 zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23
