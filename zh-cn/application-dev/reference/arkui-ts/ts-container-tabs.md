@@ -29,10 +29,10 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
   | controller | [TabsController](#tabscontroller) | 否 | - | 设置Tabs控制器。 |
 
 - BarPosition枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Start | vertical属性方法设置为true时，页签位于容器左侧；vertical属性方法设置为false时，页签位于容器顶部。 | 
-  | End | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 | 
+  | Start | vertical属性方法设置为true时，页签位于容器左侧；vertical属性方法设置为false时，页签位于容器顶部。 |
+  | End | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 |
 
 
 ## 属性
@@ -41,25 +41,25 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| vertical | boolean | 是否为纵向Tab，默认为false。 | 是否为纵向Tab，默认为false。 |
-| scrollable | boolean | 是否可以通过左右滑动进行页面切换，默认为true。 | 是否可以通过左右滑动进行页面切换，默认为true。 |
-| barMode | BarMode  | TabBar布局模式。 | TabBar布局模式。 |
-| barWidth | number | TabBar的宽度值，不设置时使用系统主题中的默认值。 | TabBar的宽度值，不设置时使用系统主题中的默认值。 |
-| barHeight | number | TabBar的高度值，不设置时使用系统主题中的默认值。 | TabBar的高度值，不设置时使用系统主题中的默认值。 |
+| vertical | boolean | false | 是否为纵向Tab，默认为false。 |
+| scrollable | boolean | true | 是否可以通过左右滑动进行页面切换，默认为true。 |
+| barMode | BarMode  | BarMode.Fixed | TabBar布局模式。 |
+| barWidth | number | - | TabBar的宽度值，不设置时使用系统主题中的默认值。 |
+| barHeight | number | -             | TabBar的高度值，不设置时使用系统主题中的默认值。 |
 | animationDuration | number | 200 | TabContent滑动动画时长。 |
 
 - BarMode枚举说明
-  | 名称 | 描述 | 
+  | 名称 | 描述 |
   | -------- | -------- |
-  | Scrollable | TabBar使用实际布局宽度,&nbsp;超过总长度后可滑动。 | 
-  | Fixed | 所有TabBar平均分配宽度。 | 
+  | Scrollable | TabBar使用实际布局宽度,&nbsp;超过总长度后可滑动。 |
+  | Fixed | 所有TabBar平均分配宽度。 |
 
 
 ## 事件
 
-| 名称 | 功能描述 | 
+| 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。 | 
+| onChange(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。 |
 
 ## TabsController
 
@@ -79,7 +79,7 @@ changeIndex(value: number): void
 控制Tabs切换到指定页签。
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | 是 | - | 页签在Tabs里的索引值，索引值从0开始。 |
 
