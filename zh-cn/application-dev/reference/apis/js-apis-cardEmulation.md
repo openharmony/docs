@@ -19,7 +19,7 @@ isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -39,7 +39,7 @@ startHCE(aidList: string[]): boolean
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -55,7 +55,7 @@ stopHCE(): boolean
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力：** SystemCapability.Communication.NFC
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 ### on
 
@@ -65,7 +65,7 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -82,7 +82,7 @@ sendResponse(responseApdu: number[]): void;
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 
