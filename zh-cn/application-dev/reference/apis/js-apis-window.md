@@ -1970,6 +1970,57 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 windowClass.off('touchOutside');
 ```
 
+### on('screenshot')<sup>9+</sup>
+
+on(type: 'screenshot', callback: Callback&lt;void&gt;): void
+
+开启截屏事件的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'screenshot'，即截屏事件。 |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。发生截屏事件时的回调。                               |
+
+**示例：**
+
+```js
+windowClass.on('screenshot', () => {
+    console.info('screenshot happened');
+});
+```
+
+### off('screenshot')<sup>9+</sup>
+
+off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
+
+关闭截屏事件的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'screenshot'，即截屏事件。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。发生截屏事件时的回调。 |
+
+**示例：**
+
+```js
+var callback = ()=>{
+    console.info('screenshot happened');
+}
+windowClass.on('screenshot', callback)
+windowClass.off('screenshot', callback)
+
+// 如果通过on开启多个callback进行监听，同时关闭所有监听：
+windowClass.off('screenshot');
+```
+
 ### isSupportWideGamut<sup>8+</sup>
 
 isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -2686,6 +2737,59 @@ promise.then((data)=> {
     console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+});
+```
+
+### snapshot<sup>9+</sup>
+
+snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+获取窗口截图，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名      | 类型                      | 必填 | 说明                 |
+| ----------- | ------------------------- | ---- | -------------------- |
+| callback    | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是   | 回调函数。  |
+
+**示例：**
+
+```js
+windowClass.snapshot((err, data) => {
+    if (err.code) {
+        console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    data.release(); // PixelMap使用完后及时释放内存
+});
+```
+
+### snapshot<sup>9+</sup>
+
+snapshot(): Promise&lt;image.PixelMap&gt;
+
+获取窗口截图，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+
+**示例：**
+
+```js
+let promise = windowClass.snapshot();
+promise.then((pixelMap)=> {
+    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // PixelMap使用完后及时释放内存
+}).catch((err)=>{
+    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
 });
 ```
 
