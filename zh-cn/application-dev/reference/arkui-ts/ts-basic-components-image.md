@@ -215,8 +215,8 @@ struct ImageExample2 {
 @Entry
 @Component
 struct ImageExample3 {
-  @State width: number = 0
-  @State height: number = 0
+  @State widthValue: number = 0
+  @State heightValue: number = 0
   private on: Resource = $r('app.media.wifi_on')
   private off: Resource = $r('app.media.wifi_off')
   private on2off: Resource = $r('app.media.wifi_on2off')
@@ -236,13 +236,13 @@ struct ImageExample3 {
             .objectFit(ImageFit.Cover)
             .height(180).width(180)
             .onComplete((msg: { width: number,height: number }) => {
-              this.width = msg.width
-              this.height = msg.height
+              this.widthValue = msg.width
+              this.heightValue = msg.height
             })
             .onError(() => {
               console.log('load image fail')
             })
-            .overlay('\nwidth: ' + String(this.width) + ' height: ' + String(this.height), {
+            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
               align: Alignment.Bottom,
               offset: { x: 0, y: 20 }
             })
