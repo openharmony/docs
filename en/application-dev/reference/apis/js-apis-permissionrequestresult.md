@@ -1,19 +1,13 @@
 # PermissionRequestResult
 
+The **PermissionRequestResult** module provides the result of a permission request.
+
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
-Provides the permission request result.
-
-## Modules to Import
-
-```js
-import Ability from '@ohos.application.Ability'
-```
-
-## How to Use
+## Usage
 
 The permission request result is obtained through an **AbilityStage** instance.
 
