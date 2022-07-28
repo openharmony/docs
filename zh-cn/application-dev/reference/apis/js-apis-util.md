@@ -1910,8 +1910,7 @@ isExternal(value: Object): boolean
 **示例：**
   ```js
   var that = new util.types();
-  const data = util.createExternalType();
-  var result = that.isExternal(data);
+  var result = that.isExternal(true);
   ```
 
 
