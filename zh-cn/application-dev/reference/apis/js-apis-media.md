@@ -274,15 +274,15 @@ Codec MIME类型枚举。
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioPlayer。
 
-| 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
-| ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
-| loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。          
-| audioInterruptMode<sup>9+</sup>        | [InterruptMode](#interruptmode9)                   | 是   | 是   | 音频焦点模型。       |
-| currentTime | number                    | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
-| duration    | number                    | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
-| state       | [AudioState](#audiostate) | 是   | 否   | 音频播放的状态。                                             |
-
+| 名称                            | 类型                                | 可读 | 可写 | 说明                                                         |
+| ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| src                             | string                              | 是   | 是   | 音频媒体URI，支持当前主流的视频格式(m4a、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>**需要权限：** ohos.permission.READ_MEDIA；如果需要使用网络素材，还需要申请ohos.permission.INTERNET。 |
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#interruptmode9) | 是   | 是   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; lengt = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/>**注意事项**：<br/>**需要权限：** ohos.permission.READ_MEDIA； |
+| loop                            | boolean                             | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
+| audioInterruptMode<sup>9+</sup> | [InterruptMode](#interruptmode9)    | 是   | 是   | 音频焦点模型。                                               |
+| currentTime                     | number                              | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
+| duration                        | number                              | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
+| state                           | [AudioState](#audiostate)           | 是   | 否   | 可以查询音频播放的状态，该状态不可作为调用play/pause/stop等状态切换的触发条件。 |
 ### play<a name=audioplayer_play></a>
 
 play(): void
@@ -649,19 +649,33 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 **系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioPlayer。
 
-| 名称               | 类型   | 描述           |
-| ------------------ | ------ | -------------- |
-| idle               | string | 音频播放空闲。 |
-| playing            | string | 音频正在播放。 |
-| paused             | string | 音频暂停播放。 |
-| stopped            | string | 音频播放停止。 |
-| error<sup>8+</sup> | string | 错误状态。     |
+| 名称               | 类型   | 描述                                           |
+| ------------------ | ------ | ---------------------------------------------- |
+| idle               | string | 音频播放空闲，dateload/reset成功后处于此状态。 |
+| playing            | string | 音频正在播放，play成功后处于此状态。           |
+| paused             | string | 音频暂停播放，pause成功后处于此状态。          |
+| stopped            | string | 音频播放停止，stop/播放结束后处于此状态。      |
+| error<sup>8+</sup> | string | 错误状态。                                     |
+
+## AVFileDescriptor<sup>9+</sup>
+
+音视频文件资源描述，一种特殊资源的播放方式，使用场景：应用中的音频资源被连续存储在同一个文件中，需要根据偏移量和长度进行播放。
+
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取       |
+| offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误 |
+| length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误 |
 
 ## InterruptMode<sup>9+</sup>
 
-枚举，焦点模型。
+音频焦点模式。
 
-**系统能力：** SystemCapability.Multimedia.Audio.InterruptMode
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
 | 名称                         | 默认值 | 描述       |
 | ---------------------------- | ------ | ---------- |
@@ -680,7 +694,8 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>**需要权限：** ohos.permission.READ_MEDIA；如果需要使用网络素材，还需要申请ohos.permission.INTERNET。 |
+| fdSrc<sup>9+</sup> | [AVFileDescriptor](#interruptmode9) | 是 | 是 | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; lengt = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/>**注意事项**：<br/>**需要权限：** ohos.permission.READ_MEDIA； |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | 是   | 是   | 视频缩放模式。       |
 | audioInterruptMode<sup>9+</sup>        | [InterruptMode](#interruptmode9)                   | 是   | 是   | 音频焦点模型。       |
@@ -1350,7 +1365,7 @@ videoPlayer.setSpeed(speed).then() => {
 
 selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
 
-通过回调方式设置码率，通过[availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>)获取当前码流支持的Bitrate。
+通过回调方式设置码率，通过[availableBitratesCollect](#on('availableBitratesCollect')<sup>9+</sup>)获取当前码流支持的Bitrate。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1378,7 +1393,7 @@ videoPlayer.selectBitrate(bitrate, (err, result) => {
 
 selectBitrate(bitrate:number): Promise\<number>
 
-通过Promise方式设置码率，通过[availableBitrateCollected](#on('availableBitrateCollected')<sup>9+</sup>)获取当前码流支持的Bitrate。
+通过Promise方式设置码率，通过[availableBitratesCollect](#on('availableBitratesCollect')<sup>9+</sup>)获取当前码流支持的Bitrate。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1525,9 +1540,9 @@ videoPlayer.on('error', (error) => {      // 设置'error'事件回调
 videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
 
-### on('availableBitrateCollected')<sup>9+</sup>
+### on('availableBitratesCollect')<sup>9+</sup>
 
-on(type: 'availableBitrateCollected', callback: (bitrates: Array<number>) => void): void
+on(type: 'availableBitratesCollect', callback: (bitrates: Array<number>) => void): void
 
 开始监听视频播放码率上报事件。
 
@@ -1537,15 +1552,15 @@ on(type: 'availableBitrateCollected', callback: (bitrates: Array<number>) => voi
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 视频播放码率上报事件回调类型，支持的事件：'availableBitrateCollected'，只在开始播放时候上报一次 |
-| callback | function | 是   | 视频播放码率事件回调方法，使用数组存放支持的码率。      |
+| type     | string   | 是   | 视频播放码率上报事件回调类型，支持的事件：'availableBitratesCollect'，只在开始播放时候上报一次 |
+| callback | function | 是   | 视频播放码率事件回调方法，使用数组存放支持的码率。           |
 
 **示例：**
 
 ```js
-videoPlayer.on('availableBitrateCollected', (bitrates) => {
+videoPlayer.on('availableBitratesCollect', (bitrates) => {
     for (let i = 0; i < bitrates.length; i++) {
-        console.info('case availableBitrateCollected bitrates: '  + bitrates[i]);  //打印支持的码率
+        console.info('case availableBitratesCollect bitrates: '  + bitrates[i]);  //打印支持的码率
     }
 });
 ```
@@ -2512,7 +2527,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>文件需要由调用者创建，并赋予适当的权限。 |
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/>**需要权限：** ohos.permission.READ_MEDIA； |
 
 ## AudioSourceType<sup>9+</sup>
 
