@@ -13,11 +13,11 @@
 
 ### 类
 
-  | 类 | 描述 | 
+| 类 | 描述 |
 | -------- | -------- |
-| LightFlashEffect | 定义闪烁参数。&nbsp;[更多...](_light_flash_effect.md) | 
-| LightEffect | 定义灯的效果参数。&nbsp;[更多...](_light_effect.md) | 
-| LightInfo | 定义灯的基本信息。&nbsp;[更多...](_light_info.md) | 
+| LightFlashEffect | 定义闪烁参数。&nbsp;[更多...](_light_flash_effect.md) |
+| LightEffect | 定义灯的效果参数。&nbsp;[更多...](_light_effect.md) |
+| LightInfo | 定义灯的基本信息。&nbsp;[更多...](_light_info.md) |
 
 
 ## **详细描述**
@@ -27,3 +27,7 @@
 **Since：**
 
 3.1
+
+**Version：**
+
+1.0
