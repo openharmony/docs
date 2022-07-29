@@ -463,7 +463,6 @@
     - [Startup](subsystems/subsys-boot-overview.md)
     - [init Module](subsystems/subsys-boot-init.md)
     - [appspawn Module](subsystems/subsys-boot-appspawn.md)
-    - [appspawn Module for the Standard System](subsystems/subsys-boot-appspawn-standard.md)
     - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
     - [syspara Module](subsystems/subsys-boot-syspara.md)
     - [FAQs](subsystems/subsys-boot-faqs.md)
