@@ -1184,6 +1184,45 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
     }
   }
   ```
+### onPermissionRequest<sup>9+</sup>
+
+onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
+
+通知收到获取权限请求。
+
+**参数：**
+| 参数名     | 参数类型                                 | 参数描述             |
+| ------- | ------------------------------------ | ---------------- |
+| request | [PermissionRequest](#permissionrequest9) | 通知Web组件用户操作行为。   |
+
+  **示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .onPermissionRequest((event) => {
+          AlertDialog.show({
+            title: 'title',
+            message: 'text',
+            confirm: {
+              value: 'onConfirm',
+              action: () => {
+                event.request.grant(event.request.getAccessibleResource());
+              }
+            },
+            cancel: () => {
+             event.request.deny();
+            }
+          })
+        })
+    }
+  }
+  ```
 
 ## ConsoleMessage
 
@@ -1592,6 +1631,52 @@ isHttpAuthInfoSaved(): boolean
 | 类型      | 说明                        |
 | ------- | ------------------------- |
 | boolean | 存在密码认证成功返回true，其他返回false。 |
+
+## PermissionRequest<sup>9+</sup>
+
+Web组件返回的权限管理请求授权或拒绝权限功能对象。示例代码参考[onPermissionRequest事件](#onpermissionrequest9)。
+
+### deny<sup>9+</sup>
+
+deny(): void
+
+拒绝网页所请求的权限。
+
+### getOrigin<sup>9+</sup>
+
+getOrigin(): string
+
+获取网页来源。
+
+**返回值：**
+
+| 类型      | 说明                    |
+| ------- | --------------------- |
+| string  | 当前请求权限网页的来源。 |
+
+### getAccessibleResource<sup>9+</sup>
+
+getAccessibleResource(): Array\<string\>
+
+获取网页所请求的权限资源列表操作，资源列表类型参考[ProtectedResourceType](#protectedresourcetype9枚举说明)。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| Array\<string\> | 网页所请求的权限资源列表。 |
+
+### grant<sup>9+</sup>
+
+grant(resources: Array\<string\>): void
+
+对网页访问的给定权限进行授权操作。
+
+**参数：**
+
+| 参数名     | 参数类型        | 必填 | 默认值 | 参数描述                |
+| --------- | --------------- | ---- | ----- | ---------------------- |
+| resources | Array\<string\> | 是   | -     | 网页所请求的权限资源列表。|
 
 ## WebController
 
@@ -3075,3 +3160,9 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Img           | HTML::img标签。             |
 | Map           | 地理地址。                    |
 | Unknown       | 未知内容。                    |
+
+## ProtectedResourceType<sup>9+</sup>枚举说明
+
+| 名称      | 描述                 |
+| --------- | -------------------- |
+| MidiSysex | MIDI SYSEX资源。      |
