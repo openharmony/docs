@@ -30,8 +30,8 @@ Components of the Window Manager subsystem are described as follows:
 
 ```text
 foundation/window/window_manager/
-├── dm                      # Display Manager Client implementation code
-├── dmserver                # Display Manager Server implementation code
+├── dm                      # Implementation code of Display Manager Client
+├── dmserver                # Implementation code of Display Manager Server
 ├── interfaces              # External APIs
 │   ├── innerkits           # Native APIs
 │   └── kits                # JS APIs and native APIs
@@ -39,8 +39,8 @@ foundation/window/window_manager/
 ├── sa_profile              # System service configuration files
 ├── snapshot                # Implementation code of the screenshot command line tool
 ├── utils                   # Utilities
-├── wm                      # Window Manager Client implementation code
-├── wmserver                # Window Manager Server implementation code
+├── wm                      # Implementation code of Window Manager Client
+├── wmserver                # Implementation code of Window Manager Server
 ```
 
 ## Constraints
