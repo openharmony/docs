@@ -27,19 +27,19 @@ import window from '@ohos.window';
 | ----------------- | ------ | ------------------ |
 | TYPE_APP          | 0      | 表示应用子窗口。此接口仅可在FA模型下使用。 |
 | TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
-| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。此接口仅可在Stage模型下使用。<br>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_KEYGUARD<sup>9+</sup>     | 5      | 表示锁屏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | 表示音量条。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | 表示导航栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
+| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。此接口仅可在Stage模型下使用。<br>此接口为系统接口。 |
+| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_KEYGUARD<sup>9+</sup>     | 5      | 表示锁屏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | 表示音量条。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | 表示导航栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
 | TYPE_FLOAT<sup>9+</sup> | 8      | 表示悬浮窗。此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
-| TYPE_WALLPAPER<sup>9+</sup> | 9      | 表示壁纸。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_DESKTOP<sup>9+</sup> | 10      | 表示桌面。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | 表示多任务中心。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
-| TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。此接口仅可在Stage模型下使用。<br/>此接口为系统接口，三方应用不支持调用。 |
+| TYPE_WALLPAPER<sup>9+</sup> | 9      | 表示壁纸。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_DESKTOP<sup>9+</sup> | 10      | 表示桌面。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | 表示多任务中心。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -58,7 +58,7 @@ import window from '@ohos.window';
 
 窗口模式枚举。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -74,7 +74,7 @@ import window from '@ohos.window';
 
 窗口布局模式枚举。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -123,7 +123,7 @@ import window from '@ohos.window';
 
 单个导航栏或状态栏回调信息。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -139,7 +139,7 @@ import window from '@ohos.window';
 
 当前系统栏回调信息集合。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -544,7 +544,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 最小化某显示设备下的所有窗口。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -582,7 +582,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 最小化某显示设备下的所有窗口。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -624,7 +624,7 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 多窗口快速切换时隐藏或者恢复应用窗口。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -651,7 +651,7 @@ toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
 
 多窗口快速切换时隐藏或者恢复应用窗口。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -677,7 +677,7 @@ setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;)
 
 设置窗口布局模式。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -701,7 +701,7 @@ setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
 
 设置窗口布局模式。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -734,7 +734,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 开启状态栏、导航栏属性变化的监听。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -759,7 +759,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 关闭状态栏、导航栏属性变化的监听。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -788,7 +788,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 隐藏当前窗口，使用callback异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -816,7 +816,7 @@ hide(): Promise&lt;void&gt;
 
 隐藏当前窗口，使用Promise异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1066,7 +1066,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口类型，使用callback异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1096,7 +1096,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 设置窗口类型，使用Promise异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1929,7 +1929,7 @@ windowClass.off('keyboardHeightChange');
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 开启本窗口区域范围外的点击事件的监听。
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1953,7 +1953,7 @@ windowClass.on('touchOutside', () => {
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 关闭本窗口区域范围外的点击事件的监听。
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1968,6 +1968,57 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 ```js
 windowClass.off('touchOutside');
+```
+
+### on('screenshot')<sup>9+</sup>
+
+on(type: 'screenshot', callback: Callback&lt;void&gt;): void
+
+开启截屏事件的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'screenshot'，即截屏事件。 |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。发生截屏事件时的回调。                               |
+
+**示例：**
+
+```js
+windowClass.on('screenshot', () => {
+    console.info('screenshot happened');
+});
+```
+
+### off('screenshot')<sup>9+</sup>
+
+off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
+
+关闭截屏事件的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'screenshot'，即截屏事件。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。发生截屏事件时的回调。 |
+
+**示例：**
+
+```js
+var callback = ()=>{
+    console.info('screenshot happened');
+}
+windowClass.on('screenshot', callback)
+windowClass.off('screenshot', callback)
+
+// 如果通过on开启多个callback进行监听，同时关闭所有监听：
+windowClass.off('screenshot');
 ```
 
 ### isSupportWideGamut<sup>8+</sup>
@@ -2256,7 +2307,7 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。
+> **说明：** 从API version 9开始废弃。该API不支持使用。
 > 
 > 从 API version 7开始支持。
 
@@ -2287,7 +2338,7 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃。
+> **说明：** 从API version 9开始废弃。该API不支持使用。
 > 
 > 从 API version 7开始支持。
 
@@ -2442,7 +2493,7 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 设置是否允许可点击子窗口之外的区域，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。
+> **说明：** 从API version 9开始废弃。该API不支持使用。
 > 
 > 从 API version 7开始支持。
 
@@ -2473,7 +2524,7 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
 
-> **说明：** 从API version 9开始废弃。
+> **说明：** 从API version 9开始废弃。该API不支持使用。
 > 
 > 从 API version 7开始支持。
 
@@ -2630,7 +2681,7 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 
 设置窗口在分屏模式下是否被禁止移动，使用callback异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2661,7 +2712,7 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
 设置窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2686,6 +2737,59 @@ promise.then((data)=> {
     console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+});
+```
+
+### snapshot<sup>9+</sup>
+
+snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+获取窗口截图，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名      | 类型                      | 必填 | 说明                 |
+| ----------- | ------------------------- | ---- | -------------------- |
+| callback    | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是   | 回调函数。  |
+
+**示例：**
+
+```js
+windowClass.snapshot((err, data) => {
+    if (err.code) {
+        console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    data.release(); // PixelMap使用完后及时释放内存
+});
+```
+
+### snapshot<sup>9+</sup>
+
+snapshot(): Promise&lt;image.PixelMap&gt;
+
+获取窗口截图，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+
+**示例：**
+
+```js
+let promise = windowClass.snapshot();
+promise.then((pixelMap)=> {
+    console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // PixelMap使用完后及时释放内存
+}).catch((err)=>{
+    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -3112,7 +3216,7 @@ disableWindowDecor(): void
 
 此接口仅可在Stage模型下使用。
 
-此接口为系统接口，三方应用不支持调用。
+此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

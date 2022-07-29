@@ -1,15 +1,15 @@
-# Search
+# search
 
 
-提供搜索框组件，用于提供用户搜索内容的输入区域，具体用法请参考[Search](../reference/arkui-js/js-components-basic-search.md)。
+提供搜索框组件，用于提供用户搜索内容的输入区域，具体用法请参考[search](../reference/arkui-js/js-components-basic-search.md)。
 
 
-## 创建Search组件
+## 创建search组件
 
-在pages/index目录下的hml文件中创建一个Search组件。
+在pages/index目录下的hml文件中创建一个search组件。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <search></search>
@@ -17,7 +17,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -37,7 +37,7 @@
 通过设置hint、icon和searchbutton属性设置搜索框的提示文字、图标和末尾搜索按钮的内容。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <search hint="Please enter the search content"  searchbutton="search" icon="/common/search1.png"></search>
@@ -45,7 +45,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -65,7 +65,7 @@
 通过color、placeholder和caret-color样式来设置搜索框的文本颜色、提示文本颜色和光标颜色。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <search hint="Please enter the search content"  searchbutton="search" ></search>
@@ -73,7 +73,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -93,10 +93,10 @@ search{
 
 ## 绑定事件
 
-向Search组件添加change、search、submit、share和translate事件，对输入信息进行操作。
+向search组件添加change、search、submit、share和translate事件，对输入信息进行操作。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text style="margin-left: -7px;">
@@ -109,7 +109,7 @@ search{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -128,7 +128,7 @@ text{
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt'
 export default {
@@ -170,14 +170,14 @@ export default {
 
 ## 场景示例
 
-在本场景中通过下拉菜单选择Search、Textarea和Input组件来实现搜索和输入效果。
+在本场景中通过下拉菜单选择search、Textarea和Input组件来实现搜索和输入效果。
 
 
-```
+```html
 <!-- xxx.hml-->
 <div style="flex-direction: column;align-items: center;justify-content: center; width: 100%;">
   <select class="slt1" id="slt1" onchange="setfield">
-    <option value="search">Search</option>
+    <option value="search">search</option>
     <option value="textarea">Textarea</option>
     <option value="input">Input</option>
   </select>
@@ -197,7 +197,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .field {
   width: 80%;
@@ -214,7 +214,7 @@ export default {
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt';
 export default {

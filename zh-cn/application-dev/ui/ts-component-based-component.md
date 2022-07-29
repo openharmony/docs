@@ -12,19 +12,20 @@
 - 数据驱动更新：由状态变量的数据驱动，实现UI自动更新。
 
 
-对组件化的深入描述，请参考深入理解组件化。
+对组件化的深入描述，请参考[深入理解组件化](ts-custom-component-initialization.md)。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 自定义组件必须定义build方法。
-> 
-> - 自定义组件禁止自定义构造函数。
+>  **说明：**
+>
+>  - 自定义组件必须定义build方法。
+>
+>  - 自定义组件禁止自定义构造函数。
 
 
 如下代码定义了MyComponent组件：
 
 
-```
+```ts
 @Component
 struct MyComponent {
     build() {
@@ -43,7 +44,7 @@ MyComponent的build方法会在初始渲染时执行，此外，当组件中的�
 以下代码使用了MyComponent组件：
 
 
-```
+```ts
 @Component
 struct ParentComponent {
     build() {
@@ -60,7 +61,7 @@ struct ParentComponent {
 可以多次使用MyComponent，并在不同的组件中进行重用：
 
 
-```
+```ts
 @Component
 struct ParentComponent {
     build() {
@@ -78,11 +79,11 @@ struct ParentComponent {
         }
     }
 
-    private aboutToAppear() {
+    aboutToAppear() {
         console.log('ParentComponent: Just created, about to become rendered first time.')
     }
 
-    private aboutToDisappear() {
+    aboutToDisappear() {
         console.log('ParentComponent: About to be removed from the UI.')
     }
 }

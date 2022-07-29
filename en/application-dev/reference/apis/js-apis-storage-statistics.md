@@ -1,11 +1,11 @@
 # App Storage Statistics
 
-The storageStatistics module provides APIs for obtaining storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
-
 > **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
+
+The **storageStatistics** module provides APIs for obtaining storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
 
 ## Modules to Import
 
@@ -470,7 +470,7 @@ This is a system API and cannot be called by third-party applications.
 
   | Name    | Type  | Mandatory| Description|
   | ---------- | ------ | ---- | ---- |
-  | userId | string | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
+  | userId | number | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
 
 **Return value**
 
@@ -481,7 +481,7 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId).then(function(StorageStats){
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));
   }).catch(function(err){
@@ -507,13 +507,13 @@ This is a system API and cannot be called by third-party applications.
 
   | Name    | Type                                | Mandatory| Description                      |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | string                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
+  | userId | number                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
   | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | Yes  | Callback invoked to return the information obtained.|
 
 **Example**
 
   ```js
-  let userId = "";
+  let userId = 1;
   storageStatistics.getUserStorageStats(userId, function(error, StorageStats){
       // Do something.
       console.info("getUserStorageStats successfully:"+ JSON.stringify(StorageStats));

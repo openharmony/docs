@@ -60,7 +60,7 @@ getErrorString(errno: number): string
 
 **示例：**
   ```js
-  var errnum = 10; // 10：a system error number
+  var errnum = 10; // 10 : a system error number
   var result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
@@ -104,7 +104,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 > **说明：**<br/>
-> 从API Version 9开始废弃，建议使用[util.promiseWrapper9+](#utilpromisewrapper9)替代。
+> 从API Version 9开始废弃，建议使用[util.promisify9+](#utilpromisify9)替代。
 
 对异步函数处理并返回一个promise的版本。
 
@@ -131,9 +131,9 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
   })
   ```
 
-## util.promiseWrapper<sup>9+</sup>
+## util.promisify<sup>9+</sup>
 
-promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
+promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 对异步函数处理并返回一个promise的函数。
 
@@ -151,16 +151,16 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Function
 
 **示例：**
   ```js
-  function aysnFun(str1, str2, callback) {
-      if (typeof str1 === 'string' && typeof str2 === 'string') {
-          callback(null, str1 + str2);
-      } else {
-          callback('type err');
-      }
+  function aysnFun(str1, str2) {
+    if (typeof str1 === 'object' && typeof str2 === 'object') {
+      return str2
+    } else {
+      return str1
+    }
   }
-  let newPromiseObj = util.promiseWrapper(aysnFun);
-  newPromiseObj("Hello", 'World').then(res => {
-      console.log(res);
+  let newPromiseObj = util.promisify(aysnFun);
+  newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
+    console.log(res);
   })
   ```
 
@@ -215,7 +215,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| input | Unit8Array | 是 | 符合格式需要解码的数组。 |
+| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
 | options | Object | 否 | 解码相关选项参数。 |
 
   **表2** options
@@ -1910,8 +1910,7 @@ isExternal(value: Object): boolean
 **示例：**
   ```js
   var that = new util.types();
-  const data = util.createExternalType();
-  var result = that.isExternal(data);
+  var result = that.isExternal(true);
   ```
 
 

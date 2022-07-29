@@ -89,7 +89,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 ### addAccount
 
-addAccount(name: string, extraInfo: string): Promise&lt;void&gt;
+addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 将此应用的帐号名或额外信息（能转换成string类型的其它信息）添加到帐号管理服务中，使用Promise方式异步返回结果。
 
@@ -100,7 +100,7 @@ addAccount(name: string, extraInfo: string): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | 是    | 要添加的应用帐号名称。                              |
-| extraInfo | string | 是    | 要添加的应用帐号的额外信息（能转换成string类型的其它信息），额外信息不能是应用帐号的敏感信息（如应用账号密码）。 |
+| extraInfo | string | 否    | 要添加的应用帐号的额外信息（能转换成string类型的其它信息），额外信息不能是应用帐号的敏感信息（如应用账号密码）。 |
 
 **返回值：**
 
@@ -1696,7 +1696,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 | name           | string                    | 是    | 应用帐户的名称。  |
 | owner          | string                    | 是    | 应用帐户的所有者。|
 | labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
-| callback       | AsyncCallback&lt;void&gt; | 是    | 检查结果的回调。  |
+| callback       | AsyncCallback&lt;boolean&gt; | 是    | 检查结果的回调。  |
 
 **示例：**
 
@@ -1710,7 +1710,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
 ### checkAccountLabels<sup>9+</sup>
 
-checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Promise&lt;void&gt;
+checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Promise&lt;boolean&gt;
 
 检查指定帐户是否具有特定的标签集合，使用Promise方式异步返回结果。
 
@@ -1771,7 +1771,7 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 
 ### selectAccountsByOptions<sup>9+</sup>
 
-selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;void&gt;
+selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 根据选项选择请求方可访问的帐户列表，使用Promise方式异步返回结果。
 
@@ -1836,7 +1836,7 @@ verifyCredential(name: string, owner: string, callback: AuthenticatorCallback): 
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, owner: string, options, callback: AuthenticatorCallback): void;
+verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, callback: AuthenticatorCallback): void;
 
 验证用户凭据，使用callback回调异步返回结果。
 
@@ -1952,10 +1952,11 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 参数名      | 类型     | 必填   | 说明       |
-| -------- | ------ | ---- | -------- |
-| authType | string | 是    | 令牌的鉴权类型。 |
-| token    | string | 是    | 令牌的取值。   |
+| 参数名               | 类型            | 必填  | 说明              |
+| -------------------- | -------------- | ----- | ---------------- |
+| authType             | string         | 是    | 令牌的鉴权类型。   |
+| token                | string         | 是    | 令牌的取值。       |
+| account<sup>9+</sup> | AppAccountInfo | 否    | 令牌所属的帐号信息。|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -2011,21 +2012,21 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
-| 名称                            | 默认值                    | 说明            |
-| ----------------------------- | ---------------------- | ------------- |
-| ACTION_ADD_ACCOUNT_IMPLICITLY | "addAccountImplicitly" | 表示操作，隐式添加帐号。  |
-| ACTION_AUTHENTICATE           | "authenticate"         | 表示操作，鉴权。      |
-| KEY_NAME                      | "name"                 | 表示键名，应用帐号名称。  |
-| KEY_OWNER                     | "owner"                | 表示键名，应用帐号所有者。 |
-| KEY_TOKEN                     | "token"                | 表示键名，令牌。      |
-| KEY_ACTION                    | "action"               | 表示键名，操作。      |
-| KEY_AUTH_TYPE                 | "authType"             | 表示键名，鉴权类型。    |
-| KEY_SESSION_ID                | "sessionId"            | 表示键名，会话标识。    |
-| KEY_CALLER_PID                | "callerPid"            | 表示键名，调用方PID。  |
-| KEY_CALLER_UID                | "callerUid"            | 表示键名，调用方UID。  |
-| KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | 表示键名，调用方包名。   |
-| KEY_REQUIRED_LABELS           | "requiredLabels"       | 表示键名，必需的标签。   |
-| KEY_BOOLEAN_RESULT           | "booleanResult"         | 表示键名，布尔返回值。   |
+| 名称                            | 默认值                    | 说明                   |
+| -------------------------------- | ---------------------- | ----------------------- |
+| ACTION_ADD_ACCOUNT_IMPLICITLY    | "addAccountImplicitly" | 表示操作，隐式添加帐号。  |
+| ACTION_AUTHENTICATE              | "authenticate"         | 表示操作，鉴权。         |
+| KEY_NAME                         | "name"                 | 表示键名，应用帐号名称。  |
+| KEY_OWNER                        | "owner"                | 表示键名，应用帐号所有者。|
+| KEY_TOKEN                        | "token"                | 表示键名，令牌。         |
+| KEY_ACTION                       | "action"               | 表示键名，操作。         |
+| KEY_AUTH_TYPE                    | "authType"             | 表示键名，鉴权类型。     |
+| KEY_SESSION_ID                   | "sessionId"            | 表示键名，会话标识。     |
+| KEY_CALLER_PID                   | "callerPid"            | 表示键名，调用方PID。    |
+| KEY_CALLER_UID                   | "callerUid"            | 表示键名，调用方UID。    |
+| KEY_CALLER_BUNDLE_NAME           | "callerBundleName"     | 表示键名，调用方包名。    |
+| KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | 表示键名，必需的标签。    |
+| KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | 表示键名，布尔返回值。    |
 
 ## ResultCode<sup>8+</sup>
 
@@ -2124,7 +2125,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 ### onRequestContinued<sup>9+</sup>
 
-onRequestContinued: () =&gt; void
+onRequestContinued?: () =&gt; void
 
 通知请求被继续处理。
 

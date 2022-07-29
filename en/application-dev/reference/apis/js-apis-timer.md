@@ -3,13 +3,6 @@
 
 ## setTimeout
 
-## Modules to Import
-
-
-```
-import Time from '@ohos.Time';
-```
-
 setTimeout(handler[,delay[,…args]]): number
 
 Sets a timer for the system to call a function after the timer goes off.

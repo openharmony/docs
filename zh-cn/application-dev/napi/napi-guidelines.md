@@ -10,23 +10,28 @@ js侧通过`import`引入native侧包含处理js逻辑的so，如：`import hell
 
 ## 开发建议
 
-### 1. 注册建议
+### 注册建议
 
 * nm_register_func对应的函数需要加上static，防止与其他so里的符号冲突。
 * 模块注册的入口，即使用\_\_attribute\_\_((constructor))修饰的函数的函数名需要确保不与其他模块重复。
-### 2. so命名规则
+
+### so命名规则
 
 * 每个模块对应一个so
 * 如模块名为`hello`，则so的名字为`libhello.so`，`napi_module`中`nm_modname`字段应为`hello`，大小写与模块名保持一致，应用使用时写作：`import hello from 'libhello.so'`
 
-### 3. js对象线程限制
+### js对象线程限制
 
 ark引擎会对js对象线程使用进行保护，不正确使用会引起应用crash。
 
 * napi接口只能在js线程使用。
 * env与线程绑定，不能跨线程使用。native侧js对象只能在创建时的线程使用，即与线程所持有的env绑定。
 
-### 4. napi_create_async_work接口说明
+### 头文件引入限制
+
+在使用napi的对象和方法时需要引用"napi/native_api.h"。否则在只引入三方库头文件时，会出现未支持**接口无法找到的编译报错**。
+
+### napi_create_async_work接口说明
 
 napi_create_async_work里有两个回调：
 
@@ -636,3 +641,8 @@ export default {
   }
 }
 ```
+## 相关实例
+针对Native API的开发，有以下相关实例可供参考：
+- [`NativeAPI`：NativeAPI（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Native/NativeAPI)
+- [第一个Native C++应用（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+- [Native Component（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)

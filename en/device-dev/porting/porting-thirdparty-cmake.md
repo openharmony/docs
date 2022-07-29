@@ -348,7 +348,7 @@ The following steps show how to configure and modify the toolchains for cross-co
     
     #toolchain: follow up-layer, depend on $ohos_build_compiler
     if (ohos_build_compiler == "clang") {
-        CMAKE_TOOLCHAIN_FLAG = "-DOHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
+        CMAKE_TOOLCHAIN_FLAG = "-DOHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
     } else {
         CMAKE_TOOLCHAIN_FLAG = ""
     }

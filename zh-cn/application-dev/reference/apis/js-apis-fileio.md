@@ -17,15 +17,31 @@ import fileio from '@ohos.fileio';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
+**Stage模型**
+
+ ```js
+import Ability from '@ohos.application.Ability';
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let context = this.context;
+        let path = context.filesDir;
+    }
+}
+ ```
+
+ Stage模型context的具体获取方法参见[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-context.md#abilitycontext)。
+
+**FA模型**
+
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
  let context = featureAbility.getContext();
- let path = '';
  context.getFilesDir().then((data) => {
-      path = data;
+      let path = data;
  })
  ```
-
+ 
+ FA模型context的具体获取方法参见[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md#context%E6%A8%A1%E5%9D%97)。
 
 ## fileio.stat
 
@@ -2720,7 +2736,7 @@ stop(): Promise&lt;void&gt;
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop().then(function(){
@@ -2747,7 +2763,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop(function(){
@@ -3125,7 +3141,6 @@ read(): Promise&lt;Dirent&gt;
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
       console.log("read succeed:"+JSON.stringify(dirent));
   }).catch(function(err){
@@ -3151,7 +3166,6 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
@@ -3178,7 +3192,6 @@ readSync(): Dirent
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   let dirent = dir.readSync();
   ```
 
@@ -3194,7 +3207,6 @@ close(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close().then(function(err){
       console.info("close dir successfully");
   });
@@ -3212,7 +3224,6 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close(function(err){
       console.info("close dir successfully");
   });
@@ -3230,7 +3241,6 @@ closeSync(): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.closeSync();
   ```
 

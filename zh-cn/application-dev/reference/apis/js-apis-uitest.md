@@ -23,7 +23,7 @@ import {UiDriver, BY, MatchPattern, ResizeDirection, WindowMode} from '@ohos.uit
 ## By
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
-By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#byisbefore)和[By.isAfter](#byisafter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
+By提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[By.isBefore](#isbefore)和[By.isAfter](#isafter)等API限定邻近控件特征进行辅助定位。<br>By类提供的所有API均为同步接口，建议使用者通过静态构造器BY来链式创建By对象。
 
 ```js
 BY.text('123').type('button')
@@ -1285,7 +1285,7 @@ async function demo() {
 
 ### triggerCombineKeys<sup>9+</sup>
 
-triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
+triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 UiDriver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，UiDriver对象找到组合键并点击ctrl+c。
 
@@ -1566,7 +1566,7 @@ getWindowMode(): Promise\<WindowMode>
 
 | 类型                                             | 说明                                  |
 | ------------------------------------------------ | ------------------------------------- |
-| Promise\<[WindowMode](#WindowMode<sup>9+</sup>)> | 以Promise形式返回窗口的窗口模式信息。 |
+| Promise\<[WindowMode](#windowmode9)> | 以Promise形式返回窗口的窗口模式信息。 |
 
 **示例：**
 
@@ -1695,7 +1695,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<bool>
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | wide      | number                                           | 是   | 以number的形式传入调整后窗口的宽度。                         |
 | height    | number                                           | 是   | 以number的形式传入调整后窗口的高度。                         |
-| direction | [ResizeDirection](#resizedirection<sup>9+</sup>) | 是   | 以[ResizeDirection](#ResizeDirection<sup>9+</sup>)的形式传入窗口调整的方向。 |
+| direction | [ResizeDirection](#resizedirection9) | 是   | 以[ResizeDirection](#resizedirection9)的形式传入窗口调整的方向。 |
 
 **返回值：**
 
@@ -1865,6 +1865,8 @@ async function demo() {
 
 ## WindowMode<sup>9+</sup>
 
+**系统能力**：SystemCapability.Test.UiTest
+
 窗口的窗口模式。
 
 | 名称       | 说明       |
@@ -1872,4 +1874,4 @@ async function demo() {
 | FULLSCREEN | 全屏模式。 |
 | PRIMARY    | 主窗口。   |
 | SECONDARY  | 第二窗口。 |
-| FLOAT      | 浮动窗口。 |
+| FLOATING   | 浮动窗口。 |

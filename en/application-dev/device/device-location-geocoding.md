@@ -3,9 +3,9 @@
 
 ## When to Use
 
-Describing a location using coordinates is accurate, but neither intuitive nor user-friendly.
+Describing a location using coordinates is accurate, but neither intuitive nor user-friendly. With the geocoding and reverse geocoding capabilities, you will be able to convert geographic description into specific coordinates and vice versa.
 
-With the geocoding and reverse geocoding capabilities, you will be able to convert geographic description into specific coordinates and vice versa. The geocoding information describes a location using several attributes, including the country, administrative region, street, house number, and address, etc.
+The geographic description helps users understand a location easily by providing several key attributes, for example, country, administrative region, street, house number, and address.
 
 
 ## Available APIs
@@ -36,13 +36,29 @@ The following table describes APIs available for mutual conversion between coord
    import geolocation from '@ohos.geolocation';
    ```
 
-2. Obtain the conversion result.
+2. Query whether geocoder service is available.
+   - Call **isGeoServiceAvailable** to query whether the geocoder service is available. If the service is available, continue with step 3.
+      ```
+      geolocation.isGeoServiceAvailable((err, data) => {
+          if (err) {
+              console.log('isGeoServiceAvailable err: ' + JSON.stringify(err));
+          } else {
+              console.log('isGeoServiceAvailable data: ' + JSON.stringify(data));
+          }
+      });
+      ```
+
+3. Obtain the conversion result.
    - Call **getAddressesFromLocation** to convert coordinates into geographical location information.
      
       ```
       var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
-      geolocation.getAddressesFromLocation(reverseGeocodeRequest, (data) => {
-          console.log('getAddressesFromLocation: ' + JSON.stringify(data));
+      geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
+          if (err) {
+              console.log('getAddressesFromLocation err: ' + JSON.stringify(err));
+          } else {
+              console.log('getAddressesFromLocation data: ' + JSON.stringify(data));
+          }
       });
       ```
 
@@ -51,8 +67,12 @@ The following table describes APIs available for mutual conversion between coord
      
       ```
       var geocodeRequest = {"description": "No. xx, xx Road, Pudong District, Shanghai", "maxItems": 1};
-      geolocation.getAddressesFromLocationName(geocodeRequest, (data) => {
-          console.log('getAddressesFromLocationName: ' + JSON.stringify(data));
+      geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
+          if (err) {
+              console.log('getAddressesFromLocationName err: ' + JSON.stringify(err));
+          } else {
+              console.log('getAddressesFromLocationName data: ' + JSON.stringify(data));
+          }
       });
       ```
 

@@ -23,11 +23,17 @@ zh-cn/device-dev/quick-start/ @li-yan339
 zh-cn/device-dev/driver/ @li-yan339
 zh-cn/device-dev/get-code/ @li-yan339
 zh-cn/device-dev/hpm-part/ @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guid.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md @Austin23
+zh-cn/device-dev/reference/hdi-apis/ @li-yan339
+zh-cn/device-dev/quick-start/quickstart-standard-env-setup.md @li-yan339 @chenmudan
+zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md @li-yan339 @chenmudan
+zh-cn/device-dev/porting/porting-thirdparty-overview.md @Austin23 @chenmudan
+zh-cn/device-dev/porting/porting-thirdparty-makefile.md @Austin23 @chenmudan
+zh-cn/device-dev/porting/porting-thirdparty-cmake.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guid.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md @Austin23 @chenmudan
 zh-cn/device-dev/subsystems/subsys-remote-start.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-overview.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-container-guide.md @duangavin123_admin
@@ -45,7 +51,7 @@ zh-cn/device-dev/subsystems/subsys-utils-overview.md @Austin23
 zh-cn/device-dev/subsystems/subsys-utils-guide.md @Austin23
 zh-cn/device-dev/subsystems/subsys-utils-faqs.md @Austin23
 zh-cn/device-dev/subsystems/subsys-aiframework-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-envbuild.md @Austin23
+zh-cn/device-dev/subsystems/subsys-aiframework-envbuild.md @Austin23 
 zh-cn/device-dev/subsystems/subsys-aiframework-tech-codemanage.md @Austin23
 zh-cn/device-dev/subsystems/subsys-aiframework-tech-name.md @Austin23
 zh-cn/device-dev/subsystems/subsys-aiframework-tech-interface.md @Austin23
@@ -200,7 +206,7 @@ zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-window.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screen.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-webgl.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-webgl2.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen

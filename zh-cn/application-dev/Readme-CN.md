@@ -15,7 +15,6 @@
     - 开发基础知识
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
         - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
-        - [资源文件的分类](quick-start/basic-resource-file-categories.md)
         - [SysCap说明](quick-start/syscap.md)
         - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
 - 开发
@@ -34,6 +33,7 @@
     - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
     - [DFX](dfx/Readme-CN.md)
     - [国际化](internationalization/Readme-CN.md)
+    - [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
     - [Native API的相关指导](napi/Readme-CN.md)
 - 工具

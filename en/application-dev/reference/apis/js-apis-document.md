@@ -14,21 +14,21 @@ import document from '@ohos.document';
 
 choose(types? : string[]): Promise&lt;string&gt;
 
-Chooses a file of the specified type using the file manager. This API uses a promise to return the result.
+Chooses files of the specified types using the file manager. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                        |
-  | ------ | ------ | ---- | ---------------------------- |
-  | types   | string[] | No  | Type of the file to choose.|
+| Name| Type  | Mandatory| Description                        |
+| ------ | ------ | ---- | ---------------------------- |
+| types   | string[] | No  | Types of the files to choose. |
 
 **Return value**
 
-  | Type                 | Description          |
-  | --------------------- | -------------- |
-  | Promise&lt;string&gt; | Promise used to return the result. An error code is returned.|
+| Type                 | Description          |
+| --------------------- | -------------- |
+| Promise&lt;string&gt; | Promise used to return the result. An error code is returned.|
 
 **Example**
 
@@ -46,9 +46,9 @@ Chooses a file using the file manager. This API uses an asynchronous callback to
 
 **Parameters**
 
-  | Name  | Type                       | Mandatory| Description                        |
-  | -------- | --------------------------- | ---- | ---------------------------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. An error code is returned.|
+| Name  | Type                       | Mandatory| Description                        |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. An error code is returned.|
 
 **Example**
 
@@ -62,16 +62,16 @@ Chooses a file using the file manager. This API uses an asynchronous callback to
 
 choose(types:string[], callback:AsyncCallback&lt;string&gt;): void
 
-Chooses a file using the file manager. This API uses an asynchronous callback to return the result.
+Chooses files using the file manager. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Parameters**
 
-  | Name  | Type                       | Mandatory| Description                        |
-  | -------- | --------------------------- | ---- | ---------------------------- |
-  | types    | string[]                      | No  | Type of the file to choose.|
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. An error code is returned.|
+| Name  | Type                       | Mandatory| Description                        |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| types    | string[]                      | No  | Types of the files to choose.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. An error code is returned.|
 
 **Example**
 
@@ -93,16 +93,16 @@ Opens a file. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                        |
-  | ---- | ------ | ---- | ---------------------------- |
-  | uri | string | Yes  | URI of the file to open.|
-  | type | string | Yes  | Type of the file to open.|
+| Name| Type  | Mandatory| Description                        |
+| ---- | ------ | ---- | ---------------------------- |
+| uri | string | Yes  | URI of the file to open.|
+| type | string | Yes  | Type of the file to open.|
 
 **Return value**
 
-  | Type                 | Description        |
-  | --------------------- | ------------ |
-  | Promise&lt;void&gt; | Promise used to return the result. An error code is returned.|
+| Type                 | Description        |
+| --------------------- | ------------ |
+| Promise&lt;void&gt; | Promise used to return the result. An error code is returned.|
 
 **Example**
 
@@ -122,11 +122,11 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-  | Name  | Type                       | Mandatory| Description                        |
-  | -------- | --------------------------- | ---- | ---------------------------- |
-  | uri | string | Yes  | URI of the file to open.|
-  | type | string | Yes  | Type of the file to open.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. An error code is returned.  |
+| Name  | Type                       | Mandatory| Description                        |
+| -------- | --------------------------- | ---- | ---------------------------- |
+| uri | string | Yes  | URI of the file to open.|
+| type | string | Yes  | Type of the file to open.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. An error code is returned.  |
 
 **Example**
 

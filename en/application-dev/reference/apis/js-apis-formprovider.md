@@ -1,6 +1,6 @@
 # FormProvider
 
-The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and release a widget release.
+The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
 
 > **NOTE**
 > 
@@ -28,11 +28,11 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| formId | string | Yes  | ID of a widget.                              |
-| minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type   | Mandatory| Description                                  |
+  | ------ | ------ | ---- | ------------------------------------- |
+  | formId | string | Yes  | ID of a widget.                              |
+  | minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -57,16 +57,16 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                                  |
-| ------ | ------ | ---- | ------------------------------------- |
-| formId | string | Yes  | ID of a widget.                              |
-| minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
+  | Name| Type   | Mandatory| Description                                  |
+  | ------ | ------ | ---- | ------------------------------------- |
+  | formId | string | Yes  | ID of a widget.                              |
+  | minute | number | Yes  | Refresh interval, in minutes. The value must be greater than or equal to 5.    |
 
 **Return value**
 
-| Type         | Description                             |
-| ------------- | ---------------------------------- |
-| Promise\<void> |Promise used to return the result.     |
+  | Type         | Description                             |
+  | ------------- | ---------------------------------- |
+  | Promise\<void> |Promise used to return the result.     |
 
 **Example**
 
@@ -91,11 +91,11 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type                                                                   | Mandatory| Description            |
-| ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| formId | string                                                                 | Yes  | ID of the widget to update.|
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | Data to be used for the update.   |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+  | Name| Type                                                                   | Mandatory| Description            |
+  | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
+  | formId | string                                                                 | Yes  | ID of the widget to update.|
+  | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | Data to be used for the update.   |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -122,10 +122,10 @@ SystemCapability.Ability.Form
 
 **Parameters**
 
-| Name| Type                                                                   | Mandatory| Description            |
-| ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
-| formId | string                                                                 | Yes  | ID of the widget to update.|
-| formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | Data to be used for the update.   |
+  | Name| Type                                                                   | Mandatory| Description            |
+  | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
+  | formId | string                                                                 | Yes  | ID of the widget to update.|
+  | formBindingData | [FormBindingData](js-apis-formbindingdata.md#formbindingdata) | Yes  | Data to be used for the update.   |
 
 **Return value**
 

@@ -628,7 +628,7 @@ abilityDelegator.getCurrentTopAbility((err : any, data : any) => {
 
 
 
-### printSync
+### printSync<sup>9+</sup>
 
 printSync(msg: string): void
 

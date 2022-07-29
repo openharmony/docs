@@ -177,6 +177,8 @@ on(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginS
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -199,6 +201,8 @@ on(type: 'beginSleep' | 'endSleep' | 'changeUser', callback: Callback\<number\>)
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -219,6 +223,8 @@ on(type: 'screenlockEnabled', callback: Callback\<boolean\>): void
 注册锁屏状态变化回调。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -243,6 +249,8 @@ off(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'begin
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -265,6 +273,8 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback\<b
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -282,11 +292,13 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback\<b
 
 ## screenlock.sendScreenLockEvent<sup>9+</sup>
 
-sendScreenLockEvent(event: String, parameter: number): Promise<boolean>
+sendScreenLockEvent(event: String, parameter: number): Promise\<boolean\>
 
 应用发送事件到锁屏服务，异步方法。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |

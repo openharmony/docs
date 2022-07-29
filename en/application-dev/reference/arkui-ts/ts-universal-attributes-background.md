@@ -1,11 +1,10 @@
 # Background
 
+You can set the background of a component.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The attributes in this topic are used to set the background color of a component.
 
 
 ## Required Permissions
@@ -18,24 +17,25 @@ None
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| backgroundColor | Color | - | Background color of a component. |
-| backgroundImage | src: string,<br/>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | - | **src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br/>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
+| backgroundColor | [ResourceColor](../../ui/ts-types.md) | - | Background color of a component. |
+| backgroundImage | src: [ResourceStr](../../ui/ts-types.md),<br/>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | - | **src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br/>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
 | backgroundImageSize | {<br/>width?: Length,<br/>height?: Length<br/>} \| ImageSize | Auto | Width and height of the background image. When the input is a **{width: Length, height: Length}** object, if only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged. |
 | backgroundImagePosition | {<br/>x?: Length,<br/>y?: Length<br/>} \| [Alignment](ts-appendix-enums.md#alignment-enums) | {<br/>x: 0,<br/>y: 0<br/>} | Position of the background image in the component. |
 
 
 - ImageSize enums
-    | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | Cover | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. | 
-  | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. | 
-  | Auto | The original image aspect ratio is retained. | 
+  | Cover | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. |
+  | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. |
+  | Auto | The original image aspect ratio is retained. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct BackgroundExample {

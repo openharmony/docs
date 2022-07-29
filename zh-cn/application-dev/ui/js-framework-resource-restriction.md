@@ -88,5 +88,5 @@ resources/res-defaults.json:
 </div>
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 资源限定文件中不支持颜色枚举格式。

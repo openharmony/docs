@@ -7,9 +7,9 @@
 
 
 
-Ability信息
+Ability信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取
 
-
+## AbilityInfo
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
@@ -31,17 +31,17 @@ Ability信息
 | type                  | AbilityType                                              | 是   | 否   | Ability类型                               |
 | orientation           | DisplayOrientation                                       | 是   | 否   | Ability的显示模式                         |
 | launchMode            | LaunchMode                                               | 是   | 否   | Ability的启动模式                         |
-| permissions           | Array\<string>                                           | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合 |
+| permissions           | Array\<string>                                           | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合<br />通过传入GET_ABILITY_INFO_WITH_PERMISSION获取 |
 | deviceTypes           | Array\<string>                                           | 是   | 否   | Ability支持的设备类型                     |
 | deviceCapabilities    | Array\<string>                                           | 是   | 否   | Ability需要的设备能力                     |
 | readPermission        | string                                                   | 是   | 否   | 读取Ability数据所需的权限                 |
 | writePermission       | string                                                   | 是   | 否   | 向Ability写数据所需的权限                 |
-| applicationInfo       | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)     | 是   | 否   | 应用程序的配置信息                        |
+| applicationInfo       | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)     | 是   | 否   | 应用程序的配置信息<br />通过传入GET_ABILITY_INFO_WITH_APPLICATION获取 |
 | uri                   | string                                                   | 是   | 否   | 获取Ability的统一资源标识符（URI）        |
 | labelId               | number                                                   | 是   | 否   | Ability的标签id                           |
 | subType               | AbilitySubType                                           | 是   | 否   | Ability中枚举使用的模板的子类型           |
-| metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)> | 是   | 否   | ability的自定义信息                       |
-| metadata<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | 是   | 否   | ability的元信息                           |
+| metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)> | 是   | 否   | ability的自定义信息<br />通过传入GET_ABILITY_INFO_WITH_METADATA获取 |
+| metadata<sup>9+</sup> | Array\<[Metadata](js-apis-bundle-Metadata.md)>           | 是   | 否   | ability的元信息<br />通过传入GET_ABILITY_INFO_WITH_METADATA获取 |
 | enabled<sup>8+</sup>  | boolean                                                  | 是   | 否   | ability是否可用                           |
 | supportWindowMode<sup>9+</sup>  | Array\<[SupportWindowMode](js-apis-Bundle.md)> | 是   | 否   | ability支持的窗口模式                      |
 | maxWindowRatio<sup>9+</sup>  | number                                            | 是   | 否   | ability支持的最大的窗口比例                      |

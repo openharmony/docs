@@ -388,7 +388,7 @@ startBluetoothDiscovery(): boolean
 
 开启蓝牙扫描，可以发现远端设备。
 
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1037,9 +1037,9 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
-## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
+## bluetooth.getProfileInst<sup>9+</sup><a name="getProfileInst"></a>
 
-getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
+getProfileInst(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
 通过ProfileId，获取profile的对象实例，API9新增了HidHostProfile，PanProfile。
 
@@ -1060,7 +1060,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 **示例：**
 
 ```js
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST);
 ```
 
 
@@ -1143,7 +1143,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
 
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.MANAGE_BLUETOOTH；ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH 和 ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1451,13 +1451,11 @@ a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState<sup>9+</sup>
+### getPlayingState<sup>8+</sup>
 
 getPlayingState(device: string): PlayingState
 
 获取设备的播放状态。
-
-**需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1837,7 +1835,7 @@ panProfile.off('connectionStateChange', onReceiveEvent);
 
 ### setTethering<sup>9+</sup><a name="setTethering"></a>
 
-setTethering(value: boolean): boolean
+setTethering(enable: boolean): void
 
 设置网络共享状态。
 
@@ -1874,8 +1872,6 @@ isTetheringOn(): boolean
 获取网络共享状态。
 
 此接口为系统接口。
-
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2019,7 +2015,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // 创建characteristics
@@ -2129,7 +2125,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -2709,7 +2705,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```js
 // Promise 模式
-gattClientDevice.getServices().then(result => {
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+device.connect();
+device.getServices().then(result => {
     console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
@@ -3051,7 +3049,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -3536,7 +3534,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | serviceSolicitationUuidMask<sup>9+</sup> | string      | 是   | 是   | 表示过滤包含该UUID服务请求掩码的设备，例如：FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF。 |
 | serviceData<sup>9+</sup>                 | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据的设备，例如：[0x90,0x00,0xF1,0xF2]。 |
 | serviceDataMask<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该服务相关数据掩码的设备，例如：[0xFF,0xFF,0xFF,0xFF]。 |
-| manufacturerId<sup>9+</sup>              | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
+| manufactureId<sup>9+</sup>               | number      | 是   | 是   | 表示过滤包含该制造商ID的设备，例如：0x0006。                 |
 | manufactureData<sup>9+</sup>             | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据的设备，例如：[0x1F,0x2F,0x3F]。 |
 | manufactureDataMask<sup>9+</sup>         | ArrayBuffer | 是   | 是   | 表示过滤包含该制造商相关数据掩码的设备，例如：[0xFF,0xFF,0xFF]。 |
 
@@ -3617,7 +3615,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称          | 参数类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。 |
+| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
 | txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。   |
 | connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true。                   |
 
@@ -3828,7 +3826,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 ## ProfileId<sup>8+</sup><a name="ProfileId"></a>
 
-蓝牙profile枚举，API9新增PROFILE_HID_HOST。
+蓝牙profile枚举，API9新增PROFILE_HID_HOST，PROFILE_PAN_NETWORK。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3837,3 +3835,4 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | PROFILE_A2DP_SOURCE              | 0x0001 | 表示A2DP profile。 |
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | 表示HFP profile。  |
 | PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | 表示HID profile。  |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | 表示PAN profile。  |

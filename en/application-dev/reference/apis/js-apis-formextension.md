@@ -1,11 +1,11 @@
 # FormExtension
 
+The **FormExtension** module provides APIs related to Form Extension abilities.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
-
-Provides **FormExtension** APIs.
 
 ## Modules to Import
 
@@ -35,15 +35,15 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
 **Parameters**
 
-  | Name| Type                                  | Mandatory| Description                                                        |
-  | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-  | want   | [Want](js-apis-application-Want.md) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| Name| Type                                  | Mandatory| Description                                                        |
+| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| want   | [Want](js-apis-application-Want.md) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
-  | Type                                                        | Description                                                       |
-  | ------------------------------------------------------------ | ----------------------------------------------------------- |
-  | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
+| Type                                                        | Description                                                       |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
 
 **Example**
 
@@ -72,9 +72,9 @@ Called to notify the widget provider that a temporary widget has been converted 
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description                    |
-  | ------ | ------ | ---- | ------------------------ |
-  | formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
 
 **Example**
 
@@ -96,9 +96,9 @@ Called to notify the widget provider that a widget has been updated. After obtai
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description              |
-  | ------ | ------ | ---- | ------------------ |
-  | formId | string | Yes  | ID of the widget that requests to be updated.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| formId | string | Yes  | ID of the widget that requests to be updated.|
 
 **Example**
 
@@ -127,9 +127,9 @@ Called to notify the widget provider of the change of visibility.
 
 **Parameters**
 
-  | Name   | Type                     | Mandatory| Description                        |
-  | --------- | ------------------------- | ---- | ---------------------------- |
-  | newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
+| Name   | Type                     | Mandatory| Description                        |
+| --------- | ------------------------- | ---- | ---------------------------- |
+| newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
 
 **Example**
 
@@ -162,10 +162,10 @@ Called to instruct the widget provider to receive and process the widget event.
 
 **Parameters**
 
-  | Name | Type  | Mandatory| Description                  |
-  | ------- | ------ | ---- | ---------------------- |
-  | formId  | string | Yes  | ID of the widget that requests the event.|
-  | message | string | Yes  | Event message.            |
+| Name | Type  | Mandatory| Description                  |
+| ------- | ------ | ---- | ---------------------- |
+| formId  | string | Yes  | ID of the widget that requests the event.|
+| message | string | Yes  | Event message.            |
 
 **Example**
 
@@ -187,9 +187,9 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description              |
-  | ------ | ------ | ---- | ------------------ |
-  | formId | string | Yes  | ID of the widget to be destroyed.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| formId | string | Yes  | ID of the widget to be destroyed.|
 
 **Example**
 
@@ -211,9 +211,9 @@ Called when the configuration of the environment where the ability is running is
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | Yes| New configuration.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [Configuration](js-apis-configuration.md) | Yes| New configuration.|
 
 **Example**
     
@@ -225,28 +225,28 @@ Called when the configuration of the environment where the ability is running is
   }
   ```
 
-  ## FormExtension.onAcquireFormState
+## FormExtension.onAcquireFormState
 
 onAcquireFormState?(want: Want): formInfo.FormState;
 
-Called when the widget provider receives the status query result of a specified service widget. By default, the initial state is returned.
+Called when the widget provider receives the status query result of a widget. By default, the initial state is returned.
 
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | No| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | No| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
 
 **Example**
     
   ```js
-  import fromInfo from '@ohos.application.fromInfo'
+  import formInfo from '@ohos.application.formInfo'
   class MyFormExtension extends FormExtension {
       onAcquireFormState(want) {
           console.log('FormExtension onAcquireFormState, want:' + want);
-          return fromInfo.FormState.UNKNOWN;
+          return formInfo.FormState.UNKNOWN;
       }
   }
   ```
