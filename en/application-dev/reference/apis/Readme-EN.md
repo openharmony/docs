@@ -80,6 +80,7 @@
 - Graphics
 
   - [@ohos.display ](js-apis-display.md)
+  - [@ohos.screen](js-apis-screen.md)
   - [@ohos.screenshot](js-apis-screenshot.md)
   - [@ohos.window](js-apis-window.md)
   - [webgl](js-apis-webgl.md)
@@ -123,7 +124,6 @@
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.preferences](js-apis-data-preferences.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
-  - [@ohos.settings](js-apis-settings.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
 
 - File Management
@@ -136,7 +136,6 @@
   - [@ohos.statfs](js-apis-statfs.md)
   - [@ohos.storageStatistics](js-apis-storage-statistics.md)
   - [@ohos.volumeManager](js-apis-volumemanager.md)
-  - [@ohos.securityLabel](js-apis-securityLabel.md)
 
 - Telephony Service
 
@@ -199,10 +198,11 @@
   - [@ohos.multimodalInput.keyCode](js-apis-keycode.md)
   - [@ohos.multimodalInput.keyEvent](js-apis-keyevent.md)
   - [@ohos.multimodalInput.mouseEvent](js-apis-mouseevent.md)
-  - [@ohos.multimodalInput.toucEvent](js-apis-touchevent.md)
+  - [@ohos.multimodalInput.touchEvent](js-apis-touchevent.md)
   - [@ohos.power](js-apis-power.md)
   - [@ohos.runningLock](js-apis-runninglock.md)
   - [@ohos.sensor](js-apis-sensor.md)
+  - [@ohos.settings](js-apis-settings.md)
   - [@ohos.systemParameter](js-apis-system-parameter.md)
   - [@ohos.thermal](js-apis-thermal.md)
   - [@ohos.update](js-apis-update.md)
