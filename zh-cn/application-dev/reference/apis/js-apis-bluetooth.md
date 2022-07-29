@@ -1011,7 +1011,7 @@ bluetooth.off('sppRead', clientNumber);
 ```
 
 
-## bluetooth.getProfile<sup>8+</sup><a name="getProfile"></a>
+## bluetooth.getProfile<sup>8+</sup><a name="bt-getProfile"></a>
 
 getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile
 
@@ -1610,7 +1610,7 @@ hfpAg.off('connectionStateChange', onReceiveEvent);
 使用HidHostProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>9+</sup><a name="connect"></a>
+### connect<sup>9+</sup><a name="HidHost-connect"></a>
 
 connect(device: string): boolean
 
@@ -1642,7 +1642,7 @@ let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>9+</sup><a name="disconnect"></a>
+### disconnect<sup>9+</sup><a name="HidHost-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1740,7 +1740,7 @@ hidHost.off('connectionStateChange', onReceiveEvent);
 使用PanProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### disconnect<sup>9+</sup><a name="disconnect"></a>
+### disconnect<sup>9+</sup><a name="PanP-disconnect"></a>
 
 disconnect(device: string): boolean
 
