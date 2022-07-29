@@ -125,7 +125,7 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
 
-1. Fingerprint_auth驱动是基于HDF驱动框架设计，所以开发者需要按照驱动Driver Entry程序，完成Fingerprint_auth驱动框架开发，主要由Bind、Init、Release、Dispatch函数接口实现。关键代码如下，详细代码请参见[fingerprint_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_driver.cpp)文件。
+1. Fingerprint_auth驱动是基于HDF驱动框架设计，所以开发者需要按照驱动Driver Entry程序，完成Fingerprint_auth驱动框架开发，主要由Bind、Init、Release、Dispatch函数接口实现。关键代码如下，详细代码请参见[fingerprint_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_driver.cpp)文件。
 
    ```c++
    // 通过自定义的HdfFingerprintAuthInterfaceHost对象包含ioService对象和真正的HDI Service实现IRemoteObject对象
@@ -224,7 +224,7 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
    HDF_INIT(g_fingerprintAuthInterfaceDriverEntry);
    ```
 
-2. Fingerprint_auth驱动框架开发完成后，Fingerprint_auth驱动需要向Fingerprint_auth服务和统一身份认证注册执行器，所以需要实现获取执行器列表接口。关键代码如下，详细代码请参见[fingerprint_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_service.cpp)文件。
+2. Fingerprint_auth驱动框架开发完成后，Fingerprint_auth驱动需要向Fingerprint_auth服务和统一身份认证注册执行器，所以需要实现获取执行器列表接口。关键代码如下，详细代码请参见[fingerprint_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
@@ -277,7 +277,7 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
    }
    ```
 
-3. 步骤1、2完成后基本实现了Fingerprint_auth驱动和Fingerprint_auth服务对接。接下来需实现执行器每个功能接口，来完成指纹认证基础能力。关键代码如下，详细代码请参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/executor_impl.cpp)文件。
+3. 步骤1、2完成后基本实现了Fingerprint_auth驱动和Fingerprint_auth服务对接。接下来需实现执行器每个功能接口，来完成指纹认证基础能力。关键代码如下，详细代码请参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/fingerprint_auth/hdi_service/src/executor_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口
