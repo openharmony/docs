@@ -717,7 +717,7 @@ SystemCapability.BundleManager.BundleFramework
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
 | bundleName | string                 | 是   | 应用程序包名称。                              |
 | moduleName | string                 | 是   | 应用程序模块名称。                            |
-| callback   | AsyncCallback<boolean> | 是   | 程序启动作为入参的回调函数，返回boolean信息。 |
+| callback   | AsyncCallback\<boolean> | 是   | 程序启动作为入参的回调函数，返回boolean信息。 |
 
 ## bundle.isModuleRemovable<sup>9+</sup>
 
@@ -744,7 +744,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型             | 说明                         |
 | ---------------- | ---------------------------- |
-| Promise<boolean> | Promise形式返回boolean信息。 |
+| Promise\<boolean> | Promise形式返回boolean信息。 |
 
 ## bundle.getBundlePackInfo<sup>9+</sup>
 
