@@ -7,7 +7,7 @@
 ## 导入模块
 
 ```ts
-import parameter from '@ohos.systemParameter'
+import parameter from '@ohos.systemparameter'
 ```
 
 

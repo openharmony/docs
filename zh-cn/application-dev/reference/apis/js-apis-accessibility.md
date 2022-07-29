@@ -146,6 +146,8 @@ import accessibility from '@ohos.accessibility';
 
 字幕配置。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Hearing
+
 ### 属性
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
@@ -153,26 +155,22 @@ import accessibility from '@ohos.accessibility';
 | enabled | boolean | 是 | 否 | 表示是否启用字幕配置。 |
 | style | [CaptionsStyle](#captionsstyle8) | 是 | 否 | 表示字幕风格。 |
 
-### 方法
-
 下列 API 示例中都需要使用 [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8) 获取 captionsManager 实例，再通过此实例调用对应的方法。
 
-#### on('enableChange')
+### on('enableChange')
 
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 注册字幕配置启用的监听函数。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
-
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听字幕配置启用状态。 |
   | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   captionsManager.on('enableChange',(data) => {
@@ -180,22 +178,20 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
   })
   ```
 
-#### on('styleChange')
+### on('styleChange')
 
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 注册字幕风格变化的监听函数。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
-
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听字幕风格变化。 |
   | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 是 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   captionsManager.on('styleChange',(data) => {
@@ -203,43 +199,39 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
   })
   ```
   
-#### off('enableChange')
+### off('enableChange')
 
 off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 移除字幕配置启用的监听函数。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
-
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听字幕配置启用状态。 |
   | callback | Callback&lt;boolean&gt; | 否 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   captionsManager.off('enableChange')
   ```
 
-#### off('styleChange')
+### off('styleChange')
 
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 移除字幕风格变化的监听函数。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
-
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 字幕风格变化。 |
   | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否 | 回调函数，在字幕风格变化时通过此函数进行通知。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   captionsManager.off('styleChange')
@@ -270,21 +262,19 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 | endIndex | number | 是 | 是 | 画面显示条目的结束序号。 |
 | itemCount | number | 是 | 是 | 条目总数。 |
 
-### 方法
-
-#### constructor
+### constructor
 
 constructor(jsonObject)
 
 构造函数。
 
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | jsonObject | string | 是 | 创建对象所需要的 JSON 格式字符串。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   let eventInfo = new accessibility.EventInfo({"type":"click","bundleName":"com.example.MyApplication","triggerAction":"click"})
@@ -346,20 +336,20 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | abilityType | [AbilityType](#abilitytype) | 是 | 辅助应用的类型。 |
   | stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
 
-- 返回值：
+- **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | 返回辅助应用信息列表。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.getAbilityLists("spoken", "enable")
@@ -389,7 +379,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
@@ -397,7 +387,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
   | stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
   | callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | 是 | 回调函数，返回辅助应用信息列表。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.getAbilityLists("visual", "enable", (err, data) => {
@@ -428,13 +418,13 @@ getCaptionsManager(): CaptionsManager
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Hearing
 
-- 返回值：
+- **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
   | [CaptionsManager](#captionsmanager8) | 无障碍字幕配置管理。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   captionsManager = accessibility.getCaptionsManager()
@@ -448,14 +438,14 @@ on(type: 'accessibilityStateChange' | 'touchGuideStateChange', callback: Callbac
 
 **系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision |
   | callback | Callback&lt;boolean&gt; | 是 | 回调函数，在启用状态变化时将状态通过此函数进行通知。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.on('accessibilityStateChange',(data) => { 
@@ -471,14 +461,14 @@ off(type: ‘accessibilityStateChange ’ | ‘touchGuideStateChange’, callbac
 
 **系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type |  string | 否 | 监听的事件类型。<br/>-&nbsp;type 为'accessibilityStateChange'时表示监听类型为辅助功能启用状态变化监听；<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Core<br/>-&nbsp;type 为'touchGuideStateChange'时表示监听类型为触摸浏览启用状态变化监听。<br/>**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision |
   | callback | Callback&lt;boolean&gt; | 否 | 要取消的监听回调函数。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.off('accessibilityStateChange',(data) => {
@@ -494,13 +484,13 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-- 返回值：
+- **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 如果辅助功能已启用，则返回 true；否则返回 false。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.isOpenAccessibility()
@@ -519,13 +509,13 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-- 参数
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，如果辅助功能已启用，则返回 true；否则返回 false。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.isOpenAccessibility((err, data) => {
@@ -543,15 +533,15 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
 
 判断触摸浏览模式是否开启。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
-- 返回值：
+- **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 如果触摸浏览模式已开启，则返回 true；否则返回 false。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.isOpenTouchGuide()
@@ -568,15 +558,15 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断触摸浏览模式是否开启。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
-- 参数
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，如果触摸浏览模式已开启，则返回 true；否则返回 false。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.isOpenTouchGuide((err, data) => {
@@ -596,19 +586,19 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | [EventInfo](#eventinfo) | 是 | 无障碍事件对象。 |
 
-- 返回值：
+- **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 以 Promise 形式返回结果，如果发送无障碍事件成功，则 data 有数据返回；如果发送无障碍事件失败，则 err 有数据返回。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.sendEvent(this.eventInfo)
@@ -627,14 +617,14 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-- 参数：
+- **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | [EventInfo](#eventinfo) | 是 | 辅助事件对象。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，如果发送无障碍事件成功，则 AsyncCallback 中 data 有数据返回；如果发送无障碍事件失败，则 AsyncCallback 中 err 有数据返回。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   accessibility.sendEvent(this.eventInfo,(err, data) => {
