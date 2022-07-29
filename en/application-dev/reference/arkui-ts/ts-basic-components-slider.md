@@ -1,11 +1,12 @@
 # Slider
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Slider&gt;** component is used to quickly adjust settings, such as the volume and brightness.
+The *\<Slider>** component is used to quickly adjust settings, such as the volume and brightness.
 
 
 ## Required Permissions
@@ -15,7 +16,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -62,11 +63,11 @@ Among all the universal events, only **OnAppear** and **OnDisAppear** are suppor
 | onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Callback invoked when the slider slides.<br/>**value**: current progress.<br/>**mode**: dragging state. |
 
 - SliderChangeMode enums
-    | Name   | Description                         |
-    | ------ | ----------------------------------- |
-    | Begin  | The user starts to drag the slider. |
-    | Moving | The user is dragging the slider.    |
-    | End    | The user stops dragging the slider. |
+    | Name   | Value | Description                         |
+    | ------ | ----- | ----------------------------------- |
+    | Begin  | 0     | The user starts to drag the slider. |
+    | Moving | 1     | The user is dragging the slider.    |
+    | End    | 2     | The user stops dragging the slider. |
 
 
 ## Example
