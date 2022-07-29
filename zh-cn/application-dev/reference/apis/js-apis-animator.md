@@ -3,13 +3,13 @@
 本模块提供组件动画效果，包括定义动画、启动动画和以相反的顺序播放动画等。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```
+```js
 import animator from '@ohos.animator';
 ```
 
@@ -23,18 +23,18 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [AnimatorOptions](#animatoroptions) | 是 | 定义动画选项。|
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
 
 **返回值：** 
-| 类型 | 说明 |
-| -------- | -------- |
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
 | [AnimatorResult](#animatorresult) | Animator结果接口。 |
 
 **示例：** 
 
-  ```
+  ```html
   <!-- hml -->
   <div class="container">
     <div class="Animation" style="height: {{divHeight}}px; width: {{divWidth}}px; background-color: red;" onclick="Show">
@@ -42,7 +42,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
   </div>
   ```
 
-  ```
+  ```js
   // js
   export default {
     data : {
@@ -94,12 +94,12 @@ update(options: AnimatorOptions): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options | [AnimatorOptions](#animatoroptions) | 是 | 定义动画选项。|
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
 
 **示例：**
-```
+```js
 animator.update(options);
 ```
 
@@ -112,7 +112,7 @@ play(): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.play();
 ```
 
@@ -125,7 +125,7 @@ finish(): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.finish();
 ```
 
@@ -138,7 +138,7 @@ pause(): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.pause();
 ```
 
@@ -151,7 +151,7 @@ cancel(): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.cancel();
 ```
 
@@ -164,7 +164,7 @@ reverse(): void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.reverse();
 ```
 
@@ -177,12 +177,12 @@ onframe: (progress: number) => void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| progress | number | 是 | 动画的当前进度。|
+| 参数名      | 类型     | 必填   | 说明       |
+| -------- | ------ | ---- | -------- |
+| progress | number | 是    | 动画的当前进度。 |
 
 **示例：**
-```
+```js
 animator.onframe();
 ```
 
@@ -195,7 +195,7 @@ onfinish: () => void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.onfinish();
 ```
 
@@ -208,7 +208,7 @@ oncancel: () => void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.oncancel();
 ```
 
@@ -221,7 +221,7 @@ onrepeat: () => void
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-```
+```js
 animator.onrepeat();
 ```
 
@@ -231,13 +231,13 @@ animator.onrepeat();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| duration | number | 是 | 动画播放的时长，单位毫秒，默认为0。 |
-| easing | string | 是 | 动画插值曲线，默认为'ease'。 |
-| delay | number | 是 | 动画延时播放时长，单位毫秒，默认为0，即不延时。 |
-| fill | "none" \| "forwards" \| "backwards" \| "both" | 是 | 动画执行后是否恢复到初始状态，默认值为"none"。动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。 |
-| direction | "normal" \| "reverse" \| "alternate" \| "alternate-reverse" | 是 | 动画播放模式，默认值"normal"。|
-| iterations | number | 是 | 动画播放次数，默认值1。设置为0时不播放，设置为-1时无限次播放。 |
-| begin | number | 是 | 动画插值起点，默认为0。 |
-| end | number | 是 | 动画插值终点，默认为1。 |
+| 名称         | 参数类型                                     | 必填   | 说明                                       |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| duration   | number                                   | 是    | 动画播放的时长，单位毫秒，默认为0。                       |
+| easing     | string                                   | 是    | 动画插值曲线，默认为'ease'。                        |
+| delay      | number                                   | 是    | 动画延时播放时长，单位毫秒，默认为0，即不延时。                 |
+| fill       | "none" \| "forwards" \| "backwards" \| "both" | 是    | 动画执行后是否恢复到初始状态，默认值为"none"。动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。 |
+| direction  | "normal" \| "reverse" \| "alternate" \| "alternate-reverse" | 是    | 动画播放模式，默认值"normal"。                      |
+| iterations | number                                   | 是    | 动画播放次数，默认值1。设置为0时不播放，设置为-1时无限次播放。        |
+| begin      | number                                   | 是    | 动画插值起点，默认为0。                             |
+| end        | number                                   | 是    | 动画插值终点，默认为1。                             |
