@@ -1,4 +1,4 @@
-# EventPackage
+# InputEventPackage
 
 
 ## **概述**
@@ -23,7 +23,7 @@
 
 ## **详细描述**
 
-input事件数据包结构。
+Input事件数据包结构。
 
 
 ## **类成员变量说明**

@@ -36,6 +36,7 @@
 | [AuthType](#authtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4,&nbsp;ALL&nbsp;=&nbsp;0&nbsp;} | 枚举用户认证凭据类型。&nbsp;[更多...](#authtype) | 
 | [ExecutorRole](#executorrole)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。&nbsp;[更多...](#executorrole) | 
 | [ExecutorSecureLevel](#executorsecurelevel)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。&nbsp;[更多...](#executorsecurelevel) | 
+| [PinSubType](#pinsubtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;PIN\_SIX&nbsp;=&nbsp;10000,&nbsp;PIN\_NUMBER&nbsp;=&nbsp;10001,&nbsp;PIN\_MIX&nbsp;=&nbsp;10002&nbsp;} | 口令认证子类型。&nbsp;[更多...](#pinsubtype) | 
 
 
 ### 变量
@@ -113,3 +114,21 @@ enum ExecutorSecureLevel : int
 | ESL1 | 执行器安全级别为1，关键操作在有访问控制的执行环境中完成。 | 
 | ESL2 | 执行器安全级别为2，关键操作在可信执行环境中完成。 | 
 | ESL3 | 执行器安全级别为3，关键操作在高安环境如独立安全芯片中完成。 | 
+
+
+### PinSubType
+
+  
+```
+enum PinSubType : int
+```
+
+**描述：**
+
+口令认证子类型。
+
+  | 枚举值 | 描述 | 
+| -------- | -------- |
+| PIN_SIX | 六位口令密码。 | 
+| PIN_NUMBER| 数字口令密码。 | 
+| PIN_MIX | 混合密码。 | 
