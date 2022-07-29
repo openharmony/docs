@@ -1332,7 +1332,7 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 | -------- | ------------------- | ---- | ------------------------------ |
 | key      | string              | 是   | 图片属性名。                   |
 | value    | string              | 是   | 属性值。                       |
-| callback | AsyncCallback<void> | 是   | 修改属性值，callback返回结果。 |
+| callback | AsyncCallback\<void> | 是   | 修改属性值，callback返回结果。 |
 
 **示例：**
 
@@ -1389,7 +1389,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 | isFinished | boolean             | 是   | 是否更新完。         |
 | value      | number              | 否   | 偏移量。             |
 | length     | number              | 否   | 数组长。             |
-| callback   | AsyncCallback<void> | 是   | 回调表示成功或失败。 |
+| callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
