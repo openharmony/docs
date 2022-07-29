@@ -41,7 +41,7 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 **示例：**
 
-```
+```ts
 try {
   var upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
@@ -73,7 +73,7 @@ getRestorer(): Restorer
 
 **示例：**
 
-```
+```ts
 try {
   let restorer = update.getRestorer();
 } catch(error) {
@@ -97,7 +97,7 @@ getLocalUpdater(): LocalUpdater
 
 **示例：**
 
-```
+```ts
 try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
@@ -125,7 +125,7 @@ checkNewVersion(callback: AsyncCallback\<CheckResult>): void
 
 **示例：**
 
-```
+```ts
 updater.checkNewVersion((err, result) => {
   console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
 });
@@ -149,7 +149,7 @@ checkNewVersion(): Promise\<CheckResult>
 
 **示例:**
 
-```
+```ts
 updater.checkNewVersion().then(result => {
   console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
   // 版本摘要信息
@@ -177,7 +177,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 **示例：**
 
-```
+```ts
 updater.getNewVersionInfo((err, info) => {
   console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
   console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
@@ -202,7 +202,7 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 **示例：**
 
-```
+```ts
 updater.getNewVersionInfo().then(info => {
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
   console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
@@ -231,7 +231,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -274,7 +274,7 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -311,7 +311,7 @@ getCurrentVersionInfo(callback: AsyncCallback\<CurrentVersionInfo>): void
 
 **示例：**
 
-```
+```ts
 updater.getCurrentVersionInfo((err, info) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
@@ -337,7 +337,7 @@ getCurrentVersionInfo(): Promise\<CurrentVersionInfo>
 
 **示例：**
 
-```
+```ts
 updater.getCurrentVersionInfo().then(info => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
@@ -366,7 +366,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 **示例：**
 
-```
+```ts
 // 描述文件选项
 var descriptionOptions = {
   format: DescriptionFormat.STANDARD, // 标准格式
@@ -403,7 +403,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 **示例：**
 
-```
+```ts
 // 描述文件选项
 var descriptionOptions = {
   format: DescriptionFormat.STANDARD, // 标准格式
@@ -435,7 +435,7 @@ getTaskInfo(callback: AsyncCallback\<TaskInfo>): void
 
 **示例：**
 
-```
+```ts
 updater.getTaskInfo((err, info) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
@@ -459,7 +459,7 @@ getTaskInfo(): Promise\<TaskInfo>
 
 **示例：**
 
-```
+```ts
 updater.getTaskInfo().then(info => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
 }).catch(err => {
@@ -487,7 +487,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -528,7 +528,7 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -566,7 +566,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -606,7 +606,7 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -643,7 +643,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -683,7 +683,7 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -720,7 +720,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -760,7 +760,7 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -797,7 +797,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -837,7 +837,7 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 **示例：**
 
-```
+```ts
 // 版本摘要信息
 var versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
@@ -872,7 +872,7 @@ getUpgradePolicy(callback: AsyncCallback\<UpgradePolicy>): void
 
 **示例：**
 
-```
+```ts
 updater.getUpgradePolicy((err, policy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
@@ -897,7 +897,7 @@ getUpgradePolicy(): Promise\<UpgradePolicy>
 
 **示例：**
 
-```
+```ts
 updater.getUpgradePolicy().then(policy => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
@@ -925,7 +925,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```
+```ts
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -960,7 +960,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 
 **示例：**
 
-```
+```ts
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -991,7 +991,7 @@ terminateUpgrade(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```
+```ts
 updater.terminateUpgrade((err) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
@@ -1015,7 +1015,7 @@ terminateUpgrade(): Promise\<void>
 
 **示例：**
 
-```
+```ts
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch(err => {
@@ -1040,7 +1040,7 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 **示例：**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
@@ -1067,7 +1067,7 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 **示例：**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
@@ -1098,7 +1098,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```
+```ts
 restorer.factoryReset((err) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
@@ -1122,7 +1122,7 @@ factoryReset(): Promise\<void>
 
 **示例:**
 
-```
+```ts
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
 }).catch(err => {
@@ -1152,7 +1152,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 
 **示例：**
 
-```
+```ts
 var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
@@ -1188,7 +1188,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 
 **示例:**
 
-```
+```ts
 var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
@@ -1218,7 +1218,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 
 **示例：**
 
-```
+```ts
 var upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
@@ -1247,7 +1247,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>): Promise\<void
 
 **示例:**
 
-```
+```ts
 var upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
@@ -1275,7 +1275,7 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 
 **示例：**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
@@ -1304,7 +1304,7 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 
 **示例：**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""

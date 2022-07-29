@@ -284,7 +284,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 输入设备的描述信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 | 名称       | 参数类型                        | 说明                                |
 | -------- | --------------------------- | --------------------------------- |
@@ -295,7 +295,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 输入设备的描述信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 | 名称                   | 参数类型                                   | 说明                                       |
 | -------------------- | -------------------------------------- | ---------------------------------------- |
@@ -314,7 +314,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 输入设备的轴类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 | 名称          | 参数类型   | 说明              |
 | ----------- | ------ | --------------- |
@@ -332,12 +332,12 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 输入设备的轴信息。
 
-**系统能力**： 以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力**： SystemCapability.MultimodalInput.Input.InputDevice
 
 | 名称                      | 参数类型                      | 说明       |
 | ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | 轴的输入源类型。 |
-| axis                    | [AxisType](#axistype9)     | 轴的类型。    |
+| axis                    | [AxisType](#axistype9)    | 轴的类型。    |
 | max                     | number                    | 轴的最大值。   |
 | min                     | number                    | 轴的最小值。   |
 | fuzz<sup>9+</sup>       | number                    | 轴的模糊值。   |
@@ -348,7 +348,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 定义这个轴的输入源类型。比如鼠标设备可上报x轴事件，则x轴的源就是鼠标。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 | 名称          | 参数类型   | 说明          |
 | ----------- | ------ | ----------- |
@@ -363,7 +363,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 定义监听设备热插拔事件。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 | 名称     | 参数类型   | 说明        |
 | ------ | ------ | --------- |
@@ -374,7 +374,7 @@ inputDevice.getKeyboardType(1).then((ret)=>{
 
 定义键盘输入设备的类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.MultimodalInput.Input.InputDevice
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
 | 名称                  | 参数类型   | 值    | 说明        |
 | ------------------- | ------ | ---- | --------- |
