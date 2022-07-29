@@ -319,7 +319,7 @@ static struct PanelInfo g_panelInfo = {
     .vsw = VERTICAL_SYNC_WIDTH,         /* vertical sync width */
     .frameRate = FRAME_RATE,            /* frame rate */
     .intfType = MIPI_DSI,               /* panel interface type */
-    .intfSync = OUTPUT_USER,            /* output timming type */
+    .intfSync = OUTPUT_USER,            /* output timing type */
     /* MIPI configuration */
     .mipi = { DSI_2_LANES, DSI_VIDEO_MODE, VIDEO_BURST_MODE, FORMAT_RGB_24_BIT },
     /* backlight config info */
