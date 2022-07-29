@@ -42,15 +42,15 @@ Image(src: string | PixelMap | Resource)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                    | 参数类型                                     | 默认值                      | 描述                                       |
-| --------------------- | ---------------------------------------- | ------------------------ | ---------------------------------------- |
-| alt                   | string \| [Resource](../../ui/ts-types.md#resource类型) | -                        | 加载时显示的占位图，支持本地图片和网络图片。                   |
-| objectFit             | [ImageFit](#imagefit枚举说明)                | ImageFit.Cover           | 设置图片的缩放类型。                               |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat                 | 设置图片的重复样式。<br/>> **说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
-| interpolation         | [ImageInterpolation](#imageinterpolation) | ImageInterpolation.None  | 设置图片的插值效果，仅针对图片放大插值。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
-| renderMode            | [ImageRenderMode](#imagerendermode)      | ImageRenderMode.Original | 设置图片渲染的模式。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
+| 名称                  | 参数类型                                                | 默认值                   | 描述                                                         |
+| --------------------- | ------------------------------------------------------- | ------------------------ | ------------------------------------------------------------ |
+| alt                   | string \| [Resource](../../ui/ts-types.md#resource类型) | -                        | 加载时显示的占位图，支持本地图片和网络图片。                 |
+| objectFit             | ImageFit                           | ImageFit.Cover           | 设置图片的缩放类型。                                         |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | NoRepeat                 | 设置图片的重复样式。<br/>> **说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
+| interpolation         | [ImageInterpolation](#imageinterpolation)               | ImageInterpolation.None  | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
+| renderMode            | [ImageRenderMode](#imagerendermode)                     | ImageRenderMode.Original | 设置图片渲染的模式。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -                        | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>>&nbsp;**说明：**<br/>>&nbsp;PixelMap资源不支持该属性。 |
-| syncLoad<sup>8+</sup> | boolean                                  | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
+| syncLoad<sup>8+</sup> | boolean                                                 | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。 |
 
 ### ImageFit
 
