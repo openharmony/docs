@@ -12,7 +12,7 @@ AccessibilityExtensionContext模块提供扩展的上下文的能力，包括允
 ## 导入模块
 
 ```js
-import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 ```
 
 ## FocusDirection
@@ -21,13 +21,13 @@ import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExte
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
-| 名称 | 描述 |
-| -------- | -------- |
-| up | 表示向上查询。 |
-| down | 表示向上查询。 |
-| left | 表示向左查询。 |
-| right | 表示向右查询。 |
-| forward | 表示向前查询。 |
+| 名称       | 描述      |
+| -------- | ------- |
+| up       | 表示向上查询。 |
+| down     | 表示向上查询。 |
+| left     | 表示向左查询。 |
+| right    | 表示向右查询。 |
+| forward  | 表示向前查询。 |
 | backward | 表示向后查询。 |
 
 ## FocusType
@@ -36,10 +36,10 @@ import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExte
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
-| 名称 | 描述 |
-| -------- | -------- |
+| 名称            | 描述          |
+| ------------- | ----------- |
 | accessibility | 表示无障碍的焦点类型。 |
-| normal | 表示普通的焦点类型。 |
+| normal        | 表示普通的焦点类型。  |
 
 ## Rect
 
@@ -49,12 +49,12 @@ import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExte
 
 ### 参数
 
-| 名称   | 参数类型 | 可读 | 可写 | 说明               |
-| ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 否   | 矩形区域的左边界。 |
-| top    | number   | 是   | 否   | 矩形区域的上边界。 |
-| width  | number   | 是   | 否   | 矩形区域的宽度。   |
-| height | number   | 是   | 否   | 矩形区域的高度。   |
+| 名称     | 参数类型   | 可读   | 可写   | 说明        |
+| ------ | ------ | ---- | ---- | --------- |
+| left   | number | 是    | 否    | 矩形区域的左边界。 |
+| top    | number | 是    | 否    | 矩形区域的上边界。 |
+| width  | number | 是    | 否    | 矩形区域的宽度。  |
+| height | number | 是    | 否    | 矩形区域的高度。  |
 
 ## WindowType
 
@@ -62,10 +62,10 @@ import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExte
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
-| 名称 | 描述 |
-| -------- | -------- |
+| 名称          | 描述        |
+| ----------- | --------- |
 | application | 表示应用窗口类型。 |
-| system | 表示系统窗口类型。 |
+| system      | 表示系统窗口类型。 |
 
 ## AccessibilityExtensionContext.setEventTypeFilter
 
@@ -77,14 +77,14 @@ setEventTypeFilter(type: Array<accessibility.EventType>): Promise\<boolean>;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| type | Array&lt;[EventType](js-apis-accessibility.md#EventType)&gt; | 是 | 关注的事件类型。 |
+| 参数名  | 参数类型                                     | 必填   | 说明       |
+| ---- | ---------------------------------------- | ---- | -------- |
+| type | Array&lt;[EventType](js-apis-accessibility.md#EventType)&gt; | 是    | 关注的事件类型。 |
 
 **返回值：**
 
-| 类型                             | 说明                                    |
-| -------------------------------- | --------------------------------------- |
+| 类型                     | 说明                    |
+| ---------------------- | --------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回当前设置是否成功。 |
 
 **示例：**
@@ -103,14 +103,14 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<boolean>;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| targetNames | Array&lt;string&gt; | 是 | 关注的目标包名。 |
+| 参数名         | 参数类型                | 必填   | 说明       |
+| ----------- | ------------------- | ---- | -------- |
+| targetNames | Array&lt;string&gt; | 是    | 关注的目标包名。 |
 
 **返回值：**
 
-| 类型                             | 说明                                    |
-| -------------------------------- | --------------------------------------- |
+| 类型                     | 说明                    |
+| ---------------------- | --------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回当前设置是否成功。 |
 
 **示例：**
@@ -129,14 +129,14 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| isAccessibilityFocus | boolean | 否 | 获取的是否是无障碍焦点元素，默认为否。 |
+| 参数名                  | 参数类型    | 必填   | 说明                  |
+| -------------------- | ------- | ---- | ------------------- |
+| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，默认为否。 |
 
 **返回值：**
 
-| 类型                             | 说明                                    |
-| -------------------------------- | --------------------------------------- |
+| 类型                                  | 说明                     |
+| ----------------------------------- | ---------------------- |
 | Promise&lt;AccessibilityElement&gt; | Promise对象。返回当前对应的焦点元素。 |
 
 **示例：**
@@ -157,14 +157,14 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| windowId | number | 否 | 指定获取根节点元素的窗口，未指定则从当前活跃窗口获取。 |
+| 参数名      | 参数类型   | 必填   | 说明                          |
+| -------- | ------ | ---- | --------------------------- |
+| windowId | number | 否    | 指定获取根节点元素的窗口，未指定则从当前活跃窗口获取。 |
 
 **返回值：**
 
-| 类型                             | 说明                                    |
-| -------------------------------- | --------------------------------------- |
+| 类型                                  | 说明                      |
+| ----------------------------------- | ----------------------- |
 | Promise&lt;AccessibilityElement&gt; | Promise对象。返回当前对应的根节点元素。 |
 
 **示例：**
@@ -185,14 +185,14 @@ getWindows(displayId?: number): Promise<Array\<AccessibilityElement>>;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| displayId | number | 否 | 指定获取窗口信息的屏幕，未指定则从默认主屏幕获取。 |
+| 参数名       | 参数类型   | 必填   | 说明                        |
+| --------- | ------ | ---- | ------------------------- |
+| displayId | number | 否    | 指定获取窗口信息的屏幕，未指定则从默认主屏幕获取。 |
 
 **返回值：**
 
-| 类型                             | 说明                                    |
-| -------------------------------- | --------------------------------------- |
+| 类型                                       | 说明                       |
+| ---------------------------------------- | ------------------------ |
 | Promise&lt;Array&lt;AccessibilityElement&gt;&gt; | Promise对象。返回当前对应的窗口列表信息。 |
 
 **示例：**
@@ -213,15 +213,15 @@ gestureInject(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| gesturePath | [GesturePath](js-apis-application-AccessibilityExtensionAbility.md#GesturePath) | 是 | 表示手势的路径信息。 |
-| listener | Callback&lt;boolean&gt; | 是 | 表示注入手势执行结果的回调。 |
+| 参数名         | 参数类型                                     | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| gesturePath | [GesturePath](js-apis-application-AccessibilityExtensionAbility.md#GesturePath) | 是    | 表示手势的路径信息。     |
+| listener    | Callback&lt;boolean&gt;                  | 是    | 表示注入手势执行结果的回调。 |
 
 **返回值：**
 
-| 类型                             | 说明                                    |
-| -------------------------------- | --------------------------------------- |
+| 类型                     | 说明                     |
+| ---------------------- | ---------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回注入手势的调用结果。 |
 
 **示例：**

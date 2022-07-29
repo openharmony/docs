@@ -32,10 +32,10 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | 是 | 指示应用程序的包名。 |
-  | callback | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是 | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
+  | 参数名        | 类型                                       | 必填   | 说明                                   |
+  | ---------- | ---------------------------------------- | ---- | ------------------------------------ |
+  | bundleName | string                                   | 是    | 指示应用程序的包名。                           |
+  | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是    | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
 - 示例：
   ```
@@ -45,7 +45,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
           return;
       }
       console.info("createDeviceManager success");
-      this.dmInstance = data;
+      let dmInstance = data;
   });
   ```
 
@@ -55,12 +55,12 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| deviceId | string | 是 | 设备的唯一标识。 |
-| deviceName | string | 是 | 设备名称。 |
-| deviceType | [DeviceType](#devicetype) | 是 | 设备类型。 |
-| networkId<sup>8+</sup> | string | 是 | 设备网络标识。 |
+| 名称                     | 类型                        | 必填   | 描述       |
+| ---------------------- | ------------------------- | ---- | -------- |
+| deviceId               | string                    | 是    | 设备的唯一标识。 |
+| deviceName             | string                    | 是    | 设备名称。    |
+| deviceType             | [DeviceType](#devicetype) | 是    | 设备类型。    |
+| networkId<sup>8+</sup> | string                    | 是    | 设备网络标识。  |
 
 
 ## DeviceType
@@ -69,15 +69,15 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| SPEAKER | 0x0A | 智能音箱 |
-| PHONE | 0x0E | 手机 |
-| TABLET | 0x11 | 平板 |
-| WEARABLE | 0x6D | 智能穿戴 |
-| TV | 0x9C | 智慧屏 |
-| CAR | 0x83 | 车 |
-| UNKNOWN_TYPE | 0 | 未知设备 |
+| 名称           | 默认值  | 说明   |
+| ------------ | ---- | ---- |
+| SPEAKER      | 0x0A | 智能音箱 |
+| PHONE        | 0x0E | 手机   |
+| TABLET       | 0x11 | 平板   |
+| WEARABLE     | 0x6D | 智能穿戴 |
+| TV           | 0x9C | 智慧屏  |
+| CAR          | 0x83 | 车    |
+| UNKNOWN_TYPE | 0    | 未知设备 |
 
 
 ## DeviceStateChangeAction
@@ -86,12 +86,12 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| ONLINE | 0 | 设备上线。 |
-| READY | 1 | 设备就绪，设备信息同步已完成。 |
-| OFFLINE | 2 | 设备下线。 |
-| CHANGE | 3 | 设备信息更改。 |
+| 名称      | 默认值  | 说明              |
+| ------- | ---- | --------------- |
+| ONLINE  | 0    | 设备上线。           |
+| READY   | 1    | 设备就绪，设备信息同步已完成。 |
+| OFFLINE | 2    | 设备下线。           |
+| CHANGE  | 3    | 设备信息更改。         |
 
 ## SubscribeInfo
 
@@ -99,15 +99,15 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| subscribeId | number | 是 | 发现标识，用于标识不同的发现周期。 |
-| mode | [DiscoverMode ](#discovermode) | 否 | 发现模式。 |
-| medium | [ExchangeMedium](#exchangemedium) | 否 | 发现类型。 |
-| freq | [ExchangeFreq](#exchangefreq) | 否 | 发现频率。 |
-| isSameAccount | boolean | 否 | 是否同账号。 |
-| isWakeRemote | boolean | 否 | 是否唤醒设备。 |
-| capability | [SubscribeCap](#subscribecap) | 否 | 发现能力。 |
+| 名称            | 类型                                | 必填   | 描述                |
+| ------------- | --------------------------------- | ---- | ----------------- |
+| subscribeId   | number                            | 是    | 发现标识，用于标识不同的发现周期。 |
+| mode          | [DiscoverMode ](#discovermode)    | 否    | 发现模式。             |
+| medium        | [ExchangeMedium](#exchangemedium) | 否    | 发现类型。             |
+| freq          | [ExchangeFreq](#exchangefreq)     | 否    | 发现频率。             |
+| isSameAccount | boolean                           | 否    | 是否同账号。            |
+| isWakeRemote  | boolean                           | 否    | 是否唤醒设备。           |
+| capability    | [SubscribeCap](#subscribecap)     | 否    | 发现能力。             |
 
 
 ## DiscoverMode 
@@ -116,10 +116,10 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
+| 名称                    | 默认值  | 说明    |
+| --------------------- | ---- | ----- |
 | DISCOVER_MODE_PASSIVE | 0x55 | 被动模式。 |
-| DISCOVER_MODE_ACTIVE | 0xAA | 主动模式。 |
+| DISCOVER_MODE_ACTIVE  | 0xAA | 主动模式。 |
 
 
 ## ExchangeMedium 
@@ -128,12 +128,12 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| AUTO | 0 | 自动发现类型。 |
-| BLE | 1 | 蓝牙发现类型。 |
-| COAP | 2 | WiFi发现类型。 |
-| USB | 3 | USB发现类型。 |
+| 名称   | 默认值  | 说明        |
+| ---- | ---- | --------- |
+| AUTO | 0    | 自动发现类型。   |
+| BLE  | 1    | 蓝牙发现类型。   |
+| COAP | 2    | WiFi发现类型。 |
+| USB  | 3    | USB发现类型。  |
 
 ## ExchangeFreq 
 
@@ -141,12 +141,12 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| LOW | 0 | 低频率。 |
-| MID | 1 | 中频率。 |
-| HIGH | 2 | 高频率。 |
-| SUPER_HIGH | 3 | 超高频率。 |
+| 名称         | 默认值  | 说明    |
+| ---------- | ---- | ----- |
+| LOW        | 0    | 低频率。  |
+| MID        | 1    | 中频率。  |
+| HIGH       | 2    | 高频率。  |
+| SUPER_HIGH | 3    | 超高频率。 |
 
 
 ## SubscribeCap 
@@ -155,10 +155,10 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 默认值 | 说明 |
-| -------- | -------- | -------- |
-| SUBSCRIBE_CAPABILITY_DDMP | 0 | DDMP能力，后续会被废弃。 |
-| SUBSCRIBE_CAPABILITY_OSD | 1 | OSD能力。 |
+| 名称                        | 默认值  | 说明             |
+| ------------------------- | ---- | -------------- |
+| SUBSCRIBE_CAPABILITY_DDMP | 0    | DDMP能力，后续会被废弃。 |
+| SUBSCRIBE_CAPABILITY_OSD  | 1    | OSD能力。         |
 
 
 ## AuthParam
@@ -167,10 +167,10 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| authType | number | 是 | 认证类型。 |
-| extraInfo | {[key:string] : any} | 否 | 认证参数可扩展字段。 |
+| 名称        | 类型                   | 必填   | 描述         |
+| --------- | -------------------- | ---- | ---------- |
+| authType  | number               | 是    | 认证类型。      |
+| extraInfo | {[key:string] : any} | 否    | 认证参数可扩展字段。 |
 
 ## AuthInfo
 
@@ -178,11 +178,11 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
 
-| 名称 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| authType | number | 是 | 认证类型。 |
-| token | number | 是 | 认证Token。 |
-| extraInfo | {[key:string] : any} | 否 | 认证信息可扩展字段。 |
+| 名称        | 类型                   | 必填   | 描述         |
+| --------- | -------------------- | ---- | ---------- |
+| authType  | number               | 是    | 认证类型。      |
+| token     | number               | 是    | 认证Token。   |
+| extraInfo | {[key:string] : any} | 否    | 认证信息可扩展字段。 |
 
 
 ## DeviceManager
@@ -213,8 +213,8 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 返回值：
-  | 名称 | 说明 |
-  | -------- | -------- |
+  | 名称                                     | 说明        |
+  | -------------------------------------- | --------- |
   | Array&lt;[DeviceInfo](#deviceinfo)&gt; | 返回可信设备列表。 |
 
 - 示例：
@@ -232,9 +232,9 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | 是 | 获取所有可信设备列表的回调，返回设备信息。 |
+  | 名称       | 参数类型                                     | 必填   | 说明                    |
+  | -------- | ---------------------------------------- | ---- | --------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | 是    | 获取所有可信设备列表的回调，返回设备信息。 |
 
 - 示例：
   ```js
@@ -254,8 +254,8 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型                                       | 说明                    |
+  | ---------------------------------------- | --------------------- |
   | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 - 示例：
@@ -276,8 +276,8 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 返回值：
-  | 名称 | 说明 |
-  | -------- | -------- |
+  | 名称                                     | 说明        |
+  | -------------------------------------- | --------- |
   | Array&lt;[DeviceInfo](#deviceinfo)&gt; | 返回本地设备列表。 |
 
 - 示例：
@@ -295,9 +295,9 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是 | 获取本地设备信息。 |
+  | 名称       | 参数类型                                     | 必填   | 说明        |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取本地设备信息。 |
 
 - 示例：
   ```js
@@ -317,8 +317,8 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 返回值：
-  | 类型 | 说明 |
-  | -------- | -------- |
+  | 类型                                       | 说明                    |
+  | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise实例，用于获取异步返回结果。 |
 
 - 示例：
@@ -339,9 +339,9 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是 | 发现信息。 |
+  | 名称            | 参数类型                            | 必填   | 说明    |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是    | 发现信息。 |
 
 - 示例：
   ```js
@@ -368,9 +368,9 @@ stopDeviceDiscovery(subscribeId: number): void
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | subscribeId | number | 是 | 发现标识。 |
+  | 名称          | 参数类型   | 必填   | 说明    |
+  | ----------- | ------ | ---- | ----- |
+  | subscribeId | number | 是    | 发现标识。 |
 
 - 示例：
   ```js
@@ -387,11 +387,11 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | deviceInfo | [DeviceInfo](#deviceinfo) | 是 | 设备信息。 |
-  | authParam | [AuthParam](#authparam) | 是 | 认证参数。 |
-  | callback | AsyncCallback<{ deviceId: string, pinToken ?: number }> | 是 | 认证结果回调。 |
+  | 名称         | 参数类型                                     | 必填   | 说明      |
+  | ---------- | ---------------------------------------- | ---- | ------- |
+  | deviceInfo | [DeviceInfo](#deviceinfo)                | 是    | 设备信息。   |
+  | authParam  | [AuthParam](#authparam)                  | 是    | 认证参数。   |
+  | callback   | AsyncCallback<{ deviceId: string, pinToken ?: number }> | 是    | 认证结果回调。 |
 
 - 示例：
   ```js
@@ -424,9 +424,9 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | deviceInfo | [DeviceInfo](#deviceinfo) | 是 | 设备信息。 |
+  | 名称         | 参数类型                      | 必填   | 说明    |
+  | ---------- | ------------------------- | ---- | ----- |
+  | deviceInfo | [DeviceInfo](#deviceinfo) | 是    | 设备信息。 |
 
 - 示例：
   ```js
@@ -443,10 +443,10 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | authInfo | [AuthInfo](#authinfo) | 是 | 认证信息。 |
-  | authInfo | AsyncCallback<{ deviceId: string, level: number }> | 是 | 验证结果回调。 |
+  | 名称       | 参数类型                                     | 必填   | 说明      |
+  | -------- | ---------------------------------------- | ---- | ------- |
+  | authInfo | [AuthInfo](#authinfo)                    | 是    | 认证信息。   |
+  | authInfo | AsyncCallback<{ deviceId: string, level: number }> | 是    | 验证结果回调。 |
 
 - 示例：
   ```js
@@ -474,10 +474,10 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 注册设备状态回调，固定为deviceStateChange。 |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是 | 指示要注册的设备状态回调，返回设备状态和设备信息。 |
+  | 名称       | 参数类型                                     | 必填   | 说明                             |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
 
 - 示例：
   ```js
@@ -497,10 +497,10 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 根据应用程序的包名取消注册设备状态回调。 |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;&nbsp;}&gt; | 是 | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
+  | 名称       | 参数类型                                     | 必填   | 说明                          |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调。        |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;&nbsp;}&gt; | 是    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
 - 示例：
   ```js
@@ -520,10 +520,10 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 注册设备发现回调，以便在发现周边设备时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;subscribeId: number, device: DeviceInfo&nbsp;}&gt; | 是 | 注册设备发现的回调方法。 |
+  | 名称       | 参数类型                                     | 必填   | 说明                         |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+  | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序。 |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, device: DeviceInfo&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
 - 示例：
   ```js
@@ -542,10 +542,10 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消注册设备发现回调。 |
-  | callback | Callback&lt;{&nbsp;subscribeId: number, device: [DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是 | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
+  | 名称       | 参数类型                                     | 必填   | 说明                          |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | 是    | 取消注册设备发现回调。                 |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, device: [DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
 - 示例：
   ```js
@@ -564,10 +564,10 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | 是 | 注册设备发现失败的回调方法。 |
+  | 名称       | 参数类型                                     | 必填   | 说明                             |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序。 |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
 - 示例：
   ```js
@@ -586,10 +586,10 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消注册设备发现失败回调。 |
-  | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | 是 | 指示要取消注册的设备发现失败回调。 |
+  | 名称       | 参数类型                                     | 必填   | 说明                |
+  | -------- | ---------------------------------------- | ---- | ----------------- |
+  | type     | string                                   | 是    | 取消注册设备发现失败回调。     |
+  | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | 是    | 指示要取消注册的设备发现失败回调。 |
 
 - 示例：
   ```js
@@ -609,10 +609,10 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
-  | callback | ()&nbsp;=&gt;&nbsp;void | 是 | 注册serviceDie的回调方法。 |
+  | 名称       | 参数类型                    | 必填   | 说明                                       |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
+  | callback | ()&nbsp;=&gt;&nbsp;void | 是    | 注册serviceDie的回调方法。                       |
 
 - 示例：
   ```js
@@ -632,10 +632,10 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
-  | 名称 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
-  | callback | ()&nbsp;=&gt;&nbsp;void | 否 | 取消注册serviceDie的回调方法。 |
+  | 名称       | 参数类型                    | 必填   | 说明                                       |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
+  | callback | ()&nbsp;=&gt;&nbsp;void | 否    | 取消注册serviceDie的回调方法。                     |
 
 - 示例：
   ```js
