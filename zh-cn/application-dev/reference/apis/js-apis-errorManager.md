@@ -28,14 +28,18 @@ registerErrorObserver(observer: ErrorObserver): number;
 **示例：**
     
 ```js
-var observer = "12345";
+var observer = {
+    onUnhandledException(errorMsg) {
+        console.log('onUnhandledException, errorMsg: ', errorMsg)
+    }
+}
 errorManager.registerErrorObserver(observer)
-.then((data) => {
-    console.log('----------- registerErrorObserver success ----------', data);
-})
-.catch((err) => {
-    console.log('----------- registerErrorObserver fail ----------', err);
-})
+    .then((data) => {
+        console.log('----------- registerErrorObserver success ----------', data);
+    })
+    .catch((err) => {
+        console.log('----------- registerErrorObserver fail ----------', err);
+    })
 
 ```
 
@@ -59,7 +63,7 @@ unregisterErrorObserver(observerId: number,  callback: AsyncCallback\<void>): vo
 ```js
 var observerId = 100;
 
-function unregisterErrorObserver(err) {
+function unregisterErrorObserverCallback(err) {
     if (err) {
         console.log('------------ unregisterErrorObserverCallback ------------', err);
     }
@@ -119,9 +123,17 @@ onUnhandledException(errMsg: string): void;
 **示例：**
     
 ```js
-var errMsg = "12345";
-errorManager.onUnhandledException(errMsg, (error) => {
-    console.log("error.code = " + error.code)
-})
+var observer = {
+    onUnhandledException(errorMsg) {
+        console.log('onUnhandledException, errorMsg: ', errorMsg)
+    }
+}
+errorManager.registerErrorObserver(observer)
+    .then((data) => {
+        console.log('----------- registerErrorObserver success ----------', data);
+    })
+    .catch((err) => {
+        console.log('----------- registerErrorObserver fail ----------', err);
+    })
 
 ```
