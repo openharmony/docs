@@ -40,6 +40,7 @@ import window from '@ohos.window';
 | TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
 | TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
 | TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
 
 ## AvoidAreaType<sup>7+</sup>
 
