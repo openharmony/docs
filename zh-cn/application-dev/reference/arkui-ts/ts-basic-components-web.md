@@ -2844,7 +2844,7 @@ static getOrigins() : Promise<Array<[WebStorageOrigin]>>
   ```
 
 ### getOriginQuota<sup>9+</sup>
-static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
+static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -2852,7 +2852,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
 | 参数名      | 参数类型                  | 必填   | 说明        |
 | -------- | --------------------- | ---- | --------- |
 | origin   | string                | 是    | 指定源的字符串索引 |
-| callback | AsyncCallback<number> | 是    | 指定源的存储配额。 |
+| callback | AsyncCallback\<number> | 是    | 指定源的存储配额。 |
 
 **示例：**
   ```ts
@@ -2883,7 +2883,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback<number>) : void
   ```
 
 ### getOriginQuota<sup>9+</sup>
-static getOriginQuota(origin : string) : Promise<number>
+static getOriginQuota(origin : string) : Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -2895,7 +2895,7 @@ static getOriginQuota(origin : string) : Promise<number>
 **返回值：**
 | 类型              | 说明                      |
 | --------------- | ----------------------- |
-| Promise<number> | Promise实例，用于获取指定源的存储配额。 |
+| Promise\<number> | Promise实例，用于获取指定源的存储配额。 |
 
 **示例：**
   ```ts
@@ -2926,7 +2926,7 @@ static getOriginQuota(origin : string) : Promise<number>
   ```
 
 ### getOriginUsage<sup>9+</sup>
-static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
+static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -2934,7 +2934,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
 | 参数名      | 参数类型                  | 必填   | 说明         |
 | -------- | --------------------- | ---- | ---------- |
 | origin   | string                | 是    | 指定源的字符串索引。 |
-| callback | AsyncCallback<number> | 是    | 指定源的存储量。   |
+| callback | AsyncCallback\<number> | 是    | 指定源的存储量。   |
 
 **示例：**
   ```ts
@@ -2965,7 +2965,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback<number>) : void
   ```
 
 ### getOriginUsage<sup>9+</sup>
-static getOriginUsage(origin : string) : Promise<number>
+static getOriginUsage(origin : string) : Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -2977,7 +2977,7 @@ static getOriginUsage(origin : string) : Promise<number>
 **返回值：**
 | 类型              | 说明                     |
 | --------------- | ---------------------- |
-| Promise<number> | Promise实例，用于获取指定源的存储量。 |
+| Promise\<number> | Promise实例，用于获取指定源的存储量。 |
 
 **示例：**
   ```ts
