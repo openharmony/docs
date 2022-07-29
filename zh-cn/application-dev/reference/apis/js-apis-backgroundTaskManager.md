@@ -8,13 +8,13 @@
 
 应用中存在用户能够直观感受到的且需要一直在后台运行的业务时（如，后台播放音乐），可以使用长时任务机制。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```
+```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 ```
 
@@ -143,12 +143,12 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
-| 参数名       | 类型                                 | 必填   | 说明                       |
-| --------- | ---------------------------------- | ---- | ------------------------ |
-| context   | Context      | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。                 |
-| bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。              |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。 |
-| callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。   |
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
+| wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
+| callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
 
 **示例**：
 ```js
@@ -195,11 +195,11 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **参数**：
 
-| 参数名       | 类型                                 | 必填   | 说明                      |
-| --------- | ---------------------------------- | ---- | ----------------------- |
-| context   | Context      | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。               |
-| bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。 |
+| 参数名       | 类型                                 | 必填   | 说明                                       |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
+| wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
 **返回值**
 | 类型             | 说明               |
@@ -244,10 +244,10 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
-| 参数名      | 类型                            | 必填   | 说明                     |
-| -------- | ----------------------------- | ---- | ---------------------- |
-| context  | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。              |
-| callback | AsyncCallback&lt;void&gt;     | 是    | callback形式返回启动长时任务的结果。 |
+| 参数名      | 类型                        | 必填   | 说明                                       |
+| -------- | ------------------------- | ---- | ---------------------------------------- |
+| context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
 
 **示例**：
 ```js
@@ -275,8 +275,8 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
-| 参数名     | 类型                            | 必填   | 说明        |
-| ------- | ----------------------------- | ---- | --------- |
+| 参数名     | 类型      | 必填   | 说明                                       |
+| ------- | ------- | ---- | ---------------------------------------- |
 | context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 
 **返回值**
@@ -301,7 +301,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 延迟挂起信息。
 
-**系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 | 参数名             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
@@ -311,16 +311,16 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ## BackgroundMode<sup>8+</sup>
 
-**系统能力:** 以下各项对应的系统能力均为SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 参数名                  | 参数值 | 描述                                                         |
-| ----------------------- | ------ | ------------------------------------------------------------ |
-| DATA_TRANSFER           | 1      | 数据传输                                                     |
-| AUDIO_PLAYBACK          | 2      | 音频播放                                                     |
-| AUDIO_RECORDING         | 3      | 录音                                                         |
-| LOCATION                | 4      | 定位导航                                                     |
-| BLUETOOTH_INTERACTION   | 5      | 蓝牙相关                                                     |
-| MULTI_DEVICE_CONNECTION | 6      | 多设备互联                                                   |
-| WIFI_INTERACTION        | 7      | WLAN相关<br />**系统API**：此接口为系统接口，三方应用不支持调用。 |
-| VOIP                    | 8      | 音视频通话<br />**系统API**：此接口为系统接口，三方应用不支持调用。 |
-| TASK_KEEPING            | 9      | 计算任务（仅在特定设备生效）                                 |
+| 参数名                     | 参数值  | 描述                    |
+| ----------------------- | ---- | --------------------- |
+| DATA_TRANSFER           | 1    | 数据传输                  |
+| AUDIO_PLAYBACK          | 2    | 音频播放                  |
+| AUDIO_RECORDING         | 3    | 录音                    |
+| LOCATION                | 4    | 定位导航                  |
+| BLUETOOTH_INTERACTION   | 5    | 蓝牙相关                  |
+| MULTI_DEVICE_CONNECTION | 6    | 多设备互联                 |
+| WIFI_INTERACTION        | 7    | WLAN相关<br />此接口为系统接口。 |
+| VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
+| TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）        |
