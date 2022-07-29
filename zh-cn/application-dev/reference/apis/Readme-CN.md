@@ -121,7 +121,7 @@
 - 资源调度
 
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
-  - [@ohos.distributedMissionManager (distributedMissionManager)](js-apis-distributedMissionManager.md)
+  - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
 - 定制管理
