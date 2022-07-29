@@ -116,7 +116,7 @@
 
 ## 移植
 
-- [如何将用户的堆内存挂载进内核](../faqs/faqs-transplant.md)
+- [如何将用户的堆内存挂载进内核](../faqs/faqs-porting.md)
 
 
 ## 启动恢复
@@ -133,7 +133,7 @@
 
 ### 公共基础库
 
-- [1.LiteOS-A内核(Hi3516、Hi3518平台)KV存储路径设置错误，导致KV存储运行失败](../faqs/faqs-system-using.md)
+- [1.LiteOS-A内核(Hi3516、Hi3518平台)KV存储路径设置错误，导致KV存储运行失败](../faqs/faqs-system-applications.md)
 
 
 ### 视觉应用常见问题
@@ -173,6 +173,6 @@
 
 ### hdc
 
-- [hdc_std连接不到设备](../faqs/faqs-system-using.md)
+- [hdc_std连接不到设备](../faqs/faqs-system-applications.md)
 
-- [hdc_std运行不了](../faqs/faqs-system-using.md)
+- [hdc_std运行不了](../faqs/faqs-system-applications.md)
