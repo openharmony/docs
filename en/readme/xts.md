@@ -1,15 +1,15 @@
-# XTS<a name="EN-US_TOPIC_0000001126156429"></a>
+# XTS
 
-## Introduction<a name="section465982318513"></a>
+## Introduction
 
 The X test suite \(XTS\) subsystem contains a set of OpenHarmony compatibility test suites, including the currently supported application compatibility test suite \(ACTS\) and the device compatibility test suite \(DCTS\) that will be supported in the future.
 
 This subsystem contains the ACTS and **tools** software package.
 
--   The **acts** directory stores the source code and configuration files of ACTS test cases. The ACTS helps device vendors detect the software incompatibility as early as possible and ensures that the software is compatible to OpenHarmony during the entire development process.
+-   The **acts** directory stores the source code and configuration files of ACTS test cases. The ACTS helps device vendors detect the software incompatibility as early as possible and ensures that the software is compatible with OpenHarmony during the entire development process.
 -   The **tools** software package stores the test case development framework related to **acts**.
 
-## System Types<a name="section125090457443"></a>
+## System Types
 
 OpenHarmony supports the following system types:
 
@@ -26,24 +26,24 @@ OpenHarmony supports the following system types:
     A standard system runs on the devices whose memory is greater than or equal to 128 MiB and that are equipped with application processors such as ARM Cortex-A. This system provides a complete application framework supporting the enhanced interaction, 3D GPU, hardware composer, diverse components, and rich animations. This system applies to high-end refrigerator displays.
 
 
-## Directory Structure<a name="section161941989596"></a>
+## Directory Structure
 
 ```
 /test/xts
-├── acts                 # Test code
+├── acts                # Test code
 │   └── subsystem       # Source code of subsystem test cases for the standard system
 │   └── subsystem_lite  # Source code of subsystems test cases for mini and small systems
 │   └── BUILD.gn        # Build configuration of test cases for the standard system
 │   └── build_lite      
 │       └── BUILD.gn    # Build configuration of test cases for mini and small systems
-└── tools                # Test tool code
+└── tools               # Test tool code
 ```
 
-## Constraints<a name="section119744591305"></a>
+## Constraints
 
 Test cases for the mini system must be developed based on C, and those for the small system must be developed based on C++.
 
-## Usage Guidelines<a name="section137768191623"></a>
+## Usage Guidelines
 
 **Table  1** Test case levels
 
@@ -80,7 +80,7 @@ Test cases for the mini system must be developed based on C, and those for the s
 | Resilience | Tests the resilience property of the tested object to ensure that it can withstand and maintain the defined running status (including downgrading) when being attacked, and recover from and adapt defense to the attacks to approach mission assurance. |
 
 
-## Test Case Development Guidelines<a name="section3695134065513"></a>
+## Test Case Development Guidelines
 
 You should select the appropriate programming language and your target test framework to develop test cases.
 
@@ -92,7 +92,7 @@ You should select the appropriate programming language and your target test fram
 | Small | HCPPTest | C++ |
 | Standard | HJSUnit and HCPPTest | JavaScript and C++ |
 
-### C-based Test Case Development and Compilation \(for the Mini System\)<a name="section198193336544"></a>
+### C-based Test Case Development and Compilation \(for the Mini System\)
 
 **Developing test cases for the mini system**
 
@@ -194,7 +194,7 @@ The HCTest framework is used to support test cases developed with the C language
     >The ACTS build middleware is a static library, which will be linked to the image.
 
 
-### C-based Test Case Execution \(for the Mini System\)<a name="section13820233175418"></a>
+### C-based Test Case Execution \(for the Mini System\)
 
 **Executing test cases for the mini system**
 
@@ -211,7 +211,7 @@ View the serial port logs, whose format is as follows:
 
 The log for each test suite starts with **Start to run test suite:** and ends with **xx Tests xx Failures xx Ignored**.
 
-### C++-based Test Case Development and Compilation \(for Standard and Small Systems\)<a name="section3822123311540"></a>
+### C++-based Test Case Development and Compilation \(for Standard and Small Systems\)
 
 **Developing test cases for small-system devices** \(For examples of the standard system, go to the **global/i18n\_standard directory**.\)
 
@@ -327,7 +327,7 @@ The HCPPTest framework is enhanced and adapted based on the open-source framewor
     >The ACTS for the small system is independently built to an executable file \(.bin\) and archived in the **suites\\acts** directory of the build result.
 
 
-### C++-based Test Case Execution \(for Standard and Small Systems\)<a name="section128222336544"></a>
+### C++-based Test Case Execution \(for Standard and Small Systems\)
 
 **Executing test cases for the small system**
 
@@ -353,7 +353,7 @@ Currently, test cases are shared by the NFS and mounted to the development board
 
 Execute **ActsDemoTest.bin** to trigger test case execution, and analyze serial port logs generated after the execution is complete.
 
-### JavaScript-based Test Case Development \(for the Standard System\)<a name="section159801435165220"></a>
+### JavaScript-based Test Case Development \(for the Standard System\)
 
 The HJSUnit framework is used to support automated test of OpenHarmony apps that are developed using the JavaScript language based on the JS application framework.
 
@@ -436,12 +436,12 @@ Use the standard syntax of Jasmine to write test cases. The ES6 specification is
     ```
 
 
-### JavaScript-based Test Case Packaging \(for the Standard System\)<a name="section445519106559"></a>
+### JavaScript-based Test Case Packaging \(for the Standard System\)
 
 For details about how to build a HAP, see the JS application development guide of the standard system  [Building and Creating HAPs](https://developer.harmonyos.com/en/docs/documentation/doc-guides/build_overview-0000001055075201).
 
 
-## Repositories Involved<a name="section1371113476307"></a>
+## Repositories Involved
 
 [xts\_acts](https://gitee.com/openharmony/xts_acts)
 
