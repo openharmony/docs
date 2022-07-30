@@ -698,7 +698,8 @@ static getLocationName(number: string, locale: string): string
 
 **示例：** 
   ```js
-  var location = i18n.PhoneNumberFormat.getLocationName('15812312345', 'zh-CN');
+  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
+  phonenumberfmt.getLocationName("15812312345", "zh-CN");
   ```
 
 

@@ -540,7 +540,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 **示例：** 
   ```js
-  var pluralRules= new Intl.PluraRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
+  var pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
 
