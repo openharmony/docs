@@ -530,7 +530,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 Obtains the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.SET_WALLPAPER and ohos.permission.READ_USER_STORAGE
+**Required permissions**: ohos.permission.GET_WALLPAPER and ohos.permission.READ_USER_STORAGE
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -559,7 +559,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 Obtains the wallpaper of the specified type. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.SET_WALLPAPER and ohos.permission.READ_USER_STORAGE
+**Required permissions**: ohos.permission.GET_WALLPAPER and ohos.permission.READ_USER_STORAGE
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -697,7 +697,7 @@ Unsubscribes from the wallpaper color change event.
   wallpaper.on('colorChange', listener);
 // Unsubscribe from the listener.
 wallpaper.off('colorChange', listener);
-//Unsubscribe from all subscriptions of the colorChange type.
+// Unsubscribe from all subscriptions of the colorChange type.
 wallpaper.off('colorChange');
   ```
 
