@@ -57,22 +57,11 @@ C++11、C++14标准已完全支持，C++17和C++20标准正在完善。
 
 ## OpenSL ES
 
-
-
 [OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/)是一个嵌入式跨平台的音频处理库。
-
-
 
 ## zlib
 
-
-
 [Zlib](https://zlib.net/)是基于C/C++语言实现的一个通用的数据压缩库。
-
-
-
-
-
 
 
 ## EGL
@@ -82,7 +71,6 @@ EGL 是Khronos渲染API (如OpenGL ES 或 OpenVG) 与底层原生窗口系统之
 **标准库中导出的符号列表**
 
 [native api中导出的EGL符号列表](../third_party_opengl/egl-symbol.md)
-
 
 
 ## OpenGL ES
