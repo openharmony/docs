@@ -926,3 +926,11 @@
       - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
       - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
+    - 标准库
+      - [Node_API](reference/native-lib/third_party_napi/napi.md)
+      - [libuv](reference/native-lib/third_party_libuv/libuv.md)
+      - [支持的标准库介绍](reference/native-lib/third_party_libc/musl.md)
+      - 附录
+        - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
+        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
