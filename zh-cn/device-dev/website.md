@@ -476,7 +476,6 @@
     - [init启动引导组件](subsystems/subsys-boot-init.md)
     - [appspawn应用孵化组件](subsystems/subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsystems/subsys-boot-bootstrap.md)
-    - [syspara系统属性组件](subsystems/subsys-boot-syspara.md)
     - [常见问题](subsystems/subsys-boot-faqs.md)
     - [参考](subsystems/subsys-boot-ref.md)
   - DFX
