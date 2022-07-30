@@ -225,6 +225,74 @@ export default class MainAbility extends Ability {
 
 ​        [FormExtensionContext](/zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md)
 
+### 在ets页面中访问Context
+
+​        Stage模型下，在Ability的`onWindowStageCreate`生命周期中，可以通过WindowStage的`SetUIContent`方法加载一个ets页面。在一些场景中，需要在页面内获取Context调用相关API。
+
+**获取方法**
+
+​        在ets页面中通过以下全局方法获取当前页面关联的Context。
+|接口名|描述|
+|:------|:------|
+|getContext(component: Object): Object|获取页面中component所关联的Context对象。|
+
+**示例**
+
+```typescript
+// MainAbility.ts
+import Ability from '@ohos.application.Ability'
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+    }
+
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // 加载index页面，并传入当前Context
+        windowStage.setUIContent(this.context, "pages/index", null)
+    }
+
+    onWindowStageDestroy() {}
+
+    onForeground() {}
+
+    onBackground() {}
+};
+```
+
+```typescript
+// pages/index.ets
+import context from '@ohos.application.context'
+
+type Context = context.Context
+
+@Entry
+@Component
+struct Index {
+    build() {
+        Row() {
+            Column() {
+                Text('GetContext')
+                    .fontSize(50)
+                    .fontWeight(FontWeight.Bold)
+                    .onClick(() => {
+                        // 获取当前component关联的Context
+                        var context : Context = getContext(this) as Context
+                        console.info("CacheDir:" + context.cacheDir)
+                    })
+            }
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
+
+```
+
 ## 常见错误使用方式
 
 **错误1：Stage模型通过globalThis去获取Context**
