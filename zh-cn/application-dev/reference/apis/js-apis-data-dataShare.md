@@ -87,6 +87,8 @@ dataShare.createDataShareHelper(this.context, uri).then((data) => {
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
 
+此接口仅可在Stage模型下使用。
+
 ### openFile
 
 openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
