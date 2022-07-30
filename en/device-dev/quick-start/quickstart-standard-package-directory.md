@@ -3,7 +3,7 @@
 - [Setting Up Environments for Standard System](quickstart-standard-env-setup.md)
 - Running a Hello World Program
     - Hi3516 Development Board
-        - [Writing a Hello World Program](quickstart-standard-running-hi3516-create.md)
+        - [Writing a Hello World Program](quickstart-std-3516-create.md)
         - [Building](quickstart-standard-running-hi3516-build.md)
         - [Burning](quickstart-standard-running-hi3516-burning.md)
         - [Running](quickstart-standard-running-hi3516-running.md)
@@ -20,5 +20,5 @@
     - Introduction to Development Boards
         - [Introduction to the Hi3516 Development Board](quickstart-standard-board-introduction-hi3516.md)
         - [Introduction to the RK3568 Development Board](quickstart-standard-board-introduction-rk3568.md)
-    - [Getting Started with Standard System (IDE Mode)](quickstart-standard-ide-directory.md)
+        - [Overall Description of Compilation Form Factors](quickstart-build.md)
     - [Reference](quickstart-standard-reference.md)
