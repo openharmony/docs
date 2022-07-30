@@ -11,7 +11,7 @@ Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的�
 
 OpenHarmony的Native API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
 
-**Native API组件扩展的符号列表**
+## Native API组件扩展的符号列表
 
 |符号类型|符号名|备注|
 | --- | --- | --- |
