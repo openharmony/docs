@@ -4,7 +4,7 @@
 
 
 - 可组合：允许开发人员组合使用内置组件、其他组件、公共属性和方法；
-- 可链式：允许开发人员通过链式通用属性改变组件样式；
+- 链式调用<sup>9+</sup>：通过链式调用通用属性改变组件样式；
 - 可重用：自定义组件可以被其他组件重用，并作为不同的实例在不同的父组件或容器中使用；
 - 生命周期：生命周期的回调方法可以在组件中配置，用于业务逻辑处理；
 - 数据驱动更新：由状态变量的数据驱动，实现UI自动更新。
@@ -16,8 +16,7 @@
 >  **说明：**
 >
 >  - 自定义组件必须定义build方法。
->- 自定义组件禁止自定义构造函数。
->  - 可链式写法从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。 
+>- 自定义组件禁止自定义构造函数。 
 
 
 如下代码定义了MyComponent组件：
@@ -89,26 +88,27 @@ struct ParentComponent {
 
 可链式通用属性，使组件样式多样化：
 
-> **说明：**自定义组件链式调用暂不支持尾随闭包写法( 在初始化自定义组件时，组件名称紧跟一个大括号“{}”形成尾随闭包场景（Inedx(){}）。开发者可把尾随闭包看做一个容器，向其填充内容，如在Index(){}后增加组件{Column(){Text("content")} )。
+> **说明：** 从API version 9开始支持。
+>
+> 自定义组件链式调用暂不支持尾随闭包写法(在初始化自定义组件时，组件名称紧跟一个大括号“{}”形成尾随闭包场景(Inedx(){})。开发者可把尾随闭包看做一个容器，向其填充内容，如在闭包内增加组件{Column(){Text("content")} )。
 
-```
+```ts
 @Entry
 @Component
 struct Index {
-@State bannerValue: string = 'Hello,world';
-build() {
-  Column() {
-    Chind({ ChindBannerValue:$bannerValue })
-    .height(60)
-    .width(250)
-    .border({ width:5, color:Color.Red, radius:10, style: BorderStyle.Dotted })
-    Chind({ ChindBannerValue:$bannerValue });
+  @State bannerValue: string = 'Hello,world';
+  build() {
+    Column() {
+      Chind({ ChindBannerValue:$bannerValue })
+      .height(60)
+      .width(250)
+      .border({ width:5, color:Color.Red, radius:10, style: BorderStyle.Dotted })
+    }
   }
-} 
 }
 
 @Component
-struct Chind{
+struct Chind {
   @Link ChindBannerValue: string;
   build() {
     Column() {
