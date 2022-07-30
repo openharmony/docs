@@ -5,6 +5,7 @@ The **uiAppearance** module provides basic capabilities for managing the system 
 > **NOTE**
 >
 > The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs provided by this module are system APIs.
 
 
@@ -20,6 +21,8 @@ import uiAppearance from '@ohos.uiAppearance'
 Enumerates the color modes.
 
 
+**System capability**: SystemCapability.ArkUI.UiAppearance
+
 | Name| Value| Description|
 | -- | -- | -- |
 | ALWAYS_DARK | 0 | The system is always in dark mode. |
@@ -32,12 +35,11 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 
 Sets the system color mode. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.UPDATE_CONFIGRATION
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.UiAppearance
 
 **Parameters**
-
 | Name| Type| Mandatory| Description|
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | Yes| Color mode to set.|
@@ -57,14 +59,20 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 
 Sets the system color mode. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.UPDATE_CONFIGRATION
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.UiAppearance
 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -- | -- | -- | -- |
 | mode | [DarkMode](#darkmode) | Yes| Color mode to set.|
+
+**Return value**
+
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
   ```ts
@@ -82,12 +90,11 @@ getDarkMode(): DarkMode;
 
 Obtains the system color mode.
 
-**Required permissions**: ohos.permission.UPDATE_CONFIGRATION
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.UiAppearance
 
 **Return value**
-
 | Type| Description|
 | -- | -- |
 |[DarkMode](#darkmode) | Color mode obtained.|
