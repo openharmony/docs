@@ -14,6 +14,8 @@ getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：** 
@@ -47,6 +49,8 @@ var media = mediaLibrary.getMediaLibrary(context);
 getMediaLibrary(): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
+
+此接口仅可在FA模型下使用。
 
 > **说明**： 从API Version 8开始，该接口不再维护，推荐使用新接口[mediaLibrary.getMediaLibrary<sup>8+</sup>](#medialibrarygetmedialibrary8)。
 
