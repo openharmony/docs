@@ -1,7 +1,9 @@
 # Web
 
 > **说明：** 
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 提供具有网页显示能力的Web组件。
 
@@ -81,7 +83,7 @@ fileAccess(fileAccess: boolean)
 **参数：**
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ------- | ---- | ---- | ---------------------------------------- |
-| fileAccess | boolean | 是    | -    | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)访问应用中rawfile路径的文件。 |
+| fileAccess | boolean | 是    | true | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)访问应用中rawfile路径的文件，默认启用。 |
 
 **示例：**
   ```ts
@@ -106,9 +108,9 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)的内容，默认未启用。
 
 **参数：**
-| 参数名               | 参数类型    | 必填   | 默认值  | 参数描述                                     |
-| ----------------- | ------- | ---- | ---- | ---------------------------------------- |
-| fileFromUrlAccess | boolean | 是    | -    | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)的内容。 |
+| 参数名               | 参数类型    | 必填   | 默认值   | 参数描述                                     |
+| ----------------- | ------- | ---- | ----- | ---------------------------------------- |
+| fileFromUrlAccess | boolean | 是    | false | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)的内容，默认未启用。 |
 
 **示例：**
   ```ts
@@ -2849,9 +2851,9 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
 **参数：**
-| 参数名      | 参数类型                  | 必填   | 说明        |
-| -------- | --------------------- | ---- | --------- |
-| origin   | string                | 是    | 指定源的字符串索引 |
+| 参数名      | 参数类型                   | 必填   | 说明        |
+| -------- | ---------------------- | ---- | --------- |
+| origin   | string                 | 是    | 指定源的字符串索引 |
 | callback | AsyncCallback\<number> | 是    | 指定源的存储配额。 |
 
 **示例：**
@@ -2893,8 +2895,8 @@ static getOriginQuota(origin : string) : Promise\<number>
 | origin | string | 是    | 指定源的字符串索引。 |
 
 **返回值：**
-| 类型              | 说明                      |
-| --------------- | ----------------------- |
+| 类型               | 说明                      |
+| ---------------- | ----------------------- |
 | Promise\<number> | Promise实例，用于获取指定源的存储配额。 |
 
 **示例：**
@@ -2931,9 +2933,9 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
 **参数：**
-| 参数名      | 参数类型                  | 必填   | 说明         |
-| -------- | --------------------- | ---- | ---------- |
-| origin   | string                | 是    | 指定源的字符串索引。 |
+| 参数名      | 参数类型                   | 必填   | 说明         |
+| -------- | ---------------------- | ---- | ---------- |
+| origin   | string                 | 是    | 指定源的字符串索引。 |
 | callback | AsyncCallback\<number> | 是    | 指定源的存储量。   |
 
 **示例：**
@@ -2975,8 +2977,8 @@ static getOriginUsage(origin : string) : Promise\<number>
 | origin | string | 是    | 指定源的字符串索引。 |
 
 **返回值：**
-| 类型              | 说明                     |
-| --------------- | ---------------------- |
+| 类型               | 说明                     |
+| ---------------- | ---------------------- |
 | Promise\<number> | Promise实例，用于获取指定源的存储量。 |
 
 **示例：**
