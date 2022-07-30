@@ -152,8 +152,6 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
 上传，异步方法，使用promise形式返回结果。
 
-此接口仅可在Stage模型下使用
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
@@ -196,8 +194,6 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 上传，异步方法，使用callback形式返回结果。
-
-此接口仅可在Stage模型下使用
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -549,8 +545,6 @@ download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&
 
 下载，异步方法，使用promise形式返回结果。
 
-此接口仅可在Stage模型下使用
-
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
@@ -585,8 +579,6 @@ download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&
 download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
 下载，异步方法，使用callback形式返回结果。
-
-此接口仅可在Stage模型下使用
 
 **需要权限**：ohos.permission.INTERNET
 
