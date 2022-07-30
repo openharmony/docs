@@ -87,6 +87,8 @@ dataShare.createDataShareHelper(this.context, uri).then((data) => {
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
 
+此接口仅可在Stage模型下使用。
+
 ### openFile
 
 openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
@@ -689,7 +691,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Arr
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri            | string                                                       | 是   | 指示要获取的文件的路径。                                     |
 | mimeTypeFilter | string                                                       | 是   | 指示要筛选的MIME类型。例如：<br />“\*/\*”：获取支持的所有类型。<br/>“image/\*”：获取主类型image，子类型为任何类型的MIME。<br />”\*/jpg”：获取子类型为jpg，主类型为任何类型的MIME。 |
-| callback       | openFile(uri: string, mode: string, callback: AsyncCallback<number>) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts | 是   | 回调函数。当获取支持的文件的MIME类型成功，err为undefined，data为获取到的匹配的MIME类型数组；否则为错误对象。 |
+| callback       |  AsyncCallback<Array\<string>> | 是   | 回调函数。当获取支持的文件的MIME类型成功，err为undefined，data为获取到的匹配的MIME类型数组；否则为错误对象。 |
 
 **示例：**
 

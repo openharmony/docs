@@ -5,12 +5,12 @@
 ### Kconfig Visual Configuration
 Kconfig visual configuration is implemented on [Kconfiglib](https://github.com/ulfalizer/Kconfiglib) and [Kconfig](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html#introduction). It allows customized configuration of OpenHarmony subsystem components.
 
-This function has the following advantages:
+Kconfig visual configuration has the following advantages:
 
 - Intuitive display of software component options
 - High reliability (Linux kernel and Buildroot use Kconfig for visualized configuration)
 
-### Key Concepts
+### Basic Concepts
 
 - [Kconfig](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html#introduction): a visual configuration file format for Linux.
 
@@ -22,20 +22,20 @@ This function has the following advantages:
 
 - [Config format conversion](https://gitee.com/openharmony/build/blob/master/tools/component_tools/parse_kconf.py): converts the **config** file generated on the GUI to the standard format for compilation and build.
 
-## Procedure
+## Operation Guide
 
 1. Obtain the source code.
 
-   For details, see [Obtaining Source Code](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-code/sourcecode-acquire.md).
+   For details, see [Obtaining Source Code](../get-code/sourcecode-acquire.md).
 
 2. Set up the environment.
 
-   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [Install hb](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-env-setup.md#install-hb).
+   The Kconfiglib required for environment configuration has been embedded in the OpenHarmony hb tool. For details about how to install the hb tool, see [Installing hb](../quick-start/quickstart-lite-env-setup.md).
 
 3. Open the Kconfig configuration interface.
 
    ```shell
-   #Go to the build repository directory.
+   # Go to the build repository directory.
    cd build/tools/component_tools
    menuconfig kconfig
    ```
@@ -68,7 +68,7 @@ This function has the following advantages:
 
    Example:
 
-   1. Perform a global build.
+   1. Perform a full build.
 
       ```shell
       cp productdefine/common/base/base_product.json productdefine/common/products/ohos-arm64.json
@@ -91,23 +91,23 @@ This function has the following advantages:
 
       By default, the file **product.json** is generated in the current directory. You can also use `python3 parse_kconf.py --out="example/out.json"` to specify the file path.
 
-      For more operations, see `python3 parse_kconf.py -h`.
+      For more operations, run `python3 parse_kconf.py -h`.
 
 ​	
 
 ## FAQs
 
-### The latest component information is missing from the menu.
+### Latest Components Not Displayed in the Menu List
 
-The component list [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json) is updated with product updates and iterations. As a result, the Kconfig menu does not contain the latest components.
+The component list [productdefine/common/base/base_product.json](https://gitee.com/openharmony/productdefine_common/blob/master/base/base_product.json) is updated with product updates and iterations. The Kconfig menu does not contain the latest components.
 
-Solution:
+**Solution**
 
-- Update the [Kconfig file](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig).
+Update the [Kconfig file](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig).
 
-  ```shell
-  cd build/tools/component_tools
-  python3 generate_kconfig.py
-  ```
+```shell
+cd build/tools/component_tools
+python3 generate_kconfig.py
+```
 
-  For more details, see `python3 generate_kconfig.py -h`.
+You can run `python3 generate_kconfig.py -h` to view more options.

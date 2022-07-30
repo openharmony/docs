@@ -638,7 +638,7 @@ export default {
     img.src = 'common/images/2.png';
     // 设置图片宽度
     img.width= 150;
-    // 设置图高度
+    // 设置图片高度
     img.height=150;
     // 图片平铺容器
     var pat = ctx.createPattern(img, 'repeat');ctx.fillStyle = pat;

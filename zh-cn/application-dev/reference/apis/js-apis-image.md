@@ -892,8 +892,6 @@ let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
 	    console.log('Succeeded in releasing pixelmap object.');
-    }).catch(error => {
-	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -1332,7 +1330,7 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 | -------- | ------------------- | ---- | ------------------------------ |
 | key      | string              | 是   | 图片属性名。                   |
 | value    | string              | 是   | 属性值。                       |
-| callback | AsyncCallback<void> | 是   | 修改属性值，callback返回结果。 |
+| callback | AsyncCallback\<void> | 是   | 修改属性值，callback返回结果。 |
 
 **示例：**
 
@@ -1389,7 +1387,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 | isFinished | boolean             | 是   | 是否更新完。         |
 | value      | number              | 否   | 偏移量。             |
 | length     | number              | 否   | 数组长。             |
-| callback   | AsyncCallback<void> | 是   | 回调表示成功或失败。 |
+| callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
@@ -1637,8 +1635,6 @@ let packOpts = { format:"image/jpeg", quality:98 }
 const pixelMapApi = new ArrayBuffer(400);
 imagePackerApi.packing(pixelMapApi, packOpts, data => { 
     console.log('Succeeded in packing the image.');
-}).catch(error => {
-	console.log('Failed to pack the image.');
 })
 ```
 
@@ -2070,8 +2066,6 @@ release(callback: AsyncCallback\<void>): void
 ```js
 img.release(() =>{ 
     console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
 }) 
 ```
 

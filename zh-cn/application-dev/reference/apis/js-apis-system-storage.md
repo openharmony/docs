@@ -5,7 +5,7 @@
 > - 从API Version 6开始，该模块不再维护，可以使用模块[`@ohos.data.storage`](js-apis-data-storage.md)。在API Version 9后，推荐使用新模块[`@ohos.data.preferences`](js-apis-data-preferences.md)。
 >
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+> - 本模块接口仅可在FA模型下使用。
 
 ## 导入模块
 

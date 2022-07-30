@@ -388,7 +388,7 @@ startBluetoothDiscovery(): boolean
 
 开启蓝牙扫描，可以发现远端设备。
 
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1011,7 +1011,7 @@ bluetooth.off('sppRead', clientNumber);
 ```
 
 
-## bluetooth.getProfile<sup>8+</sup><a name="getProfile"></a>
+## bluetooth.getProfile<sup>8+</sup><a name="bt-getProfile"></a>
 
 getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile
 
@@ -1037,9 +1037,9 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
-## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
+## bluetooth.getProfileInst<sup>9+</sup><a name="getProfileInst"></a>
 
-getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
+getProfileInst(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
 通过ProfileId，获取profile的对象实例，API9新增了HidHostProfile，PanProfile。
 
@@ -1060,7 +1060,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 **示例：**
 
 ```js
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST);
 ```
 
 
@@ -1143,7 +1143,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 发起BLE扫描流程。
 
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH；ohos.permission.MANAGE_BLUETOOTH；ohos.permission.LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH 和 ohos.permission.LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1451,13 +1451,11 @@ a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState<sup>9+</sup>
+### getPlayingState<sup>8+</sup>
 
 getPlayingState(device: string): PlayingState
 
 获取设备的播放状态。
-
-**需要权限**：ohos.permission.USE_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1612,7 +1610,7 @@ hfpAg.off('connectionStateChange', onReceiveEvent);
 使用HidHostProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### connect<sup>9+</sup><a name="connect"></a>
+### connect<sup>9+</sup><a name="HidHost-connect"></a>
 
 connect(device: string): boolean
 
@@ -1644,7 +1642,7 @@ let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>9+</sup><a name="disconnect"></a>
+### disconnect<sup>9+</sup><a name="HidHost-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1742,7 +1740,7 @@ hidHost.off('connectionStateChange', onReceiveEvent);
 使用PanProfile方法之前需要创建该类的实例进行操作，通过getProfile()方法构造此实例。
 
 
-### disconnect<sup>9+</sup><a name="disconnect"></a>
+### disconnect<sup>9+</sup><a name="PanP-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -2017,7 +2015,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // 创建characteristics
@@ -2127,7 +2125,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -3051,7 +3049,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -3617,7 +3615,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称          | 参数类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。 |
+| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
 | txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。   |
 | connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true。                   |
 

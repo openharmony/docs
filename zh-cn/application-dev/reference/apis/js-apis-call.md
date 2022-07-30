@@ -1864,7 +1864,7 @@ promise.then(data => {
 
 separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 
-断开会议电话。使用callback异步回调。
+分离会议电话。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1890,7 +1890,7 @@ call.separateConference(1, (err, data) => {
 
 separateConference\(callId: number\): Promise<void\>
 
-断开会议电话。使用Promise异步回调。
+分离会议电话。使用Promise异步回调。
 
 此接口为系统接口。
 

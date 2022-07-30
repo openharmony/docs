@@ -445,7 +445,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称       | 类型                | 必填 | 描述                                  |
 | ---------- | ------------------- | ---- | ------------------------------------- |
 | bundleName | string              | 是   | 指示要清除其缓存数据的应用程序包名称. |
-| callback   | AsyncCallback<void> | 是   | 为返回操作结果而调用的回调。          |
+| callback   | AsyncCallback\<void> | 是   | 为返回操作结果而调用的回调。          |
 
 ## bundle.cleanBundleCacheFiles<sup>8+</sup>
 
@@ -475,7 +475,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.setApplicationEnabled<sup>8+</sup>
 
@@ -501,7 +501,7 @@ SystemCapability.BundleManager.BundleFramework
 | ---------- | ------------------- | ---- | ----------------------------------------------- |
 | bundleName | string              | 是   | 应用程序包名称。                                |
 | isEnable   | boolean             | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
-| callback   | AsyncCallback<void> | 是   | 为返回操作结果而调用的回调。                    |
+| callback   | AsyncCallback\<void> | 是   | 为返回操作结果而调用的回调。                    |
 
 ## bundle.setApplicationEnabled<sup>8+</sup>
 
@@ -532,7 +532,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.setAbilityEnabled<sup>8+</sup>
 
@@ -558,7 +558,7 @@ SystemCapability.BundleManager.BundleFramework
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | 是   | Ability信息。                                   |
 | isEnable | boolean                                      | 是   | 指定是否启用应用程序。true表示启用，false禁用。 |
-| callback | AsyncCallback<void>                          | 是   | 为返回操作结果而调用的回调。                    |
+| callback | AsyncCallback\<void>                          | 是   | 为返回操作结果而调用的回调。                    |
 
 ## bundle.setAbilityEnabled<sup>8+</sup>
 
@@ -589,7 +589,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.getPermissionDef<sup>8+</sup>
 
@@ -667,7 +667,7 @@ SystemCapability.BundleManager.BundleFramework
 | bundleName  | string                      | 是   | 应用程序包名称。             |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
 | upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位       |
-| callback    | AsyncCallback<void>         | 是   | 为返回操作结果而调用的回调。 |
+| callback    | AsyncCallback\<void>         | 是   | 为返回操作结果而调用的回调。 |
 
 ## bundle.setModuleUpgradeFlag<sup>9+</sup>
 
@@ -695,7 +695,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型          | 说明                                 |
 | ------------- | ------------------------------------ |
-| Promise<void> | 返回值为Promise对象，Promise中为空。 |
+| Promise\<void> | 返回值为Promise对象，Promise中为空。 |
 
 ## bundle.isModuleRemovable<sup>9+</sup>
 
@@ -717,7 +717,7 @@ SystemCapability.BundleManager.BundleFramework
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
 | bundleName | string                 | 是   | 应用程序包名称。                              |
 | moduleName | string                 | 是   | 应用程序模块名称。                            |
-| callback   | AsyncCallback<boolean> | 是   | 程序启动作为入参的回调函数，返回boolean信息。 |
+| callback   | AsyncCallback\<boolean> | 是   | 程序启动作为入参的回调函数，返回boolean信息。 |
 
 ## bundle.isModuleRemovable<sup>9+</sup>
 
@@ -744,7 +744,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 类型             | 说明                         |
 | ---------------- | ---------------------------- |
-| Promise<boolean> | Promise形式返回boolean信息。 |
+| Promise\<boolean> | Promise形式返回boolean信息。 |
 
 ## bundle.getBundlePackInfo<sup>9+</sup>
 

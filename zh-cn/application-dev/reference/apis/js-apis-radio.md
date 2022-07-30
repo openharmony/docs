@@ -1753,7 +1753,7 @@ promise.then(data => {
 
 | 名称              | 类型                                                         | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networkType)                                  | 获取服务单元的网络类型。                                     |
+| networkType       | [NetworkType](#networktype)                                  | 获取服务单元的网络类型。                                     |
 | isCamped          | boolean                                                      | 获取服务单元的状态。                                         |
 | timeStamp         | number                                                       | 获取单元格信息时获取时间戳。                                 |
 | signalInformation | [SignalInformation](#signalinformation)                      | 信号信息。                                                   |
@@ -1886,7 +1886,7 @@ Nr的选择模式。
 | 名称                   | 类型                                              | 说明           |
 | ---------------------- | ------------------------------------------------- | -------------- |
 | isNetworkSearchSuccess | boolean                                           | 网络搜索成功。 |
-| networkSearchResult    | Array<[NetworkInformation](#networkInformation)\> | 网络搜索结果。 |
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | 网络搜索结果。 |
 
 ## NetworkInformation
 
@@ -1900,7 +1900,7 @@ Nr的选择模式。
 | --------------- | ----------------------------------------- | -------------- |
 | operatorName    | string                                    | 运营商的名称。 |
 | operatorNumeric | string                                    | 运营商数字。   |
-| state           | [NetworkInformation](#networkInformation) | 网络信息状态。 |
+| state           | [NetworkInformationState](#networkinformationstate) | 网络信息状态。 |
 | radioTech       | string                                    | 无线电技术。   |
 
 ## NetworkInformationState
