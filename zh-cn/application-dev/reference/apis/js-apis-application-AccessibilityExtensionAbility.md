@@ -41,21 +41,19 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 | points       | Array&lt;[GesturePoint](gesturepoint)&gt; | 是    | 是    | 手势。    |
 | durationTime | number                                   | 是    | 是    | 手势总耗时。 |
 
-### 方法
-
-#### constructor
+### constructor
 
 constructor(durationTime: number)
 
 构造函数。
 
-- 参数：
+- **参数：**
 
   | 参数名          | 参数类型   | 必填   | 说明     |
   | ------------ | ------ | ---- | ------ |
   | durationTime | number | 是    | 手势总耗时。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   let gesturePath = new GesturePath(100);
@@ -74,22 +72,20 @@ constructor(durationTime: number)
 | positionX | number | 是    | 是    | 触摸点X坐标。 |
 | positionY | number | 是    | 是    | 触摸点Y坐标。 |
 
-### 方法
-
-#### constructor
+### constructor
 
 constructor(positionX: number, positionY: number)
 
 构造函数。
 
-- 参数：
+- **参数：**
 
   | 参数名       | 参数类型   | 必填   | 说明      |
   | --------- | ------ | ---- | ------- |
   | positionX | number | 是    | 触摸点X坐标。 |
   | positionY | number | 是    | 触摸点Y坐标。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   let gesturePoint = new GesturePoint(100, 200);
