@@ -5,6 +5,5 @@
 -   [接口参考（JS及TS API）](apis/Readme-CN.md)
 -   接口参考（Native API）
     -   [OpenHarmony Native API](./native-apis/Readme-CN.md)
-    -   [Native API标准库](native-lib/third_party_libc/musl.md)
-    -   [Node_API](native-lib/third_party_napi/napi.md)
-
+    -   [OpenHarmony Native API](native-apis/Readme-CN.md)
+    -   [Native API标准库](native-lib/Readme-CN.md)
