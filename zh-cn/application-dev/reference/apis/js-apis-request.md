@@ -31,7 +31,7 @@ var config = {
 }
 ```
 
-在开发stage模型下的应用程序时，需要在module.json和app.json配置文件中对应用结构进行声明，不涉及属性标识 "cleartextTraffic"。
+在开发stage模型下的应用程序时，不涉及属性标识 "cleartextTraffic"。
 
 
 
@@ -65,7 +65,7 @@ var config = {
 | SESSION_SUCCESSFUL<sup>7+</sup> | number | 是 | 否 | 下载会话已完成。 |
 
 
-## request.upload
+## request.upload<sup>6+</sup>
 
 upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
@@ -74,6 +74,8 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
+
+**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -90,11 +92,15 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 **示例：**
   
   ```js
-  let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
-  let data = { name: "name123", value: "123" };
-  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
-  request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }).then((data) => {
+  let uploadConfig = {
+    url: 'https://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.upload(uploadConfig).then((data) => {
       uploadTask = data;
   }).catch((err) => {
       console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
@@ -102,7 +108,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```
 
 
-## request.upload
+## request.upload<sup>6+</sup>
 
 upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
@@ -111,6 +117,8 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
+
+**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -122,11 +130,15 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 **示例：**
   
   ```js
-  let file1 = { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" };
-  let data = { name: "name123", value: "123" };
-  let header = { key1: "value1", key2: "value2" };
   let uploadTask;
-  request.upload({ url: 'https://patch', header: header, method: "POST", files: [file1], data: [data] }, (err, data) => {
+  let uploadConfig = {
+    url: 'https://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.upload(uploadConfig, (err, data) => {
       if (err) {
           console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
           return;
@@ -134,7 +146,92 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
       uploadTask = data;
   });
   ```
+## request.upload<sup>9+</sup>
 
+upload(context: BaseContext,config: UploadConfig): Promise&lt;UploadTask&gt;
+
+上传，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**模型说明**: 此接口仅可在Stage模型下使用
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 |
+
+**示例：**
+  
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'https://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" },
+    data: { name: "name123", value: "123" },
+  }
+  request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
+      uploadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+  })
+  ```
+
+
+## request.upload<sup>9+</sup>
+
+upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
+
+upload(context: BaseContext,config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
+
+上传，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**模型说明**: 此接口仅可在Stage模型下使用
+
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
+
+**示例：**
+  
+  ```js
+  let uploadTask;
+  let uploadConfig = {
+    url: 'https://patch',
+    header: { key1: "value1", key2: "value2" },
+    method: "POST",
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    data: [{ name: "name123", value: "123" }],
+  };
+  request.upload(globalThis.abilityContext, uploadConfig, (err, data) => {
+      if (err) {
+          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      uploadTask = data;
+  });
+  ```
 
 ## UploadTask
 
@@ -379,7 +476,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | value | string | 是 | 表示表单元素的值。 |
 
 
-## request.download
+## request.download<sup>6+</sup>
 
 download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
@@ -388,6 +485,8 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
+
+**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -413,7 +512,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
   ```
 
 
-## request.download
+## request.download<sup>6+</sup>
 
 download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void
 
@@ -422,6 +521,8 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
+
+**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -444,7 +545,76 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
   });
   ```
 
+## request.download<sup>9+</sup>
 
+download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
+
+下载，异步方法，使用promise形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**模型说明**: 此接口仅可在Stage模型下使用
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 |
+
+**示例：**
+  
+  ```js
+  let downloadTask;
+  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+      downloadTask = data;
+  }).catch((err) => {
+      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+  })
+  ```
+
+
+## request.download<sup>9+</sup>
+
+download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void
+
+下载，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Download
+
+**模型说明**: 此接口仅可在Stage模型下使用
+
+**参数：**
+
+  | 参数名 | 参数类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
+  | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
+
+**示例：**
+  
+  ```js
+  let downloadTask;
+  request.download(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
+  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+      if (err) {
+          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+          return;
+      }
+      downloadTask = data;
+  });
+  ```
 ## DownloadTask
 
 下载任务。
