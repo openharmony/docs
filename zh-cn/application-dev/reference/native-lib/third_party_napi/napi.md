@@ -1,22 +1,16 @@
-# Node_API
-
-
+# Node-API
 
 ## 简介
 
-
-
-Node-API是用于封装JavaScript能力为native插件的API，独立于底层JavaScript，并作为Node.js的一部分。
+Node-API是用于封装JavaScript能力为Native插件的API，独立于底层JavaScript，并作为Node.js的一部分。
 
 ## 支持的能力
 
-
-
 Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的接口。
 
-NAPI组件对Node-API的接口进行了重新实现，底层对接了ArkJs等引擎。当前支持Node-API标准库中的部分接口。
+OpenHarmony的Native API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
 
-**NAPI组件扩展的符号列表**
+## Native API组件扩展的符号列表
 
 |符号类型|符号名|备注|
 | --- | --- | --- |
