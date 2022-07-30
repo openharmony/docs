@@ -9,12 +9,12 @@
 @Entry
 @Component
 struct CompA {
-  size : number = 100;
+  size1 : number = 100;
 
   @Builder SquareText(label: string) {
     Text(label)
-      .width(1 * this.size)
-      .height(1 * this.size)
+      .width(1 * this.size1)
+      .height(1 * this.size1)
   }
 
   @Builder RowOfSquareTexts(label1: string, label2: string) {
@@ -22,8 +22,8 @@ struct CompA {
       this.SquareText(label1)
       this.SquareText(label2)
     }
-    .width(2 * this.size)
-    .height(1 * this.size)
+    .width(2 * this.size1)
+    .height(1 * this.size1)
   }
 
   build() {
@@ -33,12 +33,12 @@ struct CompA {
         this.SquareText("B")
         // or as long as tsc is used
       }
-      .width(2 * this.size)
-      .height(1 * this.size)
+      .width(2 * this.size1)
+      .height(1 * this.size1)
       this.RowOfSquareTexts("C", "D")
     }
-    .width(2 * this.size)
-    .height(2 * this.size)
+    .width(2 * this.size1)
+    .height(2 * this.size1)
   }
 }
 ```
