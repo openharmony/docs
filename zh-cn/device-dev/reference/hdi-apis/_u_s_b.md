@@ -31,7 +31,16 @@
 
   | 宏定义 | 描述 | 
 | -------- | -------- |
-| [USB_MAX_INTERFACES](#usbmaxinterfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量。 | 
+| [USB_MAX_INTERFACES](#usb\_max\_interfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量。 | 
+
+
+### 静态常量
+
+  | 静态常量 | 描述 | 
+| -------- | -------- |
+| [USB_ENDPOINT_DIR_MASK](#usb\_endpoint\_dir\_mask)&nbsp;&nbsp;&nbsp;0x80 | 从地址中提取USB Endpoint方向的位掩码。 | 
+| [USB_ENDPOINT_DIR_IN](#usb\_endpoint\_dir\_in)&nbsp;&nbsp;&nbsp;0x80 | USB Endpoint从设备到主机的数据方向。 | 
+| [USB_ENDPOINT_DIR_OUT](#usb\_endpoint\_dir\_out)&nbsp;&nbsp;&nbsp;0 | USB Endpoint从主机到设备的数据方向。 | 
 
 
 ### 类型定义
@@ -59,7 +68,7 @@
 | [OHOS::USB::UsbInfo::getDevInfoStatus](#getdevinfostatus)&nbsp;()&nbsp;const | 获取USB设备状态。&nbsp;[更多...](#getdevinfostatus) | 
 | [OHOS::USB::UsbInfo::getDevInfoBusNum](#getdevinfobusnum)&nbsp;()&nbsp;const | 获取USB总线编号。&nbsp;[更多...](#getdevinfobusnum) | 
 | [OHOS::USB::UsbInfo::getDevInfoDevNum](#getdevinfodevnum)&nbsp;()&nbsp;const | 获取USB设备编号。&nbsp;[更多...](#getdevinfodevnum) | 
-| **OHOS::USB::UsbdClient::GetInstance**&nbsp;() | 获取实例。 | 
+| [OHOS::USB::UsbdClient::GetInstance](#getinstance)&nbsp;()&nbsp; | 获取实例。&nbsp;[更多...](#getinstance) | 
 | [OHOS::USB::UsbdClient::OpenDevice](#opendevice)&nbsp;(const&nbsp;[UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)&nbsp;&amp;dev) | 打开设备，建立连接。&nbsp;[更多...](#opendevice) | 
 | [OHOS::USB::UsbdClient::CloseDevice](#closedevice)&nbsp;(const&nbsp;[UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)&nbsp;&amp;dev) | 关闭设备，释放与设备相关的所有系统资源。&nbsp;[更多...](#closedevice) | 
 | [OHOS::USB::UsbdClient::GetDeviceDescriptor](#getdevicedescriptor)&nbsp;(const&nbsp;[UsbDev](_o_h_o_s_1_1_u_s_b_1_1_usb_dev.md)&nbsp;&amp;dev,&nbsp;std::vector&lt;&nbsp;uint8_t&nbsp;&gt;&nbsp;&amp;descriptor) | 获取设备描述符。&nbsp;[更多...](#getdevicedescriptor) | 
@@ -96,6 +105,8 @@
 | [OHOS::USB::UsbdSubscriber::DeviceEvent](#deviceevent)&nbsp;(const&nbsp;[UsbInfo](_o_h_o_s_1_1_u_s_b_1_1_usb_info.md)&nbsp;&amp;info)=0 | 设备事件。&nbsp;[更多...](#deviceevent) | 
 | [OHOS::USB::UsbdSubscriber::PortChangedEvent](#portchangedevent)&nbsp;(int32_t&nbsp;portId,&nbsp;int32_t&nbsp;powerRole,&nbsp;int32_t&nbsp;dataRole,&nbsp;int32_t&nbsp;mode)=0 | 端口改变事件。&nbsp;[更多...](#portchangedevent) | 
 | [OHOS::USB::UsbdSubscriber::OnRemoteRequest](#onremoterequest)&nbsp;(uint32_t&nbsp;code,&nbsp;MessageParcel&nbsp;&amp;data,&nbsp;MessageParcel&nbsp;&amp;reply,&nbsp;MessageOption&nbsp;&amp;option)&nbsp;override | 远程请求。&nbsp;[更多...](#onremoterequest) | 
+| [OHOS::USB::UsbdSubscriber::ParserUsbInfo](#parserusbinfo)&nbsp;(MessageParcel&nbsp;&amp;data,&nbsp;MessageParcel&nbsp;&amp;reply,&nbsp;MessageOption&nbsp;&amp;option,&nbsp;UsbInfo&nbsp;&amp;info) | 解析USB设备信息。&nbsp;[更多...](#parserusbinfo) | 
+| [OHOS::USB::UsbdSubscriber::ParserPortInfo](#parserportinfo)&nbsp;(MessageParcel&nbsp;&amp;data,&nbsp;MessageParcel&nbsp;&amp;reply,&nbsp;MessageOption&nbsp;&amp;option,&nbsp;PortInfo&nbsp;&amp;info) | 解析USB设备端口信息。&nbsp;[更多...](#parserportinfo) | 
 
 
 ### 变量
@@ -114,6 +125,7 @@
 | [OHOS::USB::UsbCtrlTransfer::value](#value) | 请求值 | 
 | [OHOS::USB::UsbCtrlTransfer::index](#index) | 索引 | 
 | [OHOS::USB::UsbCtrlTransfer::timeout](#timeout) | 超时时间 | 
+| [OHOS::USB::UsbInfo::devInfo](#devinfo ) | USB设备信息 | 
 
 
 ## **详细描述**
@@ -144,6 +156,40 @@
 **描述：**
 
 USB设备最大接口数量
+
+
+## **静态常量说明**
+
+### USB_ENDPOINT_DIR_MASK
+  
+```
+static const int32_t USB_ENDPOINT_DIR_MASK = 0x80
+```
+
+**描述：**
+
+从地址中提取USB Endpoint方向的位掩码
+
+
+### USB_ENDPOINT_DIR_IN
+  
+```
+static const int32_t USB_ENDPOINT_DIR_IN = 0x80
+```
+
+**描述：**
+
+USB Endpoint从设备到主机的数据方向
+
+### USB_ENDPOINT_DIR_OUT
+  
+```
+static const int32_t USB_ENDPOINT_DIR_OUT = 0
+```
+
+**描述：**
+
+USB Endpoint从主机到设备的数据方向
 
 
 ## **类型定义说明**
@@ -1055,6 +1101,75 @@ int32_t OHOS::USB::UsbdClient::OpenDevice (const UsbDev & dev)
 1.0
 
 
+### ParserUsbInfo()
+
+  
+```
+static int32_t OHOS::USB::UsbdSubscriber::ParserUsbInfo(MessageParcel &data, MessageParcel &reply, MessageOption &option, UsbInfo &info)
+```
+
+**描述：**
+
+解析USB设备信息。
+
+**参数：**
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| data | 输入参数，命令字。| 
+| reply | 输出参数，返回的数据。 |
+| option | 输入参数，选项数据。|
+| info | 输出参数，USB设备信息。|
+
+**返回：**
+
+0 表示操作成功。
+
+非零值 表示操作失败。
+
+**Since：**
+
+3.0
+
+**Version：**
+
+1.0
+
+### ParserPortInfo()
+
+  
+```
+static int32_t OHOS::USB::UsbdSubscriber::ParserPortInfo(MessageParcel &data, MessageParcel &reply, MessageOption &option, PortInfo &info)
+```
+
+**描述：**
+
+解析USB设备端口信息。
+
+**参数：**
+
+  | 名称 | 描述 | 
+| -------- | -------- |
+| data | 输入参数，命令字。| 
+| reply | 输出参数，返回的数据。 |
+| option | 输入参数，选项数据。|
+| info | 输出参数，USB设备端口信息。|
+
+**返回：**
+
+0 表示操作成功。
+
+非零值 表示操作失败。
+
+**Since：**
+
+3.0
+
+**Version：**
+
+1.0
+
+
 ### PortChangedEvent()
 
   
@@ -1570,6 +1685,25 @@ int32_t OHOS::USB::UsbdClient::UnRegBulkCallback (const UsbDev & dev, const UsbP
 
 1.0
 
+### GetInstance()
+
+  
+```
+OHOS::USB::UsbdClient::GetInstance()
+```
+
+**描述：**
+
+获取实例。
+
+**Since：**
+
+3.0
+
+**Version：**
+
+1.0
+
 
 ## **变量说明**
 
@@ -1608,6 +1742,17 @@ uint8_t OHOS::USB::UsbDev::devAddr
 **描述：**
 
 USB设备地址
+
+### devInfo
+
+  
+```
+OHOS::USB::UsbInfo devInfo
+```
+
+**描述：**
+
+USB设备信息
 
 
 ### devNum
