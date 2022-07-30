@@ -29,7 +29,7 @@ Supported
   | stateEffect | boolean | No | true | Whether to enable the state switchover effect when a button is pressed. When the state is set to **false**, the state switchover effect is disabled. |
 
 
-- Button(label?: [ResourceStr](../../ui/ts-types.md), options?: { type?: ButtonType, stateEffect?: boolean })
+- Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
   
   Creates a button component based on text content. In this case, the **\<Button>** component cannot contain child components.
 
@@ -53,8 +53,8 @@ Supported
 | Name | Description |
 | -------- | -------- |
 | Capsule | Capsule-type button (the round corner is half of the height by default). |
-| Circle | Circle button. |
-| Normal | Normal button (without rounded corners by default). |
+| Circle  | Circle button. |
+| Normal  | Normal button (without rounded corners by default). |
 
 > **NOTE**
 > - The rounded corner of a button is set by using [Border](ts-universal-attributes-border.md). (The rounded corner cannot be set by using a border API.)
@@ -78,6 +78,7 @@ struct ButtonExample {
         Button('Ok', { type: ButtonType.Normal, stateEffect: true }).borderRadius(8).backgroundColor(0x317aff).width(90)
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Row() {
+            // You are advised to reference an image by using $r to create a Resource object.
             Image($r('app.media.loading')).width(20).height(20).margin({ left: 12 })
             Text('loading').fontSize(12).fontColor(0xffffff).margin({ left: 5, right: 12 })
           }.alignItems(VerticalAlign.Center)
