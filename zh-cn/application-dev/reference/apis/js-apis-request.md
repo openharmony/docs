@@ -182,12 +182,12 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
     method: "POST",
     files: { filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" },
     data: { name: "name123", value: "123" },
-  }
+  };
   request.upload(globalThis.abilityContext, uploadConfig).then((data) => {
       uploadTask = data;
   }).catch((err) => {
       console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-  })
+  });
   ```
 
 
