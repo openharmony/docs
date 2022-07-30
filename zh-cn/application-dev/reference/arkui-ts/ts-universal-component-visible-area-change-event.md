@@ -13,7 +13,7 @@
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onVisibleAreaChange(ratios: Array<number>, event: (isVisible: boolean, currentRatio: number) => void) | 组件可见区域变化时触发该回调。<br/>-ratios：阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积）与组件自身面积的比值。当组件可见面积与自身面积的比值大于或小于阈值时，均会触发该回调。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0.<br/>-isVisible：表示组件的可见面积与自身面积的比值是否大于阈值，true表示大于，false表示小于。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
+| onVisibleAreaChange(ratios: Array\<number>, event: (isVisible: boolean, currentRatio: number) => void) | 组件可见区域变化时触发该回调。<br/>-ratios：阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积）与组件自身面积的比值。当组件可见面积与自身面积的比值大于或小于阈值时，均会触发该回调。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0.<br/>-isVisible：表示组件的可见面积与自身面积的比值是否大于阈值，true表示大于，false表示小于。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
 
 ## 示例

@@ -3457,7 +3457,7 @@ audioRenderer.on('stateChange', (state) => {
 
 ### on('dataRequest') <sup>9+</sup>
 
-on(type: "dataRequest", callback: Callback<AudioRendererDataInfo>): void;
+on(type: "dataRequest", callback: Callback\<AudioRendererDataInfo>): void;
 
 订阅音频数据requeset事件回调。
 

@@ -1542,7 +1542,7 @@ videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 ### on('availableBitratesCollect')<sup>9+</sup>
 
-on(type: 'availableBitratesCollect', callback: (bitrates: Array<number>) => void): void
+on(type: 'availableBitratesCollect', callback: (bitrates: Array\<number>) => void): void
 
 开始监听视频播放码率上报事件。
 
