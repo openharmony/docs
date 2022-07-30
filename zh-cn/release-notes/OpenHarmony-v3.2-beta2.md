@@ -71,23 +71,53 @@
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-
-```
-repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta2 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta2 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2-Beta2 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
 **方式二**
 
 通过repo + https 下载。
 
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta2 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2-Beta2 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
-```
-repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta2 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+### 从镜像站点获取
+
+**表2** 获取源码路径
+
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 全量代码（标准、轻量和小型系统）        | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/code-v3.2-Beta2.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/code-v3.2-Beta2.tar.gz.sha256) |
+| Hi3861轻量系统解决方案（二进制）        | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_pegasus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-LiteOS（二进制） | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256) |
+| Hi3516轻量系统解决方案-Linux（二进制）  | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz.sha256) |
+| RK3568标准系统解决方案（二进制）        | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz.sha256) |
+| 标准系统Full SDK包（Mac）               | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz.sha256) |
+| 标准系统Full SDK包（Windows\Linux）     | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）             | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz.sha256) |
 
 
 ## 更新说明
