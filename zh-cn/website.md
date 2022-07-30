@@ -5,6 +5,7 @@
 - 版本说明
   - OpenHarmony 3.x Releases
 
+    -   [OpenHarmony v3.2 Beta2 (2022-07-30)](release-notes/OpenHarmony-v3.2-beta2.md)
     -   [OpenHarmony v3.2 Beta1 (2022-05-31)](release-notes/OpenHarmony-v3.2-beta1.md)
     -   [OpenHarmony v3.1.1 Release (2022-05-31)](release-notes/OpenHarmony-v3.1.1-release.md)
     -   [OpenHarmony v3.1 Release (2022-03-30)](release-notes/OpenHarmony-v3.1-release.md)    
@@ -92,7 +93,7 @@
         - [资源调度](release-notes/api-change/v3.1-Release/js-apidiff-resource-scheduler_api-9-canary.md)
         - [窗口管理](release-notes/api-change/v3.1-Release/js-apidiff-window_api-9-canary.md)
       - [Native API差异报告](release-notes/api-change/v3.1-Release/native-apidiff-v3.1-release.md)
-
+  
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
   - [OpenHarmony JS/TS三方组件使用指导](third-party-components/npm-third-party-guide.md)
