@@ -85,13 +85,13 @@ struct Parent {
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-        CompA({ astate: new ClassA(2), aLink: $parentState })
+        CompA({ aState: new ClassA(2), aLink: $parentState })
       }
       Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
         CompA({ aLink: $parentState })
       }
       Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
-        CompA({ astate: new ClassA(3), aLink: $parentState })
+        CompA({ aState: new ClassA(3), aLink: $parentState })
       }
     }
   }
@@ -99,8 +99,8 @@ struct Parent {
 
 @Component
 struct CompA {
-  @State aState： any = false
-  @Link aLink： ClassA
+  @State aState: any = false
+  @Link aLink: ClassA
   
   build() {
     Column() {
@@ -113,7 +113,7 @@ struct CompA {
 @Component
 struct CompB {
   @Link bLink: ClassA
-  @Prop bProp: bpplean
+  @Prop bProp: boolean
   
   build() {
     Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
