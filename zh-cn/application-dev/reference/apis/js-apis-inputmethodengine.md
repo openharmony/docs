@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```
-import inputMethodEngine from '@ohos.inputmethodengine';
+import inputMethodEngine from '@ohos.inputMethodEngine';
 ```
 
 ## inputMethodEngine
@@ -180,7 +180,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
   ```js
   InputMethodEngine.off('keyboardShow');
   ```
-
+  
 
 ## KeyboardDelegate<a name="KeyboardDelegate"></a>
 
@@ -250,7 +250,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 
   **示例：**
-
+  
     ```js
     KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
         console.info('cursorContextChange');
@@ -294,7 +294,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
     | callback | number | 是   | 回调返回文本选择信息。                                       |
 
   **示例：**
-
+  
     ```js
     KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
         console.info('selectionChange');
@@ -548,11 +548,11 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
-
+  
     | 参数名 | 类型 | 必填 | 说明 |
     | -------- | -------- | -------- | -------- |
     | length | number | 是 | 文本长度。 |
-
+  
 **返回值：**  
 
      | 类型                            | 说明                                                         |
@@ -565,7 +565,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
      var isSuccess = TextInputClient.deleteForward(5);
      console.info("isSuccess = " + isSuccess);
     ```
-
+    
 ### deleteBackward
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
@@ -663,7 +663,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
   var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
   console.info("isSuccess = " + isSuccess);
   ```
-
+  
 ### insertText
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
@@ -702,7 +702,7 @@ insertText(text:string): Promise&lt;boolean&gt;
   | text | string | 是 | 文本。 |
 
 **返回值：**  
-
+  
   | 类型                            | 说明                                                         |
   | ------------------------------- | ------------------------------------------------------------ |
   | Promise&lt;boolean&gt; |  操作成功与否。                |
@@ -713,7 +713,7 @@ insertText(text:string): Promise&lt;boolean&gt;
   var isSuccess = TextInputClient.insertText("test");
   console.info("isSuccess = " + isSuccess);
   ```
-
+  
 ### getEditorAttribute
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
