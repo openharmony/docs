@@ -7,7 +7,7 @@ The **AbilityManager** module provides APIs for obtaining, adding, and modifying
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module are system APIs and cannot be called by third-party applications.
 
-# Modules to Import
+## Modules to Import
 
 ```js
 import AbilityManager from '@ohos.application.abilityManager'
@@ -18,6 +18,8 @@ import AbilityManager from '@ohos.application.abilityManager'
 Enumerates the ability states.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name| Value| Description| 
 | -------- | -------- | -------- |
