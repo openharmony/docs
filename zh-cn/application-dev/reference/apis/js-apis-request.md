@@ -65,17 +65,17 @@ var config = {
 | SESSION_SUCCESSFUL<sup>7+</sup> | number | 是 | 否 | 下载会话已完成。 |
 
 
-## request.upload<sup>6+</sup>
+## request.upload
 
 upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
 上传，异步方法，使用promise形式返回结果。
 
+此接口仅可在FA模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
-
-**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -108,17 +108,17 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```
 
 
-## request.upload<sup>6+</sup>
+## request.upload
 
 upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 上传，异步方法，使用callback形式返回结果。
 
+此接口仅可在FA模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
-
-**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -152,11 +152,11 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
 上传，异步方法，使用promise形式返回结果。
 
+此接口仅可在Stage模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
-
-**模型说明**: 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -197,11 +197,11 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
 
 上传，异步方法，使用callback形式返回结果。
 
+此接口仅可在Stage模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Upload
-
-**模型说明**: 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -474,17 +474,17 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | value | string | 是 | 表示表单元素的值。 |
 
 
-## request.download<sup>6+</sup>
+## request.download
 
 download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 下载，异步方法，使用promise形式返回结果。
 
+此接口仅可在FA模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
-
-**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -510,17 +510,17 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
   ```
 
 
-## request.download<sup>6+</sup>
+## request.download
 
 download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void
 
 下载，异步方法，使用callback形式返回结果。
 
+此接口仅可在FA模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
-
-**模型说明**: 此接口仅可在FA模型下使用
 
 **参数：**
 
@@ -549,11 +549,11 @@ download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&
 
 下载，异步方法，使用promise形式返回结果。
 
+此接口仅可在Stage模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
-
-**模型说明**: 此接口仅可在Stage模型下使用
 
 **参数：**
 
@@ -586,11 +586,11 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
 下载，异步方法，使用callback形式返回结果。
 
+此接口仅可在Stage模型下使用
+
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: SystemCapability.MiscServices.Download
-
-**模型说明**: 此接口仅可在Stage模型下使用
 
 **参数：**
 
