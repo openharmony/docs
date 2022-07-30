@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import inputMethod from '@ohos.inputMethod';
+import inputMethod from '@ohos.inputmethod';
 ```
 
 ## inputMethod<sup>8+</sup>
