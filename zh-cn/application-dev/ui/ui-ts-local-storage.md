@@ -20,7 +20,7 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 > **说明：** 创建LocalStorage实例时如未定义初始值，可以使用组件内@LocalStorageLink和@LocalStorageProp的初始值。如果定义时给定了初始值，那么不会再使用@LocalStorageLink和@LocalStorageProp的初始值。
 
-## LocalStorage接口
+## LocalStorage
 
 ### constructor  
 
@@ -33,6 +33,22 @@ constructor(initializingProperties?: Object)
 | 参数名                    | 类型     |  必填  | 默认值  | 参数描述                                     |
 | ---------------------- | ------ | :--: | ---- | ---------------------------------------- |
 | initializingProperties | Object |  否   | -    | object.keys(obj)返回的所有对象属性及其值都将添加到LocalStorage。 |
+
+
+
+### GetShared
+
+static GetShared(): LocalStorage
+
+获取当前的共享的LocalStorage对象。
+
+此接口仅可在Stage模型下使用。
+
+**返回值：**
+
+| 类型                            | 描述                |
+| ----------------------------- | ----------------- |
+| [LocalStorage](#localstorage) | 返回LocalStorage对象。 |
 
 
 
