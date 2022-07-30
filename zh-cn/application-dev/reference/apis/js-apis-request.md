@@ -148,7 +148,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```
 ## request.upload<sup>9+</sup>
 
-upload(context: BaseContext,config: UploadConfig): Promise&lt;UploadTask&gt;
+upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
 上传，异步方法，使用promise形式返回结果。
 
@@ -193,9 +193,7 @@ upload(context: BaseContext,config: UploadConfig): Promise&lt;UploadTask&gt;
 
 ## request.upload<sup>9+</sup>
 
-upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
-
-upload(context: BaseContext,config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
+upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 上传，异步方法，使用callback形式返回结果。
 
@@ -547,7 +545,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 ## request.download<sup>9+</sup>
 
-download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
+download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 下载，异步方法，使用promise形式返回结果。
 
@@ -584,7 +582,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
 ## request.download<sup>9+</sup>
 
-download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void
+download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
 下载，异步方法，使用callback形式返回结果。
 
