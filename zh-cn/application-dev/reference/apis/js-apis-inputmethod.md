@@ -79,6 +79,8 @@ getInputMethodSetting(): InputMethodSetting
 
 switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolean&gt;): void;
 
+切换输入法。此接口仅可在Stage模型下使用。
+
 
 **系统能力**：SystemCapability.Miscservices.InputMethodFramework
 
@@ -100,6 +102,7 @@ switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolea
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 
+切换输入法。此接口仅可在Stage模型下使用。
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
