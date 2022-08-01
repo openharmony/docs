@@ -407,7 +407,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
         }
     ]
 };
-  dmInstance.startDeviceDiscovery(subscribeInfo, filterOptions); //当有设备发现时，通过deviceFound回调通知给应用程序
+  dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); //当有设备发现时，通过deviceFound回调通知给应用程序
   ```
   
 ### stopDeviceDiscovery
