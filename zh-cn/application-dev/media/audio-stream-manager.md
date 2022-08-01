@@ -21,7 +21,7 @@ AudioStreamManager提供了音频流管理的方法。开发者可以通过本�
    在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
 ```js
-  var audioStreamManager = audio.getStreamManager();
+var audioStreamManager = audio.getStreamManager();
 ```
 
 2. （可选）使用on（'audioRendererChange'）监听音频渲染器更改事件。
@@ -94,7 +94,7 @@ console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is cal
 ```  
 
 6. （可选）使用getCurrentAudioRendererInfoArray()获取当前音频渲染器的信息。
-该接口可获取音频流唯一ID，音频播放客户端的UID，音频状态以及音频播放器的其他信息。需注意的是若对第三方音频流监听应用未配置相关权限，则查询到的音频状态为0，音频播放器其他信息为null。
+该接口可获取音频流唯一ID，音频播放客户端的UID，音频状态以及音频播放器的其他信息。需注意的是若对第三方音频流监听应用未配置ohos.permission.USE_BLUETOOTH权限，则查询到的设备名称和设备地址为空字符串，若正确配置权限，则显示的实际的设备名称和设备地址信息。
    
 ```js
 await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
@@ -127,7 +127,7 @@ await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (Audi
 ``` 
 
 7. （可选）使用getCurrentAudioCapturerInfoArray()获取当前音频捕获器的信息。
-该接口可获取音频流唯一ID，音频录制客户端的UID，音频状态以及音频捕获器的其他信息。需注意的是若对第三方音频流监听应用未配置相关权限，则查询到的音频状态为0，音频捕获器其他信息为null。
+该接口可获取音频流唯一ID，音频录制客户端的UID，音频状态以及音频捕获器的其他信息。需注意的是若对第三方音频流监听应用未配置ohos.permission.USE_BLUETOOTH权限，则查询到的设备名称和设备地址为空字符串，若正确配置权限，则显示的实际的设备名称和设备地址信息。
    
 ```js
 await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
