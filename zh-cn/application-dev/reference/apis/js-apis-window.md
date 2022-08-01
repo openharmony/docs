@@ -2385,6 +2385,29 @@ promise.then((data)=> {
 });
 ```
 
+### setWakeUpScreen()<sup>9+</sup>
+
+setWakeUpScreen(wakeUp: boolean): void;
+
+窗口唤醒屏幕。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| wakeUp           | boolean | 是   | 是否设置唤醒屏幕。 |
+
+**示例：** 
+
+```ts
+var wakeUp = true;
+windowClass.setWakeUpScreen(wakeUp);
+```
+
 ### setBrightness
 
 setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
@@ -3381,6 +3404,7 @@ class myAbility extends Ability {
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
 设置应用显示在锁屏之上。
+此接口为系统接口，三方应用不支持调用。
 
 此接口仅可在Stage模型下使用。
 
