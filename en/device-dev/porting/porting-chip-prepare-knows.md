@@ -18,7 +18,7 @@ The implementation of the OpenHarmony project directories and functions relies o
 | /build/lite | OpenHarmony basic compilation and building framework.|
 | /kernel/liteos_m | Basic kernel. The implementation related to the chip architecture is in the **arch** directory.|
 | /device | Board-level implementation, which complies with the OpenHarmony specifications. For details about the directory structure and porting process, see [Overview](../porting/porting-chip-board-overview.md).|
-| /vendor | Product-level implementation, which is contributed by Huawei or product vendors.|
+| /vendor | Product-level implementation, which is contributed by product vendors. |
 
 The **device** directory is in the internal structure of **device/{Chip solution vendor}/{Development board}**. The following uses HiSilicon **hispark_taurus** as an example:
 
@@ -37,9 +37,7 @@ device
 ```
 
 
-The **vendor** directory is in the internal structure of **vendor/{Product solution vendor}/{Product name}**. The following uses the Huawei Wi-Fi IoT product as an example:
-
-
+The **vendor** directory is in the internal structure of **vendor/{Product solution vendor}/{Product name}**. The following uses the Wi-Fi IoT product as an example:
 
 ```
 vendor                       # Product solution vendor

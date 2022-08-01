@@ -20,21 +20,42 @@ None
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| border | BorderOptions | - | Unified border style.|
-| borderStyle | BorderStyle | &nbsp;BorderStyle.Solid | Border style of an element.|
-| borderWidth | Length | 0 | Border width of an element.|
-| borderColor | Color | - | Border color of an element.|
-| borderRadius | Length | 0 | Border radius of an element.|
+| border       | BorderOptions | - | Unified border style.|
+| borderStyle  | BorderStyle   | &nbsp;BorderStyle.Solid | Border style of an element.|
+| borderWidth  | Length        | 0 | Border width of an element.|
+| borderColor  | [ResourceColor](../../ui/ts-types.md) | - | Border color of an element.|
+| borderRadius | Length        | 0 | Border radius of an element.|
 
 - BorderOptions
   | Name| Type| Default Value| Mandatory| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | width | [Length](../../ui/ts-types.md) | 0 | No| Border width.|
-  | color | [ResourceColor](../../ui/ts-types.md) | 'Black' | No| Border color.|
+  | width  | [Length](../../ui/ts-types.md) \| EdgeWidth<sup>9+</sup> | 0 | No| Border width.|
+  | color  | [ResourceColor](../../ui/ts-types.md) \|EdgeColor<sup>9+</sup> | 'Black' | No| Border color.|
   | radius | [Length](../../ui/ts-types.md)\| EdgeRadiuses<sup>9+</sup> | 0 | No| Border radius.|
-  | style | BorderStyle | BorderStyle.Solid | No| Border style.|
+  | style  | BorderStyle \| EdgeStyle<sup>9+</sup> | BorderStyle.Solid | No| Border style.|
 
 
+- EdgeWidth<sup>9+</sup>
+
+  To reference this object, at least one parameter must be passed.
+
+  | Name   | Type   | Mandatory | Default Value | Description                 |
+  | ------ | ------ | --------- | ------------- | --------------------------- |
+  | left   | length | No        | 0             | Width of the left border.   |
+  | right  | length | No        | 0             | Width of the right border.  |
+  | top    | length | No        | 0             | Width of the top border.    |
+  | bottom | length | No        | 0             | Width of the bottom border. |
+
+- EdgeColor<sup>9+</sup>
+
+  To reference this object, at least one parameter must be passed.
+
+  | Name   | Type                                  | Mandatory | Default Value | Description                 |
+  | ------ | ------------------------------------- | --------- | ------------- | --------------------------- |
+  | left   | [ResourceColor](../../ui/ts-types.md) | No        | 'Black'       | Color of the left border.   |
+  | right  | [ResourceColor](../../ui/ts-types.md) | No        | 'Black'       | Color of the right border.  |
+  | top    | [ResourceColor](../../ui/ts-types.md) | No        | 'Black'       | Color of the top border.    |
+  | bottom | [ResourceColor](../../ui/ts-types.md) | No        | 'Black'       | Color of the bottom border. |
 - EdgeRadiuses<sup>9+</sup>
   
   To reference this object, at least one parameter must be passed.
@@ -46,15 +67,23 @@ None
   | bottomLeft  | length   | No  | 0      | Radius of the lower-left rounded corner.|
   | bottomRight | length   | No  | 0      | Radius of the lower-right rounded corner.|
   
-  
-  
+- EdgeStyle<sup>9+</sup>
+
+  To reference this object, at least one parameter must be passed.
+
+  | Name   | Type        | Mandatory | Default Value     | Description                 |
+  | ------ | ----------- | --------- | ----------------- | --------------------------- |
+  | left   | BorderStyle | No        | BorderStyle.Solid | Style of the left border.   |
+  | right  | BorderStyle | No        | BorderStyle.Solid | Style of the right border.  |
+  | top    | BorderStyle | No        | BorderStyle.Solid | Style of the top border.    |
+  | bottom | BorderStyle | No        | BorderStyle.Solid | Style of the bottom border. |
 - BorderStyle enums
   
   | Name| Description|
   | -------- | -------- |
   | Dotted | Dotted border. The radius of a dot is half of **borderWidth**.|
   | Dashed | Dashed border.|
-  | Solid | Solid border.|
+  | Solid  | Solid border.|
 
 
 ## Example
@@ -65,20 +94,32 @@ None
 @Component
 struct BorderExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-      // Dashed border
-      Text('dashed')
+      Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+        // Dashed border
+        Text('dashed')
         .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE).borderRadius(10)
-        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
-      Text('dashed')
-        .borderStyle(BorderStyle.Dashed).borderWidth(5).borderColor(0xAFEEEE)
-        .borderRadius({ topLeft: 10, topRight: 20, bottomLeft: 30, bottomRight: 60 })
-        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
-      // Dotted border
-      Text('dotted')
-        .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
-        .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
-    }.width('100%').height(150)
+          .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+        // Dotted border
+        Text('dotted')
+          .border({ width: 5, color: 0x317AF7, radius: 10, style: BorderStyle.Dotted })
+          .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+      }.width('100%').height(150)
+      Text('.border')
+        .fontSize(50)
+        .width(300)
+        .height(300)
+        .border({
+          width: { left: '5lpx', right: '10lpx', top: '20lpx', bottom: '30lpx' },
+          color: { left: '#e3bbbb', right: Color.Blue, top: Color.Red, bottom: Color.Green },
+          radius: { topLeft: 10, topRight: 20, bottomLeft: 40, bottomRight: 80 },
+          style: {
+              left: BorderStyle.Dotted,
+              right: BorderStyle.Dotted,
+              top: BorderStyle.Solid,
+              bottom: BorderStyle.Dashed
+          }
+      }).textAlign(TextAlign.Center)
+    }
   }
 }
 ```

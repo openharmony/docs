@@ -4,7 +4,7 @@ The **\<PatternLock>** component allows users to use a pattern password for auth
 
 > **NOTE**
 > 
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
