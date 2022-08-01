@@ -31,6 +31,8 @@ import Want from '@ohos.application.Want';
 
 **示例：**
 
+- 基础用法
+
 ```  js
     var want = {
         "deviceId": "", // deviceId为空表示本设备
