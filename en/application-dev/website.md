@@ -334,7 +334,7 @@
         - [Layout Constraints](reference/arkui-ts/ts-universal-attributes-layout-constraints.md)
         - [Flex Layout](reference/arkui-ts/ts-universal-attributes-flex-layout.md)
         - [Border](reference/arkui-ts/ts-universal-attributes-border.md)
-        - [ͼƬ߿](reference/arkui-ts/ts-universal-attributes-border-image.md)
+        - [Border Image](reference/arkui-ts/ts-universal-attributes-border-image.md)
         - [Background](reference/arkui-ts/ts-universal-attributes-background.md)
         - [Opacity](reference/arkui-ts/ts-universal-attributes-opacity.md)
         - [Visibility](reference/arkui-ts/ts-universal-attributes-visibility.md)
