@@ -1252,9 +1252,6 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
             console.info("x coord = " + event.param.x());
             console.info("link url = " + event.param.getLinkUrl());
         })
-      },
-      cancel: () => {
-        event.result.closeContextMenu();
       }
     }
   ```
@@ -1727,7 +1724,7 @@ x(): number
 
 | 类型            | 说明                     |
 | --------------- | ----------------------- |
-| int | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。 |
 
 ### y<sup>9+</sup>
 
@@ -1739,7 +1736,7 @@ y(): number
 
 | 类型            | 说明                     |
 | --------------- | ----------------------- |
-| int | 显示正常返回非负整数，否则返回-1。 |
+| number | 显示正常返回非负整数，否则返回-1。 |
 
 ### getLinkUrl<sup>9+</sup>
 
