@@ -307,7 +307,7 @@ Obtains the string corresponding to the specified resource ID. This API uses a p
 **Return value**
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | String corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Example**
   ```
@@ -486,7 +486,7 @@ Obtains the string array corresponding to the specified resource object. This AP
 **Return value**
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;Array&lt;string&gt;&gt; | String array corresponding to the resource object.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
 
 **Example**
   ```
@@ -605,7 +605,7 @@ Obtains the content of the media file corresponding to the specified resource ob
 **Return value**
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Media file content corresponding to the resource object.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
 
 **Example**
   ```
@@ -724,7 +724,7 @@ Obtains the Base64 code of the image corresponding to the specified resource obj
 **Return value**
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Base64 code of the image corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Example**
   ```
