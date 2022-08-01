@@ -253,7 +253,7 @@ vendor
     └── ...
 ```
 
-> ![icon-caution.gif](/public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+> ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
 > Follow the preceding rules to create directories and files for new products. The Compilation and Building subsystem scans the configured products based on the rules.
 
 The key directories and files are described as follows:
