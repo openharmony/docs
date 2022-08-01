@@ -78,7 +78,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<[RemoteAbilityInfo]((js-apis-bundle-remoteAbilityInfo.md))> | Promise形式返回远程基本能力信息。 |
+| Promise\<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)> | Promise形式返回远程基本能力信息。 |
 
 ## distributedBundle.getRemoteAbilityInfos
 
@@ -135,4 +135,4 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 类型                                                         | 说明                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| Promise\<Array<[RemoteAbilityInfo]((js-apis-bundle-remoteAbilityInfo.md))>> | Promise形式返回远程基本能力信息。 |
+| Promise\<Array<[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)>> | Promise形式返回远程基本能力信息。 |
