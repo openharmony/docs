@@ -1226,6 +1226,39 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
   }
   ```
 
+### onContextMenuShow<sup>9+</sup>
+
+onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
+
+长按特定元素（例如图片，链接），跳出菜单。
+
+**参数：**
+| 参数名     | 参数类型                                 | 参数描述             |
+| ------- | ------------------------------------ | ---------------- |
+| param   | [WebContextMenuParam](#webcontextmenuparam9)   | 菜单相关参数。 |
+| result  | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
+
+  **示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .onContextMenuShow((event) => {
+            console.info("x coord = " + event.param.x());
+            console.info("link url = " + event.param.getLinkUrl());
+        })
+      },
+      cancel: () => {
+        event.result.closeContextMenu();
+      }
+    }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -1679,6 +1712,98 @@ grant(resources: Array\<string\>): void
 | 参数名     | 参数类型        | 必填 | 默认值 | 参数描述                |
 | --------- | --------------- | ---- | ----- | ---------------------- |
 | resources | Array\<string\> | 是   | -     | 网页所请求的权限资源列表。|
+
+## WebContextMenuParam<sup>9+</sup>
+
+实现长按页面元素跳出来的菜单信息。示例代码参考[WebContextMenuParam事件](#webcontextmenuparam9)。
+
+### x<sup>9+</sup>
+
+x(): number
+
+弹出菜单的x坐标。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| int | 显示正常返回非负整数，否则返回-1。 |
+
+### y<sup>9+</sup>
+
+y(): number
+
+弹出菜单的y坐标。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| int | 显示正常返回非负整数，否则返回-1。 |
+
+### getLinkUrl<sup>9+</sup>
+
+getLinkUrl(): string
+
+获取linkurl链接。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| string | 如果长按位置是链接，返回链接经过安全检查的url。 |
+
+### getUnfilterendLinkUrl<sup>9+</sup>
+
+getUnfilterendLinkUrl(): string
+
+获取linkurl链接。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| string | 如果长按位置是链接，返回链接的原始url。 |
+
+### getSourceUrl<sup>9+</sup>
+
+getSourceUrl(): string
+
+获取sourceUrl链接。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| string | 如果选中的元素有src属性，返回src的url。 |
+
+### existsImageContents<sup>9+</sup>
+
+existsImageContents(): boolean
+
+是否存在图像内容。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| boolean | 长按位置中有图片返回true，否则返回false。 |
+
+## WebContextMenuResult<sup>9+</sup>
+
+实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[WebContextMenuResult事件](#webcontextmenuresult9)。
+
+### closeContextMenu<sup>9+</sup>
+
+closeContextMenu(): void
+
+不执行WebContextMenuResult其他接口操作时，需要调用此接口关闭菜单。
+
+### copyImage<sup>9+</sup>
+
+copyImage(): void
+
+WebContextMenuParam有图片内容则复制图片。
 
 ## WebController
 
