@@ -681,7 +681,7 @@ Enumerates the value types.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name          | Description                          |
+| Type          | Description                          |
 | -------------- | ------------------------------ |
 | number         | The value is a number.            |
 | string         | The value is a string.          |
