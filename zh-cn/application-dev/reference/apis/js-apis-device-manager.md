@@ -61,7 +61,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | deviceName             | string                    | 是    | 设备名称。    |
 | deviceType             | [DeviceType](#devicetype) | 是    | 设备类型。    |
 | networkId<sup>8+</sup> | string                    | 是    | 设备网络标识。  |
-
+| rangge<sup>9+</sup>    | number                    | 是    | 发现设备的距离。  |
 
 ## DeviceType
 
@@ -402,12 +402,8 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
     "filter_op": "AND",
     "filters": [
         {
-            "type": "credible",
-            "value": 2
-        },
-        {
             "type": "range",
-            "value": 50
+            "value": 50 // 需过滤发现设备的距离，单位(cm)
         }
     ]
 };
