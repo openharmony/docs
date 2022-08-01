@@ -31,6 +31,7 @@ RemoteWindow(target: WindowAnimationTarget)
 | bundleName  | string | 动画窗口所对应的进程。|
 | abilityName | string | 动画窗口所对应的Ability。|
 | windowBounds | [RRect](#rrect) | 动画窗口实际大小。|
+| missionId  | number | 任务ID。|
 
 ## RRect
 圆角矩形。
