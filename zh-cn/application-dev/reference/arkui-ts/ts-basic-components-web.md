@@ -1634,7 +1634,7 @@ isHttpAuthInfoSaved(): boolean
 
 ## PermissionRequest<sup>9+</sup>
 
-Web组件返回的权限管理请求授权或拒绝权限功能对象。示例代码参考[onPermissionRequest事件](#onpermissionrequest9)。
+Web组件返回授权或拒绝权限功能对象。示例代码参考[onPermissionRequest事件](#onpermissionrequest9)。
 
 ### deny<sup>9+</sup>
 
@@ -3163,6 +3163,6 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 
-| 名称      | 描述                 |
-| --------- | -------------------- |
-| MidiSysex | MIDI SYSEX资源。      |
+| 名称      | 描述            | 备注           |
+| --------- | -------------- | -------------- |
+| MidiSysex | MIDI SYSEX资源。| 目前仅支持权限事件上报，MIDI设备的使用还未支持。|
