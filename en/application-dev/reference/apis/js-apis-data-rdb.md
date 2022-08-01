@@ -1038,7 +1038,7 @@ Updates data in the database based on the specified RdbPredicates object. This A
 | -------- | -------- | -------- | -------- |
 | values | [ValuesBucket](#valuesbucket) | Yes| Data to update. The value specifies the row of data to be updated in the database. The key-value pair is associated with the column name in the target table.|
 | rdbPredicates | [RdbPredicates](#rdbpredicates) | Yes| Row of data to insert.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1682,7 +1682,7 @@ Defines the data types allowed.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name| Description|
+| Type| Description|
 | -------- | -------- |
 | number | Number.|
 | string | String.|
@@ -1691,13 +1691,13 @@ Defines the data types allowed.
 
 ## ValuesBucket
 
-Defines a bucket to store key-value pairs.
+Defines the types of the key and value in a KV pair.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| [key:&nbsp;string] | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | Yes| Defines a bucket to store key-value pairs.|
+| Key Type| Value Type|
+| -------- | -------- |
+| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
 
 
 ## SyncMode<sup>8+</sup>
