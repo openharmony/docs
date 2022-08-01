@@ -13,6 +13,17 @@ import bluetooth from '@ohos.bluetooth';
 ```
 
 
+## Required Permissions
+
+ohos.permission.USE_BLUETOOTH
+
+ohos.permission.MANAGE_BLUETOOTH
+
+ohos.permission.DISCOVER_BLUETOOTH
+
+ohos.permission.LOCATION
+
+
 ## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
 
 enableBluetooth(): boolean
@@ -1697,7 +1708,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // Create characteristics.
@@ -1807,7 +1818,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 let arrayBufferC = new ArrayBuffer(8);
@@ -2387,8 +2398,10 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 ```js
 // Promise
-gattClientDevice.getServices().then(result => {
-    console.info("Got services successfully:" + JSON.stringify(result));
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+device.connect();
+device.getServices().then(result => {
+    console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
 
@@ -2729,7 +2742,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 let arrayBufferC = new ArrayBuffer(8);
@@ -3209,7 +3222,7 @@ Defines the scan filter parameters.
 | ----------- | ------ | ---- | ---- | ---------------------------------------- |
 | deviceId    | string | Yes   | Yes   | Address of the BLE device to filter, for example, XX:XX:XX:XX:XX:XX.    |
 | name        | string | Yes   | Yes   | Name of the BLE device to filter.                            |
-| serviceUuid | string | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
+| serviceUuid | string | Yes   | Yes   | Service UUID of the device to filter, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 
 
 ## ScanOptions
@@ -3288,7 +3301,7 @@ Defines the BLE advertising parameters.
 
 | Name         | Type   | Readable  | Writable  | Description                                      |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **32** slots (20 ms). The maximum value is **16777215** slots. The default value is **1600** slots (1s).|
+| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **32** slots (20 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s).|
 | txPower     | number  | Yes   | Yes   | Transmit power, in dBm. The value range is -127 to 1. The default value is **-7**.  |
 | connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The default value is **true**.                  |
 
