@@ -9,7 +9,7 @@
 - 认证和取消认证设备
 - 查询可信设备列表
 - 查询本地设备信息，包括设备名称，设备类型和设备标识
-
+- 发布设备发现
 > **说明：**
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -61,7 +61,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | deviceName             | string                    | 是    | 设备名称。    |
 | deviceType             | [DeviceType](#devicetype) | 是    | 设备类型。    |
 | networkId<sup>8+</sup> | string                    | 是    | 设备网络标识。  |
-
+| range<sup>9+</sup>     | number                    | 是    | 发现设备的距离。  |
 
 ## DeviceType
 
@@ -184,6 +184,18 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | token     | number               | 是    | 认证Token。   |
 | extraInfo | {[key:string] : any} | 否    | 认证信息可扩展字段。 |
 
+## PublishInfo
+
+发布设备参数
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+
+| 名称          | 类型                              | 必填   | 描述                |
+| ------------- | --------------------------------- | ---- | ----------------- |
+| publishId     | number                            | 是    | 发布设备标识，用于标识不同的发布周期。 |
+| mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
+| freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
+| ranging       | boolean                           | 是    | 发布的设备是否支持测距能力。             |
 
 ## DeviceManager
 
@@ -359,6 +371,45 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
   dmInstance.startDeviceDiscovery(subscribeInfo); //当有设备发现时，通过deviceFound回调通知给应用程序
   ```
 
+### startDeviceDiscovery9+</sup>
+
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
+
+发现周边设备。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+- 参数：
+  | 名称            | 参数类型                            | 必填   | 说明    |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
+  | filterOptions | [string](#filteroptions)        | 否   | 发现设备过滤信息。|
+
+- 示例：
+  ```js
+  //生成发现标识，随机数确保每次调用发现接口的标识不一致
+  var subscribeId = Math.floor(Math.random() * 10000 + 1000);
+  var subscribeInfo = {
+      "subscribeId": subscribeId,
+      "mode": 0xAA, //主动模式
+      "medium": 0,  //自动发现类型，同时支持多种发现类型
+      "freq": 2,    //高频率
+      "isSameAccount": false,
+      "isWakeRemote": false,
+      "capability": 1
+  };
+  var filterOptions = {
+    "filter_op": "OR", // 可选, 默认"OR"
+    "filters": [
+        {
+            "type": "range",
+            "value": 50 // 需过滤发现设备的距离，单位(cm)
+        }
+    ]
+};
+  dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); //当有设备发现时，通过deviceFound回调通知给应用程序
+  ```
+  
 ### stopDeviceDiscovery
 
 stopDeviceDiscovery(subscribeId: number): void
@@ -376,6 +427,51 @@ stopDeviceDiscovery(subscribeId: number): void
   ```js
   //入参需要和startDeviceDiscovery接口传入的subscribeId配对使用
   dmInstance.stopDeviceDiscovery(subscribeId);
+  ```
+
+### publishDeviceDiscovery9+</sup>
+
+publishDeviceDiscovery(publishInfo: PublishInfo): void
+
+发现设备发现。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+- 参数：
+  | 名称          | 参数类型                        | 必填 | 说明    |
+  | ------------- | ------------------------------- | ---- | ----- |
+  | publishInfo   | [PublishInfo](#publishinfo)     | 是   | 发布设备发现信息。 |
+
+- 示例：
+  ```js
+  //生成发布标识，随机数确保每次调用发现接口的标识不一致
+  var publishId = Math.floor(Math.random() * 10000 + 1000);
+  var publishInfo = {
+      "publishId": publishId,
+      "mode": 0xAA, //主动模式
+      "freq": 2,    //高频率
+      "ranging": 1  //支持发现时测距
+  };
+  dmInstance.publishDeviceDiscovery(publishInfo); //当有发布结果时，通过回调通知给应用程序
+  ```
+  
+### unPublishDeviceDiscovery
+
+unPublishDeviceDiscovery(publishId: number): void
+
+停止发布设备发现。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+- 参数：
+  | 名称        | 参数类型 | 必填 | 说明  |
+  | ----------- | -------- | ---- | ----- |
+  | publishId   | number   | 是   | 发布标识。 |
+
+- 示例：
+  ```js
+  //入参需要和publishDeviceDiscovery接口传入的publishId配对使用
+  dmInstance.unPublishDeviceDiscovery(publishId);
   ```
 
 ### authenticateDevice
@@ -599,6 +695,93 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
   );
   ```
 
+### on('publishSuccess')
+
+on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
+
+注册发布设备发现回调监听。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+- 参数：
+  | 名称     | 参数类型                                 | 必填 | 说明                       |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+  | type     | string                                   | 是   | 注册发布设备发现回调，以便将发布结果时通知应用程序。 |
+  | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 注册设备发布的回调方法。               |
+
+- 示例：
+  ```js
+  dmInstance.on('publishSuccess', (data) => {
+        console.info("publishSuccess:" + JSON.stringify(data));
+      }
+  );
+  ```
+
+### off('publishSuccess')
+
+off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
+
+取消注册设备发现回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+- 参数：
+  | 名称     | 参数类型                                 | 必填 | 说明                          |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | 是   | 取消注册设备发现回调。                 |
+  | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 指示要取消注册的设备发布回调。 |
+
+- 示例：
+  ```js
+  dmInstance.off('publishSuccess', (data) => {      
+        console.info('publishSuccess' + JSON.stringify(data));
+      }
+  );
+  ```
+
+### on('publishFail')
+
+on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
+
+注册设备发布失败回调监听。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+- 参数：
+  | 名称     | 参数类型                                              | 必填 | 说明                             |
+  | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序。 |
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是   | 注册设备发布失败的回调方法。                 |
+
+- 示例：
+  ```js
+  dmInstance.on('publishFail', (data) => {
+        this.log("publishFail on:" + JSON.stringify(data));
+      }
+  );
+  ```
+
+### off('publishFail')
+
+off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
+
+取消注册设备发现失败回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+- 参数：
+  | 名称     | 参数类型                                              | 必填 | 说明                |
+  | -------- | ----------------------------------------------------- | ---- | ----------------- |
+  | type     | string                                                | 是   | 取消注册设备发布失败回调。     |
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是   | 指示要取消注册的设备发布失败回调。 |
+
+- 示例：
+  ```js
+  dmInstance.off('publishFail', (data) => {      
+        console.info('publishFail' + JSON.stringify(data));
+      }
+  );
+  ```
 
 ### on('serviceDie')
 
