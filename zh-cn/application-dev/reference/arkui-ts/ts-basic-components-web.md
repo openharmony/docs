@@ -1634,7 +1634,7 @@ isHttpAuthInfoSaved(): boolean
 
 ## PermissionRequest<sup>9+</sup>
 
-Web组件返回授权或拒绝权限功能对象。示例代码参考[onPermissionRequest事件](#onpermissionrequest9)。
+Web组件返回授权或拒绝权限功能的对象。示例代码参考[onPermissionRequest事件](#onpermissionrequest9)。
 
 ### deny<sup>9+</sup>
 
@@ -1658,7 +1658,7 @@ getOrigin(): string
 
 getAccessibleResource(): Array\<string\>
 
-获取网页所请求的权限资源列表操作，资源列表类型参考[ProtectedResourceType](#protectedresourcetype9枚举说明)。
+获取网页所请求的权限资源列表，资源列表类型参考[ProtectedResourceType](#protectedresourcetype9枚举说明)。
 
 **返回值：**
 
@@ -1670,7 +1670,7 @@ getAccessibleResource(): Array\<string\>
 
 grant(resources: Array\<string\>): void
 
-对网页访问的给定权限进行授权操作。
+对网页访问的给定权限进行授权。
 
 **参数：**
 
