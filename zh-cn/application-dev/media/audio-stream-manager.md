@@ -57,7 +57,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ```js
 audioStreamManager.off('audioRendererChange');
-console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called #########');
+console.info('######### RendererChange Off is called #########');
 ```   
 
 4. （可选）使用on（'audioCapturerChange'）监听音频捕获器更改事件。
@@ -66,7 +66,7 @@ console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called ##
 ```js
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-    console.info(' ## CapChange on is called for element ' + i + ' ##');
+    console.info(' ## audioCapturerChange on is called for element ' + i + ' ##');
     console.info('StreamId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
     console.info('ClientUid for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].clientUid);
     console.info('Source for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.source);
@@ -90,7 +90,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ```js
 audioStreamManager.off('audioCapturerChange');
-console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is called #########');
+console.info('######### CapturerChange Off is called #########');
 ```  
 
 6. （可选）使用getCurrentAudioRendererInfoArray()获取当前音频渲染器的信息。
@@ -98,7 +98,7 @@ console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is cal
    
 ```js
 await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
-  console.info('[GET_RENDERER_STATE_3_PROMISE] ######### Get Promise is called ##########');
+  console.info('######### Get Promise is called ##########');
   if (AudioRendererChangeInfoArray != null) {
     for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
       AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -131,7 +131,7 @@ await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (Audi
    
 ```js
 await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
-  console.info('AFCapturerChangeLog: [GET_CAP_STA_1_PR] **** Get Promise Called ****');
+  console.info('getCurrentAudioCapturerInfoArray： **** Get Promise Called ****');
   if (AudioCapturerChangeInfoArray != null) {
     for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
       console.info('StreamId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
