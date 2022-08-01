@@ -6,7 +6,7 @@ AudioStreamManager提供了音频流管理的方法。开发者可以通过本�
 
 ### 工作流程
 
-在进行应用开发的过程中，建议开发者通过on('stateChange')方法订阅AudioCapturer的状态变更。因为针对AudioCapturer的某些操作，仅在音频采集器在固定状态时才能执行。如果应用在音频采集器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
+在进行应用开发的过程中，开发者需要使用getStreamManager()创建一个AudioStreamManager实例，进而通过该实例管理音频流。开发者可通过调用on（'audioRendererChange'）、on（'audioCapturerChange'）监听音频播放应用和音频录制应用，在应用状态变化、设备变化、音频属性变化时获得通知。同时可通过off（'audioRendererChange'）、off（'audioCapturerChange'）取消相关事件的监听。与此同时，开发者可以通过调用（可选）使用getCurrentAudioRendererInfoArray()获取当前音频播放应用的音频流唯一ID、音频播放客户端的UID、音频状态等信息，同理可调用getCurrentAudioCapturerInfoArray()获取音频录制应用的信息。其具体调用关系可参考音频流管理调用关系图。
 
 详细API含义可参考：[音频管理API文档AudioStreamManager](../reference/apis/js-apis-audio.md#AudioStreamManager9)
 
@@ -20,14 +20,14 @@ AudioStreamManager提供了音频流管理的方法。开发者可以通过本�
 
    在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
-   ```js
+```js
   var audioStreamManager = audio.getStreamManager();
-   ```
+```
 
 2. （可选）使用on（'audioRendererChange'）监听音频渲染器更改事件。
 如果音频流监听应用需要在音频播放应用状态变化、设备变化、音频属性变化时获取通知，可以订阅该事件。更多事件请参考[API参考文档](../reference/apis/js-apis-audio.md)。
 
-   ```js
+```js
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -51,19 +51,19 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
     }
   }
 });
-   ```
+```
 
 3. （可选）使用off（'audioRendererChange'）取消监听音频渲染器更改事件。
 
-   ```js
+```js
 audioStreamManager.off('audioRendererChange');
 console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called #########');
-   ```   
+```   
 
 4. （可选）使用on（'audioCapturerChange'）监听音频捕获器更改事件。
 如果音频流监听应用需要在音频录制应用状态变化、设备变化、音频属性变化时获取通知，可以订阅该事件。更多事件请参考[API参考文档](../reference/apis/js-apis-audio.md)。
 
-   ```js
+```js
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(' ## CapChange on is called for element ' + i + ' ##');
@@ -84,17 +84,19 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
     }
   }
 });
-   ```  
+```  
 
 5. （可选）使用off（'audioCapturerChange'）取消监听音频捕获器更改事件。
 
-   ```js
+```js
 audioStreamManager.off('audioCapturerChange');
 console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is called #########');
-    ```  
+```  
+
 6. （可选）使用getCurrentAudioRendererInfoArray()获取当前音频渲染器的信息。
 该接口可获取音频流唯一ID，音频播放客户端的UID，音频状态以及音频播放器的其他信息。需注意的是若对第三方音频流监听应用未配置相关权限，则查询到的音频状态为0，音频播放器其他信息为null。
-   ```js
+   
+```js
 await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
   console.info('[GET_RENDERER_STATE_3_PROMISE] ######### Get Promise is called ##########');
   if (AudioRendererChangeInfoArray != null) {
@@ -122,11 +124,12 @@ await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (Audi
 }).catch((err) => {
   console.log('getCurrentAudioRendererInfoArray :ERROR: ' + err.message);
 });
-   ``` 
+``` 
 
 7. （可选）使用getCurrentAudioCapturerInfoArray()获取当前音频捕获器的信息。
 该接口可获取音频流唯一ID，音频录制客户端的UID，音频状态以及音频捕获器的其他信息。需注意的是若对第三方音频流监听应用未配置相关权限，则查询到的音频状态为0，音频捕获器其他信息为null。
-   ```js
+   
+```js
 await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
   console.info('AFCapturerChangeLog: [GET_CAP_STA_1_PR] **** Get Promise Called ****');
   if (AudioCapturerChangeInfoArray != null) {
@@ -152,4 +155,4 @@ await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (Audi
 }).catch((err) => {
   console.log('getCurrentAudioCapturerInfoArray :ERROR: ' + err.message);
 });
-   ```      
+```      
