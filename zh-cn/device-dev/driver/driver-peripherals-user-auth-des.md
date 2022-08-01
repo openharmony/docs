@@ -141,7 +141,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
 
-1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成User_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，详细代码参见[user_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_driver.cpp)文件。
+1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成User_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，详细代码参见[user_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/user_auth/hdi_service/service/user_auth_interface_driver.cpp)文件。
 
    ```c++
    // 通过自定义的HdfUserAuthInterfaceHost对象包含IoService对象和真正的HDI Service实现IRemoteObject对象
@@ -238,7 +238,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
    #endif
    ```
 
-2. 执行器注册接口举例实现，详细代码参见[user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_service.cpp)文件。
+2. 执行器注册接口举例实现，详细代码参见[user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/user_auth/hdi_service/service/user_auth_interface_service.cpp)文件。
 
    ```c++
    // 添加执行器
@@ -260,7 +260,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
    }
    ```
    
-3. 录入接口举例实现，详细代码参见[user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_service.cpp)文件。
+3. 录入接口举例实现，详细代码参见[user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/user_auth/hdi_service/service/user_auth_interface_service.cpp)文件。
 
    ```c++
    // 开启认证凭据管理会话

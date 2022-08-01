@@ -115,7 +115,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
 
 下面结合DEMO实例介绍驱动开发的具体步骤。
 
-1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Face_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，详细代码参见[face_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/face_auth_interface_driver.cpp)文件。
+1. 基于HDF驱动框架，按照驱动Driver Entry程序，完成Face_auth驱动开发，主要由Bind、Init、Release、Dispatch函数接口实现，详细代码参见[face_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/face_auth/hdi_service/src/face_auth_interface_driver.cpp)文件。
 
    ```c++
    // 通过自定义的HdfFaceAuthInterfaceHost对象包含ioService对象和真正的HDI Service实现IRemoteObject对象
@@ -214,7 +214,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    HDF_INIT(g_faceAuthInterfaceDriverEntry);
    ```
 
-2. 实现获取执行器列表接口，详细代码参见[face_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/face_auth_interface_service.cpp)文件。
+2. 实现获取执行器列表接口，详细代码参见[face_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/face_auth/hdi_service/src/face_auth_interface_service.cpp)文件。
 
    ```c++
    // 执行器实现类
@@ -267,7 +267,7 @@ Face_auth驱动的主要工作是为上层用户认证框架和Face_auth服务�
    }
    ```
 
-3. 实现执行器每个功能接口，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/executor_impl.cpp)文件。
+3. 实现执行器每个功能接口，详细代码参见[executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/face_auth/hdi_service/src/executor_impl.cpp)文件。
 
    ```c++
    // 实现获取执行器信息接口
