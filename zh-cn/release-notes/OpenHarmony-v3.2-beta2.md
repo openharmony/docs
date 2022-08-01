@@ -128,7 +128,7 @@
 ### SDK变更
 从本版本起，SDK会同时提供Public SDK和Full SDK。通过DevEco Studio默认获取的SDK为Public SDK。
 
-已使用较早版本SDK开发的应用如果使用到了系统API，升级本版本后需要手动替换SDK为Full SDK才可以保证应用工程可编译通过。
+已使用较早版本SDK开发的应用如果使用到了系统API，升级本版本后需要[手动替换SDK为Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md)才可以保证应用工程可编译通过。
 
 ### 特性变更
 
