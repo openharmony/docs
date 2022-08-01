@@ -394,7 +394,7 @@ Sets a **DataAbilityPredicates** object to match the specified string.
 between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value within the specified range.
+Sets a **DataAbilityPredicates** object to match a field with data type **ValueType** and value within the specified range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -789,7 +789,7 @@ Enumerates the value types.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
-| Name   | Description                |
+| Type   | Description                |
 | ------- | -------------------- |
 | number  | The value is a number.  |
 | string  | The value is a string.  |
