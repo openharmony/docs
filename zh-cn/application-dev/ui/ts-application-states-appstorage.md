@@ -51,8 +51,6 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 
 ```ts
 // xxx.ets
-let varA = AppStorage.Link('varA')
-let envLang = AppStorage.Prop('languageCode')
 
 @Entry
 @Component
