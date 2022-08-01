@@ -711,7 +711,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
   | 名称       | 参数类型                                     | 必填   | 说明                         |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是    | 注册发布设备发现回调，以便将发布结果时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;publishId: number&nbsp;}&gt; | 是    | 注册设备发布的回调方法。               |
+  | callback | Callback&lt;{ publishId: number }&gt; | 是    | 注册设备发布的回调方法。               |
 
 - 示例：
   ```js
@@ -733,7 +733,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
   | 名称       | 参数类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 取消注册设备发现回调。                 |
-  | callback | Callback&lt;{&nbsp;subscribeId: number&nbsp;}&gt; | 是    | 指示要取消注册的设备发布回调。 |
+  | callback | Callback&lt;{ subscribeId: number }&gt; | 是    | 指示要取消注册的设备发布回调。 |
 
 - 示例：
   ```js
@@ -755,7 +755,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
   | 名称       | 参数类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备发布失败回调，以便在发布设备失败时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;publishId: number, reason: number&nbsp;}&gt; | 是    | 注册设备发布失败的回调方法。                 |
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是    | 注册设备发布失败的回调方法。                 |
 
 - 示例：
   ```js
@@ -777,7 +777,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
   | 名称       | 参数类型                                     | 必填   | 说明                |
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | 是    | 取消注册设备发布失败回调。     |
-  | callback | Callback&lt;{&nbsp;publishId: number, reason: number&nbsp;}&gt; | 是    | 指示要取消注册的设备发布失败回调。 |
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是    | 指示要取消注册的设备发布失败回调。 |
 
 - 示例：
   ```js
