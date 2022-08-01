@@ -198,7 +198,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
           ], // 后台模式类型
         }
       ],
-      "reqPermissions": [
+      "requestPermissions": [
         {
           "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
         }
