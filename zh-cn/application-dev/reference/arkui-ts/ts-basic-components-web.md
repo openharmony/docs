@@ -1238,6 +1238,11 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 | param   | [WebContextMenuParam](#webcontextmenuparam9)   | 菜单相关参数。 |
 | result  | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
 
+**返回值：** 
+| 类型     | 说明                   |
+| ------ | -------------------- |
+| boolean | 自定义菜单返回true，默认菜单返回false。 |
+
   **示例：**
   ```ts
   // xxx.ets
