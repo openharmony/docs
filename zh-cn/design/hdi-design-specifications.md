@@ -485,7 +485,3 @@ GetExecutorInfo([out] struct ExecutorInfo executorInfo);
 | ------- | ------- | ------ |
 | struct  | struct  | struct |
 | enum    | enum    | enum   |
-
-
-## 其他说明
-本文档Beta期为自发布日起1个月，用于接纳社区意见，欢迎积极参与讨论。
