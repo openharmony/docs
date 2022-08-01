@@ -306,9 +306,9 @@ getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
 
 **参数：**
 
-| 名称       | 类型                                       | 必填   | 描述        |
-| -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 是    | 表示屏幕显示方向。 |
+| 名称     | 类型                                                         | 必填 | 描述               |
+| -------- | ------------------------------------------------------------ | ---- | ------------------ |
+| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | 是   | 表示屏幕显示方向。 |
 
 **示例：**
 
@@ -330,7 +330,7 @@ getDisplayOrientation(): Promise\<bundle.DisplayOrientation>;
 
 | 类型                                       | 说明        |
 | ---------------------------------------- | --------- |
-| Promise\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 表示屏幕显示方向。 |
+| Promise\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | 表示屏幕显示方向。 |
 
 **示例：**
 
@@ -355,8 +355,8 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 | 名称          | 类型                                       | 必填   | 描述           |
 | ----------- | ---------------------------------------- | ---- | ------------ |
-| orientation | [bundle.DisplayOrientation](js-apis-bundle.md#displayorientation) | 是    | 指示当前能力的新方向。。 |
-| callback    | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 是    | 表示屏幕显示方向。    |
+| orientation | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation) | 是    | 指示当前能力的新方向。。 |
+| callback    | AsyncCallback\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | 是    | 表示屏幕显示方向。    |
 
 **示例：**
 
@@ -382,8 +382,8 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>;
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| orientation                              | [bundle.DisplayOrientation](js-apis-bundle.md#displayorientation) |
-| Promise\<[bundle.DisplayOrientation](js-apis-bundle.md#displayorientation)> | 表示屏幕显示方向。                                |
+| orientation                              | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation) |
+| Promise\<[bundle.DisplayOrientation](js-apis-Bundle.md#displayorientation)> | 表示屏幕显示方向。                                |
 
 **示例：**
 
