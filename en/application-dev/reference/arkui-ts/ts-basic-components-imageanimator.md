@@ -1,4 +1,4 @@
-# ImageAnimator
+ImageAnimator
 
 The **\<ImageAnimator>** component enables images to be played frame by frame. The list of images to be played can be configured, and the duration of each image can be configured.
 
@@ -41,7 +41,7 @@ ImageAnimator()
   | width    | [Length](../../ui/ts-types.md)           | 0             | No        | Image width.                             |
   | height   | [Length](../../ui/ts-types.md)           | 0             | No        | Image height.                            |
   | top      | [Length](../../ui/ts-types.md)           | 0             | No        | Vertical coordinate of the image relative to the upper left corner of the component. |
-  | left     | [Length](../../ui/ts-types.md#length-type) | 0             | No        | Horizontal coordinate of the image relative to the upper left corner of the component. |
+  | left     | [Length](../../ui/ts-types.md)           | 0             | No        | Horizontal coordinate of the image relative to the upper left corner of the component. |
   | duration | number                                   | 0             | No        | Playback duration of each image frame, in milliseconds. |
 - AnimationStatus enums
   | Name    | Description                            |
