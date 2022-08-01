@@ -399,7 +399,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
       "capability": 1
   };
   var filterOptions = {
-    "filter_op": "AND",
+    "filter_op": "OR", // 可选, 默认"OR"
     "filters": [
         {
             "type": "range",
