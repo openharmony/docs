@@ -8,10 +8,9 @@
             - [Directory Structure](ts-framework-directory.md)
             - [Rules for Accessing Application Code Files](ts-framework-file-access-rules.md)
         - ["js" Tag](ts-framework-js-tag.md)
-        - Resource Access
-            - [Accessing Application Resources](ts-application-resource-access.md)
-            - [Accessing System Resources](ts-system-resource-access.md)
-            - [Media Resource Types](ts-media-resource-type.md)
+        - Resource Management
+            - [Resource File Categories](ui-ts-basic-resource-file-categories.md)
+            - [Accessing Resources](ts-resource-access.md)
         - [Pixel Units](ts-pixel-units.md)
         - [Types](ts-types.md)
     - Declarative Syntax
@@ -21,6 +20,7 @@
             - Declarative UI Description Specifications
                 - [Configuration Without Parameters](ts-parameterless-configuration.md)
                 - [Configuration with Mandatory Parameters](ts-configuration-with-mandatory-parameters.md)
+
                 - [Attribute Configuration](ts-attribution-configuration.md)
                 - [Event Configuration](ts-event-configuration.md)
                 - [Child Component Configuration](ts-child-component-configuration.md)
@@ -40,6 +40,7 @@
                 - [@Link](ts-component-states-link.md)
             - Managing Application States
                 - [AppStorage](ts-application-states-appstorage.md)
+                - [LocalStorage](ui-ts-local-storage.md)
                 - [PersistentStorage](ts-application-states-apis-persistentstorage.md)
                 - [Environment](ts-application-states-apis-environment.md)
             - Managing Other States
@@ -72,6 +73,7 @@
         - [Building a Food Category List Layout](ui-ts-building-category-list-layout.md)
         - [Building a Food Category Grid Layout](ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui-ts-page-redirection-data-transmission.md)
+
 - JavaScript-based Web-like Development Paradigm
     - [Overview](ui-js-overview.md)
     - Framework
@@ -144,4 +146,3 @@
                 - [Animation Effect](ui-js-animate-dynamic-effects.md)
                 - [Animation Frame](ui-js-animate-frame.md)
     - [Custom Components](ui-js-custom-components.md)
-
