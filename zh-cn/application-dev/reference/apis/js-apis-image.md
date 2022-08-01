@@ -1851,7 +1851,7 @@ readLatestImage(): Promise\<Image>
 
 | 类型                      | 说明               |
 | ------------------------- | ------------------ |
-| Promise<[Image](#image8)> | 异步返回最新图片。 |
+| Promise<[Image](#image9)> | 异步返回最新图片。 |
 
 **示例：**
 
