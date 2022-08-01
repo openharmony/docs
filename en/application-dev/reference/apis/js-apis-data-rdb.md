@@ -1109,7 +1109,7 @@ Updates data in the RDB store based on the specified **DataSharePredicates** obj
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)| Yes|  Update conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)| Yes|  Update conditions specified by the **DataSharePredicates** object.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
@@ -1144,7 +1144,7 @@ Updates data in the RDB store based on the specified **DataSharePredicates** obj
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Update conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Update conditions specified by the **DataSharePredicates** object.|
 
 **Return value**
 | Type| Description|
@@ -1242,7 +1242,7 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes|  Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes|  Conditions specified by the **DataSharePredicates** object for deleting data.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
@@ -1270,7 +1270,7 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Conditions specified by the **DataSharePredicates** object for deleting data.|
 
 **Return value**
 | Type| Description|
@@ -1363,7 +1363,7 @@ Queries data in the RDB store based on specified conditions. This API uses an as
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
@@ -1393,7 +1393,7 @@ Queries data in the RDB store based on specified conditions. This API uses a pro
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
 | columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
 
 **Return value**
