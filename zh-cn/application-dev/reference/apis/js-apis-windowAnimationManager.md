@@ -79,14 +79,17 @@ var controller = {
 
 windowAnimationManager.setController(controller)
 
+var finishedCallback = null;
 windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
     if (err.code) {
         console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
         return;
     }
 
-    data.onAnimationFinish();
+    finishedCallback = data;
 });
+
+finishedCallback.onAnimationFinish();
 ```
 
 ## windowAnimationManager.minimizeWindowWithAnimation
