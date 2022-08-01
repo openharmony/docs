@@ -1715,7 +1715,7 @@ grant(resources: Array\<string\>): void
 
 ## WebContextMenuParam<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单信息。示例代码参考[WebContextMenuParam事件](#webcontextmenuparam9)。
+实现长按页面元素跳出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### x<sup>9+</sup>
 
@@ -1791,7 +1791,7 @@ existsImageContents(): boolean
 
 ## WebContextMenuResult<sup>9+</sup>
 
-实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[WebContextMenuResult事件](#webcontextmenuresult9)。
+实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
 ### closeContextMenu<sup>9+</sup>
 
