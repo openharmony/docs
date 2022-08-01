@@ -1537,7 +1537,7 @@ videoPlayer.on('error', (error) => {      // 设置'error'事件回调
     console.info(`video error called, errCode is ${error.code}`);      // 打印错误码
     console.info(`video error called, errMessage is ${error.message}`);// 打印错误类型详细描述
 });
-videoPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
+videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
 ```
 
 ### on('availableBitratesCollect')<sup>9+</sup>
