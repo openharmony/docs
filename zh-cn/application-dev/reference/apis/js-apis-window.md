@@ -1854,8 +1854,8 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{[AvoidAreaType](#avoidareatyp
 **示例：**
 
 ```js
-windowClass.on('avoidAreaChange', (type, data) => {
-    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(type) + 'Data: ' + JSON.stringify(data));
+windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
 });
 ```
 
