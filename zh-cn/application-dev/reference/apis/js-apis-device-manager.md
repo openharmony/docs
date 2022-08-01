@@ -342,7 +342,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   });
   ```
 
-### startDeviceDiscovery8+</sup>
+### startDeviceDiscovery
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
