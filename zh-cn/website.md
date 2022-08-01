@@ -125,7 +125,10 @@
         - [资源调度](release-notes/api-change/v3.1-Release/js-apidiff-resource-scheduler_api-9-canary.md)
         - [窗口管理](release-notes/api-change/v3.1-Release/js-apidiff-window_api-9-canary.md)
       - [Native API差异报告](release-notes/api-change/v3.1-Release/native-apidiff-v3.1-release.md)
-  
+  - 变更说明
+    - OpenHamrony 3.2 Beta2
+      - [3.2 beta2相对3.2 beta1变更详细说明](release-notes\changelog\v3.2-beta2\changelog-v3.2-beta2.md)
+      - [OpenHarmony启用应用沙箱机制-适配指导](release-notes\changelog\v3.2-beta2\application-sandbox-adaptation-guide.md)  
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
   - [OpenHarmony JS/TS三方组件使用指导](third-party-components/npm-third-party-guide.md)
