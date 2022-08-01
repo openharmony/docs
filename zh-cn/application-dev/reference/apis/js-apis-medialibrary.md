@@ -257,17 +257,12 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 **示例：**
 
 ```
-async function example() {
-    // 使用Promise方式创建Image类型文件
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    media.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
-        console.info("createAsset successfully:"+ JSON.stringify(asset));
-    }).catch(function(err){
-        console.info("createAsset failed with error:"+ err);
-    });
-}
+let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
+media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
+    console.info("getPublicDirectory successfully:"+ JSON.stringify(dicResult));
+}).catch(function(err){
+    console.info("getPublicDirectory failed with error:"+ err);
+});
 ```
 
 ### getPublicDirectory<sup>8+</sup>
