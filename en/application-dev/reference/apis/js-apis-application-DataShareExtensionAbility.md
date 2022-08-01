@@ -166,7 +166,7 @@ Called by the server to update data in the database. This API can be overridden 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | uri | string | Yes | URI of the data to update.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for updating data.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for updating data.|
 | valueBucket | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | Yes| New data.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of updated data records.|
 
@@ -200,7 +200,7 @@ Called by the server to delete data from the database. This API can be overridde
 | Name      | Type                                                    | Mandatory| Description                              |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | Yes  | URI of the data to delete.          |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria for deleting data.                    |
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria for deleting data.                    |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of data records deleted.|
 
 **Example**
@@ -233,7 +233,7 @@ Called by the server to query data from the database. This API can be overridden
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | uri | string | Yes | URI of the data to query.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for querying data.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for querying data.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is empty, all columns will be queried.|
 | callback | AsyncCallback&lt;Object&gt; | Yes| Callback invoked to return the result set.|
 
