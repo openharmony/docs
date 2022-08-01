@@ -390,6 +390,7 @@
       - [Audio](driver/driver-peripherals-audio-des.md)
       - [Camera](driver/driver-peripherals-camera-des.md)
       - [Face_auth](driver/driver-peripherals-face_auth-des.md)
+      - [Fingerprint_auth](driver/driver-peripherals-fingerprint_auth-des.md)
       - [LCD](driver/driver-peripherals-lcd-des.md)
       - [Light](driver/driver-peripherals-light-des.md)
       - [Pin_auth](driver/driver-peripherals-pinauth-des.md)
