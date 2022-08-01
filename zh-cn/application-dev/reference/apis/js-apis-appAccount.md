@@ -1978,7 +1978,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 | 参数名          | 类型                         | 必填  | 说明                |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appAccountinfo)&gt; | 否    | 允许的帐号数组。      |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的帐号数组。      |
 | allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组。 |
 | requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识。    |
 
