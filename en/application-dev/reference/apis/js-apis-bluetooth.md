@@ -1011,7 +1011,7 @@ bluetooth.off('sppRead', clientNumber);
 ```
 
 
-## bluetooth.getProfile<sup>8+</sup><a name="getProfile"></a>
+## bluetooth.getProfile<sup>8+</sup><a name="bt-getProfile"></a>
 
 getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile
 
@@ -1037,9 +1037,9 @@ Obtains a profile object.
 let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
 ```
 
-## bluetooth.getProfile<sup>9+</sup><a name="getProfile"></a>
+## bluetooth.getProfileInst<sup>9+</sup><a name="getProfileInst"></a>
 
-getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
+getProfileInst(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfile | HidHostProfile | PanProfile
 
 Obtains a profile instance. API version 9 is added with **HidHostProfile** and **PanProfile**.
 
@@ -1060,7 +1060,7 @@ Obtains a profile instance. API version 9 is added with **HidHostProfile** and *
 **Example**
 
 ```js
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST);
 ```
 
 
@@ -1451,13 +1451,11 @@ a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
 
 
-### getPlayingState<sup>9+</sup>
+### getPlayingState<sup>8+</sup>
 
 getPlayingState(device: string): PlayingState
 
 Obtains the playing state of a device.
-
-**Required permissions**: ohos.permission.USE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -1559,7 +1557,7 @@ Subscribes to the HFP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the HFP connection state change event.                              |
 
 **Return value**
 
@@ -1612,7 +1610,7 @@ hfpAg.off('connectionStateChange', onReceiveEvent);
 Before using a method of **HidHostProfile**, you need to create an instance of this class by using the **getProfile()** method.
 
 
-### connect<sup>9+</sup><a name="connect"></a>
+### connect<sup>9+</sup><a name="HidHost-connect"></a>
 
 connect(device: string): boolean
 
@@ -1644,7 +1642,7 @@ let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 ```
 
 
-### disconnect<sup>9+</sup><a name="disconnect"></a>
+### disconnect<sup>9+</sup><a name="HidHost-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1742,7 +1740,7 @@ hidHost.off('connectionStateChange', onReceiveEvent);
 Before using a method of **PanProfile**, you need to create an instance of this class by using the **getProfile()** method.
 
 
-### disconnect<sup>9+</sup><a name="disconnect"></a>
+### disconnect<sup>9+</sup><a name="PanP-disconnect"></a>
 
 disconnect(device: string): boolean
 
@@ -1837,7 +1835,7 @@ panProfile.off('connectionStateChange', onReceiveEvent);
 
 ### setTethering<sup>9+</sup><a name="setTethering"></a>
 
-setTethering(value: boolean): boolean
+setTethering(enable: boolean): void
 
 Sets tethering.
 
@@ -1871,11 +1869,9 @@ let ret = panProfile.setTethering(true);
 
 isTetheringOn(): boolean
 
-Obtains the tethering status.
+Obtains the tethering state.
 
 This is a system API.
-
-**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -2019,7 +2015,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // Create characteristics.
@@ -2129,7 +2125,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -2502,7 +2498,6 @@ let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
-
 ### on('connectStateChange')
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
@@ -2709,8 +2704,10 @@ Obtains all services of the remote BLE device. This API uses a promise to return
 
 ```js
 // Promise
-gattClientDevice.getServices().then(result => {
-    console.info("Got services successfully:" + JSON.stringify(result));
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+device.connect();
+device.getServices().then(result => {
+    console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
 
@@ -3051,7 +3048,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 let arrayBufferC = new ArrayBuffer(8);
 let characteristic = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -3311,7 +3308,7 @@ Enumerates the scan modes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                                      | Default Value  | Description             |
+| Name                                      | Default Value | Description             |
 | ---------------------------------------- | ---- | --------------- |
 | SCAN_MODE_NONE                           | 0    | No scan mode.        |
 | SCAN_MODE_CONNECTABLE                    | 1    | Connectable mode.       |
@@ -3326,7 +3323,7 @@ Enumerates the pairing states.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name                | Default Value  | Description    |
+| Name                | Default Value | Description    |
 | ------------------ | ---- | ------ |
 | BOND_STATE_INVALID | 0    | Invalid pairing.|
 | BOND_STATE_BONDING | 1    | Pairing. |
@@ -3352,7 +3349,7 @@ Enumerates the SPP link types.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name        | Default Value  | Description           |
+| Name        | Default Value | Description           |
 | ---------- | ---- | ------------- |
 | SPP_RFCOMM | 0    | Radio frequency communication (RFCOMM) link type.|
 
@@ -3536,7 +3533,7 @@ Defines the scan filter parameters.
 | serviceSolicitationUuidMask<sup>9+</sup> | string      | Yes  | Yes  | Service solicitation UUID mask of the device to filter, for example, **FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF**.|
 | serviceData<sup>9+</sup>                 | ArrayBuffer | Yes  | Yes  | Service data of the device to filter, for example, **[0x90, 0x00, 0xF1, 0xF2]**.|
 | serviceDataMask<sup>9+</sup>             | ArrayBuffer | Yes  | Yes  | Service data mask of the device to filter, for example, **[0xFF,0xFF,0xFF,0xFF]**.|
-| manufacturerId<sup>9+</sup>              | number      | Yes  | Yes  | Manufacturer ID of the device to filter, for example, **0x0006**.                |
+| manufactureId<sup>9+</sup>               | number      | Yes  | Yes  | Manufacturer ID of the device to filter, for example, **0x0006**.                |
 | manufactureData<sup>9+</sup>             | ArrayBuffer | Yes  | Yes  | Manufacturer data of the device to filter, for example, **[0x1F,0x2F,0x3F]**.|
 | manufactureDataMask<sup>9+</sup>         | ArrayBuffer | Yes  | Yes  | Manufacturer data mask of the device to filter, for example, **[0xFF, 0xFF, 0xFF]**.|
 
@@ -3617,7 +3614,7 @@ Defines the BLE advertising parameters.
 
 | Name         | Type   | Readable  | Writable  | Description                                      |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **32** slots (20 ms). The maximum value is **16777215** slots. The default value is **1600** slots (1s).|
+| interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **32** slots (20 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s).|
 | txPower     | number  | Yes   | Yes   | Transmit power, in dBm. The value range is -127 to 1. The default value is **-7**.  |
 | connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The default value is **true**.                  |
 
@@ -3828,7 +3825,7 @@ Enumerates the A2DP playing states.
 
 ## ProfileId<sup>8+</sup><a name="ProfileId"></a>
 
-Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOST**.
+Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOST** and **PROFILE_PAN_NETWORK**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -3837,3 +3834,4 @@ Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOS
 | PROFILE_A2DP_SOURCE              | 0x0001 | A2DP profile.|
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 0x0004 | HFP profile. |
 | PROFILE_HID_HOST<sup>9+</sup> | 0x0006 | Human Interface Device (HID) profile. |
+| PROFILE_PAN_NETWORK<sup>9+</sup> | 0x0007 | PAN profile. |
