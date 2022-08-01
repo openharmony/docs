@@ -1259,6 +1259,7 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
         })
       }
     }
+  }
   ```
 
 ## ConsoleMessage
