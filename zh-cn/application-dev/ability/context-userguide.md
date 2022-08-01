@@ -20,11 +20,11 @@
 
 ​        FA模型只有一个Context定义。Context中所有的功能都是通过方法来提供的，它提供了一些featureAbility中不存在的方法，相当于featureAbility的一个扩展和补全。
 
-​**d.ts声明**
+**d.ts声明**
 
 ​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/app/context.d.ts
 
-​**示例**
+**示例**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -223,7 +223,7 @@ export default class MainAbility extends Ability {
 
 卡片业务相关，点下面链接了解。
 
-​        [FormExtensionContext](/zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md)
+​        [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md)
 
 ### 在eTS页面中访问Context
 
