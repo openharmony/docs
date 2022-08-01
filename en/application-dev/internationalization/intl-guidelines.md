@@ -217,7 +217,7 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
    Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md).
    
    ```js
-   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"};
+   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
    ```
 
 2. Compare two strings.
@@ -267,7 +267,7 @@ Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singu
    Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md).
    
    ```js
-   var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"};
+   var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
 2. Determine the singular-plural type.
