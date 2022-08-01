@@ -2151,7 +2151,7 @@ start(callback: AsyncCallback\<void>): void;
 
 异步方式开始视频录制。通过注册回调函数获取返回值。
 
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2180,7 +2180,7 @@ start(): Promise\<void>;
 
 异步方式开始视频录制。通过Promise获取返回值。
 
-在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)后调用，需要依赖数据源先给surface传递数据。
+在[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2315,7 +2315,7 @@ stop(callback: AsyncCallback\<void>): void;
 
 异步方式停止视频录制。通过注册回调函数获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2344,7 +2344,7 @@ stop(): Promise\<void>;
 
 异步方式停止视频录制。通过Promise获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2423,7 +2423,7 @@ reset(callback: AsyncCallback\<void>): void;
 
 异步方式重置视频录制。通过注册回调函数获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2452,7 +2452,7 @@ reset(): Promise\<void>;
 
 异步方式重置视频录制。通过Promise获取返回值。
 
-需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface8)接口才能重新录制。
+需要重新调用[prepare()](#videorecorder_prepare1)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
