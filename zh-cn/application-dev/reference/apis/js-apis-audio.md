@@ -83,7 +83,7 @@ var audioStreamInfo = {
 var audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 1
+  rendererFlags: 0
 }
 
 var audioRendererOptions = {
@@ -94,8 +94,7 @@ var audioRendererOptions = {
 audio.createAudioRenderer(audioRendererOptions,(err, data) => {
   if (err) {
     console.error(`AudioRenderer Created : Error: ${err.message}`);
-  }
-  else {
+  } else {
     console.info('AudioRenderer Created : Success : SUCCESS');
     let audioRenderer = data;
   }
@@ -137,7 +136,7 @@ var audioStreamInfo = {
 var audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 1
+  rendererFlags: 0
 }
 
 var audioRendererOptions = {
@@ -182,7 +181,7 @@ var audioStreamInfo = {
 
 var audioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 1
+  capturerFlags: 0
 }
 
 var audioCapturerOptions = {
@@ -193,8 +192,7 @@ var audioCapturerOptions = {
 audio.createAudioCapturer(audioCapturerOptions,(err, data) => {
   if (err) {
     console.error(`AudioCapturer Created : Error: ${err.message}`);
-  }
-  else {
+  } else {
     console.info('AudioCapturer Created : Success : SUCCESS');
     let audioCapturer = data;
   }
@@ -235,7 +233,7 @@ var audioStreamInfo = {
 
 var audioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 1
+  capturerFlags: 0
 }
 
 var audioCapturerOptions = {
@@ -1892,31 +1890,30 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 **示例：**
 ```
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
-  console.info('[GET_RENDERER_STATE_1_CALLBACK] **** Get Callback Called ****');
+  console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
-    console.log('getCurrentAudioRendererInfoArray :ERROR: '+err.message);
+    console.log('getCurrentAudioRendererInfoArray :ERROR: '+ err.message);
     resultFlag = false;
-  }
-  else {
-    if (AudioRendererChangeInfoArray !=null) {
-      for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
+  } else {
+    if (AudioRendererChangeInfoArray != null) {
+      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
         AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
-        console.info('StreamId for '+i+' is:'+AudioRendererChangeInfo.streamId);
-        console.info('ClientUid for '+i+' is:'+AudioRendererChangeInfo.clientUid);
-        console.info('Content '+i+' is:'+AudioRendererChangeInfo.rendererInfo.content);
-        console.info('Stream'+i+' is:'+AudioRendererChangeInfo.rendererInfo.usage);
-        console.info('Flag'+i+' is:'+AudioRendererChangeInfo.rendererInfo.rendererFlags); 
-        console.info('State for '+i+' is:'+AudioRendererChangeInfo.rendererState);  
+        console.info('StreamId for' + i + 'is:' + AudioRendererChangeInfo.streamId);
+        console.info('ClientUid for' + i + 'is:' + AudioRendererChangeInfo.clientUid);
+        console.info('Content' + i + 'is:' + AudioRendererChangeInfo.rendererInfo.content);
+        console.info('Stream'+ i + 'is:' + AudioRendererChangeInfo.rendererInfo.usage);
+        console.info('Flag'+ i +' is:' + AudioRendererChangeInfo.rendererInfo.rendererFlags); 
+        console.info('State for' + i +' is:' + AudioRendererChangeInfo.rendererState);  
         var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
-        for (let j=0;j<AudioRendererChangeInfo.deviceDescriptors.length; j++) {
-          console.info('Id:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].id);
-          console.info('Type:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
-          console.info('Role:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
-          console.info('Name:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].name);
-          console.info('Address:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].address);
-          console.info('SampleRates:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
-          console.info('ChannelCount'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
-          console.info('ChannelMask:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+        for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+          console.info('Id:' + i +':' + AudioRendererChangeInfo.deviceDescriptors[j].id);
+          console.info('Type:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
+          console.info('Role:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
+          console.info('Name:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].name);
+          console.info('Address:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].address);
+          console.info('SampleRates:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
+          console.info('ChannelCount' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
+          console.info('ChannelMask:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
         }
       }
     }
@@ -1941,32 +1938,31 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 **示例：**
 ```
 await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
-  console.info('[GET_RENDERER_STATE_3_PROMISE] ######### Get Promise is called ##########');
-  if (AudioRendererChangeInfoArray!=null) {
-    for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
+  console.info('getCurrentAudioRendererInfoArray ######### Get Promise is called ##########');
+  if (AudioRendererChangeInfoArray != null) {
+    for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
       AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
-      console.info('StreamId for '+i+' is:'+AudioRendererChangeInfo.streamId);
-      console.info('ClientUid for '+i+' is:'+AudioRendererChangeInfo.clientUid);
-      console.info('Content '+i+' is:'+AudioRendererChangeInfo.rendererInfo.content);
-      console.info('Stream'+i+' is:'+AudioRendererChangeInfo.rendererInfo.usage);
-      console.info('Flag'+i+' is:'+AudioRendererChangeInfo.rendererInfo.rendererFlags); 
-      console.info('State for '+i+' is:'+AudioRendererChangeInfo.rendererState);  
+      console.info('StreamId for ' + i +' is:' + AudioRendererChangeInfo.streamId);
+      console.info('ClientUid for ' + i + ' is:' + AudioRendererChangeInfo.clientUid);
+      console.info('Content ' + i + ' is:' + AudioRendererChangeInfo.rendererInfo.content);
+      console.info('Stream' + i +' is:' + AudioRendererChangeInfo.rendererInfo.usage);
+      console.info('Flag' + i + ' is:' + AudioRendererChangeInfo.rendererInfo.rendererFlags); 
+      console.info('State for ' + i + ' is:' + AudioRendererChangeInfo.rendererState);  
       var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
-      for (let j=0;j<AudioRendererChangeInfo.deviceDescriptors.length; j++) {
-        console.info('Id:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].id);
-        console.info('Type:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
-        console.info('Role:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
-        console.info('Name:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].name);
-        console.info('Address:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].address);
-        console.info('SampleRates:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
-        console.info('ChannelCounts'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
-        console.info('ChannnelMask:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+      for (let j = 0; j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+        console.info('Id:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].id);
+        console.info('Type:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
+        console.info('Role:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
+        console.info('Name:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].name);
+        console.info('Address:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].address);
+        console.info('SampleRates:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
+        console.info('ChannelCounts' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
+        console.info('ChannnelMask:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
       }
     }
   }
 }).catch((err) => {
-  console.log('getCurrentAudioRendererInfoArray :ERROR: '+err.message);
-  resultFlag = false;
+  console.log('getCurrentAudioRendererInfoArray :ERROR: ' + err.message);
 });
 ```
 
@@ -1987,29 +1983,27 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 **示例：**
 ```
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
-  console.info('[GET_CAPTURER_STATE_1_CALLBACK] **** Get Callback Called ****');
+  console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
     console.log('getCurrentAudioCapturerInfoArray :ERROR: '+err.message);
-    resultFlag = false;
-  }
-  else {
-    if (AudioCapturerChangeInfoArray !=null) {
-      for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
-        console.info('StreamId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
-        console.info('ClientUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
-        console.info('Source for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
-        console.info('Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
-        console.info('State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);  
+  } else {
+    if (AudioCapturerChangeInfoArray != null) {
+      for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
+        console.info('StreamId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
+        console.info('ClientUid for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].clientUid);
+        console.info('Source for '+ i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.source);
+        console.info('Flag ' + i +'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+        console.info('State for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerState);  
         var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
-        for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-          console.info('Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
-          console.info('Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
-          console.info('Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
-          console.info('Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
-          console.info('Address:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
-          console.info('SampleRates:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
-          console.info('ChannelCounts'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
-          console.info('ChannelMask:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+        for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+          console.info('Id:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+          console.info('Type:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+          console.info('Role:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+          console.info('Name:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
+          console.info('Address:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+          console.info('SampleRates:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+          console.info('ChannelCounts' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+          console.info('ChannelMask:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
         }
       }
     }
@@ -2033,31 +2027,30 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
 **示例：**
 ```
-await audioStreamManagerCB.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
-  console.info('AFCapturerChangeLog: [GET_CAP_STA_1_PR] **** Get Promise Called ****');
-  if (AudioCapturerChangeInfoArray!=null) {
-    for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
-      console.info('StreamId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
-      console.info('ClientUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
-      console.info('Source for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
-      console.info('Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
-      console.info('State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);    
+await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+  console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
+  if (AudioCapturerChangeInfoArray != null) {
+    for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
+      console.info('StreamId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
+      console.info('ClientUid for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].clientUid);
+      console.info('Source for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.source);
+      console.info('Flag ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+      console.info('State for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerState);  
       var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
-      for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-        console.info('Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
-        console.info('Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
-        console.info('Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
-        console.info('Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name)
-        console.info('Address:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
-        console.info('SampleRates:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
-        console.info('ChannelCounts'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
-        console.info('ChannelMask:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+      for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+        console.info('Id:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+        console.info('Type:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+        console.info('Role:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+        console.info('Name:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name)
+        console.info('Address:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+        console.info('SampleRates:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+        console.info('ChannelCounts' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+        console.info('ChannelMask:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
       }
     }
   }
 }).catch((err) => {
-  console.log('getCurrentAudioCapturerInfoArray :ERROR: '+err.message);
-  resultFlag = false;
+  console.log('getCurrentAudioCapturerInfoArray :ERROR: ' + err.message);
 });
 ```
 
@@ -2078,26 +2071,26 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 
 **示例：**
 ```
-audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
-  for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
+audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+  for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
-    console.info('## RendererChange on is called for '+i+' ##');
-    console.info('StreamId for '+i+' is:'+AudioRendererChangeInfo.streamId);
-    console.info('ClientUid for '+i+' is:'+AudioRendererChangeInfo.clientUid);
-    console.info('Content for '+i+' is:'+AudioRendererChangeInfo.rendererInfo.content);
-    console.info('Stream for '+i+' is:'+AudioRendererChangeInfo.rendererInfo.usage);
-    console.info('Flag '+i+' is:'+AudioRendererChangeInfo.rendererInfo.rendererFlags);
-    console.info('State for '+i+' is:'+AudioRendererChangeInfo.rendererState);  
+    console.info('## RendererChange on is called for ' + i + ' ##');
+    console.info('StreamId for ' + i + ' is:' + AudioRendererChangeInfo.streamId);
+    console.info('ClientUid for ' + i + ' is:' + AudioRendererChangeInfo.clientUid);
+    console.info('Content for ' + i + ' is:' + AudioRendererChangeInfo.rendererInfo.content);
+    console.info('Stream for ' + i + ' is:' + AudioRendererChangeInfo.rendererInfo.usage);
+    console.info('Flag ' + i + ' is:' + AudioRendererChangeInfo.rendererInfo.rendererFlags);
+    console.info('State for ' + i + ' is:' + AudioRendererChangeInfo.rendererState);  
     var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
-    for (let j=0;j<AudioRendererChangeInfo.deviceDescriptors.length; j++) {
-      console.info('Id:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].id);
-      console.info('Type:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
-      console.info('Role:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
-      console.info('Name:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].name);
-      console.info('Address:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].address);
-      console.info('SampleRates:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
-      console.info('ChannelCounts'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
-      console.info('ChannelMask:'+i+':'+AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+    for (let j = 0; j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+      console.info('Id:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].id);
+      console.info('Type:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].deviceType);
+      console.info('Role:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].deviceRole);
+      console.info('Name:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].name);
+      console.info('Address:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].address);
+      console.info('SampleRates:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
+      console.info('ChannelCounts' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
+      console.info('ChannelMask:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
     }
   }
 });
@@ -2107,7 +2100,7 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
 
 off(type: "audioRendererChange");
 
-监听音频渲染器更改事件。
+取消监听音频渲染器更改事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2119,8 +2112,8 @@ off(type: "audioRendererChange");
 
 **示例：**
 ```
-audioStreamManagerCB.off('audioRendererChange');
-console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called #########');
+audioStreamManager.off('audioRendererChange');
+console.info('######### RendererChange Off is called #########');
 ```
 
 ### on('audioCapturerChange')<sup>9+</sup>
@@ -2141,22 +2134,22 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 **示例：**
 ```
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
-  for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
-    console.info(' ## CapChange on is called for element '+i+' ##');
-    console.info('StreamId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
-    console.info('ClientUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
-    console.info('Source for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
-    console.info('Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
-    console.info('State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);  
-    for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-      console.info('Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
-      console.info('Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
-      console.info('Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
-      console.info('Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
-      console.info('Address:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
-      console.info('SampleRates:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
-      console.info('ChannelCounts'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
-      console.info('ChannelMask:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+  for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
+    console.info(' ## CapChange on is called for element ' + i + ' ##');
+    console.info('StreamId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
+    console.info('ClientUid for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].clientUid);
+    console.info('Source for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.source);
+    console.info('Flag ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+    console.info('State for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerState);  
+    for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+      console.info('Id:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+      console.info('Type:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+      console.info('Role:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+      console.info('Name:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
+      console.info('Address:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+      console.info('SampleRates:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+      console.info('ChannelCounts' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+      console.info('ChannelMask:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
     }
   }
 });
@@ -2179,7 +2172,7 @@ off(type: "audioCapturerChange");
 **示例：**
 ```
 audioStreamManager.off('audioCapturerChange');
-console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is called #########');
+console.info('######### CapturerChange Off is called #########');
 
 ```
 
@@ -2210,47 +2203,47 @@ import audio from '@ohos.multimedia.audio';
 var audioStreamManager;
 var audioStreamManagerCB;
 var Tag = "AFCapLog : ";
+var resultFlag = false;
 
 await audioManager.getStreamManager().then(async function (data) {
   audioStreamManager = data;
-  console.info(Tag+'Get AudioStream Manager : Success ');
+  console.info(Tag + 'Get AudioStream Manager : Success ');
 }).catch((err) => {
-  console.info(Tag+'Get AudioStream Manager : ERROR : '+err.message);
+  console.info(Tag + 'Get AudioStream Manager : ERROR : ' + err.message);
 });
 
 audioManager.getStreamManager((err, data) => {
   if (err) {
-    console.error(Tag+'Get AudioStream Manager : ERROR : '+err.message);
-  }
-  else {
+    console.error(Tag + 'Get AudioStream Manager : ERROR : ' + err.message);
+  } else {
     audioStreamManagerCB = data;
-    console.info(Tag+'Get AudioStream Manager : Success ');
+    console.info(Tag + 'Get AudioStream Manager : Success ');
   }
 });
 
 audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
-  for (let i=0;i<AudioRendererChangeInfoArray.length;i++) {
-    console.info(Tag+'## RendererChange on is called for '+i+' ##');
-    console.info(Tag+'StreamId for '+i+' is:'+AudioRendererChangeInfoArray[i].streamId);
-    console.info(Tag+'ClientUid for '+i+' is:'+AudioRendererChangeInfoArray[i].clientUid);
-    console.info(Tag+'Content for '+i+' is:'+AudioRendererChangeInfoArray[i].rendererInfo.content);
-    console.info(Tag+'Stream for '+i+' is:'+AudioRendererChangeInfoArray[i].rendererInfo.usage);
-    console.info(Tag+'Flag '+i+' is:'+AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags);
-    console.info(Tag+'State for '+i+' is:'+AudioRendererChangeInfoArray[i].rendererState);
-    var devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
-    for (let j=0;j<AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
-      console.info(Tag+'Id:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].id);
-      console.info(Tag+'Type:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceType);
-      console.info(Tag+'Role:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceRole);
-      console.info(Tag+'Name:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].name);
-      console.info(Tag+'Addr:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].address);
-      console.info(Tag+'SR:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
-      console.info(Tag+'C'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
-      console.info(Tag+'CM:'+i+':'+AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+  for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
+    console.info(Tag+'## RendererChange on is called for ' + i + ' ##');
+    console.info(Tag+'StreamId for ' + i + 'is:' + AudioRendererChangeInfoArray[i].streamId);
+    console.info(Tag+'ClientUid for ' + i + 'is:' + AudioRendererChangeInfoArray[i].clientUid);
+    console.info(Tag+'Content for ' + i + 'is:' + AudioRendererChangeInfoArray[i].rendererInfo.content);
+    console.info(Tag+'Stream for ' + i + 'is:' + AudioRendererChangeInfoArray[i].rendererInfo.usage);
+    console.info(Tag+'Flag ' + i + 'is:' + AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags);
+    console.info(Tag+'State for ' + i + 'is:' + AudioRendererChangeInfoArray[i].rendererState);
+  	var devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
+  	for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
+  	  console.info(Tag+'Id:' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].id);
+  	  console.info(Tag+'Type:' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceType);
+  	  console.info(Tag+'Role:' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+  	  console.info(Tag+'Name:' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].name);
+  	  console.info(Tag+'Addr:' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].address);
+  	  console.info(Tag+'SR:' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+  	  console.info(Tag+'C' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+  	  console.info(Tag+'CM:' + i + ':' + AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks);
   	}
     if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
       resultFlag = true;
-      console.info(Tag+'[RENDERER-CHANGE-ON-001] ResultFlag for '+i+' is:'+resultFlag);
+      console.info(Tag + 'ResultFlag for '+ i +' is:'+ resultFlag);
     }
   }
 });
@@ -2279,31 +2272,33 @@ AudioCapturerChangeInfo数组，只读。
 
 ```
 import audio from '@ohos.multimedia.audio';
-var Tag = "AFCapLog : ";
+
 const audioManager = audio.getAudioManager();
+var Tag = "AFCapLog : ";
+var resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
-  for (let i=0;i<AudioCapturerChangeInfoArray.length;i++) {
-    console.info(Tag+' ## CapChange on is called for element '+i+' ##');
-    console.info(Tag+'StrId for '+i+'is:'+AudioCapturerChangeInfoArray[i].streamId);
-    console.info(Tag+'CUid for '+i+'is:'+AudioCapturerChangeInfoArray[i].clientUid);
-    console.info(Tag+'Src for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.source);
-    console.info(Tag+'Flag '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
-    console.info(Tag+'State for '+i+'is:'+AudioCapturerChangeInfoArray[i].capturerState);
+  for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
+    console.info(Tag + ' ## CapChange on is called for element ' + i + ' ##');
+    console.info(Tag + 'StrId for ' + i +'is:' + AudioCapturerChangeInfoArray[i].streamId);
+    console.info(Tag + 'CUid for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].clientUid);
+    console.info(Tag + 'Src for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.source);
+    console.info(Tag + 'Flag ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags);
+    console.info(Tag + 'State for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].capturerState);
     var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
-    for (let j=0;j<AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-      console.info(Tag+'Id:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
-      console.info(Tag+'Type:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
-      console.info(Tag+'Role:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
-      console.info(Tag+'Name:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
-      console.info(Tag+'Addr:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
-      console.info(Tag+'SR:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
-      console.info(Tag+'C'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
-      console.info(Tag+'CM:'+i+':'+AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
+    for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+      console.info(Tag + 'Id:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id);
+      console.info(Tag + 'Type:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType);
+      console.info(Tag + 'Role:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole);
+      console.info(Tag + 'Name:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name);
+      console.info(Tag + 'Addr:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address);
+      console.info(Tag + 'SR:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]);
+      console.info(Tag + 'C' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]);
+      console.info(Tag + 'CM:' + i + ':' + AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks);
     }
     if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
       resultFlag = true;
-      console.info(Tag+'[CAPTURER-CHANGE-ON-001] ResultFlag for element '+i +' is: '+ resultFlag);
-    }
+      console.info(Tag + 'ResultFlag for element ' + i + ' is: ' + resultFlag);
+      }
   }
 });
 ```
@@ -2347,8 +2342,7 @@ promise.then(function (value) {
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != null && deviceRoleValue != null){
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
-  }
-  else{
+  } else {
     console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
   }
 });
@@ -2762,7 +2756,7 @@ var audioStreamInfo = {
 var audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
-  rendererFlags: 1
+  rendererFlags: 0
   
 var audioRendererOptions = {
   streamInfo: audioStreamInfo,
@@ -2829,7 +2823,7 @@ var audioStreamInfo = {
 var audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 1
+  rendererFlags: 0
 }
 
 var audioRendererOptions = {
@@ -2968,7 +2962,7 @@ var audioStreamInfo = {
 var audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 1
+  rendererFlags: 0
 }
 
 var audioRendererOptions = {
@@ -3436,7 +3430,7 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
     console.info('AudioFrameworkRecLog: Capturer CapturerInfo:');
     console.info('AudioFrameworkRecLog: Capturer SourceType:' + audioParamsGet.source);
     console.info('AudioFrameworkRecLog: Capturer capturerFlags:' + audioParamsGet.capturerFlags);
-  }else {
+  } else {
     console.info('AudioFrameworkRecLog: audioParamsGet is : '+audioParamsGet);
     console.info('AudioFrameworkRecLog: audioParams getCapturerInfo are incorrect: ');
   }
@@ -3559,7 +3553,7 @@ var audioStreamInfo = {
 
 var audioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 1
+  capturerFlags: 0
 }
 
 var audioCapturer;
