@@ -740,7 +740,7 @@ Provides APIs for encapsulating file asset attributes.
 | width                     | number                   | Yes  | No  | Image width, in pixels.                                |
 | height                    | number                   | Yes  | No  | Image height, in pixels.                                |
 | orientation               | number                   | Yes  | Yes  | Image display direction (clockwise rotation angle, for example, 0, 90, or 180, in degrees).|
-| duration<sup>8+</sup>     | number                   | Yes  | No  | Duration, in seconds.                                  |
+| duration<sup>8+</sup>     | number                   | Yes  | No  | Duration, in ms.                                 |
 | albumId                   | number                   | Yes  | No  | ID of the album to which the file belongs.                                  |
 | albumUri<sup>8+</sup>     | string                   | Yes  | No  | URI of the album to which the file belongs.                                     |
 | albumName                 | string                   | Yes  | No  | Name of the album to which the file belongs.                                    |
