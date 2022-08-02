@@ -35,9 +35,9 @@ OpenHarmony应用沙箱组件
 
 当出现以下情况时，将private修饰去掉，即可通过编译。
 
-![](figures\compile-change1-1.png)
+![](figures/compile-change1-1.png)
 
-![](figures\compile-change1-2.png)
+![](figures/compile-change1-2.png)
 
 **变更2：**自定义组件Struct的成员属性不能和内置属性方法名重名。
 
@@ -53,6 +53,6 @@ OpenHarmony应用沙箱组件
 
 当出现以下情况时，修改属性名，使其与内置属性方法名不重名。
 
-![](figures\compile-change2-1.png)
+![](figures/compile-change2-1.png)
 
-![](figures\compile-change2-2.png)
+![](figures/compile-change2-2.png)
