@@ -673,6 +673,32 @@ Formats a phone number.
   phonenumberfmt.format("15812312312");
   ```
 
+### getLocationName<sup>8+</sup>
+
+static getLocationName(number: string, locale: string): string
+
+Obtains the home location of a phone number.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description        |
+| ------ | ------ | ---- | ---------- |
+| number | string | Yes   | Phone number.|
+| locale | string | Yes   | Locale ID.|
+
+**Return value**
+| Type    | Description        |
+| ------ | ---------- |
+| string | Home location of the phone number.|
+
+**Example**
+  ```
+  var location = i18n.PhoneNumberFormat.getLocationName('15812312345', 'zh-CN');
+  ```
+
+
+
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
