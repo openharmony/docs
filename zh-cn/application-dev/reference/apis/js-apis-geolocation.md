@@ -22,13 +22,14 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**参数**：
+**参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
   | request | LocationRequest | 是 | 设置位置请求参数。 |
   | callback | Callback&lt;[Location](#location)&gt; | 是 | 接收位置变化状态变化监听。 |
+  
 
 
 **示例**
@@ -52,9 +53,9 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**参数**：
+**参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
   | callback | Callback&lt;[Location](#location)&gt; | 否 | 接收位置变化状态变化监听。 |
@@ -82,9 +83,9 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-**参数**：
+**参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationServiceState”，表示位置服务状态。 |
   | callback | Callback&lt;boolean&gt; | 是 | 接收位置服务状态变化监听。 |
@@ -112,7 +113,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationServiceState”，表示位置服务状态。 |
   | callback | Callback&lt;boolean&gt; | 否 | 接收位置服务状态变化监听。 |
@@ -141,7 +142,7 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsReporting”，表示GNSS缓存定位结果上报。 |
   | request | CachedGnssLocationsRequest | 是 | GNSS缓存功能配置参数 |
@@ -171,7 +172,7 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsReporting”，表示GNSS缓存定位结果上报。 |
   | callback | Callback&lt;boolean&gt; | 否 | 接收GNSS缓存位置上报。 |
@@ -201,7 +202,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : vo
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssStatusChange”，表示订阅GNSS卫星状态信息上报。 |
   | callback | Callback&lt;SatelliteStatusInfo&gt; | 是 | 接收GNSS卫星状态信息上报。 |
@@ -229,7 +230,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : 
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssStatusChange”，表示订阅GNSS卫星状态信息上报。 |
   | callback | Callback&lt;SatelliteStatusInfo&gt; | 否 | 接收GNSS卫星状态信息上报。 |
@@ -257,7 +258,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessageChange”，表示订阅GNSS&nbsp;NMEA信息上报。 |
   | callback | Callback&lt;string&gt; | 是 | 接收GNSS&nbsp;NMEA信息上报。 |
@@ -285,7 +286,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessageChange”，表示订阅GNSS&nbsp;NMEA信息上报。 |
   | callback | Callback&lt;string&gt; | 否 | 接收GNSS&nbsp;NMEA信息上报。 |
@@ -314,7 +315,7 @@ on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“fenceStatusChange”，表示订阅围栏事件上报。 |
   | request | GeofenceRequest | 是 | 围栏的配置参数。 |
@@ -359,7 +360,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent) : void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“fenceStatusChange”，表示订阅围栏事件上报。 |
   | request | GeofenceRequest | 是 | 围栏的配置参数。 |
@@ -402,7 +403,7 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“countryCodeChange”，表示订阅国家码信息上报。 |
   | callback | Callback&lt;CountryCode&gt; | 是 | 接收国家码信息上报。 |
@@ -428,7 +429,7 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“countryCodeChange”，表示取消订阅国家码信息上报。 |
   | callback | Callback&lt;CountryCode&gt; | 是 | 接收国家码信息上报。 |
@@ -458,7 +459,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequest) | 否 | 设置位置请求参数。 |
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收位置信息的回调。 |
@@ -493,13 +494,13 @@ getCurrentLocation(request?: CurrentLocationRequest) : Promise&lt;Location&gt;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequest) | 否 | 设置位置请求参数。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;[Location](#location)&gt; | 返回位置信息。 |
 
@@ -526,7 +527,7 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;) : void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 用来接收上次位置的回调。 |
 
@@ -557,7 +558,7 @@ getLastLocation() : Promise&lt;Location&gt;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;[Location](#location)&gt; | 返回上次位置信息。 |
 
@@ -584,7 +585,7 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;) : void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
 
@@ -614,7 +615,7 @@ isLocationEnabled() : Promise&lt;boolean&gt;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回位置服务是否可用的状态。 |
 
@@ -640,7 +641,7 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;) : void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
 
@@ -670,7 +671,7 @@ requestEnableLocation() : Promise&lt;boolean&gt;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
 
@@ -697,7 +698,7 @@ enableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
 
@@ -729,7 +730,7 @@ enableLocation() : Promise&lt;boolean&gt;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
 
@@ -755,7 +756,7 @@ disableLocation(callback: AsyncCallback&lt;boolean&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
 
@@ -787,7 +788,7 @@ disableLocation() : Promise&lt;boolean&gt;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回位置服务是否可用。 |
 
@@ -811,7 +812,7 @@ isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收地理编码服务状态的回调。 |
 
@@ -841,7 +842,7 @@ isGeoServiceAvailable() : Promise&lt;boolean&gt;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 返回地理编码服务是否可用的状态。 |
 
@@ -866,7 +867,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 设置逆地理编码请求的相关参数。 |
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 设置接收逆地理编码请求的回调参数。 |
@@ -898,13 +899,13 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;G
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | 是 | 设置逆地理编码请求的相关参数。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 返回地理描述信息。 |
 
@@ -930,7 +931,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequest) | 是 | 设置地理编码请求的相关参数。 |
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 是 | 设置接收地理编码请求的回调参数。 |
@@ -962,13 +963,13 @@ getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoA
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequest) | 是 | 设置地理编码请求的相关参数。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | 设置接收地理编码请求的回调参数。 |
 
@@ -994,7 +995,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;number&gt; | 是 | 用来接收GNSS芯片缓存位置个数的回调。 |
 
@@ -1024,7 +1025,7 @@ getCachedGnssLocationsSize() : Promise&lt;number&gt;;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;number&gt; | 返回GNSS缓存位置的个数。 |
 
@@ -1049,7 +1050,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收清空GNSS芯片缓存位置操作的结果。 |
 
@@ -1079,7 +1080,7 @@ flushCachedGnssLocations() : Promise&lt;boolean&gt;;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 清空所有GNSS缓存位置是否成功。 |
 
@@ -1104,7 +1105,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;) : 
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | command | LocationCommand | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收命令发送的结果。 |
@@ -1136,13 +1137,13 @@ sendCommand(command: LocationCommand) : Promise&lt;boolean&gt;;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | command | LocationCommand | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 表示命令发送成功或失败。 |
 
@@ -1170,7 +1171,7 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType, callback: AsyncCallback&l
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 表示用户是否同意定位服务隐私申明。 |
@@ -1203,13 +1204,13 @@ isLocationPrivacyConfirmed(type : LocationPrivacyType,) : Promise&lt;boolean&gt;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 表示用户是否同意定位服务隐私申明。 |
 
@@ -1236,7 +1237,7 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed: boolean
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
   | isConfirmed | boolean | 是 | 表示用户是否同意定位服务隐私申明。 |
@@ -1270,14 +1271,14 @@ setLocationPrivacyConfirmStatus(type : LocationPrivacyType, isConfirmed : boolea
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
   | isConfirmed | boolean | 是 | 表示用户是否同意定位服务隐私申明。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 表示操作是否成功。 |
 
@@ -1300,7 +1301,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;CountryCode&gt; | 是 | 用来接收国家码。 |
 
@@ -1332,7 +1333,7 @@ getCountryCode() : Promise&lt;CountryCode&gt;;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;CountryCode&gt; | 返回国家码。 |
 
@@ -1361,7 +1362,7 @@ enableLocationMock(scenario?: LocationRequestScenario, callback: AsyncCallback&l
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | 否 | 指示在什么场景下使能位置模拟功能。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
@@ -1392,14 +1393,14 @@ enableLocationMock(scenario?: LocationRequestScenario) : Promise&lt;void&gt;;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | 否 | 指示使能什么场景的位置模拟功能。如果不携带该参数则表示使能所有场景的位置模拟功能。 |
 
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
@@ -1433,7 +1434,7 @@ disableLocationMock(scenario?: LocationRequestScenario, callback: AsyncCallback&
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | 否 | 指示去使能某个场景的位置模拟功能。如果不携带该参数则表示去使能所有场景的位置模拟功能。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
@@ -1465,13 +1466,13 @@ disableLocationMock(scenario?: LocationRequestScenario) : Promise&lt;void&gt;;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | 否 | 指示去使能某个场景的位置模拟功能。如果不携带该参数则表示去使能所有场景的位置模拟功能。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
@@ -1505,7 +1506,7 @@ setMockedLocations(config: LocationMockConfig, callback: AsyncCallback&lt;void&g
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | LocationMockConfig | 是 | 指示位置模拟的配置参数，包含模拟位置上报的时间间隔和模拟位置数组。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
@@ -1543,13 +1544,13 @@ setMockedLocations(config: LocationMockConfig) : Promise&lt;void&gt;;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | config | LocationMockConfig | 是 | 指示位置模拟的配置参数，包含模拟位置上报的时间间隔和模拟位置数组。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
@@ -1591,7 +1592,7 @@ enableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
 
@@ -1625,7 +1626,7 @@ enableReverseGeocodingMock() : Promise&lt;void&gt;;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
@@ -1658,7 +1659,7 @@ disableReverseGeocodingMock(callback: AsyncCallback&lt;void&gt;) : void;
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
 
@@ -1692,7 +1693,7 @@ disableReverseGeocodingMock() : Promise&lt;void&gt;;
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
@@ -1725,7 +1726,7 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;, ca
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | 是 | 指示逆地理编码模拟功能的配置参数数组。逆地理编码模拟功能的配置参数包含了一个位置和一个地名。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。 |
@@ -1734,11 +1735,11 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;, ca
   
   ```js
   var mockInfos = [
-      {"location": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
   ];
   geolocation.setReverseGeocodingMockInfo(mockInfos, (err, data) => {
       if (err) {
@@ -1763,13 +1764,13 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;) : 
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | 是 | 指示逆地理编码模拟功能的配置信息数组。逆地理编码模拟功能的配置信息包含了一个位置和一个地名。 |
 
 **返回值**：
 
-    | 参数名 | 说明 |
+  | 参数名 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | 用来接收执行结果，如果执行成功就返回nullptr，否则就返回错误信息。  |
 
@@ -1777,11 +1778,11 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;) : 
   
   ```js
   var mockInfos = [
-      {"location": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
   ];
   geolocation.setReverseGeocodingMockInfo(mockInfos)
   .then((result) => {

@@ -24,7 +24,7 @@ Registers a listener for location changes with a location request initiated.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
   | request | LocationRequest | Yes| Location request.|
@@ -54,7 +54,7 @@ Unregisters the listener for location changes with the corresponding location re
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change event.|
   | callback | Callback&lt;[Location](#location)&gt; | No| Callback used to return the location change event.|
@@ -84,7 +84,7 @@ Registers a listener for location service status change events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
   | callback | Callback&lt;boolean&gt; | Yes| Callback used to return the location service status change event.|
@@ -112,7 +112,7 @@ Unregisters the listener for location service status change events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationServiceState** indicates a location service status change event.|
   | callback | Callback&lt;boolean&gt; | No| Callback used to return the location service status change event.|
@@ -141,7 +141,7 @@ Registers a listener for cached GNSS location reports.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
   | request | CachedGnssLocationsRequest | Yes| Request for reporting cached GNSS location.|
@@ -171,7 +171,7 @@ Unregisters the listener for cached GNSS location reports.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsReporting** indicates reporting of cached GNSS locations.|
   | callback | Callback&lt;boolean&gt; | No| Callback used to return cached GNSS locations.|
@@ -201,7 +201,7 @@ Registers a listener for GNSS satellite status change events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
   | callback | Callback&lt;SatelliteStatusInfo&gt; | Yes| Callback used to return GNSS satellite status changes.|
@@ -229,7 +229,7 @@ Unregisters the listener for GNSS satellite status change events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **gnssStatusChange** indicates a GNSS satellite status change.|
   | callback | Callback&lt;SatelliteStatusInfo&gt; | No| Callback used to return GNSS satellite status changes.|
@@ -257,7 +257,7 @@ Registers a listener for GNSS NMEA message change events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
   | callback | Callback&lt;string&gt; | Yes| Callback used to return GNSS NMEA message changes.|
@@ -285,7 +285,7 @@ Unregisters the listener for GNSS NMEA message change events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **nmeaMessageChange** indicates a GNSS NMEA message change.|
   | callback | Callback&lt;string&gt; | No| Callback used to return GNSS NMEA message changes.|
@@ -314,7 +314,7 @@ Registers a listener for status change events of the specified geofence.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
   | request | GeofenceRequest | Yes| Geofencing request.|
@@ -359,7 +359,7 @@ Unregisters the listener for status change events of the specified geofence.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **fenceStatusChange** indicates a geofence status change.|
   | request | GeofenceRequest | Yes| Geofencing request.|
@@ -402,7 +402,7 @@ Subscribe to country code information reporting events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is "countrycodechange", which means subscribing to the submission of country code information. |
   | callback | Callback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code information report. |
@@ -428,7 +428,7 @@ Unsubscribe from the country code to report events.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is "countrycodechange", which means unsubscribing to the submission of country code information. |
   | callback | Callback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code information report. |
@@ -458,7 +458,7 @@ Obtains the current location. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequest) | No| Location request.|
   | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the current location.|
@@ -493,13 +493,13 @@ Obtains the current location. This API uses a promise to return the result.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequest) | No| Location request.|
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;[Location](#location)&gt; | Promise used to return the current location.|
 
@@ -526,7 +526,7 @@ Obtains the previous location. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[Location](#location)&gt; | Yes| Callback used to return the previous location.|
 
@@ -557,7 +557,7 @@ Obtains the previous location. This API uses a promise to return the result.
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;[Location](#location)&gt; | Promise used to return the previous location.|
 
@@ -584,7 +584,7 @@ Checks whether the location service is enabled. This API uses an asynchronous ca
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
 
@@ -614,7 +614,7 @@ Checks whether the location service is enabled. This API uses a promise to retur
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the location service status.|
 
@@ -640,7 +640,7 @@ Requests to enable the location service. This API uses an asynchronous callback 
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
 
@@ -670,7 +670,7 @@ Requests to enable the location service. This API uses a promise to return the r
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the location service status.|
 
@@ -697,7 +697,7 @@ Enables the location service. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
 
@@ -729,7 +729,7 @@ Enables the location service. This API uses a promise to return the result.
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the location service status.|
 
@@ -755,7 +755,7 @@ Disables the location service. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the location service status.|
 
@@ -787,7 +787,7 @@ Disables the location service. This API uses a promise to return the result.
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the location service status.|
 
@@ -811,7 +811,7 @@ Checks whether the (reverse) geocoding service is available. This API uses an as
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the (reverse) geocoding service status.|
 
@@ -841,7 +841,7 @@ Checks whether the (reverse) geocoding service is available. This API uses a pro
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the (reverse) geocoding service status.|
 
@@ -866,7 +866,7 @@ Converts coordinates into geographic description through reverse geocoding. This
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Reverse geocoding request.|
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the reverse geocoding result.|
@@ -898,13 +898,13 @@ Converts coordinates into geographic description through reverse geocoding. This
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequest) | Yes| Reverse geocoding request.|
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Promise used to return the reverse geocoding result.|
 
@@ -930,7 +930,7 @@ Converts geographic description into coordinates through geocoding. This API use
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequest) | Yes| Geocoding request.|
   | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Yes| Callback used to return the geocoding result.|
@@ -962,13 +962,13 @@ Converts geographic description into coordinates through geocoding. This API use
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequest) | Yes| Geocoding request.|
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;Array&lt;[GeoAddress](#geoaddress)&gt;&gt; | Callback used to return the geocoding result.|
 
@@ -994,7 +994,7 @@ Obtains the number of cached GNSS locations.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of cached GNSS locations. |
 
@@ -1024,7 +1024,7 @@ Obtains the number of cached GNSS locations.
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the number of cached GNSS locations.|
 
@@ -1049,7 +1049,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
 
@@ -1079,7 +1079,7 @@ Obtains all cached GNSS locations and clears the GNSS cache queue.
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the operation result.|
 
@@ -1104,7 +1104,7 @@ Sends an extended command to the location subsystem. This API can only be called
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | command | LocationCommand | Yes| Extended command (string) to be sent.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the operation result.|
@@ -1136,13 +1136,13 @@ Sends an extended command to the location subsystem. This API can only be called
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | command | LocationCommand | Yes| Extended command (string) to be sent.|
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Callback used to return the operation result.|
 
@@ -1170,7 +1170,7 @@ Checks whether a user agrees with the privacy statement of the location service.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
@@ -1203,13 +1203,13 @@ Checks whether a user agrees with the privacy statement of the location service.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
 
@@ -1236,7 +1236,7 @@ Sets the user confirmation status for the privacy statement of the location serv
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
   | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
@@ -1270,14 +1270,14 @@ Sets the user confirmation status for the privacy statement of the location serv
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | LocationPrivacyType | Yes| Privacy statement type, for example, privacy statement displayed in the startup wizard or privacy statement displayed when enabling the location service.|
   | isConfirmed | boolean | Yes| Callback used to return the result, which indicates whether the user agrees with the privacy statement.|
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Callback used to return the operation result.|
 
@@ -1300,7 +1300,7 @@ Query the current country code.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;CountryCode&gt; | Yes | Callback is used to receive the country code. |
 
@@ -1332,7 +1332,7 @@ None
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;CountryCode&gt; | return country code. |
 
@@ -1361,7 +1361,7 @@ Enable the position simulation function of a scene, and only one scene can be en
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | No | Indicates under what scenario the position simulation function is enabled. |
   | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
@@ -1392,14 +1392,14 @@ Enable the position simulation function of a scene, and only one scene can be en
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | No | Indicates which scene's position simulation function is enabled. If this parameter is not carried, it means that the position simulation function of all scenes is enabled. |
 
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message.  |
 
@@ -1433,7 +1433,7 @@ To disable the position simulation function.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | No | Indicates to disable the position simulation function of a scene. If this parameter is not carried, it means to disable the position simulation function of all scenes. |
   | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
@@ -1465,13 +1465,13 @@ To disable the position simulation function.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | scenario | LocationRequestScenario | No | Indicates to disable the position simulation function of a scene. If this parameter is not carried, it means to disable the position simulation function of all scenes. |
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr, otherwise it will return an error message |
 
@@ -1505,7 +1505,7 @@ Set the simulated location information, and then report the simulated location a
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | config | LocationMockConfig | Yes | Indicates the configuration parameters of location simulation, including the time interval of simulation location reporting and the array of simulation locations. |
   | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
@@ -1543,13 +1543,13 @@ Set the simulated location information, and then report the simulated location a
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | config | LocationMockConfig | Yes | Indicates the configuration parameters of location simulation, including the time interval of simulation location reporting and the array of simulation locations. |
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message.  |
 
@@ -1591,7 +1591,7 @@ Enable reverse geocoding simulation function.
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
 
@@ -1625,7 +1625,7 @@ None
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
 
@@ -1658,7 +1658,7 @@ Disable reverse geocoding simulation function.
 
 **Parameters**:
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message |
 
@@ -1692,7 +1692,7 @@ None
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; |  It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
 
@@ -1725,7 +1725,7 @@ Set the configuration information of the reverse geocoding simulation function, 
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | Yes | An array of configuration parameters indicating the inverse geocoding simulation function. The configuration parameters of the inverse geocoding simulation function include a location and a place name. |
   | callback | AsyncCallback&lt;void&gt; | Yes | It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
@@ -1734,11 +1734,11 @@ Set the configuration information of the reverse geocoding simulation function, 
   
   ```js
   var mockInfos = [
-      {"location": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
   ];
   geolocation.setReverseGeocodingMockInfo(mockInfos, (err, data) => {
       if (err) {
@@ -1763,13 +1763,13 @@ Set the configuration information of the reverse geocoding simulation function, 
 
 **Parameters**
 
-    | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | mockInfos | Array&lt;ReverseGeocodingMockInfo&gt; | Yes | An array of configuration parameters indicating the inverse geocoding simulation function. The configuration parameters of the inverse geocoding simulation function include a location and a place name. |
 
 **Return value**
 
-    | Name| Description|
+  | Name| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; |  It is used to receive the execution result. If the execution is successful, it will return nullptr. Otherwise, it will return an error message. |
 
@@ -1777,11 +1777,11 @@ Set the configuration information of the reverse geocoding simulation function, 
   
   ```js
   var mockInfos = [
-      {"location": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "shanghai", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "beijing", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "shenzhen", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "wuhan", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
-      {"location": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "chengdu", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 30.12, "longitude": 120.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 31.12, "longitude": 121.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 32.12, "longitude": 122.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 33.12, "longitude": 123.11, "maxItems": 1, "isFromMock": true}},
+      {"location": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1}, "geoAddress": {"locale": "zh", "latitude": 34.12, "longitude": 124.11, "maxItems": 1, "isFromMock": true}},
   ];
   geolocation.setReverseGeocodingMockInfo(mockInfos)
   .then((result) => {
