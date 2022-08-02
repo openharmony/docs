@@ -8,7 +8,7 @@ HiTraceMeter provides APIs for system performance tracing. You can call the APIs
  
 The performance tracing APIs are provided by the **hiTraceMeter** module. For details, see [API Reference]( ../reference/apis/js-apis-hitracemeter.md).
 
-**APIs for performance tracing**
+**Table 1** APIs for performance tracing
 
 | API| Return Value| Description|
 | ---------------------------------------------------------------------------- | --------- | ------------ |
