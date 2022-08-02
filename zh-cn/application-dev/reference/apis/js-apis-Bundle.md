@@ -1897,8 +1897,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型     | 必填   | 描述                                       |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)   | 是    | 包含要查询的应用程序包名称的意图。                        |
-| extensionType  | number | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#ExtensionAbilityType9) |
-| extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#ExtensionFlag9) |
+| extensionType  | number | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#extensionabilitytype9) |
+| extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#extensionflag9) |
 | userId         | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
 
 **返回值：**
@@ -1946,8 +1946,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称           | 类型                                                         | 必填 | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want           | [Want](js-apis-application-Want.md)                                                        | 是   | 指示包含要查询的应用程序包名称的意图。                       |
-| extensionType  | number                                                       | 是   | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#ExtensionAbilityType9) |
-| extensionFlags | number                                                       | 是   | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值:  [ExtensionFlags](#ExtensionFlag9)|
+| extensionType  | number                                                       | 是   | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#extensionabilitytype9) |
+| extensionFlags | number                                                       | 是   | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值:  [ExtensionFlags](#extensionflag9)|
 | userId         | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0          |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回ExtensionAbility信息。       |
 
@@ -1989,8 +1989,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型                                       | 必填   | 描述                                       |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)                                     | 是    | 指示包含要查询的应用程序包名称的意图。                      |
-| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#ExtensionAbilityType9) |
-| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#ExtensionFlag9) |
+| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#extensionabilitytype9) |
+| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#extensionflag9) |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
 
 **示例：**
