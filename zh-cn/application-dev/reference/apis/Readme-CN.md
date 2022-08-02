@@ -200,7 +200,9 @@
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemTime (设置系统时间)](js-apis-system-time.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+  - [@ohos.systemTimer(设置系统时间)](js-apis-system-timer.md)
   - [Timer (定时器)](js-apis-timer.md)
+
 - 设备管理
 
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
