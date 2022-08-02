@@ -11,7 +11,7 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| window静态方法 | create(ctx:Context,id:string,type:WindowType,callback:AsyncCallback&lt;Window&gt;):void | 创建窗口。<br/>-`ctx`：为应用上下文信息。当`Context`为[ServiceExtensionContext](..reference/apis/js-apis-service-extension-context.md)时，创建系统窗口。<br/>-`type`：为创建的窗口类型。 |
+| window静态方法 | create(ctx:Context,id:string,type:WindowType,callback:AsyncCallback&lt;Window&gt;):void | 创建窗口。<br/>-`ctx`：为应用上下文信息。当`Context`为[ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md)时，创建系统窗口。<br/>-`type`：为创建的窗口类型。 |
 | Window | resetSize(width:number,height:number,callback:AsyncCallback&lt;void&gt;):void | 改变当前窗口大小。 |
 | Window | moveTo(x:number,y:number,callback:AsyncCallback&lt;void&gt;):void | 移动当前窗口位置。 |
 | Window | loadContent(path:string,callback:AsyncCallback&lt;void&gt;):void | 为当前窗口加载具体页面。 |
@@ -28,9 +28,11 @@
 
 
 1. 创建系统窗口。
-   在[ServiceExtensionContext](..reference/apis/js-apis-service-extension-context.md)下，使用`window.create`接口创建音量条系统窗口。
+
+   在[ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md)下，使用`window.create`接口创建音量条系统窗口。
 
 2. 操作或设置系统窗口的属性。
+
    系统窗口创建成功后，可以改变其大小、位置等，还可以根据需要设置系统窗口的背景色、亮度等属性。
 
 3. 加载显示系统窗口的具体内容。
@@ -38,6 +40,7 @@
    通过`loadContent`和`show`接口加载显示音量条窗口的具体内容。
 
 4. 隐藏/销毁系统窗口。
+
    当不再需要音量条窗口时，可根据具体实现逻辑，使用`hide`接口或`destroy`接口对其进行隐藏或销毁。
 
 ```ts
