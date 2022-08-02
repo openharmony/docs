@@ -2,7 +2,7 @@
 
 ## 验证流程
 
-![](figures\verification-process.png)
+![](figures/verification-process.png)
 
 1. 取发布版本自验证功能，如果功能正常，则适配流程结束。
 2. 取版本验证发现自身应用功能异常，则进行问题定位，通过分析代码识别到问题点，通过[适配流程](#适配流程)中的方法来进行文件访问模型的适配。
@@ -10,7 +10,7 @@
 
 ## 适配流程
 
-![](figures\adaptation-process.png)
+![](figures/adaptation-process.png)
 
 1. 定位出app异常的问题点之后，识别该问题是否是app源代码访问路径出错导致的，是否是访问有效文件可以通过下一章节的[沙箱文件访问规格清单](#沙箱文件访问规格清单)自查。
 2. 如果是app源码访问无效路径，则可以通过调整访问路径的策略，将原来访问/data目录从绝对路径访问方式调整为使用context接口进行访问，具体请见context接口使用说明：
@@ -91,13 +91,13 @@ https://gitee.com/OpenHarmony/startup_appspawn/blob/master/appdata-sandbox64.jso
 
 联系人应用沙箱整改前访问资源文件的方式如下，可以看到访问的路径是绝对路径硬编码，为/data/app/el1此类目录，而此类目录在应用沙箱中是访问受限的，所以会造成访问异常。
 
-![](figures\example1.png)
+![](figures/example1.png)
 
 此代码的核心是想通过fileIO接口open固定路径得到fdNumber，使用fdNumber去做接下来的文件访问。FileIO是通过路径得到fdNumber的，而现在路径访问已经被限制了，因此考虑用其他的接口去获取fdNumber即可，
 查阅OpenHarmony相关开发手册得知，使用resourceManager可以获取fdNumber。
 更改后的代码如下：
 
-![](figures\example2.png)
+![](figures/example2.png)
 
 ## 规避方案
 
@@ -109,4 +109,4 @@ https://gitee.com/OpenHarmony/startup_appspawn/blob/master/appdata-sandbox64.jso
 
 2. 在json中文件找到camera的配置，在下方参照camera的配置新建一条自身应用的配置，将包名改为自身应用报名，其他项保持跟camera一致即可，OFF字段代表关闭进程沙箱。
 
-   ![](figures\example3.png)
+   ![](figures/example3.png)
