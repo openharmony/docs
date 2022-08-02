@@ -536,7 +536,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## bundle.setAbilityEnabled<sup>8+</sup>
 
-setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 设置是否启用指定的功能
 
@@ -1510,7 +1510,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-以异步方法根据给定的意图获取获取指定用户下Ability信息，使用callback形式返回结果。
+以异步方法根据给定的意图获取指定用户下Ability信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -2147,7 +2147,7 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 
 setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -2179,7 +2179,7 @@ bundle.setDisposedStatus(bundleName, status, caller)
 
 setDisposedStatus(bundleName: string, status: number): Promise\<void>;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -2217,6 +2217,8 @@ bundle.setDisposedStatus(bundleName, status).then(data=>{
 
 getDisposedStatus(bundleName: string, callback: AsyncCallback\<number>): void;
 
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
@@ -2245,7 +2247,7 @@ bundle.getDisposedStatus(bundleName, caller)
 
 getDisposedStatus(bundleName: string): Promise\<number>;
 
-此接口为系统接口，以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
