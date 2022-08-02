@@ -1912,7 +1912,7 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 **示例：**
 ```
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
-  console.info('[GET_RENDERER_STATE_1_CALLBACK] **** Get Callback Called ****');
+  console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
     console.log('getCurrentAudioRendererInfoArray :ERROR: '+ err.message);
     resultFlag = false;
@@ -1960,7 +1960,7 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 **示例：**
 ```
 await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
-  console.info('[GET_RENDERER_STATE_3_PROMISE] ######### Get Promise is called ##########');
+  console.info('getCurrentAudioRendererInfoArray ######### Get Promise is called ##########');
   if (AudioRendererChangeInfoArray != null) {
     for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
       AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -1985,7 +1985,6 @@ await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (Audi
   }
 }).catch((err) => {
   console.log('getCurrentAudioRendererInfoArray :ERROR: ' + err.message);
-  resultFlag = false;
 });
 ```
 
@@ -2006,10 +2005,9 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 **示例：**
 ```
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
-  console.info('[GET_CAPTURER_STATE_1_CALLBACK] **** Get Callback Called ****');
+  console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
     console.log('getCurrentAudioCapturerInfoArray :ERROR: '+err.message);
-    resultFlag = false;
   } else {
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
@@ -2051,8 +2049,8 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 
 **示例：**
 ```
-await audioStreamManagerCB.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
-  console.info('AFCapturerChangeLog: [GET_CAP_STA_1_PR] **** Get Promise Called ****');
+await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+  console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
   if (AudioCapturerChangeInfoArray != null) {
     for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
       console.info('StreamId for ' + i + 'is:' + AudioCapturerChangeInfoArray[i].streamId);
@@ -2075,7 +2073,6 @@ await audioStreamManagerCB.getCurrentAudioCapturerInfoArray().then( function (Au
   }
 }).catch((err) => {
   console.log('getCurrentAudioCapturerInfoArray :ERROR: ' + err.message);
-  resultFlag = false;
 });
 ```
 
@@ -2096,7 +2093,7 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 
 **示例：**
 ```
-audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
     console.info('## RendererChange on is called for ' + i + ' ##');
@@ -2125,7 +2122,7 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
 
 off(type: "audioRendererChange");
 
-监听音频渲染器更改事件。
+取消监听音频渲染器更改事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2137,8 +2134,8 @@ off(type: "audioRendererChange");
 
 **示例：**
 ```
-audioStreamManagerCB.off('audioRendererChange');
-console.info('[RENDERER-CHANGE-ON-001] ######### RendererChange Off is called #########');
+audioStreamManager.off('audioRendererChange');
+console.info('######### RendererChange Off is called #########');
 ```
 
 ### on('audioCapturerChange')<sup>9+</sup>
@@ -2184,7 +2181,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 off(type: "audioCapturerChange");
 
-监听音频捕获器更改事件。
+取消监听音频捕获器更改事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -2197,7 +2194,7 @@ off(type: "audioCapturerChange");
 **示例：**
 ```
 audioStreamManager.off('audioCapturerChange');
-console.info('[GET_CAPTURER_STATE_2_PROMISE] ######### CapturerChange Off is called #########');
+console.info('######### CapturerChange Off is called #########');
 
 ```
 
@@ -2228,8 +2225,8 @@ var AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-var streamManagerCB = audioManager.getStreamManager();
-streamManagerCB.isAudioRendererLowLatencySupported(AudioStreamInfo, (result) => {
+var audioStreamManager = audioManager.getStreamManager();
+audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo, (result) => {
   console.info('isAudioRendererLowLatencySupported success var = ' + result);
 });
 ```
@@ -2266,8 +2263,8 @@ var AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-var streamManager = await audioManager.getStreamManager();
-var result = streamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
+var audioStreamManager = await audioManager.getStreamManager();
+var result = audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
 console.info('isAudioRendererLowLatencySupported success var =' + result);
 ```
 
@@ -2298,6 +2295,7 @@ import audio from '@ohos.multimedia.audio';
 var audioStreamManager;
 var audioStreamManagerCB;
 var Tag = "AFCapLog : ";
+var resultFlag = false;
 
 await audioManager.getStreamManager().then(async function (data) {
   audioStreamManager = data;
@@ -2337,7 +2335,7 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
   	}
     if (AudioRendererChangeInfoArray[i].rendererState == 1 && devDescriptor != null) {
       resultFlag = true;
-      console.info(Tag + '[RENDERER-CHANGE-ON-001] ResultFlag for '+ i +' is:'+ resultFlag);
+      console.info(Tag + 'ResultFlag for '+ i +' is:'+ resultFlag);
     }
   }
 });
@@ -2369,6 +2367,7 @@ import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
 var Tag = "AFCapLog : ";
+var resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(Tag + ' ## CapChange on is called for element ' + i + ' ##');
@@ -2390,7 +2389,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
     }
     if (AudioCapturerChangeInfoArray[i].capturerState == 1 && devDescriptor != null) {
       resultFlag = true;
-      console.info(Tag + '[CAPTURER-CHANGE-ON-001] ResultFlag for element ' + i + ' is: ' + resultFlag);
+      console.info(Tag + 'ResultFlag for element ' + i + ' is: ' + resultFlag);
       }
   }
 });
