@@ -129,7 +129,7 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 
 ## connectedTag.writeNdefTag
 
-writeNdefTag(data: string, callback: AsyncCallback&lt;string&gt;): void
+writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
 写入内容到有源标签，使用callback方式作为异步方法。
 
@@ -218,6 +218,8 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 ## NfcRfType
 
 表示NFC场强状态的枚举。
+
+**系统能力**：SystemCapability.Communication.ConnectedTag
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |

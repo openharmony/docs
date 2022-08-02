@@ -61,7 +61,7 @@ Obtains detailed information about a system error code.
 
 **Example**
   ```js
-  var errnum = 10; // 10 is the system error code.
+  var errnum = 10; // 10 is a system error code.
   var result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
@@ -104,14 +104,16 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
-> **Introduce**<br/>
-> Deprecated starting from API version 9, it is recommended to use [util.promisify9 +] (\utilpromisify9) instead.
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use **[util.promisify9+](#utilpromisify9)** instead.
 
 Processes an asynchronous function and returns a promise version.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | original | Function | Yes| Asynchronous function.|
@@ -136,7 +138,7 @@ Processes an asynchronous function and returns a promise version.
 
 promisify(original: (err: Object, value: Object) =&gt; void): Function
 
-Processes an asynchronous function and returns a promise function.
+Processes an asynchronous function and returns a promise.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -148,7 +150,7 @@ Processes an asynchronous function and returns a promise function.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise version.|
+| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
 
 **Example**
   ```js
@@ -164,7 +166,6 @@ Processes an asynchronous function and returns a promise function.
     console.log(res);
   })
   ```
-
 
 ## TextDecoder
 
@@ -217,7 +218,7 @@ Decodes the input content.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | Unit8Array | Yes| Uint8Array to decode.|
+| input | Uint8Array | Yes| Uint8Array to decode.|
 | options | Object | No| Options related to decoding.|
 
   **Table 2** options
@@ -981,7 +982,6 @@ Performs subsequent operations after a value is removed.
 
 **Example**
   ```js
-  var arr = [];
   var arr = [];
   class ChildLruBuffer extends util.LruBuffer
   {

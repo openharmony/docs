@@ -29,7 +29,7 @@ Navigates to a specified page in the application.
 
 
 **Example**
-  ```js
+```js
 router.push({
   url: 'pages/routerpage2',
   params: {
@@ -39,7 +39,7 @@ router.push({
     },
   },
 });
-  ```
+```
 ## router.push<sup>9+</sup>
 
 push(options: RouterOptions, mode: RouterMode): void
@@ -56,7 +56,7 @@ Navigates to a specified page in the application.
 
 
 **Example**
-  ```js
+```js
 router.push({
   url: 'pages/routerpage2/routerpage2',
   params: {
@@ -66,11 +66,11 @@ router.push({
     },
   },
 },router.RouterMode.Standard);
-  ```
+```
 
 ## router.replace
 
-replace(options: RouterOptions, mode?: RouterMode): void
+replace(options: RouterOptions): void
 
 Replaces the current page with another one in the application and destroys the current page.
 
@@ -83,14 +83,14 @@ Replaces the current page with another one in the application and destroys the c
 
 **Example**
 
-  ```js
+```js
 router.replace({
   url: 'pages/detail',
   params: {
     data1: 'message',
   },
 });
-  ```
+```
 
   ## router.replace<sup>9+</sup>
 
@@ -108,14 +108,14 @@ Replaces the current page with another one in the application and destroys the c
 
 **Example**
 
-  ```js
+```js
 router.replace({
   url: 'pages/detail/detail',
   params: {
     data1: 'message',
   },
 }, router.RouterMode.Standard);
-  ```
+```
 
 ## router.back
 
@@ -132,9 +132,9 @@ Returns to the previous page or a specified page.
 
 **Example**
 
-  ```js
-router.back({uri:'pages/detail'});    
-  ```
+```js
+router.back({url:'pages/detail'});    
+```
 
 ## router.clear
 
@@ -146,9 +146,9 @@ Clears all historical pages in the stack and retains only the current page at th
 
 **Example**
 
-  ```js
+```js
 router.clear();    
-  ```
+```
 
 ## router.getLength
 
@@ -164,10 +164,10 @@ Obtains the number of pages in the current stack.
 | string | Number of pages in the stack. The maximum value is **32**.|
 
 **Example**
-  ```js
+```js
 var size = router.getLength();        
 console.log('pages stack size = ' + size);    
-  ```
+```
 
 ## router.getState
 
@@ -242,9 +242,9 @@ Disables the display of a confirm dialog box before returning to the previous pa
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
-  ```js
+```js
 router.disableAlertBeforeBackPage();    
-  ```
+```
 
 ##  router.getParams
 
@@ -270,7 +270,7 @@ router.getParams();
 
 Describes the page routing options.
 
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
+**System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -314,7 +314,7 @@ export default {
 // detail page
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams().data1);
+    console.info('showData1:' + router.getParams()[data1]);
   }
 }
 ```

@@ -106,7 +106,7 @@ The UART interface defines a set of common functions for operating a UART port, 
 The figure below illustrates how to use the APIs.
 
 **Figure  3** Using UART driver APIs<a name="fig99673244388"></a>  
-![](figures/using-uart-process.png "process-of-using-a-uart-device")
+![](figures/using-UART-process.png "process-of-using-a-uart-device")
 
 ### Obtaining a UART Device Handle<a name="section124512065617"></a>
 

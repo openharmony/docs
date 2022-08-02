@@ -2163,7 +2163,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallba
 | 参数名   | 类型                                                         | 必填 | 说明                                                       |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type     | [ContactType](#contactype8)                                                  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| type     | [ContactType](#contacttype8)                                                  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
 | callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 是   | 回调函数。                                                 |
 
 **示例：**
@@ -2192,7 +2192,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<Dialli
 | 参数名 | 类型        | 必填 | 说明                                                       |
 | ------ | ----------- | ---- | ---------------------------------------------------------- |
 | slotId | number      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type   | [ContactType](#contactype8)  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| type   | [ContactType](#contacttype8)  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
 
 **返回值：**
 

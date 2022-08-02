@@ -60,7 +60,7 @@
 
 资源引用类型，用于设置组件属性的值。
 
-可以通过`$r`或者`$rawfile`创建Resource类型对象，详见[资源访问](ts-application-resource-access.md)。
+可以通过`$r`或者`$rawfile`创建Resource类型对象，详见[资源访问](ts-resource-access.md)。
 
 - `$r('belonging.type.name')`
 

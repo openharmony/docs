@@ -1,8 +1,10 @@
-# User IAM Subsystem
+# User IAM
 
 ## Introduction
 
-The user identity and access management (IAM) subsystem provides a unified framework for user credential management and user identity authentication in OpenHarmony. It allows multiple users to set their own authentication credential information and authenticates their identities based on the information set. This subsystem is widely used in security-sensitive scenarios such as screen lock. The subsystem also provides APIs for third-party developers to call the identity authentication capabilities to control user access.
+The user identity and access management (IAM) subsystem provides a unified framework for user credential management and user identity authentication in OpenHarmony. It allows multiple users to set their own authentication credential information and authenticates their identities based on the information set. 
+
+This subsystem is widely used in security-sensitive scenarios such as screen lock. It also provides APIs for developers to call the identity authentication capabilities to control user access.
 
 **Figure 1** Subsystem architecture
 

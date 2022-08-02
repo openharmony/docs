@@ -121,7 +121,7 @@
 - 资源调度
 
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
-  - [@ohos.distributedMissionManager (distributedMissionManager)](js-apis-distributedMissionManager.md)
+  - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
 - 定制管理
@@ -200,7 +200,9 @@
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemTime (设置系统时间)](js-apis-system-time.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+  - [@ohos.systemTimer(设置系统时间)](js-apis-system-timer.md)
   - [Timer (定时器)](js-apis-timer.md)
+
 - 设备管理
 
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)

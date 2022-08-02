@@ -18,7 +18,7 @@ OpenHarmony整体工程较为复杂，目录及实现为系统本身功能，如
 | /build/lite | OpenHarmony基础编译构建框架 | 
 | /kernel/liteos_m | 基础内核，其中芯片架构相关实现在arch目录下 | 
 | /device | 板级相关实现，各个三方厂商按照OpenHarmony规范适配实现，device下具体目录结构及移植过程参见[板级系统移植](../porting/porting-chip-board-overview.md) | 
-| /vendor | 产品级相关实现，主要由华为或者产品厂商贡献 | 
+| /vendor | 产品级相关实现，主要由产品厂商贡献 | 
 
 device目录规则：device/{芯片解决方案厂商}/{开发板}。以hisilicon的hispark_taurus为例：
 
@@ -37,7 +37,7 @@ device
 ```
 
 
-vendor目录规则：vendor/{产品解决方案厂商}/{产品名称}。以华为的wifiiot产品为例：
+vendor目录规则：vendor/{产品解决方案厂商}/{产品名称}。以wifiiot产品为例：
 
 
   

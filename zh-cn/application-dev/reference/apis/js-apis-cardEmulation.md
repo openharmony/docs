@@ -3,7 +3,7 @@
 本模块主要用于操作及管理NFC卡模拟。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -19,7 +19,7 @@ isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -39,7 +39,7 @@ startHCE(aidList: string[]): boolean
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -55,7 +55,7 @@ stopHCE(): boolean
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力：** SystemCapability.Communication.NFC
+**系统能力：** SystemCapability.Communication.NFC.Core
 
 ### on
 
@@ -65,7 +65,7 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 
@@ -82,7 +82,7 @@ sendResponse(responseApdu: number[]): void;
 
 **需要权限**：ohos.permission.NFC_CARD_EMULATION
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数：**
 

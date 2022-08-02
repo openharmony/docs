@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExtensionAbility'
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 ```
 
 ## AccessibilityEvent
@@ -22,11 +22,11 @@ import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExte
 
 ### 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| eventType | [EventType](js-apis-accessibility.md#EventType) \| [WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](touchguidetype) \| [GestureType](gesturetype) \| [PageUpdateType](pageupdatetype) | 是 | 否 | 具体事件类型。 |
-| target | AccessibilityElement | 是 | 否 | 发生事件的目标组件。 |
-| timeStamp | number | 是 | 否 | 事件时间戳。 |
+| 名称        | 参数类型                                     | 可读   | 可写   | 说明         |
+| --------- | ---------------------------------------- | ---- | ---- | ---------- |
+| eventType | [EventType](js-apis-accessibility.md#EventType) \| [WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](touchguidetype) \| [GestureType](gesturetype) \| [PageUpdateType](pageupdatetype) | 是    | 否    | 具体事件类型。    |
+| target    | AccessibilityElement                     | 是    | 否    | 发生事件的目标组件。 |
+| timeStamp | number                                   | 是    | 否    | 事件时间戳。     |
 
 ## GesturePath
 
@@ -36,26 +36,24 @@ import AccessibilityExtensionAbility from './@ohos.application.AccessibilityExte
 
 ### 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| points | Array&lt;[GesturePoint](gesturepoint)&gt; | 是 | 是 | 手势。 |
-| durationTime | number | 是 | 是 | 手势总耗时。 |
+| 名称           | 参数类型                                     | 可读   | 可写   | 说明     |
+| ------------ | ---------------------------------------- | ---- | ---- | ------ |
+| points       | Array&lt;[GesturePoint](gesturepoint)&gt; | 是    | 是    | 手势。    |
+| durationTime | number                                   | 是    | 是    | 手势总耗时。 |
 
-### 方法
-
-#### constructor
+### constructor
 
 constructor(durationTime: number)
 
 构造函数。
 
-- 参数：
+- **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | durationTime | number | 是 | 手势总耗时。 |
+  | 参数名          | 参数类型   | 必填   | 说明     |
+  | ------------ | ------ | ---- | ------ |
+  | durationTime | number | 是    | 手势总耗时。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   let gesturePath = new GesturePath(100);
@@ -69,27 +67,25 @@ constructor(durationTime: number)
 
 ### 属性
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| positionX | number | 是 | 是 | 触摸点X坐标。 |
-| positionY | number | 是 | 是 | 触摸点Y坐标。 |
+| 名称        | 参数类型   | 可读   | 可写   | 说明      |
+| --------- | ------ | ---- | ---- | ------- |
+| positionX | number | 是    | 是    | 触摸点X坐标。 |
+| positionY | number | 是    | 是    | 触摸点Y坐标。 |
 
-### 方法
-
-#### constructor
+### constructor
 
 constructor(positionX: number, positionY: number)
 
 构造函数。
 
-- 参数：
+- **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | positionX | number | 是 | 触摸点X坐标。 |
-  | positionY | number | 是 | 触摸点Y坐标。 |
+  | 参数名       | 参数类型   | 必填   | 说明      |
+  | --------- | ------ | ---- | ------- |
+  | positionX | number | 是    | 触摸点X坐标。 |
+  | positionY | number | 是    | 触摸点Y坐标。 |
 
-- 示例
+- **示例：**
 
   ```typescript
   let gesturePoint = new GesturePoint(100, 200);
@@ -101,24 +97,24 @@ constructor(positionX: number, positionY: number)
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
-| 名称 | 描述 |
-| -------- | -------- |
-| left | 表示向左的手势。 |
+| 名称            | 描述           |
+| ------------- | ------------ |
+| left          | 表示向左的手势。     |
 | leftThenRight | 表示先向左再向右的手势。 |
-| leftThenUp | 表示先向左再向上的手势。 |
-| leftThenDown | 表示先向左再向下的手势。 |
-| right | 表示向右的手势。 |
+| leftThenUp    | 表示先向左再向上的手势。 |
+| leftThenDown  | 表示先向左再向下的手势。 |
+| right         | 表示向右的手势。     |
 | rightThenLeft | 表示先向右再向左的手势。 |
-| rightThenUp | 表示先向右再向上的手势。 |
+| rightThenUp   | 表示先向右再向上的手势。 |
 | rightThenDown | 表示先向右再向下的手势。 |
-| up | 表示向上的手势。 |
-| upThenLeft | 表示先向上再向左的手势。 |
-| upThenRight | 表示先向上再向右的手势。 |
-| upThenDown | 表示先向上再向下的手势。 |
-| down | 表示向下的手势。 |
-| downThenLeft | 表示先向下再向左的手势。 |
+| up            | 表示向上的手势。     |
+| upThenLeft    | 表示先向上再向左的手势。 |
+| upThenRight   | 表示先向上再向右的手势。 |
+| upThenDown    | 表示先向上再向下的手势。 |
+| down          | 表示向下的手势。     |
+| downThenLeft  | 表示先向下再向左的手势。 |
 | downThenRight | 表示先向下再向右的手势。 |
-| downThenUp | 表示先向下再向上的手势。 |
+| downThenUp    | 表示先向下再向上的手势。 |
 
 ## PageUpdateType
 
@@ -126,10 +122,10 @@ constructor(positionX: number, positionY: number)
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
-| 名称 | 描述 |
-| -------- | -------- |
+| 名称                | 描述        |
+| ----------------- | --------- |
 | pageContentUpdate | 表示页面内容刷新。 |
-| pageStateUpdate | 表示页面状态刷新。 |
+| pageStateUpdate   | 表示页面状态刷新。 |
 
 ## TouchGuideType
 
@@ -137,10 +133,10 @@ constructor(positionX: number, positionY: number)
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
-| 名称 | 描述 |
-| -------- | -------- |
+| 名称         | 描述           |
+| ---------- | ------------ |
 | touchBegin | 表示触摸浏览时开始触摸。 |
-| touchEnd | 表示触摸浏览时结束触摸。 |
+| touchEnd   | 表示触摸浏览时结束触摸。 |
 
 ## AccessibilityExtensionAbility.onConnect
 
@@ -192,9 +188,9 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| event | [AccessibilityEvent](accessibilityevent) | 是 | 无障碍事件回调函数。无返回值。 |
+| 参数名   | 参数类型                                     | 必填   | 说明              |
+| ----- | ---------------------------------------- | ---- | --------------- |
+| event | [AccessibilityEvent](accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
 
 **示例：**
 
@@ -217,9 +213,9 @@ onKeyEvent(keyEvent: inputEventClient.KeyEvent): boolean;
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| keyEvent | [KeyEvent](js-apis-inputeventclient.md#KeyEvent) | 是 | 按键事件回调函数。返回true表示拦截此按键。 |
+| 参数名      | 参数类型                                     | 必填   | 说明                      |
+| -------- | ---------------------------------------- | ---- | ----------------------- |
+| keyEvent | [KeyEvent](js-apis-inputeventclient.md#KeyEvent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
 
 **示例：**
 
