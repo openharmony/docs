@@ -343,7 +343,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
 | mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。                      |
-| duration | number                | 是    | 设备可被发现的持续时间，单位为秒；设置为0则持续可发现。 |
+| duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
 
 **返回值：**
 
