@@ -950,7 +950,6 @@ Resumes this download task. This API uses an asynchronous callback to return the
 | filePath<sup>7+</sup> | string | No | Download path. (The default path is **'internal://cache/'**.<br/>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br/>- filePath:'test.txt': Files are stored in the default path.<br/>- filePath:'workspace/': The **workspace** directory is created in the default path to store files. |
 | networkType | number | No | Network type allowed for download. |
 | title | string | No | Title of the download session. |
-| background | boolean | No | Allow download background task notifications. |
 
 
 ## DownloadInfo<sup>7+</sup>
