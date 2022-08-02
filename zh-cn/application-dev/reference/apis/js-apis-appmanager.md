@@ -694,7 +694,7 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName<sup>8+</sup>     | 只读     | string               | 否   | 包名。                                |
 | uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| state<sup>8+</sup>  | 只读     | number               | 否   | 进程信息。 |
+| state<sup>8+</sup>  | 只读     | number               | 否   | 应用状态。 |
 
 ## AbilityStateData
 
@@ -708,7 +708,7 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | bundleName<sup>8+</sup>              | string   | 是   | 否  | 应用包名。                  |
 | abilityName<sup>8+</sup>             | string   | 是   | 否   | Ability名称。               |
 | uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
-| state<sup>8+</sup>                   | number   | 是   | 否   | 应用程序信息。                |
+| state<sup>8+</sup>                   | number   | 是   | 否   | Ability状态。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP包的名称。    |
 | abilityType<sup>8+</sup> | string   | 是   | 否   | 能力类型、页面或服务等。    |
 
