@@ -2,7 +2,8 @@
 
 本模块提供分布式包的管理
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -27,7 +28,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void;
 
-以异步方法根据给定的包名获取有关远程设备AbilityInfo信息，使用callback形式返回结果。
+以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -54,7 +55,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
-以异步方法根据给定的包名获取有关远程设备AbilityInfo信息，使用Promise形式返回结果。
+以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -84,7 +85,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void;
 
-以异步方法根据给定的包名获取有关远程设备AbilityInfos信息，使用callback形式返回结果。
+以异步方法根据给定的ElementName获取有关远程设备AbilityInfos信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -111,7 +112,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 
-以异步方法根据给定的包名获取有关远程设备AbilityInfo信息，使用Promise形式返回结果。
+以异步方法根据给定的ElementName获取有关远程设备AbilityInfos信息，使用Promise形式返回结果。
 
 **需要权限：**
 
@@ -129,7 +130,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 名称         | 类型                                                | 必填 | 描述                    |
 | ------------ | --------------------------------------------------- | ---- | ----------------------- |
-| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | 是   | 获得的ElementName信息。 |
+| elementNames | Array<[ElementName](js-apis-bundle-ElementName.md)> | 是   | ElementName信息,最大数组长度为10。 |
 
 **返回值：**
 
