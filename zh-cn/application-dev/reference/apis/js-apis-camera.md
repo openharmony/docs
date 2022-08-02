@@ -108,7 +108,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 | 名称                       | 类型                  | 只读 | 说明         |
 | ------------------------- | --------------------- | --- |------------ |
-| frameRateRanges           | Array<FrameRateRange> | 是  | 帧率。       |
+| frameRateRanges           | Array<[FrameRateRange](#frameraterange)> | 是  | 帧率。       |
 
 ## CameraOutputCapability
 
@@ -129,7 +129,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 ### getSupportedCameras
 
-getSupportedCameras(callback: AsyncCallback<Array<Camera\>\>): void
+getSupportedCameras(callback: AsyncCallback<Array<CameraDevice\>\>): void
 
 获取支持指定模式的相机设备对象，通过注册回调函数获取结果。
 
@@ -139,7 +139,7 @@ getSupportedCameras(callback: AsyncCallback<Array<Camera\>\>): void
 
 | 名称     | 类型                                      | 必填 | 说明                                 |
 | -------- | ----------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<Array<[Camera](#camera)\>\> | 是   | 使用callback方式获取支持的相机列表。 |
+| callback | AsyncCallback<Array<[CameraDevice](#cameradevice)\>\> | 是   | 使用callback方式获取支持的相机列表。 |
 
 **示例：**
 
@@ -155,7 +155,7 @@ cameraManager.getSupportedCameras((err, cameras) => {
 
 ### getSupportedCameras
 
-getSupportedCameras(): Promise<Array<Camera\>\>
+getSupportedCameras(): Promise<Array<CameraDevice\>\>
 
 获取支持指定模式的相机设备对象，通过Promise获取结果。
 
@@ -165,7 +165,7 @@ getSupportedCameras(): Promise<Array<Camera\>\>
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| Promise<Array<[Camera](#camera)\>\> | 使用promise获取支持相机列表。 |
+| Promise<Array<[CameraDevice](#cameradevice)\>\> | 使用promise获取支持相机列表。 |
 
 
 **示例：**
@@ -229,6 +229,160 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 ```js
 cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
     console.log('Promise returned with an array of supported outputCapability: ' + cameraArray.length);
+})
+```
+
+### isCameraMuted
+
+isCameraMuted(callback: AsyncCallback<boolean\>): void
+
+查询相机是否禁用，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型                                      | 必填 | 说明                                 |
+| -------- | ---------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<boolean\>                   | 是   | 使用callback方式获取相机是否禁用的结果。 |
+
+**示例：**
+
+```js
+cameraManager.isCameraMuted((err, status) => {
+    if (err) {
+        console.error('Failed to get the cameraMuted status. ${err.message}');
+        return;
+    }
+    console.log('Callback returned with cameraMuted status');
+})
+```
+
+### isCameraMuted
+
+isCameraMuted(): Promise<boolean>
+
+查询相机是否禁用，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                  | 说明                                          |
+| ------------------------------------ | --------------------------------------------- |
+| Promise<boolean\>                    | 使用Promise的方式获取结果，返回相机是否禁用的结果。  |
+
+
+**示例：**
+
+```js
+cameraManager.isCameraMuted().then((status) => {
+    console.log('Promise returned with the status whether camera is muted.');
+})
+```
+
+### isCameraMuteSupported
+
+isCameraMuteSupported(callback: AsyncCallback<boolean\>): void
+
+查询是否支持相机禁用，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型                                      | 必填 | 说明                                 |
+| -------- | --------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<boolean\>                 |  是  |  使用callback方式获取是否支持相机禁用的结果。  |
+
+**示例：**
+
+```js
+cameraManager.isCameraMuteSupported((err, status) => {
+    if (err) {
+        console.error('Failed to get the cameraMuteSupported. ${err.message}');
+        return;
+    }
+    console.log('Callback returned with the status whether cameraMuteSupported.');
+})
+```
+
+### isCameraMuteSupported
+
+isCameraMuteSupported(): Promise<boolean\>
+
+查询是否支持相机禁用，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                   | 说明                          |
+| --------------------- | ----------------------------- |
+| Promise<boolean\>     | 使用Promise的方式获取结果，返回是否支持相机禁用的结果。 |
+
+
+**示例：**
+
+```js
+cameraManager.isCameraMuteSupported().then((status) => {
+    console.log('Promise returned with the status whether cameraMuteSupported.');
+})
+```
+
+### muteCamera
+
+muteCamera(mute:boolean, callback: AsyncCallback<void>): void
+
+禁用相机，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型                                      | 必填   | 说明                                 |
+| -------- | ----------------------------------------- | ---- | ------------------------------------ |
+| mute     | boolean                                   |  是  | 是否禁用相机。                    |
+| callback | AsyncCallback<void>                       |  是  | 使用callback方式获取相机禁用的结果。 |
+
+**示例：**
+
+```js
+cameraManager.muteCamera(isMuted, (err) => {
+    if (err) {
+        console.error('Failed to mute the camera. ${err.message}');
+        return;
+    }
+    console.log('Callback returned with the muteCamera.');
+})
+```
+
+### muteCamera
+
+muteCamera(mute:boolean): Promise<void\>
+
+禁用相机，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型                                      | 必填 | 说明            |
+| -------- | ----------------------------------------- | ---- | ------------ |
+| mute     | boolean                                   |  是  | 是否禁用相机。  |
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| Promise<void>                       | 使用Promise的方式获取结果，返回是否禁用相机的结果。 |
+
+
+**示例：**
+
+```js 
+cameraManager.muteCamera(isMuted).then(() => {
+    console.log('Promise returned muteCamera.');
 })
 ```
 
@@ -711,6 +865,33 @@ cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
 })
 ```
 
+### on('cameraMute') 
+
+on(type: 'cameraMute', callback: AsyncCallback<boolean>): void
+
+监听相机禁用的状态变化，通过注册回调函数获取相机的状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型                                                  | 必填 | 说明                                                 |
+| :------- | :---------------------------------------------------- | :--- | :--------------------------------------------------- |
+| type     | string                                                | 是   | 监听事件，固定为'cameraMute'，即相机状态变化事件。 |
+| callback | AsyncCallback<boolean>                                | 是   | 回调函数，用于获取相机状态变化信息。                 |
+
+**示例：**
+
+```js
+cameraManager.on('cameraMute', (err, status) => {
+    if (err) {
+        console.error('Failed to get cameraMute callback. ${err.message}');
+        return;
+    }
+    console.log('status: ' + status);
+})
+```
+
 ## CameraStatusInfo
 
 相机管理器回调返回的接口实例，表示相机状态信息。
@@ -724,7 +905,7 @@ cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
 
 ## CameraPosition
 
-枚举，相机方向。
+枚举，相机位置。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
