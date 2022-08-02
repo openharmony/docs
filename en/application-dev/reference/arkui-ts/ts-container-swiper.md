@@ -1,11 +1,12 @@
 # Swiper
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**<br>
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Swiper&gt;** component provides a container that allows users to switch among child components by swiping operations.
+The **<Swiper\>** component provides a container that allows users to switch among child components through swiping.
 
 
 ## Required Permissions
@@ -23,9 +24,9 @@ This component can contain child components.
 Swiper(value:{controller?: SwiperController})
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | controller | [SwiperController](#swipercontroller) | No | null | Controller bound to the component to control the page switching. | 
+  | controller | [SwiperController](#swipercontroller) | No | null | Controller bound to the component to control the page switching. |
 
 
 ## Attributes
@@ -42,30 +43,32 @@ Swiper(value:{controller?: SwiperController})
 | itemSpace | Length | 0 | Space between child components. |
 | cachedCount<sup>8+</sup> | number | 1 | Number of child components to be cached. |
 | disableSwipe<sup>8+</sup> | boolean | false | Whether to disable the swipe feature. |
-| curve<sup>8+</sup> | [Curve](ts-animatorproperty.md) \| Curves | Curve.Ease | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve enums](ts-animatorproperty.md). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using the API provided by the interpolation calculation module. |
+| curve<sup>8+</sup> | [Curve](ts-animatorproperty.md) \| Curves | Curve.Ease | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve enums](ts-animatorproperty.md). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using APIs provided by the interpolation calculation module. |
+| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;Length,<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>size?:&nbsp;Length,<br/>color?:&nbsp;Color,<br/>selectedColor?:&nbsp;Color<br/>} | -          | Style of the navigation dots indicator.<br/>- **left**:&nbsp;distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br/>- **top**:&nbsp;distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br/>- **right**:&nbsp;distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br/>- **bottom**:&nbsp;distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br/>- **size**:&nbsp;diameter of the navigation dots indicator.<br/>- **color**:&nbsp;color of the navigation dots indicator.<br/>- **selectedColor**:&nbsp;color of the selected navigation dot. |
 
 
-### SwiperController
+## SwiperController
 
-Controller of the **&lt;Swiper&gt;** component. You can bind this object to the **&lt;Swiper&gt;** component and use it to control page switching.
+Controller of the **<Swiper\>** component. You can bind this object to the **<Swiper\>** component and use it to control page switching.
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| showNext():void | Turns to the next page. | 
-| showPrevious():void | Turns to the previous page. | 
+| showNext():void | Turns to the next page. |
+| showPrevious():void | Turns to the previous page. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onChange( index: number) =&gt; void | Triggered when the index of the currently displayed component changes. | 
+| onChange( index: number) =&gt; void | Triggered when the index of the currently displayed component changes. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
   private listener: DataChangeListener
@@ -96,7 +99,7 @@ struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     let list = []
     for (var i = 1; i <= 10; i++) {
       list.push(i.toString());

@@ -1,10 +1,11 @@
 # TimePicker
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
 
 The **\<TimePicker>** component allows users to select a time from the given range.
+
+> **NOTE**<br>
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -14,7 +15,7 @@ No
 
 ## Child Components
 
-No
+Not supported
 
 
 ## APIs
@@ -54,11 +55,12 @@ Creates a time picker whose default time range is from 00:00 to 23:59.
 
 ### Time Picker
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerExample {
-  private selectedTime: Date = new Date('08-00')
+  private selectedTime: Date = new Date('7/22/2022 8:00:00')
 
   build() {
     Column() {
