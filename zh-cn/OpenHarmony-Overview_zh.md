@@ -351,7 +351,7 @@ OpenHarmony支持如下几种系统类型：
 
 当前OpenHarmony社区支持17款开发板，下表介绍3款（此处选择三种系统类型首款进入OpenHarmony主干的开发板），更多开发板信息，请参考[社区支持的开发板清单](device-dev/dev-board-on-the-master.md)，社区每日构建版本获取地址请参考：http://ci.openharmony.cn/dailys/dailybuilds
 
- |系统类型 | 	 开发板型号|	 芯片型号  |	 主要能力及适配案例  |	 典型应用场景  |	开发板代码仓及社区<br/>每日构建版本获取地址  |
+ |系统类型 | 	 开发板型号|	 芯片型号  |	 主要能力及适配案例  |	 典型应用场景  |	开发板代码仓 |
   |--------  |	 --------|	 --------|	 --------|	 --------  |	 --------  |
   |标准系统 | 	 润和DAYU200  |	 RK3568  |	 主要能力：<br/>润和HH-SCDAYU200<br/>基于<br/>Rockchip&nbsp;RK3568，集成双<br/>核心架构GPU以及高效能NPU；板<br/>载四核64位Cortex-A55&nbsp;处<br/>理器采用22nm先进工艺，主频高<br/>达2.0GHz；支持蓝牙、Wi-Fi、<br/>音频、视频和摄像头等功能，拥<br/>有丰富的扩展接口，支持多种视<br/>频输入输出接口；配置双千兆自<br/>适应RJ45以太网口，可满足<br/>NVR<br/>、工业网关等多网口产<br/>品需求。<br/>适配案例：<br/>[DAYU200适配案例](device-dev/porting/porting-dayu200-on_standard-demo.md)  |	影音娱乐、智慧<br/>出行、智<br/>能家居，<br/>如烟机、<br/>烤箱、跑<br/>步机等。  |	[device_soc_rockchip](https://gitee.com/openharmony/device_soc_rockchip)<br/>[device_board_hihope](https://gitee.com/openharmony/device_board_hihope)<br/>[vendor_hihope](https://gitee.com/openharmony/vendor_hihope)|
   |小型系统 | 	 Hispark_<br/>Taurus |	 Hi3516DV<br/>300 | 	 主要能力：<br/>Hi3516DV300是新一<br/>代Smart&nbsp;HD&nbsp;IP摄像<br/>机SOC，集成新一代<br/>ISP(Image&nbsp;Signal&nbsp;P<br/>rocessor)、H.265视频压缩编码<br/>器、高性能NNIE引擎，在低码率<br/>、高画质、智能处理和分析、低<br/>功耗等方面有较好的性能。  |	带屏智能硬件，<br/>比如带屏<br/>冰箱、车<br/>机等。  |	 <br/>[device_soc_hisilicon](https://gitee.com/openharmony/device_soc_hisilicon)<br/>[device_board_hisilicon](https://gitee.com/openharmony/device_board_hisilicon)<br/>[vendor_hisilicon](https://gitee.com/openharmony/vendor_hisilicon) |
