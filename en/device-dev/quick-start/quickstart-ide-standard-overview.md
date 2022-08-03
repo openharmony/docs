@@ -28,7 +28,7 @@ This document describes how to develop OpenHarmony in the Windows+Ubuntu environ
 
 ## Development Boards
 
-In this document, two development board models are used as examples: Hi3516D V300 and RK3568. For details about these development boards, see [Appendix](../quick-start/quickstart-standard-board-introduction.md). You can purchase the development board as required.
+In this document, two development board models are used as examples: Hi3516D V300 and RK3568. For details about these development boards, see [Appendix](quickstart-ide-standard-board-introduction-hi3516.md). You can purchase the development board as required.
 
 
 ## Development Process
