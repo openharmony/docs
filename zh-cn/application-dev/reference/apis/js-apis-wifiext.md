@@ -57,7 +57,7 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[PowerModel](#PowerModel)&gt;&gt; | Promise对象。表示功率模式。 |
+  | Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise对象。表示功率模式。 |
 
 
 ## PowerModel
@@ -86,7 +86,7 @@ getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): 
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#PowerModel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
 
 
 ## wifiext.getPowerModel
@@ -102,7 +102,7 @@ getPowerModel(): Promise&lt;PowerModel&gt;
 **返回值：**
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[PowerModel](#PowerModel)&gt; | Promise对象。表示功率模式。 |
+  | Promise&lt;[PowerModel](#powermodel)&gt; | Promise对象。表示功率模式。 |
 
 
 ## wifiext.getPowerModel
@@ -118,7 +118,7 @@ getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#PowerModel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果error为非0，表示处理出现错误。 |
+  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果error为非0，表示处理出现错误。 |
 
 
 ## wifiext.setPowerModel
@@ -134,7 +134,7 @@ setPowerModel(model: PowerModel) : boolean;
 **参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | model | AsyncCallback&lt;[PowerModel](#PowerModel)&gt; | 是 | 功率模式。 |
+  | model | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 功率模式。 |
 
 **返回值：**
   | **类型** | **说明** |
