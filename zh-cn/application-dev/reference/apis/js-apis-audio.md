@@ -619,8 +619,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称              | 类型                                              | 必填 | 说明               |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
-| type              | [DeviceChangeType](#DeviceChangeType)             | 是   | 设备连接状态变化。 |
-| deviceDescriptors | [AudioDeviceDescriptors](#AudioDeviceDescriptors) | 是   | 设备信息。         |
+| type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
 ## DeviceChangeType
 
@@ -1675,7 +1675,7 @@ on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
-| callback | Callback<[DeviceChangeAction](#DeviceChangeAction)\> | 是   | 获取设备更新详情。                         |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 获取设备更新详情。                         |
 
 **示例：**
 
@@ -1701,7 +1701,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
-| callback | Callback<[DeviceChangeAction](#DeviceChangeAction)> | 否   | 获取设备更新详情。                         |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 获取设备更新详情。                         |
 
 **示例：**
 
@@ -3192,7 +3192,7 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 
 | 参数名     | 类型                                | 必填   | 说明        |
 | ---------- | ---------------------------------- | ------ | ---------- |
-| mode       | [InterruptMode](#InterruptMode)    | 是     | 焦点模型。  |
+| mode       | [InterruptMode](#interruptmode9)    | 是     | 焦点模型。  |
 
 **返回值：**
 
@@ -3238,7 +3238,7 @@ setInterruptMode(mode: InterruptMode, callback: Callback\<void>): void
 
 | 参数名   | 类型                                | 必填   | 说明            |
 | ------- | ----------------------------------- | ------ | -------------- |
-|mode     | [InterruptMode](#InterruptMode)     | 是     | 焦点模型。|
+|mode     | [InterruptMode](#interruptmode9)     | 是     | 焦点模型。|
 |callback | Callback\<void>                     | 是     |回调返回执行结果。|
 
 **示例：**
