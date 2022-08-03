@@ -48,7 +48,7 @@
 
    ```js
     var mode_ = audio.InterruptMode.SHARE_MODE;
-    await this.audioRenderer.setInterruptMode(mode_).then(()=>{
+    await this.audioRenderer.setInterruptMode(mode_).then(() => {
       console.log('[JSAR] [SetInterruptMode] 设置: ' + (mode_ == 0 ? "共享模式":"独立焦点模式") + "成功" );
     });
    ```
