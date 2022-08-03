@@ -128,7 +128,7 @@ TS语言的使用在生成器函数中存在一定的限制：
 build() {
     let a: number = 1 // invalid: variable declaration not allowed
     Column() {
-        Text('Hello ${this.myName.toUpperCase()}') // ok.
+        Text(`Hello ${this.myName.toUpperCase()}`) // ok.
         ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array variable in place
     }
     buildSpecial()  // invalid: no function calls
