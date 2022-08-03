@@ -24,6 +24,7 @@
     - Appendix
         - [Introduction to the Hi3861 Development Board](quick-start/quickstart-ide-lite-introduction-hi3861.md)
         - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-lite-introduction-hi3516.md)
+        - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - Getting Started with Mini and Small Systems (Installation Package Mode)
     - [Mini and Small System Overview](quick-start/quickstart-lite-overview.md)
     - [Environment Preparation](quick-start/quickstart-lite-env-setup.md)
@@ -51,6 +52,7 @@
             - [Introduction to the Hi3861 Development Board](quick-start/quickstart-lite-introduction-hi3861.md)
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-lite-introduction-hi3516.md)
         - [Reference](quick-start/quickstart-lite-reference.md)
+        - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - Getting Started with Standard System (IDE Mode, Recommended)
     - [Standard System Overview](quick-start/quickstart-ide-standard-overview.md)
     - Environment Preparation
@@ -71,6 +73,7 @@
     - Appendix
         - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
         - [Introduction to the RK3568 Development Board](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
+        - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - Getting Started with Standard System (Installation Package Mode)
     - [Standard System Overview](quick-start/quickstart-standard-overview.md)
     - [Setting Up Environments for Standard System](quick-start/quickstart-standard-env-setup.md)
@@ -94,7 +97,9 @@
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
+        - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+
 
 - Compatibility and Security
 
@@ -379,6 +384,7 @@
       - [Audio](driver/driver-peripherals-audio-des.md)
       - [Camera](driver/driver-peripherals-camera-des.md)
       - [Facial Authentication](driver/driver-peripherals-face_auth-des.md)
+      - [Fingerprint Authentication](driver/driver-peripherals-fingerprint_auth-des.md)
       - [LCD](driver/driver-peripherals-lcd-des.md)
       - [Light](driver/driver-peripherals-light-des.md)
       - [PIN Authentication](driver/driver-peripherals-pinauth-des.md)

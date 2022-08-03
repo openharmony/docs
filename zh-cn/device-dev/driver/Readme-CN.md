@@ -46,6 +46,7 @@
   - [Audio](driver-peripherals-audio-des.md)
   - [Camera](driver-peripherals-camera-des.md)
   - [Face_auth](driver-peripherals-face_auth-des.md)
+  - [Fingerprint_auth](driver-peripherals-fingerprint_auth-des.md)
   - [LCD](driver-peripherals-lcd-des.md)
   - [Light](driver-peripherals-light-des.md)
   - [Pin_auth](driver-peripherals-pinauth-des.md)
