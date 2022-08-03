@@ -1917,13 +1917,11 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(1, (err, fileAsset) => {
-       if (err) {
-           console.error('Failed ');
-           return;
-       }
-       console.log('fileAsset.displayName : ' + fileAsset.displayName);
-    })
+    fetchFileResult.getPositionObject(1) .then(function (fileAsset){
+        console.log('[Demo] fileAsset.displayName : ' + fileAsset.displayName);
+    }).catch(function (err) {
+        console.info("[Demo] getFileAssets failed with error:" + err);
+    });
 }
 ```
 
