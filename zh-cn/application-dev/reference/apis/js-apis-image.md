@@ -1747,35 +1747,6 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 var receiver = image.createImageReceiver(8192, 8, 4, 8);
 ```
 
-## image.createImageCreator<sup>9+</sup>
-
-createImageCreator(width: number, height: number, format: number, capacity: number): ImageCreator
-
-通过宽、高、图片格式、容量创建ImageCreator实例。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
-
-**参数：**
-
-| 名称     | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。       |
-| height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式。             |
-| capacity | number | 是   | 同时访问的最大图像数。 |
-
-**返回值：**
-
-| 类型                           | 说明                                    |
-| ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imageCreator9) | 如果操作成功，则返回ImageReceiver实例。 |    
-
-**示例：**
-
-```js
-var creator = image.createImageCreator(8192, 8, 4, 8);
-```
-
 ## ImageReceiver<sup>9+</sup>
 
 图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
@@ -2007,24 +1978,6 @@ receiver.release().then(() => {
 })
 ```
 
-## ImageCreator<sup>9+</sup>
-
-图像创建模块，用于请求图像原生数据区域，并开放给应用编译原生图像数据的能力。
-在调用以下方法前需要先创建ImageCreator实例。
-
-### 属性
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
-
-| 名称     | 类型                         | 可读 | 可写 | 说明               |
-| -------- | ---------------------------- | ---- | ---- | ------------------ |
-| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
-| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
-
-### 
-
-
-
 ## Image<sup>9+</sup>
 
 提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage9)和[readLatestImage](#readlatestimage9)接口时会返回image。
@@ -2161,10 +2114,9 @@ img.release().then(() =>{
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称           | 类型          | 可读 | 可写 | 说明       |
-| -------------- | ------------- | ---- | ---- | ---------- |
-| size           | [Size](#size) | 是   | 是   | 图片大小。 |
-| density<sup>9+ | number        | 是   | 是   | 图片密度。 |
+| 名称 | 类型          | 可读 | 可写 | 说明       |
+| ---- | ------------- | ---- | ---- | ---------- |
+| size | [Size](#size) | 是   | 是   | 图片大小。 |
 
 ## Size
 
@@ -2189,11 +2141,6 @@ img.release().then(() =>{
 | RGB_565          | 2      | 格式为RGB_565     |
 | RGBA_8888        | 3      | 格式为RGBA_8888。 |
 | BGRA_8888<sup>9+ | 4      | 格式为BGRA_8888。 |
-| RGB_888<sup>9+   | 5      | 格式为RGB_888。   |
-| ALPHA_8<sup>9+   | 6      | 格式为ALPHA_8。   |
-| RGBA_F16<sup>9+  | 7      | 格式为RGBA_F16。  |
-| NV21<sup>9+      | 8      | 格式为NV21。      |
-| NV12<sup>9+      | 9      | 格式为NV12。      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2252,16 +2199,15 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
 
-| 名称                    | 类型                               | 可读 | 可写 | 说明             |
-| ----------------------- | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize              | number                             | 是   | 是   | 缩略图采样大小。 |
-| rotate                  | number                             | 是   | 是   | 旋转角度。       |
-| editable                | boolean                            | 是   | 是   | 是否可编辑。     |
-| desiredSize             | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
-| desiredRegion           | [Region](#region7)                 | 是   | 是   | 解码区域。       |
-| desiredPixelFormat      | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
-| index                   | number                             | 是   | 是   | 解码图片序号。   |
-| fitDensity<sup>9+</sup> | number                             | 是   | 是   | 图像像素密度。   |
+| 名称               | 类型                               | 可读 | 可写 | 说明             |
+| ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
+| sampleSize         | number                             | 是   | 是   | 缩略图采样大小。 |
+| rotate             | number                             | 是   | 是   | 旋转角度。       |
+| editable           | boolean                            | 是   | 是   | 是否可编辑。     |
+| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
+| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
+| index              | number                             | 是   | 是   | 解码图片序号。   |
 
 ## Region<sup>7+</sup>
 
@@ -2281,11 +2227,10 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImagePacker
 
-| 名称              | 类型   | 可读 | 可写 | 说明                                                |
-| ----------------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format            | string | 是   | 是   | 目标格式。                                          |
-| quality           | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize<sup>9+ | number | 是   | 是   | 用于设置图片大小，默认为10M。                       |
+| 名称    | 类型   | 可读 | 可写 | 说明                                                |
+| ------- | ------ | ---- | ---- | --------------------------------------------------- |
+| format  | string | 是   | 是   | 目标格式。                                          |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
@@ -2304,21 +2249,16 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称                      | 默认值                  | 说明                               |
-| ------------------------- | ----------------------- | ---------------------------------- |
-| BITS_PER_SAMPLE           | "BitsPerSample"         | 每个像素比特数。                   |
-| ORIENTATION               | "Orientation"           | 图片方向。                         |
-| IMAGE_LENGTH              | "ImageLength"           | 图片长度。                         |
-| IMAGE_WIDTH               | "ImageWidth"            | 图片宽度。                         |
-| GPS_LATITUDE              | "GPSLatitude"           | 图片纬度。                         |
-| GPS_LONGITUDE             | "GPSLongitude"          | 图片经度。                         |
-| GPS_LATITUDE_REF          | "GPSLatitudeRef"        | 纬度引用，例如N或S。               |
-| GPS_LONGITUDE_REF         | "GPSLongitudeRef"       | 经度引用，例如W或E。               |
-| DATE_TIME_ORIGINAL<sup>9+ | "DateTimeOriginal"      | 拍摄时间，例如2022:06:02 15:51:35。|
-| EXPOSURE_TIME<sup>9+      | "ExposureTime"          | 曝光时间，例如1/33 sec.。          |
-| SCENE_TYPE<sup>9+         | "SceneType"             | 拍摄场景，例如直接拍摄。           |
-| ISO_SPEED_RATINGS<sup>9+  | "ISOSpeedRatings"       | ISO感光度，例如400。               |
-| F_NUMBER<sup>9+           | "FNumber"               | 光圈值，例如f/1.8。                |
+| 名称              | 默认值                  | 说明                               |
+| ----------------- | ----------------------- | ---------------------------------- |
+| BITS_PER_SAMPLE   | "BitsPerSample"         | 每个像素比特数。                   |
+| ORIENTATION       | "Orientation"           | 图片方向。                         |
+| IMAGE_LENGTH      | "ImageLength"           | 图片长度。                         |
+| IMAGE_WIDTH       | "ImageWidth"            | 图片宽度。                         |
+| GPS_LATITUDE      | "GPSLatitude"           | 图片纬度。                         |
+| GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。                         |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。               |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。               |
 
 ## ImageFormat<sup>9+</sup>
 
