@@ -1173,7 +1173,7 @@ getHotspotConfig(): HotspotConfig
 
 ## wifi.getStations<sup>7+</sup>
 
-getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo)&gt;
+getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
 
 获取连接的设备。
 此接口为系统接口。
@@ -1185,7 +1185,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo)&gt;
 **返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
-  | &nbsp;Array&lt;[StationInfo](#stationinfo)&gt; | 连接的设备数组。 |
+  | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | 连接的设备数组。 |
 
 
 ## StationInfo<sup>7+</sup>
