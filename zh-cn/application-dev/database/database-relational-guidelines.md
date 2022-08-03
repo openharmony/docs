@@ -331,7 +331,7 @@
     promise.then((result) => {
         console.log('sync done.')
         for (let i = 0; i < result.length; i++) {
-            console.log('device=' + result[i][0] + ' status=' + result[i][1])
+            console.log('device=' + result[i][0] + 'status=' + result[i][1])
         }
     }).catch((err) => {
         console.log('sync failed')
