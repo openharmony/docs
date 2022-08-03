@@ -2474,9 +2474,9 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
-> 
-> 从 API version 7开始支持。
+> **说明：** 该接口不支持使用。
+>
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2505,9 +2505,9 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2660,9 +2660,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 设置是否允许可点击子窗口之外的区域，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2691,9 +2691,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
