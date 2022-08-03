@@ -20,14 +20,14 @@ CanvasRenderingContext2D(setting: RenderingContextSetting)
 
 ### RenderingContextSettings
 
-RenderingContextSettings(antialias?: bool)
+RenderingContextSettings(antialias?: boolean)
 
 Configures the settings of a **CanvasRenderingContext2D** object, including whether to enable antialiasing.
 
 - Parameters
     | Name      | Type | Mandatory | Default Value | Description                      |
     | --------- | ---- | --------- | ------------- | -------------------------------- |
-    | antialias | bool | No        | false         | Whether antialiasing is enabled. |
+    | antialias | boolean | No        | false         | Whether antialiasing is enabled. |
 
 
 ## Attributes
