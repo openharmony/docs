@@ -193,12 +193,12 @@ export class AudioDemo {
     }).catch((err) => {
       console.info('open fd failed err is' + err);
     });
-    audioPlayer.src = nextFdPath; //设置src属性，并重新触发触发'dataLoad'事件回调
+    audioPlayer.src = nextFdPath; // 设置src属性，并重新触发触发'dataLoad'事件回调
   }
 
   async audioPlayerDemo() {
-    let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
-    this.setCallBack(audioPlayer);                     //设置事件回调
+    let audioPlayer = media.createAudioPlayer();       // 创建一个音频播放实例
+    this.setCallBack(audioPlayer);                     // 设置事件回调
     let fdPath = 'fd://'
     // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
@@ -210,7 +210,7 @@ export class AudioDemo {
     }).catch((err) => {
       console.info('open fd failed err is' + err);
     });
-    audioPlayer.src = fdPath; //设置src属性，并触发'dataLoad'事件回调
+    audioPlayer.src = fdPath; // 设置src属性，并触发'dataLoad'事件回调
   }
 }
 ```
