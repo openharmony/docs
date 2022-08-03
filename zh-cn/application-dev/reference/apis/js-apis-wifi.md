@@ -276,8 +276,8 @@ WLAN配置信息。
 | netId | number | 只读 | 分配的网络ID， 仅系统应用可用。 |
 | randomMacType | number | 只读 | 随机MAC类型，仅系统应用可用。 |
 | randomMacAddr | string | 只读 | 随机MAC地址，仅系统应用可用。 |
-| ipType | [IpType](#iptype) | 只读 | IP地址类型，仅系统应用可用。 |
-| staticIp | [IpConfig](#ipconfig) | 只读 | 静态IP配置信息，仅系统应用可用。 |
+| ipType | [IpType](#iptype7) | 只读 | IP地址类型，仅系统应用可用。 |
+| staticIp | [IpConfig](#ipconfig7) | 只读 | 静态IP配置信息，仅系统应用可用。 |
 | eapConfig<sup>9+</sup> | [WifiEapConfig](#wifieapconfig) | 只读 | 可扩展身份验证协议配置，仅系统应用可用。 |
 
 
