@@ -59,7 +59,7 @@ getInputMethodController(): InputMethodController
 
 getInputMethodSetting(): InputMethodSetting
 
-获取客户端设置实例[InputMethodSetting](#inputmethodsetting)。
+获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -67,7 +67,7 @@ getInputMethodSetting(): InputMethodSetting
 
 | 类型                                      | 说明                         |
 | ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#inputmethodsetting) | 回调返回当前客户端设置实例。 |
+| [InputMethodSetting](#inputmethodsetting8) | 回调返回当前客户端设置实例。 |
 
 
 **示例：**
