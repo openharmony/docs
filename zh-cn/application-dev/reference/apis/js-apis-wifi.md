@@ -879,7 +879,7 @@ getIpInfo(): IpInfo
 **返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
-  | [IpInfo](#ipinfo) | IP信息。 |
+  | [IpInfo](#ipinfo7) | IP信息。 |
 
 
 ## IpInfo<sup>7+</sup>
@@ -1131,7 +1131,7 @@ setHotspotConfig(config: HotspotConfig): boolean
 **参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
-  | config | [HotspotConfig](#hotspotconfig) | 是 | 热点配置信息。 |
+  | config | [HotspotConfig](#hotspotconfig7) | 是 | 热点配置信息。 |
 
 **返回值：**
   | **类型** | **说明** |
@@ -1168,7 +1168,7 @@ getHotspotConfig(): HotspotConfig
 **返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
-  | [HotspotConfig](#hotspotconfig) | 热点的配置信息。 |
+  | [HotspotConfig](#hotspotconfig7) | 热点的配置信息。 |
 
 
 ## wifi.getStations<sup>7+</sup>
