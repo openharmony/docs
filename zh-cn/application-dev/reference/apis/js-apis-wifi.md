@@ -278,7 +278,7 @@ WLAN配置信息。
 | randomMacAddr | string | 只读 | 随机MAC地址，仅系统应用可用。 |
 | ipType | [IpType](#iptype7) | 只读 | IP地址类型，仅系统应用可用。 |
 | staticIp | [IpConfig](#ipconfig7) | 只读 | 静态IP配置信息，仅系统应用可用。 |
-| eapConfig<sup>9+</sup> | [WifiEapConfig](#wifieapconfig) | 只读 | 可扩展身份验证协议配置，仅系统应用可用。 |
+| eapConfig<sup>9+</sup> | [WifiEapConfig](#wifieapconfig9) | 只读 | 可扩展身份验证协议配置，仅系统应用可用。 |
 
 
 ## IpType<sup>7+</sup>
@@ -316,8 +316,8 @@ IP配置信息。
 
 | **参数名** | **类型** | **读写属性** | **说明** |
 | -------- | -------- | -------- | -------- |
-| eapMethod | [EapMethod](#eapmethod) | 只读 | EAP认证方式。 |
-| phase2Method | [Phase2Method](#phase2method) | 只读 | 第二阶段认证方式。 |
+| eapMethod | [EapMethod](#eapmethod9) | 只读 | EAP认证方式。 |
+| phase2Method | [Phase2Method](#phase2method9) | 只读 | 第二阶段认证方式。 |
 | identity | string | 只读 | 身份信息。 |
 | anonymousIdentity | string | 只读 | 匿名身份。 |
 | password | string | 只读 | 密码。 |
