@@ -169,7 +169,7 @@ WLAN热点信息。
 | channelWidth | number | 只读 | WLAN接入点的带宽。 |
 | centerFrequency0<sup>9+</sup> | number | 只读 | 中心频点。 |
 | centerFrequency1<sup>9+</sup> | number | 只读 | 中心频点。 |
-| infoElems<sup>9+</sup> | Array&lt;[WifiInfoElem](#wifiinfoelem)&gt; | 只读 | 信息元素。 |
+| infoElems<sup>9+</sup> | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 只读 | 信息元素。 |
 | timestamp | number | 只读 | 时间戳。 |
 
 
