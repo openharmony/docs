@@ -1769,6 +1769,8 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback异步回调。
 
+> **说明:** 该接口不支持使用。
+
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1796,6 +1798,8 @@ windowClass.setDimBehind(0.5, (err, data) => {
 setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise异步回调。
+
+> **说明:** 该接口不支持使用。
 
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -1949,6 +1953,8 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 设置是否允许可点击子窗口之外的区域，使用callback异步回调。
 
+> **说明:** 该接口不支持使用。
+
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1975,7 +1981,9 @@ windowClass.setOutsideTouchable(true, (err, data) => {
 
 setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
-设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
+设置是否允许可点击子窗口之外的区域，使用Promise异步回调。
+
+> **说明:** 该接口不支持使用。
 
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
