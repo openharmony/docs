@@ -162,7 +162,7 @@ Returns to the previous page or a specified page.
   // Return to the detail page through router.back().
   export default {    
     backToDetail() {        
-      router.back({uri:'pages/detail/detail'});    
+      router.back({url:'pages/detail/detail'});    
     }
   }
   ```
@@ -334,7 +334,7 @@ Obtains the parameters passed from the page that initiates redirection to the cu
   // detail page
   export default {
     onInit() {
-      console.info('showData1:' + router.getParams().data1);
+      console.info('showData1:' + router.getParams()[data1]);
     }
   }
   ```
