@@ -205,7 +205,7 @@ privacyManager.getPermissionUsedRecords(request, (err, data) => {
 | isRemote | boolean         | 否    | 默认值false。 |
 | deviceId  | string         | 否    | 目标应用所在设备的ID。                                 |
 | bundleName | string         | 否    | 目标应用的包名。 |
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#PermissionUsedRecord)&gt;         | 否    | 每个应用的权限使用记录集合。                                 |
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | 否    | 每个应用的权限使用记录集合。                                 |
 
 ## PermissionUsedRecord
 
