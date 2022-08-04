@@ -43,6 +43,7 @@ SideBarContainer( type?: SideBarContainerType )
 | minSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md#长度类型) | 200 | 设置侧边栏最小宽度。 |
 | maxSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md#长度类型) | 280 | 设置侧边栏最大宽度。 |
 | autoHide<sup>9+</sup> | boolean | true | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。 |
+| sideBarPosition<sup>9+</sup> | SideBarPosition | SideBarPosition.Start | 设置侧边栏显示位置。 |
 
 - ButtonStyle对象说明
   | 名称 | 参数类型 | 必填 | 默认值 | 描述 |
@@ -53,6 +54,11 @@ SideBarContainer( type?: SideBarContainerType )
   | height | number | 否 | 32 | 设置侧边栏控制按钮的高度。 |
   | icons | {<br/>shown:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br/>hidden:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br/>switching?:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) <br/>} | 否 | - | 设置侧边栏控制按钮的图标：<br/> </p> - shown: 设置侧边栏显示时控制按钮的图标。<br>- hidden: 设置侧边栏隐藏时控制按钮的图标。<br>- switching:设置侧边栏显示和隐藏状态切换时控制按钮的图标。 | 
 
+- SideBarPosition<sup>9+</sup>枚举说明
+  | 名称 | 描述 |
+  | -------- | -------- |
+  | Start | 侧边栏位于容器左侧。 |
+  | End | 侧边栏位于容器右侧。 | 
 
 
 
