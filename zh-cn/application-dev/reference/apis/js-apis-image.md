@@ -2135,12 +2135,12 @@ img.release().then(() =>{
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称     | 默认值 | 描述                    |
-| -------- | ------ | ----------------------- |
-| UNKNOWN  | 0      | 未知透明度。            |
-| OPAQUE   | 1      | 没有alpha或图片全透明。 |
-| PREMUL   | 2      | RGB前乘alpha。          |
-| UNPREMUL | 3      | RGB不前乘alpha。        |
+| 名称                   | 默认值 | 描述              |
+| ---------------------- | ------ | ----------------- |
+| UNKNOWN                | 0      | 未知格式。        |
+| RGB_565                | 2      | 格式为RGB_565     |
+| RGBA_8888              | 3      | 格式为RGBA_8888。 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。 |
 
 ## AlphaType<sup>9+</sup>
 
