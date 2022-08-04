@@ -969,7 +969,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 ## CameraDevice
 
-枚举，相机设备信息。
+相机设备信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core。
 
