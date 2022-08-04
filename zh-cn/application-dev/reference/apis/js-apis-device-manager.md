@@ -433,7 +433,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
-发现设备发现。
+发布设备发现。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -444,7 +444,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 - 示例：
   ```js
-  //生成发布标识，随机数确保每次调用发现接口的标识不一致
+  //生成发布标识，随机数确保每次调用发布接口的标识不一致
   var publishId = Math.floor(Math.random() * 10000 + 1000);
   var publishInfo = {
       "publishId": publishId,
@@ -706,8 +706,8 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 - 参数：
   | 名称     | 参数类型                                 | 必填 | 说明                       |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | 是   | 注册发布设备发现回调，以便将发布结果时通知应用程序。 |
-  | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 注册设备发布的回调方法。               |
+  | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序。 |
+  | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 注册设备发布成功的回调方法。               |
 
 - 示例：
   ```js
@@ -721,15 +721,15 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
-取消注册设备发现回调。
+取消注册设备发布成功回调。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 - 参数：
   | 名称     | 参数类型                                 | 必填 | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | 是   | 取消注册设备发现回调。                 |
-  | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 指示要取消注册的设备发布回调。 |
+  | type     | string                                   | 是   | 取消注册设备发布成功回调。                 |
+  | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 指示要取消注册的设备发布成功回调。 |
 
 - 示例：
   ```js
@@ -765,7 +765,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
-取消注册设备发现失败回调。
+取消注册发布设备失败回调。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -773,7 +773,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
   | 名称     | 参数类型                                              | 必填 | 说明                |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
   | type     | string                                                | 是   | 取消注册设备发布失败回调。     |
-  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是   | 指示要取消注册的设备发布失败回调。 |
+  | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是   | 指示要取消注册设备发布失败回调。 |
 
 - 示例：
   ```js
