@@ -160,7 +160,7 @@ upload(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
   
 
@@ -203,7 +203,7 @@ upload(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;Up
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 否 | 回调函数，异步返回UploadTask对象。 |
 
@@ -553,7 +553,7 @@ download(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
 
 **返回值：**
@@ -588,7 +588,7 @@ download(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&l
 
   | 参数名 | 参数类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [BaseContext](#baseContext) | 是 | 基于应用程序的上下文。 |
+  | context | BaseContext | 是 | 基于应用程序的上下文。 |
   | config | [DownloadConfig](#downloadconfig) | 是 | 下载的配置信息。 |
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 否 | 下载接口的回调函数。 |
 
