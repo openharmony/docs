@@ -537,7 +537,7 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
-获取SIM卡账户信息，使用callback方式作为异步方法。
+获取SIM卡账户信息，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -599,7 +599,7 @@ sim.getActiveSimAccountInfoList(0, (err, data) => {
 
 getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 
-获取活跃SIM卡账户信息列表，使用callback方式作为异步方法。
+获取活跃SIM卡账户信息列表，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1110,7 +1110,7 @@ sim.setLockState(0, lockInfo, (err, data) => {
 
 setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 
-设置指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+设置指定卡槽SIM卡的锁状态，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1178,7 +1178,7 @@ sim.getLockState(0, 1, (err, data) => {
 
 getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 
-获取指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的锁状态，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1242,7 +1242,7 @@ sim.alterPin(0, "1234", "0000", (err, data) => {
 
 alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResponse\>;
 
-更改Pin密码，使用callback方式作为异步方法。
+更改Pin密码，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1482,7 +1482,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-****unlockPin2****(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码，使用callback方式作为异步方法。
 
@@ -1549,7 +1549,7 @@ promise.then(data => {
 
 ## sim.**unlockPuk**2<sup>8+</sup>
 
-unlockPuk2(slotId: number,newPin2: string,puk2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码的解锁密码，使用callback方式作为异步方法。
 
@@ -1581,7 +1581,7 @@ sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
 
 ## sim.**unlockPuk2**<sup>8+</sup>
 
-unlockPuk2slotId: number,newPin2: string,puk2: string): Promise&lt;LockStatusResponse\>
+unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码的解锁密码，使用Promise方式作为异步方法。
 
@@ -2653,7 +2653,7 @@ promise.then(data => {
 
 ## sim.getOpKey<sup>9+</sup>
 
-getOpKey(slotId: number, callback: AsyncCallback<number\>): void
+getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的opkey，使用callback方式作为异步方法。
 
@@ -2666,7 +2666,7 @@ getOpKey(slotId: number, callback: AsyncCallback<number\>): void
 | 参数名   | 类型                   | 必填 | 说明                                   |
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<number\> | 是   | 回调函数                               |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -2679,7 +2679,7 @@ sim.getOpKey(0, (err, data) => {
 
 ## sim.getOpKey<sup>9+</sup>
 
-getOpKey(slotId: number): Promise<number\>
+getOpKey(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的opkey，使用Promise方式作为异步方法。
 
@@ -2697,7 +2697,7 @@ getOpKey(slotId: number): Promise<number\>
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
-| Promise<number\> | 以Promise形式返回指定卡槽中SIM卡的opkey。 |
+| Promise<string\> | 以Promise形式返回指定卡槽中SIM卡的opkey。 |
 
 **示例：**
 
@@ -2948,3 +2948,34 @@ Icc账户信息。
 | :-------------- | ---- | ---------- |
 | GENERAL_CONTACT | 1    | 通用联系人 |
 | FIXED_DIALING   | 2    | 固定拨号   |
+
+## OperatorConfigKey<sup>9+</sup>
+
+运营商配置。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称                                                    | 值                                                  | 说明                                      |
+| ------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------- |
+| KEY_VOICE_MAIL_NUMBER_STRING                            | voice_mail_number_string                            | 语音邮件号码                              |
+| KEY_IMS_SWITCH_ON_BY_DEFAULT_BOOL                       | ims_switch_on_by_default_bool                       | 用户设置IMS通话开关默认值                 |
+| KEY_HIDE_IMS_SWITCH_BOOL                                | hide_ims_switch_bool                                | 隐藏IMS通话开关菜单                       |
+| KEY_VOLTE_SUPPORTED_BOOL                                | volte_supported_bool                                | 是否支持volte                             |
+| KEY_NR_MODE_SUPPORTED_LIST_INT_ARRAY                    | nr_mode_supported_list_int_array                    | 支持NR模式(SA，NSA)列表                   |
+| KEY_VOLTE_PROVISIONING_SUPPORTED_BOOL                   | volte_provisioning_supported_bool                   | 是否支持volte的PROVISIONING配置           |
+| KEY_SS_OVER_UT_SUPPORTED_BOOL                           | ss_over_ut_supported_bool                           | 是否支持UT设置补充业务                    |
+| KEY_IMS_GBA_REQUIRED_BOOL                               | ims_gba_required_bool                               | 是否允许插入有GBA能力的SIM卡时才能使用IMS |
+| KEY_UT_PROVISIONING_SUPPORTED_BOOL                      | ut_provisioning_supported_bool                      | 是否支持UT的PROVISIONING配置              |
+| KEY_IMS_PREFER_FOR_EMERGENCY_BOOL                       | ims_prefer_for_emergency_bool                       | 是否优先使用IMS用于紧急情况               |
+| KEY_CALL_WAITING_SERVICE_CLASS_INT                      | call_waiting_service_class_int                      | 设置呼叫等待服务类                        |
+| KEY_CALL_TRANSFER_VISIBILITY_BOOL                       | call_transfer_visibility_bool                       | 呼叫转移可见性                            |
+| KEY_IMS_CALL_DISCONNECT_REASONINFO_MAPPING_STRING_ARRAY | ims_call_disconnect_reasoninfo_mapping_string_array | ims通话断开原因信息                       |
+| KEY_FORCE_VOLTE_SWITCH_ON_BOOL                          | force_volte_switch_on_bool                          | 强制打开volte                             |
+| KEY_ENABLE_OPERATOR_NAME_CUST_BOOL                      | enable_operator_name_cust_bool                      | 打开运营商定制名字                        |
+| KEY_OPERATOR_NAME_CUST_STRING                           | operator_name_cust_string                           | 定制运营商名字                            |
+| KEY_SPN_DISPLAY_CONDITION_CUST_INT                      | spn_display_condition_cust_int                      | 显示spn定制条件                           |
+| KEY_PNN_CUST_STRING_ARRAY                               | pnn_cust_string_array                               | pnn定制                                   |
+| KEY_OPL_CUST_STRING_ARRAY                               | opl_cust_string_array                               | opl定制                                   |
+| KEY_EMERGENCY_CALL_STRING_ARRAY                         | emergency_call_string_array                         | 紧急呼叫                                  |

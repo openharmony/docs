@@ -678,7 +678,7 @@ getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\
 | 参数名   | 类型                                                        | 必填 | 说明                                      |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                                                      | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage8)\>> | 是   | 回调函数。                                |
+| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | 是   | 回调函数。                                |
 
 **示例：**
 
@@ -712,7 +712,7 @@ getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
 | 类型                                                    | 说明                               |
 | ------------------------------------------------------- | ---------------------------------- |
-| PromiseArray<[SimShortMessage](#simshortmessage8)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
+| PromiseArray<[SimShortMessage](#simshortmessage7)\>&gt; | 以Promise形式返回获取的SIM短消息。 |
 
 **示例：**
 
@@ -742,7 +742,7 @@ setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                                 | 必填 | 说明         |
 | -------- | ------------------------------------ | ---- | ------------ |
-| options  | [CBConfigOptions](#cbconfigoptions8) | 是   | 小区广播配置选项。 |
+| options  | [CBConfigOptions](#cbconfigoptions7) | 是   | 小区广播配置选项。 |
 | callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。   |
 
 **示例：**
@@ -776,7 +776,7 @@ setCBConfig(options: CBConfigOptions): Promise<void\>
 
 | 参数名  | 类型                                 | 必填 | 说明         |
 | ------- | ------------------------------------ | ---- | ------------ |
-| options | [CBConfigOptions](#cbconfigoptions8) | 是   | 小区广播配置选项。 |
+| options | [CBConfigOptions](#cbconfigoptions7) | 是   | 小区广播配置选项。 |
 
 **返回值：**
 
@@ -1330,6 +1330,23 @@ promise.then(data => {
 | date       | number                             | 是   | 日期     |
 | readStatus | number                             | 是   | 阅读状态 |
 
+## MmsReadRecInd<sup>8+</sup>
+
+彩信读取记录索引。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
+
+| 参数名     | 类型                               | 必填 | 说明     |
+| ---------- | ---------------------------------- | ---- | -------- |
+| version    | [MmsVersionType](#mmsversiontype8) | 是   | 版本     |
+| messageId  | string                             | 是   | 消息ID   |
+| to         | Array<[MmsAddress](#mmsaddress8)\> | 是   | 发送至   |
+| from       | [MmsAddress](#mmsaddress8)         | 是   | 来源     |
+| readStatus | number                             | 是   | 阅读状态 |
+| date       | number                             | 否   | 日期     |
+
 ## MmsAttachment<sup>8+</sup>
 
 彩信附件。
@@ -1465,7 +1482,7 @@ promise.then(data => {
 | MMS_YES | 128  | YES  |
 | MMS_NO  | 129  | NO   |
 
-## CBConfigOptions<sup>8+</sup>
+## CBConfigOptions<sup>7+</sup>
 
 小区广播配置选项。
 
@@ -1556,7 +1573,7 @@ SIM卡消息选项。
 | pdu       | string                                 | 是   | 协议数据单元   |
 | smsc      | string                                 | 是   | 短消息业务中心 |
 
-## SimShortMessage<sup>8+</sup>
+## SimShortMessage<sup>7+</sup>
 
 SIM卡短消息。
 

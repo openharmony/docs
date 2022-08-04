@@ -2742,13 +2742,13 @@ promise.then(data => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CallManager。
 
-| 参数名     | 类型                               | 必填 | 说明                                                         |
-| ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| extras     | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
-| accountId  | number                             | 否   | 帐户Id。从API version 8开始支持。此接口为系统接口。          |
-| videoState | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。从API version 8开始支持。此接口为系统接口。    |
-| dialScene  | [DialScene](#dialscene8)           | 否   | 拨号场景。从API version 8开始支持。此接口为系统接口。        |
-| dialType   | [DialType](#dialtype8)             | 否   | 拨号类型。从API version 8开始支持。此接口为系统接口。        |
+| 参数名     | 类型                                             | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| extras     | boolean                                          | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
+| accountId  | number <sup>8+</sup>                             | 否   | 帐户Id。从API version 8开始支持。此接口为系统接口。          |
+| videoState | [VideoStateType](#videostatetype7) <sup>8+</sup> | 否   | 视频状态类型。从API version 8开始支持。此接口为系统接口。    |
+| dialScene  | [DialScene](#dialscene8) <sup>8+</sup>           | 否   | 拨号场景。从API version 8开始支持。此接口为系统接口。        |
+| dialType   | [DialType](#dialtype8) <sup>8+</sup>             | 否   | 拨号类型。从API version 8开始支持。此接口为系统接口。        |
 
 ## CallState
 
