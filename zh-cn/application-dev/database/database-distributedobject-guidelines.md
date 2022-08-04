@@ -128,16 +128,16 @@
    以下为加入同步组网的代码示例:
 
    ```js
-   //发起方
+   // 发起方
    var local_object = distributedObject.createDistributedObject({name:"jack", age:18, isVis:true, 
        parent:{mother:"jack mom", father:"jack Dad"}, list:[{mother:"jack mom"}, {father:"jack Dad"}]});
    local_object.setSessionId(sessionId);
    
-   //被拉起方
+   // 被拉起方
    var remote_object = distributedObject.createDistributedObject({name:undefined, age:undefined, isVis:true, 
                   parent:undefined, list:undefined});
    remote_object.setSessionId(sessionId);
-   //收到status上线后remote_object同步数据，即name变成jack,age是18
+   // 收到status上线后remote_object同步数据，即name变成jack,age是18
    ```
    
 5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
@@ -173,9 +173,9 @@
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 针对复杂类型的数据修改，目前支持对根属性的修改，暂不支持对下级属性的修改。示例如下：
    ```js
-   //支持的修改方式
+   // 支持的修改方式
    local_object.parent = {mother:"mom", father:"dad"};
-   //不支持的修改方式
+   // 不支持的修改方式
    local_object.parent.mother = "mom";
    ```
 
@@ -189,9 +189,9 @@
 
    以下为取消监听数据变更的代码示例：
    ```js
-   //删除变更回调changeCallback
+   // 删除变更回调changeCallback
    local_object.off("change", changeCallback);
-   //删除所有的变更回调
+   // 删除所有的变更回调
    local_object.off("change"); 
    ```
 9. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
@@ -243,9 +243,9 @@
 
     以下为取消监听数据变更的代码示例：
        ```js
-    //删除上下线回调statusCallback
+    // 删除上下线回调statusCallback
     local_object.off("status", this.statusCallback);
-    //删除所有的上下线回调
+    // 删除所有的上下线回调
     local_object.off("status");
        ```
 12. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
