@@ -17,4 +17,5 @@
 - 其他
   - [WantAgent开发指导](wantagent.md)
   - [Ability助手使用指导](ability-assistant-guidelines.md)
+  - [ContinuationManager开发指导](continuationmanager.md)
   - [测试框架使用指导](ability-delegator.md)
