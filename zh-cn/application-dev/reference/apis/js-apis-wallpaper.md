@@ -1,5 +1,7 @@
 # 壁纸
 
+壁纸管理服务是OpenHarmony中系统服务，是主题框架的部分组成，主要为系统提供壁纸管理服务能力，支持系统显示、设置、切换壁纸等功能。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
