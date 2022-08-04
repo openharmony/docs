@@ -97,8 +97,8 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 | 名称                       | 类型    | 只读 | 说明         |
 | ------------------------- | ------ | ---- | ----------- |
-| min                       | number | 是   | 最小速率(帧/秒)      |
-| max                       | number | 是   | 最大速率(帧/秒)      |
+| min                       | number | 是   | 最小速率，单位fps      |
+| max                       | number | 是   | 最大速率，单位fps      |
 
 ## VideoProfile
 
@@ -521,7 +521,7 @@ createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback
 | 名称     | 类型                                             | 必填 | 说明                               |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](#profile)                             | 是   | 支持的预览配置信息。                |
-| surfaceId| string         | 是   | 从XComponent(../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。|
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。|
 | callback | AsyncCallback<[PreviewOutput](#previewoutput)\>  | 是   | 回调函数，用于获取PreviewOutput实例。|
 
 **示例：**
@@ -549,7 +549,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 | 名称     | 类型                              | 必填 | 说明       |
 | -------- | ---------------------------------| ---- | ---------- |
 | profile  | [Profile](#profile)              | 是   | 支持的预览配置信息。  |
-| surfaceId| string                           | 是   | 从XComponent(../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。 |
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。 |
 
 **返回值：**
 
@@ -633,7 +633,7 @@ createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<P
 | 名称     | 类型                                        | 必填 | 说明                                   |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
 | profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息。                    |
-| surfaceId| string            | 是   | 从ImageReceiver(js-apis-image.md#vimagereceiver9)获取的SurfaceID。|
+| surfaceId| string            | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的SurfaceID。|
 | callback | AsyncCallback<[PhotoOutput](#photooutput)\>  | 是   | 回调函数，用于获取PhotoOutput实例。    |
 
 **示例：**
@@ -661,7 +661,7 @@ createPhotoOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\>
 | 名称     | 类型                              | 必填 | 说明         |
 | -------- | ---------------------------------| ---- | ----------- |
 | profile  | [Profile](#profile)              | 是   | 支持的拍照配置信息。  |
-| surfaceId| string       | 是   | 从ImageReceiver(js-apis-image.md#imagereceiver9)获取的SurfaceID。|
+| surfaceId| string       | 是   | 从[ImageReceiver](js-apis-image.md#imagereceiver9)获取的SurfaceID。|
 
 **返回值：**
 
@@ -690,7 +690,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallb
 | 名称     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
 | profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息。               |
-| surfaceId| string          | 是   | 从VideoRecorder(js-apis-media.md#videorecorder9)获取的SurfaceID。|
+| surfaceId| string          | 是   | 从[VideoRecorder](js-apis-media.md#videorecorder9)获取的SurfaceID。|
 | callback | AsyncCallback<[VideoOutput](#videooutput)\>  | 是   | 回调函数，用于获取VideoOutput实例。 |
 
 **示例：**
@@ -718,7 +718,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput
 | 名称     | 类型                              | 必填 | 说明         |
 | -------- | ---------------------------------| ---- | ---------- |
 | profile  | [VideoProfile](#videoprofile)    | 是   | 支持的录像配置信息。   |
-| surfaceId| string        | 是   | 从ImageReceiver(js-apis-media.md#videorecorder9)获取的SurfaceID。|
+| surfaceId| string        | 是   | 从[VideoRecorder](js-apis-media.md#videorecorder9)获取的SurfaceID。|
 
 **返回值：**
 
@@ -738,7 +738,7 @@ cameraManager.createVideoOutput(profile, surfaceId).then((videooutput) => {
 
 createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>, callback: AsyncCallback<MetadataOutput\>): void
 
-创建meta流输出对象，通过注册回调函数获取结果。
+创建metadata流输出对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -765,7 +765,7 @@ cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) =>
 
 createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>): Promise<MetadataOutput>
 
-创建meta流输出对象，通过Promise获取结果。
+创建metadata流输出对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1275,7 +1275,7 @@ cameraInput.on('error', (cameraInputError) => {
 
 ## CaptureSession
 
-拍照会话类,保存一次相机运行所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput),并向相机设备申请完成相机功能(录像，拍照)。
+拍照会话类，保存一次相机运行所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)，并向相机设备申请完成相机功能(录像，拍照)。
 
 ### beginConfig
 
@@ -2312,7 +2312,7 @@ cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then(() =>
 
 ### getMeteringPoint
 
-getMeteringPoint(callback: AsyncCallback<point\>): void
+getMeteringPoint(callback: AsyncCallback<Point\>): void
 
 查询曝光区域中心点，通过注册回调函数获取结果。
 
@@ -2338,7 +2338,7 @@ cameraInput.getMeteringPoint((err, exposurePoint) => {
 
 ### getMeteringPoint
 
-getMeteringPoint(): Promise<point\>
+getMeteringPoint(): Promise<Point\>
 
 查询曝光区域中心点，通过Promise获取结果。
 
@@ -2449,7 +2449,7 @@ getExposureBiasRange(): Promise<Array<number\>\>
 
 | 名称               | 说明                                     |
 | ----------------- |---------------------------------------- |
-| Promise<Array<number\>\> | 使用Promise的方式获取支持的曝光模式。 |
+| Promise<Array<number\>\> | 使用Promise的方式获取曝光补偿范围。 |
 
 **示例：**
 
@@ -2464,6 +2464,8 @@ cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).th
 setExposureBias(exposureBias: number, callback: AsyncCallback<void\>): void
 
 设置曝光补偿，通过注册回调函数获取结果。
+
+进行设置之前，建议先通过方法[getExposureBiasRange](#getexposurebiasrange)查询支持的范围。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2491,6 +2493,8 @@ cameraInput.setExposureBias(-4,(err) => {
 setExposureBias(exposureBias: number): Promise<void\>
 
 设置曝光补偿，通过Promise获取结果。
+
+进行设置之前，建议先通过方法[getExposureBiasRange](#getexposurebiasrange)查询支持的范围。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2837,7 +2841,7 @@ getFocalLength(callback: AsyncCallback<number\>): void
 
 | 名称      | 类型                     | 必填 | 说明                     |
 | -------- | ----------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<number\>    | 是   | 回调函数，用于获取当前焦距(厘米)。 |
+| callback | AsyncCallback<number\>    | 是   | 回调函数，用于获取当前焦距。 |
 
 **示例：**
 
@@ -2863,7 +2867,7 @@ getFocalLength(): Promise<number\>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise<number\> | 使用Promise的方式获取焦距(厘米)。 |
+| Promise<number\> | 使用Promise的方式获取焦距。 |
 
 **示例：**
 
@@ -2885,7 +2889,7 @@ getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 
 | 名称     | 类型                           | 必填 | 说明                     |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback<Array<number\>\> | 是   | 回调函数，用于获取结果(厘米)。 |
+| callback | AsyncCallback<Array<number\>\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -2911,7 +2915,7 @@ getZoomRatioRange\(\): Promise<Array<number\>\>
 
 | 类型                     | 说明                                        |
 | ------------------------ | ------------------------------------------- |
-| Promise<Array<number\>\> | 使用Promise的方式获取变焦范围(厘米)。 |
+| Promise<Array<number\>\> | 使用Promise的方式获取变焦范围。 |
 
 **示例：**
 
@@ -3329,7 +3333,7 @@ addDeferredSurface(surfaceId: string, callback: AsyncCallback<void\>): void
 
 | 名称     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| surfaceId| string     | 是   | 从XComponent(../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。|
+| surfaceId| string     | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。|
 | callback | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
@@ -3351,6 +3355,12 @@ addDeferredSurface(surfaceId: string): Promise<void\>
 在previewOutput生成之后添加surface，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| surfaceId| string     | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。|
 
 **返回值：**
 
@@ -3569,8 +3579,6 @@ previewOutput.on('error', (previewOutputError) => {
 图片地理位置信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
 
 | 名称         | 类型    | 必填 |说明          |
 | ------------ | ------ | -- |------------ |
@@ -4145,7 +4153,7 @@ metadata流。
 
 ## MetadataObject
 
-相机元能力信息,[CameraInput](#camerainput)相机信息中的数据来源。
+相机元能力信息，[CameraInput](#camerainput)相机信息中的数据来源。
 
 ### getType
 
