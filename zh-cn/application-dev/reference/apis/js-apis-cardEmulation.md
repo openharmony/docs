@@ -27,11 +27,11 @@ isSupported(feature: number): boolean
   | -------- | -------- |
   | boolean | true:支持该类型卡模拟，&nbsp;false:不支持该类型卡模拟。 |
 
-## HceService
+## HceService<sup>8+</sup>
 
 管理HCE卡模拟。在调用HceService的接口前，需要先通过new cardEmulation.HceService()创建实例。
 
-### startHCE
+### startHCE<sup>8+</sup>
 
 startHCE(aidList: string[]): boolean
 
@@ -47,7 +47,7 @@ startHCE(aidList: string[]): boolean
 | ------- | -------- | ---- | ----------------------- |
 | aidList | string[] | 是   | 注册进行卡模拟的aid列表 |
 
-### stopHCE
+### stopHCE<sup>8+</sup>
 
 stopHCE(): boolean
 
@@ -57,7 +57,7 @@ stopHCE(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-### on
+### on<sup>8+</sup>
 
 on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
@@ -74,7 +74,7 @@ on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 | type     | string                  | 是   | 固定填"hceCmd"字符串                         |
 | callback | AsyncCallback<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据数组 |
 
-### sendResponse
+### sendResponse<sup>8+</sup>
 
 sendResponse(responseApdu: number[]): void;
 
