@@ -904,7 +904,7 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 | 名称     | 类型                                      | 必填 | 说明                            |
 | -------- | --------------------------------------- | ---- | ------------------------------- |
 | type     | string                                  | 是   | 监听事件，固定为'cameraMute'，即相机状态变化事件。 |
-| callback | AsyncCallback<boolean\>                 | 是   | 回调函数，用于获取相机状态变化信息。  |
+| callback | AsyncCallback<boolean\>                 | 是   | 回调函数，用于获取相机是否禁用。  |
 
 **示例：**
 
@@ -943,7 +943,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 ## CameraType
 
-枚举，镜头能力查询。
+枚举，相机类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -957,7 +957,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 ## ConnectionType
 
-枚举，镜头能力查询。
+枚举，相机连接类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -969,7 +969,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 ## CameraDevice
 
-枚举，镜头能力查询。
+枚举，相机设备信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core。
 
