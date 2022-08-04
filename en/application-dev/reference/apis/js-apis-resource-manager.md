@@ -506,7 +506,7 @@ Obtains the string array corresponding to the specified resource object. This AP
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
