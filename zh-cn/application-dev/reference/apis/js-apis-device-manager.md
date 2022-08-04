@@ -765,7 +765,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
-取消注册发布设备失败回调。
+取消注册设备发布失败回调。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
