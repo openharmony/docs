@@ -6,7 +6,7 @@
 ## 导入模块
 
 ```
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import inputMethodEngine from '@ohos.inputmethodengine';
 ```
 
 ## inputMethodEngine
