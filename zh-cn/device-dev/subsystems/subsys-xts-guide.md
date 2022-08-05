@@ -255,16 +255,16 @@ XTS子系统当前包括acts与tools软件包：
       // Test suite cleanup action, which is executed after the last test case
       static void TearDownTestCase(void){
       }
-     // Preset action of the test case
-     virtual void SetUp()
-     {
-     }
-     // Cleanup action of the test case
-     virtual void TearDown()
-     {
+      // Preset action of the test case
+      virtual void SetUp()
+      {
+      }
+      // Cleanup action of the test case
+      virtual void TearDown()
+      {
       }
       };
-     ```
+      ```
 
    3. 使用宏定义HWTEST或HWTEST_F写测试用例
 
@@ -285,8 +285,7 @@ XTS子系统当前包括acts与tools软件包：
    每个测试模块目录下新建BUILD.gn编译文件，用于指定编译后可执行文件的名称、依赖的头文件、依赖的库等；具体写法如下。每个测试模块将独立编译成.bin可执行文件， 该文件可直接push到单板上进行测试。
 
    举例：
-
-     
+    
    ```
    import("//test/xts/tools/lite/build/suite_lite.gni")
    hcpptest_suite("ActsDemoTest") {
