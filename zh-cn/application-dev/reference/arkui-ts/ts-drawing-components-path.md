@@ -1,29 +1,37 @@
 # Path
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 路径绘制组件。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 无
 
+## 接口
+
+Path(value?: { width?: number | string, height?: number | string, commands?: string })
+
+- 参数
+
+  | 参数名      | 参数类型             | 必填   | 默认值  | 参数描述        |
+  | -------- | ---------------- | ---- | ---- | ----------- |
+  | width    | number \| string | 否    | 0    | 路径所在矩形的宽度。  |
+  | height   | number \| string | 否    | 0    | 路径所在矩形的高度。  |
+  | commands | string           | 否    | ‘ ’  | 路径绘制的命令字符串。 |
+
 
 ## 属性
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
-| -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | 否 | 路径所在矩形的宽度。 | 
-| height | Length | 0 | 否 | 路径所在矩形的高度。 | 
-| commands | string | '' | 是 | 路径绘制的命令字符串。 | 
+| 参数名称     | 参数类型             | 默认值  | 必填   | 参数描述        |
+| -------- | ---------------- | ---- | ---- | ----------- |
+| width    | number \| string | 0    | 否    | 路径所在矩形的宽度。  |
+| height   | number \| string | 0    | 否    | 路径所在矩形的高度。  |
+| commands | string           | ''   | 是    | 路径绘制的命令字符串。 |
 
 
 支持的绘制命令如下：

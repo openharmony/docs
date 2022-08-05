@@ -1,4 +1,4 @@
-# Grid
+Grid
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -25,31 +25,23 @@ Grid()
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| columnsTemplate | string | '1fr' | 用于设置当前网格布局列的数量，不设置时默认1列&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;分三列，将父组件允许的宽分为4等份，第一列占1份，第二列占一份，第三列占2份。 |
-| rowsTemplate | string | '1fr' | 用于设置当前网格布局行的数量，不设置时默认1行&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 |
-| columnsGap | Length | 0 | 用于设置列与列的间距。 |
-| rowsGap | Length | 0 | 用于设置行与行的间距。 |
-| editMode <font color=ff0000><sup>8+</sup></font> | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Gird组件内部[GridItem](ts-container-griditem.md)。 |
-| layoutDirection<font color=ff0000><sup>8+</sup></font>  | number | 0                 |设置布局的主轴方向，目前支持的主轴布局方向如下：<br/>- 0：主轴布局方向沿水平方向布局，即先填满一列，再去填下一列。<br/>- 1：主轴布局方向沿垂直方向布局，即先填满一行，再去填下一行。|
-| maxCount <font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是0时，表示可显示的最大行数<br/>当layoutDirection是1时，表示可显示的最大列数。 |
-| minCount <font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是0时，表示可显示的最小行数。<br/>当layoutDirection是1时，表示可显示的最小列数。 |
-| cellLength <font color=ff0000><sup>8+</sup></font> | number | 0 | 当layoutDirection是0时，表示一行的高度。<br/>当layoutDirection是1时，表示一列的宽度。 |
+| 名称                                       | 参数类型    | 默认值   | 描述                                       |
+| ---------------------------------------- | ------- | ----- | ---------------------------------------- |
+| columnsTemplate                          | string  | '1fr' | 用于设置当前网格布局列的数量，不设置时默认1列&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;分三列，将父组件允许的宽分为4等份，第一列占1份，第二列占一份，第三列占2份。 |
+| rowsTemplate                             | string  | '1fr' | 用于设置当前网格布局行的数量，不设置时默认1行&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 |
+| columnsGap                               | Length  | 0     | 用于设置列与列的间距。                              |
+| rowsGap                                  | Length  | 0     | 用于设置行与行的间距。                              |
+| editMode <sup>8+</sup>                   | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Gird组件内部[GridItem](ts-container-griditem.md)。 |
+| layoutDirection<sup>8+</sup>             | number  | 0     | 设置布局的主轴方向，目前支持的主轴布局方向如下：<br/>- 0：主轴布局方向沿水平方向布局，即先填满一列，再去填下一列。<br/>- 1：主轴布局方向沿垂直方向布局，即先填满一行，再去填下一行。 |
+| maxCount <font color=ff0000><sup>8+</sup></font> | number  | 1     | 当layoutDirection是0时，表示可显示的最大行数<br/>当layoutDirection是1时，表示可显示的最大列数。 |
+| minCount <font color=ff0000><sup>8+</sup></font> | number  | 1     | 当layoutDirection是0时，表示可显示的最小行数。<br/>当layoutDirection是1时，表示可显示的最小列数。 |
+| cellLength <font color=ff0000><sup>8+</sup></font> | number  | 0     | 当layoutDirection是0时，表示一行的高度。<br/>当layoutDirection是1时，表示一列的宽度。 |
 | multiSelectable<font color=ff0000><sup>8+</sup></font> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
-| dragAnimation<font color=ff0000><sup>8+</sup></font> | boolean         | false                 | 是否开启拖拽GridItem动画。 |
-| edgeEffection<font color=ff0000><sup>8+</sup></font> | EdgeEffect         | EdgeEffect.Spring     | 设置边缘滑动效果，目前支持的滑动效果参见EdgeEffect枚举说明。 |
-
-- EdgeEffect枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
-  | None | 滑动到边缘后无效果。 |
 
 ## 事件
 
-| 名称 | 功能描述 |
-| -------- | -------- |
+| 名称                                       | 功能描述                    |
+| ---------------------------------------- | ----------------------- |
 | onScrollIndex(first:&nbsp;number)&nbsp;=&gt;&nbsp;void | 当前列表显示的起始位置item发生变化时触发。 |
 
 ## 示例
