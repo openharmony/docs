@@ -174,6 +174,42 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
   });
   ```
 
+## display.hasPrivateWindow<sup>9+</sup>
+
+hasPrivateWindow(displayId: number): boolean
+
+查询指定display对象上是否有可见的隐私窗口。可通过[setPrivacyMode](js-apis-window.md#setprivacymode7)接口设置隐私窗口。隐私窗口内容将无法被截屏或录屏。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型                      | 必填 | 说明       |
+| ------ | ------------------------- | ---- |----------|
+| id     | number                    | 是   | 显示设备的id。 |
+
+**返回值：**
+
+| 类型                             | 说明                                                                    |
+| -------------------------------- |-----------------------------------------------------------------------|
+|boolean | 查询的display对象上是否有可见的隐私窗口。<br>true表示此display对象上有可见的隐私窗口，false表示此display对象上没有可见的隐私窗口。</br> |
+
+**示例：**
+
+  ```js
+  var ret = display.hasPrivateWindow(displayClass.id);
+  if (ret == undefined) {
+      console.log("HasPrivateWindow undefined.");
+  }
+  if (ret) {
+      console.log("HasPrivateWindow.");
+  } else if (!ret) {
+      console.log("Don't HasPrivateWindow.");
+  }
+  ```
+
 ## display.on('add'|'remove'|'change')
 
 on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
@@ -215,3 +251,4 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
   ```js
   display.off("remove");
   ```
+

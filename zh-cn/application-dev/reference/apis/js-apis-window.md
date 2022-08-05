@@ -1856,8 +1856,8 @@ on(type: 'avoidAreaChange', callback: Callback&lt;{[AvoidAreaType](#avoidareatyp
 **示例：**
 
 ```js
-windowClass.on('avoidAreaChange', (type, data) => {
-    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(type) + 'Data: ' + JSON.stringify(data));
+windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
 });
 ```
 
@@ -2385,6 +2385,29 @@ promise.then((data)=> {
 });
 ```
 
+### setWakeUpScreen()<sup>9+</sup>
+
+setWakeUpScreen(wakeUp: boolean): void;
+
+窗口唤醒屏幕。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名           | 类型    | 必填 | 说明                         |
+| ---------------- | ------- | ---- | ---------------------------- |
+| wakeUp           | boolean | 是   | 是否设置唤醒屏幕。 |
+
+**示例：** 
+
+```ts
+var wakeUp = true;
+windowClass.setWakeUpScreen(wakeUp);
+```
+
 ### setBrightness
 
 setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2451,9 +2474,9 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
-> 
-> 从 API version 7开始支持。
+> **说明：** 该接口不支持使用。
+>
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2482,9 +2505,9 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2637,9 +2660,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 设置是否允许可点击子窗口之外的区域，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2668,9 +2691,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2701,7 +2724,7 @@ promise.then((data)=> {
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口是否为隐私模式，使用callback异步回调。
+设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2730,7 +2753,7 @@ windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
 
 setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-设置窗口是否为隐私模式，使用Promise异步回调。
+设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2756,6 +2779,25 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to set the window to privacy mode. Cause: ' + JSON.stringify(err));
 });
+```
+
+### setSnapshotSkip<sup>9+</sup>
+setSnapshotSkip(isSkip: boolean): void
+
+截屏录屏是否忽略当前窗口。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名        | 类型    | 必填 | 说明                 |
+| ------------- | ------- | ---- | -------------------- |
+| isSkip | boolean | 是   | 截屏录屏是否忽略当前窗口，默认为false。<br>true表示忽略当前窗口，false表示不忽略当前窗口。</br> |
+```js
+var isSkip = true;
+windowClass.setSnapshotSkip(isSkip);
 ```
 
 ### setTouchable<sup>7+</sup>
@@ -3381,6 +3423,7 @@ class myAbility extends Ability {
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
 设置应用显示在锁屏之上。
+此接口为系统接口，三方应用不支持调用。
 
 此接口仅可在Stage模型下使用。
 

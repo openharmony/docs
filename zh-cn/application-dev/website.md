@@ -4,10 +4,9 @@
 
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
-    - [使用eTS语言开发（传统代码方式）](quick-start/start-with-ets.md)
-    - [使用eTS语言开发（低代码方式）](quick-start/start-with-ets-low-code.md)
-    - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
-    - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
+    - [使用eTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
+    - [使用eTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
+    - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
 
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
@@ -191,7 +190,9 @@
   - 窗口管理
     - 窗口
       - [窗口开发概述](windowmanager/window-overview.md)
-      - [窗口开发指导](windowmanager/window-guidelines.md)
+      - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
+      - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
+      - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
     - 屏幕属性
       - [屏幕属性开发概述](windowmanager/display-overview.md)
       - [屏幕属性开发指导](windowmanager/display-guidelines.md)
@@ -818,6 +819,7 @@
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime (设置系统时间)](reference/apis/js-apis-system-time.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
+      - [@ohos.systemTimer(设置系统时间)](js-apis-system-timer.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
     - 设备管理
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
@@ -934,3 +936,5 @@
         - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
         - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
+- 常见问题
+  - [full-SDK替换指南](quick-start/full-sdk-switch-guide.md)

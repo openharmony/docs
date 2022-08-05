@@ -72,7 +72,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    ```
 4. 实现Ability生命周期接口。
 
-   在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](../windowmanager/window-guidelines.md)。
+   在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](../windowmanager/application-window-stage.md)。
    ```ts
    export default class MainAbility extends Ability {
     onCreate(want, launchParam) {

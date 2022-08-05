@@ -505,6 +505,7 @@ skills示例：
 | name      | 需要使用的权限名称。 | 字符串 | 否 |
 | reason    | 描述申请权限的原因。不能超过256个字节。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其它权限可缺省，缺省为空 |
 | usedScene | 描述权限使用的场景和时机。场景类型有：ability、when。ability：ability的名称，可配置多个。when：调用时机，可填的值有inuse（使用时）、always（始终） | 对象 | ability分情况：申请的权限有user_grant时，ability必填；没有user_grant时可缺省，缺省值为空。when可缺省，缺省值为“inuse” |
+具体示例可参考[访问控制开发指导](../security/accesstoken-guidelines.md#fa模型)。
 
 表22  js对象的内部结构说明
 

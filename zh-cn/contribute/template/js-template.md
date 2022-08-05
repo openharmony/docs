@@ -74,7 +74,7 @@ ArrayList和LinkedList相比，ArrayList的随机访问效率更高。但由于A
 > 1. 根据实际情况填写导入模块。采用代码段的样式，给出import语句。
 >
 > 2. 如果没有导入模块，将“导入模块”修改为“使用说明”。<br/>使用说明案例：<br/>
->    在使用AbilityContext的功能前，需要通过[getContext()](链接到对应的接口说明文件中.md)先获取Context对象。
+>    在使用AbilityContext的功能前，需要通过\[getContext()]\(链接到对应的接口说明文件中.md)先获取Context对象。
 >
 > ```js
 >    import ability_featureAbility from '@ohos.ability.featureAbility';
