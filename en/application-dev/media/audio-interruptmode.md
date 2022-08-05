@@ -48,7 +48,7 @@ For details about the APIs, see [AudioRenderer in Audio Management](../reference
 
    ```js
     var mode_ = audio.InterruptMode.SHARE_MODE;
-    await this.audioRenderer.setInterruptMode(mode_).then(()=>{
+    await this.audioRenderer.setInterruptMode(mode_).then(() => {
       console.log('[JSAR] [SetInterruptMode] Setting: '+ (mode_ == 0? " share mode":"independent mode") + "success");
     });
    ```
