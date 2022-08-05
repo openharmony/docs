@@ -1,5 +1,6 @@
 # Key Event
 
+A key event is triggered when a component interacts with a keyboard, remote control, or any other input device with keys.
 
 > **NOTE**
 >
@@ -15,7 +16,7 @@ None
 
 | Name | Bubbling Supported | Description |
 | -------- | -------- | -------- |
-| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when a key event occurs. For details about the event parameters, see [KeyEvent Object](#KeyEvent Object). |
+| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when the a key event occurs on the bound component in focus. For details about **event**, see [KeyEvent](#keyevent). |
 
 
 ## KeyEvent
@@ -24,7 +25,7 @@ None
   | Name | Type | Description |
   | -------- | -------- | -------- |
   | type | [KeyType](#keytype-enums) | Type of a key. |
-  | keyCode | number | Key code. |
+  | [keyCode](../apis/js-apis-keycode.md) | number | Key code. |
   | keyText | string | Key value. |
   | keySource | [KeySource](#keysource-enums) | Type of the input device that triggers the key event. |
   | deviceId | number | ID of the input device that triggers the key event. |
@@ -36,7 +37,7 @@ None
   | -------- | -------- |
   | stopPropagation(): void | Stops the event from bubbling upwards or downwards. |
 
-##  KeyType Enums
+## KeyType Enums
 
 | Name | Description |
 | -------- | -------- |
@@ -47,20 +48,10 @@ None
 ## KeySource Enums
 | Name | Description |
 | -------- | -------- |
-| Unknown | Unknown input device. |
-| [KeyCode](#common-keycode-enums) | The input device is a keyboard. |
+| Unknown  | Unknown input device. |
+| Keyboard | The input device is a keyboard. |
 
-## Common KeyCode Enums
 
-| Value | Behavior | Physical Button |
-| -------- | -------- | -------- |
-| 19 | Upward | Up button. |
-| 20 | Downward | Down button. |
-| 21 | Leftward | Left button. |
-| 22 | Rightward | Right button. |
-| 23 | OK | **OK** key on a remote control. |
-| 66 | OK | **Enter** key on a keyboard. |
-| 160 | OK | **Enter** button on the numeric keypad. |
 
 
 ## Example
