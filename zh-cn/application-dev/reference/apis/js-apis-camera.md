@@ -188,7 +188,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 
 | 名称     | 类型                                                              | 必填 | 说明                      |
 | -------- | ---------------------------------------------------------------- | -- | -------------------------- |
-| camera   | [CameraDevice](#CameraDevice)                                    | 是 | CameraDevice对象。          |
+| camera   | [CameraDevice](#cameraDevice)                                    | 是 | CameraDevice对象。          |
 | callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | 是 | 使用callback方式获取相机输出能力。 |
 
 **示例：**
@@ -406,7 +406,7 @@ cameraManager.muteCamera(isMuted).then(() => {
 
 createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): void
 
-使用相机ID异步创建CameraInput实例，通过注册回调函数获取结果。
+使用CameraDevice对象异步创建CameraInput实例，通过注册回调函数获取结果。
 
 此接口为系统接口。
 
@@ -418,7 +418,7 @@ createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): 
 
 | 名称     | 类型                                         | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| camera   | [CameraDevice](#CameraDevice)               | 是   | 指定相机ID。                        |
+| camera   | [CameraDevice](#cameraDevice)               | 是   | CameraDevice对象。                        |
 | callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。    |
 
 **示例：**
@@ -437,7 +437,7 @@ cameraManager.createCameraInput(camera, (err, cameraInput) => {
 
 createCameraInput(camera: CameraDevice): Promise<CameraInput\>
 
-使用相机ID异步创建CameraInput实例，通过Promise获取结果。
+使用CameraDevice对象异步创建CameraInput实例，通过Promise获取结果。
 
 此接口为系统接口。
 
@@ -449,7 +449,7 @@ createCameraInput(camera: CameraDevice): Promise<CameraInput\>
 
 | 名称     | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#CameraDevice) | 是   | 指定相机ID。 |
+| camera   | [CameraDevice](#cameraDevice) | 是   | CameraDevice对象。 |
 
 **返回值：**
 
@@ -975,7 +975,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 | 名称           | 类型                                | 只读 | 说明        |
 | -------------- | --------------------------------- | ---- | ---------- |
-| cameraId       | string                            | 是   | 相机ID。     |
+| cameraId       | string                            | 是   | CameraDevice对象|
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。    |
 | cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型。 |
