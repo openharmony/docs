@@ -47,23 +47,26 @@ struct GpioMethod {
 
 ## 开发步骤
 
-GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，以及实例化核心层接口函数。GPIO控制器分组管理所有管脚，相关参数会在属性文件中有所体现；驱动入口和接口函数的实例化环节是厂商驱动接入HDF的核心环节。
+GPIO模块适配的三个必选环节是配置属性文件，实例化驱动入口，以及实例化核心层接口函数。
 
-1. 实例化驱动入口：
+GPIO控制器分组管理所有管脚，相关参数会在属性文件中有所体现；驱动入口和接口函数的实例化环节是厂商驱动接入HDF的核心环节。
+
+1. 实例化驱动入口
    - 实例化HdfDriverEntry结构体成员。
    - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
 
-2. 配置属性文件：
+2. 配置属性文件
    - 在device_info.hcs文件中添加deviceNode描述。
    - 【可选】添加gpio_config.hcs器件属性文件。
 
-3. 实例化GPIO控制器对象：
+3. 实例化GPIO控制器对象
    - 初始化GpioCntlr成员。
    - 实例化GpioCntlr成员GpioMethod。
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
       > 实例化GpioCntlr成员GpioMethod，详见[接口说明](#接口说明)。
 
-4. 驱动调试：
+4. 驱动调试
+
    【可选】针对新增驱动程序，建议验证驱动基本功能，例如GPIO控制状态，中断响应情况等。
 
 
@@ -71,7 +74,10 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
 
 下方将以gpio_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
-1. 驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
+1. 驱动开发首先需要实例化驱动入口。
+
+   驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
+
    一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
      GPIO 驱动入口参考：
@@ -79,7 +85,7 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
    ```
    struct HdfDriverEntry g_gpioDriverEntry = {
      .moduleVersion = 1,
-     .Bind = Pl061GpioBind,            // GPIO不需要实现Bind,本例是一个空实现，厂商可根据自身需要添加相关操作
+     .Bind = Pl061GpioBind,            // GPIO不需要实现Bind，本例是一个空实现，厂商可根据自身需要添加相关操作。
      .Init = Pl061GpioInit,            // 见Init参考
      .Release = Pl061GpioRelease,      // 见Release参考
      .moduleName = "hisi_pl061_driver",//【必要且需要与HCS文件中里面的moduleName匹配】
@@ -88,7 +94,10 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
    HDF_INIT(g_gpioDriverEntry);
    ```
 
-2. 完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在 gpio_config.hcs 中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值与核心层GpioCntlr 成员的默认值或限制范围有密切关系。
+2. 完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在gpio_config.hcs中配置器件属性。
+
+   deviceNode信息与驱动入口注册相关，器件属性值与核心层GpioCntlr成员的默认值或限制范围有密切关系。
+
    本例只有一个GPIO控制器，如有多个器件信息，则需要在device_info文件增加deviceNode信息，以及在gpio_config文件中增加对应的器件属性。
 
    - device_info.hcs配置参考
@@ -101,12 +110,12 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
           priority = 50;
           device_gpio :: device {
               device0 :: deviceNode {
-              policy = 0;        // 等于0，不需要发布服务
-              priority = 10;     // 驱动启动优先级
-              permission = 0644; // 驱动创建设备节点权限
-              moduleName = "hisi_pl061_driver";           //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
-              deviceMatchAttr = "hisilicon_hi35xx_pl061"; //【必要】用于配置控制器私有数据，要与 gpio_config.hcs 中 
-                                                          // 对应控制器保持一致，其他控制器信息也在文件中
+              policy = 0;                                 // 等于0，不需要发布服务。
+              priority = 10;                              // 驱动启动优先级。
+              permission = 0644;                          // 驱动创建设备节点权限。
+              moduleName = "hisi_pl061_driver";           //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
+              deviceMatchAttr = "hisilicon_hi35xx_pl061"; //【必要】用于配置控制器私有数据，要与gpio_config.hcs中 
+                                                          // 对应控制器保持一致，其他控制器信息也在文件中。
               }
           }
           }
@@ -120,38 +129,39 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
       platform {
           gpio_config {
           controller_0x120d0000 {
-              match_attr = "hisilicon_hi35xx_pl061"; //【必要】必须和device_info.hcs中的deviceMatchAttr值一致
-              groupNum = 12;       //【必要】GPIO组索引，需要根据设备情况填写
-              bitNum = 8;          //【必要】每组GPIO管脚数 
-              regBase = 0x120d0000;//【必要】物理基地址
-              regStep = 0x1000;    //【必要】寄存器偏移步进
-              irqStart = 48;       //【必要】开启中断
-              irqShare = 0;        //【必要】共享中断
+              match_attr = "hisilicon_hi35xx_pl061"; //【必要】必须和device_info.hcs中的deviceMatchAttr值一致。
+              groupNum = 12;                         //【必要】GPIO组索引，需要根据设备情况填写。
+              bitNum = 8;                            //【必要】每组GPIO管脚数 。
+              regBase = 0x120d0000;                  //【必要】物理基地址。
+              regStep = 0x1000;                      //【必要】寄存器偏移步进。
+              irqStart = 48;                         //【必要】开启中断。
+              irqShare = 0;                          //【必要】共享中断。
           }
           }
       }
       } 
       ```
 
-3. 完成驱动入口注册之后，最后一步就是以核心层GpioCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化GpioCntlr成员GpioMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind，Init，Release）。
+3. 完成驱动入口注册之后，下一步就是以核心层GpioCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化GpioCntlr成员GpioMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind，Init，Release）。
+
    - 自定义结构体参考。
 
-      从驱动的角度看，自定义结构体是参数和数据的载体，而且gpio_config.hcs文件中的数值会被HDF读入通过DeviceResourceIface来初始化结构体成员，其中一些重要数值也会传递给核心层GpioCntlr对象，例如索引、管脚数等。
+      从驱动的角度看，自定义结构体是参数和数据的载体，而且gpio_config.hcs文件中的数值会被HDF读入并通过DeviceResourceIface来初始化结构体成员，其中一些重要数值也会传递给核心层GpioCntlr对象，例如索引、管脚数等。
 
         
       ```
       struct Pl061GpioCntlr {
-        struct GpioCntlr cntlr;//【必要】是核心层控制对象，其成员定义见下面
-        volatile unsigned char *regBase; //【必要】寄存器基地址
-        uint32_t phyBase;      //【必要】物理基址
-        uint32_t regStep;      //【必要】寄存器偏移步进
-        uint32_t irqStart;     //【必要】中断开启
-        uint16_t groupNum;     //【必要】用于描述厂商的GPIO端口号的参数
-        uint16_t bitNum;       //【必要】用于描述厂商的GPIO端口号的参数
-        uint8_t irqShare;      //【必要】共享中断
-        struct Pl061GpioGroup *groups;   //【可选】根据厂商需要设置
+        struct GpioCntlr cntlr;          //【必要】是核心层控制对象，其成员定义见下面。
+        volatile unsigned char *regBase; //【必要】寄存器基地址。
+        uint32_t phyBase;                //【必要】物理基址。
+        uint32_t regStep;                //【必要】寄存器偏移步进。
+        uint32_t irqStart;               //【必要】中断开启。
+        uint16_t groupNum;               //【必要】用于描述厂商的GPIO端口号的参数。
+        uint16_t bitNum;                 //【必要】用于描述厂商的GPIO端口号的参数。
+        uint8_t irqShare;                //【必要】共享中断。
+        struct Pl061GpioGroup *groups;   //【可选】根据厂商需要设置。
       };
-      struct Pl061GpioGroup {  // 包括寄存器地址，中断号，中断函数和和锁
+      struct Pl061GpioGroup {            // 包括寄存器地址，中断号，中断函数和锁。
         volatile unsigned char *regBase;
         unsigned int index;
         unsigned int irq;
@@ -159,7 +169,7 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
         OsalSpinlock lock;
       };
       
-      // GpioCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
+      // GpioCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值。
       struct GpioCntlr {
         struct IDeviceIoService service;
         struct HdfDeviceObject *device;
@@ -180,15 +190,15 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
       static struct GpioMethod g_method = {
           .request = NULL,
           .release = NULL,
-          .write = Pl061GpioWrite,          // 写管脚
-          .read = Pl061GpioRead,            // 读管脚
-          .setDir = Pl061GpioSetDir,        // 设置管脚方向
-          .getDir = Pl061GpioGetDir,        // 获取管脚方向
+          .write = Pl061GpioWrite,          // 写管脚。
+          .read = Pl061GpioRead,            // 读管脚。
+          .setDir = Pl061GpioSetDir,        // 设置管脚方向。
+          .getDir = Pl061GpioGetDir,        // 获取管脚方向。
           .toIrq = NULL,
-          .setIrq = Pl061GpioSetIrq,        // 设置管脚中断，如不具备此能力可忽略
-          .unsetIrq = Pl061GpioUnsetIrq,    // 取消管脚中断设置，如不具备此能力可忽略
-          .enableIrq = Pl061GpioEnableIrq,  // 使能管脚中断，如不具备此能力可忽略
-          .disableIrq = Pl061GpioDisableIrq,// 禁止管脚中断，如不具备此能力可忽略
+          .setIrq = Pl061GpioSetIrq,        // 设置管脚中断，如不具备此能力可忽略。
+          .unsetIrq = Pl061GpioUnsetIrq,    // 取消管脚中断设置，如不具备此能力可忽略。
+          .enableIrq = Pl061GpioEnableIrq,  // 使能管脚中断，如不具备此能力可忽略。
+          .disableIrq = Pl061GpioDisableIrq,// 禁止管脚中断，如不具备此能力可忽略。
       };
       ```
 
@@ -200,7 +210,7 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
 
       返回值：
 
-      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
+      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
 
         **表2** Init函数说明
       
@@ -215,7 +225,7 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
 
       函数说明：
 
-      初始化自定义结构体对象，初始化GpioCntlr成员，调用核心层GpioCntlrAdd函数，【可选】接入VFS。
+      初始化自定义结构体对象，初始化GpioCntlr成员，调用核心层GpioCntlrAdd函数，接入VFS（可选）。
 
         
       ```
@@ -236,12 +246,12 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
         ...
         pl061->cntlr.count = pl061->groupNum * pl061->bitNum;//【必要】管脚数量计算
         pl061->cntlr.priv = (void *)device->property;        //【必要】存储设备属性
-        pl061->cntlr.ops = &g_method;           // 【必要】GpioMethod的实例化对象的挂载 
-        pl061->cntlr.device = device;           // 【必要】使HdfDeviceObject与GpioCntlr可以相互转化的前提
-        ret = GpioCntlrAdd(&pl061->cntlr);      // 【必要】调用此函数填充核心层结构体，返回成功信号后驱动才完全接入平台核心层
+        pl061->cntlr.ops = &g_method;                        //【必要】GpioMethod的实例化对象的挂载 
+        pl061->cntlr.device = device;                        //【必要】使HdfDeviceObject与GpioCntlr可以相互转化的前提
+        ret = GpioCntlrAdd(&pl061->cntlr);                   //【必要】调用此函数填充核心层结构体，返回成功信号后驱动才完全接入平台核心层。
         ...
         Pl061GpioDebugCntlr(pl061);
-        #ifdef PL061_GPIO_USER_SUPPORT            //【可选】若支持用户级的虚拟文件系统，则接入
+        #ifdef PL061_GPIO_USER_SUPPORT            //【可选】若支持用户级的虚拟文件系统，则接入。
         if (GpioAddVfs(pl061->bitNum) != HDF_SUCCESS) {
             HDF_LOGE("%s: add vfs fail!", __func__);
         }
@@ -261,7 +271,10 @@ GPIO模块适配的三个环节是配置属性文件，实例化驱动入口，�
 
       函数说明：
 
-      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release 接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
+      释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
+
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
+      > 所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
 
         
       ```
