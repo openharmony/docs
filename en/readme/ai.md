@@ -77,7 +77,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 
     ```
     #include "plugin/i_plugin.h
-    class KWSPlugin : public IPlugin {       # Inherits the public base class of the IPlugin API for Keywords Spotting Plugin (KWSPlugin).
+    class KWSPlugin : public IPlugin {       // Inherits the public base class of the IPlugin API for Keywords Spotting Plugin (KWSPlugin).
         KWSPlugin();
         ~KWSPlugin();
     
