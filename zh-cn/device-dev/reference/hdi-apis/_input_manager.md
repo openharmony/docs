@@ -18,8 +18,8 @@
 | (&nbsp;[ScanInputDevice](#scaninputdevice)&nbsp;)(DevDesc&nbsp;\*staArr,&nbsp;uint32_t&nbsp;arrLen) | Input服务用于扫描所有在线设备。&nbsp;[更多...](#scaninputdevice) | 
 | (&nbsp;[OpenInputDevice](#openinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务打开对应设备的设备文件&nbsp;[更多...](#openinputdevice) | 
 | (&nbsp;[CloseInputDevice](#closeinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务关闭对应设备的设备文件&nbsp;[更多...](#closeinputdevice) | 
-| (&nbsp;[GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[DeviceInfo](_device_info.md)&nbsp;\*\*devInfo) | Input服务获取对应ID的设备信息&nbsp;[更多...](#getinputdevice) | 
-| (&nbsp;[GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[DeviceInfo](_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | Input服务获取所有Input设备列表的设备信息&nbsp;[更多...](#getinputdevicelist) | 
+| (&nbsp;[GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputDeviceInfo](_device_info.md)&nbsp;\*\*devInfo) | Input服务获取对应ID的设备信息&nbsp;[更多...](#getinputdevice) | 
+| (&nbsp;[GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[InputDeviceInfo](_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | Input服务获取所有Input设备列表的设备信息&nbsp;[更多...](#getinputdevicelist) | 
 
 
 ## **详细描述**
