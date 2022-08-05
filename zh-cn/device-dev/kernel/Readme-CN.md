@@ -140,15 +140,7 @@
                 - [内存信息统计](kernel-small-debug-memory-info.md)
                 - [内存泄漏检测](kernel-small-debug-memory-leak.md)
                 - [踩内存检测](kernel-small-debug-memory-corrupt.md)
-            - 用户态内存调测
-                - [基本概念](kernel-small-debug-user-concept.md)
-                - [运行机制](kernel-small-debug-user-function.md)
-                - 使用指导
-                    - [接口说明](kernel-small-debug-user-guide-api.md)
-                    - [使用说明](kernel-small-debug-user-guide-use.md)
-                        - [接口调用方式](kernel-small-debug-user-guide-use-api.md)
-                        - [命令行参数方式](kernel-small-debug-user-guide-use-cli.md)
-                - [常见问题](kernel-small-debug-user-faqs.md)
+            - [用户态内存调测](kernel-small-debug-user.md)
             - 其他内核调测手段
                 - [临终遗言](kernel-small-debug-trace-other-lastwords.md)
                 - [常见问题](kernel-small-debug-trace-other-faqs.md)
