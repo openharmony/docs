@@ -11,11 +11,12 @@ import image from '@ohos.multimedia.image';
 ```
 
 ## image.createPixelMap<sup>8+</sup>
+
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
 Creates a **PixelMap** object. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
@@ -34,6 +35,7 @@ Creates a **PixelMap** object. This API uses a promise to return the result.
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
@@ -46,7 +48,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 Creates a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
@@ -60,6 +62,7 @@ Creates a **PixelMap** object. This API uses an asynchronous callback to return 
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -71,10 +74,10 @@ Provides APIs to read or write image pixel map data and obtain image pixel map i
 
  ### Attributes
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name                   | Type   | Readable| Writable| Description                      |
-| ----------------------- | ------- | ---- | ---- | -------------------------- |
+| Name      | Type   | Readable| Writable| Description                      |
+| ---------- | ------- | ---- | ---- | -------------------------- |
 | isEditable<sup>7+</sup> | boolean | Yes  | No  | Whether the image pixel map is editable.|
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -83,27 +86,28 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
-| Name| Type       | Mandatory| Description                                                        |
-| ------ | ----------- | ---- | ------------------------------------------------------------ |
-| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written.|
+| Name| Type       | Mandatory| Description                                                                                                 |
+| ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written. |
 
 **Return value**
 
 | Type          | Description                                           |
-| :------------- | :---------------------------------------------- |
-| Promise\<void> | Promise used to return the operation result. If the operation fails, an error message is returned.|
+| -------------- | ----------------------------------------------- |
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
-pixelmap.readPixelsToBuffer(ReadBuffer).then(() => {
-    console.log('readPixelsToBuffer succeeded.'); // Called if the condition is met.
+const readBuffer = new ArrayBuffer(400);
+pixelmap.readPixelsToBuffer(readBuffer).then(() => {
+    console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
 }).catch(error => {
-    console.log('readPixelsToBuffer failed.'); // Called if no condition is met.
+    console.log('Failed to read image pixel data.'); // Called if no condition is met.
 })
 ```
 
@@ -113,23 +117,24 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                                                        |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type                | Mandatory| Description                                                                                                 |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
 | dst      | ArrayBuffer          | Yes  | Buffer to which the image pixel map data will be written.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation fails, an error message is returned.                              |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                                                                       |
 
 **Example**
 
 ```js
-pixelmap.readPixelsToBuffer(ReadBuffer, (err, res) => {
+const readBuffer = new ArrayBuffer(400);
+pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
-        console.log('readPixelsToBuffer failed.'); // Called if no condition is met.
+        console.log('Failed to read image pixel data.');  // Called if no condition is met.
     } else {
-        console.log('readPixelsToBuffer succeeded.'); // Called if the condition is met.
+        console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
     }
 })
 ```
@@ -140,7 +145,7 @@ readPixels(area: PositionArea): Promise\<void>
 
 Reads image pixel map data in an area. This API uses a promise to return the data read.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
@@ -152,15 +157,16 @@ Reads image pixel map data in an area. This API uses a promise to return the dat
 
 | Type          | Description                                               |
 | :------------- | :-------------------------------------------------- |
-| Promise\<void> | Promise used to return the operation result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
-pixelmap.readPixels(Area).then((data) => {
-    console.log('readPixels succeeded.'); // Called if the condition is met.
+const area = new ArrayBuffer(400);
+pixelmap.readPixels(area).then(() => {
+    console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
 }).catch(error => {
-    console.log('readPixels failed.'); // Called if no condition is met.
+    console.log('Failed to read the image data in the area.'); // Called if no condition is met.
 })
 ```
 
@@ -170,18 +176,20 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 Reads image pixel map data in an area. This API uses an asynchronous callback to return the data read.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name  | Type                          | Mandatory| Description                          |
 | -------- | ------------------------------ | ---- | ------------------------------ |
 | area     | [PositionArea](#positionarea7) | Yes  | Area from which the image pixel map data will be read.      |
-| callback | AsyncCallback\<void>           | Yes  | Callback used to return the operation result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -204,7 +212,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 Writes image pixel map data to an area. This API uses a promise to return the operation result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
@@ -216,12 +224,13 @@ Writes image pixel map data to an area. This API uses a promise to return the op
 
 | Type          | Description                                               |
 | :------------- | :-------------------------------------------------- |
-| Promise\<void> | Promise used to return the operation result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -257,21 +266,22 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 Writes image pixel map data to an area. This API uses an asynchronous callback to return the operation result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name   | Type                          | Mandatory| Description                          |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.          |
-| callback: | AsyncCallback\<void>           | Yes  | Callback used to return the operation result. If the operation fails, `error` contains an error object.|
+| callback  | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
-pixelmap.writePixels(Area, (error) => {
+const area = new ArrayBuffer(400);
+pixelmap.writePixels(area, (error) => {
     if (error!=undefined) {
-		console.info('writePixels failed.');
+		console.info('Failed to write pixelmap into the specified area.');
 	} else {
 	    const readArea = {
             pixels: new ArrayBuffer(20),
@@ -289,7 +299,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** object. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
@@ -301,12 +311,15 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 
 | Type          | Description                                           |
 | -------------- | ----------------------------------------------- |
-| Promise\<void> | Promise used to return the operation result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
-PixelMap.writeBufferToPixels(color).then(() => {
+const color = new ArrayBuffer(96);
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Unit8Array(color);
+pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
@@ -319,19 +332,22 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
 | src      | ArrayBuffer          | Yes  | Buffer from which the image data will be read.                |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
-PixelMap.writeBufferToPixels(color, function(err) {
+const color = new ArrayBuffer(96);\
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Unit8Array(color);
+pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
@@ -347,7 +363,7 @@ getImageInfo(): Promise\<ImageInfo>
 
 Obtains pixel map information of this image. This API uses a promise to return the information.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Return value**
 
@@ -358,7 +374,8 @@ Obtains pixel map information of this image. This API uses a promise to return t
 **Example**
 
 ```js
-PixelMap.getImageInfo().then(function(info) {
+const pixelMap = new ArrayBuffer(400);
+pixelMap.getImageInfo().then(function(info) {
     console.log("Succeeded in obtaining the image pixel map information.");
 }).catch((err) => {
     console.error("Failed to obtain the image pixel map information.");
@@ -371,7 +388,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 Obtains pixel map information of this image. This API uses an asynchronous callback to return the information.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
@@ -383,9 +400,7 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 
 ```js
 pixelmap.getImageInfo((imageInfo) => { 
-    console.log("getImageInfo succeeded.");
-}).catch((err) => {
-    console.error("getImageInfo failed.");
+    console.log("Succeeded in obtaining the image pixel map information..");
 })
 ```
 
@@ -393,20 +408,23 @@ pixelmap.getImageInfo((imageInfo) => {
 
 getBytesNumberPerRow(): number
 
-Obtains the number of bytes per line of the image pixel map.
+Obtains the number of bytes per row of this image pixel map.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Return value**
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Number of bytes per line.|
+| number | Number of bytes per row.|
 
 **Example**
 
 ```js
-image.createPixelMap(clolr, opts, (err,pixelmap) => {
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
 })
 ```
@@ -415,9 +433,9 @@ image.createPixelMap(clolr, opts, (err,pixelmap) => {
 
 getPixelBytesNumber(): number
 
-Obtains the total number of bytes of the image pixel map.
+Obtains the total number of bytes of this image pixel map.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Return value**
 
@@ -437,22 +455,25 @@ release():Promise\<void>
 
 Releases this **PixelMap** object. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Return value**
 
-| Type          | Description              |
-| -------------- | ------------------ |
-| Promise\<void> | Promise used to return the operation result.|
+| Type          | Description                           |
+| -------------- | ------------------------------- |
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
-	    console.log('release succeeded.');
+	    console.log('Succeeded in releasing pixelmap object.');
     }).catch(error => {
-	    console.log('release failed.');
+	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -463,22 +484,25 @@ release(callback: AsyncCallback\<void>): void
 
 Releases this **PixelMap** object. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name    | Type                | Mandatory| Description              |
 | -------- | -------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Unit8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
-	    console.log('release succeeded.');
+	    console.log('Succeeded in releasing pixelmap object.');
     }).catch(error => {
-	    console.log('release failed.');
+	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -489,7 +513,7 @@ createImageSource(uri: string): ImageSource
 
 Creates an **ImageSource** instance based on the URI.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -516,12 +540,12 @@ createImageSource(fd: number): ImageSource
 
 Creates an **ImageSource** instance based on the file descriptor.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description          |
-| ------ | ------ | ---- | -------------- |
+| Name| Type  | Mandatory| Description         |
+| ------ | ------ | ---- | ------------- |
 | fd     | number | Yes  | File descriptor.|
 
 **Return value**
@@ -533,7 +557,7 @@ Creates an **ImageSource** instance based on the file descriptor.
 **Example**
 
 ```js
-const imageSourceApi = image.createImageSource(0);
+const imageSourceApi = image.createImageSource(0)
 ```
 
 ## ImageSource
@@ -542,7 +566,7 @@ Provides APIs to obtain image information. Before calling any API in **ImageSour
 
 ### Attributes
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 | Name            | Type          | Readable| Writable| Description                                                        |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -554,7 +578,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 Obtains information about an image with the specified index. This API uses an asynchronous callback to return the information.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -581,7 +605,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 Obtains information about this image. This API uses an asynchronous callback to return the information.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -593,9 +617,7 @@ Obtains information about this image. This API uses an asynchronous callback to 
 
 ```js
 imageSourceApi.getImageInfo(imageInfo => { 
-    console.log('getImageInfo succeeded.');
-}).catch(error => {
-	console.log('getImageInfo failed.');
+    console.log('Succeeded in obtaining the image information.');
 })
 ```
 
@@ -605,7 +627,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 Obtains information about an image with the specified index. This API uses a promise to return the image information.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -624,9 +646,9 @@ Obtains information about an image with the specified index. This API uses a pro
 ```js
 imageSourceApi.getImageInfo(0)
     .then(imageInfo => {
-		console.log('getImageInfo succeeded.');
+		console.log('Succeeded in obtaining the image information.');
 	}).catch(error => {
-		console.log('getImageInfo failed.');
+		console.log('Failed to obtain the image information.');
 	})
 ```
 
@@ -636,7 +658,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 Obtains the value of a property with the specified index in this image. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
  **Parameters**
 
@@ -647,8 +669,8 @@ Obtains the value of a property with the specified index in this image. This API
 
 **Return value**
 
-| Type            | Description                                                        |
-| ---------------- | ------------------------------------------------------------ |
+| Type            | Description                                                             |
+| ---------------- | ----------------------------------------------------------------- |
 | Promise\<string> | Promise used to return the property value. If the operation fails, the default value is returned.|
 
 **Example**
@@ -656,9 +678,7 @@ Obtains the value of a property with the specified index in this image. This API
 ```js
 imageSourceApi.getImageProperty("BitsPerSample")
     .then(data => {
-		console.log('getImageProperty succeeded.');
-	}).catch(error => {
-		console.log('getImageProperty failed.');
+		console.log('Succeeded in getting the value of the specified attribute key of the image.');
 	})
 ```
 
@@ -668,7 +688,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
  **Parameters**
 
@@ -682,9 +702,9 @@ Obtains the value of a property with the specified index in this image. This API
 ```js
 imageSourceApi.getImageProperty("BitsPerSample",(error,data) => { 
     if(error) {
-        console.log('getImageProperty failed.');
+        console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('getImageProperty succeeded.');
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -695,24 +715,25 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 Obtains the value of a property in this image. This API uses an asynchronous callback to return the property value in a string.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                                        |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                                               | Yes  | Name of the property.                                                |
-| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | Yes  | Image properties, including the image index and default property value.                        |
+| Name  | Type                                                | Mandatory| Description                                                         |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
+| key      | string                                               | Yes  | Name of the property.                                                 |
+| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | Yes  | Image properties, including the image index and default property value.                         |
 | callback | AsyncCallback\<string>                               | Yes  | Callback used to return the property value. If the operation fails, the default value is returned.|
 
 **Example**
 
 ```js
-imageSourceApi.getImageProperty("BitsPerSample",Property,(error,data) => { 
+const property = new ArrayBuffer(400);
+imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => { 
     if(error) {
-        console.log('getImageProperty failed.');
+        console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('getImageProperty succeeded.');
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -723,7 +744,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 Creates a **PixelMap** object based on image decoding parameters. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -741,9 +762,9 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 
 ```js
 imageSourceApi.createPixelMap().then(pixelmap => {
-    console.log('createPixelMap succeeded.');
+    console.log('Succeeded in creating pixelmap object through image decoding parameters.');
 }).catch(error => {
-    console.log('createPixelMap failed.');
+    console.log('Failed to create pixelmap object through image decoding parameters.');
 })
 ```
 
@@ -753,7 +774,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 Creates a **PixelMap** object based on the default parameters. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -765,9 +786,9 @@ Creates a **PixelMap** object based on the default parameters. This API uses an 
 
 ```js
 imageSourceApi.createPixelMap(pixelmap => { 
-    console.log('createPixelMap succeeded.');
+    console.log('Succeeded in creating pixelmap object.');
 }).catch(error => {
-    console.log('createPixelMap failed.');
+    console.log('Failed to create pixelmap object.');
 })
 ```
 
@@ -777,7 +798,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 Creates a **PixelMap** object based on image decoding parameters. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -789,11 +810,10 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 **Example**
 
 ```js
+const decodingOptions = new ArrayBuffer(400);
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
-    console.log('createPixelMap succeeded.');
-}).catch(error => {
-    console.log('createPixelMap failed.');
-}) 
+    console.log('Succeeded in creating pixelmap object.');
+})
 ```
 
 ### release
@@ -802,7 +822,7 @@ release(callback: AsyncCallback\<void>): void
 
 Releases this **ImageSource** instance. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
@@ -815,8 +835,6 @@ Releases this **ImageSource** instance. This API uses an asynchronous callback t
 ```js
 imageSourceApi.release(() => { 
     console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
 })
 ```
 
@@ -826,21 +844,21 @@ release(): Promise\<void>
 
 Releases this **ImageSource** instance. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Return value**
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the operation result.|
+| Promise\<void> | Promise used to return the result.|
 
 **Example**
 
 ```js
 imageSourceApi.release().then(()=>{
-    console.log('release succeeded.');
+    console.log('Succeeded in releasing the image source instance.');
 }).catch(error => {
-    console.log('release failed.');
+    console.log('Failed to release the image source instance.');
 })
 ```
 
@@ -850,7 +868,7 @@ createImagePacker(): ImagePacker
 
 Creates an **ImagePacker** instance.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
 **Return value**
 
@@ -870,7 +888,7 @@ Provide APIs to pack images. Before calling any API in **ImagePacker**, you must
 
 ### Attributes
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 | Name            | Type          | Readable| Writable| Description                      |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
@@ -882,7 +900,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
 
@@ -896,7 +914,8 @@ Packs an image. This API uses an asynchronous callback to return the result.
 
 ```js
 let packOpts = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(ImageSourceApi, packOpts, data => {})
+const imageSourceApi = new ArrayBuffer(400);
+imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
 
 ### packing
@@ -905,7 +924,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
 
@@ -917,14 +936,15 @@ Packs an image. This API uses a promise to return the result.
 **Return value**
 
 | Type                        | Description                                         |
-| :--------------------------- | :-------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise used to return the packed data.|
+| ---------------------------- | --------------------------------------------- |
+| Promise\<ArrayBuffer>        | Promise used to return the packed data.|
 
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(ImageSourceApi, packOpts)
+let packOpts = { format:"image/jpeg", quality:98 }
+const imageSourceApi = new ArrayBuffer(400);
+imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data => {
         console.log('packing succeeded.');
 	}).catch(error => {
@@ -938,7 +958,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
 
@@ -951,11 +971,12 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(PixelMapApi, packOpts, data => { 
-    console.log('packing succeeded.');
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
+imagePackerApi.packing(pixelMapApi, packOpts, data => { 
+    console.log('Succeeded in packing the image.');
 }).catch(error => {
-	console.log('packing failed.');
+	console.log('Failed to pack the image.');
 })
 ```
 
@@ -965,7 +986,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
 
@@ -976,19 +997,20 @@ Packs an image. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                        | Description                                         |
-| :--------------------------- | :-------------------------------------------- |
+| Type                 | Description                                        |
+| --------------------- | -------------------------------------------- |
 | Promise\<ArrayBuffer> | Promise used to return the packed data.|
 
 **Example**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(PixelMapApi, packOpts)
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
+imagePackerApi.packing(pixelMapApi, packOpts)
     .then( data => {
-	    console.log('packing succeeded.');
+	    console.log('Succeeded in packing the image.');
 	}).catch(error => {
-	    console.log('packing failed.');
+	    console.log('Failed to pack the image..');
 	})
 ```
 
@@ -998,7 +1020,7 @@ release(callback: AsyncCallback\<void>): void
 
 Releases this **ImagePacker** instance. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
 
@@ -1010,9 +1032,7 @@ Releases this **ImagePacker** instance. This API uses an asynchronous callback t
 
 ```js
 imagePackerApi.release(()=>{ 
-    console.log('release succeeded.');
-}).catch(error => {
-	console.log('release failed.');
+    console.log('Succeeded in releasing image packaging.');
 })
 ```
 
@@ -1022,408 +1042,30 @@ release(): Promise\<void>
 
 Releases this **ImagePacker** instance. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Return value**
 
-| Type          | Description                                                   |
-| :------------- | :------------------------------------------------------ |
+| Type          | Description                                                  |
+| -------------- | ------------------------------------------------------ |
 | Promise\<void> | Promise used to return the instance release result. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```js
 imagePackerApi.release().then(()=>{
-    console.log('release succeeded.');
+    console.log('Succeeded in releasing image packaging.');
 }).catch((error)=>{ 
-    console.log('release failed.'); 
+    console.log('Failed to release image packaging.'); 
 }) 
 ```
 
-## image.createImageReceiver<sup>9+</sup>
-
-createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
-
-Create an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                  |
-| -------- | ------ | ---- | ---------------------- |
-| width    | number | Yes  | Default image width.      |
-| height   | number | Yes  | Default image height.      |
-| format   | number | Yes  | Image format.            |
-| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
-
-**Return value**
-
-| Type                            | Description                                   |
-| -------------------------------- | --------------------------------------- |
-| [ImageReceiver](#imagereceiver9) | Returns an **ImageReceiver** instance if the operation is successful.|
-
-**Example**
-
-```js
-var receiver = image.createImageReceiver(8192, 8, 4, 8);
-```
-
-## ImageReceiver<sup>9+</sup>
-
-Provides APIs to obtain the surface ID of a component, read the latest image, read the next image, and release the **ImageReceiver** instance.
-
-Before calling any APIs in **ImageReceiver**, you must create an **ImageReceiver** instance.
-
-### Attributes
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-| Name                 | Type                        | Readable| Writable| Description              |
-| --------------------- | ---------------------------- | ---- | ---- | ------------------ |
-| size<sup>9+</sup>     | [Size](#size)                | Yes  | No  | Image size.        |
-| capacity<sup>9+</sup> | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
-| format<sup>9+</sup>   | [ImageFormat](#imageformat9) | Yes  | No  | Image format.        |
-
-### getReceivingSurfaceId<sup>9+</sup>
-
-getReceivingSurfaceId(callback: AsyncCallback\<string>): void
-
-Obtains a surface ID for the camera or other components. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Parameters**
-
-| Name    | Type                  | Mandatory| Description                      |
-| -------- | ---------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the surface ID.|
-
-**Example**
-
-```js
- receiver.getReceivingSurfaceId((err, id) => { 
-    if(err) {
-        console.log('getReceivingSurfaceId failed.');
-    } else {
-        console.log('getReceivingSurfaceId succeeded.');
-    }
-});
-```
-
-### getReceivingSurfaceId<sup>9+</sup>
-
-getReceivingSurfaceId(): Promise\<string>
-
-Obtains a surface ID for the camera or other components. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Return value**
-
-| Type            | Description                |
-| ---------------- | -------------------- |
-| Promise\<string> | Promise used to return the surface ID.|
-
-**Example**
-
-```js
-receiver.getReceivingSurfaceId().then( id => { 
-    console.log('getReceivingSurfaceId succeeded.');
-}).catch(error => {
-    console.log('getReceivingSurfaceId failed.');
-})
-```
-
-### readLatestImage<sup>9+</sup>
-
-readLatestImage(callback: AsyncCallback\<Image>): void
-
-Reads the latest image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Parameters**
-
-| Name    | Type                           | Mandatory| Description                    |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the latest image.|
-
-**Example**
-
-```js
-receiver.readLatestImage((err, img) => { 
-    if(err) {
-        console.log('readLatestImage failed.');
-    } else {
-        console.log('readLatestImage succeeded.');
-    }
-});
-```
-
-### readLatestImage<sup>9+</sup>
-
-readLatestImage(): Promise\<Image>
-
-Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Return value**
-
-| Type                     | Description              |
-| ------------------------- | ------------------ |
-| Promise<[Image](#image8)> | Promise used to return the latest image.|
-
-**Example**
-
-```js
-receiver.readLatestImage().then(img => {
-    console.log('readLatestImage succeeded.');
-}).catch(error => {
-    console.log('readLatestImage failed.');
-})
-```
-
-### readNextImage<sup>9+</sup>
-
-readNextImage(callback: AsyncCallback\<Image>): void
-
-Reads the next image from the **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Parameters**
-
-| Name    | Type                           | Mandatory| Description                      |
-| -------- | ------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the next image.|
-
-**Example**
-
-```js
-receiver.readNextImage((err, img) => { 
-    if(err) {
-        console.log('readNextImage failed.');
-    } else {
-        console.log('readNextImage succeeded.');
-    }
-});
-```
-
-### readNextImage<sup>9+</sup>
-
-readNextImage(): Promise\<Image>
-
-Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Return value**
-
-| Type                     | Description                |
-| ------------------------- | -------------------- |
-| Promise<[Image](#image9)> | Promise used to return the next image.|
-
-**Example**
-
-```js
-receiver.readNextImage().then(img => {
-    console.log('readNextImage succeeded.');
-}).catch(error => {
-    console.log('readNextImage failed.');
-})
-```
-
-### on('imageArrival')<sup>9+</sup>
-
-on(type: 'imageArrival', callback: AsyncCallback\<void>): void
-
-Listens for image arrival events.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Parameters**
-
-| Name    | Type                | Mandatory| Description                                                  |
-| -------- | -------------------- | ---- | ------------------------------------------------------ |
-| type     | string               | Yes  | Type of event to listen for. The value is fixed at **imageArrival**, which is triggered when an image is received.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked for the event.                                      |
-
-**Example**
-
-```js
-receiver.on('imageArrival', () => {})
-```
-
-### release<sup>9+</sup>
-
-release(callback: AsyncCallback\<void>): void
-
-Releases this **ImageReceiver** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Parameters**
-
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-receiver.release(() => {})
-```
-
-### release<sup>9+</sup>
-
-release(): Promise\<void>
-
-Releases this **ImageReceiver** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
-
-**Return value**
-
-| Type          | Description              |
-| -------------- | ------------------ |
-| Promise\<void> | Promise used to return the result.|
-
-**Example**
-
-```js
-receiver.release().then(() => {
-    console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
-})
-```
-
-## Image<sup>9+</sup>
-
-Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An **Image** instance is returned when [readNextImage](#readnextimage9) and [readLatestImage](#readlatestimage9) are called.
-
-### Attributes
-
-**System capability**: SystemCapability.Multimedia.Image.Core
-
-| Name                 | Type              | Readable| Writable| Description                                              |
-| --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect<sup>9+</sup> | [Region](#region7) | Yes  | Yes  | Image area to be cropped.                                |
-| size<sup>9+</sup>     | [Size](#size)      | Yes  | No  | Image size.                                        |
-| format<sup>9+</sup>   | number             | Yes  | No  | Image format. For details, see [PixelMapFormat](#pixelmapformat7).|
-
-### getComponent<sup>9+</sup>
-
-getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>): void
-
-Obtains the component buffer from the **Image** instance based on the color component type. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.Core
-
-**Parameters**
-
-| Name         | Type                                   | Mandatory| Description                |
-| ------------- | --------------------------------------- | ---- | -------------------- |
-| componentType | [ComponentType](#componenttype9)        | Yes  | Color component type of the image.    |
-| callback      | AsyncCallback<[Component](#component9)> | Yes  | Callback used to return the component buffer.|
-
-**Example**
-
-```js
-img.getComponent(4, (err, component) => {
-    if(err) {
-        console.log('getComponent failed.');
-    } else {
-        console.log('getComponent succeeded.');
-    }
-})
-```
-
-### getComponent<sup>9+</sup>
-
-getComponent(componentType: ComponentType): Promise\<Component>
-
-Obtains the component buffer from the **Image** instance based on the color component type. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Image.Core
-
-**Parameters**
-
-| Name         | Type                            | Mandatory| Description            |
-| ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [ComponentType](#componenttype9) | Yes  | Color component type of the image.|
-
-**Return value**
-
-| Type                             | Description                             |
-| --------------------------------- | --------------------------------- |
-| Promise<[Component](#component9)> | Promise used to return the component buffer.|
-
-**Example**
-
-```js
-img.getComponent(4).then(component => { })
-```
-
-### release<sup>9+</sup>
-
-release(callback: AsyncCallback\<void>): void
-
-Releases this **Image** instance. This API uses an asynchronous callback to return the result.
-
-The corresponding resources must be released before another image arrives.
-
-**System capability**: SystemCapability.Multimedia.Image.Core
-
-**Parameters**
-
-| Name    | Type                | Mandatory| Description          |
-| -------- | -------------------- | ---- | -------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-img.release(() =>{ 
-    console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
-}) 
-```
-
-### release<sup>9+</sup>
-
-release(): Promise\<void>
-
-Releases this **Image** instance. This API uses a promise to return the result.
-
-The corresponding resources must be released before another image arrives.
-
-**System capability**: SystemCapability.Multimedia.Image.Core
-
-**Return value**
-
-| Type          | Description                 |
-| -------------- | --------------------- |
-| Promise\<void> | Promise used to return the result.|
-
-**Example**
-
-```js
-img.release().then(() =>{
-    console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
-})
-```
 
 ## PositionArea<sup>7+</sup>
 
 Describes area information in an image.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name  | Type              | Readable| Writable| Description                                                        |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1436,7 +1078,7 @@ Describes area information in an image.
 
 Describes image information.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name| Type         | Readable| Writable| Description      |
 | ---- | ------------- | ---- | ---- | ---------- |
@@ -1446,7 +1088,7 @@ Describes image information.
 
 Describes the size of an image.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name  | Type  | Readable| Writable| Description          |
 | ------ | ------ | ---- | ---- | -------------- |
@@ -1457,57 +1099,33 @@ Describes the size of an image.
 
 Enumerates the pixel formats of images.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name     | Default Value| Description             |
-| --------- | ------ | ----------------- |
-| UNKNOWN   | 0      | Unknown format.       |
-| RGBA_8888 | 3      | RGBA_8888.|
-| RGB_565   | 2      | RGB_565.  |
+| Name                  | Default Value| Description             |
+| ---------------------- | ------ | ----------------- |
+| UNKNOWN                | 0      | Unknown format.       |
+| RGBA_8888              | 3      | RGBA_8888.|
+| RGB_565                | 2      | RGB_565.    |
 
-## AlphaType<sup>9+</sup>
 
-Enumerates the alpha types of images.
-
-**System capability**: SystemCapability.Multimedia.Image
-
-| Name    | Default Value| Description                   |
-| -------- | ------ | ----------------------- |
-| UNKNOWN  | 0      | Unknown alpha type.           |
-| OPAQUE   | 1      | There is no alpha or the image is opaque.|
-| PREMUL   | 2      | Premultiplied alpha.         |
-| UNPREMUL | 3      | Unpremultiplied alpha, that is, straight alpha.       |
-
-## ScaleMode<sup>9+</sup>
-
-Enumerates the scale modes of images.
-
-**System capability**: SystemCapability.Multimedia.Image
-
-| Name           | Default Value| Description                                              |
-| --------------- | ------ | -------------------------------------------------- |
-| CENTER_CROP     | 1      | The image is scaled in such a way that it fits the dimensions of the target and centered in the target.|
-| FIT_TARGET_SIZE | 2      | The image size is reduced to fit the dimensions of the target.                          |
 
 ## InitializationOptions<sup>8+</sup>
 
 Defines pixel map initialization options.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name                  | Type                              | Readable| Writable| Description          |
-| ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup> | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
-| editable               | boolean                            | Yes  | Yes  | Whether the image is editable.  |
-| pixelFormat            | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
-| scaleMode<sup>9+</sup> | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
-| size                   | [Size](#size)                      | Yes  | Yes  | Image size.|
+| Name                    | Type                              | Readable| Writable| Description          |
+| ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
+| size                     | [Size](#size)                      | Yes  | Yes  | Image size.|
 
 ## DecodingOptions<sup>7+</sup>
 
 Defines image decoding options.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 | Name              | Type                              | Readable| Writable| Description            |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
@@ -1517,13 +1135,13 @@ Defines image decoding options.
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
-| index              | number                              | Yes  | Yes  | Index of the image to decode.    |
+| index              | number                             | Yes  | Yes  | Index of the image to decode.  |
 
 ## Region<sup>7+</sup>
 
 Describes region information.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name| Type         | Readable| Writable| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
@@ -1533,20 +1151,20 @@ Describes region information.
 
 ## PackingOption
 
-Describes the option for image packing.
+Defines the option for image packing.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
-| Name   | Type  | Readable| Writable| Description          |
-| ------- | ------ | ---- | ---- | -------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.    |
+| Name   | Type  | Readable| Writable| Description                                               |
+| ------- | ------ | ---- | ---- | --------------------------------------------------- |
+| format  | string | Yes  | Yes  | Format of the packed image.                                         |
 | quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100.|
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
 Describes image properties.
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 | Name        | Type  | Readable| Writable| Description        |
 | ------------ | ------ | ---- | ---- | ------------ |
@@ -1557,52 +1175,58 @@ Describes image properties.
 
 Describes the exchangeable image file format (Exif) information of an image.
 
-**System capability**: SystemCapability.Multimedia.Image
-
-| Name             | Default Value           | Description                |
-| ----------------- | ----------------- | -------------------- |
-| BITS_PER_SAMPLE   | "BitsPerSample"   | Number of bits per pixel.    |
-| ORIENTATION       | "Orientation"     | Image orientation.          |
-| IMAGE_LENGTH      | "ImageLength"     | Image length.          |
-| IMAGE_WIDTH       | "ImageWidth"      | Image width.          |
-| GPS_LATITUDE      | "GPSLatitude"     | Image latitude.          |
-| GPS_LONGITUDE     | "GPSLongitude"    | Image longitude.          |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"  | Latitude reference, for example, N or S.|
-| GPS_LONGITUDE_REF | "GPSLongitudeRef" | Longitude reference, for example, W or E.|
-
-## ImageFormat<sup>9+</sup>
-
-Enumerates the image formats.
-
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name        | Default Value| Description                |
-| ------------ | ------ | -------------------- |
-| YCBCR_422_SP | 1000   | YCBCR422 semi-planar format.|
-| JPEG         | 2000   | JPEG encoding format.      |
+| Name             | Default Value                 | Description                    |
+| ----------------- | ----------------------- | ------------------------ |
+| BITS_PER_SAMPLE   | "BitsPerSample"         | Number of bits per pixel.        |
+| ORIENTATION       | "Orientation"           | Image orientation.              |
+| IMAGE_LENGTH      | "ImageLength"           | Image length.              |
+| IMAGE_WIDTH       | "ImageWidth"            | Image width.              |
+| GPS_LATITUDE      | "GPSLatitude"           | Image latitude.              |
+| GPS_LONGITUDE     | "GPSLongitude"          | Image longitude.              |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.    |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.    |
 
-## ComponentType<sup>9+</sup>
 
-Enumerates the color component types of images.
+## ResponseCode
 
-**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+Enumerates the response codes returned upon build errors.
 
-| Name | Default Value| Description       |
-| ----- | ------ | ----------- |
-| YUV_Y | 1      | Luminance component. |
-| YUV_U | 2      | Chrominance component. |
-| YUV_V | 3      | Chrominance component. |
-| JPEG  | 4      | JPEG type.|
-
-## Component<sup>9+</sup>
-
-Describes the color components of an image.
-
-**System capability**: SystemCapability.Multimedia.Image.Core
-
-| Name         | Type                            | Readable| Writable| Description        |
-| ------------- | -------------------------------- | ---- | ---- | ------------ |
-| componentType | [ComponentType](#componenttype9) | Yes  | No  | Color component type.  |
-| rowStride     | number                           | Yes  | No  | Row stride.      |
-| pixelStride   | number                           | Yes  | No  | Pixel stride.  |
-| byteBuffer    | ArrayBuffer                      | Yes  | No  | Component buffer.|
+| Name                               | Value      | Description                                               |
+| ----------------------------------- | -------- | --------------------------------------------------- |
+| ERR_MEDIA_INVALID_VALUE             | -1       | Invalid value.                                         |
+| SUCCESS                             | 0        | Operation successful.                                         |
+| ERROR                               | 62980096 | Operation failed.                                         |
+| ERR_IPC                             | 62980097 | IPC error.                                          |
+| ERR_SHAMEM_NOT_EXIST                | 62980098 | The shared memory does not exist.                                     |
+| ERR_SHAMEM_DATA_ABNORMAL            | 62980099 | The shared memory is abnormal.                                     |
+| ERR_IMAGE_DECODE_ABNORMAL           | 62980100 | An error occurs during image decoding.                                     |
+| ERR_IMAGE_DATA_ABNORMAL             | 62980101 | The input image data is incorrect.                                 |
+| ERR_IMAGE_MALLOC_ABNORMAL           | 62980102 | An error occurs during image memory allocation.                                   |
+| ERR_IMAGE_DATA_UNSUPPORT            | 62980103 | Unsupported image type.                                   |
+| ERR_IMAGE_INIT_ABNORMAL             | 62980104 | An error occurs during image initialization.                                   |
+| ERR_IMAGE_GET_DATA_ABNORMAL         | 62980105 | An error occurs during image data retrieval.                                 |
+| ERR_IMAGE_TOO_LARGE                 | 62980106 | The image data is too large.                                     |
+| ERR_IMAGE_TRANSFORM                 | 62980107 | An error occurs during image transformation.                                     |
+| ERR_IMAGE_COLOR_CONVERT             | 62980108 | An error occurs during image color conversion.                                 |
+| ERR_IMAGE_CROP                      | 62980109 | An error occurs during image cropping.                                         |
+| ERR_IMAGE_SOURCE_DATA               | 62980110 | The image source data is incorrect.                                   |
+| ERR_IMAGE_SOURCE_DATA_INCOMPLETE    | 62980111 | The image source data is incomplete.                                 |
+| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | The image format does not match.                                   |
+| ERR_IMAGE_UNKNOWN_FORMAT            | 62980113 | Unknown image format.                                     |
+| ERR_IMAGE_SOURCE_UNRESOLVED         | 62980114 | The image source is not parsed.                                     |
+| ERR_IMAGE_INVALID_PARAMETER         | 62980115 | Invalid image parameter.                                     |
+| ERR_IMAGE_DECODE_FAILED             | 62980116 | Decoding failed.                                         |
+| ERR_IMAGE_PLUGIN_REGISTER_FAILED    | 62980117 | Failed to register the plug-in.                                     |
+| ERR_IMAGE_PLUGIN_CREATE_FAILED      | 62980118 | Failed to create the plug-in.                                     |
+| ERR_IMAGE_ENCODE_FAILED             | 62980119 | Failed to encode the image.                                     |
+| ERR_IMAGE_ADD_PIXEL_MAP_FAILED      | 62980120 | Failed to add the image pixel map.                             |
+| ERR_IMAGE_HW_DECODE_UNSUPPORT       | 62980121 | Unsupported image hardware decoding.                               |
+| ERR_IMAGE_DECODE_HEAD_ABNORMAL      | 62980122 | The image decoding header is incorrect.                                   |
+| ERR_IMAGE_DECODE_EXIF_UNSUPPORT     | 62980123 | EXIF decoding is not supported.                             |
+| ERR_IMAGE_PROPERTY_NOT_EXIST        | 62980124 | The image property does not exist. The error codes for the image start from 150.|
+| ERR_IMAGE_READ_PIXELMAP_FAILED      | 62980246 | Failed to read the pixel map.                                 |
+| ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | Failed to write the pixel map.                                 |
+| ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | Modification to the pixel map is not allowed.                               |
+| ERR_IMAGE_CONFIG_FAILED             | 62980259 | The software parameter setting is incorrect.                                         |
