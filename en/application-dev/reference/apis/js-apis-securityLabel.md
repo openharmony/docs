@@ -1,9 +1,9 @@
 # Security Label
 
+The **secuityLabel** module provides APIs to manage file data security levels, including obtaining and setting file data security levels.
+
 > **NOTE**<br/>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-The **secuityLabel** module provides APIs to manage file data security levels, including obtaining and setting file data security levels.
 
 ## Modules to Import
 
@@ -48,8 +48,7 @@ Sets the security label for a file in asynchronous mode. This API uses a promise
 **Example**
 
   ```js
-  let type = "s4";
-  securityLabel.setSecurityLabel(path, type).then(function(){
+  securityLabel.setSecurityLabel(path, "s0").then(function(){
       console.info("setSecurityLabel successfully");
   }).catch(function(error){
       console.info("setSecurityLabel failed with error:" + error);
@@ -75,8 +74,7 @@ Sets the security label for a file in asynchronous mode. This API uses a callbac
 **Example**
 
   ```js
-  let type = "s4";
-  securityLabel.setSecurityLabel(path, type, function(error){
+  securityLabel.setSecurityLabel(path, "s0", function(error){
       console.info("setSecurityLabel:" + JSON.stringify(error));
   });
   ```
@@ -98,8 +96,7 @@ Sets the security label for a file in synchronous mode.
 **Example**
 
 ```js
-let type = "s4";
-securityLabel.setSecurityLabelSync(path, type);
+securityLabel.setSecurityLabelSync(path, "s0");
 ```
 
 ## securityLabel.getSecurityLabel
@@ -125,11 +122,10 @@ Obtains the security label of a file in asynchronous mode. This API uses a promi
 **Example**
 
   ```js
-  let type = "s4";
   securityLabel.getSecurityLabel(path).then(function(type){
       console.log("getSecurityLabel successfully:" + type);
-  }).catch(function(error){
-      console.log("getSecurityLabel failed with error:" + error);
+  }).catch(function(err){
+      console.log("getSecurityLabel failed with error:" + err);
   });
   ```
 
@@ -151,8 +147,7 @@ Obtains the security label of a file in asynchronous mode. This API uses a callb
 **Example**
 
   ```js
-  let type = "s4";
-  securityLabel.getSecurityLabel(path,function(error, type){
+  securityLabel.getSecurityLabel(path, function(err, type){
       console.log("getSecurityLabel successfully:" + type);
   });
   ```
