@@ -39,7 +39,7 @@
         0
     };
     
-    //具体参数需要根据音频文件格式进行适配
+    // 具体参数需要根据音频文件格式进行适配
     SLDataFormat_PCM pcmFormat = {
         SL_DATAFORMAT_PCM,
         2,
@@ -82,7 +82,7 @@
         return;
     }
     
-    //wavFile_ 需要设置为用户想要播放的文件描述符
+    // wavFile_ 需要设置为用户想要播放的文件描述符
     wavFile_ = fopen(path, "rb");
     (*bufferQueueItf)->RegisterCallback(bufferQueueItf, BufferQueueCallback, wavFile_);
     ```
