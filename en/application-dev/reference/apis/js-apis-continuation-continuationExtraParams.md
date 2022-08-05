@@ -1,9 +1,9 @@
 # ContinuationExtraParams
 
-The **ContinuationExtraParams** module provides the extra parameters required by the device manager in the continuation management entry.
+The **ContinuationExtraParams** module provides the extra parameters required by the device selection module in the continuation management entry.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## ContinuationExtraParams
