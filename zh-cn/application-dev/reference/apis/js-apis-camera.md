@@ -1577,8 +1577,8 @@ canAddOutput(cameraOutput: CameraOutput, callback: AsyncCallback<boolean\>\): vo
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要移除的CameraOutput实例。 |
-| callback      | AsyncCallback<boolean\>            | 是   | 回调函数，用于获取结果。   |
+| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| callback      | AsyncCallback<boolean\>         | 是   | 回调函数，用于获取结果。   |
 
 **示例：**
 
@@ -1604,7 +1604,7 @@ canAddOutput(cameraOutput: CameraOutput): Promise<boolean\>
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要移除的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
 
 
 **返回值：**
@@ -2225,6 +2225,12 @@ isExposureModeSupported(aeMode: ExposureMode): Promise<boolean\>
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
+**参数：**
+
+| 名称      | 类型                           | 必填  | 说明                           |
+| -------- | -------------------------------| ---- | ----------------------------- |
+| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                      |
+
 **返回值：**
 
 | 名称               | 说明                             |
@@ -2420,6 +2426,12 @@ setMeteringPoint(point: Point): Promise<void\>
 设置曝光区域中心点，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称           | 类型                            | 必填 | 说明                 |
+| ------------- | -------------------------------| ---- | ------------------- |
+| exposurePoint | [Point](#point)                | 是   | 曝光点。              |
 
 **返回值：**
 
@@ -3188,14 +3200,14 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): Promise<void\>
 
 **返回值：**
 
-| 类型                              | 说明                                               |
-| -------------------------------- | ------------------------------------------------- |
-| Promise<VideoStabilizationMode\> | 使用Promise的方式获取结果，返回设置的视频防抖模式的结果。  |
+| 类型            | 说明                                               |
+| -------------- | ------------------------------------------------- |
+| Promise<void\> | 使用Promise的方式获取结果，返回设置的视频防抖模式的结果。  |
 
 **示例：**
 
 ```js
-captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF).then((vsMode) => {
+captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF).then(() => {
     console.log('Promise returned with the successful execution of setVideoStabilizationMode.');
 })
 ```
@@ -4142,7 +4154,7 @@ videoOutput.on('error', (VideoOutputError) => {
 | 名称                   | 值   | 说明          |
 | --------------------- | ---- | ------------ |
 | ERROR_UNKNOWN         | -1   | 未知错误。     |
-| ERROR_DRIVER_ERROR    | 0    | 录像输出错误码。|
+| ERROR_DRIVER_ERROR    | 0    | 驱动或者硬件错误。|
 
 ## VideoOutputError
 
@@ -4166,7 +4178,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 ## Rect
 
-metadata流。
+矩形定义。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
