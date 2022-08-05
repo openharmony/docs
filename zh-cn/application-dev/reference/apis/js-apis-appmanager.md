@@ -435,7 +435,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 | 应用包名。 | 
-  | accountId | number | 是 | account的Id。 | 
+  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 | 
 
 **示例：**
 
@@ -469,7 +469,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 | 应用包名。 | 
-  | accountId | number | 是 | account的Id。 | 
+  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 | 
   | callback | AsyncCallback\<void\> | 是 | 切断account进程的回调函数。 | 
 
 **示例：**
