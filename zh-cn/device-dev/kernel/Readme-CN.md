@@ -6,10 +6,7 @@
         - 基础内核
             - [中断管理](kernel-mini-basic-interrupt.md)
             - [任务管理](kernel-mini-basic-task.md)
-            - 内存管理
-                - [基本概念](kernel-mini-basic-memory-basic.md)
-                - [静态内存](kernel-mini-basic-memory-static.md)
-                - [动态内存](kernel-mini-basic-memory-dynamic.md)
+            - [内存管理](kernel-mini-basic-memory.md)
             - 内核通信机制
                 - [事件](kernel-mini-basic-ipc-event.md)
                 - [互斥锁](kernel-mini-basic-ipc-mutex.md)
@@ -23,19 +20,14 @@
             - [动态加载](kernel-mini-extend-dynamic-loading.md)
             - [文件系统](kernel-mini-extend-file.md)
         - 内核调测
-            - 内存调测
-                - [内存信息统计](kernel-mini-memory-debug-mes.md)
-                - [内存泄漏检测](kernel-mini-memory-debug-det.md)
-                - [踩内存检测](kernel-mini-memory-debug-cet.md)
+            - [内存调测](kernel-mini-memory-debug.md)
             - [异常调测](kernel-mini-memory-exception.md)
             - [Trace调测](kernel-mini-memory-trace.md)
             - [LMS调测](kernel-mini-memory-lms.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
             - [双向链表](kernel-mini-appx-data-list.md)
-            - 标准库支持
-                - [CMSIS支持](kernel-mini-appx-lib-cmsis.md)
-                - [POSIX支持](kernel-mini-appx-lib-posix.md)
+            - [标准库支持](kernel-mini-appx-lib.md)
     - 小型系统内核
         - [内核概述](kernel-small-overview.md)
         - 内核启动
