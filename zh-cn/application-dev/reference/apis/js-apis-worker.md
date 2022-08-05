@@ -7,7 +7,7 @@ Worker是与主线程并行的独立线程。创建Worker的线程称之为宿�
 
 ## 导入模块
 
-```
+```js
 import worker from '@ohos.worker';
 ```
 
@@ -50,7 +50,7 @@ Worker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的url，路径规范：若DevEco Studio新建工程在pages同级下没有workers目录，需要新建workers目录，将脚本文件放入workers目录。 |
+| scriptURL | string                          | 是   | Worker执行脚本的url。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) workers目录与pages目录同级。<br/>(b) workers目录与pages目录不同级。
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **返回值：**
@@ -61,11 +61,68 @@ Worker构造函数。
 
 **示例：**
 
-```
+```js
+// worker线程创建
+
+// FA模型-目录同级
 const workerInstance = new worker.Worker("workers/worker.js", {name:"first worker"});
+// FA模型-目录不同级（以workers目录放置pages目录前一级为例）
+const workerInstance = new worker.Worker("../workers/worker.js", {name:"first worker"});
+
+// Stage模型-目录同级
+const workerInstance = new worker.Worker('entry/ets/workers/worker.ts');
+// Stage模型-目录不同级（以workers目录放置pages目录后一级为例）
+const workerInstance = new worker.Worker('entry/ets/pages/workers/worker.ts');
+
+// scriptURL——"entry/ets/workers/worker.ts"的解释：
+// entry: 为module.json5中module中name属性的值；
+// ets: 表明当前使用的语言。
 ```
+同时，需在工程目录下build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
 
+(1) 目录同级( **不添加也可以** )
+FA模型:
 
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/MainAbility/workers/worker.ts"
+      ]
+    }
+  }
+```
+Stage模型:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/workers/worker.ts"
+      ]
+    }
+  }
+```
+(2) 目录不同级( **必须添加** )
+FA模型:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/workers/worker.ts"
+      ]
+    }
+  }
+```
+Stage模型:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/pages/workers/worker.ts"
+      ]
+    }
+  }
+```
 ### postMessage
 
 postMessage(message: Object, options?: PostMessageOptions): void
@@ -83,12 +140,9 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 **示例：**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.postMessage("hello world");
-```
-
-```
 const workerInstance= new worker.Worker("workers/worker.js");
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
@@ -112,8 +166,8 @@ on(type: string, listener: EventListener): void
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -137,7 +191,7 @@ once(type: string, listener: EventListener): void
 
 **示例：**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
@@ -162,7 +216,7 @@ off(type: string, listener?: EventListener): void
 
 **示例：**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.off("alert");
 ```
@@ -178,9 +232,9 @@ terminate(): void
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.terminate()
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.terminate();
 ```
 
 
@@ -200,10 +254,10 @@ Worker对象的onexit属性表示Worker退出时被调用的事件处理程序�
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onexit = function(e) {
-    console.log("onexit")
+    console.log("onexit");
 }
 ```
 
@@ -224,10 +278,10 @@ Worker对象的onerror属性表示Worker在执行过程中发生异常被调用�
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onerror = function(e) {
-    console.log("onerror")
+    console.log("onerror");
 }
 ```
 
@@ -248,10 +302,12 @@ Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worke
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onmessage = function(e) {
-    console.log("onerror")
+    // e : MessageEvent<T>, 用法如下：
+    // let data = e.data;
+    console.log("onmessage");
 }
 ```
 
@@ -272,10 +328,10 @@ Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onmessageerror= function(e) {
-    console.log("onmessageerror")
+    console.log("onmessageerror");
 }
 ```
 
@@ -300,8 +356,8 @@ addEventListener(type: string, listener: EventListener): void
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -325,9 +381,9 @@ removeEventListener(type: string, callback?: EventListener): void
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.removeEventListener("alert")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.removeEventListener("alert");
 ```
 
 
@@ -353,9 +409,9 @@ dispatchEvent(event: Event): boolean
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.dispatchEvent({type:"alert"})
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.dispatchEvent({type:"alert"});
 ```
 
 
@@ -369,9 +425,9 @@ removeAllListener(): void
 
 **示例：**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.removeAllListener({type:"alert"})
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.removeAllListener();
 ```
 
 
@@ -397,22 +453,23 @@ Worker向宿主线程发送消息。
 
 **示例：**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.postMessage("hello world")
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
-    console.log("receive data from worker.js")
+    // let data = e.data;
+    console.log("receive data from worker.js");
 }
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e){
-    parentPort.postMessage("receive data from main.js")
+    // let data = e.data;
+    parentPort.postMessage("receive data from main.js");
 }
 ```
 
@@ -427,13 +484,12 @@ close(): void
 
 **示例：**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
+const workerInstance = new worker.Worker("workers/worker.js");
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
@@ -459,19 +515,18 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 **示例：**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.postMessage("hello world")
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.postMessage("hello world");
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e) {
-    console.log("receive main.js message")
+    console.log("receive main.js message");
 }
 ```
 
@@ -492,13 +547,12 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 **示例：**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
+const workerInstance = new worker.Worker("workers/worker.js");
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
@@ -556,7 +610,7 @@ parentPort.onmessageerror= function(e) {
 
 **示例：**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -620,17 +674,107 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 
 **示例：**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.js")
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort
 parentPort.onerror = function(e){
     console.log("worker.js onerror")
 }
+```
+
+## 完整示例
+### FA模型
+```js
+// main.js(同级目录为例)
+import worker from '@ohos.worker';
+const workerInstance = new worker.Worker("workers/worker.ts");
+// 创建js和ts文件都可以
+// const workerInstance = new worker.Worker("workers/worker.js");
+
+workerInstance.postMessage("123");
+workerInstance.onmessage = function(e) {
+    let data = e.data;
+    console.log("main.js onmessage");
+    // 接收worker线程信息后执行terminate
+    workerInstance.terminate();
+}
+// 在调用terminate后，执行onexit
+workerInstance.onexit = function() {
+    console.log("main.js terminate");
+}
+```
+```js
+// worker.js
+import worker from '@ohos.worker';
+const parentPort = worker.parentPort
+
+parentPort.onmessage = function(e) {
+    let data = e.data;
+    console.log("worker.js onmessage");
+    parentPort.postMessage("123")
+}
+
+parentPort.onerror= function(e) {
+    console.log("worker.js onerror");
+}
+```
+build-profile.json5 配置 :
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/MainAbility/workers/worker.ts"
+      ]
+    }
+  }
+```
+### Stage模型
+```js
+// main.js（以不同目录为例）
+import worker from '@ohos.worker';
+const workerInstance = new worker.Worker("entry/ets/pages/workers/worker.ts");
+// 创建js和ts文件都可以
+// const workerInstance = new worker.Worker("entry/ets/pages/workers/worker.js");
+workerInstance.postMessage("123");
+workerInstance.onmessage = function(e) {
+    let data = e.data;
+    console.log("main.js onmessage");
+    // 接收worker线程信息后执行terminate
+    workerInstance.terminate();
+}
+// 在调用terminate后，执行onexit
+workerInstance.onexit = function() {
+    console.log("main.js terminate");
+}
+```
+```js
+// worker.js
+import worker from '@ohos.worker';
+const parentPort = worker.parentPort
+
+parentPort.onmessage = function(e) {
+    let data = e.data;
+    console.log("worker.js onmessage");
+    parentPort.postMessage("123")
+}
+
+parentPort.onerror= function(e) {
+    console.log("worker.js onerror");
+}
+```
+build-profile.json5 配置:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/pages/workers/worker.ts"
+      ]
+    }
+  }
 ```
