@@ -129,8 +129,9 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
               permission = 0644;                       // 驱动创建设备节点权限。
               moduleName = "hi35xx_adc_driver";        //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
               serviceName = "HI35XX_ADC_DRIVER";       //【必要】驱动对外发布服务的名称，必须唯一。
-              deviceMatchAttr = "hisilicon_hi35xx_adc";//【必要】用于配置控制器私有数据，要与adc_config.hcs中对应控制器保持一致。
-              }                                        // 具体的控制器信息在adc_config.hcs中。
+              deviceMatchAttr = "hisilicon_hi35xx_adc";//【必要】用于配置控制器私有数据，要与adc_config.hcs中对应控制器保持一致，
+                                                       // 具体的控制器信息在adc_config.hcs中。
+              }                                        
             }
           }
         }
@@ -216,7 +217,7 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
 
       入参：
 
-      HdfDeviceObject是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -267,12 +268,12 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
       hi35xx->device.priv = (void *)node;       //【必要】存储设备属性
       hi35xx->device.devNum = hi35xx->deviceNum;//【必要】初始化AdcDevice成员
       hi35xx->device.ops = &g_method;           //【必要】AdcMethod的实例化对象的挂载
-      ret = AdcDeviceAdd(&hi35xx->device);      //【必要且重要】调用此函数填充核心层结构体，返回成功信号后驱动才完全接入平台核心层 
+      ret = AdcDeviceAdd(&hi35xx->device);      //【必要且重要】调用此函数填充核心层结构体，返回成功信号后驱动才完全接入平台核心层。
       ...
       return HDF_SUCCESS;
       
       __ERR__:
-      if (hi35xx != NULL) {                     // 不成功的话，需要反向执行初始化相关函数
+      if (hi35xx != NULL) {                     // 不成功的话，需要反向执行初始化相关函数。
           if (hi35xx->regBase != NULL) {
           OsalIoUnmap((void *)hi35xx->regBase);
           hi35xx->regBase = NULL;
@@ -287,7 +288,7 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
 
       入参：
 
-      HdfDeviceObject是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
