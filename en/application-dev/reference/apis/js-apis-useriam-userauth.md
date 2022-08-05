@@ -1,5 +1,7 @@
 # User Authentication
 
+The **userIAM.userAuth** module provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app login.
+
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -10,26 +12,7 @@
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
-## Example
-
-```js
-// API version 6
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
-
-export default {
-    startAuth() {
-        console.info("start auth");
-        let auth = userIAM_userAuth.getAuthenticator();
-        auth.execute("FACE_ONLY", "S2").then((code)=>{
-            console.info("auth success");
-            // Add the logic to be executed when the authentication is successful.
-        }).catch((code)=>{
-            console.error("auth fail, code = " + code);
-            // Add the logic to be executed when the authentication fails.
-        });
-    }
-}
-```
+## Sample Code
 
 ```js
 // API version 8
@@ -106,133 +89,25 @@ export default {
 }
 ```
 
-## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
-
-getAuthenticator(): Authenticator
-
-> **NOTE**<br>
-> This API is not longer maintained since API version 8. You are advised to use [constructor](#constructor8).
-
-Obtains an **Authenticator** object for user authentication.
-
-**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
-
-**System capability**: SystemCapability.UserIAM.UserAuth.Core
-
-**Return value**
-| Type                                     | Description        |
-| ----------------------------------------- | ------------ |
-| [Authenticator](#authenticatordeprecated) | **Authenticator** object obtained.|
-
-**Example**
-  ```js
-  let authenticator = userIAM_userAuth.getAuthenticator();
-  ```
-
-## Authenticator<sup>(deprecated)</sup>
-
-> **NOTE**<br>
-> This object is not longer maintained since API version 8. You are advised to use [UserAuth](#userauth8).
-
-Provides methods to manage an **Authenticator** object.
-
-
-### execute<sup>(deprecated)</sup>
-
-execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
-
-> **NOTE**<br>
-> This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
-
-Performs user authentication. This API uses asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
-
-**System capability**: SystemCapability.UserIAM.UserAuth.Core
-
-**Parameters**
-
-| Name  | Type                       | Mandatory| Description                                                        |
-| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                      | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
-| level    | string                      | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
-| callback | AsyncCallback&lt;number&gt; | No  | Callback used to return the result.                                                  |
-
- Parameters returned in callback
-
-| Type  | Description                                                        |
-| ------ | ------------------------------------------------------------ |
-| number | Authentication result. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
-
-**Example**
-  ```js
-  authenticator.execute("FACE_ONLY", "S2", (code)=>{
-      if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
-          console.info("auth success");
-          return;
-      }
-      console.error("auth fail, code = " + code);
-  })
-  ```
-
-
-### execute<sup>(deprecated)</sup>
-
-execute(type:string, level:string): Promise&lt;number&gt;
-
-> **NOTE**<br>
-> This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
-
-Performs user authentication. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
-
-**System capability**: SystemCapability.UserIAM.UserAuth.Core
-
-**Parameters**
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
-| level  | string | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
-
-**Return value**
-| Type                 | Description                                                        |
-| --------------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the authentication result, which is a number. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
-
-**Example**
-
 ```js
-let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-    console.info("auth success");
-}).catch((code)=>{
-    console.error("auth fail, code = " + code);
-});
+// API version 6
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+export default {
+    startAuth() {
+        console.info("start auth");
+        let auth = userIAM_userAuth.getAuthenticator();
+        auth.execute("FACE_ONLY", "S2").then((code)=>{
+            console.info("auth success");
+            // Add the logic to be executed when the authentication is successful.
+        }).catch((code)=>{
+            console.error("auth fail, code = " + code);
+            // Add the logic to be executed when the authentication fails.
+        });
+    }
+}
 ```
 
-## AuthenticationResult<sup>(deprecated)</sup>
-
-> **NOTE**<br>
-> This parameter is not longer maintained since API version 8. You are advised to use [ResultCode](#resultcode8).
-
-Enumerates the authentication results.
-
-**System capability**: SystemCapability.UserIAM.UserAuth.Core
-
-| Name              | Default Value| Description                      |
-| ------------------ | ------ | -------------------------- |
-| NO_SUPPORT         | -1     | The device does not support the current authentication mode.|
-| SUCCESS            | 0      | The authentication is successful.                |
-| COMPARE_FAILURE    | 1      | The feature comparison failed.                |
-| CANCELED           | 2      | The authentication was canceled by the user.            |
-| TIMEOUT            | 3      | The authentication has timed out.                |
-| CAMERA_FAIL        | 4      | The camera failed to start.            |
-| BUSY               | 5      | The authentication service is not available. Try again later.  |
-| INVALID_PARAMETERS | 6      | The authentication parameters are invalid.            |
-| LOCKED             | 7      | The user account is locked because the number of authentication failures has reached the threshold.|
-| NOT_ENROLLED       | 8      | No authentication credential is registered.          |
-| GENERAL_ERROR      | 100    | Other errors.                |
 
 ## UserAuth<sup>8+</sup>
 
@@ -607,3 +482,131 @@ Enumerates the trust levels of the authentication result.
 | ATL2 | 20000  | Trust level 2.|
 | ATL3 | 30000  | Trust level 3.|
 | ATL4 | 40000  | Trust level 4.|
+
+## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
+
+getAuthenticator(): Authenticator
+
+> **NOTE**<br>
+> This API is not longer maintained since API version 8. You are advised to use [constructor](#constructor8).
+
+Obtains an **Authenticator** object for user authentication.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Return value**
+| Type                                     | Description        |
+| ----------------------------------------- | ------------ |
+| [Authenticator](#authenticatordeprecated) | **Authenticator** object obtained.|
+
+**Example**
+  ```js
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  ```
+
+## Authenticator<sup>(deprecated)</sup>
+
+> **NOTE**<br>
+> This object is not longer maintained since API version 8. You are advised to use [UserAuth](#userauth8).
+
+Provides methods to manage an **Authenticator** object.
+
+
+### execute<sup>(deprecated)</sup>
+
+execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
+
+> **NOTE**<br>
+> This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
+
+Performs user authentication. This API uses asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                      | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| level    | string                      | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
+| callback | AsyncCallback&lt;number&gt; | No  | Callback used to return the result.                                                  |
+
+ Parameters returned in callback
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| number | Authentication result. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
+
+**Example**
+  ```js
+  authenticator.execute("FACE_ONLY", "S2", (code)=>{
+      if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
+          console.info("auth success");
+          return;
+      }
+      console.error("auth fail, code = " + code);
+  })
+  ```
+
+
+### execute<sup>(deprecated)</sup>
+
+execute(type:string, level:string): Promise&lt;number&gt;
+
+> **NOTE**<br>
+> This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
+
+Performs user authentication. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| level  | string | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
+
+**Return value**
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | Promise used to return the authentication result, which is a number. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
+
+**Example**
+
+```js
+let authenticator = userIAM_userAuth.getAuthenticator();
+authenticator.execute("FACE_ONLY", "S2").then((code)=>{
+    console.info("auth success");
+}).catch((code)=>{
+    console.error("auth fail, code = " + code);
+});
+```
+
+## AuthenticationResult<sup>(deprecated)</sup>
+
+> **NOTE**<br>
+> This parameter is not longer maintained since API version 8. You are advised to use [ResultCode](#resultcode8).
+
+Enumerates the authentication results.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name              | Default Value| Description                      |
+| ------------------ | ------ | -------------------------- |
+| NO_SUPPORT         | -1     | The device does not support the current authentication mode.|
+| SUCCESS            | 0      | The authentication is successful.                |
+| COMPARE_FAILURE    | 1      | The feature comparison failed.                |
+| CANCELED           | 2      | The authentication was canceled by the user.            |
+| TIMEOUT            | 3      | The authentication has timed out.                |
+| CAMERA_FAIL        | 4      | The camera failed to start.            |
+| BUSY               | 5      | The authentication service is not available. Try again later.  |
+| INVALID_PARAMETERS | 6      | The authentication parameters are invalid.            |
+| LOCKED             | 7      | The user account is locked because the number of authentication failures has reached the threshold.|
+| NOT_ENROLLED       | 8      | No authentication credential is registered.          |
+| GENERAL_ERROR      | 100    | Other errors.                |
