@@ -21,4 +21,4 @@
 
 ## **详细描述**
 
-捕获结束相关信息，用于捕获结束回调 **OnCaptureEnded**。
+捕获结束相关信息，用于捕获结束回调[OnCaptureEnded](_camera.md#oncaptureended)。
