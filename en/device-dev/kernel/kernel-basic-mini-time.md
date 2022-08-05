@@ -1,8 +1,7 @@
-# Time Management<a name="EN-US_TOPIC_0000001078876462"></a>
+# Time Management
 
 
-
-## Basic Concepts<a name="section36251149131120"></a>
+## Basic Concepts
 
 Time management provides all time-related services for applications based on the system clock.
 
@@ -12,66 +11,78 @@ People use second or millisecond as the time unit, while the operating system us
 
 The time management module of the OpenHarmony LiteOS-M kernel provides time conversion and statistics functions.
 
-## Time Unit<a name="section97172532397"></a>
 
--   Cycle
+## Time Unit
 
-    Cycle is the minimum time unit in the system. The cycle duration is determined by the system clock frequency, that is, the number of cycles per second.
+- Cycle
+  
+  Cycle is the minimum time unit in the system. The cycle duration is determined by the system clock frequency, that is, the number of cycles per second.
+- Tick
+  
+  Tick is the basic time unit of the operating system and is determined by the number of ticks per second configured by the user.
 
--   Tick
 
-    Tick is the basic time unit of the operating system and is determined by the number of ticks per second configured by the user.
+## Available APIs
+
+The following table describes APIs available for OpenHarmony LiteOS-M time management. For more details about the APIs, see the API reference.
+
+**Table 1** APIs of the time management module
+
+| API| Description|
+| -------- | -------- |
+| LOS_MS2Tick | Converts milliseconds into ticks.|
+| LOS_Tick2MS | Converts ticks into milliseconds.|
+| OsCpuTick2MS | Converts cycles into milliseconds. Two UINT32 values indicate the high-order and low-order 32 bits of the result value, respectively.|
+| OsCpuTick2US | Converts cycles into microseconds. Two UINT32 values indicate the high-order and low-order 32 bits of the result value, respectively.|
+
+**Table 2** APIs for time statistics
+
+| API| Description|
+| -------- | -------- |
+| LOS_SysClockGet | Obtains the system clock.|
+| LOS_TickCountGet | Obtains the number of ticks since the system starts.|
+| LOS_CyclePerTickGet | Obtains the number of cycles for each tick.|
 
 
-## Available APIs<a name="section158501652121514"></a>
-
-The following table describes APIs available for the OpenHarmony LiteOS-M time management. For more details about the APIs, see the API reference.
-
-**Table  1**  APIs of the time management module
-
-| Category| API| Description|
-| -------- | -------- | -------- |
-| Time conversion| LOS_MS2Tick | Converts milliseconds into ticks.|
-|  | LOS_Tick2MS | Converts ticks into milliseconds.|
-|  | OsCpuTick2MS | Converts cycles into milliseconds. Two UINT32 values indicate the high-order and low-order 32 bits of the result value, respectively.|
-|  | OsCpuTick2US | Converts cycles into microseconds. Two UINT32 values indicate the high-order and low-order 32 bits of the result value, respectively.|
-| Time statistics| LOS_SysClockGet | Obtains the system clock.|
-|  | LOS_TickCountGet | Obtains the number of ticks since the system starts.|
-|  | LOS_CyclePerTickGet | Obtains the number of cycles for each tick.|
-|  | LOS_CurrNanosec |Obtains the number of nanoseconds since the system starts.|
-| Delay management| LOS_UDelay |Performs busy waiting in μs, which can be preempted by a task with a higher priority.|
-|  | LOS_MDelay |Performs busy waiting in ms, which can be preempted by a task with a higher priority.|
-
-## How to Develop<a name="section783435801510"></a>
+## How to Develop
 
 The typical development process of time management is as follows:
 
-1.  Complete board configuration and adaptation as required, and configure the system clock frequency \(**OS\_SYS\_CLOCK**  in Hz and  **LOSCFG\_BASE\_CORE\_TICK\_PER\_SECOND**\). The default value of  **OS\_SYS\_CLOCK**  varies with the hardware platform.
-2.  Call the clock conversion and statistics APIs.
+1. Complete board configuration and adaptation as required, and configure the system clock frequency (**OS_SYS_CLOCK** in Hz and **LOSCFG_BASE_CORE_TICK_PER_SECOND**). The default value of **OS_SYS_CLOCK** varies with the hardware platform.
 
->![](../public_sys-resources/icon-note.gif) **NOTE** 
+2. Call the clock conversion and statistics APIs.
+
+>![](../public_sys-resources/icon-note.gif) **NOTE**
 >
->-   The time management module depends on  **OS\_SYS\_CLOCK**  and  **LOSCFG\_BASE\_CORE\_TICK\_PER\_SECOND**.
->-   The number of system ticks is not counted when the interrupt feature is disabled. Therefore, the number of ticks cannot be used as the accurate time.
->-   The configuration options are maintained in the  **target\_config.h**  file of the development board project.
+> - The time management module depends on **OS_SYS_CLOCK** and **LOSCFG_BASE_CORE_TICK_PER_SECOND**.
+> 
+> - The number of system ticks is not counted when the interrupt feature is disabled. Therefore, the number of ticks cannot be used as the accurate time.
+> 
+> - The configuration options are maintained in the **target_config.h** file of the development board project.
 
-## Development Example<a name="section460018317164"></a>
 
-### Example Description<a name="section127752801718"></a>
+## Development Example
+
+
+### Example Description
 
 The following example describes basic time management methods, including:
 
 - Time conversion: convert milliseconds to ticks or convert ticks to milliseconds.
+
 - Time statistics: obtain the number of cycles per tick, number of ticks since system startup, and number of delayed ticks.
 
-### Sample Code<a name="section321653551711"></a>
+
+### Sample Code
 
 Prerequisites
 
--   The default value of  **LOSCFG\_BASE\_CORE\_TICK\_PER\_SECOND**  is  **100**.
--   The system clock frequency  **OS\_SYS\_CLOCK**  is configured.
+- The default value of **LOSCFG_BASE_CORE_TICK_PER_SECOND** is **100**.
+
+- The system clock frequency **OS_SYS_CLOCK** is configured.
 
 Time conversion:
+
 
 ```
 VOID Example_TransformTime(VOID)
@@ -87,6 +98,7 @@ VOID Example_TransformTime(VOID)
 ```
 
 Time statistics and delay:
+
 
 ```
 VOID Example_GetTime(VOID)
@@ -112,11 +124,13 @@ VOID Example_GetTime(VOID)
 }
 ```
 
-### Verification<a name="section4366193318167"></a>
+
+### Verification
 
 The development is successful if the return result is as follows:
 
 Time conversion:
+
 
 ```
 tick = 1000
@@ -124,6 +138,7 @@ ms = 1000
 ```
 
 Time statistics and delay:
+
 
 ```
 LOS_CyclePerTickGet = 495000 

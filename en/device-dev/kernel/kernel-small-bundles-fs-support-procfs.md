@@ -1,27 +1,31 @@
 # procfs
 
 
-## Basic Concepts<a name="section146801917174017"></a>
+## Basic Concepts
 
-The proc filesystem \(procfs\) is a virtual file system that displays process or other system information in a file-like structure. It is more convenient to obtain system information in file operation mode than API calling mode.
+The proc filesystem (procfs) is a virtual file system that displays process or other system information in a file-like structure. It is more convenient to obtain system information in file operation mode than API calling mode.
 
-## Working Principles<a name="section479762916408"></a>
 
-In the OpenHarmony kernel, procfs is automatically mounted to the  **/proc**  directory during startup. Only the kernel module can create file nodes to provide the query service.
+## Working Principles
 
-## Development Guidelines<a name="section1221174524014"></a>
+In the OpenHarmony kernel, procfs is automatically mounted to the **/proc** directory during startup. Only the kernel module can create file nodes to provide the query service.
 
-To create a procfs file, you need to use  **ProcMkdir**  to create a directory and use  **CreateProcEntry**  to create a file. The development of the file node function is to hook the read and write functions to the file created by  **CreateProcEntry**. When the procfs file is read or written, the hooked functions will be called to implement custom functions.
 
-### Development Example<a name="section52016575401"></a>
+## Development Guidelines
 
-The following describes how to create the  **/proc/hello/world**  file to implement the following functions:
+To create a procfs file, you need to use **ProcMkdir** to create a directory and use **CreateProcEntry** to create a file. The development of the file node function is to hook the read and write functions to the file created by **CreateProcEntry**. When the procfs file is read or written, the hooked functions will be called to implement custom functions.
 
-1. Create a file in  **/proc/hello/world**.
+
+### Development Example
+
+The following describes how to create the **/proc/hello/world** file to implement the following functions:
+
+1. Create a file in **/proc/hello/world**.
 
 2. Read the file. When the file is read, "HelloWorld!" is returned.
 
 3. Write the file and print the data written in the file.
+
 
 ```
 #include "proc_fs.h"
@@ -48,7 +52,7 @@ static const struct ProcFileOperations HELLO_WORLD_OPS = {
 
 void HelloWorldInit(void)
 {
-    /* Create the hello directory.*/
+    /* Create the hello directory. */
     struct ProcDirEntry *dir = ProcMkdir("hello", NULL);
     if (dir == NULL) {
         PRINT_ERR("create dir failed!\n");
@@ -69,7 +73,8 @@ void HelloWorldInit(void)
 
 **Verification**
 
-After the OS startup, run the following command in the shell:
+After the OS startup, run the following commands in the shell:
+
 
 ```
 OHOS # cat /proc/hello/world
@@ -77,4 +82,3 @@ OHOS # Hello World!
 OHOS # echo "yo" > /proc/hello/world
 OHOS # your input is: yo
 ```
-
