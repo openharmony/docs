@@ -67,10 +67,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         chmod
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        chmod *permission* *target*<br>Example:<br>chmod 0600 /storage/myFile.txt<br>chmod 0750 /storage/myDir
+                        chmod <i>permission</i> <i>target</i><br>Example:<br>chmod 0600 /storage/myFile.txt<br>chmod 0750 /storage/myDir
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Modifies the permission, which must be in the **0*****xxx*** format. **chmod**, *permission*, and *target* must be separated by only one space.
+                        Modifies the permission, which must be in the **0****<i>xxx</i>** format. **chmod**, <i>permission</i>, and <i>target</i> must be separated by only one space.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems

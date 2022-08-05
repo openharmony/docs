@@ -4,13 +4,13 @@
 The init configuration file is in JSON format and is used to configure commands and services required for system startup. Upon system startup, the Init process parses the init configuration file and runs the commands in it to start the corresponding services.
 ### Basic Concepts
 1. Group configuration file: A group configuration file is named in the format of **device.xxxx.group.cfg**. It consists of three parts, **jobs**, **services**, and **groups**. It is available only for the standard system. Such a file is used to configure the jobs and services that can be executed. The partition that holds the file is determined based on the **bootgroup** attribute in cmdline. Currently, the following groups are supported:
-    - ​device.boot.group: default configuration, which is used to trigger all jobs and services in the configuration file.
-    - device.charge.group: charge mode, which is used to trigger only the allowed jobs and services in the configuration file.
+    - ​**device.boot.group**: default configuration, which is used to trigger all jobs and services in the configuration file.
+    - **device.charge.group**: charge mode, which is used to trigger only the allowed jobs and services in the configuration file.
 
 2. Startup configuration file: **init.cfg** file, which consists of three parts, **jobs**, **services**, and **import**.
-    - services (for the Linux kernel only): native services supported by the system. For details about the service configuration, see [Service Management](subsys-boot-init-service.md).
-    - jobs: collection of commands to be executed. For details about jobs, see [Job Management](subsys-boot-init-jobs.md).
-    - import (for the Linux kernel only). command used to import **.cfg** files. It helps reduce the size of **.cfg** files for implementing different functions.
+    - **services** (for the Linux kernel only): native services supported by the system. For details about the service configuration, see [Service Management](subsys-boot-init-service.md).
+    - **jobs**: collection of commands to be executed. For details about jobs, see [Job Management](subsys-boot-init-jobs.md).
+    - **import** (for the Linux kernel only): command used to import **.cfg** files. It helps reduce the size of **.cfg** files for implementing different functions.
 
 ### Constraints
 Only the small system and standard system are supported.
