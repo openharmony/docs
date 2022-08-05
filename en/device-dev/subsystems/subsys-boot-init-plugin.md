@@ -2,9 +2,13 @@
 
 ## Overview
 ### Basic Concepts
- - Introduction to begetctl
-   For details, see [begetctl Commands](#table14737791480).
+
+ - begetctl
+
+   For details about begetctl, see [begetctl Commands](#table14737791480).
+
  - bootchart plug-in
+
    The bootchart plug-in is an open source tool used to evaluate system performance during Linux startup. It automatically collects information such as the CPU usage, disk throughput, and process status, and displays the evaluation result in graphics to facilitate system startup optimization.  
 
 ### Constraints
@@ -149,8 +153,8 @@ bootchart is available only for the standard system, and begetctl is available f
         proc_diskstats.log<br>
         proc_ps.log<br>
         proc_stat.log<br>
-  7. Run the **tar -zcvf bootchart.tgz *** command to compress the **bootchart.tgz** file (available only for Linux) and copy the compressed file to the **linux:bootchart-master** directory.
-  8. Run the following command in the **bootchart-master** directory:
+  7. Run the <strong>tar -zcvf bootchart.tgz *</strong> command to compress the <strong>bootchart.tgz</strong> file (available only for Linux) and copy the compressed file to the <strong>linux:bootchart-master</strong> directory.
+  8. Run the following command in the <strong>bootchart-master</strong> directory:
       ```
       python3 pybootchartgui.py -f pdf bootchart.tgz
       ```

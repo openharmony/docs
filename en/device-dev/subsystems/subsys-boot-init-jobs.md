@@ -84,7 +84,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         chown <i>uid</i> <i>gid</i> <i>target</i><br>Example:<br>chown 900 800 /storage/myDir<br>chown 100 100 /storage/myFile.txt
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Modifies the owner group. <strong>chown</strong>, <strong>uid</strong>, <strong>gid</strong>, and <i>target</i> must be separated by only one space.
+                        Modifies the owner group. <strong>chown</strong>, <i>uid</i>, <i>gid</i>, and <i>target</i> must be separated by only one space.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems

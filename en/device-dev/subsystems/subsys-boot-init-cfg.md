@@ -18,9 +18,9 @@ Only the small system and standard system are supported.
 ## How to Develop
 ### Use Cases
 Upon startup, the init process first initializes the system and then parses the configuration file. The system classifies the configuration files into three types:
-1. init.cfg: default configuration file, which is defined by the init process and parsed first.
-2. /system/etc/init/*.cfg: configuration file defined by each subsystem.
-3. /vendor/etc/init/*.cfg: configuration file defined by vendors.
+1. <strong>init.cfg</strong>: default configuration file, which is defined by the init process and parsed first.
+2. <strong>/system/etc/init/*.cfg</strong>: configuration file defined by each subsystem.
+3. <strong>/vendor/etc/init/*.cfg</strong>: configuration file defined by vendors.
 
 If you need to add a configuration file, define its content as you want and copy it to the corresponding directory.
 
@@ -81,14 +81,14 @@ The following is a template for defining a **.cfg** file.
     ]
 }
 ```
-1. .cfg file: configuration file written in the JSON format. If the services or commands in it do not take effect, check whether the content format is correct.
+1. <strong>.cfg file</strong>: configuration file written in the JSON format. If the services or commands in it do not take effect, check whether the content format is correct.
 
-2. import: command used to import **.cfg** files. The files are parsed immediately after their path is parsed.
+2. <strong>import</strong>: command used to import **.cfg** files. The files are parsed immediately after their path is parsed.
 
-3. example1.cfg: **.cfg** file to be imported.
+3. <strong>example1.cfg</strong>: **.cfg** file to be imported.
 
-4. serviceName: service name, which is user-defined.
+4. <strong>serviceName</strong>: service name, which is user-defined.
 
-5. /system/bin/serviceName: full path and parameters of the executable file of the current service, in array format.
+5. <strong>/system/bin/serviceName</strong>: full path and parameters of the executable file of the current service, in array format.
 
-6. jobName1: job name, which is user-defined.
+6. <strong>jobName1</strong>: job name, which is user-defined.

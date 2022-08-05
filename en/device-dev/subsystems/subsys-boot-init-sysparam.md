@@ -26,10 +26,10 @@ Figure 1 System parameter operation primitives
 
   **Table 2** System parameter names
 
-  | Type| Example| Description|
-  | -------- | -------- | -------- |
-  | Parameter name | const.product.**name** | Complete system parameter name. It does not end with a period (.).          |
-  | Parameter directory | const.product **.**     | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
+  | Type| Name| Example| Description|
+  | -------- | -------- | -------- | -------- |
+  | Name| Parameter Name | const.product.**name** | Complete system parameter name. It does not end with a period (.).          |
+  | Directory| Parameter Directory | const.product **.**     | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
 
 - Type
 
@@ -90,11 +90,11 @@ Each subsystem defines the system parameters of its own modules, including the s
   const.product.="root:root:660"
   ```
 
-  As shown above, we can use **parameter directory** to define the same access permission for system parameters with the same prefix. The DAC information is divided into three segments, user, group, and UGO rule information, which are separated using a semicolon (:).
+  As shown above, we can use **parameter directory** to define the same access permission for system parameters with the same prefix. The DAC information is divided into three segments, user, group, and UGO rule, which are separated using a semicolon (:).
 
-  The following figure shows the structure of the UGO rule information.
+  The following figure shows the structure of the UGO rule.
 
-  **Figure 2** UGO rule information
+  **Figure 2** UGO rule structure
 
   ![UGO rule](figure/dac-definition.png)
 
@@ -132,7 +132,7 @@ You can set specific system parameters as needed to meet your service demand.
     | -------- | -------- |
     | param get [**key**] | Obtains the system parameter value of the specified key. If no key name is specified, all system parameter values will be returned.|
     | param set **key value** | Sets the specified value for the specified key.|
-    | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, ***** indicates any value, and **val*** indicates matching of only the first three val characters.|
+    | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, <strong>*</strong> indicates any value, and <strong>val*</strong> indicates matching of only the first three val characters.|
     | param watch | Observes value change of a system parameter asynchronously.|
 
   - syspara APIs
@@ -177,9 +177,9 @@ You can set specific system parameters as needed to meet your service demand.
 
 1. System parameter definition
 
-    You can define default system parameters and implement permission control on them by configuring the subsystem or product **.para** and **.para.dac** files. 
+    You can define default system parameters and implement permission control on them by configuring the subsystem or product <strong>.para</strong> and <strong>.para.dac</strong> files. 
 
-    ​    	On a standard system, use the **ohos_prebuilt_para** template to install the configuration file to the **/etc/param/** directory. The following is an example of the GN script:
+    ​    	On a standard system, use the <strong>ohos_prebuilt_para</strong> template to install the configuration file to the <strong>/etc/param/</strong> directory. The following is an example of the GN script:
 
     ```go
     import("//base/startup/init_lite/services/etc/param/param_fixer.gni")
@@ -197,7 +197,7 @@ You can set specific system parameters as needed to meet your service demand.
     }
     ```
 
-    On a small system, run the **copy** command to copy the corresponding system parameter definition file to the **system/etc/param** directory.
+    On a small system, run the <strong>copy</strong> command to copy the corresponding system parameter definition file to the <strong>system/etc/param</strong> directory.
     ```go
     copy("ohos.para") {
       sources = [ "//base/startup/init_lite/services/etc/param/ohos.para" ]

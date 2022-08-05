@@ -70,11 +70,11 @@ Service configuration allows you to configure services on demand to create diffe
 
   The CPU core binding, priority, MAC address, and AccessToken information of the service process can be configured in the configuration file during process startup.
 
-  - Support of CPU core binding for service processes (through modification of the **\*.cfg** file)
-  - Support of priority setting for service processes (through modification of the **\*.cfg** file)
-  - Support of MAC address setting (that is, SELinux tag setting) for service processes (through modification of the **\*.cfg** file)
-  - Support of AccessToken setting for service processes and distributed capability setting for system service processes (through modification of the **\*.cfg** file)
-  - Support of the suppression mechanism for service processes (through modification of the **\*.cfg** file)
+  - Support of CPU core binding for service processes (through modification of the <strong>*.cfg</strong> file)
+  - Support of priority setting for service processes (through modification of the <strong>*.cfg</strong> file)
+  - Support of MAC address setting (that is, SELinux tag setting) for service processes (through modification of the <strong>*.cfg</strong> file)
+  - Support of AccessToken setting for service processes and distributed capability setting for system service processes (through modification of the <strong>*.cfg</strong> file)
+  - Support of the suppression mechanism for service processes (through modification of the <strong>*.cfg</strong> file)
 
   The following is the example configuration for enhanced init process startup and recycling:
     ```
@@ -111,7 +111,7 @@ The service management module is available only for the mini system and standard
 
 ## How to Develop
 ### Use Cases
-By parsing the ***.cfg** file, you can obtain **service** fields, and then set and start the service.
+By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, and then set and start the service.
 
 ### Parameters
    **Table 1** Description of service fields
@@ -240,8 +240,8 @@ By parsing the ***.cfg** file, you can obtain **service** fields, and then set a
                         Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted.
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Standard system:<br>Type: int array, for example, **"critical": [M, N, T]**.<br>- **M**: enable flag (**0**: disable; **1**: enable).<br>- **N**: number of times the service is started.<br>- **T**: period of time, in seconds.<br> Both **M** and **N** are greater than **0**.<br>
-                        Small and standard systems:<br>Type: int, for example, **"critical": M**.<br>M: enable flag (**0**: disable; **1**: enable).<br> By default, **N** is **4** and **T** is **20**.
+                        Standard system:<br>Type: int array, for example, <strong>"critical": [M, N, T]</strong>.<br>- **M**: enable flag (**0**: disable; **1**: enable).<br>- **N**: number of times the service is started.<br>- **T**: period of time, in seconds.<br> Both **M** and **N** are greater than **0**.<br>
+                        Small and standard systems:<br>Type: int, for example, <strong>"critical": M</strong>.<br>**M**: enable flag (**0**: disable; **1**: enable).<br> By default, **N** is **4** and **T** is **20**.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -255,7 +255,7 @@ By parsing the ***.cfg** file, you can obtain **service** fields, and then set a
                         Number of CPU cores bound to the service.
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: int array, for example, **"cpucore": [N1, N2, ...]**. **N1** and **N2** indicate the indices of the CPU cores to be bound. For a single-core device, **cpucore** is **0**.
+                        Type: int array, for example, <strong>"cpucore": [N1, N2, ...]</strong>. **N1** and **N2** indicate the indices of the CPU cores to be bound. For a single-core device, **cpucore** is **0**.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -269,7 +269,7 @@ By parsing the ***.cfg** file, you can obtain **service** fields, and then set a
                         Distributed service capability (for standard system or higher)
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string array, for example, **"d-caps": ["OHOS_DMS"]**.
+                        Type: string array, for example, <strong>"d-caps": ["OHOS_DMS"]</strong>.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -283,7 +283,7 @@ By parsing the ***.cfg** file, you can obtain **service** fields, and then set a
                         Ability privilege level (for standard system or higher).
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string, for example, **"apl": "system_core"**. The value can be **system_core** (default), **normal**, or **system_basic**.
+                        Type: string, for example, <strong>"apl": "system_core"</strong>. The value can be **system_core** (default), **normal**, or **system_basic**.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -297,7 +297,7 @@ By parsing the ***.cfg** file, you can obtain **service** fields, and then set a
                         Service startup mode (for standard system or higher).
                     </td>
                     <td class="xl6721805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string, for example, **"start-mode": "condition"**. The value can be **boot**, **normal**, or **condition**. For details, see init Service Startup Control.</a>
+                        Type: string, for example, <strong>"start-mode": "condition"</strong>. The value can be **boot**, **normal**, or **condition**. For details, see init Service Startup Control.</a>
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -311,7 +311,7 @@ By parsing the ***.cfg** file, you can obtain **service** fields, and then set a
                         Whether on-demand startup is enabled.
                     </td>
                     <td class="xl6721805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: bool, for example, **"ondemand": true**. This feature is available only for the small system running the Linux kernel. For details, see init Service On-Demand Startup.</a>
+                        Type: bool, for example, <strong>"ondemand": true</strong>. This feature is available only for the small system running the Linux kernel. For details, see init Service On-Demand Startup.</a>
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Small and standard systems
@@ -359,10 +359,10 @@ By parsing the ***.cfg** file, you can obtain **service** fields, and then set a
    | permissions | Permissions of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family.|
    | uid | User ID of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family.|
    | gid | Group ID of the socket node file. This field is valid only for sockets that have entity node files, such as the AF_UNIX address family.|
-   | option | Socket option. This field is passed when **setsockopt** is called. Currently, the available options include **SOCKET_OPTION_PASSCRED**, **SOCKET_OPTION_RCVBUFFORCE**, **SOCK_CLOEXEC**, and **SOCK_NONBLOCK**.|
+   | option | Socket option. This field is passed when **setsockopt** is called. Currently, the available options include <strong>SOCKET_OPTION_PASSCRED</strong>, <strong>SOCKET_OPTION_RCVBUFFORCE</strong>, <strong>SOCK_CLOEXEC</strong>, and <strong>SOCK_NONBLOCK</strong>.|
 
 ### Available APIs
-  **Table 3** FD proxy APIs<a name="table14737791479"></a>
+  **Table 3** FD proxy APIs
    | API    | Function| Description |
    | ---------- |  ----------  |--------|
    | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | Obtains the proxy FD from the init process.| Return value: Returns the pointer to the fd array if the operation is successful; returns **NULL** otherwise. (Note: Manual release is required.)<br>Arguments:<br> **serviceName**: service name.<br>**outfdCount**: length of the returned fd array.|
