@@ -873,7 +873,7 @@ Writes a String value to this **MessageParcel** object.
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | val | string | Yes| String value to write.|
+  | val | string | Yes| String value to write. The length of the value must be less than 40960 bytes.|
 
 **Return value**
     | Type| Description|
@@ -1622,7 +1622,7 @@ Writes a StringArray to this **MessageParcel** object.
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | stringArray | string[] | Yes| StringArray to write.|
+  | stringArray | string[] | Yes| StringArray to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Return value**
     | Type| Description|
