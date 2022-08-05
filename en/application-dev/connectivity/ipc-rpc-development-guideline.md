@@ -33,7 +33,7 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 </tr>
 <tr id="row108856241904"><td class="cellrowborder" valign="top" width="14.12141214121412%" headers="mcps1.2.4.1.1 "><p id="p6885924609"><a name="p6885924609"></a><a name="p6885924609"></a>IRemoteProxy</p>
 </td>
-<td class="cellrowborder" valign="top" width="52.54525452545254%" headers="mcps1.2.4.1.2 ">&nbsp;&nbsp;</td>
+<td class="cellrowborder" valign="top" width="52.54525452545254%" headers="mcps1.2.4.1.2 ">  </td>
 <td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p688592413018"><a name="p688592413018"></a><a name="p688592413018"></a>Service proxy classes are derived from the <strong id="b169739356519"><a name="b169739356519"></a><a name="b169739356519"></a>IRemoteProxy</strong> class.</p>
 </td>
 </tr>
