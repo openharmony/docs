@@ -54,7 +54,7 @@ Input服务通过此接口注册回调函数到hdi中，所有Input设备由此�
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
 
 
 ### RegisterReportCallback
@@ -81,7 +81,7 @@ Input服务通过此接口注册数据回调函数到hdi中，hdi通过此回调
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
 
 
 ### UnregisterHotPlugCallback
@@ -99,7 +99,7 @@ int32_t(* InputReporter::UnregisterHotPlugCallback) (void)
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
 
 
 ### UnregisterReportCallback
@@ -123,4 +123,4 @@ int32_t(* InputReporter::UnregisterReportCallback) (uint32_t devIndex)
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。

@@ -101,7 +101,7 @@ int32_t VideoPortCap::supportPixFmts[PIX_FORMAT_NUM]
 
 **描述：**
 
-支持的像素格式，详见**OMX_COLOR_FORMATTYPE**
+支持的像素格式
 
 
 ### whAlignment
