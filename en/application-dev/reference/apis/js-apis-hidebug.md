@@ -26,7 +26,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 | Type  | Description                       |
 | ------ | --------------------------- |
-| bigint | Total size of the native heap memory.|
+| bigint | Total size of the native heap memory, in kB.|
 
 
 **Example**
@@ -49,7 +49,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 **Return value**
 | Type  | Description                             |
 | ------ | --------------------------------- |
-| bigint | Size of the allocated native heap memory.|
+| bigint | Size of the allocated native heap memory, in kB.|
 
 
 **Example**
@@ -72,7 +72,7 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 **Return value**
 | Type  | Description                           |
 | ------ | ------------------------------- |
-| bigint | Size of the free native heap memory.|
+| bigint | Size of the free native heap memory, in kB.|
 
 
 **Example**
@@ -93,7 +93,7 @@ Obtains the PSS of this process.
 **Return value**
 | Type  | Description                     |
 | ------ | ------------------------- |
-| bigint | PSS of the process.|
+| bigint | PSS of the process, in kB.|
 
 
 **Example**
@@ -114,7 +114,7 @@ Obtains the size of the shared dirty memory of this process.
 **Return value**
 | Type  | Description                      |
 | ------ | -------------------------- |
-| bigint | Size of the shared dirty memory of the process.|
+| bigint | Size of the shared dirty memory of the process, in kB.|
 
 
 **Example**
@@ -134,7 +134,7 @@ Obtains the size of the private dirty memory of this process.
 **Return value**
 | Type  | Description                      |
 | ------ | -------------------------- |
-| bigint | Size of the private dirty memory of the process.|
+| bigint | Size of the private dirty memory of the process, in kB.|
 
 
 **Example**
