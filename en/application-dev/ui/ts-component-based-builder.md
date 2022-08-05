@@ -4,16 +4,17 @@
 The **@Builder** decorated method is used to define the declarative UI description of a component and quickly generate multiple layouts in a custom component. The functionality and syntax of the **@Builder** decorator are the same as those of the [build Function](ts-function-build.md).
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CompA {
-  size : number = 100;
+  size1 : number = 100;
 
   @Builder SquareText(label: string) {
     Text(label)
-      .width(1 * this.size)
-      .height(1 * this.size)
+      .width(1 * this.size1)
+      .height(1 * this.size1)
   }
 
   @Builder RowOfSquareTexts(label1: string, label2: string) {
@@ -21,8 +22,8 @@ struct CompA {
       this.SquareText(label1)
       this.SquareText(label2)
     }
-    .width(2 * this.size)
-    .height(1 * this.size)
+    .width(2 * this.size1)
+    .height(1 * this.size1)
   }
 
   build() {
@@ -32,12 +33,12 @@ struct CompA {
         this.SquareText("B")
         // or as long as tsc is used
       }
-      .width(2 * this.size)
-      .height(1 * this.size)
+      .width(2 * this.size1)
+      .height(1 * this.size1)
       this.RowOfSquareTexts("C", "D")
     }
-    .width(2 * this.size)
-    .height(2 * this.size)
+    .width(2 * this.size1)
+    .height(2 * this.size1)
   }
 }
 ```
@@ -51,7 +52,8 @@ In certain circumstances, you may need to add a specific function, such as a cli
 ### Component Initialization Through Parameters
 When initializing a custom component through parameters, assign a **@Builder** decorated method to the **@BuilderParam** decorated attribute — **content**, and call the value of **content** in the custom component. If no parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, `content: this.specificParam`), define the type of the attribute as a function without a return value (for example, `@BuilderParam content: () => void`). If any parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, `callContent: this.specificParam1("111")`), define the type of the attribute as `any` (for example,`@BuilderParam callContent: any;`).
 
-```
+```ts
+// xxx.ets
 @Component
 struct CustomContainer {
   header: string = "";
@@ -100,7 +102,8 @@ struct CustomContainerUser {
 In a custom component, use the **@BuilderParam** decorated attribute to receive a trailing closure. When the custom component is initialized, the component name is followed by a pair of braces ({}) to form a trailing closure (`CustomComponent(){}`). You can consider a trailing closure as a container and add content to it. For example, you can add a component (`{Column(){Text("content")}`) to a trailing closure. The syntax of the closure is the same as that of [build](../ui/ts-function-build.md). In this scenario, the custom component has one and only one **@BuilderParam** decorated attribute.
 
 Example: Add a **\<Column>** component and a click event to the closure, and call the **specificParam** method decorated by **@Builder** in the new **\<Column>** component. After the **\<Column>** component is clicked, the value of the component's `header` attribute will change to `changeHeader`. In addition, when the component is initialized, the content of the trailing closure will be assigned to the `closer` attribute decorated by **@BuilderParam**.
-```
+```ts
+// xxx.ets
 @Component
 struct CustomContainer {
   header: string = "";
