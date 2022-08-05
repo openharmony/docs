@@ -160,6 +160,20 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                         小型系统和标准系统
                     </td>
                 </tr>
+                <tr height="162" style="height:121.5pt">
+                    <td height="162" class="xl6621952" width="140" style="height:121.5pt;border-top: none;width:105pt">
+                        write
+                    </td>
+                    <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
+                        write filename value<br>如：write /data/testfile 0
+                    </td>
+                    <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
+                        写文件命令。后面跟两个参数，第一个参数是文件的绝对路径，第二个参数是要写入文件的字符串。
+                    </td>
+                    <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
+                        标准系统
+                    </td>
+                </tr>
                 <tr height="185" style="height:138.75pt">
                     <td height="185" class="xl6621952" width="140" style="height:138.75pt;border-top: none;width:105pt">
                         stop
@@ -298,6 +312,20 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         小型系统和标准系统
+                    </td>
+                </tr>
+                <tr height="162" style="height:121.5pt">
+                    <td height="162" class="xl6621952" width="140" style="height:121.5pt;border-top: none;width:105pt">
+                        syncexec
+                    </td>
+                    <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
+                        syncexec  可执行文件路径 可执行文件传的参数 <br>如：syncexec /system/bin/udevadm trigger
+                    </td>
+                    <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
+                        同步执行，syncexec 会调用wait等待子进程结束。参数个数不超过10个。
+                    </td>
+                    <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
+                        标准系统
                     </td>
                 </tr>
                 <tr height="231" style="height:173.25pt">
