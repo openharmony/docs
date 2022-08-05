@@ -126,7 +126,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         export <i>key value</i><br>Example:<br>export TEST /data/test
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Sets environment variables. <strong>key</strong> and <strong>value</strong> respectively indicate the environment variable and its value.
+                        Sets environment variables. <i>key</i> and <i>value</i> respectively indicate the environment variable and its value.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -210,7 +210,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         reboot <i>subsystem</i><br>Example:<br>reboot updater
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Restarts the system. <strong>subsystem</strong> is optional. If it is not specified, the device enters the current system upon restarting. If it is specified, the device enters the corresponding subsystem upon restarting. For example, if you run <strong>reboot updater</strong>, the device enters the updater subsystem upon restarting.
+                        Restarts the system. <i>subsystem</i> is optional. If it is not specified, the device enters the current system upon restarting. If it is specified, the device enters the corresponding subsystem upon restarting. For example, if you run <strong>reboot updater</strong>, the device enters the updater subsystem upon restarting.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -224,7 +224,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         sleep <i>time</i><br>Example:<br>sleep 5
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Enters the sleep mode. <strong>time</strong> indicates the sleep time. <br>To avoid impact on services, exercise caution when running this command.
+                        Enters the sleep mode. <i>time</i> indicates the sleep time. <br>To avoid impact on services, exercise caution when running this command.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems

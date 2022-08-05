@@ -196,8 +196,8 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         Whether the current service process is a one-off process.
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        **1**: The current service process is a one-off process. If the process exits, the init process does not restart it.<br>
-                        **0**: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal.
+                        <strong>1</strong>: The current service process is a one-off process. If the process exits, the init process does not restart it.<br>
+                        <strong>0</strong>: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Small and standard systems
@@ -212,7 +212,7 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
                         Standard system: The service priority ranges from -20 to 19. A value beyond the range is invalid.<br>
-                        Small system: The value **0** indicates an unimportant process and a value greater than **0** indicates an important process.
+                        Small system: The value <strong>0</strong> indicates an unimportant process and a value greater than <strong>0</strong> indicates an important process.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Small and standard systems
@@ -240,8 +240,8 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted.
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Standard system:<br>Type: int array, for example, <strong>"critical": [M, N, T]</strong>.<br>- **M**: enable flag (**0**: disable; **1**: enable).<br>- **N**: number of times the service is started.<br>- **T**: period of time, in seconds.<br> Both **M** and **N** are greater than **0**.<br>
-                        Small and standard systems:<br>Type: int, for example, <strong>"critical": M</strong>.<br>**M**: enable flag (**0**: disable; **1**: enable).<br> By default, **N** is **4** and **T** is **20**.
+                        Standard system:<br>Type: int array, for example, <strong>"critical": [M, N, T]</strong>.<br>- <strong>M</strong>: enable flag (<strong>0</strong>: disable; <strong>1</strong>: enable).<br>- <strong>N</strong>: number of times the service is started.<br>- <strong>T</strong>: period of time, in seconds.<br> Both <strong>M</strong> and <strong>N</strong> are greater than <strong>0</strong>.<br>
+                        Small and standard systems:<br>Type: int, for example, <strong>"critical": M</strong>.<br><strong>M</strong>: enable flag (<strong>0</strong>: disable; <strong>1</strong>: enable).<br> By default, <strong>N</strong> is <strong>4</strong> and <strong>T</strong> is <strong>20</strong>.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -255,7 +255,7 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         Number of CPU cores bound to the service.
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: int array, for example, <strong>"cpucore": [N1, N2, ...]</strong>. **N1** and **N2** indicate the indices of the CPU cores to be bound. For a single-core device, **cpucore** is **0**.
+                        Type: int array, for example, <strong>"cpucore": [N1, N2, ...]</strong>. <strong>N1</strong> and <strong>N2</strong> indicate the indices of the CPU cores to be bound. For a single-core device, <strong>cpucore</strong> is <strong>0</strong>.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -283,7 +283,7 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         Ability privilege level (for standard system or higher).
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string, for example, <strong>"apl": "system_core"</strong>. The value can be **system_core** (default), **normal**, or **system_basic**.
+                        Type: string, for example, <strong>"apl": "system_core"</strong>. The value can be <strong>system_core</strong> (default), <strong>normal</strong>, or <strong>system_basic</strong>.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -297,7 +297,7 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         Service startup mode (for standard system or higher).
                     </td>
                     <td class="xl6721805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string, for example, <strong>"start-mode": "condition"</strong>. The value can be **boot**, **normal**, or **condition**. For details, see init Service Startup Control.</a>
+                        Type: string, for example, <strong>"start-mode": "condition"</strong>. The value can be <strong>boot</strong>, <strong>normal</strong>, or <strong>condition</strong>. For details, see init Service Startup Control.</a>
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system
@@ -339,8 +339,8 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         Whether the sandbox function is enabled.
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        **1** (default): Enable the sandbox function.
-                        **0**: Disable the sandbox function.
+                        <strong>1</strong> (default): Enable the sandbox function.<br>
+                        <strong>0</strong>: Disable the sandbox function.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Standard system

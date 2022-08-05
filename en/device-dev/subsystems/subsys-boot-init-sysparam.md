@@ -26,10 +26,10 @@ Figure 1 System parameter operation primitives
 
   **Table 2** System parameter names
 
-  | Type| Name| Example| Description|
-  | -------- | -------- | -------- | -------- |
-  | Name| Parameter Name | const.product.**name** | Complete system parameter name. It does not end with a period (.).          |
-  | Directory| Parameter Directory | const.product **.**     | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
+  | Type | Example | Description |
+  | -------- | -------- | -------- |
+  | Parameter name | const.product.**name** | Complete system parameter name. It does not end with a period (.).          |
+  | Parameter directory | const.product **.**     | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
 
 - Type
 
@@ -132,7 +132,7 @@ You can set specific system parameters as needed to meet your service demand.
     | -------- | -------- |
     | param get [**key**] | Obtains the system parameter value of the specified key. If no key name is specified, all system parameter values will be returned.|
     | param set **key value** | Sets the specified value for the specified key.|
-    | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, <strong>*</strong> indicates any value, and <strong>val*</strong> indicates matching of only the first three val characters.|
+    | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, * indicates any value, and <strong>val</strong>* indicates matching of only the first three val characters.|
     | param watch | Observes value change of a system parameter asynchronously.|
 
   - syspara APIs

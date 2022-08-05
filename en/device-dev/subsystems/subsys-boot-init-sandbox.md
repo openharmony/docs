@@ -4,8 +4,9 @@
 ### Function
 OpenHarmony supports two types of sandbox, namely, system sandbox and chipset sandbox.
 
-### Basic Concepts
-The system sandbox and chipset sandbox are created in the init module. Native services choose to enter the system sandbox or chipset sandbox based on their functions. Sandbox components can be isolated through the **mount** attribute if **mount-bind-paths** or **mount-bind-files** is set for them in configuration files such as **system-sandbox.json** and **chipset-sandbox.json**. In addition, a sandbox debugging tool is provided to facilitate sandbox debugging, verification, and optimization. For details about commands, see [Description of begetctl Commands](subsys-boot-init-plugin.md#parameters).
+The system sandbox and chipset sandbox are created in the init module. Native services choose to enter the system sandbox or chipset sandbox based on their functions. 
+
+Sandbox components can be isolated through the **mount** attribute if **mount-bind-paths** or **mount-bind-files** is set for them in configuration files such as **system-sandbox.json** and **chipset-sandbox.json**. In addition, a sandbox debugging tool is provided to facilitate sandbox debugging, verification, and optimization. For details about commands, see [Description of begetctl Commands](subsys-boot-init-plugin.md#parameters).
 
 ### Constraints
 
