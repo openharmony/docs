@@ -21,9 +21,7 @@
             - [C++支持](kernel-mini-extend-support.md)
             - [CPU占用率](kernel-mini-extend-cpup.md)
             - [动态加载](kernel-mini-extend-dynamic-loading.md)
-            - 文件系统
-                - [FAT](kernel-mini-extend-file-fat.md)
-                - [LittleFS](kernel-mini-extend-file-lit.md)
+            - [文件系统](kernel-mini-extend-file.md)
         - 内核调测
             - 内存调测
                 - [内存信息统计](kernel-mini-memory-debug-mes.md)
@@ -72,12 +70,7 @@
             - [轻量级进程间通信](kernel-small-bundles-ipc.md)
             - 文件系统
                 - [虚拟文件系统](kernel-small-bundles-fs-virtual.md)
-                - 支持的文件系统
-                    - [FAT](kernel-small-bundles-fs-support-fat.md)
-                    - [JFFS2](kernel-small-bundles-fs-support-jffs2.md)
-                    - [NFS](kernel-small-bundles-fs-support-nfs.md)
-                    - [Ramfs](kernel-small-bundles-fs-support-ramfs.md)
-                    - [Procfs](kernel-small-bundles-fs-support-procfs.md)
+                - [支持的文件系统](kernel-small-bundles-fs-support.md)
                 - [适配新的文件系统](kernel-small-bundles-fs-new.md)
         - 调测与工具
             - Shell
