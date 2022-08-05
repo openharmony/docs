@@ -32,13 +32,13 @@ The sample server provides a package search server for checking update packages 
 	Go to the **update_updateservice** directory and run the following commands to create a code directory:
 
 	```
-	mkdir server_sample                            // Create the server_sample folder.
-	touch server_sample/BUILD.gn                 // Create the BUILD.gn file.
-	mkdir server_sample/include                     // Create the include folder to store the header file of the sample server.
-	touch server_process.h                        // Create the server_process.h header file.
-	mkdir server_sample/src                        // Create the src folder to store the C/C++ files of the sample server.
-	touch server_sample/src/server_process.c      // Create the server_process.c file.
-	touch server_sample/src/main.cpp             // Create the main.cpp file.
+	mkdir server_sample                        // Create the server_sample folder.
+	touch server_sample/BUILD.gn               // Create the BUILD.gn file.
+	mkdir server_sample/include                // Create the include folder to store the header file of the sample server.
+	touch server_process.h                     // Create the server_process.h header file.
+	mkdir server_sample/src                    // Create the src folder to store the C/C++ files of the sample server.
+	touch server_sample/src/server_process.c   // Create the server_process.c file.
+	touch server_sample/src/main.cpp           // Create the main.cpp file.
 	```
 
 4. Write the **BUILD.gn** file.
