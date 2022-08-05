@@ -19,9 +19,11 @@
 | systemApp                  | boolean                                                      | 是   | 否   | 判断是否为系统应用程序，默认为false。                          |
 | enabled                    | boolean                                                      | 是   | 否   | 判断应用程序是否可以使用，默认为true。                         |
 | label                      | string                                                       | 是   | 否   | 应用程序的标签。                                               |
-| labelId                    | string                                                       | 是   | 否   | 应用程序的标签id。                                             |
+| labelId<sup>(deprecated)</sup> | string                                                       | 是   | 否   | 应用程序的标签id。<br />\- **说明：** 从API version 9开始废弃，使用labelIndex。 |
+| labelIndex<sup>9+</sup>    | number                                                       | 是   | 否   | 应用程序的标签索引。 |
 | icon                       | string                                                       | 是   | 否   | 应用程序的图标。                                               |
-| iconId                     | string                                                       | 是   | 否   | 应用程序的图标id。                                             |
+| iconId<sup>(deprecated)</sup> | string                                                       | 是   | 否   | 应用程序的图标id。<br />\- **说明：** 从API version 9开始废弃，使用iconIndex。 |
+| iconIndex<sup>9+</sup>     | number                                                       | 是   | 否   | 应用程序的图标索引。 |
 | process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。                   |
 | supportedModes             | number                                                       | 是   | 否   | 应用程序支持的运行模式。                                       |
 | moduleSourceDirs           | Array\<string>                                               | 是   | 否   | 应用程序的资源存放的相对路径。                                 |
