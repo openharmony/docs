@@ -76,7 +76,7 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 
 **网络协议**
 
-轻量级内核网络协议基于开源LWIP构建，对LWIP的RAM占用进行优化，同时提高LWIP的传输性能。
+轻量级内核网络协议基于开源lwIP（lightweight IP）构建，对lwIP的RAM占用进行优化，同时提高lwIP的传输性能。
 
 - 协议： IP、IPv6、 ICMP、 ND、MLD、 UDP、 TCP、IGMP、ARP、PPPoS、PPPoE
 
