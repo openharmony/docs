@@ -14,7 +14,7 @@ import camera from '@ohos.multimedia.camera';
 
 getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): void
 
-创建相机管理器实例，通过注册回调函数获取结果。
+获取相机管理器实例，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -41,7 +41,7 @@ camera.getCameraManager(context, (err, cameraManager) => {
 
 getCameraManager(context: Context): Promise<CameraManager\>
 
-创建相机管理器实例，通过Promise获取结果。
+获取相机管理器实例，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -121,7 +121,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 | previewProfiles               | Array<[Profile](#profile)\>                        | 是  | 支持的预览配置信息。    |
 | photoProfiles                 | Array<[Profile](#profile)\>                        | 是  | 支持的拍照配置信息。    |
 | videoProfiles                 | Array<[VideoProfile](#videoprofile)\>              | 是  | 支持的录像配置信息。    |
-| supportedMetadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | 支持的metadata流检测类型信息。|
+| supportedMetadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | 支持的metadata流类型信息。|
 
 ## CameraManager
 
@@ -131,7 +131,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 getSupportedCameras(callback: AsyncCallback<Array<CameraDevice\>\>): void
 
-获取支持指定模式的相机设备对象，通过注册回调函数获取结果。
+获取支持指定的相机设备对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -157,7 +157,7 @@ cameraManager.getSupportedCameras((err, cameras) => {
 
 getSupportedCameras(): Promise<Array<CameraDevice\>\>
 
-获取支持指定模式的相机设备对象，通过Promise获取结果。
+获取支持指定的相机设备对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -188,7 +188,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 
 | 名称     | 类型                                                              | 必填 | 说明                      |
 | -------- | ---------------------------------------------------------------- | -- | -------------------------- |
-| camera   | [CameraDevice](#CameraDevice)                                    | 是 | 指定相机ID。                 |
+| camera   | [CameraDevice](#CameraDevice)                                    | 是 | CameraDevice对象。          |
 | callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | 是 | 使用callback方式获取相机输出能力。 |
 
 **示例：**
@@ -215,7 +215,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 
 | 名称      | 类型                              | 必填  | 说明        |
 | -------- | --------------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameraDevice)     |  是  | 指定相机ID。 |
+| camera   | [CameraDevice](#cameraDevice)     |  是  | CameraDevice对象。|
 
 **返回值：**
 
@@ -543,7 +543,7 @@ createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback
 | 名称     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
 | profile  | [Profile](#profile)                             | 是   | 支持的预览配置信息。                |
-| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。|
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的SurfaceID。|
 | callback | AsyncCallback<[PreviewOutput](#previewoutput)\>  | 是   | 回调函数，用于获取PreviewOutput实例。|
 
 **示例：**
@@ -571,7 +571,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 | 名称     | 类型                              | 必填 | 说明                |
 | -------- | ---------------------------------| ---- | ----------------- |
 | profile  | [Profile](#profile)              | 是   | 支持的预览配置信息。  |
-| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)组件获取的SurfaceID。 |
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的SurfaceID。 |
 
 **返回值：**
 
@@ -985,7 +985,7 @@ cameraManager.on('cameraMute', (err, status) => {
 ```js
 async function getCameraInfo("cameraId") {
     var cameraManager = await camera.getCameraManager(context);
-    var cameras = await cameraManager.getCameras();
+    var cameras = await cameraManager.getSupportedCameras();
     var cameraObj = cameras[0];
     var cameraId = cameraObj.cameraId;
     var cameraPosition = cameraObj.cameraPosition;
