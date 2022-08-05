@@ -283,7 +283,7 @@ DAC模块适配包含以下四个步骤：
     
         入参：
     
-        HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+        HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
     
         返回值：
     
@@ -384,7 +384,7 @@ DAC模块适配包含以下四个步骤：
         
           入参：
         
-          HdfDeviceObject是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+          HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
         
           返回值：
         
