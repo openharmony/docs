@@ -6,7 +6,7 @@ Web是提供网页显示能力的组件，具体用法请参考 [Web API](../ref
 
 在main/ets/MainAbility/pages目录下的ets文件中创建一个Web组件。在web组件中通过src指定引用的网页路径，controller为组件的控制器，通过controller绑定Web组件，用于调用Web组件的方法。
 
-  ```
+  ```ts
   // xxx.ets
   @Entry
   @Component
@@ -24,7 +24,7 @@ Web是提供网页显示能力的组件，具体用法请参考 [Web API](../ref
 
 Web组件的使用需要添加丰富的页面样式和功能属性。设置height、padding样式可为Web组件添加高和内边距，设置fileAccess属性可为Web组件添加文件访问权限，设置javaScriptAccess属性为true使Web组件具有执行JavaScript代码的能力。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -52,7 +52,7 @@ struct WebComponent {
 
 为Web组件添加onProgressChange事件，该事件回调Web引擎加载页面的进度值。将该进度值赋值给Progress组件的value，控制Progress组件的状态。当进度为100%时隐藏Progress组件，Web页面加载完成。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -91,7 +91,7 @@ struct WebComponent {
 ```
 在onPageEnd事件中添加runJavaScript方法。onPageEnd事件是网页加载完成时的回调，runJavaScript方法可以执行HTML中的JavaScript脚本。当页面加载完成时，触发onPageEnd事件，调用HTML文件中的test方法，在控制台打印信息。
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -136,7 +136,7 @@ struct WebComponent {
 
 在main/resources/rawfile目录下创建一个HTML文件。
 
-```
+```html
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
@@ -155,7 +155,7 @@ struct WebComponent {
 
 该场景实现了Web组件中视频的动态播放。首先在HTML页面内嵌入视频资源，再使用Web组件的控制器调用onActive和onInactive方法激活和暂停页面渲染。点击onInactive按钮，Web页面停止渲染，视频暂停播放；点击onActive按钮，激活Web组件，视频继续播放。
 
-  ```
+  ```ts
   // xxx.ets
 @Entry
 @Component
@@ -180,7 +180,7 @@ struct WebComponent {
 }
   ```
 
-  ```
+  ```html
   <!-- index.html -->
   <!DOCTYPE html>
   <html>
@@ -199,3 +199,5 @@ struct WebComponent {
 针对Web开发，有以下相关实例可供参考：
 
 - [`Web`：Web（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Web)
+
+- [Web组件加载本地H5小程序（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)

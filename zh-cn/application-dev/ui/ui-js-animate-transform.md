@@ -7,7 +7,7 @@
 
 创建一个正方形并旋转90°变成菱形，并用下方的长方形把菱形下半部分遮盖形成屋顶，设置长方形translate属性值为(150px,-150px)确定坐标位置形成门，再使用position属性使横纵线跟随父组件（正方形）移动到指定坐标位置，接着设置scale属性使父子组件一起变大形成窗户大小，最后使用skewX属性使组件倾斜后设置坐标translate(200px,-830px)得到烟囱。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="top"></div>
@@ -22,7 +22,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -96,7 +96,7 @@
 
 小球下降动画，改变小球的Y轴坐标实现小球下落，在下一段是时间内减小Y轴坐标实现小球回弹，让每次回弹的高度逐次减小直至回弹高度为0，就模拟出了小球下降的动画。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="circle"></div>
@@ -104,7 +104,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -175,7 +175,7 @@
 
 设置不同的原点位置（transform-origin）改变元素所围绕的旋转中心。rotate3d属性前三个参数值分别为X轴、Y轴、Z轴的旋转向量，第四个值为旋转角度，旋转向角度可为负值，负值则代表旋转方向为逆时针方向。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rotate">
@@ -194,7 +194,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -301,7 +301,7 @@
 
 ![zh-cn_image_0000001220316305](figures/zh-cn_image_0000001220316305.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > transform-origin变换对象的原点位置，如果仅设置一个值，另一个值为50%，若设置两个值第一个值表示X轴的位置，第二个值表示Y轴的位置。
 
 
@@ -311,7 +311,7 @@
 
 设置sacle3d中X轴、Y轴、Z轴的缩放参数实现动画。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="circle">
@@ -326,7 +326,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -414,7 +414,7 @@ text{
 
 ![zh-cn_image_0000001220396251](figures/zh-cn_image_0000001220396251.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 设置transform属性值后，子元素会跟着父元素一起改变，若只改变父元素其他属性值时（如：height，width），子元素不会改变。
 
 
@@ -422,14 +422,14 @@ text{
 
 matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY, skewX, scaleY, translateX, translateY。下面示例中设置 了matrix属性为matrix(1,0,0,1,0,200)使组件移动和倾斜。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rect"> </div>
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
   background-color:#F1F3F5;
@@ -465,7 +465,7 @@ matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY
 
 transform可以设置多个值并且多个值可同时设置，下面案例中展示同时设置缩放（scale），平移（translate），旋转（rotate）属性时的动画效果。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rect1"></div>
@@ -476,7 +476,7 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction:column;
@@ -568,11 +568,11 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 ![zh-cn_image_0000001220554911](figures/zh-cn_image_0000001220554911.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 当设置多个transform时，后续的transform值会把前面的覆盖掉。若想同时使用多个动画样式可用复合写法，例：transform: scale(1) rotate(0) translate(0,0)。
-> 
+>
 > - transform进行复合写法时，变化样式内多个样式值顺序的不同会呈现不一样的动画效果。
-> 
+>
 > - transform属性设置的样式值要一一对应，若前后不对应，则该动画不生效。若设置多个样式值则只会呈现出已对应值的动画效果。
 
 
@@ -586,6 +586,8 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 - [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)
 
-- [动画样式（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
+- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
 
-- [图片常见操作](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageJsDemo)
+- [动画样式（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
+
+- [图片常见操作（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageJsDemo)

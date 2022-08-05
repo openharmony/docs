@@ -7,10 +7,10 @@
 ​        OpenHarmony的应用框架分为FA模型和Stage两种模型。对应存在两套Context机制适配两种应用框架模型，其中application/BaseContext属于通用的Context基类，里面包含一个属性stageMode，用来区分开发模型是FA还是Stage。
 
 - FA模型  
-只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意Context实例所代表的实际含义。
+  只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意Context实例所代表的实际含义。
 
 - Stage模型  
-除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
+  除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)种进行说明。
 
 ![contextIntroduction](figures/contextIntroduction.png)
 
@@ -20,11 +20,11 @@
 
 ​        FA模型只有一个Context定义。Context中所有的功能都是通过方法来提供的，它提供了一些featureAbility中不存在的方法，相当于featureAbility的一个扩展和补全。
 
-​**d.ts声明**
+**d.ts声明**
 
 ​        https://gitee.com/openharmony/interface_sdk-js/blob/master/api/app/context.d.ts
 
-​**示例**
+**示例**
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
@@ -223,7 +223,75 @@ export default class MainAbility extends Ability {
 
 卡片业务相关，点下面链接了解。
 
-​        [FormExtensionContext](/zh-cn/application-dev/reference/apis/js-apis-formextensioncontext.md)
+​        [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md)
+
+### 在eTS页面中访问Context
+
+Stage模型下，在Ability的`onWindowStageCreate`生命周期中，可以通过WindowStage的`SetUIContent`方法加载一个eTS页面。在一些场景中，需要在页面内获取Context调用相关API。
+
+**获取方法**
+
+在eTS页面中通过以下全局方法获取当前页面关联的Context。
+
+| 接口名                                   | 描述                           |
+| :------------------------------------ | :--------------------------- |
+| getContext(component: Object): Object | 获取页面中component所关联的Context对象。 |
+
+**示例**
+
+```ts
+// MainAbility.ts
+import Ability from '@ohos.application.Ability'
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+    }
+
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // 加载index页面，并传入当前Context
+        windowStage.setUIContent(this.context, "pages/index", null)
+    }
+
+    onWindowStageDestroy() {}
+
+    onForeground() {}
+
+    onBackground() {}
+};
+```
+
+```ts
+// pages/index.ets
+import context from '@ohos.application.context'
+
+type Context = context.Context
+
+@Entry
+@Component
+struct Index {
+    build() {
+        Row() {
+            Column() {
+                Text('GetContext')
+                    .fontSize(50)
+                    .fontWeight(FontWeight.Bold)
+                    .onClick(() => {
+                        // 获取当前component关联的Context
+                        var context : Context = getContext(this) as Context
+                        console.info("CacheDir:" + context.cacheDir)
+                    })
+            }
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
+```
 
 ## 常见错误使用方式
 

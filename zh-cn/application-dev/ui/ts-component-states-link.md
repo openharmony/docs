@@ -14,13 +14,14 @@
 - 创建自定义组件时需要将变量的引用传递给@Link变量，在创建组件的新实例时，必须使用命名参数初始化所有@Link变量。@Link变量可以使用@State变量或@Link变量的引用进行初始化，@State变量可以通过`'$'`操作符创建引用。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) 说明：
+> 说明：
 > @Link变量不能在组件内部进行初始化。
 
 
 ## 简单类型示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Player {
@@ -53,7 +54,8 @@ struct PlayButton {
 
 ## 复杂类型示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Parent {
@@ -93,7 +95,8 @@ struct Child {
 
 ## @Link、@State和@Prop结合使用示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ParentView {

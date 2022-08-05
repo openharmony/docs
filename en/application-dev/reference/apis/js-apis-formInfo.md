@@ -1,10 +1,10 @@
 # FormInfo
 
+The **FormInfo** module provides widget information and state.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-Provides widget information.
 
 ## Modules to Import
 
@@ -14,15 +14,13 @@ import formInfo from '@ohos.application.formInfo';
 
 ## Required Permissions
 
-None.
+None
 
 ## FormInfo
 
 Describes widget information.
 
-**System capability**
-
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
 
 | Name       | Readable/Writable| Type                | Description                                                        |
 | ----------- | -------- | -------------------- | ------------------------------------------------------------ |
@@ -43,15 +41,13 @@ SystemCapability.Ability.Form
 | updateDuration        | Read only    | string             | Widget update period.|
 | defaultDimension  | Read only    | number | Default dimension of the widget.                                      |
 | supportDimensions    | Read only    | Array&lt;number&gt;      | Dimensions supported by the widget.                |
-| customizeData    | Read only    | {[key: string]: [value: string]}      | Custom data of the widget.         |
+| customizeData    | Read only    | {[key: string]: [value: string]}      | Custom data of the widget.        |
 
 ## FormType
 
 Enumerates the widget types.
 
-**System capability**
-
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
@@ -61,13 +57,11 @@ SystemCapability.Ability.Form
 
 Enumerates the color modes supported by the widget.
 
-**System capability**
-
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
-| MODE_AUTO   | -1    | Automatic mode.  |
+| MODE_AUTO   | -1    | Auto mode.  |
 | MODE_DARK    | 0   | Dark mode.  |
 | MODE_LIGHT     | 1   | Light mode.  |
 
@@ -75,22 +69,18 @@ SystemCapability.Ability.Form
 
 Describes the widget state information.
 
-**System capability**
-
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
 
 | Name       | Readable/Writable| Type                | Description                                                        |
 | ----------- | -------- | -------------------- | ------------------------------------------------------------ |
-| formState  | Read only    | [FormState](#formstate)               | Widget state.                          |
+| formState  | Read only    | [FormState](#formstate)               | Widget state.                         |
 | want  | Read only    | Want               | Want text.   |
 
 ##  FormState
 
 Enumerates the widget states.
 
-**System capability**
-
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
@@ -102,13 +92,11 @@ SystemCapability.Ability.Form
 
 Enumerates the widget parameters.
 
-**System capability**
-
-SystemCapability.Ability.Form
+**System capability**: SystemCapability.Ability.Form
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | ID of a widget.  |
+| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | ID of a widget.<br>**System API**: This is a system API and cannot be called by third-party applications.  |
 | DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | Widget dimension.  |
 | NAME_KEY       | "ohos.extra.param.key.form_name"   | Widget name.  |
 | MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | Name of the module to which the widget belongs.  |

@@ -68,8 +68,8 @@ PageTransitionEnter和PageTransitionExit组件支持的事件：
 @Entry
 @Component
 struct PageTransitionExample1 {
-  @State scale: number = 1
-  @State opacity: number = 1
+  @State scale1: number = 1
+  @State opacity1: number = 1
   @State active: boolean = false
   build() {
   Column() {
@@ -79,19 +79,19 @@ struct PageTransitionExample1 {
       .onClick(() => {
         this.active = true
       })
-    }.scale({ x: this.scale }).opacity(this.opacity)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 // 自定义方式1：完全自定义转场过程的效果
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
-        this.scale = 1
-        this.opacity = progress
+        this.scale1 = 1
+        this.opacity1 = progress
       }) // 进场过程中会逐帧触发onEnter回调，入参为动效的归一化进度(0% -- 100%)
     PageTransitionExit({ duration: 1500, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
-        this.scale = 1 - progress
-        this.opacity = 1
+        this.scale1 = 1 - progress
+        this.opacity1 = 1
       }) // 退场过程中会逐帧触发onExit回调，入参为动效的归一化进度(0% -- 100%)
   }
 }
@@ -102,27 +102,27 @@ struct PageTransitionExample1 {
 @Entry
 @Component
 struct AExample {
-  @State scale: number = 1
-  @State opacity: number = 1
+  @State scale2: number = 1
+  @State opacity2: number = 1
   @State active: boolean = false
   build() {
     Column() {
       Navigator({ target: 'pages/index' ,type: NavigationType.Push}) {
         Image($r('app.media.bg2')).width("100%").height("100%")
       }
-    }.height("100%").width("100%").scale({ x: this.scale }).opacity(this.opacity)
+    }.height("100%").width("100%").scale({ x: this.scale2 }).opacity(this.opacity2)
   }
 // 自定义方式1：完全自定义转场过程的效果
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
-        this.scale = 1
-        this.opacity = progress
+        this.scale2 = 1
+        this.opacity2 = progress
       }) // 进场过程中会逐帧触发onEnter回调，入参为动效的归一化进度(0% -- 100%)
     PageTransitionExit({ duration: 1500, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
-        this.scale = 1 - progress
-        this.opacity = 1
+        this.scale2 = 1 - progress
+        this.opacity2 = 1
       }) // 退场过程中会逐帧触发onExit回调，入参为动效的归一化进度(0% -- 100%)
   }
 }
@@ -137,8 +137,8 @@ struct AExample {
 @Entry
 @Component
 struct PageTransitionExample {
-  @State scale: number = 1
-  @State opacity: number = 1
+  @State scale1: number = 1
+  @State opacity1: number = 1
   @State active: boolean = false
 
   build() {
@@ -149,7 +149,7 @@ struct PageTransitionExample {
       .onClick(() => {
         this.active = true
       })
-    }.scale({ x: this.scale }).opacity(this.opacity)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 
 // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
@@ -168,8 +168,8 @@ struct PageTransitionExample {
 @Entry
 @Component
 struct PageTransitionExample1 {
-  @State scale: number = 1
-  @State opacity: number = 1
+  @State scale2: number = 1
+  @State opacity2: number = 1
   @State active: boolean = false
 
   build() {
@@ -180,7 +180,7 @@ struct PageTransitionExample1 {
       .onClick(() => {
         this.active = true
       })
-    }.scale({ x: this.scale }).opacity(this.opacity)
+    }.scale({ x: this.scale2 }).opacity(this.opacity2)
   }
 
 // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)

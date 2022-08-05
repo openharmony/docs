@@ -17,15 +17,31 @@ import fileio from '@ohos.fileio';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
+**Stage模型**
+
+ ```js
+import Ability from '@ohos.application.Ability';
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let context = this.context;
+        let path = context.filesDir;
+    }
+}
+ ```
+
+ Stage模型context的具体获取方法参见[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-context.md#abilitycontext)。
+
+**FA模型**
+
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
  let context = featureAbility.getContext();
- let path = '';
  context.getFilesDir().then((data) => {
-      path = data;
+      let path = data;
  })
  ```
-
+ 
+ FA模型context的具体获取方法参见[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md#context%E6%A8%A1%E5%9D%97)。
 
 ## fileio.stat
 
@@ -2159,7 +2175,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
   | 类型                                | 说明        |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
+  | Promise&lt;[Stream](#stream)&gt; | Promise对象。返回文件流的结果。 |
 
 **示例：**
 
@@ -2186,7 +2202,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                  | 是   | 待打开文件的应用沙箱路径。                                   |
 | mode     | string                                  | 是   | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
-| callback | AsyncCallback&lt;[Stream](#stream7)&gt; | 是   | 异步打开文件流之后的回调。                                   |
+| callback | AsyncCallback&lt;[Stream](#stream)&gt; | 是   | 异步打开文件流之后的回调。                                   |
 
 **示例：**
 
@@ -2216,7 +2232,7 @@ createStreamSync(path: string, mode: string): Stream
 
   | 类型                | 说明        |
   | ------------------ | --------- |
-  | [Stream](#stream7) | 返回文件流的结果。 |
+  | [Stream](#stream) | 返回文件流的结果。 |
 
 **示例：**
 
@@ -2244,7 +2260,7 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
   | 类型                               | 说明        |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | Promise对象。返回文件流的结果。 |
+  | Promise&lt;[Stream](#stream)&gt; | Promise对象。返回文件流的结果。 |
 
 **示例：**
 
@@ -2272,7 +2288,7 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | 是    | 待打开文件的文件描述符。                             |
   | mode     | string                                   | 是    | -&nbsp;r：打开只读文件，该文件必须存在。<br/>-&nbsp;r+：打开可读写的文件，该文件必须存在。<br/>-&nbsp;w：打开只写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;w+：打开可读写文件，若文件存在则文件长度清0，即该文件内容会消失。若文件不存在则建立该文件。<br/>-&nbsp;a：以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留。<br/>-&nbsp;a+：以附加方式打开可读写的文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾后，即文件原先的内容会被保留。 |
-  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt; | 是    | 异步打开文件流之后的回调。                            |
+  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream)&gt; | 是    | 异步打开文件流之后的回调。                            |
 
 **示例：**
 
@@ -2303,7 +2319,7 @@ fdopenStreamSync(fd: number, mode: string): Stream
 
   | 类型                | 说明        |
   | ------------------ | --------- |
-  | [Stream](#stream7) | 返回文件流的结果。 |
+  | [Stream](#stream) | 返回文件流的结果。 |
 
 **示例：**
 
@@ -2720,7 +2736,7 @@ stop(): Promise&lt;void&gt;
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop().then(function(){
@@ -2747,7 +2763,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop(function(){
@@ -3125,7 +3141,6 @@ read(): Promise&lt;Dirent&gt;
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
       console.log("read succeed:"+JSON.stringify(dirent));
   }).catch(function(err){
@@ -3151,7 +3166,6 @@ read(callback: AsyncCallback&lt;Dirent&gt;): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
       if (dirent) {
           // do something
@@ -3178,7 +3192,6 @@ readSync(): Dirent
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   let dirent = dir.readSync();
   ```
 
@@ -3194,7 +3207,6 @@ close(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close().then(function(err){
       console.info("close dir successfully");
   });
@@ -3212,7 +3224,6 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close(function(err){
       console.info("close dir successfully");
   });
@@ -3230,7 +3241,6 @@ closeSync(): void
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.closeSync();
   ```
 

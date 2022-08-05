@@ -28,7 +28,7 @@ registerAbilityLifecycleCallback(callback: AbilityLifecycleCallback): **number**
 
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| [AbilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md) | callback | 是   | 回调方法，返回注册监听事件的ID。 |
+| callback | [AbilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
 
 **返回值：**
 
@@ -98,7 +98,7 @@ unregisterAbilityLifecycleCallback(callbackId: **number**,  callback: AsyncCallb
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
 | callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
-| AsyncCallback | callback | 是   | 回调方法。                   |
+| callback | AsyncCallback\<void> | 是   | 回调方法。                   |
 
 **示例：**
 
@@ -123,7 +123,7 @@ registerEnvironmentCallback(callback: EnvironmentCallback): **number**;
 
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| [EnvironmentCallback](js-apis-application-EnvironmentCallback.md) | callback | 是   | 回调方法，返回注册监听事件的ID。 |
+| callback | [EnvironmentCallback](js-apis-application-EnvironmentCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
 
 **返回值：**
 
@@ -175,7 +175,7 @@ unregisterEnvironmentCallback(callbackId: **number**,  callback: AsyncCallback<*
 | 参数名         | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
 | callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
-| AsyncCallback | callback | 是   | 回调方法。                  |
+| callback | AsyncCallback\<void> | 是   | 回调方法。                  |
 
 **示例：**
 

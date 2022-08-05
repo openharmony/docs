@@ -1,6 +1,7 @@
 # Obtaining Process Information
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -92,7 +93,7 @@ This is a system API and cannot be called by third-party applications.
 ```js
 var child = process.runCmd('ls');
 var result = child.wait();
-child.getOutput.then(val=>{
+child.getOutput().then(val=>{
     console.log("child.getOutput = " + val);
 })
 ```
@@ -119,7 +120,7 @@ This is a system API and cannot be called by third-party applications.
 ```js
 var child = process.runCmd('madir test.text');
 var result = child.wait();
-child.getErrorOutput.then(val=>{
+child.getErrorOutput().then(val=>{
     console.log("child.getErrorOutput= " + val);
 })
 ```
@@ -286,7 +287,7 @@ Obtains the thread priority based on the specified TID.
 **Example**
 
 ```js
-var tid = process.getTid();
+var tid = process.tid;
 var pres = process.getThreadPriority(tid);
 ```
 
@@ -409,7 +410,7 @@ This is a system API and cannot be called by third-party applications.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | timeout | number | No| Maximum running time (in ms) of the child process. When the running time of the child process exceeds the value of this parameter, the parent process sends a **killSignal** to the child process to terminate it. The default value is **0**.|
-| killSignal | number&nbsp;&nbsp;\|&nbsp;string | No| Signal sent to the child process when the running time of a child process exceeds the timeout period. The default value is **SIGTERM**.|
+| killSignal | number \| string | No| Signal sent to the child process when the running time of a child process exceeds the timeout period. The default value is **SIGTERM**.|
 | maxBuffer | number | No| Maximum buffer size for the standard input and output of the child process. When the size is exceeded, the child process will be terminated. The default value is **1024 \* 1024**.|
 
 **Return value**
@@ -617,5 +618,5 @@ Sends a signal to the specified process to terminate it.
 
 ```js
 var pres = process.pid
-var result = that.kill(28, pres)
+var result = process.kill(28, pres)
 ```

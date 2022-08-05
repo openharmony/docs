@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```
+```js
 import resourceManager from '@ohos.resourceManager';
 ```
 
@@ -17,7 +17,7 @@ import resourceManager from '@ohos.resourceManager';
 
 从API Version9开始，Stage模型支持了通过context获取resourceManager对象的方式，再调用其内部获取资源的接口，无需再导入包，此方式FA模型不适用。
 
-```
+```ts
 this.context.resourceManager;
 ```
 
@@ -37,7 +37,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 | callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | callback方式返回ResourceManager对象 |
 
 **示例：** 
-  ```
+  ```js
   resourceManager.getResourceManager((error, mgr) => {
       if (error != null) {
           console.log("error is " + error);
@@ -71,7 +71,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 | callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | callback方式返回ResourceManager对象 |
 
 **示例：** 
-  ```
+  ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
   ```
@@ -93,7 +93,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise方式返回资源管理对象 |
 
 **示例：** 
-  ```
+  ```js
   resourceManager.getResourceManager().then(mgr => {
       mgr.getString(0x1000000, (error, value) => {
           if (error != null) {
@@ -129,11 +129,9 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise方式返回的资源管理对象 |
 
 **示例：** 
-  ```
+  ```js
   resourceManager.getResourceManager("com.example.myapplication").then(mgr => {
-
   }).catch(error => {
-
   });
   ```
 
@@ -142,7 +140,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 用于表示设备屏幕方向。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力**：SystemCapability.Global.ResourceManager
 
 | 名称                   | 默认值  | 说明   |
 | -------------------- | ---- | ---- |
@@ -154,7 +152,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 用于表示当前设备类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力**：SystemCapability.Global.ResourceManager
 
 | 名称                   | 默认值  | 说明   |
 | -------------------- | ---- | ---- |
@@ -170,7 +168,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 用于表示当前设备屏幕密度。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力**：SystemCapability.Global.ResourceManager
 
 | 名称             | 默认值  | 说明         |
 | -------------- | ---- | ---------- |
@@ -186,7 +184,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 表示当前设备的状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力**：SystemCapability.Global.ResourceManager
 
 
 | 名称        | 参数类型                    | 可读   | 可写   | 说明       |
@@ -196,7 +194,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 **示例：**
 
-  ```
+  ```js
 resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration((error, value) => {
           let direction = value.direction;
@@ -209,7 +207,7 @@ resourceManager.getResourceManager((error, mgr) => {
 
 表示设备支持的能力。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力**：SystemCapability.Global.ResourceManager
 
 
 | 名称            | 参数类型                            | 可读   | 可写   | 说明       |
@@ -219,7 +217,7 @@ resourceManager.getResourceManager((error, mgr) => {
 
 **示例：**
 
-  ```
+  ```js
 resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability((error, value) => {
           let screenDensity = value.screenDensity;
@@ -230,8 +228,9 @@ resourceManager.getResourceManager((error, mgr) => {
 
 ## RawFileDescriptor<sup>8+</sup>
 
-表示rawfile的descriptor信息。<br>
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+表示rawfile的descriptor信息。
+
+**系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称     | 类型     | 说明                 |
 | ------ | ------ | ------------------ |
@@ -245,11 +244,11 @@ resourceManager.getResourceManager((error, mgr) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
 
-| 名称     | 类型     | 说明                 |
-| ------ | ------ | ------------------ |
+| 名称         | 类型     | 说明          |
+| ---------- | ------ | ----------- |
 | bundleName | string | 应用的bundle名称 |
-| moduleName | string | 应用的module名称      |
-| id         | number | 资源的id值       |
+| moduleName | string | 应用的module名称 |
+| id         | number | 资源的id值      |
 
 
 ## ResourceManager
@@ -278,7 +277,7 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id, (error, value) => {
           if (error != null) {
@@ -310,7 +309,7 @@ getString(resId: number): Promise&lt;string&gt;
 | Promise&lt;string&gt; | 资源ID值对应的字符串 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then(value => {
           let str = value;
@@ -332,11 +331,11 @@ getString(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resource    | [Resource](#resource9)                     | 是    | 资源信息           |
+| resource | [Resource](#resource9)      | 是    | 资源信息            |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -360,17 +359,17 @@ getString(resource: Resource): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型                    | 说明               |
+| --------------------- | ---------------- |
 | Promise&lt;string&gt; | resource对象对应的字符串 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -398,7 +397,7 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
           if (error != null) {
@@ -430,7 +429,7 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then(value => {
           let strArray = value;
@@ -449,13 +448,13 @@ getStringArray(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名      | 类型                          | 必填   | 说明              |
-| -------- | --------------------------- | ---- | --------------- |
-| resource    | [Resource](#resource9)                      | 是    | 资源信息           |
+| 参数名      | 类型                                       | 必填   | 说明                |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| resource | [Resource](#resource9)                   | 是    | 资源信息              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -479,17 +478,17 @@ getStringArray(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型                                 | 说明                 |
+| ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | resource对象对应的字符串数组 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -517,7 +516,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id, (error, value) => {
           if (error != null) {
@@ -549,7 +548,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 | Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then(value => {
           let media = value;
@@ -568,13 +567,13 @@ getMedia(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名      | 类型                          | 必填   | 说明              |
-| -------- | --------------------------- | ---- | --------------- |
-| resource    | [Resource](#resource9)                      | 是    | 资源信息           |
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resource | [Resource](#resource9)          | 是    | 资源信息               |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -598,17 +597,17 @@ getMedia(resource: Resource): Promise&lt;Uint8Array&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型                        | 说明                  |
+| ------------------------- | ------------------- |
 | Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -636,7 +635,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
           if (error != null) {
@@ -668,7 +667,7 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 | Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then(value => {
           let media = value;
@@ -689,11 +688,11 @@ getMediaBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resource    | [Resource](#resource9)                      | 是    | 资源信息                    |
+| resource | [Resource](#resource9)      | 是    | 资源信息                     |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -717,17 +716,17 @@ getMediaBase64(resource: Resource): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
-| 类型                    | 说明                   |
-| --------------------- | -------------------- |
+| 类型                    | 说明                        |
+| --------------------- | ------------------------- |
 | Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -755,7 +754,7 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 | callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | 是    | 异步回调，用于返回设备的Configuration |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration((error, value) => {
           if (error != null) {
@@ -783,7 +782,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
 | Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getConfiguration().then(value => {
           let direction = value.direction;
@@ -809,7 +808,7 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 | callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | 是    | 异步回调，用于返回设备的DeviceCapability |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability((error, value) => {
           if (error != null) {
@@ -837,7 +836,7 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 | Promise&lt;[DeviceCapability](#devicecapability)&gt; | 设备的DeviceCapability |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getDeviceCapability().then(value => {
           let screenDensity = value.screenDensity;
@@ -865,7 +864,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
           if (error != null) {
@@ -898,7 +897,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 | Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then(value => {
           let str = value;
@@ -917,14 +916,14 @@ getPluralString(resource: Resource, num: number, callback: AsyncCallback&lt;stri
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名      | 类型                          | 必填   | 说明                              |
-| -------- | --------------------------- | ---- | ------------------------------- |
-| resource    | [Resource](#resource9)                      | 是    | 资源信息                           |
-| num      | number                      | 是    | 数量值                             |
+| 参数名      | 类型                          | 必填   | 说明                                   |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| resource | [Resource](#resource9)      | 是    | 资源信息                                 |
+| num      | number                      | 是    | 数量值                                  |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定resource对象表示的单复数字符串 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -948,18 +947,18 @@ getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
-| num   | number | 是    | 数量值   |
+| num      | number                 | 是    | 数量值  |
 
 **返回值：** 
-| 类型                    | 说明                        |
-| --------------------- | ------------------------- |
+| 类型                    | 说明                             |
+| --------------------- | ------------------------------ |
 | Promise&lt;string&gt; | 根据提供的数量获取对应resource对象表示的单复数字符串 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -987,7 +986,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml", (error, value) => {
           if (error != null) {
@@ -1018,7 +1017,7 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 | Promise&lt;Uint8Array&gt; | rawfile文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.xml").then(value => {
           let rawFile = value;
@@ -1043,7 +1042,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 | callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.xml", (error, value) => {
           if (error != null) {
@@ -1076,7 +1075,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.xml").then(value => {
           let fd = value.fd;
@@ -1103,7 +1102,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml", (error, value) => {
           if (error != null) {
@@ -1132,7 +1131,7 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 无返回值 |
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.xml").then(value => {
           let result = value;
@@ -1151,7 +1150,7 @@ release()
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **示例：** 
-  ```
+  ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.release();
   });
@@ -1168,11 +1167,11 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 **参数：**
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resName  | string                      | 是   | 资源名称        |
-| callback | AsyncCallback&lt;string&gt; | 是   | 异步回调，用于返回获取的字符串 |
+| resName  | string                      | 是    | 资源名称            |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **示例：**
-  ```
+  ```ts
   this.context.resourceManager.getStringByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
@@ -1191,17 +1190,17 @@ getStringByName(resName: string): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
-| 参数名   | 类型     | 必填   | 说明    |
+| 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是   | 资源名称 |
+| resName | string | 是    | 资源名称 |
 
 **返回值：**
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型                    | 说明         |
+| --------------------- | ---------- |
 | Promise&lt;string&gt; | 资源名称对应的字符串 |
 
 **示例：**
-  ```
+  ```ts
   this.context.resourceManager.getStringByName("test").then(value => {
       let string = value;
   }).catch(error => {
@@ -1220,11 +1219,11 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 **参数：**
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| resName  | string                                   | 是    | 资源名称             |
+| resName  | string                                   | 是    | 资源名称              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getStringArrayByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
@@ -1243,17 +1242,17 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ------- | ------ | ---- | ----- |
-| resName | string | 是   | 资源名称 |
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
 
 **返回值：** 
-| 类型                                 | 说明            |
-| ---------------------------------- | ------------- |
+| 类型                                 | 说明           |
+| ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getStringArrayByName("test").then(value => {
       let strArray = value;
   }).catch(error => {
@@ -1272,11 +1271,11 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **参数：** 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resName  | string                          | 是    | 资源名称              |
+| resName  | string                          | 是    | 资源名称               |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getMediaByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
@@ -1295,17 +1294,17 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| -----   | ------ | ---- | ----- |
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
 **返回值：** 
-| 类型                        | 说明             |
-| ------------------------- | -------------- |
+| 类型                        | 说明            |
+| ------------------------- | ------------- |
 | Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getMediaByName("test").then(value => {
       let media = value;
   }).catch(error => {
@@ -1324,11 +1323,11 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 **参数：** 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resName  | string                      | 是    | 资源名称                    |
+| resName  | string                      | 是    | 资源名称                     |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
@@ -1347,17 +1346,17 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ------- | ------ | ---- | ----- |
-| resName | string | 是   | 资源名称 |
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
 
 **返回值：** 
-| 类型                    | 说明                   |
-| --------------------- | -------------------- |
+| 类型                    | 说明                  |
+| --------------------- | ------------------- |
 | Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getMediaBase64ByName("test").then(value => {
       let media = value;
   }).catch(error => {
@@ -1374,14 +1373,14 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名      | 类型                          | 必填   | 说明                              |
-| -------- | --------------------------- | ---- | ------------------------------- |
-| resName  | string                      | 是    | 资源名称                           |
-| num      | number                      | 是    | 数量值                             |
+| 参数名      | 类型                          | 必填   | 说明                            |
+| -------- | --------------------------- | ---- | ----------------------------- |
+| resName  | string                      | 是    | 资源名称                          |
+| num      | number                      | 是    | 数量值                           |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据传入的数量值获取资源名称对应的字符串资源 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
       if (error != null) {
           console.log("error is " + error);
@@ -1400,18 +1399,18 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ------- | ------ | ---- | ----- |
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
-| num     | number | 是    | 数量值   |
+| num     | number | 是    | 数量值  |
 
 **返回值：** 
-| 类型                    | 说明                        |
-| --------------------- | ------------------------- |
+| 类型                    | 说明                     |
+| --------------------- | ---------------------- |
 | Promise&lt;string&gt; | 根据传入的数量值获取资源名称对应的字符串资源 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getPluralStringByName("test", 1).then(value => {
       let str = value;
   }).catch(error => {
@@ -1433,12 +1432,12 @@ getStringSync(resId: number): string
 | resId | number | 是    | 资源ID值 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型     | 说明          |
+| ------ | ----------- |
 | string | 资源ID值对应的字符串 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getStringSync($r('app.string.test').id);
   ```
 
@@ -1451,17 +1450,17 @@ getStringSync(resource: Resource): string
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型     | 说明               |
+| ------ | ---------------- |
 | string | resource对象对应的字符串 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -1479,17 +1478,17 @@ getStringByNameSync(resName: string): string
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型     | 说明         |
+| ------ | ---------- |
 | string | 资源名称对应的字符串 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getStringByNameSync("test");
   ```
 
@@ -1507,12 +1506,12 @@ getBoolean(resId: number): boolean
 | resId | number | 是    | 资源ID值 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型      | 说明           |
+| ------- | ------------ |
 | boolean | 资源ID值对应的布尔结果 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
   ```
 ### getBoolean<sup>9+</sup>
@@ -1524,17 +1523,17 @@ getBoolean(resource: Resource): boolean
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型      | 说明                |
+| ------- | ----------------- |
 | boolean | resource对象对应的布尔结果 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -1552,17 +1551,17 @@ getBooleanByName(resName: string): boolean
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ------- | ------ | ---- | ----- |
-| resName | string | 是   | 资源名称 |
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型      | 说明          |
+| ------- | ----------- |
 | boolean | 资源名称对应的布尔结果 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getBooleanByName("boolean_test");
   ```
 
@@ -1580,12 +1579,12 @@ getNumber(resId: number): number
 | resId | number | 是    | 资源ID值 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型     | 说明         |
+| ------ | ---------- |
 | number | 资源ID值对应的数值 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
   this.context.resourceManager.getNumber($r('app.float.float_test').id);
   ```
@@ -1599,17 +1598,17 @@ getNumber(resource: Resource): number
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型     | 说明              |
+| ------ | --------------- |
 | number | resource对象对应的数值 |
 
 **示例：** 
-  ```
+  ```ts
   let resource = {
       bundleName: "com.example.myapplication",
       moduleName: "entry",
@@ -1627,17 +1626,17 @@ getNumberByName(resName: string): number
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称 |
 
 **返回值：** 
-| 类型                    | 说明          |
-| --------------------- | ----------- |
+| 类型     | 说明        |
+| ------ | --------- |
 | number | 资源名称对应的数值 |
 
 **示例：** 
-  ```
+  ```ts
   this.context.resourceManager.getNumberByName("integer_test");
   this.context.resourceManager.getNumberByName("float_test");
   ```

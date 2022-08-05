@@ -72,8 +72,8 @@ Obtains the query string applicable to this URI.
 **Example**
 
 ```js
-const uri = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-uri.toString()
+const result = new uri.URI('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+result.toString()
 ```
 
 

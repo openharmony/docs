@@ -32,7 +32,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 var screenClass = null;
 screen.getAllScreens((err, data) => {
     if (err.code) {
-        console.error('Failed to get all screens . Cuase:  ' + JSON.stringify(err));
+        console.error('Failed to get all screens . Cause:  ' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in getting all screens . Data:' + JSON.stringify(data));
@@ -223,6 +223,8 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**需要权限**：ohos.permission.CAPTURE_SCREEN，如果VirtualScreenOption.surfaceId有效，此权限是必需的。仅系统应用可用。
+
 **参数：**
 
 | 参数名   | 类型                                        | 必填 | 说明                               |
@@ -255,6 +257,8 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 创建虚拟屏幕，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限**：ohos.permission.CAPTURE_SCREEN，如果VirtualScreenOption.surfaceId有效，此权限是必需的。仅系统应用可用。
 
 **参数：** 
 | 参数名  | 类型                                        | 必填 | 说明                     |
@@ -343,6 +347,8 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
+
 **参数：**
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
@@ -371,6 +377,8 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 设置虚拟屏幕的surface，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
 
 **参数：**
 | 参数名    | 类型   | 必填 | 说明          |
@@ -531,7 +539,7 @@ screen.setScreenRotationLocked(isLocked, (err, data) => {
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
-| orientation       | [Orientation](#rientation)                     | 是   | 否   | 屏幕方向。             |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
 
 ### setOrientation
 setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
@@ -696,9 +704,6 @@ promise.then((data) => {
 | HORIZONTAL         | 2    | 表示指定屏幕为水平方向。         |
 | REVERSE_VERTICAL   | 3    | 表示指定屏幕为反向垂直方向。     |
 | REVERSE_HORIZONTAL | 4    | 表示指定屏幕为反向水平方向。     |
-| SENSOR             | 5    | 表示屏幕方向跟随传感器方向。     |
-| SENSOR_VERTICAL    | 6    | 表示屏幕方向垂直跟随传感器方向。 |
-| SENSOR_HORIZONTAL  | 7    | 表示屏幕方向水平跟随传感器方向。 |
 
 ## ScreenModeInfo
 屏幕显示模式信息。

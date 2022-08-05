@@ -2,7 +2,7 @@
 
 ## Introduction
 
-To help the OpenHarmony ecosystem develop and evolve in a healthy and orderly way, this Charter defines the governance process and lifecycle (create, change, deprecate, and delete) of OpenHarmony APIs. It also specifies basic design requirements of OpenHarmony APIs.
+To help the OpenHarmony ecosystem develop and evolve in a healthy and orderly way, this Charter defines the governance process and lifecycle (creation, change, deprecation, and deletion) of OpenHarmony APIs. It also specifies basic design requirements of OpenHarmony APIs.
 
 This Charter is formulated by the API SIG and approved by the PMC for release. Any revision to this Charter will be released only after being reviewed by the API SIG and approved by the PMC.
 
@@ -16,14 +16,14 @@ The OpenHarmony software stack contains multiple roles. Naturally, OpenHarmony A
 
 Different types of APIs have different compatibility requirements, as described in the table below.
 
-| Type| Prepared By| Used By| Compatibility Requirement| Guarding Method|
-|---|---|---|---|---|
-| Public API | System and framework| All application developers| 5 API versions| X test suite (XTS)|
-| Test API | Test framework| All application developers| 3 API versions| To be built|
-| System API |  System and framework|System application developers|Not guaranteed| To be built|
-| HDI | HDF| System services| 4 API versions| XTS |
-| Driver API | HDF | Driver developers| Not guaranteed| None|
-| Inner API | System parts| System parts| Not guaranteed| None|
+ | Type | Prepared By | Used By | Compatibility Requirement | Guarding Method |
+ |--- |--- |--- |--- |--- |
+ | Public API | System and framework | All application developers | Five API versions | X test suite (XTS) |
+ | Test API | Test framework | All application developers | Three API versions | To be built |
+ | System API |  System and framework |System application developers |Not guaranteed | To be built |
+ | HDI | HDF | System services | Four API versions | XTS |
+ | Driver API | HDF | Driver developers | Not guaranteed | None |
+ | Inner API | System parts | System parts | Not guaranteed | None |
 
 The APIs are described as follows:
 
@@ -48,13 +48,13 @@ The content described in this Charter is irrelevant to the programming language 
 
 ### Roles and Responsibilities
 
-|**Role**|**Responsibilities in API Governance**|
-| - | - |
-|Contributor|Commit API code and design documents.|
-|Committer|Review the code and submit a pre-review comment on an API commit.|
-|Domain SIG|Comment on the commits of new API code, so the passed commits can be merged. <br/>Submit a pre-review comment on updated API code.|
-|API SIG|Comment on updated API code.|
-|PMC|Release API version plans. Review amendments of this Charter, revise the terms, and publish this Charter.|
+ | Role | Responsibilities in API Governance |
+ | --- | --- |
+ | Contributor | Commit API code and design documents. |
+ | Committer | Review the code and submit a pre-review comment on an API commit. |
+ | Domain SIG | Comment on the commits of new API code, so the passed commits can be merged. <br/>Submit a pre-review comment on updated API code. |
+ | API SIG | Comment on updated API code. |
+ | PMC | Release API version plans. Review amendments of this Charter, revise the terms, and publish this Charter. |
 
 ### API Review Process
 The API review process is as follows:
@@ -66,7 +66,7 @@ The main process is as follows:
 1. Initiate API review and commit code (contributor). If any APIs are added or modified, the contributor must additionally submit an API review application to specify the API requirement source, usage scenario, permission design, and privacy protection design. For details, see "API Review Application Composites" below. To avoid rework, the contributor can send an email to submit the API design document to the committer, domain SIG, and API SIG for pre-review before the formal API review application and code commit.
 1. Review code (committer). After the code review is approved, the committer should submit the APIs to the domain SIG. If the API code involves multiple domains, they should be submitted to the committers of the corresponding domains. The next review step can be performed only after all committers review and approve the code.
 1. Review APIs (domain SIG). The code of new APIs can be merged only after being reviewed and approved by the domain SIG. If there are changes to existing APIs, the domain SIG should submit them to the API SIG. If the new APIs involve multiple domains, they should be submitted to the SIGs of the corresponding domains. The code can be merged after being reviewed and approved by one of the domain SIGs. If the changed APIs involve multiple domains, they should be submitted to the SIGs of the corresponding domains. The next review step can be performed only after all domain SIGs approve the APIs.
-1. Review API changes (owner: API SIG): The code of changed APIs can be merged only after being reviewed and approved by the API SIG.
+1. Review API changes (API SIG). The code of changed APIs can be merged only after being reviewed and approved by the API SIG.
 1. The review is complete.
 
 ### API Review Application Composites
@@ -175,18 +175,18 @@ Design APIs from the perspective of their users rather than providers.
 
 ### Performance
 1. Respond in a timely manner to avoid callers waiting. If an API call takes a long time, use an asynchronous API.
-2. Pay attention to the impact of the API call timing and frequency on the RAM usage.
-3. Pay attention to the impact of the API call timing and frequency on power consumption.
+2. Make sure that the impact of API call timing and frequency on the RAM usage is under control.
+3. Make sure that the impact of API call timing and frequency on the power consumption is under control.
 4. Resources must be released in a timely manner when APIs that use resources are called. A fault tolerance mechanism must be provided for abnormal scenarios to ensure timely resource release.
 
 ### Power Consumption
 
-1. Evaluate the impact of the API call timing and frequency on power consumption, and perform related design if there is any impact.
-2. The power consumption should not deteriorate during version evolution.
+1. Evaluate the impact of the API call timing and frequency on power consumption, and optimize the design if there is any impact.
+2. Make sure that the power consumption does not deteriorate during version evolution.
 
 ### Reliability
 
-1. APIs cannot crash due to external input (such as input parameters, system status, and external data), internal status, or data exceptions. It must return a specific error code or throw a predefined exception.
+1. APIs shall not crash due to external input (such as input parameters, system status, and external data), internal status, or data exceptions. It must return a specific error code or throw a predefined exception.
 2. It must be specified whether an API is called synchronously or asynchronously. If an API is called synchronously, specify the timeout duration or allow the caller to set the timeout duration to prevent service response failure caused by call suspension.
 3. APIs must support multi-thread reentrant.
 4. APIs must meet the idempotence requirement, which means that the same effect should be obtained for one or multiple API call requests with the same service meaning (except that API call depends on external resource changes). For reentrant API call, avoid introducing time-varying factors, such as system ticks, static variables, and global variables without mutual exclusion protection. For repeated call of the same client, **contextID**, **clientToken**, and **sequenceNo** can be used as input parameters.

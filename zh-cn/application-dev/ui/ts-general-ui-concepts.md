@@ -5,8 +5,9 @@
 
 ## HelloWorld基本示例
 
-```
+```ts
 // An example of displaying Hello World. After you click the button, Hello UI is displayed.
+// xxx.ets
 @Entry
 @Component
 struct Hello {

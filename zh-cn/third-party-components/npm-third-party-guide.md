@@ -1,11 +1,11 @@
-# OpenHarmony JS/TS三方组件使用指导
-## OpenHarmony JS/TS三方组件介绍
+# OpenHarmony JS和TS三方组件使用指导
+## OpenHarmony JS和TS三方组件介绍
 
-OpenHarmony JS/TS三方组件是以OpenHarmony npm包的形式，在传统的npm三方组件的基础上，定义了OpenHarmony npm共享包特定的工程结构和配置文件，支持OpenHarmony页面组件相关API、资源的调用。通过OpenHarmony npm包，可以实现多个模块或者多个工程共享OpenHarmony页面、资源等相关代码。前往[npm官方文档](https://docs.npmjs.com/about-npm)，可以了解和掌握npm的基础功能和机制。
+OpenHarmony JS和TS三方组件是以OpenHarmony npm包的形式，在传统的npm三方组件的基础上，定义了OpenHarmony npm共享包特定的工程结构和配置文件，支持OpenHarmony页面组件相关API、资源的调用。通过OpenHarmony npm包，可以实现多个模块或者多个工程共享OpenHarmony页面、资源等相关代码。前往[npm官方文档](https://docs.npmjs.com/about-npm)，可以了解和掌握npm的基础功能和机制。
 
 
 
-## 查找OpenHarmony JS/TS三方组件
+## 查找OpenHarmony JS和TS三方组件
 
 1. 关注Gitee官网OpenHarmony-TPC[三方组件资源汇总](https://gitee.com/openharmony-tpc/tpc_resource)项目，根据目录索引即可找到对应分类下的具体组件。
 
@@ -16,9 +16,9 @@ OpenHarmony JS/TS三方组件是以OpenHarmony npm包的形式，在传统的npm
 
 
 
-## 安装并使用OpenHarmony JS/TS语言的三方组件
+## 安装并使用OpenHarmony JS和TS语言的三方组件
 
-在应用开发的过程中，JS/TS语言的三方组件，通常以源码或OpenHarmony npm包的方式被引入使用。按照以下步骤即可将OpenHarmony npm包引入应用并使用，源码的具体引入及使用请参考各三方组件README.md指导介绍。
+在应用开发的过程中，JS和TS语言的三方组件，通常以源码或OpenHarmony npm包的方式被引入使用。按照以下步骤即可将OpenHarmony npm包引入应用并使用，源码的具体引入及使用请参考各三方组件README.md指导介绍。
 
 1. 配置OpenHarmony npm环境，详情请参考安装教程 [如何安装OpenHarmony npm包](https://gitee.com/openharmony-tpc/docs/blob/master/OpenHarmony_npm_usage.md)。
 

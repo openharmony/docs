@@ -130,7 +130,7 @@
    ```js
    //发起方
    var local_object = distributedObject.createDistributedObject({name:"jack", age:18, isVis:true, 
-       parent:{mother:"jack mom",father:"jack Dad"},list:[{mother:"jack mom"}, {father:"jack Dad"}]});
+       parent:{mother:"jack mom", father:"jack Dad"}, list:[{mother:"jack mom"}, {father:"jack Dad"}]});
    local_object.setSessionId(sessionId);
    
    //被拉起方
@@ -166,7 +166,7 @@
    local_object.name = "jack";
    local_object.age = 19;
    local_object.isVis = false;
-   local_object.parent = {mother:"jack mom",father:"jack Dad"};
+   local_object.parent = {mother:"jack mom", father:"jack Dad"};
    local_object.list = [{mother:"jack mom"}, {father:"jack Dad"}];
    ```
 
@@ -210,14 +210,14 @@
     
        ```js
         // 保存数据对象
-        local_object.save("local", (result, data)=>{
+        local_object.save("local", (result, data) => {
             console.log("save callback");
             console.info("save sessionId " + data.sessionId);
             console.info("save version " + data.version);
             console.info("save deviceId " + data.deviceId);
         });
         // 撤回保存的数据对象
-        local_object.revokeSave((result, data) =>{
+        local_object.revokeSave((result, data) => {
         console.log("revokeSave callback");
         console.info("revokeSave sessionId " + data.sessionId);
         });
@@ -225,7 +225,7 @@
        2.Promise方式
        ```js
         // 保存数据对象
-        g_object.save("local").then((result)=>{
+        g_object.save("local").then((result) => {
             console.info("save sessionId " + result.sessionId);
             console.info("save version " + result.version);
             console.info("save deviceId " + result.deviceId);
@@ -233,7 +233,7 @@
             console.info("save local failed.");
         });
         // 撤回保存的数据对象
-        g_object.revokeSave().then((result)=>{
+        g_object.revokeSave().then((result) => {
             console.info("revokeSave success.");
         }, (result)=>{
             console.info("revokeSave failed.");
@@ -254,12 +254,13 @@
        ```js
        local_object.setSessionId("");
        ```
-## 开发实例
+## 相关实例
 
 针对分布式数据对象，有以下开发实例可供参考：
+- [`DistributedNote`：分布式备忘录(eTS)（API9）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedNote)
 
 - [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
 
-
-在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表等。
+  在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表 
+  等。
 

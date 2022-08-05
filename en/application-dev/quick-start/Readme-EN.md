@@ -9,6 +9,5 @@
 - Development Fundamentals
   - [Application Package Structure Configuration File (FA Model)](package-structure.md)
   - [Application Package Structure Configuration File (Stage Model)](stage-structure.md)
-  - [Resource File Categories](basic-resource-file-categories.md)
   - [SysCap](syscap.md)
   - [HarmonyAppProvision Configuration File](app-provision-structure.md)

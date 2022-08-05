@@ -264,13 +264,12 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 ## BundleStats<sup>9+</sup>
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
 该接口为系统接口，三方应用不支持调用
-
-
-### 属性
 
 | 名称      | 类型   | 说明           |
 | --------- | ------ | -------------- |
@@ -523,13 +522,12 @@ getUserStorageStats(userId: number, callback:AsyncCallback&lt;StorageStats&gt;):
 
 ## StorageStats<sup>9+</sup>
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
 该接口为系统接口，三方应用不支持调用
-
-
-### 属性
 
 | 名称      | 类型   | 说明           |
 | --------- | ------ | -------------- |

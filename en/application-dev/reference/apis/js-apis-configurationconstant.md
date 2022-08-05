@@ -1,12 +1,10 @@
 # ConfigurationConstant
 
+The **ConfigurationConstant** module provides the enumerated values of the environment configuration information.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-
-Defines enumerated values of the configuration for the environment where the ability is running.
-
 
 ## Modules to Import
 
@@ -14,7 +12,6 @@ Defines enumerated values of the configuration for the environment where the abi
 ```js
 import ConfigurationConstant from '@ohos.application.ConfigurationConstant';
 ```
-
 
 ## ConfigurationConstant.ColorMode
 

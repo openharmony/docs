@@ -505,6 +505,7 @@ skills示例：
 | name      | 需要使用的权限名称。 | 字符串 | 否 |
 | reason    | 描述申请权限的原因。不能超过256个字节。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其它权限可缺省，缺省为空 |
 | usedScene | 描述权限使用的场景和时机。场景类型有：ability、when。ability：ability的名称，可配置多个。when：调用时机，可填的值有inuse（使用时）、always（始终） | 对象 | ability分情况：申请的权限有user_grant时，ability必填；没有user_grant时可缺省，缺省值为空。when可缺省，缺省值为“inuse” |
+具体示例可参考[访问控制开发指导](../security/accesstoken-guidelines.md#fa模型)。
 
 表22  js对象的内部结构说明
 
@@ -591,7 +592,7 @@ shortcuts示例：
 | isDefault           | 表示该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。<br />true：默认卡片。<br />false：非默认卡片。 | 布尔值     | 不可缺省                 |
 | type                | 表示卡片的类型。取值范围如下：<br />JS：JS卡片。             | 字符串     | 不可缺省                 |
 | colorMode           | 表示卡片的主题样式，取值范围如下：<br />auto：自适应。<br />dark：深色主题。<br />light：浅色主题。 | 字符串     | 可缺省，缺省值为“auto”。 |
-| supportDimensions   | 表示卡片支持的外观规格，取值范围：<br />1 * 2：表示1行2列的二宫格。<br />2 * 2：表示2行2列的四宫格。<br />2 * 4：表示2行4列的八宫格。<br />4 * 4：表示4行4列的十六宫格。 | 字符串数组 | 不可缺省                 |
+| supportDimensions   | 表示卡片支持的外观规格，取值范围：<br />1 * 2：表示1行2列的二宫格。<br />2 * 1：表示2行1列的二宫格。<br />2 * 2：表示2行2列的四宫格。<br />2 * 4：表示2行4列的八宫格。<br />4 * 4：表示4行4列的十六宫格。 | 字符串数组 | 不可缺省                 |
 | defaultDimension    | 表示卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 不可缺省                 |
 | updateEnabled       | 表示卡片是否支持周期性刷新，取值范围：<br />true：表示支持周期性刷新，可以在定时刷新（updateDuration）和定点刷新（scheduledUpdateTime）两种方式任选其一，优先选择定时刷新。<br />false：表示不支持周期性刷新。 | 布尔类型   | 不可缺省                 |
 | scheduledUpdateTime | 表示卡片的定点刷新的时刻，采用24小时制，精确到分钟。         | 字符串     | 可缺省，缺省值为“0:0”。  |

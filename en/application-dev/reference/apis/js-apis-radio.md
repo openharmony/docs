@@ -1,5 +1,7 @@
 # Radio
 
+The radio module provides basic network search management functions. You can obtain the radio access technology (RAT) used in the CS and PS domains, network status, current network selection mode, ISO country code of the registered network, ID of the slot in which the primary card is located, list of signal strengths of the registered network, carrier name, and IMEI, MEID, and unique device ID of the SIM card in the specified slot. Besides, you can check whether the current device supports 5G\(NR\) and whether the radio service is enabled on the primary SIM card.
+
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -15,7 +17,7 @@ import radio from '@ohos.telephony.radio'
 
 getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
 
-Obtains the radio access technology (RAT) used by the CS and PS domains for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -42,7 +44,7 @@ radio.getRadioTech(slotId, (err, data) =>{
 
 getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
 
-Obtains the RAT used by the CS and PS domains for the SIM card in the specified slot. This API uses a promise to return the result.
+Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -573,7 +575,7 @@ This is a system API.
 | Name  | Type                 | Mandatory| Description                                  |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -607,7 +609,7 @@ This is a system API.
 
 | Type           | Description                           |
 | --------------- | ------------------------------- |
-| Promise\<void\> | Promise that returns no value.       |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 

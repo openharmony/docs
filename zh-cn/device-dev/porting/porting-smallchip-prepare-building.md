@@ -86,7 +86,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
    # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
    board_toolchain = "mips-linux-gnu-gcc"
    
-   # The toolchain path instatlled, it's not mandatory if you have added toolchian path to your ~/.bashrc.
+   # The toolchain path installed, it's not mandatory if you have added toolchain path to your ~/.bashrc.
    board_toolchain_path = 
        rebase_path("//prebuilts/gcc/linux-x86/arm/arm-linux-ohoseabi-gcc/bin",
                    root_build_dir)

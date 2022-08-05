@@ -8,14 +8,12 @@
 - 快速开始
     - 快速入门
         - [开发准备](quick-start/start-overview.md)
-        - [使用eTS语言开发（传统代码方式）](quick-start/start-with-ets.md)
-        - [使用eTS语言开发（低代码方式）](quick-start/start-with-ets-low-code.md)
-        - [使用JS语言开发（传统代码方式）](quick-start/start-with-js.md)
-        - [使用JS语言开发（低代码方式）](quick-start/start-with-js-low-code.md)
+        - [使用eTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
+        - [使用eTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
+        - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
     - 开发基础知识
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
         - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
-        - [资源文件的分类](quick-start/basic-resource-file-categories.md)
         - [SysCap说明](quick-start/syscap.md)
         - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
 - 开发
@@ -34,6 +32,7 @@
     - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
     - [DFX](dfx/Readme-CN.md)
     - [国际化](internationalization/Readme-CN.md)
+    - [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
     - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
     - [Native API的相关指导](napi/Readme-CN.md)
 - 工具
@@ -42,8 +41,8 @@
     - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
-    - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
     - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
+    - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
     - 接口
       -   [JS及TS API参考](reference/apis/Readme-CN.md)
       -   Native API

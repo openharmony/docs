@@ -15,7 +15,7 @@
 
 具体的使用示例如下，更多信息请参考[组件方法](../reference/arkui-js/js-components-common-methods.md)。
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text class="translate">hello</text>
@@ -24,7 +24,7 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -78,7 +78,7 @@
 
 animation样式需要在css文件中先定义keyframe，在keyframe中设置动画的过渡效果，并通过一个样式类型在hml文件中调用。animation-name的使用示例如下：
 
-```
+```html
 <!-- xxx.hml -->
 <div class="item-container">
   <text class="header">animation-name</text>
@@ -92,7 +92,7 @@ animation样式需要在css文件中先定义keyframe，在keyframe中设置动�
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .item-container {
   margin-right: 60px;

@@ -167,3 +167,6 @@
         console.info("Deleted failed with err: " + err)
     })
    ```
+## 相关实例
+针对首选项开发，有以下相关实例可供参考：
+- [`Preferences`：首选项（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/data/Preferences)

@@ -3,8 +3,8 @@
 本模块主要由时间、时区和定时三大功能组成。其中，定时服务用来管理和使用时间、时区。开发者可以通过对系统进行设置、获取等操作管理系统时间、时区，也可以通过定时功能实现定时服务如闹钟服务等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>- 本模块接口为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -22,7 +22,7 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 **需要权限：** ohos.permission.SET_TIME
 
-**系统能力：** SystemCapability.Miscservices.Time
+**系统能力：** SystemCapability.MiscServices.Time
 
 **参数：**
 
@@ -201,7 +201,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(callback: AsyncCallback&lt;number&gt;): void
+getRealTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback形式返回结果。
 
@@ -229,7 +229,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(): Promise&lt;number&gt;
+getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用Promise形式返回结果。
 

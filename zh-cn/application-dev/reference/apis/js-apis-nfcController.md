@@ -3,7 +3,7 @@
 本模块主要用于操作及管理NFC。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## **导入模块**
@@ -18,6 +18,8 @@ import controller from '@ohos.nfc.controller';
 isNfcAvailable(): boolean
 
 查询是否有NFC功能
+
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -34,7 +36,7 @@ openNfc(): boolean
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -50,7 +52,7 @@ closeNfc(): boolean
 
 **需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -64,7 +66,7 @@ isNfcOpen(): boolean
 
 查询NFC是否打开。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -78,7 +80,7 @@ getNfcState(): NfcState
 
 查询NFC状态。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -92,7 +94,7 @@ on(type: "nfcStateChange", callback: Callback&lt;NfcState&gt;): void
 
 注册NFC开关状态事件。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数**
   
@@ -109,7 +111,7 @@ off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
 
 取消NFC开关状态事件的注册。
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **参数**
   
@@ -139,6 +141,8 @@ off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
 ## NfcState
 
 表示NFC状态的枚举。
+
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |

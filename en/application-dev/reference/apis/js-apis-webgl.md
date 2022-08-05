@@ -1,10 +1,12 @@
-# webgl
+# WebGL
 
->  **NOTE**<br/>
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+The **WebGL** module provides the graphics drawing capability, such as processing the graphics position and color.
 
 This module provides WebGL APIs that correspond to the OpenGL ES 2.0 feature set. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
+
+>  **NOTE**
+>
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Invoking Method
@@ -37,7 +39,7 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 **System capability**: SystemCapability.Graphic.Graphic2D.WebGL
 
-  **Table 1** Type
+**Table 1** Type
 
 | Name| Type| 
 | -------- | -------- |
@@ -61,11 +63,11 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 | WebGLPowerPreference | string |
 
 
-## Interface
+## APIs
 
 **System capability**: SystemCapability.Graphic.Graphic2D.WebGL
 
-  **Table 2** Interface
+**Table 2** APIs
 
 | Name|
 | -------- |
@@ -566,7 +568,7 @@ WebGLRenderingContextOverloads
 | bufferSubData(target: GLenum, offset: GLintptr, data: BufferSource) | void | 
 | compressedTexImage2D(target: GLenum, level: GLint, internalformat: GLenum, width: GLsizei, height: GLsizei, border: GLint, data: ArrayBufferView) | void | 
 | compressedTexSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, data: ArrayBufferView) | void | 
-| readPixels(x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 
+| readPixels(x: GLint, y: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void; | 
 | texImage2D(target: GLenum, level: GLint, internalformat: GLint, width: GLsizei, height: GLsizei, border: GLint, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 
 | texImage2D(target: GLenum, level: GLint, internalformat: GLint, format: GLenum, type: GLenum, source: TexImageSource) | void | 
 | texSubImage2D(target: GLenum, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, pixels: ArrayBufferView \| null) | void | 

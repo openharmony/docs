@@ -1,5 +1,6 @@
 # Network Connection Management
 
+The network connection management module provides basic network management capabilities. You can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 
 > **NOTE**
 >
@@ -79,7 +80,7 @@ Checks whether the default data network is activated. This API uses an asynchron
 ```js
 connection.hasDefaultNet(function (error, has) {
     console.log(JSON.stringify(error))
-    console.log(has)
+    console.log('has: ' + has)
 })
 ```
 
@@ -101,7 +102,7 @@ Checks whether the default data network is activated. This API uses a promise to
 
 ```js
 connection.hasDefaultNet().then(function (has) {
-    console.log(has)
+    console.log('has: ' + has)
 })
 ```
 
@@ -167,7 +168,7 @@ Obtains connection properties of the network corresponding to given network hand
 
 | Name   | Type                                                        | Mandatory| Description            |
 | --------- | ------------------------------------------------------------ | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                                      | Yes  | Network handle.|
+| netHandle | [NetHandle](#nethandle)                                      | Yes  | Handle of the data network.|
 | callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | Yes  | Callback used to return the result.      |
 
 **Example**
@@ -195,7 +196,7 @@ Obtains connection properties of the network corresponding to **netHandle**. Thi
 
 | Name   | Type                   | Mandatory| Description            |
 | --------- | ----------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle) | Yes  | Network handle.|
+| netHandle | [NetHandle](#nethandle) | Yes  | Handle of the data network.|
 
 **Return Value**
 
@@ -227,7 +228,7 @@ Obtains capability information of the network corresponding to **netHandle**. Th
 
 | Name   | Type                                               | Mandatory| Description            |
 | --------- | --------------------------------------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle)                             | Yes  | Network handle.|
+| netHandle | [NetHandle](#nethandle)                             | Yes  | Handle of the data network.|
 | callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | Yes  | Callback used to return the result.      |
 
 **Example**
@@ -255,7 +256,7 @@ Obtains capability information of the network corresponding to **netHandle**. Th
 
 | Name   | Type                   | Mandatory| Description            |
 | --------- | ----------------------- | ---- | ---------------- |
-| netHandle | [NetHandle](#nethandle) | Yes  | Network handle.|
+| netHandle | [NetHandle](#nethandle) | Yes  | Handle of the data network.|
 
 **Return Value**
 
@@ -446,6 +447,105 @@ connection.getAddressesByName(host).then(function (addresses) {
 })
 ```
 
+
+## connection.enableAirplaneMode
+
+enableAirplaneMode(callback: AsyncCallback\<void>): void
+
+Enables the airplane mode. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**System capability**:  SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description              |
+| -------- | ------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.        |
+
+**Example**
+
+```js
+connection.enableAirplaneMode(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+## connection.enableAirplaneMode
+
+enableAirplaneMode(): Promise\<void>
+
+Enables the airplane mode. This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**:  SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                                       | Description                         |
+| ------------------------------------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+connection.enableAirplaneMode().then(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+
+## connection.disableAirplaneMode
+
+disableAirplaneMode(callback: AsyncCallback\<void>): void
+
+Disables the airplane mode. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**System capability**:  SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description              |
+| -------- | ------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.        |
+
+**Example**
+
+```js
+connection.disableAirplaneMode(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+## connection.disableAirplaneMode
+
+disableAirplaneMode(): Promise\<void>
+
+Disables the airplane mode. This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**:  SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                                       | Description                         |
+| ------------------------------------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+connection.disableAirplaneMode().then(function (error) {
+    console.log(JSON.stringify(error))
+})
+```
+
+
 ## connection.createNetConnection
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
@@ -476,7 +576,7 @@ let netConnection = connection.createNetConnection()
 // Cellular network
 let netConnectionCellular = connection.createNetConnection({
     netCapabilities: {
-        bearerTypes: [NetBearType.BEARER_CELLULAR]
+        bearerTypes: [connection.NetBearType.BEARER_CELLULAR]
     }
 })
 ```
@@ -497,7 +597,7 @@ Registers a listener for **netAvailable** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
+| type     | string                             | Yes  | Event type. The value is fixed at **netAvailable**.<br>**netAvailable**: event indicating that the data network is available.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -520,7 +620,7 @@ Registers a listener for **netCapabilitiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that he network capabilities have changed.|
+| type     | string                                                       | Yes  | Event type. The value is fixed at **netCapabilitiesChange**.<br>**netCapabilitiesChange**: event indicating that network capabilities have changed.|
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), netCap: [NetCapabilities](#netcapabilities) }> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -543,7 +643,7 @@ Registers a listener for **netConnectionPropertiesChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
+| type     | string                                                       | Yes  | Event type. The value is fixed at **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
 | callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -566,7 +666,7 @@ Registers a listener for **netBlockStatusChange** events.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The value is fixed to **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
+| type     | string                                                       | Yes  | Event type. The value is fixed at **netBlockStatusChange**.<br>**netBlockStatusChange**: event indicating a change in the network blocking status.|
 | callback | Callback&lt;{&nbsp;netHandle:&nbsp;[NetHandle](#nethandle),&nbsp;blocked:&nbsp;boolean&nbsp;}&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -589,7 +689,7 @@ Registers a listener for **netLost** events.
 
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                             | Yes  | Event type. The value is fixed to **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
+| type     | string                             | Yes  | Event type. The value is fixed at **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
 | callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -613,7 +713,7 @@ Registers a listener for **netUnavailable** events.
 
 | Name  | Type           | Mandatory| Description                                                        |
 | -------- | --------------- | ---- | ------------------------------------------------------------ |
-| type     | string          | Yes  | Event type. The value is fixed to **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
+| type     | string          | Yes  | Event type. The value is fixed at **netUnavailable**.<br>**netUnavailable**: event indicating that the network is unavailable.|
 | callback | Callback\<void> | Yes  | Callback used to return the result.                                                  |
 
 **Example**

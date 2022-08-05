@@ -9,6 +9,8 @@ The distributed data objects support basic data types, such as number, string, a
 
 ## Available APIs
 
+For details about the APIs related to the distributed data object, see [Distributed Data Object](../reference/apis/js-apis-data-distributedobject.md).
+
 ### Creating a Distributed Data Object Instance
 
 Call **createDistributedObject()** to create a distributed data object instance. You can specify the attributes of the instance in **source**.
@@ -216,40 +218,39 @@ The following example shows how to implement distributed data object synchroniza
 10. Save a distributed data object and revoke the data saving operation.
 
     - Callback
-
-    ```js
-     // Save a distributed data object.
-     local_object.save("local", (result, data)=>{
-         console.log("save callback");
-         console.info("save sessionId " + data.sessionId);
-         console.info("save version " + data.version);
-         console.info("save deviceId " + data.deviceId);
-     });
-     // Revoke the data saving operation.
-     local_object.revokeSave((result, data) =>{
-     console.log("revokeSave callback");
-     console.info("revokeSave sessionId " + data.sessionId);
-     });
-    ```
-    - Promise
-
-    ```js
-     // Save a distributed data object.
-     g_object.save("local").then((result)=>{
-         console.info("save sessionId " + result.sessionId);
-         console.info("save version " + result.version);
-         console.info("save deviceId " + result.deviceId);
-     }, (result)=>{
-         console.info("save local failed.");
-     });
-     // Revoke the data saving operation.
-     g_object.revokeSave().then((result)=>{
-         console.info("revokeSave success.");
-     }, (result)=>{
-         console.info("revokeSave failed.");
-     });
-    ```
-11. Unsubscribe from the status changes of the distributed data object. <br>You can specify the callback to unregister. If you do not specify the callback, this API unregister all callbacks of this distributed data object.
+    
+       ```js
+        // Save a distributed data object.
+        local_object.save("local", (result, data)=>{
+            console.log("save callback");
+            console.info("save sessionId " + data.sessionId);
+            console.info("save version " + data.version);
+            console.info("save deviceId " + data.deviceId);
+        });
+        // Revoke the data saving operation.
+        local_object.revokeSave((result, data) =>{
+        console.log("revokeSave callback");
+        console.info("revokeSave sessionId " + data.sessionId);
+        });
+       ```
+       - Promise
+       ```js
+        // Save a distributed data object.
+        g_object.save("local").then((result)=>{
+            console.info("save sessionId " + result.sessionId);
+            console.info("save version " + result.version);
+            console.info("save deviceId " + result.deviceId);
+        }, (result)=>{
+            console.info("save local failed.");
+        });
+        // Revoke the data saving operation.
+        g_object.revokeSave().then((result)=>{
+            console.info("revokeSave success.");
+        }, (result)=>{
+            console.info("revokeSave failed.");
+        });
+       ```
+11. Unsubscribe from the status changes of the distributed data object. <br>You can specify the callback to unregister. If you do not specify the callback, this API unregisters all callbacks of this distributed data object.
 
     The sample code is as follows:
        ```js

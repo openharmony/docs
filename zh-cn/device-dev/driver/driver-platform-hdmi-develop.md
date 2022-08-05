@@ -100,7 +100,7 @@ struct HdmiCntlrOps {
 | phyOutputSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**cfg**: 配置信息 | 无 | 无 | 设置物理层配置信息 |
 | blackDataSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 设置黑屏 |
 | videoMuteEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能video静音 |
-| videoPathSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**attr**：配置信息| 无 | 无 | 设置viedo通路配置信息 |
+| videoPathSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**attr**：配置信息| 无 | 无 | 设置video通路配置信息 |
 |audioMuteEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | 无 | 使能/去使能audio静音 |
 | avmuteSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能| 无 | 无 | 使能/去使能声音图像消隐 |
 | ddcTransfer | **cntlr**：结构体指针，核心层HDMI控制器<br />**ddcCfg**：DDC配置参数 |**ddcCfg**：DDC配置参数 |HDF_STATUS相关状态 | 读写DDC数据 |
@@ -108,9 +108,9 @@ struct HdmiCntlrOps {
 | scdcSourceScrambleSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | HDF_STATUS相关状态 | 使能/去使能source端的加扰 |
 | frlEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**: bool，使能/去使能 | 无 | HDF_STATUS相关状态 | 使能/去使能FRL |
 | audioNctsSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**cfg**：N/CTS配置参数 | 无 | HDF_STATUS相关状态 | 设置audio的N/CTS信息 |
-| frlTrainingConfigSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**cfg**：FRL Traning配置参数 | 无 | 无| 设置FRL Traning配置信息 |
-| frlTrainingStart | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 开始FRL Traning流程 |
-| frlGetTriningRslt | **cntlr**：结构体指针，核心层HDMI控制器 | **rslt**：FRL Traning结果 | 无 | 获取FRL Traning结果 |
+| frlTrainingConfigSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**cfg**：FRL Training配置参数 | 无 | 无| 设置FRL Training配置信息 |
+| frlTrainingStart | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 开始FRL Training流程 |
+| frlGetTriningRslt | **cntlr**：结构体指针，核心层HDMI控制器 | **rslt**：FRL Training结果 | 无 | 获取FRL Training结果 |
 | hdcpRegInit | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDCP流程相关的寄存器 |
 |hdcpGenerateAksvAndAn |**cntlr**：结构体指针，核心层HDMI控制器 | 无 | HDF_STATUS相关状态 | HDCP流程中生成aksv和an |
 | hdcpOptReg | **cntlr**：结构体指针，核心层HDMI控制器<br />**type**: 操作类型<br />**data**: 寄存器数据<br />**len**: 数据长度 | **data**: 寄存器数据 | HDF_STATUS相关状态 | HDCP流程中读写相关寄存器 |

@@ -3,7 +3,8 @@
 This module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N interfaces defined in ECMA 402.
 The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > In the code snippets in this document, **intl** refers to the name of the imported module.
 
 ## Setting Locale Information
@@ -24,7 +25,8 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
 
 ### How to Develop
 
-1. Instantiate a **Locale** object.<br>
+1. Instantiate a **Locale** object.
+
    Create a **Locale** object by using the **Locale** constructor. This method receives a string representing the locale and an optional [Attributes](../reference/apis/js-apis-intl.md) list. 
 
    A **Locale** object consists of four parts: language, script, region, and extension, which are separated by using a hyphen (-).
@@ -42,30 +44,33 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
       | kf | Whether upper case or lower case is considered when sorting or comparing strings.|
 
    
-   ```
+   ```js
    var locale = "zh-CN";
    var options = {caseFirst: false, calendar: "chinese", collation: pinyin};
    var localeObj = new intl.Locale(locale, options);
    ```
 
-2. Obtain the string representing a **Locale** object.<br>
+2. Obtain the string representing a **Locale** object.
+
    Call the **toString** method to obtain the string representing a **Locale** object, which includes the language, region, and other options.
    
-   ```
+   ```js
    var localeStr = localeObj.toString();
    ```
 
-3. Maximize locale information.<br>
+3. Maximize locale information.
+
    Call the **maximize** method to maximize locale information; that is, supplement the missing script and region information.
    
-   ```
+   ```js
    var maximizedLocale = localeObj.maximize();
    ```
 
-4. Minimize locale information.<br>
+4. Minimize locale information.
+
    Call the **minimize** method to minimize locale information; that is, delete the unnecessary script and region information.
    
-   ```
+   ```js
    var minimizedLocale = localeObj.minimize();
    ```
 
@@ -88,42 +93,46 @@ Use [DateTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the date 
 
 ### How to Develop
 
-1. Instantiate a **DateTimeFormat** object.<br>
+1. Instantiate a **DateTimeFormat** object.
+
    Use the default constructor of **DateTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **DateTimeFormat** object.
 
    
-   ```
+   ```js
    var dateTimeFormat = new intl.DateTimeFormat();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md).
    
-   ```
+   ```js
    var options = {dateStyle: "full", timeStyle: "full"};
    var dateTimeFormat = new intl.DateTimeFormat("zh-CN", options);
    ```
 
-2. Format the date and time.<br>
+2. Format the date and time.
+
    Call the **format** method to format the date and time in the **DateTimeFormat** object. This method returns a string representing the formatting result.
    
-   ```
+   ```js
    Date date = new Date();
    var formatResult = dateTimeFormat.format(date);
    ```
 
-3. Format a period.<br>
+3. Format a period.
+
    Call the **formatRange** method to format the period in the **DateTimeFormat** object. This method requires input of two **Date** objects, which respectively indicate the start date and end date of a period. This method returns a string representing the formatting result.
    
-   ```
+   ```js
    Date startDate = new Date();
    Date endDate = new Date();
    var formatResult = dateTimeFormat.formatRange(startDate, endDate);
    ```
 
-4. Obtain attributes of the **DateTimeFormat** object.<br>
+4. Obtain attributes of the **DateTimeFormat** object.
+
    Call the **resolvedOptions** method to obtain attributes of the **DateTimeFormat** object. This method will return an array that contains all attributes and values of the object.
    
-   ```
+   ```js
    var options = dateTimeFormat.resolvedOptions();
    ```
 
@@ -145,33 +154,36 @@ Use [NumberFormat](../reference/apis/js-apis-intl.md) APIs to format numbers for
 
 ### How to Develop
 
-1. Instantiate a **NumberFormat** object.<br>
+1. Instantiate a **NumberFormat** object.
+
    Use the default constructor of **NumberFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **NumberFormat** object.
 
    
-   ```
+   ```js
    var numberFormat = new intl.NumberFormat();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **NumberFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [NumberOptions](../reference/apis/js-apis-intl.md).
    
-   ```
+   ```js
    var options = {compactDisplay: "short", notation: "compact"};
    var numberFormat = new intl.NumberFormat("zh-CN", options);
    ```
 
-2. Format a number.<br>
+2. Format a number.
+
    Call the **format** method to format a number. A string is returned as the formatting result.
    
-   ```
+   ```js
    var number = 1234.5678
    var formatResult = numberFormat.format(number);
    ```
 
-3. Obtain attributes of the **NumberFormat** object.<br>
+3. Obtain attributes of the **NumberFormat** object.
+
    Call the **resolvedOptions** method to obtain attributes of the **NumberFormat** object. This method will return an array that contains all attributes and values of the object.
    
-   ```
+   ```js
    var options = numberFormat.resolvedOptions();
    ```
 
@@ -193,33 +205,36 @@ Use [Collator](../reference/apis/js-apis-intl.md) APIs to sort strings based on 
 
 ### How to Develop
 
-1. Instantiate a **Collator** object.<br>
+1. Instantiate a **Collator** object.
+
    Use the default constructor of **Collator** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **Collator** object.
 
    
-   ```
+   ```js
    var collator = new intl.Collator();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md).
    
-   ```
-   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"};
+   ```js
+   var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
    ```
 
-2. Compare two strings.<br>
+2. Compare two strings.
+
    Call the **compare** method to compare two input strings. This method returns a value as the comparison result. The return value **-1** indicates that the first string is shorter than the second string, the return value **1** indicates that the first string is longer than the second string, and the return value **0** indicates that the two strings are of equal lengths.
    
-   ```
+   ```js
    var str1 = "first string";
    var str2 = "second string";
    var compareResult = collator.compare(str1, str2);
    ```
 
-3. Obtain attributes of the **Collator** object.<br>
+3. Obtain attributes of the **Collator** object.
+
    Call the **resolvedOptions** method to obtain attributes of the **Collator** object. This method will return an array that contains all attributes and values of the object.
    
-   ```
+   ```js
    var options = collator.resolvedOptions();
    ```
 
@@ -240,24 +255,26 @@ Use [PluralRules](../reference/apis/js-apis-intl.md) APIs to determine the singu
 
 ### How to Develop
 
-1. Instantiate a **PluralRules** object.<br>
+1. Instantiate a **PluralRules** object.
+
    Use the default constructor of **PluralRules** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **PluralRules** object.
 
    
-   ```
+   ```js
    var pluralRules = new intl.PluralRules();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md).
    
-   ```
-   var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"};
+   ```js
+   var plurals = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
    ```
 
-2. Determine the singular-plural type.<br>
+2. Determine the singular-plural type.
+
    Call the **select** method to determine the singular-plural type of an input number. This method will return a string representing the singular-plural type, which can be any of the following: **zero**, **one**, **two**, **few**, **many**, and **other**.
    
-   ```
+   ```js
    var number = 1234.5678
    var categoryResult = plurals.select(number);
    ```
@@ -281,41 +298,45 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
 
 ### How to Develop
 
-1. Instantiate a **RelativeTimeFormat** object.<br>
+1. Instantiate a **RelativeTimeFormat** object.
+
    Use the default constructor of **RelativeTimeFormat** to obtain the system default locale by accessing the system language and region settings, and set it as the locale in the **RelativeTimeFormat** object.
 
    
-   ```
+   ```js
    var relativeTimeFormat = new intl.RelativeTimeFormat();
    ```
 
    Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md).
    
-   ```
-   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"};
+   ```js
+   var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    ```
 
-2. Format the relative time.<br>
+2. Format the relative time.
+
    Call the **format** method to format the relative time. This method receives a numeric value representing the time length and a string-form unit, like **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, and **second**. This method returns a string representing the formatting result.
    
-   ```
+   ```js
    var number = 2;
    var unit = "year"
    var formatResult = relativeTimeFormat.format(number, unit);
    ```
 
-3. Obtain each part of the relative time format.<br>
+3. Obtain each part of the relative time format.
+
    Upon obtaining each part of the relative time format, customize the relative time formatting result.
    
-   ```
+   ```js
    var number = 2;
    var unit = "year"
    var formatResult = relativeTimeFormat.formatToParts(number, unit);
    ```
 
-4. Obtain attributes of the **RelativeTimeFormat** object.<br>
+4. Obtain attributes of the **RelativeTimeFormat** object.
+
    Call the **resolvedOptions** method to obtain attributes of the **RelativeTimeFormat** object. This method will return an array that contains all attributes and values of the object. For a full list of attributes, see [ RelativeTimeFormatResolvedOptions](../reference/apis/js-apis-intl.md).
    
-   ```
+   ```js
    var options = numberFormat.resolvedOptions();
    ```

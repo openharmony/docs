@@ -3,7 +3,7 @@
 @CustomDialog装饰器用于装饰自定义弹窗。
 
 
-```
+```ts
 // custom-dialog-demo.ets
 @CustomDialog
 struct DialogExample {

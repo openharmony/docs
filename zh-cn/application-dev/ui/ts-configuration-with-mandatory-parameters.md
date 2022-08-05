@@ -8,13 +8,13 @@
 
 
 - Image组件的必选参数src：
-  ```
+  ```ts
   Image('http://xyz/a.jpg')
   ```
 
 
 - Text组件的必选参数content：
-  ```
+  ```ts
   Text('123')
   ```
 
@@ -22,7 +22,7 @@
 变量或表达式也可以用于参数赋值，其中表达式返回的结果类型必须满足参数类型要求。例如，传递变量或表达式来构造Image和Text组件的参数：
 
 
-```
+```ts
 // imagePath, where imageUrl is a private data variable defined in the component.
 Image(this.imagePath)
 Image('http://' + this.imageUrl)

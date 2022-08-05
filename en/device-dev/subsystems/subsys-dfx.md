@@ -8,3 +8,4 @@
 - **[HiSysEvent Development](subsys-dfx-hisysevent.md)**
 - **[HiDumper Development](subsys-dfx-hidumper.md)**
 - **[HiChecker Development](subsys-dfx-hichecker.md)**
+- **[Hiview Development](subsys-dfx-hiview.md)**

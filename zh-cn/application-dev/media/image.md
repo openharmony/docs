@@ -297,3 +297,10 @@ public async init(surfaceId: any) {
     // 调用Camera方法将surfaceId传递给Camera。camera会通过surfaceId获取surface，并生产出surface buffer。
 }
 ```
+
+## 相关实例
+
+针对图片开发，有以下相关实例可供参考：
+
+- [`Image`：图片处理（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/Image)
+- [`GamePuzzle`：拼图（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/media/GamePuzzle)

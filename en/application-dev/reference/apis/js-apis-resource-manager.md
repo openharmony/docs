@@ -2,7 +2,8 @@
 
 The resource management module provides APIs to obtain information about the current device configuration (including the language, region, screen direction, and MCC/MNC) and device capability (including the device type and resolution).
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,9 +13,9 @@ The resource management module provides APIs to obtain information about the cur
 import resourceManager from '@ohos.resourceManager';
 ```
 
-## Usage
+## How to Use
 
-Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its APIs without first importing the required bundle. This method, however, is not applicable to the FA model.
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This method, however, is not applicable to the FA model.
 
 ```
 this.context.resourceManager;
@@ -26,14 +27,14 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 Obtains the **ResourceManager** object of this application. This API uses an asynchronous callback to return the result.
 
-This API is used only in the FA model.
+This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -59,7 +60,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses an asynchronous callback to return the result.
 
-This API is used only in the FA model.
+This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -67,7 +68,7 @@ This API is used only in the FA model.
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
 | bundleName | string                                   | Yes   | Bundle name of the target application.                |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -82,7 +83,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 Obtains the **ResourceManager** object of this application. This API uses a promise to return the result.
 
-This API is used only in the FA model.
+This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -113,7 +114,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 Obtains the **ResourceManager** object of an application based on the specified bundle name. This API uses a promise to return the result.
 
-This API is used only in the FA model.
+This API can be used only in the FA model.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -229,21 +230,34 @@ resourceManager.getResourceManager((error, mgr) => {
 
 ## RawFileDescriptor<sup>8+</sup>
 
-Defines the descriptor information of the raw file.<br>
+Defines the descriptor of the raw file.<br>
 **System capability**: SystemCapability.Global.ResourceManager
 
 | Name    | Type    | Description                |
 | ------ | ------ | ------------------ |
-| fd     | number | Descriptor of a raw file.|
-| offset | number | Offset to the start position of the raw file.     |
+| fd     | number | Descriptor of the raw file.|
+| offset | number | Start offset of the raw file.     |
 | length | number | Length of the raw file.      |
+
+## Resource<sup>9+</sup>
+
+Defines the resource information of an application.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name    | Type    | Description                |
+| ------ | ------ | ------------------ |
+| bundleName | string | Bundle name of the application.|
+| moduleName | string | Module name of the application.     |
+| id         | number | Resource ID.      |
 
 
 ## ResourceManager
 
 Defines the capability of accessing application resources.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
@@ -261,7 +275,7 @@ Obtains the string corresponding to the specified resource ID. This API uses an 
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -307,6 +321,68 @@ Obtains the string corresponding to the specified resource ID. This API uses a p
   ```
 
 
+### getString<sup>9+</sup>
+
+getString(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the string corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resource    | [Resource](#resource9)                     | Yes   | Resource object.          |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.string.test').id
+  };
+  this.context.resourceManager.getString(resource, (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let str = value;
+      }
+  });
+  ```
+
+### getString<sup>9+</sup>
+
+getString(resource: Resource): Promise&lt;string&gt;
+
+Obtains the string corresponding to the specified resource object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.string.test').id
+  };
+  this.context.resourceManager.getString(resource).then(value => {
+      let str = value;
+  }).catch(error => {
+      console.log("getstring promise error is " + error);
+  });
+  ```
+
 ### getStringArray
 
 getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
@@ -319,7 +395,7 @@ Obtains the string array corresponding to the specified resource ID. This API us
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -364,6 +440,67 @@ Obtains the string array corresponding to the specified resource ID. This API us
   });
   ```
 
+### getStringArray<sup>9+</sup>
+
+getStringArray(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+Obtains the string array corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resource    | [Resource](#resource9)                      | Yes   | Resource object.          |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.strarray.test').id
+  };
+  this.context.resourceManager.getStringArray(resource, (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let strArray = value;
+      }
+  });
+  ```
+
+### getStringArray<sup>9+</sup>
+
+getStringArray(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains the string array corresponding to the specified resource object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.strarray.test').id
+  };
+  this.context.resourceManager.getStringArray(resource).then(value => {
+      let strArray = value;
+  }).catch(error => {
+      console.log("getStringArray promise error is " + error);
+  });
+  ```
 
 ### getMedia
 
@@ -377,7 +514,7 @@ Obtains the content of the media file corresponding to the specified resource ID
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -422,6 +559,67 @@ Obtains the content of the media file corresponding to the specified resource ID
   });
   ```
 
+### getMedia<sup>9+</sup>
+
+getMedia(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+Obtains the content of the media file corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description             |
+| -------- | --------------------------- | ---- | --------------- |
+| resource    | [Resource](#resource9)                      | Yes   | Resource object.          |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  this.context.resourceManager.getMedia(resource, (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let media = value;
+      }
+  });
+  ```
+
+### getMedia<sup>9+</sup>
+
+getMedia(resource: Resource): Promise&lt;Uint8Array&gt;
+
+Obtains the content of the media file corresponding to the specified resource object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  this.context.resourceManager.getMedia(resource).then(value => {
+      let media = value;
+  }).catch(error => {
+      console.log("getMedia promise error is " + error);
+  });
+  ```
 
 ### getMediaBase64
 
@@ -435,7 +633,7 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -480,6 +678,68 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
   });
   ```
 
+### getMediaBase64<sup>9+</sup>
+
+getMediaBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the Base64 code of the image corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description                      |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resource    | [Resource](#resource9)                      | Yes   | Resource object.                   |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  this.context.resourceManager.getMediaBase64(resource, (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let media = value;
+      }
+  });
+  ```
+
+### getMediaBase64<sup>9+</sup>
+
+getMediaBase64(resource: Resource): Promise&lt;string&gt;
+
+Obtains the Base64 code of the image corresponding to the specified resource object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+| Type                   | Description                  |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  this.context.resourceManager.getMediaBase64(resource).then(value => {
+      let media = value;
+  }).catch(error => {
+      console.log("getMediaBase64 promise error is " + error);
+  });
+  ```
+
 
 ### getConfiguration
 
@@ -492,7 +752,7 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                       |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -546,7 +806,7 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 **Parameters**
 | Name     | Type                                      | Mandatory  | Description                          |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -593,7 +853,7 @@ Obtains the device capability. This API uses a promise to return the result.
 
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the specified number of singular-plural strings corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -601,8 +861,8 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Number that determines the plural or singular form.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
+| num      | number                      | Yes   | Number.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -622,7 +882,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
-Obtains the specified number of singular-plural strings corresponding to the specified resource ID. This API uses a promise to return the result.
+Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -630,7 +890,7 @@ Obtains the specified number of singular-plural strings corresponding to the spe
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number that determines the plural or singular form.  |
+| num   | number | Yes   | Number.  |
 
 **Return value**
 | Type                   | Description                       |
@@ -648,6 +908,70 @@ Obtains the specified number of singular-plural strings corresponding to the spe
   });
   ```
 
+### getPluralString<sup>9+</sup>
+
+getPluralString(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name     | Type                         | Mandatory  | Description                             |
+| -------- | --------------------------- | ---- | ------------------------------- |
+| resource    | [Resource](#resource9)                      | Yes   | Resource object.                          |
+| num      | number                      | Yes   | Number.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.plural.test').id
+  };
+  this.context.resourceManager.getPluralString(resource, 1, (error, value) => {
+      if (error != null) {
+          console.log("error is " + error);
+      } else {
+          let str = value;
+      }
+  });
+  ```
+
+### getPluralString<sup>9+</sup>
+
+getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
+
+Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| num   | number | Yes   | Number.  |
+
+**Return value**
+| Type                   | Description                       |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.plural.test').id
+  };
+  this.context.resourceManager.getPluralString(resource, 1).then(value => {
+      let str = value;
+  }).catch(error => {
+      console.log("getPluralString promise error is " + error);
+  });
+  ```
+
 ### getRawFile<sup>8+</sup>
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
@@ -660,7 +984,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -716,7 +1040,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
@@ -776,7 +1100,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Asynchronous callback used to return the result.       |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
 
 **Example**
   ```
@@ -805,7 +1129,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 **Return value**
 | Type                 | Description  |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | No value is returned.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
   ```
@@ -822,7 +1146,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 
 release()
 
-Releases the created **resourceManager**.
+Releases a created **resourceManager** object.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -845,11 +1169,11 @@ Obtains the string corresponding to the specified resource name. This API uses a
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes  | Resource name.       |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result.|
 
 **Example**
   ```
-  resourceManager.getStringByName("test", (error, value) => {
+  this.context.resourceManager.getStringByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -874,11 +1198,11 @@ Obtains the string corresponding to the specified resource name. This API uses a
 **Return value**
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | String corresponding to the resource name.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Example**
   ```
-  resourceManager.getStringByName("test").then(value => {
+  this.context.resourceManager.getStringByName("test").then(value => {
       let string = value;
   }).catch(error => {
       console.log("getStringByName promise error is " + error);
@@ -897,11 +1221,11 @@ Obtains the string array corresponding to the specified resource name. This API 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | Yes   | Resource name.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
-  resourceManager.getStringArrayByName("test", (error, value) => {
+  this.context.resourceManager.getStringArrayByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -930,7 +1254,7 @@ Obtains the string array corresponding to the specified resource name. This API 
 
 **Example**
   ```
-  resourceManager.getStringArrayByName("test").then(value => {
+  this.context.resourceManager.getStringArrayByName("test").then(value => {
       let strArray = value;
   }).catch(error => {
       console.log("getStringArrayByName promise error is " + error);
@@ -949,11 +1273,11 @@ Obtains the content of the media file corresponding to the specified resource na
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
-  resourceManager.getMediaByName("test", (error, value) => {
+  this.context.resourceManager.getMediaByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -982,7 +1306,7 @@ Obtains the content of the media file corresponding to the specified resource na
 
 **Example**
   ```
-  resourceManager.getMediaByName("test").then(value => {
+  this.context.resourceManager.getMediaByName("test").then(value => {
       let media = value;
   }).catch(error => {
       console.log("getMediaByName promise error is " + error);
@@ -1001,11 +1325,11 @@ Obtains the Base64 code of the image corresponding to the specified resource nam
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
-  resourceManager.getMediaBase64ByName("test", (error, value) => {
+  this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -1034,7 +1358,7 @@ Obtains the Base64 code of the image corresponding to the specified resource nam
 
 **Example**
   ```
-  resourceManager.getMediaByName("test").then(value => {
+  this.context.resourceManager.getMediaBase64ByName("test").then(value => {
       let media = value;
   }).catch(error => {
       console.log("getMediaBase64ByName promise error is " + error);
@@ -1045,7 +1369,7 @@ Obtains the Base64 code of the image corresponding to the specified resource nam
 
 getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the plural string corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the plural string corresponding to the specified resource name based on the specified number. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1053,12 +1377,12 @@ Obtains the plural string corresponding to the specified resource name. This API
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resName  | string                      | Yes   | Resource name.                          |
-| num      | number                      | Yes   | Number that determines the plural or singular form.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Asynchronous callback used to return the result.|
+| num      | number                      | Yes   | Number.                            |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
 **Example**
   ```
-  resourceManager.getPluralStringByName("test", 1, (error, value) => {
+  this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
       if (error != null) {
           console.log("error is " + error);
       } else {
@@ -1071,7 +1395,7 @@ Obtains the plural string corresponding to the specified resource name. This API
 
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
-Obtains the plural string corresponding to the specified resource name. This API uses a promise to return the result.
+Obtains the plural string corresponding to the specified resource name based on the specified number. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1079,7 +1403,7 @@ Obtains the plural string corresponding to the specified resource name. This API
 | Name  | Type    | Mandatory  | Description   |
 | ------- | ------ | ---- | ----- |
 | resName | string | Yes   | Resource name.|
-| num     | number | Yes   | Number that determines the plural or singular form.  |
+| num     | number | Yes   | Number.  |
 
 **Return value**
 | Type                   | Description                       |
@@ -1088,7 +1412,7 @@ Obtains the plural string corresponding to the specified resource name. This API
 
 **Example**
   ```
-  resourceManager.getPluralStringByName("test", 1).then(value => {
+  this.context.resourceManager.getPluralStringByName("test", 1).then(value => {
       let str = value;
   }).catch(error => {
       console.log("getPluralStringByName promise error is " + error);
@@ -1115,7 +1439,35 @@ Obtains the string corresponding to the specified resource ID. This API returns 
 
 **Example**
   ```
-  resourceManager.getStringSync($r('app.string.test').id);
+  this.context.resourceManager.getStringSync($r('app.string.test').id);
+  ```
+
+### getStringSync<sup>9+</sup>
+
+getStringSync(resource: Resource): string
+
+Obtains the string corresponding to the specified resource object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| string | String corresponding to the resource object.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.string.test').id
+  };
+  this.context.resourceManager.getStringSync(resource);
   ```
 
 ### getStringByNameSync<sup>9+</sup>
@@ -1138,10 +1490,10 @@ Obtains the string corresponding to the specified resource name. This API return
 
 **Example**
   ```
-  resourceManager.getStringByNameSync("test");
+  this.context.resourceManager.getStringByNameSync("test");
   ```
 
- ### getBoolean<sup>9+</sup>
+### getBoolean<sup>9+</sup>
 
 getBoolean(resId: number): boolean
 
@@ -1161,7 +1513,34 @@ Obtains the Boolean result corresponding to the specified resource ID. This API 
 
 **Example**
   ```
-  resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+  this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+  ```
+### getBoolean<sup>9+</sup>
+
+getBoolean(resource: Resource): boolean
+
+Obtains the Boolean result corresponding to the specified resource object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| boolean | Boolean result corresponding to the specified resource object.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.boolean.boolean_test').id
+  };
+  this.context.resourceManager.getBoolean(resource);
   ```
 
 ### getBooleanByName<sup>9+</sup>
@@ -1184,10 +1563,10 @@ Obtains the Boolean result corresponding to the specified resource name. This AP
 
 **Example**
   ```
-  resourceManager.getBooleanByName("boolean_test");
+  this.context.resourceManager.getBooleanByName("boolean_test");
   ```
 
- ### getNumber<sup>9+</sup>
+### getNumber<sup>9+</sup>
 
 getNumber(resId: number): number
 
@@ -1207,8 +1586,36 @@ Obtains the integer or float value corresponding to the specified resource ID. T
 
 **Example**
   ```
-  resourceManager.getNumber($r('app.integer.integer_test').id);
-  resourceManager.getNumber($r('app.float.float_test').id);
+  this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+  this.context.resourceManager.getNumber($r('app.float.float_test').id);
+  ```
+
+### getNumber<sup>9+</sup>
+
+getNumber(resource: Resource): number
+
+Obtains the integer or float value corresponding to the specified resource object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+| Type                   | Description         |
+| --------------------- | ----------- |
+| number | Integer or float value corresponding to the specified resource object.|
+
+**Example**
+  ```
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.integer.integer_test').id
+  };
+  this.context.resourceManager.getNumber(resource);
   ```
 
 ### getNumberByName<sup>9+</sup>
@@ -1231,6 +1638,6 @@ Obtains the integer or float value corresponding to the specified resource name.
 
 **Example**
   ```
-  resourceManager.getNumberByName("integer_test");
-  resourceManager.getNumberByName("float_test");
+  this.context.resourceManager.getNumberByName("integer_test");
+  this.context.resourceManager.getNumberByName("float_test");
   ```

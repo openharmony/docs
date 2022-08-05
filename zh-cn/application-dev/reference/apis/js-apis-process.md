@@ -232,7 +232,7 @@ is64Bit(): boolean
 **示例：**
 
 ```js
-var ressult = process.is64Bit();
+var result = process.is64Bit();
 ```
 
 
@@ -409,7 +409,7 @@ runCmd(command: string, options?: { timeout : number, killSignal : number | stri
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | timeout | number | 否 | 子进程运行的ms数，当子进程运行时间超出此时间，则父进程发送killSignal信号给子进程。timeout默认为0。 |
-| killSignal | number&nbsp;&nbsp;\|&nbsp;string | 否 | 子进程运行时间超出timeout时，父进程发送killSignal&nbsp;信号给子进程。killSignal&nbsp;默认为'SIGTERM'。 |
+| killSignal | number&nbsp;\|&nbsp;string | 否 | 子进程运行时间超出timeout时，父进程发送killSignal&nbsp;信号给子进程。killSignal&nbsp;默认为'SIGTERM'。 |
 | maxBuffer | number | 否 | 子进程标准输入输出的最大缓冲区大小，当超出此大小时则终止子进程。maxBuffer默认1024\*1024。 |
 
 **返回值：**

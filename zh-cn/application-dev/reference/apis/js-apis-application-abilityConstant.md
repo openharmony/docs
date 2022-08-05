@@ -62,3 +62,17 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 | AGREE           | 0    | 同意。 |
 | REJECT           | 1    | 拒绝。 |
 | MISMATCH  | 2    | 不匹配。|
+
+## AbilityConstant.WindowMode
+
+启动Ability时的窗口模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 变量                        | 取值 | 说明                 |
+| ---                         | --- | ---                  |
+| WINDOW_MODE_UNDEFINED       | 0   | 未定义窗口模式。       |
+| WINDOW_MODE_FULLSCREEN      | 1   | 全屏模式。            |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | 分屏多窗口主要模式。   |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | 分屏多窗口次要模式。   |
+| WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |

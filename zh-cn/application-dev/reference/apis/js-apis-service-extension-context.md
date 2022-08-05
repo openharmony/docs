@@ -1,8 +1,8 @@
 # ServiceExtensionContext
 
-ServiceExtensionContext模块是ServiceExtension的上下文环境，继承自ExtensionContext。
+ServiceExtensionContext模块是ServiceExtensionAbility的上下文环境，继承自ExtensionContext。
 
-ServiceExtensionContext模块提供ServiceExtension具有的能力和接口，包括启动、停止、绑定、解绑Ability。
+ServiceExtensionContext模块提供ServiceExtensionAbility具有的能力和接口，包括启动、停止、绑定、解绑Ability。
 
 > **说明：**
 > 
@@ -11,15 +11,16 @@ ServiceExtensionContext模块提供ServiceExtension具有的能力和接口，�
 
 ## 使用说明
 
-ServiceExtensionContext模块是ServiceExtension的上下文环境，继承自ExtensionContext。
+在使用ServiceExtensionContext的功能前，需要通过ServiceExtensionAbility子类实例获取。
 
-## 属性
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
-| -------- | -------- | -------- | -------- | -------- |
-| extensionAbilityInfo | [ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md) | 是 | 否 | 服务扩展信息。 |
+```js
+  import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility';
+  class MainAbility extends ServiceExtensionAbility {
+      onCreate() {
+          let context = this.context;
+      }
+  }
+```
 
 ## startAbility
 
@@ -41,18 +42,12 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
-  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
-  class MainAbility extends ExtensionContext {
-      onWindowStageCreate(windowStage) {
-          let want = {
-              "bundleName": "com.example.myapp",
-              "abilityName": "MyAbility"};
-          this.context.startAbility(want, (err) => {
-          console.log('startAbility result:' + JSON.stringify(err));
-          });
-      }
-  }
-
+    let want = {
+      "bundleName": "com.example.myapp",
+      "abilityName": "MyAbility"};
+      this.context.startAbility(want, (err) => {
+      console.log('startAbility result:' + JSON.stringify(err));
+    });
   ```
 
 ## startAbility
@@ -81,20 +76,16 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 **示例：**
 
   ```js
-    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
-    class MainAbility extends ExtensionContext {
-        onWindowStageCreate(windowStage) {
-            let want = {
-            "bundleName": "com.example.myapp",
-            "abilityName": "MyAbility"
-            };
-        this.context.startAbility(want).then((data) => {
-            console.log('success:' + JSON.stringify(data));
-        }).catch((error) => {
-            console.log('failed:' + JSON.stringify(error));
-        });
-        }
-    }
+    let want = {
+        "bundleName": "com.example.myapp",
+        "abilityName": "MyAbility"
+    };
+    this.context.startAbility(want).then((data) => {
+        console.log('success:' + JSON.stringify(data));
+    }).catch((error) => {
+        console.log('failed:' + JSON.stringify(error));
+    });
+
   ```
 
 ## startAbility
@@ -127,13 +118,13 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   	windowMode: 0,
   };
   this.context.startAbility(want, options, (error) => {
-      console.log("error.code = " + error.code)
+    console.log("error.code = " + error.code)
   })
   ```
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
+startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
 
 根据account启动Ability（callback形式）。
 
@@ -203,7 +194,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 ## ServiceExtensionContext.startAbilityWithAccount
 
-startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
+startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
 
 根据account启动Ability（Promise形式）。
 
@@ -218,6 +209,12 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
 | accountId | number | 是 | 需要启动的accountId。 |
 | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
 
 **示例：**
 
@@ -240,6 +237,297 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
     })
   ```
 
+## ServiceExtensionContext.startServiceExtensionAbility
+
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+
+启动一个新的ServiceExtensionAbility（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.startServiceExtensionAbility(want, (err) => {
+    console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
+  });
+  ```
+
+## ServiceExtensionContext.startServiceExtensionAbility
+
+startServiceExtensionAbility(want: Want): Promise\<void>;
+
+启动一个新的ServiceExtensionAbility（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.startServiceExtensionAbility(want)
+    .then((data) => {
+        console.log('---------- startServiceExtensionAbility success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
+    })
+  ```
+
+## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
+
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+
+启动一个新的ServiceExtensionAbility（callback形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+| callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.startServiceExtensionAbilityWithAccount(want,accountId, (err) => {
+    console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+  });
+  ```
+
+## ServiceExtensionContext.startServiceExtensionAbilityWithAccount
+
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+
+启动一个新的ServiceExtensionAbility（Promise形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
+| accountId | number | 是 | 需要启动的accountId。 |
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.startServiceExtensionAbilityWithAccount(want,accountId)
+    .then((data) => {
+        console.log('---------- startServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+    })
+  ```
+
+## ServiceExtensionContext.stopServiceExtensionAbility
+
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+
+停止同一应用程序内的服务（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 停止Ability的want信息。 |
+| callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.stopServiceExtensionAbility(want, (err) => {
+    console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
+  });
+  ```
+
+## ServiceExtensionContext.stopServiceExtensionAbility
+
+stopServiceExtensionAbility(want: Want): Promise\<void>;
+
+停止同一应用程序内的服务（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 停止Ability的want信息。 |
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.stopServiceExtensionAbility(want)
+    .then((data) => {
+        console.log('---------- stopServiceExtensionAbility success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
+    })
+  ```
+
+## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
+
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+
+使用帐户停止同一应用程序内的服务（callback形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 停止Ability的want信息。 |
+| accountId | number | 是 | 需要停止的accountId。 |
+| callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.stopServiceExtensionAbilityWithAccount(want,accountId, (err) => {
+    console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+  });
+  ```
+
+## ServiceExtensionContext.stopServiceExtensionAbilityWithAccount
+
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+
+使用帐户停止同一应用程序内的服务（Promise形式）。
+
+**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 停止Ability的want信息。 |
+| accountId | number | 是 | 需要停止的accountId。 |
+
+**返回值：**
+
+  | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+
+**示例：**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.stopServiceExtensionAbilityWithAccount(want,accountId)
+    .then((data) => {
+        console.log('---------- stopServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+    })
+  ```
 
 ## ServiceExtensionContext.terminateSelf
 
@@ -260,18 +548,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
-    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
-        class MainAbility extends ExtensionContext {
-            onWindowStageCreate(windowStage) {
-            this.context.terminateSelf((err) => {
-              console.log('terminateSelf result:' + JSON.stringify(err));
-            });
-            }
-        }
-  
-
+  this.context.terminateSelf((err) => {
+    console.log('terminateSelf result:' + JSON.stringify(err));
+  });
   ```
-
 
 ## ServiceExtensionContext.terminateSelf
 
@@ -292,17 +572,11 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-    import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
-    class MainAbility extends ExtensionContext {
-    onWindowStageCreate(windowStage) {
-      this.context.terminateSelf().then((data) => {
-        console.log('success:' + JSON.stringify(data));
-      }).catch((error) => {
-        console.log('failed:' + JSON.stringify(error));
-      });
-    }
-}
-
+  this.context.terminateSelf().then((data) => {
+      console.log('success:' + JSON.stringify(data));
+  }).catch((error) => {
+      console.log('failed:' + JSON.stringify(error));
+  });
   ```
 
 ## ServiceExtensionContext.connectAbility
@@ -332,13 +606,13 @@ connectAbility(want: Want, options: ConnectOptions): number;
 
   ```js
   let want = {
-      "bundleName": "com.example.myapp",
-      "abilityName": "MyAbility"
+    "bundleName": "com.example.myapp",
+    "abilityName": "MyAbility"
   };
   let options = {
-      onConnect: function(elementName, proxy) {},
-      onDisConnect: function(elementName) {},
-      onFailed: function(code) {}
+    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
+    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
+    onFailed(code) { console.log('----------- onFailed -----------') }
   }
   let connection = this.context.connectAbility(want,options);
   ```
@@ -405,17 +679,11 @@ disconnectAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 **示例：**
 
   ```js
-  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
-    class MainAbility extends ExtensionContext {
-    onWindowStageCreate(windowStage) {
-      let connection=1
-      this.context.disconnectAbility(connection, (err) => { 
+    let connection=1
+    this.context.disconnectAbility(connection, (err) => { 
         // connection为connectAbility中的返回值
         console.log('terminateSelf result:' + JSON.stringify(err));
-      });
-    }
-  }
-
+    });
   ```
 
 ## ServiceExtensionContext.disconnectAbility
@@ -443,16 +711,11 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
-  class MainAbility extends ExtensionContext {
-    onWindowStageCreate(windowStage) {
-      let connection=1
-      this.context.disconnectAbility(connection).then((data) => { // connection为connectAbility中的返回值
+  let connection=1
+  this.context.disconnectAbility(connection).then((data) => { 
+      // connection为connectAbility中的返回值
       console.log('success:' + JSON.stringify(data));
-      }).catch((error) => {
+  }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
-      });
-    }
-  }
-
+  });
   ```

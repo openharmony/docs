@@ -21,7 +21,7 @@ longpress：用户在相同位置长时间保持与屏幕接触。
 
 具体的使用示例如下：
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="text-container" onclick="click">
@@ -45,7 +45,7 @@ longpress：用户在相同位置长时间保持与屏幕接触。
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -68,7 +68,7 @@ longpress：用户在相同位置长时间保持与屏幕接触。
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
   data: {

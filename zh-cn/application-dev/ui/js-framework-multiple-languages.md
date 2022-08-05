@@ -29,7 +29,7 @@ language[-script-region].json
 资源文件内容格式如下：
 
 en-US.json
-```
+```json
 {
     "strings": {
         "hello": "Hello world!",
@@ -53,7 +53,7 @@ en-US.json
 
 en-US.json
 
-```
+```json
 {
     "strings": {
         "people": {
@@ -67,7 +67,7 @@ en-US.json
 
 ar-AE.json
 
-```
+```json
 {
     "strings": {
         "people": {
@@ -104,7 +104,7 @@ ar-AE.json
   | params | Array\|Object | 否    | 运行时用来替换占位符的实际内容，占位符分为两种：<br/>- 具名占位符，例如{name}。实际内容必须用Object类型指定，例如：```$t('strings.object', {name:'Hello world'})```。 <br> - 数字占位符，例如{0}。实际内容必须用Array类型指定，例如：```$t('strings.array', [Hello world']``` |
 
 - 简单格式化示例代码
-  ```
+  ```html
   <!-- xxx.hml -->
   <div>
     <!-- 不使用占位符，text中显示“Hello world!” -->
@@ -127,7 +127,7 @@ ar-AE.json
   </div>
   ```
 
-  ```
+  ```js
   // xxx.js
   // 下面为在js文件中的使用方法。
   export default {
@@ -147,7 +147,7 @@ ar-AE.json
   ```
 
 - 单复数格式化方法
-  
+
   表4 单复数格式化
 
   | 属性   | 类型       | 参数          | 必填   | 描述                                       |
@@ -162,7 +162,7 @@ ar-AE.json
   | count | number | 是    | 要表达的值 |
 
 - 单复数格式化示例代码
-  ```
+  ```html
   <!--xxx.hml-->
   <div>
     <!-- 传递数值为0时： "0 people" 阿拉伯语中此处匹配key为zero的词条-->

@@ -1,11 +1,13 @@
 # AbilityConstant
 
+The **AbilityConstant** module provides ability launch parameters.
+
+The parameters include the initial launch reasons, reasons for the last exit, and ability continuation results.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
-
-Provides parameters related to ability launch.
 
 ## Modules to Import
 
@@ -17,10 +19,10 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | LaunchReason| Yes| Yes| Ability launch reason.|
-| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.|
+| launchReason | LaunchReason| Yes| Yes| Ability launch reason.| 
+| lastExitReason | LastExitReason | Yes| Yes| Reason for the last exit.| 
 
 ## AbilityConstant.LaunchReason
 
@@ -60,3 +62,17 @@ Enumerates ability continuation results.
 | AGREE           | 0    | Continuation agreed.|
 | REJECT           | 1    | Continuation denied.|
 | MISMATCH  | 2    | Mismatch.|
+
+## AbilityConstant.WindowMode
+
+Enumerates the window modes when an ability is started.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                       | Value| Description                |
+| ---                         | --- | ---                  |
+| WINDOW_MODE_UNDEFINED       | 0   | Undefined window mode.      |
+| WINDOW_MODE_FULLSCREEN      | 1   | The ability is displayed in full screen.           |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | The ability is displayed in the primary window in split-screen mode.  |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | The ability is displayed in the secondary window in split-screen mode.  |
+| WINDOW_MODE_FLOATING        | 102 | The ability is displayed in a floating window.|
