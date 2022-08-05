@@ -8,8 +8,8 @@ DAC（Digital to Analog Converter）是一种通过电流、电压或电荷的�
 
 DAC模块支持数模转换的开发。它主要用于：
 
-1. 作为过程控制计算机系统的输出通道，与执行器相连，实现对生产过程的自动控制。
-2. 在利用反馈技术的魔术转换器设计中，作为重要的功能模块呈现。
+- 作为过程控制计算机系统的输出通道，与执行器相连，实现对生产过程的自动控制。
+- 在利用反馈技术的魔术转换器设计中，作为重要的功能模块呈现。
 
 ### 基本概念
 
@@ -25,13 +25,13 @@ DAC模块支持数模转换的开发。它主要用于：
 
   转换速度一般由建立时间决定。从输入由全0突变为全1时开始，到输出电压稳定在FSR±½LSB范围（或以FSR±x%FSR指明范围）内为止，这段时间称为建立时间，它是DAC的最大响应时间，所以用它衡量转换速度的快慢。
 
-  满量程范围FSR（ Full Scale Range ），是指DAC输出信号幅度的最大范围，不同的DAC有不同的满量程范围， 该范围可以用正、负电流或者正、负电压来限制 。
+  - 满量程范围FSR（Full Scale Range），是指DAC输出信号幅度的最大范围，不同的DAC有不同的满量程范围，该范围可以用正、负电流或者正、负电压来限制。
 
-  最低有效位LSB（Least Significant Byte），指的是一个二进制数字中的第0位（即最低位）。
+  - 最低有效位LSB（Least Significant Byte），指的是一个二进制数字中的第0位（即最低位）。
 
 ### 运作机制
 
-在HDF框架中，同类型设备对象较多时（可能同时存在十几个同类型配置器），若采用独立服务模式，则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现）,实现便捷管理和节约资源的目的。DAC模块接口适配模式采用统一服务模式（如图1所示）。 
+在HDF框架中，同类型设备对象较多时（可能同时存在十几个同类型配置器），若采用独立服务模式，则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现），实现便捷管理和节约资源的目的。DAC模块接口适配模式采用统一服务模式（如图1所示）。 
 
 DAC模块各分层的作用为：接口层提供打开设备、写入数据和关闭设备接口的能力。核心层主要提供绑定设备、初始化设备以及释放设备的能力。适配层实现其他具体的功能。
 
@@ -100,9 +100,9 @@ DAC模块适配包含以下四个步骤：
         .moduleVersion = 1,
         .Init = VirtualDacInit,
         .Release = VirtualDacRelease,
-        .moduleName = "virtual_dac_driver", //【必要且与 HCS 里面的名字匹配】
+        .moduleName = "virtual_dac_driver", //【必要且与HCS里面的名字匹配】
         };
-        HDF_INIT(g_dacDriverEntry); // 调用HDF_INIT将驱动入口注册到HDF框架中
+        HDF_INIT(g_dacDriverEntry);         // 调用HDF_INIT将驱动入口注册到HDF框架中
     ```
     
 2. 配置属性文件：
@@ -124,7 +124,7 @@ DAC模块适配包含以下四个步骤：
 
      从第二个节点开始配置具体DAC控制器信息，此节点并不表示某一路DAC控制器，而是代表一个资源性质设备，用于描述一类DAC控制器的信息。本例只有一个DAC设备，如有多个设备，则需要在device_info文件增加deviceNode信息，以及在dac_config文件中增加对应的器件属性。
 
-        device_info.hcs配置参考。
+        device_info.hcs配置参考：
 
         ```hcs
         root {
@@ -143,15 +143,16 @@ DAC模块适配包含以下四个步骤：
                 policy = 0;
                 priority = 56;
                 permission = 0644;
-                moduleName = "virtual_dac_driver";        //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致
-                serviceName = "VIRTUAL_DAC_DRIVER";       //【必要】驱动对外发布服务的名称，必须唯一
-                deviceMatchAttr = "virtual_dac";          //【必要】用于配置控制器私有数据，要与dac_config.hcs中对应控制器保持一致
+                moduleName = "virtual_dac_driver";        //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
+                serviceName = "VIRTUAL_DAC_DRIVER";       //【必要】驱动对外发布服务的名称，必须唯一。
+                deviceMatchAttr = "virtual_dac";          //【必要】用于配置控制器私有数据，要与dac_config.hcs中对应控制器保持一致。
                 }                                          
         }
         ```
 
-    - 添加dac_test_config.hcs器件属性文件 
-    在vendor/vendor_hisilicon/hispark_taurus/hdf_config/hdf_test/xxx_test_config.hcs目录下新增文件用于驱动配置参数，（例如：vendor/vendor_hisilicon/hispark_taurus/hdf_config/hdf_test/dac_test_config.hcs）其中配置参数如下：
+    - 添加dac_test_config.hcs器件属性文件。
+
+      在vendor/vendor_hisilicon/hispark_taurus/hdf_config/hdf_test/xxx_test_config.hcs目录下新增文件用于驱动配置参数，（例如：vendor/vendor_hisilicon/hispark_taurus/hdf_config/hdf_test/dac_test_config.hcs）其中配置参数如下：
 
         ```hcs
         root {
@@ -159,13 +160,13 @@ DAC模块适配包含以下四个步骤：
             dac_config {
                     match_attr = "virtual_dac"; //【必要】需要和device_info.hcs中的deviceMatchAttr值一致    
                     template dac_device {
-                        deviceNum = 0; // 设备号     
-                        validChannel = 0x1; // 有效通道1
-                        rate = 20000; // 速率
+                        deviceNum = 0;          // 设备号     
+                        validChannel = 0x1;     // 有效通道1
+                        rate = 20000;           // 速率
                     }
                     device_0 :: dac_device {
-                        deviceNum = 0; // 设备号
-                        validChannel = 0x2; // 有效通道2
+                        deviceNum = 0;          // 设备号
+                        validChannel = 0x2;     // 有效通道2
                     }
                 }
             }
@@ -252,12 +253,12 @@ DAC模块适配包含以下四个步骤：
           uint32_t rate;           //【必要】采样率
       };
       
-      // DacDevice是核心层控制器结构体，其中的成员在Init函数中会被赋值
+      // DacDevice是核心层控制器结构体，其中的成员在Init函数中会被赋值。
       struct DacDevice {
           const struct DacMethod *ops;
-          OsalSpinlock spin; // 自旋锁
-          uint32_t devNum; // 设备号
-          uint32_t chanNum; // 设备通道号
+          OsalSpinlock spin;       // 自旋锁
+          uint32_t devNum;         // 设备号
+          uint32_t chanNum;        // 设备通道号
           const struct DacLockMethod *lockOps;
           void *priv;
       };
@@ -270,7 +271,7 @@ DAC模块适配包含以下四个步骤：
         ```c++
         static const struct DacMethod g_method = {
             .write = VirtualDacWrite, // DAC设备写入值
-            .stop = VirtualDacStop, // 停止DAC设备
+            .stop = VirtualDacStop,   // 停止DAC设备
             .start = VirtualDacStart, // 开始启动DAC设备
         };
         ```
@@ -391,7 +392,10 @@ DAC模块适配包含以下四个步骤：
         
           函数说明：
         
-          释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
+          释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
+
+         ![](../public_sys-resources/icon-note.gif) **说明：**<br>
+          所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
       
         ```c++
         static void VirtualDacRemoveByNode(const struct DeviceResourceNode *node)
