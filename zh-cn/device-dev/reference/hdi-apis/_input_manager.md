@@ -18,8 +18,8 @@
 | (&nbsp;[ScanInputDevice](#scaninputdevice)&nbsp;)(DevDesc&nbsp;\*staArr,&nbsp;uint32_t&nbsp;arrLen) | Input服务用于扫描所有在线设备。&nbsp;[更多...](#scaninputdevice) | 
 | (&nbsp;[OpenInputDevice](#openinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务打开对应设备的设备文件&nbsp;[更多...](#openinputdevice) | 
 | (&nbsp;[CloseInputDevice](#closeinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务关闭对应设备的设备文件&nbsp;[更多...](#closeinputdevice) | 
-| (&nbsp;[GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[DeviceInfo](_device_info.md)&nbsp;\*\*devInfo) | Input服务获取对应ID的设备信息&nbsp;[更多...](#getinputdevice) | 
-| (&nbsp;[GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[DeviceInfo](_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | Input服务获取所有Input设备列表的设备信息&nbsp;[更多...](#getinputdevicelist) | 
+| (&nbsp;[GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputDeviceInfo](_device_info.md)&nbsp;\*\*devInfo) | Input服务获取对应ID的设备信息&nbsp;[更多...](#getinputdevice) | 
+| (&nbsp;[GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[InputDeviceInfo](_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | Input服务获取所有Input设备列表的设备信息&nbsp;[更多...](#getinputdevicelist) | 
 
 
 ## **详细描述**
@@ -53,7 +53,7 @@ Input服务关闭对应设备的设备文件。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
 
 
 ### GetInputDevice
@@ -72,13 +72,13 @@ Input服务获取对应ID的设备信息。
   | 名称 | 描述 | 
 | -------- | -------- |
 | devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
-| devInfo | 输出参数，即devIndex对应的设备的设备信息，具体参考**DeviceInfo**。 | 
+| devInfo | 输出参数，即devIndex对应的设备的设备信息，具体参考[InputDeviceInfo](_device_info.md)。 | 
 
 **返回：**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
 
 
 ### GetInputDeviceList
@@ -97,14 +97,14 @@ Input服务获取所有Input设备列表的设备信息。
   | 名称 | 描述 | 
 | -------- | -------- |
 | devNum | 输出参数，当前已经注册过的所有Input设备的总数。 | 
-| devInfo | 输出参数，Input设备列表所对应的设备信息，具体参考**DeviceInfo**。 | 
+| devList | 输出参数，Input设备列表所对应的设备信息，具体参考[InputDeviceInfo](_device_info.md)。 | 
 | size | 输入参数，即指定deviceList数组对应的元素个数。| 
 
 返回：
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
 
 
 ### OpenInputDevice
@@ -128,7 +128,7 @@ Input服务打开对应设备的设备文件。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
 
 
 ### ScanInputDevice
@@ -153,4 +153,4 @@ Input服务用于扫描所有在线设备。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
