@@ -223,6 +223,8 @@ Creates a virtual screen. This API uses an asynchronous callback to return the r
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (mandatory when **VirtualScreenOption.surfaceId** is valid; available only to system applications)
+
 **Parameters**
 
 | Name  | Type                                       | Mandatory| Description                              |
@@ -255,6 +257,8 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 Creates a virtual screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (mandatory when **VirtualScreenOption.surfaceId** is valid available only to system applications)
 
 **Parameters**
 | Name | Type                                       | Mandatory| Description                    |
@@ -343,6 +347,8 @@ Sets the surface for a virtual screen. This API uses an asynchronous callback to
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
+
 **Parameters**
 
 | Name   | Type                     | Mandatory| Description                                                        |
@@ -371,6 +377,8 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 Sets the surface for a virtual screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
 
 **Parameters**
 | Name   | Type  | Mandatory| Description         |
@@ -696,9 +704,6 @@ Enumerates the screen orientations.
 | HORIZONTAL         | 2    | Horizontal.        |
 | REVERSE_VERTICAL   | 3    | Reverse vertical.    |
 | REVERSE_HORIZONTAL | 4    | Reverse horizontal.    |
-| SENSOR             | 5    | The screen orientation follows the sensor direction.    |
-| SENSOR_VERTICAL    | 6    | The screen orientation follows the sensor direction vertically.|
-| SENSOR_HORIZONTAL  | 7    | The screen orientation follows the sensor direction horizontally.|
 
 ## ScreenModeInfo
 Defines the screen mode information.
