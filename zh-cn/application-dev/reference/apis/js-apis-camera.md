@@ -746,7 +746,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput
 
 | 类型                                  | 说明                                     |
 | ------------------------------------- | -------------------------------------- |
-| Promise<[VideoOutput](#videooutput)\>  | 使用Promise的方式获取PhotoOutput的实例。  |
+| Promise<[VideoOutput](#videooutput)\>  | 使用Promise的方式获取videoOutput的实例。  |
 
 **示例：**
 
@@ -769,7 +769,7 @@ createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>, callback: 
 | 名称                  | 类型                                               | 必填 | 说明                          |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
 | metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是   | metadata流类型。              |
-| callback             | AsyncCallback<[MetadataOutput](#metadataoutput)\>  | 是   | 回调函数，用于获取元能力实例。    |
+| callback             | AsyncCallback<[MetadataOutput](#metadataoutput)\>  | 是   | 回调函数，用于获取MetadataOutput实例。    |
 
 **示例：**
 
@@ -903,7 +903,7 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 
 | 名称     | 类型                                      | 必填 | 说明                            |
 | -------- | --------------------------------------- | ---- | ------------------------------- |
-| type     | string                                  | 是   | 监听事件，固定为'cameraMute'，即相机状态变化事件。 |
+| type     | string                                  | 是   | 监听事件，固定为'cameraMute'，即相机状禁用态变化事件。 |
 | callback | AsyncCallback<boolean\>                 | 是   | 回调函数，用于获取相机是否禁用。  |
 
 **示例：**
