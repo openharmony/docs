@@ -22,7 +22,7 @@ Path(value?: { width?: number | string, height?: number | string, commands?: str
   | -------- | ---------------- | ---- | ---- | ----------- |
   | width    | number \| string | 否    | 0    | 路径所在矩形的宽度。  |
   | height   | number \| string | 否    | 0    | 路径所在矩形的高度。  |
-  | commands | string           | 否    | ‘ ’  | 路径绘制的命令字符串。 |
+  | commands | string           | 否    | ''   | 路径绘制的命令字符串。 |
 
 
 ## 属性
@@ -31,7 +31,7 @@ Path(value?: { width?: number | string, height?: number | string, commands?: str
 | -------- | ---------------- | ---- | ---- | ----------- |
 | width    | number \| string | 0    | 否    | 路径所在矩形的宽度。  |
 | height   | number \| string | 0    | 否    | 路径所在矩形的高度。  |
-| commands | string           | ''   | 是    | 路径绘制的命令字符串。 |
+| commands | string           | ''   | 否    | 路径绘制的命令字符串。 |
 
 
 支持的绘制命令如下：
