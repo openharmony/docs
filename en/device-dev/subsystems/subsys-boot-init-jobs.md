@@ -53,10 +53,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         mkdir
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        mkdir&nbsp; target folder [mode] [owner] [group]<br>Example:<br>mkdir&nbsp;/storage/myDirectory<br>mkdir /storage/myDirectory 0755 root root
+                        mkdir <i>target folder</i> [mode] [owner] [group]<br>Example:<br>mkdir /storage/myDirectory<br>mkdir /storage/myDirectory 0755 root root
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Creates a folder. **mkdir** and the target folder must be separated by only one space. Folders cannot be created recursively.
+                        Creates a folder. <strong>mkdir</strong> and the target folder must be separated by only one space. Folders cannot be created recursively.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -70,7 +70,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         chmod <i>permission</i> <i>target</i><br>Example:<br>chmod 0600 /storage/myFile.txt<br>chmod 0750 /storage/myDir
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Modifies the permission, which must be in the **0****<i>xxx</i>** format. **chmod**, <i>permission</i>, and <i>target</i> must be separated by only one space.
+                        Modifies the permission, which must be in the <strong>0</strong><i>xxx</i> format. <strong>chmod</strong>, <i>permission</i>, and <i>target</i> must be separated by only one space.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -81,10 +81,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         chown
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        chown uid gid *target*<br>Example:<br>chown 900 800 /storage/myDir<br>chown 100 100 /storage/myFile.txt
+                        chown <i>uid</i> <i>gid</i> <i>target</i><br>Example:<br>chown 900 800 /storage/myDir<br>chown 100 100 /storage/myFile.txt
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Modifies the owner group. **chown**, **uid**, **gid**, and *target* must be separated by only one space.
+                        Modifies the owner group. <strong>chown</strong>, <strong>uid</strong>, <strong>gid</strong>, and <i>target</i> must be separated by only one space.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -95,10 +95,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         mount
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        mount&nbsp;fileSystemType&nbsp;src&nbsp;dst&nbsp;flags&nbsp;data<br>Example:<br>mount&nbsp;vfat&nbsp;/dev/mmcblk0&nbsp;/sdc&nbsp;rw,umask=000<br>mount&nbsp;jffs2&nbsp;/dev/mtdblock3&nbsp;/storage&nbsp;nosuid
+                        mount fileSystemType src dst flags data<br>Example:<br>mount vfat /dev/mmcblk0 /sdc rw,umask=000<br>mount jffs2 /dev/mtdblock3 /storage nosuid
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Mounts devices. Every two parameters must be separated by only one space. <br>For details about **flags**, see the **mountFlagMap[]** array of the **mountFlagMap** function in **base/startup/init_lite/services/init/init_common_cmds.c**. The **data** field is optional.
+                        Mounts devices. Every two parameters must be separated by only one space. <br>For details about <strong>flags</strong>, see the <strong>mountFlagMap[]</strong> array of the <strong>mountFlagMap</strong> function in <strong>base/startup/init_lite/services/init/init_common_cmds.c</strong>. The <strong>data</strong> field is optional.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -109,10 +109,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         start
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        start *serviceName*<br>Example:<br>start foundationstart
+                        start <i>serviceName</i><br>Example:<br>start foundationstart
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Starts services. *serviceName* must be contained in the **services** array.
+                        Starts services. <i>serviceName</i> must be contained in the <strong>services</strong> array.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -123,10 +123,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         export
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        export *key value*<br>Example:<br>export TEST /data/test
+                        export <i>key value</i><br>Example:<br>export TEST /data/test
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Sets environment variables. **key** and **value** respectively indicate the environment variable and its value.
+                        Sets environment variables. <strong>key</strong> and <strong>value</strong> respectively indicate the environment variable and its value.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -137,10 +137,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         rm
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        rm *filename*<br>Example:<br>rm /data/testfile
+                        rm <i>filename</i><br>Example:<br>rm /data/testfile
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Deletes a file. **filename** indicates the absolute file path.
+                        Deletes a file. <i>filename</i> indicates the absolute file path.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -151,10 +151,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         rmdir
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        rmdir *dirname*<br>Example:<br>rmdir /data/testdir
+                        rmdir <i>dirname</i><br>Example:<br>rmdir /data/testdir
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Deletes a directory. **dirname** indicates the absolute path of the directory.
+                        Deletes a directory. <i>dirname</i> indicates the absolute path of the directory.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -165,10 +165,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         stop
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        stop *servicename*<br>Example:<br>stop console
+                        stop <i>servicename</i><br>Example:<br>stop console
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Stops a service. **servicename** indicates the name of the service to stop.
+                        Stops a service. <i>servicename</i> indicates the name of the service to stop.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -179,10 +179,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         copy
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        copy *oldfile* *newfile*<br>Example:<br>copy /data/old /data/new
+                        copy <i>oldfile</i> <i>newfile</i><br>Example:<br>copy /data/old /data/new
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Copies a file. **oldfile** and **newfile** respectively indicate the old and new absolute file paths.
+                        Copies a file. <i>oldfile</i> and <i>newfile</i> respectively indicate the old and new absolute file paths.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -193,10 +193,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         reset
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        reset *servicename*<br>Example:<br>reset console
+                        reset <i>servicename</i><br>Example:<br>reset console
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Resets a service. **servicename** indicates the name of the service to reset. If the service has not been started, this command will start the service. If the service is running, the command will stop the service and then restart it.
+                        Resets a service. <i>servicename</i> indicates the name of the service to reset. If the service has not been started, this command will start the service. If the service is running, the command will stop the service and then restart it.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -207,10 +207,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         reboot
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        reboot *subsystem*<br>Example:<br>reboot updater
+                        reboot <i>subsystem</i><br>Example:<br>reboot updater
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Restarts the system. <strong>subsystem</strong> is optional. If it is not specified, the device enters the current system upon restarting. If it is specified, the device enters the corresponding subsystem upon restarting. For example, if you run **reboot updater**, the device enters the updater subsystem upon restarting.
+                        Restarts the system. <strong>subsystem</strong> is optional. If it is not specified, the device enters the current system upon restarting. If it is specified, the device enters the corresponding subsystem upon restarting. For example, if you run <strong>reboot updater</strong>, the device enters the updater subsystem upon restarting.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -221,7 +221,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         sleep
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        sleep *time*<br>Example:<br>sleep 5
+                        sleep <i>time</i><br>Example:<br>sleep 5
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Enters the sleep mode. <strong>time</strong> indicates the sleep time. <br>To avoid impact on services, exercise caution when running this command.
@@ -235,7 +235,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         domainname
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        domainname *name*<br>Example:<br>domainname localdomain
+                        domainname <i>name</i><br>Example:<br>domainname localdomain
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Sets the domain name.
@@ -249,7 +249,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         hostname
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        hostname *name*<br>Example:<br>hostname localhost
+                        hostname <i>name</i><br>Example:<br>hostname localhost
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Sets the host name.
@@ -263,7 +263,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         wait
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        wait *filepath*<br>Example:<br>wait /data/testfile or wait /data/testfile 5
+                        wait <i>filepath</i><br>Example:<br>wait /data/testfile or wait /data/testfile 5
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Waits for commands. The waiting time must not exceed 5 seconds.
@@ -277,10 +277,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         setrlimit
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        setrlimit resource *curValue* *maxValue*<br>Example:<br>setrlimit RLIMIT_CPU 10 100
+                        setrlimit resource <i>curValue</i> <i>maxValue</i><br>Example:<br>setrlimit RLIMIT_CPU 10 100
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Sets resource usage restrictions. <br>For details, see the **resource[]** array of the **DoSetrlimit** function in **base/startup/init_lite/services/init/init_common_cmds.c**.
+                        Sets resource usage restrictions. <br>For details, see the <strong>resource[]</strong> array of the <strong>DoSetrlimit</strong> function in <strong>base/startup/init_lite/services/init/init_common_cmds.c</strong>.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
@@ -291,7 +291,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         exec
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        exec *Path of the executable file* *Parameters passed by the executable file*<br>Example:<br>exec /system/bin/udevadm trigger
+                        exec <i>Path of the executable file</i> <i>Parameters passed by the executable file</i><br>Example:<br>exec /system/bin/udevadm trigger
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Runs an executable file. The command must not contain more than 10 parameters.
@@ -305,7 +305,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         mknode
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        mknod name { b | c } *Major* *Minor*<br>Example:<br>mknod path b 0644 1 9
+                        mknod name { b | c } <i>Major</i> <i>Minor</i><br>Example:<br>mknod path b 0644 1 9
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Creates an index node corresponding to a directory entry and a special file.
@@ -319,10 +319,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         makedev
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        makedev *major* *minor*<br>Example:<br>makedev -v update
+                        makedev <i>major</i> <i>minor</i><br>Example:<br>makedev -v update
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Creates a static device node, which is usually in the **/dev** directory.
+                        Creates a static device node, which is usually in the <strong>/dev</strong> directory.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Standard system
@@ -333,7 +333,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         symlink
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        symlink target link_name<br>Example<br>symlink /proc/self/fd/0 /dev/stdin
+                        symlink target <i>link_name</i><br>Example<br>symlink /proc/self/fd/0 /dev/stdin
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Creates a symbolic link.
@@ -347,7 +347,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         trigger
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        trigger *jobName*<br>Example<br>trigger early-fs
+                        trigger <i>jobName</i><br>Example<br>trigger early-fs
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Triggers a job.
@@ -375,7 +375,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         setparam
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        setparam *paramname* *paramvalue*<br>Example:<br>setparam sys.usb.config hdc
+                        setparam <i>paramname</i> <i>paramvalue</i><br>Example:<br>setparam sys.usb.config hdc
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Sets system parameters.
@@ -392,7 +392,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         load persist params<br>Example:<br>load_persist_params&nbsp;
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Loads **persist** parameters. There must be one and only one space after the **load_persist_params** command.
+                        Loads <strong>persist</strong> parameters. There must be one and only one space after the <strong>load_persist_params</strong> command.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Standard system
@@ -403,7 +403,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         load_param
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        load *params*<br>Example:<br>load_param /data/test.normal.para
+                        load <i>params</i><br>Example:<br>load_param /data/test.normal.para
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Loads the parameters from a file to the memory.
@@ -420,7 +420,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         load_access_token_id&nbsp;
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Writes the access token to the **data/service/el0/access_token/nativetoken.json** file. There is one and only one space after **load_access_token_id**.
+                        Writes the access token to the <strong>data/service/el0/access_token/nativetoken.json</strong> file. There is one and only one space after <strong>load_access_token_id</strong>.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Standard system
@@ -431,7 +431,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         ifup
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        ifup *NIC*<br>Example:<br>ifup eth0
+                        ifup <i>NIC</i><br>Example:<br>ifup eth0
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Activates the specified NIC.
@@ -448,7 +448,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         mount_fstab fstab.test<br>Example:<br>mount_fstab /vendor/etc/fstab.test
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Mounts partitions based on the **fstab** file.
+                        Mounts partitions based on the <strong>fstab</strong> file.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Standard system
@@ -462,7 +462,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         umount_fstab fstab.test<br>Example:<br>umount_fstab /vendor/etc/fstab.test
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Unmounts partitions based on the **fstab** file.
+                        Unmounts partitions based on the <strong>fstab</strong> file.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Standard system
@@ -473,7 +473,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         restorecon
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        restorecon *file or dir*<br>Example:<br>restorecon /file
+                        restorecon <i>file or dir</i><br>Example:<br>restorecon /file
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Reloads the SELinux context.
@@ -501,7 +501,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         umount
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        umount *path*<br>Example:<br>umount /vendor
+                        umount <i>path</i><br>Example:<br>umount /vendor
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Unmounts a mounted device.
@@ -518,7 +518,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         sync&nbsp;
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Writes data to the disk synchronously. There is only one and only one space after **sync**.
+                        Writes data to the disk synchronously. There is only one and only one space after <strong>sync</strong>.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Standard system
@@ -529,7 +529,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         timer_start
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        timer_start *serviceName*<br>Example:<br>timer_start console
+                        timer_start <i>serviceName</i><br>Example:<br>timer_start console
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Starts the service timer.
@@ -543,7 +543,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         timer_stop
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        timer_stop *serviceName*<br>Example:<br>timer_stop console
+                        timer_stop <i>serviceName</i><br>Example:<br>timer_stop console
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Stops the service timer.
@@ -557,7 +557,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         init_global_key
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        init_global_key *path*<br>Example:<br>init_global_key /data
+                        init_global_key <i>path</i><br>Example:<br>init_global_key /data
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Initializes the encryption key of the data partition file.
@@ -585,7 +585,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         mkswap
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        mkswap *file*<br>Example:<br>mkswap /swapfile1
+                        mkswap <i>file</i><br>Example:<br>mkswap /swapfile1
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Creates a swap partition on a file or device.
@@ -599,7 +599,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         swapon
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        swapon *file*<br>Example:<br>swapon /swapfile1
+                        swapon <i>file</i><br>Example:<br>swapon /swapfile1
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Activates the swap space. 
@@ -613,7 +613,7 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         mksandbox
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        mksandbox *fileName*<br>Example:<br>mksandbox system
+                        mksandbox <i>fileName</i><br>Example:<br>mksandbox system
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
                         Creates a sandbox.
@@ -627,10 +627,10 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         loadcfg
                     </td>
                     <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
-                        loadcfg&nbsp;filePath<br>Example:<br>loadcfg&nbsp;/patch/fstab.cfg
+                        loadcfg <i>filePath</i><br>Example:<br>loadcfg /patch/fstab.cfg
                     </td>
                     <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
-                        Loads other **.cfg** files. The maximum size of the target file (only **/patch/fstab.cfg** supported currently) is 50 KB. Each line in the /patch/fstab.cfg file is a command. The command types and formats must comply with their respective requirements mentioned in this table. A maximum of 20 commands are allowed.
+                        Loads other <strong>.cfg</strong> files. The maximum size of the target file (only <strong>/patch/fstab.cfg</strong> supported currently) is 50 KB. Each line in the <strong>/patch/fstab.cfg</strong> file is a command. The command types and formats must comply with their respective requirements mentioned in this table. A maximum of 20 commands are allowed.
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small system
@@ -690,7 +690,7 @@ Job management is a part of the init startup process. It is a process-based func
                         void
                     </td>
                     <td class="xl7020252" width="200" style="width:150pt;border-image: initial; box-sizing: border-box">
-                        Checks whether a job exists and parses **cmds** in it.
+                        Checks whether a job exists and parses <strong>cmds</strong> in it.
                     </td>
                     <td class="xl6920252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         Small system
@@ -707,7 +707,7 @@ Job management is a part of the init startup process. It is a process-based func
                         int
                     </td>
                     <td class="xl6720252" width="200" style="width:150pt">
-                        Parses **cmds** in the job. This API is used for the small system. It does not apply to the standard system because the **trigger** command and **condition** attribute are involved.
+                        Parses <strong>cmds</strong> in the job. This API is used for the small system. It does not apply to the standard system because the <strong>trigger</strong> command and <strong>condition</strong> attribute are involved.
                     </td>
                     <td class="xl6720252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         Small and standard systems
@@ -724,7 +724,7 @@ Job management is a part of the init startup process. It is a process-based func
                         int
                     </td>
                     <td class="xl6920252" width="200" style="width:150pt;border-image: initial; box-sizing: border-box">
-                        Parses the **Trigger** command in the job.
+                        Parses the <strong>trigger</strong> command in the job.
                     </td>
                     <td class="xl6920252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         Standard system
@@ -741,7 +741,7 @@ Job management is a part of the init startup process. It is a process-based func
                         int
                     </td>
                     <td class="xl6720252" width="200" style="width:150pt">
-                        Obtains the job name, condition attribute, and **cmds** command group. Jobs are stored in a hash table, and commands are stored in a queue structure.
+                        Obtains the job name, condition attribute, and <strong>cmds</strong> command group. Jobs are stored in a hash table, and commands are stored in a queue structure.
                     </td>
                     <td class="xl6720252" width="170" style="width:134pt;border-image: initial; box-sizing: border-box">
                         Standard system
@@ -815,7 +815,7 @@ Job management is a part of the init startup process. It is a process-based func
                         void
                     </td>
                     <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
-                        Executes the **trigger** command.
+                        Executes the <strong>trigger</strong> command.
                     </td>
                     <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         Standard system
@@ -849,7 +849,7 @@ Job management is a part of the init startup process. It is a process-based func
                         void
                     </td>
                     <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:128pt;box-sizing: border-box">
-                        Matches a job based on the job name and invokes **DoCmdByIndex** to execute the commands in the job.
+                        Matches a job based on the job name and invokes <strong>DoCmdByIndex</strong> to execute the commands in the job.
                     </td>
                     <td class="xl6422245" width="170" style="border-top:none;border-left:none; width:133pt;box-sizing: border-box">
                         Small system
@@ -876,7 +876,7 @@ Job management is a part of the init startup process. It is a process-based func
     </table>
 
 ### Development Example
-The following is the template for configuring **jobs** in the **.cfg** file. You can use it to verify the job management function.
+The following is the template for configuring <strong>jobs</strong> in the <strong>.cfg</strong> file. You can use it to verify the job management function.
 ```
 {
     "jobs" : [{     // Basic job
@@ -905,16 +905,16 @@ The following is the template for configuring **jobs** in the **.cfg** file. You
 ```
 The differences in job configuration are described as follows:
 
-1. **name** and **cmds** are mandatory for a job, and **cmds** must contain commands supported by the system.
+1. <strong>name</strong> and <strong>cmds</strong> are mandatory for a job, and <strong>cmds</strong> must contain commands supported by the system.
 
-2. **condition** is an optional attribute of a job. It indicates that the job is triggered only when the specified condition is met; that is, the job will not be invoked in a specific phase by the code or the **trigger** command.
+2. <strong>condition</strong> is an optional attribute of a job. It indicates that the job is triggered only when the specified condition is met; that is, the job will not be invoked in a specific phase by the code or the <strong>trigger</strong> command.
 
-3. The job name must comply with the specified rules. For a job whose condition is a system parameter, its name is prefixed with **param:**.
+3. The job name must comply with the specified rules. For a job whose condition is a system parameter, its name is prefixed with <strong>param:</strong>.
 
-4. Commands in a renamed job can be executed only after being triggered by the **trigger** command in other executable job command groups. By default, the **trigger** command is executed in the post-init phase.
+4. Commands in a renamed job can be executed only after being triggered by the <strong>trigger</strong> command in other executable job command groups. By default, the <strong>trigger</strong> command is executed in the post-init phase.
 
 5. An existing job name can be used in different files. Jobs with the same name are regarded as the same job. When jobs with the same name are executed, the commands in these jobs are executed together.
 
 6. For a conditional job, a condition is usually a system parameter. You can set a specific value so that the job is triggered when the condition is met. You can also set the value to an asterisk (*) so that the job is triggered whenever the condition is met, regardless of the parameter value.
 
-7. For the small system, the commands in a job cannot be triggered by the **trigger** command in the post-init phase.
+7. For the small system, the commands in a job cannot be triggered by the <strong>trigger</strong> command in the post-init phase.

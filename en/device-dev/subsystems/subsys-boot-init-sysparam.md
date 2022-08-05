@@ -26,10 +26,10 @@ Figure 1 System parameter operation primitives
 
   **Table 2** System parameter names
 
-  | Type| Name| Example| Description|
-  | -------- | -------- | -------- | -------- |
-  | Name| Parameter Name | const.product.**name** | Complete system parameter name. It does not end with a period (.).          |
-  | Directory| Parameter Directory | const.product **.**     | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
+  | Type| Example| Description|
+  | -------- | -------- | -------- |
+  | Parameter name | const.product.**name** | Complete system parameter name. It does not end with a period (.).          |
+  | Parameter directory | const.product **.**     | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
 
 - Type
 
