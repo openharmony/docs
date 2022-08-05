@@ -108,7 +108,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 | 名称                       | 类型                                      | 只读 | 说明        |
 | ------------------------- | ----------------------------------------- | --- |------------ |
-| frameRateRanges           | Array<[FrameRateRange](#frameraterange)\> | 是  | 帧率。       |
+| frameRateRanges           | [FrameRateRange](#frameraterange)          | 是  | 帧率。       |
 
 ## CameraOutputCapability
 
