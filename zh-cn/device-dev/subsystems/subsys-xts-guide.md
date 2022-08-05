@@ -143,18 +143,15 @@ XTS子系统当前包括acts与tools软件包：
    4. 使用宏定义LITE_TEST_CASE写测试用例
 
       包括三个参数：测试套件名称，测试用例名称，用例属性（测试类型、用例粒度、用例级别）。
-
-     
       ```
       LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
       {  
         //do something 
          };
       ```
-
    5. 使用宏定义 RUN_TEST_SUITE注册测试套件
 
-     
+   
       ```
       RUN_TEST_SUITE(IntTestSuite);
       ```
