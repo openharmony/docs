@@ -2,7 +2,7 @@
 
 ## Overview
 
-Hardware device interface (HDI) provides a set of interfaces that function as a bridge between a driver and a system service for data transmission. They have a direct impact on system efficiency, stability, compatibility, and reliability, as well as data accuracy and integrity. This document aims to standardize the design and development of OpenHarmony HDIs, thereby ensuring consistent styles and complete functionalities for the HDIs.
+Hardware device interface (HDI) provides a set of interfaces that function as a bridge between drivers and system services for data transmission. They have a direct impact on system efficiency, stability, compatibility, and reliability, as well as data accuracy and integrity. This document aims to standardize the design and development of OpenHarmony HDI interfaces, thereby ensuring consistent styles and complete functionalities for the interfaces.
 This document is developed by the [driver SIG](https://gitee.com/openharmony/community/blob/master/sig/sig-driver/sig_driver.md) and approved by the [PMC](https://gitee.com/link?target=https%3A%2F%2Fwww.openharmony.cn%2Fcommunity%2Fpmc%2F). Any revision to this document must be reviewed by the driver SIG and approved by the PMC.
 
 **Acronyms**
@@ -21,10 +21,10 @@ This document is developed by the [driver SIG](https://gitee.com/openharmony/com
 **Note**: an explanation to a rule or rec
 
 **Change History**
-
 | Version | Change Description              |
 | ---  | --------------------- |
 | v1.0 Beta | This issue is the initial version.              |
+| v1.0  | This issue is the official version.              |
 
 
 ## Scope and Definition
@@ -35,19 +35,19 @@ Located between the system service layer and the device driver layer, HDI provid
 
 ## General Rules
 
-### HDI Version Control
+### Version Control
 
-The HDI version number must be in the format of `major.minor`, where the `major` version number must be an integer increased in ascending order and the `minor` version number is a one-digit integer.
+The HDI version number must be in the format of `major.minor`, where `major` must be an integer increased in ascending order and `minor` is a one-digit integer.
 
-- A change in the `major` version number indicates architecture adjustment or interface definition that is not backward compatible. 
+- A change in `major` indicates architecture adjustment or interface definition that is not backward compatible. 
 
-- A change in the `minor` version number indicates enhanced or extended interface definitions that are backward compatible.
+- A change in `minor` indicates enhanced or extended interface definitions that are backward compatible.
 
 When `major` changes, `minor` is reset to `0`.
 
 [Example]
 
-For released vibrator HDIs:
+For released vibrator interfaces:
 
 ```cpp
 package ohos.hdi.vibrator.v1_0;
@@ -58,7 +58,7 @@ interface IVibrator {
 }
 ```
 
-If the update to the existing HDIs does not affect version compatibility, for example, adding a function, adding an enum definition, or changing a variable name, change only the `minor`, for example, to `ohos.hdi.vibrator.v1_1`, as follows:
+If the update to the existing interfaces does not affect version compatibility, for example, adding a function, adding an enum definition, or changing a variable name, change only `minor`, for example, to `ohos.hdi.vibrator.v1_1`, as follows:
 
 ```cpp
 package ohos.hdi.vibrator.v1_1;
@@ -80,20 +80,21 @@ interface IVibrator {
 }
 ```
 
-### HDI Review and Control
+### Review and Control
 
-HDIs are provided to implement upper-layer system service requirements and perform hardware operations (such as initialization). New and updated HDIs must be fully reviewed and strictly controlled. Only HDIs that meet universal requirements can be added.
+HDI interfaces are provided to implement upper-layer system service requirements and perform hardware operations (such as initialization). New and updated interfaces must be fully reviewed and strictly controlled. Only interfaces that meet universal requirements can be added.
 
-Table 1 HDI review and control roles
+Table 1 Interface review and control roles
 
-| **Role**| **Responsibility**                                                    |
-| ------------ | ------------------------------------------------------------ |
-| Contributor  | Write HDI code and submit the code and design documents for review.       |
-| Committer    | Review and approve the HDI code, and submit HDIs to the domain SIG for further review.                        |
-| Domain SIG     | Comment on the commits of new HDI code. Review and approve new HDIs, and submit the updated HDIs to the driver SIG for further review. |
-| Driver SIG   | Review and approve the updated HDIs.                                 |
+| **Role**   | **Responsibility**                                   |
+| ----------- | ------------------------------------------------ |
+| Contributor | Write HDI code and submit the code and design documents for review.                   |
+| Committer   | Review the HDI code, and submit the code to the domain SIG for further review.                           |
+| Domain SIG    | Review the new or updated HDI code.|
+| Driver SIG  | Review the new or updated HDI code.                                 |
+| PMC         | Revise and publish this design specifications.                 |
 
-#### HDI Release
+### Release
 
 - HDI review process
 
@@ -101,10 +102,10 @@ Table 1 HDI review and control roles
 
     The main process is as follows:
 
-    1. The contributor commits code and initiates a review. In addition to the code of new or updated HDIs, the contributor must provide information about the HDI requirement source, usage scenario, permission design, and privacy protection design. For details, see "Review application composites" below. To increase the review efficiency, the contributor can email the design documents to the committer, domain SIG, and driver SIG before submitting the review application.
-    2. The committer reviews the code and HDIs.
-    3. The domain SIG reviews the new or updated HDIs.
-    4. The driver SIG reviews and approves the new or updated HDIs.
+    1. The contributor commits code and initiates a review. In addition to the code of new or updated HDI interfaces, the contributor must provide information about the HDI requirement source, usage scenario, permission design, and privacy protection design. For details, see "Review application composites" below. To increase the review efficiency, the contributor can email the design documents to the committer, domain SIG, and driver SIG before submitting the review application.
+    2. The committer reviews the code and HDI interfaces.
+    3. The domain SIG reviews the new or updated HDI interfaces.
+    4. The driver SIG reviews and approves the new or updated HDI interfaces.
     5. The review is complete, and the code is merged.
 
 - Review application composites
@@ -115,9 +116,9 @@ Table 1 HDI review and control roles
 
     - **HDI version differences, with a clear addition or change scope**
 
-    - Complete interface context, which must be provided in the design document to specify when and how to use each HDI
+    - Complete interface context, which must be provided in the design document to specify when and how to use each interface
 
-    - Resource status transition diagram in the design document for resource-oriented HDIs
+    - Resource status transition diagram in the design document for resource-oriented interfaces
 
     - Compliance with the HDI design constraints proposed in this document
 
@@ -125,13 +126,13 @@ Table 1 HDI review and control roles
 
     1. Change `major` for any release that is incompatible with earlier versions.
 
-    2. Change `minor` for any HDI released for function extension.
+    2. Change `minor` for any interface released for function extension.
 
-    3. To deprecate any released HDI:
+    3. To deprecate any released interface:
 
         - The `deprecated` flag must be provided.
 
-        - The deprecated HDIs must be retained in at least four OpenHarmony HDI versions.
+        - The deprecated interfaces must be retained in at least four OpenHarmony HDI versions.
 
 ## HDI Design Constraints
 
@@ -143,7 +144,7 @@ Multiple nouns with similar semantic meanings are not allowed to represent the s
 
 #### [Rule] Keep the parameter sequence consistent.
 
-The sequence of a parameter or parameter group in multiple HDIs must be the same.
+The sequence of a parameter or parameter group in multiple interfaces must be the same.
 
 For object-oriented C programming, place the interface object as the first parameter by convention.
 
@@ -239,7 +240,7 @@ Camel case is the practice of writing words without spaces. It indicates the sep
 
 #### [Rule] Follow the single responsibility principle.
 
-The functionalities of each HDI must be stable and clear, and the trigger source of interface changes must be unique.
+The functionalities of each interface must be stable and clear, and the trigger source of interface changes must be unique.
 
 [Example]
 
@@ -271,7 +272,7 @@ When defining an interface parameter, consider whether to pass the parameter sep
 
     If no, pass the parameter separately.
 
-3. Does a parameter group occur in multiple HDIs?
+3. Does a parameter group occur in multiple interfaces?
 
     If yes, you can pass these parameters as a struct. In this case, you also need to consider whether these parameter groups are cohesive.
 
@@ -292,9 +293,9 @@ struct AudioSampleAttributes
 };
 ```
 
-#### [Rule] Make HDIs of different device types independent from each other.
+#### [Rule] Make interfaces of different device types independent from each other.
 
-HDIs are managed by driver type, such as `Camera`, `Input`, `Display`, `Audio`, `Sensor`, and `Storage`. HDIs of different device types should not depend on each other. It is recommended that common capabilities that may be used by more than two types of driver modules be abstracted as common interfaces and archived to the common interface capability library for management.
+Interfaces are managed by driver type, such as `Camera`, `Input`, `Display`, `Audio`, `Sensor`, and `Storage`. Interfaces of different device types should not depend on each other. It is recommended that common capabilities that may be used by more than two types of driver modules be abstracted as common interfaces and archived to the common interface capability library for management.
 
 [Exceptions]
 
@@ -373,7 +374,7 @@ The correct practice is to copy the data to the memory managed by the service be
 
 #### [Rule] Consider reentrancy.
 
-HDIs often need to support multiple clients, and a single client may have concurrent requests. Therefore, you must consider reentrancy during HDI design. To ensure correct processing of reentrant interfaces, use locks or semaphores to protect critical resources.
+Interfaces often need to support multiple clients, and a single client may have concurrent requests. Therefore, you must consider reentrancy during HDI design. To ensure correct processing of reentrant interfaces, use locks or semaphores to protect critical resources.
 
 [Example]
 
@@ -399,28 +400,28 @@ The correct practice is to design and implement the callback interface using a c
 
 ### Compatibility
 
-#### [Rule] Verify the version number before the client calls an HDI.
+#### [Rule] Verify the version number before the client calls an interface.
 
-Due to the independent component update policy, the version number of an HDI on the client may be different from that on the server. This requires the client to verify the version number on the server and use the matching version to call the HDI on the server.
-
-[Example]
-
-Assume that the TP module provides HDIs of versions 1.0 and 1.1. The later version has new interfaces. The components on the client have updated to 1.1, and the server still uses 1.0. If the client directly calls an interface of 1.1 on the server, an error may occur. Instead, the client must use the service version query interface to check the server version. If the server version is 1.0, the client must use the HDI of 1.0 to call the server.
-
-#### [Rule] Release HDIs in .idl format.
-
-Currently, Unix-like drivers use virtual file system (VFS) interfaces to expose internal interfaces. The user mode and kernel mode communicate with each other using system calls. They are packed in different images, and two sets of interfaces are maintained separately. To ensure the consistency of the interface definition and parameter format between the two and consider the design objective of cross-kernel hardware driver foundation (HDF) deployment, release HDIs in .idl format and use a tool to generate interfaces of the target form. In addition, the user-mode caller is not allowed to operate the driver VFS interfaces through the file interface. This causes the framework to strongly depend on the kernel and violates the principle of depending on the interface instead of the implementation.
-
-Recommended practice: The driver provides HDIs in .idl format and encapsulates the access to the kernel device in the HDI implementation.
+Due to the independent component update policy, the version number of an interface on the client may be different from that on the server. This requires the client to verify the version number on the server and use the matching version to call the interface on the server.
 
 [Example]
 
-An input device provides query interfaces for attributes such as the device type and data precision. The input service should not directly access the VFS interface created by the kernel in open-ioctl mode. Instead, the input driver should provide an HDI to abstract the input device as an object. Then the input service calls this HDI to implement the required functionalities.
+Assume that the TP module provides interfaces of versions 1.0 and 1.1. The later version has new interfaces. The components on the client have updated to 1.1, and the server still uses 1.0. If the client directly calls an interface of 1.1 on the server, an error may occur. Instead, the client must use the service version query interface to check the server version. If the server version is 1.0, the client must use the interface of 1.0 to call the server.
+
+#### [Rule] Release HDI interfaces in .idl format.
+
+Currently, Unix-like drivers use virtual file system (VFS) interfaces to expose internal interfaces. The user mode and kernel mode communicate with each other using system calls. They are packed in different images, and two sets of interfaces are maintained separately. To ensure the consistency of the interface definition and parameter format between the two and consider the design objective of cross-kernel hardware driver foundation (HDF) deployment, release interfaces in .idl format and use a tool to generate interfaces of the target form. In addition, the user-mode caller is not allowed to operate the driver VFS interfaces through the file interface. This causes the framework to strongly depend on the kernel and violates the principle of depending on the interface instead of the implementation.
+
+Recommended practice: The driver provides interfaces in .idl format and encapsulates the access to the kernel device in the interface implementation.
+
+[Example]
+
+An input device provides query interfaces for attributes such as the device type and data precision. The input service should not directly access the VFS interface created by the kernel in open-ioctl mode. Instead, the input driver should provide an interface to abstract the input device as an object. Then the input service calls this interface to implement the required functionalities.
 
 ### Documentation
 
-#### [Rule] Release HDIs in .idl format.
-To ensure interface compatibility and consistency, release HDIs in .idl format. It is prohibited to directly release interfaces in C/C++ header files.
+#### [Rule] Release HDI interfaces in .idl format.
+To ensure interface compatibility and consistency, release interfaces in .idl format. It is prohibited to directly release interfaces in C/C++ header files.
 
 
 #### [Rule] Provide an interface description during interface release.
@@ -442,7 +443,7 @@ GetExecutorInfo([out] struct ExecutorInfo executorInfo);
 
 ### Programming Languages
 
-To ensure data interworking between HDIs implemented in different programming languages, follow the restrictions below when using data types in the HDI description.
+To ensure data interworking between interfaces implemented in different programming languages, follow the restrictions below when using data types in the interface description.
 
 #### Constraints on using basic data types
 
@@ -470,7 +471,7 @@ To ensure data interworking between HDIs implemented in different programming la
 
 #### Constraints on Using Array Types
 
-| IDL Array Data Type| C++ Data Type       | C Data Type      |
+| IDL Array Data Type | C++ Data Type       | C Data Type      |
 | --------- | -------------- | ----------- |
 | T[]       | std::vector<T> | T*,int size |
 
@@ -480,7 +481,3 @@ To ensure data interworking between HDIs implemented in different programming la
 | ------- | ------- | ------ |
 | struct  | struct  | struct |
 | enum    | enum    | enum   |
-
-
-## Supplementary Notes
-The beta period of this document is one month from the release date. During this period, your comments are well welcome.

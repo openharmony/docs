@@ -16,10 +16,10 @@
   | Public&nbsp;属性 | 描述 | 
 | -------- | -------- |
 | [authType](#authtype) | 用户认证凭据类型。 | 
-| [executorRole](#executorrole) | 执行器角色ExecutorRole。 | 
+| [executorRole](#executorrole) | 执行器角色。 | 
 | [executorSensorHint](#executorsensorhint) | 既定用户认证凭据类型的执行器ID。 | 
 | [executorMatcher](#executormatcher) | 执行器类型，根据执行器支持的认证能力进行分类。 | 
-| [esl](#esl) | 执行器安全等级ExecutorSecureLevel。 | 
+| [esl](#esl) | 执行器安全等级。 | 
 | [publicKey](#publickey) | 执行器公钥，用于校验该执行器私钥签名的信息。 | 
 
 
@@ -60,7 +60,7 @@ enum ExecutorSecureLevel ExecutorRegisterInfo::esl
 
 **描述：**
 
-执行器安全等级ExecutorSecureLevel。
+执行器安全等级[ExecutorSecureLevel](_hdf_user_auth.md#executorsecurelevel)。
 
 
 ### executorSensorHint
@@ -84,7 +84,7 @@ enum ExecutorRole ExecutorRegisterInfo::executorRole
 
 **描述：**
 
-执行器角色ExecutorRole。
+执行器角色[ExecutorRole](_hdf_user_auth.md#executorrole)。
 
 
 ### executorMatcher

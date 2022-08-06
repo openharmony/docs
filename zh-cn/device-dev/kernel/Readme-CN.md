@@ -6,10 +6,7 @@
         - 基础内核
             - [中断管理](kernel-mini-basic-interrupt.md)
             - [任务管理](kernel-mini-basic-task.md)
-            - 内存管理
-                - [基本概念](kernel-mini-basic-memory-basic.md)
-                - [静态内存](kernel-mini-basic-memory-static.md)
-                - [动态内存](kernel-mini-basic-memory-dynamic.md)
+            - [内存管理](kernel-mini-basic-memory.md)
             - 内核通信机制
                 - [事件](kernel-mini-basic-ipc-event.md)
                 - [互斥锁](kernel-mini-basic-ipc-mutex.md)
@@ -21,23 +18,16 @@
             - [C++支持](kernel-mini-extend-support.md)
             - [CPU占用率](kernel-mini-extend-cpup.md)
             - [动态加载](kernel-mini-extend-dynamic-loading.md)
-            - 文件系统
-                - [FAT](kernel-mini-extend-file-fat.md)
-                - [LittleFS](kernel-mini-extend-file-lit.md)
+            - [文件系统](kernel-mini-extend-file.md)
         - 内核调测
-            - 内存调测
-                - [内存信息统计](kernel-mini-memory-debug-mes.md)
-                - [内存泄漏检测](kernel-mini-memory-debug-det.md)
-                - [踩内存检测](kernel-mini-memory-debug-cet.md)
+            - [内存调测](kernel-mini-memory-debug.md)
             - [异常调测](kernel-mini-memory-exception.md)
             - [Trace调测](kernel-mini-memory-trace.md)
             - [LMS调测](kernel-mini-memory-lms.md)
         - 附录
             - [内核编码规范](kernel-mini-appx-code.md)
             - [双向链表](kernel-mini-appx-data-list.md)
-            - 标准库支持
-                - [CMSIS支持](kernel-mini-appx-lib-cmsis.md)
-                - [POSIX支持](kernel-mini-appx-lib-posix.md)
+            - [标准库支持](kernel-mini-appx-lib.md)
     - 小型系统内核
         - [内核概述](kernel-small-overview.md)
         - 内核启动
@@ -71,13 +61,9 @@
             - [虚拟动态共享库](kernel-small-bundles-share.md)
             - [轻量级进程间通信](kernel-small-bundles-ipc.md)
             - 文件系统
+                - [文件系统概述](kernel-small-bundles-fs.md)
                 - [虚拟文件系统](kernel-small-bundles-fs-virtual.md)
-                - 支持的文件系统
-                    - [FAT](kernel-small-bundles-fs-support-fat.md)
-                    - [JFFS2](kernel-small-bundles-fs-support-jffs2.md)
-                    - [NFS](kernel-small-bundles-fs-support-nfs.md)
-                    - [Ramfs](kernel-small-bundles-fs-support-ramfs.md)
-                    - [Procfs](kernel-small-bundles-fs-support-procfs.md)
+                - [支持的文件系统](kernel-small-bundles-fs-support.md)
                 - [适配新的文件系统](kernel-small-bundles-fs-new.md)
         - 调测与工具
             - Shell
@@ -155,15 +141,7 @@
                 - [内存信息统计](kernel-small-debug-memory-info.md)
                 - [内存泄漏检测](kernel-small-debug-memory-leak.md)
                 - [踩内存检测](kernel-small-debug-memory-corrupt.md)
-            - 用户态内存调测
-                - [基本概念](kernel-small-debug-user-concept.md)
-                - [运行机制](kernel-small-debug-user-function.md)
-                - 使用指导
-                    - [接口说明](kernel-small-debug-user-guide-api.md)
-                    - [使用说明](kernel-small-debug-user-guide-use.md)
-                        - [接口调用方式](kernel-small-debug-user-guide-use-api.md)
-                        - [命令行参数方式](kernel-small-debug-user-guide-use-cli.md)
-                - [常见问题](kernel-small-debug-user-faqs.md)
+            - [用户态内存调测](kernel-small-debug-user.md)
             - 其他内核调测手段
                 - [临终遗言](kernel-small-debug-trace-other-lastwords.md)
                 - [常见问题](kernel-small-debug-trace-other-faqs.md)

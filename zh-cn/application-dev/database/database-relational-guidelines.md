@@ -288,9 +288,9 @@
 
     ```js
     "requestPermissions": 
-        {
-            "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-        }
+    {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }
     ```
 
     (2) 获取应用权限。
@@ -331,7 +331,7 @@
     promise.then((result) => {
         console.log('sync done.')
         for (let i = 0; i < result.length; i++) {
-            console.log('device=' + result[i][0] + ' status=' + result[i][1])
+            console.log('device=' + result[i][0] + 'status=' + result[i][1])
         }
     }).catch((err) => {
         console.log('sync failed')
@@ -349,7 +349,7 @@
     ```js
     function storeObserver(devices) {
         for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + ' data changed')
+            console.log('device=' + device[i] + 'data changed')
         }
     }
     try {
@@ -382,17 +382,17 @@
 
     ```js
     let promiseBackup = rdbStore.backup("dbBackup.db")
-    promiseBackup.then(()=>{
+    promiseBackup.then(() => {
         console.info('Backup success.')
-    }).catch((err)=>{
+    }).catch((err) => {
         console.info('Backup failed, err: ' + err)
     })
     ```
     ```js
     let promiseRestore = rdbStore.restore("dbBackup.db")
-    promiseRestore.then(()=>{
+    promiseRestore.then(() => {
         console.info('Restore success.')
-    }).catch((err)=>{
+    }).catch((err) => {
         console.info('Restore failed, err: ' + err)
     })
     ```

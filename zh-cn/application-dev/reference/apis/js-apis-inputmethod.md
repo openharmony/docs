@@ -127,7 +127,7 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 ```
 ## InputMethodController
 
-下列API示例中都需使用[getInputMethodController](#getinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodController](#inputmethodgetinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInput
 
@@ -175,7 +175,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API示例中都需使用[getInputMethodSetting](#getinputmethodsetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodcontroller)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
 ### listInputMethod
 

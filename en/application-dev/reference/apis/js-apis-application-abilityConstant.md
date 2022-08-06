@@ -62,3 +62,17 @@ Enumerates ability continuation results.
 | AGREE           | 0    | Continuation agreed.|
 | REJECT           | 1    | Continuation denied.|
 | MISMATCH  | 2    | Mismatch.|
+
+## AbilityConstant.WindowMode
+
+Enumerates the window modes when an ability is started.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                       | Value| Description                |
+| ---                         | --- | ---                  |
+| WINDOW_MODE_UNDEFINED       | 0   | Undefined window mode.      |
+| WINDOW_MODE_FULLSCREEN      | 1   | The ability is displayed in full screen.           |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100 | The ability is displayed in the primary window in split-screen mode.  |
+| WINDOW_MODE_SPLIT_SECONDARY | 101 | The ability is displayed in the secondary window in split-screen mode.  |
+| WINDOW_MODE_FLOATING        | 102 | The ability is displayed in a floating window.|
