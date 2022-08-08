@@ -80,7 +80,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 ## Profile
 
-相机配置信息项。
+相机配置信息项。（3.2待开放）
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -102,7 +102,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 ## VideoProfile
 
-视频配置信息项。 
+视频配置信息项。（3.2待开放）
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -112,7 +112,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 ## CameraOutputCapability
 
-相机输出能力项。
+相机输出能力项。（3.2待开放）
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -131,7 +131,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 getSupportedCameras(callback: AsyncCallback<Array<CameraDevice\>\>): void
 
-获取支持指定的相机设备对象，通过注册回调函数获取结果。
+获取支持指定的相机设备对象，通过注册回调函数获取结果。（3.2待开放）
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -157,7 +157,7 @@ cameraManager.getSupportedCameras((err, cameras) => {
 
 getSupportedCameras(): Promise<Array<CameraDevice\>\>
 
-获取支持指定的相机设备对象，通过Promise获取结果。
+获取支持指定的相机设备对象，通过Promise获取结果。（3.2待开放）
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -180,7 +180,7 @@ cameraManager.getSupportedCameras().then((cameraArray) => {
 
 getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<CameraOutputCapability\>): void
 
-查询相机设备在模式下支持的输出能力，通过注册回调函数获取结果。
+查询相机设备在模式下支持的输出能力，通过注册回调函数获取结果。（3.2待开放）
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -207,7 +207,7 @@ cameraManager.getSupportedOutputCapability(cameraDevice, (err, cameras) => {
 
 getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapability\>
 
-查询相机设备在模式下支持的输出能力，通过Promise获取结果。
+查询相机设备在模式下支持的输出能力，通过Promise获取结果。（3.2待开放）
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2803,6 +2803,12 @@ setFocusPoint(point: Point): Promise<void\>
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
+**参数：**
+
+| 名称      | 类型                     | 必填 | 说明                 |
+| -------- | ----------------------- | ---- | ------------------- |
+| point    | [Point](#Point)         | 是   | 焦点。                |
+
 **返回值：**
 
 | 类型           | 说明                      |
@@ -3197,6 +3203,12 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): Promise<void\>
 设置视频防抖，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称      | 类型                                              | 必填 | 说明                    |
+| -------- | ------------------------------------------------- | ---- | --------------------- |
+| mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。   |
 
 **返回值：**
 
