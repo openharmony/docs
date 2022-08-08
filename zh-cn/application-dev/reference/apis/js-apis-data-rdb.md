@@ -1416,7 +1416,7 @@ promise.then((resultSet) => {
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
 
-根据指定条件查询远程设备数据库中的数据，结果以callback形式返回。
+根据指定条件查询远程设备数据库中的数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1449,7 +1449,7 @@ rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet)
 
 remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
-根据指定条件查询远程设备数据库中的数据，结果以Promise形式返回。
+根据指定条件查询远程设备数据库中的数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
