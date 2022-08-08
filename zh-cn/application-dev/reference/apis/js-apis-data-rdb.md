@@ -1456,6 +1456,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
+
 ```js
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 let predicates = new dataSharePredicates.DataSharePredicates()
@@ -1486,6 +1487,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
@@ -1501,6 +1503,76 @@ promise.then((resultSet) => {
     console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
     console.info("Query failed, err: " + err)
+})
+```
+
+### remoteQuery<sup>9+</sup>
+
+remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
+
+根据指定条件查询远程设备数据库中的数据。使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 指定的远程设备的networkId。 |
+| table | string | 是 | 指定的目标表名。 |
+| predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
+| columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**示例：**
+
+```js
+let predicates = new rdb.RdbPredicates('EPLOYEE')
+predicates.greaterThan("id", 0)
+rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
+    if (err) {
+        console.info("Failed to remoteQuery, err: " + err)
+        return
+    }
+    console.info("ResultSet column names: " + resultSet.columnNames)
+    console.info("ResultSet column count: " + resultSet.columnCount)
+})
+```
+
+### remoteQuery<sup>9+</sup>
+
+remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
+
+根据指定条件查询远程设备数据库中的数据。使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | string | 是 | 指定的远程设备的networkId。 |
+| table | string | 是 | 指定的目标表名。 |
+| predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
+| columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**返回值**：
+
+| 类型                                                         | 说明                                                     |
+| ------------------------------------------------------------ | -------------------------------------------------------- |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**示例：**
+
+```js
+let predicates = new rdb.RdbPredicates('EPLOYEE')
+predicates.greaterThan("id", 0)
+let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates)
+promise.then((resultSet) => {
+    console.info("ResultSet column names: " + resultSet.columnNames)
+    console.info("ResultSet column count: " + resultSet.columnCount)
+}).catch((err) => {
+    console.info("Failed to remoteQuery , err: " + err)
 })
 ```
 
@@ -1823,7 +1895,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
     }
     console.info('SetDistributedTables successfully.')
 })
-  ```
+```
 
 
 ### setDistributedTables<sup>8+</sup>
