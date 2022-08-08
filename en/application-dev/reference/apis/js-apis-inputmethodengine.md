@@ -7,7 +7,7 @@
 ## Modules to Import
 
 ```
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import inputMethodEngine from '@ohos.inputmethodengine';
 ```
 
 ## inputMethodEngine

@@ -1,7 +1,9 @@
 # Screen Lock Management
 
+The **screenlock** module is a system module in OpenHarmony. It provides APIs for screen lock applications to subscribe to screen lock status changes as well as callbacks for them to receive the results. It also provides APIs for third-party applications to unlock the screen, obtain the screen locked status, and check whether a lock screen password has been set.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **Note：**
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -17,17 +19,17 @@ import screenlock from '@ohos.screenLock';
 
 isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the screen is locked. This method uses an asynchronous callback to return the result.
+Checks whether the screen is locked. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;**true**&nbsp;is&nbsp;returned,&nbsp;the&nbsp;screen&nbsp;is&nbsp;locked.&nbsp;If&nbsp;**false**&nbsp;is&nbsp;returned,&nbsp;the&nbsp;screen&nbsp;is&nbsp;not&nbsp;locked. |
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns **true** if the screen is locked; returns **false** otherwise.|
 
-- Example
-  
+**Example**
+
   ```js
   screenlock.isScreenLocked((err, data)=>{      
      if (err) {
@@ -43,17 +45,17 @@ Checks whether the screen is locked. This method uses an asynchronous callback t
 
 isScreenLocked(): Promise&lt;boolean&gt;
 
-Checks whether the screen is locked. This method uses a promise to return the result.
+Checks whether the screen is locked. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
-- Return Values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result. |
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
-- Example
-  
+**Example**
+
   ```js
   screenlock.isScreenLocked().then((data) => {
       console.log('isScreenLocked success: data -> ${JSON.stringify(data)}');
@@ -68,19 +70,19 @@ Checks whether the screen is locked. This method uses a promise to return the re
 isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 
-Checks whether a device is in secure mode. This method uses an asynchronous callback to return the result.
+Checks whether a device is in secure mode. This API uses an asynchronous callback to return the result.
 
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | Yes | Callback&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result.&nbsp;If&nbsp;**true**&nbsp;is&nbsp;returned,&nbsp;the&nbsp;device&nbsp;is&nbsp;in&nbsp;secure&nbsp;mode.&nbsp;If&nbsp;**false**&nbsp;is&nbsp;returned,&nbsp;the&nbsp;device&nbsp;is&nbsp;not&nbsp;in&nbsp;secure&nbsp;mode. |
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns **true** if the device is in secure mode; returns **false** otherwise.|
 
-- Example
-  
+**Example**
+
   ```js
   screenlock.isSecureMode((err, data)=>{      
      if (err) {
@@ -96,17 +98,17 @@ Checks whether a device is in secure mode. This method uses an asynchronous call
 
 isSecureMode(): Promise&lt;boolean&gt;
 
-Checks whether a device is in secure mode. This method uses a promise to return the result.
+Checks whether a device is in secure mode. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
-- Return Values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result. |
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
-- Example
-  
+**Example**
+
   ```js
   screenlock.isSecureMode().then((data) => {
       console.log('isSecureMode success: data->${JSON.stringify(data)}');
@@ -121,21 +123,21 @@ Checks whether a device is in secure mode. This method uses a promise to return 
 unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 
-Unlocks the screen. This method uses an asynchronous callback to return the result.
+Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
 
-- Parameters
-    | Name | Type | Mandatory | Description |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes | Callback&nbsp;function.&nbsp;If&nbsp;the&nbsp;callback&nbsp;fails,&nbsp;an&nbsp;error&nbsp;message&nbsp;is&nbsp;returned. |
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation failed, an error message is returned.|
 
-- Example
-  
+**Example**
+
   ```js
-  screenlock.unlockScreen((err)=>{      
+  screenlock.unlockScreen((err) => {      
      if (err) {
           console.error('unlockScreen callback error -> ${JSON.stringify(err)}');
           return;    
@@ -149,17 +151,17 @@ Unlocks the screen. This method uses an asynchronous callback to return the resu
 
 unlockScreen(): Promise&lt;void&gt;
 
-Unlocks the screen. This method uses a promise to return the result.
+Unlocks the screen. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
-- Return Values
-    | Type | Description |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise&nbsp;used&nbsp;to&nbsp;return&nbsp;the&nbsp;result. |
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
-- Example
-  
+**Example**
+
   ```js
   screenlock.unlockScreen().then(() => {
       console.log('unlockScreen success');
