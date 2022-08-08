@@ -405,13 +405,13 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 preferences.has('startup', function (err, isExist) {
     if (err) {
-        console.info("Failed to check the key of 'startup'. Cause: " + err);
+        console.info("Failed to check the key 'startup'. Cause: " + err);
         return;
     }
     if (isExist) {
-        console.info("The key of 'startup' is contained.");
+        console.info("The key 'startup' is contained.");
     } else {
-        console.info("The key of 'startup' dose not contain.");
+        console.info("The key 'startup' dose not contain.");
     }
 })
 ```
@@ -626,7 +626,7 @@ data_preferences.getPreferences(this.context, 'mystore', function (err, preferen
         return;
     }
     var observer = function (key) {
-        console.info("The key of " + key + " changed.");
+        console.info("The key " + key + " changed.");
     }
     preferences.on('change', observer);
     preferences.put('startup', 'auto', function (err) {
@@ -670,7 +670,7 @@ data_preferences.getPreferences(this.context, 'mystore', function (err, preferen
         return;
     }
     var observer = function (key) {
-        console.info("The key of " + key + " changed.");
+        console.info("The key " + key + " changed.");
     }
     preferences.on('change', observer);
     preferences.put('startup', 'auto', function (err) {
