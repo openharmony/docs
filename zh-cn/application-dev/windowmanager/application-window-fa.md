@@ -206,7 +206,7 @@
      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
    });
    // 2.实现沉浸式效果。
-   //方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
+   // 方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
    var isLayoutFullScreen = true;
    mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
      if (err.code) {
@@ -218,10 +218,10 @@
    var SystemBarProperties = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
-     //以下两个属性从API Version7开始支持
+     // 以下两个属性从API Version7开始支持
      isStatusBarLightIcon: false,
      isNavigationBarLightIcon: false,
-     //以下两个属性从API Version8开始支持
+     // 以下两个属性从API Version8开始支持
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
