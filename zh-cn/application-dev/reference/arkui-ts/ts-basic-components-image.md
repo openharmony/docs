@@ -51,6 +51,7 @@ Image(src: string | PixelMap | Resource)
 | renderMode            | [ImageRenderMode](#imagerendermode)      | ImageRenderMode.Original | 设置图片渲染的模式。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -                        | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>>&nbsp;**说明：**<br/>>&nbsp;PixelMap资源不支持该属性。 |
 | syncLoad<sup>8+</sup> | boolean                                  | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
+| copyOption<sup>9+</sup> | boolean\|[CopyOption](#copyoption) | false | 设置图片是否可复制（SVG图片不支持复制）。 |
 
 ### ImageFit
 
@@ -77,6 +78,14 @@ Image(src: string | PixelMap | Resource)
 | -------- | --------------------- |
 | Original | 按照原图进行渲染，包括颜色。        |
 | Template | 将图片渲染为模板图片，忽略图片的颜色信息。 |
+
+### CopyOption<sup>9+</sup>
+  
+  | 名称 | 描述 |
+  | -------- | -------- |
+  | InApp | 支持应用内复制粘贴。 |
+  | LocalDevice | 支持设备内复制粘贴。 |
+  | CrossDevice | 支持跨设备复制粘贴。 |
 
 ## 事件
 
