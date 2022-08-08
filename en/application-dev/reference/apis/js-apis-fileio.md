@@ -17,15 +17,31 @@ import fileio from '@ohos.fileio';
 
 Before using the APIs provided by this module to perform operations on files or directories, obtain the path of the application sandbox as follows:
 
+Stage Model
+
+ ```js
+import Ability from '@ohos.application.Ability';
+class MainAbility extends Ability {
+    onWindowStageCreate(windowStage) {
+        let context = this.context;
+        let path = context.filesDir;
+    }
+}
+ ```
+
+ For details about how to obtain the stage model context, see [Stage Model](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-ability-context.md#abilitycontext).
+
+FA Model
+
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
  let context = featureAbility.getContext();
- let path = '';
  context.getFilesDir().then((data) => {
-      path = data;
+      let path = data;
  })
  ```
-
+ 
+ For details about how to obtain the context of the FA model, see [FA Model](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-Context.md#context).
 
 ## fileio.stat
 
@@ -654,7 +670,7 @@ Reads data from a file. This API uses a promise to return the result.
   let fd = fileio.openSync(path, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf).then(function(readOut){
-      console.info("Read file data");
+      console.info("Read file data successfully");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
   }).catch(function(err){
       console.info("Failed to read file data. Error:"+ err);
@@ -690,7 +706,7 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf, function (err, readOut) {
       if (readOut) {
-          console.info("Read file data");
+          console.info("Read file data successfully");
           console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
       }
   });
@@ -1263,7 +1279,7 @@ Truncates a file based on the file descriptor. This API uses an asynchronous cal
   | -------- | ------------------------- | ---- | ---------------- |
   | fd       | number                    | Yes   | File descriptor of the file to truncate.    |
   | len      | number                    | Yes   | File length, in bytes, after truncation.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value. |
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Example**
 
@@ -1347,7 +1363,7 @@ Truncates a file based on the file path. This API uses an asynchronous callback 
 | -------- | ------------------------- | ---- | -------------------------------- |
 | path     | string                    | Yes  | Application sandbox path of the file to truncate.|
 | len      | number                    | Yes  | File length, in bytes, after truncation.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Example**
 
@@ -1411,7 +1427,7 @@ Reads the text content of a file. This API uses a promise to return the result.
 
   ```js
   fileio.readText(path).then(function(str) {
-      console.info("Read text:"+ str);
+      console.info("Read text successfully:"+ str);
   }).catch(function(err){
       console.info("Failed to read the text. Error:"+ err);
   });
@@ -2272,7 +2288,7 @@ Opens a file stream based on the file descriptor. This API uses an asynchronous 
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | File descriptor of the target file.                            |
   | mode     | string                                   | Yes   | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt; | Yes   | Callback invoked when the stream is open asynchronously.                           |
+  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt;  | Yes   | Callback invoked when the stream is open asynchronously.                           |
 
 **Example**
 
@@ -2720,7 +2736,7 @@ Stops the **watcher** instance. This API uses a promise to return the result.
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop().then(function(){
@@ -2747,7 +2763,7 @@ Stops the **watcher** instance. This API uses an asynchronous callback to return
 
   ```js
   let filename = path +"/test.txt";
-  let watcher = await fileio.createWatcher(filename, 1, function(number){
+  let watcher = fileio.createWatcher(filename, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop(function(){
@@ -3124,7 +3140,6 @@ Reads the next directory entry. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read().then(function (dirent){
       console.log("Read the next directory entry:"+JSON.stringify(dirent));
   }).catch(function(err){
@@ -3150,7 +3165,6 @@ Reads the next directory entry. This API uses an asynchronous callback to return
 **Example**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.read(function (err, dirent) {
       if (dirent) {
           // Do something
@@ -3177,7 +3191,6 @@ Synchronously reads the next directory entry.
 **Example**
 
   ```js
-  let dir = fileio.opendirSync(path);
   let dirent = dir.readSync();
   ```
 
@@ -3193,7 +3206,6 @@ Closes a directory. This API uses a promise to return the result. After a direct
 **Example**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close().then(function(err){
       console.info("close dir successfully");
   });
@@ -3211,7 +3223,6 @@ Closes a directory. This API uses an asynchronous callback to return the result.
 **Example**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.close(function(err){
       console.info("close dir successfully");
   });
@@ -3229,7 +3240,6 @@ Closes a directory. After a directory is closed, the file descriptor in Dir will
 **Example**
 
   ```js
-  let dir = fileio.opendirSync(path);
   dir.closeSync();
   ```
 
