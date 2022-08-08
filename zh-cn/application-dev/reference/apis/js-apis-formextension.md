@@ -257,9 +257,9 @@ onShare?(formId: string): {[key: string]: any};
 
 卡片提供方接收卡片分享的通知接口。
 
-**系统能力**：SystemCapability.Ability.Form
+此接口为系统接口。
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统能力**：SystemCapability.Ability.Form
 
 **参数：**
 
@@ -271,7 +271,7 @@ onShare?(formId: string): {[key: string]: any};
 
   | 类型                                                         | 说明                                                        |
   | ------------------------------------------------------------ | ----------------------------------------------------------- |
-  | {[key: string]: any} | 一个WantParams对象，卡片要分享的数据，由开发者自行决定传入的键值对。 |
+  | {[key: string]: any} | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
 
 **示例：**
     
