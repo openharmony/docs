@@ -4,13 +4,15 @@
 
 开发者在开发应用时，通过调用延迟任务注册接口，注册对实时性要求不高的延迟任务，该任务默认由系统安排，在系统空闲时根据性能、功耗、热等情况进行调度执行。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  **说明：**
+>
+>  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块接口仅可在Stage模型下使用。
 
 
 ## 导入模块
 
-```
+```js
 import workScheduler from '@ohos.workScheduler' 
 ```
 
@@ -35,7 +37,7 @@ startWork(work: WorkInfo): boolean
 
 **示例**：
 
-```
+```js
   let workInfo = {
       workId: 1,
       batteryLevel:50,
@@ -71,7 +73,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
 **示例**：
 
-```
+```js
   let workInfo = {
       workId: 1,
       batteryLevel:50,
@@ -101,7 +103,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **示例**：
 
-```
+```js
   workScheduler.getWorkStatus(50, (err, res) => {
     if (err) {
       console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
@@ -134,7 +136,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **示例**：
 
-```
+```js
   workScheduler.getWorkStatus(50).then((res) => {
     for (let item in res) {
       console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
@@ -165,7 +167,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 **示例**：
 
-```
+```js
   workScheduler.obtainAllWorks((err, res) =>{
     if (err) {
       console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
@@ -190,7 +192,7 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 **示例**：
 
-```
+```js
   workScheduler.obtainAllWorks().then((res) => {
     console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
   }).catch((err) => {
@@ -207,7 +209,7 @@ stopAndClearWorks(): boolean
 
 **示例**：
 
-```
+```js
   let res = workScheduler.stopAndClearWorks();
   console.info("workschedulerLog res:" + res);
 ```
@@ -234,7 +236,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **示例**：
 
-```
+```js
   workScheduler.isLastWorkTimeOut(500, (err, res) =>{
     if (err) {
       console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
@@ -265,7 +267,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **示例**：
 
-```
+```js
   workScheduler.isLastWorkTimeOut(500)
     .then(res => {
       console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
@@ -276,32 +278,32 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ```
 
 ## WorkInfo
-提供工作的具体信息。
+提供工作的具体信息。WorkInfo设置参数约束见[延迟任务调度概述](../../task-management/work-scheduler-overview.md)
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-| 参数名          | 类型                              | 必填 | 说明                             |
-| --------------- | --------------------------------- | ---- | -------------------------------- |
-| workId          | number                            | 是   | 当前工作的ID                     |
-| bundleName      | string                            | 是   | 延迟任务包名                     |
-| abilityName     | string                            | 是   | 延迟任务回调通知的组件名（必填） |
-| networkType     | [NetworkType](#networktype)       | 否   | 网络类型                         |
-| isCharging      | boolean                           | 否   | 是否充电                         |
-| chargerType     | [ChargingType](#chargingtype)     | 否   | 充电类型                         |
-| batteryLevel    | number                            | 否   | 电量                             |
-| batteryStatus   | [BatteryStatus](#batterystatus)   | 否   | 电池状态                         |
-| storageRequest  | [StorageRequest](#storagerequest) | 否   | 存储状态                         |
-| isRepeat        | boolean                           | 否   | 是否循环任务                     |
-| repeatCycleTime | number                            | 否   | 循环间隔                         |
-| repeatCount     | number                            | 否   | 循环次数                         |
-| isPersisted     | boolean                           | 否   | 是否持久化保存工作               |
-| isDeepIdle      | boolean                           | 否   | 是否要求设备进入空闲状态         |
-| idleWaitTime    | number                            | 否   | 空闲等待时间                     |
+| 参数名             | 类型                                | 必填   | 说明               |
+| --------------- | --------------------------------- | ---- | ---------------- |
+| workId          | number                            | 是    | 当前工作的ID          |
+| bundleName      | string                            | 是    | 延迟任务包名           |
+| abilityName     | string                            | 是    | 延迟任务回调通知的组件名（必填） |
+| networkType     | [NetworkType](#networktype)       | 否    | 网络类型             |
+| isCharging      | boolean                           | 否    | 是否充电             |
+| chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型             |
+| batteryLevel    | number                            | 否    | 电量               |
+| batteryStatus   | [BatteryStatus](#batterystatus)   | 否    | 电池状态             |
+| storageRequest  | [StorageRequest](#storagerequest) | 否    | 存储状态             |
+| isRepeat        | boolean                           | 否    | 是否循环任务           |
+| repeatCycleTime | number                            | 否    | 循环间隔             |
+| repeatCount     | number                            | 否    | 循环次数             |
+| isPersisted     | boolean                           | 否    | 是否持久化保存工作        |
+| isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态     |
+| idleWaitTime    | number                            | 否    | 空闲等待时间           |
 
 ## NetworkType
 触发工作的网络类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
 | 名称                     | 默认值  | 说明                      |
 | ---------------------- | ---- | ----------------------- |
@@ -315,7 +317,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## ChargingType
 触发工作的充电类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
 | 名称                        | 默认值  | 说明                   |
 | ------------------------- | ---- | -------------------- |
@@ -327,7 +329,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## BatteryStatus
 触发工作的电池状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
 | 名称                         | 默认值  | 说明                         |
 | -------------------------- | ---- | -------------------------- |
@@ -338,10 +340,10 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ## StorageRequest
 触发工作的存储状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
-  |名称    |默认值    |说明|
-  | -------- | -------- | -------- |
-  |STORAGE_LEVEL_LOW    |0    |表示这个触发条件是存储空间不足。
-  |STORAGE_LEVEL_OKAY    |1    |表示这个触发条件是从存储空间不足恢复到正常。
-  |STORAGE_LEVEL_LOW_OR_OKAY    |2    |表示这个触发条件是从存储空间不足恢复到正常或者存储空间不足。
+| 名称                        | 默认值  | 说明                             |
+| ------------------------- | ---- | ------------------------------ |
+| STORAGE_LEVEL_LOW         | 0    | 表示这个触发条件是存储空间不足。               |
+| STORAGE_LEVEL_OKAY        | 1    | 表示这个触发条件是从存储空间不足恢复到正常。         |
+| STORAGE_LEVEL_LOW_OR_OKAY | 2    | 表示这个触发条件是从存储空间不足恢复到正常或者存储空间不足。 |

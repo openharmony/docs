@@ -9,21 +9,21 @@
        KWSSdk();
        virtual ~KWSSdk();
    
-       // 定义创建唤醒词检测工具包的方法。
+       // 定义创建唤醒词检测工具包的方法
        int32_t Create();
    
-       // 定义同步执行唤醒词检测任务的方法。
+       // 定义同步执行唤醒词检测任务的方法
        int32_t SyncExecute(const Array<int16_t> &audioInput);
    
        // 定义设置唤醒词检测回调器的方法。
        int32_t SetCallback(const std::shared_ptr<KWSCallback> &callback);
    
-       // 定义销毁唤醒词工具包的方法，释放与插件的会话信息。
+       // 定义销毁唤醒词工具包的方法，释放与插件的会话信息
        int32_t Destroy();
    };
    ```
 
-2. 在//foundation/ai/engine/services/client/algorithm_sdk目录中增加SDK中API接口的具体实现，调用client端提供的接口，实现算法插件能力的使用。如下代码片段即为唤醒词识别的API接口中create方法的具体实现示例，更多详细代码可参考：//foundation/ai/engine/services/client/algorithm_sdk/asr/keyword_spotting。
+2. 在//foundation/ai/engine/services/client/algorithm_sdk目录中增加SDK中API接口的具体实现，调用client端提供的接口，实现算法插件能力的使用。如下代码片段即为唤醒词识别的API接口中create方法的具体实现示例，更多详细代码请参考：//foundation/ai/engine/services/client/algorithm_sdk/asr/keyword_spotting。
      
    ```
    int32_t KWSSdk::KWSSdkImpl::Create()
@@ -36,7 +36,7 @@
            HILOGE("[KWSSdkImpl]Fail to init sdk components");
            return KWS_RETCODE_FAILURE;
        }
-       // 调用client端提供的接口AieClientInit，实现初始化引擎服务，激活跨进程调用
+       // 调用client端提供的AieClientInit接口，实现初始化引擎服务，激活跨进程调用
        int32_t retCode = AieClientInit(configInfo_, clientInfo_, algorithmInfo_, nullptr);
        if (retCode != RETCODE_SUCCESS) {
            HILOGE("[KWSSdkImpl]AieClientInit failed. Error code[%d]", retCode);
@@ -54,7 +54,7 @@
            .data = nullptr,
            .length = 0,
        };
-       // 调用client端提供的接口AieClientPrepare，实现加载算法插件
+       // 调用client端提供的AieClientPrepare接口，实现加载算法插件
        retCode = AieClientPrepare(clientInfo_, algorithmInfo_, inputInfo, outputInfo, nullptr);
        if (retCode != RETCODE_SUCCESS) {
            HILOGE("[KWSSdkImpl]AieclientPrepare failed. Error code[%d]", retCode);
@@ -74,7 +74,8 @@
    }
    ```
 
-   上述代码为API接口的具体实现，从上述示例的代码中，SDK中create接口的具体实现即为上述示例代码中create方法，该方法调用了AI引擎框架client端开放接口AieClientInit，AieClientPrepare，从而实现与server端建立连接及加载算法模型的能力。
+   上述代码为API接口的具体实现。在示例代码中，SDK中create接口的具体实现即为上述示例代码中create方法，该方法调用了AI引擎框架client端提供的AieClientInit及AieClientPrepare接口，从而实现与server端建立连接及加载算法模型的能力。
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > 
    > SDK调用AI引擎client端接口应遵循AieClientInit-&gt;AieClientPrepare-&gt;AieClientSyncProcess/AieClientAsyncProcess-&gt;AieClientRelease-&gt;AieClientDestroy顺序，否则调用接口会返回错误码。

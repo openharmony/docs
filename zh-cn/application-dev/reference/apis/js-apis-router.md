@@ -29,7 +29,7 @@ push(options: RouterOptions): void
 
 
 **示例：**
-  ```js
+```js
 router.push({
   url: 'pages/routerpage2',
   params: {
@@ -39,7 +39,7 @@ router.push({
     },
   },
 });
-  ```
+```
 ## router.push<sup>9+</sup>
 
 push(options: RouterOptions, mode: RouterMode): void
@@ -56,7 +56,7 @@ push(options: RouterOptions, mode: RouterMode): void
 
 
 **示例：**
-  ```js
+```js
 router.push({
   url: 'pages/routerpage2/routerpage2',
   params: {
@@ -66,11 +66,11 @@ router.push({
     },
   },
 },router.RouterMode.Standard);
-  ```
+```
 
 ## router.replace
 
-replace(options: RouterOptions, mode?: RouterMode): void
+replace(options: RouterOptions): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
@@ -83,14 +83,14 @@ replace(options: RouterOptions, mode?: RouterMode): void
 
 **示例：**
 
-  ```js
+```js
 router.replace({
   url: 'pages/detail',
   params: {
     data1: 'message',
   },
 });
-  ```
+```
 
   ## router.replace<sup>9+</sup>
 
@@ -108,14 +108,14 @@ replace(options: RouterOptions, mode: RouterMode): void
 
 **示例：**
 
-  ```js
+```js
 router.replace({
   url: 'pages/detail/detail',
   params: {
     data1: 'message',
   },
 }, router.RouterMode.Standard);
-  ```
+```
 
 ## router.back
 
@@ -132,9 +132,9 @@ back(options?: RouterOptions ): void
 
 **示例：**
 
-  ```js
-router.back({uri:'pages/detail'});    
-  ```
+```js
+router.back({url:'pages/detail'});    
+```
 
 ## router.clear
 
@@ -146,9 +146,9 @@ clear(): void
 
 **示例：**
 
-  ```js
+```js
 router.clear();    
-  ```
+```
 
 ## router.getLength
 
@@ -164,10 +164,10 @@ getLength(): string
 | string | 页面数量，页面栈支持最大数值是32。 |
 
 **示例：**
-  ```js
+```js
 var size = router.getLength();        
 console.log('pages stack size = ' + size);    
-  ```
+```
 
 ## router.getState
 
@@ -242,9 +242,9 @@ disableAlertBeforeBackPage(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
-  ```js
+```js
 router.disableAlertBeforeBackPage();    
-  ```
+```
 
 ##  router.getParams
 
@@ -270,7 +270,7 @@ router.getParams();
 
 路由跳转选项。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.FULL。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite。
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -285,7 +285,7 @@ router.getParams();
 
 路由跳转模式。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.FULL。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
 | 名称     | 描述                                                         |
 | -------- | ------------------------------------------------------------ |
@@ -313,7 +313,7 @@ export default {
 // 在detail页面中
 export default {
   onInit() {
-    console.info('showData1:' + router.getParams().data1);
+    console.info('showData1:' + router.getParams()[data1]);
   }
 }
 ```

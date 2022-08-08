@@ -52,7 +52,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
   | 获取流控制器                 | CamRetCode GetStreamOperator(<br>const OHOS::sptr<IStreamOperatorCallback> &callback,<br>OHOS::sptr<IStreamOperator> &streamOperator) |
-  | 更新设备控制参数             | CamRetCode UpdateSettings(const std::shared_ptr<CameraSetting> &settingss) |
+  | 更新设备控制参数             | CamRetCode UpdateSettings(const std::shared_ptr<CameraSetting> &settings) |
   | 设置Result回调模式和回调函数 | CamRetCode SetResultMode(const ResultCallbackMode &mode)     |
   | 获取使能的ResultMeta         | CamRetCode GetEnabledResults(std::vector<MetaType> &results) |
   | 使能具体的ResultMeta         | CamRetCode EnableResult(const std::vector<MetaType> &results) |
@@ -730,7 +730,7 @@ Camera驱动的开发过程主要包含以下步骤：
    "-o | --offline       stream offline test\n"
    "-c | --capture       capture one picture\n"
    "-w | --set WB        Set white balance Cloudy\n"
-   "-v | --video         capture Viedeo of 10s\n"
+   "-v | --video         capture Video of 10s\n"
    "-a | --Set AE        Set Auto exposure\n"
    "-f | --Set Flashlight        Set flashlight ON 5s OFF\n"
    "-q | --quit          stop preview and quit this app\n");

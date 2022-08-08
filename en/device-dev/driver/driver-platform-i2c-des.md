@@ -64,7 +64,7 @@ The figure below illustrates how to use the APIs.
 
 **Figure  2**  Using I2C driver APIs
 
-![](figures/using-i2c-process.png "process-of-using-an-i2c-device")
+![](figures/using-I2C-process.png "process-of-using-an-i2c-device")
 
 ### Opening an I2C Controller<a name="section13751110132914"></a>
 

@@ -193,12 +193,12 @@ export class AudioDemo {
     }).catch((err) => {
       console.info('open fd failed err is' + err);
     });
-    audioPlayer.src = nextFdPath; //设置src属性，并重新触发触发'dataLoad'事件回调
+    audioPlayer.src = nextFdPath; // 设置src属性，并重新触发触发'dataLoad'事件回调
   }
 
   async audioPlayerDemo() {
-    let audioPlayer = media.createAudioPlayer();       //创建一个音频播放实例
-    this.setCallBack(audioPlayer);                     //设置事件回调
+    let audioPlayer = media.createAudioPlayer();       // 创建一个音频播放实例
+    this.setCallBack(audioPlayer);                     // 设置事件回调
     let fdPath = 'fd://'
     // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" 命令，将其推送到设备上
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
@@ -210,7 +210,7 @@ export class AudioDemo {
     }).catch((err) => {
       console.info('open fd failed err is' + err);
     });
-    audioPlayer.src = fdPath; //设置src属性，并触发'dataLoad'事件回调
+    audioPlayer.src = fdPath; // 设置src属性，并触发'dataLoad'事件回调
   }
 }
 ```
@@ -258,5 +258,5 @@ export class AudioDemo {
 
 - [`JsDistributedMusicPlayer`：分布式音乐播放（JS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/ability/JsDistributedMusicPlayer)
 - [`JsAudioPlayer`：音频播放和管理（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/JsAudioPlayer)
-- [`eTsAudioPlayer`: 音频播放器（eTS）](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
-- [音频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
+- [`eTsAudioPlayer`: 音频播放器（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [音频播放器（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

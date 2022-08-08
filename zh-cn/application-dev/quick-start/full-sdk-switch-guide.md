@@ -6,18 +6,16 @@
 
 三方开发者通过DevEco Studio自动下载的**API8版本**SDK均为**public版本**。public-SDK**不支持**开发者使用**所有的系统API**，包括animator组件、xcomponent组件、@ohos.application.abilityManager.d.ts、@ohos.application.formInfo.d.ts、@ohos.bluetooth.d.ts等，如工程必须依赖于系统API，请按照以下步骤替换**full-SDK**。
 
-## 下载full-SDK(这里以3.1.1 Release版本为例)
+> **说明**：本文中的截图仅为参考，具体的显示界面请以实际使用的DevEco Studio和SDK的版本为准。
 
-full-SDK需要手动下载。请参考[OpenHarmony 3.1.1 Release版本说明书](https://gitee.com/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.1.1-release.md)中的获取方式，获取所需的操作系统的full-SDK。
+## 下载full-SDK
 
-
-
-![image-20220613161049897](figures/zh-cn_image_0000001655128646.png)
-
+full-SDK需要手动下载。请参考[版本说明书](../../release-notes/OpenHarmony-v3.2-beta2.md)中的获取方式，从镜像站点获取所需的操作系统的full-SDK。
 
 
 
 ## 查看本地SDK路径(此处以ets工程为例，1.0工程请以相同方式替换js-SDK)
+
 
 打开DevEco Studio——>Tools——>OpenHarmony SDK Manager，查看本地SDK安装路径。
 
@@ -40,11 +38,11 @@ full-SDK需要手动下载。请参考[OpenHarmony 3.1.1 Release版本说明书]
 
    
 
-2. 替换SDK，以public-SDK-3.1.6.6版本为例。
+2. 替换SDK，以public-SDK-3.x.x.x版本为例。
 
    以windows为例：
 
-   a.解压已下载的full-SDK文件：`ets-windows-3.1.6.5-Release.zip`
+   a.解压已下载的full-SDK文件：`ets-windows-3.x.x.x-Release.zip`
 
    ![image-20220613165018184](figures/zh-cn_image_0000001655129264.png)
 
@@ -60,34 +58,35 @@ full-SDK需要手动下载。请参考[OpenHarmony 3.1.1 Release版本说明书]
 
    ![image-20220613165018184](figures/zh-cn_image_0000001655129398.png)
 
-   `oh-uni-package.json`文件配置信息如下：
+   `oh-uni-package.json`文件配置信息如下，其中，`apiVersion`的值以SDK对应的API version为准，`version`的值以SDK文件的版本号为准：
 
    ```
    {
-     "apiVersion": "8",
+     "apiVersion": "X",
      "displayName": "Ets",
      "meta": {
        "metaVersion": "3.0.0"
      },
      "path": "ets",
      "releaseType": "Release",
-     "version": "3.1.6.6"
+     "version": "3.x.x.x"
    }
    ```
+   
 
-   **删除原SDK（3.1.6.6）目录中的所有文件**（否则可能会导致文件无法全部覆盖）
+   **删除原SDK（3.x.x.x）目录中的所有文件**（否则可能会导致文件无法全部覆盖）
 
    
 
    **拷贝full-SDK至本地SDK路径**
 
-   将下载的full-SDK文件包中`ets`目录下的所有文件替换至本地SDK路径下`ets\3.1.6.6`目录中
+   将下载的full-SDK文件包中`ets`目录下的所有文件替换至本地SDK路径下`ets\3.x.x.x`目录中
 
    修改`oh-uni-package.json`配置文件的version字段为当前SDK版本号
 
    
 
-   在`3.1.6.6\build-tools\ets-loader`目录中打开cmd/powerShell窗口，输入命令`npm install`下载**node_modules**依赖包
+   在`3.x.x.x\build-tools\ets-loader`目录中打开cmd/powerShell窗口，输入命令`npm install`下载**node_modules**依赖包
 
    ![image-20220613171111405](figures/zh-cn_image_0000001655129333.png)
 

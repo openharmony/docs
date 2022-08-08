@@ -2133,7 +2133,7 @@ getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
 
 | 类型                                                | 说明                          |
 | --------------------------------------------------- | ----------------------------- |
-| Promise<Array<[OperatorConfig](#OperatorConfig8)\>> | 以Promise形式返回运营商配置。 |
+| Promise<Array<[OperatorConfig](#operatorconfig8)\>> | 以Promise形式返回运营商配置。 |
 
 **示例：**
 
@@ -2163,7 +2163,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallba
 | 参数名   | 类型                                                         | 必填 | 说明                                                       |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type     | ContactType                                                  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| type     | [ContactType](#contacttype8)                                                  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
 | callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 是   | 回调函数。                                                 |
 
 **示例：**
@@ -2192,7 +2192,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<Dialli
 | 参数名 | 类型        | 必填 | 说明                                                       |
 | ------ | ----------- | ---- | ---------------------------------------------------------- |
 | slotId | number      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type   | ContactType | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| type   | [ContactType](#contacttype8)  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
 
 **返回值：**
 
@@ -2829,7 +2829,7 @@ SIM卡状态。
 | LOCK_OFF | 0    | 锁关闭状态 |
 | LOCK_ON  | 1    | 锁开启状态 |
 
-## **PersoLockType**<sup>8+</sup>
+## PersoLockType<sup>8+</sup>
 
 定制锁类型。
 
@@ -2850,7 +2850,7 @@ SIM卡状态。
 | SIM_PIN_LOCK | 8    | 定制SIM的PIN锁*(参照 3GPP TS 22.022 [33])*      |
 | SIM_PUK_LOCK | 9    | 定制SIM的PUK锁                                  |
 
-## **LockStatusResponse**<sup>7+</sup>
+## LockStatusResponse<sup>7+</sup>
 
 锁状态响应。
 
@@ -2863,7 +2863,7 @@ SIM卡状态。
 | result          | number | 当前操作的结果     |
 | remain?: number | number | 剩余次数(可以为空) |
 
-## **LockInfo**<sup>8+</sup>
+## LockInfo<sup>8+</sup>
 
 锁状态响应。
 
@@ -2877,7 +2877,7 @@ SIM卡状态。
 | password | string                   | 密码   |
 | state    | [LockState](#lockstate8) | 锁状态 |
 
-## **PersoLockInfo**<sup>8+</sup>
+## PersoLockInfo<sup>8+</sup>
 
 锁状态响应。
 
@@ -2890,7 +2890,7 @@ SIM卡状态。
 | lockType | [PersoLockType](#persolocktype8) | 定制锁的类型 |
 | password | string                           | 密码         |
 
-## **IccAccountInfo**<sup>7+</sup>
+## IccAccountInfo<sup>7+</sup>
 
 Icc账户信息。
 
@@ -2908,7 +2908,7 @@ Icc账户信息。
 | showName   | string  | SIM卡显示名称    |
 | showNumber | string  | SIM卡显示号码    |
 
-## **OperatorConfig**<sup>8+</sup>
+## OperatorConfig<sup>8+</sup>
 
 运营商配置。
 
@@ -2921,7 +2921,7 @@ Icc账户信息。
 | field | string | 字段 |
 | value | string | 值   |
 
-## **DiallingNumbersInfo**<sup>8+</sup>
+## DiallingNumbersInfo<sup>8+</sup>
 
 拨号号码信息。
 
@@ -2936,7 +2936,7 @@ Icc账户信息。
 | recordNumber | number | 记录编号 |
 | pin2         | string | pin2密码 |
 
-## **ContactType**<sup>8+</sup>
+## ContactType<sup>8+</sup>
 
 联系人类型。
 

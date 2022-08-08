@@ -518,7 +518,7 @@ promise.then(data => {
 
 muteRinger\(callback: AsyncCallback<void\>\): void
 
-如果来电铃声响起，手机将停止铃声。否则，此方法不起作用。使用callback异步回调。
+如果来电铃声响起，设备将停止铃声。否则，此方法不起作用。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -545,7 +545,7 @@ call.muteRinger((err, data) => {
 
 muteRinger\(\): Promise<void\>
 
-如果来电铃声响起，手机将停止铃声。否则，此方法不起作用。使用Promise异步回调。
+如果来电铃声响起，设备将停止铃声。否则，此方法不起作用。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1864,7 +1864,7 @@ promise.then(data => {
 
 separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 
-断开会议电话。使用callback异步回调。
+分离会议电话。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1890,7 +1890,7 @@ call.separateConference(1, (err, data) => {
 
 separateConference\(callId: number\): Promise<void\>
 
-断开会议电话。使用Promise异步回调。
+分离会议电话。使用Promise异步回调。
 
 此接口为系统接口。
 

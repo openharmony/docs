@@ -48,8 +48,7 @@ setSecurityLabel(path:string, type:dataLevel):Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let type = "s4";
-  securityLabel.setSecurityLabel(path, type).then(function(){
+  securityLabel.setSecurityLabel(path, "s0").then(function(){
       console.info("setSecurityLabel successfully");
   }).catch(function(error){
       console.info("setSecurityLabel failed with error:" + error);
@@ -75,8 +74,7 @@ setSecurityLabel(path:string, type:dataLevel, callback: AsyncCallback&lt;void&gt
 **示例：**
 
   ```js
-  let type = "s4";
-  securityLabel.setSecurityLabel(path, type, function(error){
+  securityLabel.setSecurityLabel(path, "s0", function(error){
       console.info("setSecurityLabel:" + JSON.stringify(error));
   });
   ```
@@ -98,8 +96,7 @@ setSecurityLabelSync(path:string, type:dataLevel):void
 **示例：**
 
 ```js
-let type = "s4";
-securityLabel.setSecurityLabelSync(path, type);
+securityLabel.setSecurityLabelSync(path, "s0");
 ```
 
 ## securityLabel.getSecurityLabel
@@ -125,11 +122,10 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let type = "s4";
   securityLabel.getSecurityLabel(path).then(function(type){
       console.log("getSecurityLabel successfully:" + type);
-  }).catch(function(error){
-      console.log("getSecurityLabel failed with error:" + error);
+  }).catch(function(err){
+      console.log("getSecurityLabel failed with error:" + err);
   });
   ```
 
@@ -151,8 +147,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  let type = "s4";
-  securityLabel.getSecurityLabel(path,function(error, type){
+  securityLabel.getSecurityLabel(path, function(err, type){
       console.log("getSecurityLabel successfully:" + type);
   });
   ```

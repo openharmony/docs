@@ -100,7 +100,7 @@
 | RdbPredicates | glob(field:&nbsp;string,&nbsp;value:&nbsp;string):&nbsp;RdbPredicates | 配置RdbPredicates匹配数据字段为String的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | between(field:&nbsp;string,&nbsp;low:&nbsp;ValueType,&nbsp;high:&nbsp;ValueType):&nbsp;RdbPredicates | 将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;low：指示与谓词匹配的最小值。<br/>-&nbsp;high：指示与谓词匹配的最大值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | notBetween(field:&nbsp;string,&nbsp;low:&nbsp;ValueType,&nbsp;high:&nbsp;ValueType):&nbsp;RdbPredicates | 配置RdbPredicates以匹配数据字段为ValueType且value超出给定范围的指定字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;low：指示与谓词匹配的最小值。<br/>-&nbsp;high：指示与谓词匹配的最大值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | greaterThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicatesgr | 配置谓词以匹配数据字段为ValueType且值大于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates | greaterThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且值大于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | lessThan(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为valueType且value小于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | greaterThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且value大于或等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
 | RdbPredicates | lessThanOrEqualTo(field:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;RdbPredicates | 配置谓词以匹配数据字段为ValueType且value小于或等于指定值的字段。<br/>-&nbsp;field：数据库表中的列名。<br/>-&nbsp;value：指示要与谓词匹配的值。<br/>-&nbsp;RdbPredicates：返回与指定字段匹配的谓词。 |
@@ -288,9 +288,9 @@
 
     ```js
     "requestPermissions": 
-        {
-            "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-        }
+    {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }
     ```
 
     (2) 获取应用权限。
@@ -331,7 +331,7 @@
     promise.then((result) => {
         console.log('sync done.')
         for (let i = 0; i < result.length; i++) {
-            console.log('device=' + result[i][0] + ' status=' + result[i][1])
+            console.log('device=' + result[i][0] + 'status=' + result[i][1])
         }
     }).catch((err) => {
         console.log('sync failed')
@@ -349,7 +349,7 @@
     ```js
     function storeObserver(devices) {
         for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + ' data changed')
+            console.log('device=' + device[i] + 'data changed')
         }
     }
     try {
@@ -382,17 +382,17 @@
 
     ```js
     let promiseBackup = rdbStore.backup("dbBackup.db")
-    promiseBackup.then(()=>{
+    promiseBackup.then(() => {
         console.info('Backup success.')
-    }).catch((err)=>{
+    }).catch((err) => {
         console.info('Backup failed, err: ' + err)
     })
     ```
     ```js
     let promiseRestore = rdbStore.restore("dbBackup.db")
-    promiseRestore.then(()=>{
+    promiseRestore.then(() => {
         console.info('Restore success.')
-    }).catch((err)=>{
+    }).catch((err) => {
         console.info('Restore failed, err: ' + err)
     })
     ```

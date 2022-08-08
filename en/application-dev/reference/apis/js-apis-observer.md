@@ -1,5 +1,7 @@
 # Observer
 
+The observer module provides event subscription management functions. You can register or unregister an observer that listens for the following events: network status change, signal status change, call status change, cellular data connection status, uplink and downlink data flow status of cellular data services, and SIM status change.
+
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -15,7 +17,7 @@ import observer from '@ohos.telephony.observer'
 
 on\(type: \'networkStateChange\', callback: Callback<NetworkState\>\): void;
 
-Registers an observer for network status change events. This API uses an asynchronous callback to return the execution result.
+Registers an observer for network status change events. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -41,7 +43,7 @@ observer.on('networkStateChange', data =>{
 
 on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callback<NetworkState\>\): void;
 
-Registers an observer for network status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
+Registers an observer for network status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -68,9 +70,7 @@ observer.on('networkStateChange', {slotId: 0}, data =>{
 
 off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
 
-Unregisters the observer for network status change events. This API uses an asynchronous callback to return the execution result.
-
-**Required permission**: ohos.permission.GET_NETWORK_INFO
+Unregisters the observer for network status change events. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -101,7 +101,7 @@ observer.off('networkStateChange');
 
 on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>): void;
 
-Registers an observer for signal status change events. This API uses an asynchronous callback to return the execution result.
+Registers an observer for signal status change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -125,7 +125,7 @@ observer.on('signalInfoChange', data =>{
 
 on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<Array<SignalInformation\>\>): void;
 
-Registers an observer for signal status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the execution result.
+Registers an observer for signal status change events of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -150,7 +150,7 @@ observer.on('signalInfoChange', {slotId: 0}, data =>{
 
 off\(type: \'signalInfoChange\', callback?: Callback<Array<SignalInformation\>\>): void;
 
-Unregisters the observer for signal status change events. This API uses an asynchronous callback to return the execution result.
+Unregisters the observer for signal status change events. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -182,9 +182,7 @@ observer.off('signalInfoChange');
 
 on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: string }\>): void;
 
-Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
-
-**Required permission**: ohos.permission.READ_CALL_LOG
+Registers an observer for call status change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -208,9 +206,7 @@ observer.on('callStateChange', value =>{
 
 on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state:CallState, number: string }>): void;
 
-Registers an observer for call status change events. This API uses an asynchronous callback to return the execution result.
-
-**Required permission**: ohos.permission.READ_CALL_LOG
+Registers an observer for call status change events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -235,9 +231,7 @@ observer.on('callStateChange', {slotId: 0}, value =>{
 
 off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: string }>): void;
 
-Unregisters the observer for call status change events. This API uses an asynchronous callback to return the execution result.
-
-**Required permission**: ohos.permission.READ_CALL_LOG
+Unregisters the observer for call status change events. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -269,7 +263,7 @@ observer.off('callStateChange');
 
 on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: DataConnectState, network: RatType}\>\): void;
 
-Registers an observer for connection status change events of the cellular data link. This API uses an asynchronous callback to return the result.
+Registers an observer for connection status change events of the cellular data connection.This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -277,7 +271,7 @@ Registers an observer for connection status change events of the cellular data l
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
+| type     | string                                                       | Yes  | Connection status change event of the cellular data connection.                                    |
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Example**
@@ -293,7 +287,7 @@ observer.on('cellularDataConnectionStateChange', value =>{
 
 on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, callback: Callback\<{ state: DataConnectState, network: RatType }\>\): void;
 
-Registers an observer for connection status change events of the cellular data link over the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Registers an observer for connection status change events of the cellular data connection over the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.StateRegistry
 
@@ -301,7 +295,7 @@ Registers an observer for connection status change events of the cellular data l
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
+| type     | string                                                       | Yes  | Connection status change event of the cellular data connection.                                   |
 | slotId   | number                                                       | Yes  | Card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | Yes  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
@@ -318,7 +312,7 @@ observer.on('cellularDataConnectionStateChange', {slotId: 0}, value =>{
 
 off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: DataConnectState, network: RatType}\>\): void;
 
-Unregisters the observer for connection status change events of the cellular data link. This API uses an asynchronous callback to return the result.
+Unregisters the observer for connection status change events of the cellular data connection.This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
@@ -330,7 +324,7 @@ Unregisters the observer for connection status change events of the cellular dat
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Connection status change event of the cellular data link.                                    |
+| type     | string                                                       | Yes  | Connection status change event of the cellular data connection.                                   |
 | callback | Callback\<{ state: [DataConnectState](js-apis-telephony-data.md#dataconnectstate), network: [RatType](js-apis-radio.md#radiotechnology) }\> | No  | Callback used to return the result. For details, see [DataConnectState](js-apis-telephony-data.md#dataconnectstate) and [RadioTechnology](js-apis-radio.md#radiotechnology).|
 
 **Example**

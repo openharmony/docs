@@ -1,39 +1,43 @@
 # Context
 
+The **Context** module provides the context for running code. You can use the APIs to query and set the application information and resource manager.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
-Provides the context for running code, including **applicationInfo** and **resourceManager**.
-
-## Modules to Import
-```
-import AbilityContext from '@ohos.application.Ability';
-```
-
 ## Usage
 
 You must extend **AbilityContext** to implement this module.
+
+ ```js
+import AbilityContext from '@ohos.application.Ability'
+  class MainAbility extends AbilityContext {
+    onWindowStageCreate(windowStage) {
+      let test = "com.example.test";
+      let context = this.context.createBundleContext(test);
+    }
+  }
+ ```
 
 ## Attributes
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-  | Name| Type| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| resourceManager | ResourceManager | Yes| No| **ResourceManager** object.|
+| resourceManager | resmgr.ResourceManager; | Yes| No| **ResourceManager** object.|
 | applicationInfo | ApplicationInfo | Yes| No| Information about the application.|
 | cacheDir | string | Yes| No| Cache directory of the application on the internal storage.|
 | tempDir | string | Yes| No| Temporary file directory of the application.|
 | filesDir | string | Yes| No| File directory of the application on the internal storage.|
 | databaseDir | string | Yes| No| Storage directory of local data.|
-| storageDir | string | Yes| No| Storage directory of lightweight data.|
 | bundleCodeDir | string | Yes| No| Application installation path.|
 | distributedFilesDir | string | Yes| No| Storage directory of distributed application data files.|
 | eventHub | [EventHub](js-apis-eventhub.md) | Yes| No| Event hub information.|
 | area | [AreaMode](#areamode) | Yes| Yes| Area in which the file to be access is located.|
-
+| preferencesDir | string | Yes| Yes| Preferences directory of the application.|
 
 ## Context.createBundleContext
 
@@ -41,19 +45,23 @@ createBundleContext(bundleName: string): Context;
 
 Creates a context for a given application.
 
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Application bundle name.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Application bundle name.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Context | Context created.|
+| Type| Description|
+| -------- | -------- |
+| Context | Context created.|
 
 **Example**
 
@@ -79,15 +87,15 @@ Creates a context for a given HAP.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | moduleName | string | Yes| HAP name in the application.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| moduleName | string | Yes| HAP name in the application.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Context | Context created.|
+| Type| Description|
+| -------- | -------- |
+| Context | Context created.|
 
 **Example**
 
@@ -111,18 +119,20 @@ Creates a context for a given HAP in an application.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Application bundle name.|
-  | moduleName | string | Yes| HAP name in the application.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Application bundle name.|
+| moduleName | string | Yes| HAP name in the application.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Context | Context created.|
+| Type| Description|
+| -------- | -------- |
+| Context | Context created.|
 
 **Example**
 

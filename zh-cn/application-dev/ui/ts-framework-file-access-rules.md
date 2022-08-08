@@ -12,7 +12,8 @@
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 import { FoodData, FoodList } from "../common/utils/utils.ets";
 
 @Entry
@@ -33,7 +34,7 @@ struct FoodCategoryList {
 
 导入文件示例：
 
-```
+```ts
 //common/utils/utils.ets
 
 export class FoodData {  

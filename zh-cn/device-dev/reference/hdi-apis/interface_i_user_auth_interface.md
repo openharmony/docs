@@ -150,7 +150,7 @@ IUserAuthInterface::BeginIdentification([in] unsigned long contextId, [in] enum 
   | 名称 | 描述 | 
 | -------- | -------- |
 | contextId | 上下文索引。 | 
-| authType | 用户身份识别类型AuthType}。 | 
+| authType | 用户身份识别类型[AuthType](_hdf_user_auth.md#authtype)。 | 
 | challenge | 随机挑战值，用于生成用户身份识别令牌，防止重放。 | 
 | executorSensorHint | 执行器传感器提示，用于找到对应认证方式的传感器。 | 
 | scheduleInfo | 调度信息[ScheduleInfo](_schedule_info.md)。 | 
@@ -429,7 +429,7 @@ IUserAuthInterface::GetUserInfo([in] int userId, [out] unsigned long secureUid, 
 | -------- | -------- |
 | userId | 用户ID。 | 
 | secureUid | 安全用户ID。 | 
-| pinSubType | 口令认证子类型&nbsp;{\@link&nbsp;PinSubType}。 | 
+| pinSubType | 口令认证子类型，请参考[PinSubType](_hdf_user_auth.md#pinsubtype)。 | 
 | infos | 注册信息[EnrolledInfo](_enrolled_info.md)。 | 
 
 **返回：**

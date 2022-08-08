@@ -1,4 +1,6 @@
-# ParticleAbility
+# particleAbility
+
+The **particleAbility** module provides APIs for Service abilities. You can use the APIs to start and terminate a Particle ability, obtain a **dataAbilityHelper** object, connect the current ability to a specific Service ability, and disconnect the current ability from a specific Service ability. 
 
 > **NOTE**
 > 

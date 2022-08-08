@@ -39,7 +39,7 @@ struct ZIndexExample {
         Text('third child, zIndex(1)')
           .size({width: '70%', height: '50%'}).backgroundColor(0xc1cbac).align(Alignment.TopStart)
           .zIndex(1)
-      }
+      }.width('100%').height(200)
     }.width('100%').height(200)
   }
 }

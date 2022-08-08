@@ -1492,7 +1492,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 使用JSON格式创建联系人数据：
 
 
-```json
+```js
 let myContact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
@@ -1538,7 +1538,7 @@ myContact.phoneNumbers = [phoneNumber];
 使用JSON格式创建数据：
 
 
-```json
+```js
 let contactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
@@ -1585,7 +1585,7 @@ contactAttributes.attributes = ["ATTR_EMAIL"];
 
 使用JSON格式创建数据：
 
-```json
+```js
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -1621,7 +1621,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
   使用JSON格式创建数据：
 
-```json
+```js
 let email = {
     email: "xxx@email.com",
     displayName: "displayName"
@@ -1654,7 +1654,7 @@ email.email = "xxx@email.com";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let holder = {
   holderId: 0
 };
@@ -1698,7 +1698,7 @@ holder.holderId = 0;
 
   使用JSON格式创建数据：
 
-```json
+```js
 let event = {
     eventDate: "xxxxxx"
 };
@@ -1728,7 +1728,7 @@ event.eventDate = "xxxxxx";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let group = {
     groupId: 1,
     title: "title"
@@ -1777,7 +1777,7 @@ group.title = "title";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let imAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
@@ -1816,7 +1816,7 @@ imAddress.imAddress = "imAddress";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let name = {
     familyName: "familyName",
     fullName: "fullName"
@@ -1847,7 +1847,7 @@ name.fullName = "fullName";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let nickName = {
     nickName: "nickName"
 };
@@ -1876,7 +1876,7 @@ nickName.nickName = "nickName";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let note = {
     noteContent: "noteContent"
 };
@@ -1906,7 +1906,7 @@ note.noteContent = "noteContent";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let organization = {
     name: "name",
     title: "title"
@@ -1969,7 +1969,7 @@ organization.title = "title";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let phoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
@@ -1999,7 +1999,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let portrait = {
     uri: "uri"
 };
@@ -2050,7 +2050,7 @@ portrait.uri = "uri";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let postalAddress = {
     city: "city"
 };
@@ -2105,7 +2105,7 @@ postalAddress.city = "city";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
@@ -2150,7 +2150,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
   使用JSON格式创建数据：
 
-```json
+```js
 var sipAddress = {
     sipAddress: "sipAddress"
 };
@@ -2179,7 +2179,7 @@ sipAddress.sipAddress = "sipAddress";
 
   使用JSON格式创建数据：
 
-```json
+```js
 let website = {
     website: "website"
 };

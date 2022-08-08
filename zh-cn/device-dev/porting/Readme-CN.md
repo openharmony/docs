@@ -67,3 +67,5 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [Combo解决方案之W800芯片移植案例](porting-w800-combo-demo.md)
 - 小型系统芯片移植案例
     - [小型设备STM32MP1芯片移植案例](porting-stm32mp15xx-on-smallsystem.md)
+- 标准系统芯片移植案例
+    - [标准系统方案之瑞芯微RK3568移植案例](porting-dayu200-on_standard-demo.md)

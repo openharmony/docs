@@ -26,7 +26,7 @@
 | [subPortsNum](_audio.md#subportsnum) | 支持的子端口数目（仅用于输出设备）。 | 
 | [subPorts](_audio.md#subports) | 支持的子端口列表。 | 
 | [supportSampleFormatNum](_audio.md#supportsampleformatnum) | 支持的音频样本格式数量。 | 
-| [supportSampleFormats](_audio.md#supportsampleformats) | 支持的音频样本格式，详请参考[AudioSampleFormat](_codec.md#audiosampleformat)。 | 
+| [supportSampleFormats](_audio.md#supportsampleformats) | 支持的音频样本格式，详请参考[AudioSampleFormat](_audio.md#audiosampleformat)。 | 
 
 
 ## **详细描述**

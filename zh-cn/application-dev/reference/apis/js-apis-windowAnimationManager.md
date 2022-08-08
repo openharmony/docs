@@ -52,6 +52,88 @@ var controller = {
 windowAnimationManager.setController(controller)
 ```
 
+## windowAnimationManager.minimizeWindowWithAnimation
+
+minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: AsyncCallback&lt;WindowAnimationFinishedCallback&gt;): void
+
+最小化动画目标窗口，并返回动画完成的回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowTarget | [WindowAnimationTarget](#windowanimationtarget) | 是 | 动画目标窗口。|
+| callback | AsyncCallback&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | 是 | 动画完成后的回调。|
+
+**示例：**
+
+```js
+var target: WindowAnimationTarget = undefined;
+var controller = {
+    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: WindowAnimationTarget, floatingWindowTargets: Array<WindowAnimationTarget>): void {
+      target = fullScreenWindowTarget;
+	},
+}
+
+windowAnimationManager.setController(controller)
+
+var finishedCallback = null;
+windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
+    if (err.code) {
+        console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
+        return;
+    }
+
+    finishedCallback = data;
+});
+
+finishedCallback.onAnimationFinish();
+```
+
+## windowAnimationManager.minimizeWindowWithAnimation
+
+minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget): Promise&lt;WindowAnimationFinishedCallback&gt;
+
+最小化动画目标窗口，并返回动画完成的回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowTarget | [WindowAnimationTarget](#windowanimationtarget) | 是 | 动画目标窗口。|
+
+**返回值：**
+
+| 类型                             | 说明                                    |
+| -------------------------------- | --------------------------------------- |
+| Promise&lt;[WindowAnimationFinishedCallback](#windowanimationfinishedcallback)&gt; | Promise对象，返回动画完成的回调。 |
+
+
+**示例：**
+
+```js
+var target: WindowAnimationTarget = undefined;
+var controller = {
+    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: WindowAnimationTarget, floatingWindowTargets: Array<WindowAnimationTarget>): void {
+      target = fullScreenWindowTarget;
+	},
+}
+
+windowAnimationManager.setController(controller)
+
+let promise = windowAnimationManager.minimizeWindowWithAnimation(target);
+promise.then((data) => {
+    data.onAnimationFinish();
+}).catch((err)=>{
+    console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
+    return;
+});
+```
+
 ## WindowAnimationController
 
 窗口动画控制器。
@@ -220,6 +302,31 @@ var controller = {
 }
 ```
 
+### onWindowAnimationTargetsUpdate
+
+onWindowAnimationTargetsUpdate(fullScreenWindowTarget: WindowAnimationTarget, floatingWindowTargets: Array&lt;WindowAnimationTarget&gt;): void
+
+动画目标窗口更新时的回调
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 参数名               | 类型                            | 必填 | 说明             |
+| -------------------- | ------------------------------- | ---- | ---------------- |
+| fullScreenWindowTarget | [WindowAnimationTarget](#windowanimationtarget) | 是   | 全屏状态的动画目标窗口。|
+| floatingWindowTargets| Array&lt;[WindowAnimationTarget](#windowanimationtarget)&gt; | 是   | 悬浮状态的动画目标窗口 |
+
+**示例：**
+
+```js
+var controller = {
+    onWindowAnimationTargetsUpdate(fullScreenWindowTarget: WindowAnimationTarget, floatingWindowTargets: Array<WindowAnimationTarget>): void {
+      console.log('onWindowAnimationTargetsUpdate'.);
+    }
+}
+
+windowAnimationManager.setController(controller)
+```
+
 ## WindowAnimationFinishedCallback
 动画完成后的回调。
 
@@ -251,6 +358,7 @@ var controller = {
 | bundleName  | string | 动画目标窗口所对应的包名。 |
 | abilityName | string | 动画目标窗口所对应的Ability名称。 |
 | windowBounds | [RRect](#rrect) | 动画目标窗口所对应的实际大小。 |
+| missionId  | number | 任务ID。|
 
 ## RRect
 圆角矩形。

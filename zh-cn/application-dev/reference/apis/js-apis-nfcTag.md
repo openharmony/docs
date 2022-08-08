@@ -3,7 +3,7 @@
 本模块主要用于操作及管理NFC Tag。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## **导入模块**
@@ -21,7 +21,7 @@ getNfcATag(tagInfo: TagInfo): NfcATag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -37,7 +37,7 @@ getNfcBTag(tagInfo: TagInfo): NfcBTag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -53,7 +53,7 @@ getNfcFTag(tagInfo: TagInfo): NfcFTag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 
@@ -69,7 +69,7 @@ getNfcVTag(tagInfo: TagInfo): NfcVTag
 
 **需要权限**：ohos.permission.NFC_TAG
 
-**系统能力**：SystemCapability.Communication.NFC
+**系统能力**：SystemCapability.Communication.NFC.Core
 
 **返回值：**
 

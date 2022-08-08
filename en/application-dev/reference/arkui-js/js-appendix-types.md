@@ -1,4 +1,4 @@
-# Type Attributes
+# Data Type Attributes
 
 ## Length Type
 

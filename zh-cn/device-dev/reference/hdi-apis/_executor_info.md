@@ -18,12 +18,12 @@
 | [sensorId](#sensorid) | 传感器ID，不同传感器在人脸/口令认证驱动内的唯一标识。 | 
 | [executorType](#executortype) | 执行器类型，根据执行器支持的能力/算法类型进行分类。 | 
 | [index](#index) | 用户认证框架的执行器索引。 | 
-| [executorRole](#executorrole) | 执行器角色ExecutorRole。 | 
+| [executorRole](#executorrole) | 执行器角色。 | 
 | [authType](#authtype) | 用户认证凭据类型。 | 
 | [esl](#esl) | 执行器安全等级。 | 
 | [publicKey](#publickey) | 执行器公钥，用于校验该执行器私钥签名的信息。 | 
 | [extraInfo](#extrainfo) | 其他相关信息，用于支持信息扩展。 | 
-| [info](#info) | 执行器注册信息ExecutorRegisterInfo。 | 
+| [info](#info) | 执行器注册信息。 | 
 
 
 ## **详细描述**
@@ -63,7 +63,7 @@ enum ExecutorSecureLevel ExecutorInfo::esl
 
 **描述：**
 
-执行器安全等级ExecutorSecureLevel。
+执行器安全等级[ExecutorSecureLevel](_hdf_user_auth.md#executorsecurelevel)。
 
 
 ### executorRole
@@ -75,7 +75,7 @@ enum ExecutorRole ExecutorInfo::executorRole
 
 **描述：**
 
-执行器角色ExecutorRole。
+执行器角色[ExecutorRole](_hdf_user_auth.md#executorrole)。
 
 
 ### executorType

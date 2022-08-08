@@ -23,11 +23,17 @@ zh-cn/device-dev/quick-start/ @li-yan339
 zh-cn/device-dev/driver/ @li-yan339
 zh-cn/device-dev/get-code/ @li-yan339
 zh-cn/device-dev/hpm-part/ @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guid.md @Austin23
-zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md @Austin23
+zh-cn/device-dev/reference/hdi-apis/ @li-yan339
+zh-cn/device-dev/quick-start/quickstart-standard-env-setup.md @li-yan339 @chenmudan
+zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md @li-yan339 @chenmudan
+zh-cn/device-dev/porting/porting-thirdparty-overview.md @Austin23 @chenmudan
+zh-cn/device-dev/porting/porting-thirdparty-makefile.md @Austin23 @chenmudan
+zh-cn/device-dev/porting/porting-thirdparty-cmake.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guid.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md @Austin23 @chenmudan
 zh-cn/device-dev/subsystems/subsys-remote-start.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-overview.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-container-guide.md @duangavin123_admin
@@ -45,7 +51,7 @@ zh-cn/device-dev/subsystems/subsys-utils-overview.md @Austin23
 zh-cn/device-dev/subsystems/subsys-utils-guide.md @Austin23
 zh-cn/device-dev/subsystems/subsys-utils-faqs.md @Austin23
 zh-cn/device-dev/subsystems/subsys-aiframework-guide.md @Austin23
-zh-cn/device-dev/subsystems/subsys-aiframework-envbuild.md @Austin23
+zh-cn/device-dev/subsystems/subsys-aiframework-envbuild.md @Austin23 
 zh-cn/device-dev/subsystems/subsys-aiframework-tech-codemanage.md @Austin23
 zh-cn/device-dev/subsystems/subsys-aiframework-tech-name.md @Austin23
 zh-cn/device-dev/subsystems/subsys-aiframework-tech-interface.md @Austin23
@@ -79,14 +85,19 @@ zh-cn/device-dev/subsystems/subsys-security-sigverify.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-security-rightmanagement.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-security-communicationverify.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-security-devicesecuritylevel.md @duangavin123_admin
-zh-cn/device-dev/subsystems/subsys-boot-overview.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-init.md @Austin23
 zh-cn/device-dev/subsystems/subsys-boot-appspawn.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-appspawn-standard.md @Austin23
 zh-cn/device-dev/subsystems/subsys-boot-bootstrap.md @Austin23
-zh-cn/device-dev/subsystems/subsys-boot-syspara.md @Austin23
 zh-cn/device-dev/subsystems/subsys-boot-faqs.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-init-cfg.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-init-jobs.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-init-plugin.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-init-sandbox.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-init-service.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-init.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot-overview.md @Austin23
 zh-cn/device-dev/subsystems/subsys-boot-ref.md @Austin23
+zh-cn/device-dev/subsystems/subsys-boot.md @Austin23
 zh-cn/device-dev/subsystems/subsys-testguide-test.md @Austin23
 zh-cn/device-dev/subsystems/subsys-dfx-overview.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-dfx-hilog-rich.md @duangavin123_admin

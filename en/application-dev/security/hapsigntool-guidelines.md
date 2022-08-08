@@ -104,7 +104,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -issuerKeyPwd                    # Key password of the issuer. It is optional.
          ├── -subject                         # Certificate subject. It is mandatory.
          ├── -validity                        # Validity period of the certificate. It is optional. The default value is 3650 days.
-         ├── -signAlg                         # Signature algoritym, which can be SHA256withECDSA or SHA384withECDSA.
+         ├── -signAlg                         # Signature algorithm, which can be SHA256withECDSA or SHA384withECDSA.
          ├── -issuerKeystoreFile              # KS file of the issuer, in JKS or P12 format. It is optional.
          ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
          ├── -keystoreFile                    # KS file, in JKS or P12 format. It is mandatory.
@@ -126,7 +126,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -issuerKeyPwd                    # Key password of the issuer. It is optional.
          ├── -subject                         # Certificate subject. It is mandatory.
          ├── -validity                        # Validity period of the certificate. It is optional. The default value is 3650 days.
-         ├── -signAlg                         # Signature algoritym, which can be SHA256withECDSA or SHA384withECDSA.
+         ├── -signAlg                         # Signature algorithm, which can be SHA256withECDSA or SHA384withECDSA.
          ├── -issuerKeystoreFile              # KS file of the issuer, in JKS or P12 format. It is optional.
          ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
          ├── -keystoreFile                    # KS file, in JKS or P12 format. It is mandatory.

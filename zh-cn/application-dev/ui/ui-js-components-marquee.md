@@ -1,15 +1,15 @@
-# Marquee开发指导
+# marquee开发指导
 
 
-Marquee为跑马灯组件，用于展示一段单行滚动的文字。具体用法请参考[marquee](../reference/arkui-js/js-components-basic-marquee.md)。
+marquee为跑马灯组件，用于展示一段单行滚动的文字。具体用法请参考[marquee](../reference/arkui-js/js-components-basic-marquee.md)。
 
 
-## 创建Marquee组件
+## 创建marquee组件
 
-在pages/index目录下的hml文件中创建一个Marquee组件。
+在pages/index目录下的hml文件中创建一个marquee组件。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <marquee style="width: 100%;height: 80px; color: #ffffff; background-color: #0820ef;padding-left: 200px;">This is a marquee.</marquee>
@@ -17,7 +17,7 @@ Marquee为跑马灯组件，用于展示一段单行滚动的文字。具体用�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -34,18 +34,18 @@ Marquee为跑马灯组件，用于展示一段单行滚动的文字。具体用�
 
 ## 设置属性和样式
 
-Marquee通过color和font-weight属性设置跑马灯中文本的颜色、字体粗细和边框样式。
+marquee通过color和font-weight属性设置跑马灯中文本的颜色、字体粗细和边框样式。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
- <marquee class="customMarquee">It's a racing lamp.</marquee>
+ <marquee class="custommarquee">It's a racing lamp.</marquee>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -55,7 +55,7 @@ Marquee通过color和font-weight属性设置跑马灯中文本的颜色、字体
   align-items: center;
   background-color: #F1F3F5;
 }
-.customMarquee {
+.custommarquee {
   width: 100%;
   height: 80px;
   padding: 10px;
@@ -74,7 +74,7 @@ Marquee通过color和font-weight属性设置跑马灯中文本的颜色、字体
 通过scrollamount、loop和direction属性实现跑马灯滚动时移动的最大长度、滚动次数和文字滚动方向。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="tutorial-page">
   <div class="mymarquee">
@@ -90,7 +90,7 @@ Marquee通过color和font-weight属性设置跑马灯中文本的颜色、字体
 ```
 
 
-```
+```css
 /* xxx.css */
 .tutorial-page {
   width: 750px;
@@ -124,7 +124,7 @@ button{
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   private: {
@@ -144,7 +144,7 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 当loop的值小于等于零时，跑马灯marquee将连续滚动。如果loop未指定，则默认为-1。
 
 ![zh-cn_image_0000001227701867](figures/zh-cn_image_0000001227701867.gif)
@@ -157,7 +157,7 @@ export default {
 跑马灯的次数设置为1，在结束的时候触发finish事件使跑马灯的次数加1，字体颜色变为随机颜色，调用start方法使跑马灯再次开始滚动。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="tutorial-page">
   <div class="mymarquee">
@@ -174,7 +174,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .tutorial-page {
   width: 750px;
@@ -204,7 +204,7 @@ button{
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   private: {

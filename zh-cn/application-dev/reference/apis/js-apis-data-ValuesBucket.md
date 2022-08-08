@@ -20,7 +20,7 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
-| 名称    | 说明                 |
+| 类型    | 说明                 |
 | ------- | -------------------- |
 | number  | 表示字段类型为数字。   |
 | string  | 表示字段类型为字符串。 |
@@ -28,11 +28,10 @@ import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
 ## ValuesBucket
 
-该类型用于存储一系列键值对。
+用于存储键值对的类型。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
-| 名称          | 参数类型                                      | 必填 | 说明                                                         |
-| ------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| [key: string] | [ValueType](#valuetype)\| Uint8Array \| null | 是   | 键的类型为字符串型；值的类型可以为数字、字符串、布尔值、无符号整型8位数组、空值。 |
-
+| 键类型          | 值类型                                      | 
+| ------------- | --------------------------------------------- | 
+|  string | [ValueType](#valuetype)\| Uint8Array \| null | 

@@ -29,9 +29,9 @@
 
 ## D
 
-- ### DevEco Studio for Embedded
+- ### DevEco Device Tool
 
-    Integrated development environment (IDE) for developing embedded devices.
+    A one-stop development environment and all-in-one resource platform for smart device developers. Its comprehensive capabilities span the entire process of device development, from chip template project creation and custom development resource selection to code editing, build, debugging, and burning. 
 
 - ### DMS
 

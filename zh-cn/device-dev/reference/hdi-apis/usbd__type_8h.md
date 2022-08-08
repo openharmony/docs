@@ -27,6 +27,15 @@
 | -------- | -------- |
 | [USB_MAX_INTERFACES](_u_s_b.md#usbmaxinterfaces)&nbsp;&nbsp;&nbsp;32 | USB设备最大接口数量。 | 
 
+### 静态常量
+
+  | 静态常量 | 描述 | 
+| -------- | -------- |
+| [USB_ENDPOINT_DIR_MASK](_u_s_b.md#usb\_endpoint\_dir\_mask)&nbsp;&nbsp;&nbsp;0x80 | 从地址中提取USB Endpoint方向的位掩码。 | 
+| [USB_ENDPOINT_DIR_IN](_u_s_b.md#usb\_endpoint\_dir\_in)&nbsp;&nbsp;&nbsp;0x80 | USB Endpoint从设备到主机的数据方向。 | 
+| [USB_ENDPOINT_DIR_OUT](_u_s_b.md#usb\_endpoint\_dir\_out)&nbsp;&nbsp;&nbsp;0 | USB Endpoint从主机到设备的数据方向。 | 
+
+
 
 ### 类型定义
 

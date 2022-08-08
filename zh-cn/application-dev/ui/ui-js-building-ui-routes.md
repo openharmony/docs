@@ -17,7 +17,7 @@
 
 index和detail这两个页面均包含一个text组件和button组件：text组件用来指明当前页面，button组件用来实现两个页面之间的相互跳转。hml文件代码示例如下：
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <text class="title">This is the index page.</text>
@@ -25,7 +25,7 @@ index和detail这两个页面均包含一个text组件和button组件：text组�
 </div>
 ```
 
-```
+```html
 <!-- detail.hml -->
 <div class="container">
   <text class="title">This is the detail page.</text>
@@ -38,7 +38,7 @@ index和detail这两个页面均包含一个text组件和button组件：text组�
 
 构建index和detail页面的页面样式，text组件和button组件居中显示，两个组件之间间距为50px。css代码如下（两个页面样式代码一致）：
 
-```
+```css
 /* index.css */
 /* detail.css */
 .container {
@@ -58,7 +58,7 @@ index和detail这两个页面均包含一个text组件和button组件：text组�
 
 为了使button组件的launch方法生效，需要在页面的js文件中实现跳转逻辑。调用router.push()接口将uri指定的页面添加到路由栈中，即跳转到uri指定的页面。在调用router方法之前，需要导入router模块。代码示例如下：
 
-```
+```js
 // index.js
 import router from '@system.router';
 export default {
@@ -70,7 +70,7 @@ export default {
 }
 ```
 
-```
+```js
 // detail.js
 import router from '@system.router';
 export default {

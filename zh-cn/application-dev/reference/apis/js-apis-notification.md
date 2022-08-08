@@ -2897,7 +2897,7 @@ Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 ## Notification.enableNotificationSlot <sup>9+</sup>
 
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback<void>): void
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
 设定指定类型的渠道使能状态（Callback形式）。
 

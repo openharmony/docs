@@ -3,6 +3,7 @@
 提供根据不同媒体类型定义不同的样式。
 
 > **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -118,7 +119,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 ### 示例
 
-```js
+```ts
 import mediaquery from '@ohos.mediaquery'
 
 let portraitFunc = null

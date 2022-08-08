@@ -24,13 +24,13 @@ The table below lists only the API used in this guide. For more information, see
 
 ## Declaring Permissions
 
-Declare the permissions required by the app one by one in the project configuration file. The app cannot obtain the permissions that are not declared in the configuration file. The ability framework provides two models: Feature Ability (FA) model and Stage model. For more information, see [Ability Framework Overview](../ability/ability-brief.md).
+Declare the permissions required by the app one by one in the project configuration file. The app cannot obtain the permissions that are not declared in the configuration file. The ability framework provides two models: Feature Ability (FA) model and stage model. For more information, see [Ability Framework Overview](../ability/ability-brief.md).
 
 Note that the app bundle structure and configuration file vary with the ability framework model.
 
 ### FA Model
 
-For the apps based on the FA model, declare the permissions in the **config.json** file.
+For the apps based on the FA model, declare the required permissions in the **config.json** file.
 
 **Description of config.json**
 
@@ -75,7 +75,7 @@ For the apps based on the FA model, declare the permissions in the **config.json
 
 ### Stage Model
 
-For the apps based on the stage model, declare the permissions in the **module.json5** file.
+For the apps based on the stage model, declare the required permissions in the **module.json5** file.
 
 **Example**
 

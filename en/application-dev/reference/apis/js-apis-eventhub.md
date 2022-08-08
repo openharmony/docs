@@ -1,17 +1,11 @@
 # EventHub
 
+The **EventHub** module provides APIs to subscribe to, unsubscribe from, and trigger events.
+
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
-
-Implements event subscription, unsubscription, and triggering.
-
-## Modules to Import
-
-```js
-import Ability from '@ohos.application.Ability'
-```
 
 ## Usage
 

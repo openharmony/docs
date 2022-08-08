@@ -3,7 +3,6 @@
 例如背景模糊、内容模糊和灰度效果等。
 
 >  **说明：**
->
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -27,7 +26,7 @@
 | invert | number | 0 | 反转输入的图像。入参为图像反转的比例。值为1时完全反转。值为0则图像无变化。（百分比） |
 | colorBlend&nbsp;<sup>8+</sup> | Color&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)| | - | 为当前组件添加颜色叠加效果，入参为叠加的颜色。 |
 | sepia | number | 0 | 将图像转换为深褐色。入参为图像反转的比例。值为1则完全是深褐色的，值为0图像无变化。&nbsp;（百分比） |
-| hueRotate | number \| string | '0deg' | 为当前组件添加色相旋转效果，入参为旋转的角度值，0deg时图像无变化。入参没有最大值，超过360deg时相当于又绕一圈，即，370deg和10deg的色相旋转效果相同。 |
+| hueRotate | number | string | '0deg' | 为当前组件添加色相旋转效果，入参为旋转的角度值，0deg时图像无变化。入参没有最大值，超过360deg时相当于又绕一圈，即，370deg和10deg的色相旋转效果相同。 |
 
 
 ## 示例
@@ -37,6 +36,7 @@
 @Entry
 @Component
 struct ImageEffectsExample {
+
   build() {
     Column({space: 10}) {
       // 对字体进行模糊
@@ -75,5 +75,3 @@ struct ImageEffectsExample {
   }
 }
 ```
-
-

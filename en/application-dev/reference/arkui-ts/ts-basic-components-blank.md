@@ -6,7 +6,7 @@
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Blank&gt;** component supports automatic filling of the empty part of the container along the main axis. This component is valid only when the parent component is **&lt;Row&gt;** or **&lt;Column&gt;**.
+The **\<Blank>** component supports automatic filling of the empty part of the container along the main axis. This component is valid only when the parent component is **\<Row>** or **\<Column>**.
 
 
 ## Required Permissions
@@ -24,7 +24,7 @@ Not supported
 Blank(min?:  Length)
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | min | Length | No | 0 | Minimum size of the **&lt;Blank&gt;** component in the container along the main axis. |
 
@@ -33,9 +33,10 @@ Blank(min?:  Length)
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| color | Color | 0x00000000 | Color to fill the blank. |
+| color | [ResourceColor](../../ui/ts-types.md) | 0x00000000 | Color to fill the blank. |
 
-> **NOTE**<br>
+> **NOTE**
+>
 > Universal attribute methods are not supported.
 
 

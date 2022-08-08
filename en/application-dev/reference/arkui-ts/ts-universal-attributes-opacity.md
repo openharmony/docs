@@ -1,11 +1,12 @@
 # Opacity
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The attributes described in this topic are used to set the opacity of a component.
+You can set the opacity of a component.
 
 
 ## Required Permissions
@@ -16,15 +17,16 @@ None
 ## Attributes
 
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| opacity | number | 1 | Opacity of a component. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. | 
+| opacity | number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | 1 | Opacity of a component. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. |
 
 
 ## Example
 
-  
-```
+
+```ts
+// xxx.ets
 @Entry
 @Component
 struct OpacityExample {

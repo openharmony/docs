@@ -507,6 +507,7 @@ requestPermissions示例 :
     }
 }
 ```
+权限访问的更多说明，可参考[访问控制开发指导](../security/accesstoken-guidelines.md)
 
 #### form对象内部结构
 

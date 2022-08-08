@@ -1,6 +1,6 @@
 # Data Sharing
 
-The **DataShare** module allows applications to manage their own data and supports data sharing between applications on the same device.
+The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
 >**NOTE**
 >
@@ -10,7 +10,6 @@ The **DataShare** module allows applications to manage their own data and suppor
 ## Modules to Import
 
 ```ts
-import Ability from '@ohos.application.Ability'
 import dataShare from '@ohos.data.dataShare'
 ```
 
@@ -34,7 +33,7 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 **Example**
 
 ```ts
-import dataShare from '@ohos.data.dataShare'
+import Ability from '@ohos.application.Ability'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
@@ -72,7 +71,7 @@ Creates a **DataShareHelper** instance. This API uses a promise to return the re
 **Example**
 
 ```ts
-import dataShare from '@ohos.data.dataShare'
+import Ability from '@ohos.application.Ability'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
@@ -86,7 +85,9 @@ dataShare.createDataShareHelper(this.context, uri).then((data) => {
 
 ## DataShareHelper
 
-Provides a **DataShareHelper** instance to access or manage data on the server. Before invoking any method provided by **DataShareHelper**, you must create a **DataShareHelper** instance using [createDataShareHelper](#datasharecreatedatasharehelper).
+Provides a **DataShareHelper** instance to access or manage data on the server. Before calling an API provided by **DataShareHelper**, you must create a **DataShareHelper** instance using [createDataShareHelper](#datasharecreatedatasharehelper).
+
+This API can be used only in the stage model.
 
 ### openFile
 
@@ -109,6 +110,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt", (err, data) => {
     if (err != undefined) {
@@ -146,6 +148,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.openFile(uri, "rwt").then((data) => {
     console.info("openFile succeed, data : " + data);
@@ -176,6 +179,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 function onCallback() {
     console.info("**** Observer on callback ****");
 }
@@ -204,6 +208,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 function offCallback() {
     console.info("**** Observer off callback ****");
 }
@@ -232,6 +237,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose",
@@ -268,11 +274,12 @@ This API can be used only in the stage model.
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the index of the inserted data record.<br>The data index is not returned if the APIs of the database (for example, KVDB) in use do not support the return of indexes.|
+| Promise&lt;number&gt; | Promise used to return the index of the inserted data record.<br>The data index is not returned if the APIs of the database in use (for example, KVDB) do not support the return of indexes.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 const valueBucket = {
     "name": "rose1",
@@ -301,12 +308,13 @@ This API can be used only in the stage model.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database used. For example, the KVDB supports only **inKeys**.|
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database (for example, KVDB) in use do not support it.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -336,17 +344,18 @@ This API can be used only in the stage model.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database used. For example, the KVDB supports only **inKeys**.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**.|
 
 **Return value**
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the number of deleted data records.<br>The number of deleted data records is not returned if the APIs of the database (for example, KVDB) in use do not support it.|
+| Promise&lt;number&gt; | Promise used to return the number of deleted data records.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -374,13 +383,14 @@ This API can be used only in the stage model.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is empty, all columns will be queried.              |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -411,7 +421,7 @@ This API can be used only in the stage model.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is empty, all columns will be queried.              |
 
 **Return value**
@@ -423,6 +433,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -451,13 +462,14 @@ This API can be used only in the stage model.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database used. For example, only the relational database (RDB) supports predicates.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
 | value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database (for example, KVDB) in use do not support it.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -493,18 +505,19 @@ This API can be used only in the stage model.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database used. For example, only the RDB supports predicates.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
 | value      | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
 
 **Return value**
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the number of data records updated.<br>The number of updated data records is not returned if the APIs of the database (for example, KVDB) in use do not support it.|
+| Promise&lt;number&gt; | Promise used to return the number of data records updated.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
@@ -527,7 +540,7 @@ dataShareHelper.update(uri, da, va).then((data) => {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Inserts batch data into the database. This API uses an asynchronous callback to return the result.
+Batch inserts data into the database. This API uses an asynchronous callback to return the result.
 
 This API can be used only in the stage model.
 
@@ -539,11 +552,12 @@ This API can be used only in the stage model.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | Yes  | URI of the data to insert.                                    |
 | values   | Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.                                          |
-| callback | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of data records inserted. Otherwise, **err** is an error object.<br>The number of inserted data records is not returned if the APIs of the database (for example, KVDB) in use do not support it.|
+| callback | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of data records inserted. Otherwise, **err** is an error object.<br>The number of inserted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
@@ -561,7 +575,7 @@ dataShareHelper.batchInsert(uri, vbs, (err, data) => {
 
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
-Inserts batch data into the database. This API uses a promise to return the result.
+Batch inserts data into the database. This API uses a promise to return the result.
 
 This API can be used only in the stage model.
 
@@ -578,11 +592,12 @@ This API can be used only in the stage model.
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise used to return the number of data records inserted.<br>The number of inserted data records is not returned if the APIs of the database (for example, KVDB) in use do not support it.|
+| Promise&lt;number&gt; | Promise used to return the number of data records inserted.<br>The number of inserted data records is not returned if the APIs of the database (for example, KVDB) in use do not the return of the number of data records.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe12", "age": 21, "salary": 20.5,},
@@ -614,6 +629,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri, (err, data)=>{
     if (err != undefined) {
@@ -650,6 +666,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.getType(uri).then((data) => {
     console.log("getType succeed, data : " + data);
@@ -673,12 +690,13 @@ This API can be used only in the stage model.
 | Name          | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri            | string                                                       | Yes  | URI of the file.                                    |
-| mimeTypeFilter | string                                                       | Yes  | MIME types to match. Example:<br>**\*/\***: obtain all supported types.<br>**image/\***: obtain the MIMEs with the main type of **image**.<br>**\*/jpg**: obtains the MIMEs with subtype of **jpg**.|
-| callback       | openFile(uri: string, mode: string, callback: AsyncCallback<number>) {    let err = {"code":0};    let fd = 0;    callback(err,fd);}ts | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the MIME types obtained. Otherwise, **err** is an error object.|
+| mimeTypeFilter | string                                                       | Yes  | MIME types to match. Example:<br>**\*/\***: Obtain all supported types.<br>**image/\***: Obtain the MIMEs with the main type of **image**.<br>**\*/jpg**: Obtain the MIMEs with the subtype of **jpg**.|
+| callback       |  AsyncCallback<Array\<string>> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the MIME types obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
 dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
@@ -705,7 +723,7 @@ This API can be used only in the stage model.
 | Name          | Type  | Mandatory| Description                                                        |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
 | uri            | string | Yes  | URI of the file.                                    |
-| mimeTypeFilter | string | Yes  | MIME types to match. Example:<br>**\*/\***: obtain all supported types.<br>**image/\***: obtain the MIMEs with the main type of **image**.<br>**\*/jpg**: obtains the MIMEs with subtype of **jpg**.|
+| mimeTypeFilter | string | Yes  | MIME types to match. Example:<br>**\*/\***: Obtain all supported types.<br>**image/\***: Obtain the MIMEs with the main type of **image**.<br>**\*/jpg**: Obtain the MIMEs with the subtype of **jpg**.|
 
 **Return value**
 
@@ -716,6 +734,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let mimeTypeFilter = "image/*";
 dataShareHelper.getFileTypes(uri, mimeTypeFilter).then((data) => {
@@ -729,7 +748,7 @@ dataShareHelper.getFileTypes(uri, mimeTypeFilter).then((data) => {
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
-Normalizes a DataShare URI. The normalized URI can be used across devices, and the DataShare URI can be used only by the local device. This API uses an asynchronous callback to return the result.
+Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses an asynchronous callback to return the result.
 
 This API can be used only in the stage model.
 
@@ -745,6 +764,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -759,7 +779,7 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 
 normalizeUri(uri: string): Promise&lt;string&gt;
 
-Normalizes a DataShare URI. The normalized URI can be used across devices, and the DataShare URI can be used only by the local device. This API uses a promise to return the result.
+Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses a promise to return the result.
 
 This API can be used only in the stage model.
 
@@ -780,6 +800,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
     console.log("normalizeUri = " + data);
@@ -808,6 +829,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err != undefined) {
@@ -843,6 +865,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
     console.log("denormalizeUri = " + data);
@@ -871,6 +894,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
     console.log("***** notifyChange *****");
@@ -902,6 +926,7 @@ This API can be used only in the stage model.
 **Example**
 
 ```ts
+import Ability from '@ohos.application.Ability'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri);
 ```

@@ -15,15 +15,15 @@ import image from '@ohos.multimedia.image';
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
-通过属性创建PixelMap，通过Promise返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过Promise返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
-| 名称    | 类型                                             | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                    |
+| 名称    | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -47,7 +47,7 @@ image.createPixelMap(color, opts)
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
-通过属性创建PixelMap，通过回调函数返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过回调函数返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -90,7 +90,7 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。
+读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -121,7 +121,7 @@ pixelmap.readPixelsToBuffer(readBuffer).then(() => {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。
+读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -892,8 +892,6 @@ let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
 	    console.log('Succeeded in releasing pixelmap object.');
-    }).catch(error => {
-	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -938,7 +936,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
 | uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。  |
-| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。|
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
 
@@ -991,7 +989,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
 | fd      | number                          | 是   | 文件描述符fd。                      |
-| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。|
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
 
@@ -1039,7 +1037,7 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 | 参数名 | 类型                             | 必填 | 说明                                 |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | buf    | ArrayBuffer                      | 是   | 图像缓冲区数组。                     |
-| options | [SourceOptions](#SourceOptions) | 是   | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
 
@@ -1094,7 +1092,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 | 参数名  | 类型                            | 必填 | 说明                                 |
 | ------- | ------------------------------- | ---- | ------------------------------------ |
 | buf     | ArrayBuffer                     | 是   | 增量数据。                           |
-| options | [SourceOptions](#SourceOptions) | 否   | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 否   | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
 
@@ -1311,7 +1309,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "abc")
+imageSourceApi.modifyImageProperty("ImageWidth", "120")
             .then(() => {
                 const w = imageSourceApi.getImageProperty("ImageWidth")
                 console.info('w', w);
@@ -1332,12 +1330,12 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 | -------- | ------------------- | ---- | ------------------------------ |
 | key      | string              | 是   | 图片属性名。                   |
 | value    | string              | 是   | 属性值。                       |
-| callback | AsyncCallback<void> | 是   | 修改属性值，callback返回结果。 |
+| callback | AsyncCallback\<void> | 是   | 修改属性值，callback返回结果。 |
 
 **示例：**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "abc",() => {})
+imageSourceApi.modifyImageProperty("ImageWidth", "120",() => {})
 ```
 
 ### updateData<sup>9+</sup>
@@ -1389,7 +1387,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 | isFinished | boolean             | 是   | 是否更新完。         |
 | value      | number              | 否   | 偏移量。             |
 | length     | number              | 否   | 数组长。             |
-| callback   | AsyncCallback<void> | 是   | 回调表示成功或失败。 |
+| callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
@@ -1449,11 +1447,9 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap(pixelmap => { 
-    console.log('Succeeded in creating pixelmap object.');
-}).catch(error => {
-    console.log('Failed to create pixelmap object.');
-})
+imageSourceApi.createPixelMap((err, pixelmap) => {
+                    console.info('Succeeded in creating pixelmap object.')；
+                })
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1639,8 +1635,6 @@ let packOpts = { format:"image/jpeg", quality:98 }
 const pixelMapApi = new ArrayBuffer(400);
 imagePackerApi.packing(pixelMapApi, packOpts, data => { 
     console.log('Succeeded in packing the image.');
-}).catch(error => {
-	console.log('Failed to pack the image.');
 })
 ```
 
@@ -1857,7 +1851,7 @@ readLatestImage(): Promise\<Image>
 
 | 类型                      | 说明               |
 | ------------------------- | ------------------ |
-| Promise<[Image](#image8)> | 异步返回最新图片。 |
+| Promise<[Image](#image9)> | 异步返回最新图片。 |
 
 **示例：**
 
@@ -1995,7 +1989,7 @@ receiver.release().then(() => {
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size>    | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
 | format   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
 
 ### getComponent<sup>9+</sup>
@@ -2072,8 +2066,6 @@ release(callback: AsyncCallback\<void>): void
 ```js
 img.release(() =>{ 
     console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
 }) 
 ```
 
@@ -2143,11 +2135,12 @@ img.release().then(() =>{
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称      | 默认值 | 描述              |
-| --------- | ------ | ----------------- |
-| UNKNOWN   | 0      | 未知格式。        |
-| RGB_565   | 2      | 格式为RGB_565。   |
-| RGBA_8888 | 3      | 格式为RGBA_8888。 |
+| 名称                   | 默认值 | 描述              |
+| ---------------------- | ------ | ----------------- |
+| UNKNOWN                | 0      | 未知格式。        |
+| RGB_565                | 2      | 格式为RGB_565     |
+| RGBA_8888              | 3      | 格式为RGBA_8888。 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。 |
 
 ## AlphaType<sup>9+</sup>
 

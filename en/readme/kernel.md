@@ -211,8 +211,6 @@ LiteOS:
 
 [device\_qemu](https://gitee.com/openharmony/device_qemu/blob/master/README.md)
 
-[prebuilts\_lite\_sysroot](https://gitee.com/openharmony/prebuilts_lite_sysroot/blob/master/README.md)
-
 Linux:
 
 [kernel\_linux\_patches](https://gitee.com/openharmony/kernel_linux_patches/blob/master/README.md)

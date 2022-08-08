@@ -156,11 +156,11 @@ let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     insert(uri, valueBucket, callback) {
-        if (value == null) {
+        if (valueBucket == null) {
             console.info('invalid valueBuckets');
             return;
         }
-        rdbStore.insert(TBL_NAME, value, function (err, ret) {
+        rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
             console.info('callback ret:' + ret);
             if (callback != undefined) {
                 callback(err, ret);
@@ -183,7 +183,7 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要更新的数据的路径。 |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | valueBucket | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回更新的数据记录数。 |
 
@@ -204,7 +204,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
         if (predicates == null || predicates == undefined) {
             return;
         }
-        rdbStore.update(TBL_NAME, value, predicates, function (err, ret) {
+        rdbStore.update(TBL_NAME, valueBucket, predicates, function (err, ret) {
             if (callback != undefined) {
                 callback(err, ret);
             }
@@ -226,7 +226,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | 名称       | 参数类型                                                     | 必填 | 说明                               |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。           |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回已删除的数据记录数。 |
 
 **示例：**
@@ -268,7 +268,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 | 名称 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要查询的数据的路径。 |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | columns | Array&lt;string&gt; | 是 | 指示要查询的列。如果此参数为空，则查询所有列。 |
 | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回查询到的结果集。 |
 

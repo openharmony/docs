@@ -818,7 +818,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string                                                       | 是   | 消息                                      |
 | force7bit | boolean                                                      | 是   | 是否使用7bit编码                          |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#&lt;smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
 
 **示例：**
 
@@ -852,7 +852,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 
 | 类型                                                    | 说明                          |
 | ------------------------------------------------------- | ----------------------------- |
-| Promise&lt;[SmsSegmentsInfo](#&lt;smssegmentsinfo8)&gt; | 以Promise形式返回短信段信息。 |
+| Promise&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 以Promise形式返回短信段信息。 |
 
 **示例：**
 
@@ -1209,7 +1209,7 @@ promise.then(data => {
 | 参数名      | 类型                                                         | 必填 | 说明      |
 | ----------- | ------------------------------------------------------------ | ---- | --------- |
 | messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型  |
-| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigInd8)\|[MmsReadRecInd](#mmsreadorigind8) | 是   | pdu头类型 |
+| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | pdu头类型 |
 | attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | 否   | 附件      |
 
 ## MmsSendReq<sup>8+</sup>
@@ -1307,7 +1307,7 @@ promise.then(data => {
 | from           | [MmsAddress](#mmsaddress8)           | 否   | 来源     |
 | cc             | Array<[MmsAddress](#mmsaddress8)\>   | 否   | 抄送     |
 | subject        | string                               | 否   | 主题     |
-| priority       | [MmsPriorityType](#mmsPrioritytype8) | 否   | 优先级   |
+| priority       | [MmsPriorityType](#mmsprioritytype8) | 否   | 优先级   |
 | deliveryReport | number                               | 否   | 状态报告 |
 | readReport     | number                               | 否   | 阅读报告 |
 | retrieveStatus | number                               | 否   | 检索状态 |
@@ -1479,7 +1479,7 @@ promise.then(data => {
 | enable         | boolean              | 是   | 可行         |
 | startMessageId | number               | 是   | 消息起始ID   |
 | endMessageId   | number               | 是   | 消息结束ID   |
-| ranType        | [RanType](#rantype7) | 是   | 手机网络制式 |
+| ranType        | [RanType](#rantype7) | 是   | 设备网络制式 |
 
 ## SimMessageStatus<sup>7+</sup>
 
@@ -1499,7 +1499,7 @@ SIM卡消息状态。
 
 ## RanType<sup>7+</sup>
 
-手机网络制式。
+设备网络制式。
 
 此接口为系统接口。
 
