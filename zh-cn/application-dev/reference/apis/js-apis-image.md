@@ -2140,7 +2140,6 @@ img.release().then(() =>{
 | UNKNOWN                | 0      | 未知格式。        |
 | RGB_565                | 2      | 格式为RGB_565     |
 | RGBA_8888              | 3      | 格式为RGBA_8888。 |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。 |
 
 ## AlphaType<sup>9+</sup>
 
