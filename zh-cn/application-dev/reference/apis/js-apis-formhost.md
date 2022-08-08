@@ -1121,7 +1121,7 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
       console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
   });
   ```
-## shareForm
+## shareForm<sup>9+</sup>
 
 shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
 
@@ -1153,7 +1153,7 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
   });
   ```
 
-## shareForm
+## shareForm<sup>9+</sup>
 
 shareForm(formId: string, deviceId: string): Promise&lt;void&gt;;
 
