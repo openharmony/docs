@@ -12,10 +12,6 @@
 import bundle from '@ohos.bundle';
 ```
 
-## 系统能力
-
-SystemCapability.BundleManager.BundleFramework
-
 ## 权限列表
 
 | 权限                                       | 权限等级     | 描述               |
