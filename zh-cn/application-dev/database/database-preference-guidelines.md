@@ -139,7 +139,7 @@
 
    ```js
     var observer = function (key) {
-        console.info("The key of " + key + " changed.");
+        console.info("The key" + key + " changed.");
     }
     preferences.on('change', observer);
     preferences.put('startup', 'auto', function (err) {
