@@ -547,7 +547,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | actionType | [InterruptActionType](#interruptactiontype) | Yes  | Returned event type. The value **TYPE_ACTIVATED** means the focus gain event, and **TYPE_INTERRUPT** means the audio interruption event.|
 | type       | [InterruptType](#interrupttype)             | No  | Type of the audio interruption event.                                              |
-| hint       | [InterruptHint](#interrupthint)              | No  | Hint provided along with the audio interruption event.                                              |
+| hint       | [InterruptHint](#interrupthint)             | No  | Hint provided along with the audio interruption event.                                              |
 | activated  | boolean                                     | No  | Whether the focus is gained or released. The value **true** means that the focus is gained or released, and **false** means that the focus fails to be gained or released.|
 
 ## VolumeEvent<sup>8+</sup>
@@ -572,7 +572,7 @@ Describes the device connection status and device information.
 
 | Name             | Type                                             | Mandatory| Description              |
 | :---------------- | :------------------------------------------------ | :--- | :----------------- |
-| type              | [DeviceChangeType](#devicechangetype)             | Yes  | Device connection status.|
+| type              | [DeviceChangeType](#devicechangetype)          | Yes  | Device connection status.|
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes  | Device information.        |
 
 ## DeviceChangeType
@@ -643,7 +643,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 
 Sets the volume for a stream. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY (This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.)
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -673,7 +673,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 Sets the volume for a stream. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY (This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.)
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -869,6 +869,8 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 Mutes or unmutes a stream. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY (This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.)
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -896,6 +898,8 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 Mutes or unmutes a stream. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY (This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.)
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1039,7 +1043,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the ringer mode. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY (This permission is required only for muting or unmuting the ringer.)
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
@@ -1068,7 +1072,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 Sets the ringer mode. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY (This permission is required only for muting or unmuting the ringer.)
 
 **System capability**: SystemCapability.Multimedia.Audio.Communication
 
@@ -1469,7 +1473,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 Mutes or unmutes the microphone. This API uses a promise to return the result.
 
-**Required permissions:** ohos.permission.MICROPHONE
+**Required permissions**: ohos.permission.MICROPHONE
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -1560,7 +1564,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Event type. The value **volumeChange** means the system volume change event, which is triggered when a system volume change is detected.|
+| type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected.|
 | callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
 
 **Example**
@@ -1587,8 +1591,8 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Event type. The value **ringerModeChange** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the updated ringer mode.                                                  |
+| type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the updated ringer mode.                           |
 
 **Example**
 
@@ -1610,7 +1614,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
+| type     | string                                               | Yes  | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected.|
 | callback | Callback<[DeviceChangeAction](#DeviceChangeAction)\> | Yes  | Callback used to return the device update details.                        |
 
 **Example**
@@ -1636,7 +1640,7 @@ Unsubscribes from device change events.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
+| type     | string                                              | Yes  | Event type. The value **'deviceChange'** means the device change event, which is triggered when a device connection status change is detected.|
 | callback | Callback<[DeviceChangeAction](#DeviceChangeAction)> | No  | Callback used to return the device update details.                        |
 
 **Example**
@@ -1659,7 +1663,7 @@ Subscribes to audio interruption events. When the application's audio is interru
 
 | Name   | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Event type. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| type      | string                                        | Yes  | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptaction)> | Yes  | Callback invoked for the audio interruption event.                                      |
 
@@ -1695,7 +1699,7 @@ Unsubscribes from audio interruption events.
 
 | Name   | Type                                         | Mandatory| Description                                                        |
 | --------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type      | string                                        | Yes  | Event type. The value **interrupt** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
+| type      | string                                        | Yes  | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when the audio playback of the current application is interrupted by another application.|
 | interrupt | AudioInterrupt                                | Yes  | Audio interruption event type.                                    |
 | callback  | Callback<[InterruptAction](#interruptaction)> | No  | Callback invoked for the audio interruption event.                                      |
 
@@ -2257,7 +2261,7 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 | Name  | Type                  | Mandatory| Description                                               |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | buffer   | ArrayBuffer            | Yes  | Buffer to be written.                               |
-| callback | AsyncCallback\<number> | Yes  | Returns the number of bytes written if the operation is successful; returns an error code otherwise.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned.|
 
 **Example**
 
@@ -2325,7 +2329,7 @@ Writes the buffer. This API uses a promise to return the result.
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | Returns the number of bytes written if the operation is successful; returns an error code otherwise.|
+| Promise\<number> | Promise used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned.|
 
 **Example**
 
@@ -2621,7 +2625,7 @@ Subscribes to audio interruption events. This API uses a callback to get interru
 
 | Name  | Type                                        | Mandatory| Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | Yes  | Event type. The value **interrupt** means the audio interruption event, which is triggered when audio playback is interrupted.|
+| type     | string                                       | Yes  | Event type. The value **'interrupt'** means the audio interruption event, which is triggered when audio playback is interrupted.|
 | callback | Callback<[InterruptEvent](#interruptevent9)> | Yes  | Callback used to return the audio interruption event.                                    |
 
 **Example**
@@ -2687,7 +2691,7 @@ Subscribes to mark reached events. When the number of frames rendered reaches th
 
 | Name  | Type                    | Mandatory| Description                                     |
 | :------- | :----------------------- | :--- | :---------------------------------------- |
-| type     | string                   | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
+| type     | string                   | Yes  | Event type. The value **'markReach'** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
 | frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.        |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.                   |
 
@@ -2714,7 +2718,7 @@ Unsubscribes from mark reached events.
 
 | Name| Type  | Mandatory| Description                                             |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **markReach**.|
+| type   | string | Yes  | Event type. The value is fixed at **'markReach'**.|
 
 **Example**
 
@@ -2734,8 +2738,8 @@ Subscribes to period reached events. When the period of frame rendering reaches 
 
 | Name  | Type                    | Mandatory| Description                                       |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter.|
-| frame    | number                   | Yes  | Period during which frame rendering is listened. The value must be greater than **0**.          |
+| type     | string                   | Yes  | Event type. The value **'periodReach'** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter.|
+| frame    | number                   | Yes  | Period during which frame rendering is listened. The value must be greater than **0**. |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.                     |
 
 **Example**
@@ -2760,7 +2764,7 @@ Unsubscribes from period reached events.
 
 | Name| Type  | Mandatory| Description                                               |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| type   | string | Yes  | Event type. The value is fixed at **periodReach**.|
+| type   | string | Yes  | Event type. The value is fixed at **'periodReach'**.|
 
 **Example**
 
@@ -2780,7 +2784,7 @@ Subscribes to state change events.
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type. The value **stateChange** means the state change event.|
+| type     | string                     | Yes  | Event type. The value **'stateChange'** means the state change event.|
 | callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
 
 **Example**
@@ -2806,7 +2810,7 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 
 | Name | Type                    | Readable| Writable| Description            |
 | :---- | :------------------------- | :--- | :--- | :--------------- |
-| state<sup>8+</sup>  | [AudioState](#audiostate8) | Yes| No  | Audio capturer state.|
+| state<sup>8+</sup> | [AudioState](#audiostate8) | Yes | No  | Audio capturer state.|
 
 **Example**
 
@@ -3175,7 +3179,7 @@ Reads the buffer. This API uses a promise to return the result.
 
 | Type                 | Description                                                  |
 | :-------------------- | :----------------------------------------------------- |
-| Promise<ArrayBuffer\> | Returns the buffer data read if the operation is successful; returns an error code otherwise.|
+| Promise<ArrayBuffer\> | Promise used to return the result. If the operation is successful, the buffer data read is returned; otherwise, an error code is returned.|
 
 **Example**
 
@@ -3208,7 +3212,7 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 | Name  | Type                  | Mandatory| Description                          |
 | :------- | :--------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the timestamp.|
+| callback | AsyncCallback<number\> | Yes  | Callback used to return the timestamp. |
 
 **Example**
 
@@ -3313,7 +3317,7 @@ Subscribes to mark reached events. When the number of frames captured reaches th
 
 | Name  | Type                   | Mandatory| Description                                      |
 | :------- | :---------------------- | :--- | :----------------------------------------- |
-| type     | string                  | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
+| type     | string                  | Yes  | Event type. The value **'markReach'** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
 | frame    | number                  | Yes  | Number of frames to trigger the event. The value must be greater than **0**.          |
 | callback | position: number) => {} | Yes  | Callback invoked when the event is triggered.|
 
@@ -3339,7 +3343,7 @@ Unsubscribes from mark reached events.
 
 | Name| Type  | Mandatory| Description                                         |
 | :----- | :----- | :--- | :-------------------------------------------- |
-| type   | string | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
+| type   | string | Yes  | Event type. The value **'markReach'** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
 
 **Example**
 
@@ -3359,8 +3363,8 @@ Subscribes to mark reached events. When the period of frame capturing reaches th
 
 | Name  | Type                    | Mandatory| Description                                       |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
-| frame    | number                   | Yes  | Period during which frame capturing is listened. The value must be greater than **0**.           |
+| type     | string                   | Yes  | Event type. The value **'periodReach'** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter. |
+| frame    | number                   | Yes  | Period during which frame capturing is listened. The value must be greater than **0**. |
 | callback | (position: number) => {} | Yes  | Callback invoked when the event is triggered.   |
 
 **Example**
@@ -3385,7 +3389,7 @@ Unsubscribes from period reached events.
 
 | Name| Type  | Mandatory| Description                                           |
 | :----- | :----- | :--- | :---------------------------------------------- |
-| type   | string | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
+| type   | string | Yes  | Event type. The value **'periodReach'** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
 
 **Example**
 
@@ -3405,7 +3409,7 @@ Subscribes to state change events.
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type. The value **stateChange** means the state change event.|
+| type     | string                     | Yes  | Event type. The value **'stateChange'** means the state change event.|
 | callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
 
 **Example**
