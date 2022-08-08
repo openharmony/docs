@@ -7,8 +7,6 @@ Context模块提供开发者运行代码的上下文环境的能力，包括查�
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
-提供开发者运行代码的上下文环境，包括应用信息、ResourceManager等信息。
-
 ## 使用说明
 
 通过AbilityContext等继承实现。
@@ -27,7 +25,7 @@ import AbilityContext from '@ohos.application.Ability'
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-  | 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | resourceManager | resmgr.ResourceManager; | 是 | 否 | ResourceManager对象。 |
 | applicationInfo | ApplicationInfo | 是 | 否 | 当前应用信息。 |
@@ -47,7 +45,11 @@ createBundleContext(bundleName: string): Context;
 
 创建指定应用上下文。
 
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -116,6 +118,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 创建指定应用上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

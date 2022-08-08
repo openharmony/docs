@@ -1,5 +1,5 @@
 # Display
-Provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
+The **Display** module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
 > **NOTE**
 >
@@ -14,11 +14,11 @@ import display from '@ohos.display';
 
 ## DisplayState
 
-Provides the state of a display.
+Enumerates the display states.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Default Value| Description|
+| Name| Value| Description|
 | -------- | -------- | -------- |
 | STATE_UNKNOWN | 0 | Unknown.|
 | STATE_OFF | 1 | The display is shut down.|
@@ -56,7 +56,7 @@ Describes the attributes of a display.
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
-Obtains the default display object.
+Obtains the default display object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -82,7 +82,7 @@ Obtains the default display object.
 
 getDefaultDisplay(): Promise&lt;Display&gt;
 
-Obtains the default display object.
+Obtains the default display object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -103,11 +103,31 @@ Obtains the default display object.
   });
   ```
 
+## display.getDefaultDisplaySync<sup>9+</sup>
+
+getDefaultDisplaySync(): Display
+
+Obtains the default display object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type                          | Description                                          |
+| ------------------------------| ----------------------------------------------|
+| [Display](#display) | Default display object.|
+
+**Example**
+
+```js
+var displayClass = display.getDefaultDisplaySync();
+```
+
 ## display.getAllDisplay
 
 getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
-Obtains all the display objects.
+Obtains all display objects. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -133,7 +153,7 @@ Obtains all the display objects.
 
 getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
-Obtains all the display objects.
+Obtains all display objects. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -158,15 +178,15 @@ Obtains all the display objects.
 
 on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
-Enables listening.
+Subscribes to display changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Listening type. The available values are as follows:<br>- **add**: listening for whether a display is added<br>- **remove**: listening for whether a display is removed<br>- **change**: listening for whether a display is changed|
-  | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 **Example**
   ```js
@@ -181,14 +201,14 @@ Enables listening.
 
 off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
-Disables listening.
+Unsubscribes from display changes.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Listening type. The available values are as follows:<br>- **add**: listening for whether a display is added<br>- **remove**: listening for whether a display is removed<br>- **change**: listening for whether a display is changed|
+  | type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
   | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**

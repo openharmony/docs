@@ -11,81 +11,22 @@ FormExtensionContext模块提供FormExtension具有的接口和能力。
 
 ## 使用说明
 
-FormExtensionContext模块是FormExtension的上下文环境，继承自ExtensionContext。
+在使用FormExtensionContext的功能前，需要通过FormExtension获取。
+```js
+import FormExtension from '@ohos.application.FormExtension';
+import formBindingData from '@ohos.application.formBindingData'
+export default class MyFormExtension extends FormExtension {
+    onCreate() {
+        let dataObj1 = {
+            temperature:"11c",
+            "time":"11:00"
+        };
+        let obj1 = formBindingData.createFormBindingData(dataObj1);
+        return obj1;
+    }
+}
 
-## FormExtensionContext.updateForm
-
-updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void
-
-主动更新卡片。
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-  | 参数名          | 类型                                                         | 必填 | 说明                                   |
-  | --------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-  | formId          | string                                                       | 是   | 请求更新的卡片ID。                     |
-  | formBindingData | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 卡片新的数据。                         |
-  | callback        | AsyncCallback\<void>                                         | 是   | 回调函数，返回接口调用是否成功的结果。 |
-
-**示例：**
-
-  ```js
-  import formBindingData from '@ohos.application.formBindingData'
-  import FormExtension from '@ohos.application.FormExtension'
-  export default class MyFormExtension extends FormExtension {
-      onUpdate(formId) {
-          console.log('FormExtension onUpdate, formId:' + formId);
-          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-          this.context.updateForm(formId, obj2, (data)=>{
-              console.log('FormExtension context updateForm, data:' + data);
-          });
-      }
-  }
-
-
-  ```
-
-## FormExtensionContext.updateForm
-
-updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void>
-
-更新卡片。
-
-**系统能力**：SystemCapability.Ability.Form
-
-**参数：**
-
-  | 参数名          | 类型                                                         | 必填 | 说明               |
-  | --------------- | ------------------------------------------------------------ | ---- | ------------------ |
-  | formId          | string                                                       | 是   | 请求更新的卡片ID。 |
-  | formBindingData | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | 是   | 卡片新的数据。     |
-
-**返回值：**
-
-  | 类型           | 说明                              |
-  | -------------- | --------------------------------- |
-  | Promise\<void> | 返回一个Promise，包含接口的结果。 |
-
-**示例：**
-
-  ```js
-  import formBindingData from '@ohos.application.formBindingData'
-  import FormExtension from '@ohos.application.FormExtension'
-  export default class MyFormExtension extends FormExtension {
-      onUpdate(formId) {
-          console.log('FormExtension onUpdate, formId:' + formId);
-          let obj2 = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
-          this.context.updateForm(formId, obj2)
-              .then((data)=>{
-                  console.log('FormExtension context updateForm, data:' + data);
-              }).catch((error) => {
-              console.error('Operation updateForm failed. Cause: ' + error);});
-      }
-  }
-
-  ```
+```
 
 ## FormExtensionContext.startAbility
 
@@ -94,6 +35,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 拉起一个卡片所属应用的Ability。
 
 **系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -124,7 +67,11 @@ this.context.startAbility(want, function(err) {
 
 startAbility(want: Want): Promise&lt;void&gt;
 
+拉起一个卡片所属应用的Ability。
+
 **系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

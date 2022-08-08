@@ -262,9 +262,9 @@ if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
 TEST_ENABLE = "YES"
 
 if (TEST_ENABLE == "YES") {
-    MAKE_COMMAND = "make test OHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
+    MAKE_COMMAND = "make test OHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
 } else {
-    MAKE_COMMAND = "make OHOS_SYSROOT_PATH=${ohos_root_path}prebuilts/lite/sysroot/"
+    MAKE_COMMAND = "make OHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
 }
 ```
 

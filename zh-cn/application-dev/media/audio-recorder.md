@@ -192,5 +192,5 @@ export class AudioRecorderDemo {
 
 - [`Recorder`：录音机（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder)
 - [`JsRecorder`：录音机（JS）（API8)](https://gitee.com/openharmony/app_samples/tree/master/media/JSRecorder)
-- [`eTsAudioPlayer`: 音频播放器（eTS）](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
-- [音频播放器](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
+- [`eTsAudioPlayer`: 音频播放器（eTS）（API8）](https://gitee.com/openharmony/app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [音频播放器（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

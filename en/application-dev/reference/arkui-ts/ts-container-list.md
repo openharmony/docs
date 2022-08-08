@@ -21,13 +21,14 @@ This component contains the child component [\<ListItem>](ts-container-listitem.
 
 ## APIs
 
-List(value:{space?: number, initialIndex?: number})
+List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller})
 
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | space | number | No | 0 | Spacing between list items. |
-  | initialIndex | number | No | 0 | Item displayed at the beginning of the component when the current list is loaded for the first time, that is, the first item to be displayed. If the configured sequence number is greater than the sequence number of the last item, the setting does not take effect. |
+  | space | number&nbsp;\|&nbsp;string | No | 0 | Spacing between list items. |
+  | initialIndex | number | No | 0 | Item displayed at the beginning of the viewport when the current list is loaded for the first time, that is, the first item to be displayed. If the value set is greater than the sequence number of the last item, the setting does not take effect. |
+  | scroller | [Scroller](ts-container-scroll.md#scroller) | No | - | Controller bound to the list to control the scrolling. |
 
 
 ## Attributes
@@ -36,8 +37,8 @@ List(value:{space?: number, initialIndex?: number})
 | -------- | -------- | -------- | -------- |
 | listDirection | [Axis](ts-appendix-enums.md#axis-enums) | Vertical | Direction in which the list items are arranged. For details, see **Axis** enums. |
 | divider | {<br>strokeWidth: Length,<br>color?:Color,<br>startMargin?: Length,<br>endMargin?: Length<br>} | - | Style of the divider for the list items. By default, there is no divider.<br>**strokeWidth**: stroke width of the divider.<br>**color**: color of the divider.<br>**startMargin**: distance between the divider and the start of the list.<br>**endMargin**: distance between the divider and the end of the list. |
-| editMode | boolean | false | Whether the **&lt;List&gt;** component is in editable mode. |
-| edgeEffect | EdgeEffect | EdgeEffect.Spring | Sliding effect. For details, see EdgeEffect enums. |
+| editMode | boolean | false | Whether the **\<List>** component is in editable mode. |
+| edgeEffect | EdgeEffect | EdgeEffect.Spring | Sliding effect. For details, see **EdgeEffect enums**. |
 | chainAnimation | boolean | false | Whether to display chained animations on this list when it slides or its top and bottom are dragged. The list items are separated with even space, and one item animation starts after the previous animation during basic sliding interactions. The chained animation effect is similar with spring physics.<br>- **false**: No chained animations are displayed.<br>- **true**: Chained animations are displayed. |
 | multiSelectable<sup>8+</sup> | boolean | false | Whether to enable mouse frame selection.<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled. |
 | restoreId<sup>8+</sup> | number | - | Migration ID of the component. During application migration, the status of the component is migrated to the component with the same migration ID on the peer end.<br>For a **<\List>** component, the status includes the item serial number displayed at the start position. |
@@ -48,7 +49,7 @@ List(value:{space?: number, initialIndex?: number})
   | Name | Description |
   | -------- | -------- |
   | Spring | Similar to the physical dynamic effect of a spring. After scrolling to the edge, the user can continue to scroll for a distance based on the initial speed or by touching the knob of the scrollbar. After the user releases their hand, the knob is rebounded. |
-  | None | No effect after the scrollbar is moved to the edge. |
+  | None | No effect when the list is scrolled to the edge. |
 
 - ListItemAlign enums
 
@@ -64,7 +65,8 @@ List(value:{space?: number, initialIndex?: number})
 | Name | Description |
 | -------- | -------- |
 | onItemDelete(index: number) =&gt; boolean | Triggered when a list item is deleted. |
-| onScrollIndex(firstIndex: number, lastIndex: number) =&gt; void | Triggered when the start position and end position of the current list are changed. |
+| onScrollBegin<sup>9+</sup>(dx: number, dy: number)&nbsp;=&gt;&nbsp;{ dxRemain: number, dyRemain: number } | Triggered when scrolling starts.<br/>Parameters:<br/>- **dx**: amount by which the list will scroll in the horizontal direction.<br/>- **dy**: amount by which the list will scroll in the vertical direction.<br/>Return value:<br/>- **dxRemain**: remaining amount by which the list can scroll in the horizontal direction.<br/>- **dyRemain**: remaining amount by which the list can scroll in the vertical direction. |
+| onScrollIndex(firstIndex:&nbsp;number,&nbsp;lastIndex:&nbsp;number)&nbsp;=&gt;&nbsp;void | Triggered when the start position and end position of the current list are changed. |
 
 > **NOTE**
 >
@@ -106,9 +108,9 @@ struct ListExample {
             }.editable(true)
           }, item => item)
         }
-        .listDirection(Axis.Vertical) // Arrangement direction
-        .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // Divider line
-        .edgeEffect(EdgeEffect.None) // No effect when sliding to the edge
+        .listDirection(Axis.Vertical) // Direction in which the list items are arranged.
+        .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // Style of the divider for the list items.
+        .edgeEffect(EdgeEffect.None) // No effect when the list is scrolled to the edge.
         .chainAnimation(false) // Chained animations are disabled.
         .onScrollIndex((firstIndex: number, lastIndex: number) => {
           console.info('first' + firstIndex)
@@ -166,7 +168,7 @@ struct ListLanesExample {
       .lanes({ minLength: 40, maxLength: 60 })
       .alignListItem(this.alignListItem)
 
-      Button("Change alignListItem: "+ this.alignListItem).onClick(() => {
+      Button("Change alignListItem:" + this.alignListItem).onClick(() => {
         if (this.alignListItem == ListItemAlign.Start) {
           this.alignListItem = ListItemAlign.Center
         } else if (this.alignListItem == ListItemAlign.Center) {
@@ -179,3 +181,4 @@ struct ListLanesExample {
   }
 }
 ```
+

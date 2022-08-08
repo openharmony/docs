@@ -210,6 +210,16 @@
 | RdbStore |restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void| 从指定的数据库备份文件恢复数据库，结果以callback形式返回。<br/>-&nbsp;srcName：指定数据库的备份文件名。<br/>-&nbsp;callback：指定callback回调函数。 |
 | RdbStore |restore(srcName:string): Promise&lt;void&gt;| 从指定的数据库备份文件恢复数据库，结果以promise形式返回。<br/>-&nbsp;srcName：指定数据库的备份文件名。 |
 
+**事务**
+
+**表15** 事务
+
+| 类名 | 接口名 | 描述 |
+| -------- | -------- | -------- |
+| RdbStore |beginTransaction():void| 在开始执行SQL语句之前，开始事务。 |
+| RdbStore |commit():void| 提交已执行的SQL语句。 |
+| RdbStore |rollBack():void| 回滚已经执行的SQL语句。 |
+
 ## 开发步骤
 
 1. 创建数据库。
@@ -278,9 +288,9 @@
 
     ```js
     "requestPermissions": 
-        {
-            "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-        }
+    {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+    }
     ```
 
     (2) 获取应用权限。
@@ -321,7 +331,7 @@
     promise.then((result) => {
         console.log('sync done.')
         for (let i = 0; i < result.length; i++) {
-            console.log('device=' + result[i][0] + ' status=' + result[i][1])
+            console.log('device=' + result[i][0] + 'status=' + result[i][1])
         }
     }).catch((err) => {
         console.log('sync failed')
@@ -339,7 +349,7 @@
     ```js
     function storeObserver(devices) {
         for (let i = 0; i < devices.length; i++) {
-            console.log('device=' + device[i] + ' data changed')
+            console.log('device=' + device[i] + 'data changed')
         }
     }
     try {
@@ -372,17 +382,17 @@
 
     ```js
     let promiseBackup = rdbStore.backup("dbBackup.db")
-    promiseBackup.then(()=>{
+    promiseBackup.then(() => {
         console.info('Backup success.')
-    }).catch((err)=>{
+    }).catch((err) => {
         console.info('Backup failed, err: ' + err)
     })
     ```
     ```js
     let promiseRestore = rdbStore.restore("dbBackup.db")
-    promiseRestore.then(()=>{
+    promiseRestore.then(() => {
         console.info('Restore success.')
-    }).catch((err)=>{
+    }).catch((err) => {
         console.info('Restore failed, err: ' + err)
     })
     ```
@@ -391,4 +401,4 @@
 针对关系型数据库开发，有以下相关实例可供参考：
 - [`Rdb`：关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
 - [`DistributedRdb`：分布式关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb)
-- [关系型数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)
+- [关系型数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)

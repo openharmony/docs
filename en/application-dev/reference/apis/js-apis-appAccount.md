@@ -21,7 +21,7 @@ Creates an **AppAccountManager** instance.
 
 **System capability**: SystemCapability.Account.AppAccount
 
-**Return Value**
+**Return value**
 
 | Type               | Description          |
 | ----------------- | ------------ |
@@ -102,7 +102,7 @@ Adds an app account name and additional information (information that can be con
 | name      | string | Yes   | Name of the app account to add.                             |
 | extraInfo | string | Yes   | Additional information to add. The additional information cannot contain sensitive information, such as the app account password.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | ------------------- | --------------------- |
@@ -198,7 +198,7 @@ Deletes an app account from the **AppAccountManager** service. This API uses a p
 | ---- | ------ | ---- | ----------- |
 | name | string | Yes   | Name of the app account to delete.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
@@ -255,7 +255,7 @@ Disables an app account from accessing an app with the given bundle name. This A
 | name       | string | Yes   | Name of the target app account.|
 | bundleName | string | Yes   | Bundle name of the app.       |
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
@@ -312,7 +312,7 @@ Enables an app account to access an app with the given bundle name. This API use
 | name       | string | Yes   | Name of the target app account.  |
 | bundleName | string | Yes   | Bundle name of the app.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
@@ -371,7 +371,7 @@ Checks whether an app account allows app data synchronization. This API uses a p
 | ---- | ------ | ---- | ------- |
 | name | string | Yes   | Name of the target app account.|
 
-**Return Value**
+**Return value**
 
 | Type                    | Description                   |
 | :--------------------- | :-------------------- |
@@ -430,7 +430,7 @@ Sets a credential for an app account. This API uses a promise to return the resu
 | credentialType | string | Yes   | Type of the credential to set.|
 | credential     | string | Yes   | Credential to set.   |
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
@@ -487,7 +487,7 @@ Sets additional information for an app account. This API uses a promise to retur
 | name      | string | Yes   | Name of the target app account.  |
 | extraInfo | string | Yes   | Additional information to set.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
@@ -548,7 +548,7 @@ Sets whether to enable app data synchronization for an app account. This API use
 | name     | string  | Yes   | Name of the target app account.    |
 | isEnable | boolean | Yes   | Whether to enable app data synchronization.|
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
@@ -606,7 +606,7 @@ Sets data to be associated with an app account. This API uses a promise to retur
 | key   | string | Yes   | Key of the data to set. The private key can be customized.|
 | value | string | Yes   | Value of the data to be set.        |
 
-**Return Value**
+**Return value**
 
 | Type                 | Description                   |
 | :------------------ | :-------------------- |
@@ -664,7 +664,7 @@ Obtains the credential of an app account. This API uses a promise to return the 
 | name           | string | Yes   | Name of the target app account.   |
 | credentialType | string | Yes   | Type of the credential to obtain.|
 
-**Return Value**
+**Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
@@ -720,7 +720,7 @@ Obtains additional information of an app account. This API uses a promise to ret
 | ---- | ------ | ---- | ------- |
 | name | string | Yes   | Name of the target app account.|
 
-**Return Value**
+**Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |
@@ -778,7 +778,7 @@ Obtains data associated with an app account. This API uses a promise to return t
 | name | string | Yes   | Name of the target app account.  |
 | key  | string | Yes   | Key of the data to obtain.|
 
-**Return Value**
+**Return value**
 
 | Type                   | Description                   |
 | :-------------------- | :-------------------- |

@@ -82,7 +82,7 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
      [2]Reply from 10.67.212.178: time=1ms TTL=63
      [3]Reply from 10.67.212.178: time=1ms TTL=63
      --- 10.67.212.178 ping statistics ---
-3. packets transmitted, 4 received, 0 loss
+     packets transmitted, 4 received, 0 loss
 
    客户端NFS初始化，运行命令：
 
@@ -124,7 +124,7 @@ OpenHarmony LiteOS-A内核的NFS文件系统指的是NFS的客户端，NFS客户
    > 
    > 至此，NFS客户端设置完毕。NFS文件系统已成功挂载。
 
-4. 利用NFS共享文件
+3. 利用NFS共享文件
 
    在NFS服务器下新建目录dir，并保存。在OpenHarmony内核下运行ls命令：
 

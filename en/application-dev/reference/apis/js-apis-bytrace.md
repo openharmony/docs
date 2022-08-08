@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
-```
+ ```js
 import bytrace from '@ohos.bytrace';
 ```
 
@@ -35,7 +35,7 @@ Marks the start of a timeslice trace task.
 
 **Example**
 
-```
+ ```js
 bytrace.startTrace("myTestFunc", 1);
 bytrace.startTrace("myTestFunc", 1, 5); // The expected duration of the trace is 5 ms.
 ```
@@ -62,7 +62,7 @@ Marks the end of a timeslice trace task.
 
 **Example**
 
-```
+ ```js
 bytrace.finishTrace("myTestFunc", 1);
 ```
 
@@ -105,7 +105,7 @@ Defines the variable that indicates the number of timeslice trace tasks.
 
 **Example**
 
-```
+ ```js
 let traceCount = 3;
 bytrace.traceByValue("myTestCount", traceCount);
 traceCount = 4;

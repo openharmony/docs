@@ -1,99 +1,233 @@
-# HiSysEvent Logging<a name="EN-US_TOPIC_0000001231373947"></a>
+# HiSysEvent Logging
 
-## Overview<a name="section77571101789"></a>
+## Overview
 
-### Introduction<a name="section123133332175224"></a>
+### Introduction
 
-HiSysEvent provides event logging APIs for OpenHarmony to record important information of key processes during system running, helping you locate faults. In addition, you can upload the log data to the cloud for big data analytics.
+HiSysEvent provides event logging APIs for OpenHarmony to record important information of key processes during system running. Besides, it supports shielding of event logging by event domain, helping you to evaluate the impact of event logging.
 
-### Constraints<a name="section123181432175224"></a>
+### Working Principles
 
-Before logging system events, you need to configure HiSysEvent logging. For details, see [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md).
+Before logging system events, you need to complete HiSysEvent logging configuration. For details, see [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md).
 
-## Development Guidelines<a name="section314416685113"></a>
+## Development Guidelines
 
-### Available APIs<a name="section13480315886"></a>
+### When to Use
 
-The following table lists the C++ APIs provided by the HiSysEvent class.
+Use HiSysEvent logging to flush logged event data to disks.
 
-For details about the HiSysEvent class, see the API reference.
+### Available APIs
 
-**Table 1** C++ APIs provided by HiSysEvent
+#### C++ Event Logging APIs
 
-| API| Description|
-| -------- | --------- |
-| template&lt;typename... Types&gt; static int Write(const std::string &amp;domain, const std::string &amp;eventName, EventType type, Types... keyValues) | Logs system events. <br><br>Input arguments: <ul><li>**domain**: Indicates the domain related to the event. You can use a preconfigured domain or customize a domain as needed. The name of a custom domain can contain a maximum of 16 characters, including digits (0-9) and uppercase letters (A-Z). It must start with a letter. </li><li>**eventName**: Indicates the event name. The value contains a maximum of 32 characters, including digits (0 to 9), letters (A-Z), and underscores (&#95;). It must start with a letter and cannot end with an underscore. </li><li>**type**: Indicates the event type. For details, see EventType. </li><li>**keyValues**: Indicates the key-value pairs of event parameters. It can be in the format of the basic data type, std::string, std::vector&lt;basic data type&gt;, or std:vector&lt;std::string&gt;. The value contains a maximum of 48 characters, including digits (0 to 9), letters (A-Z), and underscores (&#95;). It must start with a letter and cannot end with an underscore. The number of parameter names cannot exceed 32. </li></ul>Return value: <ul><li>**0**: The logging is successful. </li><li>Negative value: The logging has failed.</li></ul> |
+HiSysEvent logging is implemented using the API provided by the **HiSysEvent** class. For details, see the API Reference.
 
-**Table 2** Description of HiSysEvent::Domain APIs
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> In OpenHarmony-3.2-Beta3, HiSysEvent logging is open for restricted use to avoid event storms. The **HiSysEvent::Write** API in Table 1 is replaced by the **HiSysEventWrite** API in Table 2. The **HiSysEvent::Write** API has been deprecated. Use the **HiSysEventWrite** API instead for HiSysEvent logging.
 
-| API| Description|
-| -------- | --------- |
-| static const std::string AAFWK | Atomic ability subsystem|
-| static const std::string APPEXECFWK | User program framework subsystem|
-| static const std::string ACCOUNT | Account subsystem|
-| static const std::string ARKUI | ARKUI subsystem|
-| static const std::string AI | AI subsystem|
-| static const std::string BARRIER_FREE | Accessibility subsystem|
-| static const std::string BIOMETRICS | Biometric recognition subsystem|
-| static const std::string CCRUNTIME |C/C++ operating environment subsystem|
-| static const std::string COMMUNICATION | Public communication subsystem|
-| static const std::string DEVELOPTOOLS | Development toolchain subsystem|
-| static const std::string DISTRIBUTED_DATAMGR | Distributed data management subsystem|
-| static const std::string DISTRIBUTED_SCHEDULE | Distributed Scheduler subsystem|
-| static const std::string GLOBAL | Globalization subsystem|
-| static const std::string GRAPHIC | Graphics subsystem|
-| static const std::string HIVIEWDFX | DFX subsystem|
-| static const std::string IAWARE | Scheduling and resource management subsystem|
-| static const std::string INTELLI_ACCESSORIES | Smart accessory subsystem|
-| static const std::string INTELLI_TV | Smart TV subsystem|
-| static const std::string IVI_HARDWARE | IVI-dedicated hardware subsystem|
-| static const std::string LOCATION | LBS subsystem|
-| static const std::string MSDP | MSDP subsystem|
-| static const std::string MULTI_MEDIA | Media subsystem|
-| static const std::string MULTI_MODAL_INPUT | Multimode input subsystem|
-| static const std::string NOTIFICATION | Common event and notification subsystem|
-| static const std::string POWERMGR | Power management subsystem|
-| static const std::string ROUTER | Router subsystem|
-| static const std::string SECURITY | Security subsystem|
-| static const std::string SENSORS | Pan-sensor subsystem|
-| static const std::string SOURCE_CODE_TRANSFORMER | Application porting subsystem|
-| static const std::string STARTUP | Startup subsystem|
-| static const std::string TELEPHONY | Telephony subsystem|
-| static const std::string UPDATE | Update subsystem|
-| static const std::string USB | USB subsystem|
-| static const std::string WEARABLE_HARDWARE | Wearable-dedicated hardware subsystem|
-| static const std::string WEARABLE_HARDWARE | Wearable-dedicated service subsystem|
-| static const std::string OTHERS | Others|
+**Table 1** C++ event logging API (deprecated)
 
-**Table 3** Description of HiSysEvent::EventType
+| API                                                      | Description                  |
+| ------------------------------------------------------------ | ---------------------- |
+| template&lt;typename...&nbsp;Types&gt;&nbsp;<br>static&nbsp;int&nbsp;Write(const&nbsp;std::string&nbsp;&amp;domain,&nbsp;const&nbsp;std::string&nbsp;&amp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Types...&nbsp;keyValues) | Flushes logged event data to disks.|
 
-| Name| Description|
-| -------- | --------- |
-| FAULT | Fault event|
+**Table 2** C++ event logging API (in use)
+| API                                                      | Description                  |
+| ------------------------------------------------------------ | ---------------------- |
+| HiSysEventWrite(domain, eventName, type, ...)                | Flushes logged event data to disks.|
+
+ **Table 3** Event types
+
+| Event   | Description        |
+| --------- | ------------ |
+| FAULT     | Fault event|
 | STATISTIC | Statistical event|
-| SECURITY | Security event|
-| BEHAVIOR | System behavior event|
+| SECURITY  | Security event|
+| BEHAVIOR  | Behavior event|
 
-### Development Example<a name="section112771171317"></a>
+#### Kernel Event Logging APIs
 
-C++
+The following table describes the kernel event logging APIs.
 
-1.  Develop the source code.
+**Table 4** Description of kernel event logging APIs
 
-    Include the HiSysEvent header file in the class definition header file or class implementation source file. For example:
+| API                                                      | Description                                |
+| ------------------------------------------------------------ | ------------------------------------ |
+| struct hiview_hisysevent *hisysevent_create(const char *domain, const char *name, enum hisysevent_type type); | Creates a **hisysevent** object.                    |
+| void hisysevent_destroy(struct hiview_hisysevent *event);    | Destroys a **hisysevent** object.                    |
+| int hisysevent_put_integer(struct hiview_hisysevent *event, const char *key, long long value); | Adds event parameters of the integer type to a **hisysevent** object.  |
+| int hisysevent_put_string(struct hiview_hisysevent *event, const char *key, const char *value); | Adds event parameters of the string type to a **hisysevent** object.|
+| int hisysevent_write(struct hiview_hisysevent *event);       | Flushes **hisysevent** object data to disks.              |
 
+Table 5 Kernel event types
+
+| Event   | Description        |
+| --------- | ------------ |
+| FAULT     | Fault event|
+| STATISTIC | Statistical event|
+| SECURITY  | Security event|
+| BEHAVIOR  | Behavior event|
+
+### How to Develop
+
+#### C++ Event Logging
+
+1. Call the event logging API wherever needed, with required event parameters passed to the API.
+
+   ```c++
+   HiSysEventWrite(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
+   ```
+
+#### Kernel Event Logging
+
+1. Create a **hisysevent** object based on the specified event domain, event name, and event type.
+
+   ```c
+   struct hiview_hisysevent *event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
+   ```
+
+2. Pass the customized event parameters to the **hisysevent** object.
+
+   ```c
+   // Add a parameter of the integer type.
+   hisysevent_put_integer(event, "BOOT_TIME", 100);
+
+   // Add a parameter of the string type.
+   hisysevent_put_string(event, "MSG", "This is a test message");
+   ```
+
+3. Trigger reporting of the **hisysevent** event.
+
+   ```c
+   hisysevent_write(event);
+   ```
+
+4. Manually destroy the **hisysevent** object.
+
+   ```c
+   hisysevent_destroy(&event);
+   ```
+
+#### Shielding of Event Logging by Event Domain
+
+1. In the corresponding file, define the **DOMAIN_MASKS** macro with content similar to DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n. There are three scenarios:
+
+- Shielding only event logging for the event domains configured in the current source code file: Define the **DOMAIN_MASKS** macro before importing the **.cpp** file to the **hisysevent.h** file.
+   ```c++
+   #define DOMAIN_MASKS "DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n"
+   #include "hisysevent.h"
+   ```
+
+- Shielding event logging for event domains of the entire module: Define the **DOMAIN_MASKS** macro in the **BUILD.gn** file of the module.
+   ```gn
+   config("module_a"){
+     cflags_cc += ["-DDOMAIN_MASKS=\"DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n\""]
+   }
+   ```
+
+- Shielding event logging for event domains globally: Define the **DOMAIN_MASKS** macro in **/build/config/compiler/BUILD.gn**.
+   ```gn
+     cflags_cc += ["-DDOMAIN_MASKS=\"DOMAIN_NAME_1|DOMAIN_NAME_2|...|DOMAIN_NAME_n\""]
+   ```
+
+2. Perform event logging by using the **HiSysEventWrite** API.
+   ```c++
+   constexpr char DOMAIN[] = "DOMAIN_NAME_1";
+   const std::string eventName = "EVENT_NAME1";
+   OHOS:HiviewDFX::HiSysEvent::EventType eventType = OHOS:HiviewDFX::HiSysEvent::EventType::FAULT;
+   HiSysEventWrite(domain, eventName, eventType); // Event logging is shielded for DOMAIN_NAME_1 because it has been defined in the DOMAIN_MASKS macro.
+   ```
+
+### Development Examples
+
+#### C++ Event Logging
+
+Assume that a service module needs to trigger event logging during application startup to record the application startup event and application bundle name. The following is the complete sample code:
+
+1. Add the HiSysEvent component dependency to the **BUILD.gn** file of the service module.
+
+   ```c++
+   external_deps = [ "hisysevent_native:libhisysevent" ]
+   ```
+
+2. In the application startup function **StartAbility()** of the service module, call the event logging API with the event parameters passed in.
+
+   ```c++
+   #include "hisysevent.h"
+
+   int StartAbility()
+   {
+       ... // Other service logic
+       int ret = HiSysEventWrite(HiSysEvent::Domain::AAFWK, "START_APP", HiSysEvent::EventType::BEHAVIOR, "APP_NAME", "com.ohos.demo");
+       ... // Other service logic
+   }
+   ```
+
+#### Kernel Event Logging
+
+Assume that the kernel service module needs to trigger event logging during device startup to record the device startup event. The following is the complete sample code:
+
+1. In the device startup function **device_boot()**, construct a **hisysevent** object. After that, trigger event reporting, and then destroy the **hisysevent** object.
+
+    ```c
+    #include <dfx/hiview_hisysevent.h>
+
+    #include <linux/errno.h>
+    #include <linux/printk.h>
+
+    int device_boot()
+    {
+        ... // Other service logic
+        struct hiview_hisysevent *event = NULL;
+        int ret = 0;
+
+        event = hisysevent_create("KERNEL", "BOOT", BEHAVIOR);
+        if (!event) {
+            pr_err("failed to create event");
+            return -EINVAL;
+        }
+        ret = hisysevent_put_string(event, "MSG", "This is a test message");
+        if (ret != 0) {
+            pr_err("failed to put sting to event, ret=%d", ret);
+            goto hisysevent_end;
+        }
+        ret = hisysevent_write(event);
+
+    hisysevent_end:
+        hisysevent_destroy(&event);
+        ... // Other service logic
+    }
     ```
+
+#### Shielding of Event Logging by Event Domain 
+
+- If you want to shield event logging for the **AAFWK** and **POWER** domains in a **.cpp** file, define the **DOMAIN_MASKS** macro before including the **hisysevent.h** header file to the **.cpp** file.
+    ```c++
+
+    #define DOMAIN_MASKS "AAFWK|POWER"
+
     #include "hisysevent.h"
-    ```
-
-    Add the event logging code. For example, if you want to log events specific to the app start time (start\_app), then add the following code to the service implementation source file:
-
-    ```
-    HiSysEvent::Write(HiSysEvent::Domain::AAFWK, "start_app", HiSysEvent::EventType::FAULT, "app_name", "com.demo");
-    ```
-
-2.  Configure compilation information. Specifically, add the subsystem SDK dependency to **BUILD.gn**.
+    ... // Other service logic
+    HiSysEventWrite(OHOS:HiviewDFX::HiSysEvent::Domain::AAFWK, "JS_ERROR", OHOS:HiviewDFX::HiSysEvent::EventType::FAULT, "MODULE", "com.ohos.module"); // HiSysEvent logging is not performed.
+    ... // Other service logic
+    HiSysEventWrite(OHOS:HiviewDFX::HiSysEvent::Domain::POWER, "POWER_RUNNINGLOCK", OHOS:HiviewDFX::HiSysEvent::EventType::FAULT, "NAME", "com.ohos.module"); // HiSysEvent logging is not performed.
 
     ```
-    external_deps = [ "hisysevent_native:libhisysevent" ]
+
+- If you want to shield event logging for the **AAFWK** and **POWER** domains of the entire service module, define the **DOMAIN_MASKS** macro as follows in the **BUILG.gn** file of the service module.
+    ```gn
+    config("module_a") {
+      ... // Other configuration items
+      cflags_cc += ["-DDOMAIN_MASKS=\"AAFWK|POWER\""]
+    }
     ```
+
+- If you want to shield event logging for the **AAFWK** and **POWER** domains globally, define the **DOMAIN_MASKS** macro as follows in **/build/config/compiler/BUILD.gn**.
+    ```gn
+    ... // Other configuration items
+    cflags_cc += ["-DDOMAIN_MASKS=\"AAFWK|POWER\""]
+    ```
+
+# Reference
+
+The HiSysEvent module writes the logged event data to the node file, and the Hiview module parses and processes the event data in a unified manner. For details, see the [Hiview Development Guide](subsys-dfx-hiview.md).

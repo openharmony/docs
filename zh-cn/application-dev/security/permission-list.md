@@ -97,7 +97,7 @@
 | ohos.permission.EDM_MANAGE_DATETIME                      | normal       | system_grant | FALSE   | 允许设备管理员应用设置系统时间。                             |
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | 允许应用读取Tag卡片。                                        |
 | ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | 允许应用实现卡模拟功能。                                     |
-| ohos.permission.PERMISSION_USED_STATS                    | system_core  | system_grant | TRUE    | 允许系统应用访问权限使用记录。                               |
+| ohos.permission.PERMISSION_USED_STATS                    | system_basic | system_grant | TRUE    | 允许系统应用访问权限使用记录。                               |
 | ohos.permission.NOTIFICATION_AGENT_CONTROLLER            | system_core  | system_grant | TRUE    | 允许应用发送代理通知。                                       |
 | ohos.permission.ANSWER_CALL                              | system_basic | user_grant   | TRUE    | 允许应用接听来电。                                           |
 | ohos.permission.READ_CALENDAR                            | normal       | user_grant   | TRUE    | 允许应用读取日历信息。                                       |
@@ -130,3 +130,4 @@
 | ohos.permission.DUMP                                     | system_core  | system_grant | TRUE    | 允许导出系统基础信息和SA服务信息。                               |
 | ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | 允许不同设备之间进行组网处理。                                   |
 | ohos.permission.ACCESS_DLP_FILE                          | system_core  | system_grant | TRUE    | 允许对DLP文件进行权限配置和管理。                                |
+| ohos.permission.PROVISIONING_MESSAGE                     | system_core  | system_grant | TRUE    | 允许激活超级设备管理器应用。                                     |

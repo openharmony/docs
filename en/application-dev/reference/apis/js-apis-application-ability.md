@@ -1,11 +1,16 @@
 # Ability
 
+The **Ability** module manages the ability lifecycle and context, such as creating and destroying an ability, and dumping client information.
+
+This module provides the following common ability-related functions:
+
+- [Caller](#caller): implements sending of sequenceable data to the target ability when an ability (caller) invokes the target ability (callee).
+- [Callee](#callee): implements callbacks for registration and deregistration of caller notifications.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
-
-Manages the ability lifecycle and context.
 
 ## Modules to Import
 
@@ -17,14 +22,12 @@ import Ability from '@ohos.application.Ability';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AbilityContext](js-apis-ability-context.md) | Yes| No| Context of an ability.| 
-| launchWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters for starting the ability.| 
-| lastRequestWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters used when the ability was started last time.| 
-| callee | [Callee](#callee) | Yes| No| Object that invokes the stub service.| 
-
-
+| context | [AbilityContext](js-apis-ability-context.md) | Yes| No| Context of an ability.|
+| launchWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters for starting the ability.|
+| lastRequestWant | [Want](js-apis-application-Want.md) | Yes| No| Parameters used when the ability was started last time.|
+| callee | [Callee](#callee) | Yes| No| Object that invokes the stub service.|
 
 ## Ability.onCreate
 
@@ -36,13 +39,13 @@ Called to initialize the service logic when an ability is created.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | Yes| Information related to this ability, including the ability name and bundle name.| 
-  | param | AbilityConstant.LaunchParam | Yes| Parameters for starting the ability, and the reason for the last abnormal exit.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information related to this ability, including the ability name and bundle name.|
+| param | AbilityConstant.LaunchParam | Yes| Parameters for starting the ability, and the reason for the last abnormal exit.|
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onCreate(want, param) {
@@ -62,12 +65,12 @@ Called when a **WindowStage** is created for this ability.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | Yes| **WindowStage** information.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| windowStage | window.WindowStage | Yes| **WindowStage** information.|
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onWindowStageCreate(windowStage) {
@@ -85,8 +88,8 @@ Called when the **WindowStage** is destroyed for this ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onWindowStageDestroy() {
@@ -106,12 +109,12 @@ Called when the **WindowStage** is restored during the migration of this ability
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | windowStage | window.WindowStage | Yes| **WindowStage** information.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| windowStage | window.WindowStage | Yes| **WindowStage** information.|
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onWindowStageRestore(windowStage) {
@@ -129,8 +132,8 @@ Called when this ability is destroyed to clear resources.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onDestroy() {
@@ -148,8 +151,8 @@ Called when this ability is switched from the background to the foreground.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onForeground() {
@@ -167,8 +170,8 @@ Called when this ability is switched from the foreground to the background.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**   
+
   ```js
   class myAbility extends Ability {
       onBackground() {
@@ -188,18 +191,18 @@ Called to save data during the ability migration preparation process.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes| **want** parameter.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wantParam | {[key:&nbsp;string]:&nbsp;any} | Yes| **want** parameter.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | AbilityConstant.OnContinueResult | Continuation result.| 
+| Type| Description|
+| -------- | -------- |
+| AbilityConstant.OnContinueResult | Continuation result.|
 
-**Example**
-    
+**Example**    
+
   ```js
   import AbilityConstant from "@ohos.application.AbilityConstant"
   class myAbility extends Ability {
@@ -222,13 +225,13 @@ Called when the ability startup mode is set to singleton.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md) | Yes| Want parameters, such as the ability name and bundle name.| 
-  | launchParams | AbilityConstant.LaunchParam | Yes| Reason for the ability startup and the last abnormal exit.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Want parameters, such as the ability name and bundle name.|
+| launchParams | AbilityConstant.LaunchParam | Yes| Reason for the ability startup and the last abnormal exit.|
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onNewWant(want, launchParams) {
@@ -251,12 +254,12 @@ Called when the configuration of the environment where the ability is running is
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | config | [Configuration](js-apis-configuration.md) | Yes| New configuration.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| config | [Configuration](js-apis-configuration.md) | Yes| New configuration.|
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       onConfigurationUpdated(config) {
@@ -269,18 +272,18 @@ Called when the configuration of the environment where the ability is running is
 
 dump(params: Array\<string>): Array\<string>;
 
-Called when the client information is dumped.
+Dumps client information.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | params | Array\<string> | Yes| Parameters in the form of a command.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| params | Array\<string> | Yes| Parameters in the form of a command.|
 
-**Example**
-    
+**Example**    
+
   ```js
   class myAbility extends Ability {
       dump(params) {
@@ -307,19 +310,19 @@ Sends sequenceable data to the target ability.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.| 
-  | data | rpc.Sequenceable | Yes| Sequenceable data. You need to customize the data.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
+| data | rpc.Sequenceable | Yes| Sequenceable data. You need to customize the data.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return a response.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return a response.|
 
-**Example**
-    
+**Example**    
+
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{ // Custom sequenceable data structure
@@ -380,19 +383,19 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.| 
-  | data | rpc.Sequenceable | Yes| Sequenceable data. You need to customize the data.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
+| data | rpc.Sequenceable | Yes| Sequenceable data. You need to customize the data.|
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;rpc.MessageParcel&gt; | Promise used to return the sequenceable data from the target ability.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;rpc.MessageParcel&gt; | Promise used to return the sequenceable data from the target ability.|
 
-**Example**
-    
+**Example**    
+
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
@@ -452,8 +455,8 @@ Releases the caller interface of the target ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-**Example**
-    
+**Example**    
+
   ```js
   import Ability from '@ohos.application.Ability';
   var caller;
@@ -489,12 +492,12 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | OnReleaseCallBack | Yes| Callback used for the **onRelease** API.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | OnReleaseCallBack | Yes| Callback used for the **onRelease** API.|
 
-**Example**
-    
+**Example**    
+
   ```js
   import Ability from '@ohos.application.Ability';
   var caller;
@@ -529,7 +532,7 @@ Implements callbacks for caller notification registration and deregistration.
 
 ## Callee.on
 
-on(method: string, callback: CaleeCallBack): void;
+on(method: string, callback: CalleeCallBack): void;
 
 Registers a caller notification callback, which is invoked when the target ability registers a function.
 
@@ -537,13 +540,12 @@ Registers a caller notification callback, which is invoked when the target abili
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | method | string | Yes| Notification message string negotiated between the two abilities.| 
-  | callback | CaleeCallBack | Yes| JS notification synchronization callback of the **rpc.MessageParcel** type. The callback must return at least one empty **rpc.Sequenceable** object. Otherwise, the function execution fails.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| method | string | Yes| Notification message string negotiated between the two abilities.|
+| callback | CalleeCallBack | Yes| JS notification synchronization callback of the **rpc.MessageParcel** type. The callback must return at least one empty **rpc.Sequenceable** object. Otherwise, the function execution fails.|
 
-**Example**
-    
+**Example**    
   ```js
   import Ability from '@ohos.application.Ability';
   class MyMessageAble{
@@ -593,9 +595,9 @@ Deregisters a caller notification callback, which is invoked when the target abi
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | method | string | Yes| Registered notification message string.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| method | string | Yes| Registered notification message string.|
 
 **Example**
     
@@ -616,17 +618,17 @@ Deregisters a caller notification callback, which is invoked when the target abi
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (msg: string) | function | Yes| No| Prototype of the listener function interface registered by the caller.| 
- 
+| (msg: string) | function | Yes| No| Prototype of the listener function registered by the caller.|
 
- ## CaleeCallBack
+
+ ## CalleeCallBack
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes| No| Prototype of the message listener function interface registered by the callee.| 
+| (indata: rpc.MessageParcel) | rpc.Sequenceable | Yes| No| Prototype of the listener function registered by the callee.|

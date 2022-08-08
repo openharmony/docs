@@ -1,6 +1,6 @@
 # 数据请求
 
-本模块提供http数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
+本模块提供HTTP数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
 >**说明：** 
 >
@@ -18,15 +18,15 @@ import http from '@ohos.net.http';
 ```js
 import http from '@ohos.net.http';
 
-// 每一个httpRequest对应一个http请求任务，不可复用
+// 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
-// 用于订阅http响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
+// 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
 // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。 8+
 httpRequest.on('headersReceive', (header) => {
     console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
+    // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
     "EXAMPLE_URL",
     {
         method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
@@ -38,14 +38,14 @@ httpRequest.request(
         extraData: {
             "data": "data to send",
         },
-        connectTimeout: 60000, // 可选，默认为60s
-        readTimeout: 60000, // 可选，默认为60s
+        connectTimeout: 60000, // 可选，默认为60000ms
+        readTimeout: 60000, // 可选，默认为60000ms
     }, (err, data) => {
         if (!err) {
-            // data.result为http响应内容，可根据业务需要进行解析
+            // data.result为HTTP响应内容，可根据业务需要进行解析
             console.info('Result:' + data.result);
             console.info('code:' + data.responseCode);
-            // data.header为http响应头，可根据业务需要进行解析
+            // data.header为HTTP响应头，可根据业务需要进行解析
             console.info('header:' + JSON.stringify(data.header));
             console.info('cookies:' + data.cookies); // 8+
         } else {
@@ -61,7 +61,7 @@ httpRequest.request(
 
 createHttp\(\): HttpRequest
 
-创建一个http，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header 事件。每一个HttpRequest对象对应一个Http请求。如需发起多个Http请求，须为每个Http请求创建对应HttpRequest对象。
+创建一个HTTP请求，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header事件。每一个HttpRequest对象对应一个HTTP请求。如需发起多个HTTP请求，须为每个HTTP请求创建对应HttpRequest对象。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -81,7 +81,7 @@ let httpRequest = http.createHttp();
 
 ## HttpRequest
 
-http请求任务。在调用HttpRequest的方法前，需要先通过[createHttp\(\)](#httpcreatehttp)创建一个任务。
+HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp\(\)](#httpcreatehttp)创建一个任务。
 
 ### request
 
@@ -432,9 +432,9 @@ request方法回调函数的返回值类型。
 
 | 参数名               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string \| Object \| ArrayBuffer<sup>8+</sup> | 是   | Http请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需Http响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
+| result               | string \| Object \| ArrayBuffer<sup>8+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response常用错误码)。 |
-| header               | Object                                       | 是   | 发起http请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
+| header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
 | cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |
 
 ## Response常用错误码

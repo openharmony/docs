@@ -53,7 +53,7 @@ let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
 let rdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    onCreate(want: Want, callback: AsyncCallback<void>) {
+    onCreate(want, callback) {
         rdb.getRdbStore(this.context, {
             name: DB_NAME
         }, 1, function (err, data) {
@@ -90,7 +90,7 @@ getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Ar
 
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array<string>>) {
+    getFileTypes(uri, mimeTypeFilter, callback) {
         let err = {"code":0};
         let ret = new Array("type01", "type02", "type03");
         callback(err, ret);
@@ -118,7 +118,7 @@ openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): voi
 
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    openFile(uri: string, mode: string, callback: AsyncCallback<number>) {
+    openFile(uri, mode, callback) {
         let err = {"code":0};
         let fd = 0;
         callback(err,fd);
@@ -145,13 +145,22 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    insert(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
-        if (value == null) {
+    insert(uri, valueBucket, callback) {
+        if (valueBucket == null) {
             console.info('invalid valueBuckets');
             return;
         }
-        rdbStore.insert(TBL_NAME, value, function (err, ret) {
+        rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
             console.info('callback ret:' + ret);
             if (callback != undefined) {
                 callback(err, ret);
@@ -174,19 +183,28 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要更新的数据的路径。 |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | valueBucket | [ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。返回更新的数据记录数。 |
 
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    update(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback<number>) {
+    update(uri, predicates, valueBucket, callback) {
         if (predicates == null || predicates == undefined) {
             return;
         }
-        rdbStore.update(TBL_NAME, value, predicates, function (err, ret) {
+        rdbStore.update(TBL_NAME, valueBucket, predicates, function (err, ret) {
             if (callback != undefined) {
                 callback(err, ret);
             }
@@ -208,14 +226,23 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | 名称       | 参数类型                                                     | 必填 | 说明                               |
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | 是   | 指示要删除的数据的路径。           |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。                     |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。返回已删除的数据记录数。 |
 
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback<number>) {
+    delete(uri, predicates, callback) {
         if (predicates == null || predicates == undefined) {
             return;
         }
@@ -241,15 +268,24 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 | 名称 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
 | uri | string | 是  | 指示要查询的数据的路径。 |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是  | 指示筛选条件。 |
 | columns | Array&lt;string&gt; | 是 | 指示要查询的列。如果此参数为空，则查询所有列。 |
 | callback | AsyncCallback&lt;Object&gt; | 是 | 回调函数。返回查询到的结果集。 |
 
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: AsyncCallback<Object>) {
+    query(uri, predicates, columns, callback) {
         if (predicates == null || predicates == undefined) {
             return;
         }
@@ -284,7 +320,7 @@ getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    getType(uri: string, callback: AsyncCallback<string>) {
+    getType(uri, callback) {
         let err = {"code":0};
         let ret = "image";
         callback(err, ret);
@@ -311,8 +347,17 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
+import rdb from '@ohos.data.rdb';
+
+let DB_NAME = "DB00.db";
+let TBL_NAME = "TBL00";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
++ TBL_NAME
++ " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
+let rdbStore;
+
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    batchInsert(uri: string, valueBuckets: Array<ValuesBucket>, callback: AsyncCallback<number>) {
+    batchInsert(uri, valueBuckets, callback) {
         if (valueBuckets == null || valueBuckets.length == undefined) {
             console.info('invalid valueBuckets');
             return;
@@ -348,7 +393,7 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    normalizeUri(uri: string, callback: AsyncCallback<string>) {
+    normalizeUri(uri, callback) {
         let err = {"code":0};
         let ret = "normalize+" + uri;
         callback(err, ret);
@@ -375,7 +420,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-    denormalizeUri(uri: string, callback: AsyncCallback<string>) {
+    denormalizeUri(uri, callback) {
         let err = {"code":0};
         let ret = "denormalize+" + uri;
         callback(err, ret);

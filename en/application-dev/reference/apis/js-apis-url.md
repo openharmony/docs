@@ -1,6 +1,7 @@
 # URL String Parsing
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -25,13 +26,13 @@ Creates a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>-&nbsp;**Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object |
+| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
 
 **Example**
 
 ```js
 var objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
-var objectParams1 = new Url.URLSearchParams({"fod" : 1 , "bard" : 2});
+var objectParams1 = new Url.URLSearchParams({"fod" : '1' , "bard" : '2'});
 var objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
 var urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
 var params = new Url.URLSearchParams(urlObject.search);
@@ -48,17 +49,17 @@ Appends a key-value pair into the query string.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | name | string | Yes | Key of the key-value pair to append. |
- | value | string | Yes | Value of the key-value pair to append. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Key of the key-value pair to append.|
+| value | string | Yes| Value of the key-value pair to append.|
 
 **Example**
 
 ```js
 let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
-paramsObject.append('fod', 3);
+paramsObject.append('fod', '3');
 ```
 
 
@@ -72,9 +73,9 @@ Deletes key-value pairs of the specified key.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | name | string | Yes | Key of the key-value pairs to delete. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Key of the key-value pairs to delete.|
 
 **Example**
 
@@ -95,23 +96,23 @@ Obtains all the key-value pairs based on the specified key.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | name | string | Yes | Key specified to obtain all key-value pairs. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Key specified to obtain all key-value pairs.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | string[] | All key-value pairs matching the specified key. |
+| Type| Description|
+| -------- | -------- |
+| string[] | All key-value pairs matching the specified key.|
 
 **Example**
 
 ```js
-let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1)); 
-paramsObject.append('fod', 3); // Add a second value for the fod parameter.
-console.log(params.getAll('fod')) // Output ["1","3"].
+let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new Url.URLSearchParams(urlObject.search.slice(1));
+params.append('fod', '3'); // Add a second value for the fod parameter.
+console.log(params.getAll('fod').toString()) // Output ["1","3"].
 ```
 
 
@@ -125,9 +126,9 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator. |
+| Type| Description|
+| -------- | -------- |
+| IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -149,18 +150,18 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | callbackfn | function | Yes | Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance. |
- | thisArg | Object | No | Value to use when the callback is invoked. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callbackfn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
+| thisArg | Object | No| Value to use when the callback is invoked.|
 
 **Table 1** callbackfn parameter description
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | value | string | Yes | Value that is currently traversed. |
- | key | string | Yes | Key that is currently traversed. |
- | searchParams | Object | Yes | Instance that invokes the **forEach** method. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | string | Yes| Value that is currently traversed.|
+| key | string | Yes| Key that is currently traversed.|
+| searchParams | Object | Yes| Instance that invokes the **forEach** method.|
 
 **Example**
 
@@ -182,24 +183,23 @@ Obtains the value of the first key-value pair based on the specified key.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | name | string | Yes | Key specified to obtain the value. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Key specified to obtain the value.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | string | Returns the value of the first key-value pair if obtained. |
- | null | Returns null if no value is obtained. |
+| Type| Description|
+| -------- | -------- |
+| string | Returns the value of the first key-value pair if obtained.|
+| null | Returns null if no value is obtained.|
 
 **Example**
 
 ```js
-var paramsOject = new Url.URLSearchParams(document.location.search.substring(1)); 
+var paramsOject = new Url.URLSearchParams('name=Jonathan&age=18'); 
 var name = paramsOject.get("name"); // is the string "Jonathan" 
 var age = parseInt(paramsOject.get("age"), 10); // is the number 18
-var address = paramsOject.get("address"); // null
 ```
 
 
@@ -213,15 +213,15 @@ Checks whether a key has a value.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | name | string | Yes | Key specified to search for its value. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Key specified to search for its value.|
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | boolean | Returns **true** if the value exists; returns **false** otherwise. |
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the value exists; returns **false** otherwise.|
 
 **Example**
 
@@ -242,17 +242,17 @@ Sets the value for a key. If key-value pairs matching the specified key exist, t
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | name | string | Yes | Key of the value to set. |
- | value | string | Yes | Value to set. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| name | string | Yes| Key of the value to set.|
+| value | string | Yes| Value to set.|
 
 **Example**
 
 ```js
 let urlObject = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLSearchParams(urlObject.search.slice(1));
-paramsObject.set('baz', 3); // Add a third parameter.
+paramsObject.set('baz', '3'); // Add a third parameter.
 ```
 
 
@@ -283,9 +283,9 @@ Obtains an ES6 iterator that contains the keys of all the key-value pairs.
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs. |
+| Type| Description|
+| -------- | -------- |
+| IterableIterator&lt;string&gt; | ES6 iterator that contains the keys of all the key-value pairs.|
 
 **Example**
 
@@ -307,9 +307,9 @@ Obtains an ES6 iterator that contains the values of all the key-value pairs.
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs. |
+| Type| Description|
+| -------- | -------- |
+| IterableIterator&lt;string&gt; | ES6 iterator that contains the values of all the key-value pairs.|
 
 **Example**
 
@@ -331,9 +331,9 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator. |
+| Type| Description|
+| -------- | -------- |
+| IterableIterator&lt;[string,&nbsp;string]&gt; | ES6 iterator.|
 
 **Example**
 
@@ -355,16 +355,16 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | string | String of serialized search parameters, which is percent-encoded if necessary. |
+| Type| Description|
+| -------- | -------- |
+| string | String of serialized search parameters, which is percent-encoded if necessary.|
 
 **Example**
 
 ```js
 let url = new Url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new Url.URLSearchParams(url.search.slice(1)); 
-params.append('fod', 3);
+params.append('fod', '3');
 console.log(params.toString());
 ```
 
@@ -401,10 +401,10 @@ Creates a URL.
 
 **Parameters**
 
- | Name | Type | Mandatory | Description |
- | -------- | -------- | -------- | -------- |
- | url | string | Yes | Input object. |
- | base | string&nbsp;\ |&nbsp;URL | No | Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| url | string | Yes| Input object.|
+| base | string&nbsp;\|&nbsp;URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
 
 **Example**
 
@@ -434,9 +434,9 @@ Converts the parsed URL into a string.
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | string | Website address in a serialized string. |
+| Type| Description|
+| -------- | -------- |
+| string | Website address in a serialized string.|
 
 **Example**
 
@@ -456,9 +456,9 @@ Converts the parsed URL into a JSON string.
 
 **Return value**
 
- | Type | Description |
- | -------- | -------- |
- | string | Website address in a serialized string. |
+| Type| Description|
+| -------- | -------- |
+| string | Website address in a serialized string.|
 
 **Example**
 ```js

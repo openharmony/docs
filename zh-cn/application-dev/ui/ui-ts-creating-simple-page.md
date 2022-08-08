@@ -440,9 +440,6 @@
            .fontWeight(FontWeight.Bold)
            .layoutWeight(1)
          Flex({ alignItems: ItemAlign.Center }) {
-           Circle({width: 6, height: 6})
-             .margin({right: 12})
-             .fill(colorValue)
            Text(name)
              .fontSize(17.4)
              .flexGrow(1)

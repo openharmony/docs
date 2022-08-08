@@ -366,7 +366,7 @@ int main(int argc, char * const * argv)
 Heap buffer overflow error detected!
 Illegal READ address at: [0x1f8b3edf]
 Shadow memory address: [0x3d34d3ed : 6]  Shadow memory value: [2]
-Accessable heap addr     0
+Accessible heap addr     0
 Heap red zone            2
 Heap freed buffer        3
 Dump info around address [0x1f8b3edf]:
@@ -391,7 +391,7 @@ Backtrace() returned 5 addresses
 Use after free error detected!
 Illegal Double free address at: [0x1f8b3ee0]
 Shadow memory address: [0x3d34d3ee : 0]  Shadow memory value: [3]
-Accessable heap addr     0
+Accessible heap addr     0
 Heap red zone            2
 Heap freed buffer        3
 Dump info around address [0x1f8b3ee0]:

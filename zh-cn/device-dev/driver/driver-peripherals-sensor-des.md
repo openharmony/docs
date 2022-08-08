@@ -1,5 +1,5 @@
 # Sensor
- 
+
 
 ## 概述
 
@@ -8,7 +8,7 @@
 Sensor驱动模型屏蔽硬件器件差异，为上层Sensor服务系统提供稳定的Sensor基础能力接口，包括Sensor列表查询、Sensor启停、Sensor订阅及取消订阅，Sensor参数配置等功能。Sensor设备驱动的开发是基于HDF驱动框架基础上，结合操作系统适配层（OSAL）和平台驱动接口（比如I2C/SPI/UART总线等平台资源）能力，屏蔽不同操作系统和平台总线资源差异，实现Sensor驱动“一次开发，多系统部署”的目标。Sensor驱动模型如图1所示。
 
 **图 1**  Sensor驱动模型图
- 
+
 ![Sensor驱动模型图](figures/Sensor驱动模型图.png)
 
 ### 基本概念
@@ -64,16 +64,16 @@ Sensor驱动模型对外开放的API接口能力的具体实现请参考：
 
 **表 1**  Sensor驱动模型对外API接口功能介绍
 
-| 接口名 | 功能描述 | 
+| 接口名 | 功能描述 |
 | ----- | -------- |
 | int32_t GetAllSensors(struct SensorInformation **sensorInfo, int32_t *count) | 获取系统中注册的所有传感器信息，一组完整传感器信息包括传感器名字、设备厂商、固件版本号、硬件版本号、传感器类型编号、传感器标识、最大量程、精度、功耗。 |
-| int32_t Enable(int32_t sensorId) | 使能指定传感器设备，只有数据订阅者使能传感器后，才能获取订阅的传感器数据。 | 
-| int32_t Disable(int32_t sensorId) | 去使能指定传感器设备。 | 
-| int32_t SetBatch(int32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | 设置指定传感器的数据采样间隔和数据上报间隔。 | 
-| int32_t SetMode(int32_t sensorId, int32_t mode) | 设置指定传感器的工作模式，不同的工作模式，上报数据方式不同。 | 
-| int32_t SetOption(int32_t sensorId, uint32_t option) | 设置指定传感器量程，精度等可选配置。 | 
-| int32_t Register(int32_t groupId, RecordDataCallback cb) | 订阅者根据不同groupId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。 | 
-| int32_t Unregister(int32_t groupId, RecordDataCallback cb) | 订阅者根据groupId和回调函数注销对应订阅者的传感器数据回调函数。 | 
+| int32_t Enable(int32_t sensorId) | 使能指定传感器设备，只有数据订阅者使能传感器后，才能获取订阅的传感器数据。 |
+| int32_t Disable(int32_t sensorId) | 去使能指定传感器设备。 |
+| int32_t SetBatch(int32_t sensorId, int64_t samplingInterval, int64_t reportInterval) | 设置指定传感器的数据采样间隔和数据上报间隔。 |
+| int32_t SetMode(int32_t sensorId, int32_t mode) | 设置指定传感器的工作模式，不同的工作模式，上报数据方式不同。 |
+| int32_t SetOption(int32_t sensorId, uint32_t option) | 设置指定传感器量程，精度等可选配置。 |
+| int32_t Register(int32_t groupId, RecordDataCallback cb) | 订阅者根据不同groupId注册传感器数据回调函数，系统会将获取到的传感器数据上报给订阅者。 |
+| int32_t Unregister(int32_t groupId, RecordDataCallback cb) | 订阅者根据groupId和回调函数注销对应订阅者的传感器数据回调函数。 |
 
 
 
@@ -81,7 +81,7 @@ Sensor驱动模型对驱动开发者开放的功能接口，驱动开发者无�
 
  **表2** Sensor驱动模型对驱动开发者开放的功能接口列表
 
-| 接口名 | 功能描述 | 
+| 接口名 | 功能描述 |
 | ----- | -------- |
 | int32_t AddSensorDevice(const struct SensorDeviceInfo *deviceInfo) | 添加当前类型的传感器设备到传感器设备管理。 |
 | int32_t DeleteSensorDevice(const struct SensorBasicInfo *sensorBaseInfo) | 删除传感器设备管理里指定的传感器设备。 |
@@ -101,7 +101,7 @@ Sensor驱动模型要求驱动开发者实现的接口功能，请参考：
 
 **表 3**  Sensor驱动模型要求驱动开发者实现的接口列表
 
-| 接口名 | 功能描述 | 
+| 接口名 | 功能描述 |
 | ----- | -------- |
 | int32_t init(void) | 传感器设备探测成功后，需要对传感器设备初始化配置。 |
 | int32_t Enable(void) | 根据当前传感器设备的HCS配置，下发传感器设备使能操作组的寄存器配置。 |
@@ -545,7 +545,7 @@ void HdfSensorTest::SetUpTestCase()
 {
     g_sensorDev = NewSensorInterfaceInstance();
     if (g_sensorDev == nullptr) {
-        printf("test sensorHdi get Module instance failed\n\r");
+        printf("test sensor get module instance failed\n\r");
     }
 }
 /* 用例资源释放 */

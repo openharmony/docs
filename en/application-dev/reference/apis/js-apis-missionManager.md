@@ -1,11 +1,10 @@
 # missionManager
 
+The **missionManager** module provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-missionManager provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
 ## Modules to Import
 
@@ -23,7 +22,11 @@ registerMissionListener(listener: MissionListener): number;
 
 Registers a listener to observe the mission status.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -59,7 +62,11 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 
 Deregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -93,7 +100,11 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
 
 Deregisters a mission status listener. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -132,7 +143,11 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 
 Obtains the information about a given mission. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -166,7 +181,11 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
 
 Obtains the information about a given mission. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -198,7 +217,11 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
 Obtains information about all missions. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -227,7 +250,11 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
 Obtains information about all missions. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -259,7 +286,11 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
 Obtains the snapshot of a given mission. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -294,7 +325,11 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
 
 Obtains the snapshot of a given mission. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -334,7 +369,11 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Locks a given mission. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -367,7 +406,11 @@ lockMission(missionId: number): Promise&lt;void&gt;;
 
 Locks a given mission. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -405,7 +448,11 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Unlocks a given mission. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -438,7 +485,11 @@ unlockMission(missionId: number): Promise&lt;void&gt;;
 
 Unlocks a given mission. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -480,7 +531,11 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 Clears a given mission, regardless of whether it is locked. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -513,7 +568,11 @@ clearMission(missionId: number): Promise&lt;void&gt;;
 
 Clears a given mission, regardless of whether it is locked. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -552,7 +611,11 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
 
 Clears all unlocked missions. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Example**
 
@@ -571,7 +634,11 @@ clearAllMissions(): Promise&lt;void&gt;;
 
 Clears all unlocked missions. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
@@ -595,7 +662,11 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Switches a given mission to the foreground. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -628,7 +699,11 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
 Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -662,7 +737,11 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
 
 Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses a promise to return the result.
 
+**Required permission**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -699,7 +778,9 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 Describes the mission information.
 
-**System capability**: SystemCapability.Ability.AbilityBase
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
@@ -710,4 +791,4 @@ Describes the mission information.
 | want | [Want](js-apis-application-Want.md) | Yes| Yes| **Want** information of the mission.| 
 | label | string | Yes| Yes| Label of the mission.| 
 | iconPath | string | Yes| Yes| Path of the mission icon.| 
-| continuable | boolean | Yes| Yes| Whether the mission can be continued on another device. | 
+| continuable | boolean | Yes| Yes| Whether the mission can be continued on another device.| 

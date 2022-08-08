@@ -1,5 +1,5 @@
 # 窗口扩展能力
-WindowExtensionAbility基于ExtensionAbility，WindowExtensionAbility中展示的内容作为一个控件(AbilityComponent)内容展示在其他应用窗口中，实现在一个窗口中展示多个应用程序内容的功能。
+WindowExtensionAbility基于ExtensionAbility。WindowExtensionAbility中展示的内容可作为一个控件(AbilityComponent)内容展示在其他应用窗口中。
 
 > **说明：**
 >
@@ -7,7 +7,7 @@ WindowExtensionAbility基于ExtensionAbility，WindowExtensionAbility中展示�
 > 
 > 本模块接口为系统接口。
 >
->本模块接口仅可在Stage模型下使用。 
+> 本模块接口仅可在Stage模型下使用。 
 
 ## 导入模块
 

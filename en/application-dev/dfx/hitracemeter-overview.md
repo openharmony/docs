@@ -15,4 +15,4 @@ hiTraceMeter is a tool for you to trace service processes and monitor system per
 
 ## Constraints
 
-- Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.
+Due to the asynchronous I/O feature of JS, the hiTraceMeter module provides only asynchronous APIs.

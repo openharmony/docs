@@ -82,9 +82,9 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称                    | 类型    | 可读 | 可写 | 说明                       |
-| ----------------------- | ------- | ---- | ---- | -------------------------- |
-| isEditable<sup>7+</sup> | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
+| 名称       | 类型    | 可读 | 可写 | 说明                       |
+| ---------- | ------- | ---- | ---- | -------------------------- |
+| isEditable | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -96,20 +96,20 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明                                                         |
-| ------ | ----------- | ---- | ------------------------------------------------------------ |
-| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
+| 参数名 | 类型        | 必填 | 说明                                                                                                  |
+| ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
 
 **返回值：**
 
 | 类型           | 说明                                            |
-| :------------- | :---------------------------------------------- |
+| -------------- | ----------------------------------------------- |
 | Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
 
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(400);
+const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
 }).catch(error => {
@@ -127,15 +127,15 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明                                                         |
-| -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。 |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                               |
+| 参数名   | 类型                 | 必填 | 说明                                                                                                  |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                                                                        |
 
 **示例：**
 
 ```js
-const readBuffer = new ArrayBuffer(400);
+const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
         console.log('Failed to read image pixel data.');  //不符合条件则进入
@@ -279,7 +279,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
-| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback  | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -892,8 +892,6 @@ let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
 	    console.log('Succeeded in releasing pixelmap object.');
-    }).catch(error => {
-	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -925,6 +923,33 @@ let path = this.context.getApplicationContext().fileDirs + "test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
+## image.createImageSource<sup>9+</sup>
+
+createImageSource(uri: string, options: SourceOptions): ImageSource
+
+通过传入的uri创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明                                |
+| ------- | ------------------------------- | ---- | ----------------------------------- |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。  |
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+```js
+const imageSourceApi = image.createImageSource('/sdcard/test.jpg');
+```
+
 ## image.createImageSource<sup>7+</sup>
 
 createImageSource(fd: number): ImageSource
@@ -948,7 +973,34 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(0)
+const imageSourceApi = image.createImageSource(0);
+```
+
+## image.createImageSource<sup>9+</sup>
+
+createImageSource(fd: number, options: SourceOptions): ImageSource
+
+通过传入文件描述符来创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明                                |
+| ------- | ------------------------------- | ---- | ----------------------------------- |
+| fd      | number                          | 是   | 文件描述符fd。                      |
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+```js
+const imageSourceApi = image.createImageSource(fd);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -972,9 +1024,64 @@ const buf = new ArrayBuffer(96);
 const imageSourceApi = image.createImageSource(buf);
 ```
 
+## image.createImageSource<sup>9+</sup>
+
+createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
+
+通过缓冲区创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明                                 |
+| ------ | -------------------------------- | ---- | ------------------------------------ |
+| buf    | ArrayBuffer                      | 是   | 图像缓冲区数组。                     |
+| options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+```js
+const data = new ArrayBuffer(112);
+const imageSourceApi = image.createImageSource(data);
+```
+
 ## image.CreateIncrementalSource<sup>9+</sup>
 
-function CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer): ImageSource
+
+通过缓冲区以增量的方式创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型        | 必填 | 说明      |
+| ------- | ------------| ---- | ----------|
+| buf     | ArrayBuffer | 是   | 增量数据。|
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [ImageSource](#imagesource) | 返回图片源，失败时返回undefined。 |
+
+**示例：**
+
+```js
+const buf = new ArrayBuffer(96);
+const imageSourceApi = image.CreateIncrementalSource(buf);
+```
+
+## image.CreateIncrementalSource<sup>9+</sup>
+
+CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -985,7 +1092,7 @@ function CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): Ima
 | 参数名  | 类型                            | 必填 | 说明                                 |
 | ------- | ------------------------------- | ---- | ------------------------------------ |
 | buf     | ArrayBuffer                     | 是   | 增量数据。                           |
-| options | [SourceOptions](#SourceOptions) | 否   | 图片属性，包括图片序号与默认属性值。 |
+| options | [SourceOptions](#sourceoptions9) | 否   | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
 
@@ -1109,8 +1216,8 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 **返回值：**
 
-| 类型             | 说明                                                         |
-| ---------------- | ------------------------------------------------------------ |
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
 | Promise\<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
 
 **示例：**
@@ -1159,11 +1266,11 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                                         |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                                               | 是   | 图片属性名。                                                 |
-| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | 是   | 图片属性，包括图片序号与默认属性值。                         |
-| callback | AsyncCallback\<string>                               | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。 |
+| 参数名   | 类型                                                 | 必填 | 说明                                                          |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
+| key      | string                                               | 是   | 图片属性名。                                                  |
+| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | 是   | 图片属性，包括图片序号与默认属性值。                          |
+| callback | AsyncCallback\<string>                               | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。|
 
 **示例：**
 
@@ -1202,7 +1309,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "abc")
+imageSourceApi.modifyImageProperty("ImageWidth", "120")
             .then(() => {
                 const w = imageSourceApi.getImageProperty("ImageWidth")
                 console.info('w', w);
@@ -1211,7 +1318,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "abc")
 
 ### modifyImageProperty<sup>9+</sup>
 
-modifyImageProperty(key: string, value: string, callback: AsyncCallback<void>): void
+modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
 通过指定的键修改图片属性的值，callback形式返回结果。
 
@@ -1223,12 +1330,12 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback<void>): 
 | -------- | ------------------- | ---- | ------------------------------ |
 | key      | string              | 是   | 图片属性名。                   |
 | value    | string              | 是   | 属性值。                       |
-| callback | AsyncCallback<void> | 是   | 修改属性值，callback返回结果。 |
+| callback | AsyncCallback\<void> | 是   | 修改属性值，callback返回结果。 |
 
 **示例：**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "abc",() => {})
+imageSourceApi.modifyImageProperty("ImageWidth", "120",() => {})
 ```
 
 ### updateData<sup>9+</sup>
@@ -1266,7 +1373,7 @@ imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
 
 ### updateData<sup>9+</sup>
 
-updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback<void>): void
+updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback\<void>): void
 
 更新增量数据，callback形式返回结果。
 
@@ -1280,7 +1387,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 | isFinished | boolean             | 是   | 是否更新完。         |
 | value      | number              | 否   | 偏移量。             |
 | length     | number              | 否   | 数组长。             |
-| callback   | AsyncCallback<void> | 是   | 回调表示成功或失败。 |
+| callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
@@ -1340,11 +1447,9 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```js
-imageSourceApi.createPixelMap(pixelmap => { 
-    console.log('Succeeded in creating pixelmap object.');
-}).catch(error => {
-    console.log('Failed to create pixelmap object.');
-})
+imageSourceApi.createPixelMap((err, pixelmap) => {
+                    console.info('Succeeded in creating pixelmap object.')；
+                })
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1423,7 +1528,7 @@ createImagePacker(): ImagePacker
 
 创建ImagePacker实例。
 
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
 
@@ -1491,8 +1596,8 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **返回值：**
 
 | 类型                         | 说明                                          |
-| :--------------------------- | :-------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| ---------------------------- | --------------------------------------------- |
+| Promise\<ArrayBuffer>        | Promise实例，用于异步获取压缩或打包后的数据。 |
 
 **示例：**
 
@@ -1530,8 +1635,6 @@ let packOpts = { format:"image/jpeg", quality:98 }
 const pixelMapApi = new ArrayBuffer(400);
 imagePackerApi.packing(pixelMapApi, packOpts, data => { 
     console.log('Succeeded in packing the image.');
-}).catch(error => {
-	console.log('Failed to pack the image.');
 })
 ```
 
@@ -1552,9 +1655,9 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 **返回值：**
 
-| 类型                         | 说明                                          |
-| :--------------------------- | :-------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。 |
+| 类型                  | 说明                                         |
+| --------------------- | -------------------------------------------- |
+| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。|
 
 **示例：**
 
@@ -1601,9 +1704,9 @@ release(): Promise\<void>
 
 **返回值：**
 
-| 类型           | 说明                                                    |
-| :------------- | :------------------------------------------------------ |
-| Promise\<void> | Promise实例，用于异步获取释放结果，失败时返回错误信息。 |
+| 类型           | 说明                                                   |
+| -------------- | ------------------------------------------------------ |
+| Promise\<void> | Promise实例，用于异步获取释放结果，失败时返回错误信息。|
 
 **示例：**
 
@@ -1654,11 +1757,11 @@ var receiver = image.createImageReceiver(8192, 8, 4, 8);
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
 
-| 名称                  | 类型                         | 可读 | 可写 | 说明               |
-| --------------------- | ---------------------------- | ---- | ---- | ------------------ |
-| size<sup>9+</sup>     | [Size](#size)                | 是   | 否   | 图片大小。         |
-| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。 |
-| format<sup>9+</sup>   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
+| 名称     | 类型                         | 可读 | 可写 | 说明               |
+| -------- | ---------------------------- | ---- | ---- | ------------------ |
+| size     | [Size](#size)                | 是   | 否   | 图片大小。         |
+| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
+| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
 
 ### getReceivingSurfaceId<sup>9+</sup>
 
@@ -1748,7 +1851,7 @@ readLatestImage(): Promise\<Image>
 
 | 类型                      | 说明               |
 | ------------------------- | ------------------ |
-| Promise<[Image](#image8)> | 异步返回最新图片。 |
+| Promise<[Image](#image9)> | 异步返回最新图片。 |
 
 **示例：**
 
@@ -1883,11 +1986,11 @@ receiver.release().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称                  | 类型               | 可读 | 可写 | 说明                                               |
-| --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect<sup>9+</sup> | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size<sup>9+</sup>     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
-| format<sup>9+</sup>   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
+| 名称     | 类型               | 可读 | 可写 | 说明                                               |
+| -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
+| clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
+| size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| format   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
 
 ### getComponent<sup>9+</sup>
 
@@ -1963,8 +2066,6 @@ release(callback: AsyncCallback\<void>): void
 ```js
 img.release(() =>{ 
     console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
 }) 
 ```
 
@@ -2034,11 +2135,12 @@ img.release().then(() =>{
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称      | 默认值 | 描述              |
-| --------- | ------ | ---------------- |
-| UNKNOWN   | 0      | 未知格式。        |
-| RGB_565   | 2      | 格式为RGB_565。   |
-| RGBA_8888 | 3      | 格式为RGBA_8888。 |
+| 名称                   | 默认值 | 描述              |
+| ---------------------- | ------ | ----------------- |
+| UNKNOWN                | 0      | 未知格式。        |
+| RGB_565                | 2      | 格式为RGB_565     |
+| RGBA_8888              | 3      | 格式为RGBA_8888。 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。 |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2064,19 +2166,32 @@ img.release().then(() =>{
 | CENTER_CROP     | 1      | 缩放图像以填充目标图像区域并居中裁剪区域外的效果。 |
 | FIT_TARGET_SIZE | 2      | 图像适合目标尺寸的效果。                           |
 
+## SourceOptions<sup>9+</sup>
+
+ImageSource的初始化选项。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+
+| 名称              | 类型                               | 可读 | 可写 | 说明               |
+| ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
+| sourceDensity     | number                             | 是   | 是   | ImageSource的密度。|
+| sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 图片像素格式。     |
+| sourceSize        | [Size](#size)                      | 是   | 是   | 图像像素大小。     |
+
+
 ## InitializationOptions<sup>8+</sup>
 
 PixelMap的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Code
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称                   | 类型                               | 可读 | 可写 | 说明           |
-| ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup> | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
-| editable               | boolean                            | 是   | 是   | 是否可编辑。   |
-| pixelFormat            | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
-| scaleMode<sup>9+</sup> | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
-| size                   | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
+| 名称                     | 类型                               | 可读 | 可写 | 说明           |
+| ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
+| editable                 | boolean                            | 是   | 是   | 是否可编辑。   |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
+| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
 ## DecodingOptions<sup>7+</sup>
 
@@ -2112,9 +2227,9 @@ PixelMap的初始化选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImagePacker
 
-| 名称    | 类型   | 可读 | 可写 | 说明           |
-| ------- | ------ | ---- | ---- | -------------- |
-| format  | string | 是   | 是   | 目标格式。     |
+| 名称    | 类型   | 可读 | 可写 | 说明                                                |
+| ------- | ------ | ---- | ---- | --------------------------------------------------- |
+| format  | string | 是   | 是   | 目标格式。                                          |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>

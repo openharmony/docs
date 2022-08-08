@@ -468,7 +468,7 @@ static int AcmAllocNotifyRequest(struct AcmDevice *acm)
     return HDF_SUCCESS;
 
 error:
-    AcmFreeNotifyReqeust(acm);
+    AcmFreeNotifyRequest(acm);
     return ret;
 }
 
@@ -592,7 +592,7 @@ static void AcmFreeRequests(struct AcmDevice *acm)
         g_syncRequest = NULL;
     }
     AcmFreeReadRequests(acm);
-    AcmFreeNotifyReqeust(acm);
+    AcmFreeNotifyRequest(acm);
     AcmFreeWriteRequests(acm);
     AcmWriteBufFree(acm);
 }
@@ -631,7 +631,7 @@ static int32_t AcmAllocRequests(struct AcmDevice *acm)
     return HDF_SUCCESS;
 
 error_alloc_read_req:
-    AcmFreeNotifyReqeust(acm);
+    AcmFreeNotifyRequest(acm);
 error_alloc_int_req:
     AcmFreeWriteRequests(acm);
 error_alloc_write_req:
@@ -1112,7 +1112,7 @@ err_submit_req:
 err_start_io:
     UsbFreeReadRequests(acm);
 err_alloc_read_reqs:
-    UsbFreeNotifyReqeust(acm);
+    UsbFreeNotifyRequest(acm);
  err_alloc_notify_req:
     UsbFreeWriteRequests(acm);
 err_alloc_write_reqs:
@@ -1144,7 +1144,7 @@ static void UsbSerialRelease(struct AcmDevice *acm)
         g_syncRequest = NULL;
     }
     UsbFreeReadRequests(acm);
-    UsbFreeNotifyReqeust(acm);
+    UsbFreeNotifyRequest(acm);
     UsbFreeWriteRequests(acm);
     AcmWriteBufFree(acm);
     (void)UsbRawCloseDevice(acm->devHandle);

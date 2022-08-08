@@ -17,14 +17,16 @@ AI引擎框架各模块之间的代码依赖关系如下图所示：
 在AI引擎框架的整体规划中，北向SDK属于client端的一部分，插件由server端调用，属于server端的一部分，因此AI引擎框架为接入的插件与北向SDK规划的路径：
 
 - SDK代码路径：//foundation/ai/engine/services/client/algorithm_sdk
-  e.g. //foundation/ai/engine/services/client/algorithm_sdk/cv
+  
+  示例1：//foundation/ai/engine/services/client/algorithm_sdk/cv
 
-  e.g. //foundation/ai/engine/services/client/algorithm_sdk/nlu
+  示例2：//foundation/ai/engine/services/client/algorithm_sdk/nlu
 
 - 插件代码路径：//foundation/ai/engine/services/server/plugin
-  e.g. //foundation/ai/engine/services/server/plugin/cv
+  
+  示例1：//foundation/ai/engine/services/server/plugin/cv
 
-  e.g. //foundation/ai/engine/services/server/plugin/nlu
+  示例2：//foundation/ai/engine/services/server/plugin/nlu
 
 
 ## 规则：插件提供的全部对外接口，统一存放在AI业务子系统interfaces/kits目录

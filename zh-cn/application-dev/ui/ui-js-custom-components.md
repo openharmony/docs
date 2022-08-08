@@ -4,7 +4,7 @@
 
 
 - 构建自定义组件
-  ```
+  ```html
   <!-- comp.hml -->
    <div class="item"> 
      <text class="title-style">{{title}}</text>
@@ -13,7 +13,7 @@
    </div>
   ```
 
-  ```
+  ```css
   /* comp.css */
    .item { 
      width: 700px;  
@@ -37,7 +37,7 @@
    }
   ```
 
-  ```
+  ```js
   // comp.js
    export default {
      props: {
@@ -59,7 +59,7 @@
   ```
 
 - 引入自定义组件
-  ```
+  ```html
   <!-- xxx.hml -->
    <element name='comp' src='../../common/component/comp.hml'></element> 
    <div class="container"> 
@@ -68,7 +68,7 @@
    </div>
   ```
 
-  ```
+  ```css
   /* xxx.css */
    .container { 
      background-color: #f8f8ff; 
@@ -78,7 +78,7 @@
    } 
   ```
 
-  ```
+  ```js
   // xxx.js
    export default { 
      data: {
@@ -105,4 +105,4 @@
 
 - [`JSUICustomComponent`：自定义组件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JSUICustomComponent)
 
-- [自定义组件（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponet)
+- [自定义组件（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponet)

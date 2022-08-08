@@ -9,7 +9,7 @@
 在pages/index目录下的hml文件中创建一个grid-container组件，并添加[Grid-row](../reference/arkui-js/js-components-grid-row.md)子组件。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="5" gutter="20px" style="background-color: pink;">
@@ -22,7 +22,7 @@
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -35,7 +35,7 @@
 
 ![zh-cn_image_0000001226897009](figures/zh-cn_image_0000001226897009.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > grid-container仅支持grid-row为子组件。
 
 
@@ -44,7 +44,7 @@
 grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方法，返回栅格容器列数、column宽度及gutter宽度。长按调用getSizeType方法返回当前容器响应尺寸类型（xs|sm|md|lg）。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="6" gutter="20px" style="background-color: pink;padding-top: 100px;" 
@@ -61,7 +61,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -73,7 +73,7 @@ grid-container点击组件调用getColumns、getColumnWidth、getGutterWidth方�
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt';
 export default {
@@ -113,7 +113,7 @@ export default {
 创建grid-container组件并添加grid-row，在grid-row组件内添加grild-col组件形成布局。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <grid-container id="mygrid" columns="4" gutter="0" style="background-color: pink;" onclick="getColumns" onlongpress="getSizeType">
@@ -148,7 +148,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -165,7 +165,7 @@ text{
 
 ![zh-cn_image_0000001227135731](figures/zh-cn_image_0000001227135731.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > grid-row仅支持grid-col为子组件，只能在grid-col组件中添加填充的内容。
 
 
@@ -174,7 +174,7 @@ text{
 本场景中循环输出list中的内容，创建出网格布局。进行下拉操时触发refresh（刷新页面）方法，这时会向list数组中添加一条数据并设置setTimeout（延迟触发），达到刷新请求数据的效果。
 
 
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <refresh refreshing="{{fresh}}" onrefresh="refresh">
@@ -197,7 +197,7 @@ text{
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -211,7 +211,7 @@ text{
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt';
 export default {

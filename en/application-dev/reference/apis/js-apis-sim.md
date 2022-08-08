@@ -1,5 +1,7 @@
 # SIM Management
 
+The SIM management module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN number, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
+
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -520,7 +522,7 @@ This is a system API.
 | Name  | Type                                               | Mandatory| Description                                  |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[IccAccountInfo](#IccAccountInfo7)\> | Yes  | Callback used to return the result. For details, see [IccAccountInfo](#IccAccountInfo7).|
+| callback | AsyncCallback\<[IccAccountInfo](#IccAccountInfo7)\> | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -672,7 +674,7 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void\> | Promise that returns no value.       |
+| Promise\<void\> | Promise used to return the result. |
 
 **Example**
 
@@ -737,7 +739,7 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void\> | Promise that returns no value.       |
+| Promise\<void\> | Promise used to return the result. |
 
 **Example**
 
@@ -867,7 +869,7 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void\> | Promise that returns no value.       |
+| Promise\<void\> | Promise used to return the result.      |
 
 **Example**
 
@@ -994,7 +996,7 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void\> | Promise that returns no value.       |
+| Promise\<void\> | Promise used to return the result. |
 
 **Example**
 
@@ -1057,7 +1059,7 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void\> | Promise that returns no value.       |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 

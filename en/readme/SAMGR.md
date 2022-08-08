@@ -1,4 +1,4 @@
-# System Ability Manager(<a name="EN-US_TOPIC_0000001115719369"></a>)
+# System Ability Manager<a name="EN-US_TOPIC_0000001115719369"></a>
 
 ## Introduction<a name="section11660541593"></a>
 

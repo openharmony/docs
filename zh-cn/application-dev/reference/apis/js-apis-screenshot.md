@@ -68,29 +68,30 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation， displayId四个参数，可以分别设置这四个参数。 |
-| callback | AsyncCallback&lt;image.PixelMap&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
 
 **示例：**
 
   ```js
-  var ScreenshotOptions = {
-  	"screenRect": {
-  		"left": 200,
-  		"top": 100,
-  		"width": 200,
-  		"height": 200},
-  	"imageSize": {
-  		"width": 300,
-  		"height": 300},
-  	"rotation": 0,
-  	"displayId": 0
+  var screenshotOptions = {
+    "screenRect": {
+        "left": 200,
+        "top": 100,
+        "width": 200,
+        "height": 200},
+    "imageSize": {
+        "width": 300,
+        "height": 300},
+    "rotation": 0,
+    "displayId": 0
   };
-  screenshot.save(ScreenshotOptions, (err, data) => {
-  	if (err) {
-  		console.error('Failed to save the screenshot. Error: ' + JSON.stringify(err));
-  		return;
-  	}
-  	console.info('Screenshot saved. Data: ' + JSON.stringify(data));
+  screenshot.save(screenshotOptions, (err, pixelMap) => {
+    if (err) {
+        console.log('Failed to save screenshot: ' + JSON.stringify(err));
+        return;
+    }
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // PixelMap使用完后及时释放内存
   });
   ```
 
@@ -114,12 +115,12 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 | 类型                          | 说明                                            |
 | ----------------------------- | ----------------------------------------------- |
-| Promise&lt;image.PixelMap&gt; | Promise对象。返回一个PixelMap对象。 |
+| Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise对象。返回一个PixelMap对象。 |
 
 **示例：**
 
   ```js
-  var ScreenshotOptions = {
+  var screenshotOptions = {
   	"screenRect": {
   		"left": 200,
   		"top": 100,
@@ -131,10 +132,11 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
   	"rotation": 0,
   	"displayId": 0
   };
-  let promise = screenshot.save(ScreenshotOptions);
-  promise.then(() => {
-      console.log('screenshot save success');
+  let promise = screenshot.save(screenshotOptions);
+  promise.then((pixelMap) => {
+      console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+      pixelMap.release(); // PixelMap使用完后及时释放内存
   }).catch((err) => {
-      console.log('screenshot save fail: ' + JSON.stringify(err));
+      console.log('Failed to save screenshot: ' + JSON.stringify(err));
   });
   ```

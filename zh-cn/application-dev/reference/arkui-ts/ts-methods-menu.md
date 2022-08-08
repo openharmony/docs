@@ -12,30 +12,30 @@
 
 - 示例
 ```
-// xxx.ets
 @Entry
-  @Component
-  struct Index {
-    @Builder MenuBuilder(){
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Text('close')
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            ContextMenu.close();
-          })
-      }.height(400)
-      .backgroundColor(Color.Pink)
-  
-    }
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
-        Column(){
-          Text("Text")
-        }.bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
-      }
-      .width('100%')
-      .height('100%')
-    }
+@Component
+struct Index {
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('close')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          ContextMenu.close();
+        })
+    }.height(400)
+    .backgroundColor(Color.Pink)
+
   }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+      Column() {
+        Text("Text")
+      }.bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```

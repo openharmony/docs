@@ -40,11 +40,7 @@ matchMedia(condition: string): MediaQueryList
 **示例：**
 
 ```
-export default {    
-  matchMedia() {        
-    var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
-  },
-}
+var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
 ```
 
 ## MediaQueryEvent
@@ -102,6 +98,11 @@ addListener(callback: (event: MediaQueryEvent) => void): void
 **示例：**
 
 ```
+function maxWidthMatch(e){
+  if(e.matches){
+    // do something
+  }
+}
 mMediaQueryList.addListener(maxWidthMatch);
 ```
 
@@ -123,6 +124,11 @@ removeListener(callback: (event: MediaQueryEvent) => void): void
 **示例：**
 
 ```
+function maxWidthMatch(e){
+  if(e.matches){
+    // do something
+  }
+}
 mMediaQueryList.removeListener(maxWidthMatch);
 ```
 

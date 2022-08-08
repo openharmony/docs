@@ -182,3 +182,10 @@
 ```
 > **说明：**
 > 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
+
+## 相关实例
+
+针对访问控制，有以下相关实例可供参考：
+
+- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [为应用添加运行时权限（eTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

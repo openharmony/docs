@@ -84,7 +84,7 @@
    }
    ```
 
-   配置字段详细说明见。
+   配置字段详细说明见[应用包结构配置文件的说明](../quick-start/stage-structure.md)。
 
 2. 导入geolocation模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
    
@@ -123,7 +123,7 @@
      以导航场景为例，实例化方式如下：
    
    ```
-   var requestInfo = {'scenario': 0x301, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   var requestInfo = {'scenario': geolocation.LocationRequestScenario.NAVIGATION, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
    **方式二：**
@@ -152,7 +152,7 @@
      以定位精度优先策略为例，实例化方式如下：
    
    ```
-   var requestInfo = {'priority': 0x201, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
+   var requestInfo = {'priority': geolocation.LocationRequestPriority.ACCURACY, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0};
    ```
 
 4. 实例化Callback对象，用于向系统提供位置上报的途径。
@@ -179,8 +179,12 @@
 如果应用使用场景不需要实时的设备位置，可以获取系统缓存的最近一次历史定位结果。
      
    ```
-   geolocation.getLastLocation((data) => {
-       console.log('getLastLocation: data: ' + JSON.stringify(data));
+   geolocation.getLastLocation((err, data) => {
+       if (err) {
+           console.log('getLastLocation: err: ' + JSON.stringify(err));
+       } else {
+           console.log('getLastLocation: data: ' + JSON.stringify(data));
+       }
    });
    ```
 

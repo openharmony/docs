@@ -1,5 +1,7 @@
 # FeatureAbility
 
+The **FeatureAbility** module provides a UI for interacting with users. You can use APIs of this module to start a new ability, obtain the **dataAbilityHelper**, set a Page ability, obtain the window corresponding to this ability, and connecting to a Service ability.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
@@ -19,7 +21,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 
 startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>): void
 
-Starts an ability. This API uses a callback to return the result.
+Starts an ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -127,7 +129,7 @@ featureAbility.acquireDataAbilityHelper(
 
 startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\<AbilityResult>): void
 
-Starts an ability. This API uses a callback to return the execution result when the ability is destroyed.
+Starts an ability. This API uses an asynchronous callback to return the execution result when the ability is destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -214,7 +216,6 @@ featureAbility.startAbilityForResult(
                 mykey7: true,
             },
         },
-        requestCode: 2,
     },
 ).then((data) => {
     console.info("==========================>startAbilityForResult=======================>");
@@ -225,7 +226,7 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses a callback to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -326,13 +327,11 @@ featureAbility.terminateSelfWithResult(
 });
 ```
 
-
-
 ## featureAbility.hasWindowFocus<sup>7+<sup>
 
 hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
-Checks whether the main window of this ability has the focus. This API uses a callback to return the result.
+Checks whether the main window of this ability has the focus. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -348,8 +347,6 @@ Checks whether the main window of this ability has the focus. This API uses a ca
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus()
 ```
-
-
 
 ## featureAbility.hasWindowFocus<sup>7+<sup>
 
@@ -368,19 +365,17 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
     console.info("==========================>hasWindowFocus=======================>");
 });
 ```
 
-
-
 ## featureAbility.getWant
 
 getWant(callback: AsyncCallback\<Want>): void
 
-Obtains the **Want** object sent from this ability. This API uses a callback to return the result.
+Obtains the **Want** object sent from this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -396,8 +391,6 @@ Obtains the **Want** object sent from this ability. This API uses a callback to 
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant()
 ```
-
-
 
 ## featureAbility.getWant
 
@@ -444,13 +437,11 @@ var context = featureAbility.getContext()
 context.getBundleName()
 ```
 
-
-
 ## featureAbility.terminateSelf<sup>7+</sup>
 
 terminateSelf(callback: AsyncCallback\<void>): void
 
-Destroys this Page ability, with the result code and data sent to the caller. This API uses a callback to return the result.
+Destroys this Page ability, with the result code and data sent to the caller. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -466,8 +457,6 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf()
 ```
-
-
 
 ## featureAbility.terminateSelf<sup>7+</sup>
 
@@ -496,7 +485,7 @@ featureAbility.terminateSelf().then((data) => {
 
 connectAbility(request: Want, options:ConnectOptions): number
 
-Connects this ability to a specific Service ability. This API uses a callback to return the result.
+Connects this ability to a specific Service ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -505,17 +494,9 @@ Connects this ability to a specific Service ability. This API uses a callback to
 | Name     | Type            | Mandatory  | Description                   |
 | ------- | -------------- | ---- | --------------------- |
 | request | [Want](js-apis-application-Want.md)  | Yes   | Service ability to connect.|
-| options | ConnectOptions | Yes   | Callback used to return the result.            |
+| options | [ConnectOptions](#connectoptions) | Yes   | Callback used to return the result.            |
 
-Want
-
-**System capability**: SystemCapability.Ability.AbilityBase
-
-| Name         | Readable/Writable| Type    | Mandatory  | Description                                      |
-| ----------- | ---- | ------ | ---- | ---------------------------------------- |
-| deviceId    | Read-only  | string | No   | Device ID of the Service ability to connect. The default value is the local device ID.|
-| bundleName  | Read-only  | string | Yes   | Bundle name of the Service ability to connect.                |
-| abilityName | Read-only  | string | Yes   | Class name of the Service ability to connect.                |
+## ConnectOptions
 
 ConnectOptions
 
@@ -523,9 +504,9 @@ ConnectOptions
 
 | Name          | Readable/Writable| Type      | Mandatory  | Description                       |
 | ------------ | ---- | -------- | ---- | ------------------------- |
-| onConnect    | Read-only  | function | Yes   | Callback invoked when the connection is successful.              |
-| onDisconnect | Read-only  | function | Yes   | Callback invoked when the connection fails.              |
-| onFailed     | Read-only  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
+| onConnect<sup>7+</sup>    | Read-only  | function | Yes   | Callback invoked when the connection is successful.              |
+| onDisconnect<sup>7+</sup> | Read-only  | function | Yes   | Callback invoked when the connection fails.              |
+| onFailed<sup>7+</sup>     | Read-only  | function | Yes   | Callback invoked when **connectAbility** fails to be called.|
 
 **Return value**
 
@@ -565,7 +546,7 @@ var connId = featureAbility.connectAbility(
 
 disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
-Disconnects this ability from a specific Service ability. This API uses a callback to return the result.
+Disconnects this ability from a specific Service ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -654,8 +635,10 @@ var connId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connId).then((error,data) => {
-    console.log('featureAbilityTest result errCode : ' + error.code + " data: " + data);
+featureAbility.disconnectAbility(connId).then((data) => {
+    console.log('data : '  + data);
+}).catch((error)=>{
+    console.log('featureAbilityTest result errCode : ' + error.code);
 });
 ```
 
@@ -664,7 +647,7 @@ featureAbility.disconnectAbility(connId).then((error,data) => {
 
 getWindow(callback: AsyncCallback\<window.Window>): void
 
-Obtains the window corresponding to this ability. This API uses a callback to return the result.
+Obtains the window corresponding to this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -914,7 +897,7 @@ Enumerates operation types of the Data ability.
 
 ## StartAbilityParameter
 
-**System capability**: SystemCapability.AbilityRuntime.FAModel
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name                 | Readable/Writable| Type                  | Mandatory  | Description                                    |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
@@ -925,7 +908,7 @@ Enumerates operation types of the Data ability.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name                                  | Value       | Description                                      |
+| Name                                  | Name        | Description                                      |
 | ------------------------------------ | ---------- | ---------------------------------------- |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                        |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write the URI.                        |
@@ -933,10 +916,10 @@ Enumerates operation types of the Data ability.
 | FLAG_ABILITY_CONTINUATION            | 0x00000008 | Indicates whether the ability on the local device can be migrated to a remote device.                 |
 | FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | Indicates that a component does not belong to OHOS.                           |
 | FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | Indicates whether to enable an ability.                             |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Indicates the permission to make the URI persistent.                         |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Indicates the permission to verify URIs by prefix matching.                       |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | Indicates the permission to make the URI persistent.<br>**System API**: This is a system API and cannot be called by third-party applications.                         |
+| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | Indicates the permission to verify URIs by prefix matching.<br>**System API**: This is a system API and cannot be called by third-party applications.                       |
 | FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | Supports cross-device startup in a distributed scheduler.                       |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the Service ability is started regardless of whether the host application has been started.          |
+| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | Indicates that the Service ability is started regardless of whether the host application has been started.<br>**System API**: This is a system API and cannot be called by third-party applications.          |
 | FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | Indicates that the migration is reversible.                              |
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                      |
 | FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | Indicates that the specific ability will be installed in the background if it has not been installed.                      |

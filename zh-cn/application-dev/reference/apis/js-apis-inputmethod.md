@@ -2,14 +2,15 @@
 
 本模块提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
 ```
-import inputMethod from '@ohos.inputMethod';
+import inputMethod from '@ohos.inputmethod';
 ```
 
 ## inputMethod<sup>8+</sup>
@@ -38,7 +39,7 @@ import inputMethod from '@ohos.inputMethod';
 
 getInputMethodController(): InputMethodController
 
-获取客户端实例[InputMethodController](#InputMethodController)。
+获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -46,7 +47,7 @@ getInputMethodController(): InputMethodController
 
     | 类型 | 说明 |
     | -------- | -------- |
-    | [InputMethodController](#InputMethodController) | 回调返回当前客户端实例。 |
+    | [InputMethodController](#inputmethodcontroller) | 回调返回当前客户端实例。 |
 
 **示例：**
 
@@ -58,7 +59,7 @@ getInputMethodController(): InputMethodController
 
 getInputMethodSetting(): InputMethodSetting
 
-获取客户端设置实例[InputMethodSetting](#InputMethodSetting)。
+获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -66,7 +67,7 @@ getInputMethodSetting(): InputMethodSetting
 
 | 类型                                      | 说明                         |
 | ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#InputMethodSetting) | 回调返回当前客户端设置实例。 |
+| [InputMethodSetting](#inputmethodsetting8) | 回调返回当前客户端设置实例。 |
 
 
 **示例：**
@@ -77,6 +78,8 @@ getInputMethodSetting(): InputMethodSetting
 ## inputMethod.switchInputMethod<sup>9+</sup>
 
 switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolean&gt;): void;
+
+切换输入法。此接口仅可在Stage模型下使用。
 
 
 **系统能力**：SystemCapability.Miscservices.InputMethodFramework
@@ -99,6 +102,7 @@ switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolea
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 
+切换输入法。此接口仅可在Stage模型下使用。
 
 **系统能力**： SystemCapability.Miscservices.InputMethodFramework
 
@@ -111,7 +115,7 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 **返回值：**
   | 类型                                      | 说明                         |
   | ----------------------------------------- | ---------------------------- |
-  | [Promise](#Promise) | 回调返回切换后的输入法。 |
+  | Promise\<boolean> | 回调返回切换后的输入法。 |
 
 **示例：**
 
@@ -123,7 +127,7 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 ```
 ## InputMethodController
 
-下列API示例中都需使用[getInputMethodController](#getInputMethodController)回调获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodController](#inputmethodgetinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInput
 
@@ -171,7 +175,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API示例中都需使用[getInputMethodSetting](#getInputMethodSetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodcontroller)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
 ### listInputMethod
 
@@ -184,7 +188,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **参数：**
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
+| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 返回已安装输入法列表。 |
 
 **示例：**
 
@@ -208,7 +212,7 @@ listInputMethod(): Array&lt;InputMethodProperty&gt;
 **返回值：**
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | 返回已安装输入法列表。 |
 
 **示例：**
 

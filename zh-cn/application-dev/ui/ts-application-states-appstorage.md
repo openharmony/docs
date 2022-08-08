@@ -14,20 +14,20 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 
 ## AppStorage接口
 
-| 方法 | 参数说明 | 返回值 | 定义 |
-| -------- | -------- | -------- | -------- |
-| SetAndLink | key:&nbsp;string,<br/>defaultValue:&nbsp;T | @Link | 与Link接口类似，如果当前的key保存于AppStorage，则返回该key对应的value。如果该key未被创建，则创建一个对应default值的Link返回。 |
-| Set | key:&nbsp;string,<br/>newValue:&nbsp;T | void | 对已保存的key值，替换其value值。 |
-| Link | key:&nbsp;string | @Link | 如果存在具有给定键的数据，则返回到此属性的双向数据绑定，该双向绑定意味着变量或者组件对数据的更改将同步到AppStorage，通过AppStorage对数据的修改将同步到变量或者组件。如果具有此键的属性不存在或属性为只读，则返回undefined。 |
-| SetAndProp | propName:&nbsp;string,<br/>defaultValue:&nbsp;S | @Prop | 与Prop接口类似，如果当前的key保存于AppStorage，则返回该key对应的value。如果该key未被创建，则创建一个对应default值的Prop返回。 |
-| Prop | key:&nbsp;string | @Prop | 如果存在具有给定键的属性，则返回此属性的单向数据绑定。该单向绑定意味着只能通过AppStorage将属性的更改同步到变量或者组件。该方法返回的变量为不可变变量，适用于可变和不可变的状态属性，如果具有此键的属性不存在则返回undefined。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;prop方法对应的属性值类型为简单类型。 |
-| SetOrCreate | key:&nbsp;string,<br/>newValue:&nbsp;T | boolean | 如果已存在与给定键名字相同的属性，如果此属性可以被更改则替换其value值且返回true，否则不替换且返回false。<br/>如果不存在存在与给定键名字相同的属性,&nbsp;则创建一个键为key,&nbsp;值为newValue的属性，属性值不支持null和undefined。 |
-| Get | key:&nbsp;string | T或undefined | 通过此接口获取对应key值的value。 |
-| Has | propName:&nbsp;string | boolean | 判断对应键值的属性是否存在。 |
-| Keys | void | array&lt;string&gt; | 返回包含所有键的字符串数组。 |
-| Delete | key:&nbsp;string | boolean | 删除key指定的键值对，如果存在且删除成功返回true，不存在或删除失败返回false。 |
-| Clear | void | boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，则返回false。 |
-| IsMutable | key:&nbsp;string | boolean | 返回此属性是否存在并且是否可以改变。 |
+| 方法          | 参数说明                                     | 返回值                 | 定义                                       |
+| ----------- | ---------------------------------------- | ------------------- | ---------------------------------------- |
+| SetAndLink  | key:&nbsp;string,<br/>defaultValue:&nbsp;T | @Link               | 与Link接口类似，如果当前的key保存于AppStorage，则返回该key对应的value。如果该key未被创建，则创建一个对应default值的Link返回。 |
+| Set         | key:&nbsp;string,<br/>newValue:&nbsp;T   | void                | 对已保存的key值，替换其value值。                     |
+| Link        | key:&nbsp;string                         | @Link               | 如果存在具有给定键的数据，则返回到此属性的双向数据绑定，该双向绑定意味着变量或者组件对数据的更改将同步到AppStorage，通过AppStorage对数据的修改将同步到变量或者组件。如果具有此键的属性不存在或属性为只读，则返回undefined。 |
+| SetAndProp  | propName:&nbsp;string,<br/>defaultValue:&nbsp;S | @Prop               | 与Prop接口类似，如果当前的key保存于AppStorage，则返回该key对应的value。如果该key未被创建，则创建一个对应default值的Prop返回。 |
+| Prop        | key:&nbsp;string                         | @Prop               | 如果存在具有给定键的属性，则返回此属性的单向数据绑定。该单向绑定意味着只能通过AppStorage将属性的更改同步到变量或者组件。该方法返回的变量为不可变变量，适用于可变和不可变的状态属性，如果具有此键的属性不存在则返回undefined。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;prop方法对应的属性值类型为简单类型。 |
+| SetOrCreate | key:&nbsp;string,<br/>newValue:&nbsp;T   | boolean             | 如果已存在与给定键名字相同的属性，如果此属性可以被更改则替换其value值且返回true，否则不替换且返回false。<br/>如果不存在存在与给定键名字相同的属性,&nbsp;则创建一个键为key,&nbsp;值为newValue的属性，属性值不支持null和undefined。 |
+| Get         | key:&nbsp;string                         | T或undefined         | 通过此接口获取对应key值的value。                     |
+| Has         | propName:&nbsp;string                    | boolean             | 判断对应键值的属性是否存在。                           |
+| Keys        | void                                     | array&lt;string&gt; | 返回包含所有键的字符串数组。                           |
+| Delete      | key:&nbsp;string                         | boolean             | 删除key指定的键值对，如果存在且删除成功返回true，不存在或删除失败返回false。 |
+| Clear       | void                                     | boolean             | 删除所有的属性，如果当前有状态变量依旧引用此属性，则返回false。       |
+| IsMutable   | key:&nbsp;string                         | boolean             | 返回此属性是否存在并且是否可以改变。                       |
 
 
 ## AppStorage与组件同步
@@ -49,7 +49,8 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 let varA = AppStorage.Link('varA')
 let envLang = AppStorage.Prop('languageCode')
 

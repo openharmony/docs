@@ -781,13 +781,6 @@ Sets the **RdbPredicates** to filter out duplicate records.
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose").distinct("NAME")
-let promise = rdbStore.query(predicates, ["NAME"])
-promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.log("Query err.")
-})
 ```
 
 
@@ -1109,7 +1102,7 @@ Updates data in the RDB store based on the specified **DataSharePredicates** obj
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates)| Yes|  Update conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)| Yes|  Update conditions specified by the **DataSharePredicates** object.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
@@ -1133,7 +1126,7 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 ```
 ### update<sup>9+</sup>
 
-update(table: string, values: ValuesBucket, predicates: DataSharePredicates):Promise&lt;number&gt;
+update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 Updates data in the RDB store based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
 
@@ -1144,7 +1137,7 @@ Updates data in the RDB store based on the specified **DataSharePredicates** obj
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Update conditions specified by the **DataSharePredicates** object.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Update conditions specified by the **DataSharePredicates** object.|
 
 **Return value**
 | Type| Description|
@@ -1215,7 +1208,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; |  Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1231,7 +1224,7 @@ promise.then((rows) => {
 
 ### delete<sup>9+</sup>
 
-delete(table: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
+delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;):void
 
 
 Deletes data from the RDB store based on the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
@@ -1242,7 +1235,7 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes|  Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes|  Conditions specified by the **DataSharePredicates** object for deleting data.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
 
 **Example**
@@ -1270,12 +1263,12 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Conditions specified by the **DataSharePredicates** object for deleting data.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Conditions specified by the **DataSharePredicates** object for deleting data.|
 
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; |  Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
 
 **Example**
 ```js
@@ -1354,7 +1347,7 @@ Queries data in the RDB store based on specified conditions. This API uses a pro
 
 ### query<sup>9+</sup>
 
-query(predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
 Queries data in the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
 
@@ -1363,7 +1356,8 @@ Queries data in the RDB store based on specified conditions. This API uses an as
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
+| table | string | Yes| Name of the target table.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
 | callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
@@ -1384,7 +1378,7 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 
 ### query<sup>9+</sup>
 
-query(predicates: DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
+query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 Queries data in the RDB store based on specified conditions. This API uses a promise to return the result.
 
@@ -1393,7 +1387,8 @@ Queries data in the RDB store based on specified conditions. This API uses a pro
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| predicates | [DataSharePredicates](js-apis-data-DataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
+| table | string | Yes| Name of the target table.|
+| predicates | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes| Query conditions specified by the **DataSharePredicates** object.|
 | columns | Array&lt;string&gt; | No| Columns to query. If this parameter is not specified, the query applies to all columns.|
 
 **Return value**
@@ -1591,7 +1586,7 @@ rdbStore.commit()
 
 ### rollBack<sup>8+</sup>
 
-rollBack():void;
+rollBack():void
 
 Rolls back the SQL statements that have been executed.
 
@@ -1997,7 +1992,7 @@ Defines the data types allowed.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name| Description|
+| Type| Description|
 | -------- | -------- |
 | number | Number.|
 | string | String.|
@@ -2006,14 +2001,13 @@ Defines the data types allowed.
 
 ## ValuesBucket
 
-Defines a bucket to store key-value pairs.
+Defines the types of the key and value in a KV pair.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| [key:&nbsp;string] | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | Yes| Defines a bucket to store key-value pairs.|
-
+| Key Type| Value Type|
+| -------- | -------- |
+| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | 
 
 ## SyncMode<sup>8+</sup>
 

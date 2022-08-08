@@ -18,7 +18,7 @@ Hiview是一个跨平台的终端设备维测服务集，由插件管理平台�
    - Faultlogger插件负责处理故障相关事件；
    - EventLogger插件负责采集事件相关的日志信息。
 3. 在流水线上完成事件处理后，还会把事件发送到平台订阅事件队列里，然后将事件派发到订阅插件进行处理，其中：
-   - FreezeDetectorPlugin插件负责处理冻屏相关事件；
+   - FreezeDetector插件负责处理冻屏相关事件；
    - HiCollieCollector插件负责卡死相关事件。
 
 ### 基本概念

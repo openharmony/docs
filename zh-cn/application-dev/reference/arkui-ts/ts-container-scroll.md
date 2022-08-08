@@ -1,7 +1,8 @@
 # Scroll
 
 >  **说明：**
-> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
 
 
 可滚动的容器组件，当子组件的布局尺寸超过父组件的视口时，内容可以滚动。
@@ -172,14 +173,20 @@ struct ScrollExample {
         Column() {
           ForEach(this.arr, (item) => {
             Text(item.toString())
-              .width('90%').height(150).backgroundColor(0xFFFFFF)
-              .borderRadius(15).fontSize(16).textAlign(TextAlign.Center)
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
               .margin({ top: 10 })
           }, item => item)
         }.width('100%')
       }
-      .scrollable(ScrollDirection.Vertical).scrollBar(BarState.On)
-      .scrollBarColor(Color.Gray).scrollBarWidth(30)
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(30)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
       })

@@ -24,9 +24,13 @@ The table below lists only the API used in this guide. For more information, see
 
 ## Declaring Permissions
 
-### config.json
+Declare the permissions required by the app one by one in the project configuration file. The app cannot obtain the permissions that are not declared in the configuration file. The ability framework provides two models: Feature Ability (FA) model and stage model. For more information, see [Ability Framework Overview](../ability/ability-brief.md).
 
-Declare the permissions required by the app one by one in the **config.json** file. The app can obtain permissions that have been declared in the **config.json** file.
+Note that the app bundle structure and configuration file vary with the ability framework model.
+
+### FA Model
+
+For the apps based on the FA model, declare the required permissions in the **config.json** file.
 
 **Description of config.json**
 
@@ -37,6 +41,41 @@ Declare the permissions required by the app one by one in the **config.json** fi
 | usedScene | Scenario of the permission. This field is mandatory for a user_grant permission.|
 | abilities | Abilities that use the permission. The value is an array.|
 | when      | Time when the permission is used. The value can be **inuse** (the permission can be used only in the foreground) or **always** (the permission can be used in foreground and background).|
+
+**Example**
+
+```json
+{
+    "module" : {
+        "reqPermissions":[
+           {
+                "name" : "ohos.permission.PERMISSION1",
+                "reason": "$string:reason",
+                "usedScene": {
+                     "abilities": [
+                         "FormAbility"
+                     ],
+                     "when":"inuse"
+                }
+            },
+           {
+                "name" : "ohos.permission.PERMISSION2",
+                "reason": "$string:reason",
+                "usedScene": {
+                     "abilities": [
+                         "FormAbility"
+                     ],
+                     "when":"always"
+                }
+            }
+        ],
+    }
+}
+```
+
+### Stage Model
+
+For the apps based on the stage model, declare the required permissions in the **module.json5** file.
 
 **Example**
 
@@ -68,11 +107,12 @@ Declare the permissions required by the app one by one in the **config.json** fi
     }
 }
 ```
+
 ## Declaring the ACL
 
 The permission level of **ohos.permission.PERMISSION2** is **system_basic**, which is higher than the app's APL. In this case, use the ACL.
 
-In addition to declaring all the permissions in the **config.json** file, you must declare the permissions whose levels are higher than the app's APL in the app's [profile](../quick-start/app-provision-structure.md). In this example, declare the permission under the **acls** field:
+In addition to declaring all the permissions in the configuration file, you must declare the permissions whose levels are higher than the app's APL in the app's [profile](../quick-start/app-provision-structure.md). In this example, declare the permission under the **acls** field:
 ```json
 {
     "version-name": "1.0.0",

@@ -117,11 +117,11 @@ setSystemLanguage(language: string): boolean
 
 Sets the system language.
 
+This is a system API.
+
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 | Name     | Type    | Description   |
@@ -211,11 +211,11 @@ setSystemRegion(region: string): boolean
 
 Sets the system region.
 
+This is a system API.
+
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 | Name   | Type    | Description   |
@@ -258,11 +258,11 @@ setSystemLocale(locale: string): boolean
 
 Sets the system locale.
 
+This is a system API.
+
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 | Name   | Type    | Description             |
@@ -672,6 +672,32 @@ Formats a phone number.
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
   phonenumberfmt.format("15812312312");
   ```
+
+### getLocationName<sup>8+</sup>
+
+static getLocationName(number: string, locale: string): string
+
+Obtains the home location of a phone number.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description        |
+| ------ | ------ | ---- | ---------- |
+| number | string | Yes   | Phone number.|
+| locale | string | Yes   | Locale ID.|
+
+**Return value**
+| Type    | Description        |
+| ------ | ---------- |
+| string | Home location of the phone number.|
+
+**Example**
+  ```
+  var location = i18n.PhoneNumberFormat.getLocationName('15812312345', 'zh-CN');
+  ```
+
+
 
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
@@ -1547,4 +1573,136 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
   ```
   var timezone = i18n.getTimeZone();
   timezone.getOffset(1234567890);
+  ```
+
+### getAvailableIDs<sup>9+</sup>
+
+static getAvailableIDs(): Array&lt;string&gt;
+
+Obtains the list of time zone IDs supported by the system.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type    | Description                      |
+| ------ | ----------------------- |
+| Array&lt;string&gt; | List of time zone IDs supported by the system.|
+
+**Example**
+  ```
+  var ids = i18n.TimeZone.getAvailableIDs();
+  ```
+
+
+### getAvailableZoneCityIDs<sup>9+</sup>
+
+static getAvailableZoneCityIDs(): Array&lt;string&gt;
+
+Obtains the list of time zone city IDs supported by the system.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type    | Description                      |
+| ------ | ----------------------- |
+| Array&lt;string&gt; | List of time zone city IDs supported by the system.|
+
+**Example**
+  ```
+  var cityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
+  ```
+
+
+### getCityDisplayName<sup>9+</sup>
+
+static getCityDisplayName(cityID: string, locale: string): string
+
+Obtains the localized display of a time zone city in the specified locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| cityID | string | Yes   | Time zone city ID.|
+| locale | string | Yes   | Locale ID.|
+
+**Return value**
+| Type    | Description                     |
+| ------ | ----------------------- |
+| string | Localized display of the time zone city in the specified locale.|
+
+**Example**
+  ```
+  var displayName = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN");
+  ```
+
+
+### getTimezoneFromCity<sup>9+</sup>
+
+static getTimezoneFromCity(cityID: string): TimeZone
+
+Obtains the **TimeZone** object corresponding to the specified time zone city ID.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| cityID | string | Yes   | Time zone city ID.|
+
+**Return value**
+| Type    | Description                     |
+| ------ | ----------------------- |
+| TimeZone | **TimeZone** object corresponding to the specified time zone city ID.|
+
+**Example**
+  ```
+  var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
+  ```
+
+
+## i18n.setUsingLocalDigit<sup>9+</sup>
+
+setUsingLocalDigit(flag: boolean): boolean
+
+Sets whether to turn on the local digit switch.
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| flag | boolean | Yes   | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite.|
+
+**Return value**
+| Type      | Description          |
+| -------- | ------------ |
+| boolean | Result indicating whether the local digit switch is successfully set. The value **true** indicates that the local digit switch is successfully set, and the value **false** indicates the opposite.|
+
+**Example**
+  ```
+  var status = i18n.setUsingLocalDigit(true);
+  ```
+
+
+## i18n.getUsingLocalDigit<sup>9+</sup>
+
+getUsingLocalDigit(): boolean
+
+Checks whether the local digit switch is turned on.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type      | Description          |
+| -------- | ------------ |
+| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
+
+**Example**
+  ```
+  var status = i18n.getUsingLocalDigit();
   ```

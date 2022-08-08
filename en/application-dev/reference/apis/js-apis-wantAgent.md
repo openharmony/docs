@@ -1,5 +1,7 @@
 # WantAgent
 
+The **WantAgent** module provides APIs for triggering, canceling, and comparing **WantAgent** objects. You can use the APIs to create a **WantAgent** object, and obtain the user ID, bundle name, and want information of the object.
+
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
@@ -418,6 +420,8 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                           |
@@ -489,6 +493,8 @@ getWant(agent: WantAgent): Promise\<Want\>
 Obtains the want in a **WantAgent** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -704,7 +710,7 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 
 | Name       | Readable| Writable| Type                         | Mandatory| Description                           |
 | ----------- | --- | ---- | ----------------------------- | ---- | ------------------------------- |
-| agent       | Yes  | No | WantAgent                     | Yes  | **WantAgent** object to trigger.                  |
+| agent       | Yes  | No | WantAgent                     | Yes  | Target **WantAgent** object.                  |
 | triggerInfo | Yes  | No | TriggerInfo                   | Yes  | **TriggerInfo** object.                |
 | callback    | Yes  | No | AsyncCallback\<CompleteData\> | Yes  | Callback used to return the result.|
 
@@ -1052,7 +1058,7 @@ WantAgent.getOperationType(wantAgent).then((OperationType) => {
 | Name          | Readable| Writable| Type                           | Mandatory| Description                  |
 | -------------- | --- | ---- | ------------------------------- | ---- | ---------------------- |
 | wants          | Yes | Yes | Array\<Want\>                   | Yes  | Array of all **Want** objects.    |
-| operationType  | Yes | Yes | wantAgent.OperationType         | Yes  | Action type.              |
+| operationType  | Yes | Yes | wantAgent.OperationType         | Yes  | Operation type.              |
 | requestCode    | Yes | Yes | number                          | Yes  | Request code defined by the user.|
 | wantAgentFlags | Yes | Yes | Array<wantAgent.WantAgentFlags> | No  | Array of flags for using the **WantAgent** object.          |
 | extraInfo      | Yes | Yes | {[key: string]: any}            | No  | Extra information.              |

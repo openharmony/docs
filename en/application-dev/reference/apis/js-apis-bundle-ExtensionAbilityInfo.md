@@ -6,9 +6,7 @@
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
-
-Provides the Extension ability information.
+The **ExtensionAbilityInfo** module provides Extension ability information. Unless otherwise specified, all attributes are obtained through **GET_BUNDLE_DEFAULT**.
 
 ## ExtensionAbilityInfo
 
@@ -28,5 +26,5 @@ Provides the Extension ability information.
 | applicationInfo      | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | Yes  | No  | Application information of the Extension ability.                                |
 | metadata             | Array\<[Metadata](js-apis-bundle-Metadata.md)>       | Yes  | No  | Metadata of the Extension ability.                          |
 | enabled              | boolean                                              | Yes  | No  | Whether the Extension ability is enabled.                          |
-| readPermission       | string                                               | Yes  | No  | Permission required for reading the Extension ability data.                |
+| readPermission       | string                                               | Yes  | No  | Permission required for reading data from the Extension ability.                |
 | writePermission      | string                                               | Yes  | No  | Permission required for writing data to the Extension ability.                |
