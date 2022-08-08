@@ -842,7 +842,6 @@ attestKey(keyAlias: string, options: HuksOptions) : Promise<HuksResult>
 | ---------------- | ----------------------------------------- | ---- | -------------------------------------------------- |
 | keyAlias         | string                                    | 是   | 密钥别名，存放待获取证书密钥的别名。                   |
 | options          | [HuksOptions](#huksoptions)               | 是   | 用于获取证书时指定所需参数与数据。      |
-| callback         | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -890,7 +889,7 @@ async function attestKey() {
   };
   generateKey(aliasString);
   let result = await huks.exportKey(attestKey, options);
-  printLog(`key attest result : ${JSON.stringify(data)}`);
+  printLog(`key attest result : ${result.errorCode}`);
 }
 ```
 
