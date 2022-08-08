@@ -1424,7 +1424,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| device | string | 是 | 指定的远程设备名。 |
+| device | string | 是 | 指定的远程设备的networkId。 |
 | table | string | 是 | 指定的目标表名。 |
 | predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
 | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
@@ -1457,7 +1457,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| device | string | 是 | 指定的远程设备名。 |
+| device | string | 是 | 指定的远程设备的networkId。 |
 | table | string | 是 | 指定的目标表名。 |
 | predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
