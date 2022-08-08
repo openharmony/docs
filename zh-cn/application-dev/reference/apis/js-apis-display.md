@@ -12,6 +12,59 @@ import display from '@ohos.display';
 ```
 
 
+## DisplayState
+
+显示设备的状态枚举。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| STATE_UNKNOWN | 0 | 表示显示设备状态未知。|
+| STATE_OFF | 1 | 表示显示设备状态为关闭。 |
+| STATE_ON | 2 | 表示显示设备状态为开启。|
+| STATE_DOZE | 3 | 表示显示设备为低电耗模式。|
+| STATE_DOZE_SUSPEND | 4 | 表示显示设备为睡眠模式，CPU为挂起状态。 |
+| STATE_VR | 5 | 表示显示设备为VR模式。|
+| STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。 |
+
+## Rect<sup>9+</sup>
+
+矩形区域。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称   | 参数类型 | 可读 | 可写 | 说明               |
+| ------ | -------- | ---- | ---- | ------------------ |
+| left   | number   | 是   | 是   | 矩形区域的左边界。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度。   |
+| height | number   | 是   | 是   | 矩形区域的高度。   |
+
+## WaterfallDisplayAreaRects<sup>9+</sup>
+
+瀑布屏曲面部分显示区域。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称   | 参数类型      | 可读 | 可写 | 说明               |
+| ------ | ------------- | ---- | ---- | ------------------ |
+| left   | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的左侧矩形区域。 |
+| top    | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的顶部矩形区域。 |
+| right  | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的右侧矩形区域。 |
+| bottom | [Rect](#rect9) | 是   | 否   | 瀑布曲面区域的底部矩形区域。 |
+
+## CutoutInfo<sup>9+</sup>
+
+挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称                        | 参数类型      | 可读 | 可写 | 说明               |
+| --------------------------- | ------------- | ---- | ---- | ------------------ |
+| boudingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
+| waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
+
 ## display.getDefaultDisplay
 
 getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
@@ -236,61 +289,8 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。|
 
-### DisplayState
-
-显示设备的状态枚举。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| STATE_UNKNOWN | 0 | 表示显示设备状态未知。|
-| STATE_OFF | 1 | 表示显示设备状态为关闭。 |
-| STATE_ON | 2 | 表示显示设备状态为开启。|
-| STATE_DOZE | 3 | 表示显示设备为低电耗模式。|
-| STATE_DOZE_SUSPEND | 4 | 表示显示设备为睡眠模式，CPU为挂起状态。 |
-| STATE_VR | 5 | 表示显示设备为VR模式。|
-| STATE_ON_SUSPEND | 6 | 表示显示设备为开启状态，CPU为挂起状态。 |
-
-### Rect<sup>9+</sup>
-
-矩形区域。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称   | 参数类型 | 可读 | 可写 | 说明               |
-| ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度。   |
-| height | number   | 是   | 是   | 矩形区域的高度。   |
-
-### WaterfallDisplayAreaRects<sup>9+</sup>
-
-瀑布屏曲面部分显示区域。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称   | 参数类型      | 可读 | 可写 | 说明               |
-| ------ | ------------- | ---- | ---- | ------------------ |
-| left   | [Rect](#rect9) | 是   | 否   | 瀑布区域的左侧矩形区域。 |
-| top    | [Rect](#rect9) | 是   | 否   | 瀑布区域的顶部矩形区域。 |
-| width  | [Rect](#rect9) | 是   | 否   | 瀑布区域的右侧矩形区域。 |
-| height | [Rect](#rect9) | 是   | 否   | 瀑布区域的底部矩形区域。 |
-
-### CutoutInfo<sup>9+</sup>
-
-不可用屏幕区域信息。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-| 名称                        | 参数类型      | 可读 | 可写 | 说明               |
-| --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boudingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔区域的边界矩形。 |
-| waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfallDisplayAreaRects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
-
 ### getCutoutInfo<sup>9+</sup>
-getCutoutInfo(callback: AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;): void
+getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用callback异步回调。
 
@@ -298,7 +298,7 @@ getCutoutInfo(callback: AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;): void
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。当获取信息成功，err为undefined，data为获取到的CutoutInfo对象；否则为错误对象。 |
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。当获取信息成功，err为undefined，data为获取到的CutoutInfo对象；否则err为错误对象。 |
 
 **示例：**
 ```js
@@ -311,7 +311,7 @@ displayClass.getCutoutInfo((err, data) => {
 })
 ```
 ### getCutoutInfo<sup>9+</sup>
-getCutoutInfo(): Promise&lt;[CutoutInfo](#cutoutinfo9)&gt;
+getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
 获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用Promise异步回调。
 
