@@ -1127,11 +1127,11 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 指定formId和远程设备Id进行卡片分享。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1159,11 +1159,11 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;;
 
 指定formId和远程设备Id进行卡片分享。
 
+此接口为系统接口。
+
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
