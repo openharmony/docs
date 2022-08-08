@@ -417,6 +417,7 @@
         - [组件标识](reference/arkui-ts/ts-universal-attributes-component-id.md)
         - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [多态样式](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
+        - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
