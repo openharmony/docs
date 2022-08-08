@@ -347,7 +347,7 @@ After **[camera.getCameraManager](#cameragetcameramanager)** is called, a camera
 
 ```js
 async function getCameraInfo("cameraId") {
-    var cameraManager = await camera.getCameraManager(context);
+    var cameraManager = await camera.getCameraManager();
     var cameras = await cameraManager.getCameras();
     var cameraObj = cameras[0];
     var cameraId = cameraObj.cameraId;
@@ -2103,7 +2103,7 @@ Creates a **PhotoOutput** instance. This API uses an asynchronous callback to re
 
 | Name     | Type                                       | Mandatory| Description                               |
 | --------- | ------------------------------------------- | ---- | ----------------------------------- |
-| surfaceId | string                                      | Yes  | Surface ID received from **ImageReceiver**.  |
+| surfaceId | string                                      | Yes  | Surface ID received from **[ImageReceiver](js-apis-image.md#imagereceiver9)**. |
 | callback  | AsyncCallback<[PhotoOutput](#photooutput)\> | Yes  | Callback used to return the **PhotoOutput** instance.|
 
 **Example**
@@ -2130,7 +2130,7 @@ Creates a **PhotoOutput** instance. This API uses a promise to return the instan
 
 | Name     | Type  | Mandatory| Description                             |
 | --------- | ------ | ---- | --------------------------------- |
-| surfaceId | string | Yes  | Surface ID received from **ImageReceiver**.|
+| surfaceId | string | Yes  | Surface ID received from **[ImageReceiver](js-apis-image.md#imagereceiver9)**. |
 
 **Return value**
 
@@ -2231,10 +2231,6 @@ Captures a photo with the specified capture settings. This API uses an asynchron
 **Example**
 
 ```js
-let settings:PhotoCaptureSetting = {
-    quality = 1,
-    rotation = 0
-}
 photoOutput.capture(settings, (err) => {
     if (err) {
         console.error('Failed to capture the photo ${err.message}');
@@ -2363,7 +2359,7 @@ Listens for frame shutter events. This API uses an asynchronous callback to retu
 **Example**
 
 ```js
-photoOutput.on('frameShutter', (err, frameShutterInfo) => {
+photoOutput.on('frameShutter', (frameShutterInfo) => {
     console.log('photo capture end, captureId : ' + frameShutterInfo.captureId);
     console.log('Timestamp for frame : ' + frameShutterInfo.timestamp);
 })
@@ -2387,7 +2383,7 @@ Listens for photo capture end events. This API uses an asynchronous callback to 
 **Example**
 
 ```js
-photoOutput.on('captureEnd', (err, captureEndInfo) => {
+photoOutput.on('captureEnd', (captureEndInfo) => {
     console.log('photo capture end, captureId : ' + captureEndInfo.captureId);
     console.log('frameCount : ' + captureEndInfo.frameCount);
 })
@@ -2411,7 +2407,7 @@ Listens for **PhotoOutput** errors. This API uses a callback to return the error
 **Example**
 
 ```js
-photoOutput.on('error', (err, photoOutputError) => {
+photoOutput.on('error', (photoOutputError) => {
     console.log('Photo output error code: ' + photoOutputError.code);
 })
 ```
