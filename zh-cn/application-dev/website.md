@@ -33,6 +33,7 @@
     - 其他
       - [WantAgent开发指导](ability/wantagent.md)
       - [Ability助手使用指导](ability/ability-assistant-guidelines.md)
+      - [ContinuationManager使用指导](ability/continuationmanager.md)
       - [测试框架使用指导](ability/ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
