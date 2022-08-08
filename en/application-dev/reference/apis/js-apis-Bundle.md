@@ -1,14 +1,14 @@
 # Bundle
 
-The **Bundle** module provides APIs for querying bundle information, application information, abilities, Extension abilities, and application states.
+The **Bundle** module provides APIs for querying the information about bundles, applications, abilities, Extension abilities, and application states.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 ## Modules to Import
 
-```
+```js
 import bundle from '@ohos.bundle';
 ```
 
@@ -23,8 +23,9 @@ SystemCapability.BundleManager.BundleFramework
 | ohos.permission.GET_BUNDLE_INFO            | normal       | Permission to query information about a specified application.  |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all applications.|
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall applications.  |
+| ohos.permission.MANAGE_DISPOSED_APP_STATUS | system_core  | Permission to set and query the application disposal status.  |
 
-For details, see “Permission Levels” in [Access Control Overview](../../security/accesstoken-overview.md).
+For details, see "Permission Levels" in [Access Control Overview](../../security/accesstoken-overview.md).
 
 ## bundle.getApplicationInfo
 
@@ -44,7 +45,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type    | Mandatory  | Description                                     |
 | ----------- | ------ | ---- | --------------------------------------- |
-| bundleName  | string | Yes   | Bundle name of the application.                           |
+| bundleName  | string | Yes   | Bundle name of an application.                           |
 | bundleFlags | number | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId      | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
 
@@ -68,8 +69,6 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 })
 ```
 
-
-
 ## bundle.getApplicationInfo
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
@@ -88,7 +87,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                             | Mandatory  | Description                                     |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                          | Yes   | Bundle name of the application.                           |
+| bundleName  | string                          | Yes   | Bundle name of an application.                           |
 | bundleFlags | number                          | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | userId      | number                          | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
 | callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes   | Callback used to return the application information.                |
@@ -108,7 +107,6 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
  })
 ```
 
-
 ## bundle.getApplicationInfo
 
 getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
@@ -127,7 +125,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                             | Mandatory  | Description                                     |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                          | Yes   | Bundle name of the application.                           |
+| bundleName  | string                          | Yes   | Bundle name of an application.                           |
 | bundleFlags | number                          | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes   | Callback used to return the application information.                |
 
@@ -144,7 +142,6 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
  })
 ```
-
 
 ## bundle.getAllBundleInfo
 
@@ -186,8 +183,6 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 })
 ```
 
-
-
 ## bundle.getAllBundleInfo
 
 getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback<Array\<BundleInfo>>): void
@@ -221,7 +216,6 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
  })
 ```
-
 
 ## bundle.getAllBundleInfo
 
@@ -259,8 +253,6 @@ bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
  })
 ```
 
-
-
 ## bundle.getBundleInfo
 
 getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise\<BundleInfo>
@@ -279,7 +271,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type           | Mandatory  | Description                                     |
 | ----------- | ------------- | ---- | --------------------------------------- |
-| bundleName  | string        | Yes   | Bundle name of the application.                                     |
+| bundleName  | string        | Yes   | Bundle name of an application.                                     |
 | bundleFlags | number        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | options     | [BundleOptions](#bundleoptions) | No   | Includes **userId**.                              |
 
@@ -305,8 +297,6 @@ bundle.getBundleInfo(bundleName, bundleFlags, options)
 })
 ```
 
-
-
 ## bundle.getBundleInfo
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
@@ -325,7 +315,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                        | Mandatory  | Description                                     |
 | ----------- | -------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                     | Yes   | Bundle name of the application.                                     |
+| bundleName  | string                     | Yes   | Bundle name of an application.                                     |
 | bundleFlags | number                     | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the bundle information.                   |
 
@@ -362,7 +352,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                        | Mandatory  | Description                                     |
 | ----------- | -------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                     | Yes   | Bundle name of the application.                                     |
+| bundleName  | string                     | Yes   | Bundle name of an application.                                     |
 | bundleFlags | number                     | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
 | options     | [BundleOptions](#bundleoptions)              | Yes   | Includes **userId**.                              |
 | callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the bundle information.                   |
@@ -384,6 +374,466 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 })
 ```
 
+## bundle.getBundleInstaller
+
+getBundleInstaller(): Promise&lt;BundleInstaller&gt;;
+
+Obtains the installation package information. This API uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.INSTALL_BUNDLE
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Return value**
+
+| Type                                                        | Description                                        |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | Promise used to return the installation package information.|
+
+## bundle.getBundleInstaller
+
+getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void;
+
+Obtains the installation package information. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.INSTALL_BUNDLE
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description            |
+| -------- | ------------------------------------------------------------ | ---- | ---------------- |
+| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller.md)> | Yes  | Callback used to return the installation package information.|
+
+## bundle.cleanBundleCacheFiles<sup>8+</sup>
+
+cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+
+Clears the cache data of an application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.REMOVE_CACHE_FILES
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type               | Mandatory| Description                                 |
+| ---------- | ------------------- | ---- | ------------------------------------- |
+| bundleName | string              | Yes  | Bundle name of an application.|
+| callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.         |
+
+## bundle.cleanBundleCacheFiles<sup>8+</sup>
+
+cleanBundleCacheFiles(bundleName: string): Promise&lt;void&gt;
+
+Clears the cache data of an application. This API uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.REMOVE_CACHE_FILES
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description                                 |
+| ---------- | ------ | ---- | ------------------------------------- |
+| bundleName | string | Yes  | Bundle name of an application.|
+
+**Return value**
+
+| Type         | Description                                |
+| ------------- | ------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+## bundle.setApplicationEnabled<sup>8+</sup>
+
+setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+Sets whether to enable an application. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type               | Mandatory| Description                                           |
+| ---------- | ------------------- | ---- | ----------------------------------------------- |
+| bundleName | string              | Yes  | Bundle name of an application.                               |
+| isEnable   | boolean             | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.                   |
+
+## bundle.setApplicationEnabled<sup>8+</sup>
+
+setApplicationEnabled(bundleName: string, isEnable: boolean): Promise&lt;void&gt;
+
+Sets whether to enable an application. This API uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type   | Mandatory| Description                                           |
+| ---------- | ------- | ---- | ----------------------------------------------- |
+| bundleName | string  | Yes  | Bundle name of an application.                               |
+| isEnable   | boolean | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+
+**Return value**
+
+| Type         | Description                                |
+| ------------- | ------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+## bundle.setAbilityEnabled<sup>8+</sup>
+
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+
+Sets whether to enable an ability. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name    | Type                                        | Mandatory| Description                                           |
+| -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
+| info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
+| isEnable | boolean                                      | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means the opposite.|
+| callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result.                   |
+
+## bundle.setAbilityEnabled<sup>8+</sup>
+
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean): Promise&lt;void&gt;
+
+Sets whether to enable an ability. This API uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.CHANGE_ABILITY_ENABLED_STATE
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name    | Type                                        | Mandatory| Description                                           |
+| -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
+| info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
+| isEnable | boolean                                      | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means the opposite.|
+
+**Return value**
+
+| Type         | Description                                |
+| ------------- | ------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+## bundle.getPermissionDef<sup>8+</sup>
+
+getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void;
+
+Obtains the permission details by permission name. This API uses an asynchronous callback to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name          | Type                                                        | Mandatory| Description                                            |
+| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
+| permissionName | string                                                       | Yes  | Name of the permission.                                |
+| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef)> | Yes  | Callback used to return the permission details.|
+
+## bundle.getPermissionDef<sup>8+</sup>
+
+getPermissionDef(permissionName: string): Promise&lt;PermissionDef&gt;
+
+Obtains the permission details by permission name. This API uses a promise to return the result.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name          | Type  | Mandatory| Description            |
+| -------------- | ------ | ---- | ---------------- |
+| permissionName | string | Yes  | Name of the permission.|
+
+**Return value**
+
+| Type                                                  | Description                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef)> | Promise used to return the permission details.|
+
+## bundle.setModuleUpgradeFlag<sup>9+</sup>
+
+setModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag, callback: AsyncCallback&lt;void&gt;):void;
+
+Sets whether the module needs an upgrade. This API uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name       | Type                       | Mandatory| Description                        |
+| ----------- | --------------------------- | ---- | ---------------------------- |
+| bundleName  | string                      | Yes  | Bundle name of an application.            |
+| moduleName  | string                      | Yes  | Module name of the application.          |
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is used only by the internal system.      |
+| callback    | AsyncCallback\<void>         | Yes  | Callback used to return the result.|
+
+## bundle.setModuleUpgradeFlag<sup>9+</sup>
+
+setModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag): Promise&lt;void&gt;
+
+Sets whether the module needs an upgrade. This API uses a promise to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name       | Type                       | Mandatory| Description                  |
+| ----------- | --------------------------- | ---- | ---------------------- |
+| bundleName  | string                      | Yes  | Bundle name of an application.      |
+| moduleName  | string                      | Yes  | Module name of the application.    |
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is  for internal use only.|
+
+**Return value**
+
+| Type         | Description                                |
+| ------------- | ------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+## bundle.isModuleRemovable<sup>9+</sup>
+
+isModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCallback&lt;boolean&gt;): void;
+
+Checks whether a module is removable. This API uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type                  | Mandatory| Description                                         |
+| ---------- | ---------------------- | ---- | --------------------------------------------- |
+| bundleName | string                 | Yes  | Bundle name of an application.                             |
+| moduleName | string                 | Yes  | Module name of the application.                           |
+| callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the module is removable, **true** is returned. Otherwise, **false** is returned.|
+
+## bundle.isModuleRemovable<sup>9+</sup>
+
+isModuleRemovable(bundleName: string, moduleName: string): Promise&lt;boolean&gt;
+
+Checks whether a module is removable. This API uses a promise to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name      | Type  | Mandatory| Description              |
+| ---------- | ------ | ---- | ------------------ |
+| bundleName | string | Yes  | Bundle name of an application.  |
+| moduleName | string | Yes  | Module name of the application.|
+
+**Return value**
+
+| Type            | Description                        |
+| ---------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the result. If the module is removable, **true** is returned. Otherwise, **false** is returned.|
+
+## bundle.getBundlePackInfo<sup>9+</sup>
+
+getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag, callback: AsyncCallback&lt;pack.BundlePackInfo&gt;): void;
+
+Obtains the bundle package information based on a given bundle name and bundle flags. This API uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name          | Type                              | Mandatory| Description                                                |
+| -------------- | ---------------------------------- | ---- | ---------------------------------------------------- |
+| bundleName     | string                             | Yes  | Bundle name of an application.                                    |
+| bundlePackFlag | pack.BundlePackFlag                | Yes  | Flags of the bundle package.                              |
+| callback       | AsyncCallback<pack.BundlePackInfo> | Yes  | Callback used to return the bundle package information.|
+
+## bundle.getBundlePackInfo<sup>9+</sup>
+
+getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag): Promise&lt;pack.BundlePackInfo&gt;;
+
+Obtains the bundle package information based on a given bundle name and bundle flags. This API uses a promise to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name          | Type               | Mandatory| Description                  |
+| -------------- | ------------------- | ---- | ---------------------- |
+| bundleName     | string              | Yes  | Bundle name of an application.      |
+| bundlePackFlag | pack.BundlePackFlag | Yes  | Flags of the bundle package.|
+
+**Return value**
+
+| Type                        | Description                               |
+| ---------------------------- | ----------------------------------- |
+| Promise<pack.BundlePackInfo> | Promise used to return the bundle package information.|
+
+## bundle.getDispatcherVersion<sup>9+</sup>
+
+getDispatcherVersion(callback: AsyncCallback&lt;DispatchInfo&gt;): void;
+
+Obtains the dispatcher version. This API uses an asynchronous callback to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name    | Type                                                  | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[DispatchInfo](js-apis-dispatchInfo.md)> | Yes  | Callback used to return the [DispatchInfo](js-apis-dispatchInfo.md).|
+
+## bundle.getDispatcherVersion<sup>9+</sup>
+
+getDispatcherVersion(): Promise&lt;DispatchInfo&gt;;
+
+Obtains the dispatcher version. This API uses a promise to return the result.
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**System API**
+
+This is a system API and cannot be called by third-party applications.
+
+**Return value**
+
+| Type                                            | Description                                                        |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| Promise<[DispatchInfo](js-apis-dispatchInfo.md)> | Promise used to return the [DispatchInfo](js-apis-dispatchInfo.md).|
 
 ## bundle.getAllApplicationInfo
 
@@ -584,7 +1034,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type    | Mandatory  | Description              |
 | ----------- | ------ | ---- | ---------------- |
-| bundleName  | string | Yes   | Bundle name of the application.    |
+| bundleName  | string | Yes   | Bundle name of an application.    |
 | abilityName | string | Yes   | Ability name.|
 
 **Return value**
@@ -624,7 +1074,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type    | Mandatory  | Description           |
 | ----------- | ------------ | ---- | ---------------- |
-| bundleName  | string | Yes   | Bundle name of the application.    |
+| bundleName  | string | Yes   | Bundle name of an application.    |
 | abilityName | string | Yes   | Ability name.|
 | callback    | AsyncCallback\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | Yes   | Callback used to return the ability information.|
 
@@ -659,7 +1109,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type    | Mandatory  | Description              |
 | ----------- | ------ | ---- | ---------------- |
-| bundleName  | string | Yes   | Bundle name of the application.    |
+| bundleName  | string | Yes   | Bundle name of an application.    |
 | moduleName  | string | Yes   | Module name of the application.    |
 | abilityName | string | Yes   | Ability name.|
 
@@ -701,7 +1151,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type    | Mandatory  | Description           |
 | ----------- | ------------ | ---- | ---------------- |
-| bundleName  | string | Yes   | Bundle name of the application.    |
+| bundleName  | string | Yes   | Bundle name of an application.    |
 | moduleName  | string | Yes   | Module name of the application.    |
 | abilityName | string | Yes   | Ability name.|
 | callback    | AsyncCallback\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)> | Yes   | Callback used to return the ability information.|
@@ -739,7 +1189,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type    | Mandatory  | Description              |
 | ----------- | ------ | ---- | ---------------- |
-| bundleName  | string | Yes   | Bundle name of the application.    |
+| bundleName  | string | Yes   | Bundle name of an application.    |
 | abilityName | string | Yes   | Ability name.|
 
 **Return value**
@@ -779,7 +1229,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                    | Mandatory  | Description              |
 | ----------- | ---------------------- | ---- | ---------------- |
-| bundleName  | string                 | Yes   | Bundle name of the application.    |
+| bundleName  | string                 | Yes   | Bundle name of an application.    |
 | abilityName | string                 | Yes   | Ability name.|
 | callback    | AsyncCallback\<string> | Yes   | Callback used to return the application name.       |
 
@@ -814,7 +1264,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type    | Mandatory  | Description              |
 | ----------- | ------ | ---- | ---------------- |
-| bundleName  | string | Yes   | Bundle name of the application.    |
+| bundleName  | string | Yes   | Bundle name of an application.    |
 | moduleName  | string | Yes   | Module name of the application.    |
 | abilityName | string | Yes   | Ability name.|
 
@@ -856,7 +1306,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name         | Type                    | Mandatory  | Description              |
 | ----------- | ---------------------- | ---- | ---------------- |
-| bundleName  | string                 | Yes   | Bundle name of the application.    |
+| bundleName  | string                 | Yes   | Bundle name of an application.    |
 | moduleName  | string | Yes   | Module name of the application.    |
 | abilityName | string                 | Yes   | Ability name.|
 | callback    | AsyncCallback\<string> | Yes   | Callback used to return the application name.       |
@@ -959,7 +1409,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| bundleName | string | Yes   | Bundle name of the application.|
+| bundleName | string | Yes   | Bundle name of an application.|
 
 **Return value**
 
@@ -993,7 +1443,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type                     | Mandatory  | Description             |
 | ---------- | ----------------------- | ---- | --------------- |
-| bundleName | string                  | Yes   | Bundle name of the application.   |
+| bundleName | string                  | Yes   | Bundle name of an application.   |
 | callback   | AsyncCallback\<boolean> | Yes   | Callback used to return whether the ability is enabled. If the ability is enabled, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
@@ -1156,7 +1606,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| bundleName | string | Yes   | Bundle name of the application.|
+| bundleName | string | Yes   | Bundle name of an application.|
 
 **Return value**
 | Type            | Description                                    |
@@ -1193,7 +1643,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Name        | Type                  | Mandatory  | Description                            |
 | ---------- | -------------------- | ---- | ------------------------------ |
-| bundleName | string               | Yes   | Bundle name of the application.                  |
+| bundleName | string               | Yes   | Bundle name of an application.                  |
 | callback   | AsyncCallback\<[Want](js-apis-application-Want.md)> | Yes   | Callback used to return the **Want** object.|
 
 **Example**
@@ -1278,7 +1728,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
 
-Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
+Obtains the [pixel map](js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses a promise to return the result.
 
 **Required permissions**
 
@@ -1298,7 +1748,7 @@ SystemCapability.BundleManager.BundleFramework
 **Return value**
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | Promise used to return the [PixelMap](js-apis-image.md).|
+| Promise\<image.PixelMap> | Promise used to return the [pixel map](js-apis-image.md).|
 
 **Example**
 
@@ -1317,7 +1767,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
-Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
+Obtains the [pixel map](js-apis-image.md) of the icon corresponding to a given bundle name and ability name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
@@ -1333,7 +1783,7 @@ SystemCapability.BundleManager.BundleFramework
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | bundleName  | string                                   | Yes   | Bundle name based on which the pixel map is to obtain.                         |
 | abilityName | string                                   | Yes   | Ability name based on which the pixel map is to obtain.                        |
-| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [PixelMap](js-apis-image.md).|
+| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [pixel map](js-apis-image.md).|
 
 **Example**
 
@@ -1353,11 +1803,11 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 getAbilityIcon(bundleName: string, moduleName: string, abilityName: string): Promise\<image.PixelMap>;
 
-Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bundle name, module name, and ability name. This API uses a promise to return the result.
+Obtains the [pixel map](js-apis-image.md) of the icon corresponding to a given bundle name, module name, and ability name. This API uses a promise to return the result.
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1374,7 +1824,7 @@ SystemCapability.BundleManager.BundleFramework
 **Return value**
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise\<image.PixelMap> | Promise used to return the [PixelMap](js-apis-image.md).|
+| Promise\<image.PixelMap> | Promise used to return the [pixel map](js-apis-image.md).|
 
 **Example**
 
@@ -1394,11 +1844,11 @@ bundle.getAbilityIcon(bundleName, moduleName, abilityName)
 
 getAbilityIcon(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
 
-Obtains the [PixelMap](js-apis-image.md) of the icon corresponding to a given bundle name, module name, and ability name. This API uses an asynchronous callback to return the result.
+Obtains the [pixel map](js-apis-image.md) of the icon corresponding to a given bundle name, module name, and ability name. This API uses an asynchronous callback to return the result.
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1411,7 +1861,7 @@ SystemCapability.BundleManager.BundleFramework
 | bundleName  | string                                   | Yes   | Bundle name based on which the pixel map is to obtain.                         |
 | moduleName  | string                                   | Yes   | Module name based on which the pixel map is to obtain.                         |
 | abilityName | string                                   | Yes   | Ability name based on which the pixel map is to obtain.                        |
-| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [PixelMap](js-apis-image.md).|
+| callback   | AsyncCallback\<image.PixelMap> | Yes  | Callback used to return the [pixel map](js-apis-image.md).|
 
 **Example**
 
@@ -1447,8 +1897,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name            | Type    | Mandatory  | Description                                      |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)   | Yes   | Want that contains the bundle name.                       |
-| extensionType  | number | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#ExtensionAbilityType9).|
-| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
+| extensionType  | number | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
+| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
 | userId         | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
 
 **Return value**
@@ -1496,8 +1946,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name          | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want           | [Want](js-apis-application-Want.md)                                                        | Yes  | Want that contains the bundle name.                      |
-| extensionType  | number                                                       | Yes  | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#ExtensionAbilityType9).|
-| extensionFlags | number                                                       | Yes  | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
+| extensionType  | number                                                       | Yes  | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
+| extensionFlags | number                                                       | Yes  | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
 | userId         | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes  | Callback used to return the Extension ability information.      |
 
@@ -1528,7 +1978,7 @@ Obtains the Extension ability information based on a given want. This API uses a
 
 **Required permissions**
 
-ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.GET_BUNDLE_INFO
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
 
 **System capability**
 
@@ -1539,8 +1989,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name            | Type                                      | Mandatory  | Description                                      |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)                                     | Yes   | Want that contains the bundle name.                     |
-| extensionType  | number                                   | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#ExtensionAbilityType9).|
-| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
+| extensionType  | number                                   | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
+| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes   | Callback used to return the Extension ability information.     |
 
 **Example**
@@ -1693,6 +2143,142 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 })
 ```
 
+## bundle.setDisposedStatus<sup>9+</sup>
+
+setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
+
+Sets the disposal status for an application based on a given bundle name. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | Yes   | Bundle name of an application.             |
+| status    | number                               | Yes   | Disposal status to set. This parameter is reserved for the application market. The default value is **0**, indicating that no disposal is performed.            |
+| callback       | AsyncCallback\<void>        | Yes   | Callback that returns no value.  |
+
+**Example**
+
+```js
+let bundleName = 'com.ohos.camera';
+let status = 1;
+const caller = function callback(err, data) {
+    console.error('Operation err is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.setDisposedStatus(bundleName, status, caller)
+```
+
+## bundle.setDisposedStatus<sup>9+</sup>
+
+setDisposedStatus(bundleName: string, status: number): Promise\<void>;
+
+Sets the disposal status for an application based on a given bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | Yes   | Bundle name of an application.             |
+| status    | number                               | Yes   | Disposal status to set. This parameter is reserved for the application market. The default value is **0**, indicating that no disposal is performed.            |
+
+**Return value**
+
+| Type                                   | Description                            |
+| ------------------------------------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Example**
+
+```js
+let bundleName = 'com.ohos.camera';
+let status = 1;
+
+bundle.setDisposedStatus(bundleName, status).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation err is: ' + err);
+})
+```
+
+## bundle.getDisposedStatus<sup>9+</sup>
+
+getDisposedStatus(bundleName: string, callback: AsyncCallback\<number>): void;
+
+Obtains the disposal status of an application based on a given bundle name. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | Yes   | Bundle name of an application.             |
+| callback       | AsyncCallback\<number>        | Yes   | Callback used to return the disposal status.  |
+
+**Example**
+
+```js
+let bundleName = 'com.ohos.camera';
+const caller = function callback(err, data) {
+    console.error('Operation err is: ' + err);
+    console.error('Operation result is: ' + data);
+}
+bundle.getDisposedStatus(bundleName, caller)
+```
+
+## bundle.getDisposedStatus<sup>9+</sup>
+
+getDisposedStatus(bundleName: string): Promise\<number>;
+
+Obtains the disposal status of an application based on a given bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name            | Type                               | Mandatory  | Description                                      |
+| ---------------- | ---------------------------------- | ---- | ---------------------------------------- |
+| bundleName     | string                               | Yes   | Bundle name of an application.             |
+
+**Return value**
+
+| Type                                   | Description                            |
+| ------------------------------------- | ------------------------------ |
+| Promise\<number> | Promise used to return the disposal status.|
+
+**Example**
+
+```js
+let bundleName = 'com.ohos.camera';
+
+bundle.getDisposedStatus(bundleName).then(data=>{
+    console.error('Operation result is: ' + data);
+}).catch(err=>{
+    console.error('Operation err is: ' + err);
+})
+```
+
 ## InstallErrorCode
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
@@ -1779,15 +2365,15 @@ Enumerates display orientations.
 | LANDSCAPE     | None   | Landscape orientation.     |
 | PORTRAIT      | None   | Portrait orientation.     |
 | FOLLOW_RECENT | None   | Orientation same as that of the nearest ability in the stack.|
-| LANDSCAPE_INVERTED |None   | Reverse landscape orientation.    |
-| PORTRAIT_INVERTED |None   | Reverse portrait orientation.    |
-| AUTO_ROTATION |None   | Orientation determined by the sensor.    |
-| AUTO_ROTATION_LANDSCAPE |None   | Orientation determined by the sensor in the horizontal direction, including landscape and reverse landscape.    |
-| AUTO_ROTATION_PORTRAIT |None   | Orientation determined by the sensor in the vertical direction, including portrait and reverse portrait.    |
-| AUTO_ROTATION_RESTRICTED |None   | Orientation determined by the sensor when the sensor switch is enabled.    |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED |None   | Orientation determined by the sensor in the horizontal direction, including landscape and reverse landscape, when the sensor switch is enabled.    |
-| AUTO_ROTATION_PORTRAIT_RESTRICTED |None   | Orientation determined by the sensor in the vertical direction, including portrait and reverse portrait, when the sensor switch is enabled.    |
-| LOCKED |None   | Auto rotate locked.    |
+| LANDSCAPE_INVERTED<sup>9+</sup> |None   | Reverse landscape orientation.    |
+| PORTRAIT_INVERTED<sup>9+</sup> |None   | Reverse portrait orientation.    |
+| AUTO_ROTATION<sup>9+</sup> |None   | Orientation determined by the sensor.    |
+| AUTO_ROTATION_LANDSCAPE<sup>9+</sup> |None   | Orientation determined by the sensor in the horizontal direction, including landscape and reverse landscape.    |
+| AUTO_ROTATION_PORTRAIT<sup>9+</sup> |None   | Orientation determined by the sensor in the vertical direction, including portrait and reverse portrait.    |
+| AUTO_ROTATION_RESTRICTED<sup>9+</sup> |None   | Orientation determined by the sensor when the sensor switch is enabled.    |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED<sup>9+</sup> |None   | Orientation determined by the sensor in the horizontal direction, including landscape and reverse landscape, when the sensor switch is enabled.    |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED<sup>9+</sup> |None   | Orientation determined by the sensor in the vertical direction, including portrait and reverse portrait, when the sensor switch is enabled.    |
+| LOCKED<sup>9+</sup> |None   | Auto rotate disabled.    |
 ## LaunchMode
 
 Enumerates launch modes.
@@ -1827,9 +2413,12 @@ Enumerates Extension ability types.
 | FILE_SHARE<sup>9+</sup>        | 6    | File sharing included.|
 | STATIC_SUBSCRIBER<sup>9+</sup> | 7    | Subscribers included. |
 | WALLPAPER<sup>9+</sup>         | 8    | Wallpaper included.  |
-| BACKUP<sup>9+</sup>            | 9    | Data backup and restore included.|
+| BACKUP<sup>9+</sup> | 9    | Data backup and restore included.|
+| WINDOW<sup>9+</sup> | 10 | Window type extension information included.|
 | ENTERPRISE_ADMIN<sup>9+</sup>  | 11   | Enterprise administrators included.  |
-| UNSPECIFIED<sup>9+</sup>       | 20    | Unspecified type.    |
+| THUMBNAIL<sup>9+</sup> | 13 | Thumbnails included.|
+| PREVIEW<sup>9+</sup> | 14 | Preview included.|
+| UNSPECIFIED<sup>9+</sup>       | 255   | Unspecified type.    |
 
 ## ExtensionFlag<sup>9+</sup>
 
@@ -1876,6 +2465,20 @@ Enumerates window modes.
 
 | Name                | Type  | Description  |
 | ------------------ | ---- | ---- |
-| FULLSCREEN  | None  | Full screen.|
-| SPLIT | None   | Split-screen.  |
-| FLOATING | None   | Floating.  |
+| FULL_SCREEN<sup>9+</sup> | 0   | Full screen.|
+| SPLIT<sup>9+</sup> | 1    | Split-screen.  |
+| FLOATING<sup>9+</sup> | 2    | Floating.  |
+
+## UpgradeFlag
+
+Enumerates the upgrade flags, which are for internal use only.
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework
+
+| Name                         | Value  | Description            |
+| ----------------------------- | ---- | ---------------- |
+| NOT_UPGRADE<sup>9+</sup>      | 0    | No module needs an upgrade.    |
+| SINGLE_UPGRADE<sup>9+</sup>   | 1    | A single module needs an upgrade.|
+| RELATION_UPGRADE<sup>9+</sup> | 2    | The module that has a relationship with the current one needs an upgrade.|
