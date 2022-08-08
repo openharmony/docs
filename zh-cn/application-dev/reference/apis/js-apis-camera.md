@@ -926,7 +926,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 | 名称   | 类型                            | 说明       |
 | ------ | ----------------------------- | ---------- |
-| camera | [CameraDevice](#CameraDevice) | 相机信息。 |
+| camera | [CameraDevice](#cameraDevice) | 相机信息。 |
 | status | [CameraStatus](#camerastatus) | 相机状态。 |
 
 ## CameraPosition
