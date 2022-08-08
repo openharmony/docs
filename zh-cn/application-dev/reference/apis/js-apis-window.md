@@ -121,6 +121,21 @@ import window from '@ohos.window';
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表述受开关控制的自动横向旋转模式。 |
 | LOCKED                                | 11   | 表示锁定模式。 |
 
+## BlurStyle<sup>9+</sup>
+
+窗口模糊类型枚举。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称    | 值   | 说明                 |
+| ------- | ---- | -------------------- |
+| OFF     | 0    | 表示关闭模糊。       |
+| THIN    | 1    | 表示较薄的模糊类型。 |
+| REGULAR | 2    | 表示适中的模糊类型。 |
+| THICK   | 3    | 表示较厚的模糊类型。 |
+
 ## SystemBarRegionTint<sup>8+</sup>
 
 单个导航栏或状态栏回调信息。
@@ -2474,9 +2489,9 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
-> 
-> 从 API version 7开始支持。
+> **说明：** 该接口不支持使用。
+>
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2505,9 +2520,9 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 窗口叠加时，设备有子窗口的情况下设置靠后的窗口的暗度值，使用Promise异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2660,9 +2675,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 设置是否允许可点击子窗口之外的区域，使用callback异步回调。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从API Version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2691,9 +2706,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 设置是否允许可点击子窗口之外的区域，使用Promise异步回调。。
 
-> **说明：** 从API version 9开始废弃。该API不支持使用。
+> **说明：** 该接口不支持使用。
 > 
-> 从 API version 7开始支持。
+> 从API version 9开始废弃。从 API version 7开始支持。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2977,6 +2992,119 @@ promise.then((pixelMap)=> {
 }).catch((err)=>{
     console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
 });
+```
+
+### setBlur<sup>9+</sup>
+
+setBlur(radius: number): void
+
+设置窗口模糊。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| radius | number | 是   | 表示窗口模糊的半径值，取值范围为大于等于0，0表示关闭窗口模糊。 |
+
+**示例：**
+
+```js
+windowClass.setBlur(4.0);
+```
+
+### setBackdropBlur<sup>9+</sup>
+
+setBackdropBlur(radius: number): void
+
+设置窗口背景模糊。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| radius | number | 是   | 表示窗口背景模糊的半径值，取值范围为大于等于0，0表示关闭窗口背景模糊。 |
+
+**示例：**
+
+```js
+windowClass.setBackdropBlur(4.0);
+```
+
+### setBackdropBlurStyle<sup>9+</sup>
+
+setBackdropBlurStyle(blurStyle: BlurStyle): void
+
+设置窗口背景模糊类型。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名    | 类型      | 必填 | 说明                   |
+| --------- | --------- | ---- | ---------------------- |
+| blurStyle | [BlurStyle](#blurstyle9) | 是   | 表示窗口背景模糊类型。 |
+
+**示例：**
+
+```js
+windowClass.setBackdropBlurStyle(window.BlurType.THIN);
+```
+
+### setShadow<sup>9+</sup>
+
+setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): void
+
+设置窗口边缘阴影。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| radius  | number | 是   | 表示窗口边缘阴影的模糊半径，取值范围为大于等于0，0表示关闭窗口边缘阴影。 |
+| color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量，单位为px。                    |
+| offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量，单位为px。                    |
+
+**示例：**
+
+```js
+windowClass.setShadow(4.0, '#FF00FF00', 2, 3);
+```
+
+### setCornerRadius<sup>9+</sup>
+
+setCornerRadius(cornerRadius: number): void
+
+设置窗口圆角半径。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：** 
+
+| 参数名      | 类型    | 必填 | 说明                 |
+| ----------- | ------- | ---- | -------------------- |
+| radius | number | 是   | 表示窗口圆角的半径值，取值范围为大于等于0，0表示没有窗口圆角。 |
+
+**示例：**
+
+```js
+windowClass.setCornerRadius(4.0);
 ```
 
 ## WindowStageEventType<sup>9+</sup>

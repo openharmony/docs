@@ -1,12 +1,12 @@
 # Motion Path Animation
 
+You can apply a motion path animation to a component, by setting the motion path of the component in a translation animation.
 
 > **NOTE**
 >
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The attributes below can be used to set the motion path of the component in a translation animation.
 
 
 ## Attributes
@@ -19,7 +19,8 @@ The attributes below can be used to set the motion path of the component in a tr
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MotionPathExample {

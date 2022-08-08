@@ -128,7 +128,7 @@ TS语言的使用在生成器函数中存在一定的限制：
 build() {
     let a: number = 1 // invalid: variable declaration not allowed
     Column() {
-        Text('Hello ${this.myName.toUpperCase()}') // ok.
+        Text(`Hello ${this.myName.toUpperCase()}`) // ok.
         ForEach(this.arr.reverse(), ..., ...) // invalid: Array.reverse modifies the @State array variable in place
     }
     buildSpecial()  // invalid: no function calls
@@ -137,11 +137,11 @@ build() {
 ```
 
 
-## $
+## 变量双向绑定
 
 $$支持变量双向绑定，支持简单变量、@State、@Link、@Prop等类型。
 
-当前$$仅支持[bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md)属性的show参数和@State变量之间的渲染，以及Radio组件的checked属性。
+当前$$仅支持[bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md)属性的show参数和@State变量之间的渲染，以及Radio组件的checked属性和Refresh组件的refreshing参数。
 
 
 ```ts

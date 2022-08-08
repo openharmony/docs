@@ -94,7 +94,7 @@ Updates distributed account information. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -119,7 +119,7 @@ Updates distributed account information. This API uses a promise to return the r
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 - Parameters
   | Name| Type| Mandatory| Description|

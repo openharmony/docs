@@ -1,6 +1,6 @@
 # KWS SDK<a name="EN-US_TOPIC_0000001090776709"></a>
 
-1.  Add the API of the KWS SDK to the  **//foundation/ai/engine /interfaces/kits**  directory. This API can be called by third-party applications. The following code snippet is an example API for the KWS SDK. The reference code is available at the  **//foundation/ai/engine /interfaces/kits/asr/keyword\_spotting**  directory.
+1.  Add the API of the KWS SDK to the **//foundation/ai/engine /interfaces/kits** directory. This API can be called by third-party applications. The following code snippet is an example API for the KWS SDK. The reference code is available at the **//foundation/ai/engine /interfaces/kits/asr/keyword\_spotting** directory.
 
     ```
     class KWSSdk {
@@ -22,7 +22,7 @@
     };
     ```
 
-2.  Add the API implementation of the SDK to the  **//foundation/ai/engine/services/client/algorithm\_sdk**  directory and call the APIs provided by the client to use the algorithm plug-in capabilities. The following code snippet is an example implementation of the  **create**  method in the API of the KWS SDK. For more details, see the reference code at  **//foundation/ai/engine/services/client/algorithm\_sdk/asr/keyword\_spotting**.
+2.  Add the API implementation of the SDK to the **//foundation/ai/engine/services/client/algorithm\_sdk** directory and call the APIs provided by the client to use the algorithm plug-in capabilities. The following code snippet is an example implementation of the **create** method in the API of the KWS SDK. For more details, see the reference code at **//foundation/ai/engine/services/client/algorithm\_sdk/asr/keyword\_spotting**.
 
     ```
     int32_t KWSSdk::KWSSdkImpl::Create()
@@ -73,9 +73,8 @@
     }
     ```
 
-    The preceding code is the specific API implementation. The  **create**  function in the API of the KWS SDK calls the open  **AieClientInit**  and  **AieClientPrepare**  APIs provided by the client to connect to the server and load the algorithm model. For details, see the implementation of the  **create**  method in following sections.
+    The preceding code is the specific API implementation. The **create** function in the API of the KWS SDK calls the open **AieClientInit** and **AieClientPrepare** APIs provided by the client to connect to the server and load the algorithm model. For details, see the implementation of the **create** method in following sections.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >The sequence for the SDK to call client APIs:  **AieClientInit**  -\>  **AieClientPrepare**  -\>  **AieClientSyncProcess**  or  **AieClientAsyncProcess**  -\>  **AieClientRelease**  -\>  **AieClientDestroy**. An exception will be thrown if the call sequence is violated. 
-
-
+    >![](../public_sys-resources/icon-note.gif) **NOTE** 
+    >
+    >The sequence for the SDK to call client APIs: **AieClientInit** -\> **AieClientPrepare** -\> **AieClientSyncProcess** or **AieClientAsyncProcess** -\> **AieClientRelease** -\> **AieClientDestroy**. An exception will be thrown if the call sequence is violated. 

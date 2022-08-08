@@ -39,7 +39,7 @@ import inputMethod from '@ohos.inputmethod';
 
 getInputMethodController(): InputMethodController
 
-获取客户端实例[InputMethodController](#InputMethodController)。
+获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -47,7 +47,7 @@ getInputMethodController(): InputMethodController
 
     | 类型 | 说明 |
     | -------- | -------- |
-    | [InputMethodController](#InputMethodController) | 回调返回当前客户端实例。 |
+    | [InputMethodController](#inputmethodcontroller) | 回调返回当前客户端实例。 |
 
 **示例：**
 
@@ -59,7 +59,7 @@ getInputMethodController(): InputMethodController
 
 getInputMethodSetting(): InputMethodSetting
 
-获取客户端设置实例[InputMethodSetting](#InputMethodSetting)。
+获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -67,7 +67,7 @@ getInputMethodSetting(): InputMethodSetting
 
 | 类型                                      | 说明                         |
 | ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#InputMethodSetting) | 回调返回当前客户端设置实例。 |
+| [InputMethodSetting](#inputmethodsetting8) | 回调返回当前客户端设置实例。 |
 
 
 **示例：**
@@ -127,7 +127,7 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 ```
 ## InputMethodController
 
-下列API示例中都需使用[getInputMethodController](#getinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodController](#inputmethodgetinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInput
 
@@ -175,7 +175,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API示例中都需使用[getInputMethodSetting](#getinputmethodsetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodcontroller)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
 ### listInputMethod
 
@@ -188,7 +188,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **参数：**
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodProperty](#InputMethodProperty)> | 是   | 返回已安装输入法列表。 |
+| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 返回已安装输入法列表。 |
 
 **示例：**
 
@@ -212,7 +212,7 @@ listInputMethod(): Array&lt;InputMethodProperty&gt;
 **返回值：**
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | 返回已安装输入法列表。 |
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | 返回已安装输入法列表。 |
 
 **示例：**
 

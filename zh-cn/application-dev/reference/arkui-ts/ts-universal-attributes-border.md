@@ -24,16 +24,16 @@
 | borderStyle  | BorderStyle   | &nbsp;BorderStyle.Solid | 设置元素的边框样式。     |
 | borderWidth  | Length        | 0                       | 设置元素的边框宽度。     |
 | borderColor  | [ResourceColor](../../ui/ts-types.md)         | -                       | 设置元素的边框颜色。     |
-| borderRadius | Length        | 0                       | 设置元素的边框圆角半径。 |
+| borderRadius | Length \| BorderRadiuses<sup>9+</sup>        | 0                       | 设置元素的边框圆角半径。 |
 
 - BorderOptions属性说明
 
   | 参数名称 | 参数类型                                                     | 默认值            | 必填 | 参数描述   |
   | -------- | ------------------------------------------------------------ | ----------------- | ---- | ---------- |
-  | width    | [Length](../../ui/ts-types.md#长度类型)\|EdgeWidth<sup>9+</sup> | 0                 | 否   | 边框宽度。 |
-  | color    | [ResourceColor](../../ui/ts-types.md)\|EdgeColor<sup>9+</sup> | 'Black'           | 否   | 边框颜色。 |
-  | radius   | [Length](../../ui/ts-types.md#长度类型)\| EdgeRadiuses<sup>9+</sup> | 0                 | 否   | 边框角度。 |
-  | style    | BorderStyle\|EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | 否   | 边框样式。 |
+  | width    | [Length](../../ui/ts-types.md#长度类型) \| EdgeWidth<sup>9+</sup> | 0                 | 否   | 边框宽度。 |
+  | color    | [ResourceColor](../../ui/ts-types.md) \| EdgeColor<sup>9+</sup> | 'Black'           | 否   | 边框颜色。 |
+  | radius   | [Length](../../ui/ts-types.md#长度类型) \| BorderRadiuses<sup>9+</sup> | 0                 | 否   | 边框角度。 |
+  | style    | BorderStyle \| EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | 否   | 边框样式。 |
 
 
 - EdgeWidth<sup>9+</sup>对象说明
@@ -58,7 +58,7 @@
   | top    | [ResourceColor](../../ui/ts-types.md) | 否   | 'Black' | 上侧边框颜色。 |
   | bottom | [ResourceColor](../../ui/ts-types.md) | 否   | 'Black' | 下侧边框颜色。 |
 
-- EdgeRadiuses<sup>9+</sup>对象说明
+- BorderRadiuses<sup>9+</sup>对象说明
 
   引用该对象时，至少传入一个参数。
 

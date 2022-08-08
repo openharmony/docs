@@ -12,10 +12,6 @@
 import bundle from '@ohos.bundle';
 ```
 
-## 系统能力
-
-SystemCapability.BundleManager.BundleFramework
-
 ## 权限列表
 
 | 权限                                       | 权限等级     | 描述               |
@@ -536,7 +532,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ## bundle.setAbilityEnabled<sup>8+</sup>
 
-setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 设置是否启用指定的功能
 
@@ -1510,7 +1506,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
-以异步方法根据给定的意图获取获取指定用户下Ability信息，使用callback形式返回结果。
+以异步方法根据给定的意图获取指定用户下Ability信息，使用callback形式返回结果。
 
 **需要权限：**
 
@@ -1897,8 +1893,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型     | 必填   | 描述                                       |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)   | 是    | 包含要查询的应用程序包名称的意图。                        |
-| extensionType  | number | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#ExtensionAbilityType9) |
-| extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#ExtensionFlag9) |
+| extensionType  | number | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#extensionabilitytype9) |
+| extensionFlags | number | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#extensionflag9) |
 | userId         | number | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0              |
 
 **返回值：**
@@ -1946,8 +1942,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称           | 类型                                                         | 必填 | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want           | [Want](js-apis-application-Want.md)                                                        | 是   | 指示包含要查询的应用程序包名称的意图。                       |
-| extensionType  | number                                                       | 是   | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#ExtensionAbilityType9) |
-| extensionFlags | number                                                       | 是   | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值:  [ExtensionFlags](#ExtensionFlag9)|
+| extensionType  | number                                                       | 是   | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#extensionabilitytype9) |
+| extensionFlags | number                                                       | 是   | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值:  [ExtensionFlags](#extensionflag9)|
 | userId         | number                                                       | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0          |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | 是   | 程序启动作为入参的回调函数，返回ExtensionAbility信息。       |
 
@@ -1989,8 +1985,8 @@ SystemCapability.BundleManager.BundleFramework
 | 名称             | 类型                                       | 必填   | 描述                                       |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)                                     | 是    | 指示包含要查询的应用程序包名称的意图。                      |
-| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#ExtensionAbilityType9) |
-| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#ExtensionFlag9) |
+| extensionType  | number                                   | 是    | 用于指定查找的extensionAbilityInfo的类型。 默认值：0，取值范围：枚举值: [ExtensionAbilityType](#extensionabilitytype9) |
+| extensionFlags | number                                   | 是    | 用于指定返回ExtensionAbilityInfo信息。默认值：0，取值范围：枚举值: [ExtensionFlags](#extensionflag9) |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | 是    | 程序启动作为入参的回调函数，返回ExtensionAbility信息。      |
 
 **示例：**
@@ -2147,7 +2143,7 @@ bundle.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataNa
 
 setDisposedStatus(bundleName: string, status: number, callback: AsyncCallback\<void>): void;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用callback形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -2179,7 +2175,7 @@ bundle.setDisposedStatus(bundleName, status, caller)
 
 setDisposedStatus(bundleName: string, status: number): Promise\<void>;
 
-此接口为系统接口，以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName和status来设置对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -2217,6 +2213,8 @@ bundle.setDisposedStatus(bundleName, status).then(data=>{
 
 getDisposedStatus(bundleName: string, callback: AsyncCallback\<number>): void;
 
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用callback形式返回结果。
+
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework
@@ -2245,7 +2243,7 @@ bundle.getDisposedStatus(bundleName, caller)
 
 getDisposedStatus(bundleName: string): Promise\<number>;
 
-此接口为系统接口，以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
+以异步方法根据给定的bundleName来获取对应应用的处置状态，使用Promise形式返回结果。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 

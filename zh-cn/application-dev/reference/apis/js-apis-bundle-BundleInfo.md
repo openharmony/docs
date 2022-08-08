@@ -24,7 +24,7 @@
 | appInfo                           | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md)         | 是   | 否   | 应用程序的配置信息                                           |
 | abilityInfos                      | Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>         | 是   | 否   | Ability的配置信息<br />通过传入GET_BUNDLE_WITH_ABILITIES获取 |
 | reqPermissions                    | Array\<string>                                               | 是   | 否   | 应用运行时需向系统申请的权限集合<br />通过传入GET_BUNDLE_WITH_REQUESTED_PERMISSION获取 |
-| reqPermissionDetails              | Array\<[ReqPermissionDetail](#ReqPermissionDetail)>          | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息<br />通过传入GET_BUNDLE_WITH_REQUESTED_PERMISSION获取 |
+| reqPermissionDetails              | Array\<[ReqPermissionDetail](#reqpermissiondetail)>          | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息<br />通过传入GET_BUNDLE_WITH_REQUESTED_PERMISSION获取 |
 | vendor                            | string                                                       | 是   | 否   | 应用包的供应商                                               |
 | versionCode                       | number                                                       | 是   | 否   | 应用包的版本号                                               |
 | versionName                       | string                                                       | 是   | 否   | 应用包的版本文本描述信息                                     |

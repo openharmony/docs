@@ -1956,6 +1956,7 @@ Defines OAuth token information.
 | -------- | ------ | ---- | -------- |
 | authType | string | Yes   | Authentication type.|
 | token    | string | Yes   | Value of the token.  |
+| account<sup>9+</sup> | AppAccountInfo | No    | Account information of the token.  |
 
 ## AuthenticatorInfo<sup>8+</sup>
 

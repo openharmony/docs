@@ -98,11 +98,11 @@ import commonEvent from '@ohos.commonEvent';
 ```js
 //发布公共事件
 commonEvent.publish("event", (err) => {
-	if (err.code) {
-		console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
-	} else {
-		console.info("[CommonEvent]Publish1")
-	}
+    if (err.code) {
+        console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
+    } else {
+        console.info("[CommonEvent]Publish1")
+    }
 })
 ```
 
@@ -118,8 +118,8 @@ import commonEvent from '@ohos.commonEvent'
 ```js
 //公共事件相关信息
 var options = {
-	code: 1,			 //公共事件的初始代码
-	data: "initial data",//公共事件的初始数据
+    code: 1,			 //公共事件的初始代码
+    data: "initial data",//公共事件的初始数据
 }
 ```
 
@@ -128,11 +128,11 @@ var options = {
 ```js
 //发布公共事件
 commonEvent.publish("event", options, (err) => {
-	if (err.code) {
-		console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
-	} else {
-		console.info("[CommonEvent]Publish2")
-	}
+    if (err.code) {
+        console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
+    } else {
+        console.info("[CommonEvent]Publish2")
+    }
 })
 ```
 

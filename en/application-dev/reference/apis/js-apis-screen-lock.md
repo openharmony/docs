@@ -1,8 +1,10 @@
 # Screen Lock Management
 
+The **screenlock** module is a system module in OpenHarmony. It provides APIs for screen lock applications to subscribe to screen lock status changes as well as callbacks for them to receive the results. It also provides APIs for third-party applications to unlock the screen, obtain the screen locked status, and check whether a lock screen password has been set.
+
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version … Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -73,6 +75,7 @@ Checks whether a device is in secure mode. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -125,6 +128,7 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -174,10 +178,12 @@ Subscribes to screen lock status changes.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **'beginWakeUp'**: Wakeup starts.<br>- **'endWakeUp'**: Wakeup ends.<br>- **'beginScreenOn'**: Screen turn-on starts.<br>- **'endScreenOn'**: Screen turn-on ends.<br>- **'beginScreenOff'**: Screen turn-off starts.<br>- **'endScreenOff'**: Screen turn-off ends.<br>- **'unlockScreen'**: The screen is unlocked.<br>- **'beginExitAnimation'**: Animation starts to exit. |
+| type | string | Yes| Event type.<br>- **"beginWakeUp"**: Wakeup starts.<br>- **"endWakeUp"**: Wakeup ends.<br>- **"beginScreenOn"**: Screen turn-on starts.<br>- **"endScreenOn"**: Screen turn-on ends.<br>- **"beginScreenOff"**: Screen turn-off starts.<br>- **"endScreenOff"**: Screen turn-off ends.<br>- **"unlockScreen"**: The screen is unlocked.<br>- **"beginExitAnimation"**: Animation starts to exit.|
 | callback | Callback\<void\> | Yes| Callback used to return the result.|
 
 **Example**
@@ -196,10 +202,12 @@ Subscribes to screen lock status changes.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **'beginSleep'**: The screen enters sleep mode.<br>- **'endSleep'**: The screen exits sleep mode.<br>- **'changeUser'**: The user is switched.|
+| type | string | Yes| Event type.<br>- **"beginSleep"**: The screen enters sleep mode.<br>- **"endSleep"**: The screen exits sleep mode.<br>- **"changeUser"**: The user is switched.|
 | callback | Callback\<number\> | Yes| Callback used to return the result. |
 
 **Example**
@@ -217,11 +225,13 @@ Subscribes to screen lock status changes.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **'screenlockEnabled'**: Screen lock is enabled.|
-| callback | Callback\<boolean\> | Yes| Callback used to return the result. |
+| type | string | Yes| Event type.<br>- **"screenlockEnabled"**: Screen lock is enabled.|
+| callback | Callback\<boolean\> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -240,10 +250,12 @@ Unsubscribes from screen lock status changes.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **'beginWakeUp'**: Wakeup starts.<br>- **'endWakeUp'**: Wakeup ends.<br>- **'beginScreenOn'**: Screen turn-on starts.<br>- **'endScreenOn'**: Screen turn-on ends.<br>- **'beginScreenOff'**: Screen turn-off starts.<br>- **'endScreenOff'**: Screen turn-off ends.<br>- **'unlockScreen'**: The screen is unlocked.<br>- **'beginExitAnimation'**: Animation starts to exit.<br>- **'screenlockEnabled'**: Screen lock is enabled.<br>- **'beginSleep'**: The screen enters sleep mode.<br>- **'endSleep'**: The screen exits sleep mode.<br>- **'changeUser'**: The user is switched.|
+| type | string | Yes| Event type.<br>- **"beginWakeUp"**: Wakeup starts.<br>- **"endWakeUp"**: Wakeup ends.<br>- **"beginScreenOn"**: Screen turn-on starts.<br>- **"endScreenOn"**: Screen turn-on ends.<br>- **"beginScreenOff"**: Screen turn-off starts.<br>- **"endScreenOff"**: Screen turn-off ends.<br>- **"unlockScreen"**: The screen is unlocked.<br>- **"beginExitAnimation"**: Animation starts to exit.<br>- **"screenlockEnabled"**: Screen lock is enabled.<br>- **"beginSleep"**: The screen enters sleep mode.<br>- **"endSleep"**: The screen exits sleep mode.<br>- **"changeUser"**: The user is switched.|
 | callback | Callback\<void\> | Yes| Callback used to return the result.|
 
 **Example**
@@ -262,11 +274,13 @@ Sends an event to the screen lock service. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | String | Yes| Event type.<br>- **'unlockScreenResult'**: Screen unlock result.<br>- **'screenDrawDone'**: Screen drawing is complete.|
-| parameter | number | Yes| Screen unlock status.<br>- **0**: The unlock is successful.<br>- **0**: The unlock failed.<br>- **2**: The unlock was canceled.|
+| event | String | Yes| Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
+| parameter | number | Yes| Screen unlock status.<br>- **0**: The unlock is successful.<br>- **1**: The unlock failed.<br>- **2**: The unlock was canceled.|
 | callback | AsyncCallback\<boolean\> | Yes| Callback used to return the result.|
 
 **Example**
@@ -279,18 +293,19 @@ Sends an event to the screen lock service. This API uses an asynchronous callbac
 
 ## screenlock.sendScreenLockEvent<sup>9+</sup>
 
-sendScreenLockEvent(event: String, parameter: number): Promise<boolean>
+sendScreenLockEvent(event: String, parameter: number): Promise\<boolean\>
 
 Sends an event to the screen lock service. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
-**Parameters**
+**System API**: This is a system API and cannot be called by third-party applications.
 
+**Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | String | Yes| Event type.<br>- **'unlockScreenResult'**: Screen unlock result.<br>- **'screenDrawDone'**: Screen drawing is complete.|
-| parameter | number | Yes| Screen unlock status.<br>- **0**: The unlock is successful.<br>- **0**: The unlock failed.<br>- **2**: The unlock was canceled.|
+| event | String | Yes| Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
+| parameter | number | Yes| Screen unlock status.<br>- **0**: The unlock is successful.<br>- **1**: The unlock failed.<br>- **2**: The unlock was canceled.|
 
 **Return value**
 | Type| Description|
@@ -300,7 +315,7 @@ Sends an event to the screen lock service. This API uses a promise to return the
 **Example**
 
   ```js
-  screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((err, result) => {
+  screenlock.sendScreenLockEvent('unlockScreenResult', 0).then((result) => {
       console.log('sending result:' + result);
   });
   ```

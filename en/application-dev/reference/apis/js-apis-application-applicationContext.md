@@ -7,7 +7,7 @@ The **ApplicationContext** module provides application-level context. You can us
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
-## How to Use
+## Usage
 
 Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
 
@@ -28,7 +28,7 @@ Registers a listener to monitor the ability lifecycle of the application.
 
 | Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| [AbilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md) | callback | Yes  | Callback used to return the ID of the registered listener.|
+| callback | [AbilityLifecycleCallback](js-apis-application-abilityLifecycleCallback.md) | Yes  | Callback used to return the ID of the registered listener.|
 
 **Return value**
 
@@ -98,7 +98,7 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
 | callbackId    | number   | Yes  | ID of the listener to deregister.|
-| AsyncCallback | callback | Yes  | Callback used to return the result.                  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                  |
 
 **Example**
 
@@ -123,7 +123,7 @@ Registers a listener for system environment changes. This API uses an asynchrono
 
 | Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| [EnvironmentCallback](js-apis-application-EnvironmentCallback.md) | callback | Yes  | Callback used to return the ID of the registered listener.|
+| callback | [EnvironmentCallback](js-apis-application-EnvironmentCallback.md) | Yes  | Callback used to return the ID of the registered listener.|
 
 **Return value**
 
@@ -175,7 +175,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 | Name        | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
-| AsyncCallback | callback | Yes  | Callback used to return the result.                 |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                 |
 
 **Example**
 

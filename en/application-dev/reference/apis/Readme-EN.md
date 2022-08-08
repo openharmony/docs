@@ -32,6 +32,7 @@
     - [@ohos.ability.errorCode](js-apis-ability-errorCode.md)
     - [@ohos.ability.wantConstant](js-apis-ability-wantConstant.md)
     - [@ohos.application.abilityDelegatorRegistry](js-apis-abilityDelegatorRegistry.md)
+    - [@ohos.application.abilityManager](js-apis-application-abilityManager.md)
     - [@ohos.application.appManager](js-apis-appmanager.md)
     - [@ohos.application.Configuration](js-apis-configuration.md)
     - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
@@ -43,6 +44,8 @@
     - [@ohos.application.formProvider](js-apis-formprovider.md)
     - [@ohos.application.missionManager](js-apis-missionManager.md)
     - [@ohos.application.Want](js-apis-application-Want.md)
+    - [@ohos.continuation.continuationManager](js-apis-continuation-continuationExtraParams.md)
+    - [@ohos.continuation.continuationManager](js-apis-continuation-continuationManager.md)
     - [@ohos.wantAgent](js-apis-wantAgent.md)
     - application/[abilityDelegator](js-apis-application-abilityDelegator.md)
     - application/[abilityDelegatorArgs](js-apis-application-abilityDelegatorArgs.md)
@@ -52,7 +55,7 @@
     - application/[MissionSnapshot](js-apis-application-MissionSnapshot.md)
     - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
     - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
-  
+    - continuation/[ContinuationResult](js-apis-continuation-continuationResult.md)
 - Common Event and Notification
 
   - [@ohos.commonEvent](js-apis-commonEvent.md)

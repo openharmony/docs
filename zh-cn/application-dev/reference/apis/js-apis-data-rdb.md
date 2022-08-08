@@ -1424,7 +1424,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 **返回值**：
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
   ```js
@@ -1549,7 +1549,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 **返回值**：
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 ```js
@@ -1638,13 +1638,7 @@ const valueBucket = {
     "salary": 100.5,
     "blobType": new Uint8Array([1, 2, 3]),
 }
-rdbStore.insert("test", valueBucket, function (err, ret) {
-    if (err) {
-        console.info("Insert failed, err: " + err)
-        return
-    }
-    console.log("Insert successfully: " + ret)
-})
+await rdbStore.insert("test", valueBucket)
 rdbStore.commit()
 ```
 
@@ -1667,13 +1661,7 @@ const valueBucket = {
     "blobType": new Uint8Array([1, 2, 3]),
 }
 
-rdbStore.insert("test", valueBucket, function (err, ret) {
-    if (err) {
-        console.info("Insert failed, err: " + err)
-        return
-    }
-    console.log("Insert successfully: " + ret)
-})
+await rdbStore.insert("test", valueBucket)
 rdbStore.commit()
 ```
 
@@ -1697,13 +1685,7 @@ try {
         "salary": 100.5,
         "blobType": new Uint8Array([1, 2, 3]),
     }
-    rdbStore.insert("test", valueBucket, function (err, ret) {
-        if (err) {
-            console.info("Insert failed, err: " + err)
-            return
-        }
-        console.log("Insert successfully: " + ret)
-    })
+    await rdbStore.insert("test", valueBucket)
     rdbStore.commit()
 } catch (e) {
     rdbStore.rollBack()

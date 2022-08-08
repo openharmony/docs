@@ -4,7 +4,7 @@
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-可滑动面板。提供一种轻量的内容展示的窗口，可方便的在不同尺寸中切换，属于弹出式组件。
+可滑动面板，提供一种轻量的内容展示窗口，方便在不同尺寸中切换。
 
 
 ## 权限列表
@@ -37,6 +37,7 @@ Panel(value:{show：boolean})
 | fullHeight | Length | - | 指定PanelMode.Full状态下的高度。 |
 | halfHeight | Length | - | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
 | miniHeight | Length | - | 指定PanelMode.Mini状态下的高度。 |
+| backgroundMask<sup>9+</sup>|(color: ResourceColor)| - |指定Panel的背景蒙层。|
 
 - PanelType枚举说明
   | 名称 | 描述 | 
@@ -58,7 +59,7 @@ Panel(value:{show：boolean})
 | 名称 | 功能描述 | 
 | -------- | -------- |
 | onChange(callback:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 | 
-
+| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |当可滑动面板发生高度变化时触发，返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。因用户体验设计原因，panel最高只能滑到 fullHeight-8vp |
 
 ## 示例
 
@@ -70,7 +71,7 @@ struct PanelExample {
   @State show: boolean = false
 
   build() {
-    Column() {
+    Stack() {
       Text('2021-09-30    Today Calendar: 1.afternoon......Click for details')
         .width('90%').height(50).borderRadius(10)
         .backgroundColor(0xFFFFFF).padding({ left: 20 })

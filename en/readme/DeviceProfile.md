@@ -171,14 +171,13 @@ subscribeInfos.emplace_back(info2);
 
 std::list<ProfileEvent> failedEvents;
 // Call SubscribeProfileEvents.
-DistributedDeviceProfileClient::GetInstance().SubscribeProfileEvents(subscribeInfos,
-    callback, failedEvents);
+DistributedDeviceProfileClient::GetInstance().SubscribeProfileEvents(subscribeInfos, callback, failedEvents);
 sleep(SUBSCRIBE_SLEEP_TIME);
 std::list<ProfileEvent> profileEvents;
 profileEvents.emplace_back(ProfileEvent::EVENT_PROFILE_CHANGED);
 failedEvents.clear();
 // Cancel the subscription.
-DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEvents,
+DistributedDeviceProfileClient::GetInstance().UnsubscribeProfileEvents(profileEvents, callback, failedEvents);
     callback, failedEvents);
 ```
 

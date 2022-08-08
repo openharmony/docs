@@ -38,6 +38,7 @@
 @Entry
 @Component
 struct PositionExample {
+
   build() {
     Column() {
       Column({space: 10}) {
@@ -72,6 +73,7 @@ struct PositionExample {
 @Entry
 @Component
 struct PositionExample2 {
+  
   build() {
     Column({ space: 20 }) {
       Text('position').fontSize(12).fontColor(0xCCCCCC).width('90%')

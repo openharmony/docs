@@ -97,7 +97,7 @@ For details about permission usage examples, see [Access Control Development](ac
 | ohos.permission.EDM_MANAGE_DATETIME                      | normal       | system_grant | FALSE   | Allows the device administrator app to set the system time.                            |
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | Allows an app to read NFC tag information.                                       |
 | ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | Allows an app to implement card emulation.                                    |
-| ohos.permission.PERMISSION_USED_STATS                    | system_core  | system_grant | TRUE    | Allows a system application to access the permission usage records.                              |
+| ohos.permission.PERMISSION_USED_STATS                    | system_basic | system_grant | TRUE    | Allows a system application to access the permission usage records.                              |
 | ohos.permission.NOTIFICATION_AGENT_CONTROLLER            | system_core  | system_grant | TRUE    | Allows an app to send agent-powered notifications.                                      |
 | ohos.permission.ANSWER_CALL                              | system_basic | user_grant   | TRUE    | Allows an app to answer incoming calls.                                          |
 | ohos.permission.READ_CALENDAR                            | normal       | user_grant   | TRUE    | Allows an app to read calendar data.                                      |
@@ -129,3 +129,5 @@ For details about permission usage examples, see [Access Control Development](ac
 | ohos.permission.ACCESS_IDS                               | system_core  | system_grant | TRUE    | Allows an app to query the unique identifier of a device.                              |
 | ohos.permission.DUMP                                     | system_core  | system_grant | TRUE    | Allows the basic system information and SA service information to be exported.                              |
 | ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | Allows networking between different devices.                                  |
+| ohos.permission.ACCESS_DLP_FILE                          | system_core  | system_grant | TRUE    | Allows configuration and management of the permissions on .dlp files.                               |
+| ohos.permission.PROVISIONING_MESSAGE                     | system_core  | system_grant | TRUE    | Allows activiation of the Super Device Manager application.                                    |

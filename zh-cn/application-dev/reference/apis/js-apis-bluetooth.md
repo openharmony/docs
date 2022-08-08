@@ -1,9 +1,10 @@
 # 蓝牙
 
+蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-蓝牙模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 
 
 ## 导入模块
@@ -343,7 +344,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
 | mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。                      |
-| duration | number                | 是    | 设备可被发现的持续时间，单位为秒；设置为0则持续可发现。 |
+| duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
 
 **返回值：**
 
@@ -1029,7 +1030,7 @@ getProfile(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayProfi
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#A2dpSourceProfile)或[HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofile)或[HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile， HandsFreeAudioGatewayProfile。 |
 
 **示例：**
 
@@ -1055,7 +1056,7 @@ getProfileInst(profileId: ProfileId): A2dpSourceProfile | HandsFreeAudioGatewayP
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#A2dpSourceProfile)或 [HandsFreeAudioGatewayProfile](#HandsFreeAudioGatewayProfile)或[HidHostProfile](#HidHostProfile)或[PanProfile](#PanProfile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
+| [A2dpSourceProfile](#a2dpsourceprofile)或 [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile)或[HidHostProfile](#hidhostprofile)或[PanProfile](#panprofile) | 对应的profile的对象实例，当前支持A2dpSourceProfile/HandsFreeAudioGatewayProfile/HidHostProfile/PanProfile。 |
 
 **示例：**
 

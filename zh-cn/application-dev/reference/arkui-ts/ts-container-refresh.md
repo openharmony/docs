@@ -21,7 +21,7 @@ Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number | stri
 
   | 参数 | 参数名 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | refreshing | boolean | 是 | - | 当前组件是否正在刷新。 |
+  | refreshing | boolean | 是 | - | 当前组件是否正在刷新。<br/>该参数支持[$$](../../ui/ts-syntactic-sugar.md)双向绑定变量。 |
   | offset | Length | 否 | 16 | 刷新组件静止时距离父组件顶部的距离。|
   | friction | number&nbsp;\|&nbsp;string | 否 | 62 | 下拉摩擦系数，取值范围为0到100。<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
 
@@ -58,7 +58,7 @@ struct RefreshExample {
 
   build() {
     Column() {
-      Refresh({refreshing: this.isRefreshing, offset: 120, friction: 100}) {
+      Refresh({refreshing: $$this.isRefreshing, offset: 120, friction: 100}) {
         Text('Pull Down and refresh: ' + this.counter)
           .fontSize(30)
           .margin(10)

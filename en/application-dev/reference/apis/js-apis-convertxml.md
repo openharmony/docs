@@ -1,6 +1,9 @@
 # XML-to-JavaScript Conversion
 
-> **NOTE**<br/>
+The **convertxml** module provides APIs for converting XML text into JavaScript objects.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -47,10 +50,10 @@ let xml =
     '</note>';
 let conv = new convertxml.ConvertXML();
 let options = {trim : false, declarationKey:"_declaration",
-               instructionKey : "_instruction", attributesKey : "_attributes",
-               textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
-               commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
-               nameKey : "_name", elementsKey : "_elements"}
+    instructionKey : "_instruction", attributesKey : "_attributes",
+    textKey : "_text", cdataKey:"_cdata", doctypeKey : "_doctype",
+    commentKey : "_comment", parentKey : "_parent", typeKey : "_type",
+    nameKey : "_name", elementsKey : "_elements"}
 let result = JSON.stringify(conv.convert(xml, options));
 console.log(result)
 ```

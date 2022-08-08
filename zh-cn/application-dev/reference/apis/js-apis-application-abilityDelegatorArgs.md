@@ -20,11 +20,13 @@ var args = AbilityDelegatorRegistry.getArguments();
 
 测试参数信息
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
 | 名称                | 类型                   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName          | string                 | 是   | 是   | 当前被测试应用的包名<br/>**系统能力：** SystemCapability.Ability.AbilityRuntime.Core |
-| parameters          | {[key:string]: string} | 是   | 是   | 当前启动单元测试的参数<br/>**系统能力：** SystemCapability.Ability.AbilityRuntime.Core |
-| testCaseNames       | string                 | 是   | 是   | 测试用例名称<br/>**系统能力：** SystemCapability.Ability.AbilityRuntime.Core |
-| testRunnerClassName | string                 | 是   | 是   | 执行测试用例的测试执行器的名称<br/>**系统能力：** SystemCapability.Ability.AbilityRuntime.Core |
+| bundleName          | string                 | 是   | 是   | 当前被测试应用的包名 |
+| parameters          | {[key:string]: string} | 是   | 是   | 当前启动单元测试的参数 |
+| testCaseNames       | string                 | 是   | 是   | 测试用例名称 |
+| testRunnerClassName | string                 | 是   | 是   | 执行测试用例的测试执行器的名称 |
 
 

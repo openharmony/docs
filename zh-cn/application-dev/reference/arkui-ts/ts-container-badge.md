@@ -89,8 +89,8 @@ struct BadgeExample {
       }.width(80).height(50)
 
       Badge({
-        value: '',
-        position: BadgePosition.Right,
+        value: ' ',
+        position: 1,
         style: { badgeSize: 6, badgeColor: Color.Red }
       }) {
         Text('message')

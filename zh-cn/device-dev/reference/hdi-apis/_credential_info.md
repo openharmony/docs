@@ -18,7 +18,7 @@
 | [credentialId](#credentialid) | 认证凭据ID。 | 
 | [index](#index) | 用户认证框架的执行器索引。 | 
 | [templateId](#templateid) | 认证凭据模版ID。 | 
-| [authType](#authtype) | 用户认证凭据类型AuthType。 | 
+| [authType](#authtype) | 用户认证凭据类型。 | 
 | [executorMatcher](#executormatcher) | 执行器匹配器。 | 
 | [executorSensorHint](#executorsensorhint) | 既定用户认证凭据类型的执行器传感器提示，用于找到对应认证方式的传感器。 | 
 

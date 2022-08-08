@@ -191,20 +191,24 @@ Asynchronously obtains volume information based on the universally unique identi
 **Parameters**
 
   | Name  | Type  | Mandatory| Description|
-    | -------- | ------ | ---- | ---- |
+  | -------- | ------ | ---- | ---- |
   | uuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
   | Type                              | Description                      |
-    | ---------------------------------- | -------------------------- |
+  | ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
 
 **Example**
 
   ```js
   let uuid = "";
-  let volume = await volumemanager.getVolumeByUuid(uuid);
+  volumemanager.getVolumeByUuid(uuid).then(function(volume) {
+      console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
+  }).catch(function(error){
+      console.info("getVolumeByUuid failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.getVolumeByUuid
@@ -235,7 +239,7 @@ Asynchronously obtains volume information based on the UUID. This API uses a cal
 
 ## volumemanager.getVolumeById
 
-getVolumeById(id: string): Promise&lt;Volume&gt;
+getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
 Asynchronously obtains volume information based on the volume ID. This API uses a promise to return the result.
 
@@ -247,7 +251,7 @@ Asynchronously obtains volume information based on the volume ID. This API uses 
 
   | Name   | Type   | Mandatory | Description|
   | -------- | ------ | ---- | ---- |
-  | id | string | Yes  | Volume ID.|
+  | volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
@@ -258,13 +262,17 @@ Asynchronously obtains volume information based on the volume ID. This API uses 
 **Example**
 
   ```js
-  let id = "";
-  let volume = await volumemanager.getVolumeById(id);
+  let volumeId = "";
+  volumemanager.getVolumeById(volumeId).then(function(volume) {
+      console.info("getVolumeById successfully:" + JSON.stringify(volume));
+  }).catch(function(error){
+      console.info("getVolumeById failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.getVolumeById
 
-getVolumeById(id: string, callback: AsyncCallback&lt;Volume&gt;): void
+getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 Asynchronously obtains volume information based on the volume ID. This API uses a callback to return the result.
 
@@ -274,16 +282,16 @@ Asynchronously obtains volume information based on the volume ID. This API uses 
 
 **Parameters**
 
-  | Name   | Type                                                | Mandatory| Description                |
-    | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | id | string                                              | Yes  | Volume ID.                |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+  | Name  | Type                     | Mandatory| Description                         |
+  | -------- | ------------------------- | ---- | ----------------------------- |
+  | volumeId | string                    | Yes  | Volume ID.               |
+  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
 
 **Example**
 
   ```js
-  let id = "";
-  volumemanager.getVolumeById(id, (error, volume) => {
+  let volumeId = "";
+  volumemanager.getVolumeById(volumeId, (error, volume) => {
       // Do something.   
   });
   ```
@@ -316,7 +324,11 @@ Asynchronously sets the volume description based on the UUID. This API uses a pr
   ```js
   let uuid = "";
   let description = "";
-  let bool = await volumemanager.setVolumeDescription(uuid, description);
+  volumemanager.setVolumeDescription(uuid, description).then(function() {
+      console.info("setVolumeDescription successfully");
+  }).catch(function(error){
+      console.info("setVolumeDescription failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.setVolumeDescription
@@ -349,7 +361,7 @@ Asynchronously sets the volume description based on the UUID. This API uses a ca
 
 ## volumemanager.format
 
-format(volId: string): Promise&lt;void&gt;
+format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
 Asynchronously formats a volume. This API uses a promise to return the result.
 
@@ -361,24 +373,30 @@ Asynchronously formats a volume. This API uses a promise to return the result.
 
   | Name      | Type  | Mandatory| Description|
   | ----------- | ------ | ---- | ---- |
-  | volId    | string | Yes  | Volume ID.|
+  | volumeId    | string | Yes  | Volume ID.|
+  | fsType    | string | Yes  | File system type.|
 
 **Return value**
 
-  | Type                   | Description                      |
-    | --------------------- | ----------------------- |
-  | Promise&lt;void&gt; | Promise used to return the result.           |
+  | Type                  | Description      |
+  | ---------------------- | ---------- |
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
   ```js
-  let volId = "";
-  let bool = await volumemanager.format(volId);
+  let volumeId = "";
+  let fsType = "";
+  volumemanager.format(volumeId, fsType).then(function() {
+      console.info("format successfully");
+  }).catch(function(error){
+      console.info("format failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.format
 
-format(volId: string, callback: AsyncCallback&lt;void&gt;): void
+format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously formats a volume. This API uses a callback to return the result.
 
@@ -388,23 +406,25 @@ Asynchronously formats a volume. This API uses a callback to return the result.
 
 **Parameters**
 
-  | Name     | Type                                    | Mandatory| Description             |
-    | -------- | --------------------------------------- | ---- | ---------------- |
-  | volId   | string                                  | Yes  | Volume ID.           |
-  | callback   | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result. |
+  | Name  | Type                     | Mandatory| Description                         |
+  | -------- | ------------------------- | ---- | ----------------------------- |
+  | volumeId | string                    | Yes  | Volume ID.               |
+  | fsType    | string | Yes  | File system type.|
+  | callback | callback:AsyncCallback&lt;void&gt;  | Yes  | Called after the volume is formatted. |
 
 **Example**
 
   ```js
-  let volId = "";
-  volumemanager.format(volId, (error, bool) => {
+  let volumeId = "";
+  let fsType = "";
+  volumemanager.format(volumeId, fsType, (error, bool) => {
       // Do something.   
   });
   ```
 
 ## volumemanager.partition
 
-partition(volId: string, fstype: string): Promise&lt;void&gt;
+partition(diskId: string, type: number): Promise&lt;void&gt;
 
 Asynchronously partitions a disk. This API uses a promise to return the result.
 
@@ -415,9 +435,9 @@ Asynchronously partitions a disk. This API uses a promise to return the result.
 **Parameters**
 
   | Name      | Type  | Mandatory| Description|
-    | ----------- | ------ | ---- | ---- |
-  | volId    | string | Yes  | ID of the disk to which the volume belongs.|
-  | fstype      | string | Yes  | Partition type.   |
+  | ----------- | ------ | ---- | ---- |
+  | diskId    | string | Yes  | ID of the disk to which the volume belongs.|
+  | type      | number | Yes  | Partition type.   |
 
 **Return value**
 
@@ -428,14 +448,18 @@ Asynchronously partitions a disk. This API uses a promise to return the result.
 **Example**
 
   ```js
-  let volId = "";
-  let fstype = "";
-  let bool = await volumemanager.partition(volId, fstype);
+  let diskId = "";
+  let type = 0;
+  volumemanager.partition(diskId, type).then(function() {
+      console.info("partition successfully");
+  }).catch(function(error){
+      console.info("partition failed with error:"+ error);
+  });
   ```
 
 ## volumemanager.partition
 
-partition(volId: string, fstype : string, callback: AsyncCallback&lt;void&gt;): void
+partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): void
 
 Asynchronously partitions a disk. This API uses a callback to return the result.
 
@@ -447,16 +471,16 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
 
   | Name     | Type                                  | Mandatory| Description             |
   | -------- | --------------------------------------- | ---- | ---------------- |
-  | volId   | string                                  | Yes  | ID of the disk to which the volume belongs.     |
-  | fstype     | string                                  | Yes  | Partition type.          |
+  | diskId   | string                                  | Yes  | ID of the disk to which the volume belongs.     |
+  | type     | number                                  | Yes  | Partition type.          |
   | callback | callback:AsyncCallback&lt;void&gt;   | Yes  | Callback invoked to return the result.     |
 
 **Example**
 
   ```js
-  let volId = "";
-  let fstype = "";
-  volumemanager.format(volId, fstype, (error, bool) => {
+  let diskId = "";
+  let type = 0;
+  volumemanager.partition(diskId, type, (error, bool) => {
       // Do something.   
   });
   ```
@@ -471,6 +495,7 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
 | ----------- | ------- | -------------------- |
 | id          | string  | Volume ID.                |
 | uuid        | string  | UUID of the volume.              |
+| diskId      | string  | ID of the disk to which the volume belongs.       |
 | description | string  | Description of the volume.          |
 | removable   | boolean | Whether the volume is a removable storage device.|
 | state       | number  | Volume state.          |
