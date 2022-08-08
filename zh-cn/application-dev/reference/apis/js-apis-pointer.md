@@ -12,7 +12,7 @@
 import pointer from '@ohos.multimodalInput.pointer';
 ```
 
-## pointer.setPointerVisibele `<sup>`9+`</sup>`
+## pointer.setPointerVisibele
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;):  void;
 
@@ -39,7 +39,7 @@ pointer.setPointerVisible(true, (err, data) => {
 );
 ```
 
-## pointer.setPointerVisible `<sup>`9+`</sup>`
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean) : Promise&lt;void&gt;;
 
