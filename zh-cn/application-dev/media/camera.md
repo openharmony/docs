@@ -470,3 +470,80 @@ build() {
     }
 }
 ```
+
+# 分布式相机开发指导
+
+## 场景介绍
+
+分布式相机模块支持相机相关基础功能介绍说明。
+
+## 开发步骤
+在计算器中连接分布式设备，在获取相机列表时getCameras()，遍历返回的列表，判断对应Camera对象中的ConnctionType是否等于CAMERA_CONNECTION_REMOTE,若等于则使用此对象创建camerainput，之后调用与本地相机使用一样。参考：[相机开发指导](../application-dev/media/camera.md)
+
+### 接口说明
+
+详细API含义请参考：[相机管理API文档](../reference/apis/js-apis-camera.md)
+
+#### 连接分布式相机
+
+打开设置->WLAN,将需要连接分布式相机的两台设备连入同一局域网。
+
+打开计算器，点击右上角小图表，出现新的窗口，
+
+<!-- 连接成功后，在调用获取相机列表接口getCameras(),就能使用分布式相机camera[1000]、camera[1001]了。 -->
+
+#### 创建实例
+
+```js
+import camera from '@ohos.multimedia.camera'
+import image from '@ohos.multimedia.image'
+import media from '@ohos.multimedia.media'
+import featureAbility from '@ohos.ability.featureAbility'
+
+//创建CameraManager对象
+let cameraManager
+await camera.getCameraManager(globalThis.Context, (err, manager) => {
+    if (err) {
+        console.error('Failed to get the CameraManager instance ${err.message}');
+        return;
+    }
+    console.log('Callback returned with the CameraManager instance');
+    cameraManager = manager
+})
+
+//注册回调函数监听相机状态变化，获取状态变化的相机信息
+cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+    console.log('camera : ' + cameraStatusInfo.camera.cameraId);
+    console.log('status: ' + cameraStatusInfo.status);
+})
+
+//获取相机列表
+let cameraArray
+let remoteCamera
+await cameraManager.getCameras((err, cameras) => {
+    if (err) {
+        console.error('Failed to get the cameras. ${err.message}');
+        return;
+    }
+    console.log('Callback returned with an array of supported cameras: ' + cameras.length);
+    cameraArray = cameras
+})
+
+for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex) {
+    console.log('cameraId : ' + cameraArray[cameraIndex].cameraId)                          //获取相机ID
+    console.log('cameraPosition : ' + cameraArray[cameraIndex].cameraPosition)              //获取相机位置
+    console.log('cameraType : ' + cameraArray[cameraIndex].cameraType)                      //获取相机类型
+    console.log('connectionType : ' + cameraArray[cameraIndex].connectionType)              //获取相机连接类型
+    if (cameraArray[cameraIndex].connectionType == CAMERA_CONNECTION_REMOTE) {
+        remoteCamera = cameraArray[cameraIndex].cameraId
+    }
+}
+
+//创建相机输入流
+let cameraInput
+await cameraManager.createCameraInput(remoteCamera).then((input) => {
+    console.log('Promise returned with the CameraInput instance');
+    cameraInput = input
+})
+
+剩余步骤参照(#相机开发指导)
