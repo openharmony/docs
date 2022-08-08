@@ -1413,13 +1413,14 @@ promise.then((resultSet) => {
 
 ### remoteQuery<sup>9+</sup>
 
-remoteQuery(device: string, table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void;
+remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt; , callback: AsyncCallback&lt;ResultSet&gt;): void
 
 根据指定条件查询远程设备数据库中的数据，结果以callback形式返回。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | device | string | 是 | 指定的远程设备名。 |
@@ -1431,19 +1432,20 @@ remoteQuery(device: string, table: string, predicates: dataSharePredicates.DataS
 **示例：**
 ```js
 let predicates = new rdb.RdbPredicates('EPLOYEE')
-predicates.greaterThan("id", 1)
-let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates)
-promise.then((resultSet) => {
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
-}).catch((err) => {
-    console.info("remoteQuery failed, err: " + err)
+predicates.greaterThan("id", 0)
+rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
+    if (err) {
+        console.info("Query failed, err: " + err)
+        return
+    }
+    console.info("ResultSet column names: " + resultSet.columnNames)
+    console.info("ResultSet column count: " + resultSet.columnCount)
 })
 ```
 
 ### remoteQuery<sup>9+</sup>
 
-remoteQuery(device: string, table: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;;
+remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
 
 根据指定条件查询远程设备数据库中的数据，结果以Promise形式返回。
 
@@ -1462,14 +1464,13 @@ remoteQuery(device: string, table: string, predicates: dataSharePredicates.DataS
 
 ```js
 let predicates = new rdb.RdbPredicates('EPLOYEE')
-predicates.greaterThan("id", 1)
-rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
-    if (err) {
-        console.info("Query failed, err: " + err)
-        return
-    }
-    console.log("ResultSet column names: " + resultSet.columnNames)
-    console.log("ResultSet column count: " + resultSet.columnCount)
+predicates.greaterThan("id", 0)
+let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates)
+promise.then((resultSet) => {
+    console.info("ResultSet column names: " + resultSet.columnNames)
+    console.info("ResultSet column count: " + resultSet.columnCount)
+}).catch((err) => {
+    console.info("remoteQuery failed, err: " + err)
 })
 ```
 
