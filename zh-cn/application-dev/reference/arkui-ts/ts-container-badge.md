@@ -89,7 +89,7 @@ struct BadgeExample {
       }.width(80).height(50)
 
       Badge({
-        value: '',
+        value: ' ',
         position: 1,
         style: { badgeSize: 6, badgeColor: Color.Red }
       }) {
