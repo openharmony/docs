@@ -1,6 +1,7 @@
 # 触摸事件
 
 > **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -18,21 +19,21 @@
 
 ## TouchEvent对象说明
 
-- 属性
-  | 属性名称                | 类型                                       | 描述           |
-  | ------------------- | ---------------------------------------- | ------------ |
-  | type                | TouchType                                | 触摸事件的类型。     |
-  | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
-  | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
-  | timestamp           | number                                   | 事件时间戳。       |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。     |
+### 属性
 
+| 属性名称                | 类型                                       | 描述           |
+| ------------------- | ---------------------------------------- | ------------ |
+| type                | TouchType                                | 触摸事件的类型。     |
+| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
+| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
+| timestamp           | number                                   | 事件时间戳。       |
+| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。     |
 
-- 接口
-  | 接口名称                   | 功能描述    |
-  | ---------------------- | ------- |
-  | stopPropagation()：void | 阻塞事件冒泡。 |
+### 接口
 
+| 接口名称                   | 功能描述    |
+| ---------------------- | ------- |
+| stopPropagation()：void | 阻塞事件冒泡。 |
 
 ## TouchObject对象说明
 | 属性名称    | 类型                          | 描述                  |

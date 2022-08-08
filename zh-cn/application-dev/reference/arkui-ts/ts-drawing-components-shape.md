@@ -1,16 +1,14 @@
 # Shape
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 绘制组件的父组件，父组件中会描述所有绘制组件均支持的通用属性。
-
 
 1、绘制组件使用Shape作为父组件，实现类似SVG的效果。
 
-
 2、绘制组件单独使用，用于在页面上绘制指定的图形。
+
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 权限列表
@@ -27,35 +25,35 @@
 
 Shape(value:{target?: PixelMap})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | target | PixelMap | 否 | null | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 | 
+**参数：**
 
+| 参数名    | 参数类型     | 必填   | 默认值  | 参数描述                                     |
+| ------ | -------- | ---- | ---- | ---------------------------------------- |
+| target | PixelMap | 否    | null | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
 
 ## 属性
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| viewPort | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length,<br/>width:&nbsp;Length,<br/>height:&nbsp;Length<br/>} | - | 是 | 形状的视口。 |
-| fill | Color | Black | 否 | 填充颜色。 |
-| stroke | Color | - | 否 | 边框颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置边框的间隙。 |
-| strokeDashOffset | Length | 0 | 否 | 边框绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#LineCapStyle枚举说明) | LineCapStyle.Butt | 否 | 路径端点绘制样式。 |
-| strokeLineJoin | LineJoinStyle | LineJoinStyle.Miter | 否 | 边框拐角绘制样式。 |
-| strokeMiterLimit | number | 4 | 否 | 锐角绘制成斜角的极限值。 |
-| strokeOpacity | number | 1 | 否 | 设置边框的不透明度。 |
-| strokeWidth | Length | 1 | 否 | 设置边框的宽度。 |
-| antiAlias | boolean | true | 否 | 是否开启抗锯齿。 |
+| 参数名称             | 参数类型                                     | 默认值                 | 必填   | 参数描述         |
+| ---------------- | ---------------------------------------- | ------------------- | ---- | ------------ |
+| viewPort         | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length,<br/>width:&nbsp;Length,<br/>height:&nbsp;Length<br/>} | -                   | 是    | 形状的视口。       |
+| fill             | Color                                    | Black               | 否    | 填充颜色。        |
+| stroke           | Color                                    | -                   | 否    | 边框颜色。        |
+| strokeDashArray  | Array&lt;Length&gt;                      | []                  | 否    | 设置边框的间隙。     |
+| strokeDashOffset | Length                                   | 0                   | 否    | 边框绘制起点的偏移量。  |
+| strokeLineCap    | [LineCapStyle](ts-appendix-enums.md#LineCapStyle枚举说明) | LineCapStyle.Butt   | 否    | 路径端点绘制样式。    |
+| strokeLineJoin   | LineJoinStyle                            | LineJoinStyle.Miter | 否    | 边框拐角绘制样式。    |
+| strokeMiterLimit | number                                   | 4                   | 否    | 锐角绘制成斜角的极限值。 |
+| strokeOpacity    | number                                   | 1                   | 否    | 设置边框的不透明度。   |
+| strokeWidth      | Length                                   | 1                   | 否    | 设置边框的宽度。     |
+| antiAlias        | boolean                                  | true                | 否    | 是否开启抗锯齿。     |
 
-- LineJoinStyle枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Bevel | 使用斜角连接路径段。 | 
-  | Miter | 使用尖角连接路径段。 | 
-  | Round | 使用圆角连接路径段。 | 
+## LineJoinStyle枚举说明
 
+| 名称    | 描述         |
+| ----- | ---------- |
+| Bevel | 使用斜角连接路径段。 |
+| Miter | 使用尖角连接路径段。 |
+| Round | 使用圆角连接路径段。 |
 
 ## 示例
 
