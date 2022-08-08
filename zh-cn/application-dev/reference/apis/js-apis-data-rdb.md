@@ -1393,6 +1393,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
 
 **返回值**：
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
@@ -1417,7 +1418,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 根据指定条件查询远程设备数据库中的数据，结果以callback形式返回。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1425,17 +1426,18 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | -------- | -------- | -------- | -------- |
 | device | string | 是 | 指定的远程设备名。 |
 | table | string | 是 | 指定的目标表名。 |
-| predicates | [RdbPredicates](js-apis-data-rdb.md#RdbPredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
+| predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
 | columns | Array&lt;string&gt; | 是 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 是 | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
+
 ```js
 let predicates = new rdb.RdbPredicates('EPLOYEE')
 predicates.greaterThan("id", 0)
 rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
     if (err) {
-        console.info("Query failed, err: " + err)
+        console.info("Failed to remoteQuery, err: " + err)
         return
     }
     console.info("ResultSet column names: " + resultSet.columnNames)
@@ -1449,7 +1451,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 根据指定条件查询远程设备数据库中的数据，结果以Promise形式返回。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
@@ -1457,8 +1459,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | -------- | -------- | -------- | -------- |
 | device | string | 是 | 指定的远程设备名。 |
 | table | string | 是 | 指定的目标表名。 |
-| predicates | [RdbPredicates](js-apis-data-rdb.md#RdbPredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
+| predicates | [RdbPredicates](#rdbpredicates)  | 是 | RdbPredicates的实例对象，指定查询的条件。 |
 | columns | Array&lt;string&gt; | 否 | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**返回值**：
+
+| 类型                                                         | 说明                                                     |
+| ------------------------------------------------------------ | -------------------------------------------------------- |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md#resultset)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 
@@ -1470,7 +1478,7 @@ promise.then((resultSet) => {
     console.info("ResultSet column names: " + resultSet.columnNames)
     console.info("ResultSet column count: " + resultSet.columnCount)
 }).catch((err) => {
-    console.info("remoteQuery failed, err: " + err)
+    console.info("Failed to remoteQuery , err: " + err)
 })
 ```
 
