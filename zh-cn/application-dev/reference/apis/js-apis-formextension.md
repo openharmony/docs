@@ -259,6 +259,8 @@ onShare?(formId: string): {[key: string]: any};
 
 **系统能力**：SystemCapability.Ability.Form
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 | 

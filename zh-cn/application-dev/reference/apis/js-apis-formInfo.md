@@ -103,5 +103,5 @@ import formInfo from '@ohos.application.formInfo';
 | WIDTH_KEY        | "ohos.extra.param.key.form_width"   | 卡片宽度。   |
 | HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | 卡片高度。   |
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
-| ABILITY_NAME_KEY   | "ohos.extra.param.key.ability_name"   | ability名称   |
-| DEVICE_ID_KEY      | "ohos.extra.param.key.device_id"   | 设备标识   |
+| ABILITY_NAME_KEY<sup>9+</sup>   | "ohos.extra.param.key.ability_name"   | ability名称   |
+| DEVICE_ID_KEY      | "ohos.extra.param.key.device_id"   | 设备标识。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。   |
