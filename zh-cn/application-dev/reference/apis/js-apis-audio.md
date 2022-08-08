@@ -3458,7 +3458,7 @@ audioRenderer.on('stateChange', (state) => {
 
 on(type: "dataRequest", callback: Callback\<AudioRendererDataInfo>): void;
 
-订阅音频数据requeset事件回调。
+订阅音频数据request事件回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
