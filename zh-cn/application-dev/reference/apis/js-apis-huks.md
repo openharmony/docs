@@ -763,7 +763,7 @@ var result = huks.importKey(keyAlias, huksoptions);
 
 ## huks.attestkey<sup>9+</sup>
 
-attestKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
+attestKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksResult>) : void
 
 获取密钥证书，使用Callback方式回调异步返回结果 。
 
@@ -776,6 +776,12 @@ attestKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 | keyAlias         | string                                    | 是   | 密钥别名，存放待获取证书密钥的别名。                   |
 | options          | [HuksOptions](#huksoptions)               | 是   | 用于获取证书时指定所需参数与数据。      |
 | callback         | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+
+**返回值：**
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -909,12 +915,6 @@ importWrappedKey(keyAlias: string, wrappingKeyAlias: string, options: HuksOption
 | wrappingKeyAlias | string                                    | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。         |
 | options          | [HuksOptions](#huksoptions)               | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。      |
 | callback         | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
-
-**返回值：**
-
-| 类型                                | 说明                                               |
-| ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
