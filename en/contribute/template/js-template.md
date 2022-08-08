@@ -58,13 +58,11 @@
 
 
 
-> **Note**
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 Describe the module from its functionalities, use cases, and use suggestions in this section.
-
-
 
 ## Modules to Import
 
@@ -74,7 +72,7 @@ Describe the module from its functionalities, use cases, and use suggestions in 
 >
 > 2.2 - If no module needs to be imported, change "Modules to Import" to "How to Use" and provide a usage description.
 > 	Example of **How to Use**:
-> 	Before using the **AbilityContext**, obtain the **Context** object through **[getContext()]**(***API-reference***.md).
+> 	Before using the **AbilityContext**, obtain the **Context** object through **\[getContext()]\**(***API-reference***.md).
 >
 > ```js
 > import ability_featureAbility from '@ohos.ability.featureAbility';
