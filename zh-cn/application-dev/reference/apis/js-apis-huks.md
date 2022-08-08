@@ -761,6 +761,144 @@ var huksoptions = {
 var result = huks.importKey(keyAlias, huksoptions);
 ```
 
+## huks.attestkey<sup>9+</sup>
+
+attestKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
+
+获取密钥证书，使用Callback方式回调异步返回结果 。
+
+**系统能力**：SystemCapability.Security.Huks
+
+**参数：**
+
+| 参数名           | 类型                                      | 必填 | 说明                                               |
+| ---------------- | ----------------------------------------- | ---- | -------------------------------------------------- |
+| keyAlias         | string                                    | 是   | 密钥别名，存放待获取证书密钥的别名。                   |
+| options          | [HuksOptions](#huksoptions)               | 是   | 用于获取证书时指定所需参数与数据。      |
+| callback         | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+
+**示例：**
+
+```js
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+function printLog(...data) {
+  console.error(data.toString());
+}
+
+async function attestKey() {
+  let aliasString = keyAliasString;
+  let aliasUint8 = stringToUint8Array(aliasString);
+  let properties = new Array();
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+    value: securityLevel
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+    value: challenge
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+    value: versionInfo
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+    value: aliasUint8
+  };
+  let options = {
+    properties: properties
+  };
+  generateKey(aliasString);
+  setTimeout(()=>huks.attestKey(aliasString, options, function (err, data) {
+    printLog(`key attest result : ${JSON.stringify(data)}`);
+  }), 1000);
+}
+```
+
+## huks.attestkey<sup>9+</sup>
+
+attestKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
+
+获取密钥证书，使用Promise方式异步返回结果 。
+
+**系统能力**：SystemCapability.Security.Huks
+
+**参数：**
+
+| 参数名           | 类型                                      | 必填 | 说明                                               |
+| ---------------- | ----------------------------------------- | ---- | -------------------------------------------------- |
+| keyAlias         | string                                    | 是   | 密钥别名，存放待获取证书密钥的别名。                   |
+| options          | [HuksOptions](#huksoptions)               | 是   | 用于获取证书时指定所需参数与数据。      |
+
+**返回值：**
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+
+**示例：**
+
+```js
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key attest";
+
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  var tmpUint8Array = new Uint8Array(arr);
+  return tmpUint8Array;
+}
+
+function printLog(...data) {
+  console.error(data.toString());
+}
+
+async function attestKey() {
+  let aliasString = keyAliasString;
+  let aliasUint8 = stringToUint8Array(aliasString);
+  let properties = new Array();
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+    value: securityLevel
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+    value: challenge
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+    value: versionInfo
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+    value: aliasUint8
+  };
+  let options = {
+    properties: properties
+  };
+  generateKey(aliasString);
+  let result = await huks.exportKey(attestKey, options);
+  printLog(`key attest result : ${result.errorCode}`);
+}
+```
+
 ## huks.importWrappedKey<sup>9+</sup>
 
 importWrappedKey(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
