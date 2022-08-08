@@ -19,7 +19,7 @@
 
 **标准系统应用程序框架能力增强**
 
-元能力支持卡片提供方添加静态和动态卡片、组件支持本地免安装启动、系统SA启动和访问组件、支持单实例Ability迁移、运行管理支持打开沙箱应用、系统应用ability不在最新任务列表显示。
+元能力支持卡片提供方添加静态和动态卡片、组件支持本地免安装启动、系统SA启动和访问组件、支持单实例Ability迁移、运行管理支持打开沙箱应用、系统应用Ability不在最新任务列表显示。
 
 包管理支持获取当前包的包名和证书指纹信息NDK接口能力、查询指定应用的PackInfo信息、原子化服务老化卸载。
 
@@ -200,8 +200,8 @@
 
 | ISSUE单 | 问题描述 |
 | -------- | -------- |
-| [I4Z3G9](https://e.gitee.com/open_harmony/issues/list?issue=I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 |
-| [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q?from=project-issue) | API9 hdc_std连接设备低概率断连 |
+| [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 |
+| [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | API9 hdc_std连接设备低概率断连 |
 | [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | 【RK3568】【必现】相机连续多次录像出现黑屏 |
 
 
