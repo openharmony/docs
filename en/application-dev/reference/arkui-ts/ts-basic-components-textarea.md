@@ -1,12 +1,10 @@
 # TextArea
 
+The **\<TextArea>** component provides multi-line text input.
 
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **\<TextArea>** component provides multi-line text input.
 
 
 ## Required Permissions
@@ -26,13 +24,14 @@ TextArea(value?:{placeholder?: string, controller?: TextAreaController})
 - Parameters
     | Name                    | Type                                     | Mandatory | Default Value | Description                            |
     | ----------------------- | ---------------------------------------- | --------- | ------------- | -------------------------------------- |
-    | placeholder             | string                                   | No        | -             | Text displayed when there is no input. |
+    | placeholder             | string \|&nbsp;[Resource](../../ui/ts-types.md)                                   | No        | -             | Text displayed when there is no input. |
+    | text | string \|&nbsp;[Resource](../../ui/ts-types.md) | No | - | Current text input. |
     | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No      | -             | Text area controller.                  |
 
 
 ## Attributes
 
-In addition to universal attributes, the following attributes are supported.
+In addition to the universal attributes, the following attributes are supported.
 
 | Name                     | Type                                     | Default Value | Description                              |
 | ------------------------ | ---------------------------------------- | ------------- | ---------------------------------------- |
