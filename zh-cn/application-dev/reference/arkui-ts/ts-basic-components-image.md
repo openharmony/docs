@@ -1,11 +1,10 @@
 # Image
 
+图片组件，用来渲染展示图片。
+
 >  **说明：**
 >
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-图片组件，用来渲染展示图片。
 
 
 ## 权限说明
@@ -32,11 +31,11 @@
 
 Image(src: string | PixelMap | Resource)
 
-- 参数
-  | 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
-  | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-  | src  | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是    | -    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
+**参数：**
 
+| 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| src  | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是    | -    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
 
 ## 属性
 
@@ -44,35 +43,37 @@ Image(src: string | PixelMap | Resource)
 | --------------------- | ---------------------------------------- | -------- | ---------------------------------------- |
 | alt                   | string \| [Resource](../../ui/ts-types.md#resource类型) | -        | 加载时显示的占位图。支持本地图片和网络路径。                   |
 | objectFit             | ImageFit                                 | Cover    | 设置图片的缩放类型。                               |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat枚举说明) | NoRepeat | 设置图片的重复样式。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
-| interpolation         | ImageInterpolation                       | None     | 设置图片的插值效果，仅针对图片放大插值。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
-| renderMode            | ImageRenderMode                          | Original | 设置图片渲染的模式。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
-| sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -        | 设置图片解码尺寸，将原始图片解码成指定尺寸的图片，number类型单位为px。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat枚举说明) | NoRepeat | 设置图片的重复样式。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
+| interpolation         | ImageInterpolation                       | None     | 设置图片的插值效果，仅针对图片放大插值。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
+| renderMode            | ImageRenderMode                          | Original | 设置图片渲染的模式。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
+| sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -        | 设置图片解码尺寸，将原始图片解码成指定尺寸的图片，number类型单位为px。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
 | syncLoad<sup>8+</sup> | boolean                                  | false    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
 
-- ImageFit枚举说明
-  | 名称        | 描述                               |
-  | --------- | -------------------------------- |
-  | Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。  |
-  | Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。    |
-  | Fill      | 不保持宽高比进行放大缩小，使得图片填充满显示边界。        |
-  | None      | 保持原有尺寸显示。通常配合objectRepeat属性一起使用。 |
-  | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。              |
+## ImageFit枚举说明
 
-- ImageInterpolation枚举说明
-  | 名称     | 描述                       |
-  | ------ | ------------------------ |
-  | None   | 不使用插值图片数据。               |
-  | High   | 高度使用插值图片数据，可能会影响图片渲染的速度。 |
-  | Medium | 中度使用插值图片数据。              |
-  | Low    | 低度使用插值图片数据。              |
+| 名称        | 描述                               |
+| --------- | -------------------------------- |
+| Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。  |
+| Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。    |
+| Fill      | 不保持宽高比进行放大缩小，使得图片填充满显示边界。        |
+| None      | 保持原有尺寸显示。通常配合objectRepeat属性一起使用。 |
+| ScaleDown | 保持宽高比显示，图片缩小或者保持不变。              |
 
-- ImageRenderMode枚举说明
-  | 名称       | 描述                    |
-  | -------- | --------------------- |
-  | Original | 按照原图进行渲染，包括颜色。        |
-  | Template | 将图像渲染为模板图像，忽略图片的颜色信息。 |
+## ImageInterpolation枚举说明
 
+| 名称     | 描述                       |
+| ------ | ------------------------ |
+| None   | 不使用插值图片数据。               |
+| High   | 高度使用插值图片数据，可能会影响图片渲染的速度。 |
+| Medium | 中度使用插值图片数据。              |
+| Low    | 低度使用插值图片数据。              |
+
+## ImageRenderMode枚举说明
+
+| 名称       | 描述                    |
+| -------- | --------------------- |
+| Original | 按照原图进行渲染，包括颜色。        |
+| Template | 将图像渲染为模板图像，忽略图片的颜色信息。 |
 
 ## 事件
 
@@ -85,7 +86,7 @@ Image(src: string | PixelMap | Resource)
 
 ## 示例
 
-```
+```ts
 // Image1
 @Entry
 @Component
@@ -152,7 +153,7 @@ struct ImageExample1 {
 
 ![zh-cn_image_0000001250492613](figures/zh-cn_image_0000001250492613.gif)
 
-```
+```ts
 // Image2
 @Entry
 @Component
@@ -221,7 +222,7 @@ struct ImageExample2 {
 
 ![zh-cn_image_0000001205812616](figures/zh-cn_image_0000001205812616.png)
 
-```
+```ts
 // Image3
 @Entry
 @Component

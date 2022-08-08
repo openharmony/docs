@@ -1,6 +1,6 @@
 # Menu控制
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -34,7 +34,8 @@
 
 #### 普通菜单
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MenuExample {
@@ -116,7 +117,8 @@ struct MenuExample {
 
 #### 菜单(右键触发显示)
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ContextMenuExample {

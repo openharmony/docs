@@ -1,10 +1,10 @@
 #  Search
 
-> ![](public_sys-resources/icon-note.gif) **说明：** 
+提供搜索框组件，用于提供用户搜索内容的输入区域。
+
+> **说明：** 
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-提供搜索框组件，用于提供用户搜索内容的输入区域。
 
 ## 权限列表
 
@@ -18,15 +18,14 @@
 
 Search(options?: { value?: string; placeholder?: string; icon?: string; controller?: SearchController })
 
-- 参数
+**参数：**
 
-  | 参数名         | 参数类型             | 必填   | 默认值  | 参数描述                                     |
-  | ----------- | ---------------- | ---- | ---- | ---------------------------------------- |
-  | value       | string           | 否    | -    | 搜索文本值。                                   |
-  | placeholder | string           | 否    | -    | 无输入时的提示文本。                               |
-  | icon        | string           | 否    | -    | 搜索图标路径，默认使用系统搜索图标，支持的图标格式: svg, jpg和png。 |
-  | controller  | SearchController | 否    | -    | 控制器。                                     |
-
+| 参数名         | 参数类型             | 必填   | 默认值  | 参数描述                                     |
+| ----------- | ---------------- | ---- | ---- | ---------------------------------------- |
+| value       | string           | 否    | -    | 搜索文本值。                                   |
+| placeholder | string           | 否    | -    | 无输入时的提示文本。                               |
+| icon        | string           | 否    | -    | 搜索图标路径，默认使用系统搜索图标，支持的图标格式: svg, jpg和png。 |
+| controller  | SearchController | 否    | -    | 控制器。                                     |
 
 ## 属性
 
@@ -61,17 +60,17 @@ caretPosition(value: number): viod
 
 设置输入光标的位置。
 
-- 参数
+**参数：**
 
-  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-  | ----- | ------ | ---- | ---- | ----------------- |
-  | value | number | 是    | -    | 从字符串开始到光标所在位置的长度。 |
-
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| value | number | 是    | -    | 从字符串开始到光标所在位置的长度。 |
 
 
 ##  示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SearchExample {

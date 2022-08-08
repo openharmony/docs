@@ -1,11 +1,10 @@
 # Grid
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。
 
-
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 权限列表
@@ -46,7 +45,8 @@ Grid()
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridExample {

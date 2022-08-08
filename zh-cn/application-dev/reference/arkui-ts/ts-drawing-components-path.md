@@ -63,7 +63,8 @@ Path(value?: { width?: number | string, height?: number | string, commands?: str
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PathExample {

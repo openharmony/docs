@@ -1,6 +1,6 @@
 # Scroll
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -123,7 +123,7 @@ scroller.scrollToIndex(value: number): void
 滑动到指定Index。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 仅支持list组件。
 
 
@@ -135,7 +135,8 @@ scroller.scrollToIndex(value: number): void
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ScrollExample {

@@ -1,6 +1,6 @@
 # List
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -54,7 +54,7 @@ List(value:{space?: number, initialIndex?: number})
 | onItemDelete(index:&nbsp;number)&nbsp;=&gt;&nbsp;boolean | 列表项删除时触发。 | 
 | onScrollIndex(firstIndex:&nbsp;number,&nbsp;lastIndex:&nbsp;number)&nbsp;=&gt;&nbsp;void | 当前列表显示的起始位置和终止位置发生变化时触发。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > List使能可编辑模式需配合onItemDelete事件和ListItem的editable属性，即可编辑模式实现删除列表项功能，需满足以下条件：
 > 
 > - editMode属性设置为true。
@@ -72,7 +72,8 @@ List(value:{space?: number, initialIndex?: number})
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ListExample {
