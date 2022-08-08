@@ -8,37 +8,11 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 **Table  1** Native IPC APIs
 
-<a name="table178849240013"></a>
-<table><thead align="left"><tr id="row6884924608"><th class="cellrowborder" valign="top" width="14.12141214121412%" id="mcps1.2.4.1.1"><p id="p98846241706"><a name="p98846241706"></a><a name="p98846241706"></a>Class/Interface</p>
-</th>
-<th class="cellrowborder" valign="top" width="52.54525452545254%" id="mcps1.2.4.1.2"><p id="p1488482414020"><a name="p1488482414020"></a><a name="p1488482414020"></a>Function</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p388516244016"><a name="p388516244016"></a><a name="p388516244016"></a>Description</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row15885824402"><td class="cellrowborder" valign="top" width="14.12141214121412%" headers="mcps1.2.4.1.1 "><p id="p08859241008"><a name="p08859241008"></a><a name="p08859241008"></a>IRemoteBroker</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.54525452545254%" headers="mcps1.2.4.1.2 "><p id="p388572412010"><a name="p388572412010"></a><a name="p388572412010"></a>sptr&lt;IRemoteObject&gt; AsObject()</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p13885724405"><a name="p13885724405"></a><a name="p13885724405"></a>Obtains the holder of a remote proxy object. This method must be implemented by the derived classes of <strong id="b18927631105113"><a name="b18927631105113"></a><a name="b18927631105113"></a>IRemoteBroker</strong>. If you call this method on the stub, the <strong id="b7932163110519"><a name="b7932163110519"></a><a name="b7932163110519"></a>RemoteObject</strong> is returned; if you call this method on the proxy, the proxy object is returned.</p>
-</td>
-</tr>
-<tr id="row138859241808"><td class="cellrowborder" valign="top" width="14.12141214121412%" headers="mcps1.2.4.1.1 "><p id="p1888515245012"><a name="p1888515245012"></a><a name="p1888515245012"></a>IRemoteStub</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.54525452545254%" headers="mcps1.2.4.1.2 "><p id="p1388516240011"><a name="p1388516240011"></a><a name="p1388516240011"></a>virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option)</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1188582414016"><a name="p1188582414016"></a><a name="p1188582414016"></a>Called to process a request from the proxy and return the result. Derived classes need to override this method.</p>
-</td>
-</tr>
-<tr id="row108856241904"><td class="cellrowborder" valign="top" width="14.12141214121412%" headers="mcps1.2.4.1.1 "><p id="p6885924609"><a name="p6885924609"></a><a name="p6885924609"></a>IRemoteProxy</p>
-</td>
-<td class="cellrowborder" valign="top" width="52.54525452545254%" headers="mcps1.2.4.1.2 ">  </td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p688592413018"><a name="p688592413018"></a><a name="p688592413018"></a>Service proxy classes are derived from the <strong id="b169739356519"><a name="b169739356519"></a><a name="b169739356519"></a>IRemoteProxy</strong> class.</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Class/Interface | Function | Description |
+| --------------- | -------- | ----------- |
+| IRemoteBroker | sptr<IRemoteObject> AsObject() | Obtains the holder of a remote proxy object. This method must be implemented by the derived classes of **IRemoteBroker**. If you call this method on the stub, the **RemoteObject** is returned; if you call this method on the proxy, the proxy object is returned. |
+| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &data, MessageParcel &reply, MessageOption &option) | Called to process a request from the proxy and return the result. Derived classes need to override this method. |
+| IRemoteProxy | | Service proxy classes are derived from the **IRemoteProxy** class. |
 
 ## How to Develop<a name="section4207112818418"></a>
 
