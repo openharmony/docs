@@ -14,7 +14,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 
 ## pointer.setPointerVisibele
 
-setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;):  void;
+setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 设置鼠标指针显示或者隐藏，使用callback方式作为异步方法。
 
@@ -22,10 +22,10 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;):  void;
 
 **参数**：
 
-| 参数     | 类型                      | 必填 | 说明                                      |
-| -------- | ------------------------- | ---- | ----------------------------------------- |
-| visible  | boolean                   | 是   | true: 鼠标指针显示; false: 鼠标指针隐藏。 |
-| callback | AysncCallback&lt;void&gt; | 是   | 回调函数，异步返回查询结果。              |
+| 参数     | 类型                      | 必填 | 说明                                                                |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------------- |
+| visible  | boolean                   | 是   | 鼠标指针显示或者隐藏状态，true: 鼠标指针显示; false: 鼠标指针隐藏。 |
+| callback | AysncCallback&lt;void&gt; | 是   | 回调函数，异步返回查询结果。                                        |
 
 **示例**：
 
@@ -41,7 +41,7 @@ pointer.setPointerVisible(true, (err, data) => {
 
 ## pointer.setPointerVisible
 
-setPointerVisible(visible: boolean) : Promise&lt;void&gt;;
+setPointerVisible(visible: boolean): Promise&lt;void&gt;;
 
 设置鼠标指针显示或者隐藏，使用Promise方式作为异步方法。
 
@@ -49,9 +49,9 @@ setPointerVisible(visible: boolean) : Promise&lt;void&gt;;
 
 **参数**：
 
-| 参数    | 类型    | 必填 | 说明                                      |
-| ------- | ------- | ---- | ----------------------------------------- |
-| visible | boolean | 是   | true: 鼠标指针显示; false: 鼠标指针隐藏。 |
+| 参数    | 类型    | 必填 | 说明                                                                |
+| ------- | ------- | ---- | ------------------------------------------------------------------- |
+| visible | boolean | 是   | 鼠标指针显示或者隐藏状态，true: 鼠标指针显示; false: 鼠标指针隐藏。 |
 
 **返回值**：
 
@@ -71,9 +71,9 @@ pointer.setPointerVisible(false).then( data => {
 
 ## pointer.isPointerVisible
 
-isPointerVisible(callback: AsyncCallback&lt;boolean&gt;) : void;
+isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void;
 
-获取鼠标指针是否显示，使用callback方式作为异步方法。
+获取鼠标指针显示或隐藏状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -95,7 +95,7 @@ pointer.isPointerVisible((visible)=>{
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-获取鼠标指针是否显示，使用Promise方式作为异步方法。
+获取鼠标指针显示或隐藏状态，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
