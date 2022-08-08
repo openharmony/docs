@@ -82,14 +82,14 @@
 1. 准备工作，导入@ohos.data.preferences以及相关的模块到开发环境。
 
    ```js
-   import data_preferences from '@ohos.data.preferences'
+   import data_preferences from '@ohos.data.preferences';
    ```
 
 2. 获取Preferences实例。
 
    读取指定文件，将数据加载到Preferences实例，用于数据操作。
    ```js
-   let promise = data_preferences.getPreferences(this.context, 'mystore')
+   let promise = data_preferences.getPreferences(this.context, 'mystore');
    ```
 
 3. 存入数据。
@@ -98,14 +98,14 @@
 
    ```js
    promise.then((preferences) => {
-       let putPromise = preferences.put('startup', 'auto')
+       let putPromise = preferences.put('startup', 'auto');
        putPromise.then(() => {
-           console.info("Put the value of startup successfully.")
+           console.info("Succeeded in putting the value of 'startup'.");
        }).catch((err) => {
-           console.info("Put the value of startup failed with err: " + err)
+           console.info("Failed to put the value of 'startup'. Cause: " + err);
        })
    }).catch((err) => {
-       console.info("Get the storage failed")
+       console.info("Failed to get preferences.");
    })
    ```
 
@@ -115,14 +115,14 @@
 
    ```js
    promise.then((preferences) => {
-       let getPromise = preferences.get('startup', 'default')
+       let getPromise = preferences.get('startup', 'default');
        getPromise.then((value) => {
-           console.info("The value of startup is " + value)
+           console.info("The value of 'startup' is " + value);
        }).catch((err) => {
-           console.info("Get the value of startup failed with err: " + err)
+           console.info("Failed to get the value of 'startup'. Cause: " + err);
        })
    }).catch((err) => {
-       console.info("Get the storage failed")})
+       console.info("Failed to get preferences.")});
    ```
 
 5. 数据持久化。
@@ -139,21 +139,21 @@
 
    ```js
     var observer = function (key) {
-        console.info("The key of " + key + " changed.")
+        console.info("The key of " + key + " changed.");
     }
-    preferences.on('change', observer)
+    preferences.on('change', observer);
     preferences.put('startup', 'auto', function (err) {
         if (err) {
-            console.info("Put the value of startup failed with err: " + err)
-            return
+            console.info("Failed to put the value of 'startup'. Cause: " + err);
+            return;
         }
-        console.info("Put the value of startup successfully.")
+        console.info("Succeeded in putting the value of 'startup'.");
         preferences.flush(function (err) {
             if (err) {
-                console.info("Flush to file failed with err: " + err)
-                return
+                console.info("Failed to flush. Cause: " + err);
+                return;
             }
-            console.info("Flushed to file successfully.")    // observer will be called.
+            console.info("Succeeded in flushing.");   // observer will be called.
         })
     })
    ```
@@ -163,11 +163,11 @@
    使用deletePreferences方法从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。删除后，数据及文件将不可恢复。
 
    ```js
-    let proDelete = data_preferences.deletePreferences(context, 'mystore')
+    let proDelete = data_preferences.deletePreferences(context, 'mystore');
     proDelete.then(() => {
-        console.info("Deleted successfully.")
+        console.info("Succeeded in deleting.");
     }).catch((err) => {
-        console.info("Deleted failed with err: " + err)
+        console.info("Failed to delete. Cause: " + err);
     })
    ```
 ## 相关实例
