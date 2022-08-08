@@ -28,6 +28,8 @@
     - application/[FormExtensionContext (FormExtensionContext)](js-apis-formextensioncontext.md)
     - application/[PermissionRequestResult (PermissionRequestResult)](js-apis-permissionrequestresult.md)
     - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md)
+    - [InputMethodExtensionAbility (InputMethodExtensionAbility )](js-apis-inputmethod-extension-ability.md)
+    - [InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - 通用
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
