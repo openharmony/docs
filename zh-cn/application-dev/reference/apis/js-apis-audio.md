@@ -2142,7 +2142,7 @@ console.info(`######### RendererChange Off is called #########`);
 
 on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
-监听音频捕获器更改事件。
+监听音频采集器更改事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -2181,7 +2181,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 off(type: "audioCapturerChange");
 
-取消监听音频捕获器更改事件。
+取消监听音频采集器更改事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -2343,15 +2343,15 @@ audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) =
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
-描述音频捕获器更改信息。
+描述音频采集器更改信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Capturer
 
 | 名称               | 类型                                       | 可读 | 可写 | 说明                          |
 | -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
 | streamId           | number                                    | 是   | 否   | 音频流唯一id。                |
-| clientUid          | number                                    | 是   | 否   | 音频渲染器客户端应用程序的Uid。<br/>此接口为系统接口，三方应用不支持调用。 |
-| capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)   | 是   | 否   | 音频渲染器信息。               |
+| clientUid          | number                                    | 是   | 否   | 音频采集器客户端应用程序的Uid。<br/>此接口为系统接口，三方应用不支持调用。 |
+| capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)   | 是   | 否   | 音频采集器信息。               |
 | capturerState      | [AudioState](#audiostate)                 | 是   | 否   | 音频状态。<br/>此接口为系统接口，三方应用不支持调用。|
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
