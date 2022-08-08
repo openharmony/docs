@@ -14,7 +14,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 
 ## pointer.setPointerVisibele
 
-setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置鼠标指针显示或者隐藏，使用callback方式作为异步方法。
 
@@ -41,7 +41,7 @@ pointer.setPointerVisible(true, (err, data) => {
 
 ## pointer.setPointerVisible
 
-setPointerVisible(visible: boolean): Promise&lt;void&gt;;
+setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 设置鼠标指针显示或者隐藏，使用Promise方式作为异步方法。
 
@@ -71,7 +71,7 @@ pointer.setPointerVisible(false).then( data => {
 
 ## pointer.isPointerVisible
 
-isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void;
+isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 获取鼠标指针显示或隐藏状态，使用callback方式作为异步方法。
 
