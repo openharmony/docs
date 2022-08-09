@@ -54,7 +54,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
    | setrlimit | setrlimit resource curValue maxValue<br>如：setrlimit RLIMIT_CPU 10 100| 设定资源使用限制命令。<B><br>系统类型：小型系统和标准系统 |
    | write | write path content<br>如：write /proc/sys/kernel/sysrq 0 | 写文件命令。<B><br>系统类型：小型系统和标准系统 |
    | exec | exec 可执行文件路径 可执行文件传的参数<br>如： exec /system/bin/mkdir /data/test.txt | 系统调用命令。<B><br>系统类型：小型系统和标准系统 |
-   | syncexec | syncexec 可执行文件路径 可执行文件传的参数<br>如:syncexec /system/bin/udevadm trigger| 同步执行，syncexec 会调用wait等待子进程结束。参数个数不超过10个。<br>标准系统
+   | syncexec | syncexec 可执行文件路径 可执行文件传的参数<br>如:syncexec /system/bin/udevadm trigger| 同步执行，syncexec 会调用wait等待子进程结束。参数个数不超过10个。<B><br>系统类型：标准系统
    | mknode |mknod name { b \| c } Major Minor<br>如mknod path b 0644 1 9| 建立一个目录项和一个特殊文件的对应索引节点。<B><br>系统类型：标准系统 |
    | makedev | makedev major minor<br>如：makedev -v update | 创建静态的设备节点命令，通常位于/dev目录下。<B><br>系统类型：标准系统 |
    | symlink | symlink target link_name<br>如：symlink /proc/self/fd/0 /dev/stdin | 符号链接命令。<B><br>系统类型：标准系统 |
