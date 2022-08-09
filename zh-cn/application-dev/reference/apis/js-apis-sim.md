@@ -537,7 +537,7 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
-获取SIM卡账户信息，使用callback方式作为异步方法。
+获取SIM卡账户信息，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -599,7 +599,7 @@ sim.getActiveSimAccountInfoList(0, (err, data) => {
 
 getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 
-获取活跃SIM卡账户信息列表，使用callback方式作为异步方法。
+获取活跃SIM卡账户信息列表，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1110,7 +1110,7 @@ sim.setLockState(0, lockInfo, (err, data) => {
 
 setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 
-设置指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+设置指定卡槽SIM卡的锁状态，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1178,7 +1178,7 @@ sim.getLockState(0, 1, (err, data) => {
 
 getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 
-获取指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的锁状态，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1242,7 +1242,7 @@ sim.alterPin(0, "1234", "0000", (err, data) => {
 
 alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResponse\>;
 
-更改Pin密码，使用callback方式作为异步方法。
+更改Pin密码，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1482,7 +1482,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-****unlockPin2****(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码，使用callback方式作为异步方法。
 
@@ -1549,7 +1549,7 @@ promise.then(data => {
 
 ## sim.**unlockPuk**2<sup>8+</sup>
 
-unlockPuk2(slotId: number,newPin2: string,puk2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码的解锁密码，使用callback方式作为异步方法。
 
@@ -1581,7 +1581,7 @@ sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
 
 ## sim.**unlockPuk2**<sup>8+</sup>
 
-unlockPuk2slotId: number,newPin2: string,puk2: string): Promise&lt;LockStatusResponse\>
+unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码的解锁密码，使用Promise方式作为异步方法。
 
@@ -2653,7 +2653,7 @@ promise.then(data => {
 
 ## sim.getOpKey<sup>9+</sup>
 
-getOpKey(slotId: number, callback: AsyncCallback<number\>): void
+getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的opkey，使用callback方式作为异步方法。
 
@@ -2666,7 +2666,7 @@ getOpKey(slotId: number, callback: AsyncCallback<number\>): void
 | 参数名   | 类型                   | 必填 | 说明                                   |
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<number\> | 是   | 回调函数                               |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                             |
 
 **示例：**
 
@@ -2679,7 +2679,7 @@ sim.getOpKey(0, (err, data) => {
 
 ## sim.getOpKey<sup>9+</sup>
 
-getOpKey(slotId: number): Promise<number\>
+getOpKey(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的opkey，使用Promise方式作为异步方法。
 
@@ -2697,7 +2697,7 @@ getOpKey(slotId: number): Promise<number\>
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
-| Promise<number\> | 以Promise形式返回指定卡槽中SIM卡的opkey。 |
+| Promise<string\> | 以Promise形式返回指定卡槽中SIM卡的opkey。 |
 
 **示例：**
 
@@ -2948,3 +2948,4 @@ Icc账户信息。
 | :-------------- | ---- | ---------- |
 | GENERAL_CONTACT | 1    | 通用联系人 |
 | FIXED_DIALING   | 2    | 固定拨号   |
+
