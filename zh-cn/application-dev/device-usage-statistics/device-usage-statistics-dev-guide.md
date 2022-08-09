@@ -341,14 +341,14 @@ import stats from '@ohos.bundleState';
          }
      });
 
-     //有参异步promise方式
+     // 有参异步promise方式
      stats.queryAppUsagePriorityGroup(this.bundleName).then(res => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
      }).catch(err => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
      });
 
-     //有参异步方法callback方式
+     // 有参异步方法callback方式
      stats.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
          if (err) {
              console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
@@ -363,13 +363,13 @@ import stats from '@ohos.bundleState';
     ```javascript
     import stats from '@ohos.bundleState'
 
-    //异步方法promise
+    // 异步方法promise
     stats.setBundleGroup(this.bundleName, this.newGroup).then(() => {
         console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded.');
     }).catch( err => {
         console.log('BUNDLE_ACTIVE SetBundleGroup promise failed. because: ' + err.code);
     });
-    //异步方法callback
+    // 异步方法callback
     stats.setBundleGroup(this.bundleName, this.newGroup, (err) => {
         if (err) {
             console.log('BUNDLE_ACTIVE SetBundleGroup callback failed. because: ' + err.code);
@@ -384,7 +384,7 @@ import stats from '@ohos.bundleState';
     ```javascript
     import stats from '@ohos.bundleState'
 
-    //异步方法promise形式
+    // 异步方法promise形式
     let onBundleGroupChanged = (err,res) => {
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result oldGroup is : ' + res.oldGroup);
@@ -398,7 +398,7 @@ import stats from '@ohos.bundleState';
     }).catch(err => {
         console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise failed. because: ' + err.code);
     });
-    //异步方法callback形式
+    // 异步方法callback形式
     let onBundleGroupChanged = (err,res) => {
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
         console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result‘s oldGroup is : ' + res.oldGroup);
@@ -421,13 +421,13 @@ import stats from '@ohos.bundleState';
     ```javascript
     import stats from '@ohos.bundleState'
 
-    //promise
+    // promise
     stats.unRegisterGroupCallBack().then(() => {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded.');
     }).catch(err => {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise failed. because: ' + err.code);
     });
-    //callback
+    // callback
     stats.unRegisterGroupCallBack((err) => {
         if (err) {
             console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback failed, because: ' + err.code);
