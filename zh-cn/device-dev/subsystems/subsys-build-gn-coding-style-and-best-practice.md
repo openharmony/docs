@@ -7,12 +7,12 @@ gn是generate ninja的缩写，它是一个元编译系统（meta-build system�
 ### gn简介
 
 - 目前采用gn的大型软件系统有：Chromium，Fuchsia和OpenHarmony。
-- gn语法自设计之初就自带局限性，比如不能求list的长度，不支持通配符等。这些局限性源于其 **有所为有所不为** 的设计哲学，见https://gn.googlesource.com/gn/+/main/docs/language.md#Design-philosophy。 所以在使用gn的过程中，如果发现某件事情用gn实现起来很复杂，请先停下来思考这件事情是否真的需要做。
-- 关于gn的更多详情见gn官方文档，见https://gn.googlesource.com/gn/+/main/docs/。
+- gn语法自设计之初就自带局限性，比如不能求list的长度，不支持通配符等。这些局限性源于其 **有所为有所不为** 的[设计哲学](https://gn.googlesource.com/gn/+/main/docs/language.md#Design-philosophy)。 所以在使用gn的过程中，如果发现某件事情用gn实现起来很复杂，请先停下来思考这件事情是否真的需要做。
+- 关于gn的更多详情见[gn官方文档](https://gn.googlesource.com/gn/+/main/docs/)。
 
 ### 本文的目标读者和覆盖范围
 
-目标读者为OpenHarmony的开发者。本文主要讨论gn的编码风格和使用gn过程中容易出现的问题，不讨论gn的语法，如需了解gn基础知识，见gn reference文档，见https://gn.googlesource.com/gn/+/main/docs/reference.md。
+目标读者为OpenHarmony的开发者。本文主要讨论gn的编码风格和使用gn过程中容易出现的问题，不讨论gn的语法，如需了解gn基础知识，见[gn reference文档](https://gn.googlesource.com/gn/+/main/docs/reference.md)。
 
 ### 总体原则
 
@@ -30,7 +30,7 @@ gn是generate ninja的缩写，它是一个元编译系统（meta-build system�
 
 为了更好的区别于全局变量，局部变量统一采用**下划线开头**。
 
-```
+```shell
 # 例1
 action("some_action") {
   ...
@@ -53,7 +53,7 @@ action("some_action") {
 
 如果变量值可以被gn args修改，则需要使用declare_args来声明，否则不要使用declare_args。
 
-```
+```shell
 # 例2
 declare_args() {
   # 可以通过gn args来修改some_feature的值
@@ -71,7 +71,7 @@ declare_args() {
 
 - 加入双下划线可以很方便地区分出子目标属于哪一个模块，方便在出现问题时快速定位。
   
-  ```
+  ```shell
   # 例3
   template("ohos_shared_library") {
     # "{target_name}"(主目标名)+"__"(双下划线)+"notice"(后缀)
@@ -89,7 +89,7 @@ declare_args() {
 
 推荐采用**动宾短语**的形式来命名。
 
-```
+```shell
 # 例4
 # Good
 template("compile_resources") {
@@ -109,7 +109,7 @@ gn format会按照字母序对import文件做排序，如果想保证import的�
 
 假设原来的import顺序为：
 
-```
+```shell
 # 例5
 import("//b.gni")
 import("//a.gni")
@@ -117,14 +117,14 @@ import("//a.gni")
 
 经过format之后变为：
 
-```
+```shell
 import("//a.gni")
 import("//b.gni")
 ```
 
 如果想保证原有的import顺序，可以添加空注释行。
 
-```
+```shell
 import("//b.gni")
 # Comment to keep import order
 import("//a.gni")
@@ -148,7 +148,7 @@ import("//a.gni")
 
 - **概率性编译错误**
   
-  ```
+  ```shell
   # 例6
   # 依赖关系缺失，导致概率性编译出错
   shared_library("a") {
@@ -177,7 +177,7 @@ import("//a.gni")
 
 _compile_js_target不需要依赖 _compile_resource_target，增加这层依赖，会导致 _compile_js_target在 _compile_resource_target编译完成之后才能开始编译。
 
-```
+```shell
 # 例7
 # 过多的依赖导致编译变慢
 template("too_much_deps") {
@@ -208,7 +208,7 @@ template("too_much_deps") {
 
 下面的例子中，foo.py引用了bar.py中的函数。bar.py实质上是foo.py的输入，需要将bar.py添加到implict_input_action的input或者depfile中去。否则，修改bar.py，模块implict_input_action将不会重新编译。
 
-```
+```shell
 # 例8
 action("implict_input_action") {
   script = "//path-to-foo.py"
@@ -216,7 +216,7 @@ action("implict_input_action") {
 }
 ```
 
-```
+```shell
 #!/usr/bin/env
 # Contents of foo.py
 import bar
@@ -232,7 +232,7 @@ bar.some_function()
 
 下面的例子中，foo.py会生成两个文件，a.out和b.out，但是implict_output_action的输出只声明了a.out。这种情况下，b.out实质上就是一个隐式输出。缓存中只会存储a.out，不会存储b.out，当缓存命中时，b.out就编译不出来了。
 
-```
+```shell
 # 例9
 action("implict_output_action") {
   outputs = ["${target_out_dir}/a.out"]
@@ -241,7 +241,7 @@ action("implict_output_action") {
 }
 ```
 
-```
+```shell
 #!/usr/bin/env
 # Contents of foo.py
 ...
@@ -252,7 +252,7 @@ write_file("a.out")
 
 ### 模板
 
-**不要使用gn的原生模板，使用编译系统提供的模板**
+**不要使用gn的原生模板，使用编译子系统提供的模板**
 
 所谓gn原生模板，是指source_set，shared_library, static_library, action, executable，group这六个模板。
 
@@ -262,10 +262,10 @@ write_file("a.out")
 
 - 当输入文件依赖的文件发生变化时，gn原生的action模板不能自动感知不到这种编译，无法重新编译。见例8
 
-  原生模板和编译系统提供的模板之间的对应关系:
+  原生模板和编译子系统提供的模板之间的对应关系:
 
-| 编译系统提供的模板           | 原生模板           |
-|:------------------- | -------------- |
+| 编译子系统提供的模板  | 原生模板       |
+| :------------------ | -------------- |
 | ohos_shared_library | shared_library |
 | ohos_source_set     | source_set     |
 | ohos_executable     | executable     |
@@ -286,7 +286,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 
 - 仅在向action的参数列表中（args）调用rebase_path。
   
-  ```
+  ```shell
   # 例10
   template("foo") {
     action(target_name) {
@@ -308,7 +308,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 
 - 同一变量做两次rebase_path会出现意想不到的结果。
   
-  ```
+  ```shell
   # 例11
   template("foo") {
     action(target_name) {
@@ -339,7 +339,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
   
   下面的例子中，模块a的输出是模块b的输入，可以通过定义全局变量的方式来共享给b
   
-  ```
+  ```shell
   # 例12
   _output_a = get_label_info(":a", "out_dir") + "/a.out"
   action("a") {
@@ -360,7 +360,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 
 - 自定义模板需要首先将testonly传递（forward）进来。因为该模板的target有可能被testonly的目标依赖。
   
-  ```
+  ```shell
   # 例13
   # 自定义模板首先要传递testonly
   template("foo") {
@@ -371,7 +371,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 
 - 不推荐使用*来forward变量，需要的变量应该**显式地，一个一个地**被forward进来。
   
-  ```
+  ```shell
   # 例14
   # Bad，使用*forward变量
   template("foo") {
@@ -395,7 +395,7 @@ action中的script推荐使用python脚本，不推荐使用shell脚本。相比
 
 target_name会随着作用域变化而变化，使用时需要注意。
 
-```
+```shell
 # 例15
 # target_name会随着作用域变化而变化
 template("foo") {
@@ -421,7 +421,7 @@ template("foo") {
 
 如果模块需要向外export头文件，请使用public_configs。
 
-```
+```shell
 # 例16
 # b依赖a，会同时继承a的headers
 config("headers") {
@@ -442,7 +442,7 @@ executable("b") {
 
 自定义模板中必须有一个子目标的名字是target_name。该子目标会作为template的主目标。其他子目标都应该被主目标依赖，否则子目标不会被编译。
 
-```
+```shell
 # 例17
 # 自定义模板中必须有一个子目标的名字是target_name
 template("foo") {
@@ -470,7 +470,7 @@ template("foo") {
 
 set_source_assignment_filter除了可以过滤sources，还可以用来过滤其他变量。过滤完成后记得将过滤器和sources置空。
 
-```
+```shell
 # 例18
 # 使用set_source_assignment_filter过滤依赖, 挑选label符合*:*_res的添加到依赖列表中
 _deps = []
@@ -495,15 +495,15 @@ set_source_assignment_filter([])
 
 - 在模块定义的时候可以声明part_name，用来表明当前模块属于哪个部件。
 
-- 每个部件会声明其inner-kit，供其他部件调用。部件innerkit的声明见源码中的bundle.json。
+- 每个部件会声明其inner_kits，供其他部件调用。部件inner_kits的声明见源码中的bundle.json。
 
-- 部件间依赖只能依赖innerkit，不能依赖非innerkit的模块。
+- 部件间依赖只能依赖inner_kits，不能依赖非inner_kits的模块。
 
 - 如果a模块和b模块的part_name相同，那么a、b模块属于同一个部件，a，b模块之间的依赖关系可以用deps来声明。
 
 - 如果a、b模块的part_name不同，那么a、b模块不属于同一个部件，a、b模块之间的依赖关系需要通过external_deps来声明，依赖方式为"部件名:模块名"的方式。见例19。
   
-  ```
+  ```shell
   # 例19
   shared_library("a") {
     ...
