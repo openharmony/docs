@@ -28,9 +28,10 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 **返回值：**
 
-| 类型                             | 说明           |
-| -------------------------------- | -------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。 |
+| 类型                             | 说明                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。<br>当创建的pixelmap大小超过原图大小时，返回原图pixelmap大小。|
+
 
 **示例：**
 
