@@ -1,4 +1,4 @@
-# Hiview Development Guide
+# Hiview Development
 
 
 ## Introduction
