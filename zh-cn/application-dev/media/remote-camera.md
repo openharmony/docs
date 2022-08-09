@@ -71,4 +71,4 @@ await cameraManager.createCameraInput(remoteCamera).then((input) => {
     cameraInput = input
 })
 
-剩余步骤参照(./camera.md)
+剩余步骤参照(../media/camera.md)
