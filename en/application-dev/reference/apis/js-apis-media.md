@@ -4,6 +4,7 @@
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
 
 This subsystem offers various media services covering audio and video, which provide the following capabilities:
@@ -105,6 +106,7 @@ media.createVideoPlayer().then((video) => {
 createAudioRecorder(): AudioRecorder
 
 Creates an **AudioRecorder** instance to control audio recording.
+Only one **AudioRecorder** instance can be created for a device.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -214,7 +216,7 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 | Name       | Type                     | Readable| Writable| Description                                                        |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | Yes  | Yes  | Audio media URI. The mainstream audio formats (MPEG-4, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback: under development<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly. |
+| src         | string                    | Yes  | Yes  | Audio media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>4. HLS network playback: http://xx or https://xx<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | currentTime | number                    | Yes  | No  | Current audio playback position.                                        |
 | duration    | number                    | Yes  | No  | Audio duration.                                                  |
@@ -606,7 +608,7 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HLS network playback: under development<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly. |
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>4. HLS network playback: http://xx or https://xx<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                                        |
 | duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live streaming mode.                              |
@@ -1604,7 +1606,7 @@ Subscribes to the audio recording events.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The following events are supported: 'prepare'\|'start'\|  'pause' \| 'resume' \|'stop'\|'release'\|'reset'<br>- The 'prepare' event is triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- The 'start' event is triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- The 'pause' event is triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- The 'resume' event is triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- The 'stop' event is triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- The 'release' event is triggered when the [release](#audiorecorder_release) API is called and the recording resource is released.<br>- The 'reset' event is triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset.|
+| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- 'start': triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- 'pause': triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- 'resume': triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- 'stop': triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- 'release': triggered when the [release](#audiorecorder_release) API is called and the recording resource is released.<br>- 'reset': triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset. |
 | callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -1620,34 +1622,34 @@ let audioRecorderConfig = {
     uri : 'fd://xx',                                                            // The file must be created by the caller and granted with proper permissions.
     location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error) => {                                             // Set the error event callback.
+audioRecorder.on('error', (error) => {                                             // Set the 'error' event callback.
     console.info(`audio error called, errName is ${error.name}`);
     console.info(`audio error called, errCode is ${error.code}`);
     console.info(`audio error called, errMessage is ${error.message}`);
 });
-audioRecorder.on('prepare', () => {                                              // Set the prepare event callback.
+audioRecorder.on('prepare', () => {                                              // Set the 'prepare' event callback.
     console.log('prepare success');
-    audioRecorder.start();                                                       // Start recording and trigger the start event callback.
+    audioRecorder.start();                                                       // Start recording and trigger the 'start' event callback.
 });
-audioRecorder.on('start', () => {                                                 // Set the start event callback.
+audioRecorder.on('start', () => {                                                 // Set the 'start' event callback.
     console.log('audio recorder start success');
 });
-audioRecorder.on('pause', () => {                                                 // Set the pause event callback.
+audioRecorder.on('pause', () => {                                                 // Set the 'pause' event callback.
     console.log('audio recorder pause success');
 });
-audioRecorder.on('resume', () => {                                                 // Set the resume event callback.
+audioRecorder.on('resume', () => {                                                 // Set the 'resume' event callback.
     console.log('audio recorder resume success');
 });
-audioRecorder.on('stop', () => {                                                 // Set the stop event callback.
+audioRecorder.on('stop', () => {                                                 // Set the 'stop' event callback.
     console.log('audio recorder stop success');
 });
-audioRecorder.on('release', () => {                                                 // Set the release event callback.
+audioRecorder.on('release', () => {                                                 // Set the 'release' event callback.
     console.log('audio recorder release success');
 });
-audioRecorder.on('reset', () => {                                                 // Set the reset event callback.
+audioRecorder.on('reset', () => {                                                 // Set the 'reset' event callback.
     console.log('audio recorder reset success');
 });
-audioRecorder.prepare(audioRecorderConfig)                                       // Set recording parameters and trigger the prepare event callback.
+audioRecorder.prepare(audioRecorderConfig)                                       // Set recording parameters and trigger the 'prepare' event callback.
 ```
 
 ### on('error')
@@ -1668,12 +1670,12 @@ Subscribes to the audio recording error event.
 **Example**
 
 ```js
-audioRecorder.on('error', (error) => {                                  // Set the error event callback.
+audioRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
     console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
     console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
     console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
 });
-audioRecorder.prepare();                                                  // Do no set any parameter in prepare and trigger the error event callback.
+audioRecorder.prepare();                                                  // Do no set any parameter in prepare and trigger the 'error' event callback.
 ```
 
 ## AudioRecorderConfig
@@ -1690,7 +1692,7 @@ Describes audio recording configurations.
 | numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.                                 |
 | format<sup>(deprecated)</sup>                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.<br>**Note**: This parameter is deprecated since API version 8. Use **fileFormat** instead.                        |
 | location              | [Location](#location)                   | No  | Geographical location of the recorded audio.                                        |
-| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
+| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
 | audioEncoderMime<sup>8+</sup>      | [CodecMimeType](#codecmimetype8)        | No  | Audio encoding format.          |
 | fileFormat<sup>8+</sup>      | [ContainerFormatType](#containerformattype8)        | No  | Audio encoding format.        |
 
