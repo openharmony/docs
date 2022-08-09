@@ -298,8 +298,8 @@ preferences.getAll(function (err, value) {
         console.info("Failed to get all key-values. Cause: " + err);
         return;
     }
-    let keys = Object.keys(value);
-    console.info("getAll keys = " + keys);
+    let allKeys = Object.keys(value);
+    console.info("getAll keys = " + allKeys);
     console.info("getAll object = " + JSON.stringify(value));
 });
 ```
@@ -322,8 +322,8 @@ getAll(): Promise&lt;Object&gt;
 ```js
 let promise = preferences.getAll();
 promise.then((value) => {
-    let keys = Object.keys(value);
-    console.info('getAll keys = ' + keys);
+    let allKeys = Object.keys(value);
+    console.info('getAll keys = ' + allKeys);
     console.info("getAll object = " + JSON.stringify(value));
 }).catch((err) => {
     console.info("Failed to get all key-values. Cause: " + err);
