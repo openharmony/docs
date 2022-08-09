@@ -10,9 +10,11 @@
 ## 创建eTS工程
 
 1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已经打开了一个工程，请在菜单栏选择**File** &gt; **New** &gt; **Create Project**来创建一个新工程。选择**OpenHarmony**模板库，选择模板“**Empty Ability**”，点击**Next**进行下一步配置。
+
    ![01](figures/01.png)
 
 2. 进入配置工程界面，**Compile SDK** 选择“**8**”（**Complie SDK**选择“**9**”时注意同步选择**Model** 为“**FA**”，此处以选择“**8**”为例），**Language**选择“**eTS**”，其他参数保持默认设置即可。
+
    ![02](figures/02.png)
 
    > **说明：**
@@ -46,6 +48,7 @@
 ## 构建第一个页面
 
 1. 使用文本组件。
+
    工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; ets &gt; MainAbility &gt; pages**”，打开“**index.ets**”文件，可以看到页面由Text组件组成。“**index.ets**”文件的示例如下：
 
    
@@ -71,6 +74,7 @@
    ```
 
 2. 添加按钮。
+
    在默认页面基础上，我们添加一个Button组件，作为按钮响应用户点击，从而实现跳转到另一个页面。“**index.ets**”文件的示例如下：
 
    
@@ -109,12 +113,14 @@
    ```
 
 3. 在编辑窗口右上角的侧边工具栏，点击Previewer，打开预览器。第一个页面效果如下图所示：
+
    ![zh-cn_image_0000001364254741](figures/zh-cn_image_0000001364254741.png)
 
 
 ## 构建第二个页面
 
 1. 创建第二个页面。
+
    - 新建第二个页面文件。在“**Project**”窗口，打开“**entry &gt; src &gt; main &gt; ets &gt; MainAbility**”，右键点击“**pages**”文件夹，选择“**New &gt; eTS File**”，命名为“**second**”，点击“**Finish**”。可以看到文件目录结构如下：
 
       ![zh-cn_image_0000001311334932](figures/zh-cn_image_0000001311334932.png)
@@ -139,6 +145,7 @@
       ```
 
 2. 添加文本及按钮。
+
    参照第一个页面，在第二个页面添加Text组件、Button组件等，并设置其样式。“**second.ets**”文件的示例如下：
 
    
@@ -181,6 +188,7 @@
 页面间的导航可以通过页面路由router来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
+
    在第一个页面中，跳转按钮绑定onClick事件，点击按钮时跳转到第二页。“**index.ets**”文件的示例如下：
 
    
@@ -225,6 +233,7 @@
    ```
 
 2. 第二个页面返回到第一个页面。
+
    在第二个页面中，返回按钮绑定onClick事件，点击按钮时返回到第一页。“**second.ets**”文件的示例如下：
 
    
@@ -268,6 +277,7 @@
    ```
 
 3. 打开index.ets文件，点击预览器中的![zh-cn_image_0000001311175120](figures/zh-cn_image_0000001311175120.png)按钮进行刷新。效果如下图所示：
+
    ![zh-cn_image_0000001364173989](figures/zh-cn_image_0000001364173989.png)
 
 
@@ -276,9 +286,11 @@
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
 2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**SigningConfigs** 界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+
    ![06](figures/06.png)
 
 3. 在编辑窗口右上角的工具栏，点击![zh-cn_image_0000001311494580](figures/zh-cn_image_0000001311494580.png)按钮运行。效果如下图所示：
+
    ![zh-cn_image_0000001363934577](figures/zh-cn_image_0000001363934577.png)
 
 恭喜您已经使用eTS语言开发（FA模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
