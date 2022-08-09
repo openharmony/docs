@@ -159,6 +159,7 @@ WLAN热点信息。
 addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 
 添加不可信网络配置，使用promise方式作为异步方法。
+- 说明：此接口为预留接口，3.1 Release 版本暂不支持。
 
 - 需要权限：
   ohos.permission.SET_WIFI_INFO
@@ -194,6 +195,8 @@ WLAN配置信息。
 addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
 
 添加不可信网络配置，使用callback方式作为异步方法。
+
+- 说明：此接口为预留接口，3.1 Release 版本暂不支持。
 
 - 需要权限：
   ohos.permission.SET_WIFI_INFO
