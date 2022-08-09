@@ -49,7 +49,7 @@
 
 2. 点击FoodGridItem后跳转到FoodDetail页面。调用页面路由router模块的push接口，将FoodDetail页面推到路由栈中，实现页面跳转。使用router路由API接口，需要先引入router。
    ```ts
-   import router from '@system.router'
+   import router from '@ohos.router'
 
    @Component
    struct FoodGridItem {
@@ -61,7 +61,7 @@
        .height(184)
        .width('100%')
        .onClick(() => {
-         router.push({ uri: 'pages/FoodDetail' })
+         router.push({ url: 'pages/FoodDetail' })
        })
      }
    }
@@ -72,7 +72,7 @@
 3. 在FoodDetail页面增加回到食物列表页面的图标。在resources &gt; base &gt; media文件夹下存入回退图标Back.png。新建自定义组件PageTitle，包含后退的图标和Food Detail的文本，调用路由的router.back()接口，弹出路由栈最上面的页面，即返回上一级页面。
    ```ts
    // FoodDetail.ets
-   import router from '@system.router'
+   import router from '@ohos.router'
 
    @Component
    struct PageTitle {
@@ -139,7 +139,7 @@
 
    ```ts
    router.push({
-     uri: 'pages/FoodDetail',
+     url: 'pages/FoodDetail',
      params: { foodData: this.foodItem }
    })
    ```
