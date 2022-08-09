@@ -20,11 +20,11 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
 | param ls [-r] [name] | 显示系统参数，例如：<br>查看usb系统参数：begetctl param ls persist.sys.usb    | 无 |
 | param get [name] | 获取系统参数信息，例如：<br>begetctl param get 或 param get | 无 |
 | param set name value| 设置系统参数，例如：<br>begetctl param set ohos.servicectrl.display 1 或 param set ohos.servicectrl.display 1| 无 |
-| param wait name [value] [timeout] | 等待系统参数，例如：<br>begetctl param wait persist.sys.usb.config hdc 或 param wait persist.sys.usb.config hdc | timeout默认值：30 |
+| param wait name [value] [timeout] | 等待系统参数，例如：<br>begetctl param wait persist.sys.usb.config hdc 或 param wait persist.sys.usb.config hdc | timeout默认值：30秒 |
 | param dump [verbose] | dump 系统参数信息，例如：<br>begetctl param dump 或 param dump| 无 |
 | param shell [name] | 进入Parameter shell，例如：<br>begetctl param shell 或 param shell| 无 |
 | timer_stop servicename | 停止服务计时器，例如：<br>begetctl timer_stop appspawn | servicename长度不超过96字符 |
-| timer_start servicename timeout | 启动服务计时器，例如：<br>begetctl timer_start appspawn | servicename长度不超过96；timeout默认值：10s |
+| timer_start servicename timeout | 启动服务计时器，例如：<br>begetctl timer_start appspawn | servicename长度不超过96；timeout默认值：10毫秒  |
 | start_service servicename | 启动服务，例如：<br>begetctl start_service appspawn 或 start_service appspawn | 无 |
 | stop_service servicename | 停止服务，例如：<br>begetctl stop_service appspawn 或 stop_service appspawn | 无 |
 | service_control start servicename | 启动服务，例如：<br>begetctl service_control start appspawn 或 service_control start appspawn | 无 |
@@ -37,17 +37,23 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
 | reboot updater[:options] | 重新启动并进入updater，例如：<br>begetctl reboot updater 或 reboot updater | 无 |
 | reboot flashd | 重新启动并进入flashd，例如：<br>begetctl reboot flashd 或 reboot flashd | 无 |
 | reboot flashd[:options] | 重新启动并进入flashd，例如：<br>begetctl reboot flashd 或 reboot flashd | 无 |
-| reboot charging | 重新启动并进入charging，例如：<br>begetctl reboot charging 或 reboot charging| 无 |
+| reboot charge | 重新启动并进入charge，例如：<br>begetctl reboot charge 或 reboot charge | 无 |
 | reboot loader | 重新启动并进入烧写模式，例如：<br>begetctl reboot loader 或 reboot loader | 无 |
 | bootchart stop | 停止图形分析，例如：<br>begetctl bootchart stop | 仅支持rk3568|
 | bootchart start | 开始图形分析，例如：<br>begetctl bootchart start | 无 |
 | bootchart disable | 图形分析不使能，例如：<br>begetctl bootchart disable | 无 |
 | bootchart enable | 图形分析使能，例如：<br>begetctl bootchart enable | 无 |
-| sandbox -s service_name | 服务进沙盒，例如 <br>sandbox -s foundation | 无 |
-| sandbox -p process_name | 进程进沙盒，例如 <br>sandbox -p /bin/sh | 无 |
-| sandbox -n sandbox_name | 进入配置的system或者chipset沙盒，<br>sandbox -n system | 无 |
+| sandbox -s service_name | 服务进沙盒，例如：<br>sandbox -s foundation | 无 |
+| sandbox -p process_name | 进程进沙盒，例如：<br>sandbox -p /bin/sh | 无 |
+| sandbox -n sandbox_name | 进入配置的system或者chipset沙盒，例如：<br>sandbox -n system | 无 |
 | sandbox -h | sandbox command help | 无 |
-
+| partitionslot getslot | 获取当前活动slot，例如：<br>begetctl partitionslot getslot 或 partitionslot getslot | 无 | 
+| partitionslot getsuffix slot | 获取当前匹配slot，例如：<br>begetctl partitionslot getsuffix 1 或 partitionslot getsuffix 1 | 无 |
+| partitionslot setactive slot | 设置活动slot，例如：<br>begetctl partitionslot setactive 1 或 partitionslot setactive 1 | 无 |
+| partitionslot setunboot slot | 设置非活动slot，例如：<br>begetctl partitionslot setunboot 1 或 partitionslot setunboot 1 | 无 |
+| modulectl uninstall moduleName | 卸载动态插件，例如：<br>modulectl uninstall bootchart | 无 |
+| modulectl install moduleName | 安装动态插件，例如：<br>modulectl install bootchart | 无 |
+| modulectl list | 动态插件列表，例如：<br>begetctl modulectl list | 无 |
 
 ## 开发指导
 
