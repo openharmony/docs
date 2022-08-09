@@ -1,9 +1,10 @@
 #  Select
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
 The **<Select\>** component provides a drop-down list box that allows users to select among multiple options.
+
+> **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
@@ -11,7 +12,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 ## APIs
 
@@ -47,22 +48,23 @@ Select(options: Array\<SelectOption>\)
 
 ##  Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SelectExample {
   build() {
     Column() {
-      Select([{value:'aaa',icon: "/common/1.png"},
-              {value:'bbb',icon: "/common/2.png"},
-              {value:'ccc',icon: "/common/3.png"},
-              {value:'ddd',icon: "/common/4.png"}])
+      Select([{ value: 'aaa', icon: "/common/1.png" },
+              { value: 'bbb', icon: "/common/2.png" },
+              { value: 'ccc', icon: "/common/3.png" },
+              { value: 'ddd', icon: "/common/4.png" }])
         .selected(2)
         .value('TTT')
-        .font({size: 30, weight:400, family: 'serif', style: FontStyle.Normal })
-        .selectedOptionFont({size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
-        .optionFont({size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
-        .onSelecte((index:number)=>{
+        .font({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
+        .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
+        .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
+        .onSelect((index: number) => {
           console.info("Select:" + index)
         })
     }
