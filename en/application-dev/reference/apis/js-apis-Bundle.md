@@ -12,10 +12,6 @@ The **Bundle** module provides APIs for querying the information about bundles, 
 import bundle from '@ohos.bundle';
 ```
 
-## System Capability
-
-SystemCapability.BundleManager.BundleFramework
-
 ## Required Permissions
 
 | Required Permissions                                      | Permission Level    | Description              |
@@ -689,7 +685,7 @@ This is a system API and cannot be called by third-party applications.
 | ----------- | --------------------------- | ---- | ---------------------- |
 | bundleName  | string                      | Yes  | Bundle name of an application.      |
 | moduleName  | string                      | Yes  | Module name of the application.    |
-| upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is used only by the internal system.|
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is  for internal use only.|
 
 **Return value**
 
@@ -717,7 +713,7 @@ This is a system API and cannot be called by third-party applications.
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
 | bundleName | string                 | Yes  | Bundle name of an application.                             |
 | moduleName | string                 | Yes  | Module name of the application.                           |
-| callback   | AsyncCallback<boolean> | Yes  | Callback used to return the result. If the module is removable, **true** is returned. Otherwise, **false** is returned.|
+| callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the module is removable, **true** is returned. Otherwise, **false** is returned.|
 
 ## bundle.isModuleRemovable<sup>9+</sup>
 
@@ -744,7 +740,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Type            | Description                        |
 | ---------------- | ---------------------------- |
-| Promise<boolean> | Promise used to return the result. If the module is removable, **true** is returned. Otherwise, **false** is returned.|
+| Promise\<boolean> | Promise used to return the result. If the module is removable, **true** is returned. Otherwise, **false** is returned.|
 
 ## bundle.getBundlePackInfo<sup>9+</sup>
 
@@ -1897,8 +1893,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name            | Type    | Mandatory  | Description                                      |
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)   | Yes   | Want that contains the bundle name.                       |
-| extensionType  | number | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#ExtensionAbilityType9).|
-| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
+| extensionType  | number | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
+| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
 | userId         | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
 
 **Return value**
@@ -1946,8 +1942,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name          | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want           | [Want](js-apis-application-Want.md)                                                        | Yes  | Want that contains the bundle name.                      |
-| extensionType  | number                                                       | Yes  | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#ExtensionAbilityType9).|
-| extensionFlags | number                                                       | Yes  | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
+| extensionType  | number                                                       | Yes  | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
+| extensionFlags | number                                                       | Yes  | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
 | userId         | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes  | Callback used to return the Extension ability information.      |
 
@@ -1989,8 +1985,8 @@ SystemCapability.BundleManager.BundleFramework
 | Name            | Type                                      | Mandatory  | Description                                      |
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)                                     | Yes   | Want that contains the bundle name.                     |
-| extensionType  | number                                   | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#ExtensionAbilityType9).|
-| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#ExtensionFlag9).|
+| extensionType  | number                                   | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
+| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes   | Callback used to return the Extension ability information.     |
 
 **Example**
