@@ -3305,3 +3305,100 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | 名称      | 描述            | 备注           |
 | --------- | -------------- | -------------- |
 | MidiSysex | MIDI SYSEX资源。| 目前仅支持权限事件上报，MIDI设备的使用还未支持。|
+
+## WebAsyncController
+
+通过WebAsyncController可以控制Web组件具有异步回调通知的行为，一个WebAsyncController对象控制一个Web组件。
+
+### 创建对象
+
+```
+webController: WebController = new WebController();
+webAsyncController: WebAsyncController = new WebAsyncController(webController);
+```
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<string>): void
+
+以回调方式异步保存当前页面。
+
+**参数：**
+
+| 参数名      | 参数类型                                     | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | 是 | 文件存储路径，该值不能为空。
+| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
+| callback | AsyncCallback<string> | 是    | 返回文件存储路径，保持网页失败会返回null。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import WebAsyncController from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new WebAsyncController(this.controller);
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
+              if (filename != null) {
+                console.info(`save web archive success: ${filename}`)
+              }
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### storeWebArchive<sup>9+</sup>
+
+storeWebArchive(baseName: string, autoName: boolean): Promise<string>
+
+以Promise方式异步保存当前页面。
+
+**参数：**
+
+| 参数名      | 参数类型                                     | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| baseName | string | 是 | 文件存储路径，该值不能为空。
+| autoName | boolean | 是 | 决定是否自动生成文件名。<br/>如果为false，则将baseName作为文件存储路径。<br/>如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。
+
+**返回值：**
+
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise<string> | Promise实例，保存成功返回文件路径，保存失败返回null。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import WebAsyncController from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('saveWebArchive')
+          .onClick(() => {
+            let webAsyncController = new WebAsyncController(this.controller);
+            webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
+              .then(filename => {
+                if (filename != null) {
+                  console.info(`save web archive success: ${filename}`)
+                }
+              })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
