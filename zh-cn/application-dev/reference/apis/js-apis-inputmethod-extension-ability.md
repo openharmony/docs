@@ -1,6 +1,6 @@
 # InputMethodExtensionAbility
 
-InputMethodExtensionAbility模块提供InputMethodExtension服务扩展相关接口的能力。
+InputMethodExtensionAbility模块，提供生态输入法应用开发者通过InputMethodExtensionAbility、InputMethodExtensionContext接口创作输入法应用，并管理输入法应用生命周期。
 
 > **说明：**
 > 
@@ -26,7 +26,7 @@ import InputMethodExtension from '@ohos.inputmethodextensionability';
 
 onCreate(want: Want): void;
 
-Extension生命周期回调，在创建时回调，执行初始化业务逻辑操作。
+Extension生命周期回调，在拉起Extension输入法应用时调用，执行初始化输入法应用操作。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -51,7 +51,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 onDestroy(): void;
 
-Extension生命周期回调，在销毁时回调，执行资源清理等操作。
+Extension生命周期回调，在销毁输入法应用时回调，执行资源清理等操作。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 

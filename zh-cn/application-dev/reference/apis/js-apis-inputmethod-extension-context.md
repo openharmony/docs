@@ -22,20 +22,20 @@ InputMethodExtensionContext模块提供InputMethodExtensionAbility具有的能�
   }
 ```
 
-## startAbility
+## InputMethodExtensionContext.startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
-启动Ability。
+启动Ability，包含一个Want类型参数。callback形式返回启动结果。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
 
@@ -48,20 +48,20 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
     });
   ```
 
-## startAbility
+## InputMethodExtensionContext.startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
-启动Ability。通过Promise返回结果。
+启动Ability，包含Want类型参数，以及可选填的StartOption类型参数。通过Promise方法返回结果。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | want | [Want](js-apis-application-Want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 | 
-  | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
+| options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
@@ -84,11 +84,11 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
   ```
 
-## startAbility
+## InputMethodExtensionContext.startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability。
+启动Ability，包含有两个参数，Want类型和StartOption类型参数。callback形式返回启动结果。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -120,15 +120,15 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability自身。
+停止输入法应用自身，通过Callback方法返回接口调用是否成功。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数，返回接口调用是否成功的结果。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
 
@@ -142,7 +142,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止自身。通过Promise返回结果。
+停止输入法应用自身。通过Promise返回结果。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
