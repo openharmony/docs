@@ -131,4 +131,3 @@ For details about permission usage examples, see [Access Control Development](ac
 | ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | Allows networking between different devices.                                  |
 | ohos.permission.ACCESS_DLP_FILE                          | system_core  | system_grant | TRUE    | Allows configuration and management of the permissions on .dlp files.                               |
 | ohos.permission.PROVISIONING_MESSAGE                     | system_core  | system_grant | TRUE    | Allows activiation of the Super Device Manager application.                                    |
-| ohos.permission.ACCESS_SYSTEM_SETTINGS                     | system_basic  | system_grant | TRUE    | Allows an app to access or start the system settings page.                                    |
