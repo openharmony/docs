@@ -1497,9 +1497,9 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 **返回值：**
 
-| 类型                      | 说明                                    |
-| ------------------------- | --------------------------------------- |
-| Promise\<DisplayRotation> | 以Promise的形式返回当前设备的显示方向。 |
+| 类型                                           | 说明                                    |
+| ---------------------------------------------- | --------------------------------------- |
+| Promise\<[DisplayRotation](#displayrotation9)> | 以Promise的形式返回当前设备的显示方向。 |
 
 **示例：**
 
@@ -1512,7 +1512,7 @@ async function demo() {
 
 ### setDisplayRotationEnabled<sup>9+</sup>
 
-setDisplayRotationEnabled(enabled: bool):Promise \<void>;
+setDisplayRotationEnabled(enabled: bool): Promise \<void>
 
 启用/禁用设备旋转屏幕的功能。
 
@@ -1535,7 +1535,7 @@ async function demo() {
 
 ### getDisplaySize<sup>9+</sup>
 
-getDisplaySize():Promise\<Point>;
+getDisplaySize(): Promise\<Point>
 
 获取当前设备的屏幕大小。
 
@@ -1543,9 +1543,9 @@ getDisplaySize():Promise\<Point>;
 
 **返回值：**
 
-| 类型            | 说明                                    |
-| --------------- | --------------------------------------- |
-| Promise\<Point> | 以Promise的形式返回当前设备的屏幕大小。 |
+| 类型                       | 说明                                    |
+| -------------------------- | --------------------------------------- |
+| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备的屏幕大小。 |
 
 **示例：**
 
@@ -1558,7 +1558,7 @@ async function demo() {
 
 ### getDisplayDensity<sup>9+</sup>
 
-getDisplayDensity():Promise\<Point>;
+getDisplayDensity(): Promise\<Point>
 
 获取当前设备的屏幕的分辨率。
 
@@ -1566,9 +1566,9 @@ getDisplayDensity():Promise\<Point>;
 
 **返回值：**
 
-| 类型            | 说明                                        |
-| --------------- | ------------------------------------------- |
-| Promise\<Point> | 以Promise的形式返回当前设备的屏幕的分辨率。 |
+| 类型                       | 说明                                        |
+| -------------------------- | ------------------------------------------- |
+| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备的屏幕的分辨率。 |
 
 **示例：**
 
@@ -1581,7 +1581,7 @@ async function demo() {
 
 ### wakeUpDisplay<sup>9+</sup>
 
-wakeUpDisplay():Promise\<void>;
+wakeUpDisplay(): Promise\<void>
 
 唤醒当前设备的屏幕。
 
@@ -1598,7 +1598,7 @@ async function demo() {
 
 ### pressHome<sup>9+</sup>
 
-pressHome():Promise\<void>;
+pressHome(): Promise\<void>
 
 设备返回到桌面。
 
@@ -1615,7 +1615,7 @@ async function demo() {
 
 ### waitForIdle<sup>9+</sup>
 
-waitForIdle(idleTime: number, timeout: number):Promise\<bool>;
+waitForIdle(idleTime: number, timeout: number): Promise\<bool>
 
 判断当前界面的所有控件是否已经空闲。
 
@@ -1630,9 +1630,9 @@ waitForIdle(idleTime: number, timeout: number):Promise\<bool>;
 
 **返回值：**
 
-| 类型            | 说明                                                |
-| --------------- | --------------------------------------------------- |
-| Promise\<bool>; | 以Promise的形式返回当前界面的所有控件是否已经空闲。 |
+| 类型           | 说明                                                |
+| -------------- | --------------------------------------------------- |
+| Promise\<bool> | 以Promise的形式返回当前界面的所有控件是否已经空闲。 |
 
 **示例：**
 
@@ -1645,9 +1645,9 @@ async function demo() {
 
 ### fling<sup>9+</sup>
 
-fling(from: Point, to: Point, stepLen: number, speed: number):Promise\<void>;
+fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
-UiDriver对象采取如下操作：从给出的起始坐标点按照指定的间隔与速度滑向给出的目的坐标点。
+植入从给出的起始坐标点按照指定的间隔与速度滑向给出的目的坐标点的滑动操作。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1671,7 +1671,7 @@ async function demo() {
 
 ### injectMultiPointerAction<sup>9+</sup>
 
-injectMultiPointerAction(pointers: PointerMatrix, speed?: number):Promise\<bool>;
+injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool>
 
 向设备注入多指操作。
 
@@ -1893,7 +1893,7 @@ async function demo() {
 
 ### moveTo<sup>9+</sup>
 
-moveTo(x: number, y: number): Promise\<bool>;
+moveTo(x: number, y: number): Promise\<bool>
 
 将窗口移动到目标点。适用于支持移动的窗口。
 
@@ -2076,11 +2076,11 @@ async function demo() {
 
 ## PointerMatrix<sup>9+</sup>
 
-UiTest中，PointerMatrix类表示存储多指操作中每根手指每一步动作的坐标点及其行为的二维数组。
+表示存储多指操作中每根手指每一步动作的坐标点及其行为的二维数组。
 
 ### create<sup>9+</sup>
 
-**static** create(fingers: number, steps: number):PointerMatrix
+static create(fingers: number, steps: number): PointerMatrix
 
 静态方法，构造一个PointerMatrix对象，并返回该对象。
 
@@ -2109,7 +2109,7 @@ async function demo() {
 
 ### setPoint<sup>9+</sup>
 
-setPoint(finger: number, step: number, point: Point):void;
+setPoint(finger: number, step: number, point: Point): void
 
 设置PointerMatrix对象中指定手指和步骤对应动作的坐标点。
 
