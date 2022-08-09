@@ -263,12 +263,6 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
     enableAlertBeforeBackPage() {        
       router.enableAlertBeforeBackPage({            
         message: 'Message Info',            
-        success: function() {                
-          console.log('success');            
-        },            
-        fail: function() {                
-          console.log('fail');            
-        },        
       });    
     }
   }
