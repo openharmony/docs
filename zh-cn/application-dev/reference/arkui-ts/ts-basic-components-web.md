@@ -3093,6 +3093,143 @@ static getOriginUsage(origin : string) : Promise\<number>
     }
   }
   ```
+### searchAllAsync<sup>9+</sup>
+
+searchAllAsync(searchString: string): void
+
+异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](#onsearchresultreceive9)异步返回。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
+| ---- | ------ | ---- | ---- | --------------------- |
+| searchString | string | 是    | -    | 查找的关键字。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    @State searchString: string = "xxx";
+
+    build() {
+      Column() {
+        Button('searchString')
+          .onClick(() => {
+            this.controller.searchAllAsync(this.searchString);
+          })
+        Button('clearMatches')
+          .onClick(() => {
+            this.controller.clearMatches();
+          })
+        Button('searchNext')
+          .onClick(() => {
+            this.controller.searchNext(true);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+     	  .onSearchResultReceive(ret => {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting);
+          })
+      }
+    }
+  }
+  ```
+
+### clearMatches<sup>9+</sup>
+
+clearMatches(): void
+
+清除所有通过[searchAllAsync](#searchallasync9)匹配到的高亮字符查找结果。
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('clearMatches')
+          .onClick(() => {
+            this.controller.clearMatches();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### searchNext<sup>9+</sup>
+
+searchNext(forward: boolean): void
+
+滚动到下一个匹配的查找结果并高亮。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
+| ---- | ------ | ---- | ---- | --------------------- |
+| forward | boolean | 是    | -    | 从前向后或者逆向查找。 |
+
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('searchNext')
+          .onClick(() => {
+            this.controller.searchNext(true);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### onSearchResultReceive<sup>9+</sup>
+
+onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
+
+回调通知调用方网页页内查找的结果。
+
+**参数：**
+
+| 参数名                | 参数类型          | 参数描述                                |
+| ------------------ | ------------- | ----------------------------------- |
+| activeMatchOrdinal | number        | 当前匹配的查找项的序号（从0开始）。 |
+| numberOfMatches    | number        | 所有匹配到的关键词的个数。 |
+| isDoneCounting     | boolean       | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+     	  .onSearchResultReceive(ret => {
+            console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
+              "[total]" + ret.numberOfMatches + "[isDone]"+ ret.isDoneCounting);
+          })
+      }
+    }
+  }
+  ```
 
 ## WebStorageOrigin<sup>9+</sup>
 
