@@ -1,5 +1,6 @@
 # Sensor
 
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -23,8 +24,8 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
@@ -1350,7 +1351,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 Unsubscribes from sensor data changes.
 
-**Required permission**: ohos.permission.READ_HEALTH_DATA (a system permission)
+**Required permissions**: ohos.permission.READ_HEALTH_DATA (a system permission)
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1739,7 +1740,7 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 **Return value**
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field. |
+| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
 **Example**
   ```js
@@ -2170,7 +2171,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
           return;
       }
       console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
-      for (var i=0; i < data.length; i++) {
+      for (var i=0; i < data.rotation.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }
   })
@@ -2204,7 +2205,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.length; i++) {
+          for (var i=0; i < data.rotation.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
@@ -2430,11 +2431,11 @@ Describes the magnetic field sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable  | Writable  | Description                |
-| ---- | ------ | ---- | ---- | ------------------ |
-| x    | number | Yes   | Yes   | Magnetic field strength on the x-axis, in μT. |
-| y    | number | Yes   | Yes   | Magnetic field strength on the y-axis, in μT. |
-| z    | number | Yes   | Yes   | Magnetic field strength on the z-axis, in μT.|
+| Name| Type| Readable| Writable| Description                        |
+| ---- | -------- | ---- | ---- | ---------------------------- |
+| x    | number   | Yes  | Yes  | Magnetic field strength on the x-axis, in μT.|
+| y    | number   | Yes  | Yes  | Magnetic field strength on the y-axis, in μT.|
+| z    | number   | Yes  | Yes  | Magnetic field strength on the z-axis, in μT.|
 
 
 ## MagneticFieldUncalibratedResponse
