@@ -34,7 +34,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
@@ -61,7 +61,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -188,7 +188,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -229,7 +229,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -272,7 +272,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
-| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
@@ -317,7 +317,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 ```js
 const color = new ArrayBuffer(96);
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
@@ -345,7 +345,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 ```js
 const color = new ArrayBuffer(96);\
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
@@ -399,7 +399,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 ```js
 pixelmap.getImageInfo((imageInfo) => { 
-    console.log("Succeeded in obtaining the image pixel map information..");
+    console.log("Succeeded in obtaining the image pixel map information.");
 })
 ```
 
@@ -421,7 +421,7 @@ getBytesNumberPerRow(): number
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
@@ -466,7 +466,7 @@ release():Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -495,7 +495,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -1009,7 +1009,7 @@ imagePackerApi.packing(pixelMapApi, packOpts)
     .then( data => {
 	    console.log('Succeeded in packing the image.');
 	}).catch(error => {
-	    console.log('Failed to pack the image..');
+	    console.log('Failed to pack the image.');
 	})
 ```
 
