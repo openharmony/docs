@@ -279,7 +279,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | ApplicationStateObserver | 否 | 返回观察者的数字代码。 |
+| observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
 
 **示例：**
     
@@ -319,7 +319,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | ApplicationStateObserver | 否 | 返回观察者的数字代码。 |
+| observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
 | bundleNameList | Array<string> | 否 | 表示需要注册监听的bundleName数组。最大值128。 |
 
 **示例：**
@@ -835,3 +835,16 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
 | processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
 | bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
+
+## ApplicationStateObserver
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+| 名称                     | 类型     | 可读 | 可写 | 说明                       |
+| ----------------------- | ---------| ---- | ---- | ------------------------- |
+| [onForegroundApplicationChanged<sup>8+</sup>](#applicationstateobserveronforegroundapplicationchanged8)         | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
+| [onAbilityStateChanged<sup>8+</sup>](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
+| [onProcessCreated<sup>8+</sup>](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
+| [onProcessDied<sup>8+</sup>](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
