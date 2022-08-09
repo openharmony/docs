@@ -344,3 +344,4 @@ zh-cn/application-dev/quick-start/syscap.md @RayShih
 zh-cn/application-dev/napi/napi-guidelines.md @RayShih
 zh-cn/application-dev/napi/drawing-guidelines.md @ge-yafang
 zh-cn/application-dev/napi/rawfile-guidelines.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-buffer.md @zengyawen
