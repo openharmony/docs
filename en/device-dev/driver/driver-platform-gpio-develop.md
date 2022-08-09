@@ -28,21 +28,21 @@ struct GpioMethod {
   int32_t (*unsetIrq)(struct GpioCntlr *cntlr, uint16_t local);
   int32_t (*enableIrq)(struct GpioCntlr *cntlr, uint16_t local);
   int32_t (*disableIrq)(struct GpioCntlr *cntlr, uint16_t local);
-};
+}
 ```
 
   **Table 1** Description of the callback functions in GpioMethod
 
 | Function| Input Parameter| Output Parameter| Return Value| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| write | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.<br>**val**: input level, which is of the uint16_t type. | – | HDF_STATUS| Writes the level of a GPIO pin.|
-| read | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type. | **val**: pointer to the output level, which is of the uint16_t type.| HDF_STATUS| Reads the level of a GPIO pin.|
-| setDir | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.<br>**dir**: pin direction to set, which is of the uint16_t type. | – | HDF_STATUS| Sets the direction (input or output) for a GPIO pin.|
-| getDir | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type. | **dir**: pointer to the pin direction obtained, which is of the uint16_t type.| HDF_STATUS| Obtains the input or output direction of a GPIO pin.|
-| setIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.<br>**mode**: trigger mode, which can be edge or level of the uint16_t type. <br>**func**: pointer to the interrupt request (IRQ) handler.<br>**arg**: void pointer to the input parameters of the IRQ handler. | – | HDF_STATUS| Sets an IRQ for a GPIO pin.|
-| unsetIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type. | – | HDF_STATUS| Cancels the IRQ settings for a GPIO pin.|
-| enableIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type. | – | HDF_STATUS| Enables interrupts for a GPIO pin.|
-| disableIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type. | – | HDF_STATUS| Disables interrupts for a GPIO pin.|
+| write | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.<br>**val**: input level, which is of the uint16_t type.| –| HDF_STATUS| Writes the level of a GPIO pin.|
+| read | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.| **val**: pointer to the output level, which is of the uint16_t type.| HDF_STATUS| Reads the level of a GPIO pin.|
+| setDir | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.<br>**dir**: pin direction to set, which is of the uint16_t type.| –| HDF_STATUS| Sets the direction (input or output) for a GPIO pin.|
+| getDir | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.| **dir**: pointer to the pin direction obtained, which is of the uint16_t type.| HDF_STATUS| Obtains the input or output direction of a GPIO pin.|
+| setIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.<br>**mode**: trigger mode, which can be edge or level of the uint16_t type. <br>**func**: pointer to the interrupt request (IRQ) handler.<br>**arg**: void pointer to the input parameters of the IRQ handler.| –| HDF_STATUS| Sets an IRQ for a GPIO pin.|
+| unsetIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.| –| HDF_STATUS| Cancels the IRQ settings for a GPIO pin.|
+| enableIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.| –| HDF_STATUS| Enables interrupts for a GPIO pin.|
+| disableIrq | **cntlr**: structure pointer to the GPIO controller at the core layer.<br>**local**: GPIO port number, which is of the uint16_t type.| –| HDF_STATUS| Disables interrupts for a GPIO pin.|
 
 
 ## How to Develop
@@ -62,9 +62,9 @@ The GPIO module adaptation involves the following steps:
 3. Instantiate the GPIO controller object.
    - Initialize **GpioCntlr**.
    - Instantiate **GpioMethod** in the **GpioCntlr** object.
-     
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/> For details about the functions in **GpioMethod**, see [Available APIs](#available-apis).
-   
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+      > For details about the functions in **GpioMethod**, see [Available APIs](#available-apis).
+
 4. Debug the driver.
    
    (Optional) For new drivers, verify the basic functions, such as the GPIO status control and response to interrupts.
@@ -78,13 +78,13 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
    
    The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf\_device\_desc.h**), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
    Generally, the HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
-   
+
      GPIO driver entry example:
    
    ```
    struct HdfDriverEntry g_gpioDriverEntry = {
      .moduleVersion = 1,
-     .Bind = Pl061GpioBind, // Bind does not need to be implemented for GPIO. It is an empty method in this example. You can add related operations as required.
+     .Bind = Pl061GpioBind,            // Bind does not need to be implemented for GPIO. It is an empty method in this example. You can add related operations as required.
      .Init = Pl061GpioInit,            // See the Init function.
      .Release = Pl061GpioRelease,      // See the Release function.
      .moduleName = "hisi_pl061_driver",// (Mandatory) The value must be the same as that of moduleName in the .hcs file.
@@ -97,7 +97,7 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
    
    The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the default values or value ranges of the **GpioCntlr** members at the core layer.
    In this example, there is only one GPIO controller. If there are multiple GPIO controllers, you need to add the **deviceNode** information to the **device_info** file and add the corresponding device attributes to the **gpio_config** file for each controller.
-   
+
    - **device_info.hcs** configuration example
      
       ```
@@ -111,8 +111,8 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
               policy = 0;        // No service is published.
               priority = 10;     // Driver startup priority.
               permission = 0644; // Permission to create device nodes for the driver.
-              moduleName = "hisi_pl061_driver";         // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
-              deviceMatchAttr = "hisilicon_hi35xx_pl061";// (Mandatory) Private data of the controller. The value must be the same as the controller information in gpio_config.hcs.
+              moduleName = "hisi_pl061_driver";           // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
+              deviceMatchAttr = "hisilicon_hi35xx_pl061"; // (Mandatory) Private data of the controller. The value must be the same as the controller information in gpio_config.hcs.
                                                           // Add private information about all controllers in this file.
               }
           }
@@ -128,18 +128,18 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
           gpio_config {
           controller_0x120d0000 {
               match_attr = "hisilicon_hi35xx_pl061"; // (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
-              groupNum = 12;       // (Mandatory) GPIO group number.
-              bitNum = 8;          // (Mandatory) Number of GPIO pins in each group.
-              regBase = 0x120d0000;// (Mandatory) Physical base address.
-              regStep = 0x1000; // (Mandatory) Register offset step.
-              irqStart = 48;       // (Mandatory) Enable interrupts.
-              irqShare = 0;        // (Mandatory) Whether to share an interrupt.
+              groupNum = 12;        // (Mandatory) GPIO group number.
+              bitNum = 8;           // (Mandatory) Number of GPIO pins in each group.
+              regBase = 0x120d0000; // (Mandatory) Physical base address.
+              regStep = 0x1000;     // (Mandatory) Register offset step.
+              irqStart = 48;        // (Mandatory) Enable interrupts.
+              irqShare = 0;         // (Mandatory) Whether to share an interrupt.
           }
           }
       }
       } 
       ```
-   
+
 3. Initialize the **GpioCntlr** object at the core layer, including defining a custom structure (to pass parameters and data) and implementing the **HdfDriverEntry** member functions (**Init** and **Release**) to instantiate **GpioMethod** in **GpioCntlr** (so that the underlying driver functions can be called).
    - Defining a custom structure
 
@@ -150,15 +150,15 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
       struct Pl061GpioCntlr {
         struct GpioCntlr cntlr;// (Mandatory) Control object at the core layer. The details are as follows:
         volatile unsigned char *regBase;// (Mandatory) Register base address.
-        uint32_t phyBase;      // (Mandatory) Physical base address.
-        uint32_t regStep;      // (Mandatory) Register offset step.
-        uint32_t irqStart;     // (Mandatory) Enable interrupts.
-        uint16_t groupNum;     // (Mandatory) Parameter of the GPIO port number.
-        uint16_t bitNum;       // (Mandatory) Parameter of the GPIO port number.
-        uint8_t irqShare;      // (Mandatory) Whether to share an interrupt.
-        struct Pl061GpioGroup *groups; // (Optional) Set based on the actual requirements.
+        uint32_t phyBase;               // (Mandatory) Physical base address.
+        uint32_t regStep;               // (Mandatory) Register offset step.
+        uint32_t irqStart;              // (Mandatory) Enable interrupts.
+        uint16_t groupNum;              // (Mandatory) Parameter of the GPIO port number.
+        uint16_t bitNum;                // (Mandatory) Parameter of the GPIO port number.
+        uint8_t irqShare;               // (Mandatory) Whether to share an interrupt.
+        struct Pl061GpioGroup *groups;  // (Optional) Set based on the actual requirements.
       };
-      struct Pl061GpioGroup {// Register address, IRQ number and function, and lock.
+      struct Pl061GpioGroup {           // Register address, IRQ number and function, and lock.
         volatile unsigned char *regBase;
         unsigned int index;
         unsigned int irq;
@@ -179,54 +179,51 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
         void *priv;
       };
       ```
-      
    - Instantiating the **GpioMethod** structure in **GpioCntlr** (other members are initialized by **Init**)
-   
+
      
       ```
       // The members of the GpioMethod structure are all callbacks. You need to implement the functions listed in Table 1.
       static struct GpioMethod g_method = {
           .request = NULL,
           .release = NULL,
-          .write = Pl061GpioWrite, // Write the pin level.
-          .read = Pl061GpioRead, // Read the pin level.
-              .setDir = Pl061GpioSetDir, // Set the pin direction.
+          .write = Pl061GpioWrite,          // Write the pin level.
+          .read = Pl061GpioRead,            // Read the pin level.
+              .setDir = Pl061GpioSetDir,    // Set the pin direction.
           .getDir = Pl061GpioGetDir,        // Obtain the pin direction.
           .toIrq = NULL,
           .setIrq = Pl061GpioSetIrq,        // Set an IRQ for a pin. Skip it if this capability is not available.
-          .unsetIrq = Pl061GpioUnsetIrq, // Cancel the IRQ settings for a pin. Skip it if this capability is not available.
+          .unsetIrq = Pl061GpioUnsetIrq,    // Cancel the IRQ settings for a pin. Skip it if this capability is not available.
           .enableIrq = Pl061GpioEnableIrq,  // Enable interrupts for a pin. Skip it if this capability is not available.
           .disableIrq = Pl061GpioDisableIrq,// Disable interrupts for a pin. Skip it if this capability is not available.
       };
       ```
-   
+
    - **Init** function
-   
+
       Input parameter:
-   
+
       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
-   
+
       Return value:
-   
-      HDF_STATUS
-   
-      The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
-      
+
+      HDF_STATUS<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
+
         **Table 2** HDF_STATUS
       
-      | Status| Description| 
+      | Status| Description|
       | -------- | -------- |
-      | HDF_ERR_INVALID_OBJECT | Invalid controller object.| 
-      | HDF_ERR_MALLOC_FAIL | Failed to allocate memory.| 
-      | HDF_ERR_INVALID_PARAM | Invalid parameter.| 
-      | HDF_ERR_IO | I/O error.| 
-      | HDF_SUCCESS | Initialization successful.| 
-      | HDF_FAILURE | Initialization failed.| 
-   
+      | HDF_ERR_INVALID_OBJECT | Invalid controller object.|
+      | HDF_ERR_MALLOC_FAIL | Failed to allocate memory.|
+      | HDF_ERR_INVALID_PARAM | Invalid parameter.|
+      | HDF_ERR_IO | I/O error.|
+      | HDF_SUCCESS | Initialization successful.|
+      | HDF_FAILURE | Initialization failed.|
+
       Function description:
-   
+
       Initializes the custom structure object and **GpioCntlr**, calls the **GpioCntlrAdd** function at the core layer, and (optional) connects to the virtual file system (VFS).
-      
+
       
       ```
       static int32_t Pl061GpioInit(struct HdfDeviceObject *device)
@@ -248,10 +245,10 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
         pl061->cntlr.priv = (void *)device->property; // (Mandatory) Store device attributes.
         pl061->cntlr.ops = &g_method;           // (Mandatory) Attach the GpioMethod instance.
         pl061->cntlr.device = device;           // (Mandatory) Prerequisites for conversion between HdfDeviceObject and GpioCntlr.
-        ret = GpioCntlrAdd(&pl061->cntlr);    // (Mandatory) Call this function to fill the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
+        ret = GpioCntlrAdd(&pl061->cntlr);      // (Mandatory) Call this function to fill the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
         ...
         Pl061GpioDebugCntlr(pl061);
-        #ifdef PL061_GPIO_USER_SUPPORT            // (Optional) Access the user-level VFS if it is supported.
+        #ifdef PL061_GPIO_USER_SUPPORT          // (Optional) Access the user-level VFS if it is supported.
         if (GpioAddVfs(pl061->bitNum) != HDF_SUCCESS) {
             HDF_LOGE("%s: add vfs fail!", __func__);
         }
@@ -259,7 +256,6 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
         ...
       }
       ```
-      
    - **Release** function
 
       Input parameter:
@@ -271,9 +267,9 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
       No value is returned.
 
       Function description:
-   
+
       Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the value assignment operations.
-   
+
       
       ```
       static void Pl061GpioRelease(struct HdfDeviceObject *device)
