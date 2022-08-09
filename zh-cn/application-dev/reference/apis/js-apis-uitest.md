@@ -1512,7 +1512,7 @@ async function demo() {
 
 ### setDisplayRotationEnabled<sup>9+</sup>
 
-setDisplayRotationEnabled(enabled: bool): Promise \<void>
+setDisplayRotationEnabled(enabled: bool): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能。
 
