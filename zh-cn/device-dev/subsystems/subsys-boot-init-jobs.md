@@ -60,7 +60,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
    | symlink | symlink target link_name<br>如：symlink /proc/self/fd/0 /dev/stdin | 符号链接命令。<B><br>系统类型：标准系统 |
    | trigger | trigger jobName<br>如：trigger early-fs | 触发job执行的命令。<B><br>系统类型：标准系统 |
    | insmod | insmod [-f] [options]<br>如：insmod xxx.ko| 内核模块文件载入命令。<B><br>系统类型：标准系统 |
-   | setparam | setparam paramName paramValue<br>如：setparam sys.usb.config hdc| 设置系统参数。<br>标准系统 |
+   | setparam | setparam paramName paramValue<br>如：setparam sys.usb.config hdc| 设置系统参数。<B><br>系统类型：标准系统 |
    | load_persist_params | load persist params<br>如：load_persist_params&nbsp;| 加载persist参数。load_persist_params命令后有且仅有一个空格。<B><br>系统类型：标准系统 |
    | load_param | load params<br>如：load_param /data/test.normal.para| 将文件里的param加载到内存。<B><br>系统类型：标准系统 |
    | load_access_token_id | 如：load_access_token_id&nbsp;| 将access token信息写入data/service/el0/access_token/nativetoken.json文件，load_access_token_id后有且只有一个空格。<B><br>系统类型：标准系统 |
@@ -77,7 +77,7 @@ job就是命令集合，jobs管理就是对要执行的一组命令集合进行�
    | init_main_user | 如：init_main_user| 主用户目录加密。<B><br>系统类型：标准系统 |
    | mkswap | mkswap file<br>如：mkswap /swapfile1 | 在一个文件或者设备上建立交换分区。<B><br>系统类型：标准系统 |
    | swapon | swapon file <br>如：swapon /swapfile1| 激活交换空间。<B><br>系统类型：标准系统 |
-   | mksandbox | mksandbox fileName<br>如：mksandbox system | 创建沙盒。<br>标准系统 |
+   | mksandbox | mksandbox fileName<br>如：mksandbox system | 创建沙盒。<B><br>系统类型：标准系统 |
    | loadcfg | loadcfg&nbsp;filePath<br/>如：loadcfg&nbsp;/patch/fstab.cfg | 加载其他cfg文件命令。后面跟着的目标文件大小不得超过50KB，且目前仅支持加载/patch/fstab.cfg，其他文件路径和文件名均不支持。/patch/fstab.cfg文件的每一行都是一条命令，命令类型和格式必须符合本表格描述，命令条数不得超过20条。<B><br>系统类型：小型系统 |
 
 ### 接口说明
