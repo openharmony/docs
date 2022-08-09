@@ -8,7 +8,7 @@
 ## Modules to Import
 
 ```
-import inputMethod from '@ohos.inputMethod';
+import inputMethod from '@ohos.inputmethod';
 ```
 
 ## inputMethod<sup>6+</sup>
