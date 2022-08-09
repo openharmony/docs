@@ -7,17 +7,15 @@
 ## 开发步骤
 在计算器中连接分布式设备，在获取相机列表时getCameras()，遍历返回的列表，判断对应Camera对象中的ConnctionType是否等于CAMERA_CONNECTION_REMOTE,若等于则使用此对象创建camerainput，之后调用与本地相机使用一样。参考：[相机开发指导](./camera.md)
 
-### 接口说明
-
 详细API含义请参考：[相机管理API文档](../reference/apis/js-apis-camera.md)
 
-#### 连接分布式相机
+### 连接分布式相机
 
 打开设置->WLAN,将需要连接分布式相机的两台设备连入同一局域网。
 
 打开计算器，点击右上角小图表，出现新的窗口，按提示输入验证码，连接成功。
 
-#### 创建实例
+### 创建实例
 
 ```js
 import camera from '@ohos.multimedia.camera'
