@@ -1,5 +1,7 @@
 # Image Processing
 
+The **Image** module provides APIs for image processing. You can use the APIs to create a **PixelMap** object with specified properties or read image pixel data (even in an area).
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -35,7 +37,7 @@ Creates a **PixelMap** object. This API uses a promise to return the result.
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
@@ -62,7 +64,7 @@ Creates a **PixelMap** object. This API uses an asynchronous callback to return 
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -78,7 +80,7 @@ Provides APIs to read or write image pixel map data and obtain image pixel map i
 
 | Name      | Type   | Readable| Writable| Description                      |
 | ---------- | ------- | ---- | ---- | -------------------------- |
-| isEditable<sup>7+</sup> | boolean | Yes  | No  | Whether the image pixel map is editable.|
+| isEditable | boolean | Yes  | No  | Whether the image pixel map is editable.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -92,7 +94,7 @@ Reads image pixel map data and writes the data to an **ArrayBuffer**. This API u
 
 | Name| Type       | Mandatory| Description                                                                                                 |
 | ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written. |
+| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling **getPixelBytesNumber**.|
 
 **Return value**
 
@@ -123,7 +125,7 @@ Reads image pixel map data and writes the data to an **ArrayBuffer**. This API u
 
 | Name  | Type                | Mandatory| Description                                                                                                 |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst      | ArrayBuffer          | Yes  | Buffer to which the image pixel map data will be written.|
+| dst      | ArrayBuffer          | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling **getPixelBytesNumber**.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                                                                       |
 
 **Example**
@@ -189,7 +191,7 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -230,7 +232,7 @@ Writes image pixel map data to an area. This API uses a promise to return the op
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -318,7 +320,7 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 ```js
 const color = new ArrayBuffer(96);
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
@@ -346,7 +348,7 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 ```js
 const color = new ArrayBuffer(96);\
 const pixelMap = new ArrayBuffer(400);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
@@ -400,7 +402,7 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 
 ```js
 pixelmap.getImageInfo((imageInfo) => { 
-    console.log("Succeeded in obtaining the image pixel map information..");
+    console.log("Succeeded in obtaining the image pixel map information.");
 })
 ```
 
@@ -422,7 +424,7 @@ Obtains the number of bytes per row of this image pixel map.
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
@@ -467,7 +469,7 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -496,7 +498,7 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 
 ```js
 const color = new ArrayBuffer(96);
-let bufferArr = new Unit8Array(color);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
@@ -1010,7 +1012,7 @@ imagePackerApi.packing(pixelMapApi, packOpts)
     .then( data => {
 	    console.log('Succeeded in packing the image.');
 	}).catch(error => {
-	    console.log('Failed to pack the image..');
+	    console.log('Failed to pack the image.');
 	})
 ```
 
@@ -1117,7 +1119,7 @@ Defines pixel map initialization options.
 
 | Name                    | Type                              | Readable| Writable| Description          |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
+| editable                 | boolean                            | Yes  | Yes  | Whether the image is editable.  |
 | pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
 | size                     | [Size](#size)                      | Yes  | Yes  | Image size.|
 
@@ -1173,7 +1175,7 @@ Describes image properties.
 
 ## PropertyKey<sup>7+</sup>
 
-Describes the exchangeable image file format (Exif) information of an image.
+Describes the exchangeable image file format (EXIF) information of an image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1213,7 +1215,7 @@ Enumerates the response codes returned upon build errors.
 | ERR_IMAGE_CROP                      | 62980109 | An error occurs during image cropping.                                         |
 | ERR_IMAGE_SOURCE_DATA               | 62980110 | The image source data is incorrect.                                   |
 | ERR_IMAGE_SOURCE_DATA_INCOMPLETE    | 62980111 | The image source data is incomplete.                                 |
-| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | The image format does not match.                                   |
+| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | The image formats do not match.                                   |
 | ERR_IMAGE_UNKNOWN_FORMAT            | 62980113 | Unknown image format.                                     |
 | ERR_IMAGE_SOURCE_UNRESOLVED         | 62980114 | The image source is not parsed.                                     |
 | ERR_IMAGE_INVALID_PARAMETER         | 62980115 | Invalid image parameter.                                     |
@@ -1229,4 +1231,4 @@ Enumerates the response codes returned upon build errors.
 | ERR_IMAGE_READ_PIXELMAP_FAILED      | 62980246 | Failed to read the pixel map.                                 |
 | ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | Failed to write the pixel map.                                 |
 | ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | Modification to the pixel map is not allowed.                               |
-| ERR_IMAGE_CONFIG_FAILED             | 62980259 | The software parameter setting is incorrect.                                         |
+| ERR_IMAGE_CONFIG_FAILED             | 62980259 | The configuration is incorrect.                                         |
