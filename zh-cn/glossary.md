@@ -46,7 +46,7 @@
     
 - ### FA模型
 
-    两种Ability框架模型结构的其中一种。是Ability框架在API 8及更早版本采用FA模型。FA模型将Ability分为[FA（Feature Ability）](#fa)和[PA（Particle Ability）](#pa)两种类型，其中FA支持Page Ability模板，PA支持Service ability、Data ability、以及Form ability模板。详情可参考[FA模型综述](application-dev/ability/fa-brief.md)。
+    Ability开发框架支持的开发模型中的一种。API Version 8及更早版本的应用开发仅支持FA模型。FA模型将Ability分为[FA（Feature Ability）](#fa)和[PA（Particle Ability）](#pa)两种类型，其中FA支持Page Ability模板，PA支持Service ability、Data ability、以及Form ability模板。详情可参考[FA模型综述](application-dev/ability/fa-brief.md)。
 
 
 ## H
@@ -96,7 +96,7 @@
 
 - ### Stage模型
 
-    两种Ability框架模型结构的其中一种。从API 9开始支持。Stage模型将Ability分为Ability和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等等一系列ExtensionAbility。
+    Ability开发框架支持的开发模型中的一种。从API Version 9起应用开发开始支持Stage模型。Stage模型将Ability分为Ability和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等等一系列ExtensionAbility。
 
 - ### System Type，系统类型
     - Mini System，轻量系统：面向MCU类处理器，例如ARM Cortex-M、RISC-V 32位的设备，资源极其有限，参考内存≥128KiB，提供丰富的近距连接能力以及丰富的外设总线访问能力。典型产品有智能家居领域的联接类模组、传感器设备等。
