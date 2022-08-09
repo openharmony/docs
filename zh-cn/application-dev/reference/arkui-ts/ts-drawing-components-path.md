@@ -15,6 +15,18 @@
 
 无
 
+## 接口
+
+Path(value?: { width?: number | string; height?: number | string; commands?: string })
+
+- 参数
+
+  | 参数名   | 参数类型                                | 必填 | 默认值 | 参数描述               |
+  | -------- | --------------------------------------- | ---- | ------ | ---------------------- |
+  | width    | [Length](../../ui/ts-types.md#长度类型) | 否   | 0      | 路径所在矩形的宽度。   |
+  | height   | [Length](../../ui/ts-types.md#长度类型) | 否   | 0      | 路径所在矩形的高度。   |
+  | commands | string                                  | 是   | ‘ ’    | 路径绘制的命令字符串。 |
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
