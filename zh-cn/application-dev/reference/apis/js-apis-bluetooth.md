@@ -610,7 +610,7 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
 
 **返回值：**
 
@@ -641,7 +641,7 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。     |
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -3668,6 +3668,18 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
+
+
+## BondStateParam<sup>8+</sup><a name="BondStateParam"></a>
+
+描述配对状态参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 参数类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId | string      | 是    | 否    | 表示要配对的设备ID。 |
+| state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
 
 
 ## StateChangeParam<sup>8+</sup><a name="StateChangeParam"></a>
