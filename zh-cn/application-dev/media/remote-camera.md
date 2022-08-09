@@ -70,5 +70,5 @@ await cameraManager.createCameraInput(remoteCamera).then((input) => {
     console.log('Promise returned with the CameraInput instance');
     cameraInput = input
 })
-
+```
 剩余步骤参照[相机开发指导](../application-dev/media/camera.md)
