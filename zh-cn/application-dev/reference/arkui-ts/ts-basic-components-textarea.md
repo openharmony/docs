@@ -1,10 +1,10 @@
 # TextArea
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 提供多行文本输入组件。
+
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 权限列表
@@ -21,12 +21,12 @@
 
 TextArea(value?:{placeholder?: string, controller?: TextAreaController})
 
-- 参数
-  | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述           |
-  | ----------------------- | ---------------------------------------- | ---- | ---- | -------------- |
-  | placeholder             | string                                   | 否    | -    | 无输入时的提示文本。     |
-  | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | -    | 设置TextArea控制器。 |
+**参数：**
 
+| 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述           |
+| ----------------------- | ---------------------------------------- | ---- | ---- | -------------- |
+| placeholder             | string                                   | 否    | -    | 无输入时的提示文本。     |
+| controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | -    | 设置TextArea控制器。 |
 
 ## 属性
 
@@ -40,13 +40,13 @@ TextArea(value?:{placeholder?: string, controller?: TextAreaController})
 | caretColor               | Color                                    | -     | 设置输入框光标颜色。                               |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -     | 通过正则表达式设置输入过滤器。满足表达式的输入允许显示，不满足的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，不支持过滤8到10位的强密码。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
-- TextAlign枚举说明
-  | 名称     | 描述      |
-  | ------ | ------- |
-  | Start  | 水平对齐首部。 |
-  | Center | 水平居中对齐。 |
-  | End    | 水平对齐尾部。 |
+## TextAlign枚举说明
 
+| 名称     | 描述      |
+| ------ | ------- |
+| Start  | 水平对齐首部。 |
+| Center | 水平居中对齐。 |
+| End    | 水平对齐尾部。 |
 
 ## 事件
 
@@ -74,18 +74,19 @@ caretPosition(value: number): void
 
 设置输入光标的位置。
 
-- 参数
-  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                |
-  | ----- | ------ | ---- | ---- | ------------------- |
-  | value | number | 是    | -    | 从字符串开始到光标所在位置的字符长度。 |
+**参数：**
 
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                |
+| ----- | ------ | ---- | ---- | ------------------- |
+| value | number | 是    | -    | 从字符串开始到光标所在位置的字符长度。 |
 
 ## 示例
 
 
 ### 多行文本输入
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample1 {
@@ -122,7 +123,8 @@ struct TextAreaExample1 {
 
 ### 设置光标
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample2 {

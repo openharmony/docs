@@ -1,10 +1,10 @@
 # Scroll
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 可滚动的容器组件，当子组件的布局尺寸超过父组件的视口时，内容可以滚动。
+
+>  **说明：**
+>
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 权限列表
@@ -31,12 +31,13 @@ Scroll(scroller?: Scroller)
 | scrollBarColor | Color                                    | -                        | 设置滚动条的颜色。 |
 | scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
 
-- ScrollDirection枚举说明
-  | 名称         | 描述         |
-  | ---------- | ---------- |
-  | Horizontal | 仅支持水平方向滚动。 |
-  | Vertical   | 仅支持竖直方向滚动。 |
-  | None       | 不可滚动。      |
+## ScrollDirection枚举说明
+
+| 名称         | 描述         |
+| ---------- | ---------- |
+| Horizontal | 仅支持水平方向滚动。 |
+| Vertical   | 仅支持竖直方向滚动。 |
+| None       | 不可滚动。      |
 
 ## 事件
 
@@ -65,14 +66,13 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 滑动到指定位置。
 
+**参数：**
 
-- 参数
-  | 参数名       | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
-  | --------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-  | xOffset   | Length                                   | 是    | -    | 水平滑动偏移。                                  |
-  | yOffset   | Length                                   | 是    | -    | 竖直滑动偏移。                                  |
-  | animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-animatorproperty.md)&nbsp;\|<br/>CubicBezier&nbsp;\|<br/>SpringCurve<br/>} | 否    |      | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。 |
-
+| 参数名       | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| --------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| xOffset   | Length                                   | 是    | -    | 水平滑动偏移。                                  |
+| yOffset   | Length                                   | 是    | -    | 竖直滑动偏移。                                  |
+| animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-animatorproperty.md)&nbsp;\|<br/>CubicBezier&nbsp;\|<br/>SpringCurve<br/>} | 否    |      | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。 |
 
 ### scrollEdge
 
@@ -81,12 +81,11 @@ scrollEdge(value: Edge): void
 
 滚动到容器边缘。
 
+**参数：**
 
-- 参数
-  | 参数名   | 参数类型 | 必填   | 默认值  | 参数描述      |
-  | ----- | ---- | ---- | ---- | --------- |
-  | value | Edge | 是    | -    | 滚动到的边缘位置。 |
-
+| 参数名   | 参数类型 | 必填   | 默认值  | 参数描述      |
+| ----- | ---- | ---- | ---- | --------- |
+| value | Edge | 是    | -    | 滚动到的边缘位置。 |
 
 ### scrollPage
 
@@ -94,12 +93,12 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 滚动到下一页或者上一页。
 
-- 参数
-  | 参数名       | 参数类型    | 必填   | 默认值  | 参数描述                           |
-  | --------- | ------- | ---- | ---- | ------------------------------ |
-  | next      | boolean | 是    | -    | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
-  | direction | Axis    | 否    | -    | 设置滚动方向为水平或竖直方向。                |
+**参数：**
 
+| 参数名       | 参数类型    | 必填   | 默认值  | 参数描述                           |
+| --------- | ------- | ---- | ---- | ------------------------------ |
+| next      | boolean | 是    | -    | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
+| direction | Axis    | 否    | -    | 设置滚动方向为水平或竖直方向。                |
 
 ### currentOffset
 
@@ -108,12 +107,11 @@ scroller.currentOffset(): Object
 
 返回当前的滚动偏移量。
 
+**返回值：**
 
-- 返回值
-  | 类型                                       | 描述                                       |
-  | ---------------------------------------- | ---------------------------------------- |
-  | {<br/>xOffset:&nbsp;number,<br/>yOffset:&nbsp;number<br/>} | xOffset:&nbsp;水平滑动偏移;<br/>yOffset:&nbsp;竖直滑动偏移。 |
-
+| 类型                                       | 描述                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| {<br/>xOffset:&nbsp;number,<br/>yOffset:&nbsp;number<br/>} | xOffset:&nbsp;水平滑动偏移;<br/>yOffset:&nbsp;竖直滑动偏移。 |
 
 ### scrollToIndex
 
@@ -123,19 +121,19 @@ scroller.scrollToIndex(value: number): void
 滑动到指定Index。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 仅支持list组件。
+>  **说明：**
+>  仅支持list组件。
 
+**参数：**
 
-- 参数
-  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-  | ----- | ------ | ---- | ---- | ----------------- |
-  | value | number | 是    | -    | 要滑动到的列表项在列表中的索引值。 |
-
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| value | number | 是    | -    | 要滑动到的列表项在列表中的索引值。 |
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ScrollExample {

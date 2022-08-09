@@ -1,10 +1,10 @@
 # TextInput
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 提供单行文本输入组件。
+
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 权限列表
@@ -21,12 +21,12 @@
 
 TextInput(value?:{placeholder?: string controller?: TextInputController})
 
-- 参数
-  | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
-  | ----------------------- | ---------------------------------------- | ---- | ---- | --------------- |
-  | placeholder             | string                                   | 否    | -    | 无输入时的提示文本。      |
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | -    | 设置TextInput控制器。 |
+**参数：**
 
+| 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
+| ----------------------- | ---------------------------------------- | ---- | ---- | --------------- |
+| placeholder             | string                                   | 否    | -    | 无输入时的提示文本。      |
+| controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | -    | 设置TextInput控制器。 |
 
 ## 属性
 
@@ -42,23 +42,24 @@ TextInput(value?:{placeholder?: string controller?: TextInputController})
 | maxLength                | number                                   | -                 | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -                 | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
-- EnterKeyType枚举说明
-  | 名称                  | 描述        |
-  | ------------------- | --------- |
-  | EnterKeyType.Go     | 显示Go文本。   |
-  | EnterKeyType.Search | 显示为搜索样式。  |
-  | EnterKeyType.Send   | 显示为发送样式。  |
-  | EnterKeyType.Next   | 显示为下一个样式。 |
-  | EnterKeyType.Done   | 标准样式。     |
+## EnterKeyType枚举说明
 
-- InputType枚举说明
-  | 名称                 | 描述            |
-  | ------------------ | ------------- |
-  | InputType.Normal   | 基本输入模式。       |
-  | InputType.Password | 密码输入模式。       |
-  | InputType.Email    | e-mail地址输入模式。 |
-  | InputType.Number   | 纯数字输入模式。      |
+| 名称                  | 描述        |
+| ------------------- | --------- |
+| EnterKeyType.Go     | 显示Go文本。   |
+| EnterKeyType.Search | 显示为搜索样式。  |
+| EnterKeyType.Send   | 显示为发送样式。  |
+| EnterKeyType.Next   | 显示为下一个样式。 |
+| EnterKeyType.Done   | 标准样式。     |
 
+## InputType枚举说明
+
+| 名称                 | 描述            |
+| ------------------ | ------------- |
+| InputType.Normal   | 基本输入模式。       |
+| InputType.Password | 密码输入模式。       |
+| InputType.Email    | e-mail地址输入模式。 |
+| InputType.Number   | 纯数字输入模式。      |
 
 ## 事件
 
@@ -85,19 +86,20 @@ controller: TextInputController = new TextInputController()
 caretPosition(value:&nbsp;number): void
 
 设置光标移动到指定位置。
-- 参数
 
-  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                                     |
-  | ----- | ------ | ---- | ---- | ---------------------------------------- |
-  | value | number | 是    | -    | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
+**参数：**
 
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ----- | ------ | ---- | ---- | ---------------------------------------- |
+| value | number | 是    | -    | 设置输入光标的位置。<br/>value：从字符串开始到光标所在位置的字符长度。 |
 
 ## 示例
 
 
 ### 单行文本输入
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample1 {
@@ -130,7 +132,8 @@ struct TextInputExample1 {
 
 ### 设置光标
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample2 {

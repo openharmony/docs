@@ -1,6 +1,6 @@
 # 共享元素转场
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -25,7 +25,8 @@
 
 示例功能为两个页面，共享元素转场页面图片点击后转场至页面B的图片。
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SharedTransitionExample {

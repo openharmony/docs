@@ -1,6 +1,6 @@
 # 组件内转场
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -16,7 +16,7 @@
 - transition入参说明
   | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | type | TransitionType                                               | TransitionType.All | 否 | 默认包括组件新增和删除。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;不指定Type时说明插入删除使用同一种效果。 |
+  | type | TransitionType                                               | TransitionType.All | 否 | 默认包括组件新增和删除。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;不指定Type时说明插入删除使用同一种效果。 |
   | opacity | number | 1 | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。 |
   | translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。 |
   | scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。 |
@@ -34,7 +34,8 @@
 
 示例功能通过一个Button控制第二个Button的出现和消失，并通过transition配置第二个Button出现和消失的过场动画。
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TransitionExample {

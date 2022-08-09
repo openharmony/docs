@@ -1,7 +1,8 @@
 # CanvasRenderingContext2D对象
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>
+>  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 使用RenderingContext在Canvas组件上进行绘制，绘制对象可以是矩形、文本、图片等。
@@ -11,10 +12,11 @@
 
 CanvasRenderingContext2D(setting: RenderingContextSetting)
 
-- 参数
-  | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
-  | ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-  | setting | [RenderingContextSettings](#renderingcontextsettings) | 是    | -    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
+**参数：** 
+
+| 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| setting | [RenderingContextSettings](#renderingcontextsettings) | 是    | -    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
 
 
 ### RenderingContextSettings
@@ -23,10 +25,10 @@ RenderingContextSettings(antialias?: bool)
 
 用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
 
-- 参数
-  | 参数名       | 参数类型 | 必填   | 默认值   | 参数描述             |
-  | --------- | ---- | ---- | ----- | ---------------- |
-  | antialias | bool | 否    | false | 表明canvas是否开启抗锯齿。 |
+**参数：** 
+| 参数名       | 参数类型 | 必填   | 默认值   | 参数描述             |
+| --------- | ---- | ---- | ----- | ---------------- |
+| antialias | bool | 否    | false | 表明canvas是否开启抗锯齿。 |
 
 
 ## 属性
@@ -40,7 +42,7 @@ RenderingContextSettings(antialias?: bool)
 | [lineJoin](#linejoin)                    | string                                   | 'miter'                                  | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
 | [miterLimit](#miterlimit)                | number                                   | 10                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。             |
 | [font](#font)                            | string                                   | 'normal&nbsp;normal&nbsp;14px&nbsp;sans-serif' | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal',talic。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。 |
-| [textAlign](#textalign)                  | string                                   | 'left'                                   | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。 |
+| [textAlign](#textalign)                  | string                                   | 'left'                                   | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。 |
 | [textBaseline](#textbaseline)            | string                                   | 'alphabetic'                             | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。 |
 | [globalAlpha](#globalalpha)              | number                                   | -                                        | 设置透明度，0.0为完全透明，1.0为完全不透明。                |
 | [lineDashOffset](#linedashoffset)        | number                                   | 0.0                                      | 设置画布的虚线偏移量，精度为float。                     |
@@ -52,13 +54,15 @@ RenderingContextSettings(antialias?: bool)
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | true                                     | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。  |
 | imageSmoothingQuality                    | string                                   | 'low'                                    | 用于设置图像平滑度，支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> &lt;color&gt;类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
+>  **说明：**
+>
+>  &lt;color&gt;类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
 
 
 ### fillStyle
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FillStyleExample {
@@ -87,7 +91,8 @@ struct FillStyleExample {
 
 ### lineWidth
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineWidthExample {
@@ -116,7 +121,8 @@ struct LineWidthExample {
 
 ### strokeStyle
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StrokeStyleExample {
@@ -147,7 +153,8 @@ struct StrokeStyleExample {
 
 ### lineCap
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineCapExample {
@@ -180,7 +187,8 @@ struct LineCapExample {
 
 ### lineJoin
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineJoinExample {
@@ -214,7 +222,8 @@ struct LineJoinExample {
 
 ### miterLimit
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MiterLimit {
@@ -248,7 +257,8 @@ struct MiterLimit {
 
 ### font
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Fonts {
@@ -277,7 +287,8 @@ struct Fonts {
 
 ### textAlign
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CanvasExample {
@@ -321,7 +332,8 @@ struct CanvasExample {
 
 ### textBaseline
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextBaseline {
@@ -365,7 +377,8 @@ struct TextBaseline {
 
 ### globalAlpha
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalAlpha {
@@ -397,7 +410,8 @@ struct GlobalAlpha {
 
 ### lineDashOffset
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LineDashOffset {
@@ -441,7 +455,8 @@ struct LineDashOffset {
 | copy             | 显示新绘制内容而忽略现有绘制内容。        |
 | xor              | 使用异或操作对新绘制内容与现有绘制内容进行融合。 |
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GlobalCompositeOperation {
@@ -478,7 +493,8 @@ struct GlobalCompositeOperation {
 
 ### shadowBlur
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowBlur {
@@ -509,7 +525,8 @@ struct ShadowBlur {
 
 ### shadowColor
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowColor {
@@ -540,7 +557,8 @@ struct ShadowColor {
 
 ### shadowOffsetX
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetX {
@@ -572,7 +590,8 @@ struct ShadowOffsetX {
 
 ### shadowOffsetY
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ShadowOffsetY {
@@ -603,7 +622,8 @@ struct ShadowOffsetY {
 
 ### imageSmoothingEnabled
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ImageSmoothingEnabled {
@@ -640,15 +660,15 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 填充一个矩形。
 
-- 参数
-  | 参数     | 类型     | 必填   | 默认值  | 说明            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | x      | number | 是    | 0    | 指定矩形左上角点的x坐标。 |
-  | y      | number | 是    | 0    | 指定矩形左上角点的y坐标。 |
-  | width  | number | 是    | 0    | 指定矩形的宽度。      |
-  | height | number | 是    | 0    | 指定矩形的高度。      |
+**参数：** 
+| 参数     | 类型     | 必填   | 默认值  | 说明            |
+| ------ | ------ | ---- | ---- | ------------- |
+| x      | number | 是    | 0    | 指定矩形左上角点的x坐标。 |
+| y      | number | 是    | 0    | 指定矩形左上角点的y坐标。 |
+| width  | number | 是    | 0    | 指定矩形的宽度。      |
+| height | number | 是    | 0    | 指定矩形的高度。      |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -681,15 +701,15 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 绘制具有边框的矩形，矩形内部不填充。
 
-- 参数
-  | 参数     | 类型     | 必填   | 默认值  | 说明           |
-  | ------ | ------ | ---- | ---- | ------------ |
-  | x      | number | 是    | 0    | 指定矩形的左上角x坐标。 |
-  | y      | number | 是    | 0    | 指定矩形的左上角y坐标。 |
-  | width  | number | 是    | 0    | 指定矩形的宽度。     |
-  | height | number | 是    | 0    | 指定矩形的高度。     |
+**参数：** 
+| 参数     | 类型     | 必填   | 默认值  | 说明           |
+| ------ | ------ | ---- | ---- | ------------ |
+| x      | number | 是    | 0    | 指定矩形的左上角x坐标。 |
+| y      | number | 是    | 0    | 指定矩形的左上角y坐标。 |
+| width  | number | 是    | 0    | 指定矩形的宽度。     |
+| height | number | 是    | 0    | 指定矩形的高度。     |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -721,15 +741,15 @@ clearRect(x: number, y: number, w: number, h: number): void
 
 删除指定区域内的绘制内容。
 
-- 参数
-  | 参数     | 类型     | 必填   | 默认值  | 描述            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | x      | number | 是    | 0    | 指定矩形上的左上角x坐标。 |
-  | y      | number | 是    | 0    | 指定矩形上的左上角y坐标。 |
-  | width  | number | 是    | 0    | 指定矩形的宽度。      |
-  | height | number | 是    | 0    | 指定矩形的高度。      |
+**参数：** 
+| 参数     | 类型     | 必填   | 默认值  | 描述            |
+| ------ | ------ | ---- | ---- | ------------- |
+| x      | number | 是    | 0    | 指定矩形上的左上角x坐标。 |
+| y      | number | 是    | 0    | 指定矩形上的左上角y坐标。 |
+| width  | number | 是    | 0    | 指定矩形的宽度。      |
+| height | number | 是    | 0    | 指定矩形的高度。      |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -763,14 +783,14 @@ fillText(text: string, x: number, y: number): void
 
 绘制填充类文本。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 说明              |
-  | ---- | ------ | ---- | ---- | --------------- |
-  | text | string | 是    | “”   | 需要绘制的文本内容。      |
-  | x    | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
-  | y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 说明              |
+| ---- | ------ | ---- | ---- | --------------- |
+| text | string | 是    | “”   | 需要绘制的文本内容。      |
+| x    | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
+| y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -803,14 +823,14 @@ strokeText(text: string, x: number, y: number): void
 
 绘制描边类文本。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述              |
-  | ---- | ------ | ---- | ---- | --------------- |
-  | text | string | 是    | “”   | 需要绘制的文本内容。      |
-  | x    | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
-  | y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述              |
+| ---- | ------ | ---- | ---- | --------------- |
+| text | string | 是    | “”   | 需要绘制的文本内容。      |
+| x    | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
+| y    | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -843,10 +863,10 @@ measureText(text: string): TextMetrics
 
 该方法返回一个文本测算的对象，通过该对象可以获取指定文本的宽度值。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 说明         |
-  | ---- | ------ | ---- | ---- | ---------- |
-  | text | string | 是    | ""   | 需要进行测量的文本。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 说明         |
+| ---- | ------ | ---- | ---- | ---------- |
+| text | string | 是    | ""   | 需要进行测量的文本。 |
 
 - 返回值
   | 类型          | 说明      |
@@ -858,7 +878,7 @@ measureText(text: string): TextMetrics
   | ----- | ------ | ------- |
   | width | number | 字符串的宽度。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -892,12 +912,12 @@ stroke(path?: Path2D): void
 
 进行边框绘制操作。
 
-- 参数
-  | 参数   | 类型                                       | 必填   | 默认值  | 描述           |
-  | ---- | ---------------------------------------- | ---- | ---- | ------------ |
-  | path | [Path2D](ts-components-canvas-path2d.md) | 否    | null | 需要绘制的Path2D。 |
+**参数：** 
+| 参数   | 类型                                       | 必填   | 默认值  | 描述           |
+| ---- | ---------------------------------------- | ---- | ---- | ------------ |
+| path | [Path2D](ts-components-canvas-path2d.md) | 否    | null | 需要绘制的Path2D。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -933,7 +953,7 @@ beginPath(): void
 
 创建一个新的绘制路径。
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -971,13 +991,13 @@ moveTo(x: number, y: number): void
 
 路径从当前点移动到指定点。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 说明        |
-  | ---- | ------ | ---- | ---- | --------- |
-  | x    | number | 是    | 0    | 指定位置的x坐标。 |
-  | y    | number | 是    | 0    | 指定位置的y坐标。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 说明        |
+| ---- | ------ | ---- | ---- | --------- |
+| x    | number | 是    | 0    | 指定位置的x坐标。 |
+| y    | number | 是    | 0    | 指定位置的y坐标。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1013,13 +1033,13 @@ lineTo(x: number, y: number): void
 
 从当前点到指定点进行路径连接。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述        |
-  | ---- | ------ | ---- | ---- | --------- |
-  | x    | number | 是    | 0    | 指定位置的x坐标。 |
-  | y    | number | 是    | 0    | 指定位置的y坐标。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述        |
+| ---- | ------ | ---- | ---- | --------- |
+| x    | number | 是    | 0    | 指定位置的x坐标。 |
+| y    | number | 是    | 0    | 指定位置的y坐标。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1055,7 +1075,7 @@ closePath(): void
 
 结束当前路径形成一个封闭路径。
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1093,13 +1113,13 @@ createPattern(image: ImageBitmap, repetition: string): void
 
 通过指定图像和重复方式创建图片填充的模板。
 
-- 参数
-  | 参数         | 类型                                       | 必填   | 默认值  | 描述                                       |
-  | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-  | image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | null | 图源对象，具体参考ImageBitmap对象。                  |
-  | repetition | string                                   | 是    | “”   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
+**参数：** 
+| 参数         | 类型                                       | 必填   | 默认值  | 描述                                       |
+| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | null | 图源对象，具体参考ImageBitmap对象。                  |
+| repetition | string                                   | 是    | “”   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp;'repeat-y'、'no-repeat'。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1135,17 +1155,17 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 创建三次贝赛尔曲线的路径。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述             |
-  | ---- | ------ | ---- | ---- | -------------- |
-  | cp1x | number | 是    | 0    | 第一个贝塞尔参数的x坐标值。 |
-  | cp1y | number | 是    | 0    | 第一个贝塞尔参数的y坐标值。 |
-  | cp2x | number | 是    | 0    | 第二个贝塞尔参数的x坐标值。 |
-  | cp2y | number | 是    | 0    | 第二个贝塞尔参数的y坐标值。 |
-  | x    | number | 是    | 0    | 路径结束时的x坐标值。    |
-  | y    | number | 是    | 0    | 路径结束时的y坐标值。    |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述             |
+| ---- | ------ | ---- | ---- | -------------- |
+| cp1x | number | 是    | 0    | 第一个贝塞尔参数的x坐标值。 |
+| cp1y | number | 是    | 0    | 第一个贝塞尔参数的y坐标值。 |
+| cp2x | number | 是    | 0    | 第二个贝塞尔参数的x坐标值。 |
+| cp2y | number | 是    | 0    | 第二个贝塞尔参数的y坐标值。 |
+| x    | number | 是    | 0    | 路径结束时的x坐标值。    |
+| y    | number | 是    | 0    | 路径结束时的y坐标值。    |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1181,15 +1201,15 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 创建二次贝赛尔曲线的路径。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述          |
-  | ---- | ------ | ---- | ---- | ----------- |
-  | cpx  | number | 是    | 0    | 贝塞尔参数的x坐标值。 |
-  | cpy  | number | 是    | 0    | 贝塞尔参数的y坐标值。 |
-  | x    | number | 是    | 0    | 路径结束时的x坐标值。 |
-  | y    | number | 是    | 0    | 路径结束时的y坐标值。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述          |
+| ---- | ------ | ---- | ---- | ----------- |
+| cpx  | number | 是    | 0    | 贝塞尔参数的x坐标值。 |
+| cpy  | number | 是    | 0    | 贝塞尔参数的y坐标值。 |
+| x    | number | 是    | 0    | 路径结束时的x坐标值。 |
+| y    | number | 是    | 0    | 路径结束时的y坐标值。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1224,17 +1244,17 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 绘制弧线路径。
 
-- 参数
-  | 参数            | 类型      | 必填   | 默认值   | 描述         |
-  | ------------- | ------- | ---- | ----- | ---------- |
-  | x             | number  | 是    | 0     | 弧线圆心的x坐标值。 |
-  | y             | number  | 是    | 0     | 弧线圆心的y坐标值。 |
-  | radius        | number  | 是    | 0     | 弧线的圆半径。    |
-  | startAngle    | number  | 是    | 0     | 弧线的起始弧度。   |
-  | endAngle      | number  | 是    | 0     | 弧线的终止弧度。   |
-  | anticlockwise | boolean | 否    | false | 是否逆时针绘制圆弧。 |
+**参数：** 
+| 参数            | 类型      | 必填   | 默认值   | 描述         |
+| ------------- | ------- | ---- | ----- | ---------- |
+| x             | number  | 是    | 0     | 弧线圆心的x坐标值。 |
+| y             | number  | 是    | 0     | 弧线圆心的y坐标值。 |
+| radius        | number  | 是    | 0     | 弧线的圆半径。    |
+| startAngle    | number  | 是    | 0     | 弧线的起始弧度。   |
+| endAngle      | number  | 是    | 0     | 弧线的终止弧度。   |
+| anticlockwise | boolean | 否    | false | 是否逆时针绘制圆弧。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1269,16 +1289,16 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 依据圆弧经过的点和圆弧半径创建圆弧路径。
 
-- 参数
-  | 参数     | 类型     | 必填   | 默认值  | 描述              |
-  | ------ | ------ | ---- | ---- | --------------- |
-  | x1     | number | 是    | 0    | 圆弧经过的第一个点的x坐标值。 |
-  | y1     | number | 是    | 0    | 圆弧经过的第一个点的y坐标值。 |
-  | x2     | number | 是    | 0    | 圆弧经过的第二个点的x坐标值。 |
-  | y2     | number | 是    | 0    | 圆弧经过的第二个点的y坐标值。 |
-  | radius | number | 是    | 0    | 圆弧的圆半径值。        |
+**参数：** 
+| 参数     | 类型     | 必填   | 默认值  | 描述              |
+| ------ | ------ | ---- | ---- | --------------- |
+| x1     | number | 是    | 0    | 圆弧经过的第一个点的x坐标值。 |
+| y1     | number | 是    | 0    | 圆弧经过的第一个点的y坐标值。 |
+| x2     | number | 是    | 0    | 圆弧经过的第二个点的x坐标值。 |
+| y2     | number | 是    | 0    | 圆弧经过的第二个点的y坐标值。 |
+| radius | number | 是    | 0    | 圆弧的圆半径值。        |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1313,19 +1333,19 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 在规定的矩形区域绘制一个椭圆。
 
-- 参数
-  | 参数            | 类型      | 必填   | 默认值   | 说明                |
-  | ------------- | ------- | ---- | ----- | ----------------- |
-  | x             | number  | 是    | 0     | 椭圆圆心的x轴坐标。        |
-  | y             | number  | 是    | 0     | 椭圆圆心的y轴坐标。        |
-  | radiusX       | number  | 是    | 0     | 椭圆x轴的半径长度。        |
-  | radiusY       | number  | 是    | 0     | 椭圆y轴的半径长度。        |
-  | rotation      | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。    |
-  | startAngle    | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。 |
-  | endAngle      | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。 |
-  | anticlockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。     |
+**参数：** 
+| 参数            | 类型      | 必填   | 默认值   | 说明                |
+| ------------- | ------- | ---- | ----- | ----------------- |
+| x             | number  | 是    | 0     | 椭圆圆心的x轴坐标。        |
+| y             | number  | 是    | 0     | 椭圆圆心的y轴坐标。        |
+| radiusX       | number  | 是    | 0     | 椭圆x轴的半径长度。        |
+| radiusY       | number  | 是    | 0     | 椭圆y轴的半径长度。        |
+| rotation      | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。    |
+| startAngle    | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。 |
+| endAngle      | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。 |
+| anticlockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。     |
 
-- 示例
+**示例：** 
 
   ```
   @Entry
@@ -1361,15 +1381,15 @@ rect(x: number, y: number, width: number, height: number): void
 
 创建矩形路径。
 
-- 参数
-  | 参数     | 类型     | 必填   | 默认值  | 描述            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | x      | number | 是    | 0    | 指定矩形的左上角x坐标值。 |
-  | y      | number | 是    | 0    | 指定矩形的左上角y坐标值。 |
-  | width  | number | 是    | 0    | 指定矩形的宽度。      |
-  | height | number | 是    | 0    | 指定矩形的高度。      |
+**参数：** 
+| 参数     | 类型     | 必填   | 默认值  | 描述            |
+| ------ | ------ | ---- | ---- | ------------- |
+| x      | number | 是    | 0    | 指定矩形的左上角x坐标值。 |
+| y      | number | 是    | 0    | 指定矩形的左上角y坐标值。 |
+| width  | number | 是    | 0    | 指定矩形的宽度。      |
+| height | number | 是    | 0    | 指定矩形的高度。      |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1403,7 +1423,7 @@ fill(): void
 
 对封闭路径进行填充。
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1437,7 +1457,7 @@ clip(): void
 
 设置当前路径为剪切路径。
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1474,12 +1494,12 @@ rotate(rotate: number): void
 
 针对当前坐标轴进行顺时针旋转。
 
-- 参数
-  | 参数     | 类型     | 必填   | 默认值  | 描述                                       |
-  | ------ | ------ | ---- | ---- | ---------------------------------------- |
-  | rotate | number | 是    | 0    | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
+**参数：** 
+| 参数     | 类型     | 必填   | 默认值  | 描述                                       |
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| rotate | number | 是    | 0    | 设置顺时针旋转的弧度值，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1513,13 +1533,13 @@ scale(x: number, y: number): void
 
 设置canvas画布的缩放变换属性，后续的绘制操作将按照缩放比例进行缩放。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述          |
-  | ---- | ------ | ---- | ---- | ----------- |
-  | x    | number | 是    | 0    | 设置水平方向的缩放值。 |
-  | y    | number | 是    | 0    | 设置垂直方向的缩放值。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述          |
+| ---- | ------ | ---- | ---- | ----------- |
+| x    | number | 是    | 0    | 设置水平方向的缩放值。 |
+| y    | number | 是    | 0    | 设置垂直方向的缩放值。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1554,24 +1574,24 @@ transform(scaleX: number, skewX: number, skewY: number, scaleY: number, translat
 
 transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个定点的坐标分别乘以这个矩阵，就能得到新的定点的坐标。矩阵变换效果可叠加。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
+>  **说明：**
+>  变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
-> - x' = scaleX \* x + skewY \* y + translateX
+>  - x' = scaleX \* x + skewY \* y + translateX
 >
-> - y' = skewX \* x + scaleY \* y + translateY
+>  - y' = skewX \* x + scaleY \* y + translateY
 
-- 参数
-  | 参数         | 类型     | 必填   | 默认值  | 描述       |
-  | ---------- | ------ | ---- | ---- | -------- |
-  | scaleX     | number | 是    | 0    | 指定水平缩放值。 |
-  | skewX      | number | 是    | 0    | 指定水平倾斜值。 |
-  | skewY      | number | 是    | 0    | 指定垂直倾斜值。 |
-  | scaleY     | number | 是    | 0    | 指定垂直缩放值。 |
-  | translateX | number | 是    | 0    | 指定水平移动值。 |
-  | translateY | number | 是    | 0    | 指定垂直移动值。 |
+**参数：** 
+| 参数         | 类型     | 必填   | 默认值  | 描述       |
+| ---------- | ------ | ---- | ---- | -------- |
+| scaleX     | number | 是    | 0    | 指定水平缩放值。 |
+| skewX      | number | 是    | 0    | 指定水平倾斜值。 |
+| skewY      | number | 是    | 0    | 指定垂直倾斜值。 |
+| scaleY     | number | 是    | 0    | 指定垂直缩放值。 |
+| translateX | number | 是    | 0    | 指定水平移动值。 |
+| translateY | number | 是    | 0    | 指定垂直移动值。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1611,17 +1631,17 @@ setTransform(scaleX: number, skewX: number, skewY: number, scale: number, transl
 
 setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
-- 参数
-  | 参数         | 类型     | 必填   | 默认值  | 描述       |
-  | ---------- | ------ | ---- | ---- | -------- |
-  | scaleX     | number | 是    | 0    | 指定水平缩放值。 |
-  | skewX      | number | 是    | 0    | 指定水平倾斜值。 |
-  | skewY      | number | 是    | 0    | 指定垂直倾斜值。 |
-  | scaleY     | number | 是    | 0    | 指定垂直缩放值。 |
-  | translateX | number | 是    | 0    | 指定水平移动值。 |
-  | translateY | number | 是    | 0    | 指定垂直移动值。 |
+**参数：** 
+| 参数         | 类型     | 必填   | 默认值  | 描述       |
+| ---------- | ------ | ---- | ---- | -------- |
+| scaleX     | number | 是    | 0    | 指定水平缩放值。 |
+| skewX      | number | 是    | 0    | 指定水平倾斜值。 |
+| skewY      | number | 是    | 0    | 指定垂直倾斜值。 |
+| scaleY     | number | 是    | 0    | 指定垂直缩放值。 |
+| translateX | number | 是    | 0    | 指定水平移动值。 |
+| translateY | number | 是    | 0    | 指定垂直移动值。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1658,13 +1678,13 @@ translate(x: number, y: number): void
 
 移动当前坐标系的原点。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述       |
-  | ---- | ------ | ---- | ---- | -------- |
-  | x    | number | 是    | 0    | 设置水平平移量。 |
-  | y    | number | 是    | 0    | 设置竖直平移量。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述       |
+| ---- | ------ | ---- | ---- | -------- |
+| x    | number | 是    | 0    | 设置水平平移量。 |
+| y    | number | 是    | 0    | 设置竖直平移量。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1703,21 +1723,21 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number,
 
 进行图像绘制。
 
-- 参数
-  | 参数      | 类型                                       | 必填   | 默认值  | 描述                                       |
-  | ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-  | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。            |
-  | sx      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。                     |
-  | sy      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。                     |
-  | sWidth  | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。                           |
-  | sHeight | number                                   | 否    | 0    | 裁切源图像时需要裁切的高度。                           |
-  | dx      | number                                   | 是    | 0    | 绘制区域左上角在x轴的位置。                           |
-  | dy      | number                                   | 是    | 0    | 绘制区域左上角在y&nbsp;轴的位置。                     |
-  | dWidth  | number                                   | 否    | 0    | 绘制区域的宽度。 当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。 |
-  | dHeight | number                                   | 否    | 0    | 绘制区域的高度。 当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。 |
+**参数：** 
+| 参数      | 类型                                       | 必填   | 默认值  | 描述                                       |
+| ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| image   | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../apis/js-apis-image.md#pixelmap7) | 是    | null | 图片资源，请参考ImageBitmap或PixelMap。            |
+| sx      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的x坐标值。                     |
+| sy      | number                                   | 否    | 0    | 裁切源图像时距离源图像左上角的y坐标值。                     |
+| sWidth  | number                                   | 否    | 0    | 裁切源图像时需要裁切的宽度。                           |
+| sHeight | number                                   | 否    | 0    | 裁切源图像时需要裁切的高度。                           |
+| dx      | number                                   | 是    | 0    | 绘制区域左上角在x轴的位置。                           |
+| dy      | number                                   | 是    | 0    | 绘制区域左上角在y&nbsp;轴的位置。                     |
+| dWidth  | number                                   | 否    | 0    | 绘制区域的宽度。 当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。 |
+| dHeight | number                                   | 否    | 0    | 绘制区域的高度。 当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。 |
 
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1750,11 +1770,11 @@ createImageData(width: number, height: number): Object
 
 创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
 
-- 参数
-  | 参数     | 类型     | 必填   | 默认   | 描述            |
-  | ------ | ------ | ---- | ---- | ------------- |
-  | width  | number | 是    | 0    | ImageData的宽度。 |
-  | height | number | 是    | 0    | ImageData的高度。 |
+**参数：** 
+| 参数     | 类型     | 必填   | 默认   | 描述            |
+| ------ | ------ | ---- | ---- | ------------- |
+| width  | number | 是    | 0    | ImageData的宽度。 |
+| height | number | 是    | 0    | ImageData的高度。 |
 
 
 ### createImageData
@@ -1763,36 +1783,36 @@ createImageData(imageData: Object): Object
 
 创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
 
-- 参数
-  | 参数        | 类型     | 必填   | 默认   | 描述                |
-  | --------- | ------ | ---- | ---- | ----------------- |
-  | imagedata | Object | 是    | null | 复制现有的ImageData对象。 |
+**参数：** 
+| 参数        | 类型     | 必填   | 默认   | 描述                |
+| --------- | ------ | ---- | ---- | ----------------- |
+| imagedata | Object | 是    | null | 复制现有的ImageData对象。 |
 
 ### getPixelMap
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 以当前canvas指定区域内的像素创建[PixelMap](../apis/js-apis-image.md#pixelmap7)对象。
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述              |
-  | ---- | ------ | ---- | ---- | --------------- |
-  | sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
-  | sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
-  | sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
-  | sh   | number | 是    | 0    | 需要输出的区域的高度。     |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述              |
+| ---- | ------ | ---- | ---- | --------------- |
+| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
+| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
+| sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
+| sh   | number | 是    | 0    | 需要输出的区域的高度。     |
 
 ### getImageData
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
 以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagebitmap.md)对象。
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述              |
-  | ---- | ------ | ---- | ---- | --------------- |
-  | sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
-  | sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
-  | sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
-  | sh   | number | 是    | 0    | 需要输出的区域的高度。     |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述              |
+| ---- | ------ | ---- | ---- | --------------- |
+| sx   | number | 是    | 0    | 需要输出的区域的左上角x坐标。 |
+| sy   | number | 是    | 0    | 需要输出的区域的左上角y坐标。 |
+| sw   | number | 是    | 0    | 需要输出的区域的宽度。     |
+| sh   | number | 是    | 0    | 需要输出的区域的高度。     |
 
 
 ### putImageData
@@ -1801,18 +1821,18 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?
 
 使用[ImageData](ts-components-canvas-imagebitmap.md)数据填充新的矩形区域。
 
-- 参数
-  | 参数          | 类型     | 必填   | 默认值          | 描述                            |
-  | ----------- | ------ | ---- | ------------ | ----------------------------- |
-  | imagedata   | Object | 是    | null         | 包含像素值的ImageData对象。            |
-  | dx          | number | 是    | 0            | 填充区域在x轴方向的偏移量。                |
-  | dy          | number | 是    | 0            | 填充区域在y轴方向的偏移量。                |
-  | dirtyX      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
-  | dirtyY      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
-  | dirtyWidth  | number | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。               |
-  | dirtyHeight | number | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
+**参数：** 
+| 参数          | 类型     | 必填   | 默认值          | 描述                            |
+| ----------- | ------ | ---- | ------------ | ----------------------------- |
+| imagedata   | Object | 是    | null         | 包含像素值的ImageData对象。            |
+| dx          | number | 是    | 0            | 填充区域在x轴方向的偏移量。                |
+| dy          | number | 是    | 0            | 填充区域在y轴方向的偏移量。                |
+| dirtyX      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
+| dirtyY      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
+| dirtyWidth  | number | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。               |
+| dirtyHeight | number | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1852,7 +1872,7 @@ restore(): void
 
 对保存的绘图上下文进行恢复。
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1883,7 +1903,7 @@ save(): void
 
 对当前的绘图上下文进行保存。
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1914,15 +1934,15 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
 
 创建一个线性渐变色。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述       |
-  | ---- | ------ | ---- | ---- | -------- |
-  | x0   | number | 是    | 0    | 起点的x轴坐标。 |
-  | y0   | number | 是    | 0    | 起点的y轴坐标。 |
-  | x1   | number | 是    | 0    | 终点的x轴坐标。 |
-  | y1   | number | 是    | 0    | 终点的y轴坐标。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述       |
+| ---- | ------ | ---- | ---- | -------- |
+| x0   | number | 是    | 0    | 起点的x轴坐标。 |
+| y0   | number | 是    | 0    | 起点的y轴坐标。 |
+| x1   | number | 是    | 0    | 终点的x轴坐标。 |
+| y1   | number | 是    | 0    | 终点的y轴坐标。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component
@@ -1960,17 +1980,17 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 创建一个径向渐变色。
 
-- 参数
-  | 参数   | 类型     | 必填   | 默认值  | 描述                |
-  | ---- | ------ | ---- | ---- | ----------------- |
-  | x0   | number | 是    | 0    | 起始圆的x轴坐标。         |
-  | y0   | number | 是    | 0    | 起始圆的y轴坐标。         |
-  | r0   | number | 是    | 0    | 起始圆的半径。必须是非负且有限的。 |
-  | x1   | number | 是    | 0    | 终点圆的x轴坐标。         |
-  | y1   | number | 是    | 0    | 终点圆的y轴坐标。         |
-  | r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的。 |
+**参数：** 
+| 参数   | 类型     | 必填   | 默认值  | 描述                |
+| ---- | ------ | ---- | ---- | ----------------- |
+| x0   | number | 是    | 0    | 起始圆的x轴坐标。         |
+| y0   | number | 是    | 0    | 起始圆的y轴坐标。         |
+| r0   | number | 是    | 0    | 起始圆的半径。必须是非负且有限的。 |
+| x1   | number | 是    | 0    | 终点圆的x轴坐标。         |
+| y1   | number | 是    | 0    | 终点圆的y轴坐标。         |
+| r1   | number | 是    | 0    | 终点圆的半径。必须为非负且有限的。 |
 
-- 示例
+**示例：** 
   ```
   @Entry
   @Component

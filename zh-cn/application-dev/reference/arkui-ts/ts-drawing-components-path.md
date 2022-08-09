@@ -16,14 +16,13 @@
 
 Path(value?: { width?: number | string, height?: number | string, commands?: string })
 
-- 参数
+**参数：**
 
-  | 参数名      | 参数类型             | 必填   | 默认值  | 参数描述        |
-  | -------- | ---------------- | ---- | ---- | ----------- |
-  | width    | number \| string | 否    | 0    | 路径所在矩形的宽度。  |
-  | height   | number \| string | 否    | 0    | 路径所在矩形的高度。  |
-  | commands | string           | 否    | ''   | 路径绘制的命令字符串。 |
-
+| 参数名      | 参数类型             | 必填   | 默认值  | 参数描述        |
+| -------- | ---------------- | ---- | ---- | ----------- |
+| width    | number \| string | 否    | 0    | 路径所在矩形的宽度。  |
+| height   | number \| string | 否    | 0    | 路径所在矩形的高度。  |
+| commands | string           | 否    | ''   | 路径绘制的命令字符串。 |
 
 ## 属性
 
@@ -63,7 +62,8 @@ Path(value?: { width?: number | string, height?: number | string, commands?: str
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PathExample {
