@@ -247,4 +247,4 @@ The system UI freezes at the OpenHarmony startup animation, the calculator appli
 1. Check the error information in the hilog file, and correct the corresponding JSON files.
 2. Verify the PID of the application, the code logic of the sandbox creation process, and the JSON configuration.
 
-For details, see [Application Sandbox Development Procedure](../subsystems/subsys-boot-appspawn.md#how-to-develop).
+For details, see How to Develop in [Application Sandbox Development Procedure](../subsystems/subsys-boot-appspawn.md).
