@@ -240,13 +240,14 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 ```js
 var windowClass = null;
- let promise = window.create("first", window.WindowType.TYPE_APP);
- promise.then((data)=> {
- 	windowClass = data;
-    console.info('SubWindow created. Data: ' + JSON.stringify(data));
- }).catch((err)=>{
-    console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
- });
+window.create("first", window.WindowType.TYPE_APP,(err,data) => {
+    if(err.code){
+        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    windowClass = data;
+    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## window.create<sup>7+</sup>
@@ -279,7 +280,7 @@ var windowClass = null;
 let promise = window.create("first", window.WindowType.TYPE_APP);
 promise.then((data)=> {
     windowClass = data;
-    console.info('SubWindow created. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
 });
@@ -310,11 +311,11 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 var windowClass = null;
  window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
-        console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
+        console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
     }
     windowClass = data;
-    console.info('Window created. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
     windowClass.resetSize(500, 1000);
 });
 ```
@@ -350,9 +351,9 @@ var windowClass = null;
 let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data)=> {
  	windowClass = data;
-    console.info('Window created. Data:' + JSON.stringify(data));
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+    console.error('Failed to create the window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -377,11 +378,11 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 var windowClass = null;
  window.find("alertWindow", (err, data) => {
    if (err.code) {
-       console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+       console.error('Failed to find the window. Cause: ' + JSON.stringify(err));
        return;
    }
    windowClass = data;
-   console.info('window found. Data: ' + JSON.stringify(data));
+   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -412,7 +413,7 @@ var windowClass = null;
 let promise = window.find("alertWindow");
 promise.then((data)=> {
  	windowClass = data;
-    console.info('window found. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
 });
@@ -806,7 +807,7 @@ windowClass.hide((err, data) => {
         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('window hidden. data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window. data: ' + JSON.stringify(data));
 })
 ```
 
@@ -831,7 +832,7 @@ hide(): Promise&lt;void&gt;
 ```js
 let promise = windowClass.hide();
 promise.then((data)=> {
-    console.info('window hidden. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
 })
@@ -963,7 +964,7 @@ windowClass.moveTo(300, 300, (err, data)=>{
         console.error('Failed to move the window. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Window moved. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
 
 });
 ```
@@ -994,7 +995,7 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 ```js
 let promise = windowClass.moveTo(300, 300);
 promise.then((data)=> {
-    console.info('Window moved. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 })
@@ -1024,7 +1025,7 @@ windowClass.resetSize(500, 1000, (err, data) => {
         console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Window size changed. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1054,7 +1055,7 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 ```js
 let promise = windowClass.resetSize(500, 1000);
 promise.then((data)=> {
-    console.info('Window size changed. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
@@ -2506,7 +2507,7 @@ promise.then((data)=> {
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口是否为隐私模式，使用callback异步回调。
+设置窗口是否为隐私模式，使用callback异步回调。设置为隐私模式的窗口，窗口内容无法被截屏或录屏。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2535,7 +2536,7 @@ windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
 
 setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-设置窗口是否为隐私模式，使用Promise异步回调。
+设置窗口是否为隐私模式，使用Promise异步回调。设置为隐私模式的窗口，窗口内容无法被截屏或录屏。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3155,4 +3156,3 @@ class myAbility extends Ability {
     }
 }
 ```
-
