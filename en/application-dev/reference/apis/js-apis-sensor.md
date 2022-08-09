@@ -1,5 +1,16 @@
 # Sensor
 
+The **Sensor** module provides APIs for subscribing to and unsubscribing from sensor data, and obtaining the sensor list. It also provides common sensor algorithm APIs, for example, APIs for obtaining the altitude based on the atmospheric pressure and obtaining the device orientation based on the rotation matrix.
+
+A sensor is a device to detect events or changes in an environment and send messages about the events or changes to another device (for example, a CPU). Generally, a sensor is composed of sensitive components and conversion components. Sensors are the cornerstone of the Internet of Things (IoT). A unified sensor management framework is required to achieve data sensing at a low latency and low power consumption, thereby keeping up with requirements of "1+8+N" products or business in the Seamless AI Life Strategy. Based on the usage, sensors are divided into the following categories:
+
+- Motion: acceleration sensors, gyroscope sensors, gravity sensors, linear acceleration sensors, and more
+- Orientation: rotation vector sensors, orientation sensors, and more
+- Environment: magnetic field sensors, barometric pressure sensors, humidity sensors, and more
+- Light: ambient light sensors, proximity sensors, color temperature sensors, and more
+- Body: heart rate sensors, heartbeat sensors, and more
+- Other: Hall effect sensors, grip detection sensors, and more
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -23,8 +34,8 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
@@ -42,11 +53,13 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
   );
   ```
 
-### LINEAR_ACCELERATION
+### LINEAR_ACCELERATION<sup>deprecated</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
 Subscribes to data changes of the linear acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+This API is deprecated since API version 9. You are advised to use **Sensor.on.LINEAR_ACCELEROMETER<sup>9+</sup>** instead.
 
 **Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
@@ -62,6 +75,35 @@ Subscribes to data changes of the linear acceleration sensor. If this API is cal
 **Example**
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,function(data){
+      console.info('X-coordinate component: ' + data.x);
+      console.info('Y-coordinate component: ' + data.y);
+      console.info('Z-coordinate component: ' + data.z);
+  },
+      {interval: 10000000}
+  );
+  ```
+
+### LINEAR_ACCELEROMETER<sup>9+</sup>
+
+on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
+
+Subscribes to data changes of the linear acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
+
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELEROMETER**.|
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes   | Callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
+| options  | [Options](#options)                      | No   | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns.          |
+
+**Example**
+  ```js
+  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -487,11 +529,13 @@ Subscribes to data changes of the orientation sensor. If this API is called mult
   );
   ```
 
-### HEART_RATE
+### HEART_RATE<sup>deprecated</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
 Subscribes to only one data change of the heart rate sensor.
+
+This API is deprecated since API version 9. You are advised to use **sensor.on.HEART_BEAT_RATE<sup>9+</sup>** instead.
 
 **Required permissions**: ohos.permission.READ_HEALTH_DATA
 
@@ -508,6 +552,33 @@ Subscribes to only one data change of the heart rate sensor.
 
 ```js
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
+    console.info("Heart rate: " + data.heartRate);
+},
+    {interval: 10000000}
+);
+```
+
+### HEART_BEAT_RATE<sup>9+</sup>
+
+on(type: SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
+
+Subscribes to only one data change of the heart rate sensor.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_BEAT_RATE**.  |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes   | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
+
+**Example**
+
+```js
+sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE,function(data){
     console.info("Heart rate: " + data.heartRate);
 },
     {interval: 10000000}
@@ -593,11 +664,13 @@ Subscribes to only one data change of the acceleration sensor.
   );
   ```
 
-### LINEAR_ACCELERATION
+### LINEAR_ACCELERATION<sup>deprecated</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
 Subscribes to only one data change of the linear acceleration sensor.
+
+This API is deprecated since API version 9. You are advised to use **sensor.once.LINEAR_ACCELEROMETER<sup>9+</sup>** instead.
 
 **Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
@@ -612,6 +685,32 @@ Subscribes to only one data change of the linear acceleration sensor.
 **Example**
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(data) {
+      console.info('X-coordinate component: ' + data.x);
+      console.info('Y-coordinate component: ' + data.y);
+      console.info('Z-coordinate component: ' + data.z);
+    }
+  );
+  ```
+
+### LINEAR_ACCELEROMETER<sup>9+</sup>
+
+once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
+
+Subscribes to only one data change of the linear acceleration sensor.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELEROMETER**.|
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes   | One-shot callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
+
+**Example**
+  ```js
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
@@ -1029,11 +1128,13 @@ Subscribes to only one data change of the rotation vector sensor.
   );
   ```
 
-### HEART_RATE
+### HEART_RATE<sup>deprecated</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
 Subscribes to only one data change of the heart rate sensor.
+
+This API is deprecated since API version 9. You are advised to use **sensor.once.HEART_BEAT_RATE<sup>9+</sup>** instead.
 
 **Required permissions**: ohos.permission.READ_HEALTH_DATA
 
@@ -1048,6 +1149,30 @@ Subscribes to only one data change of the heart rate sensor.
 **Example**
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function(data) {
+      console.info("Heart rate: " + data.heartRate);
+    }
+  );
+  ```
+
+### HEART_BEAT_RATE<sup>9+</sup>
+
+once(type: SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
+
+Subscribes to only one data change of the heart rate sensor.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_BEAT_RATE**.      |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes   | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
+
+**Example**
+  ```js
+  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, function(data) {
       console.info("Heart rate: " + data.heartRate);
     }
   );
@@ -1314,11 +1439,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
-### HEART_RATE
+### HEART_RATE<sup>deprecated</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
 Unsubscribes from sensor data changes.
+
+This API is deprecated since API version 9. You are advised to use **sensor.off.HEART_BEAT_RATE<sup>9+</sup>** instead.
 
 **Required permissions**: ohos.permission.READ_HEALTH_DATA
 
@@ -1338,6 +1465,32 @@ function callback(data) {
     console.info("Heart rate: " + data.heartRate);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
+```
+
+### HEART_BEAT_RATE<sup>9+</sup>
+
+off(type: SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.READ_HEALTH_DATA
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | [SensorType](#sensortype)[SensorType](#sensortype) | Yes   | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HEART_BEAT_RATE**.|
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes   | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
+
+**Example**
+
+```js
+function callback(data) {
+    console.info("Heart rate: " + data.heartRate);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback);
 ```
 
 ### HUMIDITY
@@ -1364,11 +1517,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
-### LINEAR_ACCELERATION
+### LINEAR_ACCELERATION<sup>deprecated</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
 Unsubscribes from sensor data changes.
+
+This API is deprecated since API version 9. You are advised to use **sensor.off.LINEAR_ACCELEROMETER<sup>9+</sup>** instead.
 
 **Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
@@ -1390,6 +1545,34 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
+```
+
+### LINEAR_ACCELEROMETER<sup>9+</sup>
+
+off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
+
+Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name     | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_LINEAR_ACCELEROMETER**.|
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes   | Callback used to return the acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
+
+**Example**
+
+```js
+function callback(data) {
+    console.info('X-coordinate component: ' + data.x);
+    console.info('Y-coordinate component: ' + data.y);
+    console.info('Z-coordinate component: ' + data.z);
+}
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback);
 ```
 
 ### MAGNETIC_FIELD
@@ -2160,7 +2343,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
                         err.message);
           return;
       }
-      for (var i=0; i < data.length; i++) {
+      for (var i=0; i < data.rotation.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }
   })
@@ -2194,7 +2377,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.length; i++) {
+          for (var i=0; i < data.rotation.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
@@ -2222,7 +2405,8 @@ Enumerates the sensor types.
 | SENSOR_TYPE_ID_HUMIDITY                  | 13   | Humidity sensor.     |
 | SENSOR_TYPE_ID_ORIENTATION               | 256  | Orientation sensor.     |
 | SENSOR_TYPE_ID_GRAVITY                   | 257  | Gravity sensor.     |
-| SENSOR_TYPE_ID_LINEAR_ACCELERATION       | 258  | Linear acceleration sensor.  |
+| SENSOR_TYPE_ID_LINEAR_ACCELERATION<sup>deprecated</sup>       | 258  | Linear acceleration sensor.  |
+| SENSOR_TYPE_ID_LINEAR_ACCELEROMETER       | 258  | Linear acceleration sensor.  |
 | SENSOR_TYPE_ID_ROTATION_VECTOR           | 259  | Rotation vector sensor.   |
 | SENSOR_TYPE_ID_AMBIENT_TEMPERATURE       | 260  | Ambient temperature sensor.   |
 | SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 261  | Uncalibrated magnetic field sensor.  |
@@ -2230,7 +2414,8 @@ Enumerates the sensor types.
 | SENSOR_TYPE_ID_SIGNIFICANT_MOTION        | 264  | Significant motion sensor.   |
 | SENSOR_TYPE_ID_PEDOMETER_DETECTION       | 265  | Pedometer detection sensor.   |
 | SENSOR_TYPE_ID_PEDOMETER                 | 266  | Pedometer sensor.     |
-| SENSOR_TYPE_ID_HEART_RATE                | 278  | Heart rate sensor.     |
+| SENSOR_TYPE_ID_HEART_RATE<sup>deprecated</sup>                | 278  | Heart rate sensor.     |
+| SENSOR_TYPE_ID_HEART_BEAT_RATE                | 278  | Heart rate sensor.     |
 | SENSOR_TYPE_ID_WEAR_DETECTION            | 280  | Wear detection sensor.   |
 | SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | 281  | Uncalibrated acceleration sensor.|
 
@@ -2420,11 +2605,11 @@ Describes the magnetic field sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable  | Writable  | Description                |
-| ---- | ------ | ---- | ---- | ------------------ |
-| x    | number | Yes   | Yes   | Magnetic field strength on the x-axis, in μT. |
-| y    | number | Yes   | Yes   | Magnetic field strength on the y-axis, in μT. |
-| z    | number | Yes   | Yes   | Magnetic field strength on the z-axis, in μT.|
+| Name| Type| Readable| Writable| Description                        |
+| ---- | -------- | ---- | ---- | ---------------------------- |
+| x    | number   | Yes  | Yes  | Magnetic field strength on the x-axis, in μT.|
+| y    | number   | Yes  | Yes  | Magnetic field strength on the y-axis, in μT.|
+| z    | number   | Yes  | Yes  | Magnetic field strength on the z-axis, in μT.|
 
 
 ## MagneticFieldUncalibratedResponse
