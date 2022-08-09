@@ -4,7 +4,7 @@ Provides system event logging APIs for system HAP applications.
 
 > **NOTE**<br>
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module are system APIs and cannot be called by third-party applications.
+> - The APIs of this module are system APIs.
 
 
 ## Modules to Import
