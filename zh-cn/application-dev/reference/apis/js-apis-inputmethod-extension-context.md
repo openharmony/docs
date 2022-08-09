@@ -126,16 +126,16 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| 参数名   | 类型                      | 必填 | 说明                                   |
+| -------- | ------------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
 
   ```js
-  this.context.terminateSelf((err) => {
-    console.log('terminateSelf result:' + JSON.stringify(err));
-  });
+this.context.terminateSelf((err) => {
+  console.log('terminateSelf result:' + JSON.stringify(err));
+});
   ```
 
 ## InputMethodExtensionContext.terminateSelf
