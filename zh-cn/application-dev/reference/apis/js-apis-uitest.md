@@ -942,9 +942,9 @@ scrollToTop(speed?: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                     |
-| ------ | ------ | ---- | ---------------------------------------- |
-| speed  | number | 否   | 滑动速率，默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| speed  | number | 否   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **示例：**
 
@@ -966,9 +966,9 @@ scrollToBottom(speed?: number): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                     |
-| ------ | ------ | ---- | ---------------------------------------- |
-| speed  | number | 否   | 滑动速率，默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| speed  | number | 否   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **示例：**
 
@@ -1068,9 +1068,9 @@ static create(): UiDriver
 
 **返回值：**
 
-| 类型    | 说明                     |
-| ------- | ------------------------ |
-| UiDrive | 返回构造的UiDriver对象。 |
+| 类型     | 说明                     |
+| -------- | ------------------------ |
+| UiDriver | 返回构造的UiDriver对象。 |
 
 **示例：**
 
@@ -1391,13 +1391,13 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                     |
-| ------ | ------ | ---- | ---------------------------------------- |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。   |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。   |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。   |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。   |
-| speed  | number | 否   | 滑动速率，默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息。                       |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
+| speed  | number | 否   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **示例：**
 
@@ -1418,13 +1418,13 @@ UiDriver对象采取如下操作：从给出的起始坐标点拖拽至给出的
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                     |
-| ------ | ------ | ---- | ---------------------------------------- |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。   |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。   |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。   |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。   |
-| speed  | number | 否   | 滑动速率，默认值为600，单位：像素点/秒。 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息。                       |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
+| speed  | number | 否   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **示例：**
 
@@ -1451,9 +1451,9 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 **返回值：**
 
-| 类型           | 说明                                   |
-| -------------- | -------------------------------------- |
-| Promise\<bool> | 截图操作是否成功完成。成功完成为true。 |
+| 类型                      | 说明                                   |
+| ------------------------- | -------------------------------------- |
+| Promise\<DisplayRotation> | 截图操作是否成功完成。成功完成为true。 |
 
 **示例：**
 
@@ -1461,6 +1461,247 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 async function demo() {
     let driver = UiDriver.create()
     await driver.screenCap('/local/tmp/')
+}
+```
+
+### setDisplayRotation<sup>9+</sup>
+
+setDisplayRotation(rotation: DisplayRotation): Promise\<void>
+
+将设备的屏幕显示方向设置为指定的显示方向。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明             |
+| -------- | ------------------------------------ | ---- | ---------------- |
+| rotation | [DisplayRotation](#displayrotation9) | 是   | 设备的显示方向。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.setDisplayRotation(DisplayRotation.ROTATION_180)
+}
+```
+
+### getDisplayRotation<sup>9+</sup>
+
+getDisplayRotation(): Promise\<DisplayRotation>
+
+获取当前设备的屏幕显示方向。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型                      | 说明                                    |
+| ------------------------- | --------------------------------------- |
+| Promise\<DisplayRotation> | 以Promise的形式返回当前设备的显示方向。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let rotation = await driver.getDisplayRotation()
+}
+```
+
+### setDisplayRotationEnabled<sup>9+</sup>
+
+setDisplayRotationEnabled(enabled: bool):Promise \<void>;
+
+启用/禁用设备旋转屏幕的功能。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明                 |
+| ------- | ---- | ---- | -------------------- |
+| enabled | bool | 是   | 能否旋转屏幕的标识。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.setDisplayRotationEnabled(false)
+}
+```
+
+### getDisplaySize<sup>9+</sup>
+
+getDisplaySize():Promise\<Point>;
+
+获取当前设备的屏幕大小。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型            | 说明                                    |
+| --------------- | --------------------------------------- |
+| Promise\<Point> | 以Promise的形式返回当前设备的屏幕大小。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let size = await driver.getDisplaySize()
+}
+```
+
+### getDisplayDensity<sup>9+</sup>
+
+getDisplayDensity():Promise\<Point>;
+
+获取当前设备的屏幕的分辨率。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型            | 说明                                        |
+| --------------- | ------------------------------------------- |
+| Promise\<Point> | 以Promise的形式返回当前设备的屏幕的分辨率。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let density = await driver.getDisplayDensity()
+}
+```
+
+### wakeUpDisplay<sup>9+</sup>
+
+wakeUpDisplay():Promise\<void>;
+
+唤醒当前设备的屏幕。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.wakeUpDisplay()
+}
+```
+
+### pressHome<sup>9+</sup>
+
+pressHome():Promise\<void>;
+
+设备返回到桌面。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.pressHome()
+}
+```
+
+### waitForIdle<sup>9+</sup>
+
+waitForIdle(idleTime: number, timeout: number):Promise\<bool>;
+
+判断当前界面的所有控件是否已经空闲。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒。 |
+| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒。                             |
+
+**返回值：**
+
+| 类型            | 说明                                                |
+| --------------- | --------------------------------------------------- |
+| Promise\<bool>; | 以Promise的形式返回当前界面的所有控件是否已经空闲。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let idled = await driver.waitForIdle(4000,5000)
+}
+```
+
+### fling<sup>9+</sup>
+
+fling(from: Point, to: Point, stepLen: number, speed: number):Promise\<void>;
+
+UiDriver对象采取如下操作：从给出的起始坐标点按照指定的间隔与速度滑向给出的目的坐标点。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名  | 类型             | 必填 | 说明                                                         |
+| ------- | ---------------- | ---- | ------------------------------------------------------------ |
+| from    | [Point](#point9) | 是   | 起始点的坐标。                                               |
+| to      | [Point](#point9) | 是   | 目的点的坐标。                                               |
+| stepLen | number           | 是   | 间隔距离，单位：像素点。                                     |
+| speed   | number           | 是   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.fling({X: 500, Y: 480},{X: 450, Y: 480},5,600)
+}
+```
+
+### injectMultiPointerAction<sup>9+</sup>
+
+injectMultiPointerAction(pointers: PointerMatrix, speed?: number):Promise\<bool>;
+
+向设备注入多指操作。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                                         |
+| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
+| pointers | [PointerMatrix](#pointermatrix9) | 是   | 起始点的坐标。                                               |
+| speed    | number                           | 否   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
+
+**返回值：**
+
+| 类型           | 说明                                      |
+| -------------- | ----------------------------------------- |
+| Promise\<bool> | 以Promise的形式返回植入操作是否成功完成。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let pointers = PointerMatrix.create(2,3)
+    pointer.setPoint(0,0,{X:230,Y:480})
+    pointer.setPoint(0,1,{X:250,Y:380})
+    pointer.setPoint(0,2,{X:270,Y:280})
+    pointer.setPoint(1,0,{X:230,Y:680})
+    pointer.setPoint(1,1,{X:240,Y:580})
+    pointer.setPoint(1,2,{X:250,Y:480})
+    await driver.injectMultiPointerAction(pointers)
 }
 ```
 
@@ -1833,6 +2074,71 @@ async function demo() {
 }
 ```
 
+## PointerMatrix<sup>9+</sup>
+
+UiTest中，PointerMatrix类表示存储多指操作中每根手指每一步动作的坐标点及其行为的二维数组。
+
+### create<sup>9+</sup>
+
+**static** create(fingers: number, steps: number):PointerMatrix
+
+静态方法，构造一个PointerMatrix对象，并返回该对象。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                       |
+| ------- | ------ | ---- | ------------------------------------------ |
+| fingers | number | 是   | 多指操作中注入的手指数，取值范围：[1,10]。 |
+| steps   | number | 是   | 每根手指操作的步骤数，取值范围：[1,1000]。 |
+
+**返回值：**
+
+| 类型          | 说明                          |
+| ------------- | ----------------------------- |
+| PointerMatrix | 返回构造的PointerMatrix对象。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let pointerMatrix = PointerMatrix.create(2,3)
+}
+```
+
+### setPoint<sup>9+</sup>
+
+setPoint(finger: number, step: number, point: Point):void;
+
+设置PointerMatrix对象中指定手指和步骤对应动作的坐标点。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明             |
+| ------ | ---------------- | ---- | ---------------- |
+| finger | number           | 是   | 手指的序号。     |
+| step   | number           | 是   | 步骤的序号。     |
+| point  | [Point](#point9) | 是   | 该行为的坐标点。 |
+
+**示例：**
+
+```js
+async function demo() {
+    let pointers = PointerMatrix.create(2,3)
+    pointer.setPoint(0,0,{X:230,Y:480})
+    pointer.setPoint(0,1,{X:250,Y:380})
+    pointer.setPoint(0,2,{X:270,Y:280})
+    pointer.setPoint(1,0,{X:230,Y:680})
+    pointer.setPoint(1,1,{X:240,Y:580})
+    pointer.setPoint(1,2,{X:250,Y:480})
+}
+```
+
+### 
+
 ## MatchPattern
 
 控件属性支持的匹配模式。
@@ -1875,3 +2181,16 @@ async function demo() {
 | PRIMARY    | 主窗口。   |
 | SECONDARY  | 第二窗口。 |
 | FLOATING   | 浮动窗口。 |
+
+## DisplayRotation<sup>9+</sup>
+
+**系统能力**：SystemCapability.Test.UiTest
+
+设备显示器的显示方向。
+
+| 名称         | 说明                                 |
+| ------------ | ------------------------------------ |
+| ROTATION_0   | 设备显示器不旋转，初始形态垂直显示。 |
+| ROTATION_90  | 设备显顺时针旋转90°，水平显示。      |
+| ROTATION_180 | 设备显顺时针旋转180°，逆向垂直显示。 |
+| ROTATION_270 | 设备显顺时针旋转270°，逆向水平显示。 |
