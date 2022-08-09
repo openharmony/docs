@@ -155,7 +155,10 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
             console.log('startAbility result success:' + JSON.stringify(data));
         })
   ```
-## appManager.getProcessRunningInfos<sup>8+</sup>
+## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
 
 getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
@@ -181,7 +184,10 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
         });
   ```
 
-## appManager.getProcessRunningInfos<sup>8+</sup>
+## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
 
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
 
@@ -201,6 +207,57 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
     
   ```js
         app.getProcessRunningInfos((err, data) => {
+            console.log('startAbility result failed :' + JSON.stringify(err));
+            console.log('startAbility result success:' + JSON.stringify(data));
+        })
+  ```
+
+## appManager.getProcessRunningInformation<sup>9+</sup>
+
+getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+
+获取有关运行进程的信息。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<ProcessRunningInformation>> | 获取有关运行进程的信息。 |
+
+**示例：**
+    
+  ```js
+        app.getProcessRunningInformation().then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+  ```
+
+## appManager.getProcessRunningInformation<sup>9+</sup>
+
+getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+
+获取有关运行进程的信息。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<ProcessRunningInformation>> | 否 | 获取有关运行进程的信息。 |
+
+**示例：**
+    
+  ```js
+        app.getProcessRunningInformation((err, data) => {
             console.log('startAbility result failed :' + JSON.stringify(err));
             console.log('startAbility result success:' + JSON.stringify(data));
         })

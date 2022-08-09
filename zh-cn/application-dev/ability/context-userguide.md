@@ -105,11 +105,21 @@ export default class MyAbilityStage extends AbilityStage {
             onAbilityCreate(ability){
                 console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
             },
-            onAbilityWindowStageCreate(ability){
-                console.log("AbilityLifecycleCallback onAbilityWindowStageCreate ability:" + JSON.stringify(ability));           
+            onWindowStageCreate(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));           
             },
-            onAbilityWindowStageDestroy(ability){
-                console.log("AbilityLifecycleCallback onAbilityWindowStageDestroy ability:" + JSON.stringify(ability));
+            onWindowStageActive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageInactive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));  
+            },
+            onWindowStageDestroy(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));  
             },
             onAbilityDestroy(ability){
                 console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             

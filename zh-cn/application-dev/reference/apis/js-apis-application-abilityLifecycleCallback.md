@@ -1,6 +1,6 @@
 # AbilityLifecycleCallback
 
-AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onAbilityWindowStageCreate、onAbilityWindowStageDestroy等方法。
+AbilityLifecycleCallback模块提供应用上下文ApplicationContext的生命周期监听方法的回调类的能力，包括onAbilityCreate、onWindowStageCreate、onWindowStageDestroy等方法。
 
 > **说明：**
 > 
@@ -30,9 +30,9 @@ onAbilityCreate(ability: Ability): void;
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 | 
 
 
-## AbilityLifecycleCallback.onAbilityWindowStageCreate
+## AbilityLifecycleCallback.onWindowStageCreate
 
-onAbilityWindowStageCreate(ability: Ability): void;
+onWindowStageCreate(ability: Ability, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage创建时触发回调。
 
@@ -43,11 +43,44 @@ onAbilityWindowStageCreate(ability: Ability): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
 
 
-## AbilityLifecycleCallback.onAbilityWindowStageDestroy
+## AbilityLifecycleCallback.onWindowStageActive
 
-onAbilityWindowStageDestroy(ability: Ability): void;
+onWindowStageActive(ability: Ability, windowStage: window.WindowStage): void;
+
+注册监听应用上下文的生命周期后，在windowStage获焦时触发回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |    
+
+
+## AbilityLifecycleCallback.onWindowStageInactive
+
+onWindowStageInactive(ability: Ability, windowStage: window.WindowStage): void;
+
+注册监听应用上下文的生命周期后，在windowStage失焦时触发回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
+
+
+## AbilityLifecycleCallback.onWindowStageDestroy
+
+onWindowStageDestroy(ability: Ability, windowStage: window.WindowStage): void;
 
 注册监听应用上下文的生命周期后，在windowStage销毁时触发回调。
 
@@ -58,6 +91,7 @@ onAbilityWindowStageDestroy(ability: Ability): void;
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | 是 | 当前Ability对象 |  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | 是 | 当前WindowStage对象 |  
 
 
 ## AbilityLifecycleCallback.onAbilityDestroy
@@ -132,12 +166,22 @@ onAbilityContinue(ability: Ability): void;
               onAbilityCreate(ability){
                   console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
               },
-              onAbilityWindowStageCreate(ability){
-                  console.log("AbilityLifecycleCallback onAbilityWindowStageCreate ability:" + JSON.stringify(ability));           
-              },
-              onAbilityWindowStageDestroy(ability){
-                  console.log("AbilityLifecycleCallback onAbilityWindowStageDestroy ability:" + JSON.stringify(ability));
-              },
+            onWindowStageCreate(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageActive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageInactive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));  
+            },
+            onWindowStageDestroy(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));  
+            },
               onAbilityDestroy(ability){
                   console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
               },
