@@ -77,6 +77,7 @@ replace(options: RouterOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名  | 类型                            | 必填 | 说明               |
 | ------- | ------------------------------- | ---- | ------------------ |
 | options | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。 |
@@ -128,7 +129,7 @@ back(options?: RouterOptions ): void
 **参数：**
 | 参数名  | 类型                            | 必填 | 说明                                                         |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
+| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面栈里面的page不会回收，出栈后会被回收。 |
 
 **示例：**
 
