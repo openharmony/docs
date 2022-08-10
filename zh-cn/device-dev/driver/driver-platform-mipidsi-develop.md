@@ -22,10 +22,10 @@ struct MipiDsiCntlrMethod { // 核心层结构体的成员函数
     int32_t (*getCmd)(struct MipiDsiCntlr *cntlr, struct DsiCmdDesc *cmd, uint32_t readLen, uint8_t *out);
     void (*toHs)(struct MipiDsiCntlr *cntlr);
     void (*toLp)(struct MipiDsiCntlr *cntlr);
-    void (*enterUlps)(struct MipiDsiCntlr *cntlr);// 【可选】进入超低功耗模式
-    void (*exitUlps)(struct MipiDsiCntlr *cntlr); // 【可选】退出超低功耗模式
+    void (*enterUlps)(struct MipiDsiCntlr *cntlr);                      //【可选】进入超低功耗模式
+    void (*exitUlps)(struct MipiDsiCntlr *cntlr);                       //【可选】退出超低功耗模式
     int32_t (*powerControl)(struct MipiDsiCntlr *cntlr, uint8_t enable);//【可选】使能/去使能功耗控制
-    int32_t (*attach)(struct MipiDsiCntlr *cntlr);// 【可选】将一个DSI设备连接上host
+    int32_t (*attach)(struct MipiDsiCntlr *cntlr);                      //【可选】将一个DSI设备连接上host
 };
 ```
 
@@ -42,23 +42,24 @@ struct MipiDsiCntlrMethod { // 核心层结构体的成员函数
 
 ## 开发步骤
 
-MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口，以及实例化核心层接口函数。
+MIPI DSI模块适配的三个必选环节是配置属性文件，实例化驱动入口，以及实例化核心层接口函数。
 
-1. **实例化驱动入口：**
-   - 实例化HdfDriverEntry结构体成员。
-   - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
-
-2. **配置属性文件：**
+1. 配置属性文件
    - 在device_info.hcs文件中添加deviceNode描述。
    - 【可选】添加mipidsi_config.hcs器件属性文件。
 
-3. **实例化MIPIDSI控制器对象：**
+2. 实例化驱动入口
+   - 实例化HdfDriverEntry结构体成员。
+   - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
+
+3. 实例化MIPIDSI控制器对象
    - 初始化MipiDsiCntlr成员。
    - 实例化MipiDsiCntlr成员MipiDsiCntlrMethod。
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
       > 实例化MipiDsiCntlr成员MipiDsiCntlrMethod，其定义和成员说明见[接口说明](#接口说明)。
 
-4. **驱动调试：**
+4. 驱动调试
+
    【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，数据传输的成功与否等。
 
 
@@ -66,7 +67,9 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
 
 下方将以mipi_tx_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
-1. 一般来说，驱动开发首先需要在xx_config.hcs中配置器件属性，并在device_info.hcs文件中添加deviceNode描述。器件属性值与核心层MipiDsiCntlr成员的默认值或限制范围有密切关系，deviceNode信息与驱动入口注册相关。
+1. 一般来说，驱动开发首先需要在xx_config.hcs中配置器件属性，并在device_info.hcs文件中添加deviceNode描述。
+
+   器件属性值与核心层MipiDsiCntlr成员的默认值或限制范围有密切关系，deviceNode信息与驱动入口注册相关。
 
    但本例中MIPI控制器无需配置额外属性，如有厂商需要，则需要在device_info文件的deviceNode增加deviceMatchAttr信息，以及增加mipidsi_config文件。
 
@@ -84,8 +87,8 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
            policy = 0;
            priority = 150;
            permission = 0644;
-           moduleName = "HDF_MIPI_TX";   // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致
-           serviceName = "HDF_MIPI_TX";  // 【必要且唯一】驱动对外发布服务的名称
+           moduleName = "HDF_MIPI_TX";   // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
+           serviceName = "HDF_MIPI_TX";  // 【必要且唯一】驱动对外发布服务的名称。
            }
        }
        }
@@ -93,10 +96,13 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
    }
    ```
 
-2. 完成器件属性文件的配置之后，下一步请实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HdfDriverEntry结构体的函数指针成员会被厂商操作函数填充，HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组，方便调用。
+2. 完成器件属性文件的配置之后，下一步请实例化驱动入口。
+
+   驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HdfDriverEntry结构体的函数指针成员会被厂商操作函数填充，HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组，方便调用。
+
    一般在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
-   - MIPI DSI驱动入口参考
+   MIPI DSI驱动入口参考：
         
       ```
       struct HdfDriverEntry g_mipiTxDriverEntry = {
@@ -108,7 +114,8 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
       HDF_INIT(g_mipiTxDriverEntry);     // 调用HDF_INIT将驱动入口注册到HDF框架中
       ```
 
-3. 完成驱动入口注册之后，最后一步就是以核心层MipiDsiCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化MipiDsiCntlr成员MipiDsiCntlrMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind，Init，Release）。
+3. 完成驱动入口注册之后，下一步就是以核心层MipiDsiCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化MipiDsiCntlr成员MipiDsiCntlrMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
+
    - 自定义结构体参考
 
       从驱动的角度看，自定义结构体是参数和数据的载体，一般来说，config文件中的数值也会用来初始化结构体成员，但本例的mipidsi无器件属性文件，故基本成员结构与MipiDsiCntlr无太大差异。
@@ -118,7 +125,7 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
       typedef struct {
         unsigned int    devno;                // 设备号
         short           laneId[LANE_MAX_NUM]; // lane号
-        OutPutModeTag   outputMode;           // 输出模式选择:刷新模式，命令行模式和视频流模式 
+        OutPutModeTag   outputMode;           // 输出模式选择：刷新模式，命令行模式或视频流模式 
         VideoModeTag    videoMode;            // 显示设备的同步模式
         OutputFormatTag outputFormat;         // 输出DSI图像数据格式：RGB或YUV
         SyncInfoTag     syncInfo;             // 时序相关的设置
@@ -126,7 +133,7 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
         unsigned int    pixelClk;             // 时钟，单位KHz
       } ComboDevCfgTag;
       
-      // MipiDsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
+      // MipiDsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值。
       struct MipiDsiCntlr {
         struct IDeviceIoService service;
         struct HdfDeviceObject *device;
@@ -153,11 +160,11 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
 
       入参：
 
-      HdfDeviceObject是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
-      HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
+      HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
 
       
       | 状态(值) | 问题描述 | 
@@ -178,21 +185,21 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
       static int32_t Hi35xxMipiTxInit(struct HdfDeviceObject *device)
       {
       int32_t ret;
-      g_mipiTx.priv = NULL;    // g_mipiTx是定义的全局变量
-                              // static struct MipiDsiCntlr g_mipiTx { 
-                              //     .devNo=0
-                              //};
-      g_mipiTx.ops = &g_method;// MipiDsiCntlrMethod的实例化对象的挂载
+      g_mipiTx.priv = NULL;                         // g_mipiTx是定义的全局变量
+                                                    // static struct MipiDsiCntlr g_mipiTx { 
+                                                    //     .devNo=0
+                                                    //};
+      g_mipiTx.ops = &g_method;                     // MipiDsiCntlrMethod的实例化对象的挂载
       ret = MipiDsiRegisterCntlr(&g_mipiTx, device);// 【必要】调用核心层函数和g_mipiTx初始化核心层全局变量
       ...
-      return MipiTxDrvInit(0); // 【必要】厂商对设备的初始化，形式不限
+      return MipiTxDrvInit(0);                      // 【必要】厂商对设备的初始化，形式不限
       }
       
       // mipi_dsi_core.c核心层
       int32_t MipiDsiRegisterCntlr(struct MipiDsiCntlr *cntlr, struct HdfDeviceObject *device)
       {
       ...
-      // 定义的全局变量:static struct MipiDsiHandle g_mipiDsihandle[MAX_CNTLR_CNT];
+      // 定义的全局变量：static struct MipiDsiHandle g_mipiDsihandle[MAX_CNTLR_CNT];
       if (g_mipiDsihandle[cntlr->devNo].cntlr == NULL) {
           (void)OsalMutexInit(&g_mipiDsihandle[cntlr->devNo].lock);
           (void)OsalMutexInit(&(cntlr->lock));
@@ -213,7 +220,7 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
 
       入参：
 
-      HdfDeviceObject是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+      HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
       返回值：
 
@@ -221,8 +228,10 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
 
       函数说明：
 
-      该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
+      该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。
 
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
+      > 所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
         
       ```
       static void Hi35xxMipiTxRelease(struct HdfDeviceObject *device)
@@ -230,7 +239,7 @@ MIPI DSI模块适配的三个环节是配置属性文件，实例化驱动入口
       struct MipiDsiCntlr *cntlr = NULL;
       ...
       cntlr = MipiDsiCntlrFromDevice(device);// 这里有HdfDeviceObject到MipiDsiCntlr的强制转化
-                                              // return (device == NULL) ? NULL : (struct MipiDsiCntlr *)device->service;
+                                             // return (device == NULL) ? NULL : (struct MipiDsiCntlr *)device->service;
       ...
       MipiTxDrvExit();                       // 【必要】对厂商设备所占资源的释放
       MipiDsiUnregisterCntlr(&g_mipiTx);     // 空函数
