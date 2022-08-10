@@ -2,14 +2,16 @@
 
 **结果集(DataShareResultSet)** 可提供访问由查询数据库生成的结果集的相关方法，根据提供的行数，查询相应的值，也可查询指定数据类型的值。
 
->**说明：** 
+> **说明：** 
 >
->本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口为系统接口。
 
 
 ## 导入模块
 
-```ts
+```js
 import DataShareResultSet from '@ohos.data.DataShareResultSet';
 ```
 
@@ -17,7 +19,7 @@ import DataShareResultSet from '@ohos.data.DataShareResultSet';
 
 需要通过调用[query](js-apis-data-dataShare.md#query)接口获取DataShareResultSet对象。
 
-```ts
+```js
 import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 
@@ -74,7 +76,7 @@ goToFirstRow(): boolean
 
 **示例：**
 
-```ts
+```js
 let isGoTOFirstRow = resultSet.goToFirstRow();
 console.info('resultSet.goToFirstRow: ' + isGoTOFirstRow);
 ```
@@ -95,7 +97,7 @@ goToLastRow(): boolean
 
 **示例：**
 
-```ts
+```js
 let isGoToLastRow = resultSet.goToLastRow();
 console.info('resultSet.goToLastRow: ' + isGoToLastRow);
 ```
@@ -116,7 +118,7 @@ goToNextRow(): boolean
 
 **示例：**
 
-```ts
+```js
 let isGoToNextRow = resultSet.goToNextRow();
 console.info('resultSet.goToNextRow: ' + isGoToNextRow);
 ```
@@ -137,7 +139,7 @@ goToPreviousRow(): boolean
 
 **示例：**
 
-```ts
+```js
 let isGoToPreviousRow = resultSet.goToPreviousRow();
 console.info('resultSet.goToPreviousRow: ' + isGoToPreviousRow);
 ```
@@ -164,7 +166,7 @@ goTo(offset:number): boolean
 
 **示例：**
 
-```ts
+```js
 let goToNum = 1;
 let isGoTo = resultSet.goTo(goToNum);
 console.info('resultSet.goTo: ' + isGoTo);
@@ -192,7 +194,7 @@ goToRow(position: number): boolean
 
 **示例：**
 
-```ts
+```js
 let goToRowNum = 2
 let isGoToRow = resultSet.goToRow(goToRowNum);
 console.info('resultSet.goToRow: ' + isGoToRow);
@@ -220,7 +222,7 @@ getBlob(columnIndex: number): Uint8Array
 
 **示例：**
 
-```ts
+```js
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getBlob = resultSet.getBlob(columnIndex);
@@ -249,7 +251,7 @@ getString(columnIndex: number): *string*
 
 **示例：**
 
-```ts
+```js
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getString = resultSet.getString(columnIndex);
@@ -278,7 +280,7 @@ getLong(columnIndex: number): number
 
 **示例：**
 
-```ts
+```js
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getLong = resultSet.getLong(columnIndex);
@@ -307,7 +309,7 @@ getDouble(columnIndex: number): number
 
 **示例：**
 
-```ts
+```js
 let columnIndex = 1
 let goToFirstRow = resultSet.goToFirstRow();
 let getDouble = resultSet.getDouble(columnIndex);
@@ -324,7 +326,7 @@ close(): void
 
 **示例：**
 
-```ts
+```js
 resultSet.close();
 ```
 
@@ -350,7 +352,7 @@ getColumnIndex(columnName: string): number
 
 **示例：**
 
-```ts
+```js
 let ColumnName = "name"
 let getColumnIndex = resultSet.getColumnIndex(ColumnName)
 console.info('resultSet.getColumnIndex: ' + getColumnIndex);
@@ -378,7 +380,7 @@ getColumnName(columnIndex: number): *string*
 
 **示例：**
 
-```ts
+```js
 let columnIndex = 1
 let getColumnName = resultSet.getColumnName(columnIndex)
 console.info('resultSet.getColumnName: ' + getColumnName);
@@ -406,7 +408,7 @@ getDataType(columnIndex: number): DataType
 
 **示例：**
 
-```ts
+```js
 let columnIndex = 1;
 let getDataType = resultSet.getDataType(columnIndex);
 console.info('resultSet.getDataType: ' + getDataType);
