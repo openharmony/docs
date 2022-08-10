@@ -74,6 +74,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
@@ -109,6 +110,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 **示例：**
 
 ```js
+var displayClass = null;
 let promise = display.getDefaultDisplay();
 promise.then((data) => {
     displayClass = data;
@@ -234,6 +236,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
@@ -257,12 +260,14 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
   | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
+
 ```js
 display.off("remove");
 ```
@@ -302,6 +307,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 | callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。当获取信息成功，err为undefined，data为获取到的CutoutInfo对象；否则err为错误对象。 |
 
 **示例：**
+
 ```js
 displayClass.getCutoutInfo((err, data) => {
     if (err.code) {
@@ -319,11 +325,13 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
+
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise对象，返回描述不可用屏幕区域的CutoutInfo对象。 |
 
 **示例：**
+
 ```js
 let promise = displayClass.getCutoutInfo();
 promise.then((data) => {
