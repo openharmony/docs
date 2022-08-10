@@ -188,7 +188,7 @@ predicates.equalTo("NAME", "lisi")
 
 contains(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配包含指定的字段。
+该接口用于配置谓词以匹配值包含指定字段的字段。
 
 目前仅RDB支持该谓词。
 
