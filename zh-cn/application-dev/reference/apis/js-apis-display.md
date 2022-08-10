@@ -79,17 +79,18 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
   | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
 
 **示例：**
-  ```js
-  var displayClass = null;
-  display.getDefaultDisplay((err, data) => {
-      if (err.code) {
-          console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-      displayClass = data;
-  });
-  ```
+
+```js
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+    displayClass = data;
+});
+```
 
 ## display.getDefaultDisplay
 
@@ -107,14 +108,15 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 **示例：**
 
-  ```js
-  let promise = display.getDefaultDisplay();
-  promise.then(() => {
-      console.log('getDefaultDisplay success');
-  }).catch((err) => {
-      console.log('getDefaultDisplay fail: ' + JSON.stringify(err));
-  });
-  ```
+```js
+let promise = display.getDefaultDisplay();
+promise.then((data) => {
+    displayClass = data;
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+});
+```
 
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
@@ -152,15 +154,15 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **示例：**
 
-  ```js
-  display.getAllDisplay((err, data) => {
-      if (err.code) {
-          console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data))
-  });
-  ```
+```js
+display.getAllDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+});
+```
 
 ## display.getAllDisplay
 
@@ -178,14 +180,14 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **示例：**
 
-  ```js
-  let promise = display.getAllDisplay();
-  promise.then(() => {
-      console.log('getAllDisplay success');
-  }).catch((err) => {
-      console.log('getAllDisplay fail: ' + JSON.stringify(err));
-  });
-  ```
+```js
+let promise = display.getAllDisplay();
+promise.then((data) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+}).catch((err) => {
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+});
+```
 
 ## display.hasPrivateWindow<sup>9+</sup>
 
@@ -193,7 +195,7 @@ hasPrivateWindow(displayId: number): boolean
 
 查询指定display对象上是否有可见的隐私窗口。可通过[setPrivacyMode](js-apis-window.md#setprivacymode7)接口设置隐私窗口。隐私窗口内容将无法被截屏或录屏。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -211,17 +213,17 @@ hasPrivateWindow(displayId: number): boolean
 
 **示例：**
 
-  ```js
-  var ret = display.hasPrivateWindow(displayClass.id);
-  if (ret == undefined) {
-      console.log("HasPrivateWindow undefined.");
-  }
-  if (ret) {
-      console.log("HasPrivateWindow.");
-  } else if (!ret) {
-      console.log("Don't HasPrivateWindow.");
-  }
-  ```
+```js
+var ret = display.hasPrivateWindow(displayClass.id);
+if (ret == undefined) {
+    console.log("Failed to check  has privateWindow or not.");
+}
+if (ret) {
+    console.log("There has privateWindow.");
+} else if (!ret) {
+    console.log("There has no privateWindow.");
+}
+```
 
 ## display.on('add'|'remove'|'change')
 
@@ -238,13 +240,13 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
-  ```js
-  var callback = (data) => {
-      console.info('Listening enabled. Data: ' + JSON.stringify(data))
-  }
-  display.on("add", callback);
-  ```
 
+```js
+var callback = (data) => {
+    console.info('Listening enabled. Data: ' + JSON.stringify(data))
+}
+display.on("add", callback);
+```
 
 ## display.off('add'|'remove'|'change')
 
@@ -261,10 +263,9 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
   | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
-  ```js
-  display.off("remove");
-  ```
-
+```js
+display.off("remove");
+```
 
 ## Display
 屏幕实例。描述display对象的属性和方法。
