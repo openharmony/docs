@@ -29,11 +29,11 @@
 
 - 注册接口
 
-1. 注册应用分组变化回调监听，当应用分组发生变化，会给所有已注册的应用返回变化信息
+1. 注册应用分组变化回调监听，当应用分组发生变化，会给所有已注册的应用返回变化信息。
 
 - 解除注册接口
 
-1. 解除注册应用分组变化回调监听
+1. 解除注册应用分组变化回调监听。
 
 ### 设备使用信息统计使用权限
 - 设备使用信息统计的queryBundleActiveStates、queryBundleStateInfos、queryBundleStateInfoByInterval、queryBundleActiveEventStates、queryAppNotificationNumber、queryAppUsagePriorityGroup(bundleName?)、setBundleGroup、registerGroupCallBack、unRegisterGroupCallBack接口为系统api，调用前需要申请ohos.permission.BUNDLE_ACTIVE_INFO权限。
