@@ -250,6 +250,23 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 });
 ```
 
+## 常量
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+| 名称  | 类型                     | 可读 | 可写 | 说明               |
+| ----- | -------------------------- | ---- | ---- | ------------------ |
+| LOCAL_NETWORK_ID<sup>9+</sup> | string | 是   | 否   | 本地设备网络id。 |
+
+**示例：**
+
+```js
+import audio from '@ohos.multimedia.audio';
+
+const localNetworkId = audio.LOCAL_NETWORK_ID;
+```
+
 ## AudioVolumeType
 
 枚举，音频流类型。
@@ -610,6 +627,55 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
 | volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
 | updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                     |
+| volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
+| networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
+
+## ConnectType<sup>9+</sup>
+
+枚举，设备连接类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称                            | 默认值 | 描述                   |
+| :------------------------------ | :----- | :--------------------- |
+| CONNECT_TYPE_LOCAL              | 1      | 本地设备。         |
+| CONNECT_TYPE_DISTRIBUTED        | 2      | 分布式设备。            |
+
+## VolumeGroupInfo<sup>9+</sup>
+
+音量组信息。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
+
+| 名称                        | 类型                       | 可读 | 可写 | 说明       |
+| -------------------------- | -------------------------- | ---- | ---- | ---------- |
+| networkId<sup>9+</sup>     | string                     | 是   | 否   | 组网络id。  |
+| groupId<sup>9+</sup>       | number                     | 是   | 否   | 组设备组id。 |
+| mappingId<sup>9+</sup>     | number                     | 是   | 否   | 组映射id。 |
+| groupName<sup>9+</sup>     | number                     | 是   | 否   | 组名。 |
+| ConnectType<sup>9+</sup>   | [ConnectType](#connecttype9)| 是   | 否   | 连接设备类型。 |
+
+## VolumeGroupInfos<sup>9+</sup>
+
+音量组信息，数组类型，为[VolumeGroupInfo](#volumegroupinfo9)的数组，只读。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**示例：**
+
+```js
+import audio from '@ohos.multimedia.audio';
+
+async function getVolumeGroupInfos(){
+  let volumegroupinfos = await audio.getAudioManager().getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  console.info('Promise returned to indicate that the volumeGroup list is obtained.'+JSON.stringify(volumegroupinfos))
+}
+getVolumeGroupInfos();
+```
 
 ## DeviceChangeAction
 
@@ -690,6 +756,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
+
 
 ## AudioManager
 
@@ -1888,6 +1955,473 @@ audioManager.getAudioScene().then((value) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err) => {
   console.error(`Failed to obtain the audio scene mode ${err.message}`);
+});
+```
+
+### getVolumeGroups<sup>9+</sup>
+
+getVolumeGroups(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\): void
+
+获取音量组信息列表，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| networkId | string                                    | 是   | 设备的网络id。本地设备audio.LOCAL_NETWORK_ID ，也可以通过getRoutingManager().getDevices()获取全部networkId。    |
+| callback   | AsyncCallback&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | 是   | 回调，返回音量组信息列表。 |
+
+**示例：**
+```js
+audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the volume group infos list. ${err.message}`);
+    return;
+  }
+  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+});
+```
+
+### getVolumeGroups<sup>9+</sup>
+
+getVolumeGroups(networkId: string\): Promise<VolumeGroupInfos\>
+
+获取音量组信息列表，使用promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| networkId | string                                    | 是   | 设备的网络id。本地设备audio.LOCAL_NETWORK_ID ，也可以通过getRoutingManager().getDevices()获取全部networkId。    |
+
+**示例：**
+
+```js
+async function getVolumeGroupInfos(){
+  let volumegroupinfos = await audio.getAudioManager().getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  console.info('Promise returned to indicate that the volumeGroup list is obtained.'+JSON.stringify(volumegroupinfos))
+}
+```
+
+### getGroupManager<sup>9+</sup>
+
+getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): void
+
+获取音频组管理器，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| networkId | string                                    | 是   | 设备的网络id。     |
+| callback   | AsyncCallback&lt; [AudioGroupManager](#audiogroupmanager9) &gt; | 是   | 回调，返回一个音量组音量组实例。 |
+
+**示例：**
+
+```js
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err.message}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+```
+
+### getGroupManager<sup>9+</sup>
+
+getGroupManager(groupId: number\): Promise<AudioGroupManager\>
+
+获取音频组管理器，使用promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| networkId | string                                    | 是   | 设备的网络id。     |
+
+**示例：**
+
+```js
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    let audioGroupManager = await audioManager.getGroupManager(audio.LOCAL_NETWORK_ID)
+    console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+  }
+}
+```
+
+## AudioGroupManager<sup>9+</sup>
+管理音频组音量。在调用AudioGroupManager的接口前，需要先通过 [getGroupManager](#getgroupmanager9) 创建实例。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+### setVolume<sup>9+</sup>
+
+setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置指定流的音量，使用callback方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                                   |
+
+**示例：**
+
+```js
+audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
+  if (err) {
+    console.error(`Failed to set the volume. ${err.message}`);
+    return;
+  }
+  console.log(`Callback invoked to indicate a successful volume setting.`);
+});
+```
+
+### setVolume<sup>9+</sup>
+
+setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
+
+设置指定流的音量，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
+| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
+
+**示例：**
+
+```js
+audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+  console.log(`Promise returned to indicate a successful volume setting.`);
+});
+```
+
+### getVolume<sup>9+</sup>
+
+getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定流的音量，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明               |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回音量大小。 |
+
+**示例：**
+
+```js
+audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the volume. ${err.message}`);
+    return;
+  }
+  console.log(`Callback invoked to indicate that the volume is obtained.`);
+});
+```
+
+### getVolume<sup>9+</sup>
+
+getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+获取指定流的音量，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise回调返回音量大小。 |
+
+**示例：**
+
+```js
+audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.log(`Promise returned to indicate that the volume is obtained.` + value);
+});
+```
+
+### getMinVolume<sup>9+</sup>
+
+getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定流的最小音量，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明               |
+| ---------- | ----------------------------------- | ---- | ------------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最小音量。 |
+
+**示例：**
+
+```js
+audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the minimum volume. ${err.message}`);
+    return;
+  }
+  console.log(`Callback invoked to indicate that the minimum volume is obtained.` + value);
+});
+```
+
+### getMinVolume<sup>9+</sup>
+
+getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+获取指定流的最小音量，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise回调返回最小音量。 |
+
+**示例：**
+
+```js
+audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.log(`Promised returned to indicate that the minimum volume is obtained.` + value);
+});
+```
+
+### getMaxVolume<sup>9+</sup>
+
+getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定流的最大音量，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                   |
+| ---------- | ----------------------------------- | ---- | ---------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。           |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调返回最大音量大小。 |
+
+**示例：**
+
+```js
+audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the maximum volume. ${err.message}`);
+    return;
+  }
+  console.log(`Callback invoked to indicate that the maximum volume is obtained.` + value);
+});
+```
+
+### getMaxVolume<sup>9+</sup>
+
+getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
+
+获取指定流的最大音量，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                          |
+| --------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise回调返回最大音量大小。 |
+
+**示例：**
+
+```js
+audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
+  console.log(`Promised returned to indicate that the maximum volume is obtained.`);
+});
+```
+
+### mute<sup>9+</sup>
+
+mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置指定音量流静音，使用callback方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                  |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
+| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
+| callback   | AsyncCallback&lt;void&gt;           | 是   | 回调表示成功还是失败。                |
+
+**示例：**
+
+```js
+audioGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
+  if (err) {
+    console.error(`Failed to mute the stream. ${err.message}`);
+    return;
+  }
+  console.log(`Callback invoked to indicate that the stream is muted.`);
+});
+```
+
+### mute<sup>9+</sup>
+
+mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
+
+设置指定音量流静音，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY<br/>仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                  |
+| ---------- | ----------------------------------- | ---- | ------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                          |
+| mute       | boolean                             | 是   | 静音状态，true为静音，false为非静音。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise回调表示成功还是失败。 |
+
+**示例：**
+
+```js
+audioGroupManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
+  console.log(`Promise returned to indicate that the stream is muted.`);
+});
+```
+
+### isMute<sup>9+</sup>
+
+isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
+
+获取指定音量流是否被静音，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                            |
+| ---------- | ----------------------------------- | ---- | ----------------------------------------------- |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
+| callback   | AsyncCallback&lt;boolean&gt;        | 是   | 回调返回流静音状态，true为静音，false为非静音。 |
+
+**示例：**
+
+```js
+audioGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
+  if (err) {
+    console.error(`Failed to obtain the mute status. ${err.message}`);
+    return;
+  }
+  console.log(`Callback invoked to indicate that the mute status of the stream is obtained.` + value);
+});
+```
+
+### isMute<sup>9+</sup>
+
+isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
+
+获取指定音量流是否被静音，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明         |
+| ---------- | ----------------------------------- | ---- | ------------ |
+| volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise回调返回流静音状态，true为静音，false为非静音。 |
+
+**示例：**
+
+```js
+audioGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
+  console.log(`Promise returned to indicate that the mute status of the stream is obtained.` + value);
 });
 ```
 
