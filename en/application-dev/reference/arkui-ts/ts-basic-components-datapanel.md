@@ -1,12 +1,11 @@
 # DataPanel
 
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+The **\<DataPanel>** component displays proportions in a chart.
 
-
-The **&lt;DataPanel&gt;** component displays proportions in a chart.
-
+> **NOTE**
+>
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Required Permissions
 
@@ -15,7 +14,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -23,24 +22,25 @@ None
 DataPanel(value:{values: number[], max?: number, type?: DataPanelType})
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | values | number[] | Yes | - | Value list. A maximum of nine values are supported. | 
-  | max | number | No | 100 | - When set to a value greater than 0, this parameter indicates the maximum value in the **values** list.<br/>- When set to a value equal to or smaller than 0, this parameter indicates the sum of values in the **values** list. The values are displayed in proportion. | 
-  | type<sup>8+</sup> | DataPanelType | No | DataPanelType.Circle | Type of the data panel. | 
+  | values | number[] | Yes | - | Value list. A maximum of nine values are supported. |
+  | max | number | No | 100 | - When set to a value greater than 0, this parameter indicates the maximum value in the **values** list.<br/>- When set to a value equal to or smaller than 0, this parameter indicates the sum of values in the **values** list. The values are displayed in proportion. |
+  | type<sup>8+</sup> | DataPanelType | No | DataPanelType.Circle | Type of the data panel. |
 
 
 - DataPanelType enums
-  | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | Line | Line data panel. | 
+  | Line | Line data panel. |
   | Circle | Circle data panel. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DataPanelExample {
