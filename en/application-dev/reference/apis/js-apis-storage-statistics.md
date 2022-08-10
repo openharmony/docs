@@ -1,11 +1,11 @@
 # App Storage Statistics
 
+The **storageStatistics** module provides APIs for obtaining storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
+
 > **NOTE**<br/>
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - API version 9 is a canary version for trial use. The APIs of this version may be unstable.
-
-The **storageStatistics** module provides APIs for obtaining storage space information, including the space of built-in and plug-in memory cards, space occupied by different types of data, and space of application data.
 
 ## Modules to Import
 
@@ -264,13 +264,12 @@ Asynchronously obtains space information of the current third-party application.
 
 ## BundleStats<sup>9+</sup>
 
+### Attributes
+
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
 This is a system API and cannot be called by third-party applications.
-
-
-### Attributes
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
@@ -523,13 +522,12 @@ This is a system API and cannot be called by third-party applications.
 
 ## StorageStats<sup>9+</sup>
 
+### Attributes
+
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 
 This is a system API and cannot be called by third-party applications.
-
-
-### Attributes
 
 | Name     | Type  | Description          |
 | --------- | ------ | -------------- |
