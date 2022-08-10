@@ -1,11 +1,12 @@
 # Stepper
 
+The **\<Stepper>** component provides a step navigator.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Stepper&gt;** component provides a step navigator.
 
 
 ## Required Permissions
@@ -15,7 +16,7 @@ None
 
 ## Child Components
 
-Only the child component **&lt;[StepperItem](ts-basic-components-stepperitem.md)&gt;** is supported.
+Only the child component **\<[StepperItem](ts-basic-components-stepperitem.md)>** is supported.
 
 
 ## APIs
@@ -24,9 +25,9 @@ Stepper(value?: { index?: number })
 
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | index | number | No | 0 | Index of the **&lt;StepperItem&gt;** that is currently displayed. | 
+  | index | number | No | 0 | Index of the **\<StepperItem>** that is currently displayed. |
 
 
 ## Attributes
@@ -36,18 +37,18 @@ None
 
 ## Events
 
-| Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onFinish(callback: () =&gt; void) | Invoked when the **nextLabel** of the last **&lt;StepperItem&gt;** in the **&lt;Stepper&gt;** is clicked. | 
-| onSkip(callback: () =&gt; void) | Invoked when the current **&lt;StepperItem&gt;** is **ItemState.Skip** and the **nextLabel** is clicked. | 
-| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Invoked when the text button on the left or right is clicked to switch between steps.<br/>- **prevIndex**: index of the step page before the switching.<br/>- **index**: index of the step page after the switching, that is, index of the previous or next page. | 
+| onFinish(callback: () =&gt; void) | Invoked when the **nextLabel** of the last **\<StepperItem>** in the **\<Stepper>** is clicked. |
+| onSkip(callback: () =&gt; void) | Invoked when the current **\<StepperItem>** is **ItemState.Skip** and the **nextLabel** is clicked. |
+| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Invoked when the text button on the left or right is clicked to switch between steps.<br/>- **prevIndex**: index of the step page before the switching.<br/>- **index**: index of the step page after the switching, that is, index of the previous or next page. |
 
 
 ## Example
 
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct StepperExample {
@@ -65,47 +66,50 @@ struct StepperExample {
           .fontColor(Color.Blue)
           .width(200)
           .lineHeight(50)
-          .margin({top:250})
+          .margin({ top: 250 })
       }
       .nextLabel('')
-      .position({x: '35%', y: 0})
+      .position({ x: '35%', y: 0 })
+
       StepperItem() {
         Text('Page Two')
           .fontSize(35)
           .fontColor(Color.Blue)
           .width(200)
           .lineHeight(50)
-          .margin({top:250})
-          .onClick(()=>{
+          .margin({ top: 250 })
+          .onClick(() => {
             this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
           })
       }
       .nextLabel('Next')
       .prevLabel('Previous')
       .status(this.firstState)
-      .position({x: '35%', y: 0})
+      .position({ x: '35%', y: 0 })
+
       StepperItem() {
         Text('Page Three')
           .fontSize(35)
           .fontColor(Color.Blue)
           .width(200)
           .lineHeight(50)
-          .margin({top:250})
-          .onClick(()=>{
+          .margin({ top: 250 })
+          .onClick(() => {
             this.secondState = this.secondState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
           })
       }
-      .position({x: '35%', y: 0})
+      .position({ x: '35%', y: 0 })
       .status(this.secondState)
+
       StepperItem() {
         Text('Page four')
           .fontSize(35)
           .fontColor(Color.Blue)
           .width(200)
           .lineHeight(50)
-          .margin({top:250})
+          .margin({ top: 250 })
       }
-      .position({x: '35%', y: 0})
+      .position({ x: '35%', y: 0 })
       .nextLabel('Finish')
     }
     .onFinish(() => {
