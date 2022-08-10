@@ -98,11 +98,11 @@ import commonEvent from '@ohos.commonEvent';
 ```js
 // Publish a common event.
 commonEvent.publish("event", (err) => {
-	if (err.code) {
-		console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
-	} else {
-		console.info("[CommonEvent]Publish1")
-	}
+    if (err.code) {
+        console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
+    } else {
+        console.info("[CommonEvent]Publish1")
+    }
 })
 ```
 
@@ -118,8 +118,8 @@ import commonEvent from '@ohos.commonEvent'
 ```js
 // Attributes of a common event.
 var options = {
-	code: 1,			 // Result code of the common event
-	data: "initial data";// Result data of the common event
+    code: 1,			 // Result code of the common event
+    data: "initial data",// Result data of the common event
 }
 ```
 
@@ -128,11 +128,11 @@ var options = {
 ```js
 // Publish a common event.
 commonEvent.publish("event", options, (err) => {
-	if (err.code) {
-		console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
-	} else {
-		console.info("[CommonEvent]Publish2")
-	}
+    if (err.code) {
+        console.error("[CommonEvent]PublishCallBack err=" + JSON.stringify(err))
+    } else {
+        console.info("[CommonEvent]Publish2")
+    }
 })
 ```
 
