@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```ts
+```js
 import { ValueType } from '@ohos.data.ValuesBucket';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 ```
