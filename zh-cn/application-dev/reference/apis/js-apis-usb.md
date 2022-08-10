@@ -428,7 +428,7 @@ usbFunctionsFromString(funcs: string): number
 
 在设备模式下，将字符串形式的usb功能列表转化为数字掩码。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -457,7 +457,7 @@ usbFunctionsToString(funcs: FunctionType): string
 
 在设备模式下，将数字掩码形式的usb功能列表转化为字符串。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -486,7 +486,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 
 在设备模式下，设置当前的USB功能列表。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -515,7 +515,7 @@ getCurrentFunctions(): FunctionType
 
 在设备模式下，获取当前的USB功能列表的数字组合掩码。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -537,7 +537,7 @@ getPorts(): Array\<USBPort\>
 
 获取所有物理USB端口描述信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -559,7 +559,7 @@ getSupportedModes(portId: number): PortModeType
 
 获取指定的端口支持的模式列表的组合掩码。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -587,7 +587,7 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 设置指定的端口支持的角色模式，包含充电角色、数据传输角色。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -712,7 +712,7 @@ USB设备消息传输通道，用于确定设备。
 
 USB设备端口。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.USB.USBManager
 
@@ -726,7 +726,7 @@ USB设备端口。
 
 USB设备端口角色信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.USB.USBManager
 
@@ -776,7 +776,7 @@ USB设备端口角色信息。
 
 USB设备侧功能。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.USB.USBManager
 
@@ -797,7 +797,7 @@ USB设备侧功能。
 
 USB端口模式类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.USB.USBManager
 
@@ -813,7 +813,7 @@ USB端口模式类型。
 
 电源角色类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.USB.USBManager
 
@@ -827,7 +827,7 @@ USB端口模式类型。
 
 数据角色类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.USB.USBManager
 
