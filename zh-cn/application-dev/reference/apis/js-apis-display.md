@@ -61,22 +61,24 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
 
 **示例：**
-  ```js
-  var displayClass = null;
-  display.getDefaultDisplay((err, data) => {
-      if (err.code) {
-          console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-      displayClass = data;
-  });
-  ```
+
+```js
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+    displayClass = data;
+});
+```
 
 ## display.getDefaultDisplay
 
@@ -94,14 +96,16 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 **示例：**
 
-  ```js
-  let promise = display.getDefaultDisplay();
-  promise.then(() => {
-      console.log('getDefaultDisplay success');
-  }).catch((err) => {
-      console.log('getDefaultDisplay fail: ' + JSON.stringify(err));
-  });
-  ```
+```js
+var displayClass = null;
+let promise = display.getDefaultDisplay();
+promise.then((data) => {
+    displayClass = data;
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+});
+```
 
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
@@ -139,15 +143,15 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **示例：**
 
-  ```js
-  display.getAllDisplay((err, data) => {
-      if (err.code) {
-          console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data))
-  });
-  ```
+```js
+display.getAllDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+});
+```
 
 ## display.getAllDisplay
 
@@ -165,14 +169,14 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **示例：**
 
-  ```js
-  let promise = display.getAllDisplay();
-  promise.then(() => {
-      console.log('getAllDisplay success');
-  }).catch((err) => {
-      console.log('getAllDisplay fail: ' + JSON.stringify(err));
-  });
-  ```
+```js
+let promise = display.getAllDisplay();
+promise.then((data) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+}).catch((err) => {
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+});
+```
 
 ## display.on('add'|'remove'|'change')
 
@@ -183,19 +187,20 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
-  ```js
-  var callback = (data) => {
-      console.info('Listening enabled. Data: ' + JSON.stringify(data))
-  }
-  display.on("add", callback);
-  ```
 
+```js
+var callback = (data) => {
+    console.info('Listening enabled. Data: ' + JSON.stringify(data))
+}
+display.on("add", callback);
+```
 
 ## display.off('add'|'remove'|'change')
 
@@ -206,12 +211,14 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
   | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
+
   ```js
   display.off("remove");
   ```
