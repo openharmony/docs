@@ -42,31 +42,34 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 2. 开发者在定义Service的目录下创建TS文件，自定义类继承ServiceExtensionAbility，重写基类回调函数，示例如下：
 
     ```js
+    import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
     import rpc from '@ohos.rpc'
+
     class StubTest extends rpc.RemoteObject {
-      constructor(des) {
+        constructor(des) {
             super(des);
-      }
-      onRemoteRequest(code, data, reply, option) {
-      }
+        }
+        onRemoteRequest(code, data, reply, option) {
+        }
     }
 
-    class ServiceExt extends ServiceExtensionAbility {
-        console.log('onCreate, want:' + want.abilityName);
-      }
-      onRequest(want, startId) {
-        console.log('onRequest, want:' + want.abilityName);
-      }
-      onConnect(want) {
-        console.log('onConnect , want:' + want.abilityName);
-        return new StubTest("test");
-      }
-      onDisconnect(want) {
-        console.log('onDisconnect, want:' + want.abilityName);
-      }
-      onDestroy() {
-        console.log('onDestroy');
-      }
+    class ServiceExtAbility extends ServiceExtensionAbility {
+        onCreate(want) {
+            console.log('onCreate, want:' + want.abilityName);
+        }
+        onRequest(want, startId) {
+            console.log('onRequest, want:' + want.abilityName);
+        }
+        onConnect(want) {
+            console.log('onConnect , want:' + want.abilityName);
+            return new StubTest("test");
+        }
+        onDisconnect(want) {
+            console.log('onDisconnect, want:' + want.abilityName);
+        }
+        onDestroy() {
+            console.log('onDestroy');
+        }
     }
     ```
 ## 相关实例
