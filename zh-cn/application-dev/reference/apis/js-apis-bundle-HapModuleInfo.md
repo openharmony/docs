@@ -4,7 +4,7 @@
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 > API9 当前为Canary版本，仅供试用，不保证接口可稳定调用。
 
-Hap模块信息
+Hap模块信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取
 
 ## HapModuleInfo
 
