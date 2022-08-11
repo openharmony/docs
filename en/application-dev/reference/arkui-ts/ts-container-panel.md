@@ -1,11 +1,10 @@
 # Panel
 
+The **<Panel\>** component is a slidable panel that presents lightweight content with flexible sizes.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **<Panel\>** component is a slidable panel that presents lightweight content with flexible sizes. It is a pop-up component.
 
 
 ## Required Permissions
@@ -38,6 +37,7 @@ Panel(value:{show:boolean})
 | fullHeight | Length | - | Panel height in the **PanelMode.Full** mode. |
 | halfHeight | Length | - | Panel height in the **PanelMode.Half** mode. The default value is half of the screen height. |
 | miniHeight | Length | - | Panel height in the **PanelMode.Mini** mode. |
+| backgroundMask<sup>9+</sup>|(color: ResourceColor)| - |Background mask of the panel.|
 
 - PanelType enums
   | Name | Description |
@@ -58,20 +58,21 @@ Panel(value:{show:boolean})
 
 | Name | Description |
 | -------- | -------- |
-| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the panel status changes. The returned height value is the height of the content area. When the value of **dragbar** is **true**, the height of the panel is the drag bar height plus the height of the content area. |
-
+| onChange(callback: (width: number, height: number, mode: PanelMode) =&gt; void) | Triggered when the panel status changes. The returned **height** value is the height of the content area. When the value of **dragbar** is **true**, the panel height is the height of the drag bar plus the height of the content area. |
+| onHeightChange(callback: (value: number) => void)<sup>9+</sup> |Triggered when the panel height changes. The returned **height** value is the height of the content area. When the value of **dragbar** is **true**, the panel height is the height of the drag bar plus the height of the content area. For user experience purposes, the panel can be slid to only this height: **fullHeight** - 8 vp. |
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PanelExample {
   @State show: boolean = false
 
   build() {
-    Column() {
+    Stack() {
       Text('2021-09-30    Today Calendar: 1.afternoon......Click for details')
         .width('90%').height(50).borderRadius(10)
         .backgroundColor(0xFFFFFF).padding({ left: 20 })
