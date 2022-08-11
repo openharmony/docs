@@ -2550,14 +2550,14 @@ getCookieManager(): WebCookie
 
 ### createWebMessagePorts<sup>9+</sup>
 
-createWebMessagePorts(): Array<WebMessagePort>
+createWebMessagePorts(): Array\<WebMessagePort\>
 
 创建Web信息端口。
 
 **返回值：**
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
-| Array<[WebMessagePort](#WebMessagePort9)> | web信息端口列表 |
+| Array\<[WebMessagePort](#webmessageport9)\> | web信息端口列表。 |
 
 **示例：**
   ```ts
@@ -2589,7 +2589,7 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
 **参数：**
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
 | ---------- | --------------- | ---- | ---- | ------------------------- |
-| message     | [WebMessageEvent](#WebMessageEvent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
+| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
 | uri       | string          | 是    | -    | 接收该信息的URI。 |
 
 **示例：**
@@ -3606,25 +3606,25 @@ setData(data: string): void
   }
   ```
 ### getPorts<sup>9+</sup>
-getPorts(): Array<WebMessagePort>
+getPorts(): Array\<WebMessagePort\>
 
 获取当前对象中存放的消息端口。
 
 **返回值：**
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
-| Array<WebMessagePort> | 当前该类型对象中存放的消息端口。 |
+| Array\<WebMessagePort\> | 当前该类型对象中存放的消息端口。 |
 
 
 ### setPorts<sup>9+</sup>
-setPorts(ports: Array<WebMessagePort>): void
+setPorts(ports: Array\<WebMessagePort\>): void
 
 设置当前对象中的消息端口。
 
 **参数：**
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
-| ports   | Array<WebMessagePort> | 是    | -    | 要发送的消息端口。 |
+| ports   | Array\<WebMessagePort\> | 是    | -    | 要发送的消息端口。 |
 
 **示例：**
   ```ts
