@@ -2557,7 +2557,7 @@ createWebMessagePorts(): Array<WebMessagePort>
 **返回值：**
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
-| Array<WebMessagePort> | web信息端口列表 |
+| Array<[WebMessagePort](#WebMessagePort9)> | web信息端口列表 |
 
 **示例：**
   ```ts
@@ -2589,7 +2589,7 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
 **参数：**
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
 | ---------- | --------------- | ---- | ---- | ------------------------- |
-| message     | WebMessageEvent          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
+| message     | [WebMessageEvent](#WebMessageEvent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
 | uri       | string          | 是    | -    | 接收该信息的URI。 |
 
 **示例：**
@@ -3486,12 +3486,12 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 ## WebMessagePort<sup>9+</sup>
 
 通过WebMessagePort可以进行消息的发送以及接收。
-### postMessageEvent
+### close<sup>9+</sup>
 close(): void
 
 关闭该信息端口。
 
-### postMessageEvent
+### postMessageEvent<sup>9+</sup>
 postMessageEvent(message: WebMessageEvent): void
 
 发送消息。
@@ -3515,7 +3515,7 @@ postMessageEvent(message: WebMessageEvent): void
         Button('postMessageEvent')
           .onClick(() => {
             var msg = new WebMessageEvent();
-            msg.setData("post message from ets to h5");
+            msg.setData("post message from ets to html5");
             this.port[0].postMessageEvent(msg);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3524,10 +3524,10 @@ postMessageEvent(message: WebMessageEvent): void
   }
   ```
 
-### onMessageEvent
+### onMessageEvent<sup>9+</sup>
 onMessageEvent(callback: (result: string) => void): void
 
-注册回调函数，接收h5侧发送过来的消息。
+注册回调函数，接收html5侧发送过来的消息。
 
 **参数：**
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
@@ -3548,7 +3548,7 @@ onMessageEvent(callback: (result: string) => void): void
         Button('onMessageEvent')
           .onClick(() => {
             this.port[0].onMessageEvent((result: string) => {
-              console.log("received message from h5, on message:" + result);
+              console.log("received message from html5, on message:" + result);
             })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3562,7 +3562,7 @@ onMessageEvent(callback: (result: string) => void): void
 
 通过WebMessagePort对要发送的消息和端口进行封装。
 
-### getData
+### getData<sup>9+</sup>
 getData(): string
 
 获取当前对象中存放的消息。
@@ -3573,7 +3573,7 @@ getData(): string
 | string | 当前该类型对象中存放的消息。 |
 
 
-### setData
+### setData<sup>9+</sup>
 setData(data: string): void
 
 设置当前对象中的消息。
@@ -3597,7 +3597,7 @@ setData(data: string): void
         Button('setData')
           .onClick(() => {
             var msg = new WebMessageEvent();
-            msg.setData("post message from ets to h5");
+            msg.setData("post message from ets to html5");
             this.port[0].postMessageEvent(msg);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3605,7 +3605,7 @@ setData(data: string): void
     }
   }
   ```
-### getPorts
+### getPorts<sup>9+</sup>
 getPorts(): Array<WebMessagePort>
 
 获取当前对象中存放的消息端口。
@@ -3616,7 +3616,7 @@ getPorts(): Array<WebMessagePort>
 | Array<WebMessagePort> | 当前该类型对象中存放的消息端口。 |
 
 
-### setPorts
+### setPorts<sup>9+</sup>
 setPorts(ports: Array<WebMessagePort>): void
 
 设置当前对象中的消息端口。
