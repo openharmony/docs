@@ -2,7 +2,7 @@
 
 ## When to Use
 
-A relational database (RDB) store allows you to operate data with or without native SQL statements based on the SQLite database.
+A relational database (RDB) store allows you to operate local data with or without native SQL statements based on SQLite.
 
 
 ## Available APIs
@@ -130,8 +130,8 @@ A result set can be regarded as a row of data in the queried results. It allows 
 | ResultSet | goToPreviousRow(): boolean | Moves the result set to the previous row.|
 | ResultSet | getColumnIndex(columnName: string): number | Obtains the column index based on the specified column name.|
 | ResultSet | getColumnName(columnIndex: number): string | Obtains the column name based on the specified column index.|
-| ResultSet | goToFirstRow(): boolean | Checks whether the result set is located in the first row.|
-| ResultSet | goToLastRow(): boolean | Checks whether the result set is located in the last row.|
+| ResultSet | goToFirstRow(): boolean | Moves to the first row of the result set.|
+| ResultSet | goToLastRow(): boolean | Moves to the last row of the result set.|
 | ResultSet | getString(columnIndex: number): string | Obtains the value in the specified column of the current row, in a string.|
 | ResultSet | getBlob(columnIndex: number): Uint8Array | Obtains the values in the specified column of the current row, in a byte array.|
 | ResultSet | getDouble(columnIndex: number): number | Obtains the values in the specified column of the current row, in double.|
@@ -307,8 +307,4 @@ You can obtain the distributed table name for a remote device based on the local
     let tableName = rdbStore.obtainDistributedTableName(deviceId, "test");
     let resultSet = rdbStore.querySql("SELECT * FROM " + tableName)
     ```
-## Samples
-The following samples are provided for you to better understand the RDB development:
-- [`Rdb`: eTS RDB (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
-- [`DistributedRdb`: eTS Distributed Relational Database (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb)
-- [Relational Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)
+
