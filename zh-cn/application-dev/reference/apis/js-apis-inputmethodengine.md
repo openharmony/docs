@@ -56,9 +56,9 @@ getInputMethodEngine(): InputMethodEngine
 
 **返回值：**
 
-  | 类型                                    | 说明         |
-  | --------------------------------------- | ------------ |
-  | [InputMethodEngine](#InputMethodEngine) | 服务端实例。 |
+| 类型                                    | 说明         |
+| --------------------------------------- | ------------ |
+| [InputMethodEngine](#InputMethodEngine) | 服务端实例。 |
 
 **示例：**
 
@@ -76,9 +76,9 @@ createKeyboardDelegate(): KeyboardDelegate
 
 **返回值：**
 
-  | 类型                                  | 说明             |
-  | ------------------------------------- | ---------------- |
-  | [KeyboardDelegate](#KeyboardDelegate) | 客户端监听实例。 |
+| 类型                                  | 说明             |
+| ------------------------------------- | ---------------- |
+| [KeyboardDelegate](#KeyboardDelegate) | 客户端监听实例。 |
 
 **示例：**
 
@@ -124,10 +124,10 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 **参数：**
 
-  | 参数名   | 类型                 | 必填 | 说明                     |
-  | -------- | -------------------- | ---- | ------------------------ |
-  | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-  | callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 否 | 回调返回输入法操作相关实例。 |
+| 参数名   | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
+| callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 否 | 回调返回输入法操作相关实例。 |
 
 
 
@@ -147,10 +147,10 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 **参数：**
 
-  | 参数名   | 类型   | 必填 | 说明                                                         |
-  | -------- | ------ | ---- | ------------------------------------------------------------ |
-  | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-  | callback | void   | 否   | 回调函数。                                                   |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
+| callback | void   | 否   | 回调函数。                                                   |
 
 **示例：**
 
@@ -170,17 +170,17 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 **参数：**
 
-  | 参数名   | 类型   | 必填 | 说明                                                         |
-  | -------- | ------ | ---- | ------------------------------------------------------------ |
-  | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-  | callback | void   | 否   | 回调函数。                                                   |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'keyboardShow'，表示订阅输入法显示。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
+| callback | void   | 否   | 回调函数。                                                   |
 
 **示例：**
 
   ```js
   InputMethodEngine.off('keyboardShow');
   ```
-  
+
 
 ## KeyboardDelegate<a name="KeyboardDelegate"></a>
 
@@ -196,10 +196,10 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 **参数：**
 
-  | 参数名   | 类型                            | 必填 | 说明                                                         |
-  | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-  | callback | [KeyEvent](#KeyEvent) | 是 | 回调返回按键信息。 |
+| 参数名   | 类型                            | 必填 | 说明                                                         |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
+| callback | [KeyEvent](#KeyEvent) | 是 | 回调返回按键信息。 |
 
 
 
@@ -221,10 +221,10 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 **参数：**
 
-  | 参数名   | 类型                  | 必填 | 说明                                                         |
-  | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-  | type     | string                | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-  | callback | [KeyEvent](#KeyEvent) | 否   | 回调返回按键信息。                                           |
+| 参数名   | 类型                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
+| callback | [KeyEvent](#KeyEvent) | 否   | 回调返回按键信息。                                           |
 
 **示例：**
 
@@ -242,20 +242,22 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
   **参数：**
 
-    | 参数名   | 类型   | 必填 | 说明                                                         |
-    | -------- | ------ | ---- | ------------------------------------------------------------ |
-    | type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-    | callback | number | 是   | 回调返回光标信息。                                           |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
+| callback | number | 是   | 回调返回光标信息。                                           |
 
 
 
   **示例：**
-  
-    ```js
-    KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
-        console.info('cursorContextChange');
-    });
-    ```
+
+```js
+
+KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
+    console.info('cursorContextChange');
+});
+
+```
 
 ### off('cursorContextChange')
 
@@ -267,17 +269,19 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
   **参数：**
 
-    | 参数名   | 类型                 | 必填 | 说明                     |
-    | -------- | -------------------- | ---- | ------------------------ |
-    | type     | string       | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-    | callback | number | 否 | 回调返回光标信息。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
+| callback | number | 否   | 回调返回光标信息。                                           |
 
 
   **示例：**
 
-    ```js
-    KeyboardDelegate.off('cursorContextChange');
-    ```
+```js
+
+KeyboardDelegate.off('cursorContextChange');
+
+```
 ### on('selectionChange')
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
@@ -288,18 +292,20 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
   **参数：**
 
-    | 参数名   | 类型   | 必填 | 说明                                                         |
-    | -------- | ------ | ---- | ------------------------------------------------------------ |
-    | type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-    | callback | number | 是   | 回调返回文本选择信息。                                       |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
+| callback | number | 是   | 回调返回文本选择信息。                                       |
 
   **示例：**
-  
-    ```js
-    KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-        console.info('selectionChange');
-    });
-    ```
+
+```js
+
+KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
+    console.info('selectionChange');
+});
+
+```
 
 ### off('selectionChange')
 
@@ -311,16 +317,18 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
   **参数：**
 
-    | 参数名   | 类型                 | 必填 | 说明                     |
-    | -------- | -------------------- | ---- | ------------------------ |
-    | type     | string                  | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-    | callback | number | 否 | 回调返回文本选择信息。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
+| callback | number | 否   | 回调返回文本选择信息。                                       |
 
   **示例：**
 
-    ```js
-    KeyboardDelegate.off('selectionChange');
-    ```
+```js
+
+KeyboardDelegate.off('selectionChange');
+
+```
 
 
 ### on('textChange')
@@ -333,18 +341,20 @@ on(type: 'textChange', callback: (text: string) => void): void
 
   **参数：**
 
-    | 参数名   | 类型                            | 必填 | 说明                                                         |
-    | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-    | type     | string                  | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-    | callback | string | 是 | 回调返回当前文本内容。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
+| callback | string | 是   | 回调返回当前文本内容。                                       |
 
   **示例：**
 
-    ```js
-    KeyboardDelegate.on('textChange', (text) => {
-        console.info('textChange');
-    });
-    ```
+```js
+
+KeyboardDelegate.on('textChange', (text) => {
+    console.info('textChange');
+});
+
+```
 
 ### off('textChange')
 
@@ -356,16 +366,16 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
   **参数：**
 
-    | 参数名   | 类型                 | 必填 | 说明                     |
-    | -------- | -------------------- | ---- | ------------------------ |
-    | type     | string                  | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-    | callback | string | 否 | 回调返回当前文本内容。 |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
+| callback | string | 否   | 回调返回当前文本内容。                                       |
 
   **示例：**
 
-    ```js
-    KeyboardDelegate.off('textChange');
-    ```
+```js
+KeyboardDelegate.off('textChange');
+```
 
 ## KeyboardController<a name="KeyboardController"></a>
 
@@ -381,9 +391,9 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-  | 参数名   | 类型                   | 必填 | 说明     |
-  | -------- | ---------------------- | ---- | -------- |
-  | callback | AsyncCallback&lt;void> | 否   | 回调函数 |
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback&lt;void> | 否   | 回调函数 |
 
 **示例：**
 
@@ -403,9 +413,9 @@ hideKeyboard(): Promise&lt;void&gt;
 
 **返回值：**
 
-  | 类型             | 说明     |
-  | ---------------- | -------- |
-  | Promise&lt;void> | 回调函数 |
+| 类型             | 说明     |
+| ---------------- | -------- |
+| Promise&lt;void> | 回调函数 |
 
 **示例：**
 
@@ -427,10 +437,10 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | length | number | 是 | 文本长度。 |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| length | number | 是 | 文本长度。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
 
 **示例：**
 
@@ -450,15 +460,15 @@ getForward(length:number): Promise&lt;string&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | length | number | 是 | 文本长度。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| length | number | 是 | 文本长度。 |
 
 **返回值：**
 
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;string&gt; |  返回文本。                |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;string&gt; |  返回文本。                |
 
 **示例：**
 
@@ -477,10 +487,10 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | length | number | 是 | 文本长度。 |
-  | callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| length | number | 是 | 文本长度。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
 
 **示例：**
 
@@ -500,15 +510,15 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | length | number | 是 | 文本长度。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| length | number | 是 | 文本长度。 |
 
 **返回值：**
 
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;string&gt; |  返回文本。                |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;string&gt; |  返回文本。                |
 
 **示例：**
 
@@ -527,10 +537,10 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | length | number | 是 | 文本长度。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| length | number | 是 | 文本长度。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
 **示例：**
 
@@ -548,24 +558,24 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
-  
-    | 参数名 | 类型 | 必填 | 说明 |
-    | -------- | -------- | -------- | -------- |
-    | length | number | 是 | 文本长度。 |
-  
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| length | number | 是   | 文本长度。 |
+
 **返回值：**  
 
-     | 类型                            | 说明                                                         |
-     | ------------------------------- | ------------------------------------------------------------ |
-     | Promise&lt;boolean&gt; |  操作成功与否。                |
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+| Promise&lt;boolean&gt; | 操作成功与否。 |
 
 **示例：**
 
-    ```js
-     var isSuccess = TextInputClient.deleteForward(5);
-     console.info("isSuccess = " + isSuccess);
-    ```
-    
+```js
+var isSuccess = TextInputClient.deleteForward(5);
+ console.info("isSuccess = " + isSuccess);
+```
+
 ### deleteBackward
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
@@ -576,18 +586,20 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
   **参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 |
-    | -------- | -------- | -------- | -------- |
-    | length | number | 是 | 文本长度。 |
-    | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| 参数名   | 类型                         | 必填 | 说明           |
+| -------- | ---------------------------- | ---- | -------------- |
+| length   | number                       | 是   | 文本长度。     |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 操作成功与否。 |
 
   **示例：**
 
-    ```js
-     TextInputClient.deleteBackward(5, (isSuccess)=>{
-     console.info("isSuccess = " + isSuccess);
-    });
-    ```
+```js
+
+ TextInputClient.deleteBackward(5, (isSuccess)=>{
+ console.info("isSuccess = " + isSuccess);
+});
+
+```
 
 ### deleteBackward
 
@@ -598,22 +610,24 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | length | number | 是 | 文本长度。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| length | number | 是 | 文本长度。 |
 
 **返回值：** 
 
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;boolean&gt; |  操作成功与否。                |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; |  操作成功与否。                |
 
 **示例：**
 
-     ```js
-     var isSuccess = TextInputClient.deleteBackward(5);
-     console.info("isSuccess = " + isSuccess);
-     ```
+```js
+
+ var isSuccess = TextInputClient.deleteBackward(5);
+ console.info("isSuccess = " + isSuccess);
+
+```
 ### sendKeyFunction
 
 sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
@@ -624,18 +638,20 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
   **参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 |
-    | -------- | -------- | -------- | -------- |
-    | action | number | 是 | 编辑框属性。 |
-    | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| action | number | 是 | 编辑框属性。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
   **示例：**
 
-    ```js
-     TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
-      console.info("isSuccess = " + isSuccess);
-    });
-    ```
+```js
+
+ TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
+  console.info("isSuccess = " + isSuccess);
+});
+
+```
 
 ### sendKeyFunction
 
@@ -647,15 +663,15 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | action | number | 是 | 编辑框属性。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| action | number | 是 | 编辑框属性。 |
 
 **返回值：**
 
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;boolean&gt; |  操作成功与否。                |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; |  操作成功与否。                |
 
 **示例：**
 
@@ -663,7 +679,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
   var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
   console.info("isSuccess = " + isSuccess);
   ```
-  
+
 ### insertText
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
@@ -674,18 +690,20 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 |
-    | -------- | -------- | -------- | -------- |
-    | text | string | 是 | 文本。 |
-    | callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| text | string | 是 | 文本。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
 
 **示例：**
 
-    ```js
-    TextInputClient.insertText("test", (isSuccess)=>{
-      console.info("isSuccess = " + isSuccess);
-    });
-    ```
+```js
+
+TextInputClient.insertText("test", (isSuccess)=>{
+  console.info("isSuccess = " + isSuccess);
+});
+
+```
 
 ### insertText
 
@@ -697,15 +715,15 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | text | string | 是 | 文本。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| text | string | 是 | 文本。 |
 
 **返回值：**  
-  
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;boolean&gt; |  操作成功与否。                |
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; |  操作成功与否。                |
 
 **示例：**
 
@@ -713,7 +731,7 @@ insertText(text:string): Promise&lt;boolean&gt;
   var isSuccess = TextInputClient.insertText("test");
   console.info("isSuccess = " + isSuccess);
   ```
-  
+
 ### getEditorAttribute
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
@@ -724,9 +742,9 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 **参数：**
 
-   | 参数名                         | 类型                          | 必填                            | 说明                                                         |
-   | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
+| 参数名                         | 类型                          | 必填                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
 
 **示例：**
 
@@ -745,9 +763,9 @@ getEditorAttribute(): EditorAttribute
 
 **返回值：**
 
-  | 类型                            | 说明                                                         |
-  | ------------------------------- | ------------------------------------------------------------ |
-  | Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  返回编辑框属性值。           |
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  返回编辑框属性值。           |
 
 **示例：**
 
