@@ -2555,6 +2555,7 @@ createWebMessagePorts(): Array\<WebMessagePort\>
 创建Web信息端口。
 
 **返回值：**
+
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
 | Array\<[WebMessagePort](#webmessageport9)\> | web信息端口列表。 |
@@ -2587,6 +2588,7 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
 发送Web信息端口到HTML5。
 
 **参数：**
+
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
 | ---------- | --------------- | ---- | ---- | ------------------------- |
 | message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
@@ -3486,6 +3488,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 ## WebMessagePort<sup>9+</sup>
 
 通过WebMessagePort可以进行消息的发送以及接收。
+
 ### close<sup>9+</sup>
 close(): void
 
@@ -3497,6 +3500,7 @@ postMessageEvent(message: WebMessageEvent): void
 发送消息。
 
 **参数：**
+
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
 | message   | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息。 |
@@ -3530,6 +3534,7 @@ onMessageEvent(callback: (result: string) => void): void
 注册回调函数，接收HTML5侧发送过来的消息。
 
 **参数：**
+
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
 | callback   | function | 是    | -    | 接收消息的回调函数。 |
@@ -3568,6 +3573,7 @@ getData(): string
 获取当前对象中存放的消息。
 
 **返回值：**
+
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
 | string | 当前该类型对象中存放的消息。 |
@@ -3579,6 +3585,7 @@ setData(data: string): void
 设置当前对象中的消息。
 
 **参数：**
+
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
 | data   | string | 是    | -    | 要发送的消息。 |
@@ -3611,6 +3618,7 @@ getPorts(): Array\<WebMessagePort\>
 获取当前对象中存放的消息端口。
 
 **返回值：**
+
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
 | Array\<[WebMessagePort](#webmessageport9)\> | 当前该类型对象中存放的消息端口。 |
@@ -3622,6 +3630,7 @@ setPorts(ports: Array\<WebMessagePort\>): void
 设置当前对象中的消息端口。
 
 **参数：**
+
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
 | ports   | Array\<[WebMessagePort](#webmessageport9)\> | 是    | -    | 要发送的消息端口。 |
