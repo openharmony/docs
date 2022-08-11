@@ -670,7 +670,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息（callback形式）。
+停止Ability，配合startAbilityForResult使用，返回给接口调用方AbilityResult信息（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -684,11 +684,17 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```js
-  this.context.terminateSelfWithResult(
-     {
-          want: {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo"},
-          resultCode: 100
-      }, (error) => {
+  var want = {
+    "bundleName": "com.extreme.myapplication",
+    "abilityName": "SecondAbility"
+  }
+  var resultCode = 100;
+  // 返回给接口调用方AbilityResult信息
+  var abilityResult = {
+    want,
+    resultCode
+  }
+  this.context.terminateSelfWithResult(abilityResult, (error) => {
           console.log("terminateSelfWithResult is called = " + error.code)
       }
   );
@@ -699,7 +705,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
-停止Ability，并返回给调用startAbilityForResult 接口调用方的相关信息（promise形式）。
+停止Ability，配合startAbilityForResult使用，返回给接口调用方AbilityResult信息（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -718,11 +724,17 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  this.context.terminateSelfWithResult(
-  {
-      want: {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo"},
-      resultCode: 100
-  }).then((result) => {
+  var want = {
+    "bundleName": "com.extreme.myapplication",
+    "abilityName": "SecondAbility"
+  }
+  var resultCode = 100;
+  // 返回给接口调用方AbilityResult信息
+  var abilityResult = {
+    want,
+    resultCode
+  }
+  this.context.terminateSelfWithResult(abilityResult).then((result) => {
       console.log("terminateSelfWithResult")
   }
   )
