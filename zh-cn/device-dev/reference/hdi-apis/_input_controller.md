@@ -61,7 +61,7 @@ int32_t(* InputController::GetChipInfo) (uint32_t devIndex, char *chipInfo, uint
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetChipName
@@ -87,7 +87,7 @@ int32_t(* InputController::GetChipName) (uint32_t devIndex, char *chipName, uint
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetDeviceType
@@ -112,7 +112,7 @@ int32_t(* InputController::GetDeviceType) (uint32_t devIndex, uint32_t *deviceTy
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetPowerStatus
@@ -139,7 +139,7 @@ int32_t(* InputController::GetPowerStatus) (uint32_t devIndex, uint32_t *status)
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetVendorName
@@ -165,7 +165,7 @@ int32_t(* InputController::GetVendorName) (uint32_t devIndex, char *vendorName, 
 
 Returns INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+Returns 其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### RunCapacitanceTest
@@ -194,7 +194,7 @@ int32_t(* InputController::RunCapacitanceTest) (uint32_t devIndex, uint32_t test
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### RunExtraCommand
@@ -219,7 +219,7 @@ int32_t(* InputController::RunExtraCommand) (uint32_t devIndex, InputExtraCmd *c
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### SetGestureMode
@@ -246,7 +246,7 @@ int32_t(* InputController::SetGestureMode) (uint32_t devIndex, uint32_t gestureM
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### SetPowerStatus
@@ -273,4 +273,4 @@ int32_t(* InputController::SetPowerStatus) (uint32_t devIndex, uint32_t status)
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
