@@ -44,7 +44,7 @@ import window from '@ohos.window';
 
 窗口模式枚举。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -75,7 +75,7 @@ import window from '@ohos.window';
 
 单个导航栏或状态栏回调信息。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -91,7 +91,7 @@ import window from '@ohos.window';
 
 当前系统栏回调信息集合。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -486,7 +486,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 开启状态栏、导航栏属性变化的监听。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -511,7 +511,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 关闭状态栏、导航栏属性变化的监听。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -540,7 +540,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 隐藏当前窗口，使用callback异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -568,7 +568,7 @@ hide(): Promise&lt;void&gt;
 
 隐藏当前窗口，使用Promise异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -818,7 +818,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口类型，使用callback异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -848,7 +848,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 设置窗口类型，使用Promise异步回调。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
