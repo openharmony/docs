@@ -324,7 +324,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | 检查结果，ture: 支持， false: 不支持。|
+| Promise&lt;boolean&gt; | 检查结果，true: 支持， false: 不支持。|
 
 **示例：**
 
@@ -351,7 +351,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，ture: 支持， false: 不支持。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，true: 支持， false: 不支持。 |
 
 ```js
 import tag from '@ohos.nfc.tag';
@@ -539,7 +539,7 @@ isNdefWritable(): Promise&lt;boolean&gt;
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | 检查结果，ture: 可写， false: 不可写。|
+| Promise&lt;boolean&gt; | 检查结果，true: 可写， false: 不可写。|
 
 **示例：**
 
@@ -706,7 +706,7 @@ canSetReadOnly(): Promise\<boolean>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | ture: 标签可设置为只读， false: 标签不可设置为只读。 |
+| Promise&lt;boolean&gt; | true: 标签可设置为只读， false: 标签不可设置为只读。 |
 
 **示例：**
 
