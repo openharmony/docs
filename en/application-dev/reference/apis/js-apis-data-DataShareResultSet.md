@@ -1,6 +1,6 @@
 # Data Share Result Set
 
-The **DataShareResultSet** module provides methods for accessing the result set obtained from the database. You can access the values in the specified rows or the value of the specified data type.
+The **DataShareResultSet** module provides APIs for accessing the result set obtained from the database. You can access the values in the specified rows or the value of the specified data type.
 
 >**NOTE**
 >
@@ -13,7 +13,7 @@ The **DataShareResultSet** module provides methods for accessing the result set 
 import DataShareResultSet from '@ohos.data.DataShareResultSet';
 ```
 
-## How to Use
+## Usage
 
 You can call [query()](js-apis-data-dataShare.md#query) to obtain the **DataShareResultSet** object.
 
@@ -179,7 +179,7 @@ Moves to the specified row in the result set.
 
 | **Name**| **Type**| **Mandatory**| Description                    |
 | ---------- | -------- | -------- | ------------------------ |
-| position   | number   | Yes      | Destination position to move.|
+| position   | number   | Yes      | Destination position to move to.|
 
 **Return value**
 
@@ -199,7 +199,7 @@ console.info('resultSet.goToRow: ' + isGoToRow);
 
 getBlob(columnIndex: number): Uint8Array
 
-Obtains the value in the specified column in the current row as a byte array.
+Obtains the value in the form of a byte array based on the specified column and the current row.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -228,7 +228,7 @@ console.info('resultSet.getBlob: ' + getBlob);
 
 getString(columnIndex: number): *string*
 
-Obtains the value in the specified column in the current row as a string.
+Obtains the value in the form of a string based on the specified column and the current row.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -257,7 +257,7 @@ console.info('resultSet.getString: ' + getString);
 
 getLong(columnIndex: number): number
 
-Obtains the value in the specified column in the current row as a long integer.
+Obtains the value in the form of a long integer based on the specified column and the current row.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -286,7 +286,7 @@ console.info('resultSet.getLong: ' + getLong);
 
 getDouble(columnIndex: number): number
 
-Obtains the value in the specified column in the current row as a double-precision floating-point number.
+Obtains the value in the form of a double-precision floating-point number based on the specified column and the current row.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
