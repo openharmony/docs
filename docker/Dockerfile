@@ -35,14 +35,15 @@ RUN sed -i "s@http://.*archive.ubuntu.com@http://repo.huaweicloud.com@g" /etc/ap
 	&& pip3 install six --upgrade --ignore-installed six \
 	&& mkdir -p /home/tools \
 	&& mkdir -p /home/tools/gn \
-	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/clang/10.0.1-62608/linux/llvm.tar.gz \
+	&& wget -P /home/tools https://repo.huaweicloud.com/openharmony/compiler/clang/12.0.1-530132/linux/clang-530132-linux-x86_64.tar.bz2 \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/hc-gen/0.65/linux/hc-gen-0.65-linux.tar \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/gcc_riscv32/7.3.0/linux/gcc_riscv32-linux-7.3.0.tar.gz \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/ninja/1.9.0/linux/ninja.1.9.0.tar \
 	&& wget -P /home/tools https://repo.huaweicloud.com/harmonyos/compiler/gn/1717/linux/gn-linux-x86-1717.tar.gz \
 	&& wget -P /home/tools https://mirrors.huaweicloud.com/nodejs/v14.15.4/node-v14.15.4-linux-x64.tar.xz \
 	&& wget -P /home/tools https://hm-verify.obs.cn-north-4.myhuaweicloud.com/qemu-5.2.0.tar.xz \
-    	&& tar -xvf /home/tools/llvm.tar.gz -C /home/tools \
+    	&& tar -jxvf /home/tools/clang-530132-linux-x86_64.tar.bz2 -C /home/tools \
+		&& mv /home/tools/clang-530132 /home/tools/llvm \
 	&& tar -xvf /home/tools/hc-gen-0.65-linux.tar -C /home/tools \
 	&& tar -xvf /home/tools/gcc_riscv32-linux-7.3.0.tar.gz -C /home/tools \
 	&& tar -xvf /home/tools/ninja.1.9.0.tar -C /home/tools \
