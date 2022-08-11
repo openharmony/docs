@@ -1,6 +1,6 @@
 #    OS Account Management
 
-The osAccount module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
+The **osAccount** module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -801,7 +801,7 @@ Obtains the OS account ID based on domain account information. This API uses an 
 
 | Name    | Type                                   | Mandatory| Description                                        |
 | ---------- | --------------------------------------- | ---- | -------------------------------------------- |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.                                |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.                                |
 | callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback used to return the ID of the OS account associated with the domain account.|
 
 **Example**
@@ -829,7 +829,7 @@ Obtains the OS account ID based on domain account information. This API uses a p
 
 | Name    | Type                                   | Mandatory| Description        |
 | ---------- | --------------------------------------- | ---- | ------------ |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.|
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.|
 
 **Return value**
 
@@ -1156,7 +1156,7 @@ This is a system API and cannot be called by third-party applications.
 | Name    | Type                                                | Mandatory| Description                                      |
 | :--------- | ---------------------------------------------------- | ---- | ------------------------------------------ |
 | type       | [OsAccountType](#osaccounttype)                      | Yes  | Type of the OS account to create.                    |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo)              | Yes  | Domain account information.                              |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | Yes  | Domain account information.                              |
 | callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account created.|
 
 **Example**
@@ -1187,7 +1187,7 @@ This is a system API and cannot be called by third-party applications.
 | Name    | Type                                   | Mandatory| Description                  |
 | ---------- | --------------------------------------- | ---- | ---------------------- |
 | type       | [OsAccountType](#osaccounttype)         | Yes  | Type of the OS account to create.|
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.          |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.          |
 
 **Return value**
 
@@ -1749,7 +1749,7 @@ This is a system API and cannot be called by third-party applications.
 
 getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the bundle ID based on the UID. This API uses an asynchronous callback to return the result. 
+Obtains the bundle ID based on the UID. This API uses an asynchronous callback to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1760,7 +1760,7 @@ This is a system API and cannot be called by third-party applications.
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | uid     | number | Yes  |  Process UID.|
-| callback | AsyncCallback&lt;number&gt;     | Yes  | Callback used to return the bundle ID obtained.                     |
+| callback | AsyncCallback&lt;number&gt;     | Yes  | Callback invoked to return the bundle ID obtained.                     |
 
 **Example**
 
@@ -1854,7 +1854,7 @@ This is a system API and cannot be called by third-party applications.
 
 queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void;
 
-Obtains the constraint source information of an OS account.
+Obtains the constraint source information of an OS account. This API uses an asynchronous callback to return the result.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1868,7 +1868,7 @@ This is a system API and cannot be called by third-party applications.
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | localId     | number | Yes  |  ID of the target OS account.|
 | constraint     | string | Yes  |  Name of the [constraint](#constraints) to query.|
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | Yes  | Callback used to return the source information about the specified [constraint] (#constraints).                     |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | Yes  | Callback invoked to return the source information about the specified [constraint](#constraints).                     |
 
 **Example**
 
@@ -1902,7 +1902,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Type                 | Description                                                        |
 | :-------------------- | :----------------------------------------------------------- |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise used to return the source information about the specified [constraint] (#constraints).|
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise used to return the source information about the specified [constraint](#constraints).|
 
 **Example**
 
@@ -1932,7 +1932,7 @@ Defines information about an OS account.
 | isActived<sup>8+</sup>         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the OS account information is complete.             |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.                   |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo)                      | No  | Domain account information.                       |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | No  | Domain account information.                       |
 
 ## DomainAccountInfo<sup>8+</sup>
 
@@ -2017,6 +2017,8 @@ Domain account information.
 
 Defines information about the source of a constraint.
 
+This is a system API.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name     | Type  | Mandatory| Description      |
@@ -2027,6 +2029,8 @@ Defines information about the source of a constraint.
 ## ConstraintSourceType<sup>9+</sup>
 
 Enumerates the constraint sources.
+
+This is a system API.
 
 **System capability**: SystemCapability.Account.OsAccount
 
