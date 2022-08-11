@@ -3499,7 +3499,7 @@ postMessageEvent(message: WebMessageEvent): void
 **参数：**
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
-| message   | WebMessageEvent | 是    | -    | 要发送的消息。 |
+| message   | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息。 |
 
 **示例：**
   ```ts
@@ -3613,7 +3613,7 @@ getPorts(): Array\<WebMessagePort\>
 **返回值：**
 | 类型                              | 说明            |
 | ------------------------------- | ------------- |
-| Array\<WebMessagePort\> | 当前该类型对象中存放的消息端口。 |
+| Array\<[WebMessagePort](#webmessageport9)\> | 当前该类型对象中存放的消息端口。 |
 
 
 ### setPorts<sup>9+</sup>
@@ -3624,7 +3624,7 @@ setPorts(ports: Array\<WebMessagePort\>): void
 **参数：**
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
 | ----- | ------ | ---- | ---- | ----------------- |
-| ports   | Array\<WebMessagePort\> | 是    | -    | 要发送的消息端口。 |
+| ports   | Array\<[WebMessagePort](#webmessageport9)\> | 是    | -    | 要发送的消息端口。 |
 
 **示例：**
   ```ts
