@@ -75,7 +75,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
   
   | 选择器 | 样例 | 默认值 | 样例描述 |
   | -------- | -------- | -------- | -------- |
-| action | string | "router" | 事件类型。<br/>- "router"：用于应用跳转。<br/>- "message"：自定义点击事件。 |
+  | action | string | "router" | 事件类型。<br/>- "router"：用于应用跳转。<br/>- "message"：自定义点击事件。 |
   | abilityName | string | - | 跳转ability名。 |
   | params | Object | - | 跳转应用携带的额外参数。 |
   
@@ -145,7 +145,8 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
     在API Version 8，want参数需要在app.js或app.ets文件的onCreate方法中调用[featureAbility.getWant](../apis/js-apis-featureAbility.md#featureabilitygetwant-1)接口接收相关参数。
   
 - 消息事件格式
-    | 选择器 | 样例 | 默认值 | 样例描述 |
+
+  | 选择器 | 样例 | 默认值 | 样例描述 |
   | -------- | -------- | -------- | -------- |
   | action | string | message | 表示事件类型。 |
   | params | Object | - | 跳转应用携带的额外参数。 |

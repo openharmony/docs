@@ -17,6 +17,7 @@
 ### 过渡方向
 
   通过direction或者angle指定过渡方向。
+
 - direction：进行方向渐变。
 
 - angle：进行角度渐变。
@@ -33,27 +34,27 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
 支持以下四种方式：\#ff0000、\#ffff0000、rgb(255, 0, 0)、rgba(255, 0, 0, 1)，需要指定至少两种颜色。
 
 - 参数
-    | 名称 | 类型 | 默认值 | 必填 | 描述 |
+
+  | 名称 | 类型 | 默认值 | 必填 | 描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | direction | to&nbsp;&lt;side-or-corner&gt;&nbsp;&nbsp;&lt;side-or-corner&gt;&nbsp;=&nbsp;[left&nbsp;\|&nbsp;right]&nbsp;\|\|&nbsp;[top&nbsp;\|&nbsp;bottom] | to&nbsp;bottom&nbsp;(由上到下渐变) | 否 | 指定过渡方向，如：to&nbsp;left&nbsp;(从右向左渐变)&nbsp;&nbsp;，或者to&nbsp;bottom&nbsp;right&nbsp;(从左上角到右下角)。 |
   | angle | &lt;deg&gt; | 180deg | 否 | 指定过渡方向，以元素几何中心为坐标原点，水平方向为X轴，angle指定了渐变线与Y轴的夹角(顺时针方向)。 |
   | color | &lt;color&gt;&nbsp;[&lt;length&gt;\|&lt;percentage&gt;] | - | 是 | 定义使用渐变样式区域内颜色的渐变效果。 |
 
 - 示例
+
     1. 默认渐变方向为从上向下渐变。
     
-       ```css
+     ```css
      #gradient {
        height: 300px;
        width: 600px;
        /* 从顶部开始向底部由红色向绿色渐变 */
        background: linear-gradient(red, #00ff00);
      }
-     ```
+     ```     
 
-     
-
-  ![111](figures/111.PNG)
+     ![111](figures/111.PNG)
 
   2. 45度夹角渐变。
   
@@ -63,7 +64,7 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
   background: linear-gradient(45deg, rgb(255,0,0),rgb(0, 255, 0));
     ```
 
-  ![222](figures/222.PNG)
+   ![222](figures/222.PNG)
 
   3. 设置方向从左向右渐变。
   
@@ -73,7 +74,7 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
     ```
     
 
-![333](figures/333.PNG)
+   ![333](figures/333.PNG)
 
   4.   重复渐变。
 
@@ -81,4 +82,4 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
        /* 从左向右重复渐变，重复渐变区域30px（60-30）透明度0.5 */
        background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30px,rgba(0, 0, 255, .5) 60px);
      ```
-![444](figures/444.PNG)
+    ![444](figures/444.PNG)

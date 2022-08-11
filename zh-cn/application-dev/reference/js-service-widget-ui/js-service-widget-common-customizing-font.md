@@ -22,10 +22,10 @@ font-face用于定义字体样式。应用可以在style中定义font-face来指
   src: url('/common/HWfont.ttf'); 
 }
 ```
+ 
+**font-family：** 自定义字体的名称。
 
-**font-family：**自定义字体的名称。
-
-**src：**自定义字体的来源，支持如下类别。
+**src：** 自定义字体的来源，支持如下类别。
 
 - 项目中的字体文件：通过url指定项目中的字体文件路径(只支持绝对路径，详见[文件组织](js-service-widget-file.md))。
 
