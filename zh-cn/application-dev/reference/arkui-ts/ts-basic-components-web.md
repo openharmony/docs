@@ -2584,7 +2584,7 @@ createWebMessagePorts(): Array\<WebMessagePort\>
 
 postMessage(options: { message: WebMessageEvent, uri: string}): void
 
-发送Web信息端口到Html5。
+发送Web信息端口到HTML5。
 
 **参数：**
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
@@ -3527,7 +3527,7 @@ postMessageEvent(message: WebMessageEvent): void
 ### onMessageEvent<sup>9+</sup>
 onMessageEvent(callback: (result: string) => void): void
 
-注册回调函数，接收html5侧发送过来的消息。
+注册回调函数，接收HTML5侧发送过来的消息。
 
 **参数：**
 | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
@@ -3597,7 +3597,7 @@ setData(data: string): void
         Button('setData')
           .onClick(() => {
             var msg = new WebMessageEvent();
-            msg.setData("post message from ets to html5");
+            msg.setData("post message from ets to HTML5");
             this.port[0].postMessageEvent(msg);
           })
         Web({ src: 'www.example.com', controller: this.controller })
