@@ -1,6 +1,6 @@
 # Settings
 
-This module provides APIs for setting data items.
+The **Settings** module provides APIs for setting data items.
 
 > **NOTE**
 >
