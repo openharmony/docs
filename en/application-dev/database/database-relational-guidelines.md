@@ -11,7 +11,7 @@ For details about RDB APIs, see [Relational Database](../reference/apis/js-apis-
 
 ### Creating or Deleting an RDB Store
 
-The table below describes the APIs available for creating and deleting an RDB store.
+The following table describes the APIs available for creating and deleting an RDB store.
 
 **Table 1** APIs for creating and deleting an RDB store
 
@@ -131,8 +131,8 @@ A result set can be regarded as a row of data in the queried results. It allows 
 | ResultSet | goToPreviousRow(): boolean | Moves the result set to the previous row.|
 | ResultSet | getColumnIndex(columnName: string): number | Obtains the column index based on the specified column name.|
 | ResultSet | getColumnName(columnIndex: number): string | Obtains the column name based on the specified column index.|
-| ResultSet | goToFirstRow(): boolean | Checks whether the result set is located in the first row.|
-| ResultSet | goToLastRow(): boolean | Checks whether the result set is located in the last row.|
+| ResultSet | goToFirstRow(): boolean | Moves to the first row of the result set.|
+| ResultSet | goToLastRow(): boolean | Moves to the last row of the result set.|
 | ResultSet | getString(columnIndex: number): string | Obtains the value in the specified column of the current row, in a string.|
 | ResultSet | getBlob(columnIndex: number): Uint8Array | Obtains the values in the specified column of the current row, in a byte array.|
 | ResultSet | getDouble(columnIndex: number): number | Obtains the values in the specified column of the current row, in double.|
@@ -209,6 +209,16 @@ You can obtain the distributed table name for a remote device based on the local
 | -------- | -------- | -------- |
 | RdbStore |restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void| Restores an RDB store using a backup file. This API uses an asynchronous callback to return the result.<br>- **srcName**: name of the RDB backup file.<br>- **callback**: callback invoked to return the result.|
 | RdbStore |restore(srcName:string): Promise&lt;void&gt;| Restores an RDB store using a backup file. This API uses a promise to return the result.<br>- **srcName**: name of the RDB backup file.|
+
+**Transaction**
+
+Table 15 Transaction APIs
+
+| Class| API| Description|
+| -------- | -------- | -------- |
+| RdbStore |beginTransaction():void| Starts the transaction before executing SQL statements.|
+| RdbStore |commit():void| Commits the executed SQL statements.|
+| RdbStore |rollBack():void| Rolls back the SQL statements that have been executed.|
 
 ## How to Develop
 
@@ -387,8 +397,3 @@ You can obtain the distributed table name for a remote device based on the local
     })
     ```
 
-## Samples
-The following samples are provided for you to better understand the RDB development:
-- [`Rdb`: eTS RDB (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
-- [`DistributedRdb`: eTS Distributed Relational Database (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb)
-- [Relational Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)
