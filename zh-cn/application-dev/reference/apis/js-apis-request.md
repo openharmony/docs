@@ -1112,11 +1112,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
 | header | object | 否 | 添加要包含在下载请求中的HTTP或HTTPS标志头。 |
-| enableMetered | boolean | 否 | 允许在按流量计费的连接下下载。 |
-| enableRoaming | boolean | 否 | 允许在漫游网络中下载。 |
+| enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
+| enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
 | filePath<sup>7+</sup> | string | 否 | 设置下载路径（默认在'internal://cache/'路径下）。<br/>-&nbsp;filePath:'workspace/test.txt'：默认路径下创建workspace路径，并将文件存储在workspace路径下。<br/>-&nbsp;filePath:'test.txt'：将文件存储在默认路径下。<br/>-&nbsp;filePath:'workspace/'：默认路径下创建workspace路径，并将文件存储在workspace路径下。 |
-| networkType | number | 否 | 设置允许下载的网络类型。 |
+| networkType | number | 否 | 设置允许下载的网络类型。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载会话标题。 |
 | background | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态。 |
 
