@@ -19,7 +19,7 @@
 
 ## 接口
 
-TextPicker(value: {range: string[], selected?: number})
+TextPicker(options: {range: string[]|Resource, selected?: number})
 
 根据range指定的选择范围创建文本选择器。
 
@@ -27,7 +27,7 @@ TextPicker(value: {range: string[], selected?: number})
 
 | 参数名      | 参数类型     | 必填   | 默认值   | 参数描述            |
 | -------- | -------- | ---- | ----- | --------------- |
-| range    | string[] | 是    | -     | 选择器的数据选择范围。     |
+| range    | string[]&nbsp;\|&nbsp;Resource | 是    | -     | 选择器的数据选择范围。     |
 | selected | number   | 否    | 第一个元素 | 选中项在数组中的index值。 |
 
 ## 属性

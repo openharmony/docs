@@ -16,7 +16,7 @@
 
 ## 接口
 
- XComponent\(value: {id: string, type: string, libraryname?: string, controller?: XComponentController}\)
+ XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **参数：**
 
@@ -31,8 +31,8 @@
 
 | 名称                               | 功能描述         |
 | -------------------------------- | ------------ |
-| onLoad(context?: object) => void | 插件加载完成时回调事件。 |
-| onDestroy() => void              | 插件卸载完成时回调事件。 |
+| onLoad(callback: (event?: object) => void) | 插件加载完成时回调事件, 返回值object即为XComponent实例对象的context。 |
+| onDestroy(event: () => void)              | 插件卸载完成时回调事件。 |
 
 ## XComponentController
 

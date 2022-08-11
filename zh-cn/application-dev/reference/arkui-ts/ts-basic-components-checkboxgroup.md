@@ -30,8 +30,8 @@ CheckboxGroup( group?: string )
 
 | 名称            | 参数类型  | 默认值   | 描述               |
 | ------------- | ----- | ----- | ---------------- |
-| selectAll     | bool  | false | 设置是否全选。          |
-| selectedColor | Color | -     | 设置被选中或部分选中状态的颜色。 |
+| selectAll     | boolean  | false | 设置是否全选。          |
+| selectedColor | [ResourceColor](../../ui/ts-types.md) | -     | 设置被选中或部分选中状态的颜色。 |
 
 ## 事件
 

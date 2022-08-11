@@ -19,13 +19,13 @@
 
 ## 接口
 
-Text(content?: string)
+Text(content?: ResourceStr)
 
 **参数：**
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述                                     |
 | ------- | ------ | ---- | ---- | ---------------------------------------- |
-| content | string | 否    | ''   | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。 |
+| content | [ResourceStr](../../ui/ts-types.md) | 否    | ''   | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。 |
 
 ## 属性
 
@@ -34,9 +34,9 @@ Text(content?: string)
 | textAlign      | TextAlign                                | TextAlign.Start                          | 设置多行文本的文本对齐方式。                           |
 | textOverflow   | {overflow:&nbsp;TextOverflow}            | {overflow:&nbsp;TextOverflow.Clip}       | 设置文本超长时的显示方式。<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。 |
 | maxLines       | number                                   | Infinity                                 | 设置文本的最大行数。                               |
-| lineHeight     | Length                                   | -                                        | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
-| decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
-| baselineOffset | Length                                   | -                                        | 设置文本基线的偏移量。                              |
+| lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)  | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
+| decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
+| baselineOffset | [Length](../../ui/ts-types.md)         | -         | 设置文本基线的偏移量。                              |
 | textCase       | TextCase                                 | TextCase.Normal                          | 设置文本大小写。                                 |
 
 ## TextAlign枚举说明

@@ -19,7 +19,7 @@
 
 ## 接口
 
-Slider(value:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis})
+Slider(options:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
 **参数：**
 
@@ -46,11 +46,12 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
 
 | 名称            | 参数类型    | 默认值   | 描述                |
 | ------------- | ------- | ----- | ----------------- |
-| blockColor    | Color   | -     | 设置滑块的颜色。          |
-| trackColor    | Color   | -     | 设置滑轨的背景颜色。        |
-| selectedColor | Color   | -     | 设置滑轨的已滑动颜色。       |
+| blockColor    | [ResourceColor](../../ui/ts-types.md)   | -     | 设置滑块的颜色。          |
+| trackColor    | [ResourceColor](../../ui/ts-types.md)   | -     | 设置滑轨的背景颜色。        |
+| selectedColor | [ResourceColor](../../ui/ts-types.md)   | -     | 设置滑轨的已滑动颜色。       |
 | showSteps     | boolean | false | 设置当前是否显示步长刻度值。    |
 | showTips      | boolean | false | 设置滑动时是否显示气泡提示百分比。 |
+| trackThickness      | [Length](../../ui/ts-types.md) | - | 设置滑轨的粗细。 |
 
 
 ## 事件
@@ -59,7 +60,7 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
 
 | 名称                                       | 功能描述                                     |
 | ---------------------------------------- | ---------------------------------------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void） | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 |
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 |
 
 ## SliderChangeMode枚举说明
 
@@ -68,6 +69,7 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
 | Begin  | 0    | 用户开始拖动滑块。 |
 | Moving | 1    | 用户拖动滑块中。  |
 | End    | 2    | 用户结束拖动滑块。 |
+| Click    | 3    | 用户点击滑动条使滑块位置移动。 |
 
 ## 示例
 
