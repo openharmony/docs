@@ -406,7 +406,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
             "value": 50 // 需过滤发现设备的距离，单位(cm)
         }
     ]
-};
+  };
   dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); //当有设备发现时，通过deviceFound回调通知给应用程序
   ```
   
