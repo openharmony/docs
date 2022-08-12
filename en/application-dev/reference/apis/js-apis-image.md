@@ -3,6 +3,7 @@
 The **Image** module provides APIs for image processing. You can use the APIs to create a **PixelMap** object with specified properties or read image pixel data (even in an area).
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -21,16 +22,17 @@ Creates a **PixelMap** object. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type                                            | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                   |
+| Name   | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
 | options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 
-| Type                            | Description          |
-| -------------------------------- | -------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Type                            | Description                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object. |
+
 
 **Example**
 
@@ -1007,7 +1009,7 @@ const imageSourceApi = image.createImageSource(fd);
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-Creates an **ImageSource** instance based on the buffer.
+Creates an **ImageSource** instance based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1028,7 +1030,7 @@ const imageSourceApi = image.createImageSource(buf);
 
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance based on the buffer.
+Creates an **ImageSource** instance based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1056,7 +1058,7 @@ const imageSourceApi = image.createImageSource(data);
 
 CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
-Creates an **ImageSource** instance in incremental mode based on the buffer.
+Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1083,7 +1085,7 @@ const imageSourceApi = image.CreateIncrementalSource(buf);
 
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance in incremental mode based on the buffer.
+Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2140,7 +2142,6 @@ Enumerates the pixel formats of images.
 | UNKNOWN                | 0      | Unknown format.       |
 | RGB_565                | 2      | RGB_565.    |
 | RGBA_8888              | 3      | RGBA_8888.|
-| BGRA_8888<sup>9+</sup> | 4      | BGRA_8888.|
 
 ## AlphaType<sup>9+</sup>
 
@@ -2245,7 +2246,7 @@ Describes image properties.
 
 ## PropertyKey<sup>7+</sup>
 
-Describes the exchangeable image file format (Exif) information of an image.
+Describes the exchangeable image file format (EXIF) information of an image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -2321,7 +2322,7 @@ Enumerates the response codes returned upon build errors.
 | ERR_IMAGE_CROP                      | 62980109 | An error occurs during image cropping.                                         |
 | ERR_IMAGE_SOURCE_DATA               | 62980110 | The image source data is incorrect.                                   |
 | ERR_IMAGE_SOURCE_DATA_INCOMPLETE    | 62980111 | The image source data is incomplete.                                 |
-| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | The image format does not match.                                   |
+| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | The image formats do not match.                                   |
 | ERR_IMAGE_UNKNOWN_FORMAT            | 62980113 | Unknown image format.                                     |
 | ERR_IMAGE_SOURCE_UNRESOLVED         | 62980114 | The image source is not parsed.                                     |
 | ERR_IMAGE_INVALID_PARAMETER         | 62980115 | Invalid image parameter.                                     |
@@ -2337,4 +2338,4 @@ Enumerates the response codes returned upon build errors.
 | ERR_IMAGE_READ_PIXELMAP_FAILED      | 62980246 | Failed to read the pixel map.                                 |
 | ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | Failed to write the pixel map.                                 |
 | ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | Modification to the pixel map is not allowed.                               |
-| ERR_IMAGE_CONFIG_FAILED             | 62980259 | The software parameter setting is incorrect.                                         |
+| ERR_IMAGE_CONFIG_FAILED             | 62980259 | The configuration is incorrect.                                         |
