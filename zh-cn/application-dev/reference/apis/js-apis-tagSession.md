@@ -7,7 +7,7 @@
 
 ## **导入模块**
 
-```
+```js
 import tag from '@ohos.nfc.tag';
 ```
 
@@ -24,6 +24,7 @@ tagSession是所有[Nfc tag 技术类型](js-apis-nfctech.md)的基类， 提供
 connectTag(): boolean;
 
 和标签建立连接；
+
 在从标签读取数据或将数据写入标签之前，必须调用此方法。
 
 **需要权限**：ohos.permission.NFC_TAG
