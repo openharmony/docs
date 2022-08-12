@@ -30,7 +30,7 @@ sem \[_ID__ / fulldata_\]
 </tr>
 <tr id="row458mcpsimp"><td class="cellrowborder" valign="top" width="21%" headers="mcps1.2.4.1.1 "><p id="p460mcpsimp"><a name="p460mcpsimp"></a><a name="p460mcpsimp"></a>fulldata</p>
 </td>
-<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p462mcpsimp"><a name="p462mcpsimp"></a><a name="p462mcpsimp"></a>Queries information about all the semaphores in use. The information includes <strong id="b189454249533849"><a name="b189454249533849"></a><a name="b189454249533849"></a>SemID</strong>, <strong id="b162724654333849"><a name="b162724654333849"></a><a name="b162724654333849"></a>Count</strong>, <strong id="b111325307233849"><a name="b111325307233849"></a><a name="b111325307233849"></a>OriginalCount</strong>, <strong id="b182850346833849"><a name="b182850346833849"></a><a name="b182850346833849"></a>Creater(TaskEntry)</strong>, and <strong id="b213750533633849"><a name="b213750533633849"></a><a name="b213750533633849"></a>LastAccessTime</strong>.</p>
+<td class="cellrowborder" valign="top" width="52%" headers="mcps1.2.4.1.2 "><p id="p462mcpsimp"><a name="p462mcpsimp"></a><a name="p462mcpsimp"></a>Queries information about all the semaphores in use. The information includes <strong id="b189454249533849"><a name="b189454249533849"></a><a name="b189454249533849"></a>SemID</strong>, <strong id="b162724654333849"><a name="b162724654333849"></a><a name="b162724654333849"></a>Count</strong>, <strong id="b111325307233849"><a name="b111325307233849"></a><a name="b111325307233849"></a>OriginalCount</strong>, <strong id="b182850346833849"><a name="b182850346833849"></a><a name="b182850346833849"></a>Creator(TaskEntry)</strong>, and <strong id="b213750533633849"><a name="b213750533633849"></a><a name="b213750533633849"></a>LastAccessTime</strong>.</p>
 </td>
 <td class="cellrowborder" valign="top" width="27%" headers="mcps1.2.4.1.3 "><p id="entry464mcpsimpp0"><a name="entry464mcpsimpp0"></a><a name="entry464mcpsimpp0"></a>N/A</p>
 </td>
@@ -103,7 +103,7 @@ OHOS # sem
 </tbody>
 </table>
 
->![](../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../public_sys-resources/icon-note.gif) **NOTE** 
 >The  **ID**  value can be in decimal or hexadecimal format.
 >When  **ID**  is a value within \[0, 1023\], semaphore information of the specified ID is displayed. If the specified semaphore is not used, a message is displayed to inform you of this case. For other values, a message is displayed indicating that the parameter is incorrect.
 
@@ -112,7 +112,7 @@ Example 2: detailed semaphore information
 ```
 OHOS # sem fulldata
 Used Semaphore List:
-   SemID    Count    OriginalCount   Creater(TaskEntry)    LastAccessTime
+   SemID    Count    OriginalCount   Creator(TaskEntry)    LastAccessTime
    ------   ------   -------------   ------------------    --------------
    0xb      0x0      0x0             0x404978fc            0xa1
    0xc      0x0      0x0             0x404978fc            0xa1
@@ -165,7 +165,7 @@ Used Semaphore List:
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p282916401148"><a name="p282916401148"></a><a name="p282916401148"></a>Original count of the semaphore</p>
 </td>
 </tr>
-<tr id="row148347401646"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1782914401646"><a name="p1782914401646"></a><a name="p1782914401646"></a>Creater</p>
+<tr id="row148347401646"><td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.1 "><p id="p1782914401646"><a name="p1782914401646"></a><a name="p1782914401646"></a>Creator</p>
 </td>
 <td class="cellrowborder" valign="top" width="50%" headers="mcps1.2.3.1.2 "><p id="p168298407419"><a name="p168298407419"></a><a name="p168298407419"></a>Address of the entry function of the thread used to create the semaphore</p>
 </td>
