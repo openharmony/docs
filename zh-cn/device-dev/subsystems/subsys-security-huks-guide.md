@@ -4,7 +4,7 @@
 
 ### 功能简介
 
-在安全领域里，选择一个足够安全的加密算法不是最困难的，最难的是密钥管理，因此用户信息的安全就取决于密钥的安全。失去对密钥的控制将导致密码系统的失败，从而危害到用户信息的安全。Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应用，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，对标AndriodKeyStore补充和增强密钥管理相关能力，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
+在安全领域里，密码系统被攻击通常不是因为选择的加密算法不够安全，而是密钥管理不到位。用户信息的安全取决于密钥的安全，所以失去对密钥的控制将导致密码系统的失败，从而危害到用户信息的安全。Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应用，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，对标AndriodKeyStore补充和增强密钥管理相关能力，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
 
 支持特性：
 1. 国密算法SM2，SM3，SM4
@@ -355,7 +355,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   init操作的参数
   <br></br>
   <strong>struct HksBlob *handle</strong>
-  三段式的上下文
+  三段式的句柄
   <br></br>
   <strong>struct HksBlob *token</strong>
   存放安全访问控制的challenge
@@ -386,7 +386,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   <summary><strong>参数说明</strong></summary>
   <pre>
   <strong>const struct HksBlob *handle</strong>
-  三段式的上下文
+  三段式的句柄
   <br></br>
   <strong> const struct HksParamSet *paramSet</strong>
   update操作的参数
@@ -431,7 +431,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   <summary><strong>参数说明</strong></summary>
   <pre>
   <strong>const struct HksBlob *handle</strong>
-  三段式的上下文
+  三段式的句柄
   <br></br>
   <strong> const struct HksParamSet *paramSet</strong>
   finish操作的参数
@@ -476,7 +476,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   <summary><strong>参数说明</strong></summary>
   <pre>
   <strong>const struct HksBlob *handle</strong>
-  三段式的上下文
+  三段式的句柄
   <br></br>
   <strong>const struct HksParamSet *paramSet</strong>
   Abort操作的参数
@@ -599,7 +599,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
             HKS_LOG_E("the pointer param entered is invalid");
             return HKS_ERROR_BAD_STATE;
         }
-        //初始化handle。handle提供session的功能，使得外部可以通过同个handle分多次进行同一密钥操作。
+        //初始化handle。通过handle向session中存储信息，供update/finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
         handle->size = sizeof(uint64_t);
         (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
         //从参数中提取出算法
@@ -657,7 +657,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
 
     uint64_t sessionId;
     struct HuksKeyNode *keyNode = NULL;
-    //根据handle获取本次密码学操作需要的参数
+    //根据handle获取本次三段式操作需要的上下文
     int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
     if (ret != HKS_SUCCESS) {
         HKS_LOG_E("GetParamsForCoreUpdate failed");
