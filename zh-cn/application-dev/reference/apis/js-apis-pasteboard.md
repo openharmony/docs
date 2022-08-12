@@ -25,6 +25,7 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 是 | 否 | Want的MIME类型定义。 |
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 是 | 否 | Plain&nbsp;text文本的MIME类型定义。 |
 | MIMETYPE_TEXT_URI<sup>7+</sup> | string | 是 | 否 | URI文本的MIME类型定义。 |
+| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 是 | 否 | 像素映射的MIME类型定义。 |
 
 
 ## pasteboard.createPlainTextData
@@ -132,6 +133,41 @@ createUriData(uri:string): PasteData
   ```
 
 
+## pasteboard.createPixelMapData<sup>9+</sup>
+
+createPixelMapData((pixelMap: image.PixelMap): PasteData
+
+构建一个PixelMap剪贴板内容对象。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**参数**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | 待保存的PixelMap内容。 |
+
+**返回值**
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 |
+
+**示例**
+
+  ```js
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+  size: { height: 3, width: 5 },
+  pixelFormat: 3,
+  editable: true,
+  alphaType: 1,
+  scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+    var pasteData = pasteboard.createPixelMapData(pixelMap); 
+  })
+  ```
+
+
 ## pasteboard.createPlainTextRecord<sup>7+</sup>
 
 createPlainTextRecord(text:string): PasteDataRecord
@@ -236,6 +272,40 @@ createUriRecord(uri:string): PasteDataRecord
   var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   ```
 
+## pasteboard.createPixelMapRecord<sup>9+</sup>
+
+createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
+
+创建一条pixelMap内容的条目。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**参数**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | PixelMap内容。 |
+
+**返回值**
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的pixelMap内容条目。 |
+
+**示例**
+
+  ```js
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+  size: { height: 3, width: 5 },
+  pixelFormat: 3,
+  editable: true,
+  alphaType: 1,
+  scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+    var record = pasteboard.createPixelMapRecord(pixelMap); 
+  })
+  ```
+
 
 ## PasteDataProperty<sup>7+</sup>
 
@@ -268,6 +338,7 @@ createUriRecord(uri:string): PasteDataRecord
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
+| pixelMap<sup>9+</sup> | image.PixelMap | 是 | 否 | PixelMap内容。 |
 
 
 ### convertToText<sup>7+</sup>
@@ -421,6 +492,37 @@ getPrimaryUri(): string
   ```
 
 
+### getPrimaryPixelMap<sup>9+</sup>
+
+getPrimaryPixelMap(): image.PixelMap
+
+获取首个条目的URI文本内容。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**返回值**
+| 类型 | 说明 |
+| -------- | -------- |
+| image.PixelMap | PixelMap文本内容。 |
+
+**示例**
+
+  ```js
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+  size: { height: 3, width: 5 },
+  pixelFormat: 3,
+  editable: true,
+  alphaType: 1,
+  scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+    var pasteData = pasteboard.createPixelMapData(pixelMap); 
+    var pixelMap = pasteData.getPrimaryPixelMap();
+  })
+  ```
+
+
 ### addTextRecord<sup>7+</sup>
 
 addTextRecord(text: string): void
@@ -515,6 +617,37 @@ addUriRecord(uri: string): void
   ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
+  ```
+
+### addPixelMapRecord<sup>9+</sup>
+
+addPixelMapRecord(pixelMap: image.PixelMap): void
+
+向当前剪贴板内容中添加一条pixelMap条目，并将MIMETYPE_PIXELMAP添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+
+剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**参数**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pixelMap | image.PixelMap | 是 | PixelMap文本内容。 |
+
+**示例**
+
+  ```js
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+  size: { height: 3, width: 5 },
+  pixelFormat: 3,
+  editable: true,
+  alphaType: 1,
+  scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+    var record = pasteboard.createPlainTextData("hello").addPixelMapRecord(pixelMap); 
+  })
   ```
 
 
