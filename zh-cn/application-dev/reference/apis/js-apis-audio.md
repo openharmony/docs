@@ -1915,7 +1915,6 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererCha
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err.message}`);
-    resultFlag = false;
   } else {
     if (AudioRendererChangeInfoArray != null) {
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -1926,7 +1925,6 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererCha
         console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
         console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
         console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
-        var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
         for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -1970,7 +1968,6 @@ await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (Audi
       console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
       console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
       console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
-      var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
       for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -2016,7 +2013,6 @@ audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerCha
         console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
         console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
         console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
-        var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
         for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
           console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
           console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -2058,7 +2054,6 @@ await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (Audi
       console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
       console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
       console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
-      var devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
       for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
         console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
         console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
@@ -2103,7 +2098,6 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
     console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
     console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
     console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
-    var devDescriptor = AudioRendererChangeInfo.deviceDescriptors;
     for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
       console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
       console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
@@ -2265,7 +2259,7 @@ var AudioStreamInfo = {
 }
 
 var audioStreamManager = await audioManager.getStreamManager();
-var result = audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
+let result = audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
 console.info(`isAudioRendererLowLatencySupported success var ${result}`);
 ```
 
@@ -2286,7 +2280,7 @@ console.info(`isAudioRendererLowLatencySupported success var ${result}`);
 
 AudioRenderChangeInfo数组，只读。
 
-**系统能力：**: SystemCapability.Multimedia.Audio.Renderer
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **示例：**
 
@@ -3997,11 +3991,11 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                       |
-| :------- | :---------------------- | :--- | :----------------------------------------- |
-| type     | string                  | 是   | 事件回调类型，支持的事件为：'markReach'。  |
-| frame    | number                  | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调。 |
+| 参数名   | 类型                     | 必填 | 说明                                       |
+| :------- | :----------------------  | :--- | :----------------------------------------- |
+| type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
+| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
+| callback | (position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调。 |
 
 **示例：**
 
