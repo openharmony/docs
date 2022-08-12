@@ -278,7 +278,7 @@ clear(): boolean
 
 ### 示例1（在一个Ability创建的LocalStorage)
 
-```javascript
+```ts
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {    
   storage : LocalStorage    
