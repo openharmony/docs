@@ -430,7 +430,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 表示焦点类型的枚举。
 
-**系统能力：**: SystemCapability.Multimedia.Audio.Core
+**系统能力：**SystemCapability.Multimedia.Audio.Core
 
 | 名称                               | 默认值  | 描述                            |
 | ---------------------------------- | ------ | ------------------------------- |
