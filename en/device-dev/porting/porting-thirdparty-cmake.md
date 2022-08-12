@@ -5,9 +5,9 @@ The following shows how to port the double-conversion library.
 
 ## Source Code Acquisition
 
-Acquire the source code of double-conversion from  [https://github.com/google/double-conversion](https://github.com/google/double-conversion). The following table lists the directory structure.
+Acquire the source code of double-conversion from [https://github.com/google/double-conversion](https://github.com/google/double-conversion). The following table lists the directory structure.
 
-**Table  1**  Directory structure of the source code
+**Table 1** Directory structure of the source code
 
 | Directory | Description |
 | -------- | -------- |
@@ -35,7 +35,7 @@ Cross-compile the double-conversion library by modifying the toolchain to genera
 
 ### Compilation Reference
 
-The  [README.md](https://github.com/google/double-conversion/blob/master/README.md)  file in the code repository details the procedures for compiling the double-conversion library using CMake as well as the testing methods. This document focuses on the building, compilation, and testing of the library. If you have any questions during library porting, refer to the  **README.md**  file. For porting of other third-party libraries that can be independently built with CMake, you can refer to the compilation guides provided by the libraries.
+The [README.md](https://github.com/google/double-conversion/blob/master/README.md) file in the code repository details the procedures for compiling the double-conversion library using CMake as well as the testing methods. This document focuses on the building, compilation, and testing of the library. If you have any questions during library porting, refer to the **README.md** file. For porting of other third-party libraries that can be independently built with CMake, you can refer to the compilation guides provided by the libraries.
 
 ### Cross-Compilation Settings
 
@@ -79,11 +79,12 @@ The following steps show how to configure and modify the toolchains for cross-co
    make -j
    ```
 
-    **OHOS\_SYSROOT\_PATH**  specifies the absolute path where  **sysroot**  is located. For OpenHarmony, set  **OHOS\_SYSROOT\_PATH**  to the absolute path of the  **out/hispark\__xxx_/ipcamera\_hispark\__xxx_/sysroot**  directory. This directory is generated after full compilation is complete. Therefore, complete full compilation before porting.
+    **OHOS\_SYSROOT\_PATH** specifies the absolute path where **sysroot** is located. For OpenHarmony, set **OHOS\_SYSROOT\_PATH** to the absolute path of the **out/hispark\__xxx_/ipcamera\_hispark\__xxx_/sysroot** directory. This directory is generated after full compilation is complete. Therefore, complete full compilation before porting.
 
 3.  View the result.
-    After step 2 is complete, a static library file and test cases are generated in the **build** directory.
-
+    
+After step 2 is complete, a static library file and test cases are generated in the **build** directory.
+   
    **Table 2** Directory structure of compiled files
    
    | Directory                                      | Description                       |
@@ -105,19 +106,19 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 1.  Set up the OpenHarmony environment.
 
-    Using Hi3516D V300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see  [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3516-running.md).
+    Using Hi3516D V300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3516-running.md).
 
     The following screen is displayed after a successful login to the OS.
 
-    **Figure  1** Successful startup of OpenHarmony<a name="fig13279524162418"></a>  
+    **Figure 1** Successful startup of OpenHarmony 
     ![](figures/successful-startup-of-openharmony.png "successful-startup-of-openharmony")
 
-2.  Mount the  **nfs**  directory and put the executable file  **cctest**  into the  **test**  directory \(listed in  [Table 2](#table1452412391911)\) to the  **nfs**  directory.
+2.  Mount the **nfs** directory and put the executable file **cctest** into the **test** directory \(listed in [Table 2](#table1452412391911)\) to the **nfs** directory.
 3.  Perform the test cases.
 
-    If the double-conversion library is not cross-compiled, you can execute the test cases by running the  **make test**  command and obtain the result via CMake. However, this command is not applicable to the library after cross-compilation. This way, you can perform the test cases by executing the generated test case files.
+    If the double-conversion library is not cross-compiled, you can execute the test cases by running the **make test** command and obtain the result via CMake. However, this command is not applicable to the library after cross-compilation. This way, you can perform the test cases by executing the generated test case files.
 
-    -   After the  **nfs**  directory is successfully mounted, run the following command to list all items in the test cases:
+    -   After the **nfs** directory is successfully mounted, run the following command to list all items in the test cases:
     
      ```
      cd nfs
@@ -152,7 +153,7 @@ The following steps show how to configure and modify the toolchains for cross-co
      ...
      ```
 
-    -   Run the following command to test  **test-bignum**:
+    -   Run the following command to test **test-bignum**:
 
     
      ```
@@ -171,9 +172,9 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 1.  Copy the double-conversion library to the OpenHarmony project.
 
-    Copy this library that can be cross-compiled to the  **third\_party**  directory of OpenHarmony. To avoid modifying the  **BUILD.gn**  file in the directory of the third-party library to be ported, add a directory to store adaptation files, including  **BUILD.gn**,  **build\_thirdparty.py**, and  **config.gni**, for converting GN to CMake building.
+    Copy this library that can be cross-compiled to the **third\_party** directory of OpenHarmony. To avoid modifying the **BUILD.gn** file in the directory of the third-party library to be ported, add a directory to store adaptation files, including **BUILD.gn**, **build\_thirdparty.py**, and **config.gni**, for converting GN to CMake building.
 
-    **Table  3**  Directory structure of the ported library
+    **Table 3** Directory structure of the ported library
 
    | Directory                                                    | Description                                                  |
    | -------- | -------- |
@@ -207,15 +208,15 @@ The following steps show how to configure and modify the toolchains for cross-co
      }
      ```
 
-   -   The newly added  **config.gni**  file is used to configure the library in the following example implementation. For other third-party libraries that can be independently compiled using CMake, you only need to change the configuration of  **CMAKE\_FLAG**  when porting them to OpenHarmony.
+   -   The newly added **config.gni** file is used to configure the library in the following example implementation. For other third-party libraries that can be independently compiled using CMake, you only need to change the configuration of **CMAKE\_FLAG** when porting them to OpenHarmony.
 
      ```
      #CMAKE_FLAG: config compile feature
      CMAKE_FLAG = "-DBUILD_TESTING=ON -DCMAKE_CXX_STANDARD=11"
-
-     #toolchain: follow up-layer, depend on $ohos_build_compiler
+   
+     #toolchain: follow up-layer,depend on $ohos_build_compiler
      if (ohos_build_compiler == "clang") {
-         CMAKE_TOOLCHAIN_FLAG = "-  DOHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
+         CMAKE_TOOLCHAIN_FLAG = "-DOHOS_SYSROOT_PATH=${root_out_dir}sysroot"
      } else {
          CMAKE_TOOLCHAIN_FLAG = ""
      }
@@ -224,54 +225,54 @@ The following steps show how to configure and modify the toolchains for cross-co
      CMAKE_TOOLS_PATH = "setting CMake tools path..."
      ```
 
-   - The following shows the implementation of the newly added  **build\_thirdparty.py**  file. For other third-party libraries that can be independently compiled using CMake, you can port them to OpenHarmony without modifications.
+   - The following shows the implementation of the newly added  **build\_thirdparty.py** file. For other third-party libraries that can be independently compiled using CMake, you can port them to OpenHarmony without modifications.
 
+     
+     ```
+     import os
+     import sys
+     from subprocess import Popen
+     import argparse
+     import shlex
    
-       ```
-       import os
-       import sys
-       from subprocess import Popen
-       import argparse
-       import shlex
-     
-       def cmd_exec(command):
-           cmd = shlex.split(command)
-           proc = Popen(cmd)
-           proc.wait()
-           ret_code = proc.returncode
-           if ret_code != 0:
-               raise Exception("{} failed, return code is {}".format(cmd, ret_code))
-     
-       def main():
-           parser = argparse.ArgumentParser()
-           parser.add_argument('--path', help='Build path.')
-           parser.add_argument('--command', help='Build command.')
-           parser.add_argument('--enable', help='enable python.', nargs='*')
-           args = parser.parse_args()
-     
-           if args.enable:
-               if args.enable[0] == 'false':
-                 return
-     
-           if args.path:
-               curr_dir = os.getcwd()
-               os.chdir(args.path)
-               if args.command:
-                   if '&&' in args.command:
-                       command = args.command.split('&&')
-                       for data in command:
-                         cmd_exec(data)
-                 else:
-                     cmd_exec(args.command)
-             os.chdir(curr_dir)
-     
-        if __name__ == '__main__':
-           sys.exit(main())
-       ```
+     def cmd_exec(command):
+         cmd = shlex.split(command)
+         proc = Popen(cmd)
+         proc.wait()
+         ret_code = proc.returncode
+         if ret_code != 0:
+             raise Exception("{} failed, return code is {}".format(cmd, ret_code))
+   
+     def main():
+         parser = argparse.ArgumentParser()
+         parser.add_argument('--path', help='Build path.')
+         parser.add_argument('--command', help='Build command.')
+         parser.add_argument('--enable', help='enable python.', nargs='*')
+         args = parser.parse_args()
+   
+         if args.enable:
+             if args.enable[0] == 'false':
+               return
+   
+         if args.path:
+             curr_dir = os.getcwd()
+             os.chdir(args.path)
+             if args.command:
+                 if '&&' in args.command:
+                     command = args.command.split('&&')
+                     for data in command:
+                       cmd_exec(data)
+               else:
+                   cmd_exec(args.command)
+           os.chdir(curr_dir)
+   
+      if __name__ == '__main__':
+         sys.exit(main())
+     ```
    
    - Add a configuration item in the configuration file to control compiling of the library. By default, library compilation is disabled.
    
-     For example, add the following configuration to the  **//build/lite/ohos\_var.gni**  file:
+     For example, add the following configuration to the **//build/lite/ohos\_var.gni** file:
    
      ```
      declare_args() {
@@ -284,7 +285,7 @@ The following steps show how to configure and modify the toolchains for cross-co
    Execute the following command:
 
    ```
-hb build -T //third_party/double-conversion:double-conversion
+   hb build -T //third_party/double-conversion:double-conversion
    ```
    
    If the compilation is successful, a static library file and test cases will be generated in the  [build](#li15717101715249)  directory.
