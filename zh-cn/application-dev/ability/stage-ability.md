@@ -87,7 +87,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
         console.log("MainAbility onWindowStageCreate")
 
         windowStage.loadContent("pages/index").then((data) => {
-            console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
+            console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
@@ -107,7 +107,8 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    }
    ```
 ### 获取AbilityStage及Ability的配置信息
-AbilityStage类及Ability类均拥有context属性，应用可以通过`this.context`获取Ability实例的上下文，进而获取详细的配置信息。如下示例展示了AbilityStage通过context属性获取包代码路径、hap包名、ability名以及系统语言的方法。具体示例代码如下：
+AbilityStage类及Ability类均拥有context属性，应用可以通过`this.context`获取Ability实例的上下文，进而获取详细的配置信息。
+如下示例展示了AbilityStage通过context属性获取包代码路径、hap包名、ability名以及系统语言的方法。具体示例代码如下：
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
 export default class MyAbilityStage extends AbilityStage {
@@ -140,7 +141,7 @@ export default class MainAbility extends Ability {
         console.log("MainAbility ability name" + abilityInfo.name)
 
         let config = this.context.config
-        console.log("MyAbilityStage config language" + config.language)
+        console.log("MainAbility config language" + config.language)
     }
 }
 ```
