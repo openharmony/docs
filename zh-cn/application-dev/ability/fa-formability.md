@@ -333,7 +333,7 @@ onUpdate(formId) {
      "actions": {
        "routerEvent": {
          "action": "router",
-         "abilityName": "com.example.MyApplication.hmservice.FormAbility",
+         "abilityName": "com.example.entry.MainAbility",
          "params": {
            "message": "add detail"
          }
@@ -346,6 +346,60 @@ onUpdate(formId) {
 
 ![fa-form-example](figures/fa-form-example.png)
 
+### 开发卡片事件
+
+卡片支持为组件设置action，包括router事件和message事件，其中router事件用于Ability跳转，message事件用于卡片开发人员自定义点击事件。关键步骤说明如下：
+
+1. 在hml中为组件设置onclick属性，其值对应到json文件的actions字段中。
+2. 若设置router事件，则
+   - action属性值为"router"；
+   - abilityName为跳转目标的Ability名，如目前DevEco创建的FA模型的MainAbility默认名为com.example.entry.MainAbility；
+   - params为跳转目标Ability的自定义参数，可以按需填写。其值可以在目标Ability启动时的want中的parameters里获取。如FA模型MainAbility的onCreate生命周期里可以通过featureAbility.getWant()获取到want，然后在其parameters字段下获取到配置的参数；
+3. 若设置message事件，则
+   - action属性值为"message"；
+   - params为message事件的用户自定义参数，可以按需填写。其值可以在卡片生命周期函数onEvent中的message里获取；
+
+示例如下：
+
+   - hml:
+   ```html
+   <div class="container">
+       <stack>
+           <div class="container-img">
+               <image src="/common/widget.png" class="bg-img"></image>
+           </div>
+           <div class="container-inner">
+               <text class="title" onclick="routerEvent">{{title}}</text>
+               <text class="detail_text" onclick="messageEvent">{{detail}}</text>
+           </div>
+       </stack>
+   </div>
+   ```
+
+   - json:
+   ```json
+   {
+     "data": {
+       "title": "TitleDefault",
+       "detail": "TextDefault"
+     },
+     "actions": {
+       "routerEvent": {
+         "action": "router",
+         "abilityName": "com.example.entry.MainAbility",
+         "params": {
+           "message": "add detail"
+         }
+       },
+       "messageEvent": {
+         "action": "message",
+         "params": {
+           "message": "add detail"
+         }
+       }
+     }
+   }
+   ```
 ## 相关实例
 
 针对FA模型卡片提供方的开发，有以下相关实例可供参考：
