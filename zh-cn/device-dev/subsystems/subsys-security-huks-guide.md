@@ -1,4 +1,4 @@
-# OpenHarmony通用密钥库开放
+# OpenHarmony通用密钥库开发
 
 ## 概述
 
@@ -544,6 +544,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
 
 1. 关于Core层接口的具体实现，详细代码参见[hks_core_service.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_core_service.c)文件。
 
+```c
    // 导入明文密钥
    int32_t HksCoreImportKey(const struct HksBlob *keyAlias, const struct HksBlob *key,
     const struct HksParamSet *paramSet, struct HksBlob *keyOut)
