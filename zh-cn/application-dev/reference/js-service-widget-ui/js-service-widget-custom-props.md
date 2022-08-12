@@ -35,7 +35,6 @@
 
 
 ```json
-// comp.json
 {
   "data": {
     "progress": {
