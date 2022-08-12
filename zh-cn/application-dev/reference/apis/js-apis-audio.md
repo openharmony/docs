@@ -2143,7 +2143,7 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 **参数：**
 
 | 名称     | 类型     | 必填      | 说明                                                                                           |
-| -------- | ------- | --------- | ------------------------------------------------------------------- ---- |
+| -------- | ------- | --------- | ----------------------------------------------------------------------- |
 | type     | string  | 是        | 事件类型，支持的事件`'audioCapturerChange'`：当音频采集器发生更改时触发。     |
 | callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是     | 回调函数。   |
 
