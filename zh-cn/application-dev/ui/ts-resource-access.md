@@ -11,7 +11,7 @@
 >
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
 >
-> `$r`返回值为Resource对象，可通过[getString](../../reference/apis/js-apis-resource-manager.md#getstring) 方法将获取对应的字符串。
+> `$r`返回值为Resource对象，可通过[getString](../../reference/apis/js-apis-resource-manager.md#getstring) 方法获取对应的字符串。
 
 在xxx.ets文件中，可以使用在resources目录中定义的资源。
 
