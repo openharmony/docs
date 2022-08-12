@@ -606,7 +606,7 @@ var want = {
 }
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)
@@ -652,7 +652,7 @@ var want = {
 var accountId = 111;
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)

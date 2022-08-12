@@ -115,7 +115,7 @@ Data提供方可以自定义数据的增、删、改、查，以及文件打开�
 
 其中，基础依赖包包括：
 - @ohos.ability.featureAbility
-- @ohos.data.dataability
+- @ohos.data.dataAbility
 - @ohos.data.rdb
 
 #### DataAbility接口开发指导
