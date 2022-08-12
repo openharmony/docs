@@ -41,6 +41,7 @@
 @Entry
 @Component
 struct MenuExample {
+  
   build() {
     Column() {
       Text('click for Menu')
@@ -69,8 +70,9 @@ struct MenuExample {
 
 #### 自定义内容菜单
 
-```
-import router from '@system.router';
+```ts
+// xxx.ets
+import router from '@system.router'
 
 @Entry
 @Component

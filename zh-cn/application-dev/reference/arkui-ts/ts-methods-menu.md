@@ -10,9 +10,10 @@ close(): void
 
 可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。
 
-**示例：**
+## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Index {
@@ -26,8 +27,8 @@ struct Index {
         })
     }.height(400)
     .backgroundColor(Color.Pink)
-
   }
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
       Column(){

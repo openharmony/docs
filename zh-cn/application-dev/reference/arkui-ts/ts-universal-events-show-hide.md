@@ -20,7 +20,8 @@
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 import prompt from '@system.prompt'
 
 @Entry
