@@ -14,6 +14,7 @@ You can `import` the native .so that contains the JS processing logic. For examp
 
 * Add **static** to the **nm_register_func** function to prevent symbol conflicts with other .so files.
 * The name of the module registration entry, that is, the function decorated by **\_\_attribute\_\_((constructor))**, must be unique.
+
 ### .so Naming Rules
 
 Each module has a .so file. For example, if the module name is `hello`, name the .so file **libhello.so**. The `nm_modname` field in `napi_module` must be `hello`, which is the same as the module name. The sample code for importing the .so file is `import hello from 'libhello.so'`.
@@ -24,6 +25,10 @@ The Ark engine prevents NAPIs from being called to operate JS objects in non-JS 
 
 * The NAPIs can be used only in JS threads.
 * **env** is bound to a thread and cannot be used across threads. The JS object created by a NAPI can be used only in the thread, in which the object is created, that is, the JS object is bound to the **env** of the thread.
+
+### Importing Header Files
+
+Before using NAPI objects and methods, include **napi/native_api.h**. Otherwise, when only the third-party library header file is included, an error will be reporting, indicating that the interface cannot be found.
 
 ### napi_create_async_work
 
@@ -635,3 +640,8 @@ export default {
   }
 }
 ```
+## Samples
+The following samples are provided for native API development:
+- [`NativeAPI`: NativeAPI (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/Native/NativeAPI)
+- [First Native C++ Application (eTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+- [Native Component (eTS) (API9) ](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
