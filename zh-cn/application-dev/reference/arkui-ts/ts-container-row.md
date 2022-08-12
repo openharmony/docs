@@ -19,7 +19,7 @@
 
 ## 接口
 
-Row(value:{space?: Length})
+Row(value?:{space?: Length})
 
 **参数：**
 
@@ -32,7 +32,7 @@ Row(value:{space?: Length})
 | 名称               | 参数类型                              | 默认值                  | 描述                |
 | ---------------- | --------------------------------- | -------------------- | ----------------- |
 | alignItems       | VerticalAlign                     | VerticalAlign.Center | 在垂直方向上子组件的对齐格式。   |
-| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start      | 设置子组件在水平方向上的对齐格式。 |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start      | 设置子组件在水平方向上的对齐格式。 |
 
 ## VerticalAlign枚举说明
 

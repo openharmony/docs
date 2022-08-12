@@ -27,9 +27,10 @@ Scroll(scroller?: Scroller)
 | 名称             | 参数类型                                     | 默认值                      | 描述        |
 | -------------- | ---------------------------------------- | ------------------------ | --------- |
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | 设置滚动方法。   |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | ScrollDirection.Auto     | 设置滚动条状态。  |
-| scrollBarColor | Color                                    | -                        | 设置滚动条的颜色。 |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | BarState.Off     | 设置滚动条状态。  |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | -                  | 设置滚动条的颜色。 |
 | scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
+| edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
 
 ## ScrollDirection枚举说明
 
@@ -39,17 +40,25 @@ Scroll(scroller?: Scroller)
 | Vertical   | 仅支持竖直方向滚动。 |
 | None       | 不可滚动。      |
 
+## EdgeEffect枚举说明
+
+| 名称     | 描述                                       |
+| ------ | ---------------------------------------- |
+| Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
+| Fade   | 阴影效果，滑动到边缘后会有圆弧状的阴影。          |
+| None   | 滑动到边缘后无效果。                               |
+
 ## 事件
 
 | 名称                                       | 功能描述                          |
 | ---------------------------------------- | ----------------------------- |
-| onScroll(xOffset:&nbsp;number,&nbsp;yOffset:&nbsp;number)&nbsp;=&gt;&nbsp;void | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 |
-| onScrollEdge(side:&nbsp;Edge)&nbsp;=&gt;&nbsp;void | 滚动到边缘事件回调。                    |
-| onScrollEnd()&nbsp;=&gt;&nbsp;void       | 滚动停止事件回调。                     |
+| onScroll(event: (xOffset: number, yOffset: number) => void) | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 |
+| onScrollEdge(event: (side: Edge) => void) | 滚动到边缘事件回调。                    |
+| onScrollEnd(event: () => void)      | 滚动停止事件回调。                     |
 
 ## Scroller
 
-可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，目前支持绑定到List和Scroll组件上。
+可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，目前支持绑定到List、Scroll、ScrollBar上。
 
 
 ### 导入对象
@@ -81,11 +90,17 @@ scrollEdge(value: Edge): void
 
 滚动到容器边缘。
 
-**参数：**
+## Edge枚举说明
 
-| 参数名   | 参数类型 | 必填   | 默认值  | 参数描述      |
-| ----- | ---- | ---- | ---- | --------- |
-| value | Edge | 是    | -    | 滚动到的边缘位置。 |
+| 名称   | 描述 |
+| ----- | ---- |
+| Top | 竖直方向上边缘 |
+| Center | 竖直方向居中位置 |
+| Bottom | 竖直方向下边缘 |
+| Baseline | 交叉轴方向文本基线位置 |
+| Start | 水平方向起始位置 |
+| Middle | 水平方向居中位置 |
+| End | 水平方向末尾位置 |
 
 ### scrollPage
 
@@ -98,11 +113,11 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 | 参数名       | 参数类型    | 必填   | 默认值  | 参数描述                           |
 | --------- | ------- | ---- | ---- | ------------------------------ |
 | next      | boolean | 是    | -    | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
-| direction | Axis    | 否    | -    | 设置滚动方向为水平或竖直方向。                |
+| direction | [Axis](ts-appendix-enums.md#axis枚举说明)    | 否    | -    | 设置滚动方向为水平或竖直方向。                |
 
 ### currentOffset
 
-scroller.currentOffset(): Object
+currentOffset(): Object
 
 
 返回当前的滚动偏移量。
@@ -115,7 +130,7 @@ scroller.currentOffset(): Object
 
 ### scrollToIndex
 
-scroller.scrollToIndex(value: number): void
+scrollToIndex(value: number): void
 
 
 滑动到指定Index。

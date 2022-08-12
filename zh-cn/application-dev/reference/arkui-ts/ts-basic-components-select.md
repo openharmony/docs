@@ -18,9 +18,8 @@
 
 Select(options: Array\<SelectOption\>)
 
-**参数：**
-
-| 参数名   | 参数类型                                | 必填   | 默认值  | 参数描述    |
+**SelectOption对象说明：**
+| 参数名   | 参数类型                          | 必填   | 默认值  | 参数描述    |
 | ----- | ----------------------------------- | ---- | ---- | ------- |
 | value | [ResourceStr](../../ui/ts-types.md) | 是    | -    | 下拉选项内容。 |
 | icon  | [ResourceStr](../../ui/ts-types.md) | 否    | -    | 下拉选项图片。 |

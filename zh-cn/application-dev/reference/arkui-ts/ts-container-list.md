@@ -19,21 +19,24 @@
 
 ## 接口
 
-List(value:{space?: number, initialIndex?: number})
+List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller})
 
 **参数：**
 
 | 参数名          | 参数类型   | 必填   | 默认值  | 参数描述                                     |
 | ------------ | ------ | ---- | ---- | ---------------------------------------- |
-| space        | number | 否    | 0    | 列表项间距。                                   |
+| space        | Length | 否    | 0    | 列表项间距。                                   |
 | initialIndex | number | 否    | 0    | 设置当前List初次加载时视口起始位置显示的item，即显示第一个item，如设置的序号超过了最后一个item的序号，则设置不生效。 |
+| scroller  | [Scroller](ts-container-scroll.md#scroller) | 否    | -          | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 
 ## 属性
 
 | 名称                           | 参数类型                                     | 默认值               | 描述                                       |
 | ---------------------------- | ---------------------------------------- | ----------------- | ---------------------------------------- |
 | listDirection                | [Axis](ts-appendix-enums.md#axis枚举说明)    | Vertical          | 设置List组件排列方向参照Axis枚举说明。                  |
-| divider                      | {<br/>strokeWidth:&nbsp;Length,<br/>color?:Color,<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>} | -                 | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
+| divider                      | {<br/>strokeWidth:&nbsp;Length,<br/>color?:[ResourceColor](../../ui/ts-types.md),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>} | -                 | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | BarState.Off     | 设置滚动条状态。  |
+| cachedCount | number                                   | 1                        | 设置预加载的ListItem的数量。 |
 | editMode                     | boolean                                  | false             | 声明当前List组件是否处于可编辑模式。                     |
 | edgeEffect                   | EdgeEffect                               | EdgeEffect.Spring | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。         |
 | chainAnimation               | boolean                                  | false             | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：list内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
@@ -45,14 +48,33 @@ List(value:{space?: number, initialIndex?: number})
 | 名称     | 描述                                       |
 | ------ | ---------------------------------------- |
 | Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
+| Fade   | 阴影效果，滑动到边缘后会有圆弧状的阴影。          |
 | None   | 滑动到边缘后无效果。                               |
 
 ## 事件
 
 | 名称                                       | 功能描述                     |
 | ---------------------------------------- | ------------------------ |
-| onItemDelete(index:&nbsp;number)&nbsp;=&gt;&nbsp;boolean | 列表项删除时触发。                |
-| onScrollIndex(firstIndex:&nbsp;number,&nbsp;lastIndex:&nbsp;number)&nbsp;=&gt;&nbsp;void | 当前列表显示的起始位置和终止位置发生变化时触发。 |
+| onItemDelete(event: (index: number) => boolean) | 列表项删除时触发。                |
+| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | 列表滑动时触发，返回值scrollOffset为滑动偏移量，scrollState为当前滑动状态。 |
+| onScrollIndex(event: (start: number, end: number) => void) | 列表滑动时触发，返回值分别为滑动起始位置索引值与滑动结束位置索引值。 |
+| onReachStart(event: () => void) | 列表到达起始位置时触发。 |
+| onReachEnd(event: () => void) | 列表到底末尾位置时触发。 |
+| onScrollStop(event: () => void) | 列表滑动停止时触发。 |
+| onItemMove(event: (from: number, to: number) => boolean) | 列表元素发生移动时触发，返回值from、to分别为移动前索引值与移动后索引值。 |
+| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽列表元素时触发，返回值event见ItemDragInfo对象说明，itemIndex为被拖拽列表元素索引值。 |
+| onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入列表元素范围内时触发，返回值event见ItemDragInfo对象说明。 |
+| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在列表元素范围内移动时触发，返回值event见ItemDragInfo对象说明，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置。 |
+| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开列表元素时触发，返回值event见ItemDragInfo对象说明，itemIndex为拖拽离开的列表元素索引值。 |
+| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的列表元素可作为拖拽释放目标，当在列表元素内停止拖拽时触发，返回值event见ItemDragInfo对象说明，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置，isSuccess为是否成功释放。 |
+
+## ScrollState枚举说明
+
+| 名称     | 描述                     |
+| ------ | ------------------------- |
+| Idle    | 未滑动状态。           |
+| Scroll   | 惯性滑动状态。          |
+| Fling   | 手指拖动状态。           |
 
 >  **说明：**
 >
