@@ -39,6 +39,12 @@ SDK 提供全量的 API 给 IDE，IDE 通过开发者的项目支持的设备，
 
 ## SysCap开发指导
 
+### PCID获取
+
+PCID，全称 Product Compatibility ID，包含当前设备支持的 syscap 信息。获取所有设备 PCID 的认证中心正在建设中，目前需要找对应设备的厂商获取该设备的 PCID。
+
+
+
 ### PCID导入
 
 DevEco Studio 工程支持 PCID 的导入。导入的 PCID 文件解码后输出的 syscap 会被写入 syscap.json 文件中。
