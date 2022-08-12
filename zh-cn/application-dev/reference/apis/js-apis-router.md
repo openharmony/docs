@@ -5,7 +5,7 @@
 > **说明**
 >
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > - 页面路由需要在页面渲染完成之后才能调用，在onInit和onReady生命周期中页面还处于渲染阶段，禁止调用页面路由方法。
 
 ## 导入模块
@@ -23,9 +23,9 @@ push(options: RouterOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名  | 类型                            | 必填 | 说明               |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | 是   | 跳转页面描述信息。 |
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。 |
 
 
 **示例：**
@@ -49,10 +49,10 @@ push(options: RouterOptions, mode: RouterMode): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名            | 类型                            | 必填 | 说明                 |
-| ----------------- | ------------------------------- | ---- | -------------------- |
-| options           | [RouterOptions](#routeroptions) | 是   | 跳转页面描述信息。   |
-| mode<sup>9+</sup> | [RouterMode](#routermode9)      | 是   | 跳转页面使用的模式。 |
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 
 **示例：**
@@ -77,9 +77,9 @@ replace(options: RouterOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名  | 类型                            | 必填 | 说明               |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。 |
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。 |
 
 **示例：**
 
@@ -101,10 +101,10 @@ replace(options: RouterOptions, mode: RouterMode): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名            | 类型                            | 必填 | 说明                 |
-| ----------------- | ------------------------------- | ---- | -------------------- |
-| options           | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。   |
-| mode<sup>9+</sup> | [RouterMode](#routermode9)      | 是   | 跳转页面使用的模式。 |
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 **示例：**
 
@@ -126,9 +126,9 @@ back(options?: RouterOptions ): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名  | 类型                            | 必填 | 说明                                                         |
-| ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
+| 参数名     | 类型                              | 必填   | 说明                                       |
+| ------- | ------------------------------- | ---- | ---------------------------------------- |
+| options | [RouterOptions](#routeroptions) | 否    | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
 
 **示例：**
 
@@ -159,8 +159,8 @@ getLength(): string
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
-| 类型   | 说明                               |
-| ------ | ---------------------------------- |
+| 类型     | 说明                 |
+| ------ | ------------------ |
 | string | 页面数量，页面栈支持最大数值是32。 |
 
 **示例：**
@@ -179,8 +179,8 @@ getState(): RouterState
 
 **返回值：**
 
-| 类型                        | 说明           |
-| --------------------------- | -------------- |
+| 类型                          | 说明      |
+| --------------------------- | ------- |
 | [RouterState](#routerstate) | 页面状态信息。 |
 **示例：** 
 
@@ -197,11 +197,11 @@ console.log('current path = ' + page.path);
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称  | 类型   | 说明                                                         |
-| ----- | ------ | ------------------------------------------------------------ |
+| 名称    | 类型     | 说明                                 |
+| ----- | ------ | ---------------------------------- |
 | index | number | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
-| name  | string | 表示当前页面的名称，即对应文件名。                           |
-| path  | string | 表示当前页面的路径。                                         |
+| name  | string | 表示当前页面的名称，即对应文件名。                  |
+| path  | string | 表示当前页面的路径。                         |
 
 ## router.enableAlertBeforeBackPage
 
@@ -212,9 +212,9 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名  | 类型                                      | 必填 | 说明               |
-| ------- | ----------------------------------------- | ---- | ------------------ |
-| options | [EnableAlertOptions](#enablealertoptions) | 是   | 文本弹窗信息描述。 |
+| 参数名     | 类型                                       | 必填   | 说明        |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [EnableAlertOptions](#enablealertoptions) | 是    | 文本弹窗信息描述。 |
 
 **示例：**
 
@@ -229,9 +229,9 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称    | 类型   | 必填 | 说明             |
-| ------- | ------ | ---- | ---------------- |
-| message | string | 是   | 询问对话框内容。 |
+| 名称      | 类型     | 必填   | 说明       |
+| ------- | ------ | ---- | -------- |
+| message | string | 是    | 询问对话框内容。 |
 
 ## router.disableAlertBeforeBackPage
 
@@ -256,8 +256,8 @@ getParams(): Object
 
 **返回值：**
 
-| 类型   | 说明                               |
-| ------ | ---------------------------------- |
+| 类型     | 说明                |
+| ------ | ----------------- |
 | Object | 发起跳转的页面往当前页传入的参数。 |
 
 **示例：**
@@ -272,10 +272,10 @@ router.getParams();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite。
 
-| 名称   | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | 是   | 表示目标页面的uri，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果uri的值是"/"，则跳转到首页。 |
-| params | Object | 否   | 跳转时要同时传递到目标页面的数据，跳转到目标页面后，参数可以在页面中直接使用，如this.data1(data1为跳转时params参数中的key值)。如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
+| 名称     | 类型     | 必填   | 说明                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| url    | string | 是    | 表示目标页面的uri，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果uri的值是"/"，则跳转到首页。 |
+| params | Object | 否    | 跳转时要同时传递到目标页面的数据，跳转到目标页面后，参数可以在页面中直接使用，如this.data1(data1为跳转时params参数中的key值)。如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 |
 
 
   > **说明：**
@@ -287,9 +287,9 @@ router.getParams();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称     | 描述                                                         |
-| -------- | ------------------------------------------------------------ |
-| Standard | 标准模式。                                                   |
+| 名称       | 描述                                       |
+| -------- | ---------------------------------------- |
+| Standard | 标准模式。                                    |
 | Single   | 单实例模式。<br/>如果目标页面的url在页面栈中已经存在同url页面，离栈顶最近的页面会被移动到栈顶，移动后的页面为新建页。<br/>如目标页面的url在页面栈中不存在同url页面，按标准模式跳转。 |
 
 ## 完整示例
