@@ -276,19 +276,19 @@ createUriRecord(uri:string): PasteDataRecord
 
 createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 
-创建一条pixelMap内容的条目。
+创建一条PixelMap对象内容的条目。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | PixelMap内容。 |
+| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | PixelMap对象内容。 |
 
 **返回值**
 | 类型 | 说明 |
 | -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 一条新建的pixelMap内容条目。 |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的PixelMap对象内容条目。 |
 
 **示例**
 
@@ -496,14 +496,14 @@ getPrimaryUri(): string
 
 getPrimaryPixelMap(): image.PixelMap
 
-获取首个条目的URI文本内容。
+获取首个条目的PixelMap对象内容。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **返回值**
 | 类型 | 说明 |
 | -------- | -------- |
-| image.PixelMap | PixelMap文本内容。 |
+| image.PixelMap | PixelMap对象内容。 |
 
 **示例**
 
@@ -632,7 +632,7 @@ addPixelMapRecord(pixelMap: image.PixelMap): void
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pixelMap | image.PixelMap | 是 | PixelMap文本内容。 |
+| pixelMap | image.PixelMap | 是 | PixelMap对象内容。 |
 
 **示例**
 
