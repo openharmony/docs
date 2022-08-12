@@ -1,10 +1,10 @@
-# Security_Huks
+# OpenHarmony通用密钥库开放
 
 ## 概述
 
 ### 功能简介
 
-Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应用，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，对标AndriodKeyStore补充和增强密钥管理相关能力，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
+在安全领域里，选择一个足够安全的加密算法不是最困难的，最难的是密钥管理，因此用户信息的安全就取决于密钥的安全。失去对密钥的控制将导致密码系统的失败，从而危害到用户信息的安全。Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应用，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，对标AndriodKeyStore补充和增强密钥管理相关能力，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
 
 支持特性：
 1. 国密算法SM2，SM3，SM4
@@ -45,7 +45,7 @@ Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应�
   密钥在HUKS CORE外部随机生成，之后使用HUKS CORE中生成的专门用于导入密钥的非对称密钥对的公钥加密，安全导入到HUKS CORE中使用对应的私钥解密。导入之后密钥明文全生命周期不出HUKS CORE。
 
 
-### 运作机制
+### 实现原理
 
 以密钥的生成为例：
 上层应用通过密钥管理SDK调用到HUKS Service，Huks Service再调用Huks Core，Huks Core会调用密钥管理模块生成密钥。之后Huks Core使用基于RootKey派生的加密密钥对生成的密钥加密再传给Service侧，Service侧再以文件形式存储加密后的密钥。
@@ -65,13 +65,15 @@ Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应�
 
 #### 密钥存储态
 
+为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的相关信息，存储态下密钥属性和密钥的组合结构如下：
+
 ![image](figures/HUKS-KeyBlob.png)
 
 ## 开发指导
 
 ### 场景介绍
 
-HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。
+HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。如果想要使用自己的实现替换HUKS的CORE层，需要实现以下接口。
 
 ### 接口说明
 
@@ -542,45 +544,13 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
 
 1. 关于Core层接口的具体实现，详细代码参见[hks_core_service.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_core_service.c)文件。
 
-   ```c++
-   // 初始化
-   int32_t HksCoreModuleInit(void)
-   {
-        int32_t ret;
-        g_huksMutex = HksMutexCreate();
-        if (g_huksMutex == NULL) {
-            HKS_LOG_E("Hks mutex init failed, null pointer!");
-            ret = HKS_FAILURE;
-            return ret;
-        }
-
-        ret = HksCryptoAbilityInit();
-        if (ret != HKS_SUCCESS) {
-            HKS_LOG_E("Hks init crypto ability failed, ret = %d", ret);
-            return ret;
-        }
-
-        ret = HksCoreInitAuthTokenKey();
-        if (ret != HKS_SUCCESS) {
-            HKS_LOG_E("Hks init auth token key failed, ret = %d", ret);
-            return ret;
-        }
-        #ifndef _HARDWARE_ROOT_KEY_
-        ret = HksRkcInit();
-        if (ret != HKS_SUCCESS) {
-            HKS_LOG_E("Hks rkc init failed! ret = 0x%X", ret);
-        }
-        #endif
-
-        return ret;
-   }
-
    // 导入明文密钥
    int32_t HksCoreImportKey(const struct HksBlob *keyAlias, const struct HksBlob *key,
     const struct HksParamSet *paramSet, struct HksBlob *keyOut)
    {
         struct HksBlob innerKey = { 0, NULL };
         struct HksParam *importKeyTypeParam = NULL;
+        //在属性里加入IMPORT_KEY
         int32_t ret = HksGetParam(paramSet, HKS_TAG_IMPORT_KEY_TYPE, &importKeyTypeParam);
         if ((ret == HKS_SUCCESS) &&
             ((importKeyTypeParam->uint32Param == HKS_KEY_TYPE_PRIVATE_KEY) ||
@@ -593,12 +563,12 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
             HKS_LOG_E("translate key to inner format failed, ret = %d", ret);
             return ret;
         }
-
+        //检查import key的参数
         ret = HksCoreCheckImportKeyParams(keyAlias, &innerKey, paramSet, keyOut);
         if (ret != HKS_SUCCESS) {
             return ret;
         }
-
+        //构建存储态的密钥
         ret = HksBuildKeyBlob(keyAlias, HKS_KEY_FLAG_IMPORT_KEY, &innerKey, paramSet, keyOut);
         (void)memset_s(innerKey.data, innerKey.size, 0, innerKey.size);
         HKS_FREE_BLOB(innerKey);
@@ -628,10 +598,10 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
             HKS_LOG_E("the pointer param entered is invalid");
             return HKS_ERROR_BAD_STATE;
         }
-
+        //初始化handle。handle提供session的功能，使得外部可以通过同个handle分多次进行同一密钥操作。
         handle->size = sizeof(uint64_t);
         (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
-
+        //从参数中提取出算法
         int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
         if (ret != HKS_SUCCESS) {
             HksDeleteKeyNode(keyNode->handle);
@@ -644,7 +614,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
             HksDeleteKeyNode(keyNode->handle);
             return ret;
         }
-
+        
         uint32_t i;
         uint32_t size = HKS_ARRAY_SIZE(g_hksCoreInitHandler);
         for (i = 0; i < size; i++) {
@@ -670,6 +640,69 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
         HKS_LOG_D("HksCoreInit in Core end");
         return ret;
     }
+   
+   // 三段式update接口
+   int32_t HksCoreUpdate(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
+    struct HksBlob *outData)
+{
+    HKS_LOG_D("HksCoreUpdate in Core start");
+    uint32_t pur = 0;
+    uint32_t alg = 0;
+
+    if (handle == NULL || paramSet == NULL || inData == NULL) {
+        HKS_LOG_E("the pointer param entered is invalid");
+        return HKS_FAILURE;
+    }
+
+    uint64_t sessionId;
+    struct HuksKeyNode *keyNode = NULL;
+    //根据handle获取本次密码学操作需要的参数
+    int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
+    if (ret != HKS_SUCCESS) {
+        HKS_LOG_E("GetParamsForCoreUpdate failed");
+        return ret;
+    }
+    //校验参数
+    ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
+    if (ret != HKS_SUCCESS) {
+        HksDeleteKeyNode(sessionId);
+        HKS_LOG_E("HksCoreUpdate secure access verify failed");
+        return ret;
+    }
+
+    uint32_t i;
+    uint32_t size = HKS_ARRAY_SIZE(g_hksCoreUpdateHandler);
+    for (i = 0; i < size; i++) {
+        //调用对应的密码学处理函数
+        if (g_hksCoreUpdateHandler[i].pur == pur) {
+            struct HksBlob appendInData = { 0, NULL };
+            ret = HksCoreAppendAuthInfoBeforeUpdate(keyNode, pur, paramSet, inData, &appendInData);
+            if (ret != HKS_SUCCESS) {
+                HKS_LOG_E("before update: append auth info failed");
+                break;
+            }
+            ret = g_hksCoreUpdateHandler[i].handler(keyNode, paramSet,
+                appendInData.data == NULL ? inData : &appendInData, outData, alg);
+            if (appendInData.data != NULL) {
+                HKS_FREE_BLOB(appendInData);
+            }
+            break;
+        }
+    }
+
+    if (ret != HKS_SUCCESS) {
+        HksDeleteKeyNode(keyNode->handle);
+        HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
+        return ret;
+    }
+
+    if (i == size) {
+        HksDeleteKeyNode(sessionId);
+        HKS_LOG_E("don't found purpose, pur : %u", pur);
+        return HKS_FAILURE;
+    }
+    return ret;
+}
    ```
 
 ### 调测验证
