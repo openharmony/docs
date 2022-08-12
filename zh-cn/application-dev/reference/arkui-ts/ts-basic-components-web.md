@@ -15,12 +15,14 @@
 
 ## 接口
 
-Web(options: { src: string, controller?: WebController })
+Web(options: { src: ResourceStr, controller: WebController })
+
+表1 options参数说明
 
 **参数：**
 | 参数名        | 参数类型                            | 必填   | 默认值  | 参数描述    |
 | ---------- | ------------------------------- | ---- | ---- | ------- |
-| src        | string                          | 是    | -    | 网页资源地址。 |
+| src        | [ResourceStr](../../ui/ts-types.md)                          | 是    | -    | 网页资源地址。 |
 | controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
 
 **示例：**

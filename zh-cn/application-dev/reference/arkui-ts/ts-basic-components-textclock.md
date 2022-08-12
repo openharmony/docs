@@ -16,14 +16,14 @@ TextClock通过文本显示当前系统时间，支持不同时区的时间显�
 
 ## 接口
 
-TextClock(options?: {timeZoneOffset?: number, contorller?: TextClockController})
+TextClock(options?: {timeZoneOffset?: number, controller?: TextClockController})
 
 **参数:**
 
 | 参数名            | 参数类型                                     | 必填   | 默认值   | 参数描述                                     |
 | -------------- | ---------------------------------------- | ---- | ----- | ---------------------------------------- |
 | timeZoneOffset | number                                   | 否    | 时区偏移量 | 设置时区偏移量。取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8；对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间。 |
-| contorller     | [TextClockContorller](#TextClockController) | 否    | null  | 绑定一个控制器，用来控制文本时钟的状态。                     |
+| controller     | [TextClockController](#TextClockController) | 否    | null  | 绑定一个控制器，用来控制文本时钟的状态。                     |
 
 ## 属性
 

@@ -23,8 +23,8 @@ Divider()
 | 名称          | 参数类型                                     | 默认值               | 描述                                       |
 | ----------- | ---------------------------------------- | ----------------- | ---------------------------------------- |
 | vertical    | boolean                                  | false             | 使用水平分割线还是垂直分割线，false:&nbsp;水平分割线，&nbsp;true:垂直分割线。 |
-| color       | Color                                    | -                 | 设置分割线颜色。                                 |
-| strokeWidth | Length                                   | 1                 | 设置分割线宽度。                                 |
+| color       | [ResourceColor](../../ui/ts-types.md)                                    | -                 | 设置分割线颜色。                                 |
+| strokeWidth | [Length](../../ui/ts-types.md)                                   | 1                 | 设置分割线宽度。                                 |
 | lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle枚举说明) | LineCapStyle.Butt | 设置分割线条的端点样式。                             |
 
 

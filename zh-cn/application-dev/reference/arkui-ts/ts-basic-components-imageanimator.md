@@ -55,11 +55,11 @@ ImageAnimator()
 
 | 名称                              | 功能描述            |
 | ------------------------------- | --------------- |
-| onStart()&nbsp;=&gt;&nbsp;void  | 状态回调，动画开始播放时触发。 |
-| onPause()&nbsp;=&gt;&nbsp;void  | 状态回调，动画暂停播放时触发。 |
-| onRepeat()&nbsp;=&gt;&nbsp;void | 状态回调，动画重新播放时触发。 |
-| onCancel()&nbsp;=&gt;&nbsp;void | 状态回调，动画取消播放时触发。 |
-| onFinish()&nbsp;=&gt;&nbsp;void | 状态回调，动画播放完成时触发。 |
+| onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)  | 状态回调，动画开始播放时触发。 |
+| onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)  | 状态回调，动画暂停播放时触发。 |
+| onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画重新播放时触发。 |
+| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画取消播放时触发。 |
+| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画播放完成时触发。 |
 
 
 ## 示例
