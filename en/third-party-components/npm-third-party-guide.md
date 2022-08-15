@@ -1,17 +1,18 @@
-# Using OpenHarmony JS/TS Third-Party Components
+# Using OpenHarmony JS and TS Third-Party Components
 ## Overview
 
-OpenHarmony JS/TS third-party components are delivered in the form of OpenHarmony npm packages. Developed based on the traditional npm components, OpenHarmony npm shared packages come with specially designed project structures and configuration files. Such a package enables multiple modules or projects to share code related to OpenHarmony UI and resources. You can go to the [official npm website](https://docs.npmjs.com/about-npm) to learn about the basic functions and mechanisms of npm.
+OpenHarmony JS and TS third-party components are delivered in the form of OpenHarmony npm packages. Developed based on the traditional npm components, OpenHarmony npm shared packages come with specially designed project structures and configuration files. Such a package enables multiple modules or projects to share code related to OpenHarmony UI and resources. You can go to the [official npm website](https://docs.npmjs.com/about-npm) to learn about the basic functions and mechanisms of npm.
 
-## Searching for OpenHarmony JS/TS Third-Party Components
+## Searching for OpenHarmony JS and TS Third-Party Components
 
 1. Find the [OpenHarmony-TPC/tpc_resource](https://gitee.com/openharmony-tpc/tpc_resource) project on the Gitee website. You can find a component based on the directory index.
 
 2. Visit the [OpenHarmony website](https://www.openharmony.cn/mainPlay/tpc) and search for required third-party components by type, category, or keyword.
+   
 
-## Installing and Using OpenHarmony JS/TS Third-Party Components
+## Installing and Using OpenHarmony JS and TS Third-Party Components
 
-During application development, you can import JS/TS third-party components in the form of source code or OpenHarmony npm packages. Perform the following steps to import and use an OpenHarmony npm package. For details about how to import and use the source code, see **README.md** of the corresponding third-party components.
+During application development, you can import JS and TS third-party components in the form of source code or OpenHarmony npm packages. Perform the following steps to import and use an OpenHarmony npm package. For details about how to import and use the source code, see **README.md** of the corresponding third-party components.
 
 1. Configure the OpenHarmony npm environment. For details, see [Installing the OpenHarmony npm Package](https://gitee.com/openharmony-tpc/docs/blob/master/OpenHarmony_npm_usage-en.md).
 
