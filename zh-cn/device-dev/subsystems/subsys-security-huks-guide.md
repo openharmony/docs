@@ -715,505 +715,388 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
 
 ### 调测验证
 
-开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用。JS测试代码如下：
+开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用。JS测试代码示例如下：
 
-RSA512密钥导入导出：
-
-```js
-### **密钥导入导出**
-
-**功能定义：**
-
- 可以使用 CNG 导入和导出 对称密钥和非对称密钥。 可以使用密钥导出和导入功能在计算机之间移动密钥。 
-
-**测试流程**：1.生成密钥；2.导出密钥；3.导入密钥
-
-**参数：** 
-
-| 参数名            | 类型        | 必填 | 说明                     |
-| ----------------- | ----------- | ---- | ------------------------ |
-| srcKeyAlias       | string      | 是   | 生成密钥别名。           |
-| srcKeyAliasSecond | string      | 是   | 导入密钥别名。           |
-| HuksOptions       | HuksOptions | 是   | 用于存放生成key所需TAG。 |
-| encryptOptions    | HuksOptions | 是   | 用于存放导入key所需TAG。 |
-
-提示：参数类型可在docs\zh-cn\application-dev\reference\apis\js-apis-huks.md中查看
-
-**示例：**
-
-```ets
-/* 以生成RSA512密钥为例 */
-var srcKeyAlias = 'hukRsaKeyAlias';
-var srcKeyAliasSecond = 'huksRsaKeyAliasSecond';
-
-/* 集成生成密钥参数集 */
-var properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA,
-}
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-}
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
-}
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_ECB,
-}
-properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
-}
-properties[5] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
-}
-var HuksOptions = {
-    properties: properties,
-    inData: new Uint8Array(new Array())
-}
-
-/* 生成密钥 */
-await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
-    console.info(`test generateKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test generateKey err information: ' + JSON.stringify(err));
-});
-
-/* 导出密钥 */
-await huks.exportKey(srcKeyAlias, HuksOptions).then((data) => {
-    console.info(`test ExportKey data: ${JSON.stringify(data)}`);
-    exportKey = data.outData;
-}).catch((err) => {
-    console.info('test ImportKey err information: ' + JSON.stringify(err));
-});
-
-/* 集成导入密钥参数集
-var propertiesEncrypt = new Array();
-propertiesEncrypt[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA,
-}
-propertiesEncrypt[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
-}
-propertiesEncrypt[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
-}
-propertiesEncrypt[3] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_ECB,
-}
-propertiesEncrypt[4] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
-}
-propertiesEncrypt[5] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-}
-var encryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
-}
-
-/* 导入密钥 */
-encryptOptions.inData = exportKey;
-await huks.importKey(srcKeyAliasSecond, encryptOptions).then((data) => {
-    console.info(`test ImportKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test ImportKey err information: ' + JSON.stringify(err));;
-});
-```
-
-SM4密钥加解密：
+AES生成密钥和加密：
 
 ```js
-### 密钥加解密
+import huks from '@ohos.security.huks';
 
-**功能定义：** 发送和接收数据的双方使用相同的或对称的密钥对明文进行加密解密运算的加密方法。
+export default {
+    data: {},
+    onInit() {
+        console.log(`huks demo cipher_aes init finish`);
+    },
+    onShow() {
+        console.log(`huks demo cipher_aes onshow start`);
+        this.start();
+        console.log(`huks demo cipher_aes onshow end`);
+    },
+    async start() {
+        let handle;
+        let IV = '0000000000000000';
+        let cipherInData = 'Hks_AES_Cipher_Test_101010101010101010110_string';
+        let srcKeyAlias = 'huksCipherAesSrcKeyAlias';
+        let encryptUpdateResult = new Array()
+        let decryptUpdateResult = new Array()
+        let properties = new Array();
 
-**测试流程**：1.生成密钥；2.密钥加密；3.密钥解密；4.对比解密数据与密钥数据是否一致
+        /* 集成生成密钥参数集 & 加密参数集 */
+        properties[0] = {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_AES,
+        }
+        properties[1] = {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value:
+            huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+            huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+        }
+        properties[2] = {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+        }
+        properties[3] = {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_CBC,
+        }
+        properties[4] = {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+        }
 
-**参数：** 
+        let HuksOptions = {
+            properties: properties,
+            inData: new Uint8Array(new Array())
+        }
 
-| 参数名         | 类型        | 必填 | 说明                     |
-| -------------- | ----------- | ---- | ------------------------ |
-| srcKeyAlias    | string      | 是   | 密钥别名。               |
-| HuksOptions    | HuksOptions | 是   | 用于存放生成key所需TAG。 |
-| encryptOptions | HuksOptions | 是   | 用于存放加密key所需TAG。 |
-| decryptOptions | HuksOptions | 是   | 用于存放解密key所需TAG。 |
+        /* 生成密钥 */
+        await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
+            console.log(`test generateKey data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test generateKey err information: ' + JSON.stringify(err));
+        });
+        let propertiesEncrypt = new Array();
+        propertiesEncrypt[0] = {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_AES,
+        }
+        propertiesEncrypt[1] = {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
+        }
+        propertiesEncrypt[2] = {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+        }
+        propertiesEncrypt[3] = {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+        }
+        propertiesEncrypt[4] = {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_CBC,
+        }
+        propertiesEncrypt[5] = {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
+        }
+        propertiesEncrypt[6] = {
+            tag: huks.HuksTag.HUKS_TAG_IV,
+            value: this.stringToUint8Array(IV)
+        }
+        let encryptOptions = {
+            properties: propertiesEncrypt,
+            inData: new Uint8Array(new Array())
+        }
 
-提示：参数类型可在docs\zh-cn\application-dev\reference\apis\js-apis-huks.md中查看
+        /* 进行密钥加密操作 */
+        await huks.init(srcKeyAlias, encryptOptions).then((data) => {
+            console.log(`test init data: ${JSON.stringify(data)}`);
+            handle = data.handle;
+        }).catch((err) => {
+            console.log('test init err information: ' + JSON.stringify(err));
+        });
+        encryptOptions.inData = this.stringToUint8Array(cipherInData)
+        await huks.update(handle, encryptOptions).then(async (data) => {
+            console.log(`test update data ${JSON.stringify(data)}`);
+            encryptUpdateResult = Array.from(data.outData);
+        }).catch((err) => {
+            console.log('test update err information: ' + err);
+        });
+        encryptOptions.inData = new Uint8Array(new Array());
+        await huks.finish(handle, encryptOptions).then((data) => {
+            console.log(`test finish data: ${JSON.stringify(data)}`);
+            let finishData = this.uint8ArrayToString(new Uint8Array(encryptUpdateResult));
+            if (finishData === cipherInData) {
+                console.log('test finish encrypt err ');
+            } else {
+                console.log('test finish encrypt success');
+            }
+        }).catch((err) => {
+            console.log('test finish err information: ' + JSON.stringify(err));
+        });
 
-**示例：**
+        /* 修改加密参数集为解密参数集 */
+        propertiesEncrypt.splice(1, 1, {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+        });
+        let decryptOptions = {
+            properties: propertiesEncrypt,
+            inData: new Uint8Array(new Array())
+        }
+        
+        /* 进行解密操作 */
+        await huks.init(srcKeyAlias, decryptOptions).then((data) => {
+            console.log(`test init data: ${JSON.stringify(data)}`);
+            handle = data.handle;
+        }).catch((err) => {
+            console.log('test init err information: ' + JSON.stringify(err));
+        });
 
-```ets
-/* Cipher操作支持RSA、AES、SM4类型的密钥。
- *
- * 以下以SM4 128密钥的Promise操作使用为例
- */
-function sm4CipherStringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
+        decryptOptions.inData = new Uint8Array(encryptUpdateResult);
+        await huks.update(handle, decryptOptions).then(async (data) => {
+            console.log(`test update data ${JSON.stringify(data)}`);
+            decryptUpdateResult = Array.from(data.outData);
+        }).catch((err) => {
+            console.log('test update err information: ' + err);
+        });
+        decryptOptions.inData = new Uint8Array(new Array());
+        await huks.finish(handle, decryptOptions).then((data) => {
+            console.log(`test finish data: ${JSON.stringify(data)}`);
+            let finishData = this.uint8ArrayToString(new Uint8Array(decryptUpdateResult));
+            if (finishData === cipherInData) {
+                console.log('test finish decrypt success ');
+            } else {
+                console.log('test finish decrypt err');
+            }
+        }).catch((err) => {
+            console.log('test finish err information: ' + JSON.stringify(err));
+        });
+
+        await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
+            console.log(`test deleteKey data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test deleteKey err information: ' + JSON.stringify(err));
+        });
+    },
+    stringToUint8Array(str) {
+        var arr = [];
+        for (var i = 0, j = str.length; i < j; ++i) {
+            arr.push(str.charCodeAt(i));
+        }
+        return new Uint8Array(arr);
+    },
+    uint8ArrayToString(fileData) {
+        var dataString = '';
+        for (var i = 0; i < fileData.length; i++) {
+            dataString += String.fromCharCode(fileData[i]);
+        }
+        return dataString;
     }
-    return new Uint8Array(arr);
 }
-function sm4CipherUint8ArrayToString(fileData) {
-    var dataString = '';
-    for (var i = 0; i < fileData.length; i++) {
-        dataString += String.fromCharCode(fileData[i]);
-    }
-    return dataString;
-}
-
-var handle;
-var IV = '0000000000000000';
-var cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
-var srcKeyAlias = 'huksCipherSm4SrcKeyAlias';
-var encryptUpdateResult = new Array();
-var decryptUpdateResult = new Array();
-
-/* 集成生成密钥参数集 & 加密参数集 */
-var properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-}
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-}
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-}
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-var HuksOptions = {
-    properties: properties,
-    inData: new Uint8Array(new Array())
-}
-
-var propertiesEncrypt = new Array();
-propertiesEncrypt[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-}
-propertiesEncrypt[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-}
-propertiesEncrypt[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-}
-propertiesEncrypt[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-propertiesEncrypt[4] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-propertiesEncrypt[5] = {
-    tag: huks.HuksTag.HUKS_TAG_IV,
-    value: sm4CipherStringToUint8Array(IV),
-}
-var encryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
-}
-
-/* 生成密钥
-await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
-    console.info(`test generateKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test generateKey err information: ' + JSON.stringify(err));
-});
-
-/* 进行密钥加密操作 */
-await huks.init(srcKeyAlias, encryptOptions).then((data) => {
-    console.info(`test init data: ${JSON.stringify(data)}`);
-    handle = data.handle;
-}).catch((err) => {
-    console.info('test init err information: ' + JSON.stringify(err));
-});
-console.info(`leave init`);
-encryptOptions.inData = sm4CipherStringToUint8Array(cipherInData);
-await huks.update(handle, encryptOptions).then(async (data) => {
-    console.info(`test update data ${JSON.stringify(data)}`);
-    encryptUpdateResult = Array.from(data.outData);
-}).catch((err) => {
-    console.info('test update err information: ' + err);
-});
-encryptOptions.inData = new Uint8Array(new Array());
-await huks.finish(handle, encryptOptions).then((data) => {
-    console.info(`test finish data: ${JSON.stringify(data)}`);
-    var finishData = sm4CipherUint8ArrayToString(new Uint8Array(encryptUpdateResult));
-    if (finishData === cipherInData) {
-        console.info('test finish encrypt err ');
-    } else {
-        console.info('test finish encrypt success');
-    }
-}).catch((err) => {
-    console.info('test finish err information: ' + JSON.stringify(err));
-});
-
-/* 修改加密参数集为解密参数集 */
-propertiesEncrypt.splice(1, 1, {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-});
-var decryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
-}
-
-/* 进行解密操作 */
-await huks.init(srcKeyAlias, decryptOptions).then((data) => {
-    console.info(`test init data: ${JSON.stringify(data)}`);
-    handle = data.handle;
-}).catch((err) => {
-    console.info('test init err information: ' + JSON.stringify(err));
-});
-decryptOptions.inData = new Uint8Array(encryptUpdateResult);
-await huks.update(handle, decryptOptions).then(async (data) => {
-    console.info(`test update data ${JSON.stringify(data)}`);
-    decryptUpdateResult = Array.from(data.outData);
-}).catch((err) => {
-    console.info('test update err information: ' + err);
-});
-decryptOptions.inData = new Uint8Array(new Array());
-await huks.finish(handle, decryptOptions).then((data) => {
-    console.info(`test finish data: ${JSON.stringify(data)}`);
-    var finishData = sm4CipherUint8ArrayToString(new Uint8Array(decryptUpdateResult));
-    if (finishData === cipherInData) {
-        console.info('test finish decrypt success ');
-    } else {
-        console.info('test finish decrypt err');
-    }
-}).catch((err) => {
-    console.info('test finish err information: ' + JSON.stringify(err));
-});
-
-await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
-    console.info(`test deleteKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test deleteKey err information: ' + JSON.stringify(err));
-});
 ```
 
 RSA512签名验签：
 
 ```js
-### 密钥签名验签
+import huks from '@ohos.security.huks';
 
-**功能定义**： 签名：给我们将要发送的数据，做上一个唯一签名；验签： 对发送者发送过来的签名进行验证 。
+export default {
+    data: {},
+    onInit() {
+        console.log(`huks demo signVerify_rsa init finish`);
+    },
+    onShow() {
+        console.log(`huks demo signVerify_rsa onshow start`);
+        this.start();
+        console.log(`huks demo signVerify_rsa onshow end`);
+    },
+    async start() {
+        let handle;
+        let signVerifyInData = 'signVerifyInData';
+        let srcKeyAliasSign = 'huksSignVerifySrcKeyAliasSign';
+        let srcKeyAliasVerify = 'huksSignVerifySrcKeyAliasVerify';
+        let properties = new Array();
+        let finishOutData;
+        let exportKey;
+        /* 集成生成密钥参数集 & 签名参数集 & 验签参数集 */
+        properties[0] = {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA,
+        }
+        properties[1] = {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value:
+            huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+            huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY,
+        }
+        properties[2] = {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
+        }
+        properties[3] = {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_MD5,
+        }
+        properties[4] = {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
+        }
 
-**测试流程**：1.生成密钥；2.密钥签名；3.导出签名密钥；4.导入签名密钥；5.密钥验签
 
-**参数：**
+        let HuksOptions = {
+            properties: properties,
+            inData: new Uint8Array(new Array())
+        }
+        
+        /* 生成密钥 */
+        await huks.generateKey(srcKeyAliasSign, HuksOptions).then((data) => {
+            console.log(`test generateKey data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test generateKey err information: ' + JSON.stringify(err));
+        });
+        let propertiesSign = new Array();
 
-| 参数名               | 类型        | 必填 | 说明                     |
-| -------------------- | ----------- | ---- | ------------------------ |
-| srcRsaKeyAliasSign   | string      | 是   | 生成密钥别名。           |
-| srcRsaKeyAliasVerify | string      | 是   | 导入密钥别名。           |
-| rsaSignOptions       | HuksOptions | 是   | 用于存放生成key所需TAG。 |
-| rsaSignOptionsSecond | HuksOptions | 是   | 用于存放签名key所需TAG。 |
-| rsaVerifyOptions     | HuksOptions | 是   | 用于存放验签key所需TAG。 |
+        propertiesSign[0] = {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA,
+        }
+        propertiesSign[1] = {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value:
+            huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
+        }
+        propertiesSign[2] = {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_MD5,
+        }
+        propertiesSign[3] = {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
+        }
+        propertiesSign[4] = {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
+        }
 
-提示：参数类型可在docs\zh-cn\application-dev\reference\apis\js-apis-huks.md中查看
+        let signOptions = {
+            properties: propertiesSign,
+            inData: new Uint8Array(new Array())
+        }
+        /* 对密钥进行签名操作 */
+        await huks.init(srcKeyAliasSign, signOptions).then((data) => {
+            console.log(`test init data: ${JSON.stringify(data)}`);
+            handle = data.handle;
+        }).catch((err) => {
+            console.log('test init err information: ' + JSON.stringify(err));
+        });
+        signOptions.inData = this.stringToUint8Array(signVerifyInData)
+        await huks.update(handle, signOptions).then(async (data) => {
+            console.log(`test update data ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test update err information: ' + err);
+        });
+        signOptions.inData = new Uint8Array(new Array());
+        await huks.finish(handle, signOptions).then((data) => {
+            console.log(`test finish data: ${JSON.stringify(data)}`);
+            finishOutData = data.outData;
+        }).catch((err) => {
+            console.log('test finish err information: ' + JSON.stringify(err));
+        });
+        
+        /* 通过导出导入模拟获取一段密钥数据 */
+        await huks.exportKey(srcKeyAliasSign, HuksOptions).then((data) => {
+            console.log(`test exportKey data: ${JSON.stringify(data)}`);
+            exportKey = data.outData;
+        }).catch((err) => {
+            console.log('test exportKey err information: ' + JSON.stringify(err));
+        });
 
-**示例：**
+        let propertiesVerify = new Array();
 
-```ets
-/* Sign/Verify操作支持RSA、ECC、SM2、ED25519、DSA类型的密钥。
- *
- * 以下以RSA512密钥的Promise操作使用为例
- */
-function rsaSignVerifyStringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
-        arr.push(str.charCodeAt(i));
+        propertiesVerify[0] = {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA,
+        }
+        propertiesVerify[1] = {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        }
+        propertiesVerify[2] = {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_MD5,
+        }
+
+        propertiesVerify[3] = {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
+        }
+
+        propertiesVerify[4] = {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
+        }
+
+        let verifyOptions = {
+            properties: propertiesVerify,
+            inData: new Uint8Array(new Array())
+        }
+
+        verifyOptions.inData = exportKey;
+        await huks.importKey(srcKeyAliasVerify, verifyOptions).then((data) => {
+            console.log(`test ImportKey data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test exportKey err information: ' + JSON.stringify(err));
+        });
+        
+        /* 对密钥进行验签 */
+        await huks.init(srcKeyAliasVerify, verifyOptions).then((data) => {
+            console.log(`test init data: ${JSON.stringify(data)}`);
+            handle = data.handle;
+        }).catch((err) => {
+            console.log('test init err information: ' + JSON.stringify(err));
+        });
+
+        verifyOptions.inData = this.stringToUint8Array(signVerifyInData);
+        await huks.update(handle, verifyOptions).then(async (data) => {
+            console.log(`test update data ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test update err information: ' + err);
+        });
+        verifyOptions.inData = finishOutData;
+        await huks.finish(handle, verifyOptions).then((data) => {
+            console.log(`test finish data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test finish err information: ' + JSON.stringify(err));
+        });
+
+        await huks.deleteKey(srcKeyAliasVerify, HuksOptions).then((data) => {
+            console.log(`test deleteKey data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test deleteKey err information: ' + JSON.stringify(err));
+        });
+
+        await huks.deleteKey(srcKeyAliasSign, HuksOptions).then((data) => {
+            console.log(`test deleteKey data: ${JSON.stringify(data)}`);
+        }).catch((err) => {
+            console.log('test deleteKey err information: ' + JSON.stringify(err));
+        });
+    },
+    stringToUint8Array(str) {
+        var arr = [];
+        for (var i = 0, j = str.length; i < j; ++i) {
+            arr.push(str.charCodeAt(i));
+        }
+        return new Uint8Array(arr);
+    },
+    uint8ArrayToString(fileData) {
+        var dataString = '';
+        for (var i = 0; i < fileData.length; i++) {
+            dataString += String.fromCharCode(fileData[i]);
+        }
+        return dataString;
     }
-    return new Uint8Array(arr);
 }
-
-var rsaSignHandle;
-var rsaSignVerifyInData = 'signVerifyInData';
-var srcRsaKeyAliasSign = 'huksSignVerifySrcKeyAliasSign';
-var srcRsaKeyAliasVerify = 'huksSignVerifySrcKeyAliasVerify';
-var finishRsaSignData;
-var rsaExportSignKey;
-
-/* 集成生成密钥参数集 & 签名参数集 & 验签参数集 */
-var rsaSignProperties = new Array();
-rsaSignProperties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA,
-}
-rsaSignProperties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN,
-}
-rsaSignProperties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
-}
-rsaSignProperties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_MD5,
-}
-rsaSignProperties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
-}
-var rsaSignOptions = {
-    properties: rsaSignProperties,
-    inData: new Uint8Array(new Array())
-}
-
-var rsaPropertiesSign = new Array();
-rsaPropertiesSign[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_RSA,
-}
-rsaPropertiesSign[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
-}
-rsaPropertiesSign[2] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_MD5,
-}
-rsaPropertiesSign[3] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
-}
-rsaPropertiesSign[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
-}
-var rsaSignOptionsSecond = {
-    properties: rsaPropertiesSign,
-    inData: new Uint8Array(new Array())
-}
-
-var rsaPropertiesVerify = new Array();
-rsaPropertiesVerify[0] = {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_RSA,
-}
-rsaPropertiesVerify[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-}
-rsaPropertiesVerify[2] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_MD5,
-}
-rsaPropertiesVerify[3] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_512,
-}
-rsaPropertiesVerify[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5,
-}
-var rsaVerifyOptions = {
-    properties: rsaPropertiesVerify,
-    inData: new Uint8Array(new Array())
-}
-
-/* 生成密钥 */
-await huks.generateKey(srcRsaKeyAliasSign, rsaSignOptions).then((data) => {
-    console.info(`test generateKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test generateKey err information: ' + JSON.stringify(err));
-});
-
-/* 对密钥进行签名操作 */
-await huks.init(srcRsaKeyAliasSign, rsaSignOptionsSecond).then((data) => {
-    console.info(`test init data: ${JSON.stringify(data)}`);
-    rsaSignHandle = data.handle;
-}).catch((err) => {
-    console.info('test init err information: ' + JSON.stringify(err));
-});
-rsaSignOptionsSecond.inData = rsaSignVerifyStringToUint8Array(rsaSignVerifyInData)
-await huks.update(rsaSignHandle, rsaSignOptionsSecond).then(async (data) => {
-    console.info(`test update data ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test update err information: ' + err);
-});
-rsaVerifyOptions.inData = finishRsaSignData;
-await huks.finish(rsaSignHandle, rsaSignOptionsSecond).then((data) => {
-    console.info(`test finish data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test finish err information: ' + JSON.stringify(err));
-});
-
-/* 通过导出导入模拟获取一段密钥数据 */
-await huks.exportKey(srcRsaKeyAliasSign, rsaSignOptions).then((data) => {
-    console.info(`test exportKey data: ${JSON.stringify(data)}`);
-    rsaExportSignKey = data.outData;
-}).catch((err) => {
-    console.info('test exportKey err information: ' + JSON.stringify(err));
-});
-rsaVerifyOptions.inData = rsaExportSignKey;
-await huks.importKey(srcRsaKeyAliasVerify, rsaVerifyOptions).then((data) => {
-    console.info(`test ImportKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test exportKey err information: ' + JSON.stringify(err));
-});
-
-/* 对密钥进行验签 */
-await huks.init(srcRsaKeyAliasVerify, rsaVerifyOptions).then((data) => {
-    console.info(`test init data: ${JSON.stringify(data)}`);
-    rsaSignHandle = data.handle;
-}).catch((err) => {
-    console.info('test init err information: ' + JSON.stringify(err));
-});
-rsaVerifyOptions.inData = rsaSignVerifyStringToUint8Array(rsaSignVerifyInData);
-await huks.update(rsaSignHandle, rsaVerifyOptions).then(async (data) => {
-    console.info(`test update data ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test update err information: ' + err);
-});
-rsaVerifyOptions.inData = finishRsaSignData;
-await huks.finish(rsaSignHandle, rsaVerifyOptions).then((data) => {
-    console.info(`test finish data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test finish err information: ' + JSON.stringify(err));
-});
-
-await huks.deleteKey(srcRsaKeyAliasVerify, rsaVerifyOptions).then((data) => {
-    console.info(`test deleteKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test deleteKey err information: ' + JSON.stringify(err));
-});
-
-await huks.deleteKey(srcRsaKeyAliasSign, rsaSignOptions).then((data) => {
-    console.info(`test deleteKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.info('test deleteKey err information: ' + JSON.stringify(err));
-});
 ```
