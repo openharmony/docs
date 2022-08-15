@@ -1,12 +1,12 @@
 # Swiper
 
 
-> **NOTE**<br>
+The **<Swiper\>** component provides a container that allows users to switch among child components through swiping.
+
+
+> **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **<Swiper\>** component provides a container that allows users to switch among child components through swiping.
 
 
 ## Required Permissions
@@ -37,7 +37,7 @@ Swiper(value:{controller?: SwiperController})
 | autoPlay | boolean | false | Whether to enable automatic playback for child component switching. If this attribute is **true**, the indicator dots do not take effect. |
 | interval | number | 3000 | Interval for automatic playback, in ms. |
 | indicator | boolean | true | Whether to enable the navigation dots. |
-| loop | boolean | true | Whether to enable loop playback. |
+| loop | boolean | true | Whether to enable loop playback.<br>The value **true** means to enable loop playback. When **LazyForEach** is used, it is recommended that the number of the components to load exceed 5. |
 | duration | number | 400 | Duration of the animation for switching child components, in ms. |
 | vertical | boolean | false | Whether vertical swiping is used. |
 | itemSpace | Length | 0 | Space between child components. |
