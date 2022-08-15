@@ -85,6 +85,7 @@ HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密
 | HuksHdiFinish()                           | 三段式中的Finish接口。                     |签名验签时入参是签名后数据        | finish(handle: number, options: HuksOptions) |
 | HuksHdiAbort()                         | 终止三段式。                               |无                             | abort(handle: number, options: HuksOptions) |
 | HuksHdiGetKeyProperties()        | 获取密钥属性。                              |无                            | getKeyProperties(keyAlias: string, options: HuksOptions)|
+| HuksHdiAttestKey()        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
 
 - - -
 
@@ -505,6 +506,48 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   <strong>const struct HksBlob *key</strong>
   要获取属性的密钥
   </pre>
+</details>
+<br></br>
+
+<details>
+  <summary><strong>返回值</strong></summary>
+
+  - HKS_SUCCESS：成功
+
+  - 其他：失败
+</details>
+
+- - -
+
+**HuksHdiAttestKey**
+
+**接口描述**
+
+获取密钥证书。
+
+**接口原型**
+<pre><code>int32_t (*HuksHdiAttestKey)(const struct HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *certChain);</code></pre>
+
+<details>
+  <summary><strong>参数说明</strong></summary>
+  <pre>
+  <strong>const struct HksBlob *key</strong>
+  要获取证书的密钥
+  <br></br>
+  <strong>const struct HksParamSet *paramSet</strong>
+  获取证书操作的参数
+  <br></br>
+  <strong>struct HksBlob *certChain</strong>
+  出参，存放证书
+  </pre>
+</details>
+<br></br>
+
+<details>
+  <summary><strong>约束与限制</strong></summary>
+
+  1. 在进行签名验签时inData要传入需要验证的签名数据，通过返回结果表示验签是否成功
+
 </details>
 <br></br>
 
