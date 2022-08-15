@@ -139,7 +139,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
     }
     ```
 
-    在API Version 8，want参数需要在app.js或app.ets文件的onCreate方法中调用[featureAbility.getWant](../apis/js-apis-featureAbility.md#featureabilitygetwant-1)接口接收相关参数。
+    在API Version 8，want参数需要在app.js或app.ets文件的onCreate方法中调用[featureAbility.getWant](../apis/js-apis-featureAbility.md)接口接收相关参数。
 
 - 消息事件格式
 
