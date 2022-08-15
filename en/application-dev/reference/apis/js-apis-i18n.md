@@ -116,7 +116,7 @@ Obtains the system language.
 
 setSystemLanguage(language: string): boolean
 
-Sets the system language.
+Sets the system language. Currently, this API does not support real-time updating of the system language.
 
 This is a system API.
 
