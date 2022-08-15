@@ -1,6 +1,6 @@
 #    OS Account Management
 
-The osAccount module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
+The **osAccount** module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -801,7 +801,7 @@ Obtains the OS account ID based on domain account information. This API uses an 
 
 | Name    | Type                                   | Mandatory| Description                                        |
 | ---------- | --------------------------------------- | ---- | -------------------------------------------- |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.                                |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.                                |
 | callback   | AsyncCallback&lt;number&gt;             | Yes  | Callback used to return the ID of the OS account associated with the domain account.|
 
 **Example**
@@ -829,7 +829,7 @@ Obtains the OS account ID based on domain account information. This API uses a p
 
 | Name    | Type                                   | Mandatory| Description        |
 | ---------- | --------------------------------------- | ---- | ------------ |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.|
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.|
 
 **Return value**
 
@@ -1156,7 +1156,7 @@ This is a system API and cannot be called by third-party applications.
 | Name    | Type                                                | Mandatory| Description                                      |
 | :--------- | ---------------------------------------------------- | ---- | ------------------------------------------ |
 | type       | [OsAccountType](#osaccounttype)                      | Yes  | Type of the OS account to create.                    |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo)              | Yes  | Domain account information.                              |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | Yes  | Domain account information.                              |
 | callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | Yes  | Callback used to return the OS account created.|
 
 **Example**
@@ -1187,7 +1187,7 @@ This is a system API and cannot be called by third-party applications.
 | Name    | Type                                   | Mandatory| Description                  |
 | ---------- | --------------------------------------- | ---- | ---------------------- |
 | type       | [OsAccountType](#osaccounttype)         | Yes  | Type of the OS account to create.|
-| domainInfo | [DomainAccountInfo](#domainaccountinfo) | Yes  | Domain account information.          |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.          |
 
 **Return value**
 
@@ -1765,7 +1765,7 @@ Defines information about an OS account.
 | isActived<sup>8+</sup>         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the OS account information is complete.             |
 | distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.                   |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo)                      | No  | Domain account information.                       |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | No  | Domain account information.                       |
 
 ## DomainAccountInfo<sup>8+</sup>
 
