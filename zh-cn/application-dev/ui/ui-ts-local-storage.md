@@ -278,8 +278,8 @@ clear(): boolean
 
 ### 示例1（在一个Ability创建的LocalStorage)
 
-```javascript
-import Ability from '@ohos.appLication.Ability'
+```ts
+import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {    
   storage : LocalStorage    
   onCreate(want) {    
@@ -335,23 +335,23 @@ let storage = new LocalStorage({"PropA":47});
 @Entry(storage)
 @Component 
 struct ComA {    
-  @LocalStorageLink("PropA") storLink : number = 1;    
+  @LocalStorageLink("PropA") storLink: number = 1;    
   build() {    
 	Column() {        
-	  Text(`Parent from LocalStorage $(this.storLink)`)            				                 
+	  Text(`Parent from LocalStorage ${ this.storLink }`)            				     
         .onClick(()=>this.storLink+=1)            
-	    Child()    
- 	  }    
+	  Child()    
+ 	}    
   }
 }
 
 
 @Component
 struct Child{    
-  @LocalStorageLink("PropA") storLink : number = 1;    
+  @LocalStorageLink("PropA") storLink: number = 1;    
   build() {    
-	Text(`Parent from LocalStorage $(this.storLink)`)        
-	  .onClick(()=>this.storLink1+=1)    
+	Text(`Parent from LocalStorage ${ this.storLink }`)        
+	  .onClick(()=>this.storLink+=1)    
   }
 }
 ```
