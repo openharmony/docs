@@ -274,7 +274,7 @@ int32_t I3cTestRequestIbi(void)
 }
     ret = I3cRequestIbi(i3cHandle, 0x3F, TestI3cIbiFunc, 16);
     if (ret != 0) {
-        HDF_LOGE("%s: Requset IBI failed!", __func__);
+        HDF_LOGE("%s: Request IBI failed!", __func__);
         return -1;
     }
 
