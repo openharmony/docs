@@ -593,3 +593,68 @@ Enumerates request directions.
 | -------- | -------- | -------- |
 | USB_REQUEST_DIR_TO_DEVICE | 0 | Request for writing data from the host to the device. |
 | USB_REQUEST_DIR_FROM_DEVICE | 0x80 | Request for reading data from the device to the host. |
+
+## FunctionType<sup>9+</sup>
+
+Enumerates function types for the USB device.
+
+This is a system API.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name        | Value  | Description      |
+| ------------ | ---- | ---------- |
+| NONE         | 0    | No function.|
+| ACM          | 1    | ACM function. |
+| ECM          | 2    | ECM function. |
+| HDC          | 4    | HDC function. |
+| MTP          | 8    | Not supported currently.|
+| PTP          | 16   | Not supported currently.|
+| RNDIS        | 32   | Not supported currently.|
+| MIDI         | 64   | Not supported currently.|
+| AUDIO_SOURCE | 128  | Not supported currently.|
+| NCM          | 256  | Not supported currently.|
+
+## PortModeType<sup>9+</sup>
+
+Enumerates USB port mode types.
+
+This is a system API.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name     | Value  | Description                                                |
+| --------- | ---- | ---------------------------------------------------- |
+| NONE      | 0    | None.                                                |
+| UFP       | 1    | Upstream facing port, which functions as the sink of power supply.                            |
+| DFP       | 2    | Downstream facing port, which functions as the source of power supply.                            |
+| DRP       | 3    | Dynamic reconfiguration port (DRP), which can function as the DFP (host) or UFP (device). It is not supported currently.|
+| NUM_MODES | 4    | Not supported currently.                                        |
+
+## PowerRoleType<sup>9+</sup>
+
+Enumerates power role types.
+
+This is a system API.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name  | Value  | Description      |
+| ------ | ---- | ---------- |
+| NONE   | 0    | None.      |
+| SOURCE | 1    | External power supply.|
+| SINK   | 2    | Internal power supply.|
+
+## DataRoleType<sup>9+</sup>
+
+Enumerates data role types.
+
+This is a system API.
+
+**System capability**: SystemCapability.USB.USBManager
+
+| Name  | Value  | Description        |
+| ------ | ---- | ------------ |
+| NONE   | 0    | None.        |
+| HOST   | 1    | USB host.|
+| DEVICE | 2    | USB device.|
