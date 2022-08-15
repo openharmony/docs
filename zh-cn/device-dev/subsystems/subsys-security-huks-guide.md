@@ -56,7 +56,7 @@
 
 ![image](figures/CertChain.png)
 
-3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#HuksHdiModuleInit)。
+3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
    构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob]。(https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)
 
