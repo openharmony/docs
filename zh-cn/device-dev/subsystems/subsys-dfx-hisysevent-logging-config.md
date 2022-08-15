@@ -133,7 +133,7 @@
                 "hitrace_native",
                 "ipc",
                 "safwk",
-                "samgr_standard",
+                "samgr",
                 "utils_base"
             ],
             "third_party": []
