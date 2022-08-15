@@ -89,8 +89,9 @@ HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密
 | [HuksHdiFinish()](#HuksHdiFinish)                           | 三段式中的Finish接口。                     |签名验签时入参是签名后数据        | finish(handle: number, options: HuksOptions) |
 | [HuksHdiAbort()](#HuksHdiAbort)                         | 终止三段式。                               |无                             | abort(handle: number, options: HuksOptions) |
 | [HuksHdiGetKeyProperties()](#HuksHdiGetKeyProperties)        | 获取密钥属性。                              |无                            | getKeyProperties(keyAlias: string, options: HuksOptions)|
-| [HuksHdiAttestKey()](#HuksHdiAttestKey)        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
+| [HuksHdiAttestKey()](#开发步骤)        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
 
+- - -
 
 #### HuksHdiModuleInit
 
@@ -109,6 +110,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   - 其他：失败
 </details>
 
+- - -
 
 #### HuksHdiRefresh
 
@@ -179,7 +181,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiImportKey
+#### HuksHdiImportKey
 
 **接口描述**
 
@@ -233,7 +235,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiImportWrappedKey
+#### HuksHdiImportWrappedKey
 
 **接口描述**
 
@@ -292,7 +294,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiExportPublicKey
+#### HuksHdiExportPublicKey
 
 **接口描述**
 
@@ -329,7 +331,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiInit
+#### HuksHdiInit
 
 **接口描述**
 
@@ -369,7 +371,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiUpdate
+#### HuksHdiUpdate
 
 **接口描述**
 
@@ -414,7 +416,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiFinish
+#### HuksHdiFinish
 
 **接口描述**
 
@@ -459,7 +461,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiAbort
+#### HuksHdiAbort
 
 **接口描述**
 
@@ -490,7 +492,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiGetKeyProperties
+#### HuksHdiGetKeyProperties
 
 **接口描述**
 
@@ -521,7 +523,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-####HuksHdiAttestKey
+#### HuksHdiAttestKey
 
 **接口描述**
 
