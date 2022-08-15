@@ -2148,11 +2148,10 @@ Subscribes to audio capturer change events.
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
 **Parameters**
-
 | Name    | Type    | Mandatory     | Description                                                                                          |
-| -------- | ------- | --------- | ------------------------------------------------------------------- ---- |
+| -------- | ------- | --------- | ----------------------------------------------------------------------- |
 | type     | string  | Yes       | Event type. The event `'audioCapturerChange'` is triggered when the audio capturer changes.    |
-| callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes    | Callback used to return the result.  |
+| callback | Callback\<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | Yes    | Callback used to return the result.  |
 
 **Example**
 ```
