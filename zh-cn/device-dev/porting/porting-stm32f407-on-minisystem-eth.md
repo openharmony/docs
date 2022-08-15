@@ -1081,13 +1081,13 @@ bool HilogProc_Impl(const HiLogContent *hilogContent, uint32_t len)
 HiviewRegisterHilogProc(HilogProc_Impl);
 ```
 
-### 分布式调度子系统适配
+### 系统服务管理子系统适配
 
-进行分布式调度子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
+进行系统服务管理子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
 
 ```
 {
-      "subsystem": "distributedschedule",
+      "subsystem": "systemabilitymgr",
       "components": [
         {
           "component": "samgr_lite",
@@ -1097,10 +1097,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 }
 ```
 
-在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`2048`。在适配时可以在features中，通过`config_ohos_distributedschedule_samgr_lite_shared_task_size`重新设置共享任务栈大小。
+在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`2048`。在适配时可以在features中，通过`config_ohos_systemabilitymgr_samgr_lite_shared_task_size`重新设置共享任务栈大小。
 
 ```
-"config_ohos_distributedschedule_samgr_lite_shared_task_size = 4096"
+"config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 4096"
 ```
 
 ### 安全子系统适配

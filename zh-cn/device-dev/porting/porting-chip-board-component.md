@@ -16,7 +16,7 @@
 > 本组件在板级系统移植中必须要使用，否则其他服务组件无法运行。
 
 
-**SAMGR使用说明，请参考：[SAMGR 使用指导](https://gitee.com/openharmony/distributedschedule_samgr_lite/blob/master/README_zh.md)**
+**SAMGR使用说明，请参考：[SAMGR 使用指导](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README_zh.md)**
 
 
 ## DFX

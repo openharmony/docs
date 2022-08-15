@@ -55,7 +55,7 @@ Service configuration allows you to configure services on demand to create diffe
   ```
     - SA process on-demand startup
 
-        For details, see [samgr Usage](https://gitee.com/openharmony/distributedschedule_samgr/blob/master/README.md).
+        For details, see [samgr Usage](https://gitee.com/openharmony/systemabilitymgr_samgr/blob/master/README.md).
         
     - Socket process on-demand startup
         1. The init process creates a socket for socket processes in the pre-fork phase and listens to read/write events on this socket.
