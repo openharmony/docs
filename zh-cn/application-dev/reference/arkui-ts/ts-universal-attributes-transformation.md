@@ -23,12 +23,14 @@
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 import Matrix4 from '@ohos.matrix4'
 
 @Entry
 @Component
 struct TransformExample {
+
   build() {
     Column() {
       Text('rotate').width('90%').fontColor(0xCCCCCC).padding(15).fontSize(30)
