@@ -11,9 +11,11 @@ The Hardware Driver Foundation (HDF) provides driver framework capabilities incl
 The HDF supports the following loading modes:
 
 - On-demand loading
+
   The driver is loaded by default during the operating system (OS) boot process or dynamically loaded after OS is started.
 
 - Sequential loading
+
   The driver is loaded based on its priority during the OS boot process.
 
 
