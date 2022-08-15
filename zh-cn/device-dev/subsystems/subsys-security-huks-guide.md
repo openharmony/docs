@@ -652,65 +652,65 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
    // 三段式update接口
    int32_t HksCoreUpdate(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
     struct HksBlob *outData)
-{
-    HKS_LOG_D("HksCoreUpdate in Core start");
-    uint32_t pur = 0;
-    uint32_t alg = 0;
+    {
+        HKS_LOG_D("HksCoreUpdate in Core start");
+        uint32_t pur = 0;
+        uint32_t alg = 0;
 
-    if (handle == NULL || paramSet == NULL || inData == NULL) {
-        HKS_LOG_E("the pointer param entered is invalid");
-        return HKS_FAILURE;
-    }
+        if (handle == NULL || paramSet == NULL || inData == NULL) {
+            HKS_LOG_E("the pointer param entered is invalid");
+            return HKS_FAILURE;
+        }
 
-    uint64_t sessionId;
-    struct HuksKeyNode *keyNode = NULL;
-    //根据handle获取本次三段式操作需要的上下文
-    int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
-    if (ret != HKS_SUCCESS) {
-        HKS_LOG_E("GetParamsForCoreUpdate failed");
-        return ret;
-    }
-    //校验参数
-    ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(sessionId);
-        HKS_LOG_E("HksCoreUpdate secure access verify failed");
-        return ret;
-    }
+        uint64_t sessionId;
+        struct HuksKeyNode *keyNode = NULL;
+        //根据handle获取本次三段式操作需要的上下文
+        int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
+        if (ret != HKS_SUCCESS) {
+            HKS_LOG_E("GetParamsForCoreUpdate failed");
+            return ret;
+        }
+        //校验参数
+        ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
+        if (ret != HKS_SUCCESS) {
+            HksDeleteKeyNode(sessionId);
+            HKS_LOG_E("HksCoreUpdate secure access verify failed");
+            return ret;
+        }
 
-    uint32_t i;
-    uint32_t size = HKS_ARRAY_SIZE(g_hksCoreUpdateHandler);
-    for (i = 0; i < size; i++) {
-        //调用对应的密码学处理函数
-        if (g_hksCoreUpdateHandler[i].pur == pur) {
-            struct HksBlob appendInData = { 0, NULL };
-            ret = HksCoreAppendAuthInfoBeforeUpdate(keyNode, pur, paramSet, inData, &appendInData);
-            if (ret != HKS_SUCCESS) {
-                HKS_LOG_E("before update: append auth info failed");
+        uint32_t i;
+        uint32_t size = HKS_ARRAY_SIZE(g_hksCoreUpdateHandler);
+        for (i = 0; i < size; i++) {
+            //调用对应的密码学处理函数
+            if (g_hksCoreUpdateHandler[i].pur == pur) {
+                struct HksBlob appendInData = { 0, NULL };
+                ret = HksCoreAppendAuthInfoBeforeUpdate(keyNode, pur, paramSet, inData, &appendInData);
+                if (ret != HKS_SUCCESS) {
+                    HKS_LOG_E("before update: append auth info failed");
+                    break;
+                }
+                ret = g_hksCoreUpdateHandler[i].handler(keyNode, paramSet,
+                    appendInData.data == NULL ? inData : &appendInData, outData, alg);
+                if (appendInData.data != NULL) {
+                    HKS_FREE_BLOB(appendInData);
+                }
                 break;
             }
-            ret = g_hksCoreUpdateHandler[i].handler(keyNode, paramSet,
-                appendInData.data == NULL ? inData : &appendInData, outData, alg);
-            if (appendInData.data != NULL) {
-                HKS_FREE_BLOB(appendInData);
-            }
-            break;
         }
-    }
 
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(keyNode->handle);
-        HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
+        if (ret != HKS_SUCCESS) {
+            HksDeleteKeyNode(keyNode->handle);
+            HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
+            return ret;
+        }
+
+        if (i == size) {
+            HksDeleteKeyNode(sessionId);
+            HKS_LOG_E("don't found purpose, pur : %u", pur);
+            return HKS_FAILURE;
+        }
         return ret;
     }
-
-    if (i == size) {
-        HksDeleteKeyNode(sessionId);
-        HKS_LOG_E("don't found purpose, pur : %u", pur);
-        return HKS_FAILURE;
-    }
-    return ret;
-}
    ```
 
 ### 调测验证
