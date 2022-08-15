@@ -4,7 +4,7 @@
 
 ### 功能简介
 
-在安全领域里，密码系统被攻击通常不是因为选择的加密算法不够安全，而是密钥管理不到位。用户信息的安全取决于密钥的安全，所以失去对密钥的控制将导致密码系统的失败，从而危害到用户信息的安全。Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应用，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，对标AndriodKeyStore补充和增强密钥管理相关能力，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
+在安全领域里，密码系统被攻击通常不是因为选择的加密算法不够安全，而是密钥管理不到位。用户信息的安全取决于密钥的安全，所以失去对密钥的控制将导致密码系统的失败，从而危害到用户信息的安全。Huks提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应用，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
 
 支持特性：密钥全生命周期管理
 
@@ -56,13 +56,13 @@
 
 ![image](figures/CertChain.png)
 
-3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)
+3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
-   构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)
+   构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob]。(https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)
 
-#### 密钥存储态
+   密钥存储态
 
-为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的相关信息，存储态下密钥属性和密钥的组合结构如下：
+   为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的相关信息，存储态下密钥属性和密钥的组合结构如下：
 
 ![image](figures/HUKS-KeyBlob.png)
 
@@ -78,22 +78,22 @@ HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密
 
 | 接口名                                                       | 功能介绍                                  | 约束与限制                     | 对应的js接口                                        |
 | ------------------------------------------------------------ | ---------------------------------------- | ----------------------------- | ------------------------------------------------------------ |
-| HuksHdiModuleInit()                   | Core的初始化。                            |  无                           | 无 |
-| HuksHdiRefresh()                          | 刷新根密钥。                              |  无                            | 无 |
-| HuksHdiGenerateKey()                  | 生成密钥。                                |  出参要遵循KeyBlob格式          |generateKey(keyAlias: string, options: HuksOptions)|
-| HuksHdiImportKey()                     | 导入明文密钥。                            |  出参要遵循KeyBlob格式           | importKey(keyAlias: string, options: HuksOptions)|
-| HuksHdiImportWrappedKey()        |导入加密密钥。                              |  出参要遵循KeyBlob格式          | importWrappedKey(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions)|
-| HuksHdiExportPublicKey()         | 导出公钥。                                 |无                             | exportKey(keyAlias: string, options: HuksOptions) |
-| HuksHdiInit()                              | 三段式中的Init接口。                       |无                              | init(keyAlias: string, options: HuksOptions) |
-| HuksHdiUpdate()                           | 三段式中的Update接口。                     |签名验签时入参是原始数据          | update(handle: number, token?: Uint8Array, options: HuksOptions) |
-| HuksHdiFinish()                           | 三段式中的Finish接口。                     |签名验签时入参是签名后数据        | finish(handle: number, options: HuksOptions) |
-| HuksHdiAbort()                         | 终止三段式。                               |无                             | abort(handle: number, options: HuksOptions) |
-| HuksHdiGetKeyProperties()        | 获取密钥属性。                              |无                            | getKeyProperties(keyAlias: string, options: HuksOptions)|
-| HuksHdiAttestKey()        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
+| [HuksHdiModuleInit()](#HuksHdiModuleInit)                   | Core的初始化。                            |  无                           | 无 |
+| [HuksHdiRefresh()](#HuksHdiRefresh)                          | 刷新根密钥。                              |  无                            | 无 |
+| [HuksHdiGenerateKey()](#HuksHdiGenerateKey)                  | 生成密钥。                                |  出参要遵循KeyBlob格式          |generateKey(keyAlias: string, options: HuksOptions)|
+| [HuksHdiImportKey()](#HuksHdiImportKey)                     | 导入明文密钥。                            |  出参要遵循KeyBlob格式           | importKey(keyAlias: string, options: HuksOptions)|
+| [HuksHdiImportWrappedKey()](#HuksHdiImportWrappedKey)        |导入加密密钥。                              |  出参要遵循KeyBlob格式          | importWrappedKey(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions)|
+| [HuksHdiExportPublicKey()](#HuksHdiExportPublicKey)         | 导出公钥。                                 |无                             | exportKey(keyAlias: string, options: HuksOptions) |
+| [HuksHdiInit()](#HuksHdiInit)                              | 三段式中的Init接口。                       |无                              | init(keyAlias: string, options: HuksOptions) |
+| [HuksHdiUpdate()](#HuksHdiUpdate)                           | 三段式中的Update接口。                     |签名验签时入参是原始数据          | update(handle: number, token?: Uint8Array, options: HuksOptions) |
+| [HuksHdiFinish()](#HuksHdiFinish)                           | 三段式中的Finish接口。                     |签名验签时入参是签名后数据        | finish(handle: number, options: HuksOptions) |
+| [HuksHdiAbort()](#HuksHdiAbort)                         | 终止三段式。                               |无                             | abort(handle: number, options: HuksOptions) |
+| [HuksHdiGetKeyProperties()](#HuksHdiGetKeyProperties)        | 获取密钥属性。                              |无                            | getKeyProperties(keyAlias: string, options: HuksOptions)|
+| [HuksHdiAttestKey()](#HuksHdiAttestKey)        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
 
 - - -
 
-**HuksHdiModuleInit**
+####HuksHdiModuleInit
 
 **接口描述**
 
@@ -112,7 +112,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiRefresh**
+####HuksHdiRefresh
 
 **接口描述**
 
@@ -131,7 +131,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiGenerateKey**
+####HuksHdiGenerateKey
 
 **接口描述**
 
@@ -164,9 +164,9 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 <details>
   <summary><strong>约束与限制</strong></summary>
 
-  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等
+  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
 
-  2. keyOut请参照[KeyBlob](#密钥存储态)的结构
+  2. keyOut请参照[KeyBlob](#密钥存储态)的结构。
 
 </details>
 <br></br>
@@ -181,7 +181,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiImportKey**
+####HuksHdiImportKey
 
 **接口描述**
 
@@ -218,9 +218,9 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 <details>
   <summary><strong>约束与限制</strong></summary>
 
-  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等
+  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
 
-  2. keyOut请参照[KeyBlob](#密钥存储态)的结构
+  2. keyOut请参照[KeyBlob](#密钥存储态)的结构。
 
 </details>
 <br></br>
@@ -235,7 +235,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiImportWrappedKey**
+####HuksHdiImportWrappedKey
 
 **接口描述**
 
@@ -277,9 +277,9 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 <details>
   <summary><strong>约束与限制</strong></summary>
 
-  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等
+  1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
 
-  2. keyOut请参照[KeyBlob](#密钥存储态)的结构
+  2. keyOut请参照[KeyBlob](#密钥存储态)的结构。
 
 </details>
 <br></br>
@@ -294,7 +294,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiExportPublicKey**
+####HuksHdiExportPublicKey
 
 **接口描述**
 
@@ -331,7 +331,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiInit**
+####HuksHdiInit
 
 **接口描述**
 
@@ -371,7 +371,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiUpdate**
+####HuksHdiUpdate
 
 **接口描述**
 
@@ -401,7 +401,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 <details>
   <summary><strong>约束与限制</strong></summary>
 
-  1. 在进行签名验签时inData要传入原文数据
+  1. 在进行签名验签时inData要传入原文数据。
 
 </details>
 <br></br>
@@ -416,7 +416,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiFinish**
+####HuksHdiFinish
 
 **接口描述**
 
@@ -431,13 +431,13 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   <strong>const struct HksBlob *handle</strong>
   三段式的句柄
   <br></br>
-  <strong> const struct HksParamSet *paramSet</strong>
+  <strong>const struct HksParamSet *paramSet</strong>
   finish操作的参数
   <br></br>
-  <strong> const struct HksBlob *inData</strong>
+  <strong>const struct HksBlob *inData</strong>
   finish操作的输入
   <br></br>
-  <strong> struct HksBlob *outData</strong>
+  <strong>struct HksBlob *outData</strong>
   finish操作的结果
   </pre>
 </details>
@@ -446,7 +446,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 <details>
   <summary><strong>约束与限制</strong></summary>
 
-  1. 在进行签名验签时inData要传入需要验证的签名数据，通过返回结果表示验签是否成功
+  1. 在进行签名验签时inData要传入需要验证的签名数据，通过返回结果表示验签是否成功。
 
 </details>
 <br></br>
@@ -461,7 +461,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiAbort**
+####HuksHdiAbort
 
 **接口描述**
 
@@ -492,7 +492,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiGetKeyProperties**
+####HuksHdiGetKeyProperties
 
 **接口描述**
 
@@ -523,7 +523,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-**HuksHdiAttestKey**
+####HuksHdiAttestKey
 
 **接口描述**
 
@@ -550,7 +550,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 <details>
   <summary><strong>约束与限制</strong></summary>
 
-  1. certChain的格式需遵循[约束与限制第二点](#约束与限制)
+  1. certChain的格式需遵循[约束与限制第二点](#约束与限制)。
 
 </details>
 <br></br>
