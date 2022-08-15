@@ -56,7 +56,7 @@
 
 ![image](figures/CertChain.png)
 
-3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
+3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#HuksHdiModuleInit)。
 
    构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob]。(https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)
 
@@ -93,7 +93,7 @@ HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密
 
 - - -
 
-### HuksHdiModuleInit
+#### HuksHdiModuleInit
 
 **接口描述**
 
@@ -112,7 +112,7 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 - - -
 
-### HuksHdiRefresh
+#### HuksHdiRefresh
 
 **接口描述**
 
