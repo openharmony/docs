@@ -1210,7 +1210,7 @@ This is a system API.
 | Name     | Type                                                        | Mandatory| Description     |
 | ----------- | ------------------------------------------------------------ | ---- | --------- |
 | messageType | [MessageType](#messagetype8)                                 | Yes  | Message type. |
-| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigInd8)\|[MmsReadRecInd](#mmsreadorigind8) | Yes  | PDU header type.|
+| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8)| Yes  | PDU header type.|
 | attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | No  | Attachment.     |
 
 ## MmsSendReq<sup>8+</sup>
@@ -1308,7 +1308,7 @@ This is a system API.
 | from           | [MmsAddress](#mmsaddress8)           | No  | Source.    |
 | cc             | Array<[MmsAddress](#mmsaddress8)\>   | No  | Carbon copy.    |
 | subject        | string                               | No  | Subject.    |
-| priority       | [MmsPriorityType](#mmsPrioritytype8) | No  | Priority.  |
+| priority       | [MmsPriorityType](#mmsprioritytype8) | No  | Priority.  |
 | deliveryReport | number                               | No  | Status report.|
 | readReport     | number                               | No  | Read report.|
 | retrieveStatus | number                               | No  | Retrieval status.|

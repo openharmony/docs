@@ -1888,7 +1888,7 @@ Defines the network search result.
 | Name                  | Type                                             | Description          |
 | ---------------------- | ------------------------------------------------- | -------------- |
 | isNetworkSearchSuccess | boolean                                           | Successful network search.|
-| networkSearchResult    | Array<[NetworkInformation](#networkInformation)\> | Network search result.|
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | Network search result.|
 
 ## NetworkInformation
 
@@ -1902,7 +1902,7 @@ This is a system API.
 | --------------- | ----------------------------------------- | -------------- |
 | operatorName    | string                                    | Carrier name.|
 | operatorNumeric | string                                    | Carrier number.  |
-| state           | [NetworkInformation](#networkInformation) | Network information status.|
+| state           | [NetworkInformation](#networkinformationstate) | Network information status.|
 | radioTech       | string                                    | Radio technology.  |
 
 ## NetworkInformationState

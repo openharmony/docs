@@ -1864,7 +1864,7 @@ promise.then(data => {
 
 separateConference\(callId: number, callback: AsyncCallback<void\>\): void
 
-Disconnects a conference call. This API uses an asynchronous callback to return the result.
+Separates a conference call. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1890,7 +1890,7 @@ call.separateConference(1, (err, data) => {
 
 separateConference\(callId: number\): Promise<void\>
 
-Disconnects a conference call. This API uses a promise to return the result.
+Separates a conference call. This API uses a promise to return the result.
 
 This is a system API.
 
