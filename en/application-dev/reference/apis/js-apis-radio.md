@@ -1759,7 +1759,7 @@ This is a system API.
 | isCamped          | boolean                                                      | Status of the cell.                                        |
 | timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
 | signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation) \| [GsmCellInformation](#gsmcellinformation) \| [LteCellInformation](#ltecellinformation) \| [NrCellInformation](#nrcellinformation) \| [TdscdmaCellInformation](#tdscdmacellinformation) | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
+| data              | [CdmaCellInformation](#cdmacellinformation) \| [GsmCellInformation](#gsmcellinformation) \| [LteCellInformation](#ltecellinformation) \| [NrCellInformation](#nrcellinformation) \| [TdscdmaCellInformation](#tdscdmacellinformation) | CDMA cell information \| GSM cell information \| LTE cell information \| NR cell information \| TD-SCDMA cell information |
 
 ## CdmaCellInformation<sup>8+</sup>
 
