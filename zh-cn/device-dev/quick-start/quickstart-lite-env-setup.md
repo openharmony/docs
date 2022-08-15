@@ -322,7 +322,7 @@ bash build/prebuilts_download.sh
 
 ## 安装编译工具
 
-想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建指南](../subsystems/subsys-build-all.md)。
+想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建指导](../subsystems/subsys-build-all.md)。
 
 相关操作在Ubuntu环境下进行。
 
