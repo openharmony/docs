@@ -777,7 +777,7 @@ After the build is complete, the test cases are automatically saved in **out/his
 
     Run the following command to execute test cases:
 	```
-	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
+	run -t UT -ts CalculatorSubTest -tc integer_sub_00l
 	```
 	In the command:
 	```
@@ -819,7 +819,7 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 
     The test framework locates the test cases based on the command, and automatically builds and executes the test cases.
 	```
-	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
+	run -t UT -ts CalculatorSubTest -tc integer_sub_00l
 	```
 	In the command:
 	```
