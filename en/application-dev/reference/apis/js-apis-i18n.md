@@ -1,6 +1,7 @@
 # Internationalization – I18N
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N interfaces that are not defined in ECMA 402. For details about the basic I18N capabilities, see [Intl](js-apis-intl.md).
@@ -673,7 +674,7 @@ Formats a phone number.
   phonenumberfmt.format("15812312312");
   ```
 
-### getLocationName<sup>8+</sup>
+### getLocationName<sup>9+</sup>
 
 static getLocationName(number: string, locale: string): string
 
@@ -751,6 +752,29 @@ Converts one measurement unit into another and formats the unit based on the spe
 **Example**
   ```
   i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  ```
+
+### getDateOrder<sup>9+</sup>
+
+static getDateOrder(locale: string): string
+
+Obtains the sequence of the year, month, and day in the specified locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name     | Type                    | Mandatory  | Description                                      |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
+
+**Return value**
+| Type    | Description                     |
+| ------ | ----------------------- |
+| string | Sequence of the year, month, and day.|
+
+**Example**
+  ```
+  i18n.Util.getDateOrder("zh-CN");
   ```
 
 
@@ -1487,10 +1511,10 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
   ```
 
 
-## TimeZone<sup>8+</sup>
+## TimeZone
 
 
-### getID<sup>8+</sup>
+### getID
 
 getID(): string
 
@@ -1510,7 +1534,7 @@ Obtains the ID of the specified **TimeZone** object.
   ```
 
 
-### getDisplayName<sup>8+</sup>
+### getDisplayName
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
@@ -1536,7 +1560,7 @@ Obtains the representation of a **TimeZone** object in the specified locale.
   ```
 
 
-### getRawOffset<sup>8+</sup>
+### getRawOffset
 
 getRawOffset(): number
 
@@ -1556,7 +1580,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
   ```
 
 
-### getOffset<sup>8+</sup>
+### getOffset
 
 getOffset(date?: number): number
 
@@ -1705,4 +1729,74 @@ Checks whether the local digit switch is turned on.
 **Example**
   ```
   var status = i18n.getUsingLocalDigit();
+  ```
+
+## Transliterator<sup>9+</sup>
+
+
+### getAvailableIDs<sup>9+</sup>
+
+static getAvailableIDs(): string[]
+
+Obtains a list of IDs supported by the **Transliterator** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type    | Description          |
+| ------ | ------------ |
+| string[] | List of IDs supported by the **Transliterator** object.|
+
+**Example**
+  ```
+  i18n.Transliterator.getAvailableIDs();
+  ```
+
+
+### getInstance<sup>9+</sup>
+
+static getInstance(id: string): Transliterator
+
+Creates a **Transliterator** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type     | Mandatory  | Description                  |
+| ------ | ------- | ---- | -------------------- |
+| id | string  | Yes   | ID supported by the **Transliterator** object.               |
+
+**Return value**
+| Type    | Description           |
+| ------ | ------------- |
+| [Transliterator](#transliterator9) | **Transliterator** object.|
+
+**Example**
+  ```
+  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  ```
+
+
+### transform<sup>9+</sup>
+
+transform(text: string): string
+
+Converts the input string from the source format to the target format.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type     | Mandatory  | Description                  |
+| ------ | ------- | ---- | -------------------- |
+| text | string  | Yes   | Input string.               |
+
+**Return value**
+| Type    | Description           |
+| ------ | ------------- |
+| string | Target string.|
+
+**Example**
+  ```
+  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  transliterator.transform ("China");
   ```
