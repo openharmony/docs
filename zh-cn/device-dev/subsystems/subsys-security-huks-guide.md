@@ -91,7 +91,6 @@ HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密
 | [HuksHdiGetKeyProperties()](#HuksHdiGetKeyProperties)        | 获取密钥属性。                              |无                            | getKeyProperties(keyAlias: string, options: HuksOptions)|
 | [HuksHdiAttestKey()](#HuksHdiAttestKey)        | 获取密钥证书。                              |出参要遵循certChain格式                      | attestKey(keyAlias: string, options: HuksOptions)|
 
-- - -
 
 ####HuksHdiModuleInit
 
@@ -110,7 +109,6 @@ Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
   - 其他：失败
 </details>
 
-- - -
 
 ####HuksHdiRefresh
 
