@@ -6,7 +6,7 @@
 
 > **说明：**
 >
->从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 
@@ -14,26 +14,26 @@
 
 除支持[通用属性](js-service-widget-common-attributes.md)外，还支持如下属性：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| index | number | 0 | 否 | 当前在容器中显示的子组件的索引值。 |
-| indicator | boolean | true | 否 | 是否启用导航点指示器，默认true。 |
-| digital | boolean | false | 否 | 是否启用数字导航点，默认为false。<br/>必须设置indicator时才能生效数字导航点。 |
-| loop | boolean | true | 否 | 是否开启循环滑动。 |
-| duration | number | - | 否 | 子组件切换的动画时长。 |
-| vertical | boolean | false | 否 | 是否为纵向滑动，纵向滑动时采用纵向的指示器。 |
+| 名称        | 类型      | 默认值   | 必填   | 描述                                       |
+| --------- | ------- | ----- | ---- | ---------------------------------------- |
+| index     | number  | 0     | 否    | 当前在容器中显示的子组件的索引值。                        |
+| indicator | boolean | true  | 否    | 是否启用导航点指示器，默认true。                       |
+| digital   | boolean | false | 否    | 是否启用数字导航点，默认为false。<br/>必须设置indicator时才能生效数字导航点。 |
+| loop      | boolean | true  | 否    | 是否开启循环滑动。                                |
+| duration  | number  | -     | 否    | 子组件切换的动画时长。                              |
+| vertical  | boolean | false | 否    | 是否为纵向滑动，纵向滑动时采用纵向的指示器。                   |
 
 
 ## 样式
 
 除支持[通用样式](js-service-widget-common-styles.md)外，还支持如下样式：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| indicator-color | &lt;color&gt; | - | 否 | 导航点指示器的填充颜色。 |
-| indicator-selected-color | &lt;color&gt; | - | 否 | 导航点指示器选中的颜色。 |
-| indicator-size | &lt;length&gt; | 4px | 否 | 导航点指示器的直径大小。 |
-| indicator-top\|left\|right\|bottom | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | - | 否 | 导航点指示器在swiper中的相对位置。 |
+| 名称                                 | 类型                                       | 默认值  | 必填   | 描述                   |
+| ---------------------------------- | ---------------------------------------- | ---- | ---- | -------------------- |
+| indicator-color                    | &lt;color&gt;                            | -    | 否    | 导航点指示器的填充颜色。         |
+| indicator-selected-color           | &lt;color&gt;                            | -    | 否    | 导航点指示器选中的颜色。         |
+| indicator-size                     | &lt;length&gt;                           | 4px  | 否    | 导航点指示器的直径大小。         |
+| indicator-top\|left\|right\|bottom | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt; | -    | 否    | 导航点指示器在swiper中的相对位置。 |
 
 
 ## 事件
@@ -87,7 +87,6 @@
 
 
 ```json
-// xxx.json
 {
   "data": {
     "index": 1

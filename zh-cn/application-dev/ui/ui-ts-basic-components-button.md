@@ -167,26 +167,26 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   ```
 
 
-  ![zh-cn_image_0000001235626467](figures/zh-cn_image_0000001235626467.png)
+​      ![zh-cn_image_0000001235626467](figures/zh-cn_image_0000001235626467.png)
 
 
 - 用于表单的提交
   在用户登录/注册页面，用户的登录或注册的提交操作会用按钮。
 
-
   ```ts
-// xxx.js  
-@Entry
-  @Component
-  struct ButtonCase2 {
-    build() {
-      Column() {
-        TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
-        TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
-        Button('Register').width(300).margin({ top: 20 })
-      }.padding(20)
+  // xxx.js  
+  @Entry
+    @Component
+    struct ButtonCase2 {
+      build() {
+        Column() {
+          TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
+          TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
+          Button('Register').width(300).margin({ top: 20 })
+        }.padding(20)
+      }
     }
-  }
   ```
 
-  ![zh-cn_image_0000001190466492](figures/zh-cn_image_0000001190466492.png)
+
+​    ![zh-cn_image_0000001190466492](figures/zh-cn_image_0000001190466492.png)
