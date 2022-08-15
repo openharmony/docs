@@ -22,9 +22,11 @@ This repository stores device and application development documents provided by 
 
  - OpenHarmony 3.1 Release. [Learn more](en/release-notes/OpenHarmony-v3.1-release.md)
 
+   This version is upgraded to OpenHarmony 3.1.1 LTS. [Learn more](en/release-notes/OpenHarmony-v3.1.1-release.md)
+
  - OpenHarmony 3.0 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0-LTS.md)
 
-   This version is upgraded to OpenHarmony 3.0.3 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.3-LTS.md)
+   This version is upgraded to OpenHarmony 3.0.5 LTS. [Learn more](en/release-notes/OpenHarmony-v3.0.5-LTS.md)
 
  - OpenHarmony 2.2 Beta2. [Learn more](en/release-notes/OpenHarmony-v2.2-beta2.md)
 
@@ -41,10 +43,14 @@ OpenHarmony_v1.x_release: OpenHarmony v1.1.4 LTS. [Learn more](en/release-notes/
 
 Third-party license: [Third-Party Open-Source Software and License Notice](en/contribute/third-party-open-source-software-and-license-notice.md)
 
-## How to Contribute
+## Contribution
 
 A great open-source project wouldn't be possible without the hard work of many contributors. We'd like to invite anyone from around the world to  [participate](en/contribute/how-to-contribute.md)  in this exciting journey, and we're grateful for your time, passion, and efforts!
 
 You can evaluate available documents, make simple modifications, provide feedback on document quality, and contribute your original content. For details, see  [Documentation Contribution](en/contribute/documentation-contribution.md).
 
 Excellent contributors will be awarded and the contributions will be publicized in the developer community.
+
+- Mail list: docs@openharmony.io
+
+- Zulip group: documentation_sig

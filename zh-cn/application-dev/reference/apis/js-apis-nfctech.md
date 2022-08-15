@@ -7,15 +7,15 @@
 
 ## **导入模块**
 
-```
+```js
 import tag from '@ohos.nfc.tag';
 ```
 
-## NfcATag 
+## NfcATag
 
-### 继承 TagSession
+NfcATag 提供 NFC-A(ISO 14443-3A)技术的属性和I/O操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是NfcATag的独有接口。
 
@@ -73,9 +73,9 @@ console.log("atqa:" +atqa);
 
 ## NfcBTag
 
-### 继承 TagSession
+NfcBTag 提供对NFC-B(ISO 14443-3B)技术的属性和I/O操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类，提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是NfcBTag的独有接口。
 
@@ -133,9 +133,9 @@ console.log("appData:" +protocol);
 
 ## NfcFTag
 
-### 继承 TagSession
+NfcFTag 提供对NFC-F(JIS 6319-4)技术的属性和I/O操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是NfcFTag的独有接口。
 
@@ -182,6 +182,7 @@ getPmm(): number[]
 | number[]  | NfcF 标签的PMm信息。|
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -192,9 +193,9 @@ console.log("pmm:" +pmm);
 
 ## NfcVTag
 
-### 继承 TagSession
+NfcVTag 提供对NFC-V(ISO 15693)技术的属性和I/O操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是NfcVTag的独有接口。
 
@@ -250,11 +251,11 @@ let dsfId = tag.getNfcVTag(taginfo).getDsfId();
 console.log("dsfId:" +dsfId);
 ```
 
-## IsoDepTag <sup>9+</sup> 
+## IsoDepTag<sup>9+</sup> 
 
-### 继承 TagSession
+IsoDepTag 提供对ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是IsoDepTag的独有接口。
 
@@ -363,17 +364,17 @@ tag.getIsoDepTag(taginfo).isExtendedApduSupported(function (error, has) {
 }) 
 ```
 
-## NdefTag <sup>9+</sup>
+## NdefTag<sup>9+</sup>
 
-### 继承 TagSession
+提供对已格式化为NDEF的NFC标签的数据和操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是NdefTag的独有接口。
 
 ### NdefTag.createNdefMessage<sup>9+</sup>
 
-createNdefMessage(data: string): [NdefMessage](#NdefMessage<sup>9+</sup>)
+createNdefMessage(data: string): [NdefMessage](#ndefmessage9)
 
 使用原始字节创建ndef消息。
 
@@ -391,7 +392,7 @@ createNdefMessage(data: string): [NdefMessage](#NdefMessage<sup>9+</sup>)
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NdefMessage](#NdefMessage<sup>9+</sup>) | Ndef消息 |
+| [NdefMessage](#ndefmessage9) | Ndef消息 |
 
 **示例：**
 
@@ -406,7 +407,7 @@ let NdefMessage = tag.NdefTag(taginfo).createNdefMessage(data);
 
 ### NdefMessage.getNdefRecords<sup>9+</sup>
 
-getNdefRecords(): [NdefRecord](#NdefRecord<sup>9+</sup>)[ ]
+getNdefRecords(): [NdefRecord](#ndefrecord9)[ ]
 
 获取ndef消息的所有记录。
 
@@ -418,7 +419,7 @@ getNdefRecords(): [NdefRecord](#NdefRecord<sup>9+</sup>)[ ]
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NdefRecord](#NdefRecord<sup>9+</sup>)[ ] | Ndef消息所包含的所有记录。 |
+| [NdefRecord](#ndefrecord9)[ ] | Ndef消息所包含的所有记录。 |
 
 **示例：**
 
@@ -434,7 +435,7 @@ let NdefRecord = tag.NdefTag(taginfo).getNdefRecords();
 | **参数名** | **类型** |  **说明** |
 | -------- | -------- | -------- |
 | tnf | number |  标签的uid。 |
-| [rtdType](#RtdType<sup>9+</sup>) | string |  支持的技术类型。 |
+| [rtdType](#rtdtype9) | string |  支持的技术类型。 |
 | id | string |  标签的额外信息。 |
 | payload | string |  标签的RF discovery id。 |
 
@@ -447,7 +448,7 @@ let NdefRecord = tag.NdefTag(taginfo).getNdefRecords();
 
 ### NdefTag.createNdefMessage<sup>9+</sup>
 
-createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](#NdefMessage<sup>9+</sup>)
+createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](#ndefmessage9)
 
 使用记录列表创建ndef消息。
 
@@ -458,13 +459,13 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](#NdefMessage<sup>9+<
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| ndefRecords | [NdefRecord](#NdefRecord<sup>9+</sup>)[] | 是 | NdefRecord记录列表 |
+| ndefRecords | [NdefRecord](#ndefrecord9)[] | 是 | NdefRecord记录列表。 |
 
 **返回值：**
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NdefMessage](#NdefMessage<sup>9+</sup>) | Ndef消息。|
+| [NdefMessage](#ndefmessage9) | Ndef消息。|
 
 **示例：**
 
@@ -489,7 +490,7 @@ getNdefTagType(): NfcForumType
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NfcForumType](#NfcForumType<sup>9+</sup>) | Ndef标签类型。|
+| [NfcForumType](#nfcforumtype9) | Ndef标签类型。|
 
 **示例：**
 
@@ -514,7 +515,7 @@ getNdefMessage(): NdefMessage
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [NdefMessage](#NdefMessage<sup>9+</sup>)  | Ndef消息。|
+| [NdefMessage](#ndefmessage9)  | Ndef消息。|
 
 **示例：**
 
@@ -551,6 +552,7 @@ tag.NdefTag(taginfo).isNdefWritable().then(function (has) {
     console.log(JSON.stringify(has))
 })
 ```
+
 ### NdefTag.isNdefWritable<sup>9+</sup>
 
 isNdefWritable(callback: AsyncCallback&lt;boolean&gt;): void;
@@ -593,7 +595,7 @@ readNdef(): Promise\<NdefMessage>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise\<NdefMessage> | 以Promise形式返回从标签中读取到的NdefMessage信息。|
+| Promise\<[NdefMessage](#ndefmessage9)> | 以Promise形式返回从标签中读取到的NdefMessage信息。|
 
 **示例：**
 
@@ -605,9 +607,10 @@ tag.NdefTag(taginfo).readNdef().then(function (ndefMessage) {
     console.log(JSON.stringify(ndefMessage))
 })
 ```
+
 ### NdefTag.readNdef<sup>9+</sup>
 
-readNdef(callback: AsyncCallback\<NdefMessage>): void
+readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 读取标签上的ndef消息，使用callback方式作为异步方法。
 
@@ -619,7 +622,7 @@ readNdef(callback: AsyncCallback\<NdefMessage>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[NdefMessage](#NdefMessage<sup>9+</sup>)> | 是   | 回调函数。|
+| callback | AsyncCallback\<[NdefMessage](#ndefmessage9)> | 是   | 回调函数。|
 
 **示例：**
 
@@ -632,6 +635,7 @@ tag.NdefTag(taginfo).readNdef(function (error, ndefMessage) {
     console.log('ndefMessage: ' + ndefMessage)
 })
 ```
+
 ### NdefTag.writeNdef<sup>9+</sup>
 
 writeNdef(msg: NdefMessage): Promise\<number>;
@@ -664,6 +668,7 @@ NdefTag.writeNdef(msg).then(function (netHandle) {
     console.log(JSON.stringify(netHandle))
 })
 ```
+
 ### NdefTag.writeNdef<sup>9+</sup>
 
 writeNdef(msg: NdefMessage, callback: AsyncCallback\<number>): void
@@ -692,6 +697,7 @@ tag.NdefTag(taginfo).write(msg，function (error, has) {
     console.log('has: ' + has)
 })
 ```
+
 ### NdefTag.canSetReadOnly<sup>9+</sup>
 
 canSetReadOnly(): Promise\<boolean>
@@ -718,6 +724,7 @@ tag.NdefTag(taginfo).canSetReadOnly().then(function (has) {
     console.log(JSON.stringify(has))
 })
 ```
+
 ### NdefTag.canSetReadOnly<sup>9+</sup>
 
 isNdefWritable(callback: AsyncCallback&lt;boolean&gt;): void;
@@ -745,6 +752,7 @@ tag.NdefTag(taginfo).canSetReadOnly(function (error, has) {
     console.log('has: ' + has)
 })
 ```
+
 ### NdefTag.setReadOnly<sup>9+</sup>
 
 setReadOnly(): Promise\<number>
@@ -771,6 +779,7 @@ tag.NdefTag(taginfo).setReadOnly().then(function (errcode) {
     console.log(JSON.stringify(errcode))
 })
 ```
+
 ### NdefTag.setReadOnly<sup>9+</sup>
 
 setReadOnly(callback: AsyncCallback<number>): void
@@ -798,9 +807,10 @@ tag.NdefTag(taginfo).setReadOnly(function (error, errcode) {
     console.log('has: ' + errcode)
 })
 ```
+
 ### NdefTag.getNdefTagTypeString<sup>9+</sup>
 
-getNdefTagTypeString(type: [NfcForumType](#NfcForumType<sup>9+</sup>)): string
+getNdefTagTypeString(type: [NfcForumType](#nfcforumtype9)): string
 
 将Nfc论坛类型转换为Nfc论坛中定义的字节数组。
 
@@ -812,7 +822,7 @@ getNdefTagTypeString(type: [NfcForumType](#NfcForumType<sup>9+</sup>)): string
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| type | [NfcForumType](#NfcForumType<sup>9+</sup>) | 是   | NfcForum论坛类型。 |
+| type | [NfcForumType](#nfcforumtype9) | 是   | NfcForum论坛类型。 |
 
 **返回值：**
 
@@ -841,13 +851,13 @@ let ndefTypeString= tag.NdefTag(taginfo).getNdefTagTypeString(type);
 
 ## MifareClassicTag <sup>9+</sup>
 
-### 继承 TagSession
+MifareClassicTag提供对MIFARE经典属性和I/O操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是MifareClassicTag的独有接口。
 
-###  MifareClassicTag.authenticateSector<sup>9+</sup>
+### MifareClassicTag.authenticateSector<sup>9+</sup>
 
 authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise\<boolean>
 
@@ -882,7 +892,7 @@ tag.MifareClassicTag(taginfo).authenticateSector(sectorIndex, key).then(function
         })
 ```
 
-###  MifareClassicTag.authenticateSector<sup>9+</sup>
+### MifareClassicTag.authenticateSector<sup>9+</sup>
 
 authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback: AsyncCallback<boolean>): void
 
@@ -913,7 +923,7 @@ tag.MifareClassicTag(taginfo).authenticateSector(sectorIndex, key, function (err
 })
 ```
 
-###  MifareClassicTag.readSingleBlock<sup>9+</sup>
+### MifareClassicTag.readSingleBlock<sup>9+</sup>
 
 readSingleBlock(blockIndex: number): Promise\<string>
 
@@ -946,7 +956,8 @@ tag.MifareClassicTag(taginfo).readSingleBlock(blockIndex).then(function (data){
     console.log('data: ' + data)
     })
 ```
-###  MifareClassicTag.readSingleBlock<sup>9+</sup>
+
+### MifareClassicTag.readSingleBlock<sup>9+</sup>
 
 readSingleBlock(blockIndex: number, callback: AsyncCallback\<string>): void
 
@@ -975,7 +986,8 @@ tag.MifareClassicTag(taginfo).readSingleBlock(blockIndex, function (error, data)
     console.log('data: ' + data)
 })
 ```
-###  MifareClassicTag.writeSingleBlock<sup>9+</sup>
+
+### MifareClassicTag.writeSingleBlock<sup>9+</sup>
 
 writeSingleBlock(blockIndex: number, data: string): Promise\<number>
 
@@ -1010,7 +1022,7 @@ tag.MifareClassicTag(taginfo).writeSingleBlock(blockIndex, data).then(function (
     })
 ```
 
-###  MifareClassicTag.writeSingleBlock<sup>9+</sup>
+### MifareClassicTag.writeSingleBlock<sup>9+</sup>
 
 writeSingleBlock(blockIndex: number, data: string, callback: AsyncCallback\<number>): void
 
@@ -1041,7 +1053,7 @@ tag.MifareClassicTag(taginfo).writeSingleBlock(blockIndex, data, function (error
 })
 ```
 
-###  MifareClassicTag.incrementBlock<sup>9+</sup>
+### MifareClassicTag.incrementBlock<sup>9+</sup>
 
 incrementBlock(blockIndex: number, value: number): Promise\<number>
 
@@ -1075,7 +1087,7 @@ tag.MifareClassicTag(taginfo).incrementBlock(blockIndex, value).then(function (e
     })
 ```
 
-###  MifareClassicTag.incrementBlock<sup>9+</sup>
+### MifareClassicTag.incrementBlock<sup>9+</sup>
 
 incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<number>): void
 
@@ -1105,7 +1117,7 @@ tag.MifareClassicTag(taginfo).incrementBlock(blockIndex, value, function (error,
 })
 ```
 
-###  MifareClassicTag.decrementBlock<sup>9+</sup>
+### MifareClassicTag.decrementBlock<sup>9+</sup>
 
 decrementBlock(blockIndex: number, value: number): Promise\<number>
 
@@ -1139,7 +1151,7 @@ tag.MifareClassicTag(taginfo).decrementBlock(blockIndex, value).then(function (e
     })
 ```
 
-###  MifareClassicTag.decrementBlock<sup>9+</sup>
+### MifareClassicTag.decrementBlock<sup>9+</sup>
 
 decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<number>): void
 
@@ -1169,7 +1181,7 @@ tag.MifareClassicTag(taginfo).decrementBlock(blockIndex, value, function (error,
 })
 ```
 
-###  MifareClassicTag.transferToBlock<sup>9+</sup>
+### MifareClassicTag.transferToBlock<sup>9+</sup>
 
 transferToBlock(blockIndex: number): Promise\<number>
 
@@ -1192,7 +1204,9 @@ transferToBlock(blockIndex: number): Promise\<number>
 | Promise\<number> | 执行复制操作返回的错误代码。如果返回0，表示成功；否则返回错误码。|
 
 **示例：**
+
 ```js
+
 import tag from '@ohos.nfc.tag';
 
 // tagInfo is an Object given by nfc service when tag is dispatched.
@@ -1201,7 +1215,7 @@ tag.MifareClassicTag(taginfo).transferToBlock(blockIndex).then(function (errcode
     })
 ```
 
-###  MifareClassicTag.transferToBlock
+### MifareClassicTag.transferToBlock
 
 transferToBlock(blockIndex: number, callback: AsyncCallback\<number>): void
 
@@ -1230,7 +1244,7 @@ tag.MifareClassicTag(taginfo).transferToBlock(blockIndex, function (error, errco
 })
 ```
 
-###  MifareClassicTag.restoreFromBlock<sup>9+</sup>
+### MifareClassicTag.restoreFromBlock<sup>9+</sup>
 
 restoreFromBlock(blockIndex: number): Promise\<number>
 
@@ -1253,7 +1267,9 @@ restoreFromBlock(blockIndex: number): Promise\<number>
 | Promise\<number> | 执行复制操作返回的错误代码。如果返回0，表示成功;否则返回错误码。|
 
 **示例：**
+
 ```js
+
 import tag from '@ohos.nfc.tag';
 
 // tagInfo is an Object given by nfc service when tag is dispatched.
@@ -1262,7 +1278,7 @@ tag.MifareClassicTag(taginfo).restoreFromBlock(blockIndex).then(function (errcod
     })
 ```
 
-###  MifareClassicTag.restoreFromBlock<sup>9+</sup>
+### MifareClassicTag.restoreFromBlock<sup>9+</sup>
 
 restoreFromBlock(blockIndex: number, callback: AsyncCallback\<number>): void
 
@@ -1291,7 +1307,7 @@ tag.MifareClassicTag(taginfo).restoreFromBlock(blockIndex, function (error, errc
 })
 ```
 
-###  MifareClassicTag.getSectorCount<sup>9+</sup>
+### MifareClassicTag.getSectorCount<sup>9+</sup>
 
 getSectorCount(): number
 
@@ -1316,7 +1332,7 @@ import tag from '@ohos.nfc.tag';
 let setorCount = tag.MifareClassicTag(taginfo).getSectorCount();
 ```
 
-###  MifareClassicTag.getBlockCountInSector<sup>9+</sup>
+### MifareClassicTag.getBlockCountInSector<sup>9+</sup>
 
 getBlockCountInSector(sectorIndex: number): number
 
@@ -1347,9 +1363,9 @@ import tag from '@ohos.nfc.tag';
 let blockNumber = tag.MifareClassicTag(taginfo).getBlockCountInSector(sectorIndex);
 ```
 
-###  MifareClassicTag.getType<sup>9+</sup>
+### MifareClassicTag.getType<sup>9+</sup>
 
-getType(): [MifareClassicType](#MifareClassicType<sup>9+</sup>)
+getType(): [MifareClassicType](#mifareclassictype9)
 
 获取MifareClassic标签的类型。
 
@@ -1361,7 +1377,7 @@ getType(): [MifareClassicType](#MifareClassicType<sup>9+</sup>)
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| [MifareClassicType](#MifareClassicType<sup>9+</sup>) | MifareClassic标签的类型。|
+| [MifareClassicType](#mifareclassictype9) | MifareClassic标签的类型。|
 
 **示例：**
 
@@ -1372,11 +1388,11 @@ import tag from '@ohos.nfc.tag';
 let type = tag.MifareClassicTag(taginfo).getType(); 
 ```
 
-###  MifareClassicTag.getTagSize<sup>9+</sup>
+### MifareClassicTag.getTagSize<sup>9+</sup>
 
 getTagSize(): number
 
-获取标签的大小（字节），具体请参见[MifareTagSize](#MifareTagSize<sup>9+</sup>)。
+获取标签的大小（字节），具体请参见[MifareTagSize](#mifaretagsize9)。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -1386,7 +1402,7 @@ getTagSize(): number
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| number | 标签的大小，单位为字节，请参见[MifareTagSize](#MifareTagSize<sup>9+</sup>)。|
+| number | 标签的大小，单位为字节，请参见[MifareTagSize](#mifaretagsize9)。|
 
 **示例：**
 
@@ -1415,7 +1431,7 @@ let size = tag.MifareClassicTag(taginfo).getTagSize();
 | MC_SIZE_2K   | 2048 |  每个标签32个扇区，每个扇区4个块。 |
 | MC_SIZE_4K   | 4096 |  每个标签40个扇区，每个扇区4个块。|
 
-###  MifareClassicTag.isEmulatedTag<sup>9+</sup>
+### MifareClassicTag.isEmulatedTag<sup>9+</sup>
 
 isEmulatedTag(): boolean
 
@@ -1437,10 +1453,10 @@ isEmulatedTag(): boolean
 import tag from '@ohos.nfc.tag';
 
 // tagInfo is an Object given by nfc service when tag is dispatched.
-let isEmulated = tag.MifareClassicTag(taginfo).isEmulatedTag()();
+let isEmulated = tag.MifareClassicTag(taginfo).isEmulatedTag();
 ```
 
-###  MifareClassicTag.getBlockIndex<sup>9+</sup>
+### MifareClassicTag.getBlockIndex<sup>9+</sup>
 
 getBlockIndex(sectorIndex: number): number
 
@@ -1470,7 +1486,8 @@ import tag from '@ohos.nfc.tag';
 // tagInfo is an Object given by nfc service when tag is dispatched.
 let index = tag.MifareClassicTag(taginfo).getBlockIndex(sectorIndex);
 ```
-###  MifareClassicTag.getSectorIndex<sup>9+</sup>
+
+### MifareClassicTag.getSectorIndex<sup>9+</sup>
 
 getSectorIndex(blockIndex: number): number
 
@@ -1501,11 +1518,11 @@ import tag from '@ohos.nfc.tag';
 let index = tag.MifareClassicTag(taginfo).getSectorIndex(blockIndex);
 ```
 
-## MifareUltralightTag <sup>9+</sup> 
+## MifareUltralightTag<sup>9+</sup>
 
-### 继承 TagSession
+MifareUltralightTag 提供对MIFARE超轻属性和I/O操作的访问，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是MifareUltralightTag的独有接口。
 
@@ -1532,7 +1549,9 @@ readMultiplePages(pageIndex: number): Promise\<string>
 | Promise\<string> | 读取的4页的数据。 |
 
 **示例：**
+
 ```js
+
 import tag from '@ohos.nfc.tag';
 
 // tagInfo is an Object given by nfc service when tag is dispatched.
@@ -1594,6 +1613,7 @@ writeSinglePages(pageIndex: number, data: string): Promise\<number>
 | Promise\<number> | 执行写入操作返回的错误代码。如果返回0，则表示成功。 |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1633,11 +1653,11 @@ tag.MifareUltralightTag(taginfo).writeSinglePages(pageIndex, data, function (err
 })
 ```
 
-###  MifareUltralightTag.getType<sup>9+</sup>
+### MifareUltralightTag.getType<sup>9+</sup>
 
 getType(): MifareUltralightType
 
-获取MifareUltralight标签的类型，以字节形式返回，具体请参见 [MifareUltralightType](#MifareUltralightType<sup>9+</sup>)。
+获取MifareUltralight标签的类型，以字节形式返回，具体请参见 [MifareUltralightType](#mifareultralighttype9)。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -1647,7 +1667,7 @@ getType(): MifareUltralightType
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| MifareUltralightType | MifareUltralight标签的类型, 具体请参见 [MifareUltralightType](#MifareUltralightType<sup>9+</sup>)。|
+| MifareUltralightType | MifareUltralight标签的类型, 具体请参见 [MifareUltralightType](#mifareultralighttype9)。|
 
 **示例：**
 
@@ -1666,17 +1686,17 @@ let type = tag.MifareUltralightType(taginfo).getType();
 | TYPE_ULTRALIGHT   | 1 |  Mifare Ultralight类型。|
 | TYPE_ULTRALIGHT_C    | 2 |  Mifare UltralightC 类型。 |
 
-## NdefFormatableTag <sup>9+</sup>
+## NdefFormatableTag<sup>9+</sup>
 
-### 继承 TagSession
+NdefFormatableTag为NDEF formattable的标签提供格式化操作，继承自TagSession。
 
-tagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
+TagSession是所有Nfc tag 技术类型的基类， 提供建立连接和发送数据等共同接口。具体请参见[TagSession](js-apis-tagSession.md)。
 
 以下是NdefFormatableTag的独有接口。
 
 ### NdefFormatableTag.format<sup>9+</sup>
 
-format(message: [NdefMessage](#NdefMessage<sup>9+</sup>)): Promise\<number>
+format(message: [NdefMessage](#ndefmessage9)): Promise\<number>
 
 将标签格式化为NDEF标签，然后将NDEF消息写入NDEF标签。使用promise方式作为异步方法。
 
@@ -1688,7 +1708,7 @@ format(message: [NdefMessage](#NdefMessage<sup>9+</sup>)): Promise\<number>
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#NdefMessage<sup>9+</sup>) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
+| message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
 **返回值：**
 
@@ -1697,6 +1717,7 @@ format(message: [NdefMessage](#NdefMessage<sup>9+</sup>)): Promise\<number>
 | Promise\<number> | 执行操作后返回的错误代码。如果返回0，则表示成功。 |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1708,7 +1729,7 @@ tag.NdefFormatableTag(taginfo).format(message).then(function (errcode){
 
 ### NdefFormatableTag.format<sup>9+</sup>
 
-format(message: [NdefMessage](#NdefMessage<sup>9+</sup>), callback: AsyncCallback\<number>): void
+format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<number>): void
 
 将标签格式化为NDEF标签，然后将NDEF消息写入NDEF标签。使用callback方式作为异步方法。
 
@@ -1720,7 +1741,7 @@ format(message: [NdefMessage](#NdefMessage<sup>9+</sup>), callback: AsyncCallbac
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#NdefMessage<sup>9+</sup>) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
+| message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
 | callback: AsyncCallback\<number> | 回调函数。 |
 
 **示例：**
@@ -1737,7 +1758,7 @@ tag.NdefFormatableTag(taginfo).format(message, function (error, errcode) {
 
 ### NdefFormatableTag.formatReadOnly<sup>9+</sup>
 
-formatReadOnly(message: [NdefMessage](#NdefMessage<sup>9+</sup>)): Promise\<number>
+formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<number>
 
 将标签格式化为NDEF标签，然后将NDEF消息写入NDEF标签，之后将标签设置为只读。使用promise方式作为异步方法。
 
@@ -1749,7 +1770,7 @@ formatReadOnly(message: [NdefMessage](#NdefMessage<sup>9+</sup>)): Promise\<numb
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#NdefMessage<sup>9+</sup>) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
+| message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
 **返回值：**
 
@@ -1758,6 +1779,7 @@ formatReadOnly(message: [NdefMessage](#NdefMessage<sup>9+</sup>)): Promise\<numb
 | Promise\<number> | 执行操作后返回的错误代码。如果返回0，则表示成功。 |
 
 **示例：**
+
 ```js
 import tag from '@ohos.nfc.tag';
 
@@ -1769,7 +1791,7 @@ tag.NdefFormatableTag(taginfo).formatReadOnly(message).then(function (errcode){
 
 ### NdefFormatableTag.formatReadOnly<sup>9+</sup>
 
-formatReadOnly(message: [NdefMessage](#NdefMessage<sup>9+</sup>), callback: AsyncCallback\<number>): void
+formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<number>): void
 
 将标签格式化为NDEF标签，然后将NDEF消息写入NDEF标签，之后将标签设置为只读。使用callback方式作为异步方法。
 
@@ -1781,7 +1803,7 @@ formatReadOnly(message: [NdefMessage](#NdefMessage<sup>9+</sup>), callback: Asyn
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#NdefMessage<sup>9+</sup>) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。|
+| message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。|
 | callback: AsyncCallback\<number> | 回调函数。 |
 
 **示例：**

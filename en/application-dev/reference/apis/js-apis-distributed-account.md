@@ -19,8 +19,6 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 Obtains a **DistributedAccountAbility** instance.
 
-**System capability**: SystemCapability.Account.OsAccount
-
 - Return value
   | Type| Description|
   | -------- | -------- |
@@ -43,7 +41,7 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC
 
 - Parameters
   | Name| Type| Mandatory| Description|
@@ -68,7 +66,7 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC
 
 - Return value
   | Type| Description|

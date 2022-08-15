@@ -39,26 +39,60 @@ Creates a **KVManager** instance to manage KV stores. This API uses an asynchron
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** instance created.|
 
 **Example**
-```js
+
+Stage model:
+```ts
+import AbilityStage from '@ohos.application.Ability'
 let kvManager;
-try {
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
     const kvManagerConfig = {
-        bundleName : 'com.example.datamanagertest',
-        userInfo : {
-            userId : '0',
-            userType : distributedData.UserType.SAME_USER_ID
-        }
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.log("createKVManager err: "  + JSON.stringify(err));
-            return;
-        }
-        console.log("createKVManager success");
-        kvManager = manager;
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Created KVManager");
+      kvManager = manager;
     });
-} catch (e) {
-    console.log("An unexpected error occurred. Error:" + e);
+  }
+}
+```
+
+FA model:
+```js
+import AbilityStage from '@ohos.application.Ability'
+let kvManager;
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
+    const kvManagerConfig = {
+      context: context.getApplicationContext(),
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
+    }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Created KVManager");
+      kvManager = manager;
+    });
+  }
 }
 ```
 
@@ -84,24 +118,59 @@ Creates a **KVManager** instance to manage KV stores. This API uses a promise to
 
 **Example**
 
-```js
+Stage model:
+```ts
+import AbilityStage from '@ohos.application.Ability'
 let kvManager;
-try {
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
     const kvManagerConfig = {
-        bundleName : 'com.example.datamanagertest',
-        userInfo : {
-            userId : '0',
-            userType : distributedData.UserType.SAME_USER_ID
-        }
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
     }
-    distributedData.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("createKVManager success");
-        kvManager = manager;
-    }).catch((err) => {
-        console.log("createKVManager err: "  + JSON.stringify(err));
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Created KVManager");
+      kvManager = manager;
     });
-} catch (e) {
-    console.log("An unexpected error occurred. Error:" + e);
+  }
+}
+```
+
+FA model:
+```js
+import AbilityStage from '@ohos.application.Ability'
+let kvManager;
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    let context = this.context
+    const kvManagerConfig = {
+      context: context.getApplicationContext(),
+      bundleName: 'com.example.datamanagertest',
+      userInfo: {
+        userId: '0',
+        userType: distributedData.UserType.SAME_USER_ID
+      }
+    }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+      if (err) {
+        console.log("Failed to create KVManager: " + JSON.stringify(err));
+        return;
+      }
+      console.log("Created KVManager");
+      kvManager = manager;
+    });
+  }
 }
 ```
 
@@ -113,7 +182,7 @@ Provides configuration of the **KVManager** object, including the bundle name an
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
-| context | Context | Yes| Context of the application or function.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context<sup>9+<sup> | Context | Yes| Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 | userInfo | [UserInfo](#userinfo) | Yes | User information.|
 | bundleName | string | Yes | Bundle name.|
 
@@ -572,9 +641,9 @@ Provides KV store configuration.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | autoSync  | boolean | No|Whether database files are automatically synchronized. By default, database files are not automatically synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
 | kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
@@ -1238,7 +1307,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1273,7 +1342,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1308,7 +1377,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1343,7 +1412,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1378,7 +1447,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1413,7 +1482,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1447,7 +1516,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1483,7 +1552,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1518,7 +1587,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1553,7 +1622,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1588,7 +1657,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1623,7 +1692,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1658,7 +1727,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1752,7 +1821,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1787,7 +1856,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1823,7 +1892,7 @@ Creates a **Query** object to specify the number of results and where to start.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1860,7 +1929,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1888,7 +1957,7 @@ Creates a **Query** object for a query condition group with a left parenthesis.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1918,7 +1987,7 @@ Creates a **Query** object for a query condition group with a right parenthesis.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1954,7 +2023,7 @@ Creates a **Query** object with a specified key prefix.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1989,7 +2058,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -2025,7 +2094,7 @@ Creates a **Query** object with the device ID as the key prefix.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -2232,7 +2301,7 @@ try {
 
 ### delete<sup>9+</sup>
 
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;): void
+delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
 
 Deletes KV pairs that meet the specified predicates. This API uses an asynchronous callback to return the result.
 
@@ -2242,13 +2311,13 @@ Deletes KV pairs that meet the specified predicates. This API uses an asynchrono
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| predicates    | Predicates  | Yes   |Conditions for deleting data. If this parameter is **null**, define the processing logic.|
+| predicates    | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | Yes   |Conditions for deleting data. If this parameter is **null**, define the processing logic.|
 | callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback used to return the result.  |
 
 **Example**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2276,7 +2345,7 @@ Deletes KV pairs that meet the specified predicates. This API uses a promise to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| predicates    | Predicates  | Yes   |Conditions for deleting data. If this parameter is **null**, define the processing logic.|
+| predicates    | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | Yes   |Conditions for deleting data. If this parameter is **null**, define the processing logic.|
 
 
 **Return value**
@@ -2288,7 +2357,7 @@ Deletes KV pairs that meet the specified predicates. This API uses a promise to 
 **Example**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let predicates = new dataSharePredicates.DataSharePredicates();
@@ -2312,7 +2381,7 @@ try {
 
 ### on('dataChange')
 
-on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
+on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
 Subscribes to data change notifications of the specified type.
 
@@ -2324,7 +2393,7 @@ Subscribes to data change notifications of the specified type.
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates data changes.      |
 | type  |[SubscribeType](#subscribetype) | Yes   |Type of data changes.    |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the data changes.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the data changes.|
 
 **Example**
 
@@ -2362,7 +2431,7 @@ kvStore.on('syncComplete', function (data) {
 
 ### off('dataChange')<sup>8+</sup>
 
-off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
+off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 Unsubscribes from data change notifications.
 
@@ -2373,7 +2442,7 @@ Unsubscribes from data change notifications.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates data changes.      |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return the data changes.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return the data changes.|
 
 **Example**
 
@@ -2422,7 +2491,7 @@ try {
 
 putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
-Inserts KV pairs to this KV store in batches. This API uses an asynchronous callback to return the result.
+Inserts KV pairs in batches to this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2469,7 +2538,7 @@ try {
 
 putBatch(entries: Entry[]): Promise&lt;void&gt;
 
-Inserts KV pairs to this KV store in batches. This API uses a promise to return the result.
+Inserts KV pairs in batches to this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2523,7 +2592,7 @@ try {
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Writes values to this KV store. This API uses an asynchronous callback to return the result.
+Writes data to this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2531,7 +2600,7 @@ Writes values to this KV store. This API uses an asynchronous callback to return
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| value   |Array[&lt;ValuesBucket&gt;]()[] | Yes   |Values to write.  |
+| value   |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes   |Data to write.  |
 | callback |Asyncallback&lt;void&gt; |Yes    |Callback used to return the result.|
 
 **Example**
@@ -2562,7 +2631,7 @@ try {
 
 putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
-Writes values of the **valuesbucket** type to this KV store. This API uses a promise to return the result.
+Writes data of the **valuesbucket** type to this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2570,7 +2639,7 @@ Writes values of the **valuesbucket** type to this KV store. This API uses a pro
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| value  |Array&lt;[ValuesBucket&gt;](#)[] | Yes   |Values to write.  |
+| value  |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | Yes   |Data to write.  |
 
 **Return value**
 
@@ -2607,7 +2676,7 @@ try {
 
 deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Deletes KV pairs from this KV store in batches. This API uses an asynchronous callback to return the result.
+Deletes KV pairs in batches from this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2654,7 +2723,7 @@ try {
 
 deleteBatch(keys: string[]): Promise&lt;void&gt;
 
-Deletes KV pairs from this KV store in batches. This API uses a promise to return the result.
+Deletes KV pairs in batches from this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2797,7 +2866,7 @@ try {
 
 commit(callback: AsyncCallback&lt;void&gt;): void
 
-Submits the transaction in this KV store. This API uses an asynchronous callback to return the result.
+Commits the transaction in this KV store. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2829,7 +2898,7 @@ try {
 
 commit(): Promise&lt;void&gt;
 
-Submits the transaction in this KV store. This API uses a promise to return the result.
+Commits the transaction in this KV store. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3104,7 +3173,7 @@ Defines the **value** object in a KV store.
 | Name | Type  |Readable  |Writable  | Description                   |
 | ----- | -------   | -----| ------|------------------------ |
 | type | [ValueType](#value)   | Yes |  Yes|Type of the value.  |
-| value | Uint8Array \| string \| number \| boolean| Yes |  Yes|Value.  |
+| value | Uint8Array \| string \| number \| boolean| Yes |  Yes|Value of the KV pair stored in the KV store.  |
 
 ## ValueType
 
@@ -3120,7 +3189,6 @@ Enumerates the data types.
 | BYTE_ARRAY   |3 |Byte array. |
 | BOOLEAN   |4 |Boolean. |
 | DOUBLE   |5 |Double (double-precision floating point). |
-
 
 ## SingleKVStore
 
@@ -3641,7 +3709,7 @@ try {
 
 getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-Obtains a **KvStoreResultSet** object that matches the specified **Predicates** object. This API uses an asynchronous callback to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified **DataSharePredicates** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3649,13 +3717,13 @@ Obtains a **KvStoreResultSet** object that matches the specified **Predicates** 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| predicates  | Predicates    | Yes   |**Predicates** object to match. If this parameter is **null**, define the processing logic.            |
+| predicates  | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)    | Yes   |**DataSharePredicates** object to match. If this parameter is **null**, define the processing logic.            |
 | callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
     let resultSet;
@@ -3676,7 +3744,7 @@ try {
 
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KvStoreResultSet&gt;
 
-Obtains a **KvStoreResultSet** object that matches the specified **Predicates** object. This API uses a promise to return the result.
+Obtains a **KvStoreResultSet** object that matches the specified **DataSharePredicates** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3684,7 +3752,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Predicates** 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| predicates  |[Predicates](#)  | Yes   |**Predicates** object to match. If this parameter is **null**, define the processing logic.           |
+| predicates  |[DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | Yes   |**DataSharePredicates** object to match. If this parameter is **null**, define the processing logic.           |
 
 **Return value**
 
@@ -3695,7 +3763,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Predicates** 
 **Example**
 
 ```js
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 let kvStore;
 try {
 	let resultSet;
@@ -3704,7 +3772,7 @@ try {
     kvStore.getResultSet(predicates) .then((result) => {
         console.log(' GetResultSet success');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, fun ction (err, data) {
+        kvStore.closeResultSet(resultSet, function (err, data) {
             console.log(' closeResultSet success');
         })
     });
@@ -3716,7 +3784,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object returned by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3750,7 +3818,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object returned by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](#singlekvstore_getresultset). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3988,7 +4056,7 @@ Subscribes to the data synchronization complete events.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event  |string   | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates completion of a data synchronization.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback invoked to return the synchronization result.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback called to return the synchronization result.   |
 
 **Example**
 
@@ -4045,7 +4113,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data changes of the specified type. This API uses a synchronous callback to return the result.
+Subscribes to data changes of the specified type. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4071,7 +4139,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from the data change events. This API uses a synchronous callback to return the result.
+Unsubscribes from the data change events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4096,7 +4164,7 @@ kvStore.off('dataChange', function (data) {
 ### sync<sup>7+</sup>
 
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
@@ -4108,9 +4176,9 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
+| deviceIds  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
 | mode  |[SyncMode](#syncmode)   | Yes  |Synchronization mode.   |
-| allowedDelayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
+| delayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
 
 **Example**
 
@@ -4122,7 +4190,7 @@ kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
 ### sync<sup>9+</sup>
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API uses a synchronous mode. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -4140,7 +4208,7 @@ Synchronizes the KV store manually. This API uses a synchronous mode. For detail
 **Example**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {
@@ -4154,7 +4222,7 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, PULL_ONLY , 1000);
+        kvStore.sync(devices, query, mode , 1000);
     });
 }catch(e) {
     console.log('Sync e' + e);
@@ -5023,7 +5091,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the **KvStoreResultSet** object returned by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses an asynchronous callback to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5058,7 +5126,7 @@ try {
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
-Closes the **KvStoreResultSet** object returned by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses a promise to return the result.
+Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](#devicekvstore_getresultset). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5391,7 +5459,7 @@ try {
 
 ### sync<sup>8+</sup> ###
 
-sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void
+sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
@@ -5403,9 +5471,9 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList    |string[]               | Yes   |IDs of the devices to be synchronized.|
+| deviceIds    |string[]               | Yes   |IDs of the devices to be synchronized.|
 | mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
-| allowedDelayMs  |number                 | No   |Allowed synchronization delay time, in ms. |
+| delayMs  |number                 | No   |Allowed synchronization delay time, in ms. |
 
 **Example**
 
@@ -5432,7 +5500,7 @@ try {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API uses a synchronous mode. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5449,7 +5517,7 @@ Synchronizes the KV store manually. This API uses a synchronous mode. For detail
 **Example**
 
 ```js
-let kvstore;
+let kvStore;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 try {
@@ -5510,7 +5578,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization complete events. This API uses a synchronous callback to return the result.
+Unsubscribes from the synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5540,7 +5608,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data changes of the specified type. This API uses a synchronous callback to return the result.
+Subscribes to data changes of the specified type. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5566,7 +5634,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from the data change events. This API uses a synchronous callback to return the result.
+Unsubscribes from the data change events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5600,3 +5668,4 @@ Enumerates the synchronization modes.
 | PULL_ONLY  |0          |Pull data from the peer end to the local end only.|
 | PUSH_ONLY  |1          |Push data from the local end to the peer end only.|
 | PUSH_PULL  |2          |Push data from the local end to the peer end and then pull data from the peer end to the local end.|
+

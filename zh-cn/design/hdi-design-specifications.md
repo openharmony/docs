@@ -475,7 +475,7 @@ GetExecutorInfo([out] struct ExecutorInfo executorInfo);
 
 #### 数组类型使用约束
 
-| IDL容器数据类型 | C++数据类型        | C数据类型       |
+| IDL数组数据类型 | C++数据类型        | C数据类型       |
 | --------- | -------------- | ----------- |
 | T[]       | std::vector<T> | T*,int size |
 

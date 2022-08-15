@@ -37,7 +37,7 @@ Ability监听器
 
 | 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| abilityName                                                  | string   | 是   | 是   | 当前AbilityMonitor绑定的ability名称<br/>**系统能力：** SystemCapability.Ability.AbilityRuntime.Core |
+| abilityName                                                  | string   | 是   | 是   | 当前AbilityMonitor绑定的ability名称 |
 | onAbilityCreate?:(data: [Ability](js-apis-application-ability.md#Ability)) | function | 是   | 是   | ability被启动初始化时的回调函数<br/>不设置该属性则不能收到该生命周期回调 |
 | onAbilityForeground?:(data: [Ability](js-apis-application-ability.md#Ability)) | function | 是   | 是   | ability状态变成前台时的回调函数<br/>不设置该属性则不能收到该生命周期回调 |
 | onAbilityBackground?:(data: [Ability](js-apis-application-ability.md#Ability)) | function | 是   | 是   | ability状态变成后台时的回调函数<br/>不设置该属性则不能收到该生命周期回调 |

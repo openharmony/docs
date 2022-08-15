@@ -174,6 +174,42 @@ Obtains all display objects. This API uses a promise to return the result.
   });
   ```
 
+## display.hasPrivateWindow<sup>9+</sup>
+
+hasPrivateWindow(displayId: number): boolean
+
+Checks whether there is a visible privacy window on a display. The privacy window can be set by calling **[setPrivacyMode](js-apis-window.md#setprivacymode7)**. The content in the privacy window cannot be captured or recorded.
+
+This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type                     | Mandatory| Description      |
+| ------ | ------------------------- | ---- |----------|
+| id     | number                    | Yes  | ID of the display.|
+
+**Return value**
+
+| Type                            | Description                                                                   |
+| -------------------------------- |-----------------------------------------------------------------------|
+|boolean | Whether there is a visible privacy window on the display.<br>The value **true** means that there is a visible privacy window on the display, and **false** means the opposite.<br>|
+
+**Example**
+
+  ```js
+  var ret = display.hasPrivateWindow(displayClass.id);
+  if (ret == undefined) {
+      console.log("HasPrivateWindow undefined.");
+  }
+  if (ret) {
+      console.log("HasPrivateWindow.");
+  } else if (!ret) {
+      console.log("Don't HasPrivateWindow.");
+  }
+  ```
+
 ## display.on('add'|'remove'|'change')
 
 on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void

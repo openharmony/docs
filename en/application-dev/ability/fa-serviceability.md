@@ -30,7 +30,7 @@ A Service ability is used to run tasks in the background, such as playing music 
        },
        onConnect(want) {
            console.log('ServiceAbility OnConnect');
-           return null;
+           return new FirstServiceAbilityStub('test');
        },
        onDisconnect(want) {
            console.log('ServiceAbility OnDisConnect');
@@ -113,8 +113,6 @@ let promise = featureAbility.startAbility(
 
 Once created, the Service ability keeps running in the background. The system does not stop or destroy it unless memory resources must be reclaimed.
 
-  
-
 ### Connecting to a Local Service Ability
 
 If you need to connect a Service ability to a Page ability or to a Service ability in another application, you must first implement the **IAbilityConnection** API for the connection. A Service ability allows other abilities to connect to it through **connectAbility()**.
@@ -124,7 +122,7 @@ You can use either of the following methods to connect to a Service ability:
 
 1. Using the IDL to automatically generate code
 
-    Use OpenHarmony Interface Definition Language (IDL) to automatically generate the corresponding client, server, and **IRemoteObject** code. For details, see [“Development Using TS” in OpenHarmony IDL Specifications and User Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/IDL/idl-guidelines.md#development-using-ts).
+    Use OpenHarmony Interface Definition Language (IDL) to automatically generate the corresponding client, server, and **IRemoteObject** code. For details, see “Development Using TS" in [OpenHarmony IDL Specifications and User Guide](../IDL/idl-guidelines.md).
 
 2. Writing code in the corresponding file
 
@@ -134,42 +132,37 @@ You can use either of the following methods to connect to a Service ability:
 
     ```javascript
     import prompt from '@system.prompt'
-    
-    let mRemote;
-    function onConnectCallback(element, remote){
-        console.log('onConnectLocalService onConnectDone element: ' + element);
-        console.log('onConnectLocalService onConnectDone remote: ' + remote);
-        mRemote = remote;
-        if (mRemote == null) {
-        prompt.showToast({
-            message: "onConnectLocalService not connected yet"
-        });
-        return;
-        }
-        let option = new rpc.MessageOption();
-        let data = new rpc.MessageParcel();
-        let reply = new rpc.MessageParcel();
-        data.writeInt(1);
-        data.writeInt(99);
-        mRemote.sendRequest(1, data, reply, option).then((result) => {
-            console.log('sendRequest success');
-            let msg = reply.readInt();
+
+    var option = {
+        onConnect: function onConnectCallback(element, proxy) {
+            console.log(`onConnectLocalService onConnectDone`)
+            if (proxy === null) {
+                prompt.showToast({
+                    message: "Connect service failed"
+                })
+                return
+            }
+            let data = rpc.MessageParcel.create()
+            let reply = rpc.MessageParcel.create()
+            let option = new rpc.MessageOption()
+            data.writeInterfaceToken("connect.test.token")
+            proxy.sendRequest(0, data, reply, option)
             prompt.showToast({
-                message: "onConnectLocalService connect result: " + msg,
-                duration: 3000
-            });
-        }).catch((e) => {
-            console.log('sendRequest error:' + e);
-        });
-    
-    }
-    
-    function onDisconnectCallback(element){
-        console.log('ConnectAbility onDisconnect Callback')
-    }
-    
-    function onFailedCallback(code){
-        console.log('ConnectAbility onFailed Callback')
+                message: "Connect service success"
+            })
+        },
+        onDisconnect: function onDisconnectCallback(element) {
+            console.log(`onConnectLocalService onDisconnectDone element:${element}`)
+            prompt.showToast({
+                message: "Disconnect service success"
+            })
+        },
+        onFailed: function onFailedCallback(code) {
+            console.log(`onConnectLocalService onFailed errCode:${code}`)
+            prompt.showToast({
+                message: "Connect local service onFailed"
+            })
+        }
     }
     ```
 
@@ -196,45 +189,28 @@ You can use either of the following methods to connect to a Service ability:
 
     ```javascript
     import rpc from "@ohos.rpc";
-    
-    let mMyStub;
-    export default {
-        onStart() {
-            class MyStub extends rpc.RemoteObject{
-                constructor(des) {
-                    if (typeof des === 'string') {
-                        super(des);
-                    }
-                    return null;
-                }
-                onRemoteRequest(code, data, reply, option) {
-                    console.log("ServiceAbility onRemoteRequest called");
-                    if (code === 1) {
-                        let op1 = data.readInt();
-                        let op2 = data.readInt();
-                        console.log("op1 = " + op1 + ", op2 = " + op2);
-                        reply.writeInt(op1 + op2);
-                    } else {
-                        console.log("ServiceAbility unknown request code");
-                    }
-                    return true;
-                }
-            }
-            mMyStub = new MyStub("ServiceAbility-test");
-        },
-        onCommand(want, startId) {
-            console.log('ServiceAbility onCommand');
-        },
-        onConnect(want) {
-            console.log('ServiceAbility OnConnect');
-            return mMyStub;
-        },
-        onDisconnect(want) {
-            console.log('ServiceAbility OnDisConnect');
-        },
-        onStop() {
-            console.log('ServiceAbility onStop');
-        },
+
+    class FirstServiceAbilityStub extends rpc.RemoteObject {
+    constructor(des: any) {
+        if (typeof des === 'string') {
+            super(des)
+        } else {
+            return
+        }
+    }
+
+    onRemoteRequest(code: number, data: any, reply: any, option: any) {
+        console.log(printLog + ` onRemoteRequest called`)
+        if (code === 1) {
+            let string = data.readString()
+            console.log(printLog + ` string=${string}`)
+            let result = Array.from(string).sort().join('')
+            console.log(printLog + ` result=${result}`)
+            reply.writeString(result)
+        } else {
+            console.log(printLog + ` unknown request code`)
+        }
+        return true;
     }
     ```
 
@@ -253,40 +229,36 @@ The following code snippet shows how to implement the callbacks:
 ```ts
 import prompt from '@system.prompt'
 
-let mRemote;
-function onConnectCallback(element, remote){
-    console.log('onConnectRemoteService onConnectDone element: ' + element);
-    console.log('onConnectRemoteService onConnectDone remote: ' + remote);
-    mRemote = remote;
-    if (mRemote == null) {
-      prompt.showToast({
-        message: "onConnectRemoteService not connected yet"
-      });
-      return;
-    }
-    let option = new rpc.MessageOption();
-    let data = new rpc.MessageParcel();
-    let reply = new rpc.MessageParcel();
-    data.writeInt(1);
-    data.writeInt(99);
-    mRemote.sendRequest(1, data, reply, option).then((result) => {
-        console.log('sendRequest success');
-        let msg = reply.readInt();
+var option = {
+    onConnect: function onConnectCallback(element, proxy) {
+        console.log(`onConnectRemoteService onConnectDone`)
+        if (proxy === null) {
+            prompt.showToast({
+                message: "Connect service failed"
+            })
+            return
+        }
+        let data = rpc.MessageParcel.create()
+        let reply = rpc.MessageParcel.create()
+        let option = new rpc.MessageOption()
+        data.writeInterfaceToken("connect.test.token")
+        proxy.sendRequest(0, data, reply, option)
         prompt.showToast({
-            message: "onConnectRemoteService connect result: " + msg,
-            duration: 3000
-        });
-    }).catch((e) => {
-        console.log('sendRequest error:' + e);
-    });
-}
-
-function onDisconnectCallback(element){
-    console.log('ConnectRemoteAbility onDisconnect Callback')
-}
-
-function onFailedCallback(code){
-    console.log('ConnectRemoteAbility onFailed Callback')
+            message: "Connect service success"
+        })
+    },
+    onDisconnect: function onDisconnectCallback(element) {
+        console.log(`onConnectRemoteService onDisconnectDone element:${element}`)
+        prompt.showToast({
+            message: "Disconnect service success"
+        })
+    },
+    onFailed: function onFailedCallback(code) {
+        console.log(`onConnectRemoteService onFailed errCode:${code}`)
+        prompt.showToast({
+            message: "Connect local service onFailed"
+        })
+    }
 }
 ```
 
@@ -372,23 +344,25 @@ The following code snippet shows how the Service ability instance returns itself
 ```ts
 import rpc from "@ohos.rpc";
 
-class FirstServiceAbilityStub extends rpc.RemoteObject{
-    constructor(des) {
+class FirstServiceAbilityStub extends rpc.RemoteObject {
+    constructor(des: any) {
         if (typeof des === 'string') {
-            super(des);
+            super(des)
         } else {
-            return null;
+            return
         }
     }
-    onRemoteRequest(code, data, reply, option) {
-        console.log("ServiceAbility onRemoteRequest called");
+
+    onRemoteRequest(code: number, data: any, reply: any, option: any) {
+        console.log(printLog + ` onRemoteRequest called`)
         if (code === 1) {
-            let op1 = data.readInt();
-            let op2 = data.readInt();
-            console.log("op1 = " + op1 + ", op2 = " + op2);
-            reply.writeInt(op1 + op2);
+            let string = data.readString()
+            console.log(printLog + ` string=${string}`)
+            let result = Array.from(string).sort().join('')
+            console.log(printLog + ` result=${result}`)
+            reply.writeString(result)
         } else {
-            console.log("ServiceAbility unknown request code");
+            console.log(printLog + ` unknown request code`)
         }
         return true;
     }
