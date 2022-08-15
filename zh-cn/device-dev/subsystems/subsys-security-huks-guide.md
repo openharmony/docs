@@ -54,9 +54,11 @@
 
 2. 接口返回的证书链应该按照业务证书、设备证书、CA证书和根证书的顺序组装，在每项证书之前还需要加上证书的长度。证书链组装完成后添加整个证书链的长度组装成blob格式。证书的具体格式如要自己实现应与服务器侧解析的格式相对应。
 
+![image](figures/CertChain.png)
+
 3. 接口返回的密钥必须按照规定形式组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)
 
-构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)
+   构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)
 
 #### 密钥存储态
 
