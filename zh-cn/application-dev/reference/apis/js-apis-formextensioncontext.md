@@ -11,7 +11,22 @@ FormExtensionContext模块提供FormExtension具有的接口和能力。
 
 ## 使用说明
 
-FormExtensionContext模块是FormExtension的上下文环境，继承自ExtensionContext。
+在使用FormExtensionContext的功能前，需要通过FormExtension获取。
+```js
+import FormExtension from '@ohos.application.FormExtension';
+import formBindingData from '@ohos.application.formBindingData'
+export default class MyFormExtension extends FormExtension {
+    onCreate() {
+        let dataObj1 = {
+            temperature:"11c",
+            "time":"11:00"
+        };
+        let obj1 = formBindingData.createFormBindingData(dataObj1);
+        return obj1;
+    }
+}
+
+```
 
 ## FormExtensionContext.startAbility
 
@@ -51,6 +66,8 @@ this.context.startAbility(want, function(err) {
 ## FormExtensionContext.startAbility
 
 startAbility(want: Want): Promise&lt;void&gt;
+
+拉起一个卡片所属应用的Ability。
 
 **系统能力**：SystemCapability.Ability.Form
 
