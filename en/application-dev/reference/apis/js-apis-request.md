@@ -874,7 +874,7 @@ Queries this download task. This API uses a promise to return the result.
 **System capability**: SystemCapability.MiscServices.Download
 
 **Parameters**
-  | Type| Description|
+    | Type| Description|
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; | Promise used to return the download task information.|
 
@@ -1113,11 +1113,11 @@ Resumes this download task. This API uses an asynchronous callback to return the
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Resource URL.|
 | header | object | No| HTTP or HTTPS header added to a download request.|
-| enableMetered | boolean | No| Download allowed in metered connections.|
-| enableRoaming | boolean | No| Download allowed on a roaming network.|
+| enableMetered | boolean | No| Whether download is allowed on a metered connection.<br>- **true**: yes<br> **false**: no|
+| enableRoaming | boolean | No| Whether download is allowed on a roaming network.<br>- **true**: yes<br> **false**: no|
 | description | string | No| Description of the download session.|
 | filePath<sup>7+</sup> | string | No| Download path. (The default path is **'internal://cache/'**.)<br>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br>- filePath:'test.txt': Files are stored in the default path.<br>- filePath:'workspace/': The **workspace** directory is created in the default path to store files.|
-| networkType | number | No| Network type allowed for download.|
+| networkType | number | No| Network type allowed for download.<br>- NETWORK_MOBILE: 0x00000001<br>- NETWORK_WIFI: 0x00010000|
 | title | string | No| Title of the download session.|
 | background | boolean | No| Whether to enable the background task notification. When this parameter is enabled, the download status is displayed in the notification panel.|
 
