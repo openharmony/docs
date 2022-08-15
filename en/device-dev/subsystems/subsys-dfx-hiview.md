@@ -18,7 +18,7 @@ Hiview is a module that provides toolkits for device maintenance across differen
    - The Faultlogger plugin processes fault-related events.
    - The EventLogger plugin collects event-related log information.
 3. On completion of event processing, SysEventPipeline sends the events to the event subscription queue and then dispatches the events to the subscription plugin for processing.
-   - FreezeDetectorPlugin processes screen freezing events.
+   - FreezeDetector processes screen freezing events.
    - HiCollieCollector processes suspension events.
 
 ### Basic Concepts
