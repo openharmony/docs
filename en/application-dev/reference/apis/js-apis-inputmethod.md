@@ -247,11 +247,11 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 ### displayOptionalInputMethod
 
-  displayOptionalInputMethod(): Promise&lt;void&gt;
+displayOptionalInputMethod(): Promise&lt;void&gt;
 
 Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
 
-  **System capability**: SystemCapability.MiscServices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
