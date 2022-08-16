@@ -45,6 +45,7 @@
 @Entry
 @Component
 struct ColorGradientExample {
+  
   build() {
     Column({ space: 5 }) {
       Text('linearGradient').fontSize(12).width('90%').fontColor(0xCCCCCC)
