@@ -173,7 +173,7 @@ stopInput(): Promise&lt;boolean&gt;
   console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-### showSoftKeyboard ###
+### showSoftKeyboard<sup>9+</sup> ###
 
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
@@ -200,7 +200,7 @@ InputMethodController.showSoftKeyboard((err) => {
 ```
 
 
-### showSoftKeyboard ###
+### showSoftKeyboard<sup>9+</sup> ###
 
 showSoftKeyboard(): Promise&lt;void&gt;
 
@@ -224,7 +224,7 @@ InputMethodController.showSoftKeyboard().then(async (err) => {
 });
 ```
 
-### hideSoftKeyboard ###
+### hideSoftKeyboard<sup>9+</sup> ###
 
 hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
@@ -251,7 +251,7 @@ InputMethodController.hideSoftKeyboard((err) => {
 ```
 
 
-### hideSoftKeyboard ###
+### hideSoftKeyboard<sup>9+</sup> ###
 
 hideSoftKeyboard(): Promise&lt;void&gt;
 
