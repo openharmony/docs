@@ -117,6 +117,7 @@
 | ohos.permission.MANAGE_VOICEMAIL                         | system_basic | user_grant   | TRUE    | 允许应用在语音信箱中留言                                     |
 | ohos.permission.LOCATION_IN_BACKGROUND                   | normal       | user_grant   | FALSE   | 允许应用在后台运行时获取设备位置信息。                       |
 | ohos.permission.LOCATION                                 | normal       | user_grant   | TRUE    | 允许应用获取设备位置信息。                                   |
+| ohos.permission.APPROXIMATELY_LOCATION                   | normal       | user_grant   | FALSE   | 允许应用获取设备模糊位置信息。                               |
 | ohos.permission.MEDIA_LOCATION                           | normal       | user_grant   | TRUE    | 允许应用访问用户媒体文件中的地理位置信息。                   |
 | ohos.permission.CAMERA                                   | normal       | user_grant   | TRUE    | 允许应用使用相机拍摄照片和录制视频。                         |
 | ohos.permission.READ_MEDIA                               | normal       | user_grant   | TRUE    | 允许应用读取用户外部存储中的媒体文件信息。                   |
