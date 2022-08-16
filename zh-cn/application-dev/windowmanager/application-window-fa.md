@@ -22,7 +22,7 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| window静态方法 | create(id:string,type:WindowType,callback:AsyncCallback]&lt;Window&gt;):void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
+| window静态方法 | create(id:string,type:WindowType,callback:AsyncCallback&lt;Window&gt;):void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
 | window静态方法 | getTopWindow(callback:AsyncCallback&lt;Window&gt;):void | 获取当前应用内最后显示的窗口。<br/>此接口仅可在`FA`模型下使用。 |
 | window静态方法 | find(id:string,callback:AsyncCallback&lt;Window&gt;):void | 查找`id`所对应的窗口。 |
 | Window | loadContent(path:string,callback:AsyncCallback&lt;void&gt;):void | 为当前窗口加载具体页面内容。 |
