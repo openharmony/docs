@@ -1,10 +1,9 @@
 # 自定义弹窗
 
+通过CustomDialogController类显示自定义弹窗。
+
 > **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-通过CustomDialogController类显示自定义弹窗。
 
 
 ## 接口
@@ -42,7 +41,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 ### 导入对象
 
-```
+```ts
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
 

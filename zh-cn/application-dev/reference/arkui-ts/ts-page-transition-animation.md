@@ -1,10 +1,9 @@
 # 页面间转场
 
+页面转场通过在全局pageTransition方法内配置页面入场组件和页面退场组件来自定义页面转场动效。
+
 > **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-页面转场通过在全局pageTransition方法内配置页面入场组件和页面退场组件来自定义页面转场动效。
 
 
 | 名称                  | 参数     | 参数描述                            |
@@ -71,6 +70,7 @@ struct PageTransitionExample1 {
   @State scale1: number = 1
   @State opacity1: number = 1
   @State active: boolean = false
+
   build() {
   Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
@@ -105,6 +105,7 @@ struct AExample {
   @State scale2: number = 1
   @State opacity2: number = 1
   @State active: boolean = false
+
   build() {
     Column() {
       Navigator({ target: 'pages/index' ,type: NavigationType.Push}) {
