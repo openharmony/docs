@@ -110,6 +110,6 @@ if (ohos_kernel_type == "liteos_m") {
 
    其中，“include_dirs”需要根据工程实际情况包含两个路径：
 
-   -- iot子系统的头文件路径
+   - iot子系统的头文件路径
 
-   -- 适配iot子系统所使用到的SDK的头文件路径
+   - 适配iot子系统所使用到的SDK的头文件路径
