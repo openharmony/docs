@@ -173,6 +173,106 @@ stopInput(): Promise&lt;boolean&gt;
   console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
+### showSoftKeyboard
+
+showSoftKeyboard(callback: AsyncCallback&lt;boolean&gt;): void
+
+显示软键盘，callback方法获取显示软键盘结果。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                     |
+| -------- | ---------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 返回显示软键盘是否成功。 |
+
+**示例：**
+
+```js
+InputMethodController.showSoftKeyboard((err, data) => {
+    if (err) {
+        console.error('showSoftKeyboard failed : ' + JSON.stringify(err));
+    }
+    console.info('showSoftKeyboard success : ' + JSON.stringify(data));
+})
+```
+
+### showSoftKeyboard
+
+showSoftKeyboard(): Promise&lt;boolean&gt;
+
+显示软键盘，Promise方法获取显示软键盘结果。
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                   | 说明                     |
+| ---------------------- | ------------------------ |
+| Promise&lt;boolean&gt; | 返回显示软键盘是否成功。 |
+
+**示例：**
+
+
+```js
+InputMethodController.showSoftKeyboard().then((data) => {
+    console.log('showSoftKeyboard success:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('showSoftKeyboard failed:' + JSON.stringify(error));
+});
+```
+
+### hideSoftKeyboard
+
+hideSoftKeyboard(callback: AsyncCallback&lt;boolean&gt;): void
+
+隐藏软键盘，callback方法获取隐藏软键盘结果。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                     |
+| -------- | ---------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 返回隐藏软键盘是否成功。 |
+
+**示例：**
+
+```js
+InputMethodController.hideSoftKeyboard((err, data) => {
+    if (err) {
+        console.error('hideSoftKeyboard failed : ' + JSON.stringify(err));
+    }
+    console.info('hideSoftKeyboard success : ' + JSON.stringify(data));
+})
+```
+
+### hideSoftKeyboard
+
+hideSoftKeyboard(): Promise&lt;boolean&gt;
+
+隐藏软键盘，Promise方法获取隐藏软键盘结果。
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                   | 说明                     |
+| ---------------------- | ------------------------ |
+| Promise&lt;boolean&gt; | 返回隐藏软键盘是否成功。 |
+
+**示例：**
+
+
+```js
+InputMethodController.hideSoftKeyboard().then((data) => {
+    console.log('hideSoftKeyboard success:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('hideSoftKeyboard failed:' + JSON.stringify(error));
+});
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodcontroller)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
