@@ -288,11 +288,11 @@ Table 15 Transaction APIs
 
     (1) Add the following permission to the permission configuration file:   
 
-    ```js
+    ```json
     "requestPermissions": 
-    {
+      {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-    }
+      }
     ```
 
     (2) Obtain the required permissions.
