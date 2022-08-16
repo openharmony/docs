@@ -249,9 +249,9 @@
 
     ```js
     "requestPermissions": 
-        {
+      {
             "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-        }
+      }
     ```
 
     (2) 获取应用权限。
