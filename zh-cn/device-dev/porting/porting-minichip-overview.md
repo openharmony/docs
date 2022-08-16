@@ -27,8 +27,9 @@
 
 
   **图1** 业务总体流程 
- 
-  ![zh-cn_image_0000001378282213](figures/zh-cn_image_0000001378282213.png)
+
+
+  ![zh-cn_image_0000001378282213](figures/zh-cn_image_0000001378282213.png)
 
 
 ## 基本概念
@@ -43,7 +44,7 @@
 | DP平台 | Devicepartner缩写，即华为智能硬件合作伙伴平台，为生态合作伙伴提供产品开发、认证、发布等一站式服务的平台。 | 
 | IR平台 | Developers&nbsp;IssueReporter缩写，是由华为运营的、面向所有华为开发者用户的产品服务平台。 | 
 | HOBT | HiLink&nbsp;SDK&nbsp;OHOS&nbsp;Basic&nbsp;Test缩写，是HiLink&nbsp;SDK&nbsp;接入&nbsp;OpenHarmony的基础功能测试，检验HiLink&nbsp;SDK依赖的相关接口功能是否完善。 | 
-| Token | 伙伴从合作伙伴平台（https://devicepartner.huawei.com/cn/）申请的设备身份凭据，每个设备唯一；需要在产线上逐个设备写入，用来标识设备是经过华为授权的。 | 
+| Token | 伙伴从[合作伙伴平台](https://devicepartner.huawei.com/cn/)申请的设备身份凭据，每个设备唯一；需要在产线上逐个设备写入，用来标识设备是经过华为授权的。 | 
 | Kit&nbsp;Framework | Kit&nbsp;Framework是Kit的基础框架，包含了OpenHarmony的安全组件，不可裁剪。 | 
 | HiLink&nbsp;SDK | HarmonyOS&nbsp;Connect套件的一个关键组成部分，用于实现设备的联网，以及设备与HarmonyOS&nbsp;Connect云和智慧生活App的互联互通。 | 
 | kv | 键值对(key-value)，描述数据存储的格式。 | 
