@@ -154,6 +154,7 @@ createPixelMapData((pixelMap: image.PixelMap): PasteData
 **示例**
 
   ```js
+  import image from '@ohos.multimedia.image';
   var buffer = new ArrayBuffer(128)
   var opt = {
   size: { height: 3, width: 5 },
@@ -293,6 +294,7 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 **示例**
 
   ```js
+  import image from '@ohos.multimedia.image';
   var buffer = new ArrayBuffer(128)
   var opt = {
   size: { height: 3, width: 5 },
@@ -338,7 +340,7 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
-| pixelMap<sup>9+</sup> | image.PixelMap | 是 | 否 | PixelMap内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md) | 是 | 否 | PixelMap内容。 |
 
 
 ### convertToText<sup>7+</sup>
@@ -503,11 +505,12 @@ getPrimaryPixelMap(): image.PixelMap
 **返回值**
 | 类型 | 说明 |
 | -------- | -------- |
-| image.PixelMap | PixelMap对象内容。 |
+| [image.PixelMap](js-apis-image.md) | PixelMap对象内容。 |
 
 **示例**
 
   ```js
+  import image from '@ohos.multimedia.image';
   var buffer = new ArrayBuffer(128)
   var opt = {
   size: { height: 3, width: 5 },
@@ -632,11 +635,12 @@ addPixelMapRecord(pixelMap: image.PixelMap): void
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pixelMap | image.PixelMap | 是 | PixelMap对象内容。 |
+| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | PixelMap对象内容。 |
 
 **示例**
 
   ```js
+  import image from '@ohos.multimedia.image';
   var buffer = new ArrayBuffer(128)
   var opt = {
   size: { height: 3, width: 5 },
