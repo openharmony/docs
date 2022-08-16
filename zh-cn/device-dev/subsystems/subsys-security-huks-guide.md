@@ -60,7 +60,7 @@
 
    构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob]。(https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)
 
-   密钥存储态
+   **密钥存储态**
 
    为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的相关信息，存储态下密钥属性和密钥的组合结构如下：
 
