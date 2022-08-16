@@ -200,9 +200,9 @@
   - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
-  - [@ohos.systemTime (设置系统时间)](js-apis-system-time.md)
+  - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
+  - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
-  - [@ohos.systemTimer(设置系统时间)](js-apis-system-timer.md)
   - [Timer (定时器)](js-apis-timer.md)
 
 - 设备管理
