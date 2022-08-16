@@ -78,7 +78,7 @@ HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密
 
 | 接口名                                                       | 功能介绍                                  | 约束与限制                     | 对应的js接口                                        |
 | ------------------------------------------------------------ | ---------------------------------------- | ----------------------------- | ------------------------------------------------------------ |
-| [HuksHdiModuleInit()](#HuksHdiModuleInit)                   | Core的初始化。                            |  无                           | 无 |
+| [HuksHdiModuleInit()](#hukshdimoduleinit)                   | Core的初始化。                            |  无                           | 无 |
 | [HuksHdiRefresh()](#HuksHdiRefresh)                          | 刷新根密钥。                              |  无                            | 无 |
 | [HuksHdiGenerateKey()](#HuksHdiGenerateKey)                  | 生成密钥。                                |  出参要遵循KeyBlob格式          |generateKey(keyAlias: string, options: HuksOptions)|
 | [HuksHdiImportKey()](#HuksHdiImportKey)                     | 导入明文密钥。                            |  出参要遵循KeyBlob格式           | importKey(keyAlias: string, options: HuksOptions)|
