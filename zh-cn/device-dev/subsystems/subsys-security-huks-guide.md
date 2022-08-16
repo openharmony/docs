@@ -1,4 +1,4 @@
-# OpenHarmony通用密钥库开发
+# OpenHarmony通用密钥库开发指导
 
 ## 概述
 
@@ -41,9 +41,11 @@
 ### 实现原理
 
 以密钥的生成为例：
-上层应用通过密钥管理SDK调用到HUKS Service，Huks Service再调用Huks Core，Huks Core会调用密钥管理模块生成密钥。之后Huks Core使用基于RootKey派生的加密密钥对生成的密钥加密再传给Service侧，Service侧再以文件形式存储加密后的密钥。
+上层应用通过密钥管理SDK调用到HUKS Service，HUKS Service再调用HUKS Core，HUKS Core会调用密钥管理模块生成密钥。之后HUKS Core使用基于RootKey派生的加密密钥对生成的密钥加密再传给Service侧，Service侧再以文件形式存储加密后的密钥。
 
 ![image](figures/HUKS-GenerateKey1.png)
+
+以下是详细的密钥生成时序图：
 
 ![image](figures/HUKS-GenerateKey2.png)
 
@@ -54,23 +56,23 @@
 
 2. HuksHdiAttestKey返回的证书链应该按照业务证书、设备证书、CA证书和根证书的顺序组装，在每项证书之前还需要加上证书的长度。证书链组装完成后添加整个证书链的长度组装成blob格式。证书的具体格式如要自己实现应与服务器侧解析的格式相对应。
 
-![image](figures/HUKS-CertChain.png)
+  ![image](figures/HUKS-CertChain.png)
 
 3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
-   构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)。
+   KeyBlob又被称作密钥存储态，构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)。
 
    **密钥存储态**
 
-   为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的相关信息，存储态下密钥属性和密钥的组合结构如下：
+   为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的属性，存储态下密钥属性和密钥的组合结构如下：
 
-![image](figures/HUKS-KeyBlob.png)
+  ![image](figures/HUKS-KeyBlob.png)
 
 ## 开发指导
 
 ### 场景介绍
 
-HUKS以CORE层为基础向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。如果想要使用自己的实现替换HUKS的CORE层，需要实现以下接口。
+HUKS以Core层为基础向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。如果想要使用自己的实现替换HUKS的Core层，需要实现以下接口。
 
 ### 接口说明
 
