@@ -43,9 +43,9 @@
 以密钥的生成为例：
 上层应用通过密钥管理SDK调用到HUKS Service，Huks Service再调用Huks Core，Huks Core会调用密钥管理模块生成密钥。之后Huks Core使用基于RootKey派生的加密密钥对生成的密钥加密再传给Service侧，Service侧再以文件形式存储加密后的密钥。
 
-![image](figures/HUKS-GenrateKey1.png)
+![image](figures/HUKS-GenerateKey1.png)
 
-![image](figures/HUKS-GenrateKey2.png)
+![image](figures/HUKS-GenerateKey2.png)
 
 
 ### 约束与限制
@@ -54,7 +54,7 @@
 
 2. HuksHdiAttestKey返回的证书链应该按照业务证书、设备证书、CA证书和根证书的顺序组装，在每项证书之前还需要加上证书的长度。证书链组装完成后添加整个证书链的长度组装成blob格式。证书的具体格式如要自己实现应与服务器侧解析的格式相对应。
 
-![image](figures/CertChain.png)
+![image](figures/HUKS-CertChain.png)
 
 3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
