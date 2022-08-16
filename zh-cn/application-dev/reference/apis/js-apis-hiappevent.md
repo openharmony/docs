@@ -208,7 +208,7 @@ hiAppEvent.write({
 
 此接口提供了应用事件信息的参数选项。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称      | 参数类型                | 必填 | 说明       |
 | --------- | ----------------------- | ---- | ---------- |
@@ -255,7 +255,7 @@ hiAppEvent.configure({
 
 此接口提供了应用打点的配置选项。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 参数名     | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
@@ -312,7 +312,9 @@ hiAppEvent.addWatcher({
             console.info("eventPkg.packageId=" + eventPkg.packageId);
             console.info("eventPkg.row=" + eventPkg.row);
             console.info("eventPkg.size=" + eventPkg.size);
-            console.info("eventPkg.data=" + eventPkg.data);
+            for (const eventInfo of eventPkg.data) {
+                console.info("eventPkg.data=" + eventInfo);
+            }
         }
     }
 });
@@ -329,7 +331,9 @@ if (holder != null) {
     console.info("eventPkg.packageId=" + eventPkg.packageId);
     console.info("eventPkg.row=" + eventPkg.row);
     console.info("eventPkg.size=" + eventPkg.size);
-    console.info("eventPkg.data=" + eventPkg.data);
+    for (const eventInfo of eventPkg.data) {
+        console.info("eventPkg.data=" + eventInfo);
+    }
 }
 ```
 
@@ -366,7 +370,7 @@ hiAppEvent.removeWatcher(watcher);
 
 此接口提供了应用事件订阅者的参数选项。
 
-**系统能力：**SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称             | 参数类型                                                     | 必填 | 说明                             |
 | ---------------- | ------------------------------------------------------------ | ---- | -------------------------------- |
@@ -379,7 +383,7 @@ hiAppEvent.removeWatcher(watcher);
 
 此接口提供了订阅者回调触发条件的参数选项。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称    | 参数类型 | 必填 | 说明                                   |
 | ------- | -------- | ---- | -------------------------------------- |
@@ -391,7 +395,7 @@ hiAppEvent.removeWatcher(watcher);
 
 此接口提供了订阅者过滤应用事件的参数选项。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称       | 参数类型                  | 必填 | 说明                     |
 | ---------- | ------------------------- | ---- | ------------------------ |
@@ -402,7 +406,7 @@ hiAppEvent.removeWatcher(watcher);
 
 订阅数据持有者类，用于对订阅事件进行处理。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 ### setSize<sup>9+</sup>
 
@@ -432,7 +436,7 @@ let eventPkg = holder.takeNext();
 
 此接口提供了订阅返回的应用事件包的参数定义。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称      | 参数类型 | 说明                           |
 | --------- | -------- | ------------------------------ |
@@ -460,7 +464,7 @@ hiAppEvent.clearData();
 
 事件类型枚举。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称      | 默认值 | 说明           |
 | --------- | ------ | -------------- |
@@ -474,7 +478,7 @@ hiAppEvent.clearData();
 
 此接口提供了所有预定义事件的事件名称常量。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称                      | 参数类型 | 可读 | 可写 | 说明                 |
 | ------------------------- | -------- | ---- | ---- | -------------------- |
@@ -487,7 +491,7 @@ hiAppEvent.clearData();
 
 此接口提供了所有预定义参数的参数名称常量。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent。
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称                            | 参数类型 | 可读 | 可写 | 说明               |
 | ------------------------------- | -------- | ---- | ---- | ------------------ |
