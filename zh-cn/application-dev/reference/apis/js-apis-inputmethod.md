@@ -177,7 +177,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-显示软键盘，callback方法获取显示软键盘结果。
+显示软键盘，callback方法。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -203,7 +203,7 @@ InputMethodController.showSoftKeyboard((err) => {
 
 showSoftKeyboard(): Promise&lt;void&gt;
 
-显示软键盘，Promise方法获取显示软键盘结果。
+显示软键盘，Promise方法。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -228,7 +228,7 @@ InputMethodController.showSoftKeyboard().then(async (err) => {
 
 hideSoftKeyboard(callback: AsyncCallback&lt;boolean&gt;): void
 
-隐藏软键盘，callback方法获取隐藏软键盘结果。
+隐藏软键盘，callback方法。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
