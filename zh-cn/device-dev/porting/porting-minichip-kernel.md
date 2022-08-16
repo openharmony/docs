@@ -3,7 +3,7 @@
 
 ## 移植芯片架构
 
-芯片架构的移植是内核移植的基础，在OpenHarmony中芯片架构移植是可选过程，如果当前OpenHarmony已经支持对应芯片架构则不需要移植操作，在“liteos_m/arch”目录下可看到当前已经支持的架构，如表1 OpenHarmony已支持的架构：
+芯片架构的移植是内核移植的基础，在OpenHarmony中芯片架构移植是可选过程，如果当前OpenHarmony已经支持对应芯片架构则不需要移植操作，在“liteos_m/arch”目录下可看到当前已经支持的架构，如表1：
 
   **表1** OpenHarmony已支持的架构
 
