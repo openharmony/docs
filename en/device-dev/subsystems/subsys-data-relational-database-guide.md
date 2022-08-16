@@ -71,7 +71,7 @@ You can use the APIs provided by the RDB to insert, delete, update, and query lo
   **Table 5** API for deleting data
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data.<br> - **deletedRows**: number of rows to delete.<br> - **predicates**: table name and conditions for deleting the data. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. |
+  | RdbStore | int Delete(int &deletedRows, const AbsRdbPredicates &predicates) | Deletes data.<br> - **deletedRows**: number of rows to delete.<br> - **predicates**: table name and conditions for deleting the data. **AbsRdbPredicates** has the following classes:<br> - **RdbPredicates**: specifies query conditions by calling its methods, such as **equalTo**.<br> - **RawRdbPredicates**: specifies the table name, **whereClause**, and **whereArgs** only. |
 
 - Updating data
 
@@ -123,7 +123,7 @@ Call **bool SetDistributedTables()** to set distributed tables for data operatio
 **Table 9** API for setting distributed tables
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool SetDistributedTables(const std::vector<std::string>& tables) | Sets distributed tables.<br> - **tables**: names of the distributed tables to set.
+| RdbStore | bool SetDistributedTables(const std::vector<std::string>& tables) | Sets distributed tables.<br> **tables**: names of the distributed tables to set. |
 
 ### Obtaining the Distributed Table Name for a Remote Device
 
@@ -132,28 +132,28 @@ You can obtain the distributed table name for a remote device based on the local
 **Table 10** API for obtaining the distributed table name of a remote device
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | std::string ObtainDistributedTableName(const std::string& device, const std::string& table) | Obtains the distributed table name of a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.<br> - **device**: ID of the remote device. <br>- **table**: name of the local table.
+| RdbStore | std::string ObtainDistributedTableName(const std::string& device, const std::string& table) | Obtains the distributed table name of a remote device based on the local table name. The distributed table name can be used to query the RDB store of the remote device.<br> - **device**: ID of the remote device. <br>- **table**: name of the local table.|
 
 ### Synchronizing Data Between Devices
 
 **Table 11** API for synchronizing data between devices
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool Sync(const SyncOption& option, const AbsRdbPredicates& predicate, const SyncCallback& callback) | Synchronizes data between devices. <br>- **option**: synchronization options, which include **mode** and **isBlock**. **mode** specifies how data is synchronized. The value **push** means to push data from the local device to the remote device; the value **pull** means to pull data from the remote device to the local device. **isBlock** specifies whether the invocation of this function is blocked. <br>- **callback**: callback used to return the result.
+| RdbStore | bool Sync(const SyncOption& option, const AbsRdbPredicates& predicate, const SyncCallback& callback) | Synchronizes data between devices. <br/>- **option**: synchronization options, which include **mode** and **isBlock**. **mode** specifies how data is synchronized. The value **push** means to push data from the local device to the remote device; the value **pull** means to pull data from the remote device to the local device. **isBlock** specifies whether the invocation of this function is blocked. <br>- **callback**: callback used to return the result. |
 
 ### Registering an RDB Store Observer
 
 **Table 12** API for registering an observer
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool Subscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Registers an observer for this RDB store to listen for distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes. <br>- **option**: subscription type.<br>- **observer**: observer that listens for data changes in the RDB store.
+| RdbStore | bool Subscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Registers an observer for this RDB store to listen for distributed data changes. When data in the RDB store changes, a callback will be invoked to return the data changes. <br/>- **option**: subscription type.<br>- **observer**: observer that listens for data changes in the RDB store. |
 
 ### Unregistering an RDB Store Observer
 
 **Table 13** API for unregistering an observer
 | Class| API| Description|
 |  ----  |  ----  |  ----  |
-| RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Unregisters the observer of the specified type. <br>- **option**: subscription type to unregister.<br>- **observer**: observer to unregister.
+| RdbStore | bool UnSubscribe(const SubscribeOption& option, RdbStoreObserver *observer) | Unregisters the observer of the specified type. <br/>- **option**: subscription type to unregister.<br>- **observer**: observer to unregister. |
 
 ### Backing Up and Restoring an RDB Store
 
@@ -167,7 +167,9 @@ You can use the APIs provided by **rdbStore** to back up and restore local datab
 
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
-  | RdbStore | int Backup(const std::string databasePath, const std::vector&lt;uint8_t&gt; destEncryptKey) | Backs up the current database file.<br> - **databasePath**: name or path of the backup file to generate.<br> - **destEncryptKey**: key used to encrypt the RDB store. Currently, only non-encrypted RDB stores can be backed up. |
+  | RdbStore | int Backup(const std::string databasePath, const std::vector&lt;uint8_t&gt; destEncryptKey) | Backs up the current database file.<br>- **databasePath**: name or path of the backup file to generate.<br>- **destEncryptKey**: key used to encrypt the RDB store. Currently, only non-encrypted RDB stores can be backed up. |
+
+  
 
 - Restoring an RDB store
 
@@ -178,6 +180,18 @@ You can use the APIs provided by **rdbStore** to back up and restore local datab
   | Class| API| Description|
   |  ----  |  ----  |  ----  |
   | RdbStore | int Restore(const std::string backupPath, const std::vector&lt;uint8_t&gt; &newKey) | Restore an RDB store.<br> - **backupPath**: name or path of the backup file.<br> - **newKey**: key used to encrypt the RDB store. Currently, only non-encrypted RDB stores can be restored. |
+
+### Transaction
+
+  A transaction is a unit of work performed in a database. If a transaction is successful, **0** is returned. Otherwise, an error code is returned.
+
+  Table 16 Transaction APIs
+
+| Class| API| Description|
+|  ----  |  ----  |  ----  |
+| RdbStore | int BeginTransaction() | Starts a transaction.|
+| RdbStore | int Commit() | Commits the changes.|
+| RdbStore | int RollBack() | Rolls back the changes.|
 
 ## Constraints
 
@@ -257,7 +271,7 @@ None.
 
 4. Set the distributed tables to be synchronized.
 
-    a. Call the **SetDistributedTables()** method to set the distributed tables to be synchronized.
+    Call the **SetDistributedTables()** method to set the distributed tables to be synchronized.
 
     The sample code is as follows:
 

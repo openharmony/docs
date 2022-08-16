@@ -206,9 +206,9 @@
     c. 创建数据库。
 
     示例代码如下：
-    ```
+    ```c++
     const std::string DATABASE_NAME = RDB_TEST_PATH + "RdbStoreTest.db";
-    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, salary REAL, blobType BLOB)";
+    const std::string CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, salary REAL, blobType BLOB)";
 
     class OpenCallback : public RdbOpenCallback {
     public:
@@ -236,7 +236,7 @@
     c. 创建数据库。
 
     示例代码如下：
-    ```
+    ```c++
     ValuesBucket values;
 
     values.PutInt("id", 1);
@@ -258,7 +258,7 @@
     d. 调用结果集接口，遍历返回结果。
 
     示例代码如下：
-    ```
+    ```c++
     std::vector<std::string> columns = {"id", "name", "age", "salary"};
 
     RdbPredicates predicates("test");
@@ -273,7 +273,7 @@
 
     示例代码如下：
 
-    ```
+    ```c++
     store->SetDistributedTables("test");
     ```
 
@@ -287,7 +287,7 @@
 
     示例代码如下：
 
-    ```
+    ```c++
     SyncOption option;
     option.mode = PUSH;
     option.isBlock = true;
@@ -310,7 +310,7 @@
 
     示例代码如下：
 
-    ```
+    ```c++
     class MyObserver : public RdbStoreObserver {
     public:
         void OnChange(const std::vector<std::string>& devices) override {
@@ -335,7 +335,7 @@
    b. 根据指定SQL语句查询数据库中的数据。
 
    示例代码如下：
-   ```
+   ```c++
     std::string tableName = store->ObtainDistributedTableName("123456789abcd", "test");
     auto resultSet = store->QuerySql("SELECT * from ?;", tableName);
     ```
@@ -347,7 +347,7 @@
    b. 根据指定的数据库备份文件恢复当前数据库。
 
    示例代码如下：
-   ```
+   ```c++
     std::string backupName = "backup.db"; // 指定数据库的备份文件名
     std::vector<uint8_t> key; // 数据库的加密密钥
     int errno = store->Backup(backupName, key);

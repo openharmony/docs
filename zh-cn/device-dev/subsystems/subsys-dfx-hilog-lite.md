@@ -46,7 +46,7 @@ HILOG_INFO/HILOG_WARN/HILOG_ERROR/HILOG_FATAL
    HiLogRegisterModule(HILOG_MODULE_SAMGR, "SAMGR");
    ```
 
-3. 在GN文件中添加头文件依赖，文件路径为：“foundation/distributedschedule/samgr_lite/samgr/BUILD.gn“
+3. 在GN文件中添加头文件依赖，文件路径为：“foundation/systemabilitymgr/samgr_lite/samgr/BUILD.gn“
      
    ```
    include_dirs = [
@@ -54,7 +54,7 @@ HILOG_INFO/HILOG_WARN/HILOG_ERROR/HILOG_FATAL
    ]
    ```
 
-4. 源文件“foundation/distributedschedule/samgr_lite/samgr/source/message.c“中引用头文件并调用接口。
+4. 源文件“foundation/systemabilitymgr/samgr_lite/samgr/source/message.c“中引用头文件并调用接口。
      
    ```
    #include <log.h>

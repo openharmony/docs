@@ -1,6 +1,6 @@
 # Distributed Data Object
 
-The distributedDataObject module provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices.
+The **distributedDataObject** module provides basic data object management, including creating, querying, deleting, modifying, and subscribing to data objects, and distributed data object collaboration for the same application among multiple devices.
 
 > **NOTE**<br/>
 >
@@ -307,7 +307,7 @@ g_object.save("local").then((result)=>{
 
 ### revokeSave<sup>9+</sup>
 
-revokeSave(callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
+revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
 Revokes the saving operation of a distributed data object. This API uses an asynchronous callback to return the result.
 
@@ -334,7 +334,7 @@ g_object.revokeSave((result, data) =>{
 
 ### revokeSave<sup>9+</sup>
 
-revokeSave(): Promise&lt;SaveSuccessResponse&gt;
+revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 
 Revokes the saving operation of a distributed data object. This API uses a promise to return the result.
 

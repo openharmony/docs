@@ -89,7 +89,7 @@ Adds an app account name and additional information (information that can be con
 
 ### addAccount
 
-addAccount(name: string, extraInfo: string): Promise&lt;void&gt;
+addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 Adds an app account name and additional information (information that can be converted into the string type, such as token) to the **AppAccountManager** service. This API uses a promise to return the result.
 
@@ -100,7 +100,7 @@ Adds an app account name and additional information (information that can be con
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | Yes   | Name of the app account to add.                             |
-| extraInfo | string | Yes   | Additional information to add. The additional information cannot contain sensitive information, such as the app account password.|
+| extraInfo | string | No   | Additional information to add. The additional information cannot contain sensitive information, such as the app account password.|
 
 **Return value**
 
@@ -1696,7 +1696,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 | name           | string                    | Yes   | Name of the target app account. |
 | owner          | string                    | Yes   | Owner of the app account. The value is the bundle name of the app.|
 | labels         | Array&lt;string&gt;       | Yes   | Labels to check.      |
-| callback       | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. |
+| callback       | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result. |
 
 **Example**
 
@@ -1710,7 +1710,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 
 ### checkAccountLabels<sup>9+</sup>
 
-checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Promise&lt;void&gt;
+checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Promise&lt;boolean&gt;
 
 Checks whether an app account has specific labels. This API uses a promise to return the result.
 
@@ -1771,7 +1771,7 @@ Selects the accounts accessible to the requester based on the options. This API 
 
 ### selectAccountsByOptions<sup>9+</sup>
 
-selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;void&gt;
+selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 Selects the accounts accessible to the requester based on the options. This API uses a promise to return the result.
 
@@ -1836,7 +1836,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 
 ### verifyCredential<sup>9+</sup>
 
-verifyCredential(name: string, owner: string, options, callback: AuthenticatorCallback): void;
+verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, callback: AuthenticatorCallback): void;
 
 Verifies the user credential. This API uses an asynchronous callback to return the result.
 
@@ -1952,11 +1952,11 @@ Defines OAuth token information.
 
 **System capability**: SystemCapability.Account.AppAccount
 
-| Name     | Type    | Mandatory  | Description      |
-| -------- | ------ | ---- | -------- |
-| authType | string | Yes   | Authentication type.|
-| token    | string | Yes   | Value of the token.  |
-| account<sup>9+</sup> | AppAccountInfo | No    | Account information of the token.  |
+| Name              | Type           | Mandatory | Description             |
+| -------------------- | -------------- | ----- | ---------------- |
+| authType             | string         | Yes   | Authentication type.  |
+| token                | string         | Yes   | Value of the token.      |
+| account<sup>9+</sup> | AppAccountInfo | No   | Account information of the token.|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -1978,7 +1978,7 @@ Represents the options for selecting accounts.
 
 | Name         | Type                        | Mandatory | Description               |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appAccountinfo)&gt; | No   | Allowed accounts.     |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | No   | Allowed accounts.     |
 | allowedOwners   | Array&lt;string&gt;         | No   | Allowed account owners.|
 | requiredLabels  | Array&lt;string&gt;         | No   | Labels required for the authenticator.   |
 
@@ -2012,21 +2012,21 @@ Enumerates the constants.
 
 **System capability**: SystemCapability.Account.AppAccount
 
-| Name                           | Default Value                   | Description           |
-| ----------------------------- | ---------------------- | ------------- |
-| ACTION_ADD_ACCOUNT_IMPLICITLY | "addAccountImplicitly" | Operation of adding an account implicitly. |
-| ACTION_AUTHENTICATE           | "authenticate"         | Authentication operation.     |
-| KEY_NAME                      | "name"                 | App account name. |
-| KEY_OWNER                     | "owner"                | Owner of an app account.|
-| KEY_TOKEN                     | "token"                | Token.     |
-| KEY_ACTION                    | "action"               | Operation.     |
-| KEY_AUTH_TYPE                 | "authType"             | Authentication type.   |
-| KEY_SESSION_ID                | "sessionId"            | Session ID.   |
-| KEY_CALLER_PID                | "callerPid"            | PID of the caller. |
-| KEY_CALLER_UID                | "callerUid"            | UID of the caller. |
-| KEY_CALLER_BUNDLE_NAME        | "callerBundleName"     | Bundle name of the caller.  |
-| KEY_REQUIRED_LABELS           | "requiredLabels"       | Required labels.  |
-| KEY_BOOLEAN_RESULT           | "booleanResult"         | Return value of the Boolean type.  |
+| Name                           | Default Value                   | Description                  |
+| -------------------------------- | ---------------------- | ----------------------- |
+| ACTION_ADD_ACCOUNT_IMPLICITLY    | "addAccountImplicitly" | Operation of adding an account implicitly. |
+| ACTION_AUTHENTICATE              | "authenticate"         | Authentication operation.        |
+| KEY_NAME                         | "name"                 | App account name. |
+| KEY_OWNER                        | "owner"                | Owner of an app account.|
+| KEY_TOKEN                        | "token"                | Token.        |
+| KEY_ACTION                       | "action"               | Operation.        |
+| KEY_AUTH_TYPE                    | "authType"             | Authentication type.    |
+| KEY_SESSION_ID                   | "sessionId"            | Session ID.    |
+| KEY_CALLER_PID                   | "callerPid"            | PID of the caller.   |
+| KEY_CALLER_UID                   | "callerUid"            | UID of the caller.   |
+| KEY_CALLER_BUNDLE_NAME           | "callerBundleName"     | Bundle name of the caller.   |
+| KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | Required labels.   |
+| KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | Return value of the Boolean type.   |
 
 ## ResultCode<sup>8+</sup>
 
@@ -2125,7 +2125,7 @@ Called to redirect a request.
 
 ### onRequestContinued<sup>9+</sup>
 
-onRequestContinued: () =&gt; void
+onRequestContinued?: () =&gt; void
 
 Called to continue to process the request.
 

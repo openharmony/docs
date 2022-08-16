@@ -74,7 +74,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
        console.log("on close")
    });
    
-   // 绑定IP地址和端口。
+   // 绑定本地IP地址和端口。
    let bindAddress = {
        address: '192.168.xx.xx',
        port: 1234, // 绑定端口，如1234

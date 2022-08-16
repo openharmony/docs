@@ -631,12 +631,12 @@ The following uses the RTL8720 development board provided by Realtek as an examp
    # Board arch, e.g. "armv7-a", "rv32imac".
    board_arch = ""
    
-   # Toolchain name used for system compiling.
+   # Toolchain name used for system build.
    # E.g. gcc-arm-none-eabi, arm-linux-harmonyeabi-gcc, ohos-clang, riscv32-unknown-elf.
    # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
    board_toolchain = "gcc-arm-none-eabi"
    
-   # The toolchain path installed, it's not mandatory if you have added toolchain path to your ~/.bashrc.
+   # Toolchain installation path, which can be left blank if the installation path is added to ~/.bashrc.
    board_toolchain_path =
        rebase_path("//prebuilts/gcc/linux-x86/arm/gcc-arm-none-eabi/bin",
                    root_build_dir)
