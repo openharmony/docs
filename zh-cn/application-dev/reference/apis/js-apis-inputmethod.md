@@ -175,7 +175,7 @@ stopInput(): Promise&lt;boolean&gt;
 
 ### showSoftKeyboard
 
-showSoftKeyboard(callback: AsyncCallback&lt;boolean&gt;): void
+showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 显示软键盘，callback方法获取显示软键盘结果。
 
@@ -183,24 +183,25 @@ showSoftKeyboard(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 说明                     |
-| -------- | ---------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 返回显示软键盘是否成功。 |
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **示例：**
 
 ```js
-InputMethodController.showSoftKeyboard((err, data) => {
-    if (err) {
-        console.error('showSoftKeyboard failed : ' + JSON.stringify(err));
+InputMethodController.showSoftKeyboard((err) => {
+    if (err == undefined) {
+        console.error('showSoftKeyboard success');
+    } else {
+        console.info('showSoftKeyboard failed : ' + JSON.stringify(err));
     }
-    console.info('showSoftKeyboard success : ' + JSON.stringify(data));
 })
 ```
 
 ### showSoftKeyboard
 
-showSoftKeyboard(): Promise&lt;boolean&gt;
+showSoftKeyboard(): Promise&lt;void&gt;
 
 显示软键盘，Promise方法获取显示软键盘结果。
 
@@ -208,18 +209,18 @@ showSoftKeyboard(): Promise&lt;boolean&gt;
 
 **返回值：**
 
-| 类型                   | 说明                     |
-| ---------------------- | ------------------------ |
-| Promise&lt;boolean&gt; | 返回显示软键盘是否成功。 |
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
 
 ```js
-InputMethodController.showSoftKeyboard().then((data) => {
-    console.log('showSoftKeyboard success:' + JSON.stringify(data));
-}).catch((error) => {
-    console.log('showSoftKeyboard failed:' + JSON.stringify(error));
+InputMethodController.showSoftKeyboard().then(async (err) => {
+    console.log('showSoftKeyboard success');
+}).catch((err) => {
+    console.log('showSoftKeyboard fail ' + JSON.stringify(err));
 });
 ```
 
@@ -233,43 +234,44 @@ hideSoftKeyboard(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 说明                     |
-| -------- | ---------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 返回隐藏软键盘是否成功。 |
+| 参数名   | 类型                         | 必填 | 说明       |
+| -------- | ---------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
 
 **示例：**
 
 ```js
-InputMethodController.hideSoftKeyboard((err, data) => {
-    if (err) {
-        console.error('hideSoftKeyboard failed : ' + JSON.stringify(err));
+InputMethodController.hideSoftKeyboard((err) => {
+    if (err == undefined) {
+        console.error('hideSoftKeyboard success');
+    } else {
+        console.info('hideSoftKeyboard failed : ' + JSON.stringify(err));
     }
-    console.info('hideSoftKeyboard success : ' + JSON.stringify(data));
 })
 ```
 
 ### hideSoftKeyboard
 
-hideSoftKeyboard(): Promise&lt;boolean&gt;
+hideSoftKeyboard(): Promise&lt;void&gt;
 
-隐藏软键盘，Promise方法获取隐藏软键盘结果。
+隐藏软键盘，Promise方法。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
-| 类型                   | 说明                     |
-| ---------------------- | ------------------------ |
-| Promise&lt;boolean&gt; | 返回隐藏软键盘是否成功。 |
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
 
 
 ```js
-InputMethodController.hideSoftKeyboard().then((data) => {
-    console.log('hideSoftKeyboard success:' + JSON.stringify(data));
-}).catch((error) => {
-    console.log('hideSoftKeyboard failed:' + JSON.stringify(error));
+InputMethodController.hideSoftKeyboard().then(async (err) => {
+    console.log('hideSoftKeyboard success');
+}).catch((err) => {
+    console.log('hideSoftKeyboard fail ' + JSON.stringify(err));
 });
 ```
 
