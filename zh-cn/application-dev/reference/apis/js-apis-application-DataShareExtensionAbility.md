@@ -4,11 +4,11 @@
 
 >**说明：** 
 >
->本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->本模块接口为系统接口。
+> 本模块接口为系统接口。
 >
->本模块接口仅可在Stage模型下使用。
+> 本模块接口仅可在Stage模型下使用。
 
 
 ## 导入模块
@@ -66,62 +66,6 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
                 callback();
             }
         });
-    }
-};
-```
-
-## getFileTypes
-
-getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
-
-获取支持文件的MIME类型时服务端回调此接口，该方法可以选择性重写。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
-
-**参数：**
-
-| 名称           | 类型                                     | 必填 | 描述                               |
-| -------------- | ---------------------------------------- | ---- | ---------------------------------- |
-| uri            | string                                   | 是   | 指示要获取的文件的路径。           |
-| mimeTypeFilter | string                                   | 是   | 指示要获取的文件的MIME类型。       |
-| callback       | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调函数。返回匹配的MIME类型数组。 |
-
-**示例：**
-
-```ts
-export default class DataShareExtAbility extends DataShareExtensionAbility {
-    getFileTypes(uri, mimeTypeFilter, callback) {
-        let err = {"code":0};
-        let ret = new Array("type01", "type02", "type03");
-        callback(err, ret);
-    }
-};
-```
-
-## openFile
-
-openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
-
-在打开文件时服务端回调此接口，该方法可以选择性重写。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
-
-**参数：**
-
-| 名称     | 类型                  | 必填 | 描述                                       |
-| -------- | --------------------- | ---- | ------------------------------------------ |
-| uri      | string                | 是   | 指示要打开的文件的路径。        |
-| mode     | string                | 是   | 指示文件打开模式，包括只读模式，读写模式。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回文件描述符。        |
-
-**示例：**
-
-```ts
-export default class DataShareExtAbility extends DataShareExtensionAbility {
-    openFile(uri, mode, callback) {
-        let err = {"code":0};
-        let fd = 0;
-        callback(err,fd);
     }
 };
 ```
@@ -297,33 +241,6 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
                 callback(err, resultSet);
             }
         });
-    }
-};
-```
-
-## getType
-
-getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
-
-获取给定URI对应的MIME类型时服务端回调此接口，该方法可以选择性重写。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Provider
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ----- | ------ | ------ | ------ |
-| uri | string | 是  | 指示要获取MIME类型的数据的路径。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。返回与URI指定的数据匹配的MIME类型。 |
-
-**示例：**
-
-```ts
-export default class DataShareExtAbility extends DataShareExtensionAbility {
-    getType(uri, callback) {
-        let err = {"code":0};
-        let ret = "image";
-        callback(err, ret);
     }
 };
 ```

@@ -175,7 +175,7 @@ VOID SendEntry(VOID)
 
     ret = LOS_QueueWriteCopy(g_queue, abuf, len, 0);
     if(ret != LOS_OK) {
-        printf("send message failure, error: %x\n", ret);
+        printf("Failed to send the message, error: %x\n", ret);
     }
 }
 
@@ -189,17 +189,17 @@ VOID RecvEntry(VOID)
     usleep(1000000);
     ret = LOS_QueueReadCopy(g_queue, readBuf, &readLen, 0);
     if(ret != LOS_OK) {
-        printf("recv message failure, error: %x\n", ret);
+        printf("Failed to receive the message, error: %x\n", ret);
     }
 
     printf("recv message: %s\n", readBuf);
 
     ret = LOS_QueueDelete(g_queue);
     if(ret != LOS_OK) {
-        printf("delete the queue failure, error: %x\n", ret);
+        printf("Failed to delete the queue, error: %x\n", ret);
     }
 
-    printf("delete the queue success.\n");
+    printf("Deleted the queue successfully.\n");
 }
 
 UINT32 ExampleQueue(VOID)
@@ -217,7 +217,7 @@ UINT32 ExampleQueue(VOID)
     LOS_TaskLock();
     ret = LOS_TaskCreate(&task1, &initParam);
     if(ret != LOS_OK) {
-        printf("create task1 failed, error: %x\n", ret);
+        printf("Failed to create task1, error: %x\n", ret);
         return ret;
     }
 
@@ -226,16 +226,16 @@ UINT32 ExampleQueue(VOID)
     initParam.usTaskPrio = 10;
     ret = LOS_TaskCreate(&task2, &initParam);
     if(ret != LOS_OK) {
-        printf("create task2 failed, error: %x\n", ret);
+        printf("Failed to create task2, error: %x\n", ret);
         return ret;
     }
 
     ret = LOS_QueueCreate("queue", 5, &g_queue, 0, 50);
     if(ret != LOS_OK) {
-        printf("create queue failure, error: %x\n", ret);
+        printf("Failed to create the queue, error: %x\n", ret);
     }
 
-    printf("create the queue succes.\n");
+    printf("Created the queue successfully.\n");
     LOS_TaskUnlock();
     return ret;
 }

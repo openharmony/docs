@@ -22,7 +22,7 @@ Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number | stri
 
   | Name| Value Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | refreshing | boolean | Yes| - | Whether the current component is being refreshed.|
+  | refreshing | boolean | Yes| - | Whether the current component is being refreshed.<br/>This parameter can be used with [$$](../../ui/ts-syntactic-sugar.md) for two-way binding of variables. |
   | offset | Length | No| 16 | Distance to the top of the parent component from the **<Refresh\>** component that comes to rest after a successful pull-down gesture.|
   | friction | number&nbsp;\|&nbsp;string | No| 62 | Coefficient of friction, which indicates the **<Refresh\>** component's sensitivity to the pull-down gesture. The value ranges from 0 to 100.<br>- **0** indicates that the **\<Refresh>** component is not sensitive to the pull-down gesture.<br>- **100** indicates that the **\<Refresh>** component is highly sensitive to the pull-down gesture.<br>- A larger value indicates a more sensitive response of the **\<Refresh>** component to the pull-down gesture.|
 
@@ -59,7 +59,7 @@ struct RefreshExample {
 
   build() {
     Column() {
-      Refresh({refreshing: this.isRefreshing, offset: 120, friction: 100}) {
+      Refresh({refreshing: $$this.isRefreshing, offset: 120, friction: 100}) {
         Text('Pull Down and refresh: ' + this.counter)
           .fontSize(30)
           .margin(10)

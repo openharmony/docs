@@ -144,7 +144,7 @@ sim.hasOperatorPrivileges(0, (err, data) => {
 
 hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
-Checks whether the application (caller) has been granted the operator permission. This API uses a promise to return the result. 
+Checks whether the application (caller) has been granted the carrier permission. This API uses a promise to return the result. 
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -158,7 +158,7 @@ Checks whether the application (caller) has been granted the operator permission
 
 | Type              | Description                                                       |
 | :----------------- | :---------------------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the application (caller) has been granted the operator permission, and the value **false** indicates the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the application (caller) has been granted the carrier permission, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -184,7 +184,7 @@ Obtains the ISO country code of the SIM card in the specified slot. This API use
 | Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. which is an ISO country code, for example, **CN** (China).|
 
 **Example**
 
@@ -467,7 +467,7 @@ Checks whether the SIM card in the specified slot is installed. This API uses an
 
 **Example**
 
-```jsjs
+```js
 sim.hasSimCard(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -522,7 +522,7 @@ This is a system API.
 | Name  | Type                                               | Mandatory| Description                                  |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                              | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[IccAccountInfo](#IccAccountInfo7)\> | Yes  | Callback used to return the result. |
+| callback | AsyncCallback\<[IccAccountInfo](#iccaccountinfo7)\> | Yes  | Callback used to return the result.                            |
 
 **Example**
 
@@ -555,7 +555,7 @@ This is a system API.
 
 | Type                                        | Description                                      |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#IccAccountInfo7)\> | Promise used to return the result.|
+| Promise<[IccAccountInfo](#iccaccountinfo7)\> | Promise used to return the result.|
 
 **Example**
 
@@ -584,7 +584,7 @@ This is a system API.
 
 | Name  | Type                                                       | Mandatory| Description      |
 | -------- | ----------------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array<[IccAccountInfo](#IccAccountInfo7)\>\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -611,7 +611,7 @@ This is a system API.
 
 | Type                                                | Description                                          |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#IccAccountInfo7)\>\> | Promise used to return the result.|
+| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | Promise used to return the result.|
 
 **Example**
 
@@ -646,7 +646,7 @@ This is a system API.
 **Example**
 
 ```js
-sim.setDefaultVoiceSlotId(0,(err, data) => {
+sim.setDefaultVoiceSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -672,9 +672,9 @@ This is a system API.
 
 **Return value**
 
-| Type          | Description                           |
-| -------------- | ------------------------------- |
-| Promise\<void\> | Promise used to return the result. |
+| Type           | Description                           |
+| --------------- | ------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -711,7 +711,7 @@ This is a system API.
 
 ```js
 const name='China Mobile';
-sim.setShowName(0, name,(err, data) => {
+sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -737,15 +737,15 @@ This is a system API.
 
 **Return value**
 
-| Type          | Description                           |
-| -------------- | ------------------------------- |
-| Promise\<void\> | Promise used to return the result. |
+| Type           | Description                           |
+| --------------- | ------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
 ```js
 const name='China Mobile';
-let promise = sim.setShowName(0,name);
+let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -839,8 +839,8 @@ This is a system API.
 **Example**
 
 ```js
-let number='+861xxxxxxxxxx';
-sim.setShowNumber(0, number,(err, data) => {
+let number = '+861xxxxxxxxxx';
+sim.setShowNumber(0, number, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -869,13 +869,13 @@ This is a system API.
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void\> | Promise used to return the result.      |
+| Promise<void\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-let number='+861xxxxxxxxxx';
-let promise = sim.setShowNumber(0,number);
+let number = '+861xxxxxxxxxx';
+let promise = sim.setShowNumber(0, number);
 promise.then(data => {
     console.log(`setShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -994,9 +994,9 @@ This is a system API.
 
 **Return value**
 
-| Type          | Description                           |
-| -------------- | ------------------------------- |
-| Promise\<void\> | Promise used to return the result. |
+| Type           | Description                           |
+| --------------- | ------------------------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -1057,8 +1057,8 @@ This is a system API.
 
 **Return value**
 
-| Type          | Description                           |
-| -------------- | ------------------------------- |
+| Type           | Description                           |
+| --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Example**
@@ -1089,16 +1089,18 @@ This is a system API.
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | Yes  | Callback used to return the result.                                                  |
-| options  | [LockInfo](#LockInfo8)                                      | Yes  | Lock information.<br>- **lockType**: [LockType](#LockType8)<br>- **password**: string<br>- **state**: [LockState](#LockState8) |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                                                  |
+| options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>lockType: [LockType](#locktype8)<br>password: string<br>state: [LockState](#lockstate8) |
 
 **Example**
 
 ```js
-LockInfo.lockType = 1;
-LockInfo.password = "1234";
-LockInfo.state = 0;
-sim.setLockState(0, LockInfo, (err, data) => {
+let lockInfo = {
+    lockType = 1,
+    password = "1234",
+    state = 0
+};
+sim.setLockState(0, lockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1121,21 +1123,23 @@ This is a system API.
 | Name | Type                  | Mandatory| Description                                                        |
 | ------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | slotId  | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| options | [LockInfo](#LockInfo8) | Yes  | Lock information.<br>- **lockType**: [LockType](#LockType8)<br>**password**: string<br>**state**: [LockState](#LockState8) |
+| options | [LockInfo](#lockinfo8) | Yes  | Lock information.<br>lockType: [LockType](#locktype8)<br>password: string<br>state: [LockState](#lockstate8) |
 
 **Return value**
 
 | Type                                                | Description                                        |
 | ---------------------------------------------------- | -------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | Promise used to return the result.|
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-LockInfo.lockType = 1;
-LockInfo.password = "1234";
-LockInfo.state = 0;
-let promise = sim.setLockState(0, LockInfo);
+let lockInfo = {
+    lockType = 1,
+    password = "1234",
+    state = 0
+};
+let promise = sim.setLockState(0, lockInfo);
 promise.then(data => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1158,8 +1162,8 @@ This is a system API.
 | Name  | Type                                     | Mandatory| Description                                   |
 | -------- | ----------------------------------------- | ---- | --------------------------------------- |
 | slotId   | number                                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
-| callback | AsyncCallback\<[LockState](#LockState8)\> | Yes  | Callback used to return the result.                             |
-| options  | [LockType](#LockType8)                    | Yes  | Lock type.<br>- **1**: PIN lock<br>- **2**: PIN2 lock|
+| callback | AsyncCallback\<[LockState](#lockstate8)\> | Yes  | Callback used to return the result.                             |
+| options  | [LockType](#locktype8)                    | Yes  | Lock type.<br>- **1**: PIN lock<br>- **2**: PIN 2 lock|
 
 **Example**
 
@@ -1185,13 +1189,13 @@ This is a system API.
 | Name | Type                  | Mandatory| Description                                   |
 | ------- | ---------------------- | ---- | --------------------------------------- |
 | slotId  | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
-| options | [LockType](#LockType8) | Yes  | Lock type.<br>- **1**: PIN lock<br>- **2**: PIN2 lock|
+| options | [LockType](#locktype8) | Yes  | Lock type.<br>- **1**: PIN lock<br>- **2**: PIN 2 lock|
 
 **Return value**
 
 | Type                              | Description                                        |
 | ---------------------------------- | -------------------------------------------- |
-| Promise<[LockState](#LockState8)\> | Promise used to return the result.|
+| Promise<[LockState](#lockstate8)\> | Promise used to return the result.|
 
 **Example**
 
@@ -1208,7 +1212,7 @@ promise.then(data => {
 
 alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-Changes the PIN. This API uses an asynchronous callback to return the result.
+Changes the PIN of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1221,14 +1225,14 @@ This is a system API.
 | Name  | Type                                                       | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                            |
 | newPin   | string                                                      | Yes  | New PIN.                              |
 | oldPin   | string                                                      | Yes  | Old PIN.                              |
 
 **Example**
 
 ```js
-sim.alterPin(0, "1234", "0000"(err, data) => {
+sim.alterPin(0, "1234", "0000", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1238,7 +1242,7 @@ sim.alterPin(0, "1234", "0000"(err, data) => {
 
 alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResponse\>;
 
-Changes the PIN. This API uses a promise to return the result.
+Changes the PIN of the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1258,7 +1262,7 @@ This is a system API.
 
 | Type                                                | Description                                         |
 | ---------------------------------------------------- | --------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | Promise used to return the result.|
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Example**
 
@@ -1275,7 +1279,7 @@ promise.then(data => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-Changes PIN 2. This API uses an asynchronous callback to return the result.
+Changes PIN 2 of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1288,7 +1292,7 @@ This is a system API.
 | Name  | Type                                                       | Mandatory| Description                                  |
 | -------- | ----------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[LockStatusResponse](#LockStatusResponse7)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                            |
 | newPin2  | string                                                      | Yes  | New PIN.                              |
 | oldPin2  | string                                                      | Yes  | Old PIN.                              |
 
@@ -1305,7 +1309,7 @@ sim.alterPin2(0, "1234", "0000", (err, data) => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusResponse\>
 
-Changes PIN 2. This API uses a promise to return the result.
+Changes PIN 2 of the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1325,12 +1329,12 @@ This is a system API.
 
 | Type                                                | Description                                         |
 | ---------------------------------------------------- | --------------------------------------------- |
-| Promise<[LockStatusResponse](#LockStatusResponse7)\> | Promise used to return the result.|
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-let promise = sim.alterPin2(0, "1234","0000");
+let promise = sim.alterPin2(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1342,7 +1346,7 @@ promise.then(data => {
 
 unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
-Unlocks the PIN of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Unlocks PIN of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1356,13 +1360,13 @@ This is a system API.
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | pin      | string                                                       | Yes  | PIN of the SIM card.                           |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)> | Yes  | Callback used to return the result.                            |
 
 **Example**
 
 ```js
-let pin='1234';
-sim.unlockPin(0, pin,(err, data) => {
+let pin = '1234';
+sim.unlockPin(0, pin, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1391,13 +1395,13 @@ This is a system API.
 
 | Type                                                | Description                                              |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | Promise used to return the result.|
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-let pin='1234';
-let promise = sim.unlockPin(0,pin);
+let pin = '1234';
+let promise = sim.unlockPin(0, pin);
 promise.then(data => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1424,14 +1428,14 @@ This is a system API.
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | newPin   | string                                                       | Yes  | New PIN.                       |
 | puk      | string                                                       | Yes  | PUK of the SIM card.                   |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
 
 ```js
-let puk='1xxxxxxx';
-let newPin='1235';
-sim.unlockPuk(0, newPin,puk,(err, data) => {
+let puk = '1xxxxxxx';
+let newPin = '1235';
+sim.unlockPuk(0, newPin, puk, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1461,14 +1465,14 @@ This is a system API.
 
 | Type                                                | Description                                              |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | Promise used to return the result.|
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-let puk='1xxxxxxx';
-let newPin='1235';
-let promise = sim.unlockPuk(0,newPin,puk);
+let puk = '1xxxxxxx';
+let newPin = '1235';
+let promise = sim.unlockPuk(0, newPin, puk);
 promise.then(data => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1493,14 +1497,14 @@ This is a system API.
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| pin2     | string                                                       | Yes  | PIN of the SIM card.                           |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | Yes  | Callback used to return the result.                            |
+| pin2     | string                                                       | Yes  | PIN 2 of the SIM card.                           |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
 
 ```js
-let pin2='1234';
-sim.unlockPin2(0, pin2,(err, data) => {
+let pin2 = '1234';
+sim.unlockPin2(0, pin2, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1523,13 +1527,13 @@ This is a system API.
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| pin2   | string | Yes  | PIN of the SIM card.                           |
+| pin2   | string | Yes  | PIN 2 of the SIM card.                           |
 
 **Return value**
 
 | Type                                                 | Description                                              |
 | ----------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse7)\> | Promise used to return the result.|
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Example**
 
@@ -1560,16 +1564,16 @@ This is a system API.
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| newPin2  | string                                                       | Yes  | New PIN.                       |
-| puk2     | string                                                       | Yes  | PUK of the SIM card.                   |
-| callback | AsyncCallback&lt;[LockStatusResponse](#LockStatusResponse7)&gt; | Yes  | Callback used to return the result.                            |
+| newPin2  | string                                                       | Yes  | New PIN 2.                       |
+| puk2     | string                                                       | Yes  | PUK 2 of the SIM card.                   |
+| callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | Yes  | Callback used to return the result.                            |
 
 **Example**
 
 ```js
-let puk2='1xxxxxxx';
-let newPin2='1235';
-sim.unlockPuk2(0, newPin2,puk2,(err, data) => {
+let puk2 = '1xxxxxxx';
+let newPin2 = '1235';
+sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1592,21 +1596,21 @@ This is a system API.
 | Name | Type  | Mandatory| Description                                  |
 | ------- | ------ | ---- | -------------------------------------- |
 | slotId  | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| newPin2 | string | Yes  | New PIN.                       |
-| puk2    | string | Yes  | PUK of the SIM card.                   |
+| newPin2 | string | Yes  | New PIN 2.                       |
+| puk2    | string | Yes  | PUK 2 of the SIM card.                   |
 
 **Return value**
 
 | Type                                                | Description                                              |
 | ---------------------------------------------------- | -------------------------------------------------- |
-| Promise\<[LockStatusResponse](#LockStatusResponse)\> | Promise used to return the result.|
+| Promise\<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
 
 **Example**
 
 ```js
-let puk2='1xxxxxxx';
-let newPin2='1235';
-let promise = sim.unlockPuk2(0,newPin2,puk2);
+let puk2 = '1xxxxxxx';
+let newPin2 = '1235';
+let promise = sim.unlockPuk2(0, newPin2, puk2);
 promise.then(data => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1634,6 +1638,1136 @@ Obtains the number of card slots.
 console.log("Result: "+ sim.getMaxSimCount())
 ```
 
+## sim.getSimIccId<sup>7+</sup>
+
+getSimIccId(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the IC card identity (ICCID) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.getSimIccId(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimIccId<sup>7+</sup>
+
+getSimIccId(slotId: number): Promise<string\>
+
+Obtains the ICCID of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                       |
+| ---------------- | ------------------------------------------- |
+| Promise<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getSimIccId(0);
+promise.then(data => {
+    console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimIccId fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getVoiceMailIdentifier<sup>8+</sup>
+
+getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the voice mailbox alpha identifier of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.getVoiceMailIdentifier(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getVoiceMailIdentifier<sup>8+</sup>
+
+getVoiceMailIdentifier(slotId: number): Promise<string\>
+
+Obtains the voice mailbox alpha identifier of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                             |
+| ---------------- | ------------------------------------------------- |
+| Promise<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getVoiceMailIdentifier(0);
+promise.then(data => {
+    console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getVoiceMailIdentifier fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getVoiceMailNumber<sup>8+</sup>
+
+getVoiceMailNumber(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the voice mailbox number of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.getVoiceMailNumber(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getVoiceMailNumber<sup>8+</sup>
+
+getVoiceMailNumber(slotId: number): Promise<string\>
+
+Obtains the voice mailbox number of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                            |
+| ---------------- | ------------------------------------------------ |
+| Promise<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getVoiceMailNumber(0);
+promise.then(data => {
+    console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getVoiceMailNumber fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.setVoiceMailInfo<sup>8+</sup>
+
+setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback: AsyncCallback<void\>): void
+
+Sets voice mailbox information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                                  |
+| ---------- | -------------------- | ---- | -------------------------------------- |
+| slotId     | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| mailName   | string               | Yes  | Voice mailbox name.                              |
+| mailNumber | string               | Yes  | Voice mailbox number.                              |
+| callback   | AsyncCallback<void\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com" , (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.setVoiceMailInfo<sup>8+</sup>
+
+setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<void\>
+
+Sets voice mailbox information for the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                                  |
+| ---------- | ------ | ---- | -------------------------------------- |
+| slotId     | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| mailName   | string | Yes  | Voice mailbox name.                              |
+| mailNumber | string | Yes  | Voice mailbox number.                              |
+
+**Return value**
+
+| Type          | Description                   |
+| -------------- | ----------------------- |
+| Promise<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
+promise.then(data => {
+    console.log(`setVoiceMailInfo success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setVoiceMailInfo fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getSimTelephoneNumber<sup>8+</sup>
+
+getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the mobile subscriber ISDN number (MSISDN) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.getSimTelephoneNumber(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimTelephoneNumber<sup>8+</sup>
+
+getSimTelephoneNumber(slotId: number): Promise<string\>
+
+Obtains the MSISDN of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                        |
+| ---------------- | -------------------------------------------- |
+| Promise<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getSimTelephoneNumber(0);
+promise.then(data => {
+    console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimTelephoneNumber fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getSimGid1<sup>7+</sup>
+
+getSimGid1(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the group identifier level 1 (GID1) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                  |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.getSimGid1(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getSimGid1<sup>7+</sup>
+
+getSimGid1(slotId: number): Promise<string\>
+
+Obtains the GID1 of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                             |
+| ---------------- | ------------------------------------------------- |
+| Promise<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getSimGid1(0);
+promise.then(data => {
+    console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getSimGid1 fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getIMSI
+
+getIMSI(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the international mobile subscriber identity (IMSI) of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                  |
+| -------- | ----------------------- | ---- | -------------------------------------- |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.getIMSI(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getIMSI
+
+getIMSI(slotId: number): Promise<string\>
+
+Obtains the IMSI of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                       |
+| ---------------- | ------------------------------------------- |
+| Promise<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getIMSI(0);
+promise.then(data => {
+    console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getIMSI fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOperatorConfigs<sup>8+</sup>
+
+getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\>>): void
+
+Obtains the carrier configuration of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                     | Mandatory| Description                                  |
+| -------- | --------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback<Array<[OperatorConfig](#operatorconfig8)\>> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.getOperatorConfigs(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getOperatorConfigs<sup>8+</sup>
+
+getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
+
+Obtains the carrier configuration of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                                               | Description                         |
+| --------------------------------------------------- | ----------------------------- |
+| Promise<Array<[OperatorConfig](#operatorconfig8)\>> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getOperatorConfigs(0);
+promise.then(data => {
+    console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getOperatorConfigs fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.queryIccDiallingNumbers<sup>8+</sup>
+
+queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallback<Array<DiallingNumbersInfo\>>): void
+
+Queries contact numbers of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                      |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type     | [ContactType](#contacttype8)                                                  | Yes  | Contact type.<br>1 : GENERAL_CONTACT<br>2 : FIXED_DIALING |
+| callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | Yes  | Callback used to return the result.                                                |
+
+**Example**
+
+```js
+sim.queryIccDiallingNumbers(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.queryIccDiallingNumbers<sup>8+</sup>
+
+queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<DiallingNumbersInfo\>>
+
+Queries contact numbers of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.READ_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                      |
+| ------ | ----------- | ---- | ---------------------------------------------------------- |
+| slotId | number      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type   | [ContactType](#contacttype8)  | Yes  | Contact type.<br>1 : GENERAL_CONTACT<br>2 : FIXED_DIALING |
+
+**Return value**
+
+| Type                                                        | Description                          |
+| ------------------------------------------------------------ | ------------------------------ |
+| Promise<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> |  Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.queryIccDiallingNumbers(0, 1);
+promise.then(data => {
+    console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`queryIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.addIccDiallingNumbers<sup>8+</sup>
+
+addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+Adds contact numbers for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name         | Type                                        | Mandatory| Description                                                      |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
+| callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
+
+**Example**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+sim.addIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.addIccDiallingNumbers<sup>8+</sup>
+
+addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+Adds contact numbers for the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name         | Type                                        | Mandatory| Description                                                      |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise<void\> |  Promise used to return the result.|
+
+**Example**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+let promise = sim.addIccDiallingNumbers(0, 1, diallingNumbersInof);
+promise.then(data => {
+    console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`addIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.delIccDiallingNumbers<sup>8+</sup>
+
+delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+Deletes contact numbers from the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name         | Type                                        | Mandatory| Description                                                      |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
+| callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
+
+**Example**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+sim.delIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.delIccDiallingNumbers<sup>8+</sup>
+
+delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+Deletes contact numbers from the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name         | Type                                        | Mandatory| Description                                                      |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise<void\> |  Promise used to return the result.|
+
+**Example**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+let promise = sim.delIccDiallingNumbers(0, 1, diallingNumbersInof);
+promise.then(data => {
+    console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`delIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.updateIccDiallingNumbers<sup>8+</sup>
+
+updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
+
+Updates contact numbers for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name         | Type                                        | Mandatory| Description                                                      |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
+| callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
+
+**Example**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.updateIccDiallingNumbers<sup>8+</sup>
+
+updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
+
+Updates contact numbers for the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Permission required**: ohos.permission.WRITE_CONTACTS
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name         | Type                                        | Mandatory| Description                                                      |
+| --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
+| slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let diallingNumbersInof = {
+    alphaTag = "alpha",
+    number = "138xxxxxxxx",
+    recordNumber = 123,
+    pin2 = "1234"
+};
+let promise = sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof);
+promise.then(data => {
+    console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`updateIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.sendEnvelopeCmd<sup>8+</sup>
+
+sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
+
+Sends an envelope command to the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                  |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| cmd      | string               | Yes  | Envelope command.                                  |
+| callback | AsyncCallback<void\> | Yes  | Yes                                    |
+
+**Example**
+
+```js
+sim.sendEnvelopeCmd(0, "ls", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.sendEnvelopeCmd<sup>8+</sup>
+
+sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
+
+Sends an envelope command to the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| cmd    | string | Yes  | Envelope command.                                  |
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.sendEnvelopeCmd(0, "ls");
+promise.then(data => {
+    console.log(`sendEnvelopeCmd success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`sendEnvelopeCmd fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.sendTerminalResponseCmd<sup>8+</sup>
+
+sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
+
+Sends a terminal response command to the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                  |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| slotId   | number               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| cmd      | string               | Yes  | Command                                  |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+sim.sendTerminalResponseCmd(0, "ls", (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.sendTerminalResponseCmd<sup>8+</sup>
+
+sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
+
+Sends a terminal response command to the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| cmd    | string | Yes  | Command                                  |
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.sendTerminalResponseCmd(0, "ls");
+promise.then(data => {
+    console.log(`sendTerminalResponseCmd success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`sendTerminalResponseCmd fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.unlockSimLock<sup>8+</sup>
+
+unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<LockStatusResponse\>): void
+
+Unlocks the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                                  |
+| -------- | ---------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                     | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| lockInfo | [PersoLockInfo](#persolockinfo8)                           | Yes  | Personalized lock information.                        |
+| callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                              |
+
+**Example**
+
+```js
+let persoLockInfo = {
+    lockType = 0,
+    password = "1234"
+};
+sim.unlockSimLock(0, persoLockInfo, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.unlockSimLock<sup>8+</sup>
+
+unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusResponse\>
+
+Unlocks the SIM card in the specified slot. This API uses a promise to return the result. 
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                            | Mandatory| Description                                  |
+| -------- | -------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| lockInfo | [PersoLockInfo](#persolockinfo8) | Yes  | Personalized lock information.                        |
+
+**Return value**
+
+| Type                                                | Description                     |
+| ---------------------------------------------------- | ------------------------- |
+| Promise<[LockStatusResponse](#lockstatusresponse7)\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let persoLockInfo = {
+    lockType = 0,
+    password = "1234"
+};
+let promise = sim.unlockSimLock(0, persoLockInfo);
+promise.then(data => {
+    console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`unlockSimLock fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOpKey<sup>9+</sup>
+
+getOpKey(slotId: number, callback: AsyncCallback<number\>): void
+
+Obtains the opkey of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback<number\> | Yes  | Callback used to return the result.                              |
+
+**Example**
+
+```js
+sim.getOpKey(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getOpKey<sup>9+</sup>
+
+getOpKey(slotId: number): Promise<number\>
+
+Obtains the opkey of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                     |
+| ---------------- | ----------------------------------------- |
+| Promise<number\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getOpKey(0);
+promise.then(data => {
+    console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getOpKey fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## sim.getOpName<sup>9+</sup>
+
+getOpName(slotId: number, callback: AsyncCallback<string\>): void
+
+Obtains the OpName of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                  |
+| -------- | ---------------------- | ---- | -------------------------------------- |
+| slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                              |
+
+**Example**
+
+```js
+sim.getOpName(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## sim.getOpName<sup>9+</sup>
+
+getOpName(slotId: number): Promise<string\>
+
+Obtains the OpName of the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type            | Description                                      |
+| ---------------- | ------------------------------------------ |
+| Promise<string\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = sim.getOpName(0);
+promise.then(data => {
+    console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getOpName fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## SimState
 
@@ -1652,7 +2786,7 @@ Enumerates SIM card states.
 
 ## CardType<sup>7+</sup>
 
-Enumerates card types.
+Enumerates SIM card types.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1679,8 +2813,8 @@ This is a system API.
 
 | Name    | Value  | Description       |
 | -------- | ---- | ----------- |
-| PIN_LOCK | 1    | SIM card password lock|
-| FDN_LOCK | 2    | Fixed dialing lock |
+| PIN_LOCK | 1    | SIM card password lock.|
+| FDN_LOCK | 2    | Fixed dialing lock. |
 
 ## LockState<sup>8+</sup>
 
@@ -1695,7 +2829,7 @@ This is a system API.
 | LOCK_OFF | 0    | The lock is off.|
 | LOCK_ON  | 1    | The lock is on.|
 
-## **PersoLockType**<sup>8+</sup>
+## PersoLockType<sup>8+</sup>
 
 Enumerates personalized lock types.
 
@@ -1716,7 +2850,7 @@ This is a system API.
 | SIM_PIN_LOCK | 8    | Personalized SIM card PIN lock. For details, see *3GPP TS 22.022 [33]*.     |
 | SIM_PUK_LOCK | 9    | Personalized SIM card PUK lock.                                  |
 
-## **LockStatusResponse**<sup>7+</sup>
+## LockStatusResponse<sup>7+</sup>
 
 Defines the lock status response.
 
@@ -1729,21 +2863,21 @@ This is a system API.
 | result          | number | Operation result.    |
 | remain?: number | number | Remaining attempts (can be null).|
 
-## **LockInfo**<sup>8+</sup>
+## LockInfo<sup>8+</sup>
 
-Defines the personalized lock status response.
+Defines the lock information.
 
 This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type     | Description  |
-| -------- | --------- | ------ |
-| lockType | LockType  | Lock type.|
-| password | string    | Password.  |
-| state    | LockState | Lock state.|
+| Name    | Type                    | Description  |
+| -------- | ------------------------ | ------ |
+| lockType | [LockType](#locktype8)   | Lock type.|
+| password | string                   | Password.  |
+| state    | [LockState](#lockstate8) | Lock state.|
 
-## **PersoLockInfo**<sup>8+</sup>
+## PersoLockInfo<sup>8+</sup>
 
 Defines the personalized lock information.
 
@@ -1751,12 +2885,12 @@ This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
-| Name    | Type         | Description        |
-| -------- | ------------- | ------------ |
-| lockType | PersoLockType | Personalized lock type.|
-| password | string        | Password.        |
+| Name    | Type                            | Description        |
+| -------- | -------------------------------- | ------------ |
+| lockType | [PersoLockType](#persolocktype8) | Personalized lock type.|
+| password | string                           | Password.        |
 
-## **IccAccountInfo**<sup>7+</sup>
+## IccAccountInfo<sup>7+</sup>
 
 Defines the ICC account information.
 
@@ -1773,3 +2907,44 @@ This is a system API.
 | iccId      | string  | ICCID number.       |
 | showName   | string  | SIM card display name.   |
 | showNumber | string  | SIM card display number.   |
+
+## OperatorConfig<sup>8+</sup>
+
+Defines the carrier configuration.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name | Type  | Description|
+| ----- | ------ | ---- |
+| field | string | Field|
+| value | string | Value  |
+
+## DiallingNumbersInfo<sup>8+</sup>
+
+Defines the contact number information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name        | Type  | Description    |
+| ------------ | ------ | -------- |
+| alphaTag     | string | Alpha tag.    |
+| number       | string | Contact number.    |
+| recordNumber | number | Record number.|
+| pin2         | string | PIN 2.|
+
+## ContactType<sup>8+</sup>
+
+Enumerates contact types.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name           | Value  | Description      |
+| :-------------- | ---- | ---------- |
+| GENERAL_CONTACT | 1    | Common contact number.|
+| FIXED_DIALING   | 2    | Fixed dialing number.  |

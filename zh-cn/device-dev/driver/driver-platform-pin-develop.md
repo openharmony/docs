@@ -61,12 +61,12 @@ struct PinCntlrMethod {
 
 | 成员函数     | 入参                                        | 出参                                   | 返回值 | 功能 |
 | ------------ | ------------------------------------------- | ------ | ---- | ---- |
-| SetPinPull | **cntlr**：结构体指针，核心层Pin控制器<br>**index**：uint32_t变量，管脚索引号<br/>**pullType**：枚举常量，Pin管脚推拉方式 | 无 |HDF_STATUS相关状态|PIN设置管脚推拉方式|
-| GetPinPull | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号 | **pullType**：枚举常量指针，传出Pin管脚推拉方式 | HDF_STATUS相关状态 | PIN获取管脚推拉方式 |
-| SetPinStrength | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号<br/>**strength**：uint32_t变量，Pin推拉强度 | 无 | HDF_STATUS相关状态 | PIN设置推拉强度 |
-| GetPinStrength | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号 | **strength**：uint32_t变量指针，传出Pin推拉强度 | HDF_STATUS相关状态 | PIN获取推拉强度 |
-| SetPinFunc | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号<br/>**funcName**：char指针常量，传入Pin管脚功能 | 无 | HDF_STATUS相关状态 | PIN设置管脚功能 |
-| GetPinFunc | **cntlr**：结构体指针，核心层Pin控制器<br/>**index**：uint32_t变量，管脚索引号 | **funcName**：char双重指针常量，传出Pin管脚功能 | HDF_STATUS相关状态 | PIN获取管脚功能 |
+| SetPinPull | cntlr：结构体指针，核心层Pin控制器<br>index：uint32_t变量，管脚索引号<br/>pullType：枚举常量，Pin管脚推拉方式 | 无 |HDF_STATUS相关状态|PIN设置管脚推拉方式|
+| GetPinPull | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号 | pullType：枚举常量指针，传出Pin管脚推拉方式 | HDF_STATUS相关状态 | PIN获取管脚推拉方式 |
+| SetPinStrength | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号<br/>strength：uint32_t变量，Pin推拉强度 | 无 | HDF_STATUS相关状态 | PIN设置推拉强度 |
+| GetPinStrength | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号 | strength：uint32_t变量指针，传出Pin推拉强度 | HDF_STATUS相关状态 | PIN获取推拉强度 |
+| SetPinFunc | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号<br/>funcName：char指针常量，传入Pin管脚功能 | 无 | HDF_STATUS相关状态 | PIN设置管脚功能 |
+| GetPinFunc | cntlr：结构体指针，核心层Pin控制器<br/>index：uint32_t变量，管脚索引号 | funcName：char双重指针常量，传出Pin管脚功能 | HDF_STATUS相关状态 | PIN获取管脚功能 |
 
 ### 开发步骤
 
@@ -77,12 +77,14 @@ PIN模块适配包含以下四个步骤：
 - 实例化核心层接口函数。
 - 驱动调试。
 
-1. **实例化驱动入口：**
+1. 实例化驱动入口：
 
    - 实例化HdfDriverEntry结构体成员。
-     驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。
+
+     驱动开发首先需要实例化驱动入口，驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。
 
    - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
+
      一般在加载驱动时HDF会先调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
         ```c
@@ -93,11 +95,13 @@ PIN模块适配包含以下四个步骤：
             .Release = Hi35xxPinRelease,
             .moduleName = "hi35xx_pin_driver", // 【必要且与HCS文件中里面的moduleName匹配】
         };
-        HDF_INIT(g_hi35xxPinDriverEntry); // 调用HDF_INIT将驱动入口注册到HDF框架中
+        HDF_INIT(g_hi35xxPinDriverEntry);      // 调用HDF_INIT将驱动入口注册到HDF框架中
         ```
 
-2. **配置属性文件：**
+2. 配置属性文件：
+
    - 在vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs文件中添加deviceNode描述。
+
         ```c
         root {
             device_info { 
@@ -105,13 +109,13 @@ PIN模块适配包含以下四个步骤：
                     hostName = "platform_host";
                     priority = 50;
                     device_pin :: device {
-                        device0 :: deviceNode {   // 为每一个Pin控制器配置一个HDF设备节点，存在多个时须添加，否则不用
-                            policy = 0;			  // 2:用户态可见,1:内核态可见,0:不需要发布服务
+                        device0 :: deviceNode {   // 为每一个Pin控制器配置一个HDF设备节点，存在多个时须添加，否则不用。
+                            policy = 0;	          // 2：用户态可见；1：内核态可见；0：不需要发布服务。
                             priority = 10;        // 驱动启动优先级
                             permission = 0644;    // 驱动创建设备节点权限
-                            /* 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致 */
+                            /* 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。 */
                             moduleName = "hi35xx_pin_driver";
-                            /* 【必要】用于配置控制器私有数据，要与pin_config.hcs中对应控制器保持一致，具体的控制器信息在pin_config.hcs中 */
+                            /* 【必要】用于配置控制器私有数据，要与pin_config.hcs中对应控制器保持一致，具体的控制器信息在pin_config.hcs中。 */
                             deviceMatchAttr = "hisilicon_hi35xx_pin_0";
                         }
                         device1 :: deviceNode {
@@ -128,12 +132,13 @@ PIN模块适配包含以下四个步骤：
         }
         ```
    - 添加pin_config.hcs器件属性文件。
+
      在device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pin/pin_config.hcs目录下配置器件属性，其中配置参数如下：
         ```c
         root {
             platform {
                 pin_config_hi35xx {
-                    template pin_controller {    // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
+                    template pin_controller {    // 【必要】模板配置，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
                         number = 0;              // 【必要】controller编号
                         regStartBasePhy = 0;     // 【必要】寄存器物理基地址起始地址
                         regSize = 0;             // 【必要】寄存器位宽
@@ -163,16 +168,18 @@ PIN模块适配包含以下四个步骤：
                             F1 = "SFC_CLK";
                             F2 = "SFC_BOOT_MODE";
                         }
-                        ...... // 对应管脚控制器下的每个管脚，按实际添加
+                        ...... // 对应管脚控制器下的每个管脚，按实际添加。
                     }
-                    ......// 每个管脚控制器对应一个controller节点，如存在多个Pin控制器，请依次添加对应的controller节点
+                    ......// 每个管脚控制器对应一个controller节点，如存在多个Pin控制器，请依次添加对应的controller节点。
                 }
             }
         }
         ```
 
-3. **实例化PIN控制器对象：**
+3. 实例化PIN控制器对象：
+
    - 初始化PinCntlr成员。
+
      在Hi35xxPinCntlrInit函数中对PinCntlr成员进行初始化操作。
 
         ```c
@@ -208,7 +215,7 @@ PIN模块适配包含以下四个步骤：
             uint32_t pinCount;
         };
         
-        // PinCntlr是核心层控制器，其中的成员在init函数中会被赋值
+        // PinCntlr是核心层控制器，其中的成员在Init函数中会被赋值。
         struct PinCntlr {
             struct IDeviceIoService service;
             struct HdfDeviceObject *device;
@@ -253,7 +260,7 @@ PIN模块适配包含以下四个步骤：
                 HDF_LOGE("%s: read pinCount failed", __func__);
                 return ret;
             }
-            // 将读取的值赋值给管脚控制器的成员，完成管脚控制器初始化
+            // 将读取的值赋值给管脚控制器的成员，完成管脚控制器初始化。
             hi35xx->cntlr.pinCount = hi35xx->pinCount;
             hi35xx->cntlr.number = hi35xx->number;
             hi35xx->regBase = OsalIoRemap(hi35xx->regStartBasePhy, hi35xx->regSize);  // 管脚控制器映射
@@ -284,10 +291,12 @@ PIN模块适配包含以下四个步骤：
    - Init函数
 
         入参：
-        HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+
+        HdfDeviceObject这个是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
         返回值：
-        HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见/drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS 定义）。
+
+        HDF\_STATUS相关状态（下表为部分展示，如需使用其他状态，可见/drivers/framework/include/utils/hdf\_base.h中HDF\_STATUS定义）。
    
         | **状态(值)**           | **问题描述**   |
         | ---------------------- | -------------- |
@@ -299,6 +308,7 @@ PIN模块适配包含以下四个步骤：
         | HDF_FAILURE            | 初始化失败     |
        
         函数说明：
+
         初始化自定义结构体对象和PinCntlr成员，并通过调用核心层PinCntlrAdd函数挂载Pin控制器。
         
         ```c
@@ -360,7 +370,7 @@ PIN模块适配包含以下四个步骤：
             ret = Hi35xxPinCntlrInit(device, hi35xx);    // 管脚控制器初始化
             ......
             DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) { // 遍历管脚控制器的每个子节点
-                ret = Hi35xxPinParsePinNode(childNode, hi35xx, index);    // 解析子节点
+                ret = Hi35xxPinParsePinNode(childNode, hi35xx, index);      // 解析子节点
                 ......
             }
 
@@ -378,7 +388,7 @@ PIN模块适配包含以下四个步骤：
 
         入参：
 
-        HdfDeviceObject是整个驱动对外暴露的接口参数，具备hcs配置文件的信息。
+        HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
    
         返回值：
    
@@ -424,5 +434,6 @@ PIN模块适配包含以下四个步骤：
             }
         }
         ```
-4. **驱动调试：**
+4. 驱动调试：
+
    【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，数据传输的成功与否等。

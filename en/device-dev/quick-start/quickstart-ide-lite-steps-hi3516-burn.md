@@ -7,7 +7,7 @@ Burning is the process of downloading compiled program files to a development bo
 Hi3516D V300 supports burning through the USB port, network port, and serial port. This document describes how to burn source code through the USB port. The operations are performed in Windows.
 
 
-1. Connect the computer and the target development board through the serial port and USB port. For details, see [Introduction to the Hi3516D V300 Development Board](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-introduction-hi3516.md).
+1. Connect the computer and the target development board through the serial port and USB port. For details, see [Introduction to the Hi3516D V300 Development Board](quickstart-lite-introduction-hi3516.md).
    > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**
    > If you are using the remote access mode (Windows + Ubuntu on the local VM), disable the USB control of the VM as follows to ensure that the development board is connected to the USB port of the host:
    > 

@@ -138,7 +138,7 @@ URI示例：
 
 其中，基础依赖包包括：
 - @ohos.ability.featureAbility
-- @ohos.data.dataability
+- @ohos.data.dataAbility
 - @ohos.data.rdb
 
 #### DataAbility接口开发指导

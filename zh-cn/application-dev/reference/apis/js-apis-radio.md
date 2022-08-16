@@ -925,13 +925,45 @@ radio.sendUpdateCellLocationRequest((err, data) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(\): Promise<void\>
+sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
+
+发送更新小区位置请求，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 发送更新小区位置请求，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
 **返回值：**
 
@@ -942,7 +974,8 @@ sendUpdateCellLocationRequest\(\): Promise<void\>
 **示例：**
 
 ```js
-let promise = radio.sendUpdateCellLocationRequest();
+let slotId = 0;
+let promise = radio.sendUpdateCellLocationRequest(slotId);
 promise.then(data => {
     console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {

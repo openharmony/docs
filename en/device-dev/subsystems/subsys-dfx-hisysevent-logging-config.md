@@ -120,7 +120,7 @@ In the **bundle.js** file, use the ```hisysevent_config``` attribute to specify 
                 "hitrace_native",
                 "ipc",
                 "safwk",
-                "samgr_standard",
+                "samgr",
                 "utils_base"
             ],
             "third_party": []

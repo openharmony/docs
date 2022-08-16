@@ -10,21 +10,39 @@ I3C是两线双向串行总线，针对多个传感器从设备进行了优化�
 
 ### 基本概念<a name="3"></a>
 
-- IBI（In-Band Interrupt）：带内中断。在SCL线没有启动信号时，I3C从设备可以通过拉低SDA线使主设备发出SCL启动信号，从而发出带内中断请求。若有多个从机同时发出中断请求，I3C主机则通过从机地址进行仲裁，低地址优先相应。
-- DAA（Dynamic Address Assignment）：动态地址分配。I3C支持对从设备地址进行动态分配从而避免地址冲突。在分配动态地址之前，连接到I3C总线上的每个I3C设备都应以两种方式之一来唯一标识：
-1）设备可能有一个符合I2C规范的静态地址，主机可以使用此静态地址；
-2）在任何情况下，设备均应具有48位的临时ID。 除非设备具有静态地址且主机使用静态地址，否则主机应使用此48位临时ID。
+- IBI（In-Band Interrupt）：带内中断。
 
-- CCC（Common Command Code） ：通用命令代码（CCC），所有I3C设备均支持CCC，可以直接将其传输到特定的I3C从设备，也可以同时传输到所有I3C从设备。
-- BCR（Bus Characteristic Register）：总线特性寄存器，每个连接到I3C总线的 I3C 设备都应具有相关的只读总线特性寄存器（BCR），该寄存器描述了I3C兼容设备在动态地址分配和通用命令代码中的作用和功能。
-- DCR（Device Characteristic Register）：设备特性寄存器，连接到I3C总线的每个 I3C 设备都应具有相关的只读设备特性寄存器（DCR）。该寄存器描述了用于动态地址分配和通用命令代码的I3C兼容设备类型（例如，加速度计、陀螺仪等）。
+  在SCL线没有启动信号时，I3C从设备可以通过拉低SDA线使主设备发出SCL启动信号，从而发出带内中断请求。若有多个从设备同时发出中断请求，I3C主设备则通过从设备地址进行仲裁，低地址优先相应。
+
+- DAA（Dynamic Address Assignment）：动态地址分配。
+
+  I3C支持对从设备地址进行动态分配从而避免地址冲突。在分配动态地址之前，连接到I3C总线上的每个I3C设备都应以两种方式之一来唯一标识：
+ 
+  - 设备可能有一个符合I2C规范的静态地址，主机可以使用此静态地址。
+
+  - 在任何情况下，设备均应具有48位的临时ID。除非设备具有静态地址且主机使用静态地址，否则主机应使用此48位临时ID。
+
+- CCC（Common Command Code）：通用命令代码。
+
+  所有I3C设备均支持CCC，可以直接将其传输到特定的I3C从设备，也可以同时传输到所有I3C从设备。
+
+- BCR（Bus Characteristic Register）：总线特性寄存器。
+
+  每个连接到I3C总线的I3C设备都应具有相关的只读总线特性寄存器（BCR），该寄存器描述了I3C兼容设备在动态地址分配和通用命令代码中的作用和功能。
+
+- DCR（Device Characteristic Register）：设备特性寄存器。
+  
+  连接到I3C总线的每个I3C设备都应具有相关的只读设备特性寄存器（DCR），该寄存器描述了用于动态地址分配和通用命令代码的I3C兼容设备类型（例如加速度计、陀螺仪等）。
 
 
 ### 运作机制<a name="4"></a>
 
-在HDF框架中，同类型控制器对象较多时（可能同时存在十几个同类型控制器），如果采用独立服务模式则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现），实现便捷管理和节约资源的目的。I3C模块接口适配模式采用统一服务模式（如[图1](#fig1)所示）。
+在HDF框架中，同类型控制器对象较多时（可能同时存在十几个同类型控制器），如果采用独立服务模式则需要配置更多的设备节点，且相关服务会占据更多的内存资源。相反，采用统一服务模式可以使用一个设备服务作为管理器，统一处理所有同类型对象的外部访问（这会在配置文件中有所体现），实现便捷管理和节约资源的目的。I3C模块接口适配模式采用统一服务模式（如图1所示）。
 
-I3C模块各分层的作用为：接口层提供打开控制器、传输消息、获取和设置控制器参数以及关闭控制器的接口。核心层主要提供绑定设备、初始化设备以及释放设备的能力。适配层实现其他具体的功能。
+I3C模块各分层的作用为：
+- 接口层提供打开控制器、传输消息、获取和设置控制器参数以及关闭控制器的接口。
+- 核心层主要提供绑定设备、初始化设备以及释放设备的能力。
+- 适配层实现其他具体的功能。
 
  **图 1**  I3C统一服务模式<a name="fig1"></a> 
 
@@ -39,8 +57,8 @@ I3C模块当前仅支持轻量和小型系统内核（LiteOS） 。
 ### 场景介绍 <a name="7"></a>
 
 I3C可连接单个或多个I3C、I2C从器件，它主要用于：
-1. 与传感器通信，如陀螺仪、气压计或支持I3C协议的图像传感器等。
-2. 通过软件或硬件协议转换，与其他通信接口（如 UART 串口等）的设备进行通信。
+- 与传感器通信，如陀螺仪、气压计或支持I3C协议的图像传感器等。
+- 通过软件或硬件协议转换，与其他通信接口（如UART串口等）的设备进行通信。
 
 ### 接口说明 <a name="8"></a>
 
@@ -60,14 +78,13 @@ struct I3cMethod {
 **表1** I3cMethod结构体成员的回调函数功能说明
 |函数成员|入参|出参|返回值|功能|
 |-|-|-|-|-|
-|sendCccCmd| **cntlr**: 结构体指针，核心层I3C控制器<br />**ccc**：传入的通用命令代码结构体指针 | **ccc**：传出的通用命令代码结构体指针 | HDF_STATUS相关状态|发送CCC（Common command Code，即通用命令代码）|
-|Transfer  | **cntlr**: 结构体指针，核心层I3C控制器<br />**msgs**：结构体指针，用户消息<br />**count**：int16_t，消息数量 | **msgs**：结构体指针，用户消息 
- | HDF_STATUS相关状态 | 使用I3C模式传递用户消息 |
-|i2cTransfer | **cntlr**: 结构体指针，核心层I3C控制器<br />**msgs**：结构体指针，用户消息<br />**count**：int16_t，消息数量 | **msgs**：结构体指针，用户消息 | HDF_STATUS相关状态 | 使用I2C模式传递用户消息 |
-|setConfig| **cntlr**: 结构体指针，核心层I3C控制器<br />**config**:  控制器配置参数| 无 | HDF_STATUS相关状态 | 设置I3C控制器配置参数 |
-|getConfig| **cntlr**: 结构体指针，核心层I3C控制器| **config**: 控制器配置参数 | HDF_STATUS相关状态 | 获取I3C控制器配置参数 |
-|requestIbi| **device**: 结构体指针，核心层I3C设备| 无 | HDF_STATUS相关状态 | 为I3C设备请求IBI（In-Bind Interrupt，即带内中断） |
-|freeIbi| **device**: 结构体指针，核心层I3C设备| 无 | HDF_STATUS相关状态 | 释放IBI |
+|sendCccCmd| **cntlr**：结构体指针，核心层I3C控制器<br />**ccc**：传入的通用命令代码结构体指针 | **ccc**：传出的通用命令代码结构体指针 | HDF_STATUS相关状态|发送CCC（Common command Code，即通用命令代码）|
+|Transfer  | **cntlr**：结构体指针，核心层I3C控制器<br />**msgs**：结构体指针，用户消息<br />**count**：int16_t，消息数量 | **msgs**：结构体指针，用户消息| HDF_STATUS相关状态 | 使用I3C模式传递用户消息 |
+|i2cTransfer | **cntlr**：结构体指针，核心层I3C控制器<br />**msgs**：结构体指针，用户消息<br />**count**：int16_t，消息数量 | **msgs**：结构体指针，用户消息 | HDF_STATUS相关状态 | 使用I2C模式传递用户消息 |
+|setConfig| **cntlr**：结构体指针，核心层I3C控制器<br />**config**：控制器配置参数| 无 | HDF_STATUS相关状态 | 设置I3C控制器配置参数 |
+|getConfig| **cntlr**：结构体指针，核心层I3C控制器| **config**：控制器配置参数 | HDF_STATUS相关状态 | 获取I3C控制器配置参数 |
+|requestIbi| **device**：结构体指针，核心层I3C设备| 无 | HDF_STATUS相关状态 | 为I3C设备请求IBI（In-Bind Interrupt，即带内中断） |
+|freeIbi| **device**：结构体指针，核心层I3C设备| 无 | HDF_STATUS相关状态 | 释放IBI |
 
 ### 开发步骤 <a name="9"></a>
 
@@ -91,13 +108,15 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
 
 1. 实例化驱动入口
 
-    驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
+    驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组的段地址空间，方便上层调用。
     
     一般在加载驱动时HDF会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
     
     I3C驱动入口参考：
     
-    > I3C模块这种类型的控制器会出现很多个控制器挂接的情况，因而在HDF框架中首先会为这类型的控制器创建一个管理器对象，并同时对外发布一个管理器服务来统一处理外部访问。这样，用户需要打开某个控制器时，会先获取到管理器服务，然后管理器服务根据用户指定参数查找到指定控制器。
+
+    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>    
+    > I3C控制器会出现很多个控制器挂接的情况，因而在HDF框架中首先会为此类型的控制器创建一个管理器对象，并同时对外发布一个管理器服务来统一处理外部访问。这样，用户需要打开某个控制器时，会先获取到管理器服务，然后管理器服务根据用户指定参数查找到指定控制器。
     > 
     > I3C管理器服务的驱动由核心层实现，厂商不需要关注这部分内容的实现，但在实现Init函数的时候需要调用核心层的I3cCntlrAdd函数，它会实现相应功能。
     
@@ -106,9 +125,9 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
         .moduleVersion = 1,
         .Init = VirtualI3cInit,
         .Release = VirtualI3cRelease,
-        .moduleName = "virtual_i3c_driver",// 【必要且与hcs文件中的名字匹配】
+        .moduleName = "virtual_i3c_driver",     // 【必要且与hcs文件中的名字匹配】
     };
-    HDF_INIT(g_virtualI3cDriverEntry);   // 调用HDF_INIT将驱动入口注册到HDF框架中
+    HDF_INIT(g_virtualI3cDriverEntry);          // 调用HDF_INIT将驱动入口注册到HDF框架中
     
     /* 核心层i3c_core.c管理器服务的驱动入口 */
     struct HdfDriverEntry g_i3cManagerEntry = {
@@ -122,7 +141,9 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
 
 2. 配置属性文件
 
-    完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在i3c_config.hcs中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值对于厂商驱动的实现以及核心层I3cCntlr相关成员的默认值或限制范围有密切关系。
+    完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在i3c_config.hcs中配置器件属性。
+
+    deviceNode信息与驱动入口注册相关，器件属性值对于厂商驱动的实现以及核心层I3cCntlr相关成员的默认值或限制范围有密切关系。
 
     统一服务模式的特点是device_info文件中第一个设备节点必须为I3C管理器，其各项参数必须如下设置: 
 
@@ -149,13 +170,13 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
                 }
             }
             i3c_virtual :: deviceNode {
-                policy = 0;         // 等于0，不需要发布服务
-                priority = 56;      // 驱动启动优先级
-                permission = 0644;  // 驱动创建设备节点权限
-                moduleName = "virtual_i3c_driver";        // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
-                serviceName = "VIRTUAL_I3C_DRIVER";       // 【必要】驱动对外发布服务的名称，必须唯一
-                deviceMatchAttr = "virtual_i3c";          // 【必要】用于配置控制器私有数据，要与i3c_config.hcs中对应控制器保持一致
-            }                                             // 具体的控制器信息在 i3c_config.hcs 中
+                policy = 0;                               // 等于0，不需要发布服务。
+                priority = 56;                            // 驱动启动优先级。
+                permission = 0644;                        // 驱动创建设备节点权限。
+                moduleName = "virtual_i3c_driver";        // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
+                serviceName = "VIRTUAL_I3C_DRIVER";       // 【必要】驱动对外发布服务的名称，必须唯一。
+                deviceMatchAttr = "virtual_i3c";          // 【必要】用于配置控制器私有数据，要与i3c_config.hcs中对应控制器保持一致。
+            }                                             // 具体的控制器信息在i3c_config.hcs中。
         }
         ```
 
@@ -166,9 +187,9 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
             platform {
                 i3c_config {
                     match_attr = "virtual_i3c";  // 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
-                    template i3c_controller {    // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省
+                    template i3c_controller {    // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
                         busId = 0;               // 【必要】i3c总线号
-                        busMode = 0x0;           // 总线模式，0x0:纯净; 0x1:混合高速; 0x2:混合受限; 0x3: 混合低速;
+                        busMode = 0x0;           // 总线模式，0x0：纯净；0x1：混合高速：0x2：混合受限；0x3：混合低速。
                         regBasePhy = 0x120b0000; // 【必要】物理基地址
                         regSize = 0xd1;          // 【必要】寄存器位宽
                         IrqNum = 20;             // 【必要】中断号
@@ -192,17 +213,20 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
 
     此步骤需要通过实现HdfDriverEntry成员函数（Bind，Init，Release）来完成。
 
+    I3cCntlr成员回调函数结构体I3cMethod的实例化，I3cLockMethod回调函数结构体本例未实现，若要实例化，可参考I2C驱动开发，其他成员在Init函数中初始化。
+
     - 自定义结构体参考
-      
-        > 从驱动的角度看，自定义结构体是参数和数据的载体，而且i3c_config.hcs文件中的数值会被HDF读入通过DeviceResourceIface来初始化结构体成员，其中一些重要数值也会传递给核心层I3cCntlr对象，例如设备号、总线号等。
+
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>          
+      > 从驱动的角度看，自定义结构体是参数和数据的载体，而且i3c_config.hcs文件中的数值会被HDF读入并通过DeviceResourceIface来初始化结构体成员，其中一些重要数值也会传递给核心层I3cCntlr对象，例如设备号、总线号等。
 
         ```c
         struct VirtualI3cCntlr {
-            struct I3cCntlr cntlr;   // 【必要】是核心层控制对象，具体描述见下面
+            struct I3cCntlr cntlr;          // 【必要】是核心层控制对象，具体描述见下面。
             volatile unsigned char *regBase;// 【必要】寄存器基地址
-            uint32_t regBasePhy;     // 【必要】寄存器物理基地址
-            uint32_t regSize;        // 【必要】寄存器位宽
-            uint16_t busId;          // 【必要】设备号
+            uint32_t regBasePhy;            // 【必要】寄存器物理基地址
+            uint32_t regSize;               // 【必要】寄存器位宽
+            uint16_t busId;                 // 【必要】设备号
             uint16_t busMode;
             uint16_t IrqNum;
             uint32_t i3cMaxRate;
@@ -211,7 +235,7 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
             uint32_t i2cFmPlusRate;
         };
         
-        /* I3cCntlr是核心层控制器结构体，其中的成员在Init函数中被赋值 */
+        /* I3cCntlr是核心层控制器结构体，其中的成员在Init函数中被赋值。 */
         struct I3cCntlr {
             OsalSpinlock lock;
             void *owner;
@@ -225,15 +249,17 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
         };
         ```
 
-         > I3cCntlr成员回调函数结构体I3cMethod的实例化，I3cLockMethod回调函数结构体本例未实现，若要实例化，可参考I2C驱动开发，其他成员在Init函数中初始化
 
-    - init函数参考
+
+    - Init函数参考
 
         **入参：** 
-          HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息
+
+          HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
 
         **返回值：**
-         HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
+
+         HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
              
 
          |状态(值)|问题描述|
@@ -246,16 +272,17 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
          |HDF_FAILURE           |传输失败|
 
          **函数说明：**
+
          初始化自定义结构体对象，初始化I3cCntlr成员，调用核心层I3cCntlrAdd函数。
 
          ```c
          static int32_t VirtualI3cParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
          {
              int32_t ret;
-             struct VirtualI3cCntlr *virtual = NULL;    // 【必要】自定义结构体对象
+             struct VirtualI3cCntlr *virtual = NULL;                              // 【必要】自定义结构体对象
              (void)device;
          
-             virtual = (struct VirtualI3cCntlr *)OsalMemCalloc(sizeof(*virtual)); // 【必要】内存分配
+             virtual = (struct VirtualI3cCntlr *)OsalMemCalloc(sizeof(*virtual));  // 【必要】内存分配
              if (virtual == NULL) {
                  HDF_LOGE("%s: Malloc virtual fail!", __func__);
                  return HDF_ERR_MALLOC_FAIL;
@@ -267,7 +294,7 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
                  goto __ERR__;
              }
              ...
-             virtual->regBase = OsalIoRemap(virtual->regBasePhy, virtual->regSize);// 【必要】地址映射
+             virtual->regBase = OsalIoRemap(virtual->regBasePhy, virtual->regSize); // 【必要】地址映射
              ret = OsalRegisterIrq(hi35xx->softIrqNum, OSAL_IRQF_TRIGGER_NONE, I3cIbiHandle, "I3C", virtual); //【必要】注册中断程序
              if (ret != HDF_SUCCESS) {
                  HDF_LOGE("%s: register irq failed!", __func__);
@@ -279,7 +306,7 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
              virtual->cntlr.busId = virtual->busId;     // 【必要】初始化I3cCntlr成员
              virtual->cntlr.ops = &g_method;            // 【必要】I3cMethod的实例化对象的挂载
              (void)OsalSpinInit(&virtual->spin);
-             ret = I3cCntlrAdd(&virtual->cntlr);        // 【必要且重要】调用此函数将控制器添加至核心，返回成功信号后驱动才完全接入平台核心层 
+             ret = I3cCntlrAdd(&virtual->cntlr);        // 【必要且重要】调用此函数将控制器添加至核心，返回成功信号后驱动才完全接入平台核心层。
              if (ret != HDF_SUCCESS) {
                  HDF_LOGE("%s: add i3c controller failed! ret = %d", __func__, ret);
                  (void)OsalSpinDestroy(&virtual->spin);
@@ -287,7 +314,7 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
              }
          
              return HDF_SUCCESS;
-         __ERR__:                                       // 若控制器添加失败，需要执行去初始化相关函数
+         __ERR__:                                       // 若控制器添加失败，需要执行去初始化相关函数。
              if (virtual != NULL) {
                  OsalMemFree(virtual);
                  virtual = NULL;
@@ -320,13 +347,19 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
     - Release函数参考
 
         **入参：** 
-        HdfDeviceObject 是整个驱动对外暴露的接口参数，具备hcs配置文件的信息 。
+
+        HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
         
         **返回值：**
+
         无。
         
         **函数说明：**
-        释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
+
+        释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
+
+        > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>          
+        > 所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
 
         ```c
         static void VirtualI3cRemoveByNode(const struct DeviceResourceNode *node)
@@ -349,7 +382,7 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
                 return;
             }
         ...
-        /* 可以调用I3cCntlrGet函数通过设备的cntlrNum获取I3cCntlr对象， 以及调用I3cCntlrRemove函数来释放I3cCntlr对象的内容 */
+        /* 可以调用I3cCntlrGet函数通过设备的cntlrNum获取I3cCntlr对象，以及调用I3cCntlrRemove函数来释放I3cCntlr对象的内容。 */
             cntlr = I3cCntlrGet(busId);
             if (cntlr != NULL && cntlr->priv == node) {
                 I3cCntlrPut(cntlr);
@@ -424,7 +457,7 @@ I3C模块适配的四个环节是实例化驱动入口、配置属性文件、�
             return HDF_ERR_INVALID_PARAM;
         }
         virtual = (struct VirtualI3cCntlr *)data;
-        /* 【必要】获取产生中断的地址，使用CHECK_RESERVED_ADDR宏判断该地址是否为I3C保留地址 */
+        /* 【必要】获取产生中断的地址，使用CHECK_RESERVED_ADDR宏判断该地址是否为I3C保留地址。 */
         ibiAddr = VirtualI3cGetIbiAddr();
         if (CHECK_RESERVED_ADDR(ibiAddr) == I3C_ADDR_RESERVED) {
             HDF_LOGD("%s: Calling VirtualI3cResAddrWorker...", __func__);

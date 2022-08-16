@@ -53,7 +53,7 @@ Input服务关闭对应设备的设备文件。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetInputDevice
@@ -78,7 +78,7 @@ Input服务获取对应ID的设备信息。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetInputDeviceList
@@ -97,14 +97,14 @@ Input服务获取所有Input设备列表的设备信息。
   | 名称 | 描述 | 
 | -------- | -------- |
 | devNum | 输出参数，当前已经注册过的所有Input设备的总数。 | 
-| devInfo | 输出参数，Input设备列表所对应的设备信息，具体参考[InputDeviceInfo](_device_info.md)。 | 
+| devList | 输出参数，Input设备列表所对应的设备信息，具体参考[InputDeviceInfo](_device_info.md)。 | 
 | size | 输入参数，即指定deviceList数组对应的元素个数。| 
 
 返回：
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### OpenInputDevice
@@ -128,7 +128,7 @@ Input服务打开对应设备的设备文件。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### ScanInputDevice
@@ -153,4 +153,4 @@ Input服务用于扫描所有在线设备。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetSatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。

@@ -15,7 +15,7 @@ The System Ability Manager (SAMGR) subsystem implements the system service frame
 ## Directory Structure<a name="section161941989596"></a>
 
 ```
-/foundation/distributedschedule
+/foundation/systemabilitymgr
 ├── safwk                       # System ability framework
 ├── samgr                       # System ability manager
 ├── safwk_lite                  # Lightweight foundation process
@@ -26,10 +26,10 @@ The System Ability Manager (SAMGR) subsystem implements the system service frame
 
 **SAMGR**
 
-[distributedschedule\_safwk](https://gitee.com/openharmony/distributedschedule_safwk)
+[systemabilitymgr\_safwk](https://gitee.com/openharmony/systemabilitymgr_safwk)
 
-[distributedschedule\_samgr](https://gitee.com/openharmony/distributedschedule_samgr)
+[systemabilitymgr\_samgr](https://gitee.com/openharmony/systemabilitymgr_samgr)
 
-[distributedschedule\_safwk\_lite](https://gitee.com/openharmony/distributedschedule_safwk_lite)
+[systemabilitymgr\_safwk\_lite](https://gitee.com/openharmony/systemabilitymgr_safwk_lite)
 
-[distributedschedule\_samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite)
+[systemabilitymgr\_samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite)

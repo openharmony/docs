@@ -67,7 +67,7 @@ The vibrator driver model provides stable interfaces for the upper-layer hardwar
 
 1. Develop the vibrator abstract driver based on the driver entry. Specifically, implement the **Bind**, **Init**, **Release**, and **Dispatch** functions, configure resources, and parse HCS configurations.
 
-   - Call **HDF_INIT** to register the driver entry with the HDF. During driver loading, the HDF calls the **Bind** function and then the **Init** function to load the driver. If the **Init** function fails to be called, the HDF calls **Release** to release the driver resources and exit the vibrator driver model. The vibrator driver model uses the HCS as the configuration source code. For details about HCS fields, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md). The driver entry function is defined as follows:
+   - Call **HDF_INIT** to register the driver entry with the HDF. During driver loading, the HDF calls the **Bind** function and then the **Init** function to load the driver. If the **Init** function fails to be called, the HDF calls **Release** to release the driver resources and exit the vibrator driver model. The vibrator driver model uses the HCS as the configuration source code. For details about HCS fields, see [Driver Configuration Management](driver-hdf-manage.md). The driver entry function is defined as follows:
 
      ```c
      /* Register the entry structure object of the vibrator abstract driver. */
@@ -200,7 +200,7 @@ The vibrator driver model provides stable interfaces for the upper-layer hardwar
      }
      ```
 
-   - The vibrator effect model uses the HCS. For details about HCS fields, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md).
+   - The vibrator effect model uses the HCS. For details about HCS fields, see [Driver Configuration Management](driver-hdf-manage.md).
 
      ```
      /* Vibrator data configuration template (vibrator_config.hcs). */

@@ -15,7 +15,6 @@
 ```js
 import display from '@ohos.display' // 导入模块
 
-let disp; // disp用来保存默认Display
 display.getDefaultDisplay().then((disp) => {
 	console.log('display.getDefaultDisplay success, display :' + JSON.stringify(disp));
 }, (err) => {

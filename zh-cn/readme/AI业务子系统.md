@@ -424,7 +424,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
 [build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README_zh.md)
 
-[distributedschedule\_samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite/blob/master/README_zh.md)
+[systemabilitymgr\_samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README_zh.md)
 
 [startup\_init\_lite](https://gitee.com/openharmony/startup_init_lite/blob/master/README_zh.md)
 

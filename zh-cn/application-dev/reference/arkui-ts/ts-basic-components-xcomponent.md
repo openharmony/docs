@@ -1,7 +1,7 @@
 # XComponent
 
   >  **说明：**
-  > 该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。   
+  >  该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。   
 
   可用于EGL/OpenGLES和媒体数据写入，并显示在XComponent组件。
 
@@ -84,7 +84,9 @@ getXComponentContext(): Object
 ## 示例
 
 提供surface类型XComponent，支持相机预览等能力。  
+
 示例效果请以真机运行为准，当前IDE预览器不支持。
+
 ```ts
 // xxx.ets
 import camera from '@ohos.multimedia.camera';

@@ -136,6 +136,8 @@
 | COMMON_EVENT_IVI_VOLTAGE_RECOVERY                            | common.event.IVI_VOLTAGE_RECOVERY                           | -                                                          |
 | COMMON_EVENT_IVI_TEMPERATURE_RECOVERY                        | common.event.IVI_TEMPERATURE_RECOVERY                       | -                                                          |
 | COMMON_EVENT_IVI_ACTIVE                                      | common.event.IVI_ACTIVE                                     | -                                                          |
+|COMMON_EVENT_USB_STATE<sup>9+</sup>                           | usual.event.hardware.usb.action.USB_STATE                   | -                                                          |
+|COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>                    | usual.event.hardware.usb.action.USB_PORT_CHANGED            | -                                                          |
 | COMMON_EVENT_USB_DEVICE_ATTACHED                             | usual.event.hardware.usb.action.USB_DEVICE_ATTACHED         | -                                                          |
 | COMMON_EVENT_USB_DEVICE_DETACHED                             | usual.event.hardware.usb.action.USB_DEVICE_DETACHED         | -                                                          |
 | COMMON_EVENT_USB_ACCESSORY_ATTACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED      | -                                                          |

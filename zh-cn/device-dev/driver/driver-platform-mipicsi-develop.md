@@ -1,6 +1,6 @@
 # MIPI CSI
 
-## 概述 <a name="section1_MIPI_CSIDevelop"></a>
+## 概述
 
 CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface）联盟下Camera工作组指定的接口标准。在HDF框架中，MIPI CSI的接口适配模式采用无服务模式，用于不需要在用户态提供API的设备类型，或者没有用户态和内核区分的OS系统，MIPI CSI的接口关联方式是DevHandle直接指向设备对象内核态地址（DevHandle是一个void类型指针）。
 
@@ -8,7 +8,7 @@ CSI（Camera Serial Interface）是由MIPI（Mobile Industry Processor Interface
 
 ![image1](figures/无服务模式结构图.png)
 
-## 接口说明 <a name="section2_MIPI_CSIDevelop"></a>
+## 接口说明
 
 MipiCsiCntlrMethod定义：
 
@@ -44,37 +44,44 @@ struct MipiCsiCntlrMethod {
 | resetSensor        | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 复位Sensor                 |
 | unresetSensor      | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t，传感器的时钟信号线号 | 无   | HDF_STATUS相关状态 | 撤销复位Sensor      |   
 
-## 开发步骤 <a name="section3_MIPI_CSIDevelop"></a>
+## 开发步骤
 
-MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、以及实例化核心层接口函数。
+MIPI CSI模块适配的三个必选环节是配置属性文件、实例化驱动入口、以及实例化核心层接口函数。
 
-1. **实例化驱动入口：**   
-   - 实例化HdfDriverEntry结构体成员。
-   - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
-   
-2. **配置属性文件：**   
+1. 配置属性文件：   
 
    - 在device_info.hcs文件中添加deviceNode描述。
    - 【可选】添加mipicsi_config.hcs器件属性文件。
 
-3. **实例化MIPICSI控制器对象：**   
+2. 实例化驱动入口：
+   
+   - 实例化HdfDriverEntry结构体成员。
+   - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
+   
+3. 实例化MIPI CSI控制器对象：
+   
    - 初始化MipiCsiCntlr成员。
    - 实例化MipiCsiCntlr成员MipiCsiCntlrMethod。
      >![](../public_sys-resources/icon-note.gif) **说明：**<br>
-     >实例化MipiCsiCntlr成员MipiCsiCntlrMethod，其定义和成员说明见[接口说明](#section2_MIPI_CSIDevelop)。
+     >实例化MipiCsiCntlr成员MipiCsiCntlrMethod，其定义和成员说明见[接口说明](#接口说明)。
    
-4. **驱动调试：**
-   - 【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，数据传输的成功与否等。
+4. 驱动调试：
+
+   【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，数据传输的成功与否等。
 
 
-## 开发实例 <a name="section4_MIPI_CSIDevelop"></a>
+## 开发实例 
 
 下方将以mipi_rx_hi35xx.c为示例，展示需要厂商提供哪些内容来完整实现设备功能。
 
 
-1. 一般来说，驱动开发首先需要在 busxx_config.hcs 中配置器件属性，并在device_info.hcs文件中添加deviceNode描述。器件属性值与核心层MipiCsiCntlr 成员的默认值或限制范围有密切关系，deviceNode信息与驱动入口注册相关。
+1. 一般来说，驱动开发首先需要在busxx_config.hcs中配置器件属性，并在device_info.hcs文件中添加deviceNode描述。
 
-   **本例中MIPI控制器自身属性在源文件文件中，如有厂商需要，则在device_info文件的deviceNode增加deviceMatchAttr信息，相应增加mipicsi_config.hcs文件**。
+   器件属性值与核心层MipiCsiCntlr 成员的默认值或限制范围有密切关系，deviceNode信息与驱动入口注册相关。
+
+   >![](../public_sys-resources/icon-note.gif) **说明：**<br>
+   >本例中MIPI控制器自身属性在源文件文件中，如有厂商需要，则在device_info文件的deviceNode增加deviceMatchAttr信息，相应增加mipicsi_config.hcs文件。
+
 
 - device_info.hcs 配置参考
 
@@ -90,7 +97,7 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
               policy = 0;
               priority = 160;
               permission = 0644;
-              moduleName = "HDF_MIPI_RX";    // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致；
+              moduleName = "HDF_MIPI_RX";    // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
               serviceName = "HDF_MIPI_RX";   // 【必要且唯一】驱动对外发布服务的名称
           }
       }
@@ -99,7 +106,9 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
   }
   ```
 
-2. 完成器件属性文件的配置之后，下一步请实例化驱动入口，驱动入口必须为HdfDriverEntry（在 hdf_device_desc.h 中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HdfDriverEntry结构体的函数指针成员会被厂商操作函数填充，HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组，方便调用。
+2. 完成器件属性文件的配置之后，下一步请实例化驱动入口。
+
+   驱动入口必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量，且moduleName要和device_info.hcs中保持一致。HdfDriverEntry结构体的函数指针成员会被厂商操作函数填充，HDF框架会将所有加载的驱动的HdfDriverEntry对象首地址汇总，形成一个类似数组，方便调用。
 
    一般在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动。当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
 
@@ -110,12 +119,14 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
       .moduleVersion = 1,
       .Init = Hi35xxMipiCsiInit,          // 见Init参考
       .Release = Hi35xxMipiCsiRelease,    // 见Release参考
-      .moduleName = "HDF_MIPI_RX",        // 【必要】需要与device_info.hcs 中保持一致。
+      .moduleName = "HDF_MIPI_RX",        // 【必要】需要与device_info.hcs 中保持一致
   };
   HDF_INIT(g_mipiCsiDriverEntry);         // 调用HDF_INIT将驱动入口注册到HDF框架中
   ```
 
-3.  完成驱动入口注册之后，最后一步就是以核心层MipiCsiCntlr对象的初始化为核心，实现HdfDriverEntry成员函数（Bind，Init，Release）。MipiCsiCntlr对象的初始化包括厂商自定义结构体（用于传递参数和数据）和实例化MipiCsiCntlr成员MipiCsiCntlrMethod（让用户可以通过接口来调用驱动底层函数）。
+3.  完成驱动入口注册之后，最后一步就是以核心层MipiCsiCntlr对象的初始化为核心，实现HdfDriverEntry成员函数（Bind，Init，Release）。
+
+    MipiCsiCntlr对象的初始化包括厂商自定义结构体（用于传递参数和数据）和实例化MipiCsiCntlr成员MipiCsiCntlrMethod（让用户可以通过接口来调用驱动底层函数）。
 
 - 自定义结构体参考 
 
@@ -151,17 +162,17 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
       };
   } ComboDevAttr;
   
-  // MipiCsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值
+  // MipiCsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值。
   struct MipiCsiCntlr {
-      /** 当驱动程序绑定到HDF框架时，将发送此控制器提供的服务 */
+      /** 当驱动程序绑定到HDF框架时，将发送此控制器提供的服务。 */
       struct IDeviceIoService service;
-      /** 当驱动程序绑定到HDF框架时，将传入设备端指针 */
+      /** 当驱动程序绑定到HDF框架时，将传入设备端指针。 */
       struct HdfDeviceObject *device;
       /** 设备号 */
       unsigned int devNo;
       /** 控制器提供的所有接口 */
       struct MipiCsiCntlrMethod *ops;
-      /** 对于控制器调试的所有接口，如果未实现驱动程序，则需要null */
+      /** 对于控制器调试的所有接口，如果未实现驱动程序，则需要null。 */
       struct MipiCsiCntlrDebugMethod *debugs;
       /** 控制器上下文参数变量 */
       MipiDevCtx ctx;
@@ -169,12 +180,17 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
       OsalSpinlock ctxLock;
       /** 操作控制器时锁定方法 */
       struct OsalMutex lock;
-      /** 匿名数据指针，用于存储csi设备结构 */
+      /** 匿名数据指针，用于存储csi设备结构。 */
       void *priv;
   };
   ```
 
-- **【重要】** MipiCsiCntlr成员回调函数结构体MipiCsiCntlrMethod的实例化，其他成员在Init函数中初始化。
+
+- MipiCsiCntlr成员回调函数结构体MipiCsiCntlrMethod的实例化
+
+   >![](../public_sys-resources/icon-note.gif) **说明：**<br>
+   >其他成员在Init函数中初始化。
+
 
   ```c 
   static struct MipiCsiCntlrMethod g_method = {
@@ -196,10 +212,12 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 - **Init函数参考**
 
    **入参：** 
-   HdfDeviceObject 是整个驱动对外暴露的接口参数，具备hcs配置文件的信息
+
+   HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
   
    **返回值：**
-   HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
+
+   HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
 
   
    | 状态(值)               |   问题描述   |
@@ -212,6 +230,7 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
    | HDF_FAILURE            |   执行失败   |
   
    **函数说明：**
+
    MipiCsiCntlrMethod的实例化对象的挂载，调用MipiCsiRegisterCntlr，以及其他厂商自定义初始化操作。
 
 
@@ -235,7 +254,7 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
           return ret;
       }
   
-      ret = MipiRxDrvInit(); // 【必要】厂商对设备的初始化，形式不限
+      ret = MipiRxDrvInit(); // 【必要】厂商对设备的初始化，形式不限。
       if (ret != HDF_SUCCESS) {
           HDF_LOGE("%s: [MipiRxDrvInit] failed.", __func__);
           return ret;
@@ -258,14 +277,14 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
   int32_t MipiCsiRegisterCntlr(struct MipiCsiCntlr *cntlr, struct HdfDeviceObject *device)
   {
   ...
-  // 定义的全局变量:static struct MipiCsiHandle g_mipiCsihandle[MAX_CNTLR_CNT];
+  // 定义的全局变量：static struct MipiCsiHandle g_mipiCsihandle[MAX_CNTLR_CNT];
       if (g_mipiCsihandle[cntlr->devNo].cntlr == NULL) {
           (void)OsalMutexInit(&g_mipiCsihandle[cntlr->devNo].lock);
           (void)OsalMutexInit(&(cntlr->lock));
   
-          g_mipiCsihandle[cntlr->devNo].cntlr = cntlr;	// 初始化MipiCsiHandle成员
+          g_mipiCsihandle[cntlr->devNo].cntlr = cntlr;	        // 初始化MipiCsiHandle成员
           g_mipiCsihandle[cntlr->devNo].priv = NULL;
-          cntlr->device = device;							// 使HdfDeviceObject与MipiCsiHandle可以相互转化的前提
+          cntlr->device = device;		                // 使HdfDeviceObject与MipiCsiHandle可以相互转化的前提
           device->service = &(cntlr->service);			// 使HdfDeviceObject与MipiCsiHandle可以相互转化的前提
           cntlr->priv = NULL;
           HDF_LOGI("%s: success.", __func__);
@@ -281,13 +300,20 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
 - **Release函数参考**
 
    **入参：** 
-   HdfDeviceObject 是整个驱动对外暴露的接口参数，具备 HCS 配置文件的信息。
+
+   HdfDeviceObject是整个驱动对外暴露的接口参数，具备HCS配置文件的信息。
   
    **返回值：**
+
    无
   
    **函数说明：**
-   该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。所有强制转换获取相应对象的操作**前提**是在Init函数中具备对应赋值的操作。
+
+   该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源，该函数中需包含释放内存和删除控制器等操作。
+
+   >![](../public_sys-resources/icon-note.gif) **说明：**<br>
+   >所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
+
 
   ```c
   static void Hi35xxMipiCsiRelease(struct HdfDeviceObject *device)
@@ -302,7 +328,7 @@ MIPI CSI模块适配的三个环节是配置属性文件、实例化驱动入、
   #ifdef MIPICSI_VFS_SUPPORT
       MipiCsiDevModuleExit(cntlr->devNo);
   #endif
-      MipiRxDrvExit();						// 【必要】对厂商设备所占资源的释放
+      MipiRxDrvExit();				        // 【必要】对厂商设备所占资源的释放
       MipiCsiUnregisterCntlr(&g_mipiCsi);		// 空函数
       g_mipiCsi.priv = NULL;
   

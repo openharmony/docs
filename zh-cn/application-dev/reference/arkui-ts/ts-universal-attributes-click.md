@@ -49,5 +49,4 @@ struct TouchAbleExample {
 }
 ```
 
-
 ![zh-cn_image_0000001189624550](figures/zh-cn_image_0000001189624550.gif)

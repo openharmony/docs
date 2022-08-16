@@ -49,6 +49,7 @@
             - [Introduction to the Hi3861 Development Board](quickstart-lite-introduction-hi3861.md)
             - [Introduction to the Hi3516 Development Board](quickstart-lite-introduction-hi3516.md)
         - [Reference](quickstart-lite-reference.md)
+        - [Burning Code by Using HiTool](quickstart-lite-hitool.md)
         - [Overall Description of Compilation Form Factors](quickstart-build.md)
 - Getting Started with Standard System (IDE Mode, Recommended)
     - [Standard System Overview](quickstart-ide-standard-overview.md)
@@ -94,4 +95,5 @@
             - [Introduction to the Hi3516 Development Board](quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quickstart-standard-reference.md)
+        - [Burning Code by Using HiTool](quickstart-standard-hitool.md)
         - [Overall Description of Compilation Form Factors](quickstart-build.md)

@@ -41,10 +41,10 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 1. 导入基础依赖包。
 
    ```ts
-   import Extension from '@ohos.application.DataShareExtensionAbility'
+   import Extension from '@ohos.application.DataShareExtensionAbility';
    import rdb from '@ohos.data.rdb';
-   import fileIo from '@ohos.fileio'
-   import dataSharePredicates from '@ohos.data.dataSharePredicates'
+   import fileIo from '@ohos.fileio';
+   import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
 
 2. 数据提供方（也称服务端）继承于DataShareExtensionAbility，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供查询服务，则可只重写查询接口。

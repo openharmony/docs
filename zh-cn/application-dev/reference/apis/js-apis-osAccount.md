@@ -1810,6 +1810,8 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 
 此接口为系统接口，三方应用不支持调用。
 
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Account.OsAccount
 
 **参数：**
@@ -1833,6 +1835,8 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 查询当前进程是否处于主用户。
 
 此接口为系统接口，三方应用不支持调用。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 

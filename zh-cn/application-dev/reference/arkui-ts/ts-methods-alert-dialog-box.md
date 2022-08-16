@@ -1,10 +1,9 @@
 # 警告弹窗
 
+显示警告弹窗组件，可设置文本内容与响应回调。
+
 >  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-显示警告弹窗组件，可设置文本内容与响应回调。
 
 
 ## 属性
@@ -46,6 +45,7 @@
 @Entry
 @Component
 struct AlertDialogExample {
+  
   build() {
     Column({ space: 5 }) {
       Button('one button dialog')

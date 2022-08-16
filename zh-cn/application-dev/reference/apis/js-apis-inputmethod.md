@@ -173,6 +173,108 @@ stopInput(): Promise&lt;boolean&gt;
   console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
+### showSoftKeyboard<sup>9+</sup> ###
+
+showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
+
+显示软键盘，使用callback异步回调。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 参数类型                  | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+InputMethodController.showSoftKeyboard((err) => {
+    if (err == undefined) {
+        console.error('showSoftKeyboard success');
+    } else {
+        console.info('showSoftKeyboard failed : ' + JSON.stringify(err));
+    }
+})
+```
+
+
+### showSoftKeyboard<sup>9+</sup> ###
+
+showSoftKeyboard(): Promise&lt;void&gt;
+
+显示软键盘，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+InputMethodController.showSoftKeyboard().then(async (err) => {
+    console.log('showSoftKeyboard success');
+}).catch((err) => {
+    console.log('showSoftKeyboard fail ' + JSON.stringify(err));
+});
+```
+
+### hideSoftKeyboard<sup>9+</sup> ###
+
+hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
+
+隐藏软键盘，使用callback异步回调。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 参数类型                  | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+InputMethodController.hideSoftKeyboard((err) => {
+    if (err == undefined) {
+        console.error('hideSoftKeyboard success');
+    } else {
+        console.info('hideSoftKeyboard failed : ' + JSON.stringify(err));
+    }
+})
+```
+
+
+### hideSoftKeyboard<sup>9+</sup> ###
+
+hideSoftKeyboard(): Promise&lt;void&gt;
+
+隐藏软键盘，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+InputMethodController.hideSoftKeyboard().then(async (err) => {
+    console.log('hideSoftKeyboard success');
+}).catch((err) => {
+    console.log('hideSoftKeyboard fail ' + JSON.stringify(err));
+});
+```
+
 ## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodcontroller)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
