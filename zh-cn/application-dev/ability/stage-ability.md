@@ -58,7 +58,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    ```
    import AbilityStage from "@ohos.application.AbilityStage"
    ```
-2. 实现AbilityStage接口。
+2. 实现AbilityStage接口，接口生成的默认相对路径：entry\src\main\ets\Application\AbilityStage.ts。
    ```ts
    export default class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -70,7 +70,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    ```js
    import Ability from '@ohos.application.Ability'
    ```
-4. 实现Ability生命周期接口。
+4. 实现Ability生命周期接口，接口默认生成的相对路径：entry\src\main\ets\MainAbility\MainAbility.ts。
 
    在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](../windowmanager/window-guidelines.md)。
    ```ts
