@@ -247,11 +247,11 @@
 
     (1) 权限配置文件中增加以下配置。    
 
-    ```js
+    ```json
     "requestPermissions": 
-        {
-            "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-        }
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      }
     ```
 
     (2) 获取应用权限。
