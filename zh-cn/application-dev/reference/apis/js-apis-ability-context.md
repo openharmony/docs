@@ -595,7 +595,7 @@ connectAbility(want: Want, options: ConnectOptions): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 连接Ability的代码 |
+| number | 返回Ability连接的结果code。 |
 
 **示例**：
 ```js
@@ -615,8 +615,8 @@ var options = {
     console.log('connectAbility onFailed, code: ' + code)
   }
 }
-this.context.connectAbility(want, options) {
-  console.log('code: ' + code)
+let result = this.context.connectAbility(want, options) {
+  console.log('code: ' + result)
 }
 ```
 

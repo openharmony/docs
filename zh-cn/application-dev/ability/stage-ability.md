@@ -270,7 +270,7 @@ function getRemoteDeviceId() {
 ```
 向用户申请数据同步'ohos.permission.DISTRIBUTED_DATASYNC'的权限。申请授权示例代码见[应用向用户申请授权](###应用向用户申请授权)。
 ### 指定页面启动Ability
-当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
+当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability，不会触发onCreate，只会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
 
 使用startAbility再次拉起Ability，通过want中的uri参数传递页面信息：
 ```ts
@@ -312,7 +312,7 @@ struct Index {
     console.info('Index onPageShow')
     let newWant = globalThis.newWant
     if (newWant.hasOwnProperty("uri")) {
-      router.push({ uri: newWant.uri });
+      router.push({ url: newWant.uri });
       globalThis.newWant = undefined
     }
   }
