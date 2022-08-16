@@ -16,11 +16,11 @@
 
 ## 接口
 
-DatePicker(options?: DatePickerOptions)
+DatePicker(options?: {start?: Date, end?: Date, selected?: Date})
 
 根据指定范围的Date创建可以选择日期的滑动选择器。
 
-**options参数:**
+**参数:**
 
 | 参数名      | 参数类型 | 必填   | 默认值                | 参数描述        |
 | -------- | ---- | ---- | ------------------ | ----------- |
