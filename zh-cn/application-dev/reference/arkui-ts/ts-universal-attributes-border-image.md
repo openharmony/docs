@@ -1,8 +1,12 @@
 # 图片边框设置
+
 设置组件图片边框样式。
+
 >  **说明：**
 >
 > 从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+
 ## 权限列表
 
 无
@@ -36,6 +40,7 @@
   | Round | 被切割图片以整数次平铺在图片边框上，无法以整数次平铺时压缩被切割图片。 | 
   | Space | 被切割图片以整数次平铺在图片边框上，无法以整数次平铺时以空白填充。 | 
 
+
 ## 示例
 
 ```ts
@@ -43,6 +48,7 @@
 @Entry
 @Component
 struct Index {
+
   build() {
     Row() {
       Column() {
@@ -71,6 +77,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+
   build() {
     Row() {
       Column() {
