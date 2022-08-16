@@ -193,7 +193,7 @@ onReconnect(want: Want): void;
   ```js
   class ServiceExt extends ServiceExtension {
     onReconnect(want) {
-      console.log('onDisconnect, want:' + want.abilityName);
+      console.log('onReconnect, want:' + want.abilityName);
     }
   }
   ```
