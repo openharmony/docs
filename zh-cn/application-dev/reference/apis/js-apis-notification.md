@@ -527,7 +527,7 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 | 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                 |
 | -------- | ---- | --- | --------------------------------- | ---- | -------------------- |
-| callback | 是   | 否  | AsyncCallback\<[NotificationSlot](#notificationslot)\> | 是   | 表示被指定的回调方法。 |
+| callback | 是   | 否  | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
