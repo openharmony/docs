@@ -173,17 +173,17 @@ stopInput(): Promise&lt;boolean&gt;
   console.info('stopInput isSuccess = ' + isSuccess);
 ```
 
-### showSoftKeyboard
+### showSoftKeyboard ###
 
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-显示软键盘，callback方法。
+显示软键盘，使用callback异步回调。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明       |
+| 参数名   | 参数类型                  | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
@@ -199,13 +199,14 @@ InputMethodController.showSoftKeyboard((err) => {
 })
 ```
 
-### showSoftKeyboard
+
+### showSoftKeyboard ###
 
 showSoftKeyboard(): Promise&lt;void&gt;
 
-显示软键盘，Promise方法。
+显示软键盘，使用Promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -215,7 +216,6 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 **示例：**
 
-
 ```js
 InputMethodController.showSoftKeyboard().then(async (err) => {
     console.log('showSoftKeyboard success');
@@ -224,19 +224,19 @@ InputMethodController.showSoftKeyboard().then(async (err) => {
 });
 ```
 
-### hideSoftKeyboard
+### hideSoftKeyboard ###
 
-hideSoftKeyboard(callback: AsyncCallback&lt;boolean&gt;): void
+hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏软键盘，callback方法。
+隐藏软键盘，使用callback异步回调。
 
-**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名   | 类型                         | 必填 | 说明       |
-| -------- | ---------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。 |
+| 参数名   | 参数类型                  | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **示例：**
 
@@ -250,13 +250,14 @@ InputMethodController.hideSoftKeyboard((err) => {
 })
 ```
 
-### hideSoftKeyboard
+
+### hideSoftKeyboard ###
 
 hideSoftKeyboard(): Promise&lt;void&gt;
 
-隐藏软键盘，Promise方法。
+隐藏软键盘，使用Promise异步回调。
 
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
@@ -265,7 +266,6 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
-
 
 ```js
 InputMethodController.hideSoftKeyboard().then(async (err) => {
