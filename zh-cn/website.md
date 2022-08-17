@@ -138,7 +138,7 @@
       - [3.2 beta2相对3.2 beta1变更详细说明](release-notes/changelog/v3.2-beta2/changelog-v3.2-beta2.md)
       - [OpenHarmony启用应用沙箱机制-适配指导](release-notes/changelog/v3.2-beta2/application-sandbox-adaptation-guide.md)  
     - OpenHarmony 3.1 Beta
-      - [3.1 beta相对于3.0变更详细说明](release-notes/api-change/v3.1-beta/js-apidiff-v3.1-beta.md)
+      - [3.1 beta相对于3.0变更详细说明](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
   - [OpenHarmony JS/TS三方组件使用指导](third-party-components/npm-third-party-guide.md)
