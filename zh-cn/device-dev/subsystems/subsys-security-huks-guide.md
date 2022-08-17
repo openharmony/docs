@@ -595,75 +595,75 @@ int32_t HksCoreInit(const struct  HksBlob *key, const struct HksParamSet *paramS
 1. 检查参数是否合规，初始化handle。
 
 ```c
-    HKS_LOG_D("HksCoreInit in Core start");
-    uint32_t pur = 0;
-    uint32_t alg = 0;
-    //检查参数
-    if (key == NULL || paramSet == NULL || handle == NULL || token == NULL) {
-        HKS_LOG_E("the pointer param entered is invalid");
-        return HKS_FAILURE;
-    }
+HKS_LOG_D("HksCoreInit in Core start");
+uint32_t pur = 0;
+uint32_t alg = 0;
+//检查参数
+if (key == NULL || paramSet == NULL || handle == NULL || token == NULL) {
+    HKS_LOG_E("the pointer param entered is invalid");
+    return HKS_FAILURE;
+}
 
-    if (handle->size < sizeof(uint64_t)) {
-        HKS_LOG_E("handle size is too small, size : %u", handle->size);
-        return HKS_ERROR_INSUFFICIENT_MEMORY;
-    }
-    //解密密钥文件
-    struct HuksKeyNode *keyNode = HksCreateKeyNode(key, paramSet);
-    if (keyNode == NULL || handle == NULL) {
-        HKS_LOG_E("the pointer param entered is invalid");
-        return HKS_ERROR_BAD_STATE;
-    }
-    //通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
-    handle->size = sizeof(uint64_t);
-    (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
+if (handle->size < sizeof(uint64_t)) {
+    HKS_LOG_E("handle size is too small, size : %u", handle->size);
+    return HKS_ERROR_INSUFFICIENT_MEMORY;
+}
+//解密密钥文件
+struct HuksKeyNode *keyNode = HksCreateKeyNode(key, paramSet);
+if (keyNode == NULL || handle == NULL) {
+    HKS_LOG_E("the pointer param entered is invalid");
+    return HKS_ERROR_BAD_STATE;
+}
+//通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
+handle->size = sizeof(uint64_t);
+(void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
 ```
 
 2. 从参数中提取出算法和目的，获取对应的算法库处理函数。
 
 ```c
-    //从参数中提取出算法
-    int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(keyNode->handle);
-        return ret;
-    }
-    //检查密钥参数
-    ret = HksCoreSecureAccessInitParams(keyNode, paramSet, token);
-    if (ret != HKS_SUCCESS) {
-        HKS_LOG_E("init secure access params failed");
-        HksDeleteKeyNode(keyNode->handle);
-        return ret;
-    }
-    //通过密钥使用目的获取对应的算法库处理函数  
-    uint32_t i;
-    uint32_t size = HKS_ARRAY_SIZE(g_hksCoreInitHandler);
-    for (i = 0; i < size; i++) {
-        if (g_hksCoreInitHandler[i].pur == pur) {
-            HKS_LOG_E("Core HksCoreInit [pur] = %d, pur = %d", g_hksCoreInitHandler[i].pur, pur);
-            ret = g_hksCoreInitHandler[i].handler(keyNode, paramSet, alg);
-            break;
-        }
-    }
+//从参数中提取出算法
+int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
+if (ret != HKS_SUCCESS) {
+    HksDeleteKeyNode(keyNode->handle);
+    return ret;
+}
+//检查密钥参数
+ret = HksCoreSecureAccessInitParams(keyNode, paramSet, token);
+if (ret != HKS_SUCCESS) {
+    HKS_LOG_E("init secure access params failed");
+    HksDeleteKeyNode(keyNode->handle);
+    return ret;
+}
+//通过密钥使用目的获取对应的算法库处理函数  
+uint32_t i;
+uint32_t size = HKS_ARRAY_SIZE(g_hksCoreInitHandler);
+for (i = 0; i < size; i++) {
+   if (g_hksCoreInitHandler[i].pur == pur) {
+       HKS_LOG_E("Core HksCoreInit [pur] = %d, pur = %d", g_hksCoreInitHandler[i].pur, pur);
+       ret = g_hksCoreInitHandler[i].handler(keyNode, paramSet, alg);
+       break;
+   }
+}
 ```
 
 3. 异常结果检查
 
 ```c
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(keyNode->handle);
-        HKS_LOG_E("CoreInit failed, ret : %d", ret);
-        return ret;
-    }
-
-    if (i == size) {
-        HksDeleteKeyNode(keyNode->handle);
-        HKS_LOG_E("don't found purpose, pur : %u", pur);
-        return HKS_FAILURE;
-    }
-
-    HKS_LOG_D("HksCoreInit in Core end");
+if (ret != HKS_SUCCESS) {
+    HksDeleteKeyNode(keyNode->handle);
+    HKS_LOG_E("CoreInit failed, ret : %d", ret);
     return ret;
+}
+
+if (i == size) {
+    HksDeleteKeyNode(keyNode->handle);
+    HKS_LOG_E("don't found purpose, pur : %u", pur);
+    return HKS_FAILURE;
+}
+
+HKS_LOG_D("HksCoreInit in Core end");
+return ret;
 ```
    
 **三段式Update接口**
@@ -676,72 +676,71 @@ int32_t HksCoreUpdate(const struct HksBlob *handle, const struct HksParamSet *pa
 1. 检查参数是否合规，根据handle获取本次三段式操作需要的上下文。
 
 ```c
-    HKS_LOG_D("HksCoreUpdate in Core start");
-    uint32_t pur = 0;
-    uint32_t alg = 0;
-    //检查参数
-    if (handle == NULL || paramSet == NULL || inData == NULL) {
-        HKS_LOG_E("the pointer param entered is invalid");
-        return HKS_FAILURE;
-    }
+HKS_LOG_D("HksCoreUpdate in Core start");
+uint32_t pur = 0;
+uint32_t alg = 0;
+//检查参数
+if (handle == NULL || paramSet == NULL || inData == NULL) {
+    HKS_LOG_E("the pointer param entered is invalid");
+    return HKS_FAILURE;
+}
 
-    uint64_t sessionId;
-    struct HuksKeyNode *keyNode = NULL;
-    //根据handle获取本次三段式操作需要的上下文
-    int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
-    if (ret != HKS_SUCCESS) {
-        HKS_LOG_E("GetParamsForCoreUpdate failed");
-        return ret;
-    }
+uint64_t sessionId;
+struct HuksKeyNode *keyNode = NULL;
+//根据handle获取本次三段式操作需要的上下文
+int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
+if (ret != HKS_SUCCESS) {
+    HKS_LOG_E("GetParamsForCoreUpdate failed");
+    return ret;
+}
 ```
 
 2. 校验密钥参数，调用对应的算法库函数
 
 ```c
-    //校验密钥参数
-    ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(sessionId);
-        HKS_LOG_E("HksCoreUpdate secure access verify failed");
-        return ret;
-    }
-    //调用对应的算法库密钥处理函数
-    uint32_t i;
-    uint32_t size = HKS_ARRAY_SIZE(g_hksCoreUpdateHandler);
-    for (i = 0; i < size; i++) {
-        if (g_hksCoreUpdateHandler[i].pur == pur) {
-            struct HksBlob appendInData = { 0, NULL };
-            ret = HksCoreAppendAuthInfoBeforeUpdate(keyNode, pur, paramSet, inData, &appendInData);
-            if (ret != HKS_SUCCESS) {
-                HKS_LOG_E("before update: append auth info failed");
-                break;
-            }
-            ret = g_hksCoreUpdateHandler[i].handler(keyNode, paramSet,
-                appendInData.data == NULL ? inData : &appendInData, outData, alg);
-            if (appendInData.data != NULL) {
-                HKS_FREE_BLOB(appendInData);
-            }
+//校验密钥参数
+ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
+if (ret != HKS_SUCCESS) {
+    HksDeleteKeyNode(sessionId);
+    HKS_LOG_E("HksCoreUpdate secure access verify failed");
+    return ret;
+}
+//调用对应的算法库密钥处理函数
+uint32_t i;
+uint32_t size = HKS_ARRAY_SIZE(g_hksCoreUpdateHandler);
+for (i = 0; i < size; i++) {
+    if (g_hksCoreUpdateHandler[i].pur == pur) {
+        struct HksBlob appendInData = { 0, NULL };
+        ret = HksCoreAppendAuthInfoBeforeUpdate(keyNode, pur, paramSet, inData, &appendInData);
+        if (ret != HKS_SUCCESS) {
+            HKS_LOG_E("before update: append auth info failed");
             break;
         }
+        ret = g_hksCoreUpdateHandler[i].handler(keyNode, paramSet,
+             appendInData.data == NULL ? inData : &appendInData, outData, alg);
+        if (appendInData.data != NULL) {
+            HKS_FREE_BLOB(appendInData);
+        }
+        break;
     }
+}
 ```
 
 3. 异常结果检查
 
 ```c
-
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(keyNode->handle);
-        HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
-        return ret;
-    }
-
-    if (i == size) {
-        HksDeleteKeyNode(sessionId);
-        HKS_LOG_E("don't found purpose, pur : %u", pur);
-        return HKS_FAILURE;
-    }
+if (ret != HKS_SUCCESS) {
+    HksDeleteKeyNode(keyNode->handle);
+    HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
     return ret;
+}
+
+if (i == size) {
+    HksDeleteKeyNode(sessionId);
+    HKS_LOG_E("don't found purpose, pur : %u", pur);
+    return HKS_FAILURE;
+}
+return ret;
 ```
 
 **三段式Finish接口**
@@ -754,73 +753,73 @@ int32_t HksCoreFinish(const struct HksBlob *handle, const struct HksParamSet *pa
 1. 检查参数是否合规，根据handle获取本次三段式操作需要的上下文。
 
 ```c
-    HKS_LOG_D("HksCoreFinish in Core start");
-    uint32_t pur = 0;
-    uint32_t alg = 0;
-    //检查参数
-    if (handle == NULL || paramSet == NULL || inData == NULL) {
-        HKS_LOG_E("the pointer param entered is invalid");
-        return HKS_FAILURE;
-    }
+HKS_LOG_D("HksCoreFinish in Core start");
+uint32_t pur = 0;
+uint32_t alg = 0;
+//检查参数
+if (handle == NULL || paramSet == NULL || inData == NULL) {
+    HKS_LOG_E("the pointer param entered is invalid");
+    return HKS_FAILURE;
+}
 
-    uint64_t sessionId;
-    struct HuksKeyNode *keyNode = NULL;
-    //根据handle获取本次三段式操作需要的上下文
-    int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
-    if (ret != HKS_SUCCESS) {
-        HKS_LOG_E("GetParamsForCoreUpdate failed");
-        return ret;
-    }
+uint64_t sessionId;
+struct HuksKeyNode *keyNode = NULL;
+//根据handle获取本次三段式操作需要的上下文
+int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
+if (ret != HKS_SUCCESS) {
+    HKS_LOG_E("GetParamsForCoreUpdate failed");
+    return ret;
+}
 ```
 
 2. 校验密钥参数，调用对应的算法库函数，添加密钥操作结束标签
 
 ```c
-    //校验密钥参数
-    ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(sessionId);
-        HKS_LOG_E("HksCoreFinish secure access verify failed");
-        return ret;
-    }
-    //调用对应的算法库密钥处理函数
-    uint32_t i;
-    uint32_t size = HKS_ARRAY_SIZE(g_hksCoreFinishHandler);
-    for (i = 0; i < size; i++) {
-        if (g_hksCoreFinishHandler[i].pur == pur) {
-            uint32_t outDataBufferSize = (outData == NULL) ? 0 : outData->size;
-            struct HksBlob appendInData = { 0, NULL };
-            ret = HksCoreAppendAuthInfoBeforeFinish(keyNode, pur, paramSet, inData, &appendInData);
-            if (ret != HKS_SUCCESS) {
-                HKS_LOG_E("before finish: append auth info failed");
-                break;
-            }
-            ret = g_hksCoreFinishHandler[i].handler(keyNode, paramSet,
-                appendInData.data == NULL ? inData : &appendInData, outData, alg);
-            if (appendInData.data != NULL) {
-                HKS_FREE_BLOB(appendInData);
-            }
-            if (ret != HKS_SUCCESS) {
-                break;
-            }
-            //添加密钥操作结束标签
-            ret = HksCoreAppendAuthInfoAfterFinish(keyNode, pur, paramSet, outDataBufferSize, outData);
+//校验密钥参数
+ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
+if (ret != HKS_SUCCESS) {
+    HksDeleteKeyNode(sessionId);
+    HKS_LOG_E("HksCoreFinish secure access verify failed");
+    return ret;
+}
+//调用对应的算法库密钥处理函数
+uint32_t i;
+uint32_t size = HKS_ARRAY_SIZE(g_hksCoreFinishHandler);
+for (i = 0; i < size; i++) {
+    if (g_hksCoreFinishHandler[i].pur == pur) {
+        uint32_t outDataBufferSize = (outData == NULL) ? 0 : outData->size;
+        struct HksBlob appendInData = { 0, NULL };
+        ret = HksCoreAppendAuthInfoBeforeFinish(keyNode, pur, paramSet, inData, &appendInData);
+        if (ret != HKS_SUCCESS) {
+            HKS_LOG_E("before finish: append auth info failed");
             break;
         }
+        ret = g_hksCoreFinishHandler[i].handler(keyNode, paramSet,
+            appendInData.data == NULL ? inData : &appendInData, outData, alg);
+        if (appendInData.data != NULL) {
+            HKS_FREE_BLOB(appendInData);
+       }
+       if (ret != HKS_SUCCESS) {
+            break;
+       }
+        //添加密钥操作结束标签
+        ret = HksCoreAppendAuthInfoAfterFinish(keyNode, pur, paramSet, outDataBufferSize, outData);
+        break;
     }
+}
 ```
 
 3. 异常结果检查，删除session
 
 ```c
-    if (i == size) {
-        HKS_LOG_E("don't found purpose, pur : %d", pur);
-        ret = HKS_FAILURE;
-    }
-    //删除对应的session
-    HksDeleteKeyNode(sessionId);
-    HKS_LOG_D("HksCoreFinish in Core end");
-    return ret;
+if (i == size) {
+    HKS_LOG_E("don't found purpose, pur : %d", pur);
+    ret = HKS_FAILURE;
+}
+//删除对应的session
+HksDeleteKeyNode(sessionId);
+HKS_LOG_D("HksCoreFinish in Core end");
+return ret;
 ```
 
 ### 调测验证
