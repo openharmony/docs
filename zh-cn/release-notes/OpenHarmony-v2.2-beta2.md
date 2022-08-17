@@ -79,7 +79,7 @@ repo forall -c 'git lfs pull'
 | 子系统名称     | 标准系统                                                     | 轻量、小型系统                                               |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 分布式文件     | 提供本地system.file异步文件操作JS API，包括文件读写、目录访问、增删等接口。 | NA                                                           |
-| 驱动           | [3QE85](https://gitee.com/openharmony/drivers_framework/issues/I3QE85)：新增Audio、Camera、USB、马达、ADC驱动模型。 | LiteOS-M支持HDF框架。                                        |
+| 驱动           | 新增Audio、Camera、USB、马达、ADC驱动模型。 | LiteOS-M支持HDF框架。                                        |
 | 电源管理服务   | 新增系统电源状态机、休眠运行锁、休眠唤醒功能。               | - 新增充放电状态查询接口、电量查询接口。<br/>- 提供低功耗模式支持，并提供低功耗模式统一API支持。 |
 | 升级服务       | 新增恢复出厂功能。                                           | NA                                                           |
 | 媒体           | - 新增音频服务，提供音频基础控制能力。<br/>- 新增相机服务，提供预览、拍照等基础功能力。<br/>- 新增媒体服务，提供音频、视频播放能力。 | NA                                                           |
@@ -117,9 +117,9 @@ API变更请参考：
 | [I3I31W](https://gitee.com/openharmony/kernel_liteos_a/issues/I3I31W) | ActsNFSTest.bin会引起内核crash                               |
 | [I3D49E](https://gitee.com/openharmony/docs/issues/I3D49E)   | uboot的路径不对                                              |
 | [I3D71U](https://gitee.com/openharmony-retired/drivers_adapter_khdf_liteos/issues/I3D71U) | 【驱动子系统】反复reset，启动到hmac_main_init SUCCESSULLY后，高概率出现系统挂死 |
-| [I3DGZW](https://gitee.com/openharmony/aafwk_aafwk_lite/issues/I3DGZW) | 【应用程序框架子系统】HI3516开源板进入屏保后 ，点击触摸屏，出现蓝屏问题 |
+| I3DGZW | 【应用程序框架子系统】HI3516开源板进入屏保后 ，点击触摸屏，出现蓝屏问题 |
 | [I3DHIL](https://gitee.com/openharmony/community/issues/I3DHIL) | 【系统问题】HI3518开源板剩余空间不足，导致ACTS用例大量失败   |
-| [I3DU36](https://gitee.com/openharmony/appexecfwk_appexecfwk_lite/issues/I3DU36) | 【应用程序框架子系统】ipcamera bm 查询命令失效               |
+| I3DU36 | 【应用程序框架子系统】ipcamera bm 查询命令失效               |
 | [I3EALU](https://gitee.com/openharmony/multimedia_camera_lite/issues/I3EALU) | 【媒体子系统】cameraActs 用例执行时，找不到相机配置文件，初始失败 |
 | [I3EGUX](https://gitee.com/openharmony/release-management/issues/I3EGUX) | 【可靠性问题】反复reset，出现一次KIdle进程crash，系统挂死无法启动 |
 | [I3EH4E](https://gitee.com/openharmony/community/issues/I3EH4E) | 【流水线问题】高概率出现：uname无响应，然后执行reset也无响应 |
