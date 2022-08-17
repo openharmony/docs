@@ -794,149 +794,108 @@ JS测试代码示例如下，如果整个流程能够正常运行，代表HDI接
 
 **AES生成密钥和加密**
 
-1. 引入HUKS模块，设定密钥操作的参数
+1. 引入HUKS模块
 
    ```js
-    import huks from '@ohos.security.huks';
-    
-    let handle;
-    let IV = '0000000000000000';
-    let cipherInData = 'Hks_AES_Cipher_Test_101010101010101010110_string';
-    let srcKeyAlias = 'huksCipherAesSrcKeyAlias';
-    let encryptUpdateResult = new Array()
-    let decryptUpdateResult = new Array()
-    let properties = new Array();
-    properties[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES,
-    }
-    properties[1] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value:
-        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-    }
-    properties[2] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
-    }
-    properties[3] = {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_CBC,
-    }
-    properties[4] = {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-    }
-    
-    let HuksOptions = {
-        properties: properties,
-        inData: new Uint8Array(new Array())
-    }
-    ```
+   import huks from '@ohos.security.huks'
+   ```
 
-2. 生成密钥并执行加密操作
-    
-    ```js
-    /* 生成密钥 */
-    await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
-        console.log(`test generateKey data: ${JSON.stringify(data)}`);
-    }).catch((err) => {
-        console.log('test generateKey err information: ' + JSON.stringify(err));
-    });
-    /* 构造加密参数 */
-    let propertiesEncrypt = new Array();
-    propertiesEncrypt[0] = {
-        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-        value: huks.HuksKeyAlg.HUKS_ALG_AES,
-    }
-    propertiesEncrypt[1] = {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-    }
-    propertiesEncrypt[2] = {
-        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
-    }
-    propertiesEncrypt[3] = {
-        tag: huks.HuksTag.HUKS_TAG_PADDING,
-        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-    }
-    propertiesEncrypt[4] = {
-        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-        value: huks.HuksCipherMode.HUKS_MODE_CBC,
-    }
-    propertiesEncrypt[5] = {
-        tag: huks.HuksTag.HUKS_TAG_DIGEST,
-        value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
-    }
-    propertiesEncrypt[6] = {
-        tag: huks.HuksTag.HUKS_TAG_IV,
-        value: this.stringToUint8Array(IV)
-    }
-    let encryptOptions = {
-        properties: propertiesEncrypt,
-        inData: new Uint8Array(new Array())
-    }
-    
-    /* 进行密钥加密操作 */
-    huks.init(srcKeyAlias, encryptOptions).then((data) => {
-        console.log(`test init data: ${JSON.stringify(data)}`);
-        handle = data.handle;
-    })
-    encryptOptions.inData = this.stringToUint8Array(cipherInData)
-    huks.update(handle, encryptOptions).then(async (data) => {
-        console.log(`test update data ${JSON.stringify(data)}`);
-        encryptUpdateResult = Array.from(data.outData);
-    })
-    encryptOptions.inData = new Uint8Array(new Array());
-    huks.finish(handle, encryptOptions).then((data) => {
-        console.log(`test finish data: ${JSON.stringify(data)}`);
-        let finishData = this.uint8ArrayToString(new Uint8Array(encryptUpdateResult));
-        if (finishData === cipherInData) {
-           console.log('test finish encrypt err ');
-        } else {
-           console.log('test finish encrypt success');
-        }
-    })
-    ```
+2. 使用generateKey接口生成密钥。
 
-3. 执行解密操作并删除密钥
-    
-    ```js
-    /* 修改加密参数集为解密参数集 */
-    propertiesEncrypt.splice(1, 1, {
-        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-    });
-    let decryptOptions = {
-        properties: propertiesEncrypt,
-        inData: new Uint8Array(new Array())
-    }
-            
-    /* 进行解密操作 */
-    huks.init(srcKeyAlias, decryptOptions).then((data) => {
-        console.log(`test init data: ${JSON.stringify(data)}`);
-        handle = data.handle;
-    })
-    
-    decryptOptions.inData = new Uint8Array(encryptUpdateResult);
-    huks.update(handle, decryptOptions).then(async (data) => {
-        console.log(`test update data ${JSON.stringify(data)}`);
-        decryptUpdateResult = Array.from(data.outData);
-    })
-    decryptOptions.inData = new Uint8Array(new Array());
-    huks.finish(handle, decryptOptions).then((data) => {
-        console.log(`test finish data: ${JSON.stringify(data)}`);
-        let finishData = this.uint8ArrayToString(new Uint8Array(decryptUpdateResult));
-        if (finishData === cipherInData) {
-           console.log('test finish decrypt success ');
-        } else {
-           console.log('test finish decrypt err');
-        }
-    })
-    //删除密钥
-    huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
-        console.log(`test deleteKey data: ${JSON.stringify(data)}`);
-    })
-    ```
+   ```js
+   var alias = 'testAlias';
+   var properties = new Array();
+   properties[0] = {
+     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+     value: huks.HuksKeyAlg.HUKS_ALG_ECC
+   };
+   properties[1] = {
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_224
+   };
+   properties[2] = {
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+   };
+   properties[3] = {
+     tag: huks.HuksTag.HUKS_TAG_DIGEST,
+     value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+   };
+   var options = {
+     properties: properties
+   }
+   var resultA = huks.generateKey(alias, options);
+   ```
+
+3. 使用Init接口进行init操作。
+
+   ```js
+   var alias = 'test001'
+   var properties = new Array();
+   properties[0] = {
+     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
+   };
+   properties[1] = {
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+   };
+   properties[2] = {
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
+   };
+   var options = {
+     properties: properties
+   };
+   huks.init(alias, options, function(err, data) {
+       if (err.code !== 0) {
+           console.log("test init err information: " + JSON.stringify(err));
+       } else {
+           console.log(`test init data: ${JSON.stringify(data)}`);
+       }
+   })
+   ```
+   
+4. 使用Update接口进行update操作。
+
+   ```js
+   var properties = new Array();
+   properties[0] = {
+     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
+   };
+   properties[1] = {
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+   };
+   properties[2] = {
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
+   };
+   var options = {
+     properties: properties
+   };
+   var result = huks.update(handle, options)
+   ```
+   
+5. 使用Finish接口进行finish操作。
+
+   ```js
+   var properties = new Array();
+   properties[0] = {
+     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+     value: huks.HuksKeyAlg.HUKS_ALG_DH
+   };
+   properties[1] = {
+     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
+   };
+   properties[2] = {
+     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_4096
+   };
+   var options = {
+     properties: properties
+   };
+   var result = huks.finish(handle, options) 
+   ```
