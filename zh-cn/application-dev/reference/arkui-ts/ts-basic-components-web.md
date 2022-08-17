@@ -1233,17 +1233,20 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 长按特定元素（例如图片，链接），跳出菜单。
 
 **参数：**
+
 | 参数名     | 参数类型                                 | 参数描述             |
 | ------- | ------------------------------------ | ---------------- |
 | param   | [WebContextMenuParam](#webcontextmenuparam9)   | 菜单相关参数。 |
 | result  | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
 
-**返回值：** 
+**返回值：**
+
 | 类型     | 说明                   |
 | ------ | -------------------- |
 | boolean | 自定义菜单返回true，默认菜单返回false。 |
 
   **示例：**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1760,7 +1763,7 @@ getLinkUrl(): string
 
 getUnfilterendLinkUrl(): string
 
-获取linkurl链接。
+获取链接地址。
 
 **返回值：**
 
