@@ -78,12 +78,12 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)访问应用中rawfile路径的文件， 默认启用。
+设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ------- | ---- | ---- | ---------------------------------------- |
-| fileAccess | boolean | 是    | true | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)访问应用中rawfile路径的文件，默认启用。 |
+| fileAccess | boolean | 是    | true | 设置是否开启应用中文件系统的访问，默认启用。 |
 
 **示例：**
   ```ts
@@ -105,12 +105,12 @@ fileAccess(fileAccess: boolean)
 
 fileFromUrlAccess(fileFromUrlAccess: boolean)
 
-设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)的内容，默认未启用。
+设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 | 参数名               | 参数类型    | 必填   | 默认值   | 参数描述                                     |
 | ----------------- | ------- | ---- | ----- | ---------------------------------------- |
-| fileFromUrlAccess | boolean | 是    | false | 设置是否允许通过网页中的JavaScript脚本访问[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)的内容，默认未启用。 |
+| fileFromUrlAccess | boolean | 是    | false | 设置是否允许通过网页中的JavaScript脚本访问应用文件系统中的内容，默认未启用。 |
 
 **示例：**
   ```ts
@@ -349,6 +349,7 @@ databaseAccess(databaseAccess: boolean)
 | -------------- | ------- | ---- | ---- | ----------------- |
 | databaseAccess | boolean | 是    | -    | 设置是否开启数据库存储API权限。 |
 
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -359,6 +360,33 @@ databaseAccess(databaseAccess: boolean)
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
         .databaseAccess(true)
+      }
+    }
+  }
+  ```
+
+### geolocationAccess
+
+geolocationAccess(geolocationAccess: boolean)
+
+设置是否开启获取地理位置权限，默认开启。
+
+**参数：**
+| 参数名            | 参数类型    | 必填   | 默认值  | 参数描述              |
+| -------------- | ------- | ---- | ---- | ----------------- |
+| geolocationAccess | boolean | 是    | true    | 设置是否开启获取地理位置权限。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .geolocationAccess(true)
       }
     }
   }
@@ -392,16 +420,16 @@ cacheMode(cacheMode: CacheMode)
   }
   ```
 
-### textZoomAtio
+### textZoomRatio
 
-textZoomAtio(textZoomAtio: number)
+textZoomRatio(textZoomRatio: number)
 
 设置页面的文本缩放百分比，默认为100%。
 
 **参数：**
 | 参数名          | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------ | ------ | ---- | ---- | --------------- |
-| textZoomAtio | number | 是    | -    | 要设置的页面的文本缩放百分比。 |
+| textZoomRatio | number | 是    | -    | 要设置的页面的文本缩放百分比。 |
 
 **示例：**
   ```ts
@@ -414,7 +442,7 @@ textZoomAtio(textZoomAtio: number)
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
-        .textZoomAtio(this.atio)
+        .textZoomRatio(this.atio)
       }
     }
   }
@@ -1690,6 +1718,32 @@ grant(resources: Array\<string\>): void
 webController: WebController = new WebController()
 ```
 
+### requestFocus
+
+requestFocus()
+
+使当前web页面获取焦点。
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('requestFocus')
+          .onClick(() => {
+            this.controller.requestFocus();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ### accessBackward
 
 accessBackward(): boolean
@@ -1878,7 +1932,7 @@ backOrForward(step: number): void
 
 deleteJavaScriptRegister(name: string)
 
-删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。
+删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
 
 **参数：**
 | 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
@@ -2348,7 +2402,7 @@ refresh()
 
 registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用refresh接口生效。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
 
 **参数：**
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                                     |
