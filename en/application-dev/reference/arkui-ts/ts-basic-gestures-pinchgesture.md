@@ -1,7 +1,9 @@
 # PinchGesture
 
+PinchGesture is used to trigger a pinch gesture, which requires two to five fingers with a minimum 3 vp distance between the fingers.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -41,25 +43,26 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PinchGestureExample {
-  @State scale: number = 1
+  @State scaleValue: number = 1
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Text('PinchGesture scale:' + this.scale)
     }
     .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
-    .scale({ x: this.scale, y: this.scale, z: this.scale })
+    .scale({ x: this.scaleValue, y: this.scaleValue, z: this.scaleValue })
     .gesture(
       PinchGesture()
         .onActionStart((event: GestureEvent) => {
           console.info('Pinch start')
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.scale = event.scale
+          this.scaleValue = event.scale
         })
         .onActionEnd(() => {
           console.info('Pinch end')
