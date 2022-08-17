@@ -3059,6 +3059,273 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
   }
   ```
 
+## GeolocationPermissions<sup>9+</sup>
+
+web组件地理位置权限管理对象。
+
+### allowGeolocation<sup>9+</sup>
+
+static allowGeolocation(origin: string): void
+
+允许指定来源使用地理位置API。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | 是   | -     | 指定源的字符串索引。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('allowGeolocation')
+          .onClick(() => {
+            web.GeolocationPermissions.allowGeolocation(this.origin);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### deleteGeolocation<sup>9+</sup>
+
+static deleteGeolocation(origin: string): void
+
+清除指定来源的地理位置权限状态。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | 是   | -     | 指定源的字符串索引。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('deleteGeolocation')
+          .onClick(() => {
+            web.GeolocationPermissions.deleteGeolocation(this.origin);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### deleteAllGeolocation<sup>9+</sup>
+
+static deleteAllGeolocation(): void
+
+清除所有来源的地理位置权限状态。
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('deleteAllGeolocation')
+          .onClick(() => {
+            web.GeolocationPermissions.deleteAllGeolocation();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getAccessibleGeolocation<sup>9+</sup>
+
+static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean\>): void
+
+以回调方式异步获取指定源的地理位置权限状态。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | 是   | -     | 指定源的字符串索引。 |
+| callback | AsyncCallback\<boolean\> | 是 | - | 返回指定源的地理位置权限状态，获取成功，true表示已授权，false表示拒绝访问；获取失败，表示不存在指定源的权限状态。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('getAccessibleGeolocationAsync')
+          .onClick(() => {
+            web.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
+              if (error) {
+                console.log('getAccessibleGeolocationAsync error: ' + error);
+                return;
+              }
+              console.log('getAccessibleGeolocationAsync result: ' + result);
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getAccessibleGeolocation<sup>9+</sup>
+
+static getAccessibleGeolocation(origin: string): Promise\<boolean\>
+
+以Promise方式异步获取指定源的地理位置权限状态。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | 是   | -     | 指定源的字符串索引。 |
+
+**返回值：**
+
+| 类型               | 说明                                  |
+| ------------------ | ------------------------------------ |
+| Promise\<boolean\> | Promise实例，用于获取指定源的权限状态，获取成功，true表示已授权，false表示拒绝访问；获取失败，表示不存在指定源的权限状态。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('getAccessibleGeolocationPromise')
+          .onClick(() => {
+            web.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
+              console.log('getAccessibleGeolocationPromise result: ' + result);
+            }).catch(error => {
+              console.log('getAccessibleGeolocationPromise error: ' + error);
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getStoredGeolocation<sup>9+</sup>
+
+static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
+
+以回调方式异步获取已存储地理位置权限状态的所有源。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
+| -------- | -------- | ---- | ----- | ------------- |
+| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('getStoredGeolocationAsync')
+          .onClick(() => {
+            web.GeolocationPermissions.getStoredGeolocation((error, origins) => {
+              if (error) {
+                console.log('getStoredGeolocationAsync error: ' + error);
+                return;
+              }
+              let origins_str: string = "";
+              for (let i = 0; i < origins.length; i++) {
+                origins_str = origins_str + origins[i] + " ";
+              }
+              console.log('getStoredGeolocationAsync origins: ' + origins_str);
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getStoredGeolocation<sup>9+</sup>
+
+static getStoredGeolocation(): Promise\<Array\<string\>\>
+
+以Promise方式异步获取已存储地理位置权限状态的所有源。
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
+| -------- | -------- | ---- | ----- | ------------- |
+| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源。 |
+
+**返回值：**
+
+| 类型                       | 说明                                  |
+| -------------------------- | ------------------------------------ |
+| Promise\<Array\<string\>\> | Promise实例，用于获取已存储地理位置权限状态的所有源。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web from '@ohos.web';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('getStoredGeolocationPromise')
+          .onClick(() => {
+            web.GeolocationPermissions.getStoredGeolocation().then(origins => {
+              let origins_str: string = "";
+              for (let i = 0; i < origins.length; i++) {
+                origins_str = origins_str + origins[i] + " ";
+              }
+              console.log('getStoredGeolocationPromise origins: ' + origins_str);
+            }).catch(error => {
+                console.log('getStoredGeolocationPromise error: ' + error);
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ## WebStorage<sup>9+</sup>
 通过WebStorage可管理Web SQL数据库接口和HTML5 Web存储接口，每个应用中的所有Web组件共享一个WebStorage。
 ### deleteAllData<sup>9+</sup>
