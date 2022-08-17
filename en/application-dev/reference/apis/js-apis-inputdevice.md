@@ -4,7 +4,8 @@
 The Input Device module implements listening for connection, disconnection, and update events of input devices and displays information about input devices. For example, it can be used to listen for mouse insertion and removal and obtain information such as the ID, name, and pointer speed of the mouse.
 
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -28,7 +29,7 @@ Enables listening for hot swap events of an input device.
 | Name      | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | Yes   | Event type of the input device. |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | Yes   | Listener for events of the input device.|
+| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | Yes   | Listener for events of the input device.|
 
 **Example**
 
@@ -63,7 +64,7 @@ Disables listening for hot swap events of an input device.
 | Name      | Type                                      | Mandatory  | Description         |
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | Yes   | Event type of the input device. |
-| listener | Callback&lt;[DeviceListener](#devicelistener<sup>9+</sup>)&gt; | No   | Listener for events of the input device.|
+| listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | No   | Listener for events of the input device.|
 
 **Example**
 
@@ -245,7 +246,7 @@ Obtains the keyboard type of an input device. This API uses an asynchronous call
 | Name      | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | deviceId | number                                   | Yes   | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| callback | AsyncCallback&lt;[KeyboardType](#keyboardtype)&gt; | Yes   | Callback used to return the result.                   |
+| callback | AsyncCallback&lt;[KeyboardType](#keyboardtype9)&gt; | Yes   | Callback used to return the result.                   |
 
 **Example**
 
@@ -268,7 +269,7 @@ Obtains the keyboard type of an input device. This API uses a promise to return 
 
 | Parameter                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[KeyboardType](#keyboardtype)&gt; | Promise used to return the result.|
+| Promise&lt;[KeyboardType](#keyboardtype9)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -336,7 +337,7 @@ Defines the axis range of an input device.
 | Name                     | Type                     | Description      |
 | ----------------------- | ------------------------- | -------- |
 | source                  | [SourceType](#sourcetype) | Input source type of the axis.|
-| axis                    | [AxisType](#axistype)      | Axis type.   |
+| axis                    | [AxisType](#axistype9)      | Axis type.   |
 | max                     | number                    | Maximum value of the axis.  |
 | min                     | number                    | Minimum value of the axis.  |
 | fuzz<sup>9+</sup>       | number                    | Fuzzy value of the axis.  |
@@ -358,7 +359,7 @@ Enumerates the input source types. For example, if a mouse reports an x-axis eve
 | touchpad    | string | The input device is a touchpad.|
 | joystick    | string | The input device is a joystick.|
 
-## ChangeType
+## ChangedType
 
 Defines the change type for the hot swap event of an input device.
 
