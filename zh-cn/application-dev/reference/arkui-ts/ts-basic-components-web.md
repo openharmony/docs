@@ -1757,7 +1757,7 @@ getLinkUrl(): string
 
 | 类型            | 说明                     |
 | --------------- | ----------------------- |
-| string | 如果长按位置是链接，返回链接经过安全检查的url。 |
+| string | 如果长按位置是链接，返回经过安全检查的url链接。 |
 
 ### getUnfilterendLinkUrl<sup>9+</sup>
 
@@ -1769,7 +1769,7 @@ getUnfilterendLinkUrl(): string
 
 | 类型            | 说明                     |
 | --------------- | ----------------------- |
-| string | 如果长按位置是链接，返回链接的原始url。 |
+| string | 如果长按位置是链接，返回原始的url链接。 |
 
 ### getSourceUrl<sup>9+</sup>
 
