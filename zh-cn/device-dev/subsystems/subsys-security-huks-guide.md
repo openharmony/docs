@@ -832,192 +832,178 @@ JS测试代码示例如下：
 
 **AES生成密钥和加密**
 
-1. 设定密钥操作的参数
+1. 引入HUKS模块，设定密钥操作的参数
 
 ```js
 import huks from '@ohos.security.huks';
 
-export default {
-    data: {},
-    onInit() {
-        console.log(`huks demo cipher_aes init finish`);
-    },
-    onShow() {
-        console.log(`huks demo cipher_aes onshow start`);
-        this.start();
-        console.log(`huks demo cipher_aes onshow end`);
-    },
-    async start() {
-        let handle;
-        let IV = '0000000000000000';
-        let cipherInData = 'Hks_AES_Cipher_Test_101010101010101010110_string';
-        let srcKeyAlias = 'huksCipherAesSrcKeyAlias';
-        let encryptUpdateResult = new Array()
-        let decryptUpdateResult = new Array()
-        let properties = new Array();
+let handle;
+let IV = '0000000000000000';
+let cipherInData = 'Hks_AES_Cipher_Test_101010101010101010110_string';
+let srcKeyAlias = 'huksCipherAesSrcKeyAlias';
+let encryptUpdateResult = new Array()
+let decryptUpdateResult = new Array()
+let properties = new Array();
+properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES,
+}
+properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value:
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+}
+properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+}
+properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC,
+}
+properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+}
 
-        /* 集成生成密钥参数集 & 加密参数集 */
-        properties[0] = {
-            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-            value: huks.HuksKeyAlg.HUKS_ALG_AES,
-        }
-        properties[1] = {
-            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-            value:
-            huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-            huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-        }
-        properties[2] = {
-            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-            value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
-        }
-        properties[3] = {
-            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-            value: huks.HuksCipherMode.HUKS_MODE_CBC,
-        }
-        properties[4] = {
-            tag: huks.HuksTag.HUKS_TAG_PADDING,
-            value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-        }
-
-        let HuksOptions = {
-            properties: properties,
-            inData: new Uint8Array(new Array())
-        }
+let HuksOptions = {
+    properties: properties,
+    inData: new Uint8Array(new Array())
+}
 ```
 
 2. 生成密钥并执行加密操作
 
 ```js
-        /* 生成密钥 */
-        await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
-            console.log(`test generateKey data: ${JSON.stringify(data)}`);
-        }).catch((err) => {
-            console.log('test generateKey err information: ' + JSON.stringify(err));
-        });
-        /* 构造加密参数 */
-        let propertiesEncrypt = new Array();
-        propertiesEncrypt[0] = {
-            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-            value: huks.HuksKeyAlg.HUKS_ALG_AES,
-        }
-        propertiesEncrypt[1] = {
-            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-        }
-        propertiesEncrypt[2] = {
-            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-            value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
-        }
-        propertiesEncrypt[3] = {
-            tag: huks.HuksTag.HUKS_TAG_PADDING,
-            value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-        }
-        propertiesEncrypt[4] = {
-            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-            value: huks.HuksCipherMode.HUKS_MODE_CBC,
-        }
-        propertiesEncrypt[5] = {
-            tag: huks.HuksTag.HUKS_TAG_DIGEST,
-            value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
-        }
-        propertiesEncrypt[6] = {
-            tag: huks.HuksTag.HUKS_TAG_IV,
-            value: this.stringToUint8Array(IV)
-        }
-        let encryptOptions = {
-            properties: propertiesEncrypt,
-            inData: new Uint8Array(new Array())
-        }
+/* 生成密钥 */
+await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
+    console.log(`test generateKey data: ${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.log('test generateKey err information: ' + JSON.stringify(err));
+});
+/* 构造加密参数 */
+let propertiesEncrypt = new Array();
+propertiesEncrypt[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES,
+}
+propertiesEncrypt[1] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
+}
+propertiesEncrypt[2] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+}
+propertiesEncrypt[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+}
+propertiesEncrypt[4] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_CBC,
+}
+propertiesEncrypt[5] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
+}
+propertiesEncrypt[6] = {
+    tag: huks.HuksTag.HUKS_TAG_IV,
+    value: this.stringToUint8Array(IV)
+}
+let encryptOptions = {
+    properties: propertiesEncrypt,
+    inData: new Uint8Array(new Array())
+}
 
-        /* 进行密钥加密操作 */
-        await huks.init(srcKeyAlias, encryptOptions).then((data) => {
-            console.log(`test init data: ${JSON.stringify(data)}`);
-            handle = data.handle;
-        }).catch((err) => {
-            console.log('test init err information: ' + JSON.stringify(err));
-        });
-        encryptOptions.inData = this.stringToUint8Array(cipherInData)
-        await huks.update(handle, encryptOptions).then(async (data) => {
-            console.log(`test update data ${JSON.stringify(data)}`);
-            encryptUpdateResult = Array.from(data.outData);
-        }).catch((err) => {
-            console.log('test update err information: ' + err);
-        });
-        encryptOptions.inData = new Uint8Array(new Array());
-        await huks.finish(handle, encryptOptions).then((data) => {
-            console.log(`test finish data: ${JSON.stringify(data)}`);
-            let finishData = this.uint8ArrayToString(new Uint8Array(encryptUpdateResult));
-            if (finishData === cipherInData) {
-                console.log('test finish encrypt err ');
-            } else {
-                console.log('test finish encrypt success');
-            }
-        }).catch((err) => {
-            console.log('test finish err information: ' + JSON.stringify(err));
-        });
+/* 进行密钥加密操作 */
+await huks.init(srcKeyAlias, encryptOptions).then((data) => {
+    console.log(`test init data: ${JSON.stringify(data)}`);
+    handle = data.handle;
+}).catch((err) => {
+    console.log('test init err information: ' + JSON.stringify(err));
+});
+encryptOptions.inData = this.stringToUint8Array(cipherInData)
+await huks.update(handle, encryptOptions).then(async (data) => {
+    console.log(`test update data ${JSON.stringify(data)}`);
+    encryptUpdateResult = Array.from(data.outData);
+}).catch((err) => {
+    console.log('test update err information: ' + err);
+});
+encryptOptions.inData = new Uint8Array(new Array());
+await huks.finish(handle, encryptOptions).then((data) => {
+    console.log(`test finish data: ${JSON.stringify(data)}`);
+    let finishData = this.uint8ArrayToString(new Uint8Array(encryptUpdateResult));
+    if (finishData === cipherInData) {
+       console.log('test finish encrypt err ');
+    } else {
+       console.log('test finish encrypt success');
+    }
+    }).catch((err) => {
+    console.log('test finish err information: ' + JSON.stringify(err));
+});
 ```
 
 3. 执行解密操作并删除密钥
 
 ```js
-        /* 修改加密参数集为解密参数集 */
-        propertiesEncrypt.splice(1, 1, {
-            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-        });
-        let decryptOptions = {
-            properties: propertiesEncrypt,
-            inData: new Uint8Array(new Array())
-        }
+/* 修改加密参数集为解密参数集 */
+propertiesEncrypt.splice(1, 1, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+});
+let decryptOptions = {
+    properties: propertiesEncrypt,
+    inData: new Uint8Array(new Array())
+}
         
-        /* 进行解密操作 */
-        await huks.init(srcKeyAlias, decryptOptions).then((data) => {
-            console.log(`test init data: ${JSON.stringify(data)}`);
-            handle = data.handle;
-        }).catch((err) => {
-            console.log('test init err information: ' + JSON.stringify(err));
-        });
+/* 进行解密操作 */
+await huks.init(srcKeyAlias, decryptOptions).then((data) => {
+    console.log(`test init data: ${JSON.stringify(data)}`);
+    handle = data.handle;
+}).catch((err) => {
+    console.log('test init err information: ' + JSON.stringify(err));
+});
 
-        decryptOptions.inData = new Uint8Array(encryptUpdateResult);
-        await huks.update(handle, decryptOptions).then(async (data) => {
-            console.log(`test update data ${JSON.stringify(data)}`);
-            decryptUpdateResult = Array.from(data.outData);
-        }).catch((err) => {
-            console.log('test update err information: ' + err);
-        });
-        decryptOptions.inData = new Uint8Array(new Array());
-        await huks.finish(handle, decryptOptions).then((data) => {
-            console.log(`test finish data: ${JSON.stringify(data)}`);
-            let finishData = this.uint8ArrayToString(new Uint8Array(decryptUpdateResult));
-            if (finishData === cipherInData) {
-                console.log('test finish decrypt success ');
-            } else {
-                console.log('test finish decrypt err');
-            }
-        }).catch((err) => {
-            console.log('test finish err information: ' + JSON.stringify(err));
-        });
-        //删除密钥
-        await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
-            console.log(`test deleteKey data: ${JSON.stringify(data)}`);
-        }).catch((err) => {
-            console.log('test deleteKey err information: ' + JSON.stringify(err));
-        });
-    },
-    stringToUint8Array(str) {
-        var arr = [];
-        for (var i = 0, j = str.length; i < j; ++i) {
-            arr.push(str.charCodeAt(i));
-        }
-        return new Uint8Array(arr);
-    },
-    uint8ArrayToString(fileData) {
-        var dataString = '';
-        for (var i = 0; i < fileData.length; i++) {
-            dataString += String.fromCharCode(fileData[i]);
-        }
-        return dataString;
+decryptOptions.inData = new Uint8Array(encryptUpdateResult);
+await huks.update(handle, decryptOptions).then(async (data) => {
+    console.log(`test update data ${JSON.stringify(data)}`);
+    decryptUpdateResult = Array.from(data.outData);
+}).catch((err) => {
+    console.log('test update err information: ' + err);
+});
+decryptOptions.inData = new Uint8Array(new Array());
+await huks.finish(handle, decryptOptions).then((data) => {
+    console.log(`test finish data: ${JSON.stringify(data)}`);
+    let finishData = this.uint8ArrayToString(new Uint8Array(decryptUpdateResult));
+    if (finishData === cipherInData) {
+       console.log('test finish decrypt success ');
+    } else {
+       console.log('test finish decrypt err');
     }
+}).catch((err) => {
+    console.log('test finish err information: ' + JSON.stringify(err));
+});
+//删除密钥
+await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
+    console.log(`test deleteKey data: ${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.log('test deleteKey err information: ' + JSON.stringify(err));
+    });
+},
+stringToUint8Array(str) {
+   var arr = [];
+   for (var i = 0, j = str.length; i < j; ++i) {
+      arr.push(str.charCodeAt(i));
+   }
+   return new Uint8Array(arr);
+},
+uint8ArrayToString(fileData) {
+    var dataString = '';
+    for (var i = 0; i < fileData.length; i++) {
+        dataString += String.fromCharCode(fileData[i]);
+    }
+    return dataString;
 }
 ```
