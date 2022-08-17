@@ -957,7 +957,7 @@ export default {
         }).catch((err) => {
             console.log('test finish err information: ' + JSON.stringify(err));
         });
-```js
+```
 
 3. 执行解密操作并删除密钥
 
