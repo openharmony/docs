@@ -880,21 +880,17 @@ JS测试代码示例如下，如果整个流程能够正常运行，代表HDI接
     }
     
     /* 进行密钥加密操作 */
-    await huks.init(srcKeyAlias, encryptOptions).then((data) => {
+    huks.init(srcKeyAlias, encryptOptions).then((data) => {
         console.log(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
-    }).catch((err) => {
-        console.log('test init err information: ' + JSON.stringify(err));
-    });
+    })
     encryptOptions.inData = this.stringToUint8Array(cipherInData)
-    await huks.update(handle, encryptOptions).then(async (data) => {
+    huks.update(handle, encryptOptions).then(async (data) => {
         console.log(`test update data ${JSON.stringify(data)}`);
         encryptUpdateResult = Array.from(data.outData);
-    }).catch((err) => {
-        console.log('test update err information: ' + err);
-    });
+    })
     encryptOptions.inData = new Uint8Array(new Array());
-    await huks.finish(handle, encryptOptions).then((data) => {
+    huks.finish(handle, encryptOptions).then((data) => {
         console.log(`test finish data: ${JSON.stringify(data)}`);
         let finishData = this.uint8ArrayToString(new Uint8Array(encryptUpdateResult));
         if (finishData === cipherInData) {
@@ -902,9 +898,7 @@ JS测试代码示例如下，如果整个流程能够正常运行，代表HDI接
         } else {
            console.log('test finish encrypt success');
         }
-        }).catch((err) => {
-        console.log('test finish err information: ' + JSON.stringify(err));
-    });
+    })
     ```
 
 3. 执行解密操作并删除密钥
@@ -921,22 +915,18 @@ JS测试代码示例如下，如果整个流程能够正常运行，代表HDI接
     }
             
     /* 进行解密操作 */
-    await huks.init(srcKeyAlias, decryptOptions).then((data) => {
+    huks.init(srcKeyAlias, decryptOptions).then((data) => {
         console.log(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
-    }).catch((err) => {
-        console.log('test init err information: ' + JSON.stringify(err));
-    });
+    })
     
     decryptOptions.inData = new Uint8Array(encryptUpdateResult);
-    await huks.update(handle, decryptOptions).then(async (data) => {
+    huks.update(handle, decryptOptions).then(async (data) => {
         console.log(`test update data ${JSON.stringify(data)}`);
         decryptUpdateResult = Array.from(data.outData);
-    }).catch((err) => {
-        console.log('test update err information: ' + err);
-    });
+    })
     decryptOptions.inData = new Uint8Array(new Array());
-    await huks.finish(handle, decryptOptions).then((data) => {
+    huks.finish(handle, decryptOptions).then((data) => {
         console.log(`test finish data: ${JSON.stringify(data)}`);
         let finishData = this.uint8ArrayToString(new Uint8Array(decryptUpdateResult));
         if (finishData === cipherInData) {
@@ -944,28 +934,9 @@ JS测试代码示例如下，如果整个流程能够正常运行，代表HDI接
         } else {
            console.log('test finish decrypt err');
         }
-    }).catch((err) => {
-        console.log('test finish err information: ' + JSON.stringify(err));
-    });
+    })
     //删除密钥
-    await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
+    huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
         console.log(`test deleteKey data: ${JSON.stringify(data)}`);
-    }).catch((err) => {
-        console.log('test deleteKey err information: ' + JSON.stringify(err));
-        });
-    },
-    stringToUint8Array(str) {
-       var arr = [];
-       for (var i = 0, j = str.length; i < j; ++i) {
-          arr.push(str.charCodeAt(i));
-       }
-       return new Uint8Array(arr);
-    },
-    uint8ArrayToString(fileData) {
-        var dataString = '';
-        for (var i = 0; i < fileData.length; i++) {
-            dataString += String.fromCharCode(fileData[i]);
-        }
-        return dataString;
-    }
+    })
     ```
