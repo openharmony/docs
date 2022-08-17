@@ -17,19 +17,12 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| border | {<br/>width?:&nbsp;Length,<br/>color?:&nbsp;Color,<br/>radius?:&nbsp;Length,<br/>style?:&nbsp;BorderStyle<br/>} | - | 统一边框样式设置接口。 |
-| borderStyle | BorderStyle | &nbsp;BorderStyle.Solid | 设置元素的边框样式。 |
+| border | {<br/>width?:&nbsp;Length,<br/>color?:&nbsp;Color,<br/>radius?:&nbsp;Length,<br/>style?:&nbsp;[BorderStyle](ts-appendix-enums.md#borderstyle)<br/>} | - | 统一边框样式设置接口。 |
+| borderStyle | [BorderStyle](ts-appendix-enums.md#borderstyle) | &nbsp;BorderStyle.Solid | 设置元素的边框样式。 |
 | borderWidth | Length | 0 | 设置元素的边框宽度。 |
 | borderColor | Color | - | 设置元素的边框颜色。 |
 | borderRadius | Length | 0 | 设置元素的边框圆角半径。 |
 
-
-- BorderStyle枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Dotted | 显示为一系列圆点，圆点半径为borderWidth的一半。 | 
-  | Dashed | 显示为一系列短的方形虚线。 | 
-  | Solid | 显示为一条实线。 | 
 
 
 ## 示例

@@ -28,7 +28,7 @@ Scroll(scroller?: Scroller)
 | 名称             | 参数类型                                     | 默认值                      | 描述        |
 | -------------- | ---------------------------------------- | ------------------------ | --------- |
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | 设置滚动方法。   |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | BarState.Off     | 设置滚动条状态。  |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | -                  | 设置滚动条的颜色。 |
 | scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
 | edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
