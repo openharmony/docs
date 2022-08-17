@@ -40,7 +40,7 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -80,7 +80,7 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -111,7 +111,7 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -144,7 +144,7 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -174,7 +174,7 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -207,7 +207,7 @@ stopTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -238,7 +238,7 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -272,7 +272,7 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
