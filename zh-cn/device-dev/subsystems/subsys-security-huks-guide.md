@@ -40,15 +40,10 @@
 
 ### 实现原理
 
-以密钥的生成为例：
+以密钥的生成为例介绍HUKS Service与HUKS Core的通信过程，其他密钥操作类似：
 上层应用通过密钥管理SDK调用到HUKS Service，HUKS Service再调用HUKS Core，HUKS Core会调用密钥管理模块生成密钥。之后HUKS Core使用基于RootKey派生的加密密钥对生成的密钥加密再传给Service侧，Service侧再以文件形式存储加密后的密钥。
 
 ![HUKS密钥生成流程图](figures/HUKS-GenerateKey1.png)
-
-以下是详细的密钥生成时序图：
-
-![HUKS密钥生成时序图](figures/HUKS-GenerateKey2.png)
-
 
 ### 约束与限制
 
@@ -60,11 +55,7 @@
 
 3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
-   KeyBlob又被称作密钥存储态，构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)。
-
-   **密钥存储态**
-
-   为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的属性，存储态下密钥属性和密钥的组合结构如下：
+   KeyBlob存储密钥的同时存储它的属性，结构见下图。构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)。
 
       ![KeyBlob格式图](figures/HUKS-KeyBlob.png)
 
@@ -584,7 +575,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
         └── ... #其他功能代码
 ```
 
-关于HUKS Core接口的具体实现，不强制要求开发者使用三段式操作。如果开发者要使用三段式，可以按照以下步骤实现：
+关于HUKS Core接口的具体实现，如果开发者要使用三段式，可以按照以下步骤实现：
 
 1. 创建一个句柄，通过这个句柄在session中存储密钥操作相关的信息，使得外部可以通过这个句柄分多次进行同一密钥操作。
 
@@ -794,7 +785,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
 
 开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用来验证能力是否完备。
 
-对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过单独调用JS接口来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来一次验证多个接口的能力。
+对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来验证接口的能力。
 
 JS测试代码示例如下：
 
