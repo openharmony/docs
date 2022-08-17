@@ -337,13 +337,13 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
   <summary><strong>参数说明</strong></summary>
   <pre>
   <strong>const struct HksBlob *key</strong>
-  init操作的密钥，要求：
+  Init操作的密钥，要求：
   1. key != null
   2. key -> data != null
   3. key -> size != 0
   <br></br>
   <strong>const struct HksParamSet *paramSet</strong>
-  init操作的参数
+  Init操作的参数
   <br></br>
   <strong>struct HksBlob *handle</strong>
   三段式的句柄
@@ -380,13 +380,13 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
   三段式的句柄
   <br></br>
   <strong> const struct HksParamSet *paramSet</strong>
-  update操作的参数
+  Update操作的参数
   <br></br>
   <strong> const struct HksBlob *inData</strong>
-  update操作的输入
+  Update操作的输入
   <br></br>
   <strong> struct HksBlob *outData</strong>
-  update操作的结果
+  Update操作的结果
   </pre>
 </details>
 <br></br>
@@ -425,13 +425,13 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
   三段式的句柄
   <br></br>
   <strong>const struct HksParamSet *paramSet</strong>
-  finish操作的参数
+  Finish操作的参数
   <br></br>
   <strong>const struct HksBlob *inData</strong>
-  finish操作的输入
+  Finish操作的输入
   <br></br>
   <strong>struct HksBlob *outData</strong>
-  finish操作的结果
+  Finish操作的结果
   </pre>
 </details>
 <br></br>
@@ -458,7 +458,7 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
 
 **接口描述**
 
-终止三段式。当init，update和finish操作中的任一阶段发生错误时，都要调用abort来终止密钥的使用。
+终止三段式。当Init，Update和Finish操作中的任一阶段发生错误时，都要调用abort来终止密钥的使用。
 
 **接口原型**
 <pre><code>int32_t HuksHdiAbort(const struct HksBlob *handle, const struct HksParamSet *paramSet);</code></pre>
@@ -560,7 +560,7 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
 
 ### 开发步骤
 
-Huks Core层接口实例，以下是目录结构及各部分功能简介。
+HUKS Core接口实例，以下是目录结构及各部分功能简介。
 
 ```undefined
 // base/security/user_auth/services/huks_standard/huks_engine/main
@@ -789,7 +789,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
 
 JS测试代码示例如下：
 
-AES生成密钥和加密：
+AES生成密钥和加密
 
 ```js
 import huks from '@ohos.security.huks';
@@ -970,7 +970,7 @@ export default {
 }
 ```
 
-RSA512签名验签：
+RSA512签名验签
 
 ```js
 import huks from '@ohos.security.huks';
