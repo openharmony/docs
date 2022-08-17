@@ -75,7 +75,7 @@
            backup : false,
            autoSync : false,
            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-           securityLevel : distributedData.SecurityLevel.S0,
+           securityLevel : distributedData.SecurityLevel.S0
        };
        kvManager.getKVStore('storeId', options, function (err, store) {
            if (err) {
