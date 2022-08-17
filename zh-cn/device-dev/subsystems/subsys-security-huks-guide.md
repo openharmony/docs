@@ -575,27 +575,20 @@ Hdi接口到HUKS Core的适配在以下目录中：
         └── ... #其他功能代码
 ```
 
-关于HUKS Core接口的具体实现，开发者必须采用三段式，按照以下步骤实现：
-
-1. 创建一个句柄，通过这个句柄在session中存储密钥操作相关的信息，使得外部可以通过这个句柄分多次进行同一密钥操作。
-
-2. 在执行密钥操作前通过句柄获得上下文信息，执行密钥操作时放入分片数据并取回密钥操作结果或者追加数据。
-
-3. 结束密钥操作并取回结果，销毁句柄。
+关于HUKS Core接口的具体实现，开发者必须采用三段式。以下是三段式的开发步骤以及HUKS CORE已经实现的示例：
 
 详细代码可以参考[hks_core_service.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_core_service.c)文件。
 
-**三段式Init接口**
+1. 创建一个句柄，通过这个句柄在session中存储密钥操作相关的信息，使得外部可以通过这个句柄分多次进行同一密钥操作。
 
 ```c
+
+//三段式Init接口
+
 int32_t HksCoreInit(const struct  HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *handle,
     struct HksBlob *token)
-```
-
-1. 检查参数是否合规，初始化handle。
-
-```c
-HKS_LOG_D("HksCoreInit in Core start");
+{
+    HKS_LOG_D("HksCoreInit in Core start");
 uint32_t pur = 0;
 uint32_t alg = 0;
 //检查参数
@@ -617,11 +610,6 @@ if (keyNode == NULL || handle == NULL) {
 //通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
 handle->size = sizeof(uint64_t);
 (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
-```
-
-2. 从参数中提取出算法和目的，获取对应的算法库处理函数。
-
-```c
 //从参数中提取出算法
 int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
 if (ret != HKS_SUCCESS) {
@@ -645,11 +633,7 @@ for (i = 0; i < size; i++) {
        break;
    }
 }
-```
-
-3. 异常结果检查
-
-```c
+//异常结果检查
 if (ret != HKS_SUCCESS) {
     HksDeleteKeyNode(keyNode->handle);
     HKS_LOG_E("CoreInit failed, ret : %d", ret);
@@ -664,18 +648,15 @@ if (i == size) {
 
 HKS_LOG_D("HksCoreInit in Core end");
 return ret;
-```
-   
-**三段式Update接口**
+}
 
+2. 在执行密钥操作前通过句柄获得上下文信息，执行密钥操作时放入分片数据并取回密钥操作结果或者追加数据。
+   
 ```c
+//三段式Update接口
 int32_t HksCoreUpdate(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
     struct HksBlob *outData)
-```
-
-1. 检查参数是否合规，根据handle获取本次三段式操作需要的上下文。
-
-```c
+{
 HKS_LOG_D("HksCoreUpdate in Core start");
 uint32_t pur = 0;
 uint32_t alg = 0;
@@ -693,11 +674,6 @@ if (ret != HKS_SUCCESS) {
     HKS_LOG_E("GetParamsForCoreUpdate failed");
     return ret;
 }
-```
-
-2. 校验密钥参数，调用对应的算法库函数
-
-```c
 //校验密钥参数
 ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
 if (ret != HKS_SUCCESS) {
@@ -724,11 +700,7 @@ for (i = 0; i < size; i++) {
         break;
     }
 }
-```
-
-3. 异常结果检查
-
-```c
+//异常结果检查
 if (ret != HKS_SUCCESS) {
     HksDeleteKeyNode(keyNode->handle);
     HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
@@ -741,18 +713,16 @@ if (i == size) {
     return HKS_FAILURE;
 }
 return ret;
+}
 ```
 
-**三段式Finish接口**
+3. 结束密钥操作并取回结果，销毁句柄。
 
-```c
+   ```c
+//三段式Finish接口
 int32_t HksCoreFinish(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
     struct HksBlob *outData)
-```
-
-1. 检查参数是否合规，根据handle获取本次三段式操作需要的上下文。
-
-```c
+{
 HKS_LOG_D("HksCoreFinish in Core start");
 uint32_t pur = 0;
 uint32_t alg = 0;
@@ -770,11 +740,6 @@ if (ret != HKS_SUCCESS) {
     HKS_LOG_E("GetParamsForCoreUpdate failed");
     return ret;
 }
-```
-
-2. 校验密钥参数，调用对应的算法库函数，添加密钥操作结束标签
-
-```c
 //校验密钥参数
 ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
 if (ret != HKS_SUCCESS) {
@@ -807,11 +772,6 @@ for (i = 0; i < size; i++) {
         break;
     }
 }
-```
-
-3. 异常结果检查，删除session
-
-```c
 if (i == size) {
     HKS_LOG_E("don't found purpose, pur : %d", pur);
     ret = HKS_FAILURE;
@@ -820,15 +780,16 @@ if (i == size) {
 HksDeleteKeyNode(sessionId);
 HKS_LOG_D("HksCoreFinish in Core end");
 return ret;
-```
+}
+   ```
 
 ### 调测验证
 
 开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用来验证能力是否完备。
 
-对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来验证接口的能力。详细的JS指导请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)
+对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来验证接口的能力。
 
-JS测试代码示例如下：
+JS测试代码示例如下，如果整个流程能够正常运行，代表能力正常。更多的密钥操作类型请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)。
 
 **AES生成密钥和加密**
 
