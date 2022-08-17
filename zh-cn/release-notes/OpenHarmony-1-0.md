@@ -24,7 +24,7 @@
 
 方式一（推荐）：通过repo下载
 
-```
+```shell
 repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 ```
@@ -33,6 +33,6 @@ repo sync -c
 
 进入[代码仓库主页](https://gitee.com/openharmony)，选择需要克隆的代码仓库，执行命令，如：
 
-```
+```shell
 git clone https://gitee.com/openharmony/manifest.git -b master
 ```
