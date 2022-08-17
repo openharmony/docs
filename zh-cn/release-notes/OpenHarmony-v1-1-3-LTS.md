@@ -40,7 +40,7 @@ repo forall -c 'git lfs pull'
 
 | 版本源码                 | 版本信息 | 下载站点                                                     | SHA256校验码                                                 |
 | ------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 全量代码                 | 1.1.3    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.3/code-v1.1.3-LTS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.3/code-v1.1.3-LTS.tar.gz.sha2566) |
+| 全量代码                 | 1.1.3    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.3/code-v1.1.3-LTS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.3/code-v1.1.3-LTS.tar.gz.sha256) |
 | Hi3861解决方案（二进制） | 1.1.3    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.3/wifiiot-1.1.3.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.3/wifiiot-1.1.3.tar.gz.sha256) |
 | Hi3518解决方案（二进制） | 1.1.3    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.3/ipcamera_hi3518ev300-1.1.3.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.3/ipcamera_hi3518ev300-1.1.3.tar.gz.sha256) |
 | Hi3516解决方案（二进制） | 1.1.3    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.3/ipcamera_hi3516dv300-1.1.3.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.3/ipcamera_hi3516dv300-1.1.3.tar.gz.sha256) |
