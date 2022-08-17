@@ -21,13 +21,13 @@
 ## TouchEvent对象说明
 
 - 属性
-  | 属性名称                | 类型                                       | 描述           |
-  | ------------------- | ---------------------------------------- | ------------ |
-  | type                | TouchType                                | 触摸事件的类型。     |
-  | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
-  | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
-  | timestamp           | number                                   | 事件时间戳。       |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。     |
+  | 属性名称            | 类型                                                         | 描述                               |
+  | ------------------- | ------------------------------------------------------------ | ---------------------------------- |
+  | type                | TouchType                                                    | 触摸事件的类型。                   |
+  | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt;             | 全部手指信息。                     |
+  | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt;             | 当前发生变化的手指信息。           |
+  | timestamp           | number                                                       | 距离开机时间的时间戳，单位为毫秒。 |
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。                   |
 
 
 - 接口
@@ -48,12 +48,12 @@
 
 
 ## TouchType枚举说明
-| 名称     | 描述              |
-| ------ | --------------- |
-| Down   | 手指按下时触发。        |
-| Up     | 手指抬起时触发。        |
-| Move   | 手指按压态在屏幕上移动时触发。 |
-| Cancel | 触摸事件取消时触发。      |
+| 名称   | 描述                               |
+| ------ | ---------------------------------- |
+| Down   | 手指按下时触发。                   |
+| Up     | 手指抬起时触发。                   |
+| Move   | 手指按压态在屏幕上移动时触发。     |
+| Cancel | 触摸交互过程中应用退到后台时触发。 |
 
 
 ## 示例
