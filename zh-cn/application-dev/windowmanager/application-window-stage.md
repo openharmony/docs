@@ -350,7 +350,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 2. 创建悬浮窗。
-           var windowClass = null;
+           var windowClass = [];
            window.create(this.context, "floatWindow", window.WindowType.TYPE_FlOAT, (err, data) => {
                if (err.code) {
                    console.error('Failed to create the floatWindow. Cause: ' + JSON.stringify(err));
