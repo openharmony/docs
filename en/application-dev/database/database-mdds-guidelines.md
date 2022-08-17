@@ -34,11 +34,14 @@ The following uses a single KV store as an example to describe the development p
    ```
 
 2. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
+   
    (1) Create a **KvManagerConfig** object based on the application context.
-   (2) Create a **KvManager** instance.
 
+   (2) Create a **KvManager** instance.
+   
    The sample code is as follows:
-   ```js
+   
+   ```
    let kvManager;
    try {
        const kvManagerConfig = {
@@ -60,9 +63,12 @@ The following uses a single KV store as an example to describe the development p
        console.log("An unexpected error occurred. Error:" + e);
    }
    ```
-
+      
+   
 3. Create and obtain a single KV store.
+
    (1) Declare the ID of the single KV store to create.
+
    (2) Create a single KV store. You are advised to disable automatic synchronization (**autoSync:false**) and call **sync** when a synchronization is required.
 
    The sample code is as follows:
@@ -93,7 +99,7 @@ The following uses a single KV store as an example to describe the development p
    > **NOTE**
    >
    > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (`kvStore` in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
-   
+
 4. Subscribe to changes in the distributed data.<br/>
    The following is the sample code for subscribing to the data changes of a single KV store:
    ```js
@@ -103,7 +109,9 @@ The following uses a single KV store as an example to describe the development p
    ```
 
 5. Write data to the single KV store.
+
    (1) Construct the key and value to be written into the single KV store.
+
    (2) Write key-value pairs into the single KV store.
 
    The following is the sample code for writing key-value pairs of the string type into the single KV store:
@@ -125,7 +133,9 @@ The following uses a single KV store as an example to describe the development p
    ```
 
 6. Query data in the single KV store.
+
    (1) Construct the key to be queried from the single KV store.
+
    (2) Query data from the single KV store.
 
    The following is the sample code for querying data of the string type from the single KV store:
@@ -154,8 +164,8 @@ The following uses a single KV store as an example to describe the development p
    > **NOTE**
    >
    > The APIs of the `deviceManager` module are system interfaces.
-   
-   The following is a code example for synchronizing data in a single KV store:
+
+   The following is the sample code for synchronizing data in a single KV store:
    ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager';
    
