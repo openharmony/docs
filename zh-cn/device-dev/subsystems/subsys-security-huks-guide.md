@@ -159,7 +159,7 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
 
   1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
 
-  2. keyOut请参照[KeyBlob](#密钥存储态)的结构。
+  2. keyOut请参照KeyBlob的结构。
 
 </details>
 <br></br>
@@ -213,7 +213,7 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
 
   1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
 
-  2. keyOut请参照[KeyBlob](#密钥存储态)的结构。
+  2. keyOut请参照KeyBlob的结构。
 
 </details>
 <br></br>
@@ -272,7 +272,7 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
 
   1. 请在接口内检查上述参数是否符合要求，如是否是空指针、密钥算法是否支持等。
 
-  2. keyOut请参照[KeyBlob](#密钥存储态)的结构。
+  2. keyOut请参照KeyBlob的结构。
 
 </details>
 <br></br>
