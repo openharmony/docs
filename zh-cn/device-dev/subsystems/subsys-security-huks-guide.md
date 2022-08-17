@@ -4,7 +4,7 @@
 
 ### 功能简介
 
-在安全领域里，密码系统被攻击通常不是因为选择的加密算法不够安全，而是密钥管理不到位。用户信息的安全取决于密钥的安全，所以失去对密钥的控制将导致密码系统的失败，从而危害到用户信息的安全。HUKS提供系统级的密钥管理能力，支撑鸿蒙生态应用和系统应用，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
+用户信息的安全取决于密钥的安全，在安全领域里密码系统被攻击通常不是因为选择的加密算法不够安全，而是密钥管理不到位。HUKS（OpenHarmony Universal KeyStore）提供系统级的密钥管理能力，实现密钥全生命周期（生成，存储，使用，销毁）的管理和安全使用，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
 
 支持密钥全生命周期管理，包括以下特性：
 
@@ -18,11 +18,11 @@
 
 ### 基本概念
 
-- 服务层
+- 服务层（HUKS Service）
 
   提供密钥管理服务的具体业务功能模块，HUKS Service并不直接处理密钥运算，而是依赖HUKS Core为上层提供服务。
 
-- 核心层
+- 核心层（HUKS CORE）
 
   提供密钥管理服务的核心功能模块，密钥全生命周期明文不出HUKS Core模块。
 
@@ -43,11 +43,11 @@
 以密钥的生成为例：
 上层应用通过密钥管理SDK调用到HUKS Service，HUKS Service再调用HUKS Core，HUKS Core会调用密钥管理模块生成密钥。之后HUKS Core使用基于RootKey派生的加密密钥对生成的密钥加密再传给Service侧，Service侧再以文件形式存储加密后的密钥。
 
-![image](figures/HUKS-GenerateKey1.png)
+![HUKS密钥生成流程图](figures/HUKS-GenerateKey1.png)
 
 以下是详细的密钥生成时序图：
 
-![image](figures/HUKS-GenerateKey2.png)
+![HUKS密钥生成时序图](figures/HUKS-GenerateKey2.png)
 
 
 ### 约束与限制
@@ -56,7 +56,7 @@
 
 2. HuksHdiAttestKey返回的证书链应该按照业务证书、设备证书、CA证书和根证书的顺序组装，在每项证书之前还需要加上证书的长度。证书链组装完成后添加整个证书链的长度组装成Blob格式。证书的具体格式如要自己实现应与服务器侧解析的格式相对应。
 
-      ![image](figures/HUKS-CertChain.png)
+      ![CertChain格式图](figures/HUKS-CertChain.png)
 
 3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
@@ -66,13 +66,13 @@
 
    为了基于密钥属性对密钥的使用进行访问控制，需要在存储密钥的同时存储它的属性，存储态下密钥属性和密钥的组合结构如下：
 
-      ![image](figures/HUKS-KeyBlob.png)
+      ![KeyBlob格式图](figures/HUKS-KeyBlob.png)
 
 ## 开发指导
 
 ### 场景介绍
 
-HUKS以Core层为基础向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。如果想要使用自己的实现替换HUKS的Core层，需要实现以下接口。
+HUKS Core作为基础向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。如果想要使用自己的实现替换HUKS Core，需要实现以下接口。
 
 ### 接口说明
 
@@ -80,7 +80,7 @@ HUKS以Core层为基础向应用提供密钥库能力，包括密钥管理及密
 
 | 接口名                                                       | 功能介绍                                  | 约束与限制                     | 对应的js接口                                        |
 | ------------------------------------------------------------ | ---------------------------------------- | ----------------------------- | ------------------------------------------------------------ |
-| [HuksHdiModuleInit()](#hukshdimoduleinit)                   | Core的初始化。                            |  无                           | 无 |
+| [HuksHdiModuleInit()](#hukshdimoduleinit)                   | HUKS Core的初始化。                            |  无                           | 无 |
 | [HuksHdiRefresh()](#hukshdirefresh)                          | 刷新根密钥。                              |  无                            | 无 |
 | [HuksHdiGenerateKey()](#hukshdigeneratekey)                  | 生成密钥。                                |  出参要遵循KeyBlob格式          |generateKey(keyAlias: string, options: HuksOptions)|
 | [HuksHdiImportKey()](#hukshdiimportkey)                     | 导入明文密钥。                            |  出参要遵循KeyBlob格式           | importKey(keyAlias: string, options: HuksOptions)|
@@ -99,7 +99,7 @@ HUKS以Core层为基础向应用提供密钥库能力，包括密钥管理及密
 
 **接口描述**
 
-Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
+HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥。
 
 **接口原型**
 <pre><code>int32_t HuksHdiModuleInit();</code></pre>
@@ -575,50 +575,27 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
 // base/security/user_auth/services/huks_standard/huks_engine/main
 ├── BUILD.gn # 编译脚本
 ├── core_dependency # 实现依赖
-└── core # Core层的软实现
+└── core # HUKS Core层的软实现
     ├── BUILD.gn # 编译脚本
     ├── include 
     └── src
-        ├── hks_core_interfaces.c # Hdi到Core的适配层
+        ├── hks_core_interfaces.c # Hdi到HUKS Core的适配层
         └── hks_core_service.c # 具体实现
         └── ... #其他功能代码
 ```
 
-1. 关于Core层接口的具体实现，详细代码参见[hks_core_service.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_core_service.c)文件。
+关于HUKS Core接口的具体实现，不强制要求开发者使用三段式操作。如果开发者要使用三段式，可以按照以下步骤实现：
+
+1. 创建一个句柄，通过这个句柄在session中存储密钥操作相关的信息，使得外部可以通过这个句柄分多次进行同一密钥操作。
+
+2. 在执行密钥操作前通过句柄获得上下文信息，执行密钥操作时放入分片数据并取回密钥操作结果或者追加数据。
+
+3. 结束密钥操作并取回结果，销毁句柄。
+
+详细代码可以参考[hks_core_service.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_core_service.c)文件。
 
 ```c
-   // 导入明文密钥
-   int32_t HksCoreImportKey(const struct HksBlob *keyAlias, const struct HksBlob *key,
-    const struct HksParamSet *paramSet, struct HksBlob *keyOut)
-   {
-        struct HksBlob innerKey = { 0, NULL };
-        struct HksParam *importKeyTypeParam = NULL;
-        //在属性里加入IMPORT_KEY
-        int32_t ret = HksGetParam(paramSet, HKS_TAG_IMPORT_KEY_TYPE, &importKeyTypeParam);
-        if ((ret == HKS_SUCCESS) &&
-            ((importKeyTypeParam->uint32Param == HKS_KEY_TYPE_PRIVATE_KEY) ||
-            (importKeyTypeParam->uint32Param == HKS_KEY_TYPE_KEY_PAIR))) {
-            ret = GetPrivateOrPairInnerFormat(importKeyTypeParam->uint32Param, key, paramSet, &innerKey);
-        } else {
-            ret = CopyToInnerKey(key, &innerKey);
-        }
-        if (ret != HKS_SUCCESS) {
-            HKS_LOG_E("translate key to inner format failed, ret = %d", ret);
-            return ret;
-        }
-        //检查import key的参数
-        ret = HksCoreCheckImportKeyParams(keyAlias, &innerKey, paramSet, keyOut);
-        if (ret != HKS_SUCCESS) {
-            return ret;
-        }
-        //构建存储态的密钥
-        ret = HksBuildKeyBlob(keyAlias, HKS_KEY_FLAG_IMPORT_KEY, &innerKey, paramSet, keyOut);
-        (void)memset_s(innerKey.data, innerKey.size, 0, innerKey.size);
-        HKS_FREE_BLOB(innerKey);
-        return ret;
-   }
-   
-   // 三段式init接口
+   // 三段式Init接口
    int32_t HksCoreInit(const struct  HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *handle,
     struct HksBlob *token)
     {
@@ -641,7 +618,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
             HKS_LOG_E("the pointer param entered is invalid");
             return HKS_ERROR_BAD_STATE;
         }
-        //初始化handle。通过handle向session中存储信息，供update/finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
+        //初始化handle。通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
         handle->size = sizeof(uint64_t);
         (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
         //从参数中提取出算法
@@ -684,7 +661,7 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
         return ret;
     }
    
-   // 三段式update接口
+   // 三段式Update接口
    int32_t HksCoreUpdate(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
     struct HksBlob *outData)
     {
@@ -746,11 +723,80 @@ Huks Core层接口实例，以下是目录结构及各部分功能简介。
         }
         return ret;
     }
+
+    // 三段式Finish接口
+    int32_t HksCoreFinish(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
+    struct HksBlob *outData)
+    {
+        HKS_LOG_D("HksCoreFinish in Core start");
+        uint32_t pur = 0;
+        uint32_t alg = 0;
+
+        if (handle == NULL || paramSet == NULL || inData == NULL) {
+            HKS_LOG_E("the pointer param entered is invalid");
+            return HKS_FAILURE;
+        }
+
+        uint64_t sessionId;
+        struct HuksKeyNode *keyNode = NULL;
+        //根据handle获取本次三段式操作需要的上下文
+        int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
+        if (ret != HKS_SUCCESS) {
+            HKS_LOG_E("GetParamsForCoreUpdate failed");
+            return ret;
+        }
+        //校验参数
+        ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
+        if (ret != HKS_SUCCESS) {
+            HksDeleteKeyNode(sessionId);
+            HKS_LOG_E("HksCoreFinish secure access verify failed");
+            return ret;
+        }
+
+        uint32_t i;
+        uint32_t size = HKS_ARRAY_SIZE(g_hksCoreFinishHandler);
+        for (i = 0; i < size; i++) {
+            //调用对应的密码学处理函数
+            if (g_hksCoreFinishHandler[i].pur == pur) {
+                uint32_t outDataBufferSize = (outData == NULL) ? 0 : outData->size;
+                struct HksBlob appendInData = { 0, NULL };
+                ret = HksCoreAppendAuthInfoBeforeFinish(keyNode, pur, paramSet, inData, &appendInData);
+                if (ret != HKS_SUCCESS) {
+                    HKS_LOG_E("before finish: append auth info failed");
+                    break;
+                }
+                ret = g_hksCoreFinishHandler[i].handler(keyNode, paramSet,
+                    appendInData.data == NULL ? inData : &appendInData, outData, alg);
+                if (appendInData.data != NULL) {
+                    HKS_FREE_BLOB(appendInData);
+                }
+                if (ret != HKS_SUCCESS) {
+                    break;
+                }
+                //添加密钥操作结束标签
+                ret = HksCoreAppendAuthInfoAfterFinish(keyNode, pur, paramSet, outDataBufferSize, outData);
+                break;
+            }
+        }
+
+        if (i == size) {
+            HKS_LOG_E("don't found purpose, pur : %d", pur);
+            ret = HKS_FAILURE;
+        }
+        //删除对应的session
+        HksDeleteKeyNode(sessionId);
+        HKS_LOG_D("HksCoreFinish in Core end");
+        return ret;
+    }
    ```
 
 ### 调测验证
 
-开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用。JS测试代码示例如下：
+开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用来验证能力是否完备。
+
+对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过单独调用JS接口来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来一次验证多个接口的能力。
+
+JS测试代码示例如下：
 
 AES生成密钥和加密：
 
