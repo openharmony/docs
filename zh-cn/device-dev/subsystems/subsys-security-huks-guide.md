@@ -827,7 +827,7 @@ int32_t HksCoreInit(const struct  HksBlob *key, const struct HksParamSet *paramS
 
 开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用来验证能力是否完备。
 
-对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来验证接口的能力。
+对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来验证接口的能力。详细的JS指导请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)
 
 JS测试代码示例如下：
 
