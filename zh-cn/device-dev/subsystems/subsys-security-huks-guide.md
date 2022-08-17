@@ -597,125 +597,125 @@ Hdi接口到HUKS Core的适配在以下目录中：
            return HKS_FAILURE;
         }
 
-    if (handle->size < sizeof(uint64_t)) {
-        HKS_LOG_E("handle size is too small, size : %u", handle->size);
-        return HKS_ERROR_INSUFFICIENT_MEMORY;
-    }
-    //解密密钥文件
-    struct HuksKeyNode *keyNode = HksCreateKeyNode(key, paramSet);
-    if (keyNode == NULL || handle == NULL) {
-        HKS_LOG_E("the pointer param entered is invalid");
-        return HKS_ERROR_BAD_STATE;
-    }
-    //通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
-    handle->size = sizeof(uint64_t);
-    (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
-    //从参数中提取出算法
-    int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(keyNode->handle);
+        if (handle->size < sizeof(uint64_t)) {
+            HKS_LOG_E("handle size is too small, size : %u", handle->size);
+            return HKS_ERROR_INSUFFICIENT_MEMORY;
+        }
+        //解密密钥文件
+        struct HuksKeyNode *keyNode = HksCreateKeyNode(key, paramSet);
+        if (keyNode == NULL || handle == NULL) {
+            HKS_LOG_E("the pointer param entered is invalid");
+            return HKS_ERROR_BAD_STATE;
+        }
+        //通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
+        handle->size = sizeof(uint64_t);
+        (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
+        //从参数中提取出算法
+        int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
+        if (ret != HKS_SUCCESS) {
+            HksDeleteKeyNode(keyNode->handle);
+            return ret;
+        }
+        //检查密钥参数
+        ret = HksCoreSecureAccessInitParams(keyNode, paramSet, token);
+        if (ret != HKS_SUCCESS) {
+            HKS_LOG_E("init secure access params failed");
+            HksDeleteKeyNode(keyNode->handle);
+            return ret;
+        }
+        //通过密钥使用目的获取对应的算法库处理函数  
+        uint32_t i;
+        uint32_t size = HKS_ARRAY_SIZE(g_hksCoreInitHandler);
+        for (i = 0; i < size; i++) {
+           if (g_hksCoreInitHandler[i].pur == pur) {
+               HKS_LOG_E("Core HksCoreInit [pur] = %d, pur = %d", g_hksCoreInitHandler[i].pur, pur);
+               ret = g_hksCoreInitHandler[i].handler(keyNode, paramSet, alg);
+               break;
+        }
+        }
+        //异常结果检查
+        if (ret != HKS_SUCCESS) {
+            HksDeleteKeyNode(keyNode->handle);
+            HKS_LOG_E("CoreInit failed, ret : %d", ret);
+            return ret;
+        }
+    
+        if (i == size) {
+            HksDeleteKeyNode(keyNode->handle);
+            HKS_LOG_E("don't found purpose, pur : %u", pur);
+            return HKS_FAILURE;
+        }
+    
+        HKS_LOG_D("HksCoreInit in Core end");
         return ret;
-    }
-    //检查密钥参数
-    ret = HksCoreSecureAccessInitParams(keyNode, paramSet, token);
-    if (ret != HKS_SUCCESS) {
-        HKS_LOG_E("init secure access params failed");
-        HksDeleteKeyNode(keyNode->handle);
-        return ret;
-    }
-    //通过密钥使用目的获取对应的算法库处理函数  
-    uint32_t i;
-    uint32_t size = HKS_ARRAY_SIZE(g_hksCoreInitHandler);
-    for (i = 0; i < size; i++) {
-       if (g_hksCoreInitHandler[i].pur == pur) {
-           HKS_LOG_E("Core HksCoreInit [pur] = %d, pur = %d", g_hksCoreInitHandler[i].pur, pur);
-           ret = g_hksCoreInitHandler[i].handler(keyNode, paramSet, alg);
-           break;
-       }
-    }
-    //异常结果检查
-    if (ret != HKS_SUCCESS) {
-        HksDeleteKeyNode(keyNode->handle);
-        HKS_LOG_E("CoreInit failed, ret : %d", ret);
-        return ret;
-    }
-
-    if (i == size) {
-        HksDeleteKeyNode(keyNode->handle);
-        HKS_LOG_E("don't found purpose, pur : %u", pur);
-        return HKS_FAILURE;
-    }
-
-    HKS_LOG_D("HksCoreInit in Core end");
-    return ret;
     }
    ```
 
 2. 在执行密钥操作前通过句柄获得上下文信息，执行密钥操作时放入分片数据并取回密钥操作结果或者追加数据。
    
-```c
-//三段式Update接口
-int32_t HksCoreUpdate(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
-    struct HksBlob *outData)
-{
-HKS_LOG_D("HksCoreUpdate in Core start");
-uint32_t pur = 0;
-uint32_t alg = 0;
-//检查参数
-if (handle == NULL || paramSet == NULL || inData == NULL) {
-    HKS_LOG_E("the pointer param entered is invalid");
-    return HKS_FAILURE;
-}
-
-uint64_t sessionId;
-struct HuksKeyNode *keyNode = NULL;
-//根据handle获取本次三段式操作需要的上下文
-int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
-if (ret != HKS_SUCCESS) {
-    HKS_LOG_E("GetParamsForCoreUpdate failed");
-    return ret;
-}
-//校验密钥参数
-ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
-if (ret != HKS_SUCCESS) {
-    HksDeleteKeyNode(sessionId);
-    HKS_LOG_E("HksCoreUpdate secure access verify failed");
-    return ret;
-}
-//调用对应的算法库密钥处理函数
-uint32_t i;
-uint32_t size = HKS_ARRAY_SIZE(g_hksCoreUpdateHandler);
-for (i = 0; i < size; i++) {
-    if (g_hksCoreUpdateHandler[i].pur == pur) {
-        struct HksBlob appendInData = { 0, NULL };
-        ret = HksCoreAppendAuthInfoBeforeUpdate(keyNode, pur, paramSet, inData, &appendInData);
+    ```c
+    //三段式Update接口
+    int32_t HksCoreUpdate(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
+        struct HksBlob *outData)
+    {
+        HKS_LOG_D("HksCoreUpdate in Core start");
+        uint32_t pur = 0;
+        uint32_t alg = 0;
+        //检查参数
+        if (handle == NULL || paramSet == NULL || inData == NULL) {
+            HKS_LOG_E("the pointer param entered is invalid");
+            return HKS_FAILURE;
+        }
+        
+        uint64_t sessionId;
+        struct HuksKeyNode *keyNode = NULL;
+        //根据handle获取本次三段式操作需要的上下文
+        int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
         if (ret != HKS_SUCCESS) {
-            HKS_LOG_E("before update: append auth info failed");
-            break;
+            HKS_LOG_E("GetParamsForCoreUpdate failed");
+            return ret;
         }
-        ret = g_hksCoreUpdateHandler[i].handler(keyNode, paramSet,
-             appendInData.data == NULL ? inData : &appendInData, outData, alg);
-        if (appendInData.data != NULL) {
-            HKS_FREE_BLOB(appendInData);
+        //校验密钥参数
+        ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
+        if (ret != HKS_SUCCESS) {
+            HksDeleteKeyNode(sessionId);
+            HKS_LOG_E("HksCoreUpdate secure access verify failed");
+            return ret;
         }
-        break;
+        //调用对应的算法库密钥处理函数
+        uint32_t i;
+        uint32_t size = HKS_ARRAY_SIZE(g_hksCoreUpdateHandler);
+        for (i = 0; i < size; i++) {
+            if (g_hksCoreUpdateHandler[i].pur == pur) {
+                struct HksBlob appendInData = { 0, NULL };
+                ret = HksCoreAppendAuthInfoBeforeUpdate(keyNode, pur, paramSet, inData, &appendInData);
+                if (ret != HKS_SUCCESS) {
+                    HKS_LOG_E("before update: append auth info failed");
+                    break;
+                }
+                ret = g_hksCoreUpdateHandler[i].handler(keyNode, paramSet,
+                     appendInData.data == NULL ? inData : &appendInData, outData, alg);
+                if (appendInData.data != NULL) {
+                    HKS_FREE_BLOB(appendInData);
+                }
+                break;
+            }
+        }
+        //异常结果检查
+        if (ret != HKS_SUCCESS) {
+            HksDeleteKeyNode(keyNode->handle);
+            HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
+            return ret;
+        }
+        
+        if (i == size) {
+            HksDeleteKeyNode(sessionId);
+            HKS_LOG_E("don't found purpose, pur : %u", pur);
+            return HKS_FAILURE;
+        }
+        return ret;
     }
-}
-//异常结果检查
-if (ret != HKS_SUCCESS) {
-    HksDeleteKeyNode(keyNode->handle);
-    HKS_LOG_E("CoreUpdate failed, ret : %d", ret);
-    return ret;
-}
-
-if (i == size) {
-    HksDeleteKeyNode(sessionId);
-    HKS_LOG_E("don't found purpose, pur : %u", pur);
-    return HKS_FAILURE;
-}
-return ret;
-}
-```
+    ```
 
 3. 结束密钥操作并取回结果，销毁句柄。
 
@@ -724,63 +724,63 @@ return ret;
    int32_t HksCoreFinish(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData,
     struct HksBlob *outData)
    {
-   HKS_LOG_D("HksCoreFinish in Core start");
-   uint32_t pur = 0;
-   uint32_t alg = 0;
-   //检查参数
-   if (handle == NULL || paramSet == NULL || inData == NULL) {
-       HKS_LOG_E("the pointer param entered is invalid");
-       return HKS_FAILURE;
-   }
-
-   uint64_t sessionId;
-   struct HuksKeyNode *keyNode = NULL;
-   //根据handle获取本次三段式操作需要的上下文
-   int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
-   if (ret != HKS_SUCCESS) {
-       HKS_LOG_E("GetParamsForCoreUpdate failed");
-       return ret;
-   }
-   //校验密钥参数
-   ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
-   if (ret != HKS_SUCCESS) {
-       HksDeleteKeyNode(sessionId);
-       HKS_LOG_E("HksCoreFinish secure access verify failed");
-       return ret;
-   }
-   //调用对应的算法库密钥处理函数
-   uint32_t i;
-   uint32_t size = HKS_ARRAY_SIZE(g_hksCoreFinishHandler);
-   for (i = 0; i < size; i++) {
-       if (g_hksCoreFinishHandler[i].pur == pur) {
-           uint32_t outDataBufferSize = (outData == NULL) ? 0 : outData->size;
-           struct HksBlob appendInData = { 0, NULL };
-           ret = HksCoreAppendAuthInfoBeforeFinish(keyNode, pur, paramSet, inData, &appendInData);
-           if (ret != HKS_SUCCESS) {
-               HKS_LOG_E("before finish: append auth info failed");
-               break;
-           }
-           ret = g_hksCoreFinishHandler[i].handler(keyNode, paramSet,
-               appendInData.data == NULL ? inData : &appendInData, outData, alg);
-           if (appendInData.data != NULL) {
-               HKS_FREE_BLOB(appendInData);
-           }
-           if (ret != HKS_SUCCESS) {
-               break;
-           }
-           //添加密钥操作结束标签
-           ret = HksCoreAppendAuthInfoAfterFinish(keyNode, pur, paramSet, outDataBufferSize, outData);
-           break;
+       HKS_LOG_D("HksCoreFinish in Core start");
+       uint32_t pur = 0;
+       uint32_t alg = 0;
+       //检查参数
+       if (handle == NULL || paramSet == NULL || inData == NULL) {
+           HKS_LOG_E("the pointer param entered is invalid");
+           return HKS_FAILURE;
        }
-   }
-   if (i == size) {
-       HKS_LOG_E("don't found purpose, pur : %d", pur);
-       ret = HKS_FAILURE;
-   }
-   //删除对应的session
-   HksDeleteKeyNode(sessionId);
-   HKS_LOG_D("HksCoreFinish in Core end");
-   return ret;
+    
+       uint64_t sessionId;
+       struct HuksKeyNode *keyNode = NULL;
+       //根据handle获取本次三段式操作需要的上下文
+       int32_t ret = GetParamsForUpdateAndFinish(handle, &sessionId, &keyNode, &pur, &alg);
+       if (ret != HKS_SUCCESS) {
+           HKS_LOG_E("GetParamsForCoreUpdate failed");
+           return ret;
+       }
+       //校验密钥参数
+       ret = HksCoreSecureAccessVerifyParams(keyNode, paramSet);
+       if (ret != HKS_SUCCESS) {
+           HksDeleteKeyNode(sessionId);
+           HKS_LOG_E("HksCoreFinish secure access verify failed");
+           return ret;
+       }
+       //调用对应的算法库密钥处理函数
+       uint32_t i;
+       uint32_t size = HKS_ARRAY_SIZE(g_hksCoreFinishHandler);
+       for (i = 0; i < size; i++) {
+           if (g_hksCoreFinishHandler[i].pur == pur) {
+               uint32_t outDataBufferSize = (outData == NULL) ? 0 : outData->size;
+               struct HksBlob appendInData = { 0, NULL };
+               ret = HksCoreAppendAuthInfoBeforeFinish(keyNode, pur, paramSet, inData, &appendInData);
+               if (ret != HKS_SUCCESS) {
+                   HKS_LOG_E("before finish: append auth info failed");
+                   break;
+               }
+               ret = g_hksCoreFinishHandler[i].handler(keyNode, paramSet,
+                   appendInData.data == NULL ? inData : &appendInData, outData, alg);
+               if (appendInData.data != NULL) {
+                   HKS_FREE_BLOB(appendInData);
+               }
+               if (ret != HKS_SUCCESS) {
+                   break;
+               }
+               //添加密钥操作结束标签
+               ret = HksCoreAppendAuthInfoAfterFinish(keyNode, pur, paramSet, outDataBufferSize, outData);
+               break;
+           }
+       }
+       if (i == size) {
+           HKS_LOG_E("don't found purpose, pur : %d", pur);
+           ret = HKS_FAILURE;
+       }
+       //删除对应的session
+       HksDeleteKeyNode(sessionId);
+       HKS_LOG_D("HksCoreFinish in Core end");
+       return ret;
    }
    ```
 
@@ -796,176 +796,176 @@ JS测试代码示例如下，如果整个流程能够正常运行，代表能力
 
 1. 引入HUKS模块，设定密钥操作的参数
 
-```js
-import huks from '@ohos.security.huks';
-
-let handle;
-let IV = '0000000000000000';
-let cipherInData = 'Hks_AES_Cipher_Test_101010101010101010110_string';
-let srcKeyAlias = 'huksCipherAesSrcKeyAlias';
-let encryptUpdateResult = new Array()
-let decryptUpdateResult = new Array()
-let properties = new Array();
-properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES,
-}
-properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value:
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-}
-properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
-}
-properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-
-let HuksOptions = {
-    properties: properties,
-    inData: new Uint8Array(new Array())
-}
-```
+   ```js
+    import huks from '@ohos.security.huks';
+    
+    let handle;
+    let IV = '0000000000000000';
+    let cipherInData = 'Hks_AES_Cipher_Test_101010101010101010110_string';
+    let srcKeyAlias = 'huksCipherAesSrcKeyAlias';
+    let encryptUpdateResult = new Array()
+    let decryptUpdateResult = new Array()
+    let properties = new Array();
+    properties[0] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES,
+    }
+    properties[1] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+    }
+    properties[2] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+    }
+    properties[3] = {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_CBC,
+    }
+    properties[4] = {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+    }
+    
+    let HuksOptions = {
+        properties: properties,
+        inData: new Uint8Array(new Array())
+    }
+    ```
 
 2. 生成密钥并执行加密操作
-
-```js
-/* 生成密钥 */
-await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
-    console.log(`test generateKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.log('test generateKey err information: ' + JSON.stringify(err));
-});
-/* 构造加密参数 */
-let propertiesEncrypt = new Array();
-propertiesEncrypt[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES,
-}
-propertiesEncrypt[1] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-}
-propertiesEncrypt[2] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
-}
-propertiesEncrypt[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-propertiesEncrypt[4] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_CBC,
-}
-propertiesEncrypt[5] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
-}
-propertiesEncrypt[6] = {
-    tag: huks.HuksTag.HUKS_TAG_IV,
-    value: this.stringToUint8Array(IV)
-}
-let encryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
-}
-
-/* 进行密钥加密操作 */
-await huks.init(srcKeyAlias, encryptOptions).then((data) => {
-    console.log(`test init data: ${JSON.stringify(data)}`);
-    handle = data.handle;
-}).catch((err) => {
-    console.log('test init err information: ' + JSON.stringify(err));
-});
-encryptOptions.inData = this.stringToUint8Array(cipherInData)
-await huks.update(handle, encryptOptions).then(async (data) => {
-    console.log(`test update data ${JSON.stringify(data)}`);
-    encryptUpdateResult = Array.from(data.outData);
-}).catch((err) => {
-    console.log('test update err information: ' + err);
-});
-encryptOptions.inData = new Uint8Array(new Array());
-await huks.finish(handle, encryptOptions).then((data) => {
-    console.log(`test finish data: ${JSON.stringify(data)}`);
-    let finishData = this.uint8ArrayToString(new Uint8Array(encryptUpdateResult));
-    if (finishData === cipherInData) {
-       console.log('test finish encrypt err ');
-    } else {
-       console.log('test finish encrypt success');
-    }
+    
+    ```js
+    /* 生成密钥 */
+    await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
+        console.log(`test generateKey data: ${JSON.stringify(data)}`);
     }).catch((err) => {
-    console.log('test finish err information: ' + JSON.stringify(err));
-});
-```
+        console.log('test generateKey err information: ' + JSON.stringify(err));
+    });
+    /* 构造加密参数 */
+    let propertiesEncrypt = new Array();
+    propertiesEncrypt[0] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES,
+    }
+    propertiesEncrypt[1] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
+    }
+    propertiesEncrypt[2] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+    }
+    propertiesEncrypt[3] = {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+    }
+    propertiesEncrypt[4] = {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_CBC,
+    }
+    propertiesEncrypt[5] = {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
+    }
+    propertiesEncrypt[6] = {
+        tag: huks.HuksTag.HUKS_TAG_IV,
+        value: this.stringToUint8Array(IV)
+    }
+    let encryptOptions = {
+        properties: propertiesEncrypt,
+        inData: new Uint8Array(new Array())
+    }
+    
+    /* 进行密钥加密操作 */
+    await huks.init(srcKeyAlias, encryptOptions).then((data) => {
+        console.log(`test init data: ${JSON.stringify(data)}`);
+        handle = data.handle;
+    }).catch((err) => {
+        console.log('test init err information: ' + JSON.stringify(err));
+    });
+    encryptOptions.inData = this.stringToUint8Array(cipherInData)
+    await huks.update(handle, encryptOptions).then(async (data) => {
+        console.log(`test update data ${JSON.stringify(data)}`);
+        encryptUpdateResult = Array.from(data.outData);
+    }).catch((err) => {
+        console.log('test update err information: ' + err);
+    });
+    encryptOptions.inData = new Uint8Array(new Array());
+    await huks.finish(handle, encryptOptions).then((data) => {
+        console.log(`test finish data: ${JSON.stringify(data)}`);
+        let finishData = this.uint8ArrayToString(new Uint8Array(encryptUpdateResult));
+        if (finishData === cipherInData) {
+           console.log('test finish encrypt err ');
+        } else {
+           console.log('test finish encrypt success');
+        }
+        }).catch((err) => {
+        console.log('test finish err information: ' + JSON.stringify(err));
+    });
+    ```
 
 3. 执行解密操作并删除密钥
-
-```js
-/* 修改加密参数集为解密参数集 */
-propertiesEncrypt.splice(1, 1, {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-});
-let decryptOptions = {
-    properties: propertiesEncrypt,
-    inData: new Uint8Array(new Array())
-}
-        
-/* 进行解密操作 */
-await huks.init(srcKeyAlias, decryptOptions).then((data) => {
-    console.log(`test init data: ${JSON.stringify(data)}`);
-    handle = data.handle;
-}).catch((err) => {
-    console.log('test init err information: ' + JSON.stringify(err));
-});
-
-decryptOptions.inData = new Uint8Array(encryptUpdateResult);
-await huks.update(handle, decryptOptions).then(async (data) => {
-    console.log(`test update data ${JSON.stringify(data)}`);
-    decryptUpdateResult = Array.from(data.outData);
-}).catch((err) => {
-    console.log('test update err information: ' + err);
-});
-decryptOptions.inData = new Uint8Array(new Array());
-await huks.finish(handle, decryptOptions).then((data) => {
-    console.log(`test finish data: ${JSON.stringify(data)}`);
-    let finishData = this.uint8ArrayToString(new Uint8Array(decryptUpdateResult));
-    if (finishData === cipherInData) {
-       console.log('test finish decrypt success ');
-    } else {
-       console.log('test finish decrypt err');
-    }
-}).catch((err) => {
-    console.log('test finish err information: ' + JSON.stringify(err));
-});
-//删除密钥
-await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
-    console.log(`test deleteKey data: ${JSON.stringify(data)}`);
-}).catch((err) => {
-    console.log('test deleteKey err information: ' + JSON.stringify(err));
+    
+    ```js
+    /* 修改加密参数集为解密参数集 */
+    propertiesEncrypt.splice(1, 1, {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
     });
-},
-stringToUint8Array(str) {
-   var arr = [];
-   for (var i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
-   }
-   return new Uint8Array(arr);
-},
-uint8ArrayToString(fileData) {
-    var dataString = '';
-    for (var i = 0; i < fileData.length; i++) {
-        dataString += String.fromCharCode(fileData[i]);
+    let decryptOptions = {
+        properties: propertiesEncrypt,
+        inData: new Uint8Array(new Array())
     }
-    return dataString;
-}
-```
+            
+    /* 进行解密操作 */
+    await huks.init(srcKeyAlias, decryptOptions).then((data) => {
+        console.log(`test init data: ${JSON.stringify(data)}`);
+        handle = data.handle;
+    }).catch((err) => {
+        console.log('test init err information: ' + JSON.stringify(err));
+    });
+    
+    decryptOptions.inData = new Uint8Array(encryptUpdateResult);
+    await huks.update(handle, decryptOptions).then(async (data) => {
+        console.log(`test update data ${JSON.stringify(data)}`);
+        decryptUpdateResult = Array.from(data.outData);
+    }).catch((err) => {
+        console.log('test update err information: ' + err);
+    });
+    decryptOptions.inData = new Uint8Array(new Array());
+    await huks.finish(handle, decryptOptions).then((data) => {
+        console.log(`test finish data: ${JSON.stringify(data)}`);
+        let finishData = this.uint8ArrayToString(new Uint8Array(decryptUpdateResult));
+        if (finishData === cipherInData) {
+           console.log('test finish decrypt success ');
+        } else {
+           console.log('test finish decrypt err');
+        }
+    }).catch((err) => {
+        console.log('test finish err information: ' + JSON.stringify(err));
+    });
+    //删除密钥
+    await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
+        console.log(`test deleteKey data: ${JSON.stringify(data)}`);
+    }).catch((err) => {
+        console.log('test deleteKey err information: ' + JSON.stringify(err));
+        });
+    },
+    stringToUint8Array(str) {
+       var arr = [];
+       for (var i = 0, j = str.length; i < j; ++i) {
+          arr.push(str.charCodeAt(i));
+       }
+       return new Uint8Array(arr);
+    },
+    uint8ArrayToString(fileData) {
+        var dataString = '';
+        for (var i = 0; i < fileData.length; i++) {
+            dataString += String.fromCharCode(fileData[i]);
+        }
+        return dataString;
+    }
+    ```
