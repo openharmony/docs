@@ -32,7 +32,7 @@ This is a system API.
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the key input event to listen for. Only **key** is supported.|
-| keyOptions | [keyOptions](#keyOptions) | Yes| Key option, which specifies the condition for combination key input.|
+| keyOptions | [keyOptions](#keyoptions) | Yes| Key option, which specifies the condition for combination key input.|
 | callback | Callback&lt;KeyOptions&gt; | Yes| Callback used to return the result.<br> When a key input event that meets the specified options occurs, **keyOptions** will be passed as an input parameter to **callback**.| 
 
 **Example**
@@ -62,7 +62,7 @@ This is a system API.
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the key input event to listen for. Only **key** is supported.| 
-| keyOptions | [keyOptions](#keyOptions) | Yes| Key options passed to the key input event when listening starts.| 
+| keyOptions | [keyOptions](#keyoptions) | Yes| Key options passed to the key input event when listening starts.| 
 | callback | Callback&lt;KeyOptions&gt; | Yes| Callback function passed to the key input event with **keyOptions** when listening starts.| 
 
 **Example**
