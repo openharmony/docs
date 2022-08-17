@@ -45,7 +45,14 @@ startWork(work: WorkInfo): boolean
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
-      abilityName: "MyExtension"
+      abilityName: "MyExtension",
+      parameters: {
+          mykey0: 2222,
+          mykey1: "ssssssssssssssssssssssssss",
+          mykey2: true,
+          mykey3: 1.5,
+          mykey4: 213749534591254587511
+      }
   }
   var res = workScheduler.startWork(workInfo);
   console.info("workschedulerLog res:" + res);
@@ -81,7 +88,14 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
-      abilityName: "MyExtension"
+      abilityName: "MyExtension",
+      parameters: {
+          mykey0: 2222,
+          mykey1: "ssssssssssssssssssssssssss",
+          mykey2: true,
+          mykey3: 1.5,
+          mykey4: 213749534591254587511
+      }
      }
   var res = workScheduler.stopWork(workInfo, false);
   console.info("workschedulerLog res:" + res);
@@ -299,6 +313,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isPersisted     | boolean                           | 否    | 是否持久化保存工作        |
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态     |
 | idleWaitTime    | number                            | 否    | 空闲等待时间           |
+| parameters      | {[key: string]: any}              | 否    | 额外数据           |
 
 ## NetworkType
 触发工作的网络类型。

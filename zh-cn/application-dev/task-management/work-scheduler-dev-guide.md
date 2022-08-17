@@ -50,6 +50,7 @@ storageRequest|存储状态|    StorageRequest
 isRepeat|是否循环任务|    boolean
 repeatCycleTime |循环间隔|    number
 repeatCount    |循环次数| number
+parameters    |额外数据| {[key: string]: any}
 
 **表3** 延迟任务回调接口
 
@@ -85,7 +86,14 @@ onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+            mykey0: 2222,
+            mykey1: "ssssssssssssssssssssssssss",
+            mykey2: true,
+            mykey3: 1.5,
+            mykey4: 213749534591254587511
+        }
     }
     var res = workScheduler.startWork(workInfo);
     console.info("workschedulerLog res:" + res);
@@ -103,7 +111,14 @@ onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+            mykey0: 2222,
+            mykey1: "ssssssssssssssssssssssssss",
+            mykey2: true,
+            mykey3: 1.5,
+            mykey4: 213749534591254587511
+        }
     }
     var res = workScheduler.stopWork(workInfo, false);
     console.info("workschedulerLog res:" + res);
