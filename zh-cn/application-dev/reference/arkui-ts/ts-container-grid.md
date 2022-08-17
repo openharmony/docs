@@ -20,7 +20,7 @@
 
 ## 接口
 
-Grid(value:{scroller?: Scroller})
+Grid(scroller?: Scroller)
 
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
