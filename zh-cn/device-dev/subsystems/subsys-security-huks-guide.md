@@ -790,7 +790,7 @@ HDI接口到HUKS Core的适配在以下目录中：
 
 对于每个HDI接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的HDI接口的能力，也可以通过完整的密钥操作来验证接口的能力。
 
-JS测试代码示例如下，如果整个流程能够正常运行，代表能力正常。更多的密钥操作类型请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)。
+JS测试代码示例如下，如果整个流程能够正常运行，代表HDI接口能力正常。更多的密钥操作类型请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)。
 
 **AES生成密钥和加密**
 
