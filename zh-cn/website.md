@@ -129,7 +129,7 @@
       - [JS API差异报告](release-notes/api-change/v3.1-beta/js-apidiff-v3.1-beta.md)
       - [Native API差异报告](release-notes/api-change/v3.1-beta/native-apidiff-v3.1-beta.md)
     - OpenHarmony 3.0 LTS  
-      - [JS API差异报告](release-notes/api-change/v3.0-lts/js-apidiff-v3.0-lts.md) 
+      - [JS API差异报告](release-notes/api-change/v3.0-LTS/js-apidiff-v3.0-lts.md) 
     - OpenHarmony v2.2 Beta2 
       - [JS API差异报告](release-notes/api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
       - [Native API差异报告](release-notes/api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
