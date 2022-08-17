@@ -69,7 +69,7 @@ repo forall -c 'git lfs pull'
 
 | 子系统       | PR NO.                                                       | 问题描述                                                     |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 用户程序框架 | [aafwk_aafwk_lite/pulls/35](https://gitee.com/openharmony/aafwk_aafwk_lite/pulls/35) | 解決linux系统上小概率无法关机的问题                          |
+| 用户程序框架 | aafwk_aafwk_lite/pulls/35 | 解決linux系统上小概率无法关机的问题                          |
 | AI           | [ai_engine/pulls/50](https://gitee.com/openharmony/ai_engine/pulls/50) | 修复测试用例client端未释放问题                               |
 |              | [ai_engine/pulls/46](https://gitee.com/openharmony/ai_engine/pulls/46) | 修复类成员未初始化的问题                                     |
 | IOT硬件      | [applications_sample_wifi_iot/pulls/12](https://gitee.com/openharmony/applications_sample_wifi_iot/pulls/12) | 修复编译构建错误的问题                                       |
@@ -77,8 +77,8 @@ repo forall -c 'git lfs pull'
 | 芯片平台     | [third_party_ffmpeg/pulls/9](https://gitee.com/openharmony/device_hisilicon_third_party_ffmpeg/pulls/9) | 修复CVE-2020-22025安全漏洞                                   |
 |              | [third_party_ffmpeg/pulls/6](https://gitee.com/openharmony/device_hisilicon_third_party_ffmpeg/pulls/6) | 修复部分环境依赖valgrind，导致编译失败问题                   |
 |              | [vendor_hisilicon/pulls/39](https://gitee.com/openharmony/vendor_hisilicon/pulls/39) | 解决release版本编译失败的问题                                |
-| 分布式调度   | [distributedschedule_dms_fwk_lite/pulls/23](https://gitee.com/openharmony/distributedschedule_dms_fwk_lite/pulls/23) | 测试用例名称更换                                             |
-|              | [distributedschedule_samgr_lite/pulls/25](https://gitee.com/openharmony/distributedschedule_samgr_lite/pulls/25) | 修复CVE-2021-22478安全漏洞                                   |
+| 分布式调度   | distributedschedule_dms_fwk_lite/pulls/23 | 测试用例名称更换                                             |
+|              | distributedschedule_samgr_lite/pulls/25 | 修复CVE-2021-22478安全漏洞                                   |
 | 全球化       | [global_i18n_lite/pulls/24](https://gitee.com/openharmony/global_i18n_lite/pulls/24) | 代码重构，优化全球化i18n.dat资源加载                         |
 |              | [third_party_jerryscript/pulls/22](https://gitee.com/openharmony/third_party_jerryscript/pulls/22) | 修复mac版本上debug调试时断点概率性无法停住的问题             |
 | 轻图形       | [graphic_ui/pulls/220](https://gitee.com/openharmony/graphic_ui/pulls/220) | 修复Add和Remove未配套使用问题，修改后UIViewGroup析构不清理子节点 |
