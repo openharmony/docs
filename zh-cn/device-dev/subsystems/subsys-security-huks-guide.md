@@ -581,74 +581,75 @@ Hdi接口到HUKS Core的适配在以下目录中：
 
 1. 创建一个句柄，通过这个句柄在session中存储密钥操作相关的信息，使得外部可以通过这个句柄分多次进行同一密钥操作。
 
-```c
+   ```c
 
-//三段式Init接口
+   //三段式Init接口
 
-int32_t HksCoreInit(const struct  HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *handle,
+   int32_t HksCoreInit(const struct  HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *handle,
     struct HksBlob *token)
-{
-    HKS_LOG_D("HksCoreInit in Core start");
-uint32_t pur = 0;
-uint32_t alg = 0;
-//检查参数
-if (key == NULL || paramSet == NULL || handle == NULL || token == NULL) {
-    HKS_LOG_E("the pointer param entered is invalid");
-    return HKS_FAILURE;
-}
+   {
+       HKS_LOG_D("HksCoreInit in Core start");
+       uint32_t pur = 0;
+       uint32_t alg = 0;
+       //检查参数
+       if (key == NULL || paramSet == NULL || handle == NULL || token == NULL) {
+           HKS_LOG_E("the pointer param entered is invalid");
+           return HKS_FAILURE;
+        }
 
-if (handle->size < sizeof(uint64_t)) {
-    HKS_LOG_E("handle size is too small, size : %u", handle->size);
-    return HKS_ERROR_INSUFFICIENT_MEMORY;
-}
-//解密密钥文件
-struct HuksKeyNode *keyNode = HksCreateKeyNode(key, paramSet);
-if (keyNode == NULL || handle == NULL) {
-    HKS_LOG_E("the pointer param entered is invalid");
-    return HKS_ERROR_BAD_STATE;
-}
-//通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
-handle->size = sizeof(uint64_t);
-(void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
-//从参数中提取出算法
-int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
-if (ret != HKS_SUCCESS) {
-    HksDeleteKeyNode(keyNode->handle);
-    return ret;
-}
-//检查密钥参数
-ret = HksCoreSecureAccessInitParams(keyNode, paramSet, token);
-if (ret != HKS_SUCCESS) {
-    HKS_LOG_E("init secure access params failed");
-    HksDeleteKeyNode(keyNode->handle);
-    return ret;
-}
-//通过密钥使用目的获取对应的算法库处理函数  
-uint32_t i;
-uint32_t size = HKS_ARRAY_SIZE(g_hksCoreInitHandler);
-for (i = 0; i < size; i++) {
-   if (g_hksCoreInitHandler[i].pur == pur) {
-       HKS_LOG_E("Core HksCoreInit [pur] = %d, pur = %d", g_hksCoreInitHandler[i].pur, pur);
-       ret = g_hksCoreInitHandler[i].handler(keyNode, paramSet, alg);
-       break;
-   }
-}
-//异常结果检查
-if (ret != HKS_SUCCESS) {
-    HksDeleteKeyNode(keyNode->handle);
-    HKS_LOG_E("CoreInit failed, ret : %d", ret);
-    return ret;
-}
+    if (handle->size < sizeof(uint64_t)) {
+        HKS_LOG_E("handle size is too small, size : %u", handle->size);
+        return HKS_ERROR_INSUFFICIENT_MEMORY;
+    }
+    //解密密钥文件
+    struct HuksKeyNode *keyNode = HksCreateKeyNode(key, paramSet);
+    if (keyNode == NULL || handle == NULL) {
+        HKS_LOG_E("the pointer param entered is invalid");
+        return HKS_ERROR_BAD_STATE;
+    }
+    //通过handle向session中存储信息，供Update/Finish使用。使得外部可以通过同个handle分多次进行同一密钥操作。
+    handle->size = sizeof(uint64_t);
+    (void)memcpy_s(handle->data, handle->size, &(keyNode->handle), handle->size);
+    //从参数中提取出算法
+    int32_t ret = GetPurposeAndAlgorithm(paramSet, &pur, &alg);
+    if (ret != HKS_SUCCESS) {
+        HksDeleteKeyNode(keyNode->handle);
+        return ret;
+    }
+    //检查密钥参数
+    ret = HksCoreSecureAccessInitParams(keyNode, paramSet, token);
+    if (ret != HKS_SUCCESS) {
+        HKS_LOG_E("init secure access params failed");
+        HksDeleteKeyNode(keyNode->handle);
+        return ret;
+    }
+    //通过密钥使用目的获取对应的算法库处理函数  
+    uint32_t i;
+    uint32_t size = HKS_ARRAY_SIZE(g_hksCoreInitHandler);
+    for (i = 0; i < size; i++) {
+       if (g_hksCoreInitHandler[i].pur == pur) {
+           HKS_LOG_E("Core HksCoreInit [pur] = %d, pur = %d", g_hksCoreInitHandler[i].pur, pur);
+           ret = g_hksCoreInitHandler[i].handler(keyNode, paramSet, alg);
+           break;
+       }
+    }
+    //异常结果检查
+    if (ret != HKS_SUCCESS) {
+        HksDeleteKeyNode(keyNode->handle);
+        HKS_LOG_E("CoreInit failed, ret : %d", ret);
+        return ret;
+    }
 
-if (i == size) {
-    HksDeleteKeyNode(keyNode->handle);
-    HKS_LOG_E("don't found purpose, pur : %u", pur);
-    return HKS_FAILURE;
-}
+    if (i == size) {
+        HksDeleteKeyNode(keyNode->handle);
+        HKS_LOG_E("don't found purpose, pur : %u", pur);
+        return HKS_FAILURE;
+    }
 
-HKS_LOG_D("HksCoreInit in Core end");
-return ret;
-}
+    HKS_LOG_D("HksCoreInit in Core end");
+    return ret;
+    }
+   ```
 
 2. 在执行密钥操作前通过句柄获得上下文信息，执行密钥操作时放入分片数据并取回密钥操作结果或者追加数据。
    
