@@ -12,11 +12,11 @@
 
 | 版本源码                 | 版本信息 | 下载站点                                                     | SHA256校验码                                                 |
 | ------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 全量代码                 | 1.1.1    | [站点](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fcode-v1.1.1-LTS.tar.gz) | [SHA256校验码](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fcode-v1.1.1-LTS.tar.gz.sha256) |
-| Hi3861解决方案（二进制） | 1.1.1    | [站点](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fwifiiot-1.1.0.tar.gz) | [SHA256校验码](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fwifiiot-1.1.0.tar.gz.sha256) |
-| Hi3518解决方案（二进制） | 1.1.1    | [站点](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fipcamera_hi3518ev300-1.1.1.tar.gz) | [SHA256校验码](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fipcamera_hi3518ev300-1.1.1.tar.gz.sha256) |
-| Hi3516解决方案（二进制） | 1.1.1    | [站点](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fipcamera_hi3516dv300-1.1.1.tar.gz) | [SHA256校验码](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2Fipcamera_hi3516dv300-1.1.1.tar.gz.sha256) |
-| Release Notes            | 1.1.1    | [站点](https://gitee.com/link?target=https%3A%2F%2Frepo.huaweicloud.com%2Fharmonyos%2Fos%2F1.1.1%2FOpenHarmony_Release_Notes_1.1.1_LTS.md) | -                                                            |
+| 全量代码                 | 1.1.1    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.1/code-v1.1.1-LTS.tar.gz.sha256) |
+| Hi3861解决方案（二进制） | 1.1.1    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.1/wifiiot-1.1.0.tar.gz.sha256) |
+| Hi3518解决方案（二进制） | 1.1.1    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3518ev300-1.1.1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3518ev300-1.1.1.tar.gz.sha256) |
+| Hi3516解决方案（二进制） | 1.1.1    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/1.1.1/ipcamera_hi3516dv300-1.1.1.tar.gz.sha256) |
+| Release Notes            | 1.1.1    | [站点](https://repo.huaweicloud.com/harmonyos/os/1.1.1/OpenHarmony_Release_Notes_1.1.1_LTS.md) | -                                                            |
 
 
 ### 通过repo下载

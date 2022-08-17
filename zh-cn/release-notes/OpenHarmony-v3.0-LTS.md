@@ -61,7 +61,7 @@
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-```
+```shell
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -71,7 +71,7 @@ repo forall -c 'git lfs pull'
 
 通过repo + https 下载。
 
-```
+```shell
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v3.0-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -142,7 +142,7 @@ API变更请参考：[JS API 差异报告](api-change/v3.0-LTS/js-apidiff-v3.0-l
 | ISSUE单号 | 问题描述 | 
 | -------- | -------- |
 | [I45AVP](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I45AVP) | 执行hilog落盘之后hilog命令执行失败 | 
-| I47EPA| 入参为空或无效时，GetBundleSize接口返回错误 | 
+| I47EPA | 入参为空或无效时，GetBundleSize接口返回错误 | 
 | [I434AD](https://gitee.com/openharmony/multimedia_camera_lite/issues/I434AD) | Hi3516DV300轻量级系统常驻内存超基线 | 
 | [I434P1](https://gitee.com/openharmony/multimedia_camera_lite/issues/I434P1) | Hi3518EV300轻量级系统常驻内存超基线 | 
 | [I46I6K](https://gitee.com/openharmony/multimedia_media_lite/issues/I46I6K?from=project-issue) | 多媒体子系统相关代码存在安全编码问题 | 
