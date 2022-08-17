@@ -30,7 +30,7 @@
 
 下载命令如下：
 
-```
+```shell
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony_release_v1.1.0 --no-repo-verify
 repo sync -c
 ```
