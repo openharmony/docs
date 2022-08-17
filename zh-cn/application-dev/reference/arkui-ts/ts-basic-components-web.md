@@ -1183,6 +1183,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
           })
           return true;
         })
+      }
     }
   }
   ```
@@ -1222,6 +1223,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
             }
           })
         })
+      }
     }
   }
   ```
