@@ -52,6 +52,7 @@ Image(src: string | PixelMap | Resource)
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -                        | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>>&nbsp;**说明：**<br/>>&nbsp;PixelMap资源不支持该属性。 |
 | syncLoad<sup>8+</sup> | boolean                                  | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
 | copyOption<sup>9+</sup> | [CopyOptions](#copyoptions) | CopyOptions.None | 设置图片是否可复制（SVG图片不支持复制）。 |
+| colorFilter<sup>9+</sup> | [ColorFilter](../../ui/ts-types.md) | - | 给图像设置颜色滤镜效果。 |
 
 ### ImageFit
 
