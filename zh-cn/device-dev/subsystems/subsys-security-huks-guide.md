@@ -47,13 +47,13 @@
 
 ### 约束与限制
 
-1. HUKS的实现需要在可信执行环境中实现，保证密钥管理和操作的可信可靠。
+* HUKS的实现需要在可信执行环境中实现，保证密钥管理和操作的可信可靠。
 
-2. HuksHdiAttestKey返回的证书链应该按照业务证书、设备证书、CA证书和根证书的顺序组装，在每项证书之前还需要加上证书的长度。证书链组装完成后添加整个证书链的长度组装成Blob格式。证书的具体格式如要自己实现应与服务器侧解析的格式相对应。
+* HuksHdiAttestKey返回的证书链应该按照业务证书、设备证书、CA证书和根证书的顺序组装，在每项证书之前还需要加上证书的长度。证书链组装完成后添加整个证书链的长度组装成Blob格式。证书的具体格式如要自己实现应与服务器侧解析的格式相对应。
 
       ![CertChain格式图](figures/HUKS-CertChain.png)
 
-3. 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
+* 接口返回的密钥必须按照密钥存储态组装成KeyBlob，哪些接口需要遵循该限制请见[接口说明](#接口说明)。
 
    KeyBlob存储密钥的同时存储它的属性，结构见下图。构造KeyBlob的示例请参见[hks_keyblob.c/HksBuildKeyBlob](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_keyblob.c)。
 
@@ -63,7 +63,7 @@
 
 ### 场景介绍
 
-HUKS Core作为基础向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。如果想要使用自己的实现替换HUKS Core，需要实现以下接口。
+HUKS Core作为向应用提供密钥库能力的基础，包括密钥管理及密钥的密码学操作等功能。如果想要使用自己的实现替换HUKS Core，需要实现以下接口。
 
 ### 接口说明
 
@@ -560,7 +560,7 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
 
 ### 开发步骤
 
-HUKS Core接口实例，以下是目录结构及各部分功能简介。
+Hdi接口到HUKS Core的适配在以下目录中：
 
 ```undefined
 // base/security/user_auth/services/huks_standard/huks_engine/main
