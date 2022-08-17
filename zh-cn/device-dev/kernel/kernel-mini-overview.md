@@ -32,4 +32,5 @@ LiteOS-M已经支持ARM Cortex-M3、ARM Cortex-M4、ARM Cortex-M7、ARM Cortex-M
 在开发板配置文件target_config.h配置系统时钟、每秒Tick数，可以对任务、内存、IPC、异常处理模块进行裁剪配置。系统启动时，根据配置进行指定模块的初始化。内核启动流程包含外设初始化、系统时钟配置、内核初始化、操作系统启动等，详见下图。
 
   **图2** 内核启动流程
+
   ![zh-cn_image_0000001160338832](figures/zh-cn_image_0000001160338832.png)
