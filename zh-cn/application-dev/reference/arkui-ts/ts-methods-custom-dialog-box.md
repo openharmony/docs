@@ -4,7 +4,7 @@
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-通过CustomDialogController类显示自定义弹窗。
+通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。
 
 
 ## 接口
