@@ -6,22 +6,20 @@ The Distributed Data Service (DDS) implements synchronization of application dat
 
 
 ## Available APIs
-
 For details about the APIs related to distributed data, see [Distributed Data Management](../reference/apis/js-apis-distributed-data.md).
 
-The table below describes the APIs provided by the OpenHarmony DDS module.
 
 **Table 1** APIs provided by the DDS
 
-| Category | API | Description  |
-| ------------ | ------------- | ------------- |
-| Creating a distributed database| createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | Creates a **KVManager** object for database management.|
-| Obtaining a distributed KV store| getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br>getKVStore&lt;T extends KVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | Obtains the KV store with the specified **Options** and **storeId**.|
-| Managing data in a distributed KV store| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void<br>put(key: string, value: Uint8Array \| string \| number \| boolean): Promise&lt;void> | Inserts and updates data.|
-| Managing data in a distributed KV store| delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br>delete(key: string): Promise&lt;void> | Deletes data. |
-| Managing data in a distributed KV store| get(key: string, callback: AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt;): void<br>get(key: string): Promise&lt;Uint8Array \| string \| boolean \| number> | Queries data.                                     |
-| Subscribing to changes in the distributed data| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void<br>on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void | Subscribes to data changes in the KV store.|
-| Synchronizing data across devices| sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void | Triggers database synchronization in manual mode. |
+| API                                                    | Description                                           |
+| ------------------------------------------------------------ | ----------------------------------------------- |
+| createKVManager(config:KVManagerConfig,callback:AsyncCallback&lt;KVManager&gt;):void<br>createKVManager(config:KVManagerConfig):Promise&lt;KVManager> | Creates a **KVManager** object for database management.|
+| getKVStore&lt;TextendsKVStore&gt;(storeId:string,options:Options,callback:AsyncCallback&lt;T&gt;):void<br>getKVStore&lt;TextendsKVStore&gt;(storeId:string,options:Options):Promise&lt;T&gt; | Obtains a KV store with the specified **Options** and **storeId**.|
+| put(key:string,value:Uint8Array\|string\|number\|boolean,callback:AsyncCallback&lt;void&gt;):void<br>put(key:string,value:Uint8Array\|string\|number\|boolean):Promise&lt;void> | Inserts and updates data.                               |
+| delete(key:string,callback:AsyncCallback&lt;void&gt;):void<br>delete(key:string):Promise&lt;void> | Deletes data.                                     |
+| get(key:string,callback:AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;):void<br>get(key:string):Promise&lt;Uint8Array\|string\|boolean\|number> | Queries data.                                     |
+| on(event:'dataChange',type:SubscribeType,observer:Callback&lt;ChangeNotification&gt;):void<br>on(event:'syncComplete',syncCallback:Callback&lt;Array&lt;[string,number]&gt;&gt;):void | Subscribes to data changes in the KV store.                       |
+| sync(deviceIdList:string[],mode:SyncMode,allowedDelayMs?:number):void | Triggers database synchronization in manual mode.                 |
 
 
 
@@ -92,9 +90,10 @@ The following uses a single KV store as an example to describe the development p
    }
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-   > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (**kvStore** in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
-
+   > **NOTE**
+   >
+   > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (`kvStore` in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
+   
 4. Subscribe to changes in the distributed data.<br/>
    The following is the sample code for subscribing to the data changes of a single KV store:
    ```js
@@ -152,7 +151,11 @@ The following uses a single KV store as an example to describe the development p
 7. Synchronize data to other devices.<br/>
    Select the devices in the same network and the synchronization mode to synchronize data.
 
-   The following is the sample code for data synchronization in a single KV store. **deviceIds** can be obtained by deviceManager by calling **getTrustedDeviceListSync()**, and **1000** indicates that the maximum delay time is 1000 ms.
+   > **NOTE**
+   >
+   > The APIs of the `deviceManager` module are system interfaces.
+   
+   The following is a code example for synchronizing data in a single KV store:
    ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager';
    
@@ -161,7 +164,7 @@ The following uses a single KV store as an example to describe the development p
    deviceManager.createDeviceManager("bundleName", (err, value) => {
        if (!err) {
            devManager = value;
-           // Obtain deviceIds.
+           // deviceIds is obtained by deviceManager by calling getTrustedDeviceListSync().
            let deviceIds = [];
            if (devManager != null) {
                var devices = devManager.getTrustedDeviceListSync();
@@ -170,6 +173,7 @@ The following uses a single KV store as an example to describe the development p
                }
            }
            try{
+               // 1000 indicates that the maximum delay is 1000 ms.
                kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
            }catch (e) {
                 console.log("An unexpected error occurred. Error:" + e);
@@ -177,7 +181,3 @@ The following uses a single KV store as an example to describe the development p
        }
    });
    ```
-## Samples
-The following samples are provided to help you better understand the distributed data development:
-- [`KvStore`: Distributed Database (eTS) (API8)](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
-- [Distributed Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)
