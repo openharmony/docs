@@ -42,20 +42,12 @@ Shape(value:{target?: PixelMap})
 | stroke | Color | - | 否 | 边框颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置边框的间隙。 |
 | strokeDashOffset | Length | 0 | 否 | 边框绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#LineCapStyle枚举说明) | LineCapStyle.Butt | 否 | 路径端点绘制样式。 |
-| strokeLineJoin | LineJoinStyle | LineJoinStyle.Miter | 否 | 边框拐角绘制样式。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 路径端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 边框拐角绘制样式。 |
 | strokeMiterLimit | number | 4 | 否 | 锐角绘制成斜角的极限值。 |
 | strokeOpacity | number | 1 | 否 | 设置边框的不透明度。 |
 | strokeWidth | Length | 1 | 否 | 设置边框的宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿。 |
-
-- LineJoinStyle枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Bevel | 使用斜角连接路径段。 | 
-  | Miter | 使用尖角连接路径段。 | 
-  | Round | 使用圆角连接路径段。 | 
-
 
 ## 示例
 
