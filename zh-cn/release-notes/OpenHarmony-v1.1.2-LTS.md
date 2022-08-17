@@ -33,7 +33,7 @@
 
 方式一（推荐）：通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-```
+```shell
 repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v1.1.2-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -41,7 +41,7 @@ repo forall -c 'git lfs pull'
 
 方式二：通过repo + https 下载。
 
-```
+```shell
 repo init -u https://gitee.com/openharmony/manifest.git -b refs/tags/OpenHarmony-v1.1.2-LTS --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
