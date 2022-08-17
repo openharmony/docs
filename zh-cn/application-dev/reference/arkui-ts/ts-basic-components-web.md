@@ -1246,7 +1246,7 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 | boolean | 自定义菜单返回true，默认菜单返回false。 |
 
   **示例：**
-  
+
   ```ts
   // xxx.ets
   @Entry
