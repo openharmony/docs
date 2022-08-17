@@ -4,15 +4,15 @@
 
 ### 功能简介
 
-用户信息的安全取决于密钥的安全，在安全领域里密码系统被攻击通常不是因为选择的加密算法不够安全，而是密钥管理不到位。HUKS（OpenHarmony Universal KeyStore）提供系统级的密钥管理能力，实现密钥全生命周期（生成、存储、使用、销毁）的管理和安全使用，满足生态应用和上层业务的诉求。通过密钥明文不出可信环境、密钥非明文存储等方式，保护用户密钥安全。
+HUKS（OpenHarmony Universal KeyStore）提供系统级的密钥管理能力，实现密钥全生命周期（生成、存储、使用、销毁）的管理和安全使用，满足生态应用和上层业务的诉求。其中，密钥的安全存储和安全使用环境是密钥安全最重要的约束，如对明文密钥的存储和使用不能出现在非安全环境中，需要保证在安全环境中使用（比如TEE，安全芯片等）；本文档介绍了开发者在OpenHarmony HUKS架构的基础上适配安全存储和安全使用环境的步骤，以及如何去验证适配是否正确，以保证API接口的兼容。
 
-支持密钥全生命周期管理，包括以下特性：
+HUKS支持密钥全生命周期管理，包括以下特性：
 
 1. 密钥生成/导入
 
 2. 密钥存储
 
-3. 密钥使用（加解密、签名验签、密钥派生、密钥协商、哈希、密钥访问控制）
+3. 密钥使用（加解密、签名验签、密钥派生、密钥协商、哈希、密钥访问控制等）
 
 4. 密钥销毁
 
@@ -20,11 +20,11 @@
 
 - 服务层（HUKS Service）
 
-  提供密钥管理服务的具体业务功能模块，HUKS Service并不直接处理密钥运算，而是依赖HUKS Core为上层提供服务。
+  承载密钥管理功能的一个独立的OpenHarmony Service附属于huks_service进程，HUKS Service并不直接处理密钥运算，依赖HUKS Core为上层提供服务。
 
 - 核心层（HUKS CORE）
 
-  提供密钥管理服务的核心功能模块，密钥全生命周期明文不出HUKS Core模块。
+  提供密钥管理服务的核心功能模块，需要保证该模块处于安全环境中且密钥全生命周期明文不出HUKS Core模块。
 
 - 可信执行环境（Trusted Execution Environment）
 
@@ -560,7 +560,7 @@ HUKS Core的初始化，包括锁，加密算法库，authtoken key和根密钥�
 
 ### 开发步骤
 
-Hdi接口到HUKS Core的适配在以下目录中：
+HDI接口到HUKS Core的适配在以下目录中：
 
 ```undefined
 // base/security/user_auth/services/huks_standard/huks_engine/main
@@ -570,14 +570,14 @@ Hdi接口到HUKS Core的适配在以下目录中：
     ├── BUILD.gn # 编译脚本
     ├── include 
     └── src
-        ├── hks_core_interfaces.c # Hdi到HUKS Core的适配层
+        ├── hks_core_interfaces.c # HDI到HUKS Core的适配层
         └── hks_core_service.c # 具体实现
         └── ... #其他功能代码
 ```
 
-关于HUKS Core接口的具体实现，开发者必须采用三段式。以下是三段式的开发步骤以及HUKS CORE已经实现的示例：
+关于HUKS Core接口的具体实现，开发者必须采用三段式。以下是三段式的开发步骤以及HUKS CORE的代码示例，开发者应参考以下代码实现所有的Hdi接口。
 
-详细代码可以参考[hks_core_service.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_core_service.c)文件。
+其他HUKS Core接口的代码可以参考[hks_core_service.c](https://gitee.com/openharmony/security_huks/blob/master/services/huks_standard/huks_engine/main/core/src/hks_core_service.c)文件。
 
 1. 创建一个句柄，通过这个句柄在session中存储密钥操作相关的信息，使得外部可以通过这个句柄分多次进行同一密钥操作。
 
@@ -788,7 +788,7 @@ Hdi接口到HUKS Core的适配在以下目录中：
 
 开发完成后，通过[HUKS JS接口](https://gitee.com/openharmony/security_huks/blob/master/interfaces/kits/js/@ohos.security.huks.d.ts)开发JS应用来验证能力是否完备。
 
-对于每个Hdi接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的Hdi接口的能力，也可以通过完整的密钥操作来验证接口的能力。
+对于每个HDI接口，[接口说明](#接口说明)都提供了对应的JS接口。可以通过调用JS接口组合来验证对应的HDI接口的能力，也可以通过完整的密钥操作来验证接口的能力。
 
 JS测试代码示例如下，如果整个流程能够正常运行，代表能力正常。更多的密钥操作类型请见[huks-guidelines.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md)。
 
