@@ -79,12 +79,12 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)访问应用中rawfile路径的文件， 默认启用。
+设置是否开启应用中文件系统的访问，默认启用。[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)中rawfile路径的文件不受该属性影响而限制访问。
 
 **参数：**
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                                     |
 | ---------- | ------- | ---- | ---- | ---------------------------------------- |
-| fileAccess | boolean | 是    | true | 设置是否开启通过[$rawfile(filepath/filename)](../../ui/ts-resource-access.md)访问应用中rawfile路径的文件，默认启用。 |
+| fileAccess | boolean | 是    | true | 设置是否开启应用中文件系统的访问，默认启用。 |
 
 **示例：**
   ```ts
@@ -321,6 +321,7 @@ databaseAccess(databaseAccess: boolean)
 | -------------- | ------- | ---- | ---- | ----------------- |
 | databaseAccess | boolean | 是    | false    | 设置是否开启数据库存储API权限。 |
 
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -347,6 +348,7 @@ geolocationAccess(geolocationAccess: boolean)
 | -------------- | ------- | ---- | ---- | ----------------- |
 | geolocationAccess | boolean | 是    | true    | 设置是否开启获取地理位置权限。 |
 
+**示例：**
   ```ts
   // xxx.ets
   @Entry
@@ -1347,7 +1349,7 @@ forward(): void
 
 deleteJavaScriptRegister(name: string)
 
-删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。
+删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
 
 **参数：**
 | 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
@@ -1594,7 +1596,7 @@ refresh()
 
 registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用refresh接口生效。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
 
 **参数：**
 | 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                                     |
