@@ -25,11 +25,11 @@ The figure below shows the permission workflow.
 
 ![](figures/permission-workflow.png)
 
-1. Refer to the figure below for the process of applying for app permissions.
+1. You can refer to the following figure to determine whether an app can apply for a permission.
 
 ![](figures/permission-application-process.png)
 
-1. For details about the mapping between the application Ability Privilege Level (APL) and permission level, see [Permission Levels](#permission-levels).
+1. See [Permission Levels](#permission-levels) for details about the mapping between the application Ability Privilege Level (APL) and permission level.
 
 2. The permission authorization modes include user_grant (permission granted by the user) and system_grant (permission granted by the system). For details, see [Permission Authorization Modes](#permission-authorization-mode).
 
@@ -49,7 +49,7 @@ Observe the following principles for permission management:
 
 - All the permissions granted to apps must come from the [Permission List](permission-list.md). Custom permissions are not allowed for apps currently.
 
-### Scenarios
+### Example Scenarios
 
 The following describes two common scenarios.
 
@@ -85,7 +85,7 @@ The table below describes the APLs.
 
 By default, apps are of the normal APL.
 
-For the app of the system_basic or system_core APL, declare the app APL level in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+For the app of the system_basic or system_core APL, declare the app APL in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
 
 ### Levels of Permissions
 
@@ -177,8 +177,8 @@ If the permission required by an app has higher level than the app's APL, you ca
 
 In addition to the preceding [authorization processes](#authorization-processes), you must declare the ACL.
 
-In other words, in addition to declaring the required permissions in the **config.json** file, you must declare the high-level permissions in the app's [profile](accesstoken-guidelines.md#declaring-the-acl). The subsequent steps of authorization are the same.
+In other words, in addition to declaring the required permissions in the **config.json** file, you must [declare the ACL](accesstoken-guidelines.md#declaring-the-acl) in the app's profile. The subsequent steps of authorization are the same.
 
-**NOTE**
+**NOTICE**
 
-Declare the target ACL in the **acl** field of the app's profile in the app installation package, and generate a certificate using the profile signing tool. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+Declare the target ACL in the **acls** field of the app's profile in the app installation package, and generate a certificate using the profile signing tool. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
