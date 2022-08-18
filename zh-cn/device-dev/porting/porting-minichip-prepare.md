@@ -102,27 +102,12 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    board_toolchain_type = "gcc"
     
    # Board related common compile flags.
-   board_cflags = [
-     "-mcpu=cortex-m4",
-     "-mthumb",
-     "-mfpu=fpv4-sp-d16",
-     "-mfloat-abi=hard",
-     "-D__NEED_off_t",
-   ]
+   board_cflags = []
    board_cxx_flags = board_cflags
    board_ld_flags = []
     
    # Board related headfiles search path.
-   board_include_dirs = [
-     "//kernel/liteos_m/utils/",
-     "//kernel/liteos_m/kernel/arch/arm/cortex-m4/gcc/",
-     "//kernel/liteos_m/kal/posix/include",
-     "//utils/native/lite/include",
-     "//kernel/liteos_m/components/bounds_checking_function/include",
-     "//kernel/liteos_m/kal/cmsis",
-     "//kernel/liteos_m/kernel/include",
-     "//third_party/lwip/src/include",
-   ]
+   board_include_dirs = []
     
    # Board adapter dir for OHOS components.
    board_adapter_dir =""
