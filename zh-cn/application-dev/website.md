@@ -107,6 +107,7 @@
         - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
+      - [性能提升的推荐方法](ui/ts-performance-improvement-recommendation.md)
     - 基于JS扩展的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
