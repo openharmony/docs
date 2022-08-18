@@ -146,7 +146,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-inputMethodController.stopInput((err, result) => {
+InputMethodController.stopInput((err, result) => {
     if (err == undefined) {
         console.error("stopInput callback result---err: " + err.msg);
         return;
@@ -177,15 +177,17 @@ stopInput(): Promise&lt;boolean&gt;
 
 
 ```js
-await inputMethodController.stopInput().then((result)=>{
-    if (result) {
-        console.info("Success to stopInput.(promise)");
-    } else {
-        console.info("Failed to stopInput.(promise)");
-    }
-}).catch((err) => {
-    console.error("stopInput promise err: " + err.msg);
-});
+async function InputMethod() {
+    await InputMethodController.stopInput().then((result)=>{
+        if (result) {
+            console.info("Success to stopInput.(promise)");
+        } else {
+            console.info("Failed to stopInput.(promise)");
+        }
+    }).catch((err) => {
+        console.error("stopInput promise err: " + err.msg);
+    });
+}
 ```
 
 ### showSoftKeyboard<sup>9+</sup> ###
@@ -310,7 +312,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **示例：**
 
 ```js
-inputMethodSetting.listInputMethod((err,data) => {
+InputMethodSetting.listInputMethod((err,data) => {
     if (err == undefined) {
         console.error("listInputMethod callback result---err: " + err.msg);
         return;
@@ -335,11 +337,13 @@ listInputMethod(): Promise<Array<InputMethodProperty>>;
 **示例：**
 
 ```js
-await inputMethodSetting.listInputMethod().then((data)=>{
-    console.info("listInputMethod promise result---data: " + JSON.stringify(data));
-}).catch((err) => {
-    console.info("listInputMethod promise err:" + err.msg);
-});
+async function InputMethod() {
+    await InputMethodSetting.listInputMethod().then((data)=>{
+        console.info("listInputMethod promise result---data: " + JSON.stringify(data));
+    }).catch((err) => {
+        console.info("listInputMethod promise err:" + err.msg);
+    });
+}
 ```
 
 ### displayOptionalInputMethod
@@ -359,7 +363,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-inputMethodSetting.displayOptionalInputMethod((err) => {
+InputMethodSetting.displayOptionalInputMethod((err) => {
     if (err == undefined) {
         console.error("displayOptionalInputMethod callback---err: " + err.msg);
         return;
@@ -385,9 +389,11 @@ inputMethodSetting.displayOptionalInputMethod((err) => {
 **示例：**
 
 ```js
-await inputMethodSetting.displayOptionalInputMethod().then(()=>{
-    console.info("displayOptionalInputMethod promise");
-}).catch((err) => {
-    console.info("listInputMethod promise err: " + err.msg);
-});
+async function InputMethod() {
+    await InputMethodSetting.displayOptionalInputMethod().then(()=>{
+        console.info("displayOptionalInputMethod promise");
+    }).catch((err) => {
+        console.info("listInputMethod promise err: " + err.msg);
+    });
+}
 ```

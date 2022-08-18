@@ -450,11 +450,13 @@ hideKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```js
-await KeyboardController.hideKeyboard().then(() => {
-    console.info("hideKeyboard promise.");
-}).catch((err) => {
-    console.info("hideKeyboard promise err: " + err.msg);
-});
+async function InputMethodEngine() {
+    await KeyboardController.hideKeyboard().then(() => {
+        console.info("hideKeyboard promise.");
+    }).catch((err) => {
+        console.info("hideKeyboard promise err: " + err.msg);
+    });
+}
 ```
 
 ## TextInputClient<a name="TextInputClient"></a>
@@ -512,12 +514,14 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  var length = 1;
-  await client.getForward(length).then((text) => {
-      console.info("getForward promise result---res: " + text);
-  }).catch((err) => {
-      console.error("getForward promise err: " + err.msg);
-  });
+  async function InputMethodEngine() {
+      var length = 1;
+      await TextInputClient.getForward(length).then((text) => {
+          console.info("getForward promise result---res: " + text);
+      }).catch((err) => {
+          console.error("getForward promise err: " + err.msg);
+      });
+  }
   ```
 
 ### getBackward
@@ -571,12 +575,14 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  var length = 1;
-  await TextInputClient.getBackward(length).then((text) => {
-      console.info("getBackward promise result---res: " + text);
-  }).catch((err) => {
-      console.error("getBackward promise err: " + err.msg);
-  });
+  async function InputMethodEngine() {
+      var length = 1;
+      await TextInputClient.getBackward(length).then((text) => {
+          console.info("getBackward promise result---res: " + text);
+      }).catch((err) => {
+          console.error("getBackward promise err: " + err.msg);
+      });
+  }
   ```
 
 ### deleteForward
@@ -633,16 +639,18 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-var length = 1;
-await TextInputClient.deleteForward(length).then((result) => {
-    if (result) {
-        console.info("Success to deleteForward.(promise) ");
-    } else {
-        console.error("Failed to deleteForward.(promise) ");
-    }
-}).catch((err) => {
-    console.error("deleteForward promise err: " + err.msg);
-});
+async function InputMethodEngine() {
+    var length = 1;
+    await TextInputClient.deleteForward(length).then((result) => {
+        if (result) {
+            console.info("Success to deleteForward.(promise) ");
+        } else {
+            console.error("Failed to deleteForward.(promise) ");
+        }
+    }).catch((err) => {
+        console.error("deleteForward promise err: " + err.msg);
+    });
+}
 ```
 
 ### deleteBackward
@@ -699,16 +707,18 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-var length = 1;
-await TextInputClient.deleteBackward(length).then((result) => {
-    if (result) {
-        console.info("Success to deleteBackward.(promise) ");
-    } else {
-        console.error("Failed to deleteBackward.(promise) ");
-    }
-}).catch((err) => {
-    console.error("deleteBackward promise err: " + err.msg);
-});
+async function InputMethodEngine() {
+    var length = 1;
+    await TextInputClient.deleteBackward(length).then((result) => {
+        if (result) {
+            console.info("Success to deleteBackward.(promise) ");
+        } else {
+            console.error("Failed to deleteBackward.(promise) ");
+        }
+    }).catch((err) => {
+        console.error("deleteBackward promise err: " + err.msg);
+    });
+}
 ```
 ### sendKeyFunction
 
@@ -764,15 +774,17 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  await client.sendKeyFunction(keyFunction).then((result) => {
-      if (result) {
-          console.info("Success to sendKeyFunction.(promise) ");
-      } else {
-          console.error("Failed to sendKeyFunction.(promise) ");
-      }
-  }).catch((err) => {
-      console.error("sendKeyFunction promise err:" + err.msg);
-  });
+  async function InputMethodEngine() {
+      await client.sendKeyFunction(keyFunction).then((result) => {
+          if (result) {
+              console.info("Success to sendKeyFunction.(promise) ");
+          } else {
+              console.error("Failed to sendKeyFunction.(promise) ");
+          }
+      }).catch((err) => {
+          console.error("sendKeyFunction promise err:" + err.msg);
+      });
+  }
   ```
 
 ### insertText
@@ -829,15 +841,17 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  await TextInputClient.insertText('test').then((result) => {
-      if (result) {
-          console.info("Success to insertText.(promise) ");
-      } else {
-          console.error("Failed to insertText.(promise) ");
-      }
-  }).catch((err) => {
-      console.error("insertText promise err: " + err.msg);
-  });
+  async function InputMethodEngine() {
+      await TextInputClient.insertText('test').then((result) => {
+          if (result) {
+              console.info("Success to insertText.(promise) ");
+          } else {
+              console.error("Failed to insertText.(promise) ");
+          }
+      }).catch((err) => {
+          console.error("insertText promise err: " + err.msg);
+      });
+  }
   ```
 
 ### getEditorAttribute
@@ -884,12 +898,14 @@ getEditorAttribute(): Promise<EditorAttribute>
 **示例：**
 
    ```js
-   await TextInputClient.getEditorAttribute().then((editorAttribute) => {
-       console.info("editorAttribute.inputPattern(promise): " + JSON.stringify(editorAttribute.inputPattern));
-       console.info("editorAttribute.enterKeyType(promise): " + JSON.stringify(editorAttribute.enterKeyType));
-   }).catch((err) => {
-       console.error("getEditorAttribute promise err: " + err.msg);
-   });
+   async function InputMethodEngine() {
+       await TextInputClient.getEditorAttribute().then((editorAttribute) => {
+           console.info("editorAttribute.inputPattern(promise): " + JSON.stringify(editorAttribute.inputPattern));
+           console.info("editorAttribute.enterKeyType(promise): " + JSON.stringify(editorAttribute.enterKeyType));
+       }).catch((err) => {
+           console.error("getEditorAttribute promise err: " + err.msg);
+       });
+   }
    ```
 
 ## EditorAttribute<a name="EditorAttribute"></a>
