@@ -30,10 +30,10 @@ Web(options: { src: string, controller?: WebController })
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -64,11 +64,11 @@ domStorageAccess(domStorageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .domStorageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .domStorageAccess(true)
       }
     }
   }
@@ -95,7 +95,7 @@ fileAccess(fileAccess: boolean)
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
-        .fileAccess(true)
+          .fileAccess(true)
       }
     }
   }
@@ -118,11 +118,11 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .fileFromUrlAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .fileFromUrlAccess(true)
       }
     }
   }
@@ -145,11 +145,11 @@ imageAccess(imageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .imageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .imageAccess(true)
       }
     }
   }
@@ -175,7 +175,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     testObj = {
       test: (data1, data2, data3) => {
         console.log("data1:" + data1);
@@ -189,13 +189,13 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
     }
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .javaScriptAccess(true)
-        .javaScriptProxy({
-          object: this.testObj,
-          name: "objName",
-          methodList: ["test", "toString"],
-          controller: this.controller,
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          .javaScriptProxy({
+            object: this.testObj,
+            name: "objName",
+            methodList: ["test", "toString"],
+            controller: this.controller,
         })
       }
     }
@@ -219,11 +219,11 @@ javaScriptAccess(javaScriptAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .javaScriptAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
       }
     }
   }
@@ -246,12 +246,12 @@ mixedMode(mixedMode: MixedMode)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State mode:MixedMode = MixedMode.All;
+    controller: WebController = new WebController();
+    @State mode: MixedMode = MixedMode.All;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .mixedMode(this.mode)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mixedMode(this.mode)
       }
     }
   }
@@ -274,11 +274,11 @@ onlineImageAccess(onlineImageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onlineImageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onlineImageAccess(true)
       }
     }
   }
@@ -301,11 +301,11 @@ zoomAccess(zoomAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .zoomAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .zoomAccess(true)
       }
     }
   }
@@ -328,11 +328,11 @@ overviewModeAccess(overviewModeAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .overviewModeAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .overviewModeAccess(true)
       }
     }
   }
@@ -355,11 +355,11 @@ databaseAccess(databaseAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .databaseAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .databaseAccess(true)
       }
     }
   }
@@ -382,11 +382,11 @@ geolocationAccess(geolocationAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .geolocationAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .geolocationAccess(true)
       }
     }
   }
@@ -409,12 +409,12 @@ cacheMode(cacheMode: CacheMode)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State mode:CacheMode = CacheMode.None;
+    controller: WebController = new WebController();
+    @State mode: CacheMode = CacheMode.None;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .cacheMode(this.mode)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .cacheMode(this.mode)
       }
     }
   }
@@ -437,12 +437,12 @@ textZoomRatio(textZoomRatio: number)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State atio:number = 150;
+    controller: WebController = new WebController();
+    @State atio: number = 150;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .textZoomRatio(this.atio)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomRatio(this.atio)
       }
     }
   }
@@ -465,12 +465,12 @@ userAgent(userAgent: string)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .userAgent(this.userAgent)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .userAgent(this.userAgent)
       }
     }
   }
@@ -508,10 +508,10 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onAlert((event) => {
             AlertDialog.show({
               title: 'title',
