@@ -203,9 +203,9 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | subsystem | 产品选择的子系统，应为OS支持的子系统。子系统定义请见build/lite/components目录下的各子系统描述文件。 | 
    | components | 产品选择的某个子系统下的组件，子系统支持的组件详见build/lite/components/{子系统}.json文件。 | 
    | features | 产品配置的某个组件的特性，详见子系统源码目录对应的BUILD.gn文件。 | 
-   | vendor_adapter_dir | 适配IOT外设，UtilsFile文件读写能力，一般指向device下目录。使用详见[添加适配文件。](porting-minichip-subsys-files.md#li10690805819) | 
+   | vendor_adapter_dir | 适配IOT外设，UtilsFile文件读写能力，一般指向device下目录。使用详见[文件子系统移植实例步骤2。](porting-minichip-subsys-files.md#移植实例) | 
    | third_party_dir | 芯片厂自身三方软件目录，例如mbedtls，lwip等。如果使用OpenHarmony提供的三方软件，可暂时设空，也可参考hispark_pegasus的配置&nbsp;。 | 
-   | product_adapter_dir | 适配hal_token以及系统参数，一般指向vendor下目录。使用详见[添加适配文件。](porting-minichip-subsys-boot.md#li897819445711) | 
+   | product_adapter_dir | 适配hal_token以及系统参数，一般指向vendor下目录。使用详见[启动恢复子系统移植实例步骤1。](porting-minichip-subsys-boot.md#移植实例) | 
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 1. 编译构建系统会对字段进行有效性检查，其中：
