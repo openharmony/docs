@@ -198,7 +198,7 @@
     import data_rdb from '@ohos.data.rdb'
 
     const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-    const STORE_CONFIG = {name: "rdbstore.db",}
+    const STORE_CONFIG = {name: "rdbstore.db"}
     data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
         rdbStore.executeSql(CREATE_TABLE_TEST)
         console.info('create table done.')
