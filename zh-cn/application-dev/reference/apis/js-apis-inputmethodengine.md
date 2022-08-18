@@ -538,6 +538,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
+  var length = 1;
   TextInputClient.getBackward(length, (err, text) => {
       if (err == undefined) {
           console.error("getBackward callback result---err: " + err.msg);
@@ -570,6 +571,7 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
   ```js
+  var length = 1;
   await TextInputClient.getBackward(length).then((text) => {
       console.info("getBackward promise result---res: " + text);
   }).catch((err) => {
@@ -595,6 +597,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
+  var length = 1;
   TextInputClient.deleteForward(length, (err, result) => {
       if (err == undefined) {
           console.error('deleteForward callback result---err: ' + err.msg);
@@ -630,6 +633,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
+var length = 1;
 await TextInputClient.deleteForward(length).then((result) => {
     if (result) {
         console.info("Success to deleteForward.(promise) ");
@@ -659,6 +663,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
   **示例：**
 
 ```js
+var length = 1;
 TextInputClient.deleteBackward(length, (err, result) => {
     if (err == undefined) {
         console.error("deleteBackward callback result---err: " + err.msg);
@@ -694,6 +699,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
+var length = 1;
 await TextInputClient.deleteBackward(length).then((result) => {
     if (result) {
         console.info("Success to deleteBackward.(promise) ");
