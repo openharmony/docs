@@ -2175,7 +2175,7 @@ Opens a file stream based on the file path. This API uses a promise to return th
 
   | Type                               | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | Promise used to return the result.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -2202,7 +2202,7 @@ Opens a file stream based on the file path. This API uses an asynchronous callba
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                  | Yes  | Application sandbox path of the file.                                  |
 | mode     | string                                  | Yes  | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-| callback | AsyncCallback&lt;[Stream](#stream7)&gt; | Yes  | Callback invoked when the stream is open asynchronously.                                  |
+| callback | AsyncCallback&lt;[Stream](#stream)&gt; | Yes  | Callback invoked when the stream is open asynchronously.                                  |
 
 **Example**
 
@@ -2232,7 +2232,7 @@ Synchronously opens a stream based on the file path.
 
   | Type               | Description       |
   | ------------------ | --------- |
-  | [Stream](#stream7) | Stream opened.|
+  | [Stream](#stream) | Stream opened.|
 
 **Example**
 
@@ -2260,7 +2260,7 @@ Opens a file stream based on the file descriptor. This API uses a promise to ret
 
   | Type                              | Description       |
   | --------------------------------- | --------- |
-  | Promise&lt;[Stream](#stream7)&gt; | Promise used to return the result.|
+  | Promise&lt;[Stream](#stream)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -2288,7 +2288,7 @@ Opens a file stream based on the file descriptor. This API uses an asynchronous 
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | Yes   | File descriptor of the target file.                            |
   | mode     | string                                   | Yes   | -&nbsp;**r**: Open a file for reading. The file must exist.<br>-&nbsp;**r+**: Open a file for both reading and writing. The file must exist.<br>-&nbsp;**w**: Open a file for writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**w+**: Open a file for both reading and writing. If the file exists, clear its content. If the file does not exist, create a file.<br>-&nbsp;**a**: Open a file in append mode for writing at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).<br>-&nbsp;**a+**: Open a file in append mode for reading or updating at the end of the file. If the file does not exist, create a file. If the file exists, write data to the end of the file (the original content of the file is reserved).|
-  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream7)&gt;  | Yes   | Callback invoked when the stream is open asynchronously.                           |
+  | callback | AsyncCallback&nbsp;&lt;[Stream](#stream)&gt; | Yes   | Callback invoked when the stream is open asynchronously.                           |
 
 **Example**
 
@@ -2319,7 +2319,7 @@ Synchronously opens a stream based on the file descriptor.
 
   | Type               | Description       |
   | ------------------ | --------- |
-  | [Stream](#stream7) | Stream opened.|
+  | [Stream](#stream) | Stream opened.|
 
 **Example**
 
