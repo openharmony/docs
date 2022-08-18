@@ -2447,22 +2447,19 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 **示例：**
 
 ```js
-export class KvstoreModel {
-    kvmanager;
-    kvStore;
-
-    constructor() {}
+let kvStore;
+class KvstoreModel {
     call(data) {
         console.log("dataChange: " + data);
     }
     subscribeDataChange() {
-        if (this.kvStore != null) {
-            this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
         }
     }
     unsubscribeDataChange() {
-        if (this.kvStore != null) {
-            this.kvStore.off('dataChange', this.call);
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
         }
     }
 }
@@ -2486,22 +2483,19 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 **示例：**
 
 ```js
-export class KvstoreModel {
-    kvmanager;
-    kvStore;
-
-    constructor() {}
+let kvStore;
+class KvstoreModel {
     call(data) {
         console.log("syncComplete: " + data);
     }
     subscribeSyncComplete() {
-        if (this.kvStore != null) {
-            this.kvStore.on('syncComplete', this.call);
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
         }
     }
     unsubscribeSyncComplete() {
-        if (this.kvStore != null) {
-            this.kvStore.off('syncComplete', this.call);
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
         }
     }
 }
@@ -4118,22 +4112,19 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 **示例：**
 
 ```js
-export class KvstoreModel {
-    kvmanager;
-    kvStore;
-
-    constructor() {}
+let kvStore;
+class KvstoreModel {
     call(data) {
         console.log("syncComplete: " + data);
     }
     subscribeSyncComplete() {
-        if (this.kvStore != null) {
-            this.kvStore.on('syncComplete', this.call);
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
         }
     }
     unsubscribeSyncComplete() {
-        if (this.kvStore != null) {
-            this.kvStore.off('syncComplete', this.call);
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
         }
     }
 }
@@ -4183,22 +4174,19 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 **示例：**
 
 ```js
-export class KvstoreModel {
-    kvmanager;
-    kvStore;
-
-    constructor() {}
+let kvStore;
+class KvstoreModel {
     call(data) {
         console.log("dataChange: " + data);
     }
     subscribeDataChange() {
-        if (this.kvStore != null) {
-            this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
         }
     }
     unsubscribeDataChange() {
-        if (this.kvStore != null) {
-            this.kvStore.off('dataChange', this.call);
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
         }
     }
 }
@@ -5634,22 +5622,19 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 **示例：**
 
 ```js
-export class KvstoreModel {
-    kvmanager;
-    kvStore;
-
-    constructor() {}
+let kvStore;
+class KvstoreModel {
     call(data) {
         console.log("syncComplete: " + data);
     }
     subscribeSyncComplete() {
-        if (this.kvStore != null) {
-            this.kvStore.on('syncComplete', this.call);
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
         }
     }
     unsubscribeSyncComplete() {
-        if (this.kvStore != null) {
-            this.kvStore.off('syncComplete', this.call);
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
         }
     }
 }
@@ -5699,22 +5684,19 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 **示例：**
 
 ```js
-export class KvstoreModel {
-    kvmanager;
-    kvStore;
-
-    constructor() {}
+let kvStore;
+class KvstoreModel {
     call(data) {
         console.log("dataChange: " + data);
     }
     subscribeDataChange() {
-        if (this.kvStore != null) {
-            this.kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
         }
     }
     unsubscribeDataChange() {
-        if (this.kvStore != null) {
-            this.kvStore.off('dataChange', this.call);
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
         }
     }
 }
