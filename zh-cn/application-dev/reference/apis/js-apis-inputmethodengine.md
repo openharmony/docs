@@ -118,7 +118,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
-取消订阅输入法绑定成功事件。参数个数不为1或2抛出异常，若为1，参数不为napi_string抛出异常，若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听，参数若为2，取消此类型当前监听。
+取消订阅输入法绑定成功事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -169,7 +169,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。参数个数不为1或2抛出异常，若为1，参数不为napi_string抛出异常，若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听，参数若为2，取消此类型当前监听。
+取消订阅输入法事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -232,7 +232,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
-取消订阅硬键盘事件。参数个数不为1或2抛出异常，若为1，参数不为napi_string抛出异常，若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听，参数若为2，取消此类型当前监听。
+取消订阅硬键盘事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -260,7 +260,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void
 
-订阅光标变化事件，使用callback回调返回光标信息。使用callback回调返回光标信息，使用callback回调返回按键信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅光标变化事件，使用callback回调返回光标信息。使用callback回调返回光标信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
   **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -287,7 +287,7 @@ KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
 
 off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number) => void): void
 
-取消订阅光标变化事件。参数个数不为1或2抛出异常，若为1，参数不为napi_string抛出异常，若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听，参数若为2，取消此类型当前监听。
+取消订阅光标变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -310,7 +310,7 @@ KeyboardDelegate.off('cursorContextChange', (x, y, height) => {
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-订阅文本选择变化事件，使用callback回调返回文本选择信息，使用callback回调返回按键信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅文本选择变化事件，使用callback回调返回文本选择信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -336,7 +336,7 @@ KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
 
 off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-取消订阅文本选择变化事件。参数个数不为1或2抛出异常，若为1，参数不为napi_string抛出异常，若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听，参数若为2，取消此类型当前监听。
+取消订阅文本选择变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -360,7 +360,7 @@ KeyboardDelegate.off('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => 
 
 on(type: 'textChange', callback: (text: string) => void): void
 
-订阅文本变化事件，使用callback回调返回当前文本内容，使用callback回调返回按键信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅文本变化事件，使用callback回调返回当前文本内容。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -383,7 +383,7 @@ KeyboardDelegate.on('textChange', (text) => {
 
 off(type: 'textChange', callback?: (text: string) => void): void
 
-取消订阅文本变化事件。参数个数不为1或2抛出异常，若为1，参数不为napi_string抛出异常，若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听，参数若为2，取消此类型当前监听。
+取消订阅文本变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -467,7 +467,7 @@ async function InputMethodEngine() {
 
 getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否侧抛出异常。
+获取光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -495,7 +495,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 getForward(length:number): Promise&lt;string&gt;
 
-获取光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否侧抛出异常。
+获取光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -528,7 +528,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否侧抛出异常。
+获取光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -556,7 +556,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 getBackward(length:number): Promise&lt;string&gt;
 
-获取光标后固定长度的文本。使用promise形式返回结果。参数个数为1，否侧抛出异常。
+获取光标后固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -589,7 +589,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否侧抛出异常。
+删除光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -620,7 +620,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 deleteForward(length:number): Promise&lt;boolean&gt;
 
-删除光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否侧抛出异常。
+删除光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -657,7 +657,7 @@ async function InputMethodEngine() {
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否侧抛出异常。
+删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -689,7 +689,7 @@ TextInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否侧抛出异常。
+删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -724,7 +724,7 @@ async function InputMethodEngine() {
 
 sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-发送功能键。使用callback形式返回结果。参数个数为2，否侧抛出异常。
+发送功能键。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -755,7 +755,7 @@ TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
 
 sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
-发送功能键。使用promise形式返回结果。参数个数为1，否侧抛出异常。
+发送功能键。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -791,7 +791,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
-插入文本。使用callback形式返回结果。参数个数为2，否侧抛出异常。
+插入文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -822,7 +822,7 @@ TextInputClient.insertText('test', (err, result) => {
 
 insertText(text:string): Promise&lt;boolean&gt;
 
-插入文本。使用promise形式返回结果。参数个数为1，否侧抛出异常。
+插入文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -858,7 +858,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
-获取编辑框属性值。使用callback形式返回结果。参数个数为1，否侧抛出异常。
+获取编辑框属性值。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -885,7 +885,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 getEditorAttribute(): Promise<EditorAttribute>
 
-获取编辑框属性值。使用promise形式返回结果。参数个数为0，否侧抛出异常。
+获取编辑框属性值。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
