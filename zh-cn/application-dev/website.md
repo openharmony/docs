@@ -107,6 +107,7 @@
         - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
+      - [性能提升的推荐方法](ui/ts-performance-improvement-recommendation.md)
     - 基于JS扩展的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
@@ -819,7 +820,7 @@
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime (设置系统时间)](reference/apis/js-apis-system-time.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
-      - [@ohos.systemTimer(设置系统时间)](js-apis-system-timer.md)
+      - [@ohos.systemTimer(设置系统时间)](reference/apis/js-apis-system-timer.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
     - 设备管理
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
