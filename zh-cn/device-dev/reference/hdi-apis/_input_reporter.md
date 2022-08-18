@@ -15,9 +15,9 @@
 
   | Public&nbsp;属性 | 描述 | 
 | -------- | -------- |
-| (&nbsp;[RegisterReportCallback](#registerreportcallback)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputHostCb](_input_report_event_cb.md)&nbsp;\*callback) | 注册对应设备的回调函数。&nbsp;[更多...](#registerreportcallback) | 
+| (&nbsp;[RegisterReportCallback](#registerreportcallback)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputEventCb](_input_report_event_cb.md)&nbsp;\*callback) | 注册对应设备的回调函数。&nbsp;[更多...](#registerreportcallback) | 
 | (&nbsp;[UnregisterReportCallback](#unregisterreportcallback)&nbsp;)(uint32_t&nbsp;devIndex) | 注销对应设备的回调函数。&nbsp;[更多...](#unregisterreportcallback) | 
-| (&nbsp;[RegisterHotPlugCallback](#registerhotplugcallback)&nbsp;)([InputHostCb](_input_report_event_cb.md)&nbsp;\*callback) | 注册Input设备的热插拔回调函数。&nbsp;[更多...](#registerhotplugcallback) | 
+| (&nbsp;[RegisterHotPlugCallback](#registerhotplugcallback)&nbsp;)([InputHostCb](_input_host_cb.md)&nbsp;\*callback) | 注册Input设备的热插拔回调函数。&nbsp;[更多...](#registerhotplugcallback) | 
 | (&nbsp;[UnregisterHotPlugCallback](#unregisterhotplugcallback)&nbsp;)(void) | 注销Input设备的热插拔回调函数。&nbsp;[更多...](#unregisterhotplugcallback) | 
 
 
@@ -34,7 +34,7 @@
 ### RegisterHotPlugCallback
 
   
-```
+```cpp
 int32_t(* InputReporter::RegisterHotPlugCallback) (InputHostCb *callback)
 ```
 
@@ -60,7 +60,7 @@ INPUT_SUCCESS 表示执行成功。
 ### RegisterReportCallback
 
   
-```
+```cpp
 int32_t(* InputReporter::RegisterReportCallback) (uint32_t devIndex, InputEventCb *callback)
 ```
 
@@ -87,7 +87,7 @@ INPUT_SUCCESS 表示执行成功。
 ### UnregisterHotPlugCallback
 
   
-```
+```cpp
 int32_t(* InputReporter::UnregisterHotPlugCallback) (void)
 ```
 
@@ -105,7 +105,7 @@ INPUT_SUCCESS 表示执行成功。
 ### UnregisterReportCallback
 
   
-```
+```cpp
 int32_t(* InputReporter::UnregisterReportCallback) (uint32_t devIndex)
 ```
 
