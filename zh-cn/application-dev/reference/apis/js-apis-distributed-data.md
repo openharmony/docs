@@ -2406,9 +2406,9 @@ try {
         } else {
             console.info("backup data : " + data);
         }
-	});
+    });
 } catch (e) {
-	console.log("An unexpected error occurred. Error : " + e);
+    console.log("An unexpected error occurred. Error : " + e);
 }
 
 ```
@@ -2439,13 +2439,13 @@ backup(file:string): Promise&lt;void&gt;
 let kvStore;
 let file = "BK001";
 try {
-	kvStore.backup(file).then((data) => {
+    kvStore.backup(file).then((data) => {
         console.info("backup data : " + data);
     }).catch((err) => {
         console.info("backup err : " + err);
     });
 } catch (e) {
-	console.log("An unexpected error occurred. Error : " + e);
+    console.log("An unexpected error occurred. Error : " + e);
 }
 
 ```
