@@ -26,7 +26,7 @@
 
 提供Input设备管理相关的接口。
 
-此类接口包Input设备的扫描、打开和关闭、特定设备信息查询，以及所有设备列表信息获取等接口。
+此类接口包含Input设备的扫描、打开和关闭、特定设备信息查询，以及所有设备列表信息获取等。
 
 
 ## **类成员变量说明**
@@ -35,7 +35,7 @@
 ### CloseInputDevice
 
   
-```
+```cpp
 int32_t(* InputManager::CloseInputDevice) (uint32_t devIndex)
 ```
 
@@ -59,7 +59,7 @@ INPUT_SUCCESS 表示执行成功。
 ### GetInputDevice
 
   
-```
+```cpp
 int32_t(* InputManager::GetInputDevice) (uint32_t devIndex, InputDeviceInfo **devInfo)
 ```
 
@@ -84,7 +84,7 @@ INPUT_SUCCESS 表示执行成功。
 ### GetInputDeviceList
 
   
-```
+```cpp
 int32_t(* InputManager::GetInputDeviceList) (uint32_t *devNum, InputDeviceInfo **devList, uint32_t size)
 ```
 
@@ -110,7 +110,7 @@ INPUT_SUCCESS 表示执行成功。
 ### OpenInputDevice
 
   
-```
+```cpp
 int32_t(* InputManager::OpenInputDevice) (uint32_t devIndex)
 ```
 
@@ -134,7 +134,7 @@ INPUT_SUCCESS 表示执行成功。
 ### ScanInputDevice
 
   
-```
+```cpp
 int32_t(* InputManager::ScanInputDevice) (InputDevDesc *staArr, uint32_t arrLen)
 ```
 
