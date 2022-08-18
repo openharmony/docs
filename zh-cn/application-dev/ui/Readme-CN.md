@@ -143,3 +143,4 @@
         - [构建食物列表List布局](ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
+    - [性能提升的推荐方案](ts-performance-improvement-recommendation.md)
