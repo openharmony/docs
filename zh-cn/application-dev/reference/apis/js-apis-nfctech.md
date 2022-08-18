@@ -93,7 +93,7 @@ getRespAppData(): number[]
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| number[]  | NfcB 标签的Resp数据。 |
+| number[]  | NfcB 标签的应用程序数据。 |
 
 **示例：**
 
@@ -153,7 +153,7 @@ getSystemCode(): number[]
 
 | **类型** | **说明**                            |
 | ------------------ | --------------------------|
-| number[]  | NfcF 标签的协议信息。|
+| number[]  | NfcF 标签的系统代码。|
 
 **示例：**
 
@@ -727,7 +727,7 @@ tag.NdefTag(taginfo).canSetReadOnly().then(function (has) {
 
 ### NdefTag.canSetReadOnly<sup>9+</sup>
 
-isNdefWritable(callback: AsyncCallback&lt;boolean&gt;): void;
+canSetReadOnly(callback: AsyncCallback&lt;boolean&gt;): void;
 
 检查ndef标签是否可以设置为只读，使用callback方式作为异步方法。
 
@@ -784,7 +784,7 @@ tag.NdefTag(taginfo).setReadOnly().then(function (errcode) {
 
 setReadOnly(callback: AsyncCallback<number>): void
 
-检查ndef标签是否可以设置为只读，使用callback方式作为异步方法。
+将Ndef标签设置为只读，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.NFC_TAG
 
