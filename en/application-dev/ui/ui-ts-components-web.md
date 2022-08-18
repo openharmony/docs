@@ -1,12 +1,12 @@
 # Web
 
-The **\<Web>** component can be used to display web pages. For details, see [Web API](../reference/arkui-ts/ts-basic-components-web.md).
+The **\<Web>** component can be used to display web pages. For details, see [Web](../reference/arkui-ts/ts-basic-components-web.md).
 
 ## Creating a Component
 
 Create a **\<Web>** component in the .ets file under **main/ets/MainAbility/pages**. Then, in the created component, use **src** to specify the web page URI to be referenced, and bind a controller to the component to call the component APIs.
 
-  ```
+  ```ts
   // xxx.ets
   @Entry
   @Component
@@ -24,7 +24,7 @@ Create a **\<Web>** component in the .ets file under **main/ets/MainAbility/page
 
 When using the **\<Web>** component, you need to specify the styles and attributes. The sample code is as follows.
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -52,7 +52,7 @@ struct WebComponent {
 
 Add the **onProgressChange** event for the **\<Web>** component, which is triggered when the loading progress changes and returns the progress value in its callback. Assign the progress value to the **\<Progress>** component to control the status of the component. When the progress reaches 100%, the **\<Progress>** component is hidden, and the web page loading is complete.
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -91,7 +91,7 @@ struct WebComponent {
 ```
 Add the **runJavaScript** method to the **onPageEnd** event. The **onPageEnd** event is triggered when the web page finishes loading. In this case, the **runJavaScript** method can be used to execute JavaScript scripts in the HTML file. In the sample code below, when the web page finishes loading, the **onPageEnd** event is triggered to call the **test** method in the HTML file and print information on the console.
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -136,7 +136,7 @@ struct WebComponent {
 
 Create an HTML file in **main/resources/rawfile**.
 
-```
+```html
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
@@ -155,7 +155,7 @@ Create an HTML file in **main/resources/rawfile**.
 
 In this example, you'll implement a **\<Web>** component where videos can be played dynamically. Embed a video resource into an HTML page, and then use the **\<Web>** component controller to invoke the **onActive** and **onInactive** methods to activate and pause page rendering, respectively. Upon clicking of the **onInactive** button, the **\<Web>** component stops rendering and the video playback pauses. Upon clicking of the **onActive** button, the **\<Web>** component is activated and the video playback resumes.
 
-  ```
+  ```ts
   // xxx.ets
 @Entry
 @Component
@@ -180,7 +180,7 @@ struct WebComponent {
 }
   ```
 
-  ```
+  ```html
   <!-- index.html -->
   <!DOCTYPE html>
   <html>

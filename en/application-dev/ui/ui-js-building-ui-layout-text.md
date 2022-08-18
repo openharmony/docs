@@ -4,8 +4,7 @@
 The &lt;text&gt; component is most commonly used to display text in title and paragraph areas. You can set attributes and styles for a &lt;text&gt; component and add the text to be displayed between the &lt;text&gt; and &lt;/text&gt; tags. For details about the attributes and styles, see [text](../reference/arkui-js/js-components-basic-text.md). The following is an example of adding title and paragraph text on a page:
 
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text class="title-text">{{headTitle}}</text>
@@ -15,8 +14,7 @@ The &lt;text&gt; component is most commonly used to display text in title and pa
 ```
 
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -37,8 +35,7 @@ The &lt;text&gt; component is most commonly used to display text in title and pa
 ```
 
 
-
-```
+```js
 // xxx.js
 export default {
   data: {
