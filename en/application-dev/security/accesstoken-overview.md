@@ -12,9 +12,9 @@ App permissions are used to protect the following objects:
 
 Without the required permissions, an app cannot access or perform operations on the target object. Permissions must be clearly defined for apps. With well-defined app permissions, the system can standardize the behavior of apps and protect user privacy. Before an app accesses the target object, the target object verifies the app's permissions and denies the access if the app does not have required permissions.
 
-Currently, ATM performs app permission verification based on the token identity (Token ID). A token ID identifies an app. The ATM manages app permissions based on the app's token ID.
+Currently, ATM verifies app permissions based on the token identity (Token ID). A token ID identifies an app. The ATM manages app permissions based on the app's token ID.
 
-## How to Develop
+## Permission Workflow
 
 Determine the permissions required for an app to access data or perform an operation. Declare the required permissions in the app installation package.
 
@@ -22,13 +22,13 @@ Determine whether the required permissions need to be authorized by users. If ye
 
 After the user grants permissions to the app, the app can access the data or perform the operation.
 
-The figure below shows the process.
+The figure below shows the permission workflow.
 
 ![](figures/figure1.png)
 
 ## When to Use
 
-### Scenarios
+### Example Scenarios
 
 The following describes two common scenarios.
 
@@ -62,7 +62,7 @@ Observe the following principles for permission management:
 
 To protect user privacy, ATM defines different permission levels based on the sensitivity of the data involved or the security threat of the ability.
 
-### App APL
+### App APLs
 
 The ability privilege level (APL) defines the priority of the app permission requested. Apps of different APLs can apply for permissions of different levels.
 
@@ -76,9 +76,9 @@ The table below describes the APLs.
 
 By default, apps are of the normal APL.
 
-For the app of the system_basic or system_core APL, declare the app APL level in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+For the app of the system_basic or system_core APL, declare the app APL in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
 
-### Permission Levels
+### Levels of Permissions
 
 The permissions open to apps vary with the permission level. The permission levels include the following in ascending order of seniority.
 
@@ -121,11 +121,11 @@ If the permission required by an app has higher level than the app's APL, you ca
 
 In addition to the preceding [authorization processes](#authorization-processes), you must declare the ACL.
 
-In other words, in addition to declaring the required permissions in the **config.json** file, you must declare the high-level permissions in the app's [profile](accesstoken-guidelines.md#declaring-the-acl). The subsequent steps of authorization are the same.
+In other words, in addition to declaring the required permissions in the **config.json** file, you must [declare the ACL](accesstoken-guidelines.md#declaring-the-acl) in the app's profile. The subsequent steps of authorization are the same.
 
-**NOTE**
+**NOTICE**
 
-Declare the target ACL in the **acl** field of the app's profile in the app installation package, and generate a certificate using the profile signing tool. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+Declare the target ACL in the **acls** field of the app's profile in the app installation package, and generate a certificate using the profile signing tool. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
 
 ## Permission Authorization Modes
 
@@ -149,9 +149,7 @@ Permissions can be classified into the following types based on the authorizatio
 
 ### Authorization Processes
 
-The process for an app obtaining the required permissions varies
-
-depending on the permission authorization mode.
+The process for an app obtaining the required permissions varies depending on the permission authorization mode.
 
 - For a system_grant permission, you need to [declare the permission](accesstoken-guidelines.md) in the **config.json** file. The permission will be pre-granted when the app is installed.
 
@@ -165,7 +163,7 @@ The procedure is as follows:
 
 2. Associate the object that requires the permissions in the app with the target permissions. In this way, the user knows the operations to be granted with the specified permissions.
 
-3. Check whether the user has granted the required permissions to the app when the app is running. If yes, the app can access the data or perform the operation. If the user has not granted the permissions to the app, display a dialog box requesting the user authorization when the app attempts to access the data or perform the operation.
+3. Check whether the user has granted the required permissions to the app when the app is running. If yes, the app can access the data or perform the operation. If the user has not granted the permissions to the app, display a dialog box requesting the user authorization when the app attempts to access the data.
 
 4. Check the user authorization result. Allow the next step only after the user has granted the permissions to the app.
 
