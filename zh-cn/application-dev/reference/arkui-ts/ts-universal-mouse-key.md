@@ -26,27 +26,8 @@
 | screenY   | number                          | 点击触点相对于屏幕左上角的y轴坐标。   |
 | x         | number                          | 点击触点相对于当前组件左上角的x轴坐标。 |
 | y         | number                          | 点击触点相对于当前组件左上角的y轴坐标。 |
-| button    | [MouseButton](#mousebutton类型说明) | 鼠标按键。                |
-| action    | [MouseAction](#mouseaction类型说明) | 事件动作。                |
-
-
-## MouseButton类型说明
-| 属性名称    | 属性类型   | 描述       |
-| ------- | ------ | -------- |
-| Left    | number | 鼠标左键。    |
-| Right   | number | 鼠标右键。    |
-| Middle  | number | 鼠标中键。    |
-| Back    | number | 鼠标左侧后退键。 |
-| Forward | number | 鼠标左侧前进键。 |
-| None    | number | 无按键。     |
-
-## MouseAction类型说明
-| 属性名称    | 属性类型   | 描述      |
-| ------- | ------ | ------- |
-| Press   | number | 鼠标按键按下。 |
-| Release | number | 鼠标按键松开。 |
-| Move    | number | 鼠标移动。   |
-
+| button    | [MouseButton](ts-appendix-enums.md#mousebutton) | 鼠标按键。                |
+| action    | [MouseAction](ts-appendix-enums.md#mouseaction) | 事件动作。                |
 
 ## 示例
 
