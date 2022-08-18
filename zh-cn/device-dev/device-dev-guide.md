@@ -54,5 +54,4 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 | 进阶开发 | 结合系统能力开发智能设备 | -&nbsp;[时钟应用开发指导](guide/device-clock-guide.md)<br/>-&nbsp;[平台驱动开发示例](guide/device-driver-demo.md)<br/>-&nbsp;[外设驱动开发示例](guide/device-outerdriver-demo.md) |
 | 移植适配 | -&nbsp;针对特定芯片做移植适配 <br/>-&nbsp;快速移植OpenHarmony&nbsp;Linux内核的方法| -&nbsp;[标准系统芯片移植指导](porting/standard-system-porting-guide.md)<br/>-&nbsp;[一种快速移植OpenHarmony&nbsp;Linux内核的方法](porting/porting-linux-kernel.md)  |
 | 贡献组件 | 为OpenHarmony贡献功能组件 | -&nbsp;[HPM&nbsp;Part&nbsp;介绍](hpm-part/hpm-part-about.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;开发指导](hpm-part/hpm-part-development.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;参考](hpm-part/hpm-part-reference.md) |
-| 参考 | 为开发者提供常见的问题解答和HDI接口参考   | -&nbsp;[常见问题](faqs/faqs-overview.md)<br/>-&nbsp;[HDI接口参考](reference/hdi-apis/Readme-CN.md)        
- |
+| 参考 | 为开发者提供常见的问题解答和HDI接口参考   | -&nbsp;[常见问题](faqs/faqs-overview.md)<br/>-&nbsp;[HDI接口参考](reference/hdi-apis/Readme-CN.md)        |
