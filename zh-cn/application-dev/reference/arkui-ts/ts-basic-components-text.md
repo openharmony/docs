@@ -31,49 +31,17 @@ Text(content?: ResourceStr)
 
 | 名称             | 参数类型                                     | 默认值                                      | 描述                                       |
 | -------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| textAlign      | TextAlign                                | TextAlign.Start                          | 设置多行文本的文本对齐方式。                           |
-| textOverflow   | {overflow:&nbsp;TextOverflow}            | {overflow:&nbsp;TextOverflow.Clip}       | 设置文本超长时的显示方式。<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。 |
+| textAlign      | [TextAlign](ts-appendix-enums.md#textalign)       | TextAlign.Start                          | 设置多行文本的文本对齐方式。                           |
+| textOverflow   | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)}            | {overflow:&nbsp;TextOverflow.Clip}       | 设置文本超长时的显示方式。<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。 |
 | maxLines       | number                                   | Infinity                                 | 设置文本的最大行数。                               |
 | lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)  | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
-| decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
+| decoration     | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
 | baselineOffset | [Length](../../ui/ts-types.md)         | -         | 设置文本基线的偏移量。                              |
-| textCase       | TextCase                                 | TextCase.Normal                          | 设置文本大小写。                                 |
 | letterSpacing       | [Length](../../ui/ts-types.md)                 | -                          | 设置文本字符间距。                                 |
 | minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最小显示字号。                                 |
 | maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最大显示字号。                                 |
+| textCase       | [TextCase](ts-appendix-enums.md#textcase)          | TextCase.Normal                          | 设置文本大小写。                                 |
 
-## TextAlign枚举说明
-
-| 名称     | 描述             |
-| ------ | -------------- |
-| Center | 文本居中对齐。        |
-| Start  | 根据文字书写相同的方向对齐。 |
-| End    | 根据文字书写相反的方向对齐。 |
-
-## TextOverflow枚举说明
-
-| 名称       | 描述                  |
-| -------- | ------------------- |
-| Clip     | 文本超长时进行裁剪显示。        |
-| Ellipsis | 文本超长时显示不下的文本用省略号代替。 |
-| None     | 文本超长时不进行裁剪。         |
-
-## TextDecorationType枚举说明
-
-| 名称          | 描述        |
-| ----------- | --------- |
-| Underline   | 文字下划线修饰。  |
-| LineThrough | 穿过文本的修饰线。 |
-| Overline    | 文字上划线修饰。  |
-| None        | 不使用文本装饰线。 |
-
-## TextCase枚举说明
-
-| 名称        | 描述         |
-| --------- | ---------- |
-| Normal    | 保持文本原有大小写。 |
-| LowerCase | 文本采用全小写。   |
-| UpperCase | 文本采用全大写。   |
 
 >  **说明：**
 >

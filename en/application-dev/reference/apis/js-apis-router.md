@@ -263,12 +263,6 @@ Enables the display of a confirm dialog box before returning to the previous pag
     enableAlertBeforeBackPage() {        
       router.enableAlertBeforeBackPage({            
         message: 'Message Info',            
-        success: function() {                
-          console.log('success');            
-        },            
-        fail: function() {                
-          console.log('fail');            
-        },        
       });    
     }
   }
@@ -434,4 +428,5 @@ Describes the page routing options.
 
 
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+  >
   > The page routing stack supports a maximum of 32 pages.

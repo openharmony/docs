@@ -21,11 +21,12 @@
 
 ## 示例
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
 struct ClipAndMaskExample {
+
   build() {
     Column({ space: 5 }) {
       Text('clip').fontSize(9).width('90%').fontColor(0xCCCCCC)

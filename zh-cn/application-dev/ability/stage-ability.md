@@ -58,7 +58,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    ```
    import AbilityStage from "@ohos.application.AbilityStage"
    ```
-2. 实现AbilityStage接口。
+2. 实现AbilityStage接口，接口生成的默认相对路径：entry\src\main\ets\Application\AbilityStage.ts。
    ```ts
    export default class MyAbilityStage extends AbilityStage {
     onCreate() {
@@ -70,7 +70,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    ```js
    import Ability from '@ohos.application.Ability'
    ```
-4. 实现Ability生命周期接口。
+4. 实现Ability生命周期接口，接口默认生成的相对路径：entry\src\main\ets\MainAbility\MainAbility.ts。
 
    在`onWindowStageCreate(windowStage)`中通过loadContent接口设置应用要加载的页面，window接口的使用详见[窗口开发指导](../windowmanager/window-guidelines.md)。
    ```ts
@@ -87,7 +87,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
         console.log("MainAbility onWindowStageCreate")
 
         windowStage.loadContent("pages/index").then((data) => {
-            console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
+            console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
         })
@@ -107,7 +107,8 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
    }
    ```
 ### 获取AbilityStage及Ability的配置信息
-AbilityStage类及Ability类均拥有context属性，应用可以通过`this.context`获取Ability实例的上下文，进而获取详细的配置信息。如下示例展示了AbilityStage通过context属性获取包代码路径、hap包名、ability名以及系统语言的方法。具体示例代码如下：
+AbilityStage类及Ability类均拥有context属性，应用可以通过`this.context`获取Ability实例的上下文，进而获取详细的配置信息。
+如下示例展示了AbilityStage通过context属性获取包代码路径、hap包名、ability名以及系统语言的方法。具体示例代码如下：
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
 export default class MyAbilityStage extends AbilityStage {
@@ -140,7 +141,7 @@ export default class MainAbility extends Ability {
         console.log("MainAbility ability name" + abilityInfo.name)
 
         let config = this.context.config
-        console.log("MyAbilityStage config language" + config.language)
+        console.log("MainAbility config language" + config.language)
     }
 }
 ```
@@ -269,7 +270,7 @@ function getRemoteDeviceId() {
 ```
 向用户申请数据同步'ohos.permission.DISTRIBUTED_DATASYNC'的权限。申请授权示例代码见[应用向用户申请授权](###应用向用户申请授权)。
 ### 指定页面启动Ability
-当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
+当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability，不会触发onCreate，只会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
 
 使用startAbility再次拉起Ability，通过want中的uri参数传递页面信息：
 ```ts
@@ -311,7 +312,7 @@ struct Index {
     console.info('Index onPageShow')
     let newWant = globalThis.newWant
     if (newWant.hasOwnProperty("uri")) {
-      router.push({ uri: newWant.uri });
+      router.push({ url: newWant.uri });
       globalThis.newWant = undefined
     }
   }

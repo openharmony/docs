@@ -34,10 +34,10 @@
 1. 获取设备上传感器的数据，需要在“config.json”里面进行配置请求权限。具体如下：
   
    ```
-   ”reqPermissions“:[
+   "reqPermissions":[
      {
         "name":"ohos.permission.ACCELEROMETER",
-        "reason"":"", 
+        "reason":"", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"
@@ -45,7 +45,7 @@
      },
      {
         "name":"ohos.permission.GYROSCOPE",
-        "reason"":"", 
+        "reason":"", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"
@@ -53,7 +53,7 @@
      },
      {
         "name":"ohos.permission.ACTIVITY_MOTION",
-        "reason"":"ACTIVITY_MOTION_TEST", 
+        "reason":"ACTIVITY_MOTION_TEST", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"
@@ -61,7 +61,7 @@
      },
      {
         "name":"ohos.permission.READ_HEALTH_DATA",
-        "reason"":"HEALTH_DATA_TEST", 
+        "reason":"HEALTH_DATA_TEST", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"

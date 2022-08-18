@@ -26,7 +26,7 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 
 1.创建ServiceExtensionAbility
 
-开发者在创建TS文件中自定义类继承ServiceExtensionAbility，重写基类回调函数，示例如下：
+开发者在创建TS文件中自定义类继承ServiceExtensionAbility，重写基类回调函数，接口生成的默认相对路径：entry\src\main\ets\ServiceExtAbility\ServiceExtAbility.ts，示例如下：
 
   ```js
   import rpc from '@ohos.rpc'

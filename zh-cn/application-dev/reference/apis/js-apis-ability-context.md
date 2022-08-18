@@ -595,7 +595,7 @@ connectAbility(want: Want, options: ConnectOptions): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 连接Ability的代码 |
+| number | 返回Ability连接的结果code。 |
 
 **示例**：
 ```js
@@ -606,7 +606,7 @@ var want = {
 }
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)
@@ -615,8 +615,8 @@ var options = {
     console.log('connectAbility onFailed, code: ' + code)
   }
 }
-this.context.connectAbility(want, options) {
-  console.log('code: ' + code)
+let result = this.context.connectAbility(want, options) {
+  console.log('code: ' + result)
 }
 ```
 
@@ -652,7 +652,7 @@ var want = {
 var accountId = 111;
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)

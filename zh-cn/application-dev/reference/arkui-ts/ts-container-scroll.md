@@ -4,7 +4,8 @@
 
 >  **说明：**
 >
->  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
 
 
 ## 权限列表
@@ -27,7 +28,7 @@ Scroll(scroller?: Scroller)
 | 名称             | 参数类型                                     | 默认值                      | 描述        |
 | -------------- | ---------------------------------------- | ------------------------ | --------- |
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | 设置滚动方法。   |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | BarState.Off     | 设置滚动条状态。  |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | -                  | 设置滚动条的颜色。 |
 | scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
 | edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |

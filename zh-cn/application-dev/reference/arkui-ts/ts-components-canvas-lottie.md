@@ -17,7 +17,7 @@ import lottie from '@ohos/lottieETS'
 ```
 
 >  **说明：**
->  在Terminal窗口使用 `npm install @ohos/lottieETS` 命令下载Lottie。
+>  在Terminal窗口使用 `npm install @ohos/lottieETS` 命令下载Lottie，下载之前需要配置权限。
 
 
 ## lottie.loadAnimation
@@ -63,7 +63,7 @@ destroy(name: string): void
     private animatePath: string = "common/lottie/data.json"
     private animateItem: any = null
 
-    private onPageHide(): void {
+    onPageHide(): void {
       console.log('onPageHide')
       lottie.destroy()
     }
