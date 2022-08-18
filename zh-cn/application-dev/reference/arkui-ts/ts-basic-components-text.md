@@ -38,6 +38,9 @@ Text(content?: ResourceStr)
 | decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
 | baselineOffset | [Length](../../ui/ts-types.md)         | -         | 设置文本基线的偏移量。                              |
 | textCase       | TextCase                                 | TextCase.Normal                          | 设置文本大小写。                                 |
+| letterSpacing       | [Length](../../ui/ts-types.md)                 | -                          | 设置文本字符间距。                                 |
+| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最小显示字号。                                 |
+| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最大显示字号。                                 |
 
 ## TextAlign枚举说明
 

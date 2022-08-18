@@ -47,6 +47,10 @@ Image(src: string | PixelMap | Resource)
 | interpolation         | ImageInterpolation                                      | None     | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
 | renderMode            | ImageRenderMode                                         | Original | 设置图片渲染的模式。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -        | 设置图片解码尺寸，将原始图片解码成指定尺寸的图片，number类型单位为px。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
+| matchTextDirection     | boolean | false        | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。                 |
+| fitOriginalSize        | boolean | true        | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。                 |
+| fillColor              | [ResourceColor](../../ui/ts-types.md) | -    | 仅对svg图源生效，设置后会替换svg图片的fill颜色。                 |
+| autoResize             | boolean | true        | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。           |
 | syncLoad<sup>8+</sup> | boolean                                                 | false    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。 |
 
 ## ImageFit枚举说明
