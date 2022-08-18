@@ -39,28 +39,28 @@ function printfDescription(obj) {
 
 // Set the player callbacks.
 function setCallBack(audioPlayer) {
-    audioPlayer.on('dataLoad', () => { // Set the `dataLoad` event callback, which is triggered when the src attribute is set successfully.
+    audioPlayer.on('dataLoad', () => { // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
         console.info('audio set source success');
         audioPlayer.play(); // The play() API can be invoked only after the 'dataLoad' event callback is complete. The 'play' event callback is then triggered.
     });
-    audioPlayer.on('play', () => { // Set the `play` event callback.
+    audioPlayer.on('play', () => { // Set the 'play' event callback.
         console.info('audio play success');
         audioPlayer.pause(); // Trigger the 'pause' event callback and pause the playback.
     });
-    audioPlayer.on('pause', () => { // Set the `pause` event callback.
+    audioPlayer.on('pause', () => { // Set the 'pause' event callback.
         console.info('audio pause success');
         audioPlayer.seek(5000); // Trigger the 'timeUpdate' event callback, and seek to 5000 ms for playback.
     });
-    audioPlayer.on('stop', () => { // Set the `stop` event callback.
+    audioPlayer.on('stop', () => { // Set the 'stop' event callback.
         console.info('audio stop success');
         audioPlayer.reset(); // Trigger the 'reset' event callback, and reconfigure the src attribute to switch to the next song.
     });
-    audioPlayer.on('reset', () => { // Set the `reset` event callback.
+    audioPlayer.on('reset', () => { // Set the 'reset' event callback.
         console.info('audio reset success');
         audioPlayer.release(); // Release the AudioPlayer instance.
         audioPlayer = undefined;
     });
-    audioPlayer.on('timeUpdate', (seekDoneTime) => { // Set the `timeUpdate` event callback.
+    audioPlayer.on('timeUpdate', (seekDoneTime) => { // Set the 'timeUpdate' event callback.
         if (typeof(seekDoneTime) == 'undefined') {
             console.info('audio seek fail');
             return;
@@ -68,7 +68,7 @@ function setCallBack(audioPlayer) {
         console.info('audio seek success, and seek time is ' + seekDoneTime);
         audioPlayer.setVolume(0.5); // Trigger the 'volumeChange' event callback.
     });
-    audioPlayer.on('volumeChange', () => { // Set the `volumeChange` event callback.
+    audioPlayer.on('volumeChange', () => { // Set the 'volumeChange' event callback.
         console.info('audio volumeChange success');
         audioPlayer.getTrackDescription((error, arrlist) => { // Obtain the audio track information in callback mode.
             if (typeof (arrlist) != 'undefined') {
@@ -107,7 +107,7 @@ async function audioPlayerDemo() {
     }).catch((err) => {
         console.info('open fd failed err is' + err);
     });
-    audioPlayer.src = fdPath; // Set the src attribute and trigger the `dataLoad` event callback.
+    audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
 }
 ```
 
@@ -119,11 +119,11 @@ import fileIO from '@ohos.fileio'
 export class AudioDemo {
   // Set the player callbacks.
   setCallBack(audioPlayer) {
-    audioPlayer.on('dataLoad', () => { // Set the `dataLoad` event callback, which is triggered when the src attribute is set successfully.
+    audioPlayer.on('dataLoad', () => { // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
       console.info('audio set source success');
       audioPlayer.play(); // Call the play() API to start the playback and trigger the 'play' event callback.
     });
-    audioPlayer.on('play', () => { // Set the `play` event callback.
+    audioPlayer.on('play', () => { // Set the 'play' event callback.
       console.info('audio play success');
     });
     audioPlayer.on('finish', () => { // Set the 'finish' event callback, which is triggered when the playback is complete.
@@ -147,7 +147,7 @@ export class AudioDemo {
     }).catch((err) => {
       console.info('open fd failed err is' + err);
     });
-    audioPlayer.src = fdPath; // Set the src attribute and trigger the `dataLoad` event callback.
+    audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }
 ```
@@ -161,15 +161,15 @@ export class AudioDemo {
 // Set the player callbacks.
   private isNextMusic = false;
   setCallBack(audioPlayer) {
-    audioPlayer.on('dataLoad', () => { // Set the `dataLoad` event callback, which is triggered when the src attribute is set successfully.
+    audioPlayer.on('dataLoad', () => { // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
       console.info('audio set source success');
       audioPlayer.play(); // Call the play() API to start the playback and trigger the 'play' event callback.
     });
-    audioPlayer.on('play', () => { // Set the `play` event callback.
+    audioPlayer.on('play', () => { // Set the 'play' event callback.
       console.info('audio play success');
       audioPlayer.reset(); // Call the reset() API and trigger the 'reset' event callback.
     });
-    audioPlayer.on('reset', () => { // Set the `reset` event callback.
+    audioPlayer.on('reset', () => { // Set the 'reset' event callback.
       console.info('audio play success');
       if (!this.isNextMusic) { // When isNextMusic is false, changing songs is implemented.
         this.nextMusic(audioPlayer); // Changing songs is implemented.
@@ -223,7 +223,7 @@ import fileIO from '@ohos.fileio'
 export class AudioDemo {
   // Set the player callbacks.
   setCallBack(audioPlayer) {
-    audioPlayer.on('dataLoad', () => { // Set the `dataLoad` event callback, which is triggered when the src attribute is set successfully.
+    audioPlayer.on('dataLoad', () => { // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
       console.info('audio set source success');
       audioPlayer.loop = true; // Set the loop playback attribute.
       audioPlayer.play(); // Call the play() API to start the playback and trigger the 'play' event callback.
@@ -247,7 +247,7 @@ export class AudioDemo {
     }).catch((err) => {
       console.info('open fd failed err is' + err);
     });
-    audioPlayer.src = fdPath; // Set the src attribute and trigger the `dataLoad` event callback.
+    audioPlayer.src = fdPath; // Set the src attribute and trigger the 'dataLoad' event callback.
   }
 }
 ```
