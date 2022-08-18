@@ -215,7 +215,7 @@
 
     ```js
     var u8 = new Uint8Array([1, 2, 3])
-    const valueBucket = {"name": "Tom", "age": 18, "salary": 100.5, "blobType": u8,}
+    const valueBucket = {"name": "Tom", "age": 18, "salary": 100.5, "blobType": u8}
     let insertPromise = rdbStore.insert("test", valueBucket)
     ```
 
