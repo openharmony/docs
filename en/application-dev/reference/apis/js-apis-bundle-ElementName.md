@@ -1,14 +1,14 @@
 # ElementName
 
+The **ElementName** module provides the element name information.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-Provides the element name information.
-
 ## ElementName
 
- **System capability**: SystemCapability.BundleManager.BundleFramework
+**System capability**: SystemCapability.BundleManager.BundleFramework
 
 | Name                    | Type    | Readable| Writable| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
