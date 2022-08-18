@@ -2272,6 +2272,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 **示例：**
 
 ```js
+class MyDeathRecipient {
+    onRemoteDied() {
+        console.log("server died");
+    }
+}
 class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor) {
         super(descriptor);
@@ -2324,6 +2329,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 **示例：**
 
 ```js
+class MyDeathRecipient {
+    onRemoteDied() {
+        console.log("server died");
+    }
+}
 class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor) {
         super(descriptor);
