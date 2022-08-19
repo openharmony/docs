@@ -146,4 +146,5 @@
         - [时间选择弹窗](ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](ts-methods-textpicker-dialog.md)
     - [菜单](ts-methods-menu.md)
-- [文档中涉及到的内置枚举值](ts-appendix-enums.md)
+- [枚举说明](ts-appendix-enums.md)
+- [类型说明](ts-types.md)
