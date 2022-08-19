@@ -424,26 +424,26 @@
       - [CanvasGradient](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
       - [ImageBitmap](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
-  - Animation
-    - [Attribute Animation](reference/arkui-ts/ts-animatorproperty.md)
-    - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
-    - Transition Animation
-      - [Page Transition](reference/arkui-ts/ts-page-transition-animation.md)
-      - [Component Transition](reference/arkui-ts/ts-transition-animation-component.md)
-      - [Transition of Shared Elements](reference/arkui-ts/ts-transition-animation-shared-elements.md)
-    - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
-    - [Matrix Transformation](reference/arkui-ts/ts-matrix-transformation.md)
-    - [Interpolation Calculation](reference/arkui-ts/ts-interpolation-calculation.md)
-  - Global UI Methods
-    - Dialog Box
-      - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
-      - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
-      - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
-      - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
-      - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
-      - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
-    - [Menu](reference/arkui-ts/ts-methods-menu.md)
-  - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
+    - Animation
+      - [Attribute Animation](reference/arkui-ts/ts-animatorproperty.md)
+      - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
+      - Transition Animation
+        - [Page Transition](reference/arkui-ts/ts-page-transition-animation.md)
+        - [Component Transition](reference/arkui-ts/ts-transition-animation-component.md)
+        - [Transition of Shared Elements](reference/arkui-ts/ts-transition-animation-shared-elements.md)
+      - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
+      - [Matrix Transformation](reference/arkui-ts/ts-matrix-transformation.md)
+      - [Interpolation Calculation](reference/arkui-ts/ts-interpolation-calculation.md)
+    - Global UI Methods
+      - Dialog Box
+        - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
+        - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
+        - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+        - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
+        - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
+      - [Menu](reference/arkui-ts/ts-methods-menu.md)
+    - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
   - Component Reference (JavaScript-based Web-like Development Paradigm)
     - Common
       - [Universal Attributes](reference/arkui-js/js-components-common-attributes.md)
