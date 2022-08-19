@@ -636,7 +636,7 @@
       - [slot插槽](reference/arkui-js/js-components-custom-slot.md)
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
     - [数据类型说明](reference/arkui-js/js-appendix-types.md)
-  - JS服务卡片界面开发
+  - JS服务卡片界面开发参考
     - JS服务卡片界面框架说明
         - [文件组织](js-service-widget-file.md)
         - [配置文件](js-service-widget-config-file.md)
