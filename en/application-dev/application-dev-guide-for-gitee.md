@@ -53,8 +53,8 @@ To make you better understand how functions work together and jumpstart your app
 API references encompass all components and APIs available in OpenHarmony, helping you use and integrate APIs more effectively.
 
 They are organized as follows:
--   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
 -   [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
+-   [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
 -   APIs
     - [JS and TS APIs](reference/apis/Readme-EN.md)
     - Native APIs

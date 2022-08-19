@@ -40,8 +40,9 @@
     - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
-    - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
     - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
+    - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
+    - [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md)
     - 接口
       - [JS及TS API参考](reference/apis/Readme-CN.md)
       - Native API
