@@ -12,7 +12,7 @@
   - [隐私与安全规范](security/Readme-CN.md)
 - 移植
   - [轻量和小型系统三方库移植指导](porting/porting-thirdparty.md)
-  - [轻量系统芯片移植指导](porting/porting-minichip.md)
+  - [轻量系统芯片移植指导](porting/porting-minichip-overview.md)
   - [轻量系统芯片移植案例](porting/porting-minichip-cases.md)
   - [小型系统芯片移植指导](porting/porting-smallchip.md)
   - [标准系统芯片移植指导](porting/standard-system-porting-guide.md)	 	
