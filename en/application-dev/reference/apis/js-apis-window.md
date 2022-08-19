@@ -25,21 +25,21 @@ Enumerates the window types.
 
 | Name             | Value| Description              |
 | ----------------- | ------ | ------------------ |
-| TYPE_APP          | 0      | Application subwindow. This type can be used only in the FA model.|
+| TYPE_APP          | 0      | Application subwindow.<br>**Model restriction**: This API can be used only in the FA model.|
 | TYPE_SYSTEM_ALERT | 1      | System alert window.|
-| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | Input method window. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | Status bar. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_PANEL<sup>9+</sup>        | 4      | Notification panel. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_KEYGUARD<sup>9+</sup>     | 5      | Lock screen. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | Volume bar. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | Navigation bar. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_FLOAT<sup>9+</sup> | 8      | Floating window. This type can be used only in the stage model.<br>**Required permissions**: ohos.permission.SYSTEM_FLOAT_WINDOW|
-| TYPE_WALLPAPER<sup>9+</sup> | 9      | Wallpaper. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_DESKTOP<sup>9+</sup> | 10      | Home screen. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | Recent tasks screen. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | Dock bar on the home screen. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
-| TYPE_POINTER<sup>9+</sup> | 14      | Mouse. This type can be used only in the stage model.<br>This is a system API and cannot be called by third-party applications.|
+| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | Input method window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | Status bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_PANEL<sup>9+</sup>        | 4      | Notification panel.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_KEYGUARD<sup>9+</sup>     | 5      | Lock screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | Volume bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | Navigation bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_FLOAT<sup>9+</sup> | 8      | Floating window.<br>**Model restriction**: This API can be used only in the stage model.<br>**Required permissions**: ohos.permission.SYSTEM_FLOAT_WINDOW|
+| TYPE_WALLPAPER<sup>9+</sup> | 9      | Wallpaper.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_DESKTOP<sup>9+</sup> | 10      | Home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | Recent tasks screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | Dock bar on the home screen.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | Voice assistant.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
+| TYPE_POINTER<sup>9+</sup> | 14      | Mouse.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -58,7 +58,7 @@ Enumerates the types of the area where the window cannot be displayed.
 
 Enumerates the window modes.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -74,7 +74,7 @@ This is a system API and cannot be called by third-party applications.
 
 Enumerates the window layout modes.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -123,7 +123,7 @@ Enumerates the window orientations.
 
 Describes the callback for a single system bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -139,7 +139,7 @@ This is a system API and cannot be called by third-party applications.
 
 Describes the callback for the current system bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -169,7 +169,7 @@ Describes the area where the window cannot be displayed.
 
 | Name      | Type     | Readable| Writable| Description              |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| visible<sup>9+</sup>    | boolean       | Yes  | Yes  | Whether the area is visible.|
+| visible<sup>9+</sup>    | boolean       | Yes  | Yes  | Whether the window can be displayed in the area.|
 | leftRect   | [Rect](#rect) | Yes  | Yes  | Rectangle on the left of the screen.|
 | topRect    | [Rect](#rect) | Yes  | Yes  | Rectangle at the top of the screen.|
 | rightRect  | [Rect](#rect) | Yes  | Yes  | Rectangle on the right of the screen.|
@@ -192,20 +192,20 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                           | Type                 | Readable| Writable| Description                                        |
-| ------------------------------- | ------------------------- | ---- | ---- | -------------------------------------------- |
-| windowRect<sup>7+</sup>         | [Rect](#rect)             | Yes  | Yes  | Window size.                                  |
-| type<sup>7+</sup>               | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                  |
-| isFullScreen                    | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                     |
-| isLayoutFullScreen<sup>7+</sup> | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.             |
-| focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                |
-| touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                |
-| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness. |
-| dimBehindValue<sup>(deprecated)</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness.<br>**NOTE**<br>This attribute is deprecated since API version 9.<br> |
-| isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                 |
-| isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                     |
-| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`.               |
-| isTransparent<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                 |
+| Name                                 | Type                 | Readable| Writable| Description                                                        |
+| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| windowRect<sup>7+</sup>               | [Rect](#rect)             | Yes  | Yes  | Window size.                                                  |
+| type<sup>7+</sup>                     | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                                  |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                                     |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.                             |
+| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                                |
+| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                                |
+| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness.                 |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
+| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                                 |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                                     |
+| isRoundCorner<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`. |
+| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                                 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -224,7 +224,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 Creates a subwindow. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the FA model.
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -240,13 +240,14 @@ This API can be used only in the FA model.
 
 ```js
 var windowClass = null;
- let promise = window.create("first", window.WindowType.TYPE_APP);
- promise.then((data)=> {
- 	windowClass = data;
-    console.info('SubWindow created. Data: ' + JSON.stringify(data));
- }).catch((err)=>{
-    console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
- });
+window.create("first", window.WindowType.TYPE_APP,(err,data) => {
+    if(err.code){
+        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    windowClass = data;
+    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## window.create<sup>7+</sup>
@@ -255,7 +256,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 Creates a subwindow. This API uses a promise to return the result.
 
-This API can be used only in the FA model.
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -279,7 +280,7 @@ var windowClass = null;
 let promise = window.create("first", window.WindowType.TYPE_APP);
 promise.then((data)=> {
     windowClass = data;
-    console.info('SubWindow created. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
 });
@@ -300,7 +301,7 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 | ctx      | Context                                | Yes  | Current application context.<br>For the definition of `Context` of API version 8, see [Context](js-apis-Context.md).<br>For the definition of `Context` of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md).|
 | id       | string                                 | Yes  | Window ID.                                                    |
 | type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window created.                        |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
 
 **Example**
 
@@ -308,11 +309,11 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 var windowClass = null;
  window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
-        console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
+        console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
     }
     windowClass = data;
-    console.info('Window created. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
     windowClass.resetSize(500, 1000);
 });
 ```
@@ -337,7 +338,7 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the window created. |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
 
 **Example**
 
@@ -346,9 +347,9 @@ var windowClass = null;
 let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data)=> {
  	windowClass = data;
-    console.info('Window created. Data:' + JSON.stringify(data));
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+    console.error('Failed to create the window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -373,11 +374,11 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 var windowClass = null;
  window.find("alertWindow", (err, data) => {
    if (err.code) {
-       console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+       console.error('Failed to find the window. Cause: ' + JSON.stringify(err));
        return;
    }
    windowClass = data;
-   console.info('window found. Data: ' + JSON.stringify(data));
+   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -408,7 +409,7 @@ var windowClass = null;
 let promise = window.find("alertWindow");
 promise.then((data)=> {
  	windowClass = data;
-    console.info('window found. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
 });
@@ -420,7 +421,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the FA model.
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -450,7 +451,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 Obtains the top window of the current application. This API uses a promise to return the result.
 
-This API can be used only in the FA model.
+**Model restriction**: This API can be used only in the FA model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -540,7 +541,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 Minimizes all windows on a display. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -548,7 +549,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display). |
+| id       | number                    | Yes  | ID of the [display](js-apis-display.md#display).|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.    |
 
 **Example**
@@ -578,7 +579,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 Minimizes all windows on a display. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -620,7 +621,7 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 Hides or restores the application's windows during quick multi-window switching. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -647,7 +648,7 @@ toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
 
 Hides or restores the application's windows during quick multi-window switching. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -673,7 +674,7 @@ setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;)
 
 Sets the window layout mode. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -697,7 +698,7 @@ setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
 
 Sets the window layout mode. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -730,7 +731,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 Enables listening for properties changes of the status bar and navigation bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -755,7 +756,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 Disables listening for properties changes of the status bar and navigation bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -784,7 +785,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 Hides this window. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -802,7 +803,7 @@ windowClass.hide((err, data) => {
         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('window hidden. data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window. data: ' + JSON.stringify(data));
 })
 ```
 
@@ -812,7 +813,7 @@ hide(): Promise&lt;void&gt;
 
 Hides this window. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -827,7 +828,7 @@ This is a system API and cannot be called by third-party applications.
 ```js
 let promise = windowClass.hide();
 promise.then((data)=> {
-    console.info('window hidden. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
 })
@@ -959,7 +960,7 @@ windowClass.moveTo(300, 300, (err, data)=>{
         console.error('Failed to move the window. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Window moved. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
 
 });
 ```
@@ -990,7 +991,7 @@ Moves this window. This API uses a promise to return the result.
 ```js
 let promise = windowClass.moveTo(300, 300);
 promise.then((data)=> {
-    console.info('Window moved. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 })
@@ -1020,7 +1021,7 @@ windowClass.resetSize(500, 1000, (err, data) => {
         console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Window size changed. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1050,7 +1051,7 @@ Changes the size of this window. This API uses a promise to return the result.
 ```js
 let promise = windowClass.resetSize(500, 1000);
 promise.then((data)=> {
-    console.info('Window size changed. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
@@ -1062,7 +1063,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the type of this window. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1092,7 +1093,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 Sets the type of this window. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1183,7 +1184,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
-| type     | [AvoidAreaType](#avoidareatype7)              | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area.|
+| type     | [AvoidAreaType](#avoidareatype7)              | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch. `TYPE_SYSTEM_GESTURE` indicates the gesture area. `TYPE_KEYBOARD` indicates the soft keyboard area.|
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt; | Yes  | Callback used to return the area.                            |
 
 **Example**
@@ -1211,7 +1212,7 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name| Type                              | Mandatory| Description                                                        |
 | ------ |----------------------------------| ---- | ------------------------------------------------------------ |
-| type   | [AvoidAreaType](#avoidareatype7) | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch. **TYPE_SYSTEM_GESTURE** indicates the gesture area. **TYPE_KEYBOARD** indicates the soft keyboard area.|
+| type   | [AvoidAreaType](#avoidareatype7) | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch. `TYPE_SYSTEM_GESTURE` indicates the gesture area. `TYPE_KEYBOARD` indicates the soft keyboard area.|
 
 **Return value**
 
@@ -1368,13 +1369,14 @@ Sets whether to display the status bar and navigation bar in this window. This A
 **Example**
 
 ```js
-var names = ["status", "navigation"];
+// In this example, the status bar and navigation bar are not displayed.
+var names = [];
 windowClass.setSystemBarEnable(names, (err, data) => {
     if (err.code) {
-        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1401,12 +1403,13 @@ Sets whether to display the status bar and navigation bar in this window. This A
 **Example**
 
 ```js
-var names = ["status", "navigation"];
+// In this example, the status bar and navigation bar are not displayed.
+var names = [];
 let promise = windowClass.setSystemBarEnable(names);
 promise.then((data)=> {
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -1611,7 +1614,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 Loads content from a page associated with a local storage to this window. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1620,7 +1623,7 @@ This API can be used only in the stage model.
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | LocalStorage | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1649,7 +1652,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
 Loads content from a page associated with a local storage to this window. This API uses a promise to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1658,7 +1661,7 @@ This API can be used only in the stage model.
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | LocalStorage | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
@@ -1786,9 +1789,9 @@ windowClass.off('windowSizeChange');
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 Enables listening for changes to the area where the window cannot be displayed.
-> **NOTE**
+> **NOTE**<br> This API is supported since API version 7 and deprecated since API version 9. Use [on('avoidAreaChange')](#onavoidareachange9) instead.
 >
->   This API is deprecated since API version 9. Use [on('avoidAreaChange')](#onavoidareachange9) instead.
+>  
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1812,9 +1815,9 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 Disables listening for changes to the area where the window cannot be displayed.
-> **NOTE**
+> **NOTE**<br> This API is supported since API version 7 and deprecated since API version 9. Use [off('avoidAreaChange')](#offavoidareachange9) instead.
 >
->  This API is deprecated since API version 9. Use [off('avoidAreaChange')](#offavoidareachange9) instead.
+>  
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1850,8 +1853,8 @@ Enables listening for changes to the area where the window cannot be displayed.
 **Example**
 
 ```js
-windowClass.on('avoidAreaChange', (type, data) => {
-    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(type) + 'Data: ' + JSON.stringify(data));
+windowClass.on('avoidAreaChange', (data) => {
+    console.info('Succeeded in enabling the listener for system avoid area changes. type:'  + JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
 });
 ```
 
@@ -1925,7 +1928,8 @@ windowClass.off('keyboardHeightChange');
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 Enables listening for click events outside this window.
-This is a system API and cannot be called by third-party applications.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1949,7 +1953,8 @@ windowClass.on('touchOutside', () => {
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 Disables listening for click events outside this window.
-This is a system API and cannot be called by third-party applications.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2138,7 +2143,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2166,7 +2171,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color  | string | Yes  | Background color to set. The value is a hexadecimal color and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 
 **Return value**
 
@@ -2253,8 +2258,10 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
->  This API is deprecated since API version 9.
+>
+> This API cannot be used.
+>
+> This API is supported since API version 7 and deprecated since API version 9.  
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2284,8 +2291,10 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 Sets the dimness of the window that is not on top. This API uses a promise to return the result.
 
 > **NOTE**
-> 
->  This API is deprecated since API version 9.
+>
+> This API cannot be used.
+>
+> This API is supported since API version 7 and deprecated since API version 9.  
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2439,8 +2448,10 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
->  This API is deprecated since API version 9.
+>
+> This API cannot be used.
+>
+> This API is supported since API version 7 and deprecated since API version 9.  
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2470,8 +2481,10 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 Sets whether the area outside the subwindow is touchable. This API uses a promise to return the result.
 
 > **NOTE**
-> 
->  This API is deprecated since API version 9.
+>
+> This API cannot be used.
+>
+> This API is supported since API version 7 and deprecated since API version 9.  
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2502,7 +2515,7 @@ promise.then((data)=> {
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result.
+Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result. When in privacy mode, the window content cannot be captured or recorded.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2531,7 +2544,7 @@ windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
 
 setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-Sets whether this window is in privacy mode. This API uses a promise to return the result.
+Sets whether this window is in privacy mode. This API uses a promise to return the result. When in privacy mode, the window content cannot be captured or recorded.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2626,7 +2639,7 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 
 Sets whether this window is forbidden to move in split-screen mode. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2657,7 +2670,7 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
 Sets whether this window is forbidden to move in split-screen mode. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2689,7 +2702,7 @@ promise.then((data)=> {
 
 Describes the lifecycle of a window stage.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2712,7 +2725,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 Obtains the main window of this window stage. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2747,7 +2760,7 @@ getMainWindow(): Promise&lt;Window&gt;
 
 Obtains the main window of this window stage. This API uses a promise to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2781,7 +2794,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 Creates a subwindow for this window stage. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2818,7 +2831,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 Creates a subwindow for this window stage. This API uses a promise to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2858,7 +2871,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 Obtains all the subwindows of this window stage. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2893,7 +2906,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 Obtains all the subwindows of this window stage. This API uses a promise to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2927,7 +2940,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 Loads content from a page associated with a local storage to the main window in this window stage. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2936,7 +2949,7 @@ This API can be used only in the stage model.
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | LocalStorage | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2966,7 +2979,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 Loads content from a page associated with a local storage to the main window in this window stage. This API uses a promise to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2975,7 +2988,7 @@ This API can be used only in the stage model.
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | LocalStorage | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
 
@@ -3011,7 +3024,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 Loads content from a page to this window stage. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3046,7 +3059,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 Enables listening for window stage lifecycle changes.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3077,7 +3090,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 Disables listening for window stage lifecycle changes.
 
-This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3106,9 +3119,9 @@ disableWindowDecor(): void
 
 Disables window decorators.
 
-This type can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3130,7 +3143,7 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 
 Sets whether to display the window of the application on the lock screen.
 
-This API can be used only in the stage model.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
