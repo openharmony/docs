@@ -37,6 +37,9 @@ Text(content?: ResourceStr)
 | lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)  | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
 | decoration     | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
 | baselineOffset | [Length](../../ui/ts-types.md)         | -         | 设置文本基线的偏移量。                              |
+| letterSpacing       | [Length](../../ui/ts-types.md)                 | -                          | 设置文本字符间距。                                 |
+| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最小显示字号。                                 |
+| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最大显示字号。                                 |
 | textCase       | [TextCase](ts-appendix-enums.md#textcase)          | TextCase.Normal                          | 设置文本大小写。                                 |
 
 
