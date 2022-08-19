@@ -1,4 +1,4 @@
-# 访问控制开发指导
+# 访问控制（权限）开发指导
 
 ## 场景介绍
 
@@ -35,7 +35,8 @@
 | name      | 权限名称。                                                   |
 | reason    | 当申请的权限为user_grant权限时，此字段必填，描述申请权限的原因。 |
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
-| abilities | 标识需要使用到该权限的元能力，标签为数组形式。               |
+| ability   | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** FA模型            |
+| abilities | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** Stage模型            |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
 
 ### FA模型
@@ -52,7 +53,7 @@
                 "name" : "ohos.permission.PERMISSION1",
                 "reason": "$string:reason",
                 "usedScene": {
-                     "abilities": [
+                     "ability": [
                          "FormAbility"
                      ],
                      "when":"inuse"
@@ -62,7 +63,7 @@
                 "name" : "ohos.permission.PERMISSION2",
                 "reason": "$string:reason",
                 "usedScene": {
-                     "abilities": [
+                     "ability": [
                          "FormAbility"
                      ],
                      "when":"always"
