@@ -172,19 +172,19 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
    	{"name": "WangWu", "age": 21, "Binary": arr},
    	{"name": "ZhaoLiu", "age": 61, "Binary": arr});
    // 插入一条数据
-   dsHelper.insert(dseUri, valuesBucket, (err,data) => {
+   dsHelper.insert(dseUri, valuesBucket, (err, data) => {
        console.log("dsHelper insert result: " + data);
    });
    // 删除指定的数据
-   dsHelper.delete(dseUri, da, (err,data) => {
+   dsHelper.delete(dseUri, da, (err, data) => {
        console.log("dsHelper delete result: " + data);
    });
    // 更新数据
-   dsHelper.update(dseUri, da, updateBucket, (err,data) => {
+   dsHelper.update(dseUri, da, updateBucket, (err, data) => {
        console.log("dsHelper update result: " + data);
    });
    // 查询数据
-   dsHelper.query(dseUri, da, valArray, (err,data) => {
+   dsHelper.query(dseUri, da, valArray, (err, data) => {
        console.log("dsHelper query result: " + data);
    });
    ```
