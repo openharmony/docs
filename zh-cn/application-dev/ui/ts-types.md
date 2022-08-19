@@ -1,48 +1,10 @@
 # 类型定义
 
-## 长度类型
-
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| Length | string&nbsp;\|&nbsp;number | 用于描述尺寸单位，输入为number类型时，使用vp单位；输入为string类型时，需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 | 
-
-
-## 角度类型
-
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| Angle | string&nbsp;\|&nbsp;number | 用于角度单位，输入为number类型时，使用deg单位；输入为string类型时需要显示指定角度单位，支持以下两种角度单位：<br/>-&nbsp;deg：如'100deg'。<br/>-&nbsp;rad：如'3.14rad'。 | 
-
-
-## 点类型
-
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| Point | [Length,&nbsp;Length] | 用于描述点坐标，第一个值为x轴坐标，第二个值为y坐标。 | 
-
-
-## 颜色类型
-
-组件属性方法使用的颜色Color说明如下：
-
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| Color | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](../reference/arkui-ts/ts-appendix-enums.md#color) | 用于描述颜色信息，输入为string类型时，使用rgb或者rgba进行描述；输入为number类型是，使用HEX格式颜色；输入类型为Color枚举时，使用颜色枚举值。<br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)'。<br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)'。<br/>-&nbsp;HEX格式：0xrrggbb，0xaarrggbb，'\#FFFFFF'。<br/>-&nbsp;枚举格式：Color.Black，Color.White等。 | 
-
-## ColorStop类型
-
-颜色断点类型，用于描述渐进色颜色断点。
-
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| ColorStop | [Color,&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，第二个参数为0~1之间的比例值。 | 
-
-
-## Resource类型
+## Resource
 
 资源引用类型，用于设置组件属性的值。
 
-可以通过`$r`或者`$rawfile`创建Resource类型对象，详见[资源访问](ts-application-resource-access.md)。
+可以通过`$r`或者`$rawfile`创建Resource类型对象，不可以修改Resource中的各属性的值。
 
 - `$r('belonging.type.name')`
 
@@ -56,95 +18,144 @@
 
   filename：工程中resources/rawfile目录下的文件名称。
 
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| Resource | {<br/>readonly&nbsp;id:&nbsp;[number];<br/>readonly&nbsp;type:&nbsp;[number];<br/>readonly&nbsp;params?:&nbsp;any[];<br/>} | - id：资源id值。<br/>- type：资源类型（枚举值）。<br/>- params：可选参数。<br/>通过`$r`或者`$rawfile`创建Resource类型对象，不可以修改Resource中的各属性的值。 | 
+  | 名称                    | 类型   | 可读 | 可写 | 说明       |
+  | ----------------------- | ------ | ---- | ---- | ---------- |
+  | id                      | number | 是   | 否   | 资源id值。    |
+  | type                    | number | 是   | 否   | 资源类型。    |
+  | params                  | any[]  | 是   | 否   | 资源可选参数  |
+  | bundleName<sup>9+</sup> | string | 是   | 否   | 资源包名称。  |
+  | moduleName<sup>9+</sup> | string | 是   | 否   | 资源模块名称。|
+
+## Length
+
+长度类型，用于描述尺寸单位。
+
+| 类型     | 说明                                                         |
+| -------- | ------------------------------------------------------------ |
+| string   | 需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 |
+| number   | 默认单位vp。                                                 |
+| Resource | 使用引入资源的方式，引入系统资源或者应用资源中的尺寸。           |
+
+## ResourceStr<sup>8+</sup>
+
+字符串类型，用于描述字符串入参可以使用的类型。
+
+| 类型     | 说明                                                 |
+| -------- | --------------------------------------------------- |
+| string   | 字符串类型。                                         |
+| Resource | 使用引入资源的方式，引入系统资源或者应用资源中的字符串。 |
+
+## Padding
+
+内边距类型，用于描述组件不同方向的内边距。
+
+  | 名称     | 类型     | 必填 | 说明                    |
+  | ------- | ------   | ---- |------------------------ |
+  | top     | Length   |  否  | 组件内元素距组件顶部的尺寸。   |
+  | right   | Length   |  否  | 组件内元素距组件右边界的尺寸。 |
+  | bottom  | Length   |  否  | 组件内元素距组件底部的尺寸。   |
+  | left    | Length   |  否  | 组件内元素距组件左边界的尺寸。 |
+
+## Margin
+
+外边距类型，用于描述组件不同方向的外边距。
+
+  | 名称     | 类型     | 必填 | 说明                    |
+  | ------- | ------   | ---- |------------------------ |
+  | top     | Length   |  否  | 组件外元素距组件顶部的尺寸。   |
+  | right   | Length   |  否  | 组件外元素距组件右边界的尺寸。 |
+  | bottom  | Length   |  否  | 组件外元素距组件底部的尺寸。   |
+  | left    | Length   |  否  | 组件外元素距组件左边界的尺寸。 |
+
+## Offset
+
+相对布局完成位置坐标偏移量。
+
+  | 名称     | 类型     | 必填 | 说明                 |
+  | -------- | ------  | ---- |--------------------- |
+  | dx       | Length   |  是  | 水平方向偏移量。      |
+  | dy       | Length   |  是  | 竖直方向偏移量。      |
+
+## ResourceColor<sup>8+</sup>
+
+颜色类型，用于描述资源颜色类型。
+
+| 类型     | 说明                    |
+| -------- | ----------------------- |
+| [Color](../reference/arkui-ts/ts-appendix-enums.md#color)    | 颜色枚举值。             |
+| number   | HEX格式颜色。            |
+| string   | rgb或者rgba格式颜色。     |
+| Resource | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
+
+## Font
+
+设置文本样式。
+
+| 名称   | 类型                           | 必填 | 说明                                                         |
+| ------ | ------------------------------ | ---- | ------------------------------------------------------------ |
+| size   | number                         | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。             |
+| weight | number                         | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
+| family | [FontWeight](../reference/arkui-ts/ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
+| style  | string \| Resource             | 否   | 设置文本的字体样式。                                         |
+
+## Area<sup>8+</sup>
+
+区域类型，用于存储元素所占区域信息
+
+| 类型           | 类型      | 说明                                              |
+| -------------- | -------- | ------------------------------------------------- |
+| width          | Length   | 目标元素的宽度，作为返回值时，类型为number，单位vp。  |
+| height         | Length   | 目标元素的高度，作为返回值时，类型为number，单位vp。  |
+| position       | Position | 目标元素左上角相对父元素左上角的位置。                |
+| globalPosition | Position | 目标元素左上角相对页面左上角的位置。                  |
 
 
-## ResourceStr类型<sup>8+</sup>
+## Position<sup>8+</sup>
 
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| ResourceStr | string&nbsp;\|&nbsp;Resource| 用于描述资源字符串的类型。 | 
+位置类型，用于表示一个坐标点。
+
+| 类型   | 类型    | 必填 | 说明                                        |
+| ----- | ------- | ---- | ------------------------------------------- |
+| x     | Length  | 否   | x轴坐标，作为返回值时，类型为number，单位vp。   |
+| y     | Length  | 否   | y轴坐标，作为返回值时，类型为number，单位vp。   |
+
+## ConstraintSizeOptions
+
+设置约束尺寸，组件布局时，进行尺寸范围限制。
+
+| 类型      | 类型      | 必填  | 说明           |
+| --------- | -------- | ---- | -------------- |
+| minWidth  | Length   |  否  | 元素最小宽度。  |
+| maxWidth  | Length   |  否  | 元素最大宽度。  |
+| minHeight | Length   |  否  | 元素最小高度。  |
+| maxHeight | Length   |  否  | 元素最大高度。  |
+
+## SizeOptions
+
+设置宽高尺寸。
+
+| 类型    | 类型      | 必填 | 说明            |
+| ------- | -------- | ---- | -------------- |
+| width   | Length   |  否  | 元素宽度。      |
+| height  | Length   |  否  | 元素高度。      |
 
 
-## ResourceColor类型<sup>8+</sup>
+## BorderOptions
 
-| 名称 | 类型定义 | 描述 | 
-| -------- | -------- | -------- |
-| ResourceColor | Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Resource | 用于描述资源颜色类型。 | 
+边框属性集合，用于描述边框相关信息。
 
-## Font类型<sup>8+</sup>
+| 类型   | 类型           | 必填  | 说明       |
+| ------ | ------------- | ---- | ----------- |
+| width  | Length        |  否  | 边框宽度。   |
+| color  | ResourceColor |  否  | 边框颜色。   |
+| radius | Length        |  否  | 边框角度。   |
+| style  | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle)   |  否  | 边框样式。   |
 
-| 名称 | 类型定义 | 描述 |
-| -------- | -------- | -------- |
-| Font | {<br/>size?: Length;<br/>weight?: <a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li24391125115311">FontWeight</a> &nbsp;\| number &nbsp;\| string;<br/>family?: string &nbsp;\| <a href="ts-types.md#Resource">Resource</a>;<br/>style?: <a href="https://gitee.com/superFat/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li6906111945316">FontStyle</a>;<br/>} | 设置文本样式：<br/>size: 设置文本尺寸，Length为number类型时，使用fp单位。<br/>weight: 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>family: 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。<br/>style: 设置文本的字体样式。 |
-
-## CustomBuilder类型<sup>8+</sup>
+## CustomBuilder<sup>8+</sup>
 
 组件属性方法参数可使用CustomBuilder类型来自定义UI描述。
 
-| 名称 | 类型定义 | 描述 |
-| -------- | -------- | -------- |
+| 名称          | 类型定义               | 描述                                                         |
+| ------------- | ---------------------- | ------------------------------------------------------------ |
 | CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 这种方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](ts-component-based-builder.md)。 |
 
-
-## 示例
-
-```
-@Entry
-@Component
-struct dataTypeExample {
-  build() {
-    Column({ space: 5 }) {
-      Text('Length').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      Text('90%').width('90%').height(40).backgroundColor(0xF9CF93)
-        .textAlign(TextAlign.Center).fontColor(Color.White)
-      Text('320').width(320).height(40).backgroundColor(0xF9CF93)
-        .textAlign(TextAlign.Center).fontColor(Color.White)
-      Text('1000px').width('1000px').height(40).backgroundColor(0xF9CF93)
-        .textAlign(TextAlign.Center).fontColor(Color.White)
-
-      Text('Angle').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      Text('45deg')
-        .width(40).height(40)
-        .rotate({ x: 0, y: 0, z: 1, angle: 45, centerX: '50%', centerY: '50%' })
-        .fontColor(Color.White)
-        .backgroundColor(0xF9CF93).textAlign(TextAlign.Center)
-
-      Text('45rad')
-        .width(40).height(40)
-        .rotate({ x: 0, y: 0, z: 1, angle: '45rad', centerX: '50%', centerY: '50%' })
-        .fontColor(Color.White)
-        .backgroundColor(0xF9CF93).textAlign(TextAlign.Center).margin({ top: 30 })
-
-      Text('Point').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      Line().width(300).height(40).startPoint([0, 20]).endPoint([300, 20])
-
-      Text('Color').fontColor('#CCCCCC').fontSize(9).width('90%')
-      Text('0xF9CF93')
-        .fontColor(Color.White).textAlign(TextAlign.Center)
-        .width('90%').height(40).backgroundColor(0xF9CF93)
-
-      Text('#F9CF93')
-        .fontColor(Color.White).textAlign(TextAlign.Center)
-        .width('90%').height(40).backgroundColor('#F9CF93')
-
-      Text('rgb(249, 207, 147)')
-        .fontColor(Color.White).textAlign(TextAlign.Center)
-        .width('90%').height(40).backgroundColor('rgb(249, 207, 147)')
-
-      Text('rgba(249, 207, 147, 1.0)')
-        .fontColor(Color.White).textAlign(TextAlign.Center)
-        .width('90%').height(40).backgroundColor('rgba(249, 207, 147, 1.0)')
-
-      Text('Color.Yellow')
-        .textAlign(TextAlign.Center)
-        .width('90%').height(40).backgroundColor(Color.Yellow)
-    }
-    .width('100%').margin({ top: 5 })
-  }
-}
-```
-
-![zh-cn_image_0000001219982719](figures/zh-cn_image_0000001219982719.png)
