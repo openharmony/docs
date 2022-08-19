@@ -1,4 +1,4 @@
-# 访问控制开发概述
+# 访问控制（权限）开发概述
 
 ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的应用权限管理能力。
 
