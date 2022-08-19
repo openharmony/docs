@@ -637,7 +637,7 @@
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
     - [数据类型说明](reference/arkui-js/js-appendix-types.md)
   - JS服务卡片UI组件参考
-    - JS服务卡片界面框架说明
+    - JS服务卡片UI框架说明
         - [文件组织](js-service-widget-file.md)
         - [配置文件](js-service-widget-config-file.md)
         - 语法
