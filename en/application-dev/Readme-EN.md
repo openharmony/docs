@@ -40,8 +40,8 @@
     - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master)
 - API References
-    - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
+    - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - APIs
       - [JS and TS APIs](reference/apis/Readme-EN.md)
       - Native APIs
