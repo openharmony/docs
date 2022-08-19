@@ -11,5 +11,4 @@
   - [HUKS开发概述](huks-overview.md)
   - [HUKS开发指导](huks-guidelines.md)
 - Hap包签名工具
-  - [Hap包签名工具概述](hapsigntool-overview.md)
   - [Hap包签名工具指导](hapsigntool-guidelines.md)
