@@ -131,7 +131,7 @@ The following table describes APIs available for obtaining device location infor
    }
    ```
 
-   For details about the configuration fields, see the description of the **module.json** file.
+   For details about the configuration fields, see [Application Package Structure Configuration File](../application-dev/quick-start/stage-structure.md).
 
 2. Import the **geolocation** module by which you can implement all APIs related to the basic location capabilities.
      
