@@ -1,4 +1,4 @@
-# JS服务卡片界面开发
+# JS服务卡片UI组件
 
 - JS服务卡片界面框架说明
     - [文件组织](js-service-widget-file.md)
