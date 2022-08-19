@@ -95,9 +95,17 @@ switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolea
 **示例：**
 
 ```js
-  inputMethod.switchInputMethod({packageName:"com.ohos.inputApp", methodId:"InputDemoService"}).then(res => {
-     prompt.showToast({message:"切换输入法成功" + this.imeList[this.flag].packageName, duration: 200});
- });
+inputmethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:"com.example.kikakeyboard"} ,(err,result) => {
+    if (err == undefined) {
+        console.info("switchInputMethod callback result---err: " + err.msg);
+        return;
+    }
+    if (result) {
+        console.info("Success to switchInputMethod.(callback)");
+    } else {
+        console.info("Failed to switchInputMethod.(callback)");
+    }
+});
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
@@ -121,9 +129,18 @@ switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
 
 
 ```js
-  inputMethod.switchInputMethod({packageName:"com.ohos.inputApp", methodId:"InputDemoService"}).then(res => {
-     prompt.showToast({message:"切换输入法成功" + this.imeList[this.flag].packageName, duration: 200});
- });
+async function InputMethod() {
+    await inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard",
+                                         methodId:"com.example.kikakeyboard"}).then((result) => {
+        if (result) {
+            console.info("Success to switchInputMethod.(promise)");
+        } else {
+            console.info("Failed to switchInputMethod.(promise)");
+        }
+    }).catch((err) => {
+        console.info("switchInputMethod promise err: " + err.msg);
+    });
+}
 ```
 ## InputMethodController
 
