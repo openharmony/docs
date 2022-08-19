@@ -111,22 +111,18 @@
 - 移植
 
   - 轻量系统芯片移植指导
-
-    - 移植准备
-      - [移植须知](porting/porting-chip-prepare-knows.md)
-      - [编译构建适配流程](porting/porting-chip-prepare-process.md)
-    - 内核移植
-      - [移植概述](porting/porting-chip-kernel-overview.md)
-      - [内核基础适配](porting/porting-chip-kernel-adjustment.md)
-      - [内核移植验证](porting/porting-chip-kernel-verify.md)
-    - 板级系统移植
-      - [移植概述](porting/porting-chip-board-overview.md)
-      - [板级驱动适配](porting/porting-chip-board-driver.md)
-      - [HAL层实现](porting/porting-chip-board-hal.md)
-      - [系统组件调用](porting/porting-chip-board-component.md)
-      - [lwIP组件适配](porting/porting-chip-board-lwip.md)
-      - [三方组件适配](porting/porting-chip-board-bundle.md)
-      - [XTS认证](porting/porting-chip-board-xts.md)
+    - [概述](porting/porting-minichip-overview.md)
+    - [移植准备](porting/porting-minichip-prepare.md)
+    - [移植内核](porting/porting-minichip-kernel.md)
+    - 移植子系统
+      - [移植子系统概述](porting/porting-minichip-subsys-overview.md)
+      - [移植启动恢复子系统](porting/porting-minichip-subsys-startup.md)
+      - [移植文件子系统](porting/porting-minichip-subsys-filesystem.md)
+      - [移植安全子系统](porting/porting-minichip-subsys-security.md)
+      - [移植通信子系统](porting/porting-minichip-subsys-communication.md)
+      - [移植外设驱动子系统](porting/porting-minichip-subsys-driver.md)
+      - [配置其他子系统](porting/porting-minichip-subsys-others.md)
+    - [移植验证](porting/porting-minichip-verification.md)
     - [常见问题](porting/porting-chip-faqs.md)
 
   - 小型系统芯片移植指导
