@@ -2379,6 +2379,219 @@ try {
 
 ```
 
+### backup<sup>9+</sup>
+
+backup(file:string, callback: AsyncCallback&lt;void&gt;):void
+
+以指定名称备份数据库，使用callback异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 参数类型                  | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| file     | string                    | 是   | 备份数据库的指定名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当以指定名称备份数据库成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.backup(file, (err, data) => {
+        if (err) {
+            console.info("backup err : " + err);
+        } else {
+            console.info("backup data : " + data);
+        }
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### backup<sup>9+</sup>
+
+backup(file:string): Promise&lt;void&gt;
+
+以指定名称备份数据库，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| file   | string   | 是   | 备份数据库的指定名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.backup(file).then((data) => {
+        console.info("backup data : " + data);
+    }).catch((err) => {
+        console.info("backup err : " + err);
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### restore<sup>9+</sup>
+
+restore(file:string, callback: AsyncCallback&lt;void&gt;):void
+
+从指定的数据库文件恢复数据库，使用callback异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 参数类型                  | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| file     | string                    | 是   | 指定的数据库文件名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当从指定的数据库文件恢复数据库成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.restore(file, (err, data) => {
+        if (err) {
+            console.info("restore err : " + err);
+        } else {
+            console.info("restore data : " + data);
+        }
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### restore<sup>9+</sup>
+
+restore(file:string): Promise&lt;void&gt;
+
+从指定的数据库文件恢复数据库，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| file   | string   | 是   | 指定的数据库文件名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.restore(file).then((data) => {
+        console.info("restore data : " + data);
+    }).catch((err) => {
+        console.info("restore err : " + err);
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### deleteBackup<sup>9+</sup>
+
+deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;):void
+
+根据指定名称删除备份文件，使用callback异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 参数类型                                           | 必填 | 说明                                                         |
+| -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| files    | Array&lt;string&gt;                                | 是   | 删除备份文件所指定的名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数，返回删除备份的文件名及其处理结果。                 |
+
+**示例：**
+
+```js
+let kvStore;
+let files = ["BK001", "BK002"];
+try {
+    kvStore.deleteBackup(files, (err, data) => {
+        if (err) {
+            console.info("deleteBackup err : " + err);
+        } else {
+            console.info("deleteBackup data : " + data);
+        }
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### deleteBackup<sup>9+</sup>
+
+deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt;&gt;
+
+根据指定名称删除备份文件，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| files  | Array&lt;string&gt;   | 是   | 删除备份文件所指定的名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                            |
+| -------------------------------------------- | ----------------------------------------------- |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，返回删除备份的文件名及其处理结果。 |
+
+**示例：**
+
+```js
+let kvStore;
+let files = ["BK001", "BK002"];
+try {
+    kvStore.deleteBackup(files).then((data) => {
+        console.info("deleteBackup data : " + data);
+    }).catch((err) => {
+        console.info("deleteBackup err : " + err);
+    })
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
