@@ -27,6 +27,7 @@ enum ActionButtonType: 在提醒弹出的通知界面上的按钮的类型。
 | 枚举名 | 描述 |
 | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 指明是close按钮，点击后关闭当前提醒的铃声（如果正在响铃），关闭提醒的通知，取消延迟提醒。 |
+| ACTION_BUTTON_TYPE_SNOOZE | 指明是snooze按钮，点击后使当前的提醒延迟相应时间。 |
 
 enum ReminderType: 提醒类型
 
