@@ -20,7 +20,7 @@ The system controls device vibration by invoking the vibrator. There are two vib
 
 - Periodic vibration
 
-  The vibrator vibrates with a preset effect. For example, if the preset effect is "haptic.clock.timer" = [600, 600, 200, 600], the vibrator waits for 600 ms, vibrates for 600 ms, waits for 200 ms, and vibrates for 600 ms.
+  The vibrator vibrates with a preset effect. For example, if **haptic.clock.timer** is set to **[600, 600, 200, 600]**, the vibrator waits for 600 ms, vibrates for 600 ms, waits for 200 ms, and vibrates for 600 ms.
 
 ### Working Principles
 
@@ -57,9 +57,11 @@ The vibrator driver model supports static HDF Configuration Source (HCS) configu
 
 | API                                 | Description                                          |
 | -------------------------------------- | ------------------------------------------------ |
-| int32_t  StartOnce(uint32_t duration)  | Triggers vibration with a given **duration**.  |
-| int32_t  Start(const char *effectType) | Triggers vibration with a given effect, which is specified by **effectType**.|
-| int32_t  Stop(enum VibratorMode mode)  | Stops vibration.                      |
+| int32_t  StartOnce(uint32_t duration)                        | Triggers vibration with a given **duration**.      |
+| int32_t  Start(const char *effectType)                       | Triggers vibration with a given effect, which is specified by **effectType**.    |
+| int32_t  Stop(enum VibratorMode mode)                        | Stops vibration.                            |
+| int32_t EnableVibratorModulation(uint32_t duration, int32_t intensity, int32_t frequency) | Triggers vibration with the given **duration**, **frequency**, and **intensity**.|
+| int32_t GetVibratorInfo(struct VibratorInfo **vibratorInfo); | Obtains vibrator information, including whether the intensity and frequency can be set and the intensity and frequency range.|
 
 ### How to Develop
 
@@ -90,13 +92,13 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
          int32_t cmd, struct HdfSBuf *data, struct HdfSBuf *reply)
      {
          int32_t loop;
-     
+
          for (loop = 0; loop < sizeof(g_vibratorCmdHandle) / sizeof(g_vibratorCmdHandle[0]); ++loop) {
              if ((cmd == g_vibratorCmdHandle[loop].cmd) && (g_vibratorCmdHandle[loop].func != NULL)) {
                  return g_vibratorCmdHandle[loop].func(data, reply);
              }
          }
-     
+
          return HDF_SUCCESS;
      }
      
@@ -105,34 +107,34 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
      {
          struct VibratorDriverData *drvData = NULL;
          CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(device, HDF_FAILURE);
-     
+
          drvData = (struct VibratorDriverData *)OsalMemCalloc(sizeof(*drvData));
          CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_ERR_MALLOC_FAIL);
-     
+
          drvData->ioService.Dispatch = DispatchVibrator;
          drvData->device = device;
          device->service = &drvData->ioService;
          g_vibratorDrvData = drvData;
-     
+
          return HDF_SUCCESS;
      }
-     
+
      /* Entry function for vibrator driver initialization. */
      int32_t InitVibratorDriver(struct HdfDeviceObject *device)
      {
          struct VibratorDriverData *drvData = NULL;
-     
+
          drvData->mode = VIBRATOR_MODE_BUTT;
          drvData->state = VIBRATOR_STATE_IDLE;
          ......
          if (CreateVibratorHaptic(device) != HDF_SUCCESS) {
-             HDF_LOGE("%s: init workQueue fail!", __func__);
+             HDF_LOGE("%s: init workQueue failed!", __func__);
              return HDF_FAILURE;
          }
-     
+
          return HDF_SUCCESS;
      }
-     
+
      /* Release the resources allocated during vibrator driver initialization. */
      void ReleaseVibratorDriver(struct HdfDeviceObject *device)
      {
@@ -168,7 +170,7 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
 
    - Create a vibrator haptic model.
 
-     ```hcs
+     ```c
      /* Create a vibrator haptic model, allocate resources, and parse the haptic HCS. */
      int32_t CreateVibratorHaptic(struct HdfDeviceObject *device)
      {
@@ -181,7 +183,7 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
          hapticData->supportHaptic = false;
      
          if (OsalMutexInit(&hapticData->mutex) != HDF_SUCCESS) {
-             HDF_LOGE("%s: fail to init mutex", __func__);
+             HDF_LOGE("%s: failed to init mutex", __func__);
              goto EXIT;
          }
      
@@ -189,7 +191,7 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
      
          /* Parse the haptic HCS. */
          if (ParserVibratorHapticConfig(device->property) != HDF_SUCCESS) {
-             HDF_LOGE("%s: parser haptic config fail!", __func__);
+             HDF_LOGE("%s: parser haptic config failed!", __func__);
              goto EXIT;
          }
      
@@ -250,7 +252,7 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
        /* Create a timer based on the vibration effect. */
        ret = StartHaptic(&config);
        if (ret != HDF_SUCCESS) {
-           HDF_LOGE("%s: start haptic fail!", __func__);
+           HDF_LOGE("%s: start haptic failed!", __func__);
            return ret;
        }
    
@@ -272,7 +274,7 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
    
        ret = StartHaptic(&config);
        if (ret != HDF_SUCCESS) {
-           HDF_LOGE("%s: start haptic fail!", __func__);
+           HDF_LOGE("%s: start haptic failed!", __func__);
            return ret;
        }
    
@@ -290,13 +292,65 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
        /* Stop vibration and destroy the timer. */
        ret = StopHaptic();
        if (ret != HDF_SUCCESS) {
-           HDF_LOGE("%s: stop haptic fail!", __func__);
+           HDF_LOGE("%s: stop haptic failed!", __func__);
            return ret;
        }
    
        (void)OsalMutexLock(&drvData->mutex);
        drvData->mode = VIBRATOR_MODE_BUTT;
        (void)OsalMutexUnlock(&drvData->mutex);
+   
+       return HDF_SUCCESS;
+   }
+   
+   /* Trigger vibration with the given duration, frequency, and intensity. */
+   static int32_t EnableModulationParameter(struct HdfSBuf *data, struct HdfSBuf *reply)
+   {
+       (void)reply;
+       struct VibratorEffectCfg config;
+       struct VibratorDriverData *drvData;
+       uint32_t duration;
+       int32_t intensity;
+       int32_t frequency;
+       int32_t ret;
+    .....
+       (void)OsalMutexLock(&drvData->mutex);
+       drvData->mode = VIBRATOR_MODE_ONCE;
+       (void)OsalMutexUnlock(&drvData->mutex);
+    /* Set the vibration intensity and frequency. */
+       ret = drvData->ops.SetParameter(intensity, frequency);
+       if (ret != HDF_SUCCESS) {
+           HDF_LOGE("%s: set parameter failed", __func__);
+           return HDF_FAILURE;
+       }
+   
+       config.cfgMode = VIBRATOR_MODE_ONCE;
+       config.duration = duration;
+       config.effect = NULL;
+   
+       ret = StartHaptic(&config);
+       if (ret != HDF_SUCCESS) {
+           HDF_LOGE("%s: start haptic failed", __func__);
+           return HDF_FAILURE;
+       }
+   
+       return HDF_SUCCESS;
+   }
+   
+   /* Obtain vibrator information, including whether the intensity and frequency can be set and the intensity and frequency range. */
+   static int32_t GetVibratorInfo(struct HdfSBuf *data, struct HdfSBuf *reply)
+   {
+       (void)data;
+       struct VibratorDriverData *drvData;
+   
+       drvData = GetVibratorDrvData();
+       CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_ERR_INVALID_PARAM);
+       CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(reply, HDF_ERR_INVALID_PARAM);
+   
+       if (!HdfSbufWriteBuffer(reply, &drvData->vibratorInfo, sizeof(drvData->vibratorInfo))) {
+           HDF_LOGE("%s: write sbuf failed", __func__);
+           return HDF_FAILURE;
+       }
    
        return HDF_SUCCESS;
    }
@@ -319,50 +373,180 @@ The vibrator driver model provides APIs for the upper-layer hardware service to 
          drvData->ops.Start = ops->Start;
          drvData->ops.StartEffect = ops->StartEffect;
          drvData->ops.Stop = ops->Stop;
+         drvData->ops.SetParameter = ops->SetParameter;
+         (void)OsalMutexUnlock(&drvData->mutex);
+     
+         return HDF_SUCCESS;
+     }
+     
+     /* Register vibrator information. */
+      int32_t RegisterVibratorInfo(struct VibratorInfo *vibratorInfo)
+     {
+         struct VibratorDriverData *drvData = GetVibratorDrvData();
+     
+         CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(vibratorInfo, HDF_FAILURE);
+         CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_FAILURE);
+     
+         (void)OsalMutexLock(&drvData->mutex);
+         if (memcpy_s(&drvData->vibratorInfo, sizeof(drvData->vibratorInfo), vibratorInfo, sizeof(*vibratorInfo)) != EOK) {
+             HDF_LOGE("%s: Memcpy vibrator config failed", __func__);
+             return HDF_FAILURE;
+         }
          (void)OsalMutexUnlock(&drvData->mutex);
      
          return HDF_SUCCESS;
      }
      ```
 
+     
+
    - The vibrator driver model provides vibrator chipset driver interfaces. Implement these interfaces as follows:
 
      ```c
-     /* Start a linear vibrator to vibrate with a given duration. */
-     static int32_t StartLinearVibrator()
+     /* Stop vibration based on the specified vibration mode. */
+     static int32_t StopModulationParameter()
      {
-         int32_t ret;
-         struct VibratorLinearDriverData *drvData = GetLinearVibratorData();
-         CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_FAILURE);
-         ......
-         ret = GpioWrite(drvData->gpioNum, GPIO_VAL_LOW);
-         if (ret != HDF_SUCCESS) {
-             HDF_LOGE("%s: pull gpio%d to %d level failed", __func__, drvData->gpioNum, GPIO_VAL_LOW);
-             return ret;
+         uint8_t value[DRV2605L_VALUE_BUTT];
+      struct Drv2605lDriverData *drvData = NULL;
+         drvData = GetDrv2605lDrvData();
+     
+      CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_FAILURE);
+         CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData->drv2605lCfgData, HDF_FAILURE);
+     
+         value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_MODE;
+         value[DRV2605L_VALUE_INDEX] = (uint8_t)DRV2605_MODE_STANDBY;
+         if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
+             HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
+          return HDF_FAILURE;
          }
+     
+         value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_RTPIN;
+         value[DRV2605L_VALUE_INDEX] = (uint8_t)&drvData->drv2605lCfgData->vibratorAttr.defaultIntensity;
+         if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
+          HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
+         }
+     
+         value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_LRARESON;
+         value[DRV2605L_VALUE_INDEX] = (uint8_t)&drvData->drv2605lCfgData->vibratorAttr.defaultFrequency;
+         if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
+          HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
+         }
+     
          return HDF_SUCCESS;
      }
      
-     /* Start a linear vibration to vibrate with a given effect. */
-     static int32_t StartEffectLinearVibrator(uint32_t effectType)
+     /* Set the vibration intensity and frequency. */
+     static void SetModulationParameter(int32_t intensity, int32_t frequency)
      {
-         (void)effectType;
-          HDF_LOGE("%s: vibrator set build-in effect no support!", __func__);
-         return HDF_SUCCESS;
-     }
+         uint8_t value[DRV2605L_VALUE_BUTT];
+      struct Drv2605lDriverData *drvData = NULL;
+         drvData = GetDrv2605lDrvData();
      
-     /* Stop a linear vibration based on the specified vibration mode. */
-     static int32_t StopLinearVibrator()
-     {
-         int32_t ret;
-         struct VibratorLinearDriverData *drvData = GetLinearVibratorData();
          CHECK_VIBRATOR_NULL_PTR_RETURN_VALUE(drvData, HDF_FAILURE);
-         ......
-         ret = GpioWrite(drvData->gpioNum, GPIO_VAL_HIGH);
-         if (ret != HDF_SUCCESS) {
-             HDF_LOGE("%s: pull gpio%d to %d level failed", __func__, drvData->gpioNum, GPIO_VAL_HIGH);
-             return ret;
+     
+         if (intensity != 0) {
+             value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_RTPIN;
+             value[DRV2605L_VALUE_INDEX] = (uint8_t)INTENSITY_MAPPING_VALUE(intensity);
+             if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
+                 HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
+                 return;
+             }
+         } else {
+             HDF_LOGD("%s: the setting of intensity 0 is not supported and \
+              will be set as the system default intensity", __func__);
          }
-         return HDF_SUCCESS;
+     
+         if (frequency != 0) {
+             value[DRV2605L_ADDR_INDEX] = (uint8_t)DRV2605_REG_LRARESON;
+             value[DRV2605L_VALUE_INDEX] = (uint8_t)FREQUENCY_MAPPING_VALUE(frequency);
+             if (WriteDrv2605l(&drvData->drv2605lCfgData->vibratorBus.i2cCfg, value, sizeof(value)) != HDF_SUCCESS) {
+                 HDF_LOGE("%s: i2c addr [%0X] write failed", __func__, value[DRV2605L_ADDR_INDEX]);
+                 return;
+             }
+         } else {
+             HDF_LOGD("%s: the setting of frequency 0 is not supported and \
+                 will be set as the system default frequency", __func__);
+         }
      }
      ```
+
+### Verification
+
+After the driver is developed, develop test cases in the sensor unit test to verify the basic functions of the driver. Use the developer self-test platform as the test environment.
+
+```
+/* Initialize the vibrator interface instance before executing test cases. */
+void HdfVibratorTest::SetUpTestCase()
+{
+    g_vibratorDev = NewVibratorInterfaceInstance();
+}
+/* Release test case resources. */
+void HdfVibratorTest::TearDownTestCase()
+{
+    if(g_vibratorDev != nullptr){
+        FreeVibratorInterfaceInstance();
+        g_vibratorDev = nullptr;
+    }
+}
+
+/* Verify one-short vibration. */
+HWTEST_F(HdfVibratorTest, PerformOneShotVibratorDuration_001, TestSize.Level1)
+{
+    ASSERT_NE(nullptr, g_vibratorDev);
+
+    int32_t startRet = g_vibratorDev->StartOnce(g_duration);
+    EXPECT_EQ(startRet, HDF_SUCCESS);
+
+    OsalMSleep(g_sleepTime1);
+
+    int32_t endRet = g_vibratorDev->Stop(VIBRATOR_MODE_ONCE);
+    EXPECT_EQ(endRet, HDF_SUCCESS);
+}
+/* Verify vibration with the preset effect. */
+HWTEST_F(HdfVibratorTest, ExecuteVibratorEffect_002, TestSize.Level1)
+{
+    ASSERT_NE(nullptr, g_vibratorDev);
+
+    int32_t startRet = g_vibratorDev->Start(g_builtIn);
+    EXPECT_EQ(startRet, HDF_SUCCESS);
+
+    OsalMSleep(g_sleepTime1);
+
+    int32_t endRet = g_vibratorDev->Stop(VIBRATOR_MODE_PRESET);
+    EXPECT_EQ(endRet, HDF_SUCCESS);
+}
+/* Obtain vibrator information, including whether the intensity and frequency can be set and the intensity and frequency range. */
+HWTEST_F(HdfVibratorTest, GetVibratorInfo_001, TestSize.Level1)
+{
+    ASSERT_NE(nullptr, g_vibratorDev);
+
+    int32_t startRet = g_vibratorDev->GetVibratorInfo(&g_vibratorInfo);
+    EXPECT_EQ(startRet, HDF_SUCCESS);
+    EXPECT_NE(g_vibratorInfo, nullptr);
+
+    printf("intensity = %d, intensityMaxValue = %d, intensityMinValue = %d\n\t",
+    g_vibratorInfo->isSupportIntensity, g_vibratorInfo->intensityMaxValue, g_vibratorInfo->intensityMinValue);
+    printf("frequency = %d, frequencyMaxValue = %d, frequencyMinValue = %d\n\t",
+    g_vibratorInfo->isSupportFrequency, g_vibratorInfo->frequencyMaxValue, g_vibratorInfo->frequencyMinValue);
+}
+/* Trigger vibration with the given duration, frequency, and intensity. */
+HWTEST_F(HdfVibratorTest, EnableVibratorModulation_001, TestSize.Level1)
+{
+    int32_t startRet;
+    ASSERT_NE(nullptr, g_vibratorDev);
+    EXPECT_GT(g_duration, 0);
+
+    if ((g_vibratorInfo->isSupportIntensity == 1) || (g_vibratorInfo->isSupportFrequency == 1)) {
+        EXPECT_GE(g_intensity1, g_vibratorInfo->intensityMinValue);
+        EXPECT_LE(g_intensity1, g_vibratorInfo->intensityMaxValue);
+        EXPECT_GE(g_frequency1, g_vibratorInfo->frequencyMinValue);
+        EXPECT_LE(g_frequency1, g_vibratorInfo->frequencyMaxValue);
+
+        startRet = g_vibratorDev->EnableVibratorModulation(g_duration, g_intensity1, g_frequency1);
+        EXPECT_EQ(startRet, HDF_SUCCESS);
+        OsalMSleep(g_sleepTime1);
+        startRet = g_vibratorDev->Stop(VIBRATOR_MODE_ONCE);
+        EXPECT_EQ(startRet, HDF_SUCCESS);
+    }
+}
+```
