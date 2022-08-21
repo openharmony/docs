@@ -1058,10 +1058,10 @@ const valueBucket3 = {
 var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
     if (status) {
-        console.log("bathInsert is failed, status = " + status);
+        console.log("batchInsert is failed, status = " + status);
         return;
     }
-    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 })
 ```
 
@@ -1108,9 +1108,9 @@ const valueBucket3 = {
 var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
-    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 }).catch((status) => {
-    console.log("bathInsert is failed, status = " + status);
+    console.log("batchInsert is failed, status = " + status);
 })
 ```
 
