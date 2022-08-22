@@ -43,11 +43,11 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 
 ## 属性
 
-| 名称                 | 参数类型                                     | 默认值  | 描述                                       |
-| ------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| value              | number                                   | -    | 设置当前进度值。                                 |
-| color              | [ResourceColor](../../ui/ts-types.md)                                    | -    | 设置进度条前景色。                                |
-| style<sup>8+</sup> | {<br/>strokeWidth？:&nbsp;Length,<br/>scaleCount？:&nbsp;number,<br/>scaleWidth？:&nbsp;Length<br/>} | -    | 定义组件的样式。<br/>strokeWidth:&nbsp;设置进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
+| 名称               | 参数类型                                                     | 默认值 | 描述                                                         |
+| ------------------ | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| value              | number                                                       | -      | 设置当前进度值。                                             |
+| color              | [ResourceColor](ts-types.md#resourcecolor8)                  | -      | 设置进度条前景色。                                           |
+| style<sup>8+</sup> | {<br/>strokeWidth？:&nbsp;Length,<br/>scaleCount？:&nbsp;number,<br/>scaleWidth？:&nbsp;Length<br/>} | -      | 定义组件的样式。<br/>strokeWidth:&nbsp;设置进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
 
 
 ## 示例

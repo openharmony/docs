@@ -20,12 +20,13 @@ Web(options: { src: ResourceStr, controller: WebController })
 表1 options参数说明
 
 **参数：**
-| 参数名        | 参数类型                            | 必填   | 默认值  | 参数描述    |
-| ---------- | ------------------------------- | ---- | ---- | ------- |
-| src        | [ResourceStr](../../ui/ts-types.md)                          | 是    | -    | 网页资源地址。 |
-| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
+| 参数名     | 参数类型                                | 必填 | 默认值 | 参数描述       |
+| ---------- | --------------------------------------- | ---- | ------ | -------------- |
+| src        | [ResourceStr](ts-types.md#resourcestr8) | 是   | -      | 网页资源地址。 |
+| controller | [WebController](#webcontroller)         | 否   | -      | 控制器。       |
 
 **示例：**
+
   ```ts
   // xxx.ets
   @Entry
@@ -217,6 +218,7 @@ mixedMode(mixedMode: MixedMode)
 | mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | None     | 要设置的混合内容。 |
 
 **示例：**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1667,7 +1669,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 **参数：**
 | 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                     |
 | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
-| script   | string                   | 是    | -    | JavaScript脚本。                            | 
+| script   | string                   | 是    | -    | JavaScript脚本。                            |
 | callback | (result: string) => void | 否    | -    | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
 
 **示例：**
@@ -1823,3 +1825,15 @@ clearHistory(): void
 | None    | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
 | Online  | 加载资源不使用cache，全部从网络中获取。               |
 | Only    | 只从cache中加载资源。                        |
+
+ ## HitTestType枚举说明
+
+| 名称          | 描述                                      |
+| ------------- | ----------------------------------------- |
+| EditText      | 可编辑的区域。                            |
+| Email         | 电子邮件地址。                            |
+| HttpAnchor    | 超链接，其src为http。                     |
+| HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
+| Img           | HTML::img标签。                           |
+| Map           | 地理地址。                                |
+| Unknown       | 未知内容。                                |

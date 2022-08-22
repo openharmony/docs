@@ -25,7 +25,7 @@ Span(content: ResourceStr)
 
 | 参数名     | 参数类型   | 必填   | 默认值  | 参数描述  |
 | ------- | ------ | ---- | ---- | ----- |
-| content | [ResourceStr](../../ui/ts-types.md) | 是    | -    | 文本内容。 |
+| content | [ResourceStr](ts-types.md#resourcestr8) | 是    | -    | 文本内容。 |
 
 ## 属性
 
@@ -33,8 +33,8 @@ Span(content: ResourceStr)
 
 | 名称         | 参数类型                                     | 默认值                                      | 描述             |
 | ---------- | ---------------------------------------- | ---------------------------------------- | -------------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype枚举说明),<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
-| letterSpacing       | [Length](../../ui/ts-types.md)                 | -                          | 设置文本字符间距。                                 |
+| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype枚举说明),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
+| letterSpacing       | [Length](ts-types.md#length) | -                          | 设置文本字符间距。                                 |
 | textCase   | [TextCase](ts-appendix-enums.md#textcase枚举说明) | Normal                                   | 设置文本大小写。       |
 
 

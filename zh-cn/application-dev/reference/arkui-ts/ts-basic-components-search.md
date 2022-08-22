@@ -29,12 +29,12 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 ## 属性
 
-| 名称               | 参数类型                                  | 默认值  | 描述                    |
-| ---------------- | ------------------------------------- | ---- | --------------------- |
-| searchButton     | string                                | 无    | 搜索框末尾搜索按钮文本值，默认无搜索按钮。 |
-| placeholderColor | [ResourceColor](../../ui/ts-types.md) | -    | 设置placeholder颜色。      |
-| placeholderFont  | [Font](../../ui/ts-types.md)          | -    | 设置placeholder文本样式。    |
-| textFont         | [Font](../../ui/ts-types.md)          | -    | 设置搜索框内文本样式。           |
+| 名称             | 参数类型                                    | 默认值 | 描述                                       |
+| ---------------- | ------------------------------------------- | ------ | ------------------------------------------ |
+| searchButton     | string                                      | 无     | 搜索框末尾搜索按钮文本值，默认无搜索按钮。 |
+| placeholderColor | [ResourceColor](ts-types.md#resourcecolor8) | -      | 设置placeholder颜色。                      |
+| placeholderFont  | [Font](ts-types.md#font)                    | -      | 设置placeholder文本样式。                  |
+| textFont         | [Font](ts-types.md#font)                    | -      | 设置搜索框内文本样式。                     |
 
 ## 事件
 
