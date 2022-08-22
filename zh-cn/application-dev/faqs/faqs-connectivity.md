@@ -26,6 +26,6 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 适用于：OpenHarmony SDK 3.2.3.5版本
 
-6表示地址无法解析主机，可以试着ping一下request中的url，看看是否可以ping通。
+6表示地址无法解析主机，可以尝试ping一下request中的url，确认是否可以ping通。
 
 更多错误码参考[Response常用错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md#response%E5%B8%B8%E7%94%A8%E9%94%99%E8%AF%AF%E7%A0%81)或者[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
