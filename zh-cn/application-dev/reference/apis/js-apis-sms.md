@@ -16,7 +16,7 @@ import sms from '@ohos.telephony.sms';
 
 createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
-根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用callback方式作为异步方法。
+根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -44,7 +44,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
 
-根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用Promise方式作为异步方法。
+根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -114,7 +114,7 @@ sms.sendMessage(options);
 
 getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
-获取发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
+获取发送短信的默认SIM卡槽ID。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -137,7 +137,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 
 getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
-获取发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
+获取发送短信的默认SIM卡槽ID。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -162,7 +162,7 @@ promise.then(data => {
 
 setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
 
-设置发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
+设置发送短信的默认SIM卡槽ID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -190,7 +190,7 @@ sms.setDefaultSmsSlotId(0,(err, data) => {
 
 setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
-设置发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
+设置发送短信的默认SIM卡槽ID。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -225,7 +225,7 @@ promise.then(data => {
 
 setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\): void
 
-设置短信服务中心（SMSC）地址，使用callback方式作为异步方法。
+设置短信服务中心（SMSC）地址。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -256,7 +256,7 @@ sms.setSmscAddr(slotId, smscAddr, (err,data) => {
 
 setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
-设置短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
+设置短信服务中心（SMSC）地址。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -295,7 +295,7 @@ promise.then(data => {
 
 getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取短信服务中心（SMSC）地址，使用callback方式作为异步方法。
+获取短信服务中心（SMSC）地址。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -324,7 +324,7 @@ sms.getSmscAddr(slotId, (err, data) => {
 
 getSmscAddr\(slotId: number\): Promise<string\>
 
-获取短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
+获取短信服务中心（SMSC）地址。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -379,7 +379,7 @@ console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 
 splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
 
-将长短信拆分为多个片段，使用callback方式作为异步方法。
+将长短信拆分为多个片段。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -408,7 +408,7 @@ sms.splitMessage(content, (err, data) => {
 
 splitMessage(content: string): Promise<Array<string\>>
 
-将长短信拆分为多个片段，使用Promise方式作为异步方法。
+将长短信拆分为多个片段。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -444,7 +444,7 @@ promise.then(data => {
 
 addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
-添加SIM卡消息，使用callback方式作为异步方法。
+添加SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -478,7 +478,7 @@ sms.addSimMessage(simMessageOptions, (err, data) => {
 
 addSimMessage(options: SimMessageOptions): Promise<void\>
 
-添加SIM卡消息，使用Promise方式作为异步方法。
+添加SIM卡消息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -519,7 +519,7 @@ promise.then(data => {
 
 delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>): void
 
-删除SIM卡消息，使用callback方式作为异步方法。
+删除SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -550,7 +550,7 @@ sms.delSimMessage(slotId, msgIndex, (err, data) => {
 
 delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 
-删除SIM卡信息，使用Promise方式作为异步方法。
+删除SIM卡信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -588,7 +588,7 @@ promise.then(data => {
 
 updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\>): void
 
-更新SIM卡消息，使用callback方式作为异步方法。
+更新SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -623,7 +623,7 @@ sms.updateSimMessage(updateSimMessageOptions, (err, data) => {
 
 updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
-更新SIM卡消息，使用Promise方式作为异步方法。
+更新SIM卡消息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -665,7 +665,7 @@ promise.then(data => {
 
 getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\>>): void
 
-获取所有SIM卡消息，使用callback方式作为异步方法。
+获取所有SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -694,7 +694,7 @@ sms.getAllSimMessages(slotId, (err, data) => {
 
 getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
-获取所有SIM卡消息，使用Promise方式作为异步方法。
+获取所有SIM卡消息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -730,7 +730,7 @@ promise.then(data => {
 
 setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
-设置小区广播配置，使用callback方式作为异步方法。
+设置小区广播配置。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -764,7 +764,7 @@ sms.setCBConfig(cbConfigOptions, (err, data) => {
 
 setCBConfig(options: CBConfigOptions): Promise<void\>
 
-设置小区广播配置，使用Promise方式作为异步方法。
+设置小区广播配置。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -805,7 +805,7 @@ promise.then(data =>
 
 getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo\>): void
 
-获取短信段信息，使用callback方式作为异步方法。
+获取短信段信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -834,7 +834,7 @@ sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
 
 getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo\>
 
-获取短信段信息，使用Promise方式作为异步方法。
+获取短信段信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -870,7 +870,7 @@ promise.then(data =>
 
 isImsSmsSupported(callback: AsyncCallback<boolean\>): void
 
-如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS，使用callback方式作为异步方法。
+如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -895,7 +895,7 @@ sms.isImsSmsSupported((err, data) => {
 
 isImsSmsSupported(): Promise<boolean\>
 
-如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS，使用Promise方式作为异步方法。
+如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -922,7 +922,7 @@ promise.then(data => {
 
 getImsShortMessageFormat(callback: AsyncCallback<string\>): void
 
-获取IMS上支持的SMS格式，使用callback方式作为异步方法。
+获取IMS上支持的SMS格式。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -947,7 +947,7 @@ sms.getImsShortMessageFormat((err, data) => {
 
 getImsShortMessageFormat(): Promise<string\>
 
-获取IMS上支持的SMS格式，使用Promise方式作为异步方法。
+获取IMS上支持的SMS格式。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -974,7 +974,7 @@ promise.then(data => {
 
 decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsInformation\>): void
 
-彩信解码，使用callback方式作为异步方法。
+彩信解码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1001,7 +1001,7 @@ sms.decodeMms(mmsFilePathName, (err, data) => {
 
 decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
 
-彩信解码，使用Promise方式作为异步方法。
+彩信解码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1035,7 +1035,7 @@ promise.then(data => {
 
 encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
-彩信编码，使用callback方式作为异步方法。
+彩信编码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1070,7 +1070,7 @@ sms.encodeMms(mmsInformation, (err, data) => {
 
 encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
-彩信编码，使用Promise方式作为异步方法。
+彩信编码。使用Promise异步回调。
 
 此接口为系统接口。
 
