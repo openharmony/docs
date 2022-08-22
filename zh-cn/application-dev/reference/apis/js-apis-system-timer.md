@@ -1,6 +1,6 @@
-# 设置系统时间
+# 系统定时器
 
-本模块主要由时间、时区和定时三大功能组成。其中，定时服务用来管理和使用时间、时区。开发者可以通过对系统进行设置、获取等操作管理系统时间、时区，也可以通过定时功能实现定时服务如闹钟服务等。
+本模块主要由系统定时器功能组成。开发者可以使用定时功能实现定时服务，如闹钟等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -40,7 +40,7 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -80,7 +80,7 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -111,7 +111,7 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -144,7 +144,7 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -174,7 +174,7 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -207,7 +207,7 @@ stopTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -238,7 +238,7 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }
@@ -272,7 +272,7 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
+  var options = {   
         type:TIMER_TYPE_REALTIME,   
         repeat:false  
       }

@@ -1,11 +1,9 @@
 # subsystems
 
 - 编译构建
-    - [轻量和小型系统编译构建指导](subsys-build-mini-lite.md)
-    - [标准系统编译构建指导](subsys-build-standard-large.md)
+    - [编译构建指导](subsys-build-all.md)
     - [构建系统编码规范与最佳实践](subsys-build-gn-coding-style-and-best-practice.md)
     - [编译构建Kconfig可视化配置指导](subsys-build-gn-kconfig-visual-config-guide.md)
-    - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
 - [分布式远程启动](subsys-remote-start.md)
 - 图形图像
     - [图形图像概述](subsys-graphics-overview.md)
@@ -72,9 +70,16 @@
     - [应用权限管理开发指导](subsys-security-rightmanagement.md)
     - [IPC通信鉴权开发指导](subsys-security-communicationverify.md)
     - [设备安全等级管理开发指导](subsys-security-devicesecuritylevel.md)
+    - [OpenHarmony通用密钥库系统开发](subsys-security-huks-guide.md)
 - 启动恢复
     - [启动恢复子系统概述](subsys-boot-overview.md)
-    - [init启动引导组件](subsys-boot-init.md)
+    - init启动引导组件
+      - [引导启动配置文件](subsys-boot-init-cfg.md)
+      - [jobs管理](subsys-boot-init-jobs.md)
+      - [服务管理](subsys-boot-init-service.md)
+      - [系统参数](subsys-boot-init-sysparam.md)
+      - [沙盒管理](subsys-boot-init-sandbox.md)
+      - [插件](subsys-boot-init-plugin.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)

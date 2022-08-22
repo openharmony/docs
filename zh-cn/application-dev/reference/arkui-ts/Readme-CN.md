@@ -38,6 +38,7 @@
         - [组件标识](ts-universal-attributes-component-id.md)
         - [触摸热区设置](ts-universal-attributes-touch-target.md)
         - [多态样式](ts-universal-attributes-polymorphic-style.md)
+        - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
     - 手势处理
         - [绑定手势方法](ts-gesture-settings.md)
         - 基础手势

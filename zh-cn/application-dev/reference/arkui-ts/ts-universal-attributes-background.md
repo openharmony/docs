@@ -1,10 +1,9 @@
 # 背景设置
 
+设置组件的背景色。
+
 >  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-设置组件的背景色。
 
 
 ## 权限列表
@@ -38,6 +37,7 @@
 @Entry
 @Component
 struct BackgroundExample {
+
   build() {
     Column({ space: 5 }) {
       Text('background color').fontSize(9).width('90%').fontColor(0xCCCCCC)

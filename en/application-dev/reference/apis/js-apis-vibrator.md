@@ -1,6 +1,8 @@
-
-
 # Vibrator
+
+The **Vibrator** module provides APIs for triggering or stopping vibration.
+
+Misc devices, including vibrators and LED lights, are used to send signals externally. You can call the APIs of this module to control the vibration of vibrators and turning-on/off of LED lights.
 
 > **NOTE**
 >
@@ -12,7 +14,6 @@
 ```js
 import vibrator from '@ohos.vibrator';
 ```
-
 
 ## vibrator.vibrate
 

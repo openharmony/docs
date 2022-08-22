@@ -1,11 +1,11 @@
 # Column
 
 
-> **NOTE**<br>
+The **\<Column>** component lays out child components vertically.
+
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Column&gt;** component lays out child components vertically.
 
 
 ## Required Permissions
@@ -47,7 +47,8 @@ Column(value:{space?: Length})
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ColumnExample {
@@ -76,6 +77,7 @@ struct ColumnExample {
           Column().width('30%').height(30).backgroundColor(0xAFEEEE)
           Column().width('30%').height(30).backgroundColor(0x00FFFF)
         }.height('15%').border({ width: 1 }).justifyContent(FlexAlign.Center)
+
         Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Column() {
           Column().width('30%').height(30).backgroundColor(0xAFEEEE)

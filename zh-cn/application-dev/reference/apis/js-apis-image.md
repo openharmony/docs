@@ -15,22 +15,23 @@ import image from '@ohos.multimedia.image';
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
-通过属性创建PixelMap，通过Promise返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过Promise返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
-| 名称    | 类型                                             | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                    |
+| 名称    | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
 
-| 类型                             | 说明           |
-| -------------------------------- | -------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。 |
+| 类型                             | 说明                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。<br>当创建的pixelmap大小超过原图大小时，返回原图pixelmap大小。|
+
 
 **示例：**
 
@@ -47,7 +48,7 @@ image.createPixelMap(color, opts)
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
-通过属性创建PixelMap，通过回调函数返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过回调函数返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -90,7 +91,7 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。
+读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -121,7 +122,7 @@ pixelmap.readPixelsToBuffer(readBuffer).then(() => {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。
+读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -808,7 +809,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -836,7 +837,7 @@ crop(region: Region): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 

@@ -33,6 +33,7 @@
     - 其他
       - [WantAgent开发指导](ability/wantagent.md)
       - [Ability助手使用指导](ability/ability-assistant-guidelines.md)
+      - [ContinuationManager使用指导](ability/continuationmanager.md)
       - [测试框架使用指导](ability/ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
@@ -107,6 +108,7 @@
         - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
+      - [性能提升的推荐方法](ui/ts-performance-improvement-recommendation.md)
     - 基于JS扩展的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
@@ -417,6 +419,7 @@
         - [组件标识](reference/arkui-ts/ts-universal-attributes-component-id.md)
         - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [多态样式](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
+        - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -633,6 +636,48 @@
       - [slot插槽](reference/arkui-js/js-components-custom-slot.md)
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
     - [数据类型说明](reference/arkui-js/js-appendix-types.md)
+  - JS服务卡片UI组件参考
+    - JS服务卡片UI框架说明
+        - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
+        - [配置文件](reference/js-service-widget-ui/js-service-widget-config-file.md)
+        - 语法
+            - [HML语法参考](reference/js-service-widget-ui/js-service-widget-syntax-hml.md)
+            - [CSS语法参考](reference/js-service-widget-ui/js-service-widget-syntax-css.md)
+            - [配置数据和事件](reference/js-service-widget-ui/js-service-widget-configuration.md)
+        - [多语言支持](reference/js-service-widget-ui/js-service-widget-multiple-languages.md)
+        - [低版本兼容](reference/js-service-widget-ui/js-service-widget-version-compatibility.md)
+    - 组件
+        - 通用
+            - [通用属性](reference/js-service-widget-ui/js-service-widget-common-attributes.md)
+            - [通用样式](reference/js-service-widget-ui/js-service-widget-common-styles.md)
+            - [通用事件](reference/js-service-widget-ui/js-service-widget-common-events.md)
+            - [渐变样式](reference/js-service-widget-ui/js-service-widget-common-gradient.md)
+            - [媒体查询](reference/js-service-widget-ui/js-service-widget-common-mediaquery.md)
+            - [自定义字体样式](reference/js-service-widget-ui/js-service-widget-common-customizing-font.md)
+            - [无障碍](reference/js-service-widget-ui/js-service-widget-common-accessibility.md)
+            - [原子布局](reference/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
+        - 容器组件
+            - [div](reference/js-service-widget-ui/js-service-widget-container-div.md)
+            - [list](reference/js-service-widget-ui/js-service-widget-container-list.md)
+            - [list-item](reference/js-service-widget-ui/js-service-widget-container-list-item.md)
+            - [stack](reference/js-service-widget-ui/js-service-widget-container-stack.md)
+            - [swiper](reference/js-service-widget-ui/js-service-widget-container-swiper.md)
+        - 基础组件
+            - [button](reference/js-service-widget-ui/js-service-widget-basic-button.md)
+            - [calendar](reference/js-service-widget-ui/js-service-widget-basic-calendar.md)
+            - [chart](reference/js-service-widget-ui/js-service-widget-basic-chart.md)
+            - [clock](reference/js-service-widget-ui/js-service-widget-basic-clock.md)
+            - [divider](reference/js-service-widget-ui/js-service-widget-basic-divider.md)
+            - [image](reference/js-service-widget-ui/js-service-widget-basic-image.md)
+            - [input](reference/js-service-widget-ui/js-service-widget-basic-input.md)
+            - [progress](reference/js-service-widget-ui/js-service-widget-basic-progress.md)
+            - [span](reference/js-service-widget-ui/js-service-widget-basic-span.md)
+            - [text](reference/js-service-widget-ui/js-service-widget-basic-text.md)
+    - 自定义组件
+        - [自定义组件基本用法](reference/js-service-widget-ui/js-service-widget-custom-basic-usage.md)
+        - [自定义事件](reference/js-service-widget-ui/js-service-widget-custom-events.md)
+        - [Props](reference/js-service-widget-ui/js-service-widget-custom-props.md)
+    - [数据类型说明](reference/js-service-widget-ui/js-service-widget-appendix-types.md)
   - 接口参考（JS及TS API）
     - [开发说明](reference/apis/development-intro.md)
     - Ability框架
@@ -819,7 +864,7 @@
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime (设置系统时间)](reference/apis/js-apis-system-time.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
-      - [@ohos.systemTimer(设置系统时间)](js-apis-system-timer.md)
+      - [@ohos.systemTimer(设置系统时间)](reference/apis/js-apis-system-timer.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
     - 设备管理
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)

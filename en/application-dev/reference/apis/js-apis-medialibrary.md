@@ -15,6 +15,8 @@ getMediaLibrary(context: Context): MediaLibrary
 
 Obtains a **MediaLibrary** instance, which is used to access and modify personal media data such as audios, videos, images, and documents.
 
+This API can be used only in the stage model.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 **Parameters**
@@ -48,6 +50,8 @@ var media = mediaLibrary.getMediaLibrary(context);
 getMediaLibrary(): MediaLibrary
 
 Obtains a **MediaLibrary** instance, which is used to access and modify personal media data such as audios, videos, images, and documents.
+
+This API can be used only in the FA model.
 
 > **NOTE**
 >
@@ -256,17 +260,12 @@ Creates a media asset. This API uses a promise to return the result.
 **Example**
 
 ```
-async function example() {
-    // Create an image file in promise mode.
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    media.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
-        console.info("createAsset successfully:"+ JSON.stringify(asset));
-    }).catch(function(err){
-        console.info("createAsset failed with error:"+ err);
-    });
-}
+let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
+media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
+    console.info("getPublicDirectory successfully:"+ JSON.stringify(dicResult));
+}).catch(function(err){
+    console.info("getPublicDirectory failed with error:"+ err);
+});
 ```
 
 ### getPublicDirectory<sup>8+</sup>
@@ -578,7 +577,7 @@ Starts image preview. This API can be used to preview local images whose URIs st
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **<Image\>** component can be used to render and display local images and network images.
+> This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -620,7 +619,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **<Image\>** component can be used to render and display local images and network images.
+> This API is deprecated since API version 9. You are advised to use the **\<[Image](../arkui-ts/ts-basic-components-image.md)>** component instead. The **\<Image>** component can be used to render and display local and online images.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -960,8 +959,8 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-> **NOTE**
-> 
+>  **NOTE**
+>  
 > Currently, the write operations are mutually exclusive. After the write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
@@ -1934,13 +1933,11 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(1, (err, fileAsset) => {
-       if (err) {
-           console.error('Failed ');
-           return;
-       }
-       console.log('fileAsset.displayName : ' + fileAsset.displayName);
-    })
+    fetchFileResult.getPositionObject(1) .then(function (fileAsset){
+        console.log('[Demo] fileAsset.displayName : ' + fileAsset.displayName);
+    }).catch(function (err) {
+        console.info("[Demo] getFileAssets failed with error:" + err);
+    });
 }
 ```
 
@@ -2281,7 +2278,7 @@ Describes options for fetching media files.
 
 | Name                   | Type               | Readable| Writable| Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| selections              | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?',|
+| selections              | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
 | selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
 | order                   | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
 | uri<sup>8+</sup>        | string              | Yes  | Yes  | No  | File URI.                                                     |

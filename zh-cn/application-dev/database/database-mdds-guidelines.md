@@ -57,7 +57,7 @@
            kvManager = manager;
        });
    } catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+       console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
@@ -75,7 +75,7 @@
            backup : false,
            autoSync : false,
            kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-           securityLevel : distributedData.SecurityLevel.S0,
+           securityLevel : distributedData.SecurityLevel.S0
        };
        kvManager.getKVStore('storeId', options, function (err, store) {
            if (err) {
@@ -86,7 +86,7 @@
            kvStore = store;
        });
    } catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+       console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
@@ -120,7 +120,7 @@
            console.log("put success");
        });
    }catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+       console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
@@ -144,7 +144,7 @@
            });
        });
    }catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+       console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
@@ -176,7 +176,7 @@
                // 1000表示最大延迟时间为1000ms
                kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
            }catch (e) {
-                console.log("An unexpected error occurred. Error:" + e);
+                console.log("An unexpected error occurred. Error: " + e);
            }
        }
    });

@@ -11,7 +11,7 @@ This service-oriented framework enables you to develop services, features, and e
 >![](../public_sys-resources/icon-notice.gif) **NOTICE:** 
 >This module must be used during board-level system porting. Otherwise, other service modules cannot run properly.
 
-For details about how to use SAMGR, see  [samgr\_lite](https://gitee.com/openharmony/distributedschedule_samgr_lite/blob/master/README.md).
+For details about how to use SAMGR, see  [samgr\_lite](https://gitee.com/openharmony/systemabilitymgr_samgr_lite/blob/master/README.md).
 
 ## DFX<a name="section20064420420"></a>
 

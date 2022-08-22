@@ -2,7 +2,7 @@
 
 ## Overview
 
-### Introduction
+### Function
 
 HiSysEvent provides event logging APIs for OpenHarmony to record important information of key processes during system running. Besides, it supports shielding of event logging by event domain, helping you to evaluate the impact of event logging.
 
@@ -10,9 +10,9 @@ HiSysEvent provides event logging APIs for OpenHarmony to record important infor
 
 Before logging system events, you need to complete HiSysEvent logging configuration. For details, see [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md).
 
-## Development Guidelines
+## How to Develop
 
-### When to Use
+### Use Cases
 
 Use HiSysEvent logging to flush logged event data to disks.
 
@@ -38,7 +38,7 @@ HiSysEvent logging is implemented using the API provided by the **HiSysEvent** c
 
  **Table 3** Event types
 
-| Event   | Description        |
+| API   | Description        |
 | --------- | ------------ |
 | FAULT     | Fault event|
 | STATISTIC | Statistical event|
@@ -59,9 +59,9 @@ The following table describes the kernel event logging APIs.
 | int hisysevent_put_string(struct hiview_hisysevent *event, const char *key, const char *value); | Adds event parameters of the string type to a **hisysevent** object.|
 | int hisysevent_write(struct hiview_hisysevent *event);       | Flushes **hisysevent** object data to disks.              |
 
-Table 5 Kernel event types
+**Table 5** Kernel event types
 
-| Event   | Description        |
+| API   | Description        |
 | --------- | ------------ |
 | FAULT     | Fault event|
 | STATISTIC | Statistical event|
@@ -138,7 +138,7 @@ Table 5 Kernel event types
    HiSysEventWrite(domain, eventName, eventType); // Event logging is shielded for DOMAIN_NAME_1 because it has been defined in the DOMAIN_MASKS macro.
    ```
 
-### Development Examples
+### Development Example
 
 #### C++ Event Logging
 

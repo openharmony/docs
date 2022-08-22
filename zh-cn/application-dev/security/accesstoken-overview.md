@@ -1,4 +1,4 @@
-# 访问控制开发概述
+# 访问控制（权限）开发概述
 
 ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的应用权限管理能力。
 
@@ -13,6 +13,18 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 
 当前，ATM提供的应用权限校验功能是基于统一管理的TokenID（Token identity）。TokenID是每个应用的身份标识，ATM通过应用的TokenID来管理应用的权限。
 
+## 权限使用的基本原则
+
+在进行权限的申请和使用时，需要满足以下基本原则：
+
+- 应用申请的权限，都必须有明确、合理的使用场景和功能说明，确保用户能够清晰明了地知道申请权限的目的、场景、用途；禁止诱导、误导用户授权；应用使用权限必须与申请所述一致。
+- 应用权限申请遵循最小化原则，只申请业务功能所必要的权限，禁止申请不必要的权限。
+- 应用在首次启动时，避免频繁弹窗申请多个权限；权限须在用户使用对应业务功能时动态申请。
+- 用户拒绝授予某个权限时，与此权限无关的其他业务功能应能正常使用，不能影响应用的正常注册或登录。
+- 业务功能所需要的权限被用户拒绝且禁止后不再提示，当用户主动触发使用此业务功能或为实现业务功能所必须时，应用程序可通过界面内文字引导，让用户主动到“系统设置”中授权。
+
+- 当前不允许应用自行定义权限，应用申请的权限应该从[已有的权限列表](permission-list.md)中选择。
+
 ## 权限的工作流程
 
 应用在访问数据或者执行操作时，需要评估该行为是否需要应用具备相关的权限。如果确认需要目标权限，则需要在应用安装包中申请目标权限。
@@ -25,7 +37,7 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 
 ![](figures/permission-workflow.jpg)
 
-1：应用可以参考下图，判断应用能否申请目标权限。
+1：开发者可以参考下图，判断应用能否申请目标权限。
 
 ![](figures/permission-application-process.png)
 
@@ -34,38 +46,6 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 2：权限的授权方式分为user_grant（用户授权）和system_grant（系统授权），具体请参考[权限类型说明](#权限类型说明)。
 
 3：应用可以通过ACL（访问控制列表）方式申请高级别的权限，具体请参考[访问控制列表（ACL）说明](#访问控制列表acl说明)。
-
-## 权限使用场景说明
-
-### 基本原则
-
-在进行权限的申请和使用时，需要满足以下基本原则：
-
-- 应用申请的权限，都必须有明确、合理的使用场景和功能说明，确保用户能够清晰明了地知道申请权限的目的、场景、用途；禁止诱导、误导用户授权；应用使用权限必须与申请所述一致。
-- 应用权限申请遵循最小化原则，只申请业务功能所必要的权限，禁止申请不必要的权限。
-- 应用在首次启动时，避免频繁弹窗申请多个权限；权限须在用户使用对应业务功能时动态申请。
-- 用户拒绝授予某个权限时，与此权限无关的其他业务功能应能正常使用，不能影响应用的正常注册或登录。
-- 业务功能所需要的权限被用户拒绝且禁止后不再提示，当用户主动触发使用此业务功能或为实现业务功能所必须时，应用程序可通过界面内文字引导，让用户主动到“系统设置”中授权。
-
-- 当前不允许应用自行定义权限，应用申请的权限应该从[已有的权限列表](permission-list.md)中选择。
-
-### 场景示例
-
-下面列举两种应用需要使用权限的常见场景，用作参考。
-
-- **视频播放类应用**
-
-    视频播放类应用要使用多媒体功能，应用必须对用户外部存储的媒体文件信息进行读取和写入，所以应用需要至少申请以下两个权限：
-
-    (1) ohos.permission.READ_MEDIA 允许应用读取用户外部存储中的媒体文件信息。
-
-    (2) ohos.permission.WRITE_MEDIA 允许应用读写用户外部存储中的媒体文件信息。
-
-- **摄影美图类应用**
-
-    摄影美图类应用需要使用到相机功能，那么应用访问相机服务前，需要申请到相机权限：
-
-    (1) ohos.permission.CAMERA 允许应用使用相机拍摄照片和录制视频。
 
 ## 权限等级说明
 
@@ -85,7 +65,28 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 
 默认情况下，应用的APL等级都为normal等级。
 
-如果应用需要将自身的APL等级声明为system_basic及以上的APL等级，在开发应用安装包时，要修改应用的profile文件。在文件的"apl"字段声明应用的APL等级，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
+如果应用需要将自身的APL等级声明为system_basic及以上的APL等级，在开发应用安装包时，要修改应用的Profile文件。
+
+在文件"bundle-info"的"apl"字段声明应用的APL等级后，使用[hap包签名工具](hapsigntool-overview.md)生成证书；也可以使用DevEco Studio[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465#section161281722111)。
+
+> **注意：**<br>直接修改应用Profile文件的方式，仅用于应用/服务调试阶段使用，不可用于发布上架应用市场。如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和Profile文件的申请。
+
+示例如下：
+
+该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+
+```json
+{
+	"bundle-info" : {
+		"developer-id": "OpenHarmony",
+		"development-certificate": "Base64 string",
+		"distribution-certificate": "Base64 string",
+		"bundle-name": "com.OpenHarmony.app.test",
+		"apl": "system_basic",
+        "app-feature": "hos_normal_app"
+	},
+}
+```
 
 ### 权限等级说明
 
@@ -101,7 +102,7 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 
     system_basic权限允许应用访问操作系统基础服务相关的资源。这部分系统基础服务属于系统提供或者预置的基础功能，比如系统设置、身份认证等。这些系统资源的开放对用户隐私以及其他应用带来的风险较大。
 
-    该类型的权限仅向APL等级为system_basic等级的应用开放。
+    该类型的权限仅向APL等级为system_basic及以上的应用开放。
 
 - **system_core权限**
 
@@ -179,8 +180,22 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#acl方式使用说�
 
 在上述的[授权流程](#不同权限类型的授权流程)的基础上，应用需要进行额外的ACL声明步骤。
 
-应用除了需要在config.json文件声明所需申请的权限，还需要在应用的[profile文件中声明](accesstoken-guidelines.md#acl方式声明)不满足申请条件的高等级权限，接下来的授权流程不变。
+应用除了需要在应用配置文件声明所需申请的权限，还需要在应用的[Profile文件中声明](accesstoken-guidelines.md#acl方式声明)不满足申请条件的高等级权限，接下来的授权流程不变。
 
 **ACL申请方式须知**
 
-开发应用安装包时，需要修改应用的profile文件，在文件的"acl"字段声明目标的访问控制列表，并使用profile签名工具生成证书。具体签名流程可以查看页面[Hap包签名工具指导](hapsigntool-guidelines.md)。
+开发应用安装包时，需要修改应用的Profile文件，在文件的"acl"字段声明目标的访问控制列表。然后使用[hap包签名工具](hapsigntool-overview.md)生成证书。
+
+> **注意：**<br>直接修改应用Profile文件的方式，仅用于应用/服务调试阶段使用，不可用于发布上架应用市场。如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和Profile文件的申请。
+
+```json
+{
+    "acls": {
+        "allowed-acls": [
+            "ohos.permission.PERMISSION"
+        ]
+    },
+}
+```
+
+Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。

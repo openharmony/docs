@@ -61,7 +61,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 基于上述流程，推荐按以下步骤完成验证：
 
 1. 制作根文件系统镜像。
-   请参考[新建芯片解决方案和产品解决方案](../subsystems/subsys-build-mini-lite.md)生成根文件系统镜像rootfs.img。从上图可以看到启动过程与产品配置强相关，在制作rootfs.img过程中请完成如下四种配置：
+   请参考[新建芯片解决方案和产品解决方案](../subsystems/subsys-build-all.md)生成根文件系统镜像rootfs.img。从上图可以看到启动过程与产品配置强相关，在制作rootfs.img过程中请完成如下四种配置：
 
    - 组件配置
       产品组件配置文件vendor/{company}/{product}/config.json需配置启动恢复子系统(startup)的init_lite组件和内核子系统的linux_4_1_9组件。

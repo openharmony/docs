@@ -126,8 +126,10 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，元能力子
 | ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onAbilityBackground(ability: Ability): void; | 新增 |
 | ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onAbilityForeground(ability: Ability): void; | 新增 |
 | ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onAbilityDestroy(ability: Ability): void; | 新增 |
-| ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onAbilityWindowStageDestroy(ability: Ability): void; | 新增 |
-| ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onAbilityWindowStageCreate(ability: Ability): void; | 新增 |
+| ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onWindowStageCreate(ability: Ability, windowStage: window.WindowStage): void; | 新增 |
+| ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onWindowStageActive(ability: Ability, windowStage: window.WindowStage): void; | 新增 |
+| ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onWindowStageInactive(ability: Ability, windowStage: window.WindowStage): void; | 新增 |
+| ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onWindowStageDestroy(ability: Ability, windowStage: window.WindowStage): void; | 新增 |
 | ohos.application.AbilityLifecycleCallback | AbilityLifecycleCallback | onAbilityCreate(ability: Ability): void; | 新增 |
 | ohos.application.abilityManager | abilityManager | function getTopAbility(): Promise\<ElementName>;<br>function getTopAbility(callback: AsyncCallback\<ElementName>): void; | 新增 |
 | ohos.application.abilityManager | abilityManager | function getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>;<br>function getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void; | 新增 |

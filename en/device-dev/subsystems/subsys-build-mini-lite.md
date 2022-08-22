@@ -2,7 +2,7 @@
 
 ## Overview
 
-  The Compilation and Building subsystem provides a build framework based on Generate Ninja (GN) and Ninja. This subsystem allows you to:
+The Compilation and Building subsystem provides a build framework based on Generate Ninja (GN) and Ninja. This subsystem allows you to:
 
 - Assemble components into a product and build the product.
 
@@ -75,7 +75,7 @@ You can build a component, a chipset solution, and a product solution. To ensure
 
 ### Component
 
-  The component source code directory is named in the *{Domain}/{Subsystem}/{Component}* format. The component directory structure is as follows:
+The component source code directory is named in the *{Domain}/{Subsystem}/{Component}* format. The component directory structure is as follows:
 
 > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
 > The .json file of the subsystem in the **build/lite/components** directory contains component attributes, including the name, source code directory, function description, mandatory or not, build targets, RAM, ROM, build outputs, adapted kernels, configurable features, and dependencies of the component. When adding a component, add the component information in the .json file of the corresponding subsystem. The component configured for a product must have been defined in a subsystem. Otherwise, the verification will fail.
@@ -94,42 +94,42 @@ component
 
  ```
  {
-     "name": "@ohos/sensor_lite",		        # OpenHarmony Package Manager (HPM) component name, in the @Organization/Component name format.
-     "description": "Sensor services",		    # Description of the component functions.
-     "version": "3.1",                           # Version, which must be the same as the version of OpenHarmony.
-     "license": "MIT",                           # Component license.
-     "publishAs": "code-segment",                # Mode for publishing the HPM package. The default value is code-segment.
+     "name": "@ohos/sensor_lite",		             # OpenHarmony Package Manager (HPM) component name, in the "@Organization/Component name" format.
+     "description": "Sensor services",		         # Description of the component functions.
+     "version": "3.1",                                # Version, which must be the same as the version of OpenHarmony.
+     "license": "MIT",			                     # Component license.
+     "publishAs": "code-segment",		             # Mode for publishing the HPM package. The default value is code-segment.
      "segment": {										
          "destPath": ""			
-     },					                        # Code restoration path (source code path) set when "publishAs is code-segment.		
-     "dirs": {"base/sensors/sensor_lite"}	     # Directory structure of the HPM package. This field is mandatory and can be left empty.
-     "scripts": {},                               # Scripts to be executed. This field is mandatory and can be left empty.
+     },					                             # Code restoration path (source code path) set when "publishAs" is code-segment.		
+     "dirs": {"base/sensors/sensor_lite"},	         # Directory structure of the HPM package. This field is mandatory and can be left empty.
+     "scripts": {},			                         # Scripts to be executed. This field is mandatory and can be left empty.
      "licensePath": "COPYING",			
      "readmePath": {
          "en": "README.rst"
      },
-     "component": {                               # Component attributes.
-         "name": "sensor_lite",			         # Component name.	
-         "subsystem": "",                         # Subsystem to which the component belongs.
-         "syscap": [],				             # System capabilities provided by the component for applications.
-         "features": [],                          # List of the component's configurable features. Generally, this parameter corresponds to sub_component in build and can be configured.
-         "adapted_system_type": [],               # Adapted system types, which can be mini, small, and standard. Multiple values are allowed.
-         "rom": "92KB",                           # Size of the component's ROM.
-         "ram": "~200KB",                         # Size of the component's RAM.      
+     "component": {			                         # Component attributes.
+         "name": "sensor_lite",			             # Component name.	
+         "subsystem": "", 		                     # Subsystem to which the component belongs.
+         "syscap": [], 				                 # System capabilities provided by the component for applications.
+         "features": [],                              # List of external configurable features of a component. Generally, this parameter corresponds to sub_component in build and can be configured by the product.
+         "adapted_system_type": [],		             # Types of adapted systems. The value can be mini, small, and standard.
+         "rom": "92KB",                               # Component ROM size.
+         "ram": "~200KB",,                            # Component RAM size.      
          "deps": {                      
-         "components": [                          # Other components on which this component depends.
+         "components": [                              # Other components on which this component depends.
            "samgr_lite"
          ],
-         "third_party": [                         # Third-party open-source software on which this component depends.
+         "third_party": [                             # Third-party open-source software on which this component depends.
            "bounds_checking_function"
          ]
        }         
-         "build": {                               # Build-related configurations.
+         "build": {				                     # Build-related configuration.
              "sub_component": [
                  ""//base/sensors/sensor_lite/services:sensor_service"", # Component build entry
-             ],			                         # Component build entry. Configure the module here.
-             "inner_kits": [],					# APIs between components.
-             "test": [] 					    # Entry for building the component's test cases.
+             ],			                              # Component build entry. Configure modules here.
+             "inner_kits": [],						  # APIs between components.
+             "test": [] 							  # Entry for building the component's test cases.
          }
      }
   }
@@ -195,28 +195,28 @@ component
 
 ### Chipset Solution
 
-The chipset solution is a special component. It is built based on a development board, including the drivers, device API adaptation, and SDK.
+- The chipset solution is a special component. It is built based on a development board, including the drivers, device API adaptation, and SDK.
 
-The source code path is named in the **device/{Development board}/{Chipset solution vendor}** format.
+- The source code path is named in the **device/{Development board}/{Chipset solution vendor}** format.
 
-The chipset solution component is built by default based on the development board selected.
+- The chipset solution component is built by default based on the development board selected.
+  
+- The chipset solution directory structure is as follows:
 
-The chipset solution directory structure is as follows:
+  ```
+  device                                      
+  └── board                         # Chipset solution vendor
+      └── company                   # Development board name
+          ├── BUILD.gn              # Build script
+          ├── hals                  # OS device API adaptation
+          ├── linux                 # (Optional) Linux kernel version
+          │   └── config.gni        # Linux build configuration
+          └── liteos_a              # (Optional) LiteOS kernel version
+               └── config.gni       # LiteOS_A build configuration
+  ```
 
-```
-device                                      
-└── board                         # Chipset solution vendor
-    └── company                   # Development board name
-        ├── BUILD.gn              # Build script
-        ├── hals                  # OS device API adaptation
-        ├── linux                 # (Optional) Linux kernel version
-        │   └── config.gni        # Linux build configuration
-        └── liteos_a              # (Optional) LiteOS kernel version
-             └── config.gni       # LiteOS_A build configuration
-```
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-> The **config.gni** file contains build-related configuration of the development board. The parameters in the file are used to build all OS components, and are globally visible to the system during the build process.
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+  > The **config.gni** file contains build-related configuration of the development board. The parameters in the file are used to build all OS components, and are globally visible to the system during the build process.
 
 - The **config.gni** file contains the following key parameters:
 
@@ -267,18 +267,21 @@ The key directories and files are described as follows:
    This file is the configuration file for the **init** process to start services. Currently, the following commands are supported:
 
    - **start**: starts a service.
-- **mkdir**: creates a folder.
-  
-   - **chmod**: changes the permission on a specified directory or file.
-- **chown**: changes the owner group of a specified directory or file.
-   - **mount**: mounts a device.
 
-   The fields in the file are described as follows:
+   - **mkdir**: creates a folder.
+
+   - **chmod**: changes the permission on a specified directory or file.
+
+   - **chown**: changes the owner group of a specified directory or file.
+
+   - **mount**: mounts a device.
+     
+     The fields in the file are described as follows:
 
    ```
    {
        "jobs" : [{                                                     # Job array. A job corresponds to a command set. Jobs are executed in the following sequence: pre-init > init > post-init.
-            "name" : "pre-init",
+               "name" : "pre-init",
                "cmds" : [
                    "mkdir /storage/data",                              # Create a directory.
                    "chmod 0755 /storage/data",                         #Modify the permissions. The format of the permission value is 0xxx, for example, 0755.
@@ -314,7 +317,7 @@ The key directories and files are described as follows:
        ]
    }
    ```
-   
+
 3. **vendor/company/product/init_configs/hals**
 
    This file contains the OS adaptation of the product. For details about APIs for implementing OS adaptation, see the readme file of each component.
@@ -361,9 +364,9 @@ The key directories and files are described as follows:
    source_dir:  (Optional) specifies target file directory in the out directory. If this field is not specified, an empty directory will be created in the file system based on target_dir.
    target_dir:  (Mandatory) specifies the file directory in the file system.
    ignore_files: (Optional) declares ignored files during the copy operation.
-   dir_mode:     (Optional) specifies the file directory permissions. The default value is 755.
-   file_mode:    (Optional) specifies the permissions of all files in the directory. The default value is 555.
-   fs_filemode:  (Optional) specifies the files that require special permissions. Each file corresponds to a list.
+   dir_mode:    (Optional) specifies the file directory permissions. The default value is 755.
+   file_mode:   (Optional) specifies the permissions of all files in the directory. The default value is 555.
+   fs_filemode: (Optional) specifies the files that require special permissions. Each file corresponds to a list.
    file_dir:    (Mandatory) specifies the detailed file path in the file system.
    file_mode:   (Mandatory) declares file permissions.
    fs_symlink:  (Optional) specifies the soft link of the file system.
@@ -373,11 +376,12 @@ The key directories and files are described as follows:
 
    The **fs_symlink** and **fs_make_cmd** fields support the following variables:
 
-   - ${root_path}: code root directory, which corresponds to **${ohos_root_path}** of GN.
-   - ${out_path}: **out** directory of the product, which corresponds to **${root_out_dir}** of GN.
-   - ${fs_dir}: file system directory, which consists of variables ${root_path} and ${fs_dir_name}.
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-> **fs.yml** is optional and not required for devices without a file system.
+   - **${root_path}**: Code root directory, which corresponds to **${ohos_root_path}** of GN.
+   - **${out_path}**: The **out** directory of the product, which corresponds to **${root_out_dir}** of GN.
+   - **${fs_dir}**: File system directory, which consists of variables **${root_path}** and **${fs_dir_name}**.
+
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+   > **fs.yml** is optional and not required for devices without a file system.
 
 6. **vendor/company/product/BUILD.gn**
    
@@ -405,7 +409,7 @@ The development environment has GN, Ninja, Python 3.9.2 or later, and hb availab
 
 **hb** is an OpenHarmony command line tool for executing build commands. Common hb commands are described as follows:
 
-  **hb set**
+**hb set**
 
 ```
 hb set -h
@@ -438,7 +442,7 @@ hb env
 [OHOS INFO] device path: xxx/device/hisilicon/hispark_taurus/sdk_linux_4.19
 ```
 
-  **hb build**
+**hb build**
 
 ```
 hb build -h
@@ -627,12 +631,12 @@ The following uses the RTL8720 development board provided by Realtek as an examp
    # Board arch, e.g. "armv7-a", "rv32imac".
    board_arch = ""
    
-   # Toolchain name used for system compiling.
+   # Toolchain name used for system build.
    # E.g. gcc-arm-none-eabi, arm-linux-harmonyeabi-gcc, ohos-clang, riscv32-unknown-elf.
    # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
    board_toolchain = "gcc-arm-none-eabi"
    
-   # The toolchain path installed, it's not mandatory if you have added toolchain path to your ~/.bashrc.
+   # Toolchain installation path, which can be left blank if the installation path is added to ~/.bashrc.
    board_toolchain_path =
        rebase_path("//prebuilts/gcc/linux-x86/arm/gcc-arm-none-eabi/bin",
                    root_build_dir)
@@ -660,7 +664,6 @@ The following uses the RTL8720 development board provided by Realtek as an examp
    ```
 
 4. Build the chipset solution.
-   
    Run the **hb build** command in the development board directory to start the build.
 
 ### Adding a Product Solution
@@ -668,7 +671,6 @@ The following uses the RTL8720 development board provided by Realtek as an examp
 You can customize a product solution by flexibly assembling a chipset solution and components. The procedure is as follows:
 
 1. Create a product directory based on the [configuration rules](#product-solution).
-   
    The following uses the Wi-Fi IoT module on the RTL8720 development board as an example. Run the following command in the root directory to create a product directory:
 
    ```
@@ -676,9 +678,8 @@ You can customize a product solution by flexibly assembling a chipset solution a
    ```
 
 2. Assemble the product.
-
-   Create a **config.json** file, for example for wifiiot, in the product directory. The **vendor/my_company/wifiiot/config.json** file is as follows:
-
+     Create a **config.json** file, for example for wifiiot, in the product directory. The **vendor/my_company/wifiiot/config.json** file is as follows:
+   
    ```
    {
        "product_name": "wifiiot",                        # Product name
@@ -704,25 +705,22 @@ You can customize a product solution by flexibly assembling a chipset solution a
    }
    ```
 
-> ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
-> Before the build, the Compilation and Building subsystem checks the validity of fields in **config.json**. The **device_company**, **board**, **kernel_type**, and **kernel_version** fields must match the fields of the chipset solution, and **subsystem** and **component** must match the component description in the **build/lite/components** file.
+   > ![icon-caution.gif](../public_sys-resources/icon-caution.gif) **CAUTION**<br/>
+   > Before the build, the Compilation and Building subsystem checks the validity of fields in **config.json**. The **device_company**, **board**, **kernel_type**, and **kernel_version** fields must match the fields of the chipset solution, and **subsystem** and **component** must match the component description in the **build/lite/components** file.
 
 3. Implement adaptation to OS APIs.
-
    Create the **hals** directory in the product directory and save the source code as well as the build script for OS adaptation in this directory.
 
 4. Configure system services.
-
    Create the **init_configs** directory in the product directory and then the **init.cfg** file in the **init_configs** directory, and configure the system services to be started.
 
 5. (Optional) Configure the init process for the Linux kernel.
-
    Create the **etc** directory in the **init_configs** directory, and then the **init.d** folder and the **fstab** file in the **etc** directory. Then, create the **rcS** and **S***xxx* files in the **init.d** file and edit them based on product requirements.
 
 6. (Optional) Configure the file system image for the development board that supports the file system.
-
+   
    Create a **fs.yml** file in the product directory and configure it as required. A typical **fs.yml** file is as follows:
-
+   
    ```
    -
      fs_dir_name: rootfs # Image name
@@ -823,7 +821,7 @@ You can customize a product solution by flexibly assembling a chipset solution a
        - ${root_path}/build/lite/make_rootfs/rootfsimg_linux.sh ${fs_dir} ext4
    
    ```
-
+   
 7. (Optional) Configure patches if the product and components need to be patched.
 
    Create a **patch.yml** file in the product directory and configure it as required. A typical **patch.yml** file is as follows:
@@ -841,14 +839,14 @@ You can customize a product solution by flexibly assembling a chipset solution a
    ...
    ```
 
+
      Add **--patch** when running the **hb build** command. Then, the patch files can be added to the specified directory before the build.
 
-   ```
-   hb build -f --patch
-   ```
+    ```
+    hb build -f --patch
+    ```
 
 8. Write the build script.
-
    Create a **BUILD.gn** file in the product directory and write the script. The following **BUILD.gn** file uses the Wi-Fi IoT module in step 1 as an example:
 
    ```
@@ -864,8 +862,8 @@ You can customize a product solution by flexibly assembling a chipset solution a
    ```
 
 9. Build the product.
-
    Run the **hb set** command in the code root directory, select the new product as prompted, and run the **hb build** command.
+
 
 ## Troubleshooting
 
@@ -892,10 +890,10 @@ You can customize a product solution by flexibly assembling a chipset solution a
 - **Possible Causes**
   
   The ncurses library is not installed.
-  
+
 - **Solution**
   
-  ```
+   ```
   sudo apt-get install lib32ncurses5-dev
   ```
 
@@ -929,9 +927,9 @@ You can customize a product solution by flexibly assembling a chipset solution a
 
   1. Run the following command to locate **gcc_riscv32**:
 
-      ```
+  ```
       which riscv32-unknown-elf-gcc
-     ```
+  ```
 
   2. Run the **chmod** command to change the directory permission to **755**.
 

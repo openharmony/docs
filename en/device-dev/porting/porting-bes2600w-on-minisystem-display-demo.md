@@ -1167,18 +1167,18 @@ boolean HilogProc_Impl(const HiLogContent *hilogContent, uint32 len)
 HiviewRegisterHilogProc(HilogProc_Impl);
 ```
 
-#### distributedschedule Subsystem Adaptation
+#### systemabilitymgr Subsystem Adaptation
 
-To adapt the `distributedschedule` subsystem, you need to add the `samgr_lite` component in the `config.json` file, as shown below:
+To adapt the `systemabilitymgr` subsystem, you need to add the `samgr_lite` component in the `config.json` file, as shown below:
 
 ```
 {
-  "subsystem": "distributedschedule",
+  "subsystem": "systemabilitymgr",
   "components": [
 	{
 	  "component": "samgr_lite",
 	  "features": [
-		"config_ohos_distributedschedule_samgr_lite_shared_task_size = 4096"
+		"config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 4096"
 	  ]
 	}
   ]

@@ -28,6 +28,8 @@
     - application/[FormExtensionContext (FormExtensionContext)](js-apis-formextensioncontext.md)
     - application/[PermissionRequestResult (PermissionRequestResult)](js-apis-permissionrequestresult.md)
     - application/[ServiceExtensionContext (ServiceExtensionContext)](js-apis-service-extension-context.md)
+    - [InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
+    - [InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - 通用
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-DataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
@@ -198,9 +200,9 @@
   - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
-  - [@ohos.systemTime (设置系统时间)](js-apis-system-time.md)
+  - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
+  - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
-  - [@ohos.systemTimer(设置系统时间)](js-apis-system-timer.md)
   - [Timer (定时器)](js-apis-timer.md)
 
 - 设备管理

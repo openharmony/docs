@@ -1,6 +1,6 @@
 # wantConstant
 
-The **wantConstant** module provides the action, entity, and flags used in **Want** objects.
+The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
 > 
@@ -23,15 +23,15 @@ Enumerates the action constants of the **Want** object.
 | ACTION_HOME                                 | ohos.want.action.home                    | Action of returning to the home page.                                       |
 | ACTION_DIAL                                 | ohos.want.action.dial                    | Action of launching the numeric keypad.                          |
 | ACTION_SEARCH                               | ohos.want.action.search                  | Action of launching the search function.                                |
-| ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | Action of launching the UI that provides radio network settings, for example, Wi-Fi option.   |
+| ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | Action of launching the UI that provides wireless network settings, for example, Wi-Fi options.   |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | Action of launching the UI for managing installed applications.                 |
 | ACTION_APPLICATION_DETAILS_SETTINGS         | ohos.settings.application.details        | Action of launching the UI that displays the details of an application.            |
 | ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | Action of launching the UI for setting the alarm clock.                         |
-| ACTION_SHOW_ALARMS                          | ohos.want.action.showAlarms              | Action of launching the UI that displays all clock alarms.                    |
+| ACTION_SHOW_ALARMS                          | ohos.want.action.showAlarms              | Action of launching the UI that displays all alarms.                    |
 | ACTION_SNOOZE_ALARM                         | ohos.want.action.snoozeAlarm             | Action of launching the UI for snoozing an alarm.                      |
 | ACTION_DISMISS_ALARM                        | ohos.want.action.dismissAlarm            | Action of launching the UI for deleting an alarm.                            |
 | ACTION_DISMISS_TIMER                        | ohos.want.action.dismissTimer            | Action of launching the UI for dismissing a timer.                          |
-|  ACTION_SEND_SMS                            | ohos.want.action.sendSms                 | Action of launching the UI for sending an SMS.                             |
+|  ACTION_SEND_SMS                            | ohos.want.action.sendSms                 | Action of launching the UI for sending an SMS message.                             |
 | ACTION_CHOOSE                               | ohos.want.action.choose                  | Action of launching the UI for openning a contact or picture.                     |
 | ACTION_IMAGE_CAPTURE<sup>8+</sup>           | ohos.want.action.imageCapture            | Action of launching the UI for photographing.                                  |
 | ACTION_VIDEO_CAPTURE<sup>8+</sup>           | ohos.want.action.videoCapture            | Action of launching the UI for shooting a video.                            |

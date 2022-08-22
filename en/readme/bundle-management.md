@@ -106,7 +106,6 @@ This command can be run with different options to achieve different purposes. Th
 | ---------- | -------------------------- |
 | bm dump -h | Displays the commands supported by **dump**.|
 | bm dump -a | Queries all applications installed in the system.|
-| bm dump -i | Queries details about all applications installed in the system.|
 | bm dump -n <bundle-name> | Queries details about a specified bundle.|
 | bm dump -n <bundle-name> -s | Queries the shortcut information of a specified bundle.|
 | bm dump -n <bundle-name> -d <device-id> | Queries information about a bundle on a remote device.|

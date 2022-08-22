@@ -87,7 +87,7 @@ After the build is complete, you can view the built image file in **//out/{*devi
 Now, you need to port the Linux kernel to enable it to run successfully.
 
 
-### 1. Adding a Kernel-built Subsystem to the SoC
+### Adding a Kernel-built Subsystem to the SoC
 
 Add the following subsystem configuration to the **//build/subsystem_config.json** file:
 
@@ -104,7 +104,7 @@ Add the following subsystem configuration to the **//build/subsystem_config.json
 Then, open the configuration file **//vendor/MyProductVendor/MyProduct/config.json** and add the new subsystem to the product.
 
 
-### 2. Building the Kernel
+### Building the Kernel
 
 The OpenHarmony source code provides the Linux kernel 4.19, which is archived in **//kernel/linux-4.19**. This section uses this kernel version as an example to describe how to build the kernel.
 
@@ -132,7 +132,7 @@ The expected build result described in the table below.
 | $root_build_dir/packages/phone/images/uboot | Bootloader image.|
 
 
-### 3. Verifying the Porting
+### Verifying the Porting
 
 Now start build, and check whether the kernel image is generated as expected.
 
@@ -166,7 +166,7 @@ Now start build, and check whether the kernel image is generated as expected.
 ## Porting the HDF Driver
 
 
-### 1. LCD
+### LCD
 
 This section describes how to port a Liquid Crystal Display (LCD) driver. The hardware driver framework (HDF) designs a driver model for the LCD. To support an LCD, you must compile a driver, generate a model instance in the driver, and register the instance.
 
@@ -220,7 +220,7 @@ root {
 For details about driver development, see [LCD](../driver/driver-peripherals-lcd-des.md).
 
 
-### 2. Touchscreen
+### Touchscreen
 
 This section describes how to port a touchscreen driver. The touchscreen driver is stored in the **//drivers/framework/model/input/driver/touchscreen** directory. To port a touchscreen driver, register a **ChipDevice** model instance.
 
@@ -280,7 +280,7 @@ Implement the following APIs in **ChipDevice**:
 For details about driver development, see [Touchscreen](../driver/driver-peripherals-touch-des.md).
 
 
-### 3. WLAN
+### WLAN
 
 The WLAN driver is divided into two parts. One of the parts manages WLAN devices, and the other part manages WLAN traffic. HDF WLAN provides abstraction for the two parts. Currently, only the WLAN with the SDIO interface is supported.
 

@@ -4,7 +4,7 @@
 
 ### Introduction
 
-Developed on the Hardware Driver Foundation (HDF), the vibrator driver model makes vibrator driver development easier. This model masks the interaction between the device driver and system, provides unified and stable driver interfaces for the hardware service layer, and offers open interfaces and interface parsing capabilities for driver developers. This document provides guidance for developing vibrator drivers and deploying vibrators in different OSs. The figure below shows the vibrator driver model.
+Developed on the Hardware Driver Foundation (HDF), the vibrator driver model makes vibrator driver development easier. The motor driver model shields the interaction between the device driver and the system and provides unified and stable driver interface capabilities for the hardware service layer. It also provides open interfaces and interface parsing capabilities for developers to develop vibrator drivers and deploy vibrators in different OSs.<br> The figure below shows the vibrator driver model.
 
 **Figure 1** Vibrator driver model
 
@@ -24,18 +24,18 @@ The system controls device vibration by invoking the vibrator. There are two vib
 
 ### Working Principles
 
-Based on the loading and running process (shown below) of the vibrator driver model, the relationships between key modules in the model and associated modules are clearly defined.
+The figure below shows how a vibrator driver is loaded.
 
-**Figure 2** How vibrator driver works
+**Figure 2** How a vibrator driver works
 
 ![How vibrator driver works](figures/vibrator_working.png)
 
 The following uses the vibrator driver on the Hi3516D V300 development board of the standard system as an example to describe the driver loading and running process.
 
-1. The vibrator host reads the vibrator management configuration from the Vibrator Host node of the device_info HCS (vibrator device information HCS).
-2. The vibrator host parses the vibrator management configuration and associates it with the corresponding vibrator abstract driver.
-3. The vibrator host reads the vibrator data configuration from the linear_vibrator_config HCS (vibrator private configuration HCS).
-4. The vibrator host parses the vibrator data configuration and associates it with the corresponding vibrator haptic driver.
+1. The vibrator driver reads the vibrator management configuration information from **Vibrator Host** in the **device_info.hcs** file.
+2. The HCS parser parses the vibrator management configuration and associates it with the vibrator abstract driver.
+3. The vibrator chipset driver reads the vibrator data configuration from the **linear_vibrator_config.hcs** file.
+4. The HCS parser parses the vibrator data configuration and associates it with the vibrator haptic driver.
 5. The vibrator proxy delivers an instruction to the vibrator stub.
 6. The vibrator stub calls the vibrator controller.
 7. The vibrator host initializes the vibrator abstract driver interfaces.
@@ -51,32 +51,32 @@ You can set different vibration effects as needed, for example, customizing vibr
 
 ### Available APIs
 
-The vibrator driver model supports static HDF Configuration Source (HCS) configurations and dynamic parameter configurations. The vibrator hardware service calls the **StartOnce** interface to trigger continuous vibration and calls the **Start** interface to trigger vibration with a specified effect. The table below lists the APIs provided by the vibrator driver model for the hardware service layer.
+The vibrator driver model supports static HDF Configuration Source (HCS) configuration and dynamic parameter configuration. The vibrator hardware service calls **StartOnce()** to trigger continuous vibration and calls **Start()** to trigger vibration with a specified effect. The table below lists the APIs provided by the vibrator driver model for the hardware service layer.
 
-**Table 1** External APIs of the vibrator driver model
+**Table 1** APIs of the vibrator driver model
 
-| API                                | Description                                                |
-| -------------------------------------- | -------------------------------------------------------- |
+| API                                 | Description                                          |
+| -------------------------------------- | ------------------------------------------------ |
 | int32_t  StartOnce(uint32_t duration)  | Triggers vibration with a given **duration**.  |
 | int32_t  Start(const char *effectType) | Triggers vibration with a given effect, which is specified by **effectType**.|
-| int32_t  Stop(enum VibratorMode mode)  | Stops vibration.                        |
+| int32_t  Stop(enum VibratorMode mode)  | Stops vibration.                      |
 
 ### How to Develop
 
-The vibrator driver model provides stable interfaces for the upper-layer hardware service to trigger a one-shot vibration with a given duration, trigger vibration with a given effect, and stop vibration. The model implements functionalities such as cross-OS migration and differentiated configurations. To develop a vibrator, perform the following steps:
+The vibrator driver model provides APIs for the upper-layer hardware service to trigger a one-shot vibration with a given duration, trigger vibration with a given effect, and stop vibration. This model implements functionalities such as cross-OS porting and device-specific configurations. The development procedure is as follows:
 
-1. Develop the vibrator abstract driver based on the driver entry. Specifically, implement the **Bind**, **Init**, **Release**, and **Dispatch** functions, configure resources, and parse HCS configurations.
+1. Develop the vibrator abstract driver based on the driver entry. Specifically, implement the **Bind**, **Init**, **Release**, and **Dispatch** functions, configure resources, and parse the HCS.
 
-   - Call **HDF_INIT** to register the driver entry with the HDF. During driver loading, the HDF calls the **Bind** function and then the **Init** function to load the driver. If the **Init** function fails to be called, the HDF calls **Release** to release the driver resources and exit the vibrator driver model. The vibrator driver model uses the HCS as the configuration source code. For details about HCS fields, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md). The driver entry function is defined as follows:
+   - Call **HDF_INIT** to register the driver entry with the HDF. During driver loading, the HDF calls the **Bind** function and then the **Init** function to load the driver. If the **Init** function fails to be called, the HDF calls **Release** to release the driver resources and exit the vibrator driver model. The vibrator driver model uses the HCS as the configuration source code. For details about HCS configuration fields, see [Configuration Management](driver-hdf-manage.md). The driver entry function is defined as follows:
 
      ```c
      /* Register the entry structure object of the vibrator abstract driver. */
      struct HdfDriverEntry g_vibratorDriverEntry = {
          .moduleVersion = 1, // Version of the vibrator module.
-         .moduleName = "HDF_VIBRATOR", // Vibrator module name. The value must be the same as the value of moduleName in the device_info.hcs file.
+         .moduleName = "HDF_VIBRATOR", // Vibrator module name, which must be the same as moduleName in the device_info.hcs file.
          .Bind = BindVibratorDriver, // Function for binding a vibrator.
          .Init = InitVibratorDriver, // Function for initializing a vibrator.
-        .Release = ReleaseVibratorDriver, // Function for releasing vibrator resources.
+         .Release = ReleaseVibratorDriver, // Function for releasing vibrator resources.
      };
      
      HDF_INIT(g_vibratorDriverEntry);
@@ -85,7 +85,7 @@ The vibrator driver model provides stable interfaces for the upper-layer hardwar
    - Develop the vibrator abstract driver. Specifically, implement the **Bind**, **Init**, **Release**, and **Dispatch** functions.
 
      ```c
-     /* External service published by the vibrator driver. */
+     /* Message exchange capability of the vibrator driver. */
      static int32_t DispatchVibrator(struct HdfDeviceIoClient *client,
          int32_t cmd, struct HdfSBuf *data, struct HdfSBuf *reply)
      {
@@ -155,21 +155,21 @@ The vibrator driver model provides stable interfaces for the upper-layer hardwar
                      device0 :: deviceNode {
                          policy = 2; // Policy for publishing the driver service.
                          priority = 100; // Driver startup priority (0–200). A larger value indicates a lower priority. The default value 100 is recommended. The sequence for loading devices with the same priority is random.
-                         preload = 0; // Field for specifying whether to load the driver. The value 0 means to load the driver, and 2 means the opposite.
+                         preload = 0; // Whether to load the driver on demand. The value 0 means to load the driver on demand, and 2 means the opposite.
                          permission = 0664; // Permission for the driver to create a device node.
-                         moduleName = "HDF_VIBRATOR"; // Driver name. The value must be the same as that of moduleName in the driver entry structure.
+                         moduleName = "HDF_VIBRATOR"; // Driver name, which must be the same as moduleName in the driver entry structure.
                          serviceName = "hdf_misc_vibrator"; // Name of the service provided by the driver. The name must be unique.
                          deviceMatchAttr = "hdf_vibrator_driver"; // Keyword matching the private data of the driver. The value must be the same as that of match_attr in the private data configuration table of the driver.
                      }
                  }
      ```
 
-2. Create a vibrator haptic model and parse the haptic HCS configuration.
+2. Create a vibrator haptic model and parse the haptic HCS.
 
    - Create a vibrator haptic model.
 
      ```hcs
-     /* Create a vibrator haptic model, allocate resources, and parse the haptic HCS configuration. */
+     /* Create a vibrator haptic model, allocate resources, and parse the haptic HCS. */
      int32_t CreateVibratorHaptic(struct HdfDeviceObject *device)
      {
          struct VibratorHapticData *hapticData = NULL;
@@ -187,7 +187,7 @@ The vibrator driver model provides stable interfaces for the upper-layer hardwar
      
          DListHeadInit(&hapticData->effectSeqHead);
      
-         /* Parse the haptic HCS configuration. */
+         /* Parse the haptic HCS. */
          if (ParserVibratorHapticConfig(device->property) != HDF_SUCCESS) {
              HDF_LOGE("%s: parser haptic config fail!", __func__);
              goto EXIT;
@@ -200,9 +200,9 @@ The vibrator driver model provides stable interfaces for the upper-layer hardwar
      }
      ```
 
-   - The vibrator effect model uses the HCS. For details about HCS fields, see [Driver Configuration Management](https://gitee.com/openharmony/docs/blob/master/en/device-dev/driver/driver-hdf-manage.md).
+   - The vibrator haptic model uses the HCS. For details about the HCS fields, see [Configuration Management](driver-hdf-manage.md).
 
-     ```
+     ```hcs
      /* Vibrator data configuration template (vibrator_config.hcs). */
      root {
          vibratorConfig {

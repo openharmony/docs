@@ -1,11 +1,11 @@
 # Tabs
 
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **<Tabs\>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
+
+> **NOTE**
+>
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -87,7 +87,8 @@ Switches to the specified tab.
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TabsExample {

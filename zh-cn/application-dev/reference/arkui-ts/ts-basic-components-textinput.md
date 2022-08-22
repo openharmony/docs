@@ -41,7 +41,9 @@ TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, con
 | caretColor               | Color                                    | -                 | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | -                 | 设置文本的最大输入字符数。                            |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -                 | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
-| copyOption<sup>9+</sup> | boolean\|[CopyOption](ts-basic-components-text.md) | true | 设置文本是否可复制。 |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-basic-components-text.md) | CopyOptions.CrossDevice | 设置文本是否可复制。 |
+| showPasswordIcon<sup>9+</sup> | boolean | true | 密码输入模式时，密码框末尾的图标是否显示。 |
+| style<sup>9+</sup> | TextInputStyle | Default | TextInput风格。 |
 
 - EnterKeyType枚举说明
   | 名称                  | 描述        |
@@ -60,6 +62,11 @@ TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, con
   | InputType.Email    | e-mail地址输入模式。 |
   | InputType.Number   | 纯数字输入模式。      |
 
+- TextInputStyle枚举说明
+  | 名称                 | 描述            |
+  | ------------------ | ------------- |
+  | Default   | 默认风格。       |
+  | Inline | 内联输入风格。文字选中时底板与输入框同高。光标宽1.5vp，高24.0vp。      |
 
 ## 事件
 

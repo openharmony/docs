@@ -21,7 +21,7 @@ getUriSync(name: string): string
 
 获取数据项的URI。
 
-**系统能力**：SystemCapability.Applictaions.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core。
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -47,7 +47,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 获取数据项的值。
 
-**系统能力**：SystemCapability.Applictaions.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core。
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -81,7 +81,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **需要权限**：ohos.permission.MODIFY_SETTINGS。
 
-**系统能力**：SystemCapability.Applictaions.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core。
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |

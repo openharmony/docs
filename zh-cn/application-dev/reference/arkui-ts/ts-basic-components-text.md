@@ -37,7 +37,7 @@ Text(content?: string)
 | decoration | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;Color<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color: Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
 | baselineOffset | Length | - | 设置文本基线的偏移量。 |
 | textCase | TextCase | TextCase.Normal | 设置文本大小写。 |
-| copyOption<sup>9+</sup> | boolean\|CopyOption | false | 组件支持设置文本是否可复制粘贴。 |
+| copyOption<sup>9+</sup> | CopyOptions | CopyOptions.None | 组件支持设置文本是否可复制粘贴。 |
 
 - TextAlign枚举说明
   | 名称 | 描述 |
@@ -69,10 +69,11 @@ Text(content?: string)
   | LowerCase | 文本采用全小写。     |
   | UpperCase | 文本采用全大写。     |
   
-- CopyOption<sup>9+</sup>枚举说明
+- CopyOptions<sup>9+</sup>枚举说明
   
   | 名称 | 描述 |
   | -------- | -------- |
+  | None | 不支持复制粘贴。 |
   | InApp | 支持应用内复制粘贴。 |
   | LocalDevice | 支持设备内复制粘贴。 |
   | CrossDevice | 支持跨设备复制粘贴。 |

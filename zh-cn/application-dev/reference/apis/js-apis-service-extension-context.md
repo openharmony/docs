@@ -137,7 +137,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 需要启动的accountId。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **示例：**
@@ -170,7 +170,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 需要启动的accountId。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
@@ -207,7 +207,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 需要启动的accountId。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。。 |
 | options | [StartOptions](js-apis-application-StartOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
@@ -323,7 +323,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 需要启动的accountId。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 启动Ability的回调函数。 |
 
 **示例：**
@@ -357,7 +357,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 需要启动的accountId。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**
 
@@ -469,7 +469,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 停止Ability的want信息。 |
-| accountId | number | 是 | 需要停止的accountId。 |
+| accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | callback | AsyncCallback\<void\> | 是 | 停止Ability的回调函数。 |
 
 **示例：**
@@ -503,7 +503,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 停止Ability的want信息。 |
-| accountId | number | 是 | 需要停止的accountId。 |
+| accountId | number | 是 | 需要停止的系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**
 
@@ -632,7 +632,7 @@ connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 启动Ability的want信息。 |
-| accountId | number | 是 | 需要启动的accountId。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 | options | ConnectOptions | 否 | 远端对象实例。 |
 
 **返回值：**
@@ -719,3 +719,65 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
       console.log('failed:' + JSON.stringify(error));
   });
   ```
+
+## ServiceExtensionContext.startAbilityByCall
+
+startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
+
+启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+
+**示例：**
+
+  ```js
+  let caller = undefined;
+
+  // 后台启动Ability，不配置parameters
+  var wantBackground = {
+      bundleName: "com.example.myservice",
+      moduleName: "entry",
+      abilityName: "MainAbility",
+      deviceId: ""
+  };
+  this.context.startAbilityByCall(wantBackground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller Success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
+
+  // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
+  var wantForeground = {
+      bundleName: "com.example.myservice",
+      moduleName: "entry",
+      abilityName: "MainAbility",
+      deviceId: "",
+      parameters: {
+        "ohos.aafwk.param.callAbilityToForeground": true
+      }
+  };
+  this.context.startAbilityByCall(wantForeground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
+  ```
+  

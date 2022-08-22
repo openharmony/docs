@@ -5,7 +5,7 @@ Burning is the process of downloading compiled program files to a development bo
 Hi3861 V100 supports burning through the serial port. To burn source code through the serial port in Windows, perform the following steps:
 
 
-1. Connect the computer and the target development board through the serial port and USB port. For details, see [Introduction to the Hi3861 V100 Development Board](https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-introduction-hi3861.md).
+1. Connect the computer and the target development board through the serial port and USB port. For details, see [Introduction to the Hi3861 V100 Development Board](quickstart-lite-introduction-hi3861.md).
 
 2. If your computer does not have the USB-to-serial driver, install it by following the instructions in [Installing the Serial Port Driver on Hi3861 V100](https://device.harmonyos.com/en/docs/documentation/guide/hi3861-drivers-0000001058153433).
 

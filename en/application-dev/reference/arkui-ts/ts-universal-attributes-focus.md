@@ -1,7 +1,8 @@
 # Focus Control
 
->  **NOTE**<br>
-> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -16,11 +17,13 @@ None
 | focusable | boolean | false | Whether the current component is focusable.|
 | tabIndex<sup>9+<sup> | number | 0 | How the current component participates in sequential keyboard navigation.<br>- **tabIndex** >= 0: The component is focusable in sequential keyboard navigation, with its order defined by the value. A component with a larger value is focused after one with a smaller value. If multiple components share the same **tabIndex** value, their focus order follows their position in the component tree.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation. |
 
->  **NOTE**<br>
-> The following components support focus control: **\<Button>**, **\<Text>**, **\<Image>**, **\<List>**, and **\<Grid>**.
-
+>  **NOTE**
+>
+>  The following components support focus control: **\<Button>**, **\<Text>**, **\<Image>**, **\<List>**, and **\<Grid>**.
 
 ## Example
+
+The effects of focus events can only be checked on real devices.
 
 ```ts
 // xxx.ets
@@ -66,3 +69,5 @@ struct FocusableExample {
   }
 }
 ```
+
+![focus](figures/focus.png)

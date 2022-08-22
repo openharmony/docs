@@ -23,9 +23,9 @@ None.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service Extension context, which is inherited from **ExtensionContext**.|
+| context | [ServiceExtensionContext](js-apis-service-extension-context.md)  | Yes| No| Service Extension context, which is inherited from **ExtensionContext**.| 
 
 
 ## ServiceExtensionAbility.onCreate
@@ -40,9 +40,9 @@ Called when a Service Extension ability is created to initialize the service log
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want |  [Want](js-apis-application-Want.md) | Yes| Information related to this Service Extension ability, including the ability name and bundle name.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want |  [Want](js-apis-application-Want.md) | Yes| Information related to this Service Extension ability, including the ability name and bundle name.| 
 
 **Example**
 
@@ -88,10 +88,10 @@ Called after **onCreate** is invoked when a Service Extension ability is started
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want |  [Want](js-apis-application-Want.md) | Yes| Information related to this Service Extension ability, including the ability name and bundle name.|
-| startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want |  [Want](js-apis-application-Want.md) | Yes| Information related to this Service Extension ability, including the ability name and bundle name.| 
+  | startId | number | Yes| Number of ability start times. The initial value is **1**, and the value is automatically incremented for each ability started.| 
 
 **Example**
 
@@ -116,15 +116,15 @@ Called after **onCreate** is invoked when a Service Extension ability is started
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want |  [Want](js-apis-application-Want.md)| Yes| Information related to this Service Extension ability, including the ability name and bundle name.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want |  [Want](js-apis-application-Want.md)| Yes| Information related to this Service Extension ability, including the ability name and bundle name.| 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| rpc.RemoteObject | A **RemoteObject** object used for communication with the client.|
+  | Type| Description| 
+  | -------- | -------- |
+  | rpc.RemoteObject | A **RemoteObject** object used for communication with the client.| 
 
 **Example**
 
@@ -158,9 +158,9 @@ Called when this Service Extension ability is disconnected.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md)| Yes| Information related to this Service Extension ability, including the ability name and bundle name.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want |[Want](js-apis-application-Want.md)| Yes| Information related to this Service Extension ability, including the ability name and bundle name.| 
 
 **Example**
 
@@ -184,16 +184,16 @@ Called when this Service Extension ability is reconnected.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md)| Yes| Information related to this Service Extension ability, including the ability name and bundle name.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want |[Want](js-apis-application-Want.md)| Yes| Information related to this Service Extension ability, including the ability name and bundle name.| 
 
 **Example**
 
   ```js
   class ServiceExt extends ServiceExtension {
-    onDisconnect(want) {
-      console.log('onDisconnect, want:' + want.abilityName);
+    onReconnect(want) {
+      console.log('onReconnect, want:' + want.abilityName);
     }
   }
   ```
@@ -202,7 +202,7 @@ Called when this Service Extension ability is reconnected.
 
 onConfigurationUpdated(config: Configuration): void;
 
-Called when the configuration of this Service Extension ability is updated.
+ Called when the configuration of this Service Extension ability is updated.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -210,9 +210,9 @@ Called when the configuration of this Service Extension ability is updated.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [Configuration](js-apis-configuration.md) | Yes| New configuration.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | config | [Configuration](js-apis-configuration.md) | Yes| New configuration.| 
 
 **Example**
     
@@ -236,9 +236,9 @@ Dumps the client information.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| params | Array\<string> | Yes| Parameters in the form of a command.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | params | Array\<string> | Yes| Parameters in the form of a command.| 
 
 **Example**
     

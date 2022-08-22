@@ -31,6 +31,7 @@ RemoteWindow(target: WindowAnimationTarget)
 | bundleName  | string | 动画窗口所对应的进程。|
 | abilityName | string | 动画窗口所对应的Ability。|
 | windowBounds | [RRect](#rrect) | 动画窗口实际大小。|
+| missionId  | number | 任务ID。|
 
 ## RRect
 圆角矩形。
@@ -63,10 +64,10 @@ struct RemoteWindowExample {
   build() {
     Column() {
       RemoteWindow(this.target)
-      	.translate({x:100, y:200})
-      	.scale({x:0.5, y:0.5})
-      .opacity(0.8)
-      	.position({x:px2vp(this.target?.windowBounds.left), y:px2vp(this.target?.windowBounds.top)})
+      	.translate({ x: 100, y: 200 })
+      	.scale({ x: 0.5, y: 0.5 })
+        .opacity(0.8)
+      	.position({ x: px2vp(this.target?.windowBounds.left), y: px2vp(this.target?.windowBounds.top) })
       	.width(px2vp(this.target?.windowBounds.width))
       	.height(px2vp(this.target?.windowBounds.height))
      }

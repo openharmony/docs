@@ -1,8 +1,8 @@
 # Hap包签名工具概述
 
-## 功能简介
-
 为了保证OpenHarmony应用的完整性和来源可靠，在应用构建时需要对应用进行签名。经过签名的应用才能在真机设备上安装、运行、和调试。[developtools_hapsigner仓](https://gitee.com/openharmony/developtools_hapsigner)提供了签名工具的源码，包含密钥对生成、CSR文件生成、证书生成、Profile文件签名、Hap包签名等功能。
+
+> **说明：** 针对无需通过ACL跨级别申请权限的应用，DevEco Studio为开发者提供了自动化签名方案，可以一键完成应用/服务签名。具体可参考[自动化签名方案](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。
 
 ## 基本概念
 
@@ -24,7 +24,7 @@ Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供
 
    HAP（OpenHarmony Ability Package）是Ability的部署包，OpenHarmony应用代码围绕Ability组件展开，它是由一个或者多个Ability组成。
 
- - profile文件：
+ - Profile文件：
 
    [HarmonyAppProvision配置文件](../quick-start/app-provision-structure.md)，hap包中的描述文件，该描述文件描述了已授权的证书权限和设备ID信息等信息。
 

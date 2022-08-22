@@ -250,3 +250,40 @@ onAcquireFormState?(want: Want): formInfo.FormState;
       }
   }
   ```
+
+## FormExtension.onShare
+
+onShare?(formId: string): {[key: string]: any};
+
+卡片提供方接收卡片分享的通知接口。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | formId | string | 是   | 卡片标识 |
+
+**返回值：**
+
+  | 类型                                                         | 说明                                                        |
+  | ------------------------------------------------------------ | ----------------------------------------------------------- |
+  | {[key: string]: any} | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
+
+**示例：**
+    
+  ```js
+  class MyFormExtension extends FormExtension {
+      onShare(formId) {
+          console.log('FormExtension onShare, formId:' + formId);
+          let wantParams = {
+            "temperature":"20",
+            "time":"2022-8-8 09:59",
+          };
+          return wantParams;
+      }
+  }
+  ```

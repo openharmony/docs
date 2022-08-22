@@ -22,7 +22,7 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| window静态方法 | create(id:string,type:WindowType,callback:AsyncCallback]&lt;Window&gt;):void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
+| window静态方法 | create(id:string,type:WindowType,callback:AsyncCallback&lt;Window&gt;):void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
 | window静态方法 | getTopWindow(callback:AsyncCallback&lt;Window&gt;):void | 获取当前应用内最后显示的窗口。<br/>此接口仅可在`FA`模型下使用。 |
 | window静态方法 | find(id:string,callback:AsyncCallback&lt;Window&gt;):void | 查找`id`所对应的窗口。 |
 | Window | loadContent(path:string,callback:AsyncCallback&lt;void&gt;):void | 为当前窗口加载具体页面内容。 |
@@ -197,7 +197,7 @@
      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
    });
    // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
-   var names = null;
+   var names = [];
    mainWindowClass.setSystemBarEnable(names, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
@@ -206,7 +206,7 @@
      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
    });
    // 2.实现沉浸式效果。
-   //方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
+   // 方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
    var isLayoutFullScreen = true;
    mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
      if (err.code) {
@@ -218,10 +218,10 @@
    var SystemBarProperties = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
-     //以下两个属性从API Version7开始支持
+     // 以下两个属性从API Version7开始支持
      isStatusBarLightIcon: false,
      isNavigationBarLightIcon: false,
-     //以下两个属性从API Version8开始支持
+     // 以下两个属性从API Version8开始支持
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };

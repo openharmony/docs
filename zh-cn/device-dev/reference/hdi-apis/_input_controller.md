@@ -61,7 +61,7 @@ int32_t(* InputController::GetChipInfo) (uint32_t devIndex, char *chipInfo, uint
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetChipName
@@ -87,7 +87,7 @@ int32_t(* InputController::GetChipName) (uint32_t devIndex, char *chipName, uint
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetDeviceType
@@ -106,13 +106,13 @@ int32_t(* InputController::GetDeviceType) (uint32_t devIndex, uint32_t *deviceTy
   | 名称 | 描述 | 
 | -------- | -------- |
 | devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
-| deviceType | 输出参数，获取的对应设备索引的设备类型，具体参考**InputDevType**。 | 
+| deviceType | 输出参数，获取的对应设备索引的设备类型，具体参考[InputDevType](_input.md#inputdevtype)。 | 
 
 **返回：**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetPowerStatus
@@ -139,7 +139,7 @@ int32_t(* InputController::GetPowerStatus) (uint32_t devIndex, uint32_t *status)
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus。**
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetVendorName
@@ -151,7 +151,7 @@ int32_t(* InputController::GetVendorName) (uint32_t devIndex, char *vendorName, 
 
 **描述：**
 
-获取devIndex对应的模组厂商名
+获取devIndex对应的模组厂商名。
 
 **参数：**
 
@@ -165,7 +165,7 @@ int32_t(* InputController::GetVendorName) (uint32_t devIndex, char *vendorName, 
 
 Returns INPUT_SUCCESS 表示执行成功。
 
-Returns 其他值表示执行失败，具体错误码查看**RetSatus**。
+Returns 其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### RunCapacitanceTest
@@ -186,7 +186,7 @@ int32_t(* InputController::RunCapacitanceTest) (uint32_t devIndex, uint32_t test
   | 名称 | 描述 | 
 | -------- | -------- |
 | devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
-| testType | 输入参数，容值测试的测试类型，具体参考**CapacitanceTest**。 | 
+| testType | 输入参数，容值测试的测试类型，具体参考[CapacitanceTest](_input.md#capacitancetest)。 | 
 | result | 输出参数，容值测试的结果，成功则输出“SUCC”，失败则返回对应的错误提示。 | 
 | length | 输入参数，保存容值测试结果的内存长度。 | 
 
@@ -194,7 +194,7 @@ int32_t(* InputController::RunCapacitanceTest) (uint32_t devIndex, uint32_t test
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### RunExtraCommand
@@ -213,13 +213,13 @@ int32_t(* InputController::RunExtraCommand) (uint32_t devIndex, InputExtraCmd *c
   | 名称 | 描述 | 
 | -------- | -------- |
 | devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
-| cmd | 输入参数，拓展指令数据包，包括指令编码及参数，具体参考**InputExtraCmd**。 | 
+| cmd | 输入参数，拓展指令数据包，包括指令编码及参数，具体参考[InputExtraCmd](_input_extra_cmd.md)。 | 
 
 **返回：**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### SetGestureMode
@@ -246,7 +246,7 @@ int32_t(* InputController::SetGestureMode) (uint32_t devIndex, uint32_t gestureM
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### SetPowerStatus
@@ -273,4 +273,4 @@ int32_t(* InputController::SetPowerStatus) (uint32_t devIndex, uint32_t status)
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。

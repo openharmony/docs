@@ -76,7 +76,7 @@
   - [Startup](subsys-boot-overview.md)
   - [init Module](subsys-boot-init.md)
   - [appspawn Module](subsys-boot-appspawn.md)
-   - [bootstrap Module](subsys-boot-bootstrap.md)
+  - [bootstrap Module](subsys-boot-bootstrap.md)
   - [syspara Module](subsys-boot-syspara.md)
   - [FAQs](subsys-boot-faqs.md)
   - [Reference](subsys-boot-ref.md)
@@ -96,6 +96,7 @@
   - [HiDumper Development](subsys-dfx-hidumper.md)
   - [HiChecker Development](subsys-dfx-hichecker.md)
   - [FaultLogger Development](subsys-dfx-faultlogger.md)
+  - [Hiview Development](subsys-dfx-hiview.md)
 - R&D Tools
   - [bytrace](subsys-toolchain-bytrace-guide.md)
   - [hdc\_std](subsys-toolchain-hdc-guide.md)

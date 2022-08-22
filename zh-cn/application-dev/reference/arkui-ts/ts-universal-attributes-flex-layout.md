@@ -29,6 +29,7 @@
 @Entry
 @Component
 struct FlexExample {
+
   build() {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')

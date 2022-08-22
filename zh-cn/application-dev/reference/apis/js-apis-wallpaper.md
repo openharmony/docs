@@ -532,7 +532,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 获取指定类型的壁纸文件。
 
-**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -561,7 +561,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 获取指定类型的壁纸文件。
 
-**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -594,7 +594,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 获取壁纸图片的像素图。
 
-**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -623,7 +623,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 获取壁纸图片的像素图。
 
-**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 

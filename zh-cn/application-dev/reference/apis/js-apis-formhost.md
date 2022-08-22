@@ -1121,3 +1121,71 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
       console.log('formHost notifyFormsEnableUpdate, error:' + JSON.stringify(error));
   });
   ```
+## shareForm<sup>9+</sup>
+
+shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;): void;
+
+指定formId和远程设备Id进行卡片分享。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识 |
+| deviceId | string | 是   | 远程设备标识 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回结果 |
+
+**示例：**
+
+  ```js
+  var formId = "12400633174999288";
+  var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+  formHost.shareForm(formId, deviceId, (error, data) => {
+      if (error.code) {
+          console.log('formHost shareForm, error:' + JSON.stringify(error));
+      }
+  });
+  ```
+
+## shareForm<sup>9+</sup>
+
+shareForm(formId: string, deviceId: string): Promise&lt;void&gt;;
+
+指定formId和远程设备Id进行卡片分享。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+  | 参数名 | 类型    | 必填 | 说明    |
+  | ------ | ------ | ---- | ------- |
+  | formId | string | 是   | 卡片标识 |
+  | deviceId | string | 是   | 远程设备标识 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果 |
+
+**参数：**
+
+  ```js
+  var formId = "12400633174999288";
+  var deviceId = "EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2";
+  formHost.shareForm(formId, deviceId).then(() => {
+      console.log('formHost shareForm success');
+  }).catch((error) => {
+      console.log('formHost shareForm, error:' + JSON.stringify(error));
+  });
+  ```

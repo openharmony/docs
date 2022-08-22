@@ -76,22 +76,22 @@ In this section, we will develop an infographic food details page, by building c
      1. The width and height of the image are not set.
      2. The default attribute of **objectFit** of the image is **ImageFit.Cover**, that is, the image is zoomed in or zoomed out to fill the entire display boundary with the aspect ratio locked.
      
-     ```
-     @Entry
-     @Component
-     struct MyComponent {
-       build() {
-         Stack() {
-             Image($r('app.media.Tomato'))
-                 .objectFit(ImageFit.Contain)
-                 .height(357)
-             Text('Tomato')
-                 .fontSize(26)
-                 .fontWeight(500)
-         }
+   ```
+   @Entry
+   @Component
+   struct MyComponent {
+     build() {
+       Stack() {
+           Image($r('app.media.Tomato'))
+               .objectFit(ImageFit.Contain)
+               .height(357)
+           Text('Tomato')
+               .fontSize(26)
+               .fontWeight(500)
        }
      }
-     ```
+   }
+   ```
 
 ![en-us_image_0000001223127732](figures/en-us_image_0000001223127732.png)
 ​     

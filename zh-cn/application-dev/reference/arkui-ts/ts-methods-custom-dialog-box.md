@@ -1,10 +1,12 @@
 # 自定义弹窗
 
+通过CustomDialogController类显示自定义弹窗。
+
 > **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-通过CustomDialogController类显示自定义弹窗。
+通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。
 
 
 ## 接口
@@ -42,7 +44,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 ### 导入对象
 
-```
+```ts
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
 
@@ -66,15 +68,20 @@ close(): void
 // xxx.ets
 @CustomDialog
 struct CustomDialogExample {
+  @Link textValue: string
+  @Link inputValue: string
   controller: CustomDialogController
   cancel: () => void
   confirm: () => void
 
   build() {
     Column() {
-      Text('Software uninstall').width('70%').fontSize(20).margin({ top: 10, bottom: 10 })
-      Image($r('app.media.icon')).width(80).height(80)
-      Text('Whether to uninstall a software?').fontSize(16).margin({ bottom: 10 })
+      Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
+      TextInput({ placeholder: '', text: this.textValue }).height(60).width('90%')
+        .onChange((value: string) => {
+          this.textValue = value
+        })
+      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
@@ -83,6 +90,7 @@ struct CustomDialogExample {
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
+            this.inputValue = this.textValue
             this.controller.close()
             this.confirm()
           }).backgroundColor(0xffffff).fontColor(Color.Red)
@@ -94,8 +102,10 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct CustomDialogUser {
+  @State textValue: string = ''
+  @State inputValue: string = 'click me'
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({ cancel: this.onCancel, confirm: this.onAccept }),
+    builder: CustomDialogExample({ cancel: this.onCancel, confirm: this.onAccept, textValue: $textValue, inputValue: $inputValue }),
     cancel: this.existApp,
     autoCancel: true
   })
@@ -112,7 +122,7 @@ struct CustomDialogUser {
 
   build() {
     Column() {
-      Button('click me')
+      Button(this.inputValue)
         .onClick(() => {
           this.dialogController.open()
         }).backgroundColor(0x317aff)

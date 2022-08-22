@@ -1,11 +1,10 @@
 # TextInput
 
+The **\<TextInput>** component provides single-line text input and is able to respond to input events.
+
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **\<TextInput>** component provides single-line text input.
 
 
 ## Required Permissions
@@ -20,23 +19,24 @@ Not supported
 
 ## APIs
 
-TextInput(value?:{placeholder?: string controller?: TextInputController})
+TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, controller?: TextInputController})
 
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string | No | - | Text displayed when there is no input. |
+  | placeholder | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | No | - | Hint text displayed when there is no input. |
+  | text             | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)                                   | No    | -    | Current text input. |
   | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. |
 
 
 ## Attributes
 
-In addition to universal attributes, the following attributes are supported.
+In addition to the universal attributes, the following attributes are supported.
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
 | type | InputType | InputType.Normal | Input box type. |
-| placeholderColor | Color | - | Placeholder color. |
+| placeholderColor | Color | - | Placeholder text color. |
 | placeholderFont | {<br/>size?: Length,<br/>weight?: number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
 | enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
 | caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |

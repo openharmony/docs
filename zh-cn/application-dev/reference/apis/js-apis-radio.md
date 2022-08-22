@@ -925,13 +925,45 @@ radio.sendUpdateCellLocationRequest((err, data) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(\): Promise<void\>
+sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
+
+发送更新小区位置请求，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明       |
+| -------- | --------------------- | ---- | ---------- |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 发送更新小区位置请求，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
 **返回值：**
 
@@ -942,7 +974,8 @@ sendUpdateCellLocationRequest\(\): Promise<void\>
 **示例：**
 
 ```js
-let promise = radio.sendUpdateCellLocationRequest();
+let slotId = 0;
+let promise = radio.sendUpdateCellLocationRequest(slotId);
 promise.then(data => {
     console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1555,7 +1588,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 getPreferredNetwork(slotId: number): Promise<void\>
 
-设置首选网络，使用Promise方式作为异步方法。
+获取首选网络，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1583,6 +1616,128 @@ promise.then(data => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.log(`getPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
+
+获取特定IMS服务类型的IMS注册状态信息，使用callback方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                   |
+| -------- | ------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                     | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| imsType  | [ImsServiceType](#imsservicetype9)         | 是   | IMS服务类型。                          |
+| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+radio.getImsRegInfo(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
+
+获取特定IMS服务类型的IMS注册状态信息，使用Promise方式作为异步方法。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名  | 类型                               | 必填 | 说明                                   |
+| ------- | ---------------------------------- | ---- | -------------------------------------- |
+| slotId  | number                             | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| imsType | [ImsServiceType](#imsservicetype9) | 是   | IMS服务类型。                          |
+
+**返回值：**
+
+| 类型                                  | 说明                    |
+| ------------------------------------- | ----------------------- |
+| Promise\<[ImsRegInfo](#imsreginfo9)\> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+let promise = radio.getImsRegInfo(0, 1);
+promise.then(data => {
+    console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getImsRegInfo fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.on('imsRegStateChange')<sup>9+</sup>
+
+on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
+
+订阅imsRegStateChange事件，使用callback异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                   |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | 是   | 监听IMS注册状态的变化。                |
+| slotId   | number                               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 是   | 回调函数。                             |
+
+**示例：**
+
+```js
+radio.on('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.off('imsRegStateChange')<sup>9+</sup>
+
+off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
+
+取消订阅imsRegStateChange事件，使用callback异步回调。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                 | 必填 | 说明                                   |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | 是   | 通话结束时取消监听通话详情的变化。     |
+| slotId   | number                               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。                             |
+
+**示例：**
+
+```js
+radio.off('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1757,7 +1912,7 @@ promise.then(data => {
 | isCamped          | boolean                                                      | 获取服务单元的状态。                                         |
 | timeStamp         | number                                                       | 获取单元格信息时获取时间戳。                                 |
 | signalInformation | [SignalInformation](#signalinformation)                      | 信号信息。                                                   |
-| data              | [CdmaCellInformation](#cdmacellinformation) \| [GsmCellInformation](#gsmcellinformation) \| [LteCellInformation](#ltecellinformation) \| [NrCellInformation](#nrcellinformation) \| [TdscdmaCellInformation](#tdscdmacellinformation) | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息 |
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1881,6 +2036,8 @@ Nr的选择模式。
 
 网络搜索结果。
 
+此接口为系统接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
 
 | 名称                   | 类型                                              | 说明           |
@@ -1933,3 +2090,58 @@ Nr的选择模式。
 | networkInformation | [NetworkInformation](#networkinformation)    | 网络信息。                            |
 | resumeSelection    | boolean                                       | 继续选择。                             |
 
+## ImsRegState<sup>9+</sup>
+
+IMS注册状态。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称             | 值   | 说明     |
+| ---------------- | ---- | -------- |
+| IMS_UNREGISTERED | 0    | 未注册。 |
+| IMS_REGISTERED   | 1    | 已注册。 |
+
+## ImsRegTech<sup>9+</sup>
+
+IMS注册技术。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称                    | 值   | 说明            |
+| ----------------------- | ---- | --------------- |
+| REGISTRATION_TECH_NONE  | 0    | 无注册技术。    |
+| REGISTRATION_TECH_LTE   | 1    | LTE注册技术。   |
+| REGISTRATION_TECH_IWLAN | 2    | IWLAN注册技术。 |
+| REGISTRATION_TECH_NR    | 3    | NR注册技术。    |
+
+## ImsRegInfo<sup>9+</sup>
+
+IMS注册信息。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称        | 类型                         | 说明          |
+| ----------- | ---------------------------- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) | IMS注册状态。 |
+| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS注册技术。 |
+
+## ImsServiceType<sup>9+</sup>
+
+IMS服务类型。
+
+此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.CoreService。
+
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| TYPE_VOICE | 0    | 语音服务。 |
+| TYPE_VIDEO | 1    | 视频服务。 |
+| TYPE_UT    | 2    | UT服务。   |
+| TYPE_SMS   | 3    | 短讯服务。 |
