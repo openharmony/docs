@@ -8,7 +8,7 @@ With the location awareness capability offered by OpenHarmony, mobile devices wi
 
 Your application can call location-specific APIs to obtain the location information of a mobile device for offering location-based services such as drive navigation and motion track recording.
 
-Basic Concepts
+**Basic Concepts**
 
 Location awareness helps determine where a mobile device locates. The system identifies the location of a mobile device with its coordinates, and uses location technologies such as Global Navigation Satellite System (GNSS) and network positioning (for example, base station positioning or WLAN/Bluetooth positioning) to provide diverse location-based services. These advanced location technologies make it possible to obtain the accurate location of the mobile device, regardless of whether it is indoors or outdoors.
 
@@ -28,6 +28,10 @@ Location awareness helps determine where a mobile device locates. The system ide
 
     WLAN or Bluetooth positioning estimates the current location of a mobile device based on the locations of WLANs and Bluetooth devices that can be discovered by the device. The location accuracy of this technology depends on the distribution of fixed WLAN access points (APs) and Bluetooth devices around the device. A high density of WLAN APs and Bluetooth devices can produce a more accurate location result than base station positioning. This technology also requires access to the network.
 
+**Figure 1** ** Location subsystem architecture**<a name="fig4460722185514"></a>  
+
+![](figures/location_En-1.png)
+![](figures/location_En-1.png)
 
 ## Directory Structure<a name="section161941989596"></a>
 
@@ -102,7 +106,8 @@ The following table describes APIs available for obtaining device location infor
 **Obtaining the device location information:**
 
 1. Before using basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application needs to obtain the permission from the user.
-     The system provides the following location permissions:
+
+   The system provides the following location permissions:
    - ohos.permission.LOCATION
    
    - ohos.permission.LOCATION_IN_BACKGROUND
@@ -131,7 +136,7 @@ The following table describes APIs available for obtaining device location infor
    }
    ```
 
-   For details about the configuration fields, see the description of the **module.json** file.
+   For details about the configuration fields, see [Application Package Structure Configuration File](../application-dev/quick-start/stage-structure.md).
 
 2. Import the **geolocation** module by which you can implement all APIs related to the basic location capabilities.
      
@@ -204,7 +209,8 @@ The following table describes APIs available for obtaining device location infor
    ```
 
 4. Instantiate the **Callback** object for the system to report location results.
-     Your application needs to implement the callback defined by the system. When the system successfully obtains the real-time location of a device, it will report the location result to your application through the callback interface. Your application can implement the callback interface in such a way to complete your own service logic.
+
+   Your application needs to implement the callback defined by the system. When the system successfully obtains the real-time location of a device, it will report the location result to your application through the callback interface. Your application can implement the callback interface in such a way to complete your own service logic.
      
    ```
    var locationChange = (location) => {
@@ -239,6 +245,7 @@ The following table describes APIs available for obtaining device location infor
 **Converting the coordinates and geocoding information:**
 
 > **NOTE**
+> 
 > The **GeoConvert** instance needs to access backend services to obtain information. Therefore, before performing the following steps, ensure that your device is connected to the network.
 
 1. Import the **geolocation** module by which you can implement all APIs related to the geocoding and reverse geocoding conversion capabilities.
@@ -248,6 +255,7 @@ The following table describes APIs available for obtaining device location infor
    ```
 
 2. Obtain the conversion result.
+
    - Call **getAddressesFromLocation** to convert coordinates into geographical location information.
         
       ```
@@ -258,6 +266,7 @@ The following table describes APIs available for obtaining device location infor
       ```
 
       Your application can obtain the **GeoAddress** list that matches the specified coordinates and then read location information from it. For details, see the *API Reference*.
+
    - Call **getAddressesFromLocationName** to convert geographic description into coordinates.
         
       ```

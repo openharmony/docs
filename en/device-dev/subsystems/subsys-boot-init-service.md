@@ -208,11 +208,11 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         importance
                     </td>
                     <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Current service priority.
+                        Service priority (for the standard system) or service importance (for the mini system).
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
                         Standard system: The service priority ranges from -20 to 19. A value beyond the range is invalid.<br>
-                        Small system: The value <strong>0</strong> indicates an unimportant process and a value greater than <strong>0</strong> indicates an important process.
+                        Small system: The value <strong>0</strong> indicates that a system restart is not required, and a value greater than <strong>0</strong> indicates the opposite.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Small and standard systems
