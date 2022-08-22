@@ -5,7 +5,6 @@
 - [UI框架（eTS）开发常见问题](faqs-ui-ets.md)
 - [图形图像开发常见问题](faqs-graphics.md)
 - [文件管理开发常见问题](faqs-file-management.md)
-- [媒体开发常见问题](faqs-media.md)
 - [网络与连接开发常见问题](faqs-connectivity.md)
 - [数据管理开发常见问题](faqs-data-management.md)
 - [设备管理开发常见问题](faqs-device-management.md)
