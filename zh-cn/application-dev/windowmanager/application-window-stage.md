@@ -404,3 +404,7 @@ class MainAbility extends Ability {
        }
    };
    ```
+## 相关实例
+
+针对window开发（Stage模型），有以下相关实例可供参考：
+- [`Window`：窗口（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window)
