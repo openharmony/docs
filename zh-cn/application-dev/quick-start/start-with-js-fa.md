@@ -236,5 +236,5 @@
 
 ## 相关实例
 
-针对使用JS语言开发，有以下相关实例可供参考：
+针对使用JS语言开发（FA模型），有以下相关实例可供参考：
 - [`JsHelloWorld`：你好世界（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/JsHelloWorld)
