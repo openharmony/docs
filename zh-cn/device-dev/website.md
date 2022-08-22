@@ -468,7 +468,13 @@
     - [设备安全等级管理开发指导](subsystems/subsys-security-devicesecuritylevel.md)
   - 启动恢复
     - [启动恢复子系统概述](subsystems/subsys-boot-overview.md)
-    - [init启动引导组件](subsystems/subsys-boot-init.md)
+    - init启动引导组件
+      - [引导启动配置文件](subsystems/subsys-boot-init-cfg.md)
+      - [jobs管理](subsystems/subsys-boot-init-jobs.md)
+      - [服务管理](subsystems/subsys-boot-init-service.md)
+      - [系统参数](subsystems/subsys-boot-init-sysparam.md)
+      - [沙盒管理](subsystems/subsys-boot-init-sandbox.md)
+      - [插件](subsystems/subsys-boot-init-plugin.md)
     - [appspawn应用孵化组件](subsystems/subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsystems/subsys-boot-bootstrap.md)
     - [常见问题](subsystems/subsys-boot-faqs.md)
