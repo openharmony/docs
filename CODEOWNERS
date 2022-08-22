@@ -222,7 +222,7 @@ zh-cn/application-dev/reference/apis/js-apis-data-preferences.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-storage.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-system-storage.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-rdb.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-settings.md @sun-yue14
+zh-cn/application-dev/reference/apis/js-apis-settings.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-data-resultset.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-document.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-environment.md @qinxiaowang
@@ -258,7 +258,7 @@ zh-cn/application-dev/reference/apis/js-apis-hitracechain.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hitracemeter.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @sun-yue14
-zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @sun-yue14
+zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-system-time.md @sun-yue14
 zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @sun-yue14
