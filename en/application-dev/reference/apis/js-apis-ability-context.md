@@ -595,7 +595,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 | Type| Description|
 | -------- | -------- |
-| number | ID of the connection between the two abilities.|
+| number | Result code of the ability connection.|
 
 **Example**
 ```js
@@ -606,7 +606,7 @@ var want = {
 }
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)
@@ -615,8 +615,8 @@ var options = {
     console.log('connectAbility onFailed, code: ' + code)
   }
 }
-this.context.connectAbility(want, options) {
-  console.log('code: ' + code)
+let result = this.context.connectAbility(want, options) {
+  console.log('code: ' + result)
 }
 ```
 
@@ -652,7 +652,7 @@ var want = {
 var accountId = 111;
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)
