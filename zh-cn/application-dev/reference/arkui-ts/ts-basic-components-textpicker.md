@@ -25,7 +25,7 @@ TextPicker(value: {range: string[] | Resource, value?: string, selected?: number
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | range | string[]\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是 | - | 选择器的数据选择范围。 |
+  | range | string[]&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是 | - | 选择器的数据选择范围。 |
   | value       | string           | 否    | -    | 搜索文本值。                                   | 
   | selected | number | 否 | 第一个元素 | 选中项在数组中的index值。 | 
 
