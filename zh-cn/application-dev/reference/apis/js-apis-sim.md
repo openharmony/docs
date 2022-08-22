@@ -64,7 +64,7 @@ let promise = sim.isSimActive(0);
 promise.then(data => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`isSimActive fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`isSimActive failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -113,7 +113,7 @@ let promise = sim.getDefaultVoiceSlotId();
 promise.then(data => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getDefaultVoiceSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getDefaultVoiceSlotId failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -167,7 +167,7 @@ let promise = sim.hasOperatorPrivileges(0);
 promise.then(data => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`hasOperatorPrivileges fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`hasOperatorPrivileges failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -222,7 +222,7 @@ let promise = sim.getISOCountryCodeForSim(0);
 promise.then(data => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getISOCountryCodeForSim fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getISOCountryCodeForSim failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -278,7 +278,7 @@ let promise = sim.getSimOperatorNumeric(0);
 promise.then(data => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimOperatorNumeric fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimOperatorNumeric failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -334,7 +334,7 @@ let promise = sim.getSimSpn(0);
 promise.then(data => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimSpn fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimSpn failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -390,7 +390,7 @@ let promise = sim.getSimState(0);
 promise.then(data => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimState failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -445,7 +445,7 @@ let promise = sim.getCardType(0);
 promise.then(data => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getCardType fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getCardType failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -501,7 +501,7 @@ let promise = sim.hasSimCard(0);
 promise.then(data => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`hasSimCard fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`hasSimCard failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -564,7 +564,7 @@ let promise = sim.getSimAccountInfo(0);
 promise.then(data => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimAccountInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimAccountInfo failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -620,7 +620,7 @@ let promise = sim.getActiveSimAccountInfoList();
 promise.then(data => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getActiveSimAccountInfoList fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getActiveSimAccountInfoList failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -683,7 +683,7 @@ let promise = sim.setDefaultVoiceSlotId(0);
 promise.then(data => {
     console.log(`setDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setDefaultVoiceSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setDefaultVoiceSlotId failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -704,7 +704,7 @@ setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| name     | string                    | 是   | SIM卡名称                              |
+| name     | string                    | 是   | SIM卡名称。                              |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
 
 **示例：**
@@ -733,7 +733,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| name   | string | 是   | SIM卡名称                              |
+| name   | string | 是   | SIM卡名称。                              |
 
 **返回值：**
 
@@ -749,7 +749,7 @@ let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setShowName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setShowName failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -812,7 +812,7 @@ let promise = sim.getShowName(0);
 promise.then(data => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getShowName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getShowName failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -833,7 +833,7 @@ setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): 
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
 | slotId   | number                    | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| number   | string                    | 是   | SIM卡号码                              |
+| number   | string                    | 是   | SIM卡号码。                              |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                             |
 
 **示例：**
@@ -863,7 +863,7 @@ setShowNumber\(slotId: number,number: string\): Promise\<void\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| number | string | 是   | SIM卡号码                              |
+| number | string | 是   | SIM卡号码。                              |
 
 **返回值：**
 
@@ -879,7 +879,7 @@ let promise = sim.setShowNumber(0, number);
 promise.then(data => {
     console.log(`setShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setShowNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setShowNumber failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -942,7 +942,7 @@ let promise = sim.getShowNumber(0);
 promise.then(data => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getShowNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getShowNumber failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1005,7 +1005,7 @@ let promise = sim.activateSim(0);
 promise.then(data => {
     console.log(`activateSim success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`activateSim fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`activateSim failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1068,7 +1068,7 @@ let promise = sim.deactivateSim(0);
 promise.then(data => {
     console.log(`deactivateSim success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`deactivateSim fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`deactivateSim failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1090,7 +1090,7 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
 | callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                                                   |
-| options  | [LockInfo](#lockinfo8)                                      | 是   | 锁信息。<br/>lockType: [LockType](#locktype8)<br/>password: string<br/>state: [LockState](#lockstate8) |
+| options  | [LockInfo](#lockinfo8)                                      | 是   | 锁信息。<br/>- lockType: [LockType](#locktype8)<br/>- password: string<br/>- state: [LockState](#lockstate8) |
 
 **示例：**
 
@@ -1123,7 +1123,7 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 | 参数名  | 类型                   | 必填 | 说明                                                         |
 | ------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | slotId  | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| options | [LockInfo](#lockinfo8) | 是   | 锁信息。<br/>lockType: [LockType](#locktype8)<br/>password: string<br/>state: [LockState](#lockstate8) |
+| options | [LockInfo](#lockinfo8) | 是   | 锁信息。<br/>- lockType: [LockType](#locktype8)<br/>- password: string<br/>- state: [LockState](#lockstate8) |
 
 **返回值：**
 
@@ -1143,7 +1143,7 @@ let promise = sim.setLockState(0, lockInfo);
 promise.then(data => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setLockState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setLockState failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1204,7 +1204,7 @@ let promise = sim.getLockState(0, 1);
 promise.then(data => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getLockState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getLockState failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1271,7 +1271,7 @@ let promise = sim.alterPin(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`alterPin fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`alterPin failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1309,7 +1309,7 @@ sim.alterPin2(0, "1234", "0000", (err, data) => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusResponse\>
 
-更改Pin2密码，使用callback方式作为异步方法。
+更改Pin2密码，使用Promise方式作为异步方法。
 
 此接口为系统接口。
 
@@ -1338,7 +1338,7 @@ let promise = sim.alterPin2(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`alterPin2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`alterPin2 failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1359,7 +1359,7 @@ unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin      | string                                                       | 是   | SIM卡的密码                            |
+| pin      | string                                                       | 是   | SIM卡的密码。                            |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)> | 是   | 回调函数。                             |
 
 **示例：**
@@ -1389,7 +1389,7 @@ unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin    | string | 是   | SIM卡的密码                            |
+| pin    | string | 是   | SIM卡的密码。                            |
 
 **返回值：**
 
@@ -1405,7 +1405,7 @@ let promise = sim.unlockPin(0, pin);
 promise.then(data => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPin fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPin failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1426,8 +1426,8 @@ unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<Loc
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin   | string                                                       | 是   | 重置SIM卡的密码                        |
-| puk      | string                                                       | 是   | SIM卡密码的解锁密码                    |
+| newPin   | string                                                       | 是   | 重置SIM卡的密码。                        |
+| puk      | string                                                       | 是   | SIM卡密码的解锁密码。                    |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **示例：**
@@ -1458,8 +1458,8 @@ unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusRespo
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin | string | 是   | 重置SIM卡的密码                        |
-| puk    | string | 是   | SIM卡密码的解锁密码                    |
+| newPin | string | 是   | 重置SIM卡的密码。                        |
+| puk    | string | 是   | SIM卡密码的解锁密码。                    |
 
 **返回值：**
 
@@ -1476,7 +1476,7 @@ let promise = sim.unlockPuk(0, newPin, puk);
 promise.then(data => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPuk fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPuk failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1497,7 +1497,7 @@ unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusRespon
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin2     | string                                                       | 是   | SIM卡的密码                            |
+| pin2     | string                                                       | 是   | SIM卡的密码。                            |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **示例：**
@@ -1527,7 +1527,7 @@ unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| pin2   | string | 是   | SIM卡的密码                            |
+| pin2   | string | 是   | SIM卡的密码。                            |
 
 **返回值：**
 
@@ -1543,7 +1543,7 @@ let promise = sim.unlockPin2(0,pin2);
 promise.then(data => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPin2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPin2 failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1564,8 +1564,8 @@ unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallbac
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin2  | string                                                       | 是   | 重置SIM卡的密码                        |
-| puk2     | string                                                       | 是   | SIM卡密码的解锁密码                    |
+| newPin2  | string                                                       | 是   | 重置SIM卡的密码。                        |
+| puk2     | string                                                       | 是   | SIM卡密码的解锁密码。                    |
 | callback | AsyncCallback&lt;[LockStatusResponse](#lockstatusresponse7)&gt; | 是   | 回调函数。                             |
 
 **示例：**
@@ -1596,8 +1596,8 @@ unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatus
 | 参数名  | 类型   | 必填 | 说明                                   |
 | ------- | ------ | ---- | -------------------------------------- |
 | slotId  | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| newPin2 | string | 是   | 重置SIM卡的密码                        |
-| puk2    | string | 是   | SIM卡密码的解锁密码                    |
+| newPin2 | string | 是   | 重置SIM卡的密码。                        |
+| puk2    | string | 是   | SIM卡密码的解锁密码。                    |
 
 **返回值：**
 
@@ -1614,7 +1614,7 @@ let promise = sim.unlockPuk2(0, newPin2, puk2);
 promise.then(data => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPuk2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPuk2 failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1697,7 +1697,7 @@ let promise = sim.getSimIccId(0);
 promise.then(data => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimIccId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimIccId failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1760,7 +1760,7 @@ let promise = sim.getVoiceMailIdentifier(0);
 promise.then(data => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getVoiceMailIdentifier fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getVoiceMailIdentifier failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1823,7 +1823,7 @@ let promise = sim.getVoiceMailNumber(0);
 promise.then(data => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getVoiceMailNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getVoiceMailNumber failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1874,8 +1874,8 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<
 | 参数名     | 类型   | 必填 | 说明                                   |
 | ---------- | ------ | ---- | -------------------------------------- |
 | slotId     | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| mailName   | string | 是   | 邮件名字                               |
-| mailNumber | string | 是   | 邮件号码                               |
+| mailName   | string | 是   | 邮件名字。                               |
+| mailNumber | string | 是   | 邮件号码。                               |
 
 **返回值：**
 
@@ -1890,7 +1890,7 @@ let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
 promise.then(data => {
     console.log(`setVoiceMailInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setVoiceMailInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setVoiceMailInfo failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1953,7 +1953,7 @@ let promise = sim.getSimTelephoneNumber(0);
 promise.then(data => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimTelephoneNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimTelephoneNumber failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2016,7 +2016,7 @@ let promise = sim.getSimGid1(0);
 promise.then(data => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimGid1 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimGid1 failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2079,7 +2079,7 @@ let promise = sim.getIMSI(0);
 promise.then(data => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getIMSI fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getIMSI failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2142,7 +2142,7 @@ let promise = sim.getOperatorConfigs(0);
 promise.then(data => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOperatorConfigs fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOperatorConfigs failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2163,8 +2163,8 @@ queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallba
 | 参数名   | 类型                                                         | 必填 | 说明                                                       |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type     | [ContactType](#contacttype8)                                                  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 是   | 回调函数。                                                 |
+| type     | [ContactType](#contacttype8)                                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | 是   | 回调函数。                                          |
 
 **示例：**
 
@@ -2192,7 +2192,7 @@ queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<Dialli
 | 参数名 | 类型        | 必填 | 说明                                                       |
 | ------ | ----------- | ---- | ---------------------------------------------------------- |
 | slotId | number      | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type   | [ContactType](#contacttype8)  | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
+| type   | [ContactType](#contacttype8)  | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
 
 **返回值：**
 
@@ -2207,7 +2207,7 @@ let promise = sim.queryIccDiallingNumbers(0, 1);
 promise.then(data => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`queryIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`queryIccDiallingNumbers failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2228,9 +2228,9 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
-| callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -2264,8 +2264,8 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
 
 **返回值：**
 
@@ -2286,7 +2286,7 @@ let promise = sim.addIccDiallingNumbers(0, 1, diallingNumbersInof);
 promise.then(data => {
     console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`addIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`addIccDiallingNumbers failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2307,9 +2307,9 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
-| callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -2343,8 +2343,8 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
 
 **返回值：**
 
@@ -2365,7 +2365,7 @@ let promise = sim.delIccDiallingNumbers(0, 1, diallingNumbersInof);
 promise.then(data => {
     console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`delIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`delIccDiallingNumbers failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2386,9 +2386,9 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
-| callback        | AsyncCallback<void\>                         | 是   | 回调函数                                                   |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
+| callback        | AsyncCallback<void\>                         | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -2422,8 +2422,8 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 | 参数名          | 类型                                         | 必填 | 说明                                                       |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                     |
-| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>1 : GENERAL_CONTACT<br/>2 : FIXED_DIALING |
-| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息                                               |
+| type            | [ContactType](#contacttype8)                 | 是   | 联系人类型。<br/>- 1 : GENERAL_CONTACT<br/>- 2 : FIXED_DIALING |
+| diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | 是   | 拨号号码信息。                                               |
 
 **返回值：**
 
@@ -2444,7 +2444,7 @@ let promise = sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof);
 promise.then(data => {
     console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`updateIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`updateIccDiallingNumbers failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2465,8 +2465,8 @@ sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): vo
 | 参数名   | 类型                 | 必填 | 说明                                   |
 | -------- | -------------------- | ---- | -------------------------------------- |
 | slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| cmd      | string               | 是   | 命令                                   |
-| callback | AsyncCallback<void\> | 是   | 是                                     |
+| cmd      | string               | 是   | 命令。                                   |
+| callback | AsyncCallback<void\> | 是   | 回调函数。                                     |
 
 **示例：**
 
@@ -2494,7 +2494,7 @@ sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| cmd    | string | 是   | 命令                                   |
+| cmd    | string | 是   | 命令。                                   |
 
 **返回值：**
 
@@ -2509,7 +2509,7 @@ let promise = sim.sendEnvelopeCmd(0, "ls");
 promise.then(data => {
     console.log(`sendEnvelopeCmd success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`sendEnvelopeCmd fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`sendEnvelopeCmd failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2530,7 +2530,7 @@ sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<voi
 | 参数名   | 类型                 | 必填 | 说明                                   |
 | -------- | -------------------- | ---- | -------------------------------------- |
 | slotId   | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| cmd      | string               | 是   | 命令                                   |
+| cmd      | string               | 是   | 命令。                                   |
 | callback | AsyncCallback<void\> | 是   | 回调函数。                             |
 
 **示例：**
@@ -2559,7 +2559,7 @@ sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| cmd    | string | 是   | 命令                                   |
+| cmd    | string | 是   | 命令。                                   |
 
 **返回值：**
 
@@ -2574,7 +2574,7 @@ let promise = sim.sendTerminalResponseCmd(0, "ls");
 promise.then(data => {
     console.log(`sendTerminalResponseCmd success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`sendTerminalResponseCmd fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`sendTerminalResponseCmd failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2595,8 +2595,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<L
 | 参数名   | 类型                                                       | 必填 | 说明                                   |
 | -------- | ---------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                     | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| lockInfo | [PersoLockInfo](#persolockinfo8)                           | 是   | 定制锁类型信息                         |
-| callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数                               |
+| lockInfo | [PersoLockInfo](#persolockinfo8)                           | 是   | 定制锁类型信息。                         |
+| callback | AsyncCallback<[LockStatusResponse](#lockstatusresponse7)\> | 是   | 回调函数。                               |
 
 **示例：**
 
@@ -2628,7 +2628,7 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusRespon
 | 参数名   | 类型                             | 必填 | 说明                                   |
 | -------- | -------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| lockInfo | [PersoLockInfo](#persolockinfo8) | 是   | 定制锁类型信息                         |
+| lockInfo | [PersoLockInfo](#persolockinfo8) | 是   | 定制锁类型信息。                         |
 
 **返回值：**
 
@@ -2647,7 +2647,7 @@ let promise = sim.unlockSimLock(0, persoLockInfo);
 promise.then(data => {
     console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockSimLock fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockSimLock failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2706,7 +2706,7 @@ let promise = sim.getOpKey(0);
 promise.then(data => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOpKey fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOpKey failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2725,7 +2725,7 @@ getOpName(slotId: number, callback: AsyncCallback<string\>): void
 | 参数名   | 类型                   | 必填 | 说明                                   |
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback<string\> | 是   | 回调函数                               |
+| callback | AsyncCallback<string\> | 是   | 回调函数。                               |
 
 **示例：**
 
@@ -2765,7 +2765,7 @@ let promise = sim.getOpName(0);
 promise.then(data => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOpName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOpName failed promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2792,16 +2792,16 @@ SIM卡状态。
 
 | 名称 | 值 | 说明 |
 | ----- | ----- | ----- |
-|UNKNOWN_CARD | -1 | 未知类型 |
-|SINGLE_MODE_SIM_CARD | 10 | 单SIM卡 |
-|SINGLE_MODE_USIM_CARD | 20 | 单USIM卡 |
-|SINGLE_MODE_RUIM_CARD | 30 | 单RUIM卡 |
-|DUAL_MODE_CG_CARD | 40 | 双卡模式C+G |
-|CT_NATIONAL_ROAMING_CARD | 41 | 中国电信内部漫游卡 |
-|CU_DUAL_MODE_CARD | 42 | 中国联通双模卡 |
-|DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡 |
-|DUAL_MODE_UG_CARD | 50 | 双模式UG卡 |
-|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | 单一ISIM卡类型 |
+|UNKNOWN_CARD | -1 | 未知类型。 |
+|SINGLE_MODE_SIM_CARD | 10 | 单SIM卡。 |
+|SINGLE_MODE_USIM_CARD | 20 | 单USIM卡。 |
+|SINGLE_MODE_RUIM_CARD | 30 | 单RUIM卡。 |
+|DUAL_MODE_CG_CARD | 40 | 双卡模式C+G。 |
+|CT_NATIONAL_ROAMING_CARD | 41 | 中国电信内部漫游卡。 |
+|CU_DUAL_MODE_CARD | 42 | 中国联通双模卡。 |
+|DUAL_MODE_TELECOM_LTE_CARD | 43 | 双模式电信LTE卡。 |
+|DUAL_MODE_UG_CARD | 50 | 双模式UG卡。 |
+|SINGLE_MODE_ISIM_CARD<sup>8+</sup> | 60 | 单一ISIM卡类型。 |
 
 ## LockType<sup>8+</sup>
 
@@ -2813,8 +2813,8 @@ SIM卡状态。
 
 | 名称     | 值   | 说明        |
 | -------- | ---- | ----------- |
-| PIN_LOCK | 1    | SIM卡密码锁 |
-| FDN_LOCK | 2    | 固定拨号锁  |
+| PIN_LOCK | 1    | SIM卡密码锁。 |
+| FDN_LOCK | 2    | 固定拨号锁。  |
 
 ## LockState<sup>8+</sup>
 
@@ -2839,16 +2839,16 @@ SIM卡状态。
 
 | 名称         | 值   | 说明                                            |
 | ------------ | ---- | ----------------------------------------------- |
-| PN_PIN_LOCK  | 0    | 定制网络PIN锁*(参照 3GPP TS 22.022 [33])*       |
-| PN_PUK_LOCK  | 1    | 定制网络PUk锁                                   |
-| PU_PIN_LOCK  | 2    | 定制网络子集PIN锁*(参照 3GPP TS 22.022 [33])*   |
-| PU_PUK_LOCK  | 3    | 定制网络子集PUK锁                               |
-| PP_PIN_LOCK  | 4    | 定制服务提供者PIN锁*(参照 3GPP TS 22.022 [33])* |
-| PP_PUK_LOCK  | 5    | 定制服务提供者PUK锁                             |
-| PC_PIN_LOCK  | 6    | 定制企业PIN锁*(参照 3GPP TS 22.022 [33])*       |
-| PC_PUK_LOCK  | 7    | 定制企业Puk锁                                   |
-| SIM_PIN_LOCK | 8    | 定制SIM的PIN锁*(参照 3GPP TS 22.022 [33])*      |
-| SIM_PUK_LOCK | 9    | 定制SIM的PUK锁                                  |
+| PN_PIN_LOCK  | 0    | 定制网络PIN锁*(参照 3GPP TS 22.022 [33])*。       |
+| PN_PUK_LOCK  | 1    | 定制网络PUk锁。                                   |
+| PU_PIN_LOCK  | 2    | 定制网络子集PIN锁*(参照 3GPP TS 22.022 [33])*。   |
+| PU_PUK_LOCK  | 3    | 定制网络子集PUK锁。                               |
+| PP_PIN_LOCK  | 4    | 定制服务提供者PIN锁*(参照 3GPP TS 22.022 [33])*。 |
+| PP_PUK_LOCK  | 5    | 定制服务提供者PUK锁。                             |
+| PC_PIN_LOCK  | 6    | 定制企业PIN锁*(参照 3GPP TS 22.022 [33])*。       |
+| PC_PUK_LOCK  | 7    | 定制企业Puk锁。                                   |
+| SIM_PIN_LOCK | 8    | 定制SIM的PIN锁*(参照 3GPP TS 22.022 [33])*。      |
+| SIM_PUK_LOCK | 9    | 定制SIM的PUK锁。                                  |
 
 ## LockStatusResponse<sup>7+</sup>
 
@@ -2860,8 +2860,8 @@ SIM卡状态。
 
 | 名称            | 类型   | 说明               |
 | --------------- | ------ | ------------------ |
-| result          | number | 当前操作的结果     |
-| remain?: number | number | 剩余次数(可以为空) |
+| result          | number | 当前操作的结果。     |
+| remain?: number | number | 剩余次数（可以为空）。 |
 
 ## LockInfo<sup>8+</sup>
 
@@ -2873,9 +2873,9 @@ SIM卡状态。
 
 | 名称     | 类型                     | 说明   |
 | -------- | ------------------------ | ------ |
-| lockType | [LockType](#locktype8)   | 锁类型 |
-| password | string                   | 密码   |
-| state    | [LockState](#lockstate8) | 锁状态 |
+| lockType | [LockType](#locktype8)   | 锁类型。 |
+| password | string                   | 密码。   |
+| state    | [LockState](#lockstate8) | 锁状态。 |
 
 ## PersoLockInfo<sup>8+</sup>
 
@@ -2887,8 +2887,8 @@ SIM卡状态。
 
 | 名称     | 类型                             | 说明         |
 | -------- | -------------------------------- | ------------ |
-| lockType | [PersoLockType](#persolocktype8) | 定制锁的类型 |
-| password | string                           | 密码         |
+| lockType | [PersoLockType](#persolocktype8) | 定制锁的类型。 |
+| password | string                           | 密码。         |
 
 ## IccAccountInfo<sup>7+</sup>
 
@@ -2900,13 +2900,13 @@ Icc账户信息。
 
 | 名称       | 类型    | 说明             |
 | ---------- | ------- | ---------------- |
-| simId      | number  | SIM卡ID          |
-| slotIndex  | number  | 卡槽ID           |
-| isEsim     | boolean | 标记卡是否是eSim |
-| isActive   | boolean | 卡是否被激活     |
-| iccId      | string  | ICCID号码        |
-| showName   | string  | SIM卡显示名称    |
-| showNumber | string  | SIM卡显示号码    |
+| simId      | number  | SIM卡ID。          |
+| slotIndex  | number  | 卡槽ID。           |
+| isEsim     | boolean | 标记卡是否是eSim。 |
+| isActive   | boolean | 卡是否被激活。     |
+| iccId      | string  | ICCID号码。        |
+| showName   | string  | SIM卡显示名称。    |
+| showNumber | string  | SIM卡显示号码。    |
 
 ## OperatorConfig<sup>8+</sup>
 
@@ -2931,10 +2931,10 @@ Icc账户信息。
 
 | 名称         | 类型   | 说明     |
 | ------------ | ------ | -------- |
-| alphaTag     | string | 标签     |
-| number       | string | 号码     |
-| recordNumber | number | 记录编号 |
-| pin2         | string | pin2密码 |
+| alphaTag     | string | 标签。     |
+| number       | string | 号码。     |
+| recordNumber | number | 记录编号。 |
+| pin2         | string | pin2密码。 |
 
 ## ContactType<sup>8+</sup>
 
@@ -2946,6 +2946,5 @@ Icc账户信息。
 
 | 名称            | 值   | 说明       |
 | :-------------- | ---- | ---------- |
-| GENERAL_CONTACT | 1    | 通用联系人 |
-| FIXED_DIALING   | 2    | 固定拨号   |
-
+| GENERAL_CONTACT | 1    | 通用联系人。 |
+| FIXED_DIALING   | 2    | 固定拨号。   |
