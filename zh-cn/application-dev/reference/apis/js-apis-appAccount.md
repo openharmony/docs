@@ -1,4 +1,4 @@
-#  	应用帐号管理
+# 应用帐号管理
 
 本模块不仅用于对应用帐号的添加、删除、查询、修改和授权，且提供帐号将数据写入磁盘和数据同步的能力。
 
@@ -335,7 +335,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 检查指定应用帐号是否允许应用数据同步，使用callback回调异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -362,7 +362,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 检查指定应用帐号是否允许应用数据同步，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -511,7 +511,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用callback回调异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -538,7 +538,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
