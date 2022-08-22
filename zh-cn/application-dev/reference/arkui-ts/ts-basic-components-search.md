@@ -82,21 +82,22 @@ struct SearchExample {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text(this.submitvalue)
       Text(this.changevalue)
-      Search({value: '', placeholder: 'Type to search', controller: this.controller})
+      Search({value: this.changevalue, placeholder: 'Type to search', controller: this.controller})
         .searchButton('Search')
         .width(400)
         .height(35)
         .backgroundColor(Color.White)
         .placeholderColor(Color.Grey)
-        .placeholderFont({ size: 50, weight: 10, family: 'serif', style: FontStyle.Normal })
+        .placeholderFont({ size: 26, weight: 10, family: 'serif', style: FontStyle.Normal })
         .onSubmit((value: string) => {
           this.submitvalue = value
         })
         .onChange((value: string) => {
-          this.changevalue = value
+          this.changevalue += value
         })
-        .margin({ top: 30 })
+        .margin({ top: 30, left:10, right:10 })
     }
   }
 }
 ```
+![search](figures/search.png)
