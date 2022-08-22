@@ -189,7 +189,9 @@
    });
    ```
 ## 相关实例
+
 针对分布式数据开发，有以下相关实例可供参考：
+
 - [`DistributedDataGobang`：分布式五子棋（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedDataGobang)
 - [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
 - [`KvStore`：分布式数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
