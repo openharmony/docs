@@ -98,4 +98,4 @@
 ## 相关实例
 针对Stage模型下的Ability开发，有以下相关实例可供参考：
 - [`MissionManager`：系统任务管理（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/MissionManager)
-- [`Launcher`：仿桌面应用](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/Launcher)
+- [`Launcher`：仿桌面应用（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/Launcher)
