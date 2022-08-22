@@ -33,6 +33,8 @@
     - [@ohos.ability.wantConstant](js-apis-ability-wantConstant.md)
     - [@ohos.application.abilityDelegatorRegistry](js-apis-abilityDelegatorRegistry.md)
     - [@ohos.application.abilityManager](js-apis-application-abilityManager.md)
+    - [@ohos.application.AccessibilityExtensionAbility](js-apis-accessibility-extension-context.md)
+    - [@ohos.application.AccessibilityExtensionAbility](js-apis-application-AccessibilityExtensionAbility.md)
     - [@ohos.application.appManager](js-apis-appmanager.md)
     - [@ohos.application.Configuration](js-apis-configuration.md)
     - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
