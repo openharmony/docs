@@ -97,6 +97,8 @@
     - [Counter](ts-container-counter.md)
     - [Flex](ts-container-flex.md)
     - [GridContainer](ts-container-gridcontainer.md)
+    - [GridCol](ts-container-gridcol.md)
+    - [GridRow](ts-container-gridrow.md)
     - [Grid](ts-container-grid.md)
     - [GridItem](ts-container-griditem.md)
     - [List](ts-container-list.md)
