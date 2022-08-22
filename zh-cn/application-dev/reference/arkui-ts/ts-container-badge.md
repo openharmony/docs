@@ -47,12 +47,12 @@
 
 ## BadgeStyle对象说明
 
-| 名称         | 类型                         | 必填   | 默认值         | 描述        |
-| ---------- | -------------------------- | ---- | ----------- | --------- |
-| color      | [ResourceColor](../../ui/ts-types.md)                      | 否    | Color.White | 文本颜色。     |
-| fontSize   | number&nbsp;\|&nbsp;string | 否    | 10          | 文本大小。     |
-| badgeSize  | number&nbsp;\|&nbsp;string | 否    | -           | badge的大小。 |
-| badgeColor | [ResourceColor](../../ui/ts-types.md)                      | 否    | Color.Red   | badge的颜色。 |
+| 名称       | 类型                                        | 必填 | 默认值      | 描述          |
+| ---------- | ------------------------------------------- | ---- | ----------- | ------------- |
+| color      | [ResourceColor](ts-types.md#resourcecolor8) | 否   | Color.White | 文本颜色。    |
+| fontSize   | number&nbsp;\|&nbsp;string                  | 否   | 10          | 文本大小。    |
+| badgeSize  | number&nbsp;\|&nbsp;string                  | 否   | -           | badge的大小。 |
+| badgeColor | [ResourceColor](ts-types.md#resourcecolor8) | 否   | Color.Red   | badge的颜色。 |
 
 ## BadgePosition枚举说明
 
