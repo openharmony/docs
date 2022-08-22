@@ -257,7 +257,7 @@
 ## 相关实例
 
 针对分布式数据对象，有以下开发实例可供参考：
-- [`DistributedNote`：分布式备忘录(eTS)（API9）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedNote)
+- [`DistributedNote`：分布式备忘录(eTS)（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedNote)
 
 - [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
 
