@@ -25,7 +25,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 | 参数名        | 类型                                               | 必填 | 说明                                                         |
 | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
-| specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
+| specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
 | callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -53,7 +53,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortM
 | 参数名        | 类型                | 必填 | 说明                                                         |
 | ------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | pdu           | Array&lt;number&gt; | 是   | 协议数据单元，从收到的信息中获取。                           |
-| specification | string              | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
+| specification | string              | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
 
 **返回值：**
 
@@ -71,7 +71,7 @@ let promise = sms.createMessage(pdu, specification);
 promise.then(data => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`createMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -154,7 +154,7 @@ let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -217,7 +217,7 @@ let promise = sms.setDefaultSmsSlotId(0);
 promise.then(data => {
     console.log(`setDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -286,7 +286,7 @@ let promise = sms.setSmscAddr(slotId, smscAddr);
 promise.then(data => {
     console.log(`setSmscAddr success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -352,7 +352,7 @@ let promise = sms.getSmscAddr(slotId);
 promise.then(data => {
     console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -368,7 +368,7 @@ hasSmsCapability(): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | - true：设备具备短信发送和接收能力<br/>- false：设备不具备短信发送和接收能力 |
+| boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
 
 ```js
 let result = sms.hasSmsCapability(); 
@@ -436,7 +436,7 @@ let promise = sms.splitMessage(content);
 promise.then(data => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`splitMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -511,7 +511,7 @@ let promise = sms.addSimMessage(simMessageOptions);
 promise.then(data => {
     console.log(`addSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`addSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`addSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -532,7 +532,7 @@ delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>):
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| msgIndex | number                    | 是   | 消息索引                                  |
+| msgIndex | number                    | 是   | 消息索引。                                  |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
 
 **示例：**
@@ -563,7 +563,7 @@ delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 | 参数名   | 类型   | 必填 | 说明                                      |
 | -------- | ------ | ---- | ----------------------------------------- |
 | slotId   | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| msgIndex | number | 是   | 消息索引                                  |
+| msgIndex | number | 是   | 消息索引。                                  |
 
 **返回值：**
 
@@ -580,7 +580,7 @@ let promise = sms.delSimMessage(slotId, msgIndex);
 promise.then(data => {
     console.log(`delSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`delSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`delSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -657,7 +657,7 @@ let promise = sms.updateSimMessage(updateSimMessageOptions);
 promise.then(data => {
     console.log(`updateSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`updateSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`updateSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -722,7 +722,7 @@ let promise = sms.getAllSimMessages(slotId);
 promise.then(data => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getAllSimMessages fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -797,7 +797,7 @@ let promise = sms.setCBConfig(cbConfigOptions);
 promise.then(data => 
     console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setCBConfig fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -816,9 +816,9 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 | 参数名    | 类型                                                         | 必填 | 说明                                      |
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| message   | string                                                       | 是   | 消息                                      |
-| force7bit | boolean                                                      | 是   | 是否使用7bit编码                          |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
+| message   | string                                                       | 是   | 消息。                                      |
+| force7bit | boolean                                                      | 是   | 是否使用7 bit编码。                          |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数。                                  |
 
 **示例：**
 
@@ -845,8 +845,8 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 | 参数名    | 类型    | 必填 | 说明                                      |
 | --------- | ------- | ---- | ----------------------------------------- |
 | slotId    | number  | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| message   | string  | 是   | 消息                                      |
-| force7bit | boolean | 是   | 是否使用7bit编码                          |
+| message   | string  | 是   | 消息。                                      |
+| force7bit | boolean | 是   | 是否使用7 bit编码。                          |
 
 **返回值：**
 
@@ -862,7 +862,7 @@ let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
 promise.then(data => 
     console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSmsSegmentsInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -914,7 +914,7 @@ let promise = sms.isImsSmsSupported();
 promise.then(data => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`isImsSmsSupported fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isImsSmsSupported failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -966,7 +966,7 @@ let promise = sms.getImsShortMessageFormat();
 promise.then(data => {
     console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getImsShortMessageFormat fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getImsShortMessageFormat failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -984,7 +984,7 @@ decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsI
 
 | 参数名          | 类型                                                    | 必填 | 说明           |
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
-| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名 |
+| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名。 |
 | callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 回调函数。     |
 
 **示例：**
@@ -1027,7 +1027,7 @@ let promise = sms.getSmscAddr(mmsFilePathName);
 promise.then(data => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`decodeMms fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1104,7 +1104,7 @@ let promise = sms.encodeMms(mmsInformation);
 promise.then(data => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`encodeMms fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1176,7 +1176,7 @@ promise.then(data => {
 
 ## IDeliveryShortMessageCallback
 
-回调实例。返回短信送达报告。
+回调实例，返回短信送达报告。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1208,8 +1208,8 @@ promise.then(data => {
 
 | 参数名      | 类型                                                         | 必填 | 说明      |
 | ----------- | ------------------------------------------------------------ | ---- | --------- |
-| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型  |
-| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | pdu头类型 |
+| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型。  |
+| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | PDU头类型 |
 | attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | 否   | 附件      |
 
 ## MmsSendReq<sup>8+</sup>
