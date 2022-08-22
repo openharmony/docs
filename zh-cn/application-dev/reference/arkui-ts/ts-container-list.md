@@ -36,7 +36,7 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
 | 名称                           | 参数类型                                     | 默认值               | 描述                                       |
 | ---------------------------- | ---------------------------------------- | ----------------- | ---------------------------------------- |
 | listDirection                | [Axis](ts-appendix-enums.md#axis)    | Vertical          | 设置List组件排列方向参照Axis枚举说明。                  |
-| divider                      | {<br/>strokeWidth:&nbsp;Length,<br/>color?:[ResourceColor](../../ui/ts-types.md),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>} | -                 | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
+| divider                      | {<br/>strokeWidth:&nbsp;Length,<br/>color?:[ResourceColor](ts-types.md#resourcecolor8),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>} | -                 | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
 | cachedCount | number                                   | 1                        | 设置预加载的ListItem的数量。 |
 | editMode                     | boolean                                  | false             | 声明当前List组件是否处于可编辑模式。                     |
