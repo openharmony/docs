@@ -29,6 +29,7 @@ ListItem()
 | sticky | Sticky | Sticky.None | 设置ListItem吸顶效果，参见Sticky枚举描述。 |
 | editable | boolean | false | 当前ListItem元素是否可编辑，进入编辑模式后可删除。 |
 | selectable<sup>8+</sup> | boolean | true | 当前ListItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
+| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;SwipeEdgeEffect,<br/>} | - | 用于设置ListItem的划出组件。<br/>start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>edgeEffect:&nbsp;滑动效果，参见SwipeEdgeEffect的枚举说明。<br/> |
 
 - Sticky枚举说明
   | 名称 | 描述 | 
@@ -36,6 +37,11 @@ ListItem()
   | None | 无吸顶效果。 | 
   | Normal | 当前item吸顶。 | 
 
+- SwipeEdgeEffect<sup>9+</sup>枚举说明
+  | 名称 | 描述 |
+  | -------- | -------- |
+  | Spring | ListItem划动距离超过划出组件大小后可以继续划动，松手后按照弹簧阻尼曲线回弹。 |
+  | None | ListItem划动距离不能超过划出组件大小。 |
 
 ## 事件
 
@@ -87,3 +93,54 @@ struct ListItemExample {
 ```
 
 ![zh-cn_image_0000001219864159](figures/zh-cn_image_0000001219864159.gif)
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListItemExample2 {
+  @State message: string = 'Hello World'
+
+  @Builder itemEnd() {
+    Row () {
+      Button("Del").margin("4vp")
+      Button("Set").margin("4vp")
+    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+  }
+
+  build() {
+    Column() {
+      List({space:10}) {
+        ListItem() {
+          Text(this.message) {
+          }
+          .width('100%')
+          .height(100)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .borderRadius(10)
+          .backgroundColor(0xFFFFFF)
+        }
+        .swipeAction({ end:this.itemEnd})
+
+        ListItem() {
+          Text(this.message) {
+          }
+          .width('100%')
+          .height(100)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .borderRadius(10)
+          .backgroundColor(0xFFFFFF)
+        }
+        .swipeAction({ start:this.itemEnd})
+      }
+    }
+    .padding(10)
+    .backgroundColor(0xDCDCDC)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![zh-cn_image_1501929990650](figures/zh-cn_image_1501929990650.jpg)
