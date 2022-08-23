@@ -299,6 +299,48 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
   ```
 
 
+### on('complete' | 'fail')
+
+ on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
+
+开启上传任务监听，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
+  | callback | function | 是 | 上传任务完成或失败的回调函数。 |
+
+  回调函数的参数
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| &lt;Array&lt;TaskState&gt;&gt; | array | 是 | 上传任务返回结果 |
+
+**示例：**
+  
+  ```js
+  uploadTask.on('complete', function callback(TaskStates) {
+    for (let i = 0; i < TaskState.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(TaskStates[i]));
+    }
+  }
+  );
+
+  uploadTask.on('fail', function callback(TaskStates) {
+    for (let i = 0; i < TaskState.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(TaskStates[i]));
+    }
+  }
+  );
+  ```
+
+
 ### off('progress')
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
@@ -363,6 +405,30 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
       console.info("upOnHeader headers:" + JSON.stringify(headers));
   }
   );
+  ```
+
+### off('complete' | 'fail')
+
+ off(type:'complete' | 'fail'): void;
+
+关闭上传任务监听。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
+
+**示例：**
+  
+  ```js
+  uploadTask.off('complete');
+
+  uploadTask.off('fail');
   ```
 
 
@@ -444,6 +510,17 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
+## TaskState
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| path | string | 是 | 文件路径 |
+| responseCode | number | 是 | 上传任务返回值 |
+| message | string | 是 | 上传任务结果描述信息 |
 
 ## File
 
