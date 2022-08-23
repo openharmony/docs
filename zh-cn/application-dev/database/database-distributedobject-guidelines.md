@@ -172,12 +172,5 @@
        ```js
        local_object.setSessionId("");
        ```
-## 开发实例
 
-针对分布式数据对象，有以下开发实例可供参考： 
-
-- [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
-
-
-在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表等。
  
