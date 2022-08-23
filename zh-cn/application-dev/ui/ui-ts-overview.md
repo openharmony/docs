@@ -109,4 +109,4 @@
 
 - [弹窗（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
 
-- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/CustomComponent)
+- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/CustomComponent)
