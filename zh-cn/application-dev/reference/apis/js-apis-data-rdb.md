@@ -1191,6 +1191,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1225,6 +1227,8 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1325,6 +1329,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1352,6 +1358,8 @@ rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
 delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1447,6 +1455,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 根据指定条件查询数据库中的数据，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1478,6 +1488,8 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
