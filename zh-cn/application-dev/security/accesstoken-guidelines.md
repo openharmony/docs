@@ -124,8 +124,10 @@
 3. 根据权限校验结果采取对应的措施。
 
 ```js
-  onStart() {
-    var context = this.context
+import featureAbility from '@ohos.ability.featureAbility';
+
+onStart() {
+    var context = featureAbility.getContext()
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
     context.requestPermissionsFromUser(array).then(function(data) {
