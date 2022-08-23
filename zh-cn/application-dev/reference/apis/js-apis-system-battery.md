@@ -1,7 +1,7 @@
 # 电量信息
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.batteryInfo`](js-apis-battery-info.md)。
+>  **说明：**
+> - 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.batteryInfo`](js-apis-battery-info.md)。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -26,9 +26,9 @@ getStatus(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | Function | 否 | 接口调用成功的回调函数。 |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
-| complete | Function | 否 | 接口调用结束的回调函数。 |
+| success | (data: BatteryResponse) => void | 否 | 接口调用成功的回调函数。|
+| fail | (data: string, code: number) => void | 否 | 接口调用失败的回调函数。|
+| complete | () => void | 否 | 接口调用结束的回调函数。 |
 
 success返回值：
 
