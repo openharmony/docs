@@ -95,32 +95,32 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
        
      ```
      root {
-     device_info {
+       device_info {
          match_attr = "hdf_manager";
          platform :: host {
-         hostName = "platform_host";
-         priority = 50;
-         device_spi :: device {                           //为每一个SPI控制器配置一个HDF设备节点
+           hostName = "platform_host";
+           priority = 50;
+           device_spi :: device {                           //为每一个SPI控制器配置一个HDF设备节点
              device0 :: deviceNode {
-             policy = 1;
-             priority = 60;
-             permission = 0644;
-             moduleName = "HDF_PLATFORM_SPI";
-             serviceName = "HDF_PLATFORM_SPI_0";
-             deviceMatchAttr = "hisilicon_hi35xx_spi_0";
+               policy = 1;
+               priority = 60;
+               permission = 0644;
+               moduleName = "HDF_PLATFORM_SPI";
+               serviceName = "HDF_PLATFORM_SPI_0";
+               deviceMatchAttr = "hisilicon_hi35xx_spi_0";
              }
              device1 :: deviceNode {
-             policy = 1;
-             priority = 60;
-             permission = 0644;
-             moduleName = "HDF_PLATFORM_SPI";             // 【必要】用于指定驱动名称，该字段的值必须和驱动入口结构的moduleName值一致。
-             serviceName = "HDF_PLATFORM_SPI_1";          // 【必要且唯一】驱动对外发布服务的名称。
-             deviceMatchAttr = "hisilicon_hi35xx_spi_1";  // 需要与设备hcs文件中的match_attr匹配。
+               policy = 1;
+               priority = 60;
+               permission = 0644;
+               moduleName = "HDF_PLATFORM_SPI";             // 【必要】用于指定驱动名称，该字段的值必须和驱动入口结构的moduleName值一致。
+               serviceName = "HDF_PLATFORM_SPI_1";          // 【必要且唯一】驱动对外发布服务的名称。
+               deviceMatchAttr = "hisilicon_hi35xx_spi_1";  // 需要与设备hcs文件中的match_attr匹配。
              }
              ...
+           }
          }
-         }
-     }
+       }
      }
      ```
    
@@ -129,9 +129,9 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
        
      ```
      root {
-     platform {
+       platform {
          spi_config {                        // 每一个SPI控制器配置私有数据
-         template spi_controller {           // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
+           template spi_controller {           // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
              serviceName = "";
              match_attr = "";
              transferMode = 0;               // 数据传输模式：中断传输(0)、流控传输(1)、DMA传输(2)
@@ -152,25 +152,25 @@ SPI模块适配HDF框架的三个必选环节是实例化驱动入口，配置�
              REG_MISC_CTRL_SPI = 0x12030024; // MISC_REG_BASE(0x12030000) + 0x24
              MISC_CTRL_SPI_CS = 0;
              MISC_CTRL_SPI_CS_SHIFT = 0;
-         }      
-         controller_0x120c0000 :: spi_controller {
+           }      
+           controller_0x120c0000 :: spi_controller {
              busNum = 0;                           // 【必要】总线号
              CRG_SPI_CKEN = 0x10000;               // (0x1 << 16) 0:close clk, 1:open clk 
              CRG_SPI_RST = 0x1;                    // (0x1 << 0) 0:cancel reset, 1:reset 
              match_attr = "hisilicon_hi35xx_spi_0";// 【必要】需要和device_info.hcs中的deviceMatchAttr值一致
-         }      
-         controller_0x120c1000 :: spi_controller {
+           }      
+           controller_0x120c1000 :: spi_controller {
              busNum = 1;
              CRG_SPI_CKEN = 0x20000;    // (0x1 << 17) 0:close clk, 1:open clk
              CRG_SPI_RST = 0x2;         // (0x1 << 1) 0:cancel reset, 1:reset 
              match_attr = "hisilicon_hi35xx_spi_1"; 
              regBase = 0x120c1000;      // 【必要】地址映射需要
              irqNum = 101;              // 【必要】中断号
+           }
+           ...
+           // 【可选】可新增，但需要在device_info.hcs添加对应的节点。
          }
-         ...
-         // 【可选】可新增，但需要在device_info.hcs添加对应的节点。
-         }
-     }
+       }
      }
      ```
 
