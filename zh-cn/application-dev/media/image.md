@@ -115,6 +115,7 @@ pixelmap.release(()=>{
     done();
 })
 
+let path = '/data/local/tmp/test.jpg';
 // 用于创建imagesource(uri)
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
 
@@ -145,7 +146,7 @@ imagePackerApi.release();
 ### 解码场景
 
 ```js
-/data/local/tmp/test.jpg // 设置创建imagesource的路径
+let path = '/data/local/tmp/test.jpg'; // 设置创建imagesource的路径
 
 // 用路径创建imagesource
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
@@ -222,7 +223,7 @@ catch(error => {
 ### 编码场景
 
 ```js
-/data/local/tmp/test.png // 设置创建imagesource的路径
+let path = '/data/local/tmp/test.png' // 设置创建imagesource的路径
 
 // 用于设置imagesource
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.png'
