@@ -38,6 +38,7 @@
     - [@ohos.application.Configuration](js-apis-configuration.md)
     - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
     - [@ohos.application.EnvironmentCallback](js-apis-application-EnvironmentCallback.md)
+    - [@ohos.application.errorManager](js-apis-errorManager.md)
     - [@ohos.application.formBindingData](js-apis-formbindingdata.md)
     - [@ohos.application.formError](js-apis-formerror.md)
     - [@ohos.application.formHost](js-apis-formhost.md)
@@ -124,6 +125,7 @@
 - Resource Scheduling
 
   - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
+  - [@ohos.distributedMissionManager](js-apis-distributedMissionManager.md)
   - [@ohos.workScheduler ](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)
   
