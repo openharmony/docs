@@ -30,10 +30,10 @@ AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| selectedColor | Color | 选中文本文字颜色。 |
-| popupColor | Color | 弹出提示文本字体颜色。 |
-| selectedBackgroundColor | Color | 选中文本背景颜色。 |
-| popupBackground | Color | 弹窗索引背景色。 |
+| selectedColor | [ResourceColor](../../ui/ts-types.md) | 选中文本文字颜色。 |
+| popupColor | [ResourceColor](../../ui/ts-types.md) | 弹出提示文本字体颜色。 |
+| selectedBackgroundColor | [ResourceColor](../../ui/ts-types.md) | 选中文本背景颜色。 |
+| popupBackground | [ResourceColor](../../ui/ts-types.md) | 弹窗索引背景色。 |
 | usingPopup | boolean | 是否使用弹出索引提示。 |
 | selectedFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 选中文本文字样式。 |
 | popupFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 弹出提示文本字体样式。 |
