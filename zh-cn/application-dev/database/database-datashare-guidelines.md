@@ -80,7 +80,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
        }
    
    	// 重写query接口
-       query(uri, predicates, columns,  callback) {
+       query(uri, predicates, columns, callback) {
            if (predicates == null || predicates == undefined) {
                console.info('invalid predicates');
            }
@@ -152,7 +152,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
    export default class MainAbility extends Ability {
    	onWindowStageCreate(windowStage) {
    		abilityContext = this.context;
-   		dataShare.createDataShareHelper(abilityContext, dseUri, (err,data)=>{
+   		dataShare.createDataShareHelper(abilityContext, dseUri, (err, data)=>{
    			dsHelper = data;
    		});
    	}
