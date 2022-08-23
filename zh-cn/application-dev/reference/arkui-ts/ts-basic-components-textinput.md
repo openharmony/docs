@@ -65,8 +65,8 @@ TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, con
 - TextInputStyle枚举说明
   | 名称                 | 描述            |
   | ------------------ | ------------- |
-  | Default   | 默认风格。       |
-  | Inline | 内联输入风格。文字选中时底板与输入框同高。光标宽1.5vp，高24.0vp。      |
+  | Default   | 默认风格，光标宽1.5vp，光标高度和字体大小高度相关，字体越大光标越高。       |
+  | Inline | 内联输入风格。文字选中时底板与输入框同高。      |
 
 ## 事件
 
