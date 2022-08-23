@@ -31,23 +31,23 @@
 | ohos.permission.POWER_OPTIMIZATION                       | system_basic | system_grant | TRUE    | 允许系统应用设置省电模式、获取省电模式的配置信息并接收配置变化的通知。 |
 | ohos.permission.REBOOT_RECOVERY                          | system_basic | system_grant | TRUE    | 允许系统应用重启设备并进入恢复模式。                         |
 | ohos.permission.MANAGE_LOCAL_ACCOUNTS                    | system_basic | system_grant | TRUE    | 允许应用管理本地用户账号。                                   |
-| ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS           | system_basic | system_grant | TRUE    | 允许多个系统账号之间相互访问。                               |
+| ohos.permission.<br>INTERACT_ACROSS_LOCAL_ACCOUNTS           | system_basic | system_grant | TRUE    | 允许多个系统账号之间相互访问。                               |
 | ohos.permission.VIBRATE                                  | normal       | system_grant | TRUE    | 允许应用控制马达振动。                                       |
 | ohos.permission.CONNECT_IME_ABILITY                      | system_core  | system_grant | TRUE    | 允许绑定输入法Ability(InputMethodAbility)。                  |
-| ohos.permission.CONNECT_SCREEN_SAVER_ABILITY             | system_core  | system_grant | TRUE    | 允许绑定屏保Ability(ScreenSaverAbility)。                    |
+| ohos.permission.<br>CONNECT_SCREEN_SAVER_ABILITY             | system_core  | system_grant | TRUE    | 允许绑定屏保Ability(ScreenSaverAbility)。                    |
 | ohos.permission.READ_SCREEN_SAVER                        | system_basic | system_grant | TRUE    | 允许应用查询屏保状态信息。                                   |
 | ohos.permission.WRITE_SCREEN_SAVER                       | system_basic | system_grant | TRUE    | 允许应用修改屏保状态信息。                                   |
 | ohos.permission.SET_WALLPAPER                            | normal       | system_grant | TRUE    | 允许应用设置静态壁纸。                                       |
 | ohos.permission.GET_WALLPAPER                            | system_basic | system_grant | TRUE    | 允许应用读取壁纸文件。                                       |
-| ohos.permission.CHANGE_ABILITY_ENABLED_STATE             | system_basic | system_grant | TRUE    | 允许改变应用或者组件的使能状态。                             |
+| ohos.permission.<br>CHANGE_ABILITY_ENABLED_STATE             | system_basic | system_grant | TRUE    | 允许改变应用或者组件的使能状态。                             |
 | ohos.permission.ACCESS_MISSIONS                          | system_basic | system_grant | TRUE    | 允许应用访问任务栈信息。                                     |
 | ohos.permission.CLEAN_BACKGROUND_PROCESSES               | normal       | system_grant | TRUE    | 允许应用根据包名清理相关后台进程。                           |
 | ohos.permission.KEEP_BACKGROUND_RUNNING                  | normal       | system_grant | TRUE    | 允许Service Ability在后台持续运行。                          |
 | ohos.permission.UPDATE_CONFIGURATION                     | system_basic | system_grant | TRUE    | 允许更新系统配置。                                           |
 | ohos.permission.UPDATE_SYSTEM                            | system_basic | system_grant | TRUE    | 允许调用升级接口。                                           |
 | ohos.permission.FACTORY_RESET                            | system_basic | system_grant | TRUE    | 允许调用回复出厂接口。                                       |
-| ohos.permission.GRANT_SENSITIVE_PERMISSIONS              | system_core  | system_grant | TRUE    | 允许应用为其他应用授予敏感权限。                             |
-| ohos.permission.REVOKE_SENSITIVE_PERMISSIONS             | system_core  | system_grant | TRUE    | 允许应用撤销给其他应用授予的敏感信息。                       |
+| ohos.permission.<br>GRANT_SENSITIVE_PERMISSIONS              | system_core  | system_grant | TRUE    | 允许应用为其他应用授予敏感权限。                             |
+| ohos.permission.<br>REVOKE_SENSITIVE_PERMISSIONS             | system_core  | system_grant | TRUE    | 允许应用撤销给其他应用授予的敏感信息。                       |
 | ohos.permission.GET_SENSITIVE_PERMISSIONS                | system_core  | system_grant | TRUE    | 允许应用读取其他应用的敏感权限的状态。                       |
 | ohos.permission. <br> INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION | system_core  | system_grant | TRUE    | 允许应用跨用户对其他应用的属性进行设置。                     |
 | ohos.permission.LISTEN_BUNDLE_CHANGE                     | system_basic | system_grant | TRUE    | 允许应用监听其他应用安装、更新、卸载状态的变化。             |
@@ -59,7 +59,7 @@
 | ohos.permission.MANAGE_SHORTCUTS                         | system_core  | system_grant | TRUE    | 允许应用查询其他应用的快捷方式信息、启动其他应用的快捷方式。 |
 | ohos.permission.radio.ACCESS_FM_AM                       | system_core  | system_grant | TRUE    | 允许应用获取收音机相关服务。                                 |
 | ohos.permission.SET_TELEPHONY_STATE                      | system_basic | system_grant | TRUE    | 允许应用修改telephone的状态。                                |
-| ohos.permission.START_ABILIIES_FROM_BACKGROUND           | system_basic | system_grant | TRUE    | 允许应用在后台启动FA。                                       |
+| ohos.permission.<br>START_ABILIIES_FROM_BACKGROUND           | system_basic | system_grant | TRUE    | 允许应用在后台启动FA。                                       |
 | ohos.permission.BUNDLE_ACTIVE_INFO                       | system_basic | system_grant | TRUE    | 允许系统应用查询其他应用在前台或后台的运行时间。             |
 | ohos.permission.START_INVISIBLE_ABILITY                  | system_core  | system_grant | TRUE    | 无论Ability是否可见，都允许应用进行调用。                    |
 | ohos.permission.sec.ACCESS_UDID                          | system_basic | system_grant | TRUE    | 允许系统应用获取UDID。                                       |
@@ -98,7 +98,7 @@
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | 允许应用读取Tag卡片。                                        |
 | ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | 允许应用实现卡模拟功能。                                     |
 | ohos.permission.PERMISSION_USED_STATS                    | system_basic | system_grant | TRUE    | 允许系统应用访问权限使用记录。                               |
-| ohos.permission.NOTIFICATION_AGENT_CONTROLLER            | system_core  | system_grant | TRUE    | 允许应用发送代理通知。                                       |
+| ohos.permission.<br>NOTIFICATION_AGENT_CONTROLLER            | system_core  | system_grant | TRUE    | 允许应用发送代理通知。                                       |
 | ohos.permission.ANSWER_CALL                              | system_basic | user_grant   | TRUE    | 允许应用接听来电。                                           |
 | ohos.permission.READ_CALENDAR                            | normal       | user_grant   | TRUE    | 允许应用读取日历信息。                                       |
 | ohos.permission.READ_CALL_LOG                            | system_basic | user_grant   | TRUE    | 允许应用读取通话记录。                                       |
