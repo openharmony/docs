@@ -73,7 +73,7 @@ struct ImageAnimatorExample {
       ImageAnimator()
         .images([
           { 
-            //comment文件夹与pages同级
+            // comment文件夹与pages同级
             src: '/comment/bg1.jpg',
             duration: 500,
             width: 325,

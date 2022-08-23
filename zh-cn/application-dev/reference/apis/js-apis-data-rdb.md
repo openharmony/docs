@@ -166,7 +166,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 
-同步分布式数据库时指定组网内的远程设备。
+同步分布式数据库时连接到组网内指定的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -191,7 +191,7 @@ predicates.inDevices(['12345678abcde'])
 inAllDevices(): RdbPredicates
 
 
-同步分布式数据库时连接到组网内的所有远程设备。
+同步分布式数据库时连接到组网内所有的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1058,10 +1058,10 @@ const valueBucket3 = {
 var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
     if (status) {
-        console.log("bathInsert is failed, status = " + status);
+        console.log("batchInsert is failed, status = " + status);
         return;
     }
-    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 })
 ```
 
@@ -1108,9 +1108,9 @@ const valueBucket3 = {
 var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
-    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 }).catch((status) => {
-    console.log("bathInsert is failed, status = " + status);
+    console.log("batchInsert is failed, status = " + status);
 })
 ```
 

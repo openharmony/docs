@@ -30,10 +30,10 @@ Web(options: { src: string, controller?: WebController })
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
@@ -64,11 +64,11 @@ domStorageAccess(domStorageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .domStorageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .domStorageAccess(true)
       }
     }
   }
@@ -95,7 +95,7 @@ fileAccess(fileAccess: boolean)
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
-        .fileAccess(true)
+          .fileAccess(true)
       }
     }
   }
@@ -118,11 +118,11 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .fileFromUrlAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .fileFromUrlAccess(true)
       }
     }
   }
@@ -145,11 +145,11 @@ imageAccess(imageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .imageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .imageAccess(true)
       }
     }
   }
@@ -175,7 +175,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     testObj = {
       test: (data1, data2, data3) => {
         console.log("data1:" + data1);
@@ -189,13 +189,13 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
     }
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .javaScriptAccess(true)
-        .javaScriptProxy({
-          object: this.testObj,
-          name: "objName",
-          methodList: ["test", "toString"],
-          controller: this.controller,
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          .javaScriptProxy({
+            object: this.testObj,
+            name: "objName",
+            methodList: ["test", "toString"],
+            controller: this.controller,
         })
       }
     }
@@ -219,11 +219,11 @@ javaScriptAccess(javaScriptAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .javaScriptAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
       }
     }
   }
@@ -246,12 +246,12 @@ mixedMode(mixedMode: MixedMode)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State mode:MixedMode = MixedMode.All;
+    controller: WebController = new WebController();
+    @State mode: MixedMode = MixedMode.All;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .mixedMode(this.mode)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mixedMode(this.mode)
       }
     }
   }
@@ -274,11 +274,11 @@ onlineImageAccess(onlineImageAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onlineImageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onlineImageAccess(true)
       }
     }
   }
@@ -301,11 +301,11 @@ zoomAccess(zoomAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .zoomAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .zoomAccess(true)
       }
     }
   }
@@ -328,11 +328,11 @@ overviewModeAccess(overviewModeAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .overviewModeAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .overviewModeAccess(true)
       }
     }
   }
@@ -355,11 +355,11 @@ databaseAccess(databaseAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .databaseAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .databaseAccess(true)
       }
     }
   }
@@ -382,11 +382,11 @@ geolocationAccess(geolocationAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .geolocationAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .geolocationAccess(true)
       }
     }
   }
@@ -409,12 +409,12 @@ cacheMode(cacheMode: CacheMode)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State mode:CacheMode = CacheMode.None;
+    controller: WebController = new WebController();
+    @State mode: CacheMode = CacheMode.None;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .cacheMode(this.mode)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .cacheMode(this.mode)
       }
     }
   }
@@ -437,12 +437,12 @@ textZoomRatio(textZoomRatio: number)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State atio:number = 150;
+    controller: WebController = new WebController();
+    @State atio: number = 150;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .textZoomRatio(this.atio)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomRatio(this.atio)
       }
     }
   }
@@ -465,12 +465,12 @@ userAgent(userAgent: string)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .userAgent(this.userAgent)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .userAgent(this.userAgent)
       }
     }
   }
@@ -508,10 +508,10 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onAlert((event) => {
             AlertDialog.show({
               title: 'title',
@@ -1211,6 +1211,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
           })
           return true;
         })
+      }
     }
   }
   ```
@@ -1250,6 +1251,46 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
             }
           })
         })
+      }
+    }
+  }
+  ```
+
+### onContextMenuShow<sup>9+</sup>
+
+onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
+
+长按特定元素（例如图片，链接），跳出菜单。
+
+**参数：**
+
+| 参数名     | 参数类型                                 | 参数描述             |
+| ------- | ------------------------------------ | ---------------- |
+| param   | [WebContextMenuParam](#webcontextmenuparam9)   | 菜单相关参数。 |
+| result  | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
+
+**返回值：**
+
+| 类型     | 说明                   |
+| ------ | -------------------- |
+| boolean | 自定义菜单返回true，默认菜单返回false。 |
+
+  **示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .onContextMenuShow((event) => {
+            console.info("x coord = " + event.param.x());
+            console.info("link url = " + event.param.getLinkUrl());
+        })
+      }
     }
   }
   ```
@@ -1707,6 +1748,98 @@ grant(resources: Array\<string\>): void
 | 参数名     | 参数类型        | 必填 | 默认值 | 参数描述                |
 | --------- | --------------- | ---- | ----- | ---------------------- |
 | resources | Array\<string\> | 是   | -     | 网页所请求的权限资源列表。|
+
+## WebContextMenuParam<sup>9+</sup>
+
+实现长按页面元素跳出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+
+### x<sup>9+</sup>
+
+x(): number
+
+弹出菜单的x坐标。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| number | 显示正常返回非负整数，否则返回-1。 |
+
+### y<sup>9+</sup>
+
+y(): number
+
+弹出菜单的y坐标。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| number | 显示正常返回非负整数，否则返回-1。 |
+
+### getLinkUrl<sup>9+</sup>
+
+getLinkUrl(): string
+
+获取链接地址。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| string | 如果长按位置是链接，返回经过安全检查的url链接。 |
+
+### getUnfilterendLinkUrl<sup>9+</sup>
+
+getUnfilterendLinkUrl(): string
+
+获取链接地址。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| string | 如果长按位置是链接，返回原始的url链接。 |
+
+### getSourceUrl<sup>9+</sup>
+
+getSourceUrl(): string
+
+获取sourceUrl链接。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| string | 如果选中的元素有src属性，返回src的url。 |
+
+### existsImageContents<sup>9+</sup>
+
+existsImageContents(): boolean
+
+是否存在图像内容。
+
+**返回值：**
+
+| 类型            | 说明                     |
+| --------------- | ----------------------- |
+| boolean | 长按位置中有图片返回true，否则返回false。 |
+
+## WebContextMenuResult<sup>9+</sup>
+
+实现长按页面元素跳出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+
+### closeContextMenu<sup>9+</sup>
+
+closeContextMenu(): void
+
+不执行WebContextMenuResult其他接口操作时，需要调用此接口关闭菜单。
+
+### copyImage<sup>9+</sup>
+
+copyImage(): void
+
+WebContextMenuParam有图片内容则复制图片。
 
 ## WebController
 

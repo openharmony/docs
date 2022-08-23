@@ -724,15 +724,17 @@ disconnectAbility(connection: number): Promise&lt;void&gt;;
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
-将指定Ability拉起到后台并获取其Caller通信接口，拉起方可使用Caller与被拉起的Ability进行通信。
+启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | 是 | 传入需要启动的ability的信息，包含ability名称、模块名、包名、设备ID，设备ID缺省或为空表示启动本地ability。 |
+| want | [Want](js-apis-application-Want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -744,16 +746,38 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
   ```js
   let caller = undefined;
-  this.context.startAbilityByCall({
+
+  // 后台启动Ability，不配置parameters
+  var wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
       abilityName: "MainAbility",
       deviceId: ""
-  }).then((obj) => {
-      caller = obj;
-      console.log('Caller GetCaller Get ' + caller);
-  }).catch((e) => {
-      console.log('Caller GetCaller error ' + e);
-  });
+  };
+  this.context.startAbilityByCall(wantBackground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller Success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
+
+  // 前台启动Ability，将parameters中的"ohos.aafwk.param.callAbilityToForeground"配置为true
+  var wantForeground = {
+      bundleName: "com.example.myservice",
+      moduleName: "entry",
+      abilityName: "MainAbility",
+      deviceId: "",
+      parameters: {
+        "ohos.aafwk.param.callAbilityToForeground": true
+      }
+  };
+  this.context.startAbilityByCall(wantForeground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
   ```
   

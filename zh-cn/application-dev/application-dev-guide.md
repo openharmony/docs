@@ -60,6 +60,8 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 
 - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
 
+- [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md)
+
 - [接口参考（JS及TS API）](reference/apis/js-apis-DataUriUtils.md)
 
 - 接口参考（Native API）

@@ -267,7 +267,7 @@ imageSourceApi.getImageInfo(imageInfo => {
 })
 
 // 用于更新增量数据
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
+imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error, data)=> {})
 
 ```
 

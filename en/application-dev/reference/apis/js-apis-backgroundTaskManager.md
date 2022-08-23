@@ -1,6 +1,6 @@
-# BackgroundTaskManager
+# Background Task Management
 
-This module provides background task management.
+The **BackgroundTaskManager** module provides APIs to manage background tasks.
 
 If a service needs to be continued when the application or service module is running in the background (not visible to users), the application or service module can request a transient task or continuous task for delayed suspension based on the service type.
 
@@ -15,7 +15,7 @@ If an application has a service that can be intuitively perceived by users and n
 
 ## Modules to Import
 
-```
+```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 ```
 
@@ -144,12 +144,12 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-| Name      | Type                                | Mandatory  | Description                      |
-| --------- | ---------------------------------- | ---- | ------------------------ |
-| context   | [Context](js-apis-Context.md)      | Yes   | Application context.               |
-| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.             |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.|
-| callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.  |
+| Name      | Type                                | Mandatory  | Description                                      |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.                             |
+| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                |
+| callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result.                  |
 
 **Example**
 ```js
@@ -196,11 +196,11 @@ Requests a continuous task from the system. This API uses a promise to return th
 
 **Parameters**
 
-| Name      | Type                                | Mandatory  | Description                     |
-| --------- | ---------------------------------- | ---- | ----------------------- |
-| context   | [Context](js-apis-Context.md)      | Yes   | Application context.              |
-| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.            |
-| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.|
+| Name      | Type                                | Mandatory  | Description                                      |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | Context                            | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| bgMode    | [BackgroundMode](#backgroundmode8) | Yes   | Background mode requested.                             |
+| wantAgent | [WantAgent](js-apis-wantAgent.md)  | Yes   | Notification parameter, which is used to specify the target page that is redirected to when a continuous task notification is clicked.                 |
 
 **Return value**
 | Type            | Description              |
@@ -245,10 +245,10 @@ Requests to cancel a continuous task. This API uses an asynchronous callback to 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-| Name     | Type                           | Mandatory  | Description                    |
-| -------- | ----------------------------- | ---- | ---------------------- |
-| context  | [Context](js-apis-Context.md) | Yes   | Application context.             |
-| callback | AsyncCallback&lt;void&gt;     | Yes   | Callback used to return the result.|
+| Name     | Type                       | Mandatory  | Description                                      |
+| -------- | ------------------------- | ---- | ---------------------------------------- |
+| context  | Context                   | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                  |
 
 **Example**
 ```js
@@ -276,9 +276,9 @@ Requests to cancel a continuous task. This API uses a promise to return the resu
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **Parameters**
-| Name    | Type                           | Mandatory  | Description       |
-| ------- | ----------------------------- | ---- | --------- |
-| context | [Context](js-apis-Context.md) | Yes   | Application context.|
+| Name    | Type     | Mandatory  | Description                                      |
+| ------- | ------- | ---- | ---------------------------------------- |
+| context | Context | Yes   | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).|
 
 **Return value**
 | Type            | Description              |
@@ -314,14 +314,14 @@ Provides the information about the suspension delay.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| Name                 | Value| Description                                                        |
-| ----------------------- | ------ | ------------------------------------------------------------ |
-| DATA_TRANSFER           | 1      | Data transfer.                                                    |
-| AUDIO_PLAYBACK          | 2      | Audio playback.                                                    |
-| AUDIO_RECORDING         | 3      | Audio recording.                                                        |
-| LOCATION                | 4      | Positioning and navigation.                                                    |
-| BLUETOOTH_INTERACTION   | 5      | Bluetooth-related task.                                                    |
-| MULTI_DEVICE_CONNECTION | 6      | Multi-device connection.                                                  |
-| WIFI_INTERACTION        | 7      | WLAN-related.<br>This is a system API and cannot be called by third-party applications.|
-| VOIP                    | 8      | Audio and video calls.<br>This is a system API and cannot be called by third-party applications.|
-| TASK_KEEPING            | 9      | Computing task (effective only for specific devices).                                |
+| Name                    | Value | Description                   |
+| ----------------------- | ---- | --------------------- |
+| DATA_TRANSFER           | 1    | Data transfer.                 |
+| AUDIO_PLAYBACK          | 2    | Audio playback.                 |
+| AUDIO_RECORDING         | 3    | Audio recording.                   |
+| LOCATION                | 4    | Positioning and navigation.                 |
+| BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
+| MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
+| WIFI_INTERACTION        | 7    | WLAN-related.<br>This is a system API.|
+| VOIP                    | 8    | Audio and video calls.<br>This is a system API. |
+| TASK_KEEPING            | 9    | Computing task (effective only for specific devices).       |
