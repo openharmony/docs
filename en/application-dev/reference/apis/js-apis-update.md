@@ -41,7 +41,7 @@ Obtains an **OnlineUpdater** object.
 
 **Example**
 
-```
+```js
 try {
   var upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
@@ -73,7 +73,7 @@ Obtains a **Restorer** object for restoring factory settings.
 
 **Example**
 
-```
+```js
 try {
   let restorer = update.getRestorer();
 } catch(error) {
@@ -97,7 +97,7 @@ Obtains a **LocalUpdater** object.
 
 **Example**
 
-```
+```js
 try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
@@ -125,7 +125,7 @@ Checks whether a new version is available. This API uses an asynchronous callbac
 
 **Example**
 
-```
+```js
 updater.checkNewVersion((err, result) => {
   console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
 });
@@ -149,7 +149,7 @@ Checks whether a new version is available. This API uses a promise to return the
 
 **Example**
 
-```
+```js
 updater.checkNewVersion().then(result => {
   console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
   // Version digest information
@@ -177,7 +177,7 @@ Obtains information about the new version. This API uses an asynchronous callbac
 
 **Example**
 
-```
+```js
 updater.getNewVersionInfo((err, info) => {
   console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
   console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
@@ -202,7 +202,7 @@ Obtains information about the new version. This API uses a promise to return the
 
 **Example**
 
-```
+```js
 updater.getNewVersionInfo().then(info => {
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
   console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
@@ -231,7 +231,7 @@ Obtains the description file of the new version. This API uses an asynchronous c
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -274,7 +274,7 @@ Obtains the description file of the new version. This API uses a promise to retu
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -311,7 +311,7 @@ Obtains information about the current version. This API uses an asynchronous cal
 
 **Example**
 
-```
+```js
 updater.getCurrentVersionInfo((err, info) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
@@ -337,7 +337,7 @@ Obtains information about the current version. This API uses a promise to return
 
 **Example**
 
-```
+```js
 updater.getCurrentVersionInfo().then(info => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
@@ -366,7 +366,7 @@ Obtains the description file of the current version. This API uses an asynchrono
 
 **Example**
 
-```
+```js
 // Options of the description file
 var descriptionOptions = {
   format: DescriptionFormat.STANDARD, // Standard format
@@ -403,7 +403,7 @@ Obtains the description file of the current version. This API uses a promise to 
 
 **Example**
 
-```
+```js
 // Options of the description file
 var descriptionOptions = {
   format: DescriptionFormat.STANDARD, // Standard format
@@ -435,7 +435,7 @@ Obtains information about the update task. This API uses an asynchronous callbac
 
 **Example**
 
-```
+```js
 updater.getTaskInfo((err, info) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
@@ -459,7 +459,7 @@ Obtains information about the update task. This API uses a promise to return the
 
 **Example**
 
-```
+```js
 updater.getTaskInfo().then(info => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
 }).catch(err => {
@@ -487,7 +487,7 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -528,7 +528,7 @@ Downloads the new version. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -566,7 +566,7 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -606,7 +606,7 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -643,7 +643,7 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -683,7 +683,7 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -720,7 +720,7 @@ Updates the version. This API uses an asynchronous callback to return the result
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -760,7 +760,7 @@ Updates the version. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -797,7 +797,7 @@ Clears errors. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -837,7 +837,7 @@ Clears errors. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -872,7 +872,7 @@ Obtains the update policy. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```
+```js
 updater.getUpgradePolicy((err, policy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
@@ -897,7 +897,7 @@ Obtains the update policy. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 updater.getUpgradePolicy().then(policy => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
@@ -925,7 +925,7 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 
 **Example**
 
-```
+```js
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -960,7 +960,7 @@ Sets the update policy. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -991,7 +991,7 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-```
+```js
 updater.terminateUpgrade((err) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
@@ -1015,7 +1015,7 @@ Terminates the update. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch(err => {
@@ -1040,7 +1040,7 @@ Enables listening for update events. This API uses an asynchronous callback to r
 
 **Example**
 
-```
+```js
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
@@ -1067,7 +1067,7 @@ Disables listening for update events. This API uses an asynchronous callback to 
 
 **Example**
 
-```
+```js
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
@@ -1098,7 +1098,7 @@ Restores factory settings. This API uses an asynchronous callback to return the 
 
 **Example**
 
-```
+```js
 restorer.factoryReset((err) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
@@ -1122,7 +1122,7 @@ Restores factory settings. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
 }).catch(err => {
@@ -1152,7 +1152,7 @@ Verifies the update package. This API uses an asynchronous callback to return th
 
 **Example**
 
-```
+```js
 var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1188,7 +1188,7 @@ Verifies the update package. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1218,7 +1218,7 @@ Installs the update package. This API uses an asynchronous callback to return th
 
 **Example**
 
-```
+```js
 var upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1247,7 +1247,7 @@ Installs the update package. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 var upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1275,7 +1275,7 @@ Enables listening for update events. This API uses an asynchronous callback to r
 
 **Example**
 
-```
+```js
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
@@ -1304,7 +1304,7 @@ Disables listening for update events. This API uses an asynchronous callback to 
 
 **Example**
 
-```
+```js
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
