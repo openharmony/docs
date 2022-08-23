@@ -2,7 +2,8 @@
 
 本模块提供日志打印能力，包括打印debug级别的日志信息、打印info级别的日志信息、打印warn级别的日志信息和打印error级别的日志信息。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.hilog`](js-apis-hilog.md)。
 
 ## console.debug
@@ -11,10 +12,13 @@ debug(message: string): void
 
 打印debug级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.log
@@ -23,10 +27,13 @@ log(message: string): void
 
 打印debug级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.info
@@ -35,10 +42,13 @@ info(message: string): void
 
 打印info级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.warn
@@ -47,10 +57,13 @@ warn(message: string): void
 
 打印warn级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## console.error
@@ -59,10 +72,13 @@ error(message: string): void
 
 打印error级别的日志信息。
 
-- 参数
-  | 参数名     | 类型     | 必填   | 说明          |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | 是    | 表示要打印的文本信息。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明          |
+| ------- | ------ | ---- | ----------- |
+| message | string | 是    | 表示要打印的文本信息。 |
 
 
 ## 示例
