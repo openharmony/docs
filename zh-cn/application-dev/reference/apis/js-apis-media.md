@@ -2004,7 +2004,7 @@ eventEmitter.on('prepare', () => {
 });
 
 media.createVideoRecorder((err, recorder) => {
-    if (err == null && recorder) != null) {
+    if (err == null && recorder != null) {
         videoRecorder = recorder;
         console.info('createVideoRecorder success');
         eventEmitter.emit('prepare');                                        // prepare事件触发
