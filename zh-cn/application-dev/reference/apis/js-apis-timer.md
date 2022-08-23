@@ -12,6 +12,8 @@ setTimeout(handler[,delay[,…args]]): number
 
 设置一个定时器，该定时器在定时器到期后执行一个函数。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -45,6 +47,8 @@ clearTimeout(timeoutID: number): void
 
 取消了先前通过调用setTimeout()建立的定时器。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -70,6 +74,8 @@ clearTimeout(timeoutID: number): void
 setInterval(handler[, delay[, ...args]]): number
 
 重复调用一个函数，在每次调用之间具有固定的时间延迟。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -103,6 +109,8 @@ setInterval(handler[, delay[, ...args]]): number
 clearInterval(intervalID: number): void
 
 可取消先前通过setInterval()设置的重复定时任务。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
