@@ -128,7 +128,7 @@ let promise = featureAbility.startAbility(
 
     使用OpenHarmony IDL（OpenHarmony Interface Definition Language）来自动生成对应客户端服务端及IRemoteObject代码，具体示例代码和说明请参考：
 
-   - [`OpenHarmony IDL`：TS开发步骤](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/IDL/idl-guidelines.md#32-ts开发步骤)
+   - [`OpenHarmony IDL`：TS开发步骤](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/IDL/idl-guidelines.md#ts开发步骤)
 
 2. 在对应文件编写代码
 
@@ -220,7 +220,7 @@ let promise = featureAbility.startAbility(
     }
     ```
 
-### 连接远程Service<a name="section126857614019"></a>（当前仅对系统应用开放）
+### 连接远程Service（当前仅对系统应用开放）
 
 >说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用。
 
@@ -406,5 +406,5 @@ export default {
 ## 相关实例
 
 针对ServiceAbility开发，有以下相关实例可供参考：
-- [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceAbility)
-- [`DMS`：分布式Demo（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)
+- [`ServiceAbility`：ServiceAbility的创建与使用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceAbility)
+- [`DMS`：分布式Demo（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DMS)

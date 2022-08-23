@@ -39,7 +39,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
    ```
 
 
-2. 开发者在定义Service的目录下创建TS文件，自定义类继承ServiceExtensionAbility，重写基类回调函数，示例如下：
+2. 开发者在定义Service的目录下创建TS文件，自定义类继承ServiceExtensionAbility，重写基类回调函数，接口生成的默认相对路径：entry\src\main\ets\ServiceExtAbility\ServiceExtAbility.ts，示例如下：
 
     ```js
     import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
@@ -75,4 +75,4 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 ## 相关实例
 
 针对ServiceExtensionAbility开发，有以下相关实例可供参考：
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)
+- [`ServiceExtAbility`：StageExtAbility的创建与使用（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceExtAbility)

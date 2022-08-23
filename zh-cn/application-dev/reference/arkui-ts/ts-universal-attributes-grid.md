@@ -28,6 +28,7 @@
 @Entry
 @Component
 struct GridContainerExample1 {
+
   build(){
     GridContainer() {
       Row({}) {

@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```js
+```ts
 import Curves from '@ohos.curves'
 ```
 
@@ -256,6 +256,7 @@ import Curves from '@ohos.curves'
 struct ImageComponent {
   @State widthSize: number = 200
   @State heightSize: number = 200
+
   build() {
     Column() {
       Text()
@@ -273,4 +274,5 @@ struct ImageComponent {
   }
 }
 ```
+
 ![zh-cn_image_0000001174104410](figures/zh-cn_image_0000001174104410.gif)

@@ -17,7 +17,7 @@ import hiTraceMeter from '@ohos.hiTraceMeter';
 
 startTrace(name: string, taskId: number): void
 
-标记一个预追踪耗时任务的开始，expectedTime是可选参数，标识该任务的期望耗时。
+标记一个预追踪耗时任务的开始。
 
 如果有多个相同name的任务需要追踪或者对同一个任务要追踪多次，并且任务同时被执行，则每次调用startTrace的taskId不相同。
 

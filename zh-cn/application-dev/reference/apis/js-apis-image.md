@@ -809,7 +809,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -837,7 +837,7 @@ crop(region: Region): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 

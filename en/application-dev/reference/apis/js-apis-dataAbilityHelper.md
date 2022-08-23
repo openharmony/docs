@@ -119,7 +119,7 @@ helper.on(
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-Unregisters the observer used to observe data specified by a given URI. This API uses an asynchronous callback to return the result.
+Deregisters the observer used to observe data specified by a given URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -647,7 +647,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -662,7 +662,7 @@ DAHelper.delete(
 
 ## DataAbilityHelper.delete
 
-delete(uri: string, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
+delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
 
 Deletes one or more data records from the database. This API uses a promise to return the result.
 
@@ -685,7 +685,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -719,7 +719,7 @@ Updates data records in the database. This API uses an asynchronous callback to 
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -741,7 +741,7 @@ DAHelper.update(
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates): Promise\<number>
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
 
 Updates data records in the database. This API uses a promise to return the result.
 
@@ -765,7 +765,7 @@ Updates data records in the database. This API uses a promise to return the resu
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -806,7 +806,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -825,7 +825,7 @@ DAHelper.query(
 
 ## DataAbilityHelper.query
 
-query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
+query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>;
 
 Queries data in the database. This API uses a promise to return the result.
 
@@ -849,7 +849,7 @@ Queries data in the database. This API uses a promise to return the result.
 
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
-import ohos_data_ability from '@ohos.data.dataability'
+import ohos_data_ability from '@ohos.data.dataAbility'
 var DAHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
 );
@@ -876,7 +876,7 @@ Calls the extended API of the Data ability. This API uses a promise to return th
 
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx"          |
+| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".          |
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  |Parameter to pass.     |
 | extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
@@ -912,7 +912,7 @@ Calls the extended API of the Data ability. This API uses an asynchronous callba
 
 | Name      | Type                             | Mandatory| Description                                            |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
-| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx"          |
+| uri        | string                 | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".          |
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  |Parameter to pass.     |
 | extras   | [PacMap](#pacmap)        | Yes  | Key-value pair parameter.      |
@@ -932,8 +932,107 @@ dataAbilityHelper.call("dataability:///com.example.jsapidemo.UserDataAbility", "
     console.info('Operation succeeded: ' + data);
 });
 ```
+
+## DataAbilityHelper.executeBatch
+
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
+
+Operates data in the database. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name           | Type                                        | Mandatory| Description                                            |
+| ----------    | ---------------------------------             | ---- | ------------------------------------------------ |
+| uri           | string                                        | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".|
+| operations    |  Array\<[DataAbilityOperation](#dataabilityoperation)>               | Yes  | A list of data operations on the database.  |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](#dataabilityresult)>>    | Yes  |Callback used to return the result of each operation in the **DataAbilityResult** array.     |
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+// Select the operations to be performed on the database according to the DataAbilityOperation array.
+let op=new Array();
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility", op, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + err);
+        return;
+    }
+    console.info('Operation succeeded: ' + data);
+});
+```
+
+## DataAbilityHelper.executeBatch
+
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>;
+
+Operates data in the database. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Parameters**
+
+| Name         | Type                           | Mandatory| Description                                            |
+| ----------    | -------------------------------| ---- | ------------------------------------------------ |
+| uri           | string                         | Yes  | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx".|
+| operations    |  Array\<[DataAbilityOperation](#dataabilityoperation)>  | Yes  | A list of data operations on the database.  |
+
+**Return value**
+
+| Type| Description|
+|------ | ------- |
+|Promise\<Array\<[DataAbilityResult](#dataabilityresult)>> | Promise used to return the result of each operation in the **DataAbilityResult** array.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility';
+
+// Select the operations to be performed on the database according to the DataAbilityOperation array.
+let op=new Array();
+let dataAbilityHelper = featureAbility.acquireDataAbilityHelper("dataability:///com.example.jsapidemo.UserDataAbility");
+dataAbilityHelper.executeBatch("dataability:///com.example.jsapidemo.UserDataAbility",op ).then((data) => {
+    console.info('Operation succeeded: ' + data);
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + error);
+});
+
+```
+
 ## PacMap
+
+[key: string]: number | string | boolean | Array\<string | number | boolean> | null;
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
 | [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| Data stored in key-value pairs.|
+
+## DataAbilityOperation
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+| Name      | Type    | Readable   |   Writable   |     Mandatory|       Description     |
+| --------  | --------    | -------- | -------- | --------| --------        |
+| uri   | string | Yes     |     No   |      Yes   | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx". | 
+| type   | featureAbility.DataAbilityOperationType | Yes     |     No   |      Yes   | Operation type. | 
+| valuesBucket?   |  rdb.ValuesBucket | Yes     |     No   |      No   | Data value to set. | 
+| valueBackReferences?   | rdb.ValuesBucket | Yes     |     No   |      No   | **ValuesBucket** object that contains a set of key-value pairs. | 
+| predicates?   | dataAbility.DataAbilityPredicates | Yes     |     No   |      No   | Predicates to set. If no predicate is set, all data records are displayed. | 
+| predicatesBackReferences?   | Map\<number, number> | Yes     |     No   |      No   | Back references of the predicates. | 
+| interrupted?   | boolean | Yes     |     No   |      No   | Whether batch operations can be interrupted. | 
+| expectedCount?   | number | Yes     |     No   |      No   | Expected number of rows to be updated or deleted. | 
+
+## DataAbilityResult
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+| Name      | Type | Readable     |   Writable    |     Mandatory   |       Description  |
+| --------  | --------  | --------  | --------  | --------    | --------    |
+| uri?      | string    | Yes       |     No    |      No   | URI of the Data ability. Example: "dataability:///com.example.xxx.xxxx". | 
+| count?     | number    | Yes       |     No    |      No   | Number of rows affected by the operation. | 

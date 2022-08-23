@@ -74,7 +74,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
        console.log("on close")
    });
    
-   // 绑定IP地址和端口。
+   // 绑定本地IP地址和端口。
    let bindAddress = {
        address: '192.168.xx.xx',
        port: 1234, // 绑定端口，如1234
@@ -125,6 +125,6 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
 ## 相关实例
 针对Socket连接开发，有以下相关实例可供参考：
-- [`Socket`：Socket 连接（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Network/Socket)
+- [`Socket`：Socket 连接（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket)
 - [使用UDP实现与服务端通信（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/UdpDemoOH)
 - [使用TCP实现与服务端通信（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/TcpSocketDemo)

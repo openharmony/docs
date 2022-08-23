@@ -1,10 +1,9 @@
 # 列表选择弹窗
 
+列表弹窗。
+
 >  **说明：**
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-列表弹窗。
 
 
 ## 权限
@@ -47,6 +46,7 @@ show(options: {&nbsp;paramObject1})
 @Entry
 @Component
 struct ActionSheetExample {
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
@@ -88,6 +88,4 @@ struct ActionSheetExample {
 }
 ```
 
-
 ![zh-cn_image_0000001241668363](figures/zh-cn_image_0000001241668363.gif)
-

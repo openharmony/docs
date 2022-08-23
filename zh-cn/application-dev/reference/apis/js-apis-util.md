@@ -164,6 +164,84 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
   })
   ```
 
+## util.randomUUID<sup>9+</sup>
+
+randomUUID(entropyCache?: boolean): string
+
+使用加密安全随机数生成器生成随机的RFC 4122版本4的 UUID。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 表示此UUID的字符串。 |
+
+**示例：**
+  ```js
+  let uuid = util.randomUUID(true);
+  console.log("RFC 4122 Version 4 UUID:" + uuid);
+  // 输出：
+  // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
+  ```
+
+## util.randomBinaryUUID<sup>9+</sup>
+
+randomBinaryUUID(entropyCache?: boolean): Uint8Array
+
+使用加密安全随机数生成器生成随机的RFC 4122版本4的 UUID。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Uint8Array | 表示此UUID的Uint8Array值。 |
+
+**示例：**
+  ```js
+  let uuid = util.randomBinaryUUID(true);
+  console.log(uuid);
+  // 输出：
+  // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+  ```
+
+## util.parseUUID<sup>9+</sup>
+
+parseUUID(uuid: string): Uint8Array
+
+从字符串中解析UUID，如RFC 4122版本4中所述。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uuid | string | 是 | UUID字符串。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Uint8Array | 返回表示此UUID的Uint8Array，如果解析失败，则抛出SyntaxError。 |
+
+**示例：**
+  ```js
+  let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
+  console.log(uuid);
+  // 输出：
+  // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+  ```  
+
 ## TextDecoder
 
 ### 属性

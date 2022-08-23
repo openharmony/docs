@@ -79,7 +79,7 @@ css选择器用于选择需要添加样式的元素，支持的选择器如下�
 
 ```css
 /* 页面样式xxx.css */
-/\* 对所有div组件设置样式 \*/
+/* 对所有div组件设置样式 */
 div {
   flex-direction: column;
 }
@@ -95,13 +95,13 @@ div {
 .title, .content {
   padding: 5px;
 }
-/\* 对class="container"的组件下的所有text设置样式 \*/
+/* 对class="container"的组件下的所有text设置样式 */
 .container text {
-  color: \#007dff;
+  color: #007dff;
 }
-/\* 对class="container"的组件下的直接后代text设置样式 \*/
+/* 对class="container"的组件下的直接后代text设置样式 */
 .container &gt; text {
-  color: \#fa2a2d;
+  color: #fa2a2d;
 }
 ```
 

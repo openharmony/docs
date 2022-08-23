@@ -12,7 +12,7 @@ sudo apt-get install gcc-arm-linux-gnueabi
 
 ## 编译构建系统介绍
 
-编译构建流程、编译脚本编写、目录规则、独立编译单个组件、独立编译芯片解决方案等介绍请见[编译构建子系统介绍](../subsystems/subsys-build-mini-lite.md)。
+编译构建流程、编译脚本编写、目录规则、独立编译单个组件、独立编译芯片解决方案等介绍请见[编译构建子系统介绍](../subsystems/subsys-build-all.md)。
 
 
 ## 新建芯片解决方案

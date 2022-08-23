@@ -19,6 +19,10 @@ startTrace(name: string, taskId: number, expectedTime?: number): void
 
 Marks the start of a timeslice trace task.
 
+> **NOTE**
+> 
+> If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same taskId can be used. For details, see the bytrace.finishTrace example.
+
 **System capability**: SystemCapability.Developtools.Bytrace
 
 **Parameters**
@@ -29,9 +33,6 @@ Marks the start of a timeslice trace task.
 | taskId | number | Yes| ID of a timeslice trace task.|
 | expectedTime | number | No| Expected duration of the trace, in ms.|
 
-> **NOTE**
-> 
-> If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same taskId can be used. For details, see the bytrace.finishTrace example.
 
 **Example**
 
@@ -47,6 +48,10 @@ finishTrace(name: string, taskId: number): void
 
 Marks the end of a timeslice trace task.
 
+> **NOTE**
+> 
+> To stop a trace task, the values of name and task ID in **finishTrace** must be the same as those in **startTrace**.
+
 **System capability**: SystemCapability.Developtools.Bytrace
 
 **Parameters**
@@ -56,9 +61,6 @@ Marks the end of a timeslice trace task.
 | name | string | Yes| Name of a timeslice trace task.|
 | taskId | number | Yes| ID of a timeslice trace task.|
 
-> **NOTE**
-> 
-> To stop a trace task, the values of name and task ID in **finishTrace** must be the same as those in **startTrace**.
 
 **Example**
 
@@ -95,7 +97,7 @@ traceByValue(name: string, count: number): void
 
 Defines the variable that indicates the number of timeslice trace tasks.
 
-**System capability**: SystemCapability.Developtools.Bytrace
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 | Name| Type| Mandatory| Description|

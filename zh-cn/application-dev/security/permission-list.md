@@ -1,4 +1,4 @@
-# 权限定义列表
+# 应用权限列表
 
 在申请目标权限前，建议开发者先阅读[访问控制开发概述-权限的工作流程](accesstoken-overview.md#权限的工作流程)。对权限的工作流程有基本的了解后，再结合下表判断应用能否申请目标权限，提高开发效率。
 
@@ -117,6 +117,7 @@
 | ohos.permission.MANAGE_VOICEMAIL                         | system_basic | user_grant   | TRUE    | 允许应用在语音信箱中留言                                     |
 | ohos.permission.LOCATION_IN_BACKGROUND                   | normal       | user_grant   | FALSE   | 允许应用在后台运行时获取设备位置信息。                       |
 | ohos.permission.LOCATION                                 | normal       | user_grant   | TRUE    | 允许应用获取设备位置信息。                                   |
+| ohos.permission.APPROXIMATELY_LOCATION                   | normal       | user_grant   | FALSE   | 允许应用获取设备模糊位置信息。                               |
 | ohos.permission.MEDIA_LOCATION                           | normal       | user_grant   | TRUE    | 允许应用访问用户媒体文件中的地理位置信息。                   |
 | ohos.permission.CAMERA                                   | normal       | user_grant   | TRUE    | 允许应用使用相机拍摄照片和录制视频。                         |
 | ohos.permission.READ_MEDIA                               | normal       | user_grant   | TRUE    | 允许应用读取用户外部存储中的媒体文件信息。                   |
@@ -131,4 +132,10 @@
 | ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | 允许不同设备之间进行组网处理。                                   |
 | ohos.permission.ACCESS_DLP_FILE                          | system_core  | system_grant | TRUE    | 允许对DLP文件进行权限配置和管理。                                |
 | ohos.permission.PROVISIONING_MESSAGE                     | system_core  | system_grant | TRUE    | 允许激活超级设备管理器应用。                                     |
-| ohos.permission.ACCESS_SYSTEM_SETTINGS                     | system_basic  | system_grant | TRUE    | 允许应用接入或拉起系统设置界面。                                     |
+| ohos.permission.ACCESS_SYSTEM_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用接入或拉起系统设置界面。                                     |
+| ohos.permission.READ_IMAGEVIDEO                          | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的图片或视频文件。                         |
+| ohos.permission.READ_AUDIO                               | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的音频文件。                               |
+| ohos.permission.READ_DOCUMENT                            | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的文档。                                   |
+| ohos.permission.WRITE_IMAGEVIDEO                         | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的图片或视频文件。                         |
+| ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的音频文件。                               |
+| ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的文档。                                   |

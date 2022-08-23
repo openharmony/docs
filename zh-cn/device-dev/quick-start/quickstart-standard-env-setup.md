@@ -324,7 +324,7 @@ bash build/prebuilts_download.sh
 
 ## 安装编译工具
 
-hb是OpenHarmony的编译工具，可通过以下步骤在Ubuntu下进行安装。想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建指南](../subsystems/subsys-build-standard-large.md)。
+hb是OpenHarmony的编译工具，可通过以下步骤在Ubuntu下进行安装。想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建指导](../subsystems/subsys-build-all.md)。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

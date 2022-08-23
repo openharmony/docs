@@ -1,6 +1,6 @@
 # Standard NFC
 
-Implements Near-Field Communication (NFC).
+The **nfcController** module implements Near-Field Communication (NFC).
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -19,6 +19,8 @@ isNfcAvailable(): boolean
 
 Checks whether NFC is available.
 
+**System capability**: SystemCapability.Communication.NFC.Core
+
 **Return value**
 
 | **Type**| **Description**|
@@ -34,7 +36,7 @@ Opens NFC.
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -50,7 +52,7 @@ Closes NFC.
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -64,7 +66,7 @@ isNfcOpen(): boolean
 
 Checks whether NFC is open.
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -78,7 +80,7 @@ getNfcState(): NfcState
 
 Obtains the NFC state.
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -92,7 +94,7 @@ on(type: "nfcStateChange", callback: Callback&lt;NfcState&gt;): void
 
 Subscribes to NFC state changes.
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Parameter**
   
@@ -109,7 +111,7 @@ off(type: "nfcStateChange", callback?: Callback&lt;NfcState&gt;): void
 
 Unsubscribes from the NFC state changes.
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Parameter**
   
@@ -139,6 +141,8 @@ Unsubscribes from the NFC state changes.
 ## NfcState
 
 Enumerates the NFC states.
+
+**System capability**: SystemCapability.Communication.NFC.Core
 
 | Name| Default Value| Description|
 | -------- | -------- | -------- |
