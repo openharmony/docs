@@ -797,6 +797,35 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
   });
   ```
 
+### getAssociatedDataSync
+
+getAssociatedDataSync(name: string, key: string): string;
+
+获取与此应用程序帐号关联的数据，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| name | string | 是    | 应用帐号名称。   |
+| key  | string | 是    | 要获取的数据的键。 |
+
+**返回值：**
+
+| 类型                    | 说明                    |
+| :-------------------- | :-------------------- |
+| string | 用于获取同步接口的返回结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var backData = appAccountManager.getAssociatedDataSync("ZhangSan", "k001");
+  console.info("getAssociatedDataSync backData:" + JSON.stringify(backData));
+  ```
+
 ### getAllAccessibleAccounts
 
 getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
