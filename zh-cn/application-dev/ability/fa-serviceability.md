@@ -220,7 +220,7 @@ let promise = featureAbility.startAbility(
     }
     ```
 
-### 连接远程Service<a name="section126857614019"></a>（当前仅对系统应用开放）
+### 连接远程Service（当前仅对系统应用开放）
 
 >说明：由于DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，当前连接远程Service仅支持系统应用。
 
