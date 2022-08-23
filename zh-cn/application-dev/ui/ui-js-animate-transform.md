@@ -586,7 +586,7 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 - [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/Clock)
 
-- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsAnimation)
+- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsAnimation)
 
 - [动画样式（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/AnimationDemo)
 
