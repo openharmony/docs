@@ -34,6 +34,8 @@ function isLastWorkTimeOut(workId: number): Promise<boolean>;| Checks whether th
 
 **Table 2** WorkInfo parameters
 
+> **Explanation：** The constraint of WorkInfo reference [Work Scheduler Overview](./work-scheduler-overview.md)
+
 API|Description|Type                          
 ---------------------------------------------------------|-----------------------------------------|---------------------------------------------------------
 workId | Work ID. Mandatory.|number
@@ -48,6 +50,7 @@ storageRequest|Storage status.|    StorageRequest
 isRepeat|Whether the task is repeated.|    boolean
 repeatCycleTime |Repeat interval.|    number
 repeatCount    |Number of repeat times.| number
+parameters    |Parameters carried| {[key: string]: any}
 
 **Table 3** Work Scheduler callbacks
 
@@ -85,7 +88,14 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+            mykey0: 2222,
+            mykey1: "ssssssssssssssssssssssssss",
+            mykey2: true,
+            mykey3: 1.5,
+            mykey4: 213749534591254587511
+        }
     }
     var res = workScheduler.startWork(workInfo);
     console.info("workschedulerLog res:" + res);
@@ -103,7 +113,14 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+            mykey0: 2222,
+            mykey1: "ssssssssssssssssssssssssss",
+            mykey2: true,
+            mykey3: 1.5,
+            mykey4: 213749534591254587511
+        }
     }
     var res = workScheduler.stopWork(workInfo, false);
     console.info("workschedulerLog res:" + res);
