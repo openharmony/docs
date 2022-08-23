@@ -1380,7 +1380,7 @@ Represents a version component.
 | Name                 | Type                       | Mandatory  | Description     |
 | ------------------- | --------------------------- | ---- | ------- |
 | componentId              | number   | Yes   | Component ID. |
-| componentType              | [ComponentType](#componentyype)   | Yes   | Component type. |
+| componentType              | [ComponentType](#componenttype)   | Yes   | Component type. |
 | upgradeAction              | [UpgradeAction](#upgradeaction)   | Yes   | Update mode. |
 | displayVersion              | string   | Yes   | Display version number. |
 | innerVersion              | string   | Yes   | Internal version number. |
@@ -1431,7 +1431,7 @@ Represents information about the current version.
 | ------------------- | --------------------------- | ---- | ------- |
 | osVersion              | string   | Yes   | System version number. |
 | deviceName              | string   | Yes   | Device name. |
-| versionComponents              | Array\<[VersionComponent](#vesioncomponent)>   | No   | Version components. |
+| versionComponents              | Array\<[VersionComponent](#versioncomponent)>   | No   | Version components. |
 
 ## DownloadOptions
 
