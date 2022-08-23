@@ -39,14 +39,7 @@ Instructs the **WorkSchedulerService** to add the specified task to the executio
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
-      abilityName: "MyExtension",
-      parameters: {
-          mykey0: 2222,
-          mykey1: "ssssssssssssssssssssssssss",
-          mykey2: true,
-          mykey3: 1.5,
-          mykey4: 213749534591254587511
-      }
+      abilityName: "MyExtension"
   }
   var res = workScheduler.startWork(workInfo);
   console.info("workschedulerLog res:" + res);
@@ -82,14 +75,7 @@ Instructs the **WorkSchedulerService** to stop the specified task.
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
-      abilityName: "MyExtension",
-      parameters: {
-          mykey0: 2222,
-          mykey1: "ssssssssssssssssssssssssss",
-          mykey2: true,
-          mykey3: 1.5,
-          mykey4: 213749534591254587511
-      }
+      abilityName: "MyExtension"
      }
   var res = workScheduler.stopWork(workInfo, false);
   console.info("workschedulerLog res:" + res);
@@ -286,7 +272,7 @@ Checks whether the last execution of the specified task timed out. This API uses
 ```
 
 ## WorkInfo
-Provides detailed information about the task. The constraint of WorkInfo reference [Work Scheduler Overview](../../task-management/work-scheduler-overview.md)
+Provides detailed information about the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
