@@ -146,17 +146,17 @@
    
    ```js
    function changeCallback(sessionId, changeData) {
-        console.info("change" + sessionId);
+       console.info("change" + sessionId);
    
-        if (changeData != null && changeData != undefined) {
-            changeData.forEach(element => {
-                console.info("changed !" + element + " " + local_object[element]);
-        });
-        }
-    } 
+       if (changeData != null && changeData != undefined) {
+           changeData.forEach(element => {
+               console.info("changed !" + element + " " + local_object[element]);
+       });
+       }
+   } 
 
-    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
-    local_object.on("change", this.changeCallback.bind(this));
+   // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
+   local_object.on("change", this.changeCallback.bind(this));
    ```
    
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
