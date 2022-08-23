@@ -3578,6 +3578,25 @@ getData(): string
 | ------------------------------- | ------------- |
 | string | 当前该类型对象中存放的消息。 |
 
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("message event data");
+            var messageData = msgEvent.getData();
+            console.log("message is:" + messageData);
+          })
+      }
+    }
+  }
+  ```
 
 ### setData<sup>9+</sup>
 setData(data: string): void
@@ -3623,6 +3642,27 @@ getPorts(): Array\<WebMessagePort\>
 | ------------------------------- | ------------- |
 | Array\<[WebMessagePort](#webmessageport9)\> | 当前该类型对象中存放的消息端口。 |
 
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    ports: WebMessagePorts[] = null;
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[0]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setPorts(sendPortArray);
+            var getPorts = msgEvent.getPorts();
+            console.log("Ports is:" + getPorts);
+          })
+      }
+    }
+  }
+  ```
 
 ### setPorts<sup>9+</sup>
 setPorts(ports: Array\<WebMessagePort\>): void
