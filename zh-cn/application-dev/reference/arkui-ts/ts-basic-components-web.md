@@ -2735,6 +2735,88 @@ getCookieManager(): WebCookie
   }
   ```
 
+### createWebMessagePorts<sup>9+</sup>
+
+createWebMessagePorts(): Array\<WebMessagePort\>
+
+创建Web信息端口。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| Array\<[WebMessagePort](#webmessageport9)\> | web信息端口列表。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+    build() {
+      Column() {
+        Button('createWebMessagePorts')
+          .onClick(() => {
+            this.ports = this.controller.createWebMessagePorts();
+            console.log("createWebMessagePorts size:" + this.ports.length)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### postMessage<sup>9+</sup>
+
+postMessage(options: { message: WebMessageEvent, uri: string}): void
+
+发送Web信息端口到HTML5。
+
+**参数：**
+
+| 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
+| ---------- | --------------- | ---- | ---- | ------------------------- |
+| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
+| uri       | string          | 是    | -    | 接收该信息的URI。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+    build() {
+      Column() {
+        Button('postMessage')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[1]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("__init_ports__");
+            msgEvent.setPorts(sendPortArray);
+            this.controller.postMessage(msgEvent, uri:"*");
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  // xxx.js
+  var h5Port;
+  window.addEventListener('message', function(event){
+    if (event.data == '__init_ports__') {
+      if(event.ports[0] != null) {
+        h5Port = event.ports[0];
+        h5Port.onmessage = function(event) {
+          console.log('receive message from ets, on message:' + event.data);
+        }
+      }
+    }
+  })
+  ```
+
 ## HitTestValue<sup>9+</sup>
 提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue9)。
 
@@ -3584,6 +3666,221 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
                   console.info(`save web archive success: ${filename}`)
                 }
               })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+## WebMessagePort<sup>9+</sup>
+
+通过WebMessagePort可以进行消息的发送以及接收。
+
+### close<sup>9+</sup>
+close(): void
+
+关闭该信息端口。
+
+### postMessageEvent<sup>9+</sup>
+postMessageEvent(message: WebMessageEvent): void
+
+发送消息。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| message   | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('postMessageEvent')
+          .onClick(() => {
+            var msg = new WebMessageEvent();
+            msg.setData("post message from ets to html5");
+            this.port[0].postMessageEvent(msg);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### onMessageEvent<sup>9+</sup>
+onMessageEvent(callback: (result: string) => void): void
+
+注册回调函数，接收HTML5侧发送过来的消息。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| callback   | function | 是    | -    | 接收消息的回调函数。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('onMessageEvent')
+          .onClick(() => {
+            this.port[0].onMessageEvent((result: string) => {
+              console.log("received message from html5, on message:" + result);
+            })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+
+## WebMessageEvent<sup>9+</sup>
+
+通过WebMessagePort对要发送的消息和端口进行封装。
+
+### getData<sup>9+</sup>
+getData(): string
+
+获取当前对象中存放的消息。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| string | 当前该类型对象中存放的消息。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("message event data");
+            var messageData = msgEvent.getData();
+            console.log("message is:" + messageData);
+          })
+      }
+    }
+  }
+  ```
+
+### setData<sup>9+</sup>
+setData(data: string): void
+
+设置当前对象中的消息。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| data   | string | 是    | -    | 要发送的消息。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('setData')
+          .onClick(() => {
+            var msg = new WebMessageEvent();
+            msg.setData("post message from ets to HTML5");
+            this.port[0].postMessageEvent(msg);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+### getPorts<sup>9+</sup>
+getPorts(): Array\<WebMessagePort\>
+
+获取当前对象中存放的消息端口。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| Array\<[WebMessagePort](#webmessageport9)\> | 当前该类型对象中存放的消息端口。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    ports: WebMessagePorts[] = null;
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[0]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setPorts(sendPortArray);
+            var getPorts = msgEvent.getPorts();
+            console.log("Ports is:" + getPorts);
+          })
+      }
+    }
+  }
+  ```
+
+### setPorts<sup>9+</sup>
+setPorts(ports: Array\<WebMessagePort\>): void
+
+设置当前对象中的消息端口。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| ports   | Array\<[WebMessagePort](#webmessageport9)\> | 是    | -    | 要发送的消息端口。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('setPorts')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[1]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("__init_ports__");
+            msgEvent.setPorts(sendPortArray);
+            this.controller.postMessage(msgEvent, uri:"*");
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
