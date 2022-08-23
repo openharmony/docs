@@ -1,7 +1,9 @@
 # Media Query
 
+The **mediaquery** module provides different styles for different media types.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+
+> **NOTE**
 >
 > - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.mediaquery`](js-apis-mediaquery.md) instead.
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -38,11 +40,7 @@ Creates a **MediaQueryList** object based on the query condition.
 **Example**
 
 ```
-export default {    
-  matchMedia() {        
-    var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
-  },
-}
+var mMediaQueryList = mediaquery.matchMedia('(max-width: 466)');    
 ```
 
 ## MediaQueryEvent
@@ -95,11 +93,16 @@ Adds a listener for this **MediaQueryList** object. The listener must be added b
 
 | Name     | Type                              | Mandatory  | Description            |
 | -------- | -------------------------------- | ---- | -------------- |
-| callback | (event: MediaQueryEvent) => void | Yes   | Callback invoked when the matching condition changes.|
+| callback | (event: MediaQueryEvent) => void | Yes   | Callback invoked when the query condition changes.|
 
 **Example**
 
 ```
+function maxWidthMatch(e){
+  if(e.matches){
+    // do something
+  }
+}
 mMediaQueryList.addListener(maxWidthMatch);
 ```
 
@@ -116,10 +119,15 @@ Removes the listener for this **MediaQueryList** object.
 
 | Name     | Type                               | Mandatory  | Description            |
 | -------- | --------------------------------- | ---- | -------------- |
-| callback | (event: MediaQueryEvent) => void) | Yes   | Callback invoked when the matching condition changes.|
+| callback | (event: MediaQueryEvent) => void) | Yes   | Callback invoked when the query condition changes.|
 
 **Example**
 
 ```
+function maxWidthMatch(e){
+  if(e.matches){
+    // do something
+  }
+}
 mMediaQueryList.removeListener(maxWidthMatch);
 ```

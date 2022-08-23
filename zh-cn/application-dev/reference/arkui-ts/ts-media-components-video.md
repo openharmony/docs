@@ -1,6 +1,6 @@
 # Video
 
- 用于播放单个视频并控制其播放状态的组件。 
+用于播放单个视频并控制其播放状态的组件。 
 
 >  **说明：**
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -9,7 +9,7 @@
 
 使用网络视频时，需要在config或者module.json对应的"abilities"中添加网络使用权限ohos.permission.INTERNET。
 
-```
+```js
 "abilities":[
   {
     ...
@@ -80,7 +80,7 @@ Video(value: VideoOptions)
 
 ### 导入对象
 
-```
+```ts
 controller: VideoController = new VideoController();
 ```
 
@@ -166,6 +166,7 @@ struct VideoCreateComponent {
   @State autoPlays: boolean = false;
   @State controlsss: boolean = true;
   controller: VideoController = new VideoController();
+  
   build() {
     Column() {
       Video({

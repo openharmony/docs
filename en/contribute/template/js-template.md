@@ -14,9 +14,9 @@
 | 8    | Deprecated API description                     | Do not delete the deprecated content from the document. Instead, suffix `deprecated` as a superscript to the content, and use the greater-than sign (`>`) to introduce the substitute API plus a link to the API description.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is no longer maintained since API version 7. You are advised to use [newMethod]\(#newmethod) instead.|
 | 9    | Permission description                         | Provide the same permission description as that defined in the code for each method, enum, and attribute.<br>1. If a specific permission required for using an API can be requested only by system applications, provide the description in the following format:<br>    **Required permissions**: ohos.permission.examplePermission (available only to system applications)<br>2. If a specific permission required for using an API can be requested by all applications, provide the description in the following format:<br>    **Required permissions**: ohos.permission.examplePermission<br>3. If multiple permissions are required for using an API, provide the permissions with `and` or `or` in the following format:<br>    **Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>    **Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
 | 10   | @syscap                           | 1. Provide a description for every API in the following format, wherein *A.B* indicates a specific system capability.<br>    **System capability**: SystemCapability.*A.B*<br>2. There are two cases for adding system capability information to a table (of attributes, enums, constants, or variables).<br>    1) If all the items in a table require the same system capability, add the following information to the front of the table:<br>          **System capability**: SystemCapability.*A.B*<br>    2) If the items in a table require different system capabilities,<br>          list the system capability for each item in the table.           |
-| 11   | @system api                       | 1. If all APIs of a module are system APIs, add the following sentence to the next line of the initial version description:<br>    The APIs provided by this module are system APIs.<br>2. If an API is a system API that can be used only by original equipment manufacturers (OEMs), add the following sentence to the API description:<br>    This is a system API. |
-| 12   | @FAModelOnly<br>@StageModelOnly  | 1. If a module is implemented only for a specific ability model, add the following sentence to the next line of the initial version description:<br>    - The APIs of this module can be used only in the FA model.<br>Or<br>    - The APIs of this module can be used only in the stage model.<br>2. If an API is implemented only for a specific ability model, add the following sentence to the API description:<br>    - This API can be used only in the FA model.<br>Or<br>    - This API can be used only in the stage model.|
-| 13   | Asynchronous methods (callback and promise)| Use the following sentences for callback methods.<br>Method introduction: *Describe the method.* This API uses an asynchronous callback to return the result.<br>Parameter description:<br>**callback\<boolean>**: Callback used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**callback\<Object>**: Callback used to return *something*. Example: Callback used to return the `AudioCapturer` object.   <br>**AsyncCallback\<void>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.<br>**AsyncCallback\<Object x>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`, and `data` is the *x* object obtained; otherwise, `err` is an `Error` object.<br>Use the following sentences for promise methods.<br>Method introduction: *Describe the method.* This API uses a promise to return the result.<br>Parameter description:<br>**Promise\<boolean>**: Promise used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**Promise\<Object>**: Promise used to return *something*. Example: Promise used to return the `AudioCapturer` object.   <br>**Promise\<void>**: Promise that returns no value. |
+| 11   | @system api                       | 1. If all APIs of a module are system APIs, add the following sentence to the next line of the initial version description:<br>    The APIs provided by this module are system APIs.<br>2. If an API is a system API that can be used only by original equipment manufacturers (OEMs), add the following sentence to the API description:<br>    **System API**: This is a system API. |
+| 12   | @FAModelOnly<br>@StageModelOnly  | 1. If a module is implemented only for a specific ability model, add the following sentence to the next line of the initial version description:<br>    The APIs of this module can be used only in the FA model.<br>Or<br>    The APIs of this module can be used only in the stage model.<br>2. If an API is implemented only for a specific ability model, add the following sentence to the API description:<br>    **Model restriction**: This API can be used only in the FA model.<br/>Or<br/>    **Model restriction**: This API can be used only in the stage model. |
+| 13   | Asynchronous methods (callback and promise)| Use the following sentences for callback methods.<br>Method introduction: *Describe the method.* This API uses an asynchronous callback to return the result.<br>Parameter description:<br>**callback\<boolean>**: Callback used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**callback\<Object>**: Callback used to return *something*. Example: Callback used to return the `AudioCapturer` object.   <br>**AsyncCallback\<void>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.<br>**AsyncCallback\<Object x>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`, and `data` is the *x* object obtained; otherwise, `err` is an `Error` object.<br>Use the following sentences for promise methods.<br>Method introduction: *Describe the method.* This API uses a promise to return the result.<br>Parameter description:<br>**Promise\<boolean>**: Promise used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**Promise\<Object>**: Promise used to return *something*. Example: Promise used to return the `AudioCapturer` object.   <br>**Promise\<void>**: Promise that returns no value.|
 | 14   | Sample code programming language                     | Use code blocks to provide sample code and mark the programming language.<br>Use `js` as the mark if both JS and eTS can be used, and use `ts` if only eTS can be used.|
 | 15   | Link                         | Link format: [Link text]\(Link content)<br>Cross-folder link format: [markdown file name]\(\.\./../xxx/xxx.md). One `./` indicates one upper-level folder.<br>Intra-topic link: [Interface A<sup>7+</sup>]\(#xxxa7). The text in the intra-topic link must be the same as the title to be linked. In the link, all letters must be in lowercase, and no special character or label is included.|
 
@@ -57,7 +57,6 @@ When compared with `LinkedList`, `ArrayList` is more efficient in random access 
 You are advised to use `ArrayList` when elements in a container need to be frequently read.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -67,7 +66,7 @@ You are advised to use `ArrayList` when elements in a container need to be frequ
 > 1. Write the modules to import based on the actual conditions. Provide the **import** statement in the form of a code block.
 >
 > 2. If no module needs to be imported, change "Modules to Import" to "Usage" and provide a usage description. <br>Example of **Usage**:<br>
->    Before using the `AbilityContext`, obtain the `Context` object through [getContext()]\(*API-reference*.md).
+>    Before using the `AbilityContext`, obtain the `Context` object through \[getContext()]\(*API-reference*.md)\.
 >
 > ```js
 >    import ability_featureAbility from '@ohos.ability.featureAbility';
@@ -106,7 +105,6 @@ import call from '@ohos.telephony.call';
 > 2. Use the actual method name, in the format of ClassName.methodName, as the level-2 heading. For a subscription method, add the subscription event to the method name.
 >
 >    Example of a common method: sim.getSimIccId
->    
 >    Example of a subscription method: sim.on('exampleEvent')
 >
 > 3. **Method calling mode**: The description must be the same as that in the .d.ts file and include the parameter type, parameter name, and return value type.
@@ -123,9 +121,9 @@ Provide the method name in the following format: (`static` if it is a static met
 
 Describe the method. For details, see the fourth and fifth points in "Writing Instructions" above.
 
-This API can be used only in the stage model. (optional)
+**Model restriction**: This API can be used only in the FA model. (Delete this part if it is not involved.)
 
-This is a system API. (optional)
+**System API**: This is a system API. (Delete this part if it is not involved.)
 
 **Required permissions**: ohos.permission.examplePermission (Delete this part if no permission is involved. If a system permission is required, specify it.)
 
@@ -179,15 +177,15 @@ Provide the method name in the following format: (`static` if it is a static met
 
 Describe the method. For details, see the fourth and fifth points in "Writing Instructions" under [Methods](#methods).
 
-This API can be used only in the stage model. (optional)
+**Model restriction**: This API can be used only in the FA model. (Delete this part if it is not involved.)
 
-This is a system API. (optional)
+**System API**: This is a system API. (Delete this part if it is not involved.)
 
 **Required permissions**: ohos.permission.examplePermission (Delete this part if no permission is involved. If a system permission is required, specify it.)
 
 **System capability**: SystemCapability.*A.B* (mandatory)
 
-**Parameters** (Optional. Delete this heading if there is no parameter.)
+**Parameters** (Optional. Delete this part if there is no parameter.)
 
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -268,7 +266,7 @@ The following is an example of the custom type of a key-value pair.
 
 | Name        | Type               | Readable| Writable| Description                                                        |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
-| parameterUrl | string              | Yes  | Yes  | Media output URI. Supported: 1. Relative path whose protocol type is `internal`. Example: <br/>Temporary directory: internal://cache/test.mp4<br/> 2. Absolute path. Example:<br/> file:///data/data/ohos.xxx.xxx/files/test.mp4|
+| parameterUrl | string              | Yes  | Yes  | Media output URI. Supported:<br>1. Relative path whose protocol type is `internal`. Example: <br/>Temporary directory: internal://cache/test.mp4<br>2. Absolute path. Example:<br/>file:///data/data/ohos.xxx.xxx/files/test.mp4 |
 | parameterOne | [CustomEnum](#Enumeration)| Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
 
 ## Change History

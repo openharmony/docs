@@ -75,7 +75,7 @@ The following table describes the APIs available for signal operations.
 >```
 >You can obtain and modify the configuration of signal registration. Currently, only the  **SIGINFO**  options are supported. For details, see the description of the  **sigtimedwait**  API.
 >Transmit a signal.
->a. Among the default signal-receiving behaviors, the process does not support  **STOP**,  **COTINUE**, and  **COREDUMP**  defined in the POSIX standard.
+>a. Among the default signal-receiving behaviors, the process does not support  **STOP**,  **CONTINUE**, and  **COREDUMP**  defined in the POSIX standard.
 >b. The  **SIGSTOP**,  **SIGKILL**, and  **SIGCONT**  signals cannot be shielded.
 >c. If a process killed is not reclaimed by its parent process, the process becomes a zombie process.
 >d. A process will not call back the signal received until the process is scheduled.

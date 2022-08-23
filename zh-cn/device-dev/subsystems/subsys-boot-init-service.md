@@ -55,7 +55,7 @@
   ```
     - SA进程按需启动
 
-        具体参考 **[samgr组件(说明3)](https://gitee.com/openharmony/distributedschedule_samgr/blob/master/README_zh.md)**。
+        具体参考 **[samgr组件(说明3)](https://gitee.com/openharmony/systemabilitymgr_samgr/blob/master/README_zh.md)**。
         
     - socket进程按需启动
         1. init进程在pre-fork阶段为socket类进程创建好socket，init进程中监听创建好的socket上的读写事件。

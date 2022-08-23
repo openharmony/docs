@@ -1172,12 +1172,12 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 ```
 {
-  "subsystem": "distributedschedule",
+  "subsystem": "systemabilitymgr",
   "components": [
 	{
 	  "component": "samgr_lite",
 	  "features": [
-		"config_ohos_distributedschedule_samgr_lite_shared_task_size = 4096"
+		"config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 4096"
 	  ]
 	}
   ]

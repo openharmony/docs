@@ -636,7 +636,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
    ```
    {
-     "subsystem": "distributedschedule",
+     "subsystem": "systemabilitymgr",
      "components": [
        {
          "component": "samgr_lite"

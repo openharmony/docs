@@ -25,24 +25,24 @@ import window from '@ohos.window';
 
 | 名称              | 值 | 说明               |
 | ----------------- | ------ | ------------------ |
-| TYPE_APP          | 0      | 表示应用子窗口。此接口仅可在FA模型下使用。 |
+| TYPE_APP          | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。 |
 | TYPE_SYSTEM_ALERT | 1      | 表示系统告警窗口。 |
-| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。此接口仅可在Stage模型下使用。<br>此接口为系统接口。 |
-| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_KEYGUARD<sup>9+</sup>     | 5      | 表示锁屏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | 表示音量条。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | 表示导航栏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_FLOAT<sup>9+</sup> | 8      | 表示悬浮窗。此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
-| TYPE_WALLPAPER<sup>9+</sup> | 9      | 表示壁纸。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_DESKTOP<sup>9+</sup> | 10      | 表示桌面。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | 表示多任务中心。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
-| TYPE_DIALOG<sup>9+</sup>  | 16      | 表示模态窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
-| TYPE_SCREENSHOT<sup>9+</sup>  | 17      | 表示截屏窗口。此接口仅可在Stage模型下使用。<br/>此接口为系统接口。 |
+| TYPE_INPUT_METHOD<sup>9+</sup> | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_STATUS_BAR<sup>9+</sup>   | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_PANEL<sup>9+</sup>        | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_KEYGUARD<sup>9+</sup>     | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_VOLUME_OVERLAY<sup>9+</sup> | 6      | 表示音量条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_NAVIGATION_BAR<sup>9+</sup> | 7      | 表示导航栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_FLOAT<sup>9+</sup> | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
+| TYPE_WALLPAPER<sup>9+</sup> | 9      | 表示壁纸。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_DESKTOP<sup>9+</sup> | 10      | 表示桌面。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_LAUNCHER_RECENT<sup>9+</sup> | 11      | 表示多任务中心。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_LAUNCHER_DOCK<sup>9+</sup> | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_POINTER<sup>9+</sup> | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_FLOAT_CAMERA<sup>9+</sup> | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**需要权限：** ohos.permission.SYSTEM_FLOAT_WINDOW |
+| TYPE_DIALOG<sup>9+</sup>  | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
+| TYPE_SCREENSHOT<sup>9+</sup>  | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。 |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -61,7 +61,7 @@ import window from '@ohos.window';
 
 窗口模式枚举。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -77,7 +77,7 @@ import window from '@ohos.window';
 
 窗口布局模式枚举。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -94,11 +94,11 @@ import window from '@ohos.window';
 
 | 名称                                   | 参数类型 | 可读 | 可写 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | 是   | 是   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| statusBarColor                         | string   | 否   | 是   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 状态栏图标是否为高亮状态。                                   |
 | statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 状态栏文字颜色。                                             |
-| navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
+| navigationBarColor                     | string   | 否   | 是   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 是   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
 ## Orientation<sup>9+</sup>
@@ -126,7 +126,7 @@ import window from '@ohos.window';
 
 窗口模糊类型枚举。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -141,30 +141,30 @@ import window from '@ohos.window';
 
 单个导航栏或状态栏回调信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称            | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | 是   | 是   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
-| isEnable        | boolean                   | 是   | 是   | 当前系统栏是否显示。                                         |
-| region          | [Rect](#rect)             | 是   | 是   | 当前系统栏的位置及大小。                                     |
-| backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| contentColor    | string                    | 是   | 是   | 系统栏文字颜色。                                             |
+| type            | [WindowType](#windowtype) | 是   | 否   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
+| isEnable        | boolean                   | 是   | 否   | 当前系统栏是否显示。                                         |
+| region          | [Rect](#rect)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
+| backgroundColor | string                    | 是   | 否   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| contentColor    | string                    | 是   | 否   | 系统栏文字颜色。                                             |
 
 ## SystemBarTintState<sup>8+</sup>
 
 当前系统栏回调信息集合。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称       | 参数类型                                            | 可读 | 可写 | 说明                         |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
 | displayId  | number                                              | 是   | 否   | 当前物理屏幕id。             |
-| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 是   | 当前已改变的所有系统栏信息。 |
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 否   | 当前已改变的所有系统栏信息。 |
 
 ## Rect<sup>7+</sup>
 
@@ -240,7 +240,7 @@ import window from '@ohos.window';
 
 缩放参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -255,7 +255,7 @@ import window from '@ohos.window';
 
 旋转参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -271,7 +271,7 @@ import window from '@ohos.window';
 
 平移参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -287,7 +287,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 创建子窗口，使用callback异步回调。
 
-此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -319,7 +319,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 创建子窗口，使用Promise异步回调。
 
-此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -488,7 +488,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 获取当前应用内最后显示的窗口，使用callback异步回调。
 
-此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -518,7 +518,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 获取当前应用内最后显示的窗口，使用Promise异步回调。
 
-此接口仅可在FA模型下使用。
+**模型约束：** 此接口仅可在FA模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -608,7 +608,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 最小化某显示设备下的所有窗口。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -646,7 +646,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 最小化某显示设备下的所有窗口。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -688,7 +688,7 @@ toggleShownStateForAllAppWindows(callback: AsyncCallback&lt;void&gt;): void
 
 多窗口快速切换时隐藏或者恢复应用窗口。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -715,7 +715,7 @@ toggleShownStateForAllAppWindows(): Promise&lt;void&gt;
 
 多窗口快速切换时隐藏或者恢复应用窗口。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -741,7 +741,7 @@ setWindowLayoutMode(mode: WindowLayoutMode, callback: AsyncCallback&lt;void&gt;)
 
 设置窗口布局模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -765,7 +765,7 @@ setWindowLayoutMode(mode: WindowLayoutMode): Promise&lt;void&gt;
 
 设置窗口布局模式。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -798,7 +798,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 开启状态栏、导航栏属性变化的监听。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -823,7 +823,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 关闭状态栏、导航栏属性变化的监听。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -852,7 +852,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 隐藏当前窗口，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -880,7 +880,7 @@ hide(): Promise&lt;void&gt;
 
 隐藏当前窗口，使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -907,7 +907,7 @@ hideWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏当前窗口，过程中播放动画，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -935,7 +935,7 @@ hideWithAnimation(): Promise&lt;void&gt;
 
 隐藏当前窗口，过程中播放动画，使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1013,7 +1013,7 @@ showWithAnimation(callback: AsyncCallback&lt;void&gt;): void
 
 显示当前窗口，过程中播放动画，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1041,7 +1041,7 @@ showWithAnimation(): Promise&lt;void&gt;
 
 显示当前窗口，过程中播放动画，使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1240,7 +1240,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 设置窗口类型，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 > **说明：** 从API version 9开始废弃。
 >
@@ -1274,7 +1274,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 设置窗口类型，使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 > **说明：** 从API version 9开始废弃。
 >
@@ -1408,7 +1408,8 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```js
-let promise = windowClass.getAvoidArea();
+var type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1554,13 +1555,14 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 **示例：**
 
 ```js
-var names = ["status", "navigation"];
+// 此处以不显示导航栏、状态栏为例
+var names = [];
 windowClass.setSystemBarEnable(names, (err, data) => {
     if (err.code) {
-        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1587,12 +1589,13 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var names = ["status", "navigation"];
+// 此处以不显示导航栏、状态栏为例
+var names = [];
 let promise = windowClass.setSystemBarEnable(names);
 promise.then((data)=> {
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -1797,7 +1800,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 为当前窗口加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1835,7 +1838,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
 为当前窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2112,7 +2115,7 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 开启本窗口区域范围外的点击事件的监听。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2137,7 +2140,7 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 关闭本窗口区域范围外的点击事件的监听。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2255,7 +2258,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 
 绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2270,6 +2273,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 **示例：**
 
 ```js
+class MyDeathRecipient {
+    onRemoteDied() {
+        console.log("server died");
+    }
+}
 class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor) {
         super(descriptor);
@@ -2302,7 +2310,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 
 绑定模态窗口与目标窗口并添加模态窗口销毁监听，使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2322,6 +2330,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 **示例：**
 
 ```js
+class MyDeathRecipient {
+    onRemoteDied() {
+        console.log("server died");
+    }
+}
 class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor) {
         super(descriptor);
@@ -2573,7 +2586,7 @@ setWakeUpScreen(wakeUp: boolean): void;
 
 窗口唤醒屏幕。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2968,7 +2981,7 @@ setSnapshotSkip(isSkip: boolean): void
 
 截屏录屏是否忽略当前窗口。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3049,7 +3062,7 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 
 设置窗口在分屏模式下是否被禁止移动，使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3080,7 +3093,7 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
 设置窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3167,7 +3180,7 @@ setBlur(radius: number): void
 
 设置窗口模糊。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3189,7 +3202,7 @@ setBackdropBlur(radius: number): void
 
 设置窗口背景模糊。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3211,7 +3224,7 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 
 设置窗口背景模糊类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3233,7 +3246,7 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 
 设置窗口边缘阴影。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3258,7 +3271,7 @@ setCornerRadius(cornerRadius: number): void
 
 设置窗口圆角半径。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3280,7 +3293,7 @@ opacity(opacity: number): void
 
 设置窗口透明度。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3302,7 +3315,7 @@ scale(scaleOptions: ScaleOptions): void
 
 设置窗口缩放参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3329,7 +3342,7 @@ rotate(rotateOptions: RotateOptions): void
 
 设置窗口旋转参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3357,7 +3370,7 @@ translate(translateOptions: TranslateOptions): void
 
 设置窗口平移参数。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3383,7 +3396,7 @@ windowClass.translate(obj);
 
 获取窗口属性转换控制器。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3431,7 +3444,7 @@ windowClass.showWithAnimation((err, data) => {
 
 WindowStage生命周期。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3454,7 +3467,7 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 获取该WindowStage实例下的主窗口，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3489,7 +3502,7 @@ getMainWindow(): Promise&lt;Window&gt;
 
 获取该WindowStage实例下的主窗口，使用Promise异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3523,7 +3536,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 创建该WindowStage实例下的子窗口，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3560,7 +3573,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 创建该WindowStage实例下的子窗口，使用Promise异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3600,7 +3613,7 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 获取该WindowStage实例下的所有子窗口，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3635,7 +3648,7 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 获取该WindowStage实例下的所有子窗口，使用Promise异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3669,7 +3682,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 为当前WindowStage的主窗口加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3708,7 +3721,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 为当前WindowStage的主窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3753,7 +3766,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 为当前WindowStage的主窗口加载具体页面内容，使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3788,7 +3801,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 开启WindowStage生命周期变化的监听。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3819,7 +3832,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 关闭WindowStage生命周期变化的监听。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3848,9 +3861,9 @@ disableWindowDecor(): void
 
 禁止窗口装饰。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3872,9 +3885,9 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 
 设置应用显示在锁屏之上。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3899,7 +3912,7 @@ class myAbility extends Ability {
 
 属性转换的上下文信息。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 ### toWindow<sup>9+</sup>
 
@@ -3954,7 +3967,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
 
 属性转换控制器。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 ### animationForShown<sup>9+</sup>
 

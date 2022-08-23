@@ -421,13 +421,13 @@ import stats from '@ohos.bundleState';
     ```javascript
     import stats from '@ohos.bundleState'
 
-    //promise
+    // Promise mode
     stats.unRegisterGroupCallBack().then(() => {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded.');
     }).catch(err => {
         console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise failed. because: ' + err.code);
     });
-    //callback
+    // Asynchronous callback mode
     stats.unRegisterGroupCallBack((err) => {
         if (err) {
             console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack callback failed, because: ' + err.code);

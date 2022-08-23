@@ -1854,7 +1854,7 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
-Creates an **[ImageData](ts-components-canvas-imagebitmap.md)** object with pixels in the specified area on the canvas.
+Obtains the **[ImageData](ts-components-canvas-imagebitmap.md)** object created with the pixels within the specified area on the canvas.
 - Parameters
     | Name | Type   | Mandatory | Default Value | Description                              |
     | ---- | ------ | --------- | ------------- | ---------------------------------------- |

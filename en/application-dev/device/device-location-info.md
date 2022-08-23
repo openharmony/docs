@@ -84,7 +84,7 @@ To learn more about the APIs for obtaining device location information, see [Geo
    }
    ```
 
-   For details about the fields, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
+   For details about these fields, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
 
 2. Import the **geolocation** module by which you can implement all APIs related to the basic location capabilities.
    

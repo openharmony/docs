@@ -18,9 +18,11 @@ The **ApplicationInfo** module provides application information. Unless otherwis
 | systemApp                  | boolean                                                      | Yes  | No  | Whether the application is a system application. The default value is **false**.                         |
 | enabled                    | boolean                                                      | Yes  | No  | Whether the application is enabled. The default value is **true**.                        |
 | label                      | string                                                       | Yes  | No  | Application label.                                              |
-| labelId                    | string                                                       | Yes  | No  | Application label ID.                                            |
+| labelId<sup>(deprecated)</sup> | string                                                       | Yes  | No  | Application label ID.<br>\- **NOTE**: This attribute is deprecated from API version 9. Use **labelIndex** instead. |
+| labelIndex<sup>9+</sup>    | number                                                       | Yes  | No  | Index of the application label.|
 | icon                       | string                                                       | Yes  | No  | Application icon.                                              |
-| iconId                     | string                                                       | Yes  | No  | Application icon ID.                                            |
+| iconId<sup>(deprecated)</sup> | string                                                       | Yes  | No  | Application icon ID.<br>\- **NOTE**: This attribute is deprecated from API version 9. Use **iconIndex** instead. |
+| iconIndex<sup>9+</sup>     | number                                                       | Yes  | No  | Index of the application icon.|
 | process                    | string                                                       | Yes  | No  | Process in which the application runs. If this parameter is not set, the bundle name is used.                  |
 | supportedModes             | number                                                       | Yes  | No  | Running modes supported by the application.                                      |
 | moduleSourceDirs           | Array\<string>                                               | Yes  | No  | Relative paths for storing application resources.                                |

@@ -25,7 +25,7 @@ import Want from '@ohos.application.Want';
 | type         | 只读     | string               | 否   | 表示MIME type类型描述，比如："text/plain" 、 "image/*"等。   |
 | flags        | 只读     | number               | 否   | 表示处理Want的方式。默认传数字，具体参考：[flags说明](js-apis-featureAbility.md#flags说明)。 |
 | action      | 只读     | string               | 否   | 表示action选项描述。                           |
-| parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br>ohos.aafwk.callerPid 表示拉起方的pid。<br>ohos.aafwk.param.callerToken 表示拉起方的token。<br>ohos.aafwk.param.callerUid 表示发起方的uid。[Bundle](js-apis-Bundle.js)模块中userId参数，可用于获取应用信息、包信息等，具体参考：[Bundle](js-apis-Bundle.js)。                                       |
+| parameters   | 只读     | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br>ohos.aafwk.callerPid 表示拉起方的pid。<br>ohos.aafwk.param.callerToken 表示拉起方的token。<br>ohos.aafwk.param.callerUid 表示发起方的uid。[Bundle](js-apis-Bundle.md)模块中userId参数，可用于获取应用信息、包信息等，具体参考：[Bundle](js-apis-Bundle.md)。                                       |
 | entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |
 | moduleName<sup>9+</sup> | 只读   | string | 否    | 表示待启动的Ability所属的模块（module）。 |
 

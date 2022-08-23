@@ -19,6 +19,7 @@
     - [@ohos.application.ServiceExtensionAbility](js-apis-service-extension-ability.md)
     - [@ohos.application.StartOptions](js-apis-application-StartOptions.md)
     - [@ohos.application.StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md)
+    - [@ohos.application.WindowExtensionAbility](js-apis-application-WindowExtensionAbility.md)
     - application/[AbilityContext](js-apis-ability-context.md)
     - application/[ApplicationContext](js-apis-application-applicationContext.md)
     - application/[AbilityStageContext](js-apis-abilitystagecontext.md)
@@ -68,18 +69,25 @@
 
   - [@ohos.bundle](js-apis-Bundle.md)
   - [@ohos.bundle.defaultAppManager](js-apis-bundle-defaultAppManager.md)
+  - [@ohos.bundle.innerBundleManager)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState](js-apis-deviceUsageStatistics.md)
+  - [@ohos.distributedBundle)](js-apis-Bundle-distributedBundle.md)
   - [@ohos.zlib](js-apis-zlib.md)
   - bundle/[AbilityInfo](js-apis-bundle-AbilityInfo.md)
   - bundle/[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)
   - bundle/[BundleInfo](js-apis-bundle-BundleInfo.md)
+  - bundle/[BundleInstaller](js-apis-bundle-BundleInstaller.md)
   - bundle/[CustomizeData](js-apis-bundle-CustomizeData.md)
+  - bundle/[DispatchInfo](js-apis-dispatchInfo.md)
   - bundle/[ElementName](js-apis-bundle-ElementName.md)
   - bundle/[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)
   - bundle/[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)
+  - bundle/[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)
   - bundle/[Metadata](js-apis-bundle-Metadata.md)
   - bundle/[ModuleInfo](js-apis-bundle-ModuleInfo.md)
-  
+  - bundle/[PermissionDef](js-apis-bundle-PermissionDef.md)
+  - bundle/[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
+  - bundle/[ShortcutInfo](js-apis-bundle-ShortcutInfo.md)
 - UI Page
 
   - [@ohos.animator](js-apis-animator.md)
@@ -90,6 +98,7 @@
   
 - Graphics
 
+  - [@ohos.animation.windowAnimationManager](js-apis-windowAnimationManager.md)
   - [@ohos.display ](js-apis-display.md)
   - [@ohos.effectKit](js-apis-effectKit.md)
   - [@ohos.screen](js-apis-screen.md)

@@ -134,7 +134,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   可以将按钮用于启动操作的任何用户界面元素。按钮会根据用户的操作触发相应的事件。如，在List容器里边通过点击按钮进行页面跳转：
 
   ```ts
-  // xxx.js  
+  // xxx.ets  
   import router from '@ohos.router'
 
   @Entry
@@ -167,26 +167,27 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   ```
 
 
-  ![zh-cn_image_0000001235626467](figures/zh-cn_image_0000001235626467.png)
+​      ![zh-cn_image_0000001235626467](figures/zh-cn_image_0000001235626467.png)
 
 
 - 用于表单的提交
+
   在用户登录/注册页面，用户的登录或注册的提交操作会用按钮。
 
-
   ```ts
-// xxx.js  
-@Entry
-  @Component
-  struct ButtonCase2 {
-    build() {
-      Column() {
-        TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
-        TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
-        Button('Register').width(300).margin({ top: 20 })
-      }.padding(20)
+  // xxx.ets  
+  @Entry
+    @Component
+    struct ButtonCase2 {
+      build() {
+        Column() {
+          TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
+          TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
+          Button('Register').width(300).margin({ top: 20 })
+        }.padding(20)
+      }
     }
-  }
   ```
+
 
   ![zh-cn_image_0000001190466492](figures/zh-cn_image_0000001190466492.png)

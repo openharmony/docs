@@ -49,4 +49,4 @@ struct LoadingProgressExample {
 }
 ```
 
-![zh-cn_image_0000001198839004](figures/loadingProgress.png)
+![zh-cn_image_000000111864201](figures/zh-cn_image_000000111864201.gif)

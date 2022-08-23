@@ -16,22 +16,23 @@ import image from '@ohos.multimedia.image';
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
-Creates a **PixelMap** object. This API uses a promise to return the result.
+Creates a **PixelMap** object with the default BGRA_8888 format and pixel properties specified. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
-| Name   | Type                                            | Mandatory| Description                                                        |
-| ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                   |
+| Name   | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
 | options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
 
 **Return value**
 
-| Type                            | Description          |
-| -------------------------------- | -------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
+| Type                            | Description                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.<br>If the size of the created pixel map exceeds that of the original image, the pixel map size of the original image is returned.|
+
 
 **Example**
 
@@ -48,7 +49,7 @@ image.createPixelMap(color, opts)
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object. This API uses an asynchronous callback to return the result.
+Creates a **PixelMap** object with the default BGRA_8888 format and pixel properties specified. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -91,7 +92,7 @@ Provides APIs to read or write image pixel map data and obtain image pixel map i
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses a promise to return the result.
+Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If the pixel map is created in the BGRA_8888 format, the pixel map data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -122,7 +123,7 @@ pixelmap.readPixelsToBuffer(readBuffer).then(() => {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result.
+Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If the pixel map is created in the BGRA_8888 format, the pixel map data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1008,7 +1009,7 @@ const imageSourceApi = image.createImageSource(fd);
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-Creates an **ImageSource** instance based on the buffer.
+Creates an **ImageSource** instance based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1029,7 +1030,7 @@ const imageSourceApi = image.createImageSource(buf);
 
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance based on the buffer.
+Creates an **ImageSource** instance based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1057,7 +1058,7 @@ const imageSourceApi = image.createImageSource(data);
 
 CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
-Creates an **ImageSource** instance in incremental mode based on the buffer.
+Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1084,7 +1085,7 @@ const imageSourceApi = image.CreateIncrementalSource(buf);
 
 CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
-Creates an **ImageSource** instance in incremental mode based on the buffer.
+Creates an **ImageSource** instance in incremental mode based on the buffers.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2246,7 +2247,7 @@ Describes image properties.
 
 ## PropertyKey<sup>7+</sup>
 
-Describes the exchangeable image file format (Exif) information of an image.
+Describes the exchangeable image file format (EXIF) information of an image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -2322,7 +2323,7 @@ Enumerates the response codes returned upon build errors.
 | ERR_IMAGE_CROP                      | 62980109 | An error occurs during image cropping.                                         |
 | ERR_IMAGE_SOURCE_DATA               | 62980110 | The image source data is incorrect.                                   |
 | ERR_IMAGE_SOURCE_DATA_INCOMPLETE    | 62980111 | The image source data is incomplete.                                 |
-| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | The image format does not match.                                   |
+| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | The image formats do not match.                                   |
 | ERR_IMAGE_UNKNOWN_FORMAT            | 62980113 | Unknown image format.                                     |
 | ERR_IMAGE_SOURCE_UNRESOLVED         | 62980114 | The image source is not parsed.                                     |
 | ERR_IMAGE_INVALID_PARAMETER         | 62980115 | Invalid image parameter.                                     |
@@ -2338,4 +2339,4 @@ Enumerates the response codes returned upon build errors.
 | ERR_IMAGE_READ_PIXELMAP_FAILED      | 62980246 | Failed to read the pixel map.                                 |
 | ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | Failed to write the pixel map.                                 |
 | ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | Modification to the pixel map is not allowed.                               |
-| ERR_IMAGE_CONFIG_FAILED             | 62980259 | The software parameter setting is incorrect.                                         |
+| ERR_IMAGE_CONFIG_FAILED             | 62980259 | The configuration is incorrect.                                         |

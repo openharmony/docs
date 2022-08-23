@@ -79,7 +79,7 @@ This is a system API.
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
+| slotId   | number                | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Example**
@@ -106,7 +106,7 @@ This is a system API.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: Clears the default configuration.|
+| slotId | number | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2<br>- **-1**: clearing the default configuration|
 
 **Return value**
 
@@ -274,7 +274,7 @@ promise.then((data) => {
 
 isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>): void
 
-Checks whether roaming is enabled for the cellular data service. This API uses an asynchronous callback to return the result.
+Checks whether the cellular data roaming service is enabled. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -285,7 +285,7 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                   | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2                    |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: Roaming is enabled for the cellular data service.<br>- **false**: Roaming is disabled for the cellular data service.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.<br>- **true**: The cellular data roaming service is enabled. <br>- **false**: The cellular data roaming service is disabled. |
 
 **Example**
 
@@ -299,7 +299,7 @@ data.isCellularDataRoamingEnabled(0,(err, data) => {
 
 isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 
-Checks whether roaming is enabled for the cellular data service. This API uses a promise to return the result.
+Checks whether the cellular data roaming service is enabled. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -315,7 +315,7 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.<br>- **true**: Roaming is enabled for the cellular data service.<br>- **false**: Roaming is disabled for the cellular data service.|
+| Promise\<boolean\> | Promise used to return the result.<br>- **true**: The cellular data roaming service is enabled.<br>- **false**: The cellular data roaming service is disabled.|
 
 **Example**
 
@@ -327,6 +327,241 @@ promise.then((data) => {
     console.error(`test fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
+
+## data.enableCellularData
+
+enableCellularData(callback: AsyncCallback<void\>): void
+
+Enables the cellular data service. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+data.enableCellularData((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.enableCellularData
+
+enableCellularData(): Promise<void\>
+
+Enables the cellular data service. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = data.enableCellularData();
+promise.then((data) => {
+    console.log(`enableCellularData success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`enableCellularData fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.disableCellularData
+
+disableCellularData(callback: AsyncCallback<void\>): void
+
+Disables the cellular data service. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+data.disableCellularData((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.disableCellularData
+
+disableCellularData(): Promise<void\>
+
+Disables the cellular data service. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Return value**
+
+| Type           | Description                       |
+| --------------- | --------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = data.disableCellularData();
+promise.then((data) => {
+    console.log(`disableCellularData success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`disableCellularData fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.enableCellularDataRoaming
+
+enableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
+
+Enables the cellular data roaming service. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                    |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
+
+**Example**
+
+```js
+data.enableCellularDataRoaming(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.enableCellularDataRoaming
+
+enableCellularDataRoaming(slotId: number): Promise<void\>
+
+Enables the cellular data roaming service. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = data.enableCellularDataRoaming(0);
+promise.then((data) => {
+    console.log(`enableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`enableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.disableCellularDataRoaming
+
+disableCellularDataRoaming(slotId: number, callback: AsyncCallback<void\>): void
+
+Disables the cellular data roaming service. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                    |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| slotId   | number                | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                              |
+
+**Example**
+
+```js
+data.disableCellularDataRoaming(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## data.disableCellularDataRoaming
+
+disableCellularDataRoaming(slotId: number): Promise<void\>
+
+Disables the cellular data roaming service. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CellularData
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>**0**: card slot 1<br>**1**: card slot 2|
+
+**Return value**
+
+| Type           | Description                     |
+| --------------- | ------------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = data.disableCellularDataRoaming(0);
+promise.then((data) => {
+    console.log(`disableCellularDataRoaming success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`disableCellularDataRoaming fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 
 ## DataFlowType
 

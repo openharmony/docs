@@ -63,6 +63,7 @@ Program Headers:
 ```
 
   **图3** ELF文件的加载过程
+
   ![zh-cn_image_0000001245251887](figures/zh-cn_image_0000001245251887.png)
 
 
