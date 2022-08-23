@@ -47,30 +47,30 @@
 
 ```json
 {
-    "module" : {
-        "reqPermissions":[
-           {
-                "name" : "ohos.permission.PERMISSION1",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "ability": [
-                         "FormAbility"
-                     ],
-                     "when":"inuse"
-                }
-            },
-           {
-                "name" : "ohos.permission.PERMISSION2",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "ability": [
-                         "FormAbility"
-                     ],
-                     "when":"always"
-                }
-            }
-        ]
-    }
+  "module" : {
+    "reqPermissions":[
+      {
+        "name" : "ohos.permission.PERMISSION1",
+        "reason": "$string:reason",
+        "usedScene": {
+          "ability": [
+            "FormAbility"
+          ],
+          "when":"inuse"
+        }
+      },
+      {
+        "name" : "ohos.permission.PERMISSION2",
+        "reason": "$string:reason",
+        "usedScene": {
+          "ability": [
+            "FormAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -82,30 +82,30 @@
 
 ```json
 {
-    "module" : {
-        "requestPermissions":[
-           {
-                "name" : "ohos.permission.PERMISSION1",
-                "reason": "$string:reason",
-                "usedScene": {
+  "module" : {
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.PERMISSION1",
+        "reason": "$string:reason",
+        "usedScene": {
                      "abilities": [
                          "FormAbility"
                      ],
                      "when":"inuse"
-                }
-            },
-           {
-                "name" : "ohos.permission.PERMISSION2",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"always"
-                }
-            }
-        ],
-    }
+        }
+      },
+      {
+        "name" : "ohos.permission.PERMISSION2",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+        "when":"always"
+        }
+      }
+    ],
+  }
 }
 ```
 
@@ -119,11 +119,11 @@
 
 ```json
 {
-    "acls": {
-        "allowed-acls": [
-            "ohos.permission.PERMISSION2"
-        ]
-    },
+  "acls": {
+    "allowed-acls": [
+      "ohos.permission.PERMISSION2"
+    ]
+  },
 }
 ```
 
@@ -154,12 +154,12 @@
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
     context.requestPermissionsFromUser(array).then(function(data) {
-        console.log("data type:" + typeof(data));
-        console.log("data:" + data);
-        console.log("data permissions:" + data.permissions);
-        console.log("data result:" + data.authResults);
+      console.log("data type:" + typeof(data));
+      console.log("data:" + data);
+      console.log("data permissions:" + data.permissions);
+      console.log("data result:" + data.authResults);
     }, (err) => {
-        console.error('Failed to start ability', err.code);
+      console.error('Failed to start ability', err.code);
     });
   }
 
