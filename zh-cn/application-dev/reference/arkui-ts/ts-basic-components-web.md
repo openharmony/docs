@@ -91,10 +91,10 @@ fileAccess(fileAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .fileAccess(true)
       }
     }
@@ -648,10 +648,10 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
         .onPrompt((event) => {
           console.log("url:" + event.url);
           console.log("message:" + event.message);
@@ -1117,7 +1117,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     responseweb: WebResourceResponse = new WebResourceResponse();
     heads:Header[] = new Array();
     @State webdata: string = "<!DOCTYPE html>\n" +
@@ -1131,7 +1131,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
     "</html>"
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             console.log('url:' + event.request.getRequestUrl());
             var head1:Header = {
@@ -1181,36 +1181,37 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    httpAuth:boolean = false;
+    controller: WebController = new WebController();
+    httpAuth: boolean = false;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onHttpAuthRequest((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-              value: 'onConfirm',
-              action: () => {
-                this.httpAuth = event.handler.isHttpAuthInfoSaved();
-                if (this.httpAuth == false) {
-                  web.WebDataBase.saveHttpAuthCredentials(
-                   event.host,
-                   event.realm,
-                   "2222",
-                   "2222"
-                  )
-                  event.handler.cancel();
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onHttpAuthRequest((event) => {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                  this.httpAuth = event.handler.isHttpAuthInfoSaved();
+                  if (this.httpAuth == false) {
+                    web.WebDataBase.saveHttpAuthCredentials(
+                      event.host,
+                      event.realm,
+                      "2222",
+                      "2222"
+                    )
+                    event.handler.cancel();
+                  }
                 }
+              },
+              cancel: () => {
+                event.handler.cancel();
               }
-            },
-            cancel: () => {
-             event.handler.cancel();
-            }
+            })
+            return true;
           })
-          return true;
-        })
       }
     }
   }
@@ -1232,25 +1233,25 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onPermissionRequest((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-              value: 'onConfirm',
-              action: () => {
-                event.request.grant(event.request.getAccessibleResource());
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onPermissionRequest((event) => {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                  event.request.grant(event.request.getAccessibleResource());
+                }
+              },
+              cancel: () => {
+               event.request.deny();
               }
-            },
-            cancel: () => {
-             event.request.deny();
-            }
+            })
           })
-        })
       }
     }
   }
@@ -1282,10 +1283,10 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
         .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x());
             console.info("link url = " + event.param.getLinkUrl());
@@ -2049,14 +2050,14 @@ backOrForward(step: number): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
         Button('backOrForward')
         .onClick(() => {
           this.controller.backOrForward();
         })
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
     }
   }
   ```
