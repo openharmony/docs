@@ -1,7 +1,7 @@
 # 屏幕亮度
 
 > **说明：**
-> - 从API Version 9 开始，该接口不再维护，推荐使用新接口[`@ohos.brightness`](js-apis-brightness.md)。
+> - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.brightness`](js-apis-brightness.md)。
 > 
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -29,6 +29,12 @@ getValue(Object): void
 | success | (data: [BrightnessResponse](#brightnessresponse)) => void | 否 | 接口调用成功的回调函数。 |
 | fail | (data: string, code: number) => void | 否 | 接口调用失败的回调函数。 |
 | complete | () => void | 否 | 接口调用结束的回调函数。 |
+
+success返回值：
+
+| 参数名 | 类型 | 说明 |
+| -------- | -------- | -------- |
+| value | number | 屏幕亮度，取值为1-255之间的整数。 |
 
 
 **示例：**
@@ -61,7 +67,7 @@ setValue(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mode | number | 是 | 屏幕亮度，值为1-255之间的整数。<br/>-&nbsp;如果值小于等于0，系统按1处理。<br/>-&nbsp;如果值大于255，系统按255处理。<br/>-&nbsp;如果值为小数，系统将处理为整数。例如设置为8.1，系统按8处理。 |
+| value | number | 是 | 屏幕亮度，值为1-255之间的整数。<br/>-&nbsp;如果值小于等于0，系统按1处理。<br/>-&nbsp;如果值大于255，系统按255处理。<br/>-&nbsp;如果值为小数，系统将处理为整数。例如设置为8.1，系统按8处理。 |
 | success | () => void | 否 | 接口调用成功的回调函数。 |
 | fail | (data: string, code: number) => void | 否 | 接口调用失败的回调函数。 |
 | complete | () => void | 否 | 接口调用结束的回调函数。 |
@@ -97,9 +103,15 @@ getMode(Object): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| success | (data: [BrightnessResponse](#brightnessresponse)) => void | 否 | 接口调用成功的回调函数。 |
+| success | (data: [BrightnessModeResponse](#brightnessmoderesponse)) => void | 否 | 接口调用成功的回调函数。 |
 | fail | (data: string, code: number) => void | 否 | 接口调用失败的回调函数。 |
 | complete | () => void | 否 | 接口调用结束的回调函数。 |
+
+success返回值：
+
+| 参数名 | 类型 | 说明 |
+| -------- | -------- | -------- |
+| mode | number | 值为0或1：<br/>-&nbsp;0为手动调节屏幕亮度模式<br/>-&nbsp;1为自动调节屏幕亮度模式 |
 
 **示例：**
 
@@ -130,7 +142,7 @@ setMode(Object): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mode | number | 是 | 值为0或1<br/>-&nbsp;0为手动调节屏幕亮度<br/>-&nbsp;1为自动调节屏幕亮度 |
+| mode | number | 是 | 值为0或1<br/>-&nbsp;0为手动调节屏幕亮度。<br/>-&nbsp;1为自动调节屏幕亮度。 |
 | success | () => void | 否 | 接口调用成功的回调函数。 |
 | fail | (data: string, code: number) => void | 否 | 接口调用失败的回调函数。 |
 | complete | () => void | 否 | 接口调用结束的回调函数。 |
@@ -191,8 +203,13 @@ setKeepScreenOn(Object): void
 
 ## BrightnessResponse
 
-屏幕亮度。
-
 | 名称 | 类型  | 说明 |
 | -------- | -------- | -------- |
 | value | number | 屏幕亮度，取值为1-255之间的整数。 |
+
+## BrightnessModeResponse
+
+| 名称 | 类型  | 说明 |
+| -------- | -------- | -------- |
+| mode | number | 值为0或1。<br> -0为手动调节屏幕亮度模式。<br>-1为手动调节屏幕亮度模式。 |
+
