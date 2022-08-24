@@ -320,21 +320,21 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| Array&lt;[TaskState](#taskstatesup9sup)&gt;| array | 是 | 上传任务返回结果 |
+| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
 
 **示例：**
   
   ```js
-  uploadTask.on('complete', function callback(TaskStates) {
-    for (let i = 0; i < TaskState.length; i++ ) {
-      console.info("upOnComplete taskState:" + JSON.stringify(TaskStates[i]));
+  uploadTask.on('complete', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   }
   );
 
-  uploadTask.on('fail', function callback(TaskStates) {
-    for (let i = 0; i < TaskState.length; i++ ) {
-      console.info("upOnFail taskState:" + JSON.stringify(TaskStates[i]));
+  uploadTask.on('fail', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
     }
   }
   );
@@ -428,21 +428,21 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| Array&lt;[TaskState](#taskstatesup9sup)&gt; | array | 是 | 上传任务返回结果 |
+| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
 
 **示例：**
   
   ```js
-  uploadTask.off('complete', function callback(TaskStates) {
-    for (let i = 0; i < TaskState.length; i++ ) {
-      console.info("upOnComplete taskState:" + JSON.stringify(TaskStates[i]));
+  uploadTask.off('complete', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   }
   );
 
-  uploadTask.off('fail', function callback(TaskStates) {
-    for (let i = 0; i < TaskState.length; i++ ) {
-      console.info("upOnFail taskState:" + JSON.stringify(TaskStates[i]));
+  uploadTask.off('fail', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
     }
   }
   );
