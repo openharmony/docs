@@ -23,13 +23,14 @@ Use HiSysEvent logging to flush logged event data to disks.
 HiSysEvent logging is implemented using the API provided by the **HiSysEvent** class. For details, see the API Reference.
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> 
 > In OpenHarmony-3.2-Beta3, HiSysEvent logging is open for restricted use to avoid event storms. The **HiSysEvent::Write** API in Table 1 is replaced by the **HiSysEventWrite** API in Table 2. The **HiSysEvent::Write** API has been deprecated. Use the **HiSysEventWrite** API instead for HiSysEvent logging.
 
 **Table 1** C++ event logging API (deprecated)
 
 | API                                                      | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| template&lt;typename...&nbsp;Types&gt;&nbsp;<br>static&nbsp;int&nbsp;Write(const&nbsp;std::string&nbsp;&amp;domain,&nbsp;const&nbsp;std::string&nbsp;&amp;eventName,&nbsp;EventType&nbsp;type,&nbsp;Types...&nbsp;keyValues) | Flushes logged event data to disks.|
+| template&lt;typename... Types&gt; <br>static int Write(const std::string &amp;domain, const std::string &amp;eventName, EventType type, Types... keyValues) | Flushes logged event data to disks.|
 
 **Table 2** C++ event logging API (in use)
 | API                                                      | Description                  |
@@ -49,7 +50,7 @@ HiSysEvent logging is implemented using the API provided by the **HiSysEvent** c
 
 The following table describes the kernel event logging APIs.
 
-**Table 4** Description of kernel event logging APIs
+**Table 4** Kernel event logging APIs
 
 | API                                                      | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
