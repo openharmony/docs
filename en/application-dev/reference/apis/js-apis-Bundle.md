@@ -39,11 +39,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                     |
-| ----------- | ------ | ---- | --------------------------------------- |
-| bundleName  | string | Yes   | Bundle name of an application.                           |
-| bundleFlags | number | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | Yes  | Bundle name of an application.                                    |
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
 
 **Return value**
 
@@ -81,12 +81,12 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                             | Mandatory  | Description                                     |
-| ----------- | ------------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                          | Yes   | Bundle name of an application.                           |
-| bundleFlags | number                          | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number                          | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
-| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes   | Callback used to return the application information.                |
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string                                                       | Yes  | Bundle name of an application.                                    |
+| bundleFlags | number                                                       | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+| userId      | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
+| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes  | Callback used to return the application information.              |
 
 **Example**
 
@@ -119,11 +119,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                             | Mandatory  | Description                                     |
-| ----------- | ------------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                          | Yes   | Bundle name of an application.                           |
-| bundleFlags | number                          | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes   | Callback used to return the application information.                |
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string                                                       | Yes  | Bundle name of an application.                                    |
+| bundleFlags | number                                                       | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+| callback    | AsyncCallback\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Yes  | Callback used to return the application information.              |
 
 **Example**
 
@@ -155,10 +155,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name        | Type        | Mandatory  | Description                                     |
-| ---------- | ---------- | ---- | --------------------------------------- |
-| bundleFlag | BundleFlag | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId     | number     | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
+| Name      | Type      | Mandatory| Description                                                        |
+| ---------- | ---------- | ---- | ------------------------------------------------------------ |
+| bundleFlag | BundleFlag | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
+| userId     | number     | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
 
 **Return value**
 
@@ -195,10 +195,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name        | Type                               | Mandatory  | Description                                     |
-| ---------- | --------------------------------- | ---- | --------------------------------------- |
-| bundleFlag | BundleFlag                        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
+| Name      | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleFlag | BundleFlag                                                   | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
+| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes  | Callback used to return the information of all available bundles.      |
 
 **Example**
 
@@ -229,11 +229,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name        | Type                               | Mandatory  | Description                                     |
-| ---------- | --------------------------------- | ---- | --------------------------------------- |
-| bundleFlag | BundleFlag                        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId     | number                            | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
-| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes   | Callback used to return the information of all available bundles.       |
+| Name      | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleFlag | BundleFlag                                                   | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
+| userId     | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
+| callback   | AsyncCallback<Array\<[BundleInfo](js-apis-bundle-BundleInfo.md)>> | Yes  | Callback used to return the information of all available bundles.      |
 
 **Example**
 
@@ -268,7 +268,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name         | Type           | Mandatory  | Description                                     |
 | ----------- | ------------- | ---- | --------------------------------------- |
 | bundleName  | string        | Yes   | Bundle name of an application.                                     |
-| bundleFlags | number        | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| bundleFlags | number        | Yes   | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
 | options     | [BundleOptions](#bundleoptions) | No   | Includes **userId**.                              |
 
 **Return value**
@@ -309,11 +309,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                        | Mandatory  | Description                                     |
-| ----------- | -------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                     | Yes   | Bundle name of an application.                                     |
-| bundleFlags | number                     | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the bundle information.                   |
+| Name       | Type                                                      | Mandatory| Description                                                        |
+| ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                                                     | Yes  | Bundle name of an application.                                                        |
+| bundleFlags | number                                                     | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes  | Callback used to return the bundle information.                    |
 
 **Example**
 
@@ -346,12 +346,12 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                        | Mandatory  | Description                                     |
-| ----------- | -------------------------- | ---- | --------------------------------------- |
-| bundleName  | string                     | Yes   | Bundle name of an application.                                     |
-| bundleFlags | number                     | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| options     | [BundleOptions](#bundleoptions)              | Yes   | Includes **userId**.                              |
-| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the bundle information.                   |
+| Name       | Type                                                      | Mandatory| Description                                                        |
+| ----------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                                                     | Yes  | Bundle name of an application.                                                        |
+| bundleFlags | number                                                     | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
+| options     | [BundleOptions](#bundleoptions)                            | Yes  | Includes **userId**.                                                |
+| callback    | AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes  | Callback used to return the bundle information.                    |
 
 **Example**
 
@@ -847,10 +847,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type    | Mandatory  | Description                                     |
-| ----------- | ------ | ---- | --------------------------------------- |
-| bundleFlags | number | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
 
 **Return value**
 
@@ -889,11 +889,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                                    | Mandatory  | Description                                     |
-| ----------- | -------------------------------------- | ---- | --------------------------------------- |
-| bundleFlags | number                                 | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number                                 | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.           |
-| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | Yes   | Callback used to return the application information.                |
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleFlags | number                                                       | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+| userId      | number                                                       | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
+| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | Yes  | Callback used to return the application information.              |
 
 **Example**
 
@@ -926,10 +926,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                                    | Mandatory  | Description                                     |
-| ----------- | -------------------------------------- | ---- | --------------------------------------- |
-| bundleFlags | number                                 | Yes   | Type of information that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | Yes   | Callback used to return the application information.                |
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| bundleFlags | number                                                       | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+| callback    | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)>> | Yes  | Callback used to return the application information.              |
 
 **Example**
 
@@ -959,7 +959,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
-| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
 
 **Return value**
 | Type            | Description                                    |
@@ -994,7 +994,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
 | hapFilePath | string | Yes   | Path where the HAP file is stored. The path should point to the relative directory of the current application's data directory.|
-| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| bundleFlags | number | Yes   | Flags used to specify information contained in the **BundleInfo** object that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
 | callback| AsyncCallback\<[BundleInfo](js-apis-bundle-BundleInfo.md)> | Yes   | Callback used to return the information about the bundles.|
 
 **Example**
@@ -1474,7 +1474,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name         | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | ------------------------------------- |
 | want        | [Want](js-apis-application-Want.md)   | Yes   | Want that contains the bundle name.                    |
-| bundleFlags | number | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
+| bundleFlags | number | Yes   | Ability information to be returned. The default value is **0**. For details on the available enumerated values, see the ability information flags in [BundleFlag](#bundleflag).|
 | userId      | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.          |
 
 **Return value**
@@ -1518,12 +1518,12 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                                | Mandatory  | Description                                   |
-| ----------- | ---------------------------------- | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-Want.md)                               | Yes   | Want that contains the bundle name.                  |
-| bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| userId      | number                             | Yes   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.          |
-| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes   | Callback used to return the ability information.           |
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| want        | [Want](js-apis-application-Want.md)                          | Yes  | Want that contains the bundle name.                      |
+| bundleFlags | number                                                       | Yes  | Ability information to be returned. The default value is **0**. For details on the available enumerated values, see the ability information flags in [BundleFlag](#bundleflag).|
+| userId      | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
+| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes  | Callback used to return the ability information.               |
 
 **Example**
 
@@ -1559,11 +1559,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **Parameters**
 
-| Name         | Type                                | Mandatory  | Description                                   |
-| ----------- | ---------------------------------- | ---- | ------------------------------------- |
-| want        | [Want](js-apis-application-Want.md)                               | Yes   | Want that contains the bundle name.                  |
-| bundleFlags | number                             | Yes   | Ability information to be returned. The default value is **0**. The value must be greater than or equal to 0.|
-| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes   | Callback used to return the ability information.           |
+| Name       | Type                                                        | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| want        | [Want](js-apis-application-Want.md)                          | Yes  | Want that contains the bundle name.                      |
+| bundleFlags | number                                                       | Yes  | Ability information to be returned. The default value is **0**. For details on the available enumerated values, see the ability information flags in [BundleFlag](#bundleflag).|
+| callback    | AsyncCallback<Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>> | Yes  | Callback used to return the ability information.               |
 
 **Example**
 

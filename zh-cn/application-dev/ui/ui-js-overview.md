@@ -48,8 +48,6 @@
 
 - [`JsGallery`：图库示例应用（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsGallery)
 
-- [`AirQuality`：空气质量（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/AirQuality)
-
 - [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
 
 - [购物应用（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)

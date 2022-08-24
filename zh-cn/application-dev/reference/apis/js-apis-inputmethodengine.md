@@ -94,7 +94,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
-订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。
+订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -118,7 +118,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
-取消订阅输入法绑定成功事件。
+取消订阅输入法绑定成功事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -134,14 +134,16 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 **示例：**
 
   ```js
-  InputMethodEngine.off('inputStart');
+  InputMethodEngine.off('inputStart', (kbController, textInputClient) => {
+      console.log("delete inputStart notification.");
+  });
   ```
 
 ### on('keyboardShow'|'keyboardHide')
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-订阅输入法事件。
+订阅输入法事件。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -155,8 +157,11 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 **示例：**
 
   ```js
-  InputMethodEngine.on('keyboardShow', (err) => {
-      console.info('keyboardShow');
+  InputMethodEngine.on('keyboardShow', () => {
+      console.log("inputMethodEngine keyboardShow.");
+  });
+  InputMethodEngine.on('keyboardHide', () => {
+      console.log("inputMethodEngine keyboardHide.");
   });
   ```
 
@@ -164,7 +169,7 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。
+取消订阅输入法事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -178,7 +183,12 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 **示例：**
 
   ```js
-  InputMethodEngine.off('keyboardShow');
+  InputMethodEngine.off('keyboardShow', () => {
+      console.log("inputMethodEngine delete keyboardShow notification.");
+  });
+  InputMethodEngine.off('keyboardHide', () => {
+      console.log("inputMethodEngine delete keyboardHide notification.");
+  });
   ```
 
 
@@ -190,7 +200,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
-订阅硬键盘事件，使用callback回调返回按键信息。
+订阅硬键盘事件，使用callback回调返回按键信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -206,8 +216,15 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 **示例：**
 
   ```js
-  KeyboardDelegate.on('keyDown', (event) => {
-      console.info('keyDown');
+  KeyboardDelegate.on('keyUp', (keyEvent) => {
+      console.info("inputMethodEngine keyCode.(keyUp):" + JSON.stringify(keyEvent.keyCode));
+      console.info("inputMethodEngine keyAction.(keyUp):" + JSON.stringify(keyEvent.keyAction));
+      return true;
+  });
+  KeyboardDelegate.on('keyDown', (keyEvent) => {
+      console.info("inputMethodEngine keyCode.(keyDown):" + JSON.stringify(keyEvent.keyCode));
+      console.info("inputMethodEngine keyAction.(keyDown):" + JSON.stringify(keyEvent.keyAction));
+      return true;
   });
   ```
 
@@ -215,7 +232,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
-取消订阅硬键盘事件。
+取消订阅硬键盘事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -229,14 +246,21 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 **示例：**
 
   ```js
-  KeyboardDelegate.off('keyDown');
+  KeyboardDelegate.off('keyUp', (keyEvent) => {
+      console.log("delete keyUp notification.");
+      return true;
+  });
+  KeyboardDelegate.off('keyDown', (keyEvent) => {
+      console.log("delete keyDown notification.");
+      return true;
+  });
   ```
 
 ### on('cursorContextChange')
 
 on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void
 
-订阅光标变化事件，使用callback回调返回光标信息。
+订阅光标变化事件，使用callback回调返回光标信息。使用callback回调返回光标信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
   **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -252,18 +276,18 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
   **示例：**
 
 ```js
-
 KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
-    console.info('cursorContextChange');
+    console.log("inputMethodEngine cursorContextChange x:" + x);
+    console.log("inputMethodEngine cursorContextChange y:" + y);
+    console.log("inputMethodEngine cursorContextChange height:" + height);
 });
-
 ```
 
 ### off('cursorContextChange')
 
 off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number) => void): void
 
-取消订阅光标变化事件。
+取消订阅光标变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -278,15 +302,15 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
   **示例：**
 
 ```js
-
-KeyboardDelegate.off('cursorContextChange');
-
+KeyboardDelegate.off('cursorContextChange', (x, y, height) => {
+    console.log("delete cursorContextChange notification.");
+});
 ```
 ### on('selectionChange')
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-订阅文本选择变化事件，使用callback回调返回文本选择信息。
+订阅文本选择变化事件，使用callback回调返回文本选择信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -300,18 +324,19 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
   **示例：**
 
 ```js
-
 KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-    console.info('selectionChange');
+    console.log("inputMethodEngine beforeEach selectionChange oldBegin:" + oldBegin);
+    console.log("inputMethodEngine beforeEach selectionChange oldEnd:" + oldEnd);
+    console.log("inputMethodEngine beforeEach selectionChange newBegin:" + newBegin);
+    console.log("inputMethodEngine beforeEach selectionChange newEnd:" + newEnd);
 });
-
 ```
 
 ### off('selectionChange')
 
 off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-取消订阅文本选择变化事件。
+取消订阅文本选择变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -325,9 +350,9 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
   **示例：**
 
 ```js
-
-KeyboardDelegate.off('selectionChange');
-
+KeyboardDelegate.off('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
+  console.log("delete selectionChange notification.");
+});
 ```
 
 
@@ -335,7 +360,7 @@ KeyboardDelegate.off('selectionChange');
 
 on(type: 'textChange', callback: (text: string) => void): void
 
-订阅文本变化事件，使用callback回调返回当前文本内容。
+订阅文本变化事件，使用callback回调返回当前文本内容。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -349,18 +374,16 @@ on(type: 'textChange', callback: (text: string) => void): void
   **示例：**
 
 ```js
-
 KeyboardDelegate.on('textChange', (text) => {
-    console.info('textChange');
+    console.log("inputMethodEngine textChange. text:" + text);
 });
-
 ```
 
 ### off('textChange')
 
 off(type: 'textChange', callback?: (text: string) => void): void
 
-取消订阅文本变化事件。
+取消订阅文本变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -374,7 +397,9 @@ off(type: 'textChange', callback?: (text: string) => void): void
   **示例：**
 
 ```js
-KeyboardDelegate.off('textChange');
+keyboardDelegate.off('textChange', (text) => {
+    console.log("delete textChange notification. text:" + text);
+});
 ```
 
 ## KeyboardController<a name="KeyboardController"></a>
@@ -385,7 +410,7 @@ KeyboardDelegate.off('textChange');
 
 hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏输入法。
+隐藏输入法。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -399,28 +424,39 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 
 ```js
- KeyboardController.hideKeyboard(()=>{
- });
+KeyboardController.hideKeyboard((err) => {
+    if (err == undefined) {
+        console.error("hideKeyboard callback result---err: " + err.msg);
+        return;
+    }
+    console.log("hideKeyboard callback.");
+});
 ```
 
 ### hideKeyboard
 
 hideKeyboard(): Promise&lt;void&gt;
 
-隐藏输入法。
+隐藏输入法。使用peomise形式返回结果。参数个数为0，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
-| 类型             | 说明     |
-| ---------------- | -------- |
-| Promise&lt;void> | 回调函数 |
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise&lt;void> | 无返回结果的Promise对象。 |
 
 **示例：**
 
 ```js
- KeyboardController.hideKeyboard();
+async function InputMethodEngine() {
+    await KeyboardController.hideKeyboard().then(() => {
+        console.info("hideKeyboard promise.");
+    }).catch((err) => {
+        console.info("hideKeyboard promise err: " + err.msg);
+    });
+}
 ```
 
 ## TextInputClient<a name="TextInputClient"></a>
@@ -431,7 +467,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标前固定长度的文本。
+获取光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -445,16 +481,21 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-   TextInputClient.getForward(5,(text) =>{
-     console.info("text = " + text);
-   });
+  var length = 1;
+  TextInputClient.getForward(length, (err, text) => {
+      if (err == undefined) {
+          console.error("getForward callback result---err: " + err.msg);
+          return;
+      }
+      console.log("getForward callback result---text: " + text);
+  });
   ```
 
 ### getForward
 
 getForward(length:number): Promise&lt;string&gt;
 
-获取光标前固定长度的文本。
+获取光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -473,15 +514,21 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
   ```js
-   var text = TextInputClient.getForward(5);
-   console.info("text = " + text);
+  async function InputMethodEngine() {
+      var length = 1;
+      await TextInputClient.getForward(length).then((text) => {
+          console.info("getForward promise result---res: " + text);
+      }).catch((err) => {
+          console.error("getForward promise err: " + err.msg);
+      });
+  }
   ```
 
 ### getBackward
 
 getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标后固定长度的文本。
+获取光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -495,8 +542,13 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-   TextInputClient.getBackward(5,(text)=>{
-     console.info("text = " + text);
+  var length = 1;
+  TextInputClient.getBackward(length, (err, text) => {
+      if (err == undefined) {
+          console.error("getBackward callback result---err: " + err.msg);
+          return;
+      }
+      console.log("getBackward callback result---text: " + text);
   });
   ```
 
@@ -504,7 +556,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 getBackward(length:number): Promise&lt;string&gt;
 
-获取光标后固定长度的文本。
+获取光标后固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -523,15 +575,21 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
   ```js
-   var text = TextInputClient.getBackward(5);
-   console.info("text = " + text);
+  async function InputMethodEngine() {
+      var length = 1;
+      await TextInputClient.getBackward(length).then((text) => {
+          console.info("getBackward promise result---res: " + text);
+      }).catch((err) => {
+          console.error("getBackward promise err: " + err.msg);
+      });
+  }
   ```
 
 ### deleteForward
 
 deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标前固定长度的文本。
+删除光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -545,15 +603,24 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  TextInputClient.deleteForward(5,(isSuccess)=>{
-    console.info("isSuccess = " + isSuccess);
+  var length = 1;
+  TextInputClient.deleteForward(length, (err, result) => {
+      if (err == undefined) {
+          console.error('deleteForward callback result---err: ' + err.msg);
+          return;
+      }
+      if (result) {
+          console.info("Success to deleteForward.(callback) ");
+      } else {
+          console.error("Failed to deleteForward.(callback) ");
+      }
   });
   ```
 ### deleteForward
 
 deleteForward(length:number): Promise&lt;boolean&gt;
 
-删除光标前固定长度的文本。
+删除光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -572,15 +639,25 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-var isSuccess = TextInputClient.deleteForward(5);
- console.info("isSuccess = " + isSuccess);
+async function InputMethodEngine() {
+    var length = 1;
+    await TextInputClient.deleteForward(length).then((result) => {
+        if (result) {
+            console.info("Success to deleteForward.(promise) ");
+        } else {
+            console.error("Failed to deleteForward.(promise) ");
+        }
+    }).catch((err) => {
+        console.error("deleteForward promise err: " + err.msg);
+    });
+}
 ```
 
 ### deleteBackward
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标后固定长度的文本。
+删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -594,18 +671,25 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
   **示例：**
 
 ```js
-
- TextInputClient.deleteBackward(5, (isSuccess)=>{
- console.info("isSuccess = " + isSuccess);
+var length = 1;
+TextInputClient.deleteBackward(length, (err, result) => {
+    if (err == undefined) {
+        console.error("deleteBackward callback result---err: " + err.msg);
+        return;
+    }
+    if (result) {
+        console.info("Success to deleteBackward.(callback) ");
+    } else {
+        console.error("Failed to deleteBackward.(callback) ");
+    }
 });
-
 ```
 
 ### deleteBackward
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。
+删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -623,16 +707,24 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-
- var isSuccess = TextInputClient.deleteBackward(5);
- console.info("isSuccess = " + isSuccess);
-
+async function InputMethodEngine() {
+    var length = 1;
+    await TextInputClient.deleteBackward(length).then((result) => {
+        if (result) {
+            console.info("Success to deleteBackward.(promise) ");
+        } else {
+            console.error("Failed to deleteBackward.(promise) ");
+        }
+    }).catch((err) => {
+        console.error("deleteBackward promise err: " + err.msg);
+    });
+}
 ```
 ### sendKeyFunction
 
 sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-发送功能键。
+发送功能键。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -646,18 +738,24 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
   **示例：**
 
 ```js
-
- TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
-  console.info("isSuccess = " + isSuccess);
+TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
+    if (err == undefined) {
+        console.error("sendKeyFunction callback result---err: " + err.msg);
+        return;
+    }
+    if (result) {
+        console.info("Success to sendKeyFunction.(callback) ");
+    } else {
+        console.error("Failed to sendKeyFunction.(callback) ");
+    }
 });
-
 ```
 
 ### sendKeyFunction
 
 sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
-发送功能键。
+发送功能键。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -676,15 +774,24 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
-  console.info("isSuccess = " + isSuccess);
+  async function InputMethodEngine() {
+      await client.sendKeyFunction(keyFunction).then((result) => {
+          if (result) {
+              console.info("Success to sendKeyFunction.(promise) ");
+          } else {
+              console.error("Failed to sendKeyFunction.(promise) ");
+          }
+      }).catch((err) => {
+          console.error("sendKeyFunction promise err:" + err.msg);
+      });
+  }
   ```
 
 ### insertText
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
-插入文本。
+插入文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -698,18 +805,24 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-
-TextInputClient.insertText("test", (isSuccess)=>{
-  console.info("isSuccess = " + isSuccess);
+TextInputClient.insertText('test', (err, result) => {
+    if (err == undefined) {
+        console.error("insertText callback result---err: " + err.msg);
+        return;
+    }
+    if (result) {
+        console.info("Success to insertText.(callback) ");
+    } else {
+        console.error("Failed to insertText.(callback) ");
+    }
 });
-
 ```
 
 ### insertText
 
 insertText(text:string): Promise&lt;boolean&gt;
 
-插入文本。
+插入文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -728,15 +841,24 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  var isSuccess = TextInputClient.insertText("test");
-  console.info("isSuccess = " + isSuccess);
+  async function InputMethodEngine() {
+      await TextInputClient.insertText('test').then((result) => {
+          if (result) {
+              console.info("Success to insertText.(promise) ");
+          } else {
+              console.error("Failed to insertText.(promise) ");
+          }
+      }).catch((err) => {
+          console.error("insertText promise err: " + err.msg);
+      });
+  }
   ```
 
 ### getEditorAttribute
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
-获取编辑框属性值。
+获取编辑框属性值。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -749,15 +871,21 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
   ```js
-    TextInputClient.getEditorAttribute((EditorAttribute)=>{
-    });
+  TextInputClient.getEditorAttribute((err, editorAttribute) => {
+      if (err == undefined) {
+          console.error("getEditorAttribute callback result---err: " + err.msg);
+          return;
+      }
+      console.log("editorAttribute.inputPattern(callback): " + JSON.stringify(editorAttribute.inputPattern));
+      console.log("editorAttribute.enterKeyType(callback): " + JSON.stringify(editorAttribute.enterKeyType));
+  });
   ```
 
 ### getEditorAttribute
 
-getEditorAttribute(): EditorAttribute
+getEditorAttribute(): Promise<EditorAttribute>
 
-获取编辑框属性值。
+获取编辑框属性值。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -770,7 +898,14 @@ getEditorAttribute(): EditorAttribute
 **示例：**
 
    ```js
-   var EditorAttribute = TextInputClient.getEditorAttribute();
+   async function InputMethodEngine() {
+       await TextInputClient.getEditorAttribute().then((editorAttribute) => {
+           console.info("editorAttribute.inputPattern(promise): " + JSON.stringify(editorAttribute.inputPattern));
+           console.info("editorAttribute.enterKeyType(promise): " + JSON.stringify(editorAttribute.enterKeyType));
+       }).catch((err) => {
+           console.error("getEditorAttribute promise err: " + err.msg);
+       });
+   }
    ```
 
 ## EditorAttribute<a name="EditorAttribute"></a>
