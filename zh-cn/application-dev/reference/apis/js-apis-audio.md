@@ -300,9 +300,13 @@ const localNetworkId = audio.LOCAL_NETWORK_ID;
 
 | 名称                | 默认值 | 描述       |
 | ------------------- | ------ | ---------- |
+| NONE_DEVICES_FLAG<sup>9+</sup>   | 0      | 无         |
 | OUTPUT_DEVICES_FLAG | 1      | 输出设备。 |
 | INPUT_DEVICES_FLAG  | 2      | 输入设备。 |
 | ALL_DEVICES_FLAG    | 3      | 所有设备。 |
+| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | 分布式输出设备。  |
+| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。  |
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。  |
 
 
 ## DeviceRole
@@ -2052,6 +2056,12 @@ getVolumeGroups(networkId: string\): Promise<VolumeGroupInfos\>
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | networkId | string                                    | 是   | 设备的网络id。本地设备audio.LOCAL_NETWORK_ID ，也可以通过getRoutingManager().getDevices()获取全部networkId。    |
 
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | 音量组信息列表。 |
+
 **示例：**
 
 ```js
@@ -2076,7 +2086,7 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | networkId | string                                    | 是   | 设备的网络id。     |
-| callback   | AsyncCallback&lt; [AudioGroupManager](#audiogroupmanager9) &gt; | 是   | 回调，返回一个音量组音量组实例。 |
+| callback   | AsyncCallback&lt; [AudioGroupManager](#audiogroupmanager9) &gt; | 是   | 回调，返回一个音量组实例。 |
 
 **示例：**
 
@@ -2112,6 +2122,12 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
 | networkId | string                                    | 是   | 设备的网络id。     |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt; [AudioGroupManager](#audiogroupmanager9) &gt; | 音量组实例。 |
 
 **示例：**
 
@@ -2858,6 +2874,140 @@ console.info(`isAudioRendererLowLatencySupported success var ${result}`);
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
+
+### getDevices<sup>9+</sup>
+
+getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+获取音频设备列表，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                 |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
+| callback   | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | 是   | 回调，返回设备列表。 |
+
+**示例：**
+
+```js
+audioManager.getRoutingManager((err,AudioRoutingManager)=>{
+  if (err) {
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+  }
+  else {
+    AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the device list. ${err.message}`);
+        return;
+      }
+      console.log(`Callback invoked to indicate that the device list is obtained.`);
+    });
+  }
+})
+```
+
+### getDevices<sup>9+</sup>
+
+getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
+
+获取音频设备列表，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceFlag | [DeviceFlag](#deviceflag) | 是   | 设备类型的flag。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt; | Promise回调返回设备列表。 |
+
+**示例：**
+
+```js
+audioManager.getRoutingManager((err,AudioRoutingManager)=>{
+  if (err) {
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+  }
+  else {
+    AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
+      console.log(`Promise returned to indicate that the device list is obtained.`);
+    });
+  }
+});
+```
+
+### on<sup>9+</sup>
+
+on(type: 'deviceChange', deviceFlag: DeviceFlag,, callback: Callback<DeviceChangeAction\>): void
+
+设备更改。音频设备连接状态变化。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 获取设备更新详情。                         |
+
+**示例：**
+
+```js
+audioManager.getRoutingManager((err,AudioRoutingManager)=>{
+  if (err) {
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+  }
+  else {
+    AudioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+      console.info('device change type : ' + deviceChanged.type);
+      console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+      console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+      console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+    });
+  }
+});
+```
+
+### off<sup>9+</sup>
+
+off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消订阅音频设备连接变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 获取设备更新详情。                         |
+
+**示例：**
+
+```js
+audioManager.getRoutingManager((err,AudioRoutingManager)=>{
+  if (err) {
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+  }
+  else {
+    AudioRoutingManager.off('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+      console.log('Should be no callback.');
+    });
+  }
+});
+```
 
 ### selectOutputDevice<sup>9+</sup>
 
