@@ -188,7 +188,7 @@ Obtains the output capability supported by a camera. This API uses an asynchrono
 
 | Name    | Type                                                        | Mandatory| Description                              |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| camera   | [CameraDevice](#cameraDevice)                                | Yes  | **CameraDevice** object.                |
+| camera   | [CameraDevice](#cameradevice)                                | Yes  | **CameraDevice** object.                |
 | callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | Yes  | Callback used to return the output capability.|
 
 **Example**
@@ -467,7 +467,7 @@ This is a system API.
 
 | Name    | Type                                       | Mandatory| Description                               |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| camera   | [CameraDevice](#cameraDevice)               | Yes  | **CameraDevice** object.                 |
+| camera   | [CameraDevice](#cameradevice)               | Yes  | **CameraDevice** object.                 |
 | callback | AsyncCallback<[CameraInput](#camerainput)\> | Yes  | Callback used to return the **CameraInput** instance.|
 
 **Example**
@@ -498,7 +498,7 @@ This is a system API.
 
 | Name  | Type                         | Mandatory| Description              |
 | ------ | ----------------------------- | ---- | ------------------ |
-| camera | [CameraDevice](#cameraDevice) | Yes  | **CameraDevice** object.|
+| camera | [CameraDevice](#cameradevice) | Yes  | **CameraDevice** object.|
 
 **Return value**
 
@@ -975,7 +975,7 @@ Describes the camera status information.
 
 | Name  | Type                         | Description      |
 | ------ | ----------------------------- | ---------- |
-| camera | [CameraDevice](#cameraDevice) | Camera object.|
+| camera | [CameraDevice](#cameradevice) | Camera object.|
 | status | [CameraStatus](#camerastatus) | Camera status.|
 
 ## CameraPosition
@@ -1626,7 +1626,7 @@ Checks whether a **[CameraOutput](#cameraoutput)** instance can be added to this
 
 | Name        | Type                         | Mandatory| Description                        |
 | ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraOutput) | Yes  | **CameraOutput** instance to add.|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
 | callback     | AsyncCallback<boolean\>       | Yes  | Callback used to return the result.    |
 
 **Example**
@@ -1653,7 +1653,7 @@ Checks whether a **[CameraOutput](#cameraoutput)** instance can be added to this
 
 | Name        | Type                         | Mandatory| Description                        |
 | ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraOutput) | Yes  | **CameraOutput** instance to add.|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
 
 
 **Return value**
@@ -1683,7 +1683,7 @@ Adds a **[CameraOutput](#cameraoutput)** instance to this **CaptureSession**. Th
 
 | Name        | Type                         | Mandatory| Description                        |
 | ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraOutput) | Yes  | **CameraOutput** instance to add.|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
 | callback     | AsyncCallback<void\>          | Yes  | Callback used to return the result.    |
 
 **Example**
@@ -1710,7 +1710,7 @@ Adds a **[CameraOutput](#cameraoutput)** instance to this **CaptureSession**. Th
 
 | Name        | Type                         | Mandatory| Description                        |
 | ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraOutput) | Yes  | **CameraOutput** instance to add.|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
 
 **Return value**
 
@@ -1738,7 +1738,7 @@ Removes a **[CameraOutput](#cameraoutput)** instance from this **CaptureSession*
 
 | Name        | Type                         | Mandatory| Description                        |
 | ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraOutput) | Yes  | **CameraOutput** instance to remove.|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to remove.|
 | callback     | AsyncCallback<void\>          | Yes  | Callback used to return the result.    |
 
 **Example**
@@ -1765,7 +1765,7 @@ Removes a **[CameraOutput](#cameraoutput)** instance from this **CaptureSession*
 
 | Name        | Type                         | Mandatory| Description                        |
 | ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraOutput) | Yes  | **CameraOutput** instance to remove.|
+| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to remove.|
 
 
 **Return value**
@@ -2827,7 +2827,7 @@ Sets a focus point. This API uses an asynchronous callback to return the result.
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| point    | [Point](#Point)      | Yes  | Focus point.                  |
+| point    | [Point](#point)      | Yes  | Focus point.                  |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -2856,7 +2856,7 @@ Sets a focus point. This API uses a promise to return the result.
 
 | Name | Type           | Mandatory| Description  |
 | ----- | --------------- | ---- | ------ |
-| point | [Point](#Point) | Yes  | Focus point.|
+| point | [Point](#point) | Yes  | Focus point.|
 
 **Return value**
 
@@ -3133,7 +3133,7 @@ Checks whether a specified video stabilization mode is supported. This API uses 
 
 | Name    | Type                                             | Mandatory| Description                                |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationMode) | Yes  | Video stabilization mode.                      |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.                      |
 | callback | AsyncCallback<boolean\>                           | Yes  | Callback used to return whether the video stabilization mode is supported. The value **true** means that the video stabilization mode is supported, and **false** means the opposite.|
 
 **Example**
@@ -3309,7 +3309,7 @@ Listens for exposure state changes. This API uses an asynchronous callback to re
 | Name    | Type                                           | Mandatory| Description                                                       |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | string                                          | Yes  | Event type. The value is fixed at **'exposureStateChange'**, indicating the exposure state change event.|
-| callback | AsyncCallback<[ExposureState](#exposureState)\> | Yes  | Callback used to return the exposure state change.                               |
+| callback | AsyncCallback<[ExposureState](#exposurestate)\> | Yes  | Callback used to return the exposure state change.                               |
 
 **Example**
 
@@ -4266,7 +4266,7 @@ Obtains the metadata object type. This API uses an asynchronous callback to retu
 
 | Name    | Type                                                     | Mandatory| Description                    |
 | -------- | --------------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[MetadataObjectType](#metadataObjectType)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<[MetadataObjectType](#metadataobjecttype)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4292,7 +4292,7 @@ Obtains the metadata object type. This API uses a promise to return the result.
 
 | Type                                               | Description                       |
 | --------------------------------------------------- | --------------------------- |
-| Promise<[MetadataObjectType](#metadataObjectType)\> | Promise used to return the result.|
+| Promise<[MetadataObjectType](#metadataobjecttype)\> | Promise used to return the result.|
 
 **Example**
 
@@ -4515,7 +4515,7 @@ Listens for metadata objects. This API uses an asynchronous callback to return t
 | Name    | Type                                                | Mandatory| Description                                                        |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                               | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**, that is, the metadata object.|
-| callback | Callback<Array<[MetadataObject](#metadataObject)\>\> | Yes  | Callback used to return the error information.                                |
+| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the error information.                                |
 
 **Example**
 
@@ -4538,7 +4538,7 @@ Listens for metadata errors. This API uses an asynchronous callback to return th
 | Name    | Type                                                  | Mandatory| Description                                         |
 | -------- | ------------------------------------------------------ | ---- | --------------------------------------------- |
 | type     | string                                                 | Yes  | Event type. The value is fixed at **'error'**, that is, the metadata error.|
-| callback | Callback<[MetadataOutputError](#metadataOutputError)\> | Yes  | Callback used to return the error information.                 |
+| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | Yes  | Callback used to return the error information.                 |
 
 **Example**
 
@@ -4567,4 +4567,4 @@ Defines a metadata output error.
 
 | Name| Type                                               | Description                      |
 | ---- | --------------------------------------------------- | -------------------------- |
-| code | [MetadataOutputErrorCode](#MetadataOutputErrorCode) | **MetadataOutput** error code.|
+| code | [MetadataOutputErrorCode](#metadataoutputerrorcode) | **MetadataOutput** error code.|

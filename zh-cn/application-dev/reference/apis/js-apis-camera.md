@@ -188,7 +188,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 
 | 名称     | 类型                                                              | 必填 | 说明                      |
 | -------- | ---------------------------------------------------------------- | -- | -------------------------- |
-| camera   | [CameraDevice](#cameraDevice)                                    | 是 | CameraDevice对象。          |
+| camera   | [CameraDevice](#cameradevice)                                    | 是 | CameraDevice对象。          |
 | callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | 是 | 使用callback方式获取相机输出能力。 |
 
 **示例：**
@@ -215,7 +215,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 
 | 名称      | 类型                              | 必填  | 说明        |
 | -------- | --------------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameraDevice)     |  是  | CameraDevice对象。|
+| camera   | [CameraDevice](#cameradevice)     |  是  | CameraDevice对象。|
 
 **返回值：**
 
@@ -467,7 +467,7 @@ createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): 
 
 | 名称     | 类型                                         | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| camera   | [CameraDevice](#cameraDevice)               | 是   | CameraDevice对象。                        |
+| camera   | [CameraDevice](#cameradevice)               | 是   | CameraDevice对象。                        |
 | callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。    |
 
 **示例：**
@@ -498,7 +498,7 @@ createCameraInput(camera: CameraDevice): Promise<CameraInput\>
 
 | 名称     | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameraDevice) | 是   | CameraDevice对象。 |
+| camera   | [CameraDevice](#cameradevice) | 是   | CameraDevice对象。 |
 
 **返回值：**
 
@@ -975,7 +975,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 | 名称   | 类型                            | 说明       |
 | ------ | ----------------------------- | ---------- |
-| camera | [CameraDevice](#cameraDevice) | 相机信息。 |
+| camera | [CameraDevice](#cameradevice) | 相机信息。 |
 | status | [CameraStatus](#camerastatus) | 相机状态。 |
 
 ## CameraPosition
@@ -1626,7 +1626,7 @@ canAddOutput(cameraOutput: CameraOutput, callback: AsyncCallback<boolean\>\): vo
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 | callback      | AsyncCallback<boolean\>         | 是   | 回调函数，用于获取结果。   |
 
 **示例：**
@@ -1653,7 +1653,7 @@ canAddOutput(cameraOutput: CameraOutput): Promise<boolean\>
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 
 
 **返回值：**
@@ -1683,7 +1683,7 @@ addOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 | callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
@@ -1710,7 +1710,7 @@ addOutput\(cameraOutput: CameraOutput\): Promise<void\>
 
 | 名称           | 类型                             | 必填 | 说明                       |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 
 **返回值：**
 
@@ -1738,7 +1738,7 @@ removeOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要移除的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
 | callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
@@ -1765,7 +1765,7 @@ removeOutput(cameraOutput: CameraOutput): Promise<void\>
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要移除的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
 
 
 **返回值：**
@@ -2827,7 +2827,7 @@ setFocusPoint(point: Point, callback: AsyncCallback<void\>): void
 
 | 名称      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| point    | [Point](#Point)         | 是   | 焦点。                |
+| point    | [Point](#point)         | 是   | 焦点。                |
 | callback | AsyncCallback<void\>    | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
@@ -2856,7 +2856,7 @@ setFocusPoint(point: Point): Promise<void\>
 
 | 名称      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| point    | [Point](#Point)         | 是   | 焦点。                |
+| point    | [Point](#point)         | 是   | 焦点。                |
 
 **返回值：**
 
@@ -3133,7 +3133,7 @@ isVideoStablizationModeSupported(vsMode: VideoStabilizationMode, callback: Async
 
 | 名称      | 类型                                              | 必填 | 说明                             |
 | -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationMode) | 是   | 视频防抖模式。                    |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。                    |
 | callback | AsyncCallback<boolean\>                           | 是   | 回调函数，返回视频防抖模式是否支持。  |
 
 **示例：**
@@ -3309,7 +3309,7 @@ on(type: 'exposureStateChange', callback: AsyncCallback<ExposureState\>): void
 | 名称     | 类型                                      | 必填 | 说明                                             |
 | -------- | ----------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                             | 是   |   监听事件，固定为'exposureStateChange'，即曝光状态变化事件。|
-| callback | AsyncCallback<[ExposureState](#exposureState)\> | 是   |  回调函数，用于获取曝光状态。                 |
+| callback | AsyncCallback<[ExposureState](#exposurestate)\> | 是   |  回调函数，用于获取曝光状态。                 |
 
 **示例：**
 
@@ -3418,7 +3418,7 @@ previewOutput.release().then(() => {
 
 ## PreviewOutput
 
-预览输出类。继承[CameraOutput](#cameraOutput)
+预览输出类。继承[CameraOutput](#cameraoutput)
 
 ### addDeferredSurface
 
@@ -4266,7 +4266,7 @@ getType(callback: AsyncCallback<MetadataObjectType\>): void
 
 | 名称     | 类型                                                       | 必填 | 说明                  |
 | -------- | --------------------------------------------------------- | --- | -------------------- |
-| callback | AsyncCallback<[MetadataObjectType](#metadataObjectType)\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<[MetadataObjectType](#metadataobjecttype)\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -4292,7 +4292,7 @@ getType(): Promise<MetadataObjectType\>
 
 | 类型                                                 | 说明                        |
 | --------------------------------------------------- | --------------------------- |
-| Promise<[MetadataObjectType](#metadataObjectType)\> | 使用Promise的方式获取结果。 |
+| Promise<[MetadataObjectType](#metadataobjecttype)\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -4400,7 +4400,7 @@ metadataObject.getBoundingBox().then((rect) => {
 
 ## MetadataFaceObject
 
-metadata的人脸对象。继承[MetadataObject](#metadataObject)（该接口目前为预留，将在3.2版本开放）
+metadata的人脸对象。继承[MetadataObject](#metadataobject)（该接口目前为预留，将在3.2版本开放）
 
 ## MetadataOutput
 
@@ -4515,7 +4515,7 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObjec
 | 名称      | 类型                                                  | 必填 | 说明                                  |
 | -------- | -----------------------------------------------    - | ---- | ------------------------------------ |
 | type     | string                            | 是   | 监听事件，固定为'metadataObjectsAvailable'，即metadata对象。 |
-| callback | Callback<Array<[MetadataObject](#metadataObject)\>\> | 是   | 回调函数，用于获取错误信息。               |
+| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取错误信息。               |
 
 **示例：**
 
@@ -4538,7 +4538,7 @@ on(tuype: 'error', callback: ErrorCallback<MetadataOutputError\>): void
 | 名称     | 类型                                               | 必填 | 说明                                     |
 | -------- | ------------------------------------------------ | ---- | --------------------------------------- |
 | type     | string                                           | 是   | 监听事件，固定为'error'，即metadata流的错误。 |
-| callback | Callback<[MetadataOutputError](#metadataOutputError)\> | 是   | 回调函数，用于获取错误信息。            |
+| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | 是   | 回调函数，用于获取错误信息。            |
 
 **示例：**
 
@@ -4567,4 +4567,4 @@ metadata输出错误码。（该接口目前为预留，将在3.2版本开放）
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [MetadataOutputErrorCode](#MetadataOutputErrorCode) | MetadataOutput中的错误码。 |
+| code | [MetadataOutputErrorCode](#metadataoutputerrorcode) | MetadataOutput中的错误码。 |
