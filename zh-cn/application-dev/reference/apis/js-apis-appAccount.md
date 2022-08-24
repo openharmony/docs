@@ -797,7 +797,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
   });
   ```
 
-### getAssociatedDataSync
+### getAssociatedDataSync<sup>9+</sup>
 
 getAssociatedDataSync(name: string, key: string): string;
 
