@@ -16,7 +16,7 @@
 
 ## 接口
 
-Checkbox( name?: string,  group?: string )
+Checkbox( options?: {name?: string,  group?: string} )
 
 **参数：** 
 

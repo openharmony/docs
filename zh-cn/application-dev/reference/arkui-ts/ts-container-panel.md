@@ -19,7 +19,7 @@
 
 ## 接口
 
-Panel(value:{show：boolean})
+Panel(show：boolean)
 
 **参数：**
 
@@ -29,14 +29,14 @@ Panel(value:{show：boolean})
 
 ## 属性
 
-| 名称         | 参数类型      | 默认值                | 描述                                 |
-| ---------- | --------- | ------------------ | ---------------------------------- |
-| type       | PanelType | PanelType.Foldable | 设置可滑动面板的类型。                        |
-| mode       | PanelMode | -                  | 设置可滑动面板的初始状态。                      |
-| dragBar    | boolean   | true               | 设置是否存在dragbar，true表示存在，false表示不存在。 |
-| fullHeight | Length    | -                  | 指定PanelMode.Full状态下的高度。            |
-| halfHeight | Length    | -                  | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
-| miniHeight | Length    | -                  | 指定PanelMode.Mini状态下的高度。            |
+| 名称       | 参数类型       | 默认值             | 描述                                                   |
+| ---------- | -------------- | ------------------ | ------------------------------------------------------ |
+| type       | PanelType      | PanelType.Foldable | 设置可滑动面板的类型。                                 |
+| mode       | PanelMode      | -                  | 设置可滑动面板的初始状态。                             |
+| dragBar    | boolean        | true               | 设置是否存在dragbar，true表示存在，false表示不存在。   |
+| fullHeight | number\|string | -                  | 指定PanelMode.Full状态下的高度。                       |
+| halfHeight | number\|string | -                  | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
+| miniHeight | number\|string | -                  | 指定PanelMode.Mini状态下的高度。                       |
 
 ## PanelType枚举说明
 
@@ -56,9 +56,9 @@ Panel(value:{show：boolean})
 
 ## 事件
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onChange(callback:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void) | 当可滑动面板发生状态变化时触发，&nbsp;返回的height值为内容区高度值，当dragbar属性为true时，panel本身的高度值为dragbar高度加上内容区高度。 |
 
 
 ## 示例

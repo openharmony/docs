@@ -22,6 +22,14 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 | max               | number        | 否    | 100                  | -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。 |
 | type<sup>8+</sup> | DataPanelType | 否    | DataPanelType.Circle | 数据面板的类型。                                 |
 
+## 属性
+
+| 名称        | 参数类型 | 默认值 | 描述                                 |
+| ----------- | -------- | ------ | ------------------------------------ |
+| closeEffect | boolean  | true   | 设置是否禁用数据比率图表的特殊效果。 |
+
+
+
 ## DataPanelType枚举说明
 
 | 名称     | 描述      |

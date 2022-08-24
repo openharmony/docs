@@ -18,7 +18,7 @@
 
 ## 接口
 
-Swiper(value:{controller?: SwiperController})
+Swiper(value?:{controller?: SwiperController})
 
 **参数：**
 
@@ -39,14 +39,14 @@ Swiper(value:{controller?: SwiperController})
 | loop                        | boolean                                  | true       | 是否开启循环。<br> 设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。 |
 | duration                    | number                                   | 400        | 子组件切换的动画时长，单位为毫秒。                        |
 | vertical                    | boolean                                  | false      | 是否为纵向滑动。                                 |
-| itemSpace                   | Length                                   | 0          | 设置子组件与子组件之间间隙。                           |
+| itemSpace                   | number&nbsp;\|&nbsp;string | 0          | 设置子组件与子组件之间间隙。                           |
 | displayMode                 | SwiperDisplayMode                        | SwiperDisplayMode.Stretch          | 设置子组件显示模式。                           |
 | cachedCount<sup>8+</sup>    | number                                   | 1          | 设置预加载子组件个数。                              |
 | disableSwipe<sup>8+</sup>   | boolean                                  | false      | 禁用组件滑动切换功能。                              |
 | displayCount<sup>8+</sup>   | number&nbsp;\|&nbsp;string               | 1          | 设置一页中显示子组件的个数，设置为“auto”时等同于SwiperDisplayMode.AutoLinear的显示效果。                           |
 | effectMode<sup>8+</sup>     | EdgeEffect                               | EdgeEffect.Spring          | 设置滑动到边缘时的显示效果。                           |
-| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve) \| Curves | Curve.Ease | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过插值计算模块提供的接口创建自定义的Curves([插值曲线对象](ts-interpolation-calculation.md))。 |
-| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;Length,<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>size?:&nbsp;Length,<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | -      | 设置indicator样式：<br/>-&nbsp;left:&nbsp;设置导航点距离Swiper组件左边的距离。<br/>-&nbsp;top:&nbsp;设置导航点距离Swiper组件顶部的距离。<br/>-&nbsp;right:&nbsp;设置导航点距离Swiper组件右边的距离。<br/>-&nbsp;bottom:&nbsp;设置导航点距离Swiper组件底部的距离。<br/>-&nbsp;size:&nbsp;设置导航点的直径。<br/>-&nbsp;mask:&nbsp;设置是否显示导航点蒙层样式。<br/>-&nbsp;color:&nbsp;设置导航点的颜色。<br/>-&nbsp;selectedColor:&nbsp;设置选中的导航点的颜色。 |
+| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve) \| string | Curve.Ease | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过插值计算模块提供的接口创建自定义的Curves([插值曲线对象](ts-interpolation-calculation.md))。 |
+| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;[Length](ts-types.md#length),<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>size?:&nbsp;[Length](ts-types.md#length),<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | -      | 设置indicator样式：<br/>-&nbsp;left:&nbsp;设置导航点距离Swiper组件左边的距离。<br/>-&nbsp;top:&nbsp;设置导航点距离Swiper组件顶部的距离。<br/>-&nbsp;right:&nbsp;设置导航点距离Swiper组件右边的距离。<br/>-&nbsp;bottom:&nbsp;设置导航点距离Swiper组件底部的距离。<br/>-&nbsp;size:&nbsp;设置导航点的直径。<br/>-&nbsp;mask:&nbsp;设置是否显示导航点蒙层样式。<br/>-&nbsp;color:&nbsp;设置导航点的颜色。<br/>-&nbsp;selectedColor:&nbsp;设置选中的导航点的颜色。 |
 
 
 ## SwiperController

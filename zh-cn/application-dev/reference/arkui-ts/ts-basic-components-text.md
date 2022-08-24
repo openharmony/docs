@@ -19,13 +19,13 @@
 
 ## 接口
 
-Text(content?: ResourceStr)
+Text(content?: string | Resource)
 
 **参数：**
 
-| 参数名     | 参数类型   | 必填   | 默认值  | 参数描述                                     |
-| ------- | ------ | ---- | ---- | ---------------------------------------- |
-| content | [ResourceStr](ts-types.md#resourcestr8) | 否    | ''   | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。 |
+| 参数名  | 参数类型                                   | 必填 | 默认值 | 参数描述                                                     |
+| ------- | ------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
+| content | string \| [Resource](ts-types.md#resource) | 否   | ''     | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。 |
 
 ## 属性
 
@@ -36,8 +36,8 @@ Text(content?: ResourceStr)
 | maxLines       | number                                   | Infinity                                 | 设置文本的最大行数。                               |
 | lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
 | decoration     | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
-| baselineOffset | [Length](ts-types.md#length) | -         | 设置文本基线的偏移量。                              |
-| letterSpacing       | [Length](ts-types.md#length) | -                          | 设置文本字符间距。                                 |
+| baselineOffset | number \| string | -         | 设置文本基线的偏移量。                              |
+| letterSpacing       | number \| string | -                          | 设置文本字符间距。                                 |
 | minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -     | 设置文本最小显示字号。                                 |
 | maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -     | 设置文本最大显示字号。                                 |
 | textCase       | [TextCase](ts-appendix-enums.md#textcase)          | TextCase.Normal                          | 设置文本大小写。                                 |
