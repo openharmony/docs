@@ -85,8 +85,6 @@
 
 - [`Flybird`：小鸟避障游戏（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/Flybird)
 
-- [`News`：新闻浏览（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/News)
-
 - [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
 
 - [`Game2048`：2048游戏（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048)
