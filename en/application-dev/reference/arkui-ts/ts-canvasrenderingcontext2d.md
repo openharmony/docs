@@ -1,12 +1,10 @@
 # CanvasRenderingContext2D
 
-
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<RenderingContext>** component is used to draw rectangles, text, images, and other objects on a canvas.
 
+> **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## APIs
 
@@ -1771,17 +1769,17 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number,
 Draws an image.
 
 - Parameters
-    | Name    | Type                                     | Mandatory | Default Value | Description                              |
-    | ------- | ---------------------------------------- | --------- | ------------- | ---------------------------------------- |
-    | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes       | null          | Image resource. For details, see ImageBitmap or PixelMap. |
-    | sx      | number                                   | No        | 0             | X-coordinate of the upper left corner of the rectangle used to crop the source image. |
-    | sy      | number                                   | No        | 0             | Y-coordinate of the upper left corner of the rectangle used to crop the source image. |
-    | sWidth  | number                                   | No        | 0             | Target width to crop the source image.   |
-    | sHeight | number                                   | No        | 0             | Target height to crop the source image.  |
-    | dx      | number                                   | Yes       | 0             | X-coordinate of the upper left corner of the drawing area on the canvas. |
-    | dy      | number                                   | Yes       | 0             | Y-coordinate of the upper left corner of the drawing area on the canvas. |
-    | dWidth  | number                                   | No        | 0             | Width of the drawing area.               |
-    | dHeight | number                                   | No        | 0             | Height of the drawing area.              |
+    | Name    | Type                                                         | Mandatory | Default Value | Description                                                  |
+    | ------- | ------------------------------------------------------------ | --------- | ------------- | ------------------------------------------------------------ |
+    | image   | [ImageBitmap](ts-components-canvas-imagebitmap.md) or [PixelMap](../apis/js-apis-image.md#pixelmap7) | Yes       | null          | Image resource. For details, see ImageBitmap or PixelMap.    |
+    | sx      | number                                                       | No        | 0             | X-coordinate of the upper left corner of the rectangle used to crop the source image. |
+    | sy      | number                                                       | No        | 0             | Y-coordinate of the upper left corner of the rectangle used to crop the source image. |
+    | sWidth  | number                                                       | No        | 0             | Target width to crop the source image.                       |
+    | sHeight | number                                                       | No        | 0             | Target height to crop the source image.                      |
+    | dx      | number                                                       | Yes       | 0             | X-coordinate of the upper left corner of the drawing area on the canvas. |
+    | dy      | number                                                       | Yes       | 0             | Y-coordinate of the upper left corner of the drawing area on the canvas. |
+    | dWidth  | number                                                       | No        | 0             | Width of the drawing area. If the width of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former. |
+    | dHeight | number                                                       | No        | 0             | Height of the drawing area. If the height of the drawing area is different from that of the cropped image, the latter will be stretched or compressed to the former. |
 
 
 - Example

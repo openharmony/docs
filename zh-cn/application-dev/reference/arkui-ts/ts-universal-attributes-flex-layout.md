@@ -19,7 +19,7 @@
 | flexBasis | 'auto'&nbsp;\|&nbsp;Length | 'auto' | 此属性所在的组件在Flex容器中主轴方向上基准尺寸。 |
 | flexGrow | number | 0 | Flex容器的剩余空间分配给此属性所在组件的比例。 |
 | flexShrink | number | 1 | Flex容器压缩尺寸分配给此属性所在组件的比例。 |
-| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign枚举说明) | Auto | 覆盖Flex布局容器中alignItems默认配置。 |
+| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign) | Auto | 覆盖Flex布局容器中alignItems默认配置。 |
 
 
 ## 示例

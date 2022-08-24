@@ -1,10 +1,12 @@
 # OffscreenCanvasRenderingContext2D
 
 
-> **NOTE**<br>The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 Use **OffscreenCanvasRenderingContext2D** to draw rectangles, images, and text offscreen onto a canvas. Drawing offscreen onto a canvas is a process where content to draw onto the canvas is first drawn in the buffer, and then converted into a picture, and finally the picture is drawn on the canvas. This process increases the drawing efficiency.
+
+
+> **NOTE**
+>
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## APIs
@@ -273,7 +275,7 @@ struct MiterLimit {
 // xxx.ets
 @Entry
 @Component
-struct Font {
+struct Fonts {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
