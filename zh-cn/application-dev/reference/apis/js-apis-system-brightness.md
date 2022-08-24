@@ -203,8 +203,6 @@ setKeepScreenOn(Object): void
 
 ## BrightnessResponse
 
-屏幕亮度。
-
 | 名称 | 类型  | 说明 |
 | -------- | -------- | -------- |
 | value | number | 屏幕亮度，取值为1-255之间的整数。 |
