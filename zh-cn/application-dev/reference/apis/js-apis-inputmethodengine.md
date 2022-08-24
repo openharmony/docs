@@ -217,7 +217,7 @@ InputMethodEngine.getInputMethodEngine().on('setCallingWindow', (wid) => {
 
 off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
-取消订设置调用窗口事件。使用callback回调。
+取消订阅设置调用窗口事件。使用callback回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
