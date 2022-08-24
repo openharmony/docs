@@ -58,7 +58,7 @@ struct RefreshExample {
 
   build() {
     Column() {
-      Refresh({ refreshing: this.isRefreshing, offset: 120, friction: 100 }) {
+      Refresh({ refreshing: $$this.isRefreshing, offset: 120, friction: 100 }) {
         Text('Pull Down and refresh: ' + this.counter)
           .fontSize(30)
           .margin(10)
