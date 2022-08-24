@@ -320,7 +320,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| Array&lt;[TaskState](#taskstate9)&gt; | array | 是 | 上传任务返回结果 |
+| Array&lt;[TaskState](#taskstatesup9sup)&gt;| array | 是 | 上传任务返回结果 |
 
 **示例：**
   
@@ -428,7 +428,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| Array&lt;[TaskState](#taskstate9)&gt; | array | 是 | 上传任务返回结果 |
+| Array&lt;[TaskState](#taskstatesup9sup)&gt; | array | 是 | 上传任务返回结果 |
 
 **示例：**
   
