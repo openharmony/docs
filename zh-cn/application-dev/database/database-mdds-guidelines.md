@@ -117,7 +117,7 @@
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
-       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
                console.log("put err: " + JSON.stringify(err));
                return;
@@ -139,13 +139,13 @@
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
-       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
                console.log("put err: " + JSON.stringify(err));
                return;
            }
            console.log("put success");
-           kvStore.get(KEY_TEST_STRING_ELEMENT, function (err,data) {
+           kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
                console.log("get success data: " + data);
            });
        });
