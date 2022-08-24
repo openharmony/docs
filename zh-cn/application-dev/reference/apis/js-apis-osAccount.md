@@ -2281,6 +2281,8 @@ constructor()
 
 创建Pin码认证的实例。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力**：SystemCapability.Account.OsAccount
 
 **示例：** 
