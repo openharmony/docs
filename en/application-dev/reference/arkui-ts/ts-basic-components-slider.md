@@ -1,11 +1,12 @@
 # Slider
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Slider&gt;** component is used to quickly adjust settings, such as the volume and brightness.
+The *\<Slider>** component is used to quickly adjust settings, such as the volume and brightness.
 
 
 ## Required Permissions
@@ -15,7 +16,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -44,12 +45,12 @@ Slider(value:{value?: number, min?: number, max?: number, step?: number, style?:
 
 Touch target configuration is not supported.
 
-| Name          | Type    | Default Value | Description                                                          |
-| ------------- | ------- | ------------- | -------------------------------------------------------------------- |
-| blockColor    | Color   | -             | Color of the slider.                                                 |
-| trackColor    | Color   | -             | Background color of the slider.                                      |
-| selectedColor | Color   | -             | Color of the slider rail that has been slid.                         |
-| showSteps     | boolean | false         | Whether to display the current step.                                 |
+| Name          | Type    | Default Value | Description                              |
+| ------------- | ------- | ------------- | ---------------------------------------- |
+| blockColor    | Color   | -             | Color of the slider.                     |
+| trackColor    | Color   | -             | Background color of the slider.          |
+| selectedColor | Color   | -             | Color of the slider rail that has been slid. |
+| showSteps     | boolean | false         | Whether to display the current step.     |
 | showTips      | boolean | false         | Whether to display a bubble to indicate the percentage when sliding. |
 
 
@@ -62,17 +63,18 @@ Among all the universal events, only **OnAppear** and **OnDisAppear** are suppor
 | onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Callback invoked when the slider slides.<br/>**value**: current progress.<br/>**mode**: dragging state. |
 
 - SliderChangeMode enums
-    | Name   | Description                         |
-    | ------ | ----------------------------------- |
-    | Begin  | The user starts to drag the slider. |
-    | Moving | The user is dragging the slider.    |
-    | End    | The user stops dragging the slider. |
+    | Name   | Value | Description                         |
+    | ------ | ----- | ----------------------------------- |
+    | Begin  | 0     | The user starts to drag the slider. |
+    | Moving | 1     | The user is dragging the slider.    |
+    | End    | 2     | The user stops dragging the slider. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SliderExample {

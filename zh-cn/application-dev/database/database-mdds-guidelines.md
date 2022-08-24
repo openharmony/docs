@@ -29,11 +29,13 @@
 以单版本分布式数据库为例，说明开发步骤。
 
 1. 导入模块。
+
    ```js
    import distributedData from '@ohos.data.distributedData';
    ```
 
 2. 根据配置构造分布式数据库管理类实例。
+
    1. 根据应用上下文创建`kvManagerConfig`对象。
    2. 创建分布式数据库管理器实例。
 
@@ -62,6 +64,7 @@
    ```
 
 3. 获取/创建分布式数据库。
+
    1. 声明需要创建的分布式数据库ID描述。
    2. 创建分布式数据库，建议关闭自动同步功能（`autoSync:false`），需要同步时主动调用`sync`接口。
 
@@ -95,6 +98,7 @@
    > 组网设备间同步数据的场景，建议在应用启动时打开分布式数据库，获取数据库的句柄。在该句柄（如示例中的`kvStore`）的生命周期内无需重复创建数据库，可直接使用句柄对数据库进行数据的插入等操作。
    
 4. 订阅分布式数据变化。
+
    以下为订阅单版本分布式数据库数据变化通知的代码示例:
    ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
@@ -103,6 +107,7 @@
    ```
 
 5. 将数据写入分布式数据库。
+
    1. 构造需要写入分布式数据库的`Key`（键）和`Value`（值）。
    2. 将键值数据写入分布式数据库。
 
@@ -125,6 +130,7 @@
    ```
 
 6. 查询分布式数据库数据。
+
    1. 构造需要从单版本分布式数据库中查询的`Key`（键）。
    2. 从单版本分布式数据库中获取数据。
 
@@ -149,6 +155,7 @@
    ```
 
 7. 同步数据到其他设备。
+
    选择同一组网环境下的设备以及同步模式，进行数据同步。
 
    > **说明**：
@@ -182,8 +189,12 @@
    });
    ```
 ## 相关实例
+
 针对分布式数据开发，有以下相关实例可供参考：
-- [`DistributedDataGobang`：分布式五子棋（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedDataGobang)
-- [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/DDMQuery)
-- [`KvStore`：分布式数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
+
+- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
+- [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
+- [`DistributedDataGobang`：分布式五子棋（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedDataGobang)
+- [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
+- [`KvStore`：分布式数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
 - [分布式数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)

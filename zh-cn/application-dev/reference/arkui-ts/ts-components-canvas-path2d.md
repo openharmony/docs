@@ -1,6 +1,7 @@
 # Path2D对象
 
 >  **说明：**
+>
 > 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -13,41 +14,43 @@ addPath(path: Object): void
 
 将另一个路径添加到当前的路径对象中。
 
-- 参数
-  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | path | Object | 是 | null | 需要添加到当前路径的路径对象 | 
+**参数：** 
 
-- 示例
-  ```ts
+| 参数 | 类型 | 必填 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- | -------- |
+| path | Object | 是 | null | 需要添加到当前路径的路径对象 | 
+
+**示例：**
+
+```ts
 // xxx.ets
 @Entry
-  @Component
-  struct AddPath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  
-    private path2Da: Path2D = new Path2D("M250 150 L150 350 L350 350 Z")
-    private path2Db: Path2D = new Path2D()
-  
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.path2Db.addPath(this.path2Da)
-            this.context.stroke(this.path2Db)
-          })
-      }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
+@Component
+struct AddPath {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
-  ![zh-cn_image_0000001238712467](figures/zh-cn_image_0000001238712467.png)
+  private path2Da: Path2D = new Path2D("M250 150 L150 350 L350 350 Z")
+  private path2Db: Path2D = new Path2D()
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.path2Db.addPath(this.path2Da)
+          this.context.stroke(this.path2Db)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001238712467](figures/zh-cn_image_0000001238712467.png)
 
 
 ## closePath
@@ -56,37 +59,38 @@ closePath(): void
 
 将路径的当前点移回到路径的起点，当前点到起点间画一条直线。如果形状已经闭合或只有一个点，则此功能不执行任何操作。
 
-- 示例
-  ```ts
+**示例：**
+  
+```ts
 // xxx.ets
 @Entry
-  @Component
-  struct ClosePath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private path2Db: Path2D = new Path2D()
-  
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.path2Db.moveTo(200, 100)
-            this.path2Db.lineTo(300, 100)
-            this.path2Db.lineTo(200, 200)
-            this.path2Db.closePath()
-            this.context.stroke(this.path2Db)
-          })
-      }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
+@Component
+struct ClosePath {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private path2Db: Path2D = new Path2D()
 
-  ![zh-cn_image_0000001193872542](figures/zh-cn_image_0000001193872542.png)
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.path2Db.moveTo(200, 100)
+          this.path2Db.lineTo(300, 100)
+          this.path2Db.lineTo(200, 200)
+          this.path2Db.closePath()
+          this.context.stroke(this.path2Db)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001193872542](figures/zh-cn_image_0000001193872542.png)
 
 
 ## moveTo
@@ -95,16 +99,18 @@ moveTo(x: number, y: number): void
 
 将路径的当前坐标点移动到目标点，移动过程中不绘制线条。
 
-- 参数
-  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | 是 | 0 | 目标点X轴坐标 | 
-  | y | number | 是 | 0 | 目标点Y轴坐标 | 
+**参数：**
 
-- 示例
+| 参数 | 类型 | 必填 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- | -------- |
+| x | number | 是 | 0 | 目标点X轴坐标 | 
+| y | number | 是 | 0 | 目标点Y轴坐标 | 
+
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct MoveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -140,16 +146,18 @@ lineTo(x: number, y: number): void
 
 从当前点绘制一条直线到目标点。
 
-- 参数
-  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | x | number | 是 | 0 | 目标点X轴坐标 | 
-  | y | number | 是 | 0 | 目标点Y轴坐标 | 
+**参数：**
 
-- 示例
+| 参数 | 类型 | 必填 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- | -------- |
+| x | number | 是 | 0 | 目标点X轴坐标 | 
+| y | number | 是 | 0 | 目标点Y轴坐标 | 
+
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct LineTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -186,20 +194,22 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 创建三次贝赛尔曲线的路径。
 
-- 参数
-  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | cp1x | number | 是 | 0 | 第一个贝塞尔参数的x坐标值。 | 
-  | cp1y | number | 是 | 0 | 第一个贝塞尔参数的y坐标值。 | 
-  | cp2x | number | 是 | 0 | 第二个贝塞尔参数的x坐标值。 | 
-  | cp2y | number | 是 | 0 | 第二个贝塞尔参数的y坐标值。 | 
-  | x | number | 是 | 0 | 路径结束时的x坐标值。 | 
-  | y | number | 是 | 0 | 路径结束时的y坐标值。 | 
+**参数：**
 
-- 示例
+| 参数 | 类型 | 必填 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- | -------- |
+| cp1x | number | 是 | 0 | 第一个贝塞尔参数的x坐标值。 | 
+| cp1y | number | 是 | 0 | 第一个贝塞尔参数的y坐标值。 | 
+| cp2x | number | 是 | 0 | 第二个贝塞尔参数的x坐标值。 | 
+| cp2y | number | 是 | 0 | 第二个贝塞尔参数的y坐标值。 | 
+| x | number | 是 | 0 | 路径结束时的x坐标值。 | 
+| y | number | 是 | 0 | 路径结束时的y坐标值。 | 
+
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct BezierCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -232,18 +242,20 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 
 创建二次贝赛尔曲线的路径。
 
-- 参数
-  | 参数 | 类型 | 必填 | 默认值 | 描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | cpx | number | 是 | 0 | 贝塞尔参数的x坐标值。 | 
-  | cpy | number | 是 | 0 | 贝塞尔参数的y坐标值。 | 
-  | x | number | 是 | 0 | 路径结束时的x坐标值。 | 
-  | y | number | 是 | 0 | 路径结束时的y坐标值。 | 
+**参数：**
 
-- 示例
+| 参数 | 类型 | 必填 | 默认值 | 描述 | 
+| -------- | -------- | -------- | -------- | -------- |
+| cpx | number | 是 | 0 | 贝塞尔参数的x坐标值。 | 
+| cpy | number | 是 | 0 | 贝塞尔参数的y坐标值。 | 
+| x | number | 是 | 0 | 路径结束时的x坐标值。 | 
+| y | number | 是 | 0 | 路径结束时的y坐标值。 | 
+
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct QuadraticCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -277,7 +289,8 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 绘制弧线路径。
 
-- 参数
+**参数：**
+
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
   | -------- | -------- | -------- | -------- | -------- |
   | x | number | 是 | 0 | 弧线圆心的x坐标值。 | 
@@ -287,10 +300,11 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   | endAngle | number | 是 | 0 | 弧线的终止弧度。 | 
   | anticlockwise | boolean | 否 | false | 是否逆时针绘制圆弧。 | 
 
-- 示例
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Arc {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -322,7 +336,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 依据圆弧经过的点和圆弧半径创建圆弧路径。
 
-- 参数
+**参数：**
+
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
   | -------- | -------- | -------- | -------- | -------- |
   | x1 | number | 是 | 0 | 圆弧经过的第一个点的x坐标值。 | 
@@ -331,10 +346,11 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   | y2 | number | 是 | 0 | 圆弧经过的第二个点的y坐标值。 | 
   | radius | number | 是 | 0 | 圆弧的圆半径值。 | 
 
-- 示例
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct ArcTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -367,7 +383,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 在规定的矩形区域绘制一个椭圆。
 
-- 参数
+**参数：**
+
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
   | -------- | -------- | -------- | -------- | -------- |
   | x | number | 是 | 0 | 椭圆圆心的x轴坐标。 | 
@@ -379,10 +396,11 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   | endAngle | number | 是 | 0 | 椭圆绘制的结束点角度，以弧度表示。 | 
   | anticlockwise | number | 否 | 0 | 是否以逆时针方向绘制椭圆，0为顺时针，1为逆时针。(可选参数，默认为0) | 
 
-- 示例
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -415,7 +433,8 @@ rect(x: number, y: number, width: number, height: number): void
 
 创建矩形路径。
 
-- 参数
+**参数：**
+
   | 参数 | 类型 | 必填 | 默认值 | 描述 | 
   | -------- | -------- | -------- | -------- | -------- |
   | x | number | 是 | 0 | 指定矩形的左上角x坐标值。 | 
@@ -423,10 +442,11 @@ rect(x: number, y: number, width: number, height: number): void
   | width | number | 是 | 0 | 指定矩形的宽度。 | 
   | height | number | 是 | 0 | 指定矩形的高度。 | 
 
-- 示例
+**示例：**
+  
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)

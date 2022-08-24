@@ -77,15 +77,15 @@ caretPosition(value: number): void
 @Entry
 @Component
 struct SearchExample {
-  @State changevalue: string = ''
-  @State submitvalue: string = ''
+  @State changeValue: string = ''
+  @State submitValue: string = ''
   controller: SearchController = new SearchController()
 
   build() {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text(this.submitvalue)
-      Text(this.changevalue)
-      Search({value: this.changevalue, placeholder: 'Type to search', controller: this.controller})
+      Text(this.submitValue)
+      Text(this.changeValue)
+      Search({value: this.changeValue, placeholder: 'Type to search', controller: this.controller})
         .searchButton('Search')
         .width(400)
         .height(35)
@@ -93,10 +93,10 @@ struct SearchExample {
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 26, weight: 10, family: 'serif', style: FontStyle.Normal })
         .onSubmit((value: string) => {
-          this.submitvalue = value
+          this.submitValue = value
         })
         .onChange((value: string) => {
-          this.changevalue += value
+          this.changeValue = value
         })
         .margin({ top: 30, left:10, right:10 })
     }

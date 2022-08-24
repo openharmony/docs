@@ -14,17 +14,17 @@ A component can access only one **LocalStorage** instance, and a **LocalStorage*
 
 ## @LocalStorageLink Decorator
 
-Two-way data binding can be established between a component and the **LocalStorage** through the component's state variable decorated by **@LocalStorageLink(*key*)**. Wherein, **key** is the attribute key value in the **LocalStorage**. When a component that contains a **@LocalStorageLink** decorated state variable is created, the state variable is initialized with the initial value of the **LocalStorage**. If no initial value is assigned for the **LocalStorage**, the state variable will use the value defined by **@LocalStorageLink**. Changes made to this variable in the component will be first synchronized to the **LocalStorage**, and then to other components of the bound ability.
+Two-way data binding can be established between a component and the **LocalStorage** through the component's state variable decorated by **@LocalStorageLink(*key*)**. Wherein, **key** is the attribute key value in the **LocalStorage**. When a component that contains a **@LocalStorageLink** decorated state variable is created, the state variable is initialized with the value predefined in the **LocalStorage**. If no initial value is assigned in the **LocalStorage**, the state variable will use the value defined by **@LocalStorageLink**. Changes made to this variable in the component will be first synchronized to the **LocalStorage**, and then to other components of the bound ability.
 
 ## @LocalStorageProp Decorator
 
-One-way data binding can be established between a component and the **LocalStorage** through the component's state variable decorated by **@LocalStorageLink(*key*)**. Wherein, **key** is the attribute key value in the **LocalStorage**. When a component that contains a **@LocalStorageProp** decorated state variable is created, the state variable is initialized with the value predefined in the **LocalStorage**. Changes made to the value in the **LocalStorage** will cause all UI components of the bound ability to update the state.
+One-way data binding can be established between a component and the **LocalStorage** through the component's state variable decorated by **@LocalStorageProp(*key*)**. Wherein, **key** is the attribute key value in the **LocalStorage**. When a component that contains a **@LocalStorageProp** decorated state variable is created, the state variable is initialized with the value predefined in the **LocalStorage**. Changes made to the value in the **LocalStorage** will cause all UI components of the bound ability to update the state.
 
 > **NOTE**
 >
->  If a **LocalStorage** instance has initial values assigned when being created, these values will be used for the **@LocalStorageLink** and **@LocalStorageProp** decorated state variables in the component. Otherwise, the initial values assigned for **@LocalStorageLink** and **@LocalStorageProp** will be used instead.
+> If a **LocalStorage** instance has initial values assigned when being created, these values will be used for the **@LocalStorageLink** and **@LocalStorageProp** decorated state variables in the component. Otherwise, the initial values assigned for **@LocalStorageLink** and **@LocalStorageProp** will be used instead.
 
-## LocalStorage APIs
+## LocalStorage
 
 ### constructor  
 
@@ -34,9 +34,25 @@ Creates and initializes a **LocalStorage** instance.
 
 **Parameters**
 
-| Name                | Type  | Mandatory| Default Value| Description                                                    |
-| ---------------------- | ------ | :--: | ------ | ------------------------------------------------------------ |
-| initializingProperties | Object |  No | -      | Object attributes and their values returned by **object.keys(obj)**.|
+| Name                   | Type    |  Mandatory | Default Value | Description                                    |
+| ---------------------- | ------ | :--: | ---- | ---------------------------------------- |
+| initializingProperties | Object |  No  | -    | Object attributes and their values returned by **object.keys(obj)**.|
+
+
+
+### GetShared
+
+static GetShared(): LocalStorage
+
+Obtains the current shared **LocalStorage** object.
+
+This API can be used only in the stage model.
+
+**Return value**
+
+| Type                           | Description               |
+| ----------------------------- | ----------------- |
+| [LocalStorage](#localstorage) | **LocalStorage** object.|
 
 
 
@@ -48,14 +64,14 @@ Checks whether the **LocalStorage** contains the specified attribute value.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Default Value| Description      |
-| -------- | ------ | :--: | ------ | -------------- |
-| propName | string |  Yes | -      | Attribute value.|
+| Name     | Type    |  Mandatory | Default Value | Description   |
+| -------- | ------ | :--: | ---- | ------- |
+| propName | string |  Yes  | -    | Attribute value.|
 
 **Return value**
 
-| Type   | Description                      |
-| ------- | -------------------------- |
+| Type     | Description           |
+| ------- | ------------- |
 | boolean | Whether the attribute value is contained.|
 
 
@@ -68,14 +84,14 @@ Obtains the value corresponding to the given key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Default Value| Description           |
-| -------- | ------ | :--: | ------ | ------------------- |
-| propName | string |  Yes | -      | Key of the value to obtain.|
+| Name     | Type    |  Mandatory | Default Value | Description       |
+| -------- | ------ | :--: | ---- | ----------- |
+| propName | string |  Yes  | -    | Key of the value to obtain.|
 
 **Return value**
 
-| Type          | Description                                                   |
-| -------------- | ------------------------------------------------------- |
+| Type            | Description                                      |
+| -------------- | ---------------------------------------- |
 | T \| undefined | Returns the value if it is found; returns **undefined** otherwise.|
 
 
@@ -88,15 +104,15 @@ Sets the value for the given key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Default Value| Description         |
-| -------- | ------ | :--: | ------ | ----------------- |
-| propName | string |  Yes | -      | Key of the value to set.  |
-| newValue | T      |  Yes | -      | Value to set.|
+| Name     | Type    |  Mandatory | Default Value | Description       |
+| -------- | ------ | :--: | ---- | ----------- |
+| propName | string |  Yes  | -    | Key of the value to set.  |
+| newValue | T      |  Yes  | -    | Value to set.|
 
 **Return value**
 
-| Type   | Description                                                 |
-| ------- | ----------------------------------------------------- |
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
 | boolean | Returns **true** if the value is successfully set for the key; returns **false** otherwise.|
 
 
@@ -109,16 +125,16 @@ Creates or updates the value for the given key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Default Value| Description               |
-| -------- | ------ | :--: | ------ | ----------------------- |
-| propName | string |  Yes | -      | Key of the value to create or update.|
-| newValue | T      |  Yes | -      | Value to create or update.|
+| Name     | Type    |  Mandatory | Default Value | Description          |
+| -------- | ------ | :--: | ---- | -------------- |
+| propName | string |  Yes  | -    | Key of the value to create or update. |
+| newValue | T      |  Yes  | -    | Value to create or update.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
-| boolean | Updates the value of the attribute and returns **true** if an attribute that has the same name as the specified key exists; creates an attribute with the specified value as its default value and returns **false** otherwise. **true** cannot be returned for **undefined** or **null**.|
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Updates the value of the attribute and returns **true** if an attribute that has the same name as the specified key exists; creates an attribute with the specified value of the T type as its default value and returns **false** otherwise. **true** cannot be returned for **undefined** or **null**.|
 
 
 
@@ -130,14 +146,14 @@ Establishes two-way data binding between an attribute and this **LocalStorage** 
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Default Value| Description              |
-| -------- | ------ | :--: | ------ | ---------------------- |
-| propName | string |  Yes | -      | Key of the target attribute.|
+| Name     | Type    |  Mandatory | Default Value | Description       |
+| -------- | ------ | :--: | ---- | ----------- |
+| propName | string |  Yes  | -    | Key of the target attribute.|
 
 **Return value**
 
-| Type| Description                                                        |
-| ---- | ------------------------------------------------------------ |
+| Type  | Description                                      |
+| ---- | ---------------------------------------- |
 | T    | Returns the two-way data binding if an attribute that has the same name as the specified key exists; returns **undefined** otherwise.|
 
 
@@ -146,20 +162,20 @@ Establishes two-way data binding between an attribute and this **LocalStorage** 
 
 setAndLink\<T>(propName: string, defaultValue: T): T
 
-Establishes two-way data binding between an attribute and this **LocalStorage** instance.
+Establishes two-way data binding between an attribute and this **LocalStorage** instance. This API works in a way similar to the **link** API.
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Default Value| Description            |
-| ------------ | ------ | :--: | ------ | -------------------- |
-| propName     | string |  Yes | -      | Key of the target attribute. |
-| defaultValue | T      |  Yes | -      | Default value of the target attribute to set.|
+| Name         | Type    |  Mandatory | Default Value | Description       |
+| ------------ | ------ | :--: | ---- | ----------- |
+| propName     | string |  Yes  | -    | Key of the target attribute.|
+| defaultValue | T      |  Yes  | -    | Default value to set. |
 
 **Return value**
 
-| Type                                 | Description                                                        |
-| ------------------------------------- | ------------------------------------------------------------ |
-| [@Link](ts-component-states-link.md)| Returns the two-way data binding if an attribute that has the same name as the specified key exists; creates an attribute with the specified value as its default value and returns the attribute otherwise.|
+| Type                                   | Description                                      |
+| ------------------------------------- | ---------------------------------------- |
+| [@Link](ts-component-states-link.md ) | Returns the value corresponding to the specified key if the key is stored in the **LocalStorage**; creates and returns a **Link** instance with the specified value as its default value otherwise|
 
 
 
@@ -171,15 +187,15 @@ Establishes one-way data binding with an attribute to update its status.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Default Value| Description               |
-| -------- | ------ | :--: | ------ | ----------------------- |
-| propName | string |  Yes | -      | Key of the target attribute.|
+| Name     | Type    |  Mandatory | Default Value | Description         |
+| -------- | ------ | :--: | ---- | ------------- |
+| propName | string |  Yes  | -    | Key of the target attribute.|
 
 **Return value**
 
-| Type                                | Description                                                        |
-| ------------------------------------ | ------------------------------------------------------------ |
-| [@Prop](ts-component-states-prop.md) | Returns the one-way data binding if an attribute that has the same name as the specified key exists; returns **undefined** otherwise. Note that the variables returned are immutable variables, which are applicable to variable and immutable state variables.|
+| Type                                  | Description                                      |
+| ------------------------------------ | ---------------------------------------- |
+| [@Prop](ts-component-states-prop.md) | Returns one-way binding to an attribute with a given key if the attribute exists; returns **undefined** otherwise. This means that attribute changes made through the **LocalStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will be synchronized to the **LocalStorage**. Note that the variables returned are immutable variables, which are applicable to mutable and immutable state variables. |
 
 
 
@@ -187,20 +203,20 @@ Establishes one-way data binding with an attribute to update its status.
 
 setAndProp\<T>(propName: string, defaultValue: T): T
 
-Works in a way similar to the **Prop** API and sets up one-way data binding with the **localStorage**.
+Sets up one-way data binding with the **localStorage**. This API works in a way similar to the **Prop** API.
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Default Value| Description                   |
-| ------------ | ------ | :--: | ------ | --------------------------- |
-| propName     | string |  Yes | -      | Key value in the key-value pair to be saved.|
-| defaultValue | T      |  Yes | -      | Default value created.             |
+| Name         | Type    |  Mandatory | Default Value | Description           |
+| ------------ | ------ | :--: | ---- | --------------- |
+| propName     | string |  Yes  | -    | Key value in the key-value pair to be saved.|
+| defaultValue | T      |  Yes  | -    | Default value to set.        |
 
 **Return value**
 
-| Type                                | Description                                                        |
-| ------------------------------------ | ------------------------------------------------------------ |
-| [@Prop](ts-component-states-prop.md) | Returns the value corresponding to the key if the current key is stored in the **LocalStorage**; creates and returns a **Prop** instance corresponding to the default value if the key has not been created.|
+| Type                                  | Description                                      |
+| ------------------------------------ | ---------------------------------------- |
+| [@Prop](ts-component-states-prop.md) | Returns the value corresponding to the specified key if the key is stored in the **LocalStorage**; creates and returns a **Prop** instance with the specified value as its default value otherwise.|
 
 
 
@@ -212,15 +228,15 @@ Deletes the key-value pair specified by key.
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Default Value| Description             |
-| -------- | ------ | :--: | ------ | --------------------- |
-| propName | string |  Yes | -      | Key value of the attribute to be deleted.|
+| Name     | Type    |  Mandatory | Default Value | Description        |
+| -------- | ------ | :--: | ---- | ------------ |
+| propName | string |  Yes  | -    | Key value of the attribute to be deleted.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
-| boolean | Deletes the key-value pair for the specified key. Returns **true** if the key-value pair exists and is successfully deleted; returns **false** otherwise.|
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the key-value pair exists and is successfully deleted; returns **false** otherwise.|
 
 
 
@@ -232,8 +248,8 @@ Searches for all keys.
 
 **Return value**
 
-| Type         | Description                        |
-| ------------- | ---------------------------- |
+| Type            | Description            |
+| -------------- | -------------- |
 | array\<string> | Returns an array of strings containing all keys.|
 
 
@@ -246,8 +262,8 @@ Number of existing key-value pairs.
 
 **Return value**
 
-| Type  | Description              |
-| ------ | ------------------ |
+| Type    | Description       |
+| ------ | --------- |
 | number | Number of key-value pairs.|
 
 
@@ -260,14 +276,14 @@ Deletes all attributes.
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
-| boolean | Deletes all attributes. If any of the attributes is being referenced by a state variable, **false** is returned.|
+| Type     | Description                               |
+| ------- | --------------------------------- |
+| boolean | Returns **true** if all attributes are deleted; returns **false** if any of the attributes is being referenced by a state variable.|
 
 ### Example 1 (Creating a LocalStorage in an Ability)
 
-```javascript
-import Ability from '@ohos.appLication.Ability'
+```ts
+import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {    
   storage : LocalStorage    
   onCreate(want) {    
@@ -296,7 +312,7 @@ export default class MainAbility extends Ability {
 
 The @Component decorated component obtains data.
 
-```
+```ts
 let storage = LocalStorage.GetShared()
 @Entry(storage)
 @Component
@@ -318,28 +334,28 @@ struct LocalStorageComponent {
 
 ### Example 2 (Defining LocalStorage on the Entry Page)
 
-```
+```ts
 let storage = new LocalStorage({"PropA":47});
 @Entry(storage)
 @Component 
 struct ComA {    
-  @LocalStorageLink("PropA") storLink : number = 1;    
+  @LocalStorageLink("PropA") storLink: number = 1;    
   build() {    
 	Column() {        
-	  Text(`Parent from LocalStorage $(this.storLink)`)            				                 
+	  Text(`Parent from LocalStorage ${ this.storLink }`)            				     
         .onClick(()=>this.storLink+=1)            
-	    Child()    
- 	  }    
+	  Child()    
+ 	}    
   }
 }
 
 
 @Component
 struct Child{    
-  @LocalStorageLink("PropA") storLink : number = 1;    
+  @LocalStorageLink("PropA") storLink: number = 1;    
   build() {    
-	Text(`Parent from LocalStorage $(this.storLink)`)        
-	  .onClick(()=>this.storLink1+=1)    
+	Text(`Parent from LocalStorage ${ this.storLink }`)        
+	  .onClick(()=>this.storLink+=1)    
   }
 }
 ```
