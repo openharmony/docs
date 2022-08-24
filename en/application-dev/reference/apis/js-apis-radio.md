@@ -1877,7 +1877,7 @@ This is a system API.
 
 | Name             | Type                                                        | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networkType)                                  | Network type of the cell.                                    |
+| networkType       | [NetworkType](#networktype)                                  | Network type of the cell.                                    |
 | isCamped          | boolean                                                      | Status of the cell.                                        |
 | timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
 | signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
