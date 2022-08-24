@@ -299,7 +299,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
   ```
 
 
-### on('complete' | 'fail')
+### on('complete' | 'fail')<sup>9+</sup>
 
  on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
@@ -320,7 +320,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| &lt;Array&lt;TaskState&gt;&gt; | array | 是 | 上传任务返回结果 |
+| &lt;Array&lt;[TaskState](#taskstatesup9sup)&gt;&gt; | array | 是 | 上传任务返回结果 |
 
 **示例：**
   
@@ -407,11 +407,11 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   );
   ```
 
-### off('complete' | 'fail')
+### off('complete' | 'fail')<sup>9+</sup>
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-开启上传任务监听，异步方法，使用callback形式返回结果。
+关闭上传任务监听，异步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -428,7 +428,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| &lt;Array&lt;TaskState&gt;&gt; | array | 是 | 上传任务返回结果 |
+| &lt;Array&lt;[TaskState](#taskstatesup9sup)&gt;&gt; | array | 是 | 上传任务返回结果 |
 
 **示例：**
   
@@ -527,7 +527,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
-## TaskState
+## TaskState<sup>9+</sup>
 
 **需要权限**：ohos.permission.INTERNET
 
