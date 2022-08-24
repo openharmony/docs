@@ -314,4 +314,4 @@ export default {
 
 针对list开发，有以下相关实例可供参考：
 
-- [`Jslist`：商品列表（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Jslist)
+- [`Jslist`：商品列表（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Jslist)
