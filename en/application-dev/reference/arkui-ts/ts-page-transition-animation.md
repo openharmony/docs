@@ -1,13 +1,13 @@
 # Page Transition
 
+Customize the page transition animations by configuring the page entrance and exit components in the global **pageTransition** method.
 
 > **NOTE**
 >
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-Customize the page transition animations by configuring the page entrance and exit components in the global **pageTransition** method.
-
+## APIs
 
 | Name | Parameter | Description |
 | -------- | -------- | -------- |
@@ -20,15 +20,15 @@ Customize the page transition animations by configuring the page entrance and ex
   | -------- | -------- | -------- | -------- | -------- |
   | type | RouteType | - | No | If this parameter is not set, the reverse playback effect as pop switches to push is used. |
   | duration | number | 1000 | No | Animation duration, in ms. |
-  | curve | Curve \| Curves | Linear | No | Animation curve. For details about the valid values, see [Curve](ts-animatorproperty.md). |
+  | curve | Curve \| Curves | Linear | No | Animation curve. For details about the valid values, see **Curve enums**. |
   | delay | number | 0 | No | Animation delay, in ms. Delayed animation is disabled by default. |
 
 
 - RouteType enums
   | Name | Description |
   | -------- | -------- |
-  | Pop | Jumps to the specified page. |
-  | Push | Jumps to the next page. |
+  | Pop | When page A jumps to page B, page A is Exit+Push, and page B is Enter+Push. |
+  | Push | When page B returns to page A, page A is Enter+Pop, and page B is Exit+Pop. |
 
 
 ## Attributes
@@ -37,7 +37,7 @@ The **PageTransitionEnter** and **PageTransitionExit** components support the fo
 
 | Name | Type | Default Value | Mandatory | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| slide | SlideEffect | SlideEffect.Right | No | Slide effect during page transition. For details, see **SlideEffect enums**. |
+| slide | SlideEffect | SlideEffect.Right | No | Slide effect during page transition. For details about the valid values, see **SlideEffect enums**. |
 | translate | {<br/>x? : number,<br/>y? : number,<br/>z? : number<br/>} | - | No | Translation effect during page transition, which is the value of the start point of entrance and the end point of exit. When this parameter is set together with **slide**, the latter takes effect by default. |
 | scale | {<br/>x? : number,<br/>y? : number,<br/>z? : number,<br/>centerX? : number,<br/>centerY? : number<br/>} | - | No | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit. |
 | opacity | number | 1 | No | Opacity, which is the opacity value of the start point of entrance or the end point of exit. |
@@ -57,8 +57,8 @@ The PageTransitionEnter and PageTransitionExit components support the following 
 
 | Event | Description |
 | -------- | -------- |
-| onEnter(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1. |
-| onExit(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1. |
+| onEnter(type: RouteType, progress: number) =&gt; void | Callback invoked when page entrance occurs. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1. |
+| onExit(type: RouteType, progress: number) =&gt; void | Callback invoked when page exit occurs. The input parameter is the normalized progress of the current exit animation. The value range is 0–1. |
 
 
 ## Example
@@ -136,7 +136,6 @@ struct AExample {
 
 Customization method 2: The entrance animation of the current page is configured to slide in from the left, and the exit animation is configured to zoom out with opacity change.
 
-
 ```
 // index.ets 
 @Entry
@@ -167,7 +166,6 @@ struct PageTransitionExample {
   }
 }
 ```
-
 
 ```
 // page1.ets

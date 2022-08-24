@@ -35,6 +35,3 @@ screenshot.save(ScreenshotOptions).then((image) => {
     console.log('screenshot.save failed, error : ' + JSON.stringify(err));
 })
 ```
-## 相关实例
-针对屏幕截图开发，有以下相关实例可供参考：
-- [`Screenshot`：屏幕截图（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Basic/Screenshot)
