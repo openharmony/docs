@@ -70,7 +70,6 @@ Image(src: string | PixelMap | Resource)
 | Original | 按照原图进行渲染，包括颜色。        |
 | Template | 将图片渲染为模板图片，忽略图片的颜色信息。 |
 
-
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -152,6 +151,72 @@ struct ImageExample1 {
 ```
 
 ![zh-cn_image_0000001250492613](figures/zh-cn_image_0000001250492613.gif)
+
+
+
+### 网络图片
+
+加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用SDK中提供的[HTTP](../../connectivity/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../media/image.md)。代码如下。
+
+```tsx
+// @ts-nocheck
+import http from '@ohos.net.http';
+import ResponseCode from '@ohos.net.http';
+import image from '@ohos.multimedia.image'
+
+
+@Entry 
+@Component 
+struct Index {
+    
+  // 先创建一个PixelMap状态变量用于接收网络图片
+  @State image: PixelMap = undefined
+
+  build() {
+    Column({space: 10}) {
+      Button("获取网络图片")
+        .onClick(() => {
+          this.httpRequest();
+        })
+      Image(this.image).height(100).width(100)
+    }
+    .width('100%')
+    .height('100%')
+    .padding(10)
+  }
+
+  // 网络图片请求方法
+  private httpRequest() {
+    let httpRequest = http.createHttp();
+	
+    httpRequest.request(
+      "https://www.example.com/xxx.png",   // 请填写一个具体的网络图片地址
+      (error, data) => {
+        if(error) {
+          console.log("error code: " + error.code + ", msg: " + error.message)
+        } else {
+          let code = data.responseCode
+          if(ResponseCode.ResponseCode.OK == code) {
+            let imageSource = image.createImageSource(data.result)
+            let options = {alphaType: 0,                     // 透明度
+                           editable: false,                  // 是否可编辑
+                           pixelFormat: 3,                   // 像素格式
+                           scaleMode: 1,                     // 缩略值
+                           size: {height: 100, width: 100}}  // 创建图片大小
+            imageSource.createPixelMap(options).then((pixelMap) => {
+              this.image = pixelMap
+            })
+          } else {
+            console.log("response code: " + code);
+          }
+        }
+      }
+    )
+  }
+}
+```
+
+**说明**：网络图片加载的请求方式、超时、额外请求参数等配置可以参考HTTP工具包中关于[`request()`](../../reference/apis/js-apis-http.md)请求方法的细节。
 
 ### 设置属性
 
