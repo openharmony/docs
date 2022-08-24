@@ -27,10 +27,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
-| 名称 | 参数类型  | 可读 | 可写 | 说明                   |
-| ---- | --------- | ---- | ---- | ---------------------- |
-| type | "classic" | 是   | 是   | 按照指定方式执行脚本。 |
-| name | string    | 是   | 是   | Worker的名称。         |
+| 名称   | 参数类型  | 可读 | 可写 | 说明                   |
+| ------ | --------- | ---- | ---- | ---------------------- |
+| type   | "classic" | 是   | 是   | 按照指定方式执行脚本。 |
+| name   | string    | 是   | 是   | Worker的名称。         |
+| shared | boolean   | 是   | 是   | Worker是否可以被分享。 |
 
 
 ## Worker
@@ -438,7 +439,7 @@ Worker线程用于与宿主线程通信的类，通过postMessage接口发送消
 
 ### postMessage
 
-postMessage(message: Object, options?: PostMessageOptions): void
+postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Worker向宿主线程发送消息。
 
