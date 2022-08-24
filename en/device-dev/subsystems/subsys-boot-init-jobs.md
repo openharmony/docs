@@ -1,6 +1,6 @@
 # Job Management
 ## Overview
-### Kconfig Visual Configuration
+### Overview
 A job is a set of commands in the **.cfg** file of the init module. A maximum of 4096 jobs can be added. Jobs can be configured in the [.cfg file](subsys-boot-init-cfg.md). Generally, jobs are executed during initialization to serve the normal startup of services or the initialization of specific basic functions.
 
 ### Basic Concepts
@@ -99,7 +99,7 @@ Job management is a part of the init startup process. It is a process-based func
 |static void SendTriggerEvent(int type, const char *content, uint32_t contentLen)|Performs functions such as system control and starting or stopping of services based on system parameters.| Standard system|
 |static void DoTriggerCmd(const struct CmdArgs *ctx)|Executes the <strong>trigger</strong> command.| Standard system|
 |void DoTriggerExec(const char *triggerName)| Finds a command group based on the job name and pushes the commands in the command group to the execution queue.| Standard system|
-|void DoJob(const char *jobName)|Matches a job based on the job name and invokes <strong>DoCmdByIndex</strong><br>to execute the commands in the job.| Small system|
+|void DoJob(const char *jobName)|Matches a job based on the job name and invokes <strong>DoCmdByIndex</strong> to execute the commands in the job.| Small system|
 |void DoCmdByIndex(int index, const char *cmdContent)|Combines parameters and commands.| Small and standard systems|
 
 ### Development Example

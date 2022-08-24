@@ -59,7 +59,7 @@ bootchart is available only for the standard system, and begetctl is available f
 
 ### Available APIs
 
-  **Table 1** Description of APIs<a name="table14737791479"></a>
+  **Table 1** Description of plug-in management APIs<a name="table14737791479"></a>
 | API| Description|
 | ----------  |  ---------- |
 | void PluginExecCmdByName(const char *name, const char *cmdContent) | Starts a plug-in by name.|
@@ -87,7 +87,7 @@ bootchart is available only for the standard system, and begetctl is available f
       
       MODULE_CONSTRUCTOR(void)
       {
-          // Depends on parameter service
+          // Depending on parameter service
           InitAddPostPersistParamLoadHook(0, bootchartEarlyHook);
       }
       ```     
