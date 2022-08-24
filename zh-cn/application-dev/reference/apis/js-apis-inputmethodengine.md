@@ -148,7 +148,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 on(type: 'inputStop', callback: () => void): void
 
-订阅停止输入法应用事件，使用callback回调返回输入法操作相关实例。
+订阅停止输入法应用事件，使用callback回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -171,7 +171,7 @@ InputMethodEngine.getInputMethodEngine().on('inputStop', () => {
 
 off(type: 'inputStop', callback: () => void): void
 
-取消订阅停止输入法应用事件。使用callback回调返回输入法操作相关实例。
+取消订阅停止输入法应用事件。使用callback回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -180,13 +180,13 @@ off(type: 'inputStop', callback: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                        |
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘inputStop’时表示订阅输入法绑定。 |
-| callback | void   | 是   | 回调返回输入法操作相关实例。                                |
+| callback | void   | 是   | 回调函数。                                                  |
 
 **示例：**
 
   ```js
 InputMethodEngine.getInputMethodEngine().off('inputStop', () => {
-    console.log("delete inputStop notification.");
+    console.log("inputMethodEngine delete inputStop notification.");
 });
   ```
 
@@ -200,10 +200,10 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| wid    | number | 是   | 调用方window id。                                            |
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
+| callback | number | 是   | 调用方window id。                                            |
 
 **示例：**
 
@@ -232,7 +232,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
   ```js
 InputMethodEngine.getInputMethodEngine().off('setCallingWindow', () => {
-    console.log("delete setCallingWindow notification.");
+    console.log("inputMethodEngine delete setCallingWindow notification.");
 });
   ```
 
