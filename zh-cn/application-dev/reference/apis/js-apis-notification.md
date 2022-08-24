@@ -1422,7 +1422,7 @@ Notification.getSlotNumByBundle(bundle).then((data) => {
 
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback\<void\>): void
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 删除指定通知（Callback形式）。
 
@@ -1438,6 +1438,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCa
 | --------------- | ---- | --- | ----------------------------------- | ---- | -------------------- |
 | bundle          | 是   | 否  | [BundleOption](#bundleoption)       | 是   | 指定包信息。           |
 | notificationKey | 是   | 否  | [NotificationKey](#notificationkey) | 是   | 通知键值。             |
+| reason | 是   | 否  | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
 | callback        | 是   | 否  | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
 
 **示例：**
@@ -1453,14 +1454,15 @@ var notificationKey = {
     id: 0,
     label: "label",
 }
-Notification.remove(bundle, notificationKey, removeCallback);
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
 
 
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey): Promise\<void\>
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
 删除指定通知（Promise形式）。
 
@@ -1476,6 +1478,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey): Promise\<void\>
 | --------------- | ---- | --- | --------------- | ---- | ---------- |
 | bundle          | 是   | 否  | [BundleOption](#bundleoption)    | 是   | 指定包信息。 |
 | notificationKey | 是   | 否  | [NotificationKey](#notificationkey) | 是   | 通知键值。   |
+| reason | 是   | 否  | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
 
 **示例：**
 
@@ -1487,7 +1490,8 @@ var notificationKey = {
     id: 0,
     label: "label",
 }
-Notification.remove(bundle, notificationKey).then(() => {
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
 ```
@@ -1496,7 +1500,7 @@ Notification.remove(bundle, notificationKey).then(() => {
 
 ## Notification.remove
 
-remove(hashCode: string, callback: AsyncCallback\<void\>): void
+remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 删除指定通知（Callback形式）。
 
@@ -1511,6 +1515,7 @@ remove(hashCode: string, callback: AsyncCallback\<void\>): void
 | 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
 | -------- | ---- | --- | --------------------- | ---- | -------------------- |
 | hashCode | 是   | 否  | string                | 是   | 通知唯一ID。           |
+| reason | 是   | 否  | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
 | callback | 是   | 否  | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
 **示例：**
@@ -1521,15 +1526,15 @@ var hashCode = 'hashCode'
 function removeCallback(err) {
 	console.info("==========================>removeCallback=======================>");
 }
-
-Notification.remove(hashCode, removeCallback);
+var reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
+Notification.remove(hashCode, reason, removeCallback);
 ```
 
 
 
 ## Notification.remove
 
-remove(hashCode: string): Promise\<void\>
+remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 删除指定通知（Promise形式）。
 
@@ -1544,13 +1549,14 @@ remove(hashCode: string): Promise\<void\>
 | 名称     | 可读 | 可写 | 类型       | 必填 | 描述       |
 | -------- | ---- | --- | ---------- | ---- | ---------- |
 | hashCode | 是   | 否  | string | 是   | 通知唯一ID。 |
+| reason | 是   | 否  | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
 
 **示例：**
 
 ```js
 var hashCode = 'hashCode'
-
-Notification.remove(hashCode).then(() => {
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(hashCode, reason).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
 ```
@@ -3855,3 +3861,14 @@ Notification.subscribe(subscriber, subscribeCallback);
 | TYPE_NORMAL          | 0   | 一般通知。            |
 | TYPE_CONTINUOUS      | 1   | 连续通知。            |
 | TYPE_TIMER           | 2   | 计划通知。            |
+
+## RemoveReason<sup>9+</sup>
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+| 名称                 | 值  | 描述                  |
+| -------------------- | --- | -------------------- |
+| CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
+| CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
