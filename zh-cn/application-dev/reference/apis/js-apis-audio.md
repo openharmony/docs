@@ -762,6 +762,56 @@ getVolumeGroupInfos();
 
 管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](#audiogetaudiomanager)创建实例。
 
+### getRoutingManager<sup>9+</sup>
+
+getRoutingManager(callback: AsyncCallback&lt;AudioRoutingManager&gt;): void
+
+获取AudioRoutingManager对象，使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                                                              | 必填 | 说明                               |
+| ---------- | ---------------------------------------------------------------- | ---- | --------------------------------- |
+| callback   | AsyncCallback&lt;[AudioRoutingManager](#audioroutingmanager9)&gt; | 是   | 回调，返回AudioRoutingManager对象。 |
+
+**示例：**
+```js
+await audioManager.getRoutingManager((err,callback) => {
+  if (err) {
+    console.error(`Result ERROR: ${err.message}`);
+  }
+  console.info('getRoutingManager Callback SUCCESS.');
+  var audioRoutingManager;
+  audioRoutingManager = callback;
+});
+```
+
+### getRoutingManager<sup>9+</sup>
+
+getRoutingManager(): Promise&lt;AudioRoutingManager&gt;
+
+获取AudioRoutingManager对象，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                                                        | 说明                                    |
+| ----------------------------------------------------------- | --------------------------------------- |
+| Promise&lt;[AudioRoutingManager](#audioroutingmanager9)&gt;  | Promise回调返回AudioRoutingManager对象。 |
+
+**示例：**
+```js
+await audioManager.getRoutingManager().then((value) => {
+  var routingManager = value;
+  console.info('getRoutingManager Promise SUCCESS.');
+}).catch((err) => {
+  console.error(`Result ERROR: ${err.message}`);
+});
+```
+
 ### setVolume
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2805,6 +2855,172 @@ let result = audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamIn
 console.info(`isAudioRendererLowLatencySupported success var ${result}`);
 ```
 
+## AudioRoutingManager<sup>9+</sup>
+
+音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
+
+### selectOutputDevice<sup>9+</sup>
+
+selectOutputDevice(audiodevicedescriptors: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| audiodevicedescriptors      | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输出设备类。               |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调，返回获取输出设备结果。 |
+
+**示例：**
+```js
+let outputAudioDeviceDescriptor = [{
+  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+await audioManager.getRoutingManager().then((value) => {
+  audioRoutingManager = value;
+  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+    if (err) {
+      console.error(`Result ERROR: ${err.message}`);
+    } else {
+      console.info('Select output devices result callback: SUCCESS'); }
+  });
+});
+```
+
+### selectOutputDevice<sup>9+</sup>
+
+selectOutputDevice(audiodevicedescriptors: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| audiodevicedescriptors      | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输出设备类。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise返回选择输出设备结果。 |
+
+**示例：**
+
+```js
+let outputAudioDeviceDescriptor =[{
+  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+await audioManager.getRoutingManager().then((value) => {
+  audioRoutingManager = value;
+  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
+    console.info('Select output devices result promise: SUCCESS');
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err.message}`);
+  });
+});
+```
+
+### selectOutputDeviceByFilter<sup>9+</sup>
+
+selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, audiodevicedescriptors: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| audiorendererfilter         | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
+| audiodevicedescriptors      | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输出设备类。               |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调，返回获取输出设备结果。 |
+
+**示例：**
+```js
+let outputAudioRendererFilter = {
+  "uid":20010041,
+  "rendererInfo": {
+    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
+    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
+    "rendererFlags":0 },
+  "rendererId":0 };
+let outputAudioDeviceDescriptor = [{
+  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+await audioManager.getRoutingManager().then((value) => {
+  audioRoutingManager = value;
+  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
+    if (err) {
+      console.error(`Result ERROR: ${err.message}`);
+    } else {
+      console.info('Select output devices by filter result callback: SUCCESS'); }
+  });
+});
+```
+
+### selectOutputDeviceByFilter<sup>9+</sup>
+
+selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, audiodevicedescriptors: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                        | 类型                                                         | 必填 | 说明                      |
+| ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| audiorendererfilter          | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
+| audiodevicedescriptors       | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输出设备类。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise返回选择输出设备结果。 |
+
+**示例：**
+
+```js
+let outputAudioRendererFilter = {
+  "uid":20010041,
+  "rendererInfo": {
+    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
+    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
+    "rendererFlags":0 },
+  "rendererId":0 };
+let outputAudioDeviceDescriptor = [{
+  "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+await audioManager.getRoutingManager().then((value) => {
+  audioRoutingManager = value;
+  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
+    console.info('Select output devices by filter result promise: SUCCESS');
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err.message}`);
+  })
+});
+```
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 描述音频渲染器更改信息。
@@ -2936,16 +3152,19 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称                        | 类型                       | 可读 | 可写 | 说明       |
-| -------------------------- | -------------------------- | ---- | ---- | ---------- |
-| deviceRole                 | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 |
-| deviceType                 | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 |
-| id<sup>9+</sup>            | number                     | 是   | 否   | 设备id。  |
-| name<sup>9+</sup>          | string                     | 是   | 否   | 设备名称。 |
-| address<sup>9+</sup>       | string                     | 是   | 否   | 设备地址。 |
-| sampleRates<sup>9+</sup>   | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
-| channelCounts<sup>9+</sup> | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 |
-| channelMasks<sup>9+</sup>  | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 |
+| 名称                          | 类型                       | 可读 | 可写 | 说明       |
+| ----------------------------- | -------------------------- | ---- | ---- | ---------- |
+| deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 |
+| deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 |
+| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id。  |
+| name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。 |
+| address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。 |
+| sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 |
+| channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 |
+| channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 |
+| networkId<sup>9+</sup>        | string                     | 是   | 否   | 设备组网的ID。 |
+| interruptGroupId<sup>9+</sup> | number                     | 是   | 否   | 设备所处的焦点组ID。 |
+| volumeGroupId<sup>9+</sup>    | number                     | 是   | 否   | 设备所处的音量组ID。 |
 
 ## AudioDeviceDescriptors
 
@@ -2973,6 +3192,30 @@ promise.then(function (value) {
     console.error('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  FAIL');
   }
 });
+```
+
+## AudioRendererFilter<sup>9+</sup>
+
+过滤条件类。在调用selectOutputDeviceByFilter接口前，需要先创建AudioRendererFilter实例。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称          | 类型                                     | 必填  | 说明          |
+| -------------| ---------------------------------------- | ---- | -------------- |
+| uid          | number                                   |  是  | 表示应用ID。    |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。 |
+| rendererId   | number                                   |  否  | 音频流唯一id。   |
+
+**示例：**
+
+```js
+let outputAudioRendererFilter = {
+  "uid":20010041,
+  "rendererInfo": {
+    "contentType":audio.ContentType.CONTENT_TYPE_MUSIC,
+    "streamUsage":audio.StreamUsage.STREAM_USAGE_MEDIA,
+    "rendererFlags":0 },
+  "rendererId":0 };
 ```
 
 ## AudioRenderer<sup>8+</sup>
