@@ -216,7 +216,7 @@ struct Index {
 }
 ```
 
-**说明**：网络图片加载的请求方式、超时、额外请求参数等配置可以参考HTTP工具包中关于[`request()`](../../reference/apis/js-apis-http.md#HttpreRuest)请求方法的细节。
+**说明**：网络图片加载的请求方式、超时、额外请求参数等配置可以参考HTTP工具包中关于[`request()`](../../reference/apis/js-apis-http.md#HttpRequest)请求方法的细节。
 
 ### 设置属性
 
