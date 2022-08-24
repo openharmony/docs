@@ -146,17 +146,17 @@
    
    ```js
    function changeCallback(sessionId, changeData) {
-        console.info("change" + sessionId);
+       console.info("change" + sessionId);
    
-        if (changeData != null && changeData != undefined) {
-            changeData.forEach(element => {
-                console.info("changed !" + element + " " + local_object[element]);
-        });
-        }
-    } 
+       if (changeData != null && changeData != undefined) {
+           changeData.forEach(element => {
+               console.info("changed !" + element + " " + local_object[element]);
+       });
+       }
+   } 
 
-    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
-    local_object.on("change", this.changeCallback.bind(this));
+   // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
+   local_object.on("change", this.changeCallback.bind(this));
    ```
    
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
@@ -256,11 +256,7 @@
        ```
 ## 相关实例
 
-针对分布式数据对象，有以下开发实例可供参考：
-- [`DistributedNote`：分布式备忘录(eTS)（API9）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedNote)
-
-- [备忘录应用](https://gitee.com/openharmony/distributeddatamgr_objectstore/tree/master/samples/distributedNotepad)
-
-  在备忘录应用中，当某一个设备上的备忘录事件发生变更时，通过分布式数据对象将事件变更同步在可信组网内的其他设备上，比如新增备忘录事件、编辑事件标题和内容、清空事件列表 
-  等。
+针对分布式数据对象，有以下相关实例可供参考：
+- [`DistributedNote`：分布式备忘录（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedNote)
+- [`DistributedObjectDms`：分布式跑马灯（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedObjectDms)
 

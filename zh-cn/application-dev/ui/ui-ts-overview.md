@@ -61,43 +61,41 @@
 
 基于TS扩展的声明式开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Canvas)
+- [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Canvas)
 
-- [`Drag`：拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)
+- [`Drag`：拖拽事件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Drag)
 
-- [`ArkUIAnimation`：动画（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation)
+- [`ArkUIAnimation`：动画（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ArkUIAnimation)
 
-- [`Xcomponent`：XComponent（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/XComponent)
+- [`Xcomponent`：XComponent（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/XComponent)
 
-- [`MouseEvent`：鼠标事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MouseEvent)
+- [`MouseEvent`：鼠标事件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent)
 
-- [`Gallery`：组件集合（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Gallery)
+- [`Gallery`：组件集合（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery)
 
-- [`BringApp`：拉起系统应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/BringApp)
+- [`BringApp`：拉起系统应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp)
 
-- [`Chat`：聊天示例应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/AppSample/Chat)
+- [`Chat`：聊天示例应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Chat)
 
-- [`Shopping`：购物示例应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/AppSample/Shopping)
+- [`Shopping`：购物示例应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Shopping)
 
-- [`Lottie`：Lottie（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Lottie)
+- [`Lottie`：Lottie（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Lottie)
 
-- [`Clock`：简单时钟（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Preset/Clock)
+- [`Clock`：简单时钟（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/Clock)
 
-- [`Flybird`：小鸟避障游戏（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/Flybird)
-
-- [`News`：新闻浏览（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/News)
+- [`Flybird`：小鸟避障游戏（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/Flybird)
 
 - [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
 
-- [`Game2048`：2048游戏（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Game2048)
+- [`Game2048`：2048游戏（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Game2048)
 
-- [`TransitionAnimation`：转场动画(eTS)（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/TransitionAnimation)
+- [`TransitionAnimation`：转场动画(eTS)（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/TransitionAnimation)
 
-- [`PatternLock`：图案密码锁组件（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/PatternLock)
+- [`PatternLock`：图案密码锁组件（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/PatternLock)
 
-- [`Search`：Search组件（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Search)
+- [`Search`：Search组件（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Search)
 
-- [`QRCode`：二维码（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/QRCode)
+- [`QRCode`：二维码（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/QRCode)
 
 - [极简声明式UI范式（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
 
@@ -109,4 +107,6 @@
 
 - [弹窗（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
 
-- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/CustomComponent)
+- [`UpgradePopup`：自定义弹窗（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/UpgradePopup)
+
+- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/CustomComponent)

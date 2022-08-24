@@ -23,7 +23,7 @@ HAL层主要功能是实现轻OpenHarmony与芯片的解耦，以下模块描述
 
 **IOT外设子系统HAL层接口说明**:
 
-需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[IOT外设子系统的HAL头文件](https://gitee.com/openharmony/iothardware_peripheral/tree/master/interfaces/kits)。
+需要芯片适配相关接口的实现，对芯片设备外设接口依赖请参考[IOT外设子系统的HAL头文件](https://gitee.com/openharmony/iothardware_peripheral/tree/master/interfaces/inner_api)。
 
 
 ## WLAN服务

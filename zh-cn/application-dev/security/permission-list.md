@@ -1,4 +1,4 @@
-# 权限定义列表
+# 应用权限列表
 
 在申请目标权限前，建议开发者先阅读[访问控制开发概述-权限的工作流程](accesstoken-overview.md#权限的工作流程)。对权限的工作流程有基本的了解后，再结合下表判断应用能否申请目标权限，提高开发效率。
 
@@ -59,7 +59,7 @@
 | ohos.permission.MANAGE_SHORTCUTS                         | system_core  | system_grant | TRUE    | 允许应用查询其他应用的快捷方式信息、启动其他应用的快捷方式。 |
 | ohos.permission.radio.ACCESS_FM_AM                       | system_core  | system_grant | TRUE    | 允许应用获取收音机相关服务。                                 |
 | ohos.permission.SET_TELEPHONY_STATE                      | system_basic | system_grant | TRUE    | 允许应用修改telephone的状态。                                |
-| ohos.permission.START_ABILIIES_FROM_BACKGROUND           | system_basic | system_grant | TRUE    | 允许应用在后台启动FA。                                       |
+| ohos.permission.START_ABILITIES_FROM_BACKGROUND           | system_basic | system_grant | TRUE    | 允许应用在后台启动FA。                                       |
 | ohos.permission.BUNDLE_ACTIVE_INFO                       | system_basic | system_grant | TRUE    | 允许系统应用查询其他应用在前台或后台的运行时间。             |
 | ohos.permission.START_INVISIBLE_ABILITY                  | system_core  | system_grant | TRUE    | 无论Ability是否可见，都允许应用进行调用。                    |
 | ohos.permission.sec.ACCESS_UDID                          | system_basic | system_grant | TRUE    | 允许系统应用获取UDID。                                       |
@@ -117,6 +117,7 @@
 | ohos.permission.MANAGE_VOICEMAIL                         | system_basic | user_grant   | TRUE    | 允许应用在语音信箱中留言                                     |
 | ohos.permission.LOCATION_IN_BACKGROUND                   | normal       | user_grant   | FALSE   | 允许应用在后台运行时获取设备位置信息。                       |
 | ohos.permission.LOCATION                                 | normal       | user_grant   | TRUE    | 允许应用获取设备位置信息。                                   |
+| ohos.permission.APPROXIMATELY_LOCATION                   | normal       | user_grant   | FALSE   | 允许应用获取设备模糊位置信息。                               |
 | ohos.permission.MEDIA_LOCATION                           | normal       | user_grant   | TRUE    | 允许应用访问用户媒体文件中的地理位置信息。                   |
 | ohos.permission.CAMERA                                   | normal       | user_grant   | TRUE    | 允许应用使用相机拍摄照片和录制视频。                         |
 | ohos.permission.READ_MEDIA                               | normal       | user_grant   | TRUE    | 允许应用读取用户外部存储中的媒体文件信息。                   |
@@ -131,4 +132,10 @@
 | ohos.permission.DISTRIBUTED_SOFTBUS_CENTER               | system_basic | system_grant | FALSE   | 允许不同设备之间进行组网处理。                                   |
 | ohos.permission.ACCESS_DLP_FILE                          | system_core  | system_grant | TRUE    | 允许对DLP文件进行权限配置和管理。                                |
 | ohos.permission.PROVISIONING_MESSAGE                     | system_core  | system_grant | TRUE    | 允许激活超级设备管理器应用。                                     |
-| ohos.permission.ACCESS_SYSTEM_SETTINGS                     | system_basic  | system_grant | TRUE    | 允许应用接入或拉起系统设置界面。                                     |
+| ohos.permission.ACCESS_SYSTEM_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用接入或拉起系统设置界面。                                     |
+| ohos.permission.READ_IMAGEVIDEO                          | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的图片或视频文件。                         |
+| ohos.permission.READ_AUDIO                               | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的音频文件。                               |
+| ohos.permission.READ_DOCUMENT                            | system_basic | user_grant   | TRUE    | 允许读取用户公共目录的文档。                                   |
+| ohos.permission.WRITE_IMAGEVIDEO                         | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的图片或视频文件。                         |
+| ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的音频文件。                               |
+| ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的文档。                                   |

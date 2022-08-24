@@ -20,7 +20,7 @@ PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: nu
   | -------- | -------- | -------- | -------- | -------- |
   | fingers | number | 否 | 1 | 触发滑动的最少手指数，最小为1指，&nbsp;最大取值为10指。 |
   | direction | PanDirection | 否 | All | 设置滑动方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。 |
-  | distance | number | 否 | 5.0 | 最小滑动识别距离，单位为vp。 |
+  | distance | number | 否 | 5.0 | 最小滑动识别距离，单位为vp。<br/>**说明：**<br/>> tab滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
 
 - PanDirection枚举说明
   | 名称 | 描述 |

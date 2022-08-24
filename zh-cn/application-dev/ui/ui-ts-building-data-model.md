@@ -76,3 +76,7 @@
 
 
 已完成好健康饮食应用的数据资源准备，接下来将通过加载这些数据来创建食物列表页面。
+
+## 相关实例
+针对构建食物分类列表页面和食物详情页，有以下相关实例可供参考：
+- [DefiningPageLayoutAndConnection:页面布局和连接（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/DefiningPageLayoutAndConnection)
