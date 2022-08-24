@@ -40,18 +40,16 @@ startWork(work: WorkInfo): boolean
 ```js
   let workInfo = {
       workId: 1,
-      batteryLevel:50,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
       abilityName: "MyExtension",
       parameters: {
-          mykey0: 2222,
-          mykey1: "ssssssssssssssssssssssssss",
+          mykey0: 1,
+          mykey1: "string value",
           mykey2: true,
-          mykey3: 1.5,
-          mykey4: 213749534591254587511
+          mykey3: 1.5
       }
   }
   var res = workScheduler.startWork(workInfo);
@@ -83,18 +81,16 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
 ```js
   let workInfo = {
       workId: 1,
-      batteryLevel:50,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
       abilityName: "MyExtension",
       parameters: {
-          mykey0: 2222,
-          mykey1: "ssssssssssssssssssssssssss",
+          mykey0: 1,
+          mykey1: "string value",
           mykey2: true,
-          mykey3: 1.5,
-          mykey4: 213749534591254587511
+          mykey3: 1.5
       }
      }
   var res = workScheduler.stopWork(workInfo, false);
