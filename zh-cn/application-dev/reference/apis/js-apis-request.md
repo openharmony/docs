@@ -409,9 +409,9 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 ### off('complete' | 'fail')
 
- off(type:'complete' | 'fail'): void;
+ off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-关闭上传任务监听。
+开启上传任务监听，异步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -422,13 +422,30 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
+  | callback | function | 否 | 上传任务完成或失败的回调函数。 |
+
+  回调函数的参数
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| &lt;Array&lt;TaskState&gt;&gt; | array | 是 | 上传任务返回结果 |
 
 **示例：**
   
   ```js
-  uploadTask.off('complete');
+  uploadTask.off('complete', function callback(TaskStates) {
+    for (let i = 0; i < TaskState.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(TaskStates[i]));
+    }
+  }
+  );
 
-  uploadTask.off('fail');
+  uploadTask.off('fail', function callback(TaskStates) {
+    for (let i = 0; i < TaskState.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(TaskStates[i]));
+    }
+  }
+  );
   ```
 
 
