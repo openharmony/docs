@@ -56,5 +56,6 @@
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)  
 - 参考
   - [常见问题-设备开发](faqs/Readme-CN.md)
+  - [HDI接口参考](reference/hdi-apis/Readme-CN.md)
 - 贡献
   - [参与贡献](../contribute/贡献文档.md) 

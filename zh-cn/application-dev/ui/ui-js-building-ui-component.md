@@ -35,8 +35,6 @@
 
 - [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/JsUserRegistration)
 
-- [`ECG`：心率检测（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/ECG)
-
 - [`Badge`：事件标记控件（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Badge)
 
 - [`JsVideo`：视频播放（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/JsVideo)

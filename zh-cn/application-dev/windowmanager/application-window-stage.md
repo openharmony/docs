@@ -350,7 +350,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 2. 创建悬浮窗。
-           var windowClass = null;
+           var windowClass = [];
            window.create(this.context, "floatWindow", window.WindowType.TYPE_FlOAT, (err, data) => {
                if (err.code) {
                    console.error('Failed to create the floatWindow. Cause: ' + JSON.stringify(err));
@@ -404,3 +404,7 @@ class MainAbility extends Ability {
        }
    };
    ```
+## 相关实例
+
+针对window开发（Stage模型），有以下相关实例可供参考：
+- [`Window`：窗口（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window)

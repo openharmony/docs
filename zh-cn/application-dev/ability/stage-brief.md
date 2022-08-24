@@ -97,4 +97,4 @@
   ![stageprocessmodel](figures/stageprocessmodel.png)
 ## 相关实例
 针对Stage模型下的Ability开发，有以下相关实例可供参考：
-- [`MissionManager`：系统任务管理（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/MissionManager)
+- [`MissionManager`：系统任务管理（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/MissionManager)
