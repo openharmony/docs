@@ -980,7 +980,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 ### getEditorAttribute
 
-getEditorAttribute(): Promise<EditorAttribute>
+getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 获取编辑框属性值。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
