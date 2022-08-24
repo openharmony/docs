@@ -30,16 +30,17 @@ Scroll(scroller?: Scroller)
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | 设置滚动方法。   |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | -                  | 设置滚动条的颜色。 |
-| scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
+| scrollBarWidth | number&nbsp;\|&nbsp;string          | -                        | 设置滚动条的宽度。 |
 | edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
 
 ## ScrollDirection枚举说明
 
-| 名称         | 描述         |
-| ---------- | ---------- |
-| Horizontal | 仅支持水平方向滚动。 |
-| Vertical   | 仅支持竖直方向滚动。 |
-| None       | 不可滚动。      |
+| 名称       | 描述                     |
+| ---------- | ------------------------ |
+| Horizontal | 仅支持水平方向滚动。     |
+| Vertical   | 仅支持竖直方向滚动。     |
+| None       | 不可滚动。               |
+| Free       | 支持竖直或水平方向滚动。 |
 
 ## EdgeEffect枚举说明
 
@@ -118,7 +119,7 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 ### currentOffset
 
-currentOffset(): Object
+currentOffset()
 
 
 返回当前的滚动偏移量。

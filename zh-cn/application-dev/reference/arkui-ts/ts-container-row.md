@@ -19,7 +19,7 @@
 
 ## 接口
 
-Row(value?:{space?: Length})
+Row(value?:{space?: string&nbsp;|&nbsp;number})
 
 **参数：**
 

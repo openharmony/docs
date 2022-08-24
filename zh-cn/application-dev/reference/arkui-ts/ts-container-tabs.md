@@ -45,8 +45,8 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
 | vertical          | boolean | false          | 设置为false是为横向Tabs，设置为true时为纵向Tabs。              |
 | scrollable        | boolean | true   | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。       |
 | barMode           | BarMode | BarMode.Fixed                | TabBar布局模式，具体描述见BarMode枚举说明。                     |
-| barWidth          | number&nbsp;\|&nbsp;string<sup>8+</sup>  | -    | TabBar的宽度值。     |
-| barHeight         | number&nbsp;\|&nbsp;string<sup>8+</sup>  | -    | TabBar的高度值。     |
+| barWidth          | [Length](ts-types.md#length) | -    | TabBar的宽度值。     |
+| barHeight        | [Length](ts-types.md#length) | -    | TabBar的高度值。     |
 | animationDuration | number  | 200                         | TabContent滑动动画时长。               |
 
 ## BarMode枚举说明
@@ -58,9 +58,9 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
 
 ## 事件
 
-| 名称                                       | 功能描述           |
-| ---------------------------------------- | -------------- |
-| onChange(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。 |
+| 名称                                                         | 功能描述                                                 |
+| ------------------------------------------------------------ | -------------------------------------------------------- |
+| onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。<br/>- index: tab标签的索引值。 |
 
 ## TabsController
 
@@ -70,7 +70,6 @@ Tabs组件的控制器，用于控制Tabs组件进行页签切换。
 
 ```
 controller: TabsController = new TabsController()
-
 ```
 
 ### changeIndex
@@ -81,9 +80,9 @@ changeIndex(value: number): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述                  |
-| ----- | ------ | ---- | ---- | --------------------- |
-| value | number | 是    | -    | 页签在Tabs里的索引值，索引值从0开始。 |
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                              |
+| ------ | -------- | ---- | ------ | ------------------------------------- |
+| value  | number   | 是   | -      | 页签在Tabs里的索引值，索引值从0开始。 |
 
 ## 示例
 

@@ -19,7 +19,7 @@
 
 ## 接口
 
-Slider(options:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
+Slider(options?:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
 **参数：**
 
@@ -52,6 +52,8 @@ Slider(options:{value?: number, min?: number, max?: number, step?: number, style
 | showSteps     | boolean | false | 设置当前是否显示步长刻度值。    |
 | showTips      | boolean | false | 设置滑动时是否显示气泡提示百分比。 |
 | trackThickness      | [Length](ts-types.md#length) | - | 设置滑轨的粗细。 |
+| maxLabel | string | - | 设置最大标号时使用。 |
+| minLabel | string | - | 设置最小标号时使用。 |
 
 
 ## 事件

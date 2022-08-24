@@ -19,7 +19,7 @@
 
 ## 接口
 
-TimePicker(options?: TimePickerOptions)
+TimePicker(options?: {selected?: Date})
 
 默认以00：00至23：59的时间区间创建滑动选择器。
 

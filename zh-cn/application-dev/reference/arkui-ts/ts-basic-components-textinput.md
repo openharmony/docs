@@ -19,7 +19,7 @@
 
 ## 接口
 
-TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
+TextInput(value?:{placeholder?: [ResourceStr](ts-types.md#resourcestr8), text?: [ResourceStr](ts-types.md#resourcestr8), controller?: TextInputController})
 
 **参数：**
 
@@ -37,7 +37,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | ----------------------------- | ------------------------------------------------------------ | ----------------- | ------------------------------------------------------------ |
 | type                          | InputType                                                    | InputType.Normal  | 设置输入框类型。                                             |
 | placeholderColor              | [ResourceColor](ts-types.md#resourcecolor8)       | -                 | 设置placeholder颜色。                                 |
-| placeholderFont               | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | -                 | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
+| placeholderFont               | [Font](ts-types.md#font) | -                 | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
 | enterKeyType                  | EnterKeyType                                                 | EnterKeyType.Done | 设置输入法回车键类型。                                       |
 | caretColor                    | [ResourceColor](ts-types.md#resourcecolor8) | -                 | 设置输入框光标颜色。                                         |
 | maxLength                     | number                                                       | -                 | 设置文本的最大输入字符数。                                   |
