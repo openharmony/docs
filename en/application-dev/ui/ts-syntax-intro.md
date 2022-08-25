@@ -7,7 +7,7 @@ This section defines the core mechanism and functions of the TypeScript-based de
 Follow the provided guidelines for UI development. For details about the components, see components.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
 > - All examples use the TypeScript (TS) language. If you are using another language, comply with the syntax requirements for that language.
 > 
 > - The components used in the examples are preset in the UI framework and are used only to explain the UI description specifications.

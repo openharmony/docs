@@ -9,21 +9,21 @@ Examples:
 
 - Set the mandatory parameter src of the &lt;Image&gt; component as follows:
   
-  ```
+  ```ts
   Image('http://xyz/a.jpg')
   ```
 
 
-- Set the mandatory parameter content of the &lt;Text&gt; component as follows:
+- Set the mandatory parameter content of the **\<Text>** component as follows:
   
-  ```
+  ```ts
   Text('123')
   ```
 
 
 You can also use variables or expressions to assign values to parameters. The result type returned by an expression must meet the parameter type requirements. For example, to pass a variable or expression to construct the Image and Text components:
 
-```
+```ts
 // imagePath, where imageUrl is a private data variable defined in the component.
 Image(this.imagePath)
 Image('http://' + this.imageUrl)
