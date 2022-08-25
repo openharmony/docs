@@ -558,6 +558,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 表示表单元素的名称。 |
