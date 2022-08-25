@@ -32,7 +32,6 @@
 // xxx.ets
 @Entry
 @Component
-
 struct Index {
   build() {
     Column() {
@@ -42,12 +41,13 @@ struct Index {
       .width(350)
       .height(300)
       .backgroundBlurStyle(BlurStyle.Thin)
-      .position({x: "15%", y: "30%"})
+      .position({ x: "15%", y: "30%" })
     }
     .height('100%')
     .width('100%')
     .backgroundImage($r('app.media.bg'))
     .backgroundImageSize(ImageSize.Cover)
   }
+}
 ```
 ![zh-cn_image_background_blur_style](figures/zh-cn_image_background_blur_style.png)
