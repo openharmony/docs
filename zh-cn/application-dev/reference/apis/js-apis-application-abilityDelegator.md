@@ -875,4 +875,3 @@ abilityDelegator.finishTest(msg, 0).then(() => {
     console.info("finishTest promise");
 });
 ```
-

@@ -4,7 +4,8 @@ FormHost模块提供了卡片使用方相关接口的能力，包括删除、释
 
 > **说明：**
 > 
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -27,8 +28,6 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -57,8 +56,6 @@ deleteForm(formId: string): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -93,8 +90,6 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -122,8 +117,6 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -153,8 +146,6 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -190,8 +181,6 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -219,8 +208,6 @@ requestForm(formId: string): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -255,8 +242,6 @@ castTempForm(formId: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -284,8 +269,6 @@ castTempForm(formId: string): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -320,8 +303,6 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -349,8 +330,6 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -385,8 +364,6 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -414,8 +391,6 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -450,8 +425,6 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -479,8 +452,6 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -515,8 +486,6 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -544,8 +513,6 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -578,8 +545,6 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -604,8 +569,6 @@ isSystemReady(): Promise&lt;void&gt;;
 检查系统是否准备好。
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -633,8 +596,6 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -665,8 +626,6 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **返回值：**
 
 | 类型          | 说明                                |
@@ -693,8 +652,6 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -726,8 +683,6 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
   | 参数名 | 类型    | 必填 | 说明    |
@@ -758,8 +713,6 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -794,8 +747,6 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -825,8 +776,6 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -860,8 +809,6 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 **需要权限**：ohos.permission.REQUIRE_FORM 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -901,8 +848,6 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;;
 **需要权限**：ohos.permission.REQUIRE_FORM 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -944,8 +889,6 @@ on(type: "formUninstall", callback: Callback&lt;string&gt;): void;
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -969,8 +912,6 @@ off(type: "formUninstall", callback?: Callback&lt;string&gt;): void;
 取消订阅卡片卸载事件。
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -997,8 +938,6 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1028,8 +967,6 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -1065,8 +1002,6 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 **系统能力**：SystemCapability.Ability.Form
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明    |
@@ -1095,8 +1030,6 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
 **系统能力**：SystemCapability.Ability.Form
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

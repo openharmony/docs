@@ -155,7 +155,10 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
             console.log('startAbility result success:' + JSON.stringify(data));
         })
   ```
-## appManager.getProcessRunningInfos<sup>8+</sup>
+## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
 
 getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
@@ -181,7 +184,10 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
         });
   ```
 
-## appManager.getProcessRunningInfos<sup>8+</sup>
+## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
 
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
 
@@ -206,11 +212,62 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
         })
   ```
 
+## appManager.getProcessRunningInformation<sup>9+</sup>
+
+getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+
+获取有关运行进程的信息。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<ProcessRunningInformation>> | 获取有关运行进程的信息。 |
+
+**示例：**
+    
+  ```js
+        app.getProcessRunningInformation().then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+  ```
+
+## appManager.getProcessRunningInformation<sup>9+</sup>
+
+getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+
+获取有关运行进程的信息。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<ProcessRunningInformation>> | 否 | 获取有关运行进程的信息。 |
+
+**示例：**
+    
+  ```js
+        app.getProcessRunningInformation((err, data) => {
+            console.log('startAbility result failed :' + JSON.stringify(err));
+            console.log('startAbility result success:' + JSON.stringify(data));
+        })
+  ```
+
 ## appManager.registerApplicationStateObserver<sup>8+</sup>
 
 registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
-注册应用程序状态观测器。
+注册全部应用程序状态观测器。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -222,7 +279,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | ApplicationStateObserver | 否 | 返回观察者的数字代码。 |
+| observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
 
 **示例：**
     
@@ -245,6 +302,49 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
   console.log('-------- observerCode: ---------', observerCode);
 
   ```
+
+## appManager.registerApplicationStateObserver<sup>9+</sup>
+
+registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
+
+注册指定应用程序状态观测器。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| observer | [ApplicationStateObserver](#applicationstateobserver) | 否 | 返回观察者的数字代码。 |
+| bundleNameList | Array\<string> | 否 | 表示需要注册监听的bundleName数组。最大值128。 |
+
+**示例：**
+    
+  ```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    }
+  }
+  var bundleNameList = ['bundleName1', 'bundleName2'];
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
+  console.log('-------- observerCode: ---------', observerCode);
+
+  ```
+>>>>>>> fa934171c (Fix document error of ability)
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
 unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;
@@ -694,7 +794,7 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | bundleName<sup>8+</sup>     | 只读     | string               | 否   | 包名。                                |
 | uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| state<sup>8+</sup>  | 只读     | number               | 否   | 进程信息。 |
+| state<sup>8+</sup>  | 只读     | number               | 否   | 应用状态。 |
 
 ## AbilityStateData
 
@@ -708,13 +808,13 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | bundleName<sup>8+</sup>              | string   | 是   | 否  | 应用包名。                  |
 | abilityName<sup>8+</sup>             | string   | 是   | 否   | Ability名称。               |
 | uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
-| state<sup>8+</sup>                   | number   | 是   | 否   | 应用程序信息。                |
+| state<sup>8+</sup>                   | number   | 是   | 否   | Ability状态。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP包的名称。    |
 | abilityType<sup>8+</sup> | string   | 是   | 否   | 能力类型、页面或服务等。    |
 
 ## ProcessData
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
@@ -728,7 +828,7 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 
 ## ProcessRunningInfo
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
@@ -736,3 +836,16 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
 | processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
 | bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
+
+## ApplicationStateObserver
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+| 名称                     | 类型     | 可读 | 可写 | 说明                       |
+| ----------------------- | ---------| ---- | ---- | ------------------------- |
+| [onForegroundApplicationChanged<sup>8+</sup>](#applicationstateobserveronforegroundapplicationchanged8)         | AsyncCallback\<void>   | 是   | 否   | 应用前后台状态发生变化时执行的回调函数。                    |
+| [onAbilityStateChanged<sup>8+</sup>](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
+| [onProcessCreated<sup>8+</sup>](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
+| [onProcessDied<sup>8+</sup>](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
