@@ -114,7 +114,7 @@ The service management module is available only for the mini system and standard
 By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, and then set and start the service.
 
 ### Parameters
-   **Table 1** Description of service fields
+   **Table 1** Description of service fields<a name="table14737791471"></a>
 <table border="0" cellpadding="0" cellspacing="0" width="737" style="border-collapse: collapse;table-layout:fixed;width:554pt;border-spacing: 0px;font-variant-ligatures: normal; font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px; text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial">
             <tbody>
                 <tr height="24" style="height:18.0pt">
@@ -208,11 +208,11 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
                         importance
                     </td>
                     <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Current service priority.
+                        Service priority (for the standard system) or service importance (for the mini system).
                     </td>
                     <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
                         Standard system: The service priority ranges from -20 to 19. A value beyond the range is invalid.<br>
-                        Small system: The value <strong>0</strong> indicates an unimportant process and a value greater than <strong>0</strong> indicates an important process.
+                        Small system: The value <strong>0</strong> indicates that a system restart is not required, and a value greater than <strong>0</strong> indicates the opposite.
                     </td>
                     <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
                         Small and standard systems
@@ -362,7 +362,7 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
    | option | Socket option. This field is passed when **setsockopt** is called. Currently, the available options include <strong>SOCKET_OPTION_PASSCRED</strong>, <strong>SOCKET_OPTION_RCVBUFFORCE</strong>, <strong>SOCK_CLOEXEC</strong>, and <strong>SOCK_NONBLOCK</strong>.|
 
 ### Available APIs
-  **Table 3** FD proxy APIs
+  **Table 3** FD proxy APIs<a name="table14737791479"></a>
    | API    | Function| Description |
    | ---------- |  ----------  |--------|
    | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | Obtains the proxy FD from the init process.| Return value: Returns the pointer to the fd array if the operation is successful; returns **NULL** otherwise. (Note: Manual release is required.)<br>Arguments:<br> **serviceName**: service name.<br>**outfdCount**: length of the returned fd array.|

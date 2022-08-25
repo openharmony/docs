@@ -1,6 +1,6 @@
-# 设置系统时间
+# 系统定时器
 
-本模块主要由时间、时区和定时三大功能组成。其中，定时服务用来管理和使用时间、时区。开发者可以通过对系统进行设置、获取等操作管理系统时间、时区，也可以通过定时功能实现定时服务如闹钟服务等。
+本模块主要由系统定时器功能组成。开发者可以使用定时功能实现定时服务，如闹钟等。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -29,7 +29,7 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 | options  | TimerOptions      | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
 | repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                  |
 | interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                           |
-| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。                                                 |
+| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起鸿蒙应用MainAbility,暂不支持拉起SA)     |
 
 **返回值：**
 
@@ -40,17 +40,21 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  systemTime.createTimer(options, (error, data) => {
-      if (error) {
-          console.error(`failed to systemTime.createTimer ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`systemTime.createTimer success data : ` + JSON.stringify(data));
-  });
+export default {
+    systemTimer () {
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat: false
+        }
+        systemTimer.createTimer(options, (error, data) => {
+            if (error) {
+                console.error(`failed to systemTime.createTimer ` + JSON.stringify(error));
+                return;
+            }
+            console.log(`systemTime.createTimer success data : ` + JSON.stringify(data));
+        });
+    }
+}
   ```
 
 
@@ -69,7 +73,7 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 | options  | TimerOptions      | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
 | repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                  |
 | interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                           |
-| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。                                                 |
+| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起鸿蒙应用MainAbility,暂不支持拉起SA)     |
 
 **返回值：**
 
@@ -80,15 +84,19 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  systemTime.createTimer(options).then((data) => {
-      console.log(`systemTime.createTimer success data : ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to systemTime.createTimer because ` + JSON.stringify(error));
-  });
+export default {
+    systemTimer () {
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        systemTimer.createTimer(options).then((data) => {
+            console.log(`systemTime.createTimer success data : ` + JSON.stringify(data));
+        }).catch((error) => {
+            console.error(`failed to systemTime.createTimer because ` + JSON.stringify(error));
+        });
+    }
+}
   ```
 
 
@@ -111,18 +119,22 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  let timerId = systemTimer.Timer(options) 
-  systemTime.startTimer(timerId, 10000, (error, data) => {
-      if (error) {
-          console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
-  });
+export default {
+    systemTimer () {
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = systemTimer.Timer(options)
+        systemTimer.startTimer(timerId, 10000, (error, data) => {
+            if (error) {
+                console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
+                return;
+            }
+            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
+        });
+    }
+}
   ```
   
 ## systemTime.startTimer
@@ -144,16 +156,20 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  let timerId = systemTimer.Timer(options)
-  systemTime.startTimer(timerId, 10000).then((data) => {
-      console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
-  });
+export default {
+    systemTimer (){
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = systemTimer.Timer(options)
+        systemTimer.startTimer(timerId, 10000).then((data) => {
+            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
+        }).catch((error) => {
+            console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
+        });
+    }
+}
   ```
 
 
@@ -174,19 +190,23 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  let timerId = systemTimer.Timer(options)
-  let startTimerRes = systemTimer.startTimer(timerId, 100000)
-  systemTime.stopTimer(timerId, (error, data) => {
-      if (error) {
-          console.error(`failed to systemTime.stopTimer ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`systemTime.stopTimer success data : ` + JSON.stringify(data));
-  });
+export default {
+    systemTimer () {
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = systemTimer.Timer(options)
+        systemTimer.startTimer(timerId, 100000)
+        systemTimer.stoptTimer(timerId, 10000, (error, data) => {
+            if (error) {
+                console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
+                return;
+            }
+            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
+        });
+    }
+}
   ```
 
 
@@ -207,17 +227,21 @@ stopTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  let timerId = systemTimer.Timer(options)
-  let startTimerRes = systemTimer.startTimer(timerId, 100000)
-  systemTime.stopTimer(timerId).then((data) => {
-      console.log(`systemTime.stopTimer success data : ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to systemTime.stopTimer because ` + JSON.stringify(error));
-  });
+export default {
+    systemTimer (){
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = systemTimer.Timer(options)
+        systemTimer.startTimer(timerId, 100000)
+        systemTimer.stoptTimer(timerId, 10000).then((data) => {
+            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
+        }).catch((error) => {
+            console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
+        });
+    }
+}
   ```
 
 
@@ -238,20 +262,24 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  let timerId = systemTimer.Timer(options)
-  let startTimerRes = systemTimer.startTimer(timerId, 100000)
-  let stopTimerRes = systemTimer.stopTimer(timerId)
-  systemTime.destroyTimer(timerId, (error, data) => {
-      if (error) {
-          console.error(`failed to systemTime.destroyTimer ` + JSON.stringify(error));
-          return;
-      }
-      console.log(`systemTime.destroyTimer success data : ` + JSON.stringify(data));
-  });
+export default {
+    systemTimer () {
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = systemTimer.Timer(options)
+        systemTimer.startTimer(timerId, 100000)
+        systemTimer.stopTimer(timerId)
+        systemTimer.destroyTimer(timerId, (error, data) => {
+            if (error) {
+                console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
+                return;
+            }
+            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
+        });
+    }
+}
   ```
 
 
@@ -272,16 +300,20 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var options = TimerOptions {   
-        type:TIMER_TYPE_REALTIME,   
-        repeat:false  
-      }
-  let timerId = systemTimer.Timer(options)
-  let startTimerRes = systemTimer.startTimer(timerId, 100000)
-  let stopTimerRes = systemTimer.stopTimer(timerId)
-  systemTime.destroyTimer(timerId).then((data) => {
-      console.log(`systemTime.destroyTimer success data : ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to systemTime.destroyTimer because ` + JSON.stringify(error));
-  });
+export default {
+    systemTimer (){
+        var options = {
+            type: systemTimer.TIMER_TYPE_REALTIME,
+            repeat:false
+        }
+        let timerId = systemTimer.Timer(options)
+        systemTimer.startTimer(timerId, 100000)
+        systemTimer.stopTimer(timerId)
+        systemTimer.destroytTimer(timerId, 10000).then((data) => {
+            console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
+        }).catch((error) => {
+            console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
+        });
+    }
+}
   ```

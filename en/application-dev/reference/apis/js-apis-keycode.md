@@ -203,7 +203,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_CLOSE | number | Yes| No| Close key|
 | KEYCODE_PLAY | number | Yes| No| Play key|
 | KEYCODE_BASSBOOST | number | Yes| No| Bass Boost key|
-| KEYCODE_PRINT | number | Yes| No| Print key| 
+| KEYCODE_PRINT | number | Yes| No| Print key|
 | KEYCODE_CHAT | number | Yes| No| Chat key|
 | KEYCODE_FINANCE | number | Yes| No| Finance key|
 | KEYCODE_CANCEL | number | Yes| No| Cancel key|
@@ -302,7 +302,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_SCREENLOCK | number | Yes| No| Screen Lock key|
 | KEYCODE_DIRECTION_ROTATE_DISPLAY | number | Yes| No| Directional Rotation Display key|
 | KEYCODE_CYCLEWINDOWS | number | Yes| No| Windows Cycle key|
-| KEYCODE_COMPUTER | number | Yes| No| Computer key|
+| KEYCODE_COMPUTER | number | Yes| No| Key |
 | KEYCODE_EJECTCLOSECD | number | Yes| No| Eject CD key|
 | KEYCODE_ISO | number | Yes| No| ISO key|
 | KEYCODE_MOVE | number | Yes| No| Move key|

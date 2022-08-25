@@ -1810,6 +1810,8 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 
 此接口为系统接口，三方应用不支持调用。
 
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Account.OsAccount
 
 **参数：**
@@ -1833,6 +1835,8 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 查询当前进程是否处于主用户。
 
 此接口为系统接口，三方应用不支持调用。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1916,11 +1920,15 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 
 用户认证类。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### constructor<sup>8+</sup>
 
 constructor()
 
 创建用户认证的实例。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Account.OsAccount
 
@@ -1971,14 +1979,14 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 | 参数名           | 类型                                           | 必填 | 说明                       |
 | --------------- | -----------------------------------------------| ---- | ------------------------- |
-| authType        | [AuthType](#AuthType<sup>8+</sup>)             | 是   | 指示用于认证的凭据类型。     |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>) | 是   | 表示身份验证结果的信任级别。 |
+| authType        | [AuthType](#authtype8)             | 是   | 指示用于认证的凭据类型。     |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | 是   | 表示身份验证结果的信任级别。 |
 
 **返回值：**
 
 | 类型   | 说明                                       |
 | :----- | :---------------------------------------- |
-| number | 返回验证[结果](#ResultCode<sup>8+</sup>)。 | 
+| number | 返回验证[结果](#resultcode8)。 | 
 
 **示例：** 
   ```js
@@ -2006,8 +2014,8 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 
 | 参数名    | 类型                                                                    | 必填 | 说明                                |
 | -------- | ----------------------------------------------------------------------- | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#GetPropertyRequest<sup>8+</sup>)                  | 是   | 请求信息，包括认证类型和属性类型列表。 |
-| callback | AsyncCallback&lt;[ExecutorProperty](#ExecutorProperty<sup>8+</sup>)&gt; | 是   | 回调结果，返回的是调用者属性。        |
+| request  | [GetPropertyRequest](#getpropertyrequest8)                  | 是   | 请求信息，包括认证类型和属性类型列表。 |
+| callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | 是   | 回调结果，返回的是调用者属性。        |
 
 **示例：**
   ```js
@@ -2025,7 +2033,7 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 
 ### getProperty<sup>8+</sup>
 
-getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
+getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 基于指定的请求信息获取属性，使用Promise方式异步返回结果。
 
@@ -2039,13 +2047,13 @@ getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
 
 | 参数名    | 类型                                                   | 必填 | 说明                                |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#GetPropertyRequest<sup>8+</sup>) | 是   | 请求信息，包括认证类型和属性类型列表。 |
+| request  | [GetPropertyRequest](#getpropertyrequest8) | 是   | 请求信息，包括认证类型和属性类型列表。 |
 
 **返回值：**
 
 | 类型                                                              | 说明                                                 |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#ExecutorProperty<sup>8+</sup>)&gt; | Promise实例，用于获取异步返回结果，返回的是调用者属性。 |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise实例，用于获取异步返回结果，返回的是调用者属性。 |
 
 **示例：**
   ```js
@@ -2063,7 +2071,7 @@ getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;): void;
 
 设置可用于初始化算法的属性，使用callback回调异步返回结果。
 
@@ -2077,8 +2085,8 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
 
 | 参数名    | 类型                                                  | 必填 | 说明                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
-| request  | [SetPropertyRequest](#SetPropertyRequest<sup>8+</sup>)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
-| callback | AsyncCallback&lt;number&gt;                           | 是   | 回调结果，返回一个[数值](#ResultCode<sup>8+</sup>)，指示属性设置是否成功。 |
+| request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
+| callback | AsyncCallback&lt;number&gt;                           | 是   | 回调结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
 **示例：**
   ```js
@@ -2094,7 +2102,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest): Promise<number>;
+setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 
 设置可用于初始化算法的属性，使用Promise方式异步返回结果。
 
@@ -2108,13 +2116,13 @@ setProperty(request: SetPropertyRequest): Promise<number>;
 
 | 参数名    | 类型                                                   | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| request  | [SetPropertyRequest](#SetPropertyRequest<sup>8+</sup>) | 是   | 请求信息，包括身份验证类型和要设置的密钥值。 |
+| request  | [SetPropertyRequest](#setpropertyrequest8) | 是   | 请求信息，包括身份验证类型和要设置的密钥值。 |
 
 **返回值：**
 
 | 类型                  | 说明                                                                                           |
 | :-------------------- | :-------------------------------------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回一个[数值](#ResultCode<sup>8+</sup>)，指示属性设置是否成功。 |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
 **示例：**
   ```js
@@ -2145,9 +2153,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 参数名           | 类型                                                 | 必填 | 说明                                |
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                                           | 是  | 指示挑战值，挑战值为一个随机数，用于提升安全性。|
-| authType        | [AuthType](#AuthType<sup>8+</sup>)                   | 是  | 指示认证类型。                        |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>)       | 是  | 指示认证结果的信任级别。               |
-| callback        | [IUserAuthCallback](#IUserAuthCallback<sup>8+</sup>) | 是  | 回调结果，返回的是结果和所获取的信息。  |
+| authType        | [AuthType](#authtype8)                   | 是  | 指示认证类型。                        |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调结果，返回的是结果和所获取的信息。  |
 
 
 **返回值：**
@@ -2195,9 +2203,9 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | userId          | number                                               | 是  | 指示用户身份。                        |
 | challenge       | Uint8Array                                           | 是  | 指示挑战值，挑战值为一个随机数，用于提升安全性。                          |
-| authType        | [AuthType](#AuthType<sup>8+</sup>)                   | 是  | 指示认证类型。                        |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>)       | 是  | 指示认证结果的信任级别。               |
-| callback        | [IUserAuthCallback](#IUserAuthCallback<sup>8+</sup>) | 是  | 回调结果，返回的是结果和所获取的信息。  |
+| authType        | [AuthType](#authtype8)                   | 是  | 指示认证类型。                        |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调结果，返回的是结果和所获取的信息。  |
 
 
 **返回值：**
@@ -2250,7 +2258,7 @@ cancelAuth(contextID: Uint8Array): number;
 
 | 类型   | 说明                                                       |
 | :----- | :-------------------------------------------------------- |
-| number | 返回一个[数字](#ResultCode<sup>8+</sup>)，指示取消是否成功。 |
+| number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
 **示例：**
   ```js
@@ -2265,11 +2273,15 @@ cancelAuth(contextID: Uint8Array): number;
 
 Pin码认证功能基类。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### constructor<sup>8+</sup>
 
 constructor()
 
 创建Pin码认证的实例。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Account.OsAccount
 
@@ -2295,7 +2307,7 @@ registerInputer(inputer: IInputer): boolean;
 
 | 参数名    | 类型                                 | 必填 | 说明               |
 | ----------| ----------------------------------- | --- | ------------------ |
-| inputer   | [IInputer](#IInputer<sup>8+</sup>)  | 是  | 指示密码输入框回调。 |
+| inputer   | [IInputer](#iinputer8)  | 是  | 指示密码输入框回调。 |
 
 **返回值：**
 
@@ -2343,11 +2355,15 @@ unregisterInputer(): void;
 
 获取用户身份管理类。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### constructor<sup>8+</sup>
 
 constructor()
 
 创建用户认证的实例。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力**：SystemCapability.Account.OsAccount
 
@@ -2448,8 +2464,8 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 
 | 参数名           | 类型                                             | 必填 | 说明                            |
 | --------------- | ------------------------------------------------ | --- | -------------------------------- |
-| credentialInfo  | [CredentialInfo](#CredentialInfo<sup>8+</sup>)   | 是  | 指示凭据信息。                      |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)       | 是  | 回调结果，返回的是结果和获取信息。  |
+| credentialInfo  | [CredentialInfo](#credentialinfo8)   | 是  | 指示凭据信息。                      |
+| callback        | [IIdmCallback](#iidmcallback8)       | 是  | 回调结果，返回的是结果和获取信息。  |
 
 **示例：**
   ```js
@@ -2491,8 +2507,8 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 
 | 参数名           | 类型                                              | 必填 | 说明                            |
 | --------------- | ------------------------------------------------- | --- | -------------------------------- |
-| credentialInfo  | [CredentialInfo](#CredentialInfo<sup>8+</sup>)    | 是  | 指示凭据信息。                    |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)        | 是  | 回调结果，返回的是结果和获取信息。  |
+| credentialInfo  | [CredentialInfo](#credentialinfo8)    | 是  | 指示凭据信息。                    |
+| callback        | [IIdmCallback](#iidmcallback8)        | 是  | 回调结果，返回的是结果和获取信息。  |
 
 **示例：**
   ```js
@@ -2557,7 +2573,7 @@ cancel(challenge: Uint8Array): number;
 
 | 类型   | 说明                                                       |
 | :----- | :-------------------------------------------------------- |
-| number | 返回一个[数字](#ResultCode<sup>8+</sup>)，指示取消是否成功。 |
+| number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
 **示例：**
   ```js
@@ -2583,7 +2599,7 @@ delUser(token: Uint8Array, callback: IIdmCallback): void;
 | 参数名    | 类型                                       | 必填 | 说明                      |
 | -------- | ------------------------------------------ | --- | ------------------------- |
 | token    | Uint8Array                                 | 是  | 身份验证令牌。             |
-| callback | [IIdmCallback](#IIdmCallback<sup>8+</sup>) | 是  | 回调结果，返回的是删除结果。|
+| callback | [IIdmCallback](#iidmcallback8) | 是  | 回调结果，返回的是删除结果。|
 
 **示例：**
   ```js
@@ -2625,7 +2641,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | --------------- | ----------------------------------------------- | --- | ---------------------------|
 | credentialId    | Uint8Array                                      | 是  | 凭证索引。                  |
 | token           | Uint8Array                                      | 是  | 身份验证令牌。              |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)      | 是  | 回调结果，返回的是删除结果。 |
+| callback        | [IIdmCallback](#iidmcallback8)      | 是  | 回调结果，返回的是删除结果。 |
 
 **示例：**
   ```js
@@ -2653,7 +2669,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 
 ### getAuthInfo<sup>8+</sup>
 
-getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;, authType?: AuthType): void;
+getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 获取认证信息，使用callback回调异步返回结果。
 
@@ -2661,14 +2677,42 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;, authTy
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_IDM
 
 **参数：**
 
 | 参数名    | 类型                                               | 必填 | 说明                                                |
 | -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#EnrolledCredInfo<sup>8+</sup>)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
-| authType | [AuthType](#AuthType<sup>8+</sup>) | 否   | 认证类型。                                          |
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
+
+
+**示例：**
+  ```js
+  var userIDM = new osAccount.UserIdentityManager();
+  var authType = osAccount.AuthType.PIN;
+  userIDM.getAuthInfo(function (authInfo) {
+      console.log("====>test for examples getAuthInfo AsyncCallback = " + JSON.stringify(authInfo))
+  })
+  ```
+
+### getAuthInfo<sup>8+</sup>
+
+getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
+
+获取指定类型的认证信息，使用callback回调异步返回结果。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明                                                |
+| -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
+| authType | [AuthType](#authtype8) | 是   | 认证类型。                                          |
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
 **示例：**
   ```js
@@ -2689,19 +2733,19 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_IDM
 
 **参数：**
 
 | 参数名    | 类型                                | 必填 | 说明      |
 | -------- | ----------------------------------- | ---- | -------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)  | 否   | 认证类型。|
+| authType | [AuthType](#authtype8)  | 否   | 认证类型。|
 
 **返回值：**
 
 | 类型                                         | 说明                                                                       |
 | :------------------------------------------- | :------------------------------------------------------------------------ |
-| Promise&lt;Array&lt;[EnrolledCredInfo](#EnrolledCredInfo<sup>8+</sup>)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前用户指定类型的所有已注册凭据信息。|
+| Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
 **示例：**
   ```js
@@ -2716,9 +2760,13 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 密码数据回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onSetData<sup>8+</sup>
 
 onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+
+此接口为系统接口，三方应用不支持调用。
 
 通知设置数据。
 
@@ -2728,7 +2776,7 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 | 参数名      | 类型                                     | 必填 | 说明                                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是   | 用于认证的凭据子类型。                            |
+| pinSubType | [AuthSubType](#authsubtype8) | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
 
 **示例：**
@@ -2759,11 +2807,15 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 密码输入框回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onGetData<sup>8+</sup>
 
-onGetData: (callback: IInputData) => void;
+onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
 
 通知获取数据。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2771,7 +2823,7 @@ onGetData: (callback: IInputData) => void;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| callback   | [IInputData](#IInputData<sup>8+</sup>)  | 是   | 指示密码数据回调。|
+| callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
 
 **示例：**
   ```js
@@ -2801,11 +2853,15 @@ onGetData: (callback: IInputData) => void;
 
 用户认证回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onResult<sup>8+</sup>
 
 onResult: (result: number, extraInfo: AuthResult) => void;
 
 身份认证结果代码通过回调返回。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2814,7 +2870,7 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 | 参数名     | 类型                                    | 必填 | 说明                 |
 | --------- | --------------------------------------- | ---- | ------------------- |
 | result    | number                                   | 是   | 表示身份认证结果代码。|
-| extraInfo | [AuthResult](#AuthResult<sup>8+</sup>)  | 是   | 表示不同情况下的具体信息，如果认证通过，则在extrainfo中返回认证令牌，如果身份验证失败，则在extrainfo中返回剩余的身份验证时间，如果身份验证执行器被锁定，冻结时间将在extrainfo中返回。|
+| extraInfo | [AuthResult](#authresult8)  | 是   | 表示不同情况下的具体信息，如果认证通过，则在extrainfo中返回认证令牌，如果身份验证失败，则在extrainfo中返回剩余的身份验证时间，如果身份验证执行器被锁定，冻结时间将在extrainfo中返回。|
 
 **示例：**
   ```js
@@ -2893,9 +2949,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 身份管理回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onResult<sup>8+</sup>
 
-onResult: (result: number, extraInfo: AuthResult) => void;
+onResult: (result: number, extraInfo: RequestResult) => void;
 
 身份认证结果代码通过回调返回。
 
@@ -2908,7 +2966,7 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 | 参数名     | 类型                                    | 必填 | 说明                     |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | 是   | 表示身份认证结果代码。    |
-| extraInfo | [AuthResult](#AuthResult<sup>8+</sup>)  | 是   | 针对不同情况传递具体信息。|
+| extraInfo | [AuthResult](#authresult8)  | 是   | 针对不同情况传递具体信息。|
 
 **示例：**
   ```js
@@ -2991,41 +3049,49 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 提供获取属性请求的信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名    | 类型                                                          | 必填   | 说明                   |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)                            | 是    | 身份验证凭据类型。        |
-| keys     | Array&lt;[GetPropertyType](#GetPropertyType<sup>8+</sup>)&gt; | 是    | 指示要获取的属性类型数组。 |
+| authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
 
 ## SetPropertyRequest<sup>8+</sup>
 
 提供设置属性请求的信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名    | 类型                                             | 必填   | 说明                 |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)               | 是    | 身份验证凭据类型。     |
-| keys     | [SetPropertyType](#SetPropertyType<sup>8+</sup>) | 是    | 指示要设置的属性类型。 |
+| authType | [AuthType](#authtype8)               | 是    | 身份验证凭据类型。     |
+| key     | [SetPropertyType](#setpropertytype8) | 是    | 指示要设置的属性类型。 |
 | setInfo  | Uint8Array                                       | 是    | 指示要设置的信息。     |
 
 ## ExecutorProperty<sup>8+</sup>
 
 提供执行器的属性。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | 是    | 指示结果。         |
-| authSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是    | 指示认证凭据子类型。|
+| authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。|
 | remainTimes  | number                                   | 否    | 指示剩余时间。     |
 | freezingTime | number                                   | 否    | 指示冻结时间。     |
 
 ## AuthResult<sup>8+</sup>
 
 指示认证结果的信息。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3039,17 +3105,21 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 指示凭证信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
-| credType     | [AuthType](#AuthType<sup>8+</sup>)       | 是    | 指示凭据类型。     |
-| credSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是    | 指示凭据子类型。   |
+| credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
+| credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
 | token        | Uint8Array                               | 是    | 指示认证令牌。     |
 
 ## RequestResult<sup>8+</sup>
 
 指示请求结果的信息。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3061,18 +3131,22 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 指示已注册凭据的信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ------------------- |
 | credentialId | Uint8Array                               | 是    | 指示凭据索引。       |
-| authType     | [AuthType](#AuthType<sup>8+</sup>)       | 是    | 指示认证凭据类型。   |
-| authSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是    | 指示认证凭据子类型。 |
+| authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
+| authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。 |
 | templateId   | Uint8Array                               | 是    | 指示凭据模板ID。     |
 
 ## GetPropertyType<sup>8+</sup>
 
 枚举，指示要获取的属性类型。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3086,6 +3160,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，指示要设置的属性类型。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数           | 默认值 | 说明        |
@@ -3095,6 +3171,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## AuthType<sup>8+</sup>
 
 枚举，指示身份验证的凭据类型。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3106,6 +3184,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## AuthSubType<sup>8+</sup>
 
 枚举，指示用于认证的凭据子类型。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3121,6 +3201,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，指示认证结果的受信任级别。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数  | 默认值 | 说明        |
@@ -3134,6 +3216,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，表示获取信息的模块。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数       | 默认值 | 说明                     |
@@ -3143,6 +3227,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## ResultCode<sup>8+</sup>
 
 枚举，指示身份验证结果代码。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3164,6 +3250,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，指示人脸验证过程中提示代码。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数                          | 默认值 | 说明                                     |
@@ -3183,6 +3271,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## ingerprintTips<sup>8+</sup>
 
 枚举，指示指纹身份验证过程中提示代码。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 

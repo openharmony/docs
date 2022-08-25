@@ -899,9 +899,820 @@ promise.then(data => {
 });
 ```
 
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
+
+Sends a cell location update request. This API uses an asynchronous callback to return the result.
+
+
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+radio.sendUpdateCellLocationRequest((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(\): Promise<void\>
+
+Sends a cell location update request. This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = radio.sendUpdateCellLocationRequest();
+promise.then(data => {
+    console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`sendUpdateCellLocationRequest fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getCellInformation<sup>8+</sup>
+
+getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
+
+Obtains cell information. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+radio.getCellInformation((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getCellInformation<sup>8+</sup>
+
+getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
+
+Obtains cell information. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                  |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | Yes  | Callback used to return the result.              |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.getCellInformation(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getCellInformation<sup>8+</sup>
+
+getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
+
+Obtains cell information. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                                                   | Description                   |
+| ------------------------------------------------------- | ----------------------- |
+| Promise\<Array<[CellInformation](#cellinformation8)\>\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.getCellInformation(slotId);
+promise.then(data => {
+    console.log(`getCellInformation success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getCellInformation fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.setNetworkSelectionMode
+
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCallback<void\>\): void
+
+Sets the network selection mode. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                       | Mandatory| Description              |
+| -------- | ----------------------------------------------------------- | ---- | ------------------ |
+| options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | Yes  | Network selection mode.|
+| callback | AsyncCallback\<void\>                                       | Yes  | Callback used to return the result.        |
+
+**Example**
+
+```js
+let networkInformation={
+    operatorName: "China Mobile",
+    operatorNumeric: "898600",
+    state: 1,
+    radioTech: "CS"
+}
+let networkSelectionModeOptions={
+    slotid: 0,
+    selectMode: 1,
+    networkInformation: networkInformation,
+    resumeSelection: true
+}
+radio.setNetworkSelectionMode(networkSelectionModeOptions, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.setNetworkSelectionMode
+
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
+
+Sets the network selection mode. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name | Type                                                       | Mandatory| Description              |
+| ------- | ----------------------------------------------------------- | ---- | ------------------ |
+| options | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | Yes  | Network selection mode.|
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let networkInformation={
+    operatorName: "China Mobile",
+    operatorNumeric: "898600",
+    state: 1,
+    radioTech: "CS"
+}
+let networkSelectionModeOptions={
+    slotid: 0,
+    selectMode: 1,
+    networkInformation: networkInformation,
+    resumeSelection: true
+}
+let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
+promise.then(data => {
+    console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getNetworkSearchInformation
+
+getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
+
+Obtains network search information. This API uses an asynchronous callback to return the result. 
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                  |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | Yes  | Callback used to return the result.            |
+
+**Example**
+
+```js
+radio.getNetworkSearchInformation(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getNetworkSearchInformation
+
+getNetworkSearchInformation\(slotId: number\): Promise<void\>
+
+Obtains network search information. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                                                  | Description                   |
+| ------------------------------------------------------ | ----------------------- |
+| Promise\<[NetworkSearchResult](#networksearchresult)\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = radio.getNetworkSearchInformation(0);
+promise.then(data => {
+    console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getNetworkSearchInformation fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getNrOptionMode<sup>8+</sup>
+
+getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
+
+Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description      |
+| -------- | ----------------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+radio.getNrOptionMode((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNrOptionMode<sup>8+</sup>
+
+getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
+
+Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                           | Mandatory| Description                                  |
+| -------- | ----------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.getNrOptionMode(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNrOptionMode<sup>8+</sup>
+
+getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
+
+Obtains the NR option mode. This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                                     | Description                   |
+| ----------------------------------------- | ----------------------- |
+| Promise\<[NrOptionMode](#nroptionmode8)\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.getNrOptionMode(slotId);
+promise.then(data => {
+    console.log(`getNrOptionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getNrOptionMode fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.turnOnRadio<sup>7+</sup>
+
+turnOnRadio(callback: AsyncCallback<void\>): void
+
+Turns on the radio function. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+radio.turnOnRadio((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOnRadio<sup>7+</sup>
+
+turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
+
+Turns on the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                  |
+| -------- | --------------------- | ---- | -------------------------------------- |
+| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.turnOnRadio(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOnRadio<sup>7+</sup>
+
+turnOnRadio(slotId?: number): Promise<void\>
+
+Turns on the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.turnOnRadio(slotId);
+promise.then(data => {
+    console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`turnOnRadio fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.turnOffRadio<sup>7+</sup>
+
+turnOffRadio(callback: AsyncCallback<void\>): void
+
+Turns off the radio function. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+radio.turnOffRadio((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOffRadio<sup>7+</sup>
+
+turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
+
+Turns off the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                  |
+| -------- | --------------------- | ---- | -------------------------------------- |
+| slotId   | number                | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.turnOffRadio(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.turnOffRadio<sup>7+</sup>
+
+turnOffRadio(slotId?: number): Promise<void\>
+
+Turns off the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.turnOffRadio(slotId);
+promise.then(data => {
+    console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`turnOffRadio fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.setPreferredNetwork<sup>8+</sup>
+
+setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
+
+Sets the preferred network. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name     | Type                                          | Mandatory| Description                                  |
+| ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
+| slotId      | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | Yes  | Preferred network mode.                      |
+| callback    | AsyncCallback\<void\>                          | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.setPreferredNetwork(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.setPreferredNetwork<sup>8+</sup>
+
+setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
+
+Sets the preferred network. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name     | Type                                          | Mandatory| Description                                  |
+| ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
+| slotId      | number                                         | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | Yes  | Preferred network mode.                      |
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = radio.setPreferredNetwork(0, 1);
+promise.then(data => {
+    console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`setPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getPreferredNetwork<sup>8+</sup>
+
+getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
+
+Obtains the preferred network. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                  |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.getPreferredNetwork(0, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getPreferredNetwork<sup>8+</sup>
+
+getPreferredNetwork(slotId: number): Promise<void\>
+
+Obtains the preferred network. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type           | Description                   |
+| --------------- | ----------------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = radio.getPreferredNetwork(0);
+promise.then(data => {
+    console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
+
+Obtains the IMS registration status of the specified IMS service type. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                  |
+| -------- | ------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                     | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)         | Yes  | IMS service type.                         |
+| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.getImsRegInfo(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
+
+Obtains the IMS registration status of the specified IMS service type. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name | Type                              | Mandatory| Description                                  |
+| ------- | ---------------------------------- | ---- | -------------------------------------- |
+| slotId  | number                             | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType | [ImsServiceType](#imsservicetype9) | Yes  | IMS service type.                         |
+
+**Return value**
+
+| Type                                 | Description                   |
+| ------------------------------------- | ----------------------- |
+| Promise\<[ImsRegInfo](#imsreginfo9)\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = radio.getImsRegInfo(0, 1);
+promise.then(data => {
+    console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getImsRegInfo fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.on('imsRegStateChange')<sup>9+</sup>
+
+on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
+
+Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | Yes  | IMS registration status changes.               |
+| slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.on('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.off('imsRegStateChange')<sup>9+</sup>
+
+off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
+
+Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | Yes  | IMS registration status changes.    |
+| slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.off('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
 ## RadioTechnology
 
-Enumerates the RAT.
+Enumerates radio access technologies.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1010,3 +1821,296 @@ Enumerates network selection modes.
 | NETWORK_SELECTION_UNKNOWN   | 0    | Unknown network selection mode.|
 | NETWORK_SELECTION_AUTOMATIC | 1    | Automatic network selection mode.|
 | NETWORK_SELECTION_MANUAL    | 2    | Manual network selection mode.|
+
+## PreferredNetworkMode<sup>8+</sup>
+
+Enumerates preferred network modes.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                                                     | Value  | Description                                         |
+| --------------------------------------------------------- | ---- | --------------------------------------------- |
+| PREFERRED_NETWORK_MODE_GSM                                | 1    | GSM network mode.                            |
+| PREFERRED_NETWORK_MODE_WCDMA                              | 2    | WCDMA network mode.                          |
+| PREFERRED_NETWORK_MODE_LTE                                | 3    | LTE network mode.                            |
+| PREFERRED_NETWORK_MODE_LTE_WCDMA                          | 4    | LTE+WCDMA network mode.                      |
+| PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM                      | 5    | LTE+WCDMA+GSM network mode.                  |
+| PREFERRED_NETWORK_MODE_WCDMA_GSM                          | 6    | WCDMA+GSM network mode.                      |
+| PREFERRED_NETWORK_MODE_CDMA                               | 7    | CDMA network mode.                           |
+| PREFERRED_NETWORK_MODE_EVDO                               | 8    | EVDO network mode.                           |
+| PREFERRED_NETWORK_MODE_EVDO_CDMA                          | 9    | EVDO+CDMA network mode.                      |
+| PREFERRED_NETWORK_MODE_WCDMA_GSM_EVDO_CDMA                | 10   | WCDMA+GSM+EVDO+CDMA network mode.            |
+| PREFERRED_NETWORK_MODE_LTE_EVDO_CDMA                      | 11   | LTE+EVDO+CDMA network mode.                  |
+| PREFERRED_NETWORK_MODE_LTE_WCDMA_GSM_EVDO_CDMA            | 12   | LTE+WCDMA+GSM+EVDO+CDMA network mode.        |
+| PREFERRED_NETWORK_MODE_TDSCDMA                            | 13   | TD-SCDMA network mode.                        |
+| PREFERRED_NETWORK_MODE_TDSCDMA_GSM                        | 14   | TD-SCDMA+GSM network mode.                    |
+| PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA                      | 15   | TD-SCDMA+WCDMA network mode.                  |
+| PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM                  | 16   | TD-SCDMA+WCDMA+GSM network mode.              |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA                        | 17   | LTE+TD-SCDMA network mode.                    |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_GSM                    | 18   | LTE+TD-SCDMA+GSM network mode.                |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA                  | 19   | LTE+TD-SCDMA+WCDMA network mode.              |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM              | 20   | LTE+TD-SCDMA+WCDMA+GSM network mode.          |
+| PREFERRED_NETWORK_MODE_TDSCDMA_WCDMA_GSM_EVDO_CDMA        | 21   | TD-SCDMA+WCDMA+GSM+EVDO+CDMA network mode.    |
+| PREFERRED_NETWORK_MODE_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA    | 22   | LTE+TD-SCDMA+WCDMA+GSM+EVDO+CDMA network mode.|
+| PREFERRED_NETWORK_MODE_NR                                 | 31   | NR network mode.                             |
+| PREFERRED_NETWORK_MODE_NR_LTE                             | 32   | NR+LTE network mode.                         |
+| PREFERRED_NETWORK_MODE_NR_LTE_WCDMA                       | 33   | NR+LTE+WCDMA network mode.                   |
+| PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM                   | 34   | NR+LTE+WCDMA+GSM network mode.               |
+| PREFERRED_NETWORK_MODE_NR_LTE_EVDO_CDMA                   | 35   | NR+LTE+EVDO+CDMA network mode.               |
+| PREFERRED_NETWORK_MODE_NR_LTE_WCDMA_GSM_EVDO_CDMA         | 36   | NR+LTE+WCDMA+GSM+EVDO+CDMA network mode.     |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA                     | 37   | NR+LTE+TD-SCDMA network mode.                 |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM                 | 38   | NR+LTE+TD-SCDMA+GSM network mode.             |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | NR+LTE+TD-SCDMA+WCDMA network mode.           |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | NR+LTE+TD-SCDMA+WCDMA+GSM network mode.       |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | NR+LTE+TD-SCDMA+WCDMA+GSM+EVDO+CDMA network mode.       |
+| PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | Maximum value of the preferred network mode.                         |
+
+## CellInformation<sup>8+</sup>
+
+Defines the cell information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name             | Type                                                        | Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| networkType       | [NetworkType](#networktype)                                  | Network type of the cell.                                    |
+| isCamped          | boolean                                                      | Status of the cell.                                        |
+| timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
+| signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
+
+## CdmaCellInformation<sup>8+</sup>
+
+Defines the CDMA cell information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name     | Type  | Description        |
+| --------- | ------ | ------------ |
+| baseId    | number | Base station ID.    |
+| latitude  | number | Longitude.      |
+| longitude | number | Latitude.      |
+| nid       | number | Network ID.|
+| sid       | number | System ID.|
+
+## GsmCellInformation<sup>8+</sup>
+
+Defines the GSM cell information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name  | Type  | Description                |
+| ------ | ------ | -------------------- |
+| lac    | number | Location area code.        |
+| cellId | number | Cell ID.            |
+| arfcn  | number | Absolute radio frequency channel number.|
+| bsic   | number | Base station ID.        |
+| mcc    | string | Mobile country code.        |
+| mnc    | string | Mobile network code.          |
+
+## LteCellInformation<sup>8+</sup>
+
+Defines the LTE cell information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name         | Type   | Description                   |
+| ------------- | ------- | ----------------------- |
+| cgi           | number  | Cell global identification.         |
+| pci           | number  | Physical cell ID.         |
+| tac           | number  | Tracking area code.         |
+| earfcn        | number  | Absolute radio frequency channel number.   |
+| bandwidth     | number  | Bandwidth.                 |
+| mcc           | string  | Mobile country code.           |
+| mnc           | string  | Mobile network code.             |
+| isSupportEndc | boolean | Support New Radio_Dual Connectivity|
+
+## NrCellInformation<sup>8+</sup>
+
+Defines the NR cell information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name   | Type  | Description            |
+| ------- | ------ | ---------------- |
+| nrArfcn | number | 5G frequency number.      |
+| pci     | number | Physical cell ID.  |
+| tac     | number | Tracking area code.  |
+| nci     | number | 5G network cell ID.|
+| mcc     | string | Mobile country code.    |
+| mnc     | string | Mobile network code.      |
+
+## TdscdmaCellInformation<sup>8+</sup>
+
+Defines the TD-SCDMA cell information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name  | Type  | Description        |
+| ------ | ------ | ------------ |
+| lac    | number | Location area code.|
+| cellId | number | Cell ID.    |
+| cpid   | number | Cell parameter ID.|
+| uarfcn | number | Absolute radio frequency number.|
+| mcc    | string | Mobile country code.|
+| mnc    | string | Mobile network code.  |
+
+## WcdmaCellInformation<sup>8+</sup>
+
+Defines the WCDMA cell information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name  | Type  | Description        |
+| ------ | ------ | ------------ |
+| lac    | number | Location area code.|
+| cellId | number | Cell ID.    |
+| psc    | number | Primary scrambling code.    |
+| uarfcn | number | Absolute radio frequency number.|
+| mcc    | string | Mobile country code.|
+| mnc    | string | Mobile network code.  |
+
+## NrOptionMode<sup>8+</sup>
+
+Enumerates NR selection modes.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                | Value  | Description                              |
+| -------------------- | ---- | ---------------------------------- |
+| NR_OPTION_UNKNOWN    | 0    | Unknown NR selection mode.                |
+| NR_OPTION_NSA_ONLY   | 1    | NR selection mode in 5G non-standalone networking.        |
+| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G standalone networking.          |
+| NR_OPTION_NSA_AND_SA | 3    | NR selection mode in non-standalone and standalone networking.|
+
+## NetworkSearchResult
+
+Defines the network search result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                  | Type                                             | Description          |
+| ---------------------- | ------------------------------------------------- | -------------- |
+| isNetworkSearchSuccess | boolean                                           | Successful network search.|
+| networkSearchResult    | Array<[NetworkInformation](#networkinformation)\> | Network search result.|
+
+## NetworkInformation
+
+Defines the network information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name           | Type                                     | Description          |
+| --------------- | ----------------------------------------- | -------------- |
+| operatorName    | string                                    | Carrier name.|
+| operatorNumeric | string                                    | Carrier number.  |
+| state           | [NetworkInformation](#networkinformationstate) | Network information status.|
+| radioTech       | string                                    | Radio technology.  |
+
+## NetworkInformationState
+
+Enumerates network information states.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name             | Value  | Description            |
+| ----------------- | ---- | ---------------- |
+| NETWORK_UNKNOWN   | 0    | Unknown state.  |
+| NETWORK_AVAILABLE | 1    | Available for registration.|
+| NETWORK_CURRENT   | 2    | Registered state.|
+| NETWORK_FORBIDDEN | 3    | Unavailable for registration.  |
+
+## NetworkSelectionModeOptions
+
+Defines the network selection mode.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name              | Type                                         | Description                                  |
+| ------------------ | --------------------------------------------- | -------------------------------------- |
+| slotId             | number                                        | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| selectMode         | [NetworkSelectionMode](#networkselectionmode) | Network selection mode.                       |
+| networkInformation | [NetworkInformation](#networkinformation)    | Network information.                           |
+| resumeSelection    | boolean                                       | Whether to resume selection.                            |
+
+## ImsRegState<sup>9+</sup>
+
+Enumerates IMS registration states.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name            | Value  | Description    |
+| ---------------- | ---- | -------- |
+| IMS_UNREGISTERED | 0    | Not registered.|
+| IMS_REGISTERED   | 1    | Registered.|
+
+## ImsRegTech<sup>9+</sup>
+
+Enumerates IMS registration technologies.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                   | Value  | Description           |
+| ----------------------- | ---- | --------------- |
+| REGISTRATION_TECH_NONE  | 0    | None.   |
+| REGISTRATION_TECH_LTE   | 1    | LTE.  |
+| REGISTRATION_TECH_IWLAN | 2    | I-WLAN.|
+| REGISTRATION_TECH_NR    | 3    | NR.   |
+
+## ImsRegInfo<sup>9+</sup>
+
+Defines the IMS registration information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name       | Type                        | Description         |
+| ----------- | ---------------------------- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) | IMS registration state.|
+| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS registration technology.|
+
+## ImsServiceType<sup>9+</sup>
+
+Enumerates IMS service types.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name      | Value  | Description      |
+| ---------- | ---- | ---------- |
+| TYPE_VOICE | 0    | Voice service.|
+| TYPE_VIDEO | 1    | Video service.|
+| TYPE_UT    | 2    | UT service.  |
+| TYPE_SMS   | 3    | SMS service.|

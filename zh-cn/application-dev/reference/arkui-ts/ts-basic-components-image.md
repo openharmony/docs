@@ -36,7 +36,7 @@ Image(src: string | PixelMap | Resource)
 
 | 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| src  | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是    | -    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
+| src  | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是    | -    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
 
 ## 属性
 
@@ -45,23 +45,14 @@ Image(src: string | PixelMap | Resource)
 | 名称                  | 参数类型                                                | 默认值                   | 描述                                                         |
 | --------------------- | ------------------------------------------------------- | ------------------------ | ------------------------------------------------------------ |
 | alt                   | string \| [Resource](../../ui/ts-types.md#resource类型) | -                        | 加载时显示的占位图，支持本地图片和网络图片。                 |
-| objectFit             | ImageFit                           | ImageFit.Cover           | 设置图片的缩放类型。                                         |
+| objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | ImageFit.Cover           | 设置图片的缩放类型。                                         |
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | NoRepeat                 | 设置图片的重复样式。<br/>> **说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | interpolation         | [ImageInterpolation](#imageinterpolation)               | ImageInterpolation.None  | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
 | renderMode            | [ImageRenderMode](#imagerendermode)                     | ImageRenderMode.Original | 设置图片渲染的模式。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -                        | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>>&nbsp;**说明：**<br/>>&nbsp;PixelMap资源不支持该属性。 |
 | syncLoad<sup>8+</sup> | boolean                                  | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
-| copyOption<sup>9+</sup> | [CopyOptions](#copyoptions) | CopyOptions.None | 设置图片是否可复制（SVG图片不支持复制）。 |
-
-### ImageFit
-
-| 名称      | 描述                                                         |
-| --------- | ------------------------------------------------------------ |
-| Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
-| Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。   |
-| Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。             |
-| None      | 保持原有尺寸显示。                                           |
-| ScaleDown | 保持宽高比显示，图片缩小或者保持不变。                       |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | CopyOptions.None | 设置图片是否可复制（SVG图片不支持复制）。 |
+| colorFilter<sup>9+</sup> | [ColorFilter](../../ui/ts-types.md) | - | 给图像设置颜色滤镜效果。 |
 
 ### ImageInterpolation
 
@@ -78,15 +69,6 @@ Image(src: string | PixelMap | Resource)
 | -------- | --------------------- |
 | Original | 按照原图进行渲染，包括颜色。        |
 | Template | 将图片渲染为模板图片，忽略图片的颜色信息。 |
-
-### CopyOptions<sup>9+</sup>
-  
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | None | 不支持复制粘贴。 |
-  | InApp | 支持应用内复制粘贴。 |
-  | LocalDevice | 支持设备内复制粘贴。 |
-  | CrossDevice | 支持跨设备复制粘贴。 |
 
 ## 事件
 
@@ -169,6 +151,72 @@ struct ImageExample1 {
 ```
 
 ![zh-cn_image_0000001250492613](figures/zh-cn_image_0000001250492613.gif)
+
+
+
+### 网络图片
+
+加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用SDK中提供的[HTTP](../../connectivity/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../media/image.md)。代码如下。
+
+```tsx
+// @ts-nocheck
+import http from '@ohos.net.http';
+import ResponseCode from '@ohos.net.http';
+import image from '@ohos.multimedia.image'
+
+
+@Entry 
+@Component 
+struct Index {
+    
+  // 先创建一个PixelMap状态变量用于接收网络图片
+  @State image: PixelMap = undefined
+
+  build() {
+    Column({space: 10}) {
+      Button("获取网络图片")
+        .onClick(() => {
+          this.httpRequest();
+        })
+      Image(this.image).height(100).width(100)
+    }
+    .width('100%')
+    .height('100%')
+    .padding(10)
+  }
+
+  // 网络图片请求方法
+  private httpRequest() {
+    let httpRequest = http.createHttp();
+	
+    httpRequest.request(
+      "https://www.example.com/xxx.png",   // 请填写一个具体的网络图片地址
+      (error, data) => {
+        if(error) {
+          console.log("error code: " + error.code + ", msg: " + error.message)
+        } else {
+          let code = data.responseCode
+          if(ResponseCode.ResponseCode.OK == code) {
+            let imageSource = image.createImageSource(data.result)
+            let options = {alphaType: 0,                     // 透明度
+                           editable: false,                  // 是否可编辑
+                           pixelFormat: 3,                   // 像素格式
+                           scaleMode: 1,                     // 缩略值
+                           size: {height: 100, width: 100}}  // 创建图片大小
+            imageSource.createPixelMap(options).then((pixelMap) => {
+              this.image = pixelMap
+            })
+          } else {
+            console.log("response code: " + code);
+          }
+        }
+      }
+    )
+  }
+}
+```
+
+**说明**：网络图片加载的请求方式、超时、额外请求参数等配置可以参考HTTP工具包中关于[`request()`](../../reference/apis/js-apis-http.md)请求方法的细节。
 
 ### 设置属性
 

@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import matrix4 from '@ohos.matrix4'
 ```
 
@@ -114,6 +114,7 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
   struct Test {
     private matrix1 = Matrix4.identity().translate({x:100})
     private matrix2 = this.matrix1.copy().scale({x:2})
+
     build() {
       Column() {
         Image($r("app.media.bg1"))
@@ -163,6 +164,7 @@ Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个�
   struct Test {
     private matrix1 = Matrix4.identity().translate({x:200}).copy()
     private matrix2 = Matrix4.identity().scale({x:2}).copy()
+
     build() {
       Column() {
        // 先平移x轴100px，再缩放两倍x轴
@@ -229,6 +231,7 @@ Matrix的平移函数，可以为当前矩阵增加x轴/Y轴/Z轴平移效果。
   @Component
   struct Test {
     private matrix1 = Matrix4.identity().translate({x:100, y:200, z:30})
+
     build() {
       Column() {
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -273,6 +276,7 @@ Matrix的缩放函数，可以为当前矩阵增加x轴/Y轴/Z轴缩放效果。
   @Component
   struct Test {
     private matrix1 = Matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
+
     build() {
       Column() { 
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -318,6 +322,7 @@ Matrix的旋转函数，可以为当前矩阵增加x轴/Y轴/Z轴旋转效果。
   @Component
   struct Test {
     private matrix1 = Matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
+
     build() {
       Column() {
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -360,6 +365,7 @@ Matrix的坐标点转换函数，可以将当前的变换效果作用到一个�
   @Component
   struct Test {
     private matrix1 = Matrix4.identity().transformPoint([100, 10])
+    
     build() {
       Column() {
        Button("get Point")

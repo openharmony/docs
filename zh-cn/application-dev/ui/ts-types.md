@@ -27,24 +27,7 @@
 
 | 名称    | 类型定义                                     | 描述                                       |
 | ----- | ---------------------------------------- | ---------------------------------------- |
-| Color | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color | 用于描述颜色信息，输入为string类型时，使用rgb或者rgba进行描述；输入为number类型是，使用HEX格式颜色；输入类型为Color枚举时，使用颜色枚举值。<br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)'。<br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)'。<br/>-&nbsp;HEX格式：0xrrggbb，0xaarrggbb，'\#FFFFFF'。<br/>-&nbsp;枚举格式：Color.Black，Color.White等。 |
-
-
-当前支持的Color颜色枚举：
-
-
-| 颜色名称   | 颜色值      | 颜色示意                                     |
-| ------ | -------- | ---------------------------------------- |
-| Black  | 0x000000 | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) |
-| Blue   | 0x0000ff | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
-| Brown  | 0xa52a2a | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
-| Gray   | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
-| Green  | 0x008000 | ![zh-cn_image_0000001174422914](figures/zh-cn_image_0000001174422914.png) |
-| Orange | 0xffa500 | ![zh-cn_image_0000001219662661](figures/zh-cn_image_0000001219662661.png) |
-| Pink   | 0xffc0cb | ![zh-cn_image_0000001219662663](figures/zh-cn_image_0000001219662663.png) |
-| Red    | 0xff0000 | ![zh-cn_image_0000001219662665](figures/zh-cn_image_0000001219662665.png) |
-| White  | 0xffffff | ![zh-cn_image_0000001174582866](figures/zh-cn_image_0000001174582866.png) |
-| Yellow | 0xffff00 | ![zh-cn_image_0000001174582864](figures/zh-cn_image_0000001174582864.png) |
+| Color | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](../reference/arkui-ts/ts-appendix-enums.md#color) | 用于描述颜色信息，输入为string类型时，使用rgb或者rgba进行描述；输入为number类型是，使用HEX格式颜色；输入类型为Color枚举时，使用颜色枚举值。<br/>-&nbsp;'rgb(255,&nbsp;255,&nbsp;255)'。<br/>-&nbsp;'rgba(255,&nbsp;255,&nbsp;255,&nbsp;1.0)'。<br/>-&nbsp;HEX格式：0xrrggbb，0xaarrggbb，'\#FFFFFF'。<br/>-&nbsp;枚举格式：Color.Black，Color.White等。 |
 
 
 ## ColorStop类型
@@ -97,6 +80,14 @@
 | 名称   | 类型定义                                     | 描述                                       |
 | ---- | ---------------------------------------- | ---------------------------------------- |
 | Font | {<br/>size?: Length;<br/>weight?: <a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li24391125115311">FontWeight</a> &nbsp;\| number &nbsp;\| string;<br/>family?: string &nbsp;\| <a href="ts-types.md#Resource">Resource</a>;<br/>style?: <a href="https://gitee.com/superFat/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md#li6906111945316">FontStyle</a>;<br/>} | 设置文本样式：<br/>size: 设置文本尺寸，Length为number类型时，使用fp单位。<br/>weight: 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>family: 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。<br/>style: 设置文本的字体样式。 |
+
+
+## ColorFilter类型<sup>9+</sup>
+
+| 名称        | 类型定义 | 描述                                                        |
+| ----------- | -------- | ----------------------------------------------------------- |
+| ColorFilter | number[] | 用于描述颜色矩阵信息。<br/>行优先矩阵，长度为20的浮点数组。 |
+
 
 ## CustomBuilder类型<sup>8+</sup>
 

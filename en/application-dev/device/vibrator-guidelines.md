@@ -65,9 +65,9 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
    import vibrator from "@ohos.vibrator"
    vibrator.vibrate(1000).then((error) => {
        if (error) { // The call fails, and error.code and error.message are printed.
-          Console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);  
+          console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);  
        } else { // The call is successful, and the device starts to vibrate.
-          Console.log("Promise returned to indicate a successful vibration.")  
+          console.log("Promise returned to indicate a successful vibration.")  
        }
    })
    ```
@@ -78,9 +78,9 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
    import vibrator from "@ohos.vibrator"
    vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then((error) => {
       if (error) { // The call fails, and error.code and error.message are printed.
-          Console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);
+          console.log("Promise return failed.error.code " + error.code + "error.message " + error.message);
       } else { // The call is successful, and the device stops vibrating.
-          Console.log("Promise returned to indicate a successful stop.");
+          console.log("Promise returned to indicate successful.");
       }
    })
    ```

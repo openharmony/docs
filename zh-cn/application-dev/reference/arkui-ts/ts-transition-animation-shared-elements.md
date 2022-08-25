@@ -1,13 +1,13 @@
 # 共享元素转场
 
+共享元素转场支持页面间的转场，如当前页面的图片转场至下一页面中。
+
 > **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-共享元素转场支持页面间的转场，如当前页面的图片转场至下一页面中。
-
-
 ## 属性
+
 
 | 名称               | 参数                                       | 默认值  | 参数描述                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -57,6 +57,7 @@ struct SharedTransitionExample {
 @Entry
 @Component
 struct BExample {
+
   build() {
     Stack() {
       Image($r('app.media.ic_health_heart')).width(150).height(150).sharedTransition('sharedImage1')

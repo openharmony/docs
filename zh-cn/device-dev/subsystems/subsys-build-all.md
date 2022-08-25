@@ -96,7 +96,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
 
 ## 配置规则
 
-为了实现芯片解决方案、产品解决方案与OpenHarmony是解耦的、可插拔的，子系统、产品、部件、芯片解决方案、模块和特性需遵循一定的规则，具体配置规则见如下链接：
+为了实现芯片解决方案、产品解决方案与OpenHarmony是解耦的、可插拔的，子系统、产品、部件、芯片解决方案、模块、特性和系统能力需遵循一定的规则，具体配置规则见如下链接：
 
 - [产品配置规则](subsys-build-product.md#产品配置规则)
 - [子系统配置规则](subsys-build-subsystem.md#子系统配置规则)
@@ -104,6 +104,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
 - [模块配置规则](subsys-build-module.md#模块配置规则)
 - [芯片解决方案配置规则](subsys-build-chip_solution.md#芯片解决方案配置规则)
 - [特性配置规则](subsys-build-feature.md#特性配置规则)
+- [系统能力配置规则](subsys-build-syscap.md#如何按需配置部件的系统能力)
 
 ## 编译构建使用指导
 

@@ -15,7 +15,6 @@
 ```js
 import display from '@ohos.display' // 导入模块
 
-let disp; // disp用来保存默认Display
 display.getDefaultDisplay().then((disp) => {
 	console.log('display.getDefaultDisplay success, display :' + JSON.stringify(disp));
 }, (err) => {
@@ -24,5 +23,5 @@ display.getDefaultDisplay().then((disp) => {
 ```
 ## 相关实例
 针对屏幕属性开发，有以下相关实例可供参考：
-- [`Screen`：屏幕属性（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/device/Screen)
+- [`Screen`：屏幕属性（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Screen)
 

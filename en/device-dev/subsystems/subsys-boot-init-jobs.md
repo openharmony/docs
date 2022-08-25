@@ -160,6 +160,20 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                         Small and standard systems
                     </td>
                 </tr>
+                <tr height="162" style="height:121.5pt">
+                    <td height="162" class="xl6621952" width="140" style="height:121.5pt;border-top: none;width:105pt">
+                        write
+                    </td>
+                    <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
+                        write filename value<br>Example:<br>write /data/testfile 0
+                    </td>
+                    <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
+                        Writes a file. <strong>filename</strong> and <strong>value</strong> respectively indicate the absolute file path and the string to write.
+                    </td>
+                    <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
+                        Standard system
+                    </td>
+                </tr>
                 <tr height="185" style="height:138.75pt">
                     <td height="185" class="xl6621952" width="140" style="height:138.75pt;border-top: none;width:105pt">
                         stop
@@ -298,6 +312,20 @@ A job is a command set, where you can manage the commands to be executed. A maxi
                     </td>
                     <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
                         Small and standard systems
+                    </td>
+                </tr>
+                <tr height="162" style="height:121.5pt">
+                    <td height="162" class="xl6621952" width="140" style="height:121.5pt;border-top: none;width:105pt">
+                        syncexec
+                    </td>
+                    <td class="xl6621952" width="215" style="border-top:none;border-left:none; width:161pt">
+                        syncexec <i>Path of the executable file</i> <i>Parameters passed by the executable file</i><br>Example:<br>syncexec /system/bin/udevadm trigger
+                    </td>
+                    <td class="xl6621952" width="225" style="border-top:none;border-left:none; width:169pt">
+                        Runs an executable file synchronously. The **wait** function will be called to wait for the child process to end. The command must not contain more than 10 parameters.
+                    </td>
+                    <td class="xl6621952" width="190" style="border-top:none;border-left:none; width:143pt">
+                        Standard system
                     </td>
                 </tr>
                 <tr height="231" style="height:173.25pt">

@@ -26,6 +26,7 @@
 @Entry
 @Component
 struct EnabledExample {
+  
   build() {
     Flex({ justifyContent: FlexAlign.SpaceAround }) {
       // 点击没有反应
