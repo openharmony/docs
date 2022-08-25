@@ -1,11 +1,9 @@
 #  Subsystems
 
 - Compilation and Building
-  - [Building Mini and Small Systems](subsys-build-mini-lite.md)
-  - [Building the Standard System](subsys-build-standard-large.md)
-  - [Build System Coding Specifications and Best Practices](subsys-build-gn-coding-style-and-best-practice.md)
-  - [Building the Kconfig Visual Configuration](subsys-build-gn-kconfig-visual-config-guide.md)
-  - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
+    - [Compilation and Building Guide](subsys-build-all.md)
+    - [Build System Coding Specifications and Best Practices](subsys-build-gn-coding-style-and-best-practice.md)
+    - [Building the Kconfig Visual Configuration](subsys-build-gn-kconfig-visual-config-guide.md)
 - [Distributed Remote Startup](subsys-remote-start.md)
 - Graphics
   - [Graphics Overview](subsys-graphics-overview.md)
