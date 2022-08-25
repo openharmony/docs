@@ -185,7 +185,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | token     | number               | 是    | 认证Token。   |
 | extraInfo | {[key:string] : any} | 否    | 认证信息可扩展字段。 |
 
-## PublishInfo
+## PublishInfo9+</sup>
 
 发布设备参数
 
@@ -343,7 +343,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   });
   ```
 
-### startDeviceDiscovery
+### startDeviceDiscovery8+</sup>
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
@@ -374,7 +374,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 ### startDeviceDiscovery9+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 发现周边设备。
 
@@ -696,7 +696,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
   );
   ```
 
-### on('publishSuccess')
+### on('publishSuccess')9+</sup>
 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
@@ -718,7 +718,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
   );
   ```
 
-### off('publishSuccess')
+### off('publishSuccess')9+</sup>
 
 off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
@@ -740,7 +740,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
   );
   ```
 
-### on('publishFail')
+### on('publishFail')9+</sup>
 
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
@@ -762,7 +762,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
   );
   ```
 
-### off('publishFail')
+### off('publishFail')9+</sup>
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
