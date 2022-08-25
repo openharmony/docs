@@ -193,6 +193,44 @@ context.requestPermissionsFromUser(
 ```
 
 
+## Context.requestPermissionsFromUser<sup>7+</sup>
+
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](#permissionrequestresult7)>
+
+从系统请求某些权限（promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称           | 类型                 | 必填  | 描述                                          |
+| -------------- | ------------------- | ----- | -------------------------------------------- |
+| permissions    | Array\<string>      | 是    | 指示要请求的权限列表。此参数不能为null。         |
+| requestCode    | number              | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
+
+**返回值：**
+
+| 类型                                                           | 说明             |
+| ------------------------------------------------------------- | ---------------- |
+| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | 返回授权结果信息。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.requestPermissionsFromUser(
+    ["com.example.permission1",
+     "com.example.permission2",
+     "com.example.permission3",
+     "com.example.permission4",
+     "com.example.permission5"],
+    1).then((data)=>{
+        console.info("====>requestdata====>" + JSON.stringify(data));
+    });
+```
+
+
 
 ## Context.getApplicationInfo
 
