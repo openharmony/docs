@@ -48,10 +48,10 @@ FormExtension类还拥有成员context，为FormExtensionContext类，具体的A
 
 **表2** FormExtensionContext API接口功能介绍
 
-| 接口名                                                       | 描述                      |
-| :----------------------------------------------------------- | :------------------------ |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | 回调形式主动更新卡片。    |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Promise形式主动更新卡片。 |
+| 接口名                                                       | 描述                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void | 回调形式拉起一个卡片所属应用的Ability（系统接口，三方应用不支持调用）。 |
+| startAbility(want: Want): Promise&lt;void&gt;                | Promise形式拉起一个卡片所属应用的Ability（系统接口，三方应用不支持调用）。 |
 
 FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-formprovider.md)。
 
