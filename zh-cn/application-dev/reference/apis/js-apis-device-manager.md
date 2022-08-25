@@ -10,6 +10,7 @@
 - 查询可信设备列表
 - 查询本地设备信息，包括设备名称，设备类型和设备标识
 - 发布设备发现
+
 > **说明：**
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -184,7 +185,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | token     | number               | 是    | 认证Token。   |
 | extraInfo | {[key:string] : any} | 否    | 认证信息可扩展字段。 |
 
-## PublishInfo
+## PublishInfo9+</sup>
 
 发布设备参数
 
@@ -342,7 +343,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   });
   ```
 
-### startDeviceDiscovery
+### startDeviceDiscovery8+</sup>
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
@@ -373,7 +374,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 ### startDeviceDiscovery9+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 发现周边设备。
 
@@ -383,7 +384,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
   | 名称            | 参数类型                            | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | [string](#filteroptions)        | 否   | 发现设备过滤信息。|
+  | filterOptions | string        | 否   | 发现设备过滤信息。|
 
 - 示例：
   ```js
@@ -455,7 +456,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
   dmInstance.publishDeviceDiscovery(publishInfo); //当有发布结果时，通过回调通知给应用程序
   ```
   
-### unPublishDeviceDiscovery
+### unPublishDeviceDiscovery9+</sup>
 
 unPublishDeviceDiscovery(publishId: number): void
 
@@ -695,7 +696,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
   );
   ```
 
-### on('publishSuccess')
+### on('publishSuccess')9+</sup>
 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
@@ -717,7 +718,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
   );
   ```
 
-### off('publishSuccess')
+### off('publishSuccess')9+</sup>
 
 off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
@@ -739,7 +740,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
   );
   ```
 
-### on('publishFail')
+### on('publishFail')9+</sup>
 
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
@@ -761,7 +762,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
   );
   ```
 
-### off('publishFail')
+### off('publishFail')9+</sup>
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
