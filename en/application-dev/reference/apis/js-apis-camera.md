@@ -215,7 +215,7 @@ Obtains the output capability supported by a camera. This API uses a promise to 
 
 | Name  | Type                         | Mandatory| Description              |
 | ------ | ----------------------------- | ---- | ------------------ |
-| camera | [CameraDevice](#cameraDevice) | Yes  | **CameraDevice** object.|
+| camera | [CameraDevice](#cameradevice) | Yes  | **CameraDevice** object.|
 
 **Return value**
 
