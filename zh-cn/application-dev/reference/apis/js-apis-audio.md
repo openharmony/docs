@@ -86,7 +86,7 @@ getStreamManager(): Promise<AudioStreamManager\>
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**返回值：**
+**返回值：**：
 
 | 类型                                                 | 说明             |
 | ----------------------------------------- ----------| ---------------- |
@@ -2145,8 +2145,8 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                 |
-| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
+| 参数名     | 类型                                      | 必填 | 说明              |
+| ---------- | ---------------------------------------- | ---- | -------------- -- |
 | networkId | string                                    | 是   | 设备的网络id。     |
 
 **返回值：**
@@ -3326,9 +3326,9 @@ promise.then(function (value) {
 
 | 名称          | 类型                                     | 必填  | 说明          |
 | -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  是  | 表示应用ID。  <br> 系统能力为SystemCapability.Multimedia.Audio.Core。 |
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> 系统能力为SystemCapability.Multimedia.Audio.Renderer。 |
-| rendererId   | number                                   |  否  | 音频流唯一id。<br> 系统能力为SystemCapability.Multimedia.Audio.Renderer。   |
+| uid          | number                                   |  是  | 表示应用ID。<br> 系统能力：SystemCapability.Multimedia.Audio.Core|
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> 系统能力：SystemCapability.Multimedia.Audio.Renderer|
+| rendererId   | number                                   |  否  | 音频流唯一id。<br> 系统能力：SystemCapability.Multimedia.Audio.Renderer|
 
 **示例：**
 
