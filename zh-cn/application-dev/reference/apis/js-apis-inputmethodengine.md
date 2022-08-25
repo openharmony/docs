@@ -1055,7 +1055,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
   ```js
 async function InputMethodEngine() {
-    await TextInputClient.moveCursor('test').then(async (err) => {
+    await TextInputClient.moveCursor(inputMethodEngine.CURSOR_xxx).then(async (err) => {
         console.log('moveCursor success');
     }).catch((err) => {
         console.error("moveCursor success err: " + err.msg);
