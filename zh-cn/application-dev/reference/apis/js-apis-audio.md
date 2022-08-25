@@ -19,7 +19,7 @@ import audio from '@ohos.multimedia.audio';
 
 ## 常量
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 | 名称  | 类型                     | 可读 | 可写 | 说明               |
@@ -674,7 +674,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 音量组信息。
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
@@ -690,7 +690,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 音量组信息，数组类型，为[VolumeGroupInfo](#volumegroupinfo9)的数组，只读。
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2044,7 +2044,7 @@ getVolumeGroups(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\):
 
 获取音量组信息列表，使用callback方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2072,7 +2072,7 @@ getVolumeGroups(networkId: string\): Promise<VolumeGroupInfos\>
 
 获取音量组信息列表，使用promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2103,7 +2103,7 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 
 获取音频组管理器，使用callback方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2139,7 +2139,7 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 
 获取音频组管理器，使用promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2171,7 +2171,7 @@ async function getGroupManager(){
 ## AudioGroupManager<sup>9+</sup>
 管理音频组音量。在调用AudioGroupManager的接口前，需要先通过 [getGroupManager](#getgroupmanager9) 创建实例。
 
-**系统接口：** 该接口为系统接口
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
