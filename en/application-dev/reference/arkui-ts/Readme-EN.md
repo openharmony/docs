@@ -10,7 +10,6 @@
         - [Focus Event](ts-universal-focus-event.md)
         - [Mouse Event](ts-universal-mouse-key.md)
         - [Component Area Change Event](ts-universal-component-area-change-event.md)
-        - [Visible Area Change Event](ts-universal-component-visible-area-change-event.md)
     - Universal Attributes
         - [Size](ts-universal-attributes-size.md)
         - [Location](ts-universal-attributes-location.md)
