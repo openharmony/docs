@@ -384,7 +384,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
   | 名称            | 参数类型                            | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | [string](#filteroptions)        | 否   | 发现设备过滤信息。|
+  | filterOptions | string        | 否   | 发现设备过滤信息。|
 
 - 示例：
   ```js
