@@ -22,6 +22,7 @@ import audio from '@ohos.multimedia.audio';
 此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
+
 | 名称  | 类型                     | 可读 | 可写 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
 | LOCAL_NETWORK_ID<sup>9+</sup> | string | 是   | 否   | 本地设备网络id。 |
@@ -43,6 +44,7 @@ getAudioManager(): AudioManager
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **返回值：**
+
 | 类型                          | 说明         |
 | ----------------------------- | ------------ |
 | [AudioManager](#audiomanager) | 音频管理类。 |
@@ -60,7 +62,8 @@ getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**参数：**：
+**参数：**
+
 | 参数名   | 类型                                                       | 必填 | 说明             |
 | -------- | --------------------------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback<[AudioStreamManager](#audiostreammanager9)> | 是   | 返回音频流管理器实例。 |
@@ -86,7 +89,7 @@ getStreamManager(): Promise<AudioStreamManager\>
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**返回值：**：
+**返回值：**
 
 | 类型                                                 | 说明             |
 | ----------------------------------------- ----------| ---------------- |
@@ -113,7 +116,7 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
-**参数：**：
+**参数：**
 
 | 参数名   | 类型                                            | 必填 | 说明             |
 | -------- | ----------------------------------------------- | ---- | ---------------- |
