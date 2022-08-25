@@ -45,11 +45,11 @@ import inputMethodEngine from '@ohos.inputmethodengine';
 | FLAG_SINGLE_LINE | number | 是 | 否 | 编辑框为单行。 |
 | DISPLAY_MODE_PART | number | 是 | 否 | 编辑框显示为半屏。 |
 | DISPLAY_MODE_FULL | number | 是 | 否 | 编辑框显示为全屏。 |
-| CURSOR_UP | number | 是 | 否 | 光标上移 |
-| CURSOR_DOWN | number | 是 | 否 | 光标下移 |
-| CURSOR_LEFT | number | 是 | 否 | 光标左移 |
-| CURSOR_RIGHT | number | 是 | 否 | 光标右移 |
-| WINDOW_TYPE_INPUT_METHOD_FLOAT | number | 是 | 否 | 输入法应用窗口风格标识 |
+| CURSOR_UP<sup>9+</sup> | number | 是 | 否 | 光标上移 |
+| CURSOR_DOWN<sup>9+</sup> | number | 是 | 否 | 光标下移 |
+| CURSOR_LEFT<sup>9+</sup> | number | 是 | 否 | 光标左移 |
+| CURSOR_RIGHT<sup>9+</sup> | number | 是 | 否 | 光标右移 |
+| WINDOW_TYPE_INPUT_METHOD_FLOAT<sup>9+</sup> | number | 是 | 否 | 输入法应用窗口风格标识 |
 
 ## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a>
 
