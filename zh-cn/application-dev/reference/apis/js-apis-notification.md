@@ -2846,8 +2846,9 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**参数：**
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**参数：**
 
 | 参数名               | 类型          | 必填 | 说明                     |
 | -------------------- | ------------- | ---- | ------------------------ |
@@ -2883,8 +2884,9 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**参数：**
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**参数：**
 
 | 参数名               | 类型   | 必填 | 说明               |
 | -------------------- | ------ | ---- | ------------------ |
@@ -3057,7 +3059,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean callback: A
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
@@ -3173,6 +3175,12 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户Id。   |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | 以Promise形式返回获取是否同步通知到未安装应用程序的设备的结果。<br>true: 是。<br>false: 否。 |
 
 **示例：**
 
