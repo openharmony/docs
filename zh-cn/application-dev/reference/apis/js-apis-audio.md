@@ -19,7 +19,7 @@ import audio from '@ohos.multimedia.audio';
 
 ## 常量
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -317,7 +317,6 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | MEDIA                        | 3      | 媒体。     |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
 | ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口，三方应用不支持调用。|
-
 
 ## InterruptMode<sup>9+</sup>
 
@@ -650,7 +649,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 音量改变时，应用接收的事件。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
@@ -677,7 +676,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 音量组信息。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Volume
 
@@ -693,7 +692,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 音量组信息，数组类型，为[VolumeGroupInfo](#volumegroupinfo9)的数组，只读。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -1764,7 +1763,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 监听系统音量变化事件。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
 
@@ -1793,7 +1792,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 监听铃声模式变化事件。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1935,7 +1934,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 
 设置音频场景模式，使用callback方式异步返回结果。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1964,7 +1963,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 
 设置音频场景模式，使用Promise方式返回异步结果。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -2047,7 +2046,7 @@ getVolumeGroups(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\):
 
 获取音量组信息列表，使用callback方式异步返回结果。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2075,7 +2074,7 @@ getVolumeGroups(networkId: string\): Promise<VolumeGroupInfos\>
 
 获取音量组信息列表，使用promise方式异步返回结果。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2106,7 +2105,7 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 
 获取音频组管理器，使用callback方式异步返回结果。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2142,7 +2141,7 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 
 获取音频组管理器，使用promise方式异步返回结果。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2174,7 +2173,7 @@ async function getGroupManager(){
 ## AudioGroupManager<sup>9+</sup>
 管理音频组音量。在调用AudioGroupManager的接口前，需要先通过 [getGroupManager](#getgroupmanager9) 创建实例。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2982,7 +2981,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3016,7 +3015,7 @@ await audioManager.getRoutingManager().then((value) => {
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
 
@@ -3057,7 +3056,7 @@ await audioManager.getRoutingManager().then((value) => {
 
 selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
 
@@ -3101,7 +3100,7 @@ await audioManager.getRoutingManager().then((value) => {
 
 selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
 
@@ -3323,7 +3322,7 @@ promise.then(function (value) {
 
 过滤条件类。在调用selectOutputDeviceByFilter接口前，需要先创建AudioRendererFilter实例。
 
-此接口为系统接口，三方应用不支持调用。
+**系统接口：** 该接口为系统接口
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
