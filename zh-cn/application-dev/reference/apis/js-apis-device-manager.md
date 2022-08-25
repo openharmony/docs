@@ -10,6 +10,7 @@
 - 查询可信设备列表
 - 查询本地设备信息，包括设备名称，设备类型和设备标识
 - 发布设备发现
+
 > **说明：**
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -455,7 +456,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
   dmInstance.publishDeviceDiscovery(publishInfo); //当有发布结果时，通过回调通知给应用程序
   ```
   
-### unPublishDeviceDiscovery
+### unPublishDeviceDiscovery9+</sup>
 
 unPublishDeviceDiscovery(publishId: number): void
 
