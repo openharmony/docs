@@ -12,6 +12,8 @@ Describes the information about the target to which the shortcut points.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name                     | Type  | Readable| Writable| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | Yes  | No  | Target bundle of the shortcut.|
