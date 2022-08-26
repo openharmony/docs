@@ -50,6 +50,7 @@
           -   [Native API参考](reference/native-apis/Readme-CN.md)
           -   [标准库](reference/native-lib/third_party_libc/musl.md)
           -   [Node_API](reference/native-lib/third_party_napi/napi.md)
+- [常见问题](faqs/Readme-CN.md)
 - 贡献
     - [参与贡献](../contribute/贡献文档.md)
 
