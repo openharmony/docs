@@ -94,7 +94,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 **示例：**
 
 ```js
-inputmethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:"com.example.kikakeyboard"} ,(err,result) => {
+inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:"com.example.kikakeyboard"} ,(err,result) => {
     if (err == undefined) {
         console.info("switchInputMethod callback result---err: " + err.msg);
         return;
@@ -162,16 +162,12 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-InputMethodController.stopInput((err, result) => {
-    if (err == undefined) {
-        console.error("stopInput callback result---err: " + err.msg);
+InputMethodController.stopInput((error, data) => {
+    if (error) {
+        console.error(`failed to stopInput because: ` + JSON.stringify(error));
         return;
     }
-    if (result) {
-        console.info("Success to stopInput.(callback)");
-    } else {
-        console.info("Failed to stopInput.(callback)");
-    }
+    console.info(`success stopInput: ` + JSON.stringify(data));
 });
 ```
 
@@ -330,10 +326,10 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 ```js
 InputMethodSetting.listInputMethod((err,data) => {
     if (err == undefined) {
-        console.error("listInputMethod callback result---err: " + err.msg);
+        console.error("fail to listInputMethod because: " + JSON.stringify(err));
         return;
     }
-    console.info("listInputMethod callback result---data: " + JSON.stringify(data));
+    Array<InputMethodProperty> imeListStr = JSON.stringify(data);
  });
 ```
 
@@ -381,10 +377,10 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 ```js
 InputMethodSetting.displayOptionalInputMethod((err) => {
     if (err == undefined) {
-        console.error("displayOptionalInputMethod callback---err: " + err.msg);
+        console.error("failed to displayOptionalInputMethod because: " + JSON.stringify(err));
         return;
     }
-    console.info("displayOptionalInputMethod callback");
+    console.info("success displayOptionalInputMethod");
 });
 ```
 
@@ -409,7 +405,7 @@ async function InputMethod() {
     await InputMethodSetting.displayOptionalInputMethod().then(()=>{
         console.info("displayOptionalInputMethod promise");
     }).catch((err) => {
-        console.info("listInputMethod promise err: " + err.msg);
+        console.info("displayOptionalInputMethod promise err: " + err.msg);
     });
 }
 ```
