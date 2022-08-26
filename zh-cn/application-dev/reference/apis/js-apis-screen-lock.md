@@ -169,6 +169,62 @@ unlockScreen(): Promise&lt;void&gt;
   });
   ```
 
+
+## screenlock.lockScreen<sup>9+</sup>
+
+lockScreen(callback: AsyncCallback&lt;void&gt;): void
+
+
+锁定屏幕，使用callback作为异步方法。
+
+
+**系统能力**: SystemCapability.MiscServices.ScreenLock
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数**：
+    | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，失败时返回错误信息。 | 
+
+**示例**：
+  
+  ```js
+  screenlock.lockScreen((err) => {      
+     if (err) {
+          console.error('lockScreen callback error -> ${JSON.stringify(err)}');
+          return;    
+     }
+     console.info('lockScreen callback success');
+  });
+  ```
+
+## screenlock.lockScreen<sup>9+</sup>
+
+lockScreen(): Promise&lt;void&gt;
+
+锁定屏幕，使用Promise作为异步方法。
+
+**系统能力**: SystemCapability.MiscServices.ScreenLock
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**返回值**：
+    | 类型 | 说明 | 
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 以Promise形式返回结果。 | 
+
+**示例**：
+  
+  ```js
+  screenlock.lockScreen().then(() => {
+      console.log('lockScreen success');
+  }).catch((err) => {
+      console.error('lockScreen fail, promise: err->${JSON.stringify(err)}');
+  });
+  ```
+
+
 ## screenlock.on<sup>9+</sup>
 
 on(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginScreenOff' | 'endScreenOff' | 'unlockScreen' | 'beginExitAnimation', callback: Callback\<void\>): void
