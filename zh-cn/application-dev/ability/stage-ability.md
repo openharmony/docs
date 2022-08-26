@@ -231,8 +231,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start ability")
 }).catch((error) => {
     console.error("Failed to start ability with error: "+ JSON.stringify(error))
 })
@@ -248,8 +248,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start remote ability")
 }).catch((error) => {
     console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
