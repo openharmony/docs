@@ -19,7 +19,7 @@
 
 ## 接口
 
-Slider(options:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
+Slider(options?: {value?: number, min?: number,  max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
 **参数：**
 

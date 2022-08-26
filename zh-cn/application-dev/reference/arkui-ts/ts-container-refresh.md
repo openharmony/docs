@@ -16,7 +16,7 @@
 
 ## 接口
 
-Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number | string\}\)
+Refresh\(value: \{refreshing: boolean, offset?: number | string, friction?: number | string\}\)
 
 **参数：**
 

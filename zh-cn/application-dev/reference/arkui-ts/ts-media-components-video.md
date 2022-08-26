@@ -27,7 +27,7 @@
 
 ## 接口
 
-Video(value: VideoOptions)
+ Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController}) 
 
 - VideoOptions类型接口说明
   | 参数名              | 参数类型                                                     | 必填 | 默认值                                                  | 参数描述                                                     |
@@ -61,16 +61,16 @@ Video(value: VideoOptions)
 
 ## 事件
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onStart()&nbsp;=&gt;&nbsp;void           | 播放时触发该事件。                                |
-| onPause()&nbsp;=&gt;&nbsp;void           | 暂停时触发该事件。                                |
-| onFinish()&nbsp;=&gt;&nbsp;void          | 播放结束时触发该事件。                              |
-| onError()&nbsp;=&gt;&nbsp;void           | 播放失败时触发该事件。                              |
-| onPrepared(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void | 视频准备完成时触发该事件，通过duration可以获取视频时长，单位为秒(s)。 |
-| onSeeking(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void | 操作进度条过程时上报时间信息，单位为s。                     |
-| onSeeked(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void | 操作进度条完成后，上报播放时间信息，单位为s。                  |
-| onUpdate(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。          |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onStart(event:()&nbsp;=&gt;&nbsp;void)                       | 播放时触发该事件。                                           |
+| onPause(event:()&nbsp;=&gt;&nbsp;void)                       | 暂停时触发该事件。                                           |
+| onFinish(event:()&nbsp;=&gt;&nbsp;void)                      | 播放结束时触发该事件。                                       |
+| onError(event:()&nbsp;=&gt;&nbsp;void)                       | 播放失败时触发该事件。                                       |
+| onPrepared(callBack:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 视频准备完成时触发该事件，通过duration可以获取视频时长，单位为s。<br/>- duration: 视频的时长。 |
+| onSeeking(callBack:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息，单位为s。                      |
+| onSeeked(callBack:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息，单位为s。                |
+| onUpdate(callBack:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。     |
 
 
 ## VideoController

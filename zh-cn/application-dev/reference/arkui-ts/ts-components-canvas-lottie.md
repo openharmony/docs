@@ -85,7 +85,7 @@ destroy(name: string): void
             path: this.animatePath,
           })
         })
-
+	  // @ts-ignore 
         Animator('__lottie_ets') // declare Animator('__lottie_ets') when use lottie
         Button('load animation')
           .onClick(() => {
