@@ -36,7 +36,7 @@ Stage模型中DataShareExtensionAbility提供了向其他应用共享以及管�
 
 Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abilities中配置startWindowIcon。
 
-参考文档：[Stage模型配置文件](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/quick-start/stage-structure.md/)
+参考文档：[Stage模型配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)
 
   示例：
   
