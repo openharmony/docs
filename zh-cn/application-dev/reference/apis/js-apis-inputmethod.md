@@ -94,16 +94,12 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 **示例：**
 
 ```js
-inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:"com.example.kikakeyboard"} ,(err,result) => {
-    if (err == undefined) {
-        console.info("switchInputMethod callback result---err: " + err.msg);
+inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:"com.example.kikakeyboard"} ,(err,data) => {
+    if (err) {
+        console.log("switchInputMethod err: " + JSON.stringify(err));
         return;
     }
-    if (result) {
-        console.info("Success to switchInputMethod.(callback)");
-    } else {
-        console.info("Failed to switchInputMethod.(callback)");
-    }
+    console.log("switchInputMethod success result: " + data);
 });
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
@@ -137,7 +133,7 @@ async function InputMethod() {
             console.info("Failed to switchInputMethod.(promise)");
         }
     }).catch((err) => {
-        console.info("switchInputMethod promise err: " + err.msg);
+        console.info("switchInputMethod promise err: " + err);
     });
 }
 ```
@@ -164,10 +160,10 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 InputMethodController.stopInput((error, data) => {
     if (error) {
-        console.error(`failed to stopInput because: ` + JSON.stringify(error));
+        console.error("failed to stopInput because: " + JSON.stringify(error));
         return;
     }
-    console.info(`success stopInput: ` + JSON.stringify(data));
+    console.info("success stopInput: " + JSON.stringify(data));
 });
 ```
 
@@ -197,7 +193,7 @@ async function InputMethod() {
             console.info("Failed to stopInput.(promise)");
         }
     }).catch((err) => {
-        console.error("stopInput promise err: " + err.msg);
+        console.error("stopInput promise err: " + err);
     });
 }
 ```
@@ -324,12 +320,14 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **示例：**
 
 ```js
+imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod((err,data) => {
     if (err == undefined) {
         console.error("fail to listInputMethod because: " + JSON.stringify(err));
         return;
     }
-    Array<InputMethodProperty> imeListStr = JSON.stringify(data);
+    console.log("success listInputMethod");
+    this.imeList = data;
  });
 ```
 
@@ -349,11 +347,13 @@ listInputMethod(): Promise&lt;Array<InputMethodProperty>&gt;
 **示例：**
 
 ```js
+imeList: Array<inputMethod.InputMethodProperty> = null
 async function InputMethod() {
     await InputMethodSetting.listInputMethod().then((data)=>{
-        console.info("listInputMethod promise result---data: " + JSON.stringify(data));
+        console.info("listInputMethod success");
+        this.imeList = data;
     }).catch((err) => {
-        console.info("listInputMethod promise err:" + err.msg);
+        console.info("listInputMethod promise err:" + err);
     });
 }
 ```
@@ -405,7 +405,7 @@ async function InputMethod() {
     await InputMethodSetting.displayOptionalInputMethod().then(()=>{
         console.info("displayOptionalInputMethod promise");
     }).catch((err) => {
-        console.info("displayOptionalInputMethod promise err: " + err.msg);
+        console.info("displayOptionalInputMethod promise err: " + err);
     });
 }
 ```
