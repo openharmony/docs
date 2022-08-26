@@ -137,6 +137,7 @@
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
+  - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@system.cipher (加密算法)](js-apis-system-cipher.md)
 - 数据管理
 
