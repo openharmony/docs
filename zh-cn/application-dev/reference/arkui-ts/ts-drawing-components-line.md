@@ -32,10 +32,16 @@ Line(value?: {width: string&nbsp;|&nbsp;number, height: string&nbsp;|&nbsp;numbe
 
 | 参数名称   | 参数类型      | 默认值      | 必填 | 参数描述                 |
 | ---------- | ------------- | ----------- | ---- | ------------------------ |
-| width      | Length        | 0           | 否   | 直线所在矩形的宽度。     |
-| height     | Length        | 0           | 否   | 直线所在矩形的高度。     |
-| startPoint | Array<any&gt; | [0,&nbsp;0] | 是   | 直线起点坐标(相对坐标)。 |
-| endPoint   | Array<any&gt; | [0,&nbsp;0] | 是   | 直线终点坐标(相对坐标)。 |
+| width      | [Length](ts-types.md#length)        | 0           | 否   | 直线所在矩形的宽度。     |
+| height     | [Length](ts-types.md#length)        | 0           | 否   | 直线所在矩形的高度。     |
+| startPoint | Array&lt;Point&gt; | [0,&nbsp;0] | 是   | 直线起点坐标(相对坐标)。 |
+| endPoint   | Array&lt;Point&gt; | [0,&nbsp;0] | 是   | 直线终点坐标(相对坐标)。 |
+
+## Point
+
+| 名称  | 类型定义              | 描述                                                 |
+| ----- | --------------------- | ---------------------------------------------------- |
+| Point | [[Length](ts-types.md#length),&nbsp;[Length](ts-types.md#length)] | 用于描述点坐标，第一个值为x轴坐标，第二个值为y坐标。 |
 
 
 ## 示例
