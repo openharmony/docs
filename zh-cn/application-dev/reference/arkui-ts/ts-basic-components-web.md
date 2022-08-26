@@ -56,7 +56,7 @@ domStorageAccess(domStorageAccess: boolean)
 **参数：**
 | 参数名              | 参数类型    | 必填   | 默认值  | 参数描述                                 |
 | ---------------- | ------- | ---- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | 是    | -    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
+| domStorageAccess | boolean | 是    | false | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
 
 **示例：**
   ```ts
@@ -137,7 +137,7 @@ imageAccess(imageAccess: boolean)
 **参数：**
 | 参数名         | 参数类型    | 必填   | 默认值  | 参数描述            |
 | ----------- | ------- | ---- | ---- | --------------- |
-| imageAccess | boolean | 是    | -    | 设置是否允许自动加载图片资源。 |
+| imageAccess | boolean | 是    | true | 设置是否允许自动加载图片资源。 |
 
 **示例：**
   ```ts
@@ -168,6 +168,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
+| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
 
 **示例：**
   ```ts
@@ -211,7 +212,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 **参数：**
 | 参数名              | 参数类型    | 必填   | 默认值  | 参数描述                |
 | ---------------- | ------- | ---- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | -    | 是否允许执行JavaScript脚本。 |
+| javaScriptAccess | boolean | 是    | true | 是否允许执行JavaScript脚本。 |
 
 **示例：**
   ```ts
@@ -238,7 +239,7 @@ mixedMode(mixedMode: MixedMode)
 **参数：**
 | 参数名       | 参数类型                        | 必填   | 默认值  | 参数描述      |
 | --------- | --------------------------- | ---- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | -    | 要设置的混合内容。 |
+| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | MixedMode.None | 要设置的混合内容。 |
 
 **示例：**
   ```ts
@@ -266,7 +267,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 **参数：**
 | 参数名               | 参数类型    | 必填   | 默认值  | 参数描述             |
 | ----------------- | ------- | ---- | ---- | ---------------- |
-| onlineImageAccess | boolean | 是    | -    | 设置是否允许从网络加载图片资源。 |
+| onlineImageAccess | boolean | 是    | true | 设置是否允许从网络加载图片资源。 |
 
 **示例：**
   ```ts
@@ -293,7 +294,7 @@ zoomAccess(zoomAccess: boolean)
 **参数：**
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述          |
 | ---------- | ------- | ---- | ---- | ------------- |
-| zoomAccess | boolean | 是    | -    | 设置是否支持手势进行缩放。 |
+| zoomAccess | boolean | 是    | true | 设置是否支持手势进行缩放。 |
 
 **示例：**
   ```ts
@@ -320,7 +321,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 **参数：**
 | 参数名                | 参数类型    | 必填   | 默认值  | 参数描述            |
 | ------------------ | ------- | ---- | ---- | --------------- |
-| overviewModeAccess | boolean | 是    | -    | 设置是否使用概览模式加载网页。 |
+| overviewModeAccess | boolean | 是    | true | 设置是否使用概览模式加载网页。 |
 
 **示例：**
   ```ts
@@ -347,7 +348,7 @@ databaseAccess(databaseAccess: boolean)
 **参数：**
 | 参数名            | 参数类型    | 必填   | 默认值  | 参数描述              |
 | -------------- | ------- | ---- | ---- | ----------------- |
-| databaseAccess | boolean | 是    | -    | 设置是否开启数据库存储API权限。 |
+| databaseAccess | boolean | 是    | false | 设置是否开启数据库存储API权限。 |
 
 **示例：**
   ```ts
@@ -401,7 +402,7 @@ cacheMode(cacheMode: CacheMode)
 **参数：**
 | 参数名       | 参数类型                        | 必填   | 默认值  | 参数描述      |
 | --------- | --------------------------- | ---- | ---- | --------- |
-| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | -    | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
 
 **示例：**
   ```ts
@@ -429,7 +430,7 @@ textZoomRatio(textZoomRatio: number)
 **参数：**
 | 参数名          | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------ | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | 是    | -    | 要设置的页面的文本缩放百分比。 |
+| textZoomRatio | number | 是    | 100 | 要设置的页面的文本缩放百分比。 |
 
 **示例：**
   ```ts
