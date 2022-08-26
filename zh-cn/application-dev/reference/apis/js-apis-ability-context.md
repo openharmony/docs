@@ -127,7 +127,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
   	windowMode: 0,
   };
   this.context.startAbility(want, options)
-  .then((data) => {
+  .then(() => {
       console.log('Operation successful.')
   }).catch((error) => {
       console.log('Operation failed.');
@@ -407,8 +407,8 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
     "abilityName": "MainAbility"
   };
   this.context.startServiceExtensionAbility(want)
-    .then((data) => {
-        console.log('---------- startServiceExtensionAbility success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- startServiceExtensionAbility success -----------');
     })
     .catch((err) => {
         console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
@@ -477,8 +477,8 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
   };
   var accountId = 100;
   this.context.startServiceExtensionAbilityWithAccount(want,accountId)
-    .then((data) => {
-        console.log('---------- startServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- startServiceExtensionAbilityWithAccount success -----------');
     })
     .catch((err) => {
         console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
@@ -539,8 +539,8 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
     "abilityName": "MainAbility"
   };
   this.context.stopServiceExtensionAbility(want)
-    .then((data) => {
-        console.log('---------- stopServiceExtensionAbility success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- stopServiceExtensionAbility success -----------');
     })
     .catch((err) => {
         console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
@@ -610,8 +610,8 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
   };
   var accountId = 100;
   this.context.stopServiceExtensionAbilityWithAccount(want,accountId)
-    .then((data) => {
-        console.log('---------- stopServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- stopServiceExtensionAbilityWithAccount success -----------');
     })
     .catch((err) => {
         console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
@@ -658,8 +658,8 @@ terminateSelf(): Promise&lt;void&gt;;
 **示例：**
 
   ```js
-  this.context.terminateSelf().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  this.context.terminateSelf().then(() => {
+      console.log('success');
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
   });
@@ -839,8 +839,8 @@ disconnectAbility(connection: number): Promise\<void>;
     
   ```js
   var connectionNumber = 0;
-  this.context.disconnectAbility(connectionNumber).then((data) => {
-       console.log('disconnectAbility success, data: ', data);
+  this.context.disconnectAbility(connectionNumber).then(() => {
+       console.log('disconnectAbility success');
   }).catch((err) => {
        console.log('disconnectAbility fail, err: ', err);
   });
@@ -1020,8 +1020,8 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
     windowMode: 0,
   };
   this.context.startAbilityWithAccount(want, accountId, options)
-    .then((data) => {
-        console.log('---------- startAbilityWithAccount success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- startAbilityWithAccount success -----------');
     })
     .catch((err) => {
         console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
@@ -1134,8 +1134,8 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 **示例：**
     
   ```js
-  this.context.setMissionLabel("test").then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  this.context.setMissionLabel("test").then(() => {
+      console.log('success');
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
   });
@@ -1224,8 +1224,8 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
           console.log('--------- createPixelMap fail, err: ---------', err)
       });
     this.context.setMissionIcon(imagePixelMap)
-      .then((data) => {
-          console.log('-------------- setMissionIcon success, data: -------------', data);
+      .then(() => {
+          console.log('-------------- setMissionIcon success -------------');
       })
       .catch((err) => {
           console.log('-------------- setMissionIcon fail, err: -------------', err);
