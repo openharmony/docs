@@ -3035,9 +3035,9 @@ Notification.isNotificationSlotEnabled(
 ```
 
 
-## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
+setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
 设置是否将通知同步到未安装应用程序的设备(callback形式)。
 
@@ -3061,17 +3061,17 @@ setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callb
 let userId = 100;
 let enable = true;
 
-function setSyncNotificationEnabledForUninstallAppCallback(err) {
-    console.log('setSyncNotificationEnabledForUninstallAppCallback');
+function setSyncNotificationEnabledWithoutAppCallback(err) {
+    console.log('setSyncNotificationEnabledWithoutAppCallback');
 }
 
-Notification.setSyncNotificationEnabledForUninstallApp(userId, enable, setSyncNotificationEnabledForUninstallAppCallback);
+Notification.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
-## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Promise\<void>
+setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
 
 设置是否将通知同步到未安装应用程序的设备(Promise形式)。
 
@@ -3094,19 +3094,19 @@ setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Prom
 let userId = 100;
 let enable = true;
 
-Notification.setSyncNotificationEnabledForUninstallApp(userId, enable)
+Notification.setSyncNotificationEnabledWithoutApp(userId, enable)
     .then((data) => {
-        console.log('setSyncNotificationEnabledForUninstallApp, data:', data);
+        console.log('setSyncNotificationEnabledWithoutApp, data:', data);
     })
     .catch((err) => {
-        console.log('setSyncNotificationEnabledForUninstallApp, err:', err);
+        console.log('setSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
 
-## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-getSyncNotificationEnabledForUninstallApp(userId: number, callback: AsyncCallback\<boolean>): void
+getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
 
 获取是否同步通知到未安装应用程序的设备的结果(callback形式)。
 
@@ -3128,17 +3128,17 @@ getSyncNotificationEnabledForUninstallApp(userId: number, callback: AsyncCallbac
 ```js
 let userId = 100;
 
-function getSyncNotificationEnabledForUninstallAppCallback(err, data) {
-    console.log('getSyncNotificationEnabledForUninstallAppCallback, data: ', data);
+function getSyncNotificationEnabledWithoutAppCallback(err, data) {
+    console.log('getSyncNotificationEnabledWithoutAppCallback, data: ', data);
 }
 
-Notification.getSyncNotificationEnabledForUninstallApp(userId, getSyncNotificationEnabledForUninstallAppCallback);
+Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
-## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-getSyncNotificationEnabledForUninstallApp(userId: number): Promise\<boolean>
+getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 获取是否同步通知到未安装应用程序的设备的结果(Promise形式)。
 
@@ -3165,12 +3165,12 @@ getSyncNotificationEnabledForUninstallApp(userId: number): Promise\<boolean>
 ```js
 let userId = 100;
 
-Notification.getSyncNotificationEnabledForUninstallApp(userId)
+Notification.getSyncNotificationEnabledWithoutApp(userId)
     .then((data) => {
-        console.log('getSyncNotificationEnabledForUninstallApp, data: ', data);
+        console.log('getSyncNotificationEnabledWithoutApp, data: ', data);
     })
     .catch((err) => {
-        console.log('getSyncNotificationEnabledForUninstallApp, err: ', err);
+        console.log('getSyncNotificationEnabledWithoutApp, err: ', err);
     });
 ```
 
