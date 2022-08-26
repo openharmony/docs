@@ -30,7 +30,7 @@ getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): voi
 ```js
 camera.getCameraManager(context, (err, cameraManager) => {
     if (err) {
-        console.error('Failed to get the CameraManager instance ${err.message}');
+        console.error(`Failed to get the CameraManager instance ${err.message}`);
         return;
     }
     console.log('Callback returned with the CameraManager instance');
@@ -146,10 +146,10 @@ getSupportedCameras(callback: AsyncCallback<Array<CameraDevice\>\>): void
 ```js
 cameraManager.getSupportedCameras((err, cameras) => {
     if (err) {
-        console.error('Failed to get the cameras. ${err.message}');
+        console.error(`Failed to get the cameras. ${err.message}`);
         return;
     }
-    console.log('Callback returned with an array of supported cameras: ' + cameras.length);
+    console.log(`Callback returned with an array of supported cameras: ${cameras.length}`);
 })
 ```
 
@@ -172,7 +172,7 @@ getSupportedCameras(): Promise<Array<CameraDevice\>\>
 
 ```js
 cameraManager.getSupportedCameras().then((cameraArray) => {
-    console.log('Promise returned with an array of supported cameras: ' + cameraArray.length);
+    console.log(`Promise returned with an array of supported cameras: ${cameraArray.length}`);
 })
 ```
 
@@ -188,7 +188,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 
 | 名称     | 类型                                                              | 必填 | 说明                      |
 | -------- | ---------------------------------------------------------------- | -- | -------------------------- |
-| camera   | [CameraDevice](#cameraDevice)                                    | 是 | CameraDevice对象。          |
+| camera   | [CameraDevice](#cameradevice)                                    | 是 | CameraDevice对象。          |
 | callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | 是 | 使用callback方式获取相机输出能力。 |
 
 **示例：**
@@ -196,7 +196,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 ```js
 cameraManager.getSupportedOutputCapability(cameraDevice, (err, cameras) => {
     if (err) {
-        console.error('Failed to get the cameras. ${err.message}');
+        console.error(`Failed to get the cameras. ${err.message}`);
         return;
     }
     console.log('Callback returned with an array of supported outputCapability');
@@ -215,7 +215,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 
 | 名称      | 类型                              | 必填  | 说明        |
 | -------- | --------------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameraDevice)     |  是  | CameraDevice对象。|
+| camera   | [CameraDevice](#cameradevice)     |  是  | CameraDevice对象。|
 
 **返回值：**
 
@@ -251,7 +251,7 @@ getSupportedMetadataObjectType(callback: AsyncCallback<Array<MetadataObjectType\
 ```js
 cameraManager.getSupportedMetadataObjectType((err, metadataobject) => {
     if (err) {
-        console.error('Failed to get the supported metadataObjectType. ${err.message}');
+        console.error(`Failed to get the supported metadataObjectType. ${err.message}`);
         return;
     }
     console.log('Callback returned with an array of supported metadataObjectType.' );
@@ -300,7 +300,7 @@ isCameraMuted(callback: AsyncCallback<boolean\>): void
 ```js
 cameraManager.isCameraMuted((err, status) => {
     if (err) {
-        console.error('Failed to get the cameraMuted status. ${err.message}');
+        console.error(`Failed to get the cameraMuted status. ${err.message}`);
         return;
     }
     console.log('Callback returned with cameraMuted status');
@@ -353,7 +353,7 @@ isCameraMuteSupported(callback: AsyncCallback<boolean\>): void
 ```js
 cameraManager.isCameraMuteSupported((err, status) => {
     if (err) {
-        console.error('Failed to get the cameraMuteSupported. ${err.message}');
+        console.error(`Failed to get the cameraMuteSupported. ${err.message}`);
         return;
     }
     console.log('Callback returned with the status whether cameraMuteSupported.');
@@ -411,7 +411,7 @@ muteCamera(mute:boolean, callback: AsyncCallback<void\>): void
 ```js
 cameraManager.muteCamera(isMuted, (err) => {
     if (err) {
-        console.error('Failed to mute the camera. ${err.message}');
+        console.error(`Failed to mute the camera. ${err.message}`);
         return;
     }
     console.log('Callback returned with the muteCamera.');
@@ -467,7 +467,7 @@ createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): 
 
 | 名称     | 类型                                         | 必填 | 说明                                |
 | -------- | ------------------------------------------- | ---- | --------------------------------- |
-| camera   | [CameraDevice](#cameraDevice)               | 是   | CameraDevice对象。                        |
+| camera   | [CameraDevice](#cameradevice)               | 是   | CameraDevice对象。                        |
 | callback | AsyncCallback<[CameraInput](#camerainput)\> | 是   | 回调函数，用于获取CameraInput实例。    |
 
 **示例：**
@@ -475,7 +475,7 @@ createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): 
 ```js
 cameraManager.createCameraInput(camera, (err, cameraInput) => {
     if (err) {
-        console.error('Failed to create the CameraInput instance. ${err.message}');
+        console.error(`Failed to create the CameraInput instance. ${err.message}`);
         return;
     }
     console.log('Callback returned with the CameraInput instance.');
@@ -498,7 +498,7 @@ createCameraInput(camera: CameraDevice): Promise<CameraInput\>
 
 | 名称     | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- | ---- | ---------- |
-| camera   | [CameraDevice](#cameraDevice) | 是   | CameraDevice对象。 |
+| camera   | [CameraDevice](#cameradevice) | 是   | CameraDevice对象。 |
 
 **返回值：**
 
@@ -539,7 +539,7 @@ createCameraInput(position: CameraPosition, type: CameraType, callback: AsyncCal
 ```js
 cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, camera.CameraType.CAMERA_TYPE_UNSPECIFIED, (err, cameraInput) => {
     if (err) {
-        console.error('Failed to create the CameraInput instance. ${err.message}');
+        console.error(`Failed to create the CameraInput instance. ${err.message}`);
         return;
     }
     console.log('Callback returned with the CameraInput instance');
@@ -600,7 +600,7 @@ createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback
 ```js
 cameraManager.createPreviewOutput(profile, surfaceId, (err, previewoutput) => {
     if (err) {
-        console.error('Failed to gcreate previewOutput. ${err.message}');
+        console.error(`Failed to gcreate previewOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with previewOutput created.');
@@ -656,7 +656,7 @@ createDeferredPreviewOutput(profile: Profile, callback: AsyncCallback<PreviewOut
 ```js
 cameraManager.createDeferredPreviewOutput(profile, (err, previewoutput) => {
     if (err) {
-        console.error('Failed to create deferredPreviewOutput. ${err.message}');
+        console.error(`Failed to create deferredPreviewOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with deferredPreviewOutput created.');
@@ -712,7 +712,7 @@ createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<P
 ```js
 cameraManager.createPhotoOutput(profile, surfaceId, (err, photooutput) => {
     if (err) {
-        console.error('Failed to create photoOutput. ${err.message}');
+        console.error(`Failed to create photoOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with photoOutput created.');
@@ -769,7 +769,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallb
 ```js
 cameraManager.createVideoOutput(profile, surfaceId, (err, videooutput) => {
     if (err) {
-        console.error('Failed to create videoOutput. ${err.message}');
+        console.error(`Failed to create videoOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with an array of supported outputCapability' );
@@ -825,7 +825,7 @@ createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>, callback: 
 ```js
 cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) => {
     if (err) {
-        console.error('Failed to create metadataOutput. ${err.message}');
+        console.error(`Failed to create metadataOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with metadataOutput created.');
@@ -879,7 +879,7 @@ createCaptureSession(callback: AsyncCallback<CaptureSession\>): void
 ```js
 cameraManager.createCaptureSession((err, capturesession) => {
     if (err) {
-        console.error('Failed to create captureSession. ${err.message}');
+        console.error(`Failed to create captureSession. ${err.message}`);
         return;
     }
     console.log('Callback returned with captureSession created.');
@@ -928,11 +928,11 @@ on(type: 'cameraStatus', callback: AsyncCallback<CameraStatusInfo\>): void
 ```js
 cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
     if (err) {
-        console.error('Failed to get cameraStatus callback. ${err.message}');
+        console.error(`Failed to get cameraStatus callback. ${err.message}`);
         return;
     }
-    console.log('camera : ' + cameraStatusInfo.camera.cameraId);
-    console.log('status: ' + cameraStatusInfo.status);
+    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.log(`status: ${cameraStatusInfo.status}`);
 })
 ```
 
@@ -960,10 +960,10 @@ on(type: 'cameraMute', callback: AsyncCallback<boolean\>): void
 ```js
 cameraManager.on('cameraMute', (err, status) => {
     if (err) {
-        console.error('Failed to get cameraMute callback. ${err.message}');
+        console.error(`Failed to get cameraMute callback. ${err.message}`);
         return;
     }
-    console.log('status: ' + status);
+    console.log(`status: ${status}`);
 })
 ```
 
@@ -975,7 +975,7 @@ cameraManager.on('cameraMute', (err, status) => {
 
 | 名称   | 类型                            | 说明       |
 | ------ | ----------------------------- | ---------- |
-| camera | [CameraDevice](#cameraDevice) | 相机信息。 |
+| camera | [CameraDevice](#cameradevice) | 相机信息。 |
 | status | [CameraStatus](#camerastatus) | 相机状态。 |
 
 ## CameraPosition
@@ -1033,13 +1033,13 @@ cameraManager.on('cameraMute', (err, status) => {
 
 ```js
 async function getCameraInfo("cameraId") {
-    var cameraManager = await camera.getCameraManager(context);
-    var cameras = await cameraManager.getSupportedCameras();
-    var cameraObj = cameras[0];
-    var cameraId = cameraObj.cameraId;
-    var cameraPosition = cameraObj.cameraPosition;
-    var cameraType = cameraObj.cameraType;
-    var connectionType = cameraObj.connectionType;
+    let cameraManager = await camera.getCameraManager(context);
+    let cameras = await cameraManager.getSupportedCameras();
+    let cameraObj = cameras[0];
+    let cameraId = cameraObj.cameraId;
+    let cameraPosition = cameraObj.cameraPosition;
+    let cameraType = cameraObj.cameraType;
+    let connectionType = cameraObj.connectionType;
 }
 ```
 
@@ -1099,7 +1099,7 @@ open\(callback: AsyncCallback<void\>\): void
 ```js
 cameraInput.open((err) => {
     if (err) {
-        console.error('Failed to open the camera. ${err.message}');
+        console.error(`Failed to open the camera. ${err.message}`);
         return;
     }
     console.log('Callback returned with camera opened.');
@@ -1147,7 +1147,7 @@ close\(callback: AsyncCallback<void\>\): void
 ```js
 cameraInput.close((err) => {
     if (err) {
-        console.error('Failed to close the cameras. ${err.message}');
+        console.error(`Failed to close the cameras. ${err.message}`);
         return;
     }
     console.log('Callback returned with camera closed.');
@@ -1195,7 +1195,7 @@ release\(callback: AsyncCallback<void\>\): void
 ```js
 cameraInput.release((err) => {
     if (err) {
-        console.error('Failed to release the CameraInput instance ${err.message}');
+        console.error(`Failed to release the CameraInput instance ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate that the CameraInput instance is released successfully.');
@@ -1243,7 +1243,7 @@ on(type: 'error', callback: ErrorCallback<CameraInputError\>): void
 
 ```js
 cameraInput.on('error', (cameraInputError) => {
-    console.log('Camera input error code: ' + cameraInputError.code);
+    console.log(`Camera input error code: ${cameraInputError.code}`);
 })
 ```
 
@@ -1371,7 +1371,7 @@ beginConfig\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.beginConfig((err) => {
     if (err) {
-        console.error('Failed to start the configuration. ${err.message}');
+        console.error(`Failed to start the configuration. ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the begin config success.');
@@ -1420,7 +1420,7 @@ commitConfig\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.commitConfig((err) => {
     if (err) {
-        console.error('Failed to commit the configuration. ${err.message}');
+        console.error(`Failed to commit the configuration. ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the commit config success.');
@@ -1469,7 +1469,7 @@ canAddInput(cameraInput: CameraInput, callback: AsyncCallback<boolean\>): void
 ```js
 captureSession.canAddInput(cameraInput, (err, status) => {
     if (err) {
-        console.error('Can not add cameraInput. ${err.message}');
+        console.error(`Can not add cameraInput. ${err.message}`);
         return;
     }
     console.log('Callback returned with cameraInput can added.');
@@ -1524,7 +1524,7 @@ addInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
 ```js
 captureSession.addInput(cameraInput, (err) => {
     if (err) {
-        console.error('Failed to add the CameraInput instance. ${err.message}');
+        console.error(`Failed to add the CameraInput instance. ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate that the CameraInput instance is added.');
@@ -1579,7 +1579,7 @@ removeInput\(cameraInput: CameraInput, callback: AsyncCallback<void\>\): void
 ```js
 captureSession.removeInput(cameraInput, (err) => {
     if (err) {
-        console.error('Failed to remove the CameraInput instance. ${err.message}');
+        console.error(`Failed to remove the CameraInput instance. ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate that the cameraInput instance is removed.');
@@ -1626,7 +1626,7 @@ canAddOutput(cameraOutput: CameraOutput, callback: AsyncCallback<boolean\>\): vo
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 | callback      | AsyncCallback<boolean\>         | 是   | 回调函数，用于获取结果。   |
 
 **示例：**
@@ -1634,7 +1634,7 @@ canAddOutput(cameraOutput: CameraOutput, callback: AsyncCallback<boolean\>\): vo
 ```js
 captureSession.canAddOutput(cameraOutput, (err, status) => {
     if (err) {
-        console.error('Can not add cameraOutput. ${err.message}');
+        console.error(`Can not add cameraOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with cameraOutput can added.');
@@ -1653,7 +1653,7 @@ canAddOutput(cameraOutput: CameraOutput): Promise<boolean\>
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 
 
 **返回值：**
@@ -1683,7 +1683,7 @@ addOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 | callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
@@ -1691,7 +1691,7 @@ addOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 ```js
 captureSession.addOutput(cameraOutput, (err) => {
     if (err) {
-        console.error('Failed to add output. ${err.message}');
+        console.error(`Failed to add output. ${err.message}`);
         return;
     }
     console.log('Callback returned with output added.');
@@ -1710,7 +1710,7 @@ addOutput\(cameraOutput: CameraOutput\): Promise<void\>
 
 | 名称           | 类型                             | 必填 | 说明                       |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要添加的CameraOutput实例。 |
 
 **返回值：**
 
@@ -1738,7 +1738,7 @@ removeOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------ |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要移除的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
 | callback      | AsyncCallback<void\>            | 是   | 回调函数，用于获取结果。      |
 
 **示例：**
@@ -1746,7 +1746,7 @@ removeOutput\(cameraOutput: CameraOutput, callback: AsyncCallback<void\>\): void
 ```js
 captureSession.removeOutput(cameraOutput, (err) => {
     if (err) {
-        console.error('Failed to remove the CameraOutput instance. ${err.message}');
+        console.error(`Failed to remove the CameraOutput instance. ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate that the CameraOutput instance is removed.');
@@ -1765,7 +1765,7 @@ removeOutput(cameraOutput: CameraOutput): Promise<void\>
 
 | 名称           | 类型                             | 必填 | 说明                      |
 | ------------- | ------------------------------- | ---- | ------------------------- |
-| cameraOutput  | [CameraOutput](#cameraOutput)   | 是   | 需要移除的CameraOutput实例。 |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | 是   | 需要移除的CameraOutput实例。 |
 
 
 **返回值：**
@@ -1802,7 +1802,7 @@ start\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.start((err) => {
     if (err) {
-        console.error('Failed to start the session ${err.message}');
+        console.error(`Failed to start the session ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the session start success.');
@@ -1850,7 +1850,7 @@ stop\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.stop((err) => {
     if (err) {
-        console.error('Failed to stop the session ${err.message}');
+        console.error(`Failed to stop the session ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the session stop success.');
@@ -1898,7 +1898,7 @@ lockForControl(callback: AsyncCallback<void\>): void
 ```js
 captureSession.lockForControl((err) => {
     if (err) {
-        console.error('Failed to lock. ${err.message}');
+        console.error(`Failed to lock. ${err.message}`);
         return;
     }
     console.log('Locked.');
@@ -1946,7 +1946,7 @@ unlockForControl(callback: AsyncCallback<void\>): void
 ```js
 captureSession.unlockForControl((err) => {
     if (err) {
-        console.error('Failed to unlock. ${err.message}');
+        console.error(`Failed to unlock. ${err.message}`);
         return;
     }
     console.log('Unlocked.');
@@ -1994,7 +1994,7 @@ release\(callback: AsyncCallback<void\>\): void
 ```js
 captureSession.release((err) => {
     if (err) {
-        console.error('Failed to release the CaptureSession instance ${err.message}');
+        console.error(`Failed to release the CaptureSession instance ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate that the CaptureSession instance is released successfully.');
@@ -2042,10 +2042,10 @@ hasFlash(callback: AsyncCallback<boolean\>): void
 ```js
 cameraInput.hasFlash((err, status) => {
     if (err) {
-        console.error('Failed to check whether the device has flash light. ${err.message}');
+        console.error(`Failed to check whether the device has flash light. ${err.message}`);
         return;
     }
-    console.log('Callback returned with flash light support status: ' + status);
+    console.log(`Callback returned with flash light support status: ${status}`);
 })
 ```
 
@@ -2067,7 +2067,7 @@ hasFlash(): Promise<boolean\>
 
 ```js
 cameraInput.hasFlash().then((status) => {
-    console.log('Promise returned with the flash light support status:' + status);
+    console.log(`Promise returned with the flash light support status: ${status}`);
 })
 ```
 
@@ -2091,10 +2091,10 @@ isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean\>): v
 ```js
 cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, (err, status) => {
     if (err) {
-        console.error('Failed to check whether the flash mode is supported. ${err.message}');
+        console.error(`Failed to check whether the flash mode is supported. ${err.message}`);
         return;
     }
-    console.log('Callback returned with the flash mode support status: ' + status);
+    console.log(`Callback returned with the flash mode support status: ${status}`);
 })
 ```
 
@@ -2122,7 +2122,7 @@ isFlashModeSupported(flashMode: FlashMode): Promise<boolean\>
 
 ```js
 cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO).then((status) => {
-    console.log('Promise returned with flash mode support status.' + status);
+    console.log(`Promise returned with flash mode support status.${status}`);
 })
 ```
 
@@ -2151,7 +2151,7 @@ setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void\>): void
 ```js
 cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, (err) => {
     if (err) {
-        console.error('Failed to set the flash mode  ${err.message}');
+        console.error(`Failed to set the flash mode  ${err.message}`);
         return;
     }
     console.log('Callback returned with the successful execution of setFlashMode.');
@@ -2210,10 +2210,10 @@ getFlashMode(callback: AsyncCallback<FlashMode\>): void
 ```js
 cameraInput.getFlashMode((err, flashMode) => {
     if (err) {
-        console.error('Failed to get the flash mode  ${err.message}');
+        console.error(`Failed to get the flash mode  ${err.message}`);
         return;
     }
-    console.log('Callback returned with current flash mode: ' + flashMode);
+    console.log(`Callback returned with current flash mode: ${flashMode}`);
 })
 ```
 
@@ -2235,7 +2235,7 @@ getFlashMode(): Promise<FlashMode\>
 
 ```js
 cameraInput.getFlashMode().then((flashMode) => {
-    console.log('Promise returned with current flash mode : ' + flashMode);
+    console.log(`Promise returned with current flash mode : ${flashMode}`);
 })
 ```
 
@@ -2259,7 +2259,7 @@ isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean\>)
 ```js
 cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
     if (err) {
-        console.log('Failed to check exposure mode supported ${err.message}');
+        console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
     }
     console.log('Callback returned with the successful excution of isExposureModeSupported');
@@ -2290,7 +2290,7 @@ isExposureModeSupported(aeMode: ExposureMode): Promise<boolean\>
 
 ```js
 cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
-    console.log('Promise returned with exposure mode supported : ' + isSupported);
+    console.log(`Promise returned with exposure mode supported : ${isSupported}`);
 })
 ```
 
@@ -2313,10 +2313,10 @@ getExposureMode(callback: AsyncCallback<ExposureMode\>): void
 ```js
 cameraInput.getExposureMode((err, exposureMode) => {
     if (err) {
-        console.log('Failed to get the exposure mode ${err.message}');
+        console.log(`Failed to get the exposure mode ${err.message}`);
         return ;
     }
-    console.log('Callback returned with current exposure mode:' + exposureMode);
+    console.log(`Callback returned with current exposure mode: ${exposureMode}`);
 })
 ```
 
@@ -2338,7 +2338,7 @@ getExposureMode(): Promise<ExposureMode\>
 
 ```js
 cameraInput.getExposureMode().then((exposureMode) => {
-    console.log('Promise returned with current exposure mode : ' + exposureMode);
+    console.log(`Promise returned with current exposure mode : ${exposureMode}`);
 })
 ```
 
@@ -2362,7 +2362,7 @@ setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void\>): void
 ```js
 cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
     if (err) {
-        console.log('Failed to set the exposure mode ${err.message}');
+        console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
     }
     console.log('Callback returned with the successful excution of setExposureMode');
@@ -2410,10 +2410,10 @@ getMeteringPoint(callback: AsyncCallback<Point\>): void
 ```js
 cameraInput.getMeteringPoint((err, exposurePoint) => {
     if (err) {
-        console.log('Failed to get the current exposure point ${err.message}');
+        console.log(`Failed to get the current exposure point ${err.message}`);
         return ;
     }
-    console.log('Callback returned with current exposure point:' + exposurePoint);
+    console.log(`Callback returned with current exposure point: ${exposurePoint}`);
 })
 ```
 
@@ -2435,7 +2435,7 @@ getMeteringPoint(): Promise<Point\>
 
 ```js
 cameraInput.getMeteringPoint().then((exposurePoint) => {
-    console.log('Promise returned with current exposure point : ' + exposurePoint);
+    console.log(`Promise returned with current exposure point : ${exposurePoint}`);
 })
 ```
 
@@ -2457,11 +2457,11 @@ setMeteringPoint(point: Point, callback: AsyncCallback<point\>): void
 **示例：**
 
 ```js
-var Point1 = {x: 1, y: 1};
+const Point1 = {x: 1, y: 1};
 
 cameraInput.setMeteringPoint(Point1,(err) => {
     if (err) {
-        console.log('Failed to set the exposure point ${err.message}');
+        console.log(`Failed to set the exposure point ${err.message}`);
         return ;
     }
     console.log('Callback returned with the successful excution of setMeteringPoint');
@@ -2491,7 +2491,7 @@ setMeteringPoint(point: Point): Promise<void\>
 **示例：**
 
 ```js
-var Point2 = {x: 2, y: 2};
+const Point2 = {x: 2, y: 2};
 
 cameraInput.setMeteringPoint(Point2).then(() => {
     console.log('Promise returned with the successful execution of setMeteringPoint');
@@ -2517,7 +2517,7 @@ getExposureBiasRange(callback: AsyncCallback<Array<number\>\>): void
 ```js
 cameraInput.getExposureBiasRange((err, biasRangeArray) => {
     if (err) {
-        console.log('Failed to get the array of compenstation range ${err.message}');
+        console.log(`Failed to get the array of compenstation range ${err.message}`);
         return ;
     }
     console.log('Callback returned with the array of compenstation range: ' + JSON.stringify(biasRangeArray));
@@ -2542,7 +2542,7 @@ getExposureBiasRange(): Promise<Array<number\>\>
 
 ```js
 cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
-    console.log('Promise returned with exposure mode supported : ' + isSupported);
+    console.log(`Promise returned with exposure mode supported : ${isSupported}`);
 })
 ```
 
@@ -2568,7 +2568,7 @@ setExposureBias(exposureBias: number, callback: AsyncCallback<void\>): void
 ```js
 cameraInput.setExposureBias(-4,(err) => {
     if (err) {
-        console.log('Failed to set the exposure bias ${err.message}');
+        console.log(`Failed to set the exposure bias ${err.message}`);
         return ;
     }
     console.log('Callback returned with the successful excution of setExposureBias');
@@ -2624,10 +2624,10 @@ getExposureValue(callback: AsyncCallback<number\>): void
 ```js
 cameraInput.getExposureValue((err, exposureValue) => {
     if (err) {
-        console.log('Failed to get the exposure value ${err.message}');
+        console.log(`Failed to get the exposure value ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the exposure value: ' + exposureValue);
+    console.log(`Callback returned with the exposure value: ${exposureValue}`);
 })
 ```
 
@@ -2649,7 +2649,7 @@ getExposureValue(): Promise<number\>
 
 ```js
 cameraInput.getExposureValue().then((exposureValue) => {
-    console.log('Promise returned with exposure value: ' + exposureValue);
+    console.log(`Promise returned with exposure value: ${exposureValude}`);
 })
 ```
 
@@ -2673,10 +2673,10 @@ isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean\>): void
 ```js
 cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO, (err, status) => {
     if (err) {
-        console.error('Failed to check whether the focus mode is supported. ${err.message}');
+        console.error(`Failed to check whether the focus mode is supported. ${err.message}`);
         return;
     }
-    console.log('Callback returned with the focus mode support status: ' + status);
+    console.log(`Callback returned with the focus mode support status: ${status}`);
 })
 ```
 
@@ -2704,7 +2704,7 @@ isFocusModeSupported(afMode: FocusMode): Promise<boolean\>
 
 ```js
 cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO).then((status) => {
-    console.log('Promise returned with focus mode support status.' + status);
+    console.log(`Promise returned with focus mode support status ${status}.`);
 })
 ```
 
@@ -2730,7 +2730,7 @@ setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void
 ```js
 cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO, (err) => {
     if (err) {
-        console.error('Failed to set the focus mode  ${err.message}');
+        console.error(`Failed to set the focus mode  ${err.message}`);
         return;
     }
     console.log('Callback returned with the successful execution of setFocusMode.');
@@ -2786,10 +2786,10 @@ getFocusMode(callback: AsyncCallback<FocusMode\>): void
 ```js
 cameraInput.getFocusMode((err, afMode) => {
     if (err) {
-        console.error('Failed to get the focus mode  ${err.message}');
+        console.error(`Failed to get the focus mode  ${err.message}`);
         return;
     }
-    console.log('Callback returned with current focus mode: ' + afMode);
+    console.log(`Callback returned with current focus mode: ${afMode}`);
 })
 ```
 
@@ -2811,7 +2811,7 @@ getFocusMode(): Promise<FocusMode\>
 
 ```js
 cameraInput.getFocusMode().then((afMode) => {
-    console.log('Promise returned with current focus mode : ' + afMode);
+    console.log(`Promise returned with current focus mode : ${afMode}`);
 })
 ```
 
@@ -2827,17 +2827,17 @@ setFocusPoint(point: Point, callback: AsyncCallback<void\>): void
 
 | 名称      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| point    | [Point](#Point)         | 是   | 焦点。                |
+| point    | [Point](#point)         | 是   | 焦点。                |
 | callback | AsyncCallback<void\>    | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
 ```js
-var Point1 = {x: 1, y: 1};
+const Point1 = {x: 1, y: 1};
 
 cameraInput.setFocusPoint(Point1, (err) => {
     if (err) {
-        console.error('Failed to set the focus point  ${err.message}');
+        console.error(`Failed to set the focus point  ${err.message}`);
         return;
     }
     console.log('Callback returned with the successful execution of setFocusPoint.');
@@ -2856,7 +2856,7 @@ setFocusPoint(point: Point): Promise<void\>
 
 | 名称      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| point    | [Point](#Point)         | 是   | 焦点。                |
+| point    | [Point](#point)         | 是   | 焦点。                |
 
 **返回值：**
 
@@ -2867,7 +2867,7 @@ setFocusPoint(point: Point): Promise<void\>
 **示例：**
 
 ```js
-var Point2 = {x: 2, y: 2};
+const Point2 = {x: 2, y: 2};
 
 cameraInput.setFocusPoint(Point2).then(() => {
     console.log('Promise returned with the successful execution of setFocusPoint.');
@@ -2893,7 +2893,7 @@ getFocusPoint(callback: AsyncCallback<Point\>): void
 ```js
 cameraInput.getFocusPoint((err, point) => {
     if (err) {
-        console.error('Failed to get the current focus point ${err.message}');
+        console.error(`Failed to get the current focus point ${err.message}`);
         return;
     }
     console.log('Callback returned with the current focus point: ' + JSON.stringify(point));
@@ -2941,10 +2941,10 @@ getFocalLength(callback: AsyncCallback<number\>): void
 ```js
 cameraInput.getFocalLength((err, focalLength) => {
     if (err) {
-        console.error('Failed to get the current focal length  ${err.message}');
+        console.error(`Failed to get the current focal length  ${err.message}`);
         return;
     }
-    console.log('Callback returned with the current focal length: ' + focalLength);
+    console.log(`Callback returned with the current focal length: ${focalLength}`);
 })
 ```
 
@@ -2966,7 +2966,7 @@ getFocalLength(): Promise<number\>
 
 ```js
 cameraInput.getFocalLength().then((focalLength) => {
-    console.log('Promise returned with the current focal length: ' + focalLength);
+    console.log(`Promise returned with the current focal length: ${focalLength}`);
 })
 ```
 
@@ -2989,10 +2989,10 @@ getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 ```js
 cameraInput.getZoomRatioRange((err, zoomRatioRange) => {
     if (err) {
-        console.error('Failed to get the zoom ratio range. ${err.message}');
+        console.error(`Failed to get the zoom ratio range. ${err.message}`);
         return;
     }
-    console.log('Callback returned with zoom ratio range: ' + zoomRatioRange.length);
+    console.log(`Callback returned with zoom ratio range: ${zoomRatioRange.length}`);
 })
 ```
 
@@ -3014,7 +3014,7 @@ getZoomRatioRange\(\): Promise<Array<number\>\>
 
 ```js
 cameraInput.getZoomRatioRange().then((zoomRatioRange) => {
-    console.log('Promise returned with zoom ratio range: ' + zoomRatioRange.length);
+    console.log(`Promise returned with zoom ratio range: ${zoomRatioRange.length}`);
 })
 ```
 
@@ -3038,7 +3038,7 @@ setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
 ```js
 cameraInput.setZoomRatio(1, (err) => {
     if (err) {
-        console.error('Failed to set the zoom ratio value ${err.message}');
+        console.error(`Failed to set the zoom ratio value ${err.message}`);
         return;
     }
     console.log('Callback returned with the successful execution of setZoomRatio.');
@@ -3092,10 +3092,10 @@ getZoomRatio(callback: AsyncCallback<number\>): void
 ```js
 cameraInput.getZoomRatio((err, zoomRatio) => {
     if (err) {
-        console.error('Failed to get the zoom ratio ${err.message}');
+        console.error(`Failed to get the zoom ratio ${err.message}`);
         return;
     }
-    console.log('Callback returned with current zoom ratio: ' + zoomRatio);
+    console.log(`Callback returned with current zoom ratio: ${zoomRatio}`);
 })
 ```
 
@@ -3117,7 +3117,7 @@ getZoomRatio(): Promise<number\>
 
 ```js
 cameraInput.getZoomRatio().then((zoomRatio) => {
-    console.log('Promise returned with current zoom ratio : ' + zoomRatio);
+    console.log(`Promise returned with current zoom ratio : ${zoomRatio}`);
 })
 ```
 
@@ -3133,7 +3133,7 @@ isVideoStablizationModeSupported(vsMode: VideoStabilizationMode, callback: Async
 
 | 名称      | 类型                                              | 必填 | 说明                             |
 | -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationMode) | 是   | 视频防抖模式。                    |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。                    |
 | callback | AsyncCallback<boolean\>                           | 是   | 回调函数，返回视频防抖模式是否支持。  |
 
 **示例：**
@@ -3141,10 +3141,10 @@ isVideoStablizationModeSupported(vsMode: VideoStabilizationMode, callback: Async
 ```js
 captureSession.isVideoStablizationModeSupported(camera.VideoStabilizationMode.OFF, (err, isSupported) => {
     if (err) {
-        console.error('Failed to check whether video stabilization mode supported. ${err.message}');
+        console.error(`Failed to check whether video stabilization mode supported. ${err.message}`);
         return;
     }
-    console.log('Callback returned with the successful execution of isVideoStabilizationModeSupported: ' + status);
+    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported: ${status}`);
 })
 ```
 
@@ -3166,7 +3166,7 @@ isVideoStablizationModeSupported(vsMode: VideoStabilizationMode): Promise<boolea
 
 ```js
 captureSession.isVideoStablizationModeSupported(camera.VideoStabilizationMode.OFF).then((isSupported) => {
-    console.log('Promise returned with video stabilization mode supported: ' + isSupported);
+    console.log(`Promise returned with video stabilization mode supported: ${isSupported}`);
 })
 ```
 
@@ -3189,7 +3189,7 @@ getActiveVideoStabilizationMode(callback: AsyncCallback<VideoStabilizationMode\>
 ```js
 captureSession.getActiveVideoStabilizationMode((err, vsMode) => {
     if (err) {
-        console.error('Failed to get active video stabilization mode ${err.message}');
+        console.error(`Failed to get active video stabilization mode ${err.message}`);
         return;
     }
     console.log('Callback returned with the successful execution of getActiveVideoStabilizationMode.');
@@ -3214,7 +3214,7 @@ getActiveVideoStabilizationMode(): Promise<VideoStabilizationMode\>
 
 ```js
 captureSession.getActiveVideoStabilizationMode().then((vsMode) => {
-    console.log('Promise returned with the current video stabilization mode: ' + vsMode);
+    console.log(`Promise returned with the current video stabilization mode: ${vsMode}`);
 })
 ```
 
@@ -3238,7 +3238,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode, callback: AsyncCallback<
 ```js
 captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF, (err) => {
     if (err) {
-        console.error('Failed to set the video stabilization mode ${err.message}');
+        console.error(`Failed to set the video stabilization mode ${err.message}`);
         return;
     }
     console.log('Callback returned with the successful execution of setVideoStabilizationMode.');
@@ -3292,7 +3292,7 @@ on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
 
 ```js
 cameraInput.on('focusStateChange', (focusState) => {
-    console.log('Focus state  : ' + focusState);
+    console.log(`Focus state  : ${focusState}`);
 })
 ```
 
@@ -3309,13 +3309,13 @@ on(type: 'exposureStateChange', callback: AsyncCallback<ExposureState\>): void
 | 名称     | 类型                                      | 必填 | 说明                                             |
 | -------- | ----------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                             | 是   |   监听事件，固定为'exposureStateChange'，即曝光状态变化事件。|
-| callback | AsyncCallback<[ExposureState](#exposureState)\> | 是   |  回调函数，用于获取曝光状态。                 |
+| callback | AsyncCallback<[ExposureState](#exposurestate)\> | 是   |  回调函数，用于获取曝光状态。                 |
 
 **示例：**
 
 ```js
 cameraInput.on('exposureStateChange', (exposureState) => {
-    console.log('Exposuer state  : ' + exposureState);
+    console.log(`Exposuer state  : ${exposureState}`);
 })
 ```
 
@@ -3338,7 +3338,7 @@ on(type: 'error', callback: ErrorCallback<CaptureSessionError\>): void
 
 ```js
 captureSession.on('error', (captureSessionError) => {
-    console.log('Capture session error code: ' + captureSessionError.code);
+    console.log(`Capture session error code: ${captureSessionError.code}`);
 })
 ```
 
@@ -3387,7 +3387,7 @@ release(callback: AsyncCallback<void\>): void
 ```js
 previewOutput.release((err) => {
     if (err) {
-        console.error('Failed to release the PreviewOutput instance ${err.message}');
+        console.error(`Failed to release the PreviewOutput instance ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
@@ -3418,7 +3418,7 @@ previewOutput.release().then(() => {
 
 ## PreviewOutput
 
-预览输出类。继承[CameraOutput](#cameraOutput)
+预览输出类。继承[CameraOutput](#cameraoutput)
 
 ### addDeferredSurface
 
@@ -3440,7 +3440,7 @@ addDeferredSurface(surfaceId: string, callback: AsyncCallback<void\>): void
 ```js
 previewOutput.addDeferredSurface('surfaceId', (err) => {
     if (err) {
-        console.error('Failed to add deferredSurface. ${err.message}');
+        console.error(`Failed to add deferredSurface. ${err.message}`);
         return;
     }
     console.log('Callback returned with deferredSurface added.');
@@ -3494,7 +3494,7 @@ start(callback: AsyncCallback<void\>): void
 ```js
 previewOutput.start((err) => {
     if (err) {
-        console.error('Failed to start the previewOutput. ${err.message}');
+        console.error(`Failed to start the previewOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with previewOutput started.');
@@ -3542,7 +3542,7 @@ stop(callback: AsyncCallback<void\>): void
 ```js
 previewOutput.stop((err) => {
     if (err) {
-        console.error('Failed to stop the previewOutput. ${err.message}');
+        console.error(`Failed to stop the previewOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with previewOutput stoped.');
@@ -3636,7 +3636,7 @@ on(type: 'error', callback: ErrorCallback<PreviewOutputError\>): void
 
 ```js
 previewOutput.on('error', (previewOutputError) => {
-    console.log('Preview output error code: ' + previewOutputError.code);
+    console.log(`Preview output error code: ${previewOutputError.code}`);
 })
 ```
 
@@ -3734,7 +3734,7 @@ getDefaultCaptureSetting(callback: AsyncCallback<PhotoCaptureSetting\>): void
 ```js
 photoOutput.getDefaultCaptureSetting((err, photocapturesetting) => {
     if (err) {
-        console.error('Failed to get the defaultCaptureSetting. ${err.message}');
+        console.error(`Failed to get the defaultCaptureSetting. ${err.message}`);
         return;
     }
     console.log('Callback returned with an array of defaultCaptureSetting.');
@@ -3782,7 +3782,7 @@ capture(callback: AsyncCallback<void\>): void
 ```js
 photoOutput.capture((err) => {
     if (err) {
-        console.error('Failed to capture the photo ${err.message}');
+        console.error(`Failed to capture the photo ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the photo capture request success.');
@@ -3813,7 +3813,7 @@ let settings:PhotoCaptureSetting = {
 }
 photoOutput.capture(settings, (err) => {
     if (err) {
-        console.error('Failed to capture the photo ${err.message}');
+        console.error(`Failed to capture the photo ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the photo capture request success.');
@@ -3868,7 +3868,7 @@ isMirrorSupported(callback: AsyncCallback<boolean\>): void
 ```js
 captureSession.isMirrorSupported((err, isSupported) => {
     if (err) {
-        console.error('Failed to check mirror is supported ${err.message}');
+        console.error(`Failed to check mirror is supported ${err.message}`);
         return;
     }
     console.log('Callback returned with the successful execution of isMirrorSupported.');
@@ -3893,7 +3893,7 @@ isMirrorSupported(): Promise<boolean\>
 
 ```js
 captureSession.isMirrorSupported().then((isSupported) => {
-    console.log('Promise returned with mirror supported: ' + isSupported);
+    console.log(`Promise returned with mirror supported: ${isSupported}`);
 })
 ```
 
@@ -3916,7 +3916,7 @@ on(type: 'captureStart', callback: AsyncCallback<number\>): void
 
 ```js
 photoOutput.on('captureStart', (err, captureId) => {
-    console.log('photo capture stated, captureId : ' + captureId);
+    console.log(`photo capture stated, captureId : ${captureId}`);
 })
 ```
 
@@ -3939,8 +3939,8 @@ on(type: 'frameShutter', callback: AsyncCallback<FrameShutterInfo\>): void
 
 ```js
 photoOutput.on('frameShutter', (err, frameShutterInfo) => {
-    console.log('photo capture end, captureId : ' + frameShutterInfo.captureId);
-    console.log('Timestamp for frame : ' + frameShutterInfo.timestamp);
+    console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
+    console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
 })
 ```
 
@@ -3963,8 +3963,8 @@ on(type: 'captureEnd', callback: AsyncCallback<CaptureEndInfo\>): void
 
 ```js
 photoOutput.on('captureEnd', (err, captureEndInfo) => {
-    console.log('photo capture end, captureId : ' + captureEndInfo.captureId);
-    console.log('frameCount : ' + captureEndInfo.frameCount);
+    console.log(`photo capture end, captureId : ${captureEndInfo.captureId}`);
+    console.log(`frameCount : ${captureEndInfo.frameCount}`);
 })
 ```
 
@@ -3987,7 +3987,7 @@ on(type: 'error', callback: ErrorCallback<PhotoOutputError\>): void
 
 ```js
 photoOutput.on('error', (err, photoOutputError) => {
-    console.log('Photo output error code: ' + photoOutputError.code);
+    console.log(`Photo output error code: ${photoOutputError.code}`);
 })
 ```
 
@@ -4059,7 +4059,7 @@ start(callback: AsyncCallback<void\>): void
 ```js
 videoOutput.start((err) => {
     if (err) {
-        console.error('Failed to start the video output ${err.message}');
+        console.error(`Failed to start the video output ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the video output start success.');
@@ -4108,7 +4108,7 @@ stop(callback: AsyncCallback<void\>): void
 ```js
 videoOutput.stop((err) => {
     if (err) {
-        console.error('Failed to stop the video output ${err.message}');
+        console.error(`Failed to stop the video output ${err.message}`);
         return;
     }
     console.log('Callback invoked to indicate the video output stop success.');
@@ -4202,7 +4202,7 @@ on(type: 'error', callback: ErrorCallback<VideoOutputError\>): void
 
 ```js
 videoOutput.on('error', (VideoOutputError) => {
-    console.log('Video output error code: ' + VideoOutputError.code);
+    console.log(`Video output error code: ${VideoOutputError.code}`);
 })
 ```
 
@@ -4266,14 +4266,14 @@ getType(callback: AsyncCallback<MetadataObjectType\>): void
 
 | 名称     | 类型                                                       | 必填 | 说明                  |
 | -------- | --------------------------------------------------------- | --- | -------------------- |
-| callback | AsyncCallback<[MetadataObjectType](#metadataObjectType)\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<[MetadataObjectType](#metadataobjecttype)\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
 ```js
 metadataObject.getType((err, metadataObjectType) => {
     if (err) {
-        console.error('Failed to get type. ${err.message}');
+        console.error(`Failed to get type. ${err.message}`);
         return;
     }
     console.log('Callback returned with an array of metadataObjectType.');
@@ -4292,7 +4292,7 @@ getType(): Promise<MetadataObjectType\>
 
 | 类型                                                 | 说明                        |
 | --------------------------------------------------- | --------------------------- |
-| Promise<[MetadataObjectType](#metadataObjectType)\> | 使用Promise的方式获取结果。 |
+| Promise<[MetadataObjectType](#metadataobjecttype)\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
@@ -4321,7 +4321,7 @@ getTimestamp(callback: AsyncCallback<number\>): void
 ```js
 metadataObject.getTimestamp((err) => {
     if (err) {
-        console.error('Failed to get timestamp. ${err.message}');
+        console.error(`Failed to get timestamp. ${err.message}`);
         return;
     }
     console.log('Callback returned with timestamp getted.');
@@ -4369,7 +4369,7 @@ getBoundingBox(callback: AsyncCallback<Rect\>): void
 ```js
 metadataObject.getBoundingBox((err, rect) => {
     if (err) {
-        console.error('Failed to get boundingBox. ${err.message}');
+        console.error(`Failed to get boundingBox. ${err.message}`);
         return;
     }
     console.log('Callback returned with boundingBox getted.');
@@ -4400,7 +4400,7 @@ metadataObject.getBoundingBox().then((rect) => {
 
 ## MetadataFaceObject
 
-metadata的人脸对象。继承[MetadataObject](#metadataObject)（该接口目前为预留，将在3.2版本开放）
+metadata的人脸对象。继承[MetadataObject](#metadataobject)（该接口目前为预留，将在3.2版本开放）
 
 ## MetadataOutput
 
@@ -4425,7 +4425,7 @@ start(callback: AsyncCallback<void\>): void
 ```js
 metadataOutput.start((err) => {
     if (err) {
-        console.error('Failed to start metadataOutput. ${err.message}');
+        console.error(`Failed to start metadataOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with metadataOutput started.');
@@ -4473,7 +4473,7 @@ stop(callback: AsyncCallback<void\>): void
 ```js
 metadataOutput.stop((err) => {
     if (err) {
-        console.error('Failed to stop the metadataOutput. ${err.message}');
+        console.error(`Failed to stop the metadataOutput. ${err.message}`);
         return;
     }
     console.log('Callback returned with metadataOutput stoped.');
@@ -4515,13 +4515,13 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObjec
 | 名称      | 类型                                                  | 必填 | 说明                                  |
 | -------- | -----------------------------------------------    - | ---- | ------------------------------------ |
 | type     | string                            | 是   | 监听事件，固定为'metadataObjectsAvailable'，即metadata对象。 |
-| callback | Callback<Array<[MetadataObject](#metadataObject)\>\> | 是   | 回调函数，用于获取错误信息。               |
+| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取错误信息。               |
 
 **示例：**
 
 ```js
 metadataOutput.on('metadataObjectsAvailable', (metadataObject) => {
-    console.log('metadata output error code: ' + metadataObject.code);
+    console.log(`metadata output error code: ${metadataObject.code}`);
 })
 ```
 
@@ -4538,13 +4538,13 @@ on(tuype: 'error', callback: ErrorCallback<MetadataOutputError\>): void
 | 名称     | 类型                                               | 必填 | 说明                                     |
 | -------- | ------------------------------------------------ | ---- | --------------------------------------- |
 | type     | string                                           | 是   | 监听事件，固定为'error'，即metadata流的错误。 |
-| callback | Callback<[MetadataOutputError](#metadataOutputError)\> | 是   | 回调函数，用于获取错误信息。            |
+| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | 是   | 回调函数，用于获取错误信息。            |
 
 **示例：**
 
 ```js
 metadataOutput.on('error', (metadataOutputError) => {
-    console.log('Metadata output error code: ' + metadataOutputError.code);
+    console.log(`Metadata output error code: ${metadataOutputError.code}`);
 })
 ```
 
@@ -4567,4 +4567,4 @@ metadata输出错误码。（该接口目前为预留，将在3.2版本开放）
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [MetadataOutputErrorCode](#MetadataOutputErrorCode) | MetadataOutput中的错误码。 |
+| code | [MetadataOutputErrorCode](#metadataoutputerrorcode) | MetadataOutput中的错误码。 |

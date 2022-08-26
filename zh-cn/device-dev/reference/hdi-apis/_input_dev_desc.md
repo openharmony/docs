@@ -30,8 +30,8 @@ Input设备描述信息。
 ### devIndex
 
 
-```
-uint32_t InputHotPlugEvent::devIndex
+```cpp
+uint32_t InputDevDesc::devIndex
 ```
 
 **描述：**
@@ -42,8 +42,8 @@ uint32_t InputHotPlugEvent::devIndex
 ### devType
 
 
-```
-uint32_t InputHotPlugEvent::devType
+```cpp
+uint32_t InputDevDesc::devType
 ```
 
 **描述：**

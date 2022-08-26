@@ -38,24 +38,16 @@ Shape(value:{target?: PixelMap})
 | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | viewPort | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length,<br/>width:&nbsp;Length,<br/>height:&nbsp;Length<br/>} | - | 是 | 形状的视口。 |
-| fill | Color | Black | 否 | 填充颜色。 |
-| stroke | Color | - | 否 | 边框颜色。 |
+| fill | [ResourceColor](../../ui/ts-types.md) | Black | 否 | 填充颜色。 |
+| stroke | [ResourceColor](../../ui/ts-types.md) | - | 否 | 边框颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置边框的间隙。 |
 | strokeDashOffset | Length | 0 | 否 | 边框绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#LineCapStyle枚举说明) | LineCapStyle.Butt | 否 | 路径端点绘制样式。 |
-| strokeLineJoin | LineJoinStyle | LineJoinStyle.Miter | 否 | 边框拐角绘制样式。 |
-| strokeMiterLimit | number | 4 | 否 | 锐角绘制成斜角的极限值。 |
-| strokeOpacity | number | 1 | 否 | 设置边框的不透明度。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 路径端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 边框拐角绘制样式。 |
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 锐角绘制成斜角的极限值。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置边框的不透明度。 |
 | strokeWidth | Length | 1 | 否 | 设置边框的宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿。 |
-
-- LineJoinStyle枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Bevel | 使用斜角连接路径段。 | 
-  | Miter | 使用尖角连接路径段。 | 
-  | Round | 使用圆角连接路径段。 | 
-
 
 ## 示例
 

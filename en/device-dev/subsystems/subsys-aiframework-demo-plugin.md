@@ -20,7 +20,7 @@
     };
     ```
 
-    The preceding code implements the **IPlugin** API provided by the server.  [Table 1](#table567211582104)  shows the mapping between the client APIs and the plug-in APIs.
+    The preceding code implements the **IPlugin** API provided by the server. The following table shows the mapping between the client APIs and the plug-in APIs.
 
    **Table 1** Mapping between the client APIs and the plug-in APIs
 

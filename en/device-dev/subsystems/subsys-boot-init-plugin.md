@@ -17,7 +17,7 @@ bootchart is available only for the standard system, and begetctl is available f
 
 ## How to Develop
 ### Parameters
- **Table 1** Description of begetctl commands
+ **Table 1** Description of begetctl commands<a name="table14737791480"></a>
 | Command| Format and Example| Description|
 | :----------  |  :----------  |:--------|
 | init group test [stage] | init group test | For details about **stage**, see **ServiceStatus**.|

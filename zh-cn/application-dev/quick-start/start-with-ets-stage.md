@@ -13,7 +13,7 @@
 
    ![01](figures/01.png)
 
-2. 进入配置工程界面，**Compile SDK**选择“**9**”，**Model** 选择“**Stage**”，**Language** 选择“**eTS**”，其他参数保持默认设置即可。
+2. 进入配置工程界面，**Compile SDK**选择“**9**”，**Model** 选择“**Stage**”，其他参数保持默认设置即可。
 
    ![07](figures/07.png)
 

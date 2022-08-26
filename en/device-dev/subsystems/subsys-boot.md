@@ -4,7 +4,6 @@
 -   **[init Module](subsys-boot-init.md)**  
 -   **[appspawn Module](subsys-boot-appspawn.md)**
 -   **[bootstrap Module](subsys-boot-bootstrap.md)**  
--   **[syspara Module](subsys-boot-syspara.md)**  
 -   **[FAQs](subsys-boot-faqs.md)**  
 -   **[Reference](subsys-boot-ref.md)**  
 

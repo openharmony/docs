@@ -28,7 +28,7 @@ LoadingProgress()
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| color | Color | - | 设置加载进度条前景色。 |
+| color | [ResourceColor](../../ui/ts-types.md) | - | 设置加载进度条前景色。 |
 
 
 
@@ -49,4 +49,4 @@ struct LoadingProgressExample {
 }
 ```
 
-![zh-cn_image_0000001198839004](figures/loadingProgress.png)
+![zh-cn_image_000000111864201](figures/zh-cn_image_000000111864201.gif)

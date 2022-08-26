@@ -4,7 +4,7 @@
 >  从API Version 5 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-我们为自定义组件提供了一系列生命周期回调方法，便于开发者管理自定义组件的内部逻辑。生命周期主要包括：onInit，onAttached，onDetached，onLayoutReady，onDestroy，onPageShow和onPageHide。下面我们依次介绍一下各个生命周期回调的时机。
+我们为自定义组件提供了一系列生命周期回调方法，便于开发者管理自定义组件的内部逻辑。生命周期主要包括：onInit，onAttached，onDetached，onLayoutReady，onDestroy，onShow和onHide。下面我们依次介绍一下各个生命周期回调的时机。
 
 
 | 属性          | 类型     | 描述               | 触发时机                                                     |

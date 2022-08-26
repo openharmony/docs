@@ -465,6 +465,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 **Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Name of a form element.|

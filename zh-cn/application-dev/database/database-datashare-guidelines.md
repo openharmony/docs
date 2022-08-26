@@ -80,7 +80,7 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
        }
    
    	// 重写query接口
-       query(uri, predicates, columns,  callback) {
+       query(uri, predicates, columns, callback) {
            if (predicates == null || predicates == undefined) {
                console.info('invalid predicates');
            }
@@ -144,48 +144,49 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
    let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
    ```
    
-2. 创建工具接口类对象。
+3. 创建工具接口类对象。
 
    ```ts
    let dsHelper;
    let abilityContext;
+   
    export default class MainAbility extends Ability {
    	onWindowStageCreate(windowStage) {
    		abilityContext = this.context;
-   		dataShare.createDataShareHelper(abilityContext, dseUri, (err,data)=>{
+   		dataShare.createDataShareHelper(abilityContext, dseUri, (err, data)=>{
    			dsHelper = data;
    		});
    	}
    }
    ```
    
-3. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增删改查等。
+4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增删改查等。
 
    ```ts
    // 构建一条数据
-   var valuesBucket = {"name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1,2,3])};
-   var updateBucket = {"name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1,2,3])};
-   let da =  new dataSharePredicates.DataSharePredicates();
-   var valArray =new Array("*");
+   var valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
+   var updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
+   let da = new dataSharePredicates.DataSharePredicates();
+   var valArray = new Array("*");
    let people = new Array(
-   	{"name": "LiSi", "age": 41, "Binary": ar},
-   	{"name": "WangWu", "age": 21, "Binary": arr},
-   	{"name": "ZhaoLiu", "age": 61, "Binary": arr});
+     { "name": "LiSi", "age": 41, "Binary": ar },
+     { "name": "WangWu", "age": 21, "Binary": arr },
+     { "name": "ZhaoLiu", "age": 61, "Binary": arr });
    // 插入一条数据
-   dsHelper.insert(dseUri, valuesBucket, (err,data) => {
-       console.log("dsHelper insert result: " + data);
+   dsHelper.insert(dseUri, valuesBucket, (err, data) => {
+     console.log("dsHelper insert result: " + data);
    });
    // 删除指定的数据
-   dsHelper.delete(dseUri, da, (err,data) => {
-       console.log("dsHelper delete result: " + data);
+   dsHelper.delete(dseUri, da, (err, data) => {
+     console.log("dsHelper delete result: " + data);
    });
    // 更新数据
-   dsHelper.update(dseUri, da, updateBucket, (err,data) => {
-       console.log("dsHelper update result: " + data);
+   dsHelper.update(dseUri, da, updateBucket, (err, data) => {
+     console.log("dsHelper update result: " + data);
    });
    // 查询数据
-   dsHelper.query(dseUri, da, valArray, (err,data) => {
-       console.log("dsHelper query result: " + data);
+   dsHelper.query(dseUri, da, valArray, (err, data) => {
+     console.log("dsHelper query result: " + data);
    });
    ```
    
