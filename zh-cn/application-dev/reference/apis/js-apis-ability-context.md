@@ -5,8 +5,8 @@ AbilityContext是Ability的上下文环境，继承自Context。
 AbilityContext模块提供允许访问特定于ability的资源的能力，包括对Ability的启动、停止的设置、获取caller通信接口、拉起弹窗请求用户授权等。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。   
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 使用说明
@@ -78,7 +78,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **示例：**
-    
+
   ```js
   var want = {
   	"deviceId": "",
@@ -127,7 +127,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
   	windowMode: 0,
   };
   this.context.startAbility(want, options)
-  .then((data) => {
+  .then(() => {
       console.log('Operation successful.')
   }).catch((error) => {
       console.log('Operation failed.');
@@ -836,7 +836,7 @@ disconnectAbility(connection: number): Promise\<void>;
 | Promise\<void> | 返回执行结果。 |
 
 **示例：**
-    
+
   ```js
   var connectionNumber = 0;
   this.context.disconnectAbility(connectionNumber).then((data) => {
@@ -893,7 +893,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
 
 **示例：**
-    
+
   ```js
   import Ability from '@ohos.application.Ability';
   var caller;
@@ -1044,13 +1044,13 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 | callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
-    
+
   ```js
        var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
        console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
-  
+
   ```
 
 
@@ -1075,7 +1075,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 | Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例：**
-    
+
   ```js
    var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
@@ -1103,7 +1103,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
-    
+
   ```js
   this.context.setMissionLabel("test",(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
@@ -1132,7 +1132,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例：**
-    
+
   ```js
   this.context.setMissionLabel("test").then((data) => {
       console.log('success:' + JSON.stringify(data));
@@ -1158,7 +1158,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 | callback | AsyncCallback\<void> | 是 | 指定的回调函数的结果。 |
 
 **示例：**
-    
+
   ```js
     import image from '@ohos.multimedia.image'
     var imagePixelMap;
@@ -1205,7 +1205,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例：**
-    
+
   ```js
     import image from '@ohos.multimedia.image'
     var imagePixelMap;
