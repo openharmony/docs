@@ -29,23 +29,24 @@
 
  Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController}) 
 
-- VideoOptions类型接口说明
-  | 参数名              | 参数类型                                                     | 必填 | 默认值                                                  | 参数描述                                                     |
-  | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- | ------------------------------------------------------------ |
-  | src                 | string \| [Resource](ts-types.md#resource)                   | 否   | -                                                       | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见[Data Ability说明](../../ability/fa-dataability.md)。 |
-  | currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup>               | 否   | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
-  | previewUri          | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | -                                                       | 预览图片的路径。                                             |
-  | controller          | [VideoController](#videocontroller)                          | 否   | -                                                       | 控制器。                                                     |
+**参数：**
 
+| 参数名              | 参数类型                                                     | 必填 | 默认值                                                  | 参数描述                                                     |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| src                 | string \| [Resource](ts-types.md#resource)                   | 否   | -                                                       | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见[Data Ability说明](../../ability/fa-dataability.md)。 |
+| currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup>               | 否   | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
+| previewUri          | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | -                                                       | 预览图片的路径。                                             |
+| controller          | [VideoController](#videocontroller)                          | 否   | -                                                       | 控制器。                                                     |
 
-- PlaybackSpeed<sup>8+</sup>类型接口说明
-  | 名称                   | 描述        |
-  | -------------------- | --------- |
-  | Speed_Forward_0_75_X | 0.75倍速播放。 |
-  | Speed_Forward_1_00_X | 1倍速播放。    |
-  | Speed_Forward_1_25_X | 1.25倍速播放。 |
-  | Speed_Forward_1_75_X | 1.75倍速播放。 |
-  | Speed_Forward_2_00_X | 2倍速播放。    |
+## PlaybackSpeed<sup>8+</sup>类型接口说明
+
+| 名称                   | 描述        |
+| -------------------- | --------- |
+| Speed_Forward_0_75_X | 0.75倍速播放。 |
+| Speed_Forward_1_00_X | 1倍速播放。    |
+| Speed_Forward_1_25_X | 1.25倍速播放。 |
+| Speed_Forward_1_75_X | 1.75倍速播放。 |
+| Speed_Forward_2_00_X | 2倍速播放。    |
 
 
 ## 属性
@@ -109,10 +110,11 @@ setCurrentTime(value: number)
 
 指定视频播放的进度位置。
 
-- 参数
-  | 参数名   | 参数类型   | 必填   | 默认值  | 参数描述      |
-  | ----- | ------ | ---- | ---- | --------- |
-  | value | number | 是    | -    | 视频播放进度位置。 |
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述      |
+| ----- | ------ | ---- | ---- | --------- |
+| value | number | 是    | -    | 视频播放进度位置。 |
 
 ### requestFullscreen
 
@@ -120,10 +122,11 @@ requestFullscreen(value: boolean)
 
 请求全屏播放。
 
-- 参数
-  | 参数名   | 参数类型   | 必填   | 默认值   | 参数描述    |
-  | ----- | ------ | ---- | ----- | ------- |
-  | value | number | 是    | false | 是否全屏播放。 |
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值   | 参数描述    |
+| ----- | ------ | ---- | ----- | ------- |
+| value | number | 是    | false | 是否全屏播放。 |
 
 ### exitFullscreen
 
@@ -137,19 +140,21 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 指定视频播放的进度位置，并指定跳转模式。
 
-- 参数
-  | 参数名      | 参数类型     | 必填   | 默认值  | 参数描述      |
-  | -------- | -------- | ---- | ---- | --------- |
-  | value    | number   | 是    | -    | 视频播放进度位置。 |
-  | seekMode | SeekMode | 是    | -    | 跳转模式。     |
+**参数：**
 
-- SeekMode<sup>8+</sup>类型接口说明
-  | 名称               | 描述             |
-  | ---------------- | -------------- |
-  | PreviousKeyframe | 跳转到前一个最近的关键帧。  |
-  | NextKeyframe     | 跳转到后一个最近的关键帧。  |
-  | ClosestKeyframe  | 跳转到最近的关键帧。     |
-  | Accurate         | 精准跳转，不论是否为关键帧。 |
+| 参数名      | 参数类型     | 必填   | 默认值  | 参数描述      |
+| -------- | -------- | ---- | ---- | --------- |
+| value    | number   | 是    | -    | 视频播放进度位置。 |
+| seekMode | SeekMode | 是    | -    | 跳转模式。     |
+
+## SeekMode<sup>8+</sup>类型接口说明
+
+| 名称               | 描述             |
+| ---------------- | -------------- |
+| PreviousKeyframe | 跳转到前一个最近的关键帧。  |
+| NextKeyframe     | 跳转到后一个最近的关键帧。  |
+| ClosestKeyframe  | 跳转到最近的关键帧。     |
+| Accurate         | 精准跳转，不论是否为关键帧。 |
 
 
 
