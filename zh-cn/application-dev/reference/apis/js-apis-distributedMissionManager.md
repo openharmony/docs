@@ -113,9 +113,9 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
   ```
 
 
-## distributedMissionManager.unregisterMissionListener
+## distributedMissionManager.unRegisterMissionListener
 
-unregisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
+unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
 取消任务状态监听, 以回调函数的方式返回。
 
@@ -136,15 +136,15 @@ unregisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
   var parameter =  {
   	deviceId: remoteDeviceId
   };
-  distributedMissionManager.unregisterMissionListener(parameter, (error) => {
+  distributedMissionManager.unRegisterMissionListener(parameter, (error) => {
       console.log("error.code = " + error.code)
   })
   ```
 
 
-## distributedMissionManager.unregisterMissionListener
+## distributedMissionManager.unRegisterMissionListener
 
-unregisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
+unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 取消任务状态监听，以promise方式返回执行结果。
 
@@ -170,7 +170,7 @@ unregisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
   var parameter =  {
   	deviceId: remoteDeviceId
   };
-  distributedMissionManager.unregisterMissionListener(parameter)
+  distributedMissionManager.unRegisterMissionListener(parameter)
   .then(data => {
       console.info('success data is ' + data);
   }).catch(error => {
