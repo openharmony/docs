@@ -35,7 +35,7 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 
 应用使用权限的工作流程如图所示。
 
-![](figures/permission-workflow.jpg)
+![](figures/figure1.png)
 
 1：开发者可以参考下图，判断应用能否申请目标权限。
 
@@ -67,13 +67,13 @@ ATM（AccessTokenManager）是OpenHarmony上基于AccessToken构建的统一的�
 
 如果应用需要将自身的APL等级声明为system_basic及以上的APL等级，在开发应用安装包时，要修改应用的Profile文件。
 
-在文件"bundle-info"的"apl"字段声明应用的APL等级后，使用[hap包签名工具](hapsigntool-overview.md)生成证书；也可以使用DevEco Studio[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465#section161281722111)。
+在文件"bundle-info"的"apl"字段声明应用的APL等级后，使用[hap包签名工具](hapsigntool-guidelines.md)生成证书；也可以使用DevEco Studio[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465#section161281722111)。
 
 > **注意：**<br>直接修改应用Profile文件的方式，仅用于应用/服务调试阶段使用，不可用于发布上架应用市场。如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和Profile文件的申请。
 
 示例如下：
 
-该示例仅涉及修改"apl"字段，其余信息请根据实际情况。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+该示例仅涉及修改"apl"字段，其余信息请根据实际情况修改。
 
 ```json
 {
@@ -184,7 +184,7 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#acl方式使用说�
 
 **ACL申请方式须知**
 
-开发应用安装包时，需要修改应用的Profile文件，在文件的"acl"字段声明目标的访问控制列表。然后使用[hap包签名工具](hapsigntool-overview.md)生成证书。
+开发应用安装包时，需要修改应用的Profile文件，在文件的"acl"字段声明目标的访问控制列表。然后使用[hap包签名工具](hapsigntool-guidelines.md)生成证书。
 
 > **注意：**<br>直接修改应用Profile文件的方式，仅用于应用/服务调试阶段使用，不可用于发布上架应用市场。如果需要开发商用版本的应用，请在对应的应用市场进行发布证书和Profile文件的申请。
 
@@ -197,5 +197,3 @@ ACL方式的工作流程可以参考[ACL方式使用说明](#acl方式使用说�
     },
 }
 ```
-
-Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
