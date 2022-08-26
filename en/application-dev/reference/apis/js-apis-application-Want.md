@@ -22,7 +22,7 @@ import Want from '@ohos.application.Want';
 | bundleName   | Read only    | string               | No  | Bundle name of the ability. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can match a specific ability.|
 | abilityName  | Read only    | string               | No  | Name of the ability. If both **package** and **abilityName** are specified in a **Want** object, the **Want** object can match a specific ability. The value of **abilityName** must be unique in an application.|
 | uri          | Read only    | string               | No  | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
-| type         | Read only    | string               | No  | MIME type, for example, **text/plain** or **image/***.  |
+| type         | Read only    | string               | No  | MIME type, that is, the type of the file to open, for example, **text/xml** and **image/***. For details about the MIME type definition, see https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com.  |
 | flags        | Read only    | number               | No  | How the **Want** object will be handled. For details, see [flags](js-apis-featureAbility.md#flags).|
 | action      | Read only    | string               | No  | Action option.                          |
 | parameters   | Read only    | {[key: string]: any} | No  | Want parameters in the form of custom key-value (KV) pairs. By default, the following keys are carried:<br>**ohos.aafwk.callerPid**: PID of the caller.<br>**ohos.aafwk.param.callerToken**: token of the caller.<br>**ohos.aafwk.param.callerUid**: UID of the caller. The **userId** parameter in the [Bundle](js-apis-Bundle.md) module can be used to obtain application and bundle information.                                      |
@@ -113,4 +113,5 @@ import Want from '@ohos.application.Want';
         console.log("error.code = " + error.code)
     })
   ```
-<!--no_check-->
+
+ <!--no_check--> 
