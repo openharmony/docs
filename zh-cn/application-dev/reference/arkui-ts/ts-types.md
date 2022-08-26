@@ -82,7 +82,7 @@
 
 | 类型     | 说明                    |
 | -------- | ----------------------- |
-| [Color](../reference/arkui-ts/ts-appendix-enums.md#color)    | 颜色枚举值。             |
+| [Color](ts-appendix-enums.md#color)    | 颜色枚举值。             |
 | number   | HEX格式颜色。            |
 | string   | rgb或者rgba格式颜色。     |
 | Resource | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
@@ -95,7 +95,7 @@
 | ------ | ------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | number                         | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。             |
 | weight | number                         | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
-| family | [FontWeight](../reference/arkui-ts/ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
+| family | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
 | style  | string \| Resource             | 否   | 设置文本的字体样式。                                         |
 
 ## Area<sup>8+</sup>
@@ -149,7 +149,7 @@
 | width  | Length        |  否  | 边框宽度。   |
 | color  | ResourceColor |  否  | 边框颜色。   |
 | radius | Length        |  否  | 边框角度。   |
-| style  | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle)   |  否  | 边框样式。   |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)   |  否  | 边框样式。   |
 
 ## CustomBuilder<sup>8+</sup>
 
@@ -157,5 +157,5 @@
 
 | 名称          | 类型定义               | 描述                                                         |
 | ------------- | ---------------------- | ------------------------------------------------------------ |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 这种方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](ts-component-based-builder.md)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 这种方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../ui/ts-component-based-builder.md)。 |
 
