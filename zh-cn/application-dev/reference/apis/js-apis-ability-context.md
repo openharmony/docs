@@ -126,7 +126,7 @@ var options = {
   windowMode: 0,
 };
 this.context.startAbility(want, options)
-.then((data) => {
+.then(() => {
     console.log('Operation successful.')
 }).catch((error) => {
     console.log('Operation failed.');
