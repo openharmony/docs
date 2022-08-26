@@ -16,7 +16,7 @@
 
 ## 子组件
 
-包含[ListItem](ts-container-listitem.md)子组件。
+包含[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件。
 
 
 ## 接口
@@ -44,8 +44,9 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
 | restoreId<sup>8+</sup> | number | - | 组件迁移标识符，标识后的组件在应用迁移时，组件状态会被迁移到被拉起方的同标识组件。<br/>列表组件状态，包括起始位置显示的item序号。 |
 | lanes<sup>9+</sup> | number \|<br>{<br/>minLength: Length,<br/>maxLength: Length<br/>} | 1 | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局，规则如下：<br/>- lanes为指定的数量时，根据指定的数量与List组件的交叉轴宽度来决定每列的宽度；<br/>- lane设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的宽度符合最小宽度限制。例如在列模式下，设置了{minLength: 40vp，maxLength: 60vp}，则当List组件宽度为70vp时，ListItem为一列，并且根据alignListItem属性做靠左、居中或者靠右布局；当List组件宽度变化至80vp时，符合两倍的minLength，则ListItem自适应为两列。 |
 | alignListItem<sup>9+</sup> | ListItemAlign | ListItemAlign.Center | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为居中。 |
+| sticky<sup>9+</sup> | StickyStyle | StickyStyle.None | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底，参见StickyStyle的枚举说明。|
 
-- ListItemAlign枚举说明
+- ListItemAlign<sup>9+</sup>枚举说明
 
   | 名称   | 描述                                   |
   | ------ | -------------------------------------- |
@@ -53,6 +54,15 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
   | Center | ListItem在List中，交叉轴方向居中对齐。 |
   | End    | ListItem在List中，交叉轴方向尾部对齐。 |
 
+- StickyStyle<sup>9+</sup>枚举说明
+
+  | 名称   | 描述                                   |
+  | ------ | -------------------------------------- |
+  | None  | ListItemGroup的header不吸顶，footer不吸底。 |
+  | Header | ListItemGroup的header吸顶。 |
+  | Footer | ListItemGroup的footer吸底。 |
+
+  sticky属性可以设置为 StickyStyle.Header | StickyStyle.Footer 以同时支持header吸顶和footer吸底。
 
 ## 事件
 
