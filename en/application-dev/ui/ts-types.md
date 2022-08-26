@@ -60,7 +60,7 @@ ColorStop is used to describe the progressive color stop.
 
 The Resource type is used to reference resources for setting the value of a component attribute.
 
-You can use  ` $r `  or  ` $rawfile `  to create a Resource object. For details, see [Resource Access](ts-application-resource-access.md).
+You can use  ` $r `  or  ` $rawfile `  to create a Resource object. For details, see [Resource Access](ts-resource-access.md).
 
 - ` $r('belonging.type.name') ` 
 
