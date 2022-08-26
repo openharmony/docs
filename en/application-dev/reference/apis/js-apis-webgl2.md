@@ -7,6 +7,8 @@ This module provides WebGL APIs that correspond to the OpenGL ES 3.0 feature set
 >  **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> WebGL2 complies with the OpenGL protocol and does not support multi-thread calling.
 
 
 ## Invoking Method
