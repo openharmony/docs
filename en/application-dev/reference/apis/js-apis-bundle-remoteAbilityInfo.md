@@ -8,7 +8,9 @@ The **RemoteAbilityInfo** module provides information about a remote ability.
 
 ## RemoteAbilityInfo
 
-**System capability**: SystemCapability.BundleManager.BundleFramework
+**System capability**: SystemCapability.BundleManager.DistributedBundleFramework
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name       | Type                                        | Readable| Writable| Description                   |
 | ----------- | -------------------------------------------- | ---- | ---- | ----------------------- |
