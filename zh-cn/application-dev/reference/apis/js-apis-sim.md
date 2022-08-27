@@ -1309,7 +1309,7 @@ sim.alterPin2(0, "1234", "0000", (err, data) => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusResponse\>
 
-更改Pin2密码，使用Promise方式作为异步方法。
+更改Pin2密码。使用Promise异步回调。
 
 此接口为系统接口。
 
