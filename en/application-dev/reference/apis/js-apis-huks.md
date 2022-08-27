@@ -100,7 +100,7 @@ Enumerates the key purposes.
 | Name                    | Value  | Description                            |
 | ------------------------ | ---- | -------------------------------- |
 | HUKS_KEY_PURPOSE_ENCRYPT | 1    | Used to encrypt plaintext.|
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt cipher text.|
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | Used to decrypt the cipher text.|
 | HUKS_KEY_PURPOSE_SIGN    | 4    | Used to sign data.    |
 | HUKS_KEY_PURPOSE_VERIFY  | 8    | Used to verify the signed data.  |
 | HUKS_KEY_PURPOSE_DERIVE  | 16   | Used to derive a key.          |
@@ -287,12 +287,12 @@ Enumerates the tag data types.
 
 | Name                 | Value     | Description                                   |
 | --------------------- | ------- | --------------------------------------- |
-| HUKS_TAG_TYPE_INVALID | 0 << 28 | Invalid tag type                    |
-| HUKS_TAG_TYPE_INT     | 1 << 28 | Number of the int type |
-| HUKS_TAG_TYPE_UINT    | 2 << 28 | Number of the uint type|
-| HUKS_TAG_TYPE_ULONG   | 3 << 28 | BigInt          |
-| HUKS_TAG_TYPE_BOOL    | 4 << 28 | Boolean         |
-| HUKS_TAG_TYPE_BYTES   | 5 << 28 | Uint8Array      |
+| HUKS_TAG_TYPE_INVALID | 0 << 28 | Invalid tag type.                    |
+| HUKS_TAG_TYPE_INT     | 1 << 28 | Number of the int type. |
+| HUKS_TAG_TYPE_UINT    | 2 << 28 | Number of the uint type.|
+| HUKS_TAG_TYPE_ULONG   | 3 << 28 | BigInt.          |
+| HUKS_TAG_TYPE_BOOL    | 4 << 28 | Boolean.         |
+| HUKS_TAG_TYPE_BYTES   | 5 << 28 | Uint8Array.      |
 
 ## HuksTag
 
@@ -1198,7 +1198,7 @@ Completes the key operation and releases resources. This API uses a promise to r
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | Yes  | Handle of the **Finish** operation.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameters of the **Finish** operation.|
-| promise | Promise\<[HuksResult](#HuksResult)> | Yes| Promise used to return the operation result.|
+| promise | Promise\<[HuksResult](#huksresult)> | Yes| Promise used to return the operation result.|
 
 
 ## huks.abort
