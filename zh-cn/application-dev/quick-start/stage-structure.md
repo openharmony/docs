@@ -305,10 +305,10 @@ abilities描述ability的配置信息，标签值为数组类型。
 |priority|标识ability的优先级，仅支持系统应用配置，三方应用配置不生效。隐式查询时，优先级越高，ability在返回列表越靠前。该标签取值为integer类型，取值范围0-10。数值越大，优先级越高。 |数值 | 该标签可缺省，缺省值为0。 |
 |maxWindowRatio|标识该ability支持的最大的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最大的宽高比。|
 |minWindowRatio|标识该ability支持的最小的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最小的宽高比。|
-|maxWindowWidth|标识该ability支持的最大的窗口宽度，宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口宽度。|
-|minWindowWidth|标识该ability支持的最小的窗口宽度, 宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
-|maxWindowHeight|标识该ability支持的最大的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
-|minWindowHeight|标识该ability支持的最小的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
+|maxWindowWidth|标识该ability支持的最大的窗口宽度，宽度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口宽度。|
+|minWindowWidth|标识该ability支持的最小的窗口宽度, 宽度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
+|maxWindowHeight|标识该ability支持的最大的窗口高度, 高度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
+|minWindowHeight|标识该ability支持的最小的窗口高度, 高度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
 | excludeFromMissions    | 该标签标识ability是否在最近任务列表中显示，仅支持系统应用配置，三方应用配置不生效。为布尔类型，true表示不在任务列表中显示，false表示在任务列表中显示。 | 布尔值       | 该标签可缺省，缺省值为false。|
 
 abilities示例
