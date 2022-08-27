@@ -691,7 +691,7 @@ This API can be used only in the stage model.
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri            | string                                                       | Yes  | URI of the file.                                    |
 | mimeTypeFilter | string                                                       | Yes  | MIME types to match. Example:<br>**\*/\***: Obtain all supported types.<br>**image/\***: Obtain the MIMEs with the main type of **image**.<br>**\*/jpg**: Obtain the MIMEs with the subtype of **jpg**.|
-| callback       |  AsyncCallback<Array\<string>> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the MIME types obtained. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback<Array\<string>> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the MIME types obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
