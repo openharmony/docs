@@ -9,15 +9,15 @@ The **&lt;search&gt;** component provides an input area for users to search. For
 Create a **&lt;search&gt;** component in the .hml file under **pages/index**.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
- <search></search>
+  <search></search>
 </div>
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -37,7 +37,7 @@ Create a **&lt;search&gt;** component in the .hml file under **pages/index**.
 Set the **hint**, **icon**, and **searchbutton** to define the hint text, icon, and search button at the end of the search box.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <search hint="Please enter the search content"  searchbutton="search" icon="/common/search1.png"></search>
@@ -45,7 +45,7 @@ Set the **hint**, **icon**, and **searchbutton** to define the hint text, icon, 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -65,7 +65,7 @@ Set the **hint**, **icon**, and **searchbutton** to define the hint text, icon, 
 Set **color**, **placeholder**, and **caret-color** to set the text color, hint text color, and cursor color of the search box.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <search hint="Please enter the search content"  searchbutton="search" ></search>
@@ -73,7 +73,7 @@ Set **color**, **placeholder**, and **caret-color** to set the text color, hint 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -84,9 +84,7 @@ Set **color**, **placeholder**, and **caret-color** to set the text color, hint 
   background-color: #F1F3F5;
 }
 search{
- color: black;
-  placeholder-color: black;
-  caret-color: red;
+  color: black;  placeholder-color: black;  caret-color: red;
 }
 ```
 
@@ -98,7 +96,7 @@ search{
 Add the **change**, **search**, **submit**, **share**, and **translate** events to the **&lt;search&gt;** component to perform operations on the input information.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <text style="margin-left: -7px;">
@@ -111,7 +109,7 @@ Add the **change**, **search**, **submit**, **share**, and **translate** events 
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -130,7 +128,7 @@ text{
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt'
 export default {
@@ -175,11 +173,11 @@ export default {
 In this example, you can select the **&lt;search&gt;**, **&lt;textarea&gt;**, or **&lt;input&gt;** component from the drop-down list box to implement the respective function.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div style="flex-direction: column;align-items: center;justify-content: center; width: 100%;">
   <select class="slt1" id="slt1" onchange="setfield">
-    <option value="search">Search</option>
+    <option value="search">search</option>
     <option value="textarea">Textarea</option>
     <option value="input">Input</option>
   </select>
@@ -199,7 +197,7 @@ In this example, you can select the **&lt;search&gt;**, **&lt;textarea&gt;**, or
 ```
 
 
-```
+```css
 /* xxx.css */
 .field {
   width: 80%;
@@ -216,7 +214,7 @@ In this example, you can select the **&lt;search&gt;**, **&lt;textarea&gt;**, or
 ```
 
 
-```
+```js
 // index.js
 import prompt from '@system.prompt';
 export default {

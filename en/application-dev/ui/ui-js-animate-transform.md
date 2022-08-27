@@ -8,8 +8,7 @@ Set the transform attribute for component rotation, scaling, translation, and sk
 
 Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower part of the rhombus with a rectangle to form a roof. Set the translate attribute of the rectangle to the coordinate (150px, -150px) to form a door, use the position attribute to translate the horizontal and vertical axes to the specified coordinates of the parent component (square), set the scale attribute to scale up the parent and child components together to determine the window size, and use the skewX attribute to skew the component and set the coordinate translate(200px,-830px) to form a chimney.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="top"></div>
@@ -24,8 +23,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -99,8 +97,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 
 Decrease the y-coordinate over a time frame to make the ball bounce back. Gradually decrease the bounce height until it drops to 0. An animation where the ball falls is hereby created.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="circle"></div>
@@ -108,8 +105,7 @@ Decrease the y-coordinate over a time frame to make the ball bounce back. Gradua
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -180,8 +176,7 @@ Decrease the y-coordinate over a time frame to make the ball bounce back. Gradua
 
 Set the rotation center around an element in different transform-origin positions. Of the rotate3d values, the first three values are the rotation vectors of the x-axis, y-axis, and z-axis, respectively; the fourth value is the rotation angle, which can be a negative value to indicate that the rotation is performed counterclockwise.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rotate">
@@ -200,8 +195,7 @@ Set the rotation center around an element in different transform-origin position
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -308,7 +302,7 @@ Set the rotation center around an element in different transform-origin position
 
 ![en-us_image_0000001222807776](figures/en-us_image_0000001222807776.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**<br/>
 > transform-origin specifies the origin of an element's transformation. If only one value is set, the other value is 50%. If both values are set, the first value indicates the position on the x-axis, and the second value indicates the position on the y-axis.
 
 
@@ -318,8 +312,7 @@ This example implements a ripple animation with the scale attribute. Here is the
 
 Set the scaling values for the x-axis, y-axis, and z-axis in scale3d to implement the animation.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="circle">
@@ -334,8 +327,7 @@ Set the scaling values for the x-axis, y-axis, and z-axis in scale3d to implemen
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -423,7 +415,8 @@ text{
 
 ![en-us_image_0000001267887837](figures/en-us_image_0000001267887837.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > After the transform attributes are set, the child element changes with the parent element. Value changing of other attributes (such as height and width) of the parent element will not affect the child element.
 
 
@@ -431,16 +424,14 @@ text{
 
 The matrix attribute defines a transformation matrix with six input parameters: scaleX, skewY, skewX, scaleY, translateX, and translateY. In the following example, matrix is set to matrix(1,0,0,1,0,200) to skew and translate the component.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rect"> </div>
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container{
   background-color:#F1F3F5;
@@ -476,8 +467,7 @@ The matrix attribute defines a transformation matrix with six input parameters: 
 
 You can set multiple transform attributes at the same time to apply different transformations to a component. The following example applies the scale, translate, and rotate attributes simultaneously.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="rect1"></div>
@@ -488,8 +478,7 @@ You can set multiple transform attributes at the same time to apply different tr
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container{
   flex-direction:column;
@@ -581,9 +570,10 @@ You can set multiple transform attributes at the same time to apply different tr
 
 ![en-us_image_0000001223127712](figures/en-us_image_0000001223127712.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+> **NOTE**
+>
 > - When multiple transform attributes are set, the later one overwrites the previous one. To apply multiple transform styles at the same time, use the shorthand notation; that is, write multiple style values in one transform, for example, transform: scale(1) rotate(0) translate(0,0).
-> 
+>
 > - When using the shorthand notion, note that the animation effect varies according to the sequence of the style values.
-> 
+>
 > - The style values in the transform attribute used when the animation starts and ends must be in one-to-one mapping. Only the styles that have value mappings are played.

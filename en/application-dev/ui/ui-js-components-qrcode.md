@@ -9,7 +9,7 @@ The **&lt;qrcode&gt;** component is used to generate and display a QR code. For 
 Create a **&lt;qrcode&gt;** component in the .hml file under **pages/index**.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <qrcode value="Hello"></qrcode>
@@ -17,7 +17,7 @@ Create a **&lt;qrcode&gt;** component in the .hml file under **pages/index**.
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -31,7 +31,8 @@ Create a **&lt;qrcode&gt;** component in the .hml file under **pages/index**.
 
 ![en-us_image_0000001275803133](figures/en-us_image_0000001275803133.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
+>
 > The **value** parameter must be set.
 
 
@@ -40,7 +41,7 @@ Create a **&lt;qrcode&gt;** component in the .hml file under **pages/index**.
 Set the **type** attribute to select the QR code type from rectangle and circle.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <select onchange="settype">
@@ -51,7 +52,7 @@ Set the **type** attribute to select the QR code type from rectangle and circle.
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -68,7 +69,7 @@ select{
 ```
 
 
-```
+```js
 // index.js
 export default {
   data: {
@@ -89,7 +90,7 @@ export default {
 Set the **color** and **background-color** attributes to set the color and background color of a QR code.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <qrcode value="Hello" type="rect"></qrcode>
@@ -97,7 +98,7 @@ Set the **color** and **background-color** attributes to set the color and backg
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -110,14 +111,13 @@ Set the **color** and **background-color** attributes to set the color and backg
 qrcode{
   width: 300px;
   height: 300px;
- color: blue;
-  background-color: #ffffff;
+ color: blue;  background-color: #ffffff;
 }
 ```
 
 ![en-us_image_0000001231683116](figures/en-us_image_0000001231683116.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
 > - If the values of **width** and **height** are different, the smaller value is used as the length of the QR code. The generated QR code is center displayed.
 > 
 > - If either **width** or **height** is set, the value is used as the length of the QR code. If neither of them is set, the default length of 200 px is used.
@@ -129,7 +129,7 @@ qrcode{
 In this example, you can bind a QR code to a text box, and change the QR code by replacing the content in the text box.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <input style="margin-bottom: 100px;" onchange="change"></input>
@@ -138,7 +138,7 @@ In this example, you can bind a QR code to a text box, and change the QR code by
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -155,7 +155,7 @@ qrcode{
 ```
 
 
-```
+```js
 // index.js
 export default{
   data: {
