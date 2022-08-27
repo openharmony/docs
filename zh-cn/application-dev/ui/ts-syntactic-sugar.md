@@ -166,3 +166,32 @@ struct bindPopup {
 	}
 }
 ```
+
+
+## 状态变量多种数据类型声明使用限制
+
+@State、@Provide、 @Link和@Consume四种状态变量的多种数据类型只能同时由简单数据类型或引用数据类型其中一种构成。
+
+示例：
+
+```ts
+@Entry
+@Component
+struct Index {
+  //错误写法: @State message: string | Resource = 'Hello World'
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${ this.message }`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
