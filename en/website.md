@@ -4,6 +4,7 @@
 - [Glossary](glossary.md)
 - OpenHarmony Release Notes
   - OpenHarmony 3.x Releases
+    -   [OpenHarmony v3.2 Beta2 (2022-07-30)](release-notes/OpenHarmony-v3.2-beta2.md)
     -   [OpenHarmony v3.2 Beta1 (2022-05-31)](release-notes/OpenHarmony-v3.2-beta1.md)
     -   [OpenHarmony v3.1.1 Release (2022-05-31)](release-notes/OpenHarmony-v3.1.1-release.md)
     -   [OpenHarmony v3.1 Release (2022-03-30)](release-notes/OpenHarmony-v3.1-release.md)    
@@ -123,6 +124,9 @@
       - [JS API Differences](release-notes/api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
       - [Native API Differences](release-notes/api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
 - ChangeLog
+  - OpenHamrony 3.2 Beta2
+      - [Updates Between OpenHarmony 3.2 Beta2 and OpenHarmony 3.2 Beta1](release-notes/changelog/v3.2-beta2/changelog-v3.2-beta2.md)
+      - [Adaptation Guide for the Application Sandbox](release-notes/changelog/v3.2-beta2/application-sandbox-adaptation-guide.md)  
   - OpenHarmony 3.1 Beta 
       - [Updates Between OpenHarmony 3.1 Beta and OpenHarmony 3.0](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
 - OpenHarmony Third-Party Components
