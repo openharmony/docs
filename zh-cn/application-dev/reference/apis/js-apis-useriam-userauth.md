@@ -119,8 +119,6 @@ constructor()
 
 表示获取的认证器对象。
 
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
@@ -491,8 +489,6 @@ getAuthenticator(): Authenticator
 > 从 API Version 8 开始废弃，建议使用[constructor](#constructor8)替代。
 
 获取Authenticator对象，用于执行用户身份认证。
-
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
