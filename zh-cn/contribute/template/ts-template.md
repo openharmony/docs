@@ -68,11 +68,13 @@ import Curves from '@ohos.curves'
 >
 > 3.1 - 可选，若该模块的使用无需申请权限，则删除。
 >
-> 3.2 - 描述清楚需要申请的权限名称，并给出对应的示例代码。
+> 3.2 - 描述清楚需要申请的权限名称，并给出对应的示例代码，具体形式请参考[权限申请声明](../application-dev/security/accesstoken-guidelines.md)。
 
  示例：
 
-使用网络图片时，需要在config.json或者module.json5<sup>9+</sup>对应的"abilities"中添加网络使用权限ohos.permission.INTERNET。
+使用网络图片时，需要在config.json或者module.json5<sup>9+</sup>中添加网络使用权限ohos.permission.INTERNET。
+
+module.json5文件示例：
 
 ```
 "abilities": [
@@ -333,6 +335,7 @@ patternLockController: PatternLockController = new PatternLockController()
 示例：
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct CheckboxExample {
