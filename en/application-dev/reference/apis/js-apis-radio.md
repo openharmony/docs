@@ -1588,6 +1588,128 @@ promise.then(data => {
 });
 ```
 
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
+
+Obtains the IMS registration status of the specified IMS service type. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                  |
+| -------- | ------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                     | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)         | Yes  | IMS service type.                         |
+| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.getImsRegInfo(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
+
+Obtains the IMS registration status of the specified IMS service type. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name | Type                              | Mandatory| Description                                  |
+| ------- | ---------------------------------- | ---- | -------------------------------------- |
+| slotId  | number                             | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType | [ImsServiceType](#imsservicetype9) | Yes  | IMS service type.                         |
+
+**Return value**
+
+| Type                                 | Description                   |
+| ------------------------------------- | ----------------------- |
+| Promise\<[ImsRegInfo](#imsreginfo9)\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = radio.getImsRegInfo(0, 1);
+promise.then(data => {
+    console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getImsRegInfo fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.on('imsRegStateChange')<sup>9+</sup>
+
+on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
+
+Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | Yes  | IMS registration status changes.               |
+| slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.on('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.off('imsRegStateChange')<sup>9+</sup>
+
+off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
+
+Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | Yes  | IMS registration status changes.    |
+| slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.off('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
 ## RadioTechnology
 
 Enumerates radio access technologies.
@@ -1755,11 +1877,11 @@ This is a system API.
 
 | Name             | Type                                                        | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networkType)                                  | Network type of the cell.                                    |
+| networkType       | [NetworkType](#networktype)                                  | Network type of the cell.                                    |
 | isCamped          | boolean                                                      | Status of the cell.                                        |
 | timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
 | signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation) \| [GsmCellInformation](#gsmcellinformation) \| [LteCellInformation](#ltecellinformation) \| [NrCellInformation](#nrcellinformation) \| [TdscdmaCellInformation](#tdscdmacellinformation) | CDMA cell information \| GSM cell information \| LTE cell information \| NR cell information \| TD-SCDMA cell information |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1883,6 +2005,8 @@ This is a system API.
 
 Defines the network search result.
 
+This is a system API.
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 | Name                  | Type                                             | Description          |
@@ -1934,3 +2058,59 @@ This is a system API.
 | selectMode         | [NetworkSelectionMode](#networkselectionmode) | Network selection mode.                       |
 | networkInformation | [NetworkInformation](#networkinformation)    | Network information.                           |
 | resumeSelection    | boolean                                       | Whether to resume selection.                            |
+
+## ImsRegState<sup>9+</sup>
+
+Enumerates IMS registration states.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name            | Value  | Description    |
+| ---------------- | ---- | -------- |
+| IMS_UNREGISTERED | 0    | Not registered.|
+| IMS_REGISTERED   | 1    | Registered.|
+
+## ImsRegTech<sup>9+</sup>
+
+Enumerates IMS registration technologies.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                   | Value  | Description           |
+| ----------------------- | ---- | --------------- |
+| REGISTRATION_TECH_NONE  | 0    | None.   |
+| REGISTRATION_TECH_LTE   | 1    | LTE.  |
+| REGISTRATION_TECH_IWLAN | 2    | I-WLAN.|
+| REGISTRATION_TECH_NR    | 3    | NR.   |
+
+## ImsRegInfo<sup>9+</sup>
+
+Defines the IMS registration information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name       | Type                        | Description         |
+| ----------- | ---------------------------- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) | IMS registration state.|
+| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS registration technology.|
+
+## ImsServiceType<sup>9+</sup>
+
+Enumerates IMS service types.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name      | Value  | Description      |
+| ---------- | ---- | ---------- |
+| TYPE_VOICE | 0    | Voice service.|
+| TYPE_VIDEO | 1    | Video service.|
+| TYPE_UT    | 2    | UT service.  |
+| TYPE_SMS   | 3    | SMS service.|

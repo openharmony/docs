@@ -299,6 +299,48 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
   ```
 
 
+### on('complete' | 'fail')<sup>9+</sup>
+
+ on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
+
+开启上传任务监听，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
+  | callback | function | 是 | 上传任务完成或失败的回调函数。 |
+
+  回调函数的参数
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
+
+**示例：**
+  
+  ```js
+  uploadTask.on('complete', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
+    }
+  }
+  );
+
+  uploadTask.on('fail', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
+    }
+  }
+  );
+  ```
+
+
 ### off('progress')
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
@@ -361,6 +403,47 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   ```js
   uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
+  }
+  );
+  ```
+
+### off('complete' | 'fail')<sup>9+</sup>
+
+ off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
+
+关闭上传任务监听，异步方法，使用callback形式返回结果。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.MiscServices.Upload
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
+  | callback | function | 否 | 上传任务完成或失败的回调函数。 |
+
+  回调函数的参数
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
+
+**示例：**
+  
+  ```js
+  uploadTask.off('complete', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
+    }
+  }
+  );
+
+  uploadTask.off('fail', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
+    }
   }
   );
   ```
@@ -444,6 +527,17 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
+## TaskState<sup>9+</sup>
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| path | string | 是 | 文件路径 |
+| responseCode | number | 是 | 上传任务返回值 |
+| message | string | 是 | 上传任务结果描述信息 |
 
 ## File
 
@@ -464,6 +558,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 表示表单元素的名称。 |
@@ -1118,7 +1213,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | filePath<sup>7+</sup> | string | 否 | 设置下载路径（默认在'internal://cache/'路径下）。<br/>-&nbsp;filePath:'workspace/test.txt'：默认路径下创建workspace路径，并将文件存储在workspace路径下。<br/>-&nbsp;filePath:'test.txt'：将文件存储在默认路径下。<br/>-&nbsp;filePath:'workspace/'：默认路径下创建workspace路径，并将文件存储在workspace路径下。 |
 | networkType | number | 否 | 设置允许下载的网络类型。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载会话标题。 |
-| background | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态。 |
+| background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态。 |
 
 
 ## DownloadInfo<sup>7+</sup>

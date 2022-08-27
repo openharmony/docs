@@ -2,7 +2,7 @@
 
 # 应用包结构配置文件的说明
 
-在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json和app.json配置文件中对应用的包结构进行声明。
+在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json5和app.json配置文件中对应用的包结构进行声明。
 
 ## 配置文件内部结构
 
@@ -27,8 +27,8 @@ app.json示例：
         "versionCode": 1,
         "versionName": "1.0",
         "minCompatibleVersionCode": 1,
-        "apiCompatibleVersion": 7,
-        "apiTargetVersion": 8,
+        "minAPIVersion": 7,
+        "targetAPIVersion": 8,
         "apiReleaseType": "Release",
         "debug": false,
         "icon": "$media:app_icon",
@@ -57,9 +57,9 @@ app.json示例：
 | vendor                         | 该标签是对应用开发厂商的描述。该标签的值是字符串类型（最大255个字节）。 | 字符串   | 该标签可以缺省，缺省为空。                  |
 | versionCode                    | 该标签标识应用的版本号，该标签值为32位非负整数。此数字仅用于确定某个版本是否比另一个版本更新，数值越大表示版本越高。开发者可以将该值设置为任何正整数，但是必须确保应用的新版本都使用比旧版本更大的值。该标签不可缺省，versionCode 值应小于2的31方。 | 数值     | 该标签不可缺省                              |
 | versionName                    | 该标签标识版本号的文字描述，用于向用户展示。<br />该标签仅由数字和点构成，推荐采用“A.B.C.D”四段式的形式。四段式推荐的含义如下所示。<br/>第一段 :主版本号/Major，范围0-99，重大修改的版本，如实现新的大功能或重大变化。<br/>第二段 :次版本号/Minor，范围0-99，表示实现较突出的特点，如新功能添加和大问题修复。<br/>第三段 :特性版本号/Feature，范围0-99，标识规划的新版本特性。<br/>第四段 :修订版本号/Patch，范围0-999，表示维护版本，修复bug。 | 字符串   | 该标签不可缺省                              |
-| minCompatibleVersionCode       | 该标签标识该app pack能够兼容的最低历史版本号。               | 数值     | 该标签可缺省。缺省值等于versionCode标签值。 |
-| minAPIVersion                  | 该标签标识应用运行需要的API最小版本。                        | 数值     | 该标签不可缺省。                            |
-| targetAPIVersion               | 该标签标识应用运行需要的API目标版本。                        | 整形     | 该标签不可缺省。                            |
+| minCompatibleVersionCode       | 该标签标识该app能够兼容的最低历史版本号，用于跨设备兼容性判断。    | 数值     | 该标签可缺省。缺省值等于versionCode标签值。|
+| minAPIVersion                  | 该标签标识应用运行需要的API最小版本。   | 整形     | 该标签可缺省，缺省值为bundle-profile.json5中的compatibleSdkVersion。|
+| targetAPIVersion               | 该标签标识应用运行需要的API目标版本。   | 整形     | 该标签可缺省，缺省值为bundle-profile.json5中的compileSdkVersion。|
 | apiReleaseType                 | 该标签标识应用运行需要的API目标版本的类型，采用字符串类型表示。取值为“CanaryN”、“BetaN”或者“Release”，其中，N代表大于零的整数。<br />Canary :受限发布的版本。<br/>Beta :公开发布的Beta版本。<br/>Release :公开发布的正式版本。 | 字符串   | 该标签可缺省，缺省为“Release”。             |
 | distributedNotificationEnabled | 该标签标记该应用是否开启分布式通知。                         | 布尔值   | 该标签可缺省，缺省值为true。                |
 | entityType                     | 该标签标记该应用的类别，具体有 :游戏类(game)，影音类（media）、社交通信类（communication）、新闻类（news）、出行类（travel）、工具类（utility）、购物类（shopping）、教育类（education）、少儿类（kids）、商务类（business）、拍摄类（photography）。 | 字符串   | 该标签可以缺省，缺省为unspecified。         |
@@ -73,7 +73,7 @@ app.json示例：
 
 ### module对象内部结构
 
-module.json示例:
+module.json5示例:
 
 ```json
 {
@@ -186,10 +186,10 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | pages                | 该标签是一个profile资源，用于列举JS Component中每个页面信息。pages使用参考pages示例。 | 对象       | 在有ability的场景下，该标签不可缺省。                        |
 | metadata             | 该标签标识Hap的自定义元信息，标签值为数组类型，该标签下的配置只对当前module、或者ability、或者extensionAbility生效。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | abilities            | 描述元能力的配置信息，标签值为数组类型，该标签下的配置只对当前ability生效。abilities参考[abilities对象内部结构](#abilities对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| extensionAbilities   | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionAbility对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| definePermissions    | 标识hap定义的权限，仅支持系统应用配置，三方应用配置不生效。该应用的调用者必须申请这些权限才能正常调用该应用。definePermissions参考[definePermissions对象内部结构](#definePermissions对象内部结构) | 对象       | 该标签可缺省，缺省值为空，表示调用者无需任何权限即可调用该应用。 |
-| requestPermissions   | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestPermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| testRunner           | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testRunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                                           |
+| extensionAbilities   | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionability对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
+| definePermissions    | 标识hap定义的权限，仅支持系统应用配置，三方应用配置不生效。该应用的调用者必须申请这些权限才能正常调用该应用。definePermissions参考[definePermissions对象内部结构](#definepermissions对象内部结构) | 对象       | 该标签可缺省，缺省值为空，表示调用者无需任何权限即可调用该应用。 |
+| requestPermissions   | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestpermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
+| testRunner           | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testrunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                                           |
 
 表4 deviceTypes对象的系统预定义设备
 
@@ -606,7 +606,7 @@ form示例 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息
+在module.json5的extension组件下面定义metadata信息
 
 ```json
 {
@@ -654,7 +654,7 @@ metadata中指定shortcut信息，其中 :
 }
 ```
 
-在module.json的module下面定义metadata信息，如下 :
+在module.json5的module下面定义metadata信息，如下 :
 
 ```json
 {
@@ -714,7 +714,7 @@ metadata中指定commonEvent信息，其中 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息，如下 :
+在module.json5的extension组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [
@@ -804,7 +804,7 @@ distroFilter示例 :
 ]
 ```
 
-在module.json的extensionAbilities组件下面定义metadata信息，如下 :
+在module.json5的extensionAbilities组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [

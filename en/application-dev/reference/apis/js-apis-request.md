@@ -3,7 +3,6 @@
 The **request** module provides applications with basic upload, download, and background transmission agent capabilities.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -300,6 +299,48 @@ Parameters of the callback function
   ```
 
 
+### on('complete' | 'fail')<sup>9+</sup>
+
+ on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
+
+Subscribes to an upload event. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+| callback | function | Yes| Callback used to return the result.|
+
+Parameters of the callback function
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | Yes| Upload result.|
+
+**Example**
+
+  ```js
+  uploadTask.on('complete', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
+    }
+  }
+  );
+
+  uploadTask.on('fail', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
+    }
+  }
+  );
+  ```
+
+
 ### off('progress')
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
@@ -362,6 +403,47 @@ Parameters of the callback function
   ```js
   uploadTask.off('headerReceive', function callback(headers) {
       console.info("upOnHeader headers:" + JSON.stringify(headers));
+  }
+  );
+  ```
+
+### off('complete' | 'fail')<sup>9+</sup>
+
+ off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
+
+Unsubscribes from an upload event. This API uses an asynchronous callback to return the result. 
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
+| callback | function | No| Callback used to return the result.|
+
+Parameters of the callback function
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| taskstates | Array&lt;[TaskState](#taskstate9)&gt; | Yes| Upload result.|
+
+**Example**
+
+  ```js
+  uploadTask.off('complete', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
+    }
+  }
+  );
+
+  uploadTask.off('fail', function callback(taskStates) {
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info("upOnFail taskState:" + JSON.stringify(taskStates[i]));
+    }
   }
   );
   ```
@@ -445,6 +527,17 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | files | Array&lt;[File](#file)&gt; | Yes| List of files to upload, which is submitted through **multipart/form-data**.|
 | data | Array&lt;[RequestData](#requestdata)&gt; | Yes| Form data in the request body.|
 
+## TaskState<sup>9+</sup>
+
+**Required permissions**: ohos.permission.INTERNET
+
+**System capability**: SystemCapability.MiscServices.Upload
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| path | string | Yes| File path.|
+| responseCode | number | Yes| Return value of an upload task.|
+| message | string | Yes| Description of the upload task result.|
 
 ## File
 
@@ -465,6 +558,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 **Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.MiscServices.Download
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Name of a form element.|
@@ -1119,7 +1213,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 | filePath<sup>7+</sup> | string | No| Download path. (The default path is **'internal://cache/'**.)<br>- filePath:'workspace/test.txt': The **workspace** directory is created in the default path to store files.<br>- filePath:'test.txt': Files are stored in the default path.<br>- filePath:'workspace/': The **workspace** directory is created in the default path to store files.|
 | networkType | number | No| Network type allowed for download.<br>- NETWORK_MOBILE: 0x00000001<br>- NETWORK_WIFI: 0x00010000|
 | title | string | No| Title of the download session.|
-| background | boolean | No| Whether to enable the background task notification. When this parameter is enabled, the download status is displayed in the notification panel.|
+| background<sup>9+</sup> | boolean | No| Whether to enable the background task notification. When this parameter is enabled, the download status is displayed in the notification panel.|
 
 
 ## DownloadInfo<sup>7+</sup>

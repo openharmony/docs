@@ -29,7 +29,7 @@ Scroll(scroller?: Scroller)
 | 名称             | 参数类型                                     | 默认值                      | 描述        |
 | -------------- | ---------------------------------------- | ------------------------ | --------- |
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | 设置滚动方法。   |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | ScrollDirection.Auto     | 设置滚动条状态。  |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | ScrollDirection.Auto     | 设置滚动条状态。  |
 | scrollBarColor | Color                                    | -                        | 设置滚动条的颜色。 |
 | scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
 

@@ -79,93 +79,95 @@ The following steps show how to configure and modify the toolchains for cross-co
    make -j
    ```
 
-    **OHOS\_SYSROOT\_PATH** specifies the absolute path where **sysroot** is located. For OpenHarmony, set **OHOS\_SYSROOT\_PATH** to the absolute path of the **out/hispark\__xxx_/ipcamera\_hispark\__xxx_/sysroot** directory. This directory is generated after full compilation is complete. Therefore, complete full compilation before porting.
+   **OHOS\_SYSROOT\_PATH** specifies the absolute path where **sysroot** is located. For OpenHarmony, set **OHOS\_SYSROOT\_PATH** to the absolute path of the **out/hispark\__xxx_/ipcamera\_hispark\__xxx_/sysroot** directory. This directory is generated after full compilation is complete. Therefore, complete full compilation before porting.
 
 3.  View the result.
     
-After step 2 is complete, a static library file and test cases are generated in the **build** directory.
-   
-   **Table 2** Directory structure of compiled files
-   
-   | Directory                                      | Description                       |
-   | -------- | -------- |
-   | double-conversion/build/libdouble-conversion.a | Static library file |
-   | double-conversion/build/test/ | Test cases and CMake cache files |
-   | double-conversion/build/CMakeCache.txt | Cache files during CMake building |
-   | double-conversion/build/CMakeFiles/ | - |
-   | double-conversion/build/cmake_install.cmake | - |
-   | double-conversion/build/CTestTestfile.cmake | - |
-   | double-conversion/build/DartConfiguration.tcl | - |
-   | double-conversion/build/generated/ | - |
-   | double-conversion/build/Makefile | - |
-   | double-conversion/build/Testing/ | - |
+    After step 2 is complete, a static library file and test cases are generated in the **build** directory.
+    
+    **Table 2** Directory structure of compiled files
+
+    | Directory                                      | Description                       |
+    | -------- | -------- |
+    | double-conversion/build/libdouble-conversion.a | Static library file |
+    | double-conversion/build/test/ | Test cases and CMake cache files |
+    | double-conversion/build/CMakeCache.txt | Cache files during CMake building |
+    | double-conversion/build/CMakeFiles/ | - |
+    | double-conversion/build/cmake_install.cmake | - |
+    | double-conversion/build/CTestTestfile.cmake | - |
+    | double-conversion/build/DartConfiguration.tcl | - |
+    | double-conversion/build/generated/ | - |
+    | double-conversion/build/Makefile | - |
+    | double-conversion/build/Testing/ | - |
 
 
 
 ## Library Test
 
-1.  Set up the OpenHarmony environment.
+1. Set up the OpenHarmony environment.
 
-    Using Hi3516D V300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3516-running.md).
+   Using Hi3516D V300 as an example, compile the OpenHarmony image and burn it to the development board. For details, see [Developing the First Example Program Running on Hi3518](../quick-start/quickstart-lite-steps-hi3516-running.md).
 
-    The following screen is displayed after a successful login to the OS.
+   The following screen is displayed after a successful login to the OS.
 
-    **Figure 1** Successful startup of OpenHarmony 
-    ![](figures/successful-startup-of-openharmony.png "successful-startup-of-openharmony")
+   **Figure 1** Successful startup of OpenHarmony
 
-2.  Mount the **nfs** directory and put the executable file **cctest** into the **test** directory \(listed in [Table 2](#table1452412391911)\) to the **nfs** directory.
+   ![](figures/successful-startup-of-openharmony.png "successful-startup-of-openharmony")
+
+2. Mount the **nfs** directory and put the executable file **cctest** into the **test** directory \(listed in Table 2) to the **nfs** directory.
+
 3.  Perform the test cases.
 
     If the double-conversion library is not cross-compiled, you can execute the test cases by running the **make test** command and obtain the result via CMake. However, this command is not applicable to the library after cross-compilation. This way, you can perform the test cases by executing the generated test case files.
 
-    -   After the **nfs** directory is successfully mounted, run the following command to list all items in the test cases:
+    - After the **nfs** directory is successfully mounted, run the following command to list all items in the test cases:
     
-     ```
-     cd nfs
-     ./cctest --list
-     ```
-
-    Some items are as follows:
-
-    
-     ```
-     test-bignum/Assign<
-     test-bignum/ShiftLeft<
-     test-bignum/AddUInt64<
-     test-bignum/AddBignum<
-     test-bignum/SubtractBignum<
-     test-bignum/MultiplyUInt32<
-     test-bignum/MultiplyUInt64<
-     test-bignum/MultiplyPowerOfTen<
-     test-bignum/DivideModuloIntBignum<
-     test-bignum/Compare<
-     test-bignum/PlusCompare<
-     test-bignum/Square<
-     test-bignum/AssignPowerUInt16<
-     test-bignum-dtoa/BignumDtoaVariousDoubles<
-     test-bignum-dtoa/BignumDtoaShortestVariousFloats<
-     test-bignum-dtoa/BignumDtoaGayShortest<
-     test-bignum-dtoa/BignumDtoaGayShortestSingle<
-     test-bignum-dtoa/BignumDtoaGayFixed<
-     test-bignum-dtoa/BignumDtoaGayPrecision<
-     test-conversions/DoubleToShortest<
-     test-conversions/DoubleToShortestSingle<
-     ...
-     ```
-
-    -   Run the following command to test **test-bignum**:
-
-    
-     ```
-     ./cctest test-bignum
-     ```
-
-    The test is passed if the following information is displayed:
+       ```
+       cd nfs
+       ./cctest --list
+       ```
+      
+       Some items are as follows:
+      
+       
+        ```
+        test-bignum/Assign<
+        test-bignum/ShiftLeft<
+        test-bignum/AddUInt64<
+        test-bignum/AddBignum<
+        test-bignum/SubtractBignum<
+        test-bignum/MultiplyUInt32<
+        test-bignum/MultiplyUInt64<
+        test-bignum/MultiplyPowerOfTen<
+        test-bignum/DivideModuloIntBignum<
+        test-bignum/Compare<
+        test-bignum/PlusCompare<
+        test-bignum/Square<
+        test-bignum/AssignPowerUInt16<
+        test-bignum-dtoa/BignumDtoaVariousDoubles<
+        test-bignum-dtoa/BignumDtoaShortestVariousFloats<
+        test-bignum-dtoa/BignumDtoaGayShortest<
+        test-bignum-dtoa/BignumDtoaGayShortestSingle<
+        test-bignum-dtoa/BignumDtoaGayFixed<
+        test-bignum-dtoa/BignumDtoaGayPrecision<
+        test-conversions/DoubleToShortest<
+        test-conversions/DoubleToShortestSingle<
+        ...
+        ```
+      
+    - Run the following command to test **test-bignum**:
 
     
-     ```
-     Ran 13 tests.
-     ```
+          ```
+          ./cctest test-bignum
+          ```
+
+       The test is passed if the following information is displayed:
+
+    
+          ```
+          Ran 13 tests.
+          ```
 
 
 ## Adding the Compiled double-conversion Library to the OpenHarmony Project
@@ -225,7 +227,7 @@ After step 2 is complete, a static library file and test cases are generated in 
      CMAKE_TOOLS_PATH = "setting CMake tools path..."
      ```
 
-   - The following shows the implementation of the newly added  **build\_thirdparty.py** file. For other third-party libraries that can be independently compiled using CMake, you can port them to OpenHarmony without modifications.
+   - The following shows the implementation of the newly added **build\_thirdparty.py** file. For other third-party libraries that can be independently compiled using CMake, you can port them to OpenHarmony without modifications.
 
      
      ```
@@ -288,6 +290,6 @@ After step 2 is complete, a static library file and test cases are generated in 
    hb build -T //third_party/double-conversion:double-conversion
    ```
    
-   If the compilation is successful, a static library file and test cases will be generated in the  [build](#li15717101715249)  directory.
+   If the compilation is successful, a static library file and test cases will be generated in the **build** directory.
 
-
+ <!--no_check--> 

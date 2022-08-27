@@ -20,7 +20,6 @@
 | ohos.permission.REMOVE_CACHE_FILES                       | system_basic | system_grant | TRUE    | 允许清理指定应用的缓存。                                     |
 | ohos.permission.REBOOT                                   | system_basic | system_grant | TRUE    | 允许应用重启设备。                                           |
 | ohos.permission.RUNNING_LOCK                             | normal       | system_grant | TRUE    | 允许应用获取运行锁，保证应用在后台的持续运行。               |
-| ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | FALSE   | 允许应用使用生物特征识别能力进行身份认证。                   |
 | ohos.permission.SET_TIME                                 | system_basic | system_grant | TRUE    | 允许应用修改系统时间。                                       |
 | ohos.permission.SET_TIME_ZONE                            | system_basic | system_grant | TRUE    | 允许应用修改系统时区。                                       |
 | ohos.permission.DOWNLOAD_SESSION_MANAGER                 | system_core  | system_grant | TRUE    | 允许应用管理下载任务会话。                                   |
@@ -59,7 +58,7 @@
 | ohos.permission.MANAGE_SHORTCUTS                         | system_core  | system_grant | TRUE    | 允许应用查询其他应用的快捷方式信息、启动其他应用的快捷方式。 |
 | ohos.permission.radio.ACCESS_FM_AM                       | system_core  | system_grant | TRUE    | 允许应用获取收音机相关服务。                                 |
 | ohos.permission.SET_TELEPHONY_STATE                      | system_basic | system_grant | TRUE    | 允许应用修改telephone的状态。                                |
-| ohos.permission.START_ABILIIES_FROM_BACKGROUND           | system_basic | system_grant | TRUE    | 允许应用在后台启动FA。                                       |
+| ohos.permission.START_ABILITIES_FROM_BACKGROUND           | system_basic | system_grant | TRUE    | 允许应用在后台启动FA。                                       |
 | ohos.permission.BUNDLE_ACTIVE_INFO                       | system_basic | system_grant | TRUE    | 允许系统应用查询其他应用在前台或后台的运行时间。             |
 | ohos.permission.START_INVISIBLE_ABILITY                  | system_core  | system_grant | TRUE    | 无论Ability是否可见，都允许应用进行调用。                    |
 | ohos.permission.sec.ACCESS_UDID                          | system_basic | system_grant | TRUE    | 允许系统应用获取UDID。                                       |

@@ -48,7 +48,8 @@ When a user clicks a button:
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ParentComp {
@@ -63,8 +64,8 @@ struct ParentComp {
                 Image('stopwatch.png')
                 TimerComponent({counter: 0, changePerSec: +1, showInColor: Color.Black })
             }
-            Button(this.isCountDown ? 'Swtich to Stopwatch' : 'Switch to Count Down')
-                .onClick(() =&gt; {this.isCountDown = !this.isCountDown})
+            Button(this.isCountDown ? 'Switch to Stopwatch' : 'Switch to Count Down')
+                .onClick(() => {this.isCountDown = !this.isCountDown})
         }
     }
 }
@@ -83,11 +84,11 @@ struct TimerComponent {
     }
 
     aboutToAppear() {
-        this.timerId = setInterval(() =&gt; {this.counter += this.changePerSec}, 1000)
+        this.timerId = setInterval(() => {this.counter += this.changePerSec}, 1000)
     }
 
     aboutToDisappear() {
-        if (this.timerId &gt; 0) {
+        if (this.timerId > 0) {
             clearTimeout(this.timerId)
             this.timerId = -1
         }

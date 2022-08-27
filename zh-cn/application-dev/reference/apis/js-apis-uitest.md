@@ -1647,7 +1647,7 @@ async function demo() {
 
 fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
-植入从给出的起始坐标点按照指定的间隔与速度滑向给出的目的坐标点的滑动操作。
+模拟手指滑动后脱离屏幕的快速滑动操作。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1655,8 +1655,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 | 参数名  | 类型             | 必填 | 说明                                                         |
 | ------- | ---------------- | ---- | ------------------------------------------------------------ |
-| from    | [Point](#point9) | 是   | 起始点的坐标。                                               |
-| to      | [Point](#point9) | 是   | 目的点的坐标。                                               |
+| from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                   |
+| to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                       |
 | stepLen | number           | 是   | 间隔距离，单位：像素点。                                     |
 | speed   | number           | 是   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
 

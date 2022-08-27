@@ -48,10 +48,10 @@ FormExtension类还拥有成员context，为FormExtensionContext类，具体的A
 
 **表2** FormExtensionContext API接口功能介绍
 
-| 接口名                                                       | 描述                      |
-| :----------------------------------------------------------- | :------------------------ |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | 回调形式主动更新卡片。    |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Promise形式主动更新卡片。 |
+| 接口名                                                       | 描述                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void | 回调形式拉起一个卡片所属应用的Ability（系统接口，三方应用不支持调用）。 |
+| startAbility(want: Want): Promise&lt;void&gt;                | Promise形式拉起一个卡片所属应用的Ability（系统接口，三方应用不支持调用）。 |
 
 FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-formprovider.md)。
 
@@ -415,4 +415,5 @@ onUpdate(formId) {
 ## 相关实例
 
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormExtAbility`：Stage模型卡片（eTS JS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)
+- [`FormExtAbility`：Stage模型卡片（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormExtAbility)
+- [`GalleryForm`：图库卡片（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/GalleryForm)

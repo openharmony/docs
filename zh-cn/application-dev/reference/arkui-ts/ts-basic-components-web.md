@@ -56,7 +56,7 @@ domStorageAccess(domStorageAccess: boolean)
 **参数：**
 | 参数名              | 参数类型    | 必填   | 默认值  | 参数描述                                 |
 | ---------------- | ------- | ---- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | 是    | -    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
+| domStorageAccess | boolean | 是    | false | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
 
 **示例：**
   ```ts
@@ -91,10 +91,10 @@ fileAccess(fileAccess: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .fileAccess(true)
       }
     }
@@ -137,7 +137,7 @@ imageAccess(imageAccess: boolean)
 **参数：**
 | 参数名         | 参数类型    | 必填   | 默认值  | 参数描述            |
 | ----------- | ------- | ---- | ---- | --------------- |
-| imageAccess | boolean | 是    | -    | 设置是否允许自动加载图片资源。 |
+| imageAccess | boolean | 是    | true | 设置是否允许自动加载图片资源。 |
 
 **示例：**
   ```ts
@@ -168,6 +168,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
+| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
 
 **示例：**
   ```ts
@@ -211,7 +212,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 **参数：**
 | 参数名              | 参数类型    | 必填   | 默认值  | 参数描述                |
 | ---------------- | ------- | ---- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | -    | 是否允许执行JavaScript脚本。 |
+| javaScriptAccess | boolean | 是    | true | 是否允许执行JavaScript脚本。 |
 
 **示例：**
   ```ts
@@ -238,7 +239,7 @@ mixedMode(mixedMode: MixedMode)
 **参数：**
 | 参数名       | 参数类型                        | 必填   | 默认值  | 参数描述      |
 | --------- | --------------------------- | ---- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | -    | 要设置的混合内容。 |
+| mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | MixedMode.None | 要设置的混合内容。 |
 
 **示例：**
   ```ts
@@ -266,7 +267,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 **参数：**
 | 参数名               | 参数类型    | 必填   | 默认值  | 参数描述             |
 | ----------------- | ------- | ---- | ---- | ---------------- |
-| onlineImageAccess | boolean | 是    | -    | 设置是否允许从网络加载图片资源。 |
+| onlineImageAccess | boolean | 是    | true | 设置是否允许从网络加载图片资源。 |
 
 **示例：**
   ```ts
@@ -293,7 +294,7 @@ zoomAccess(zoomAccess: boolean)
 **参数：**
 | 参数名        | 参数类型    | 必填   | 默认值  | 参数描述          |
 | ---------- | ------- | ---- | ---- | ------------- |
-| zoomAccess | boolean | 是    | -    | 设置是否支持手势进行缩放。 |
+| zoomAccess | boolean | 是    | true | 设置是否支持手势进行缩放。 |
 
 **示例：**
   ```ts
@@ -320,7 +321,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 **参数：**
 | 参数名                | 参数类型    | 必填   | 默认值  | 参数描述            |
 | ------------------ | ------- | ---- | ---- | --------------- |
-| overviewModeAccess | boolean | 是    | -    | 设置是否使用概览模式加载网页。 |
+| overviewModeAccess | boolean | 是    | true | 设置是否使用概览模式加载网页。 |
 
 **示例：**
   ```ts
@@ -347,7 +348,7 @@ databaseAccess(databaseAccess: boolean)
 **参数：**
 | 参数名            | 参数类型    | 必填   | 默认值  | 参数描述              |
 | -------------- | ------- | ---- | ---- | ----------------- |
-| databaseAccess | boolean | 是    | -    | 设置是否开启数据库存储API权限。 |
+| databaseAccess | boolean | 是    | false | 设置是否开启数据库存储API权限。 |
 
 **示例：**
   ```ts
@@ -401,7 +402,7 @@ cacheMode(cacheMode: CacheMode)
 **参数：**
 | 参数名       | 参数类型                        | 必填   | 默认值  | 参数描述      |
 | --------- | --------------------------- | ---- | ---- | --------- |
-| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | -    | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
 
 **示例：**
   ```ts
@@ -429,7 +430,7 @@ textZoomRatio(textZoomRatio: number)
 **参数：**
 | 参数名          | 参数类型   | 必填   | 默认值  | 参数描述            |
 | ------------ | ------ | ---- | ---- | --------------- |
-| textZoomRatio | number | 是    | -    | 要设置的页面的文本缩放百分比。 |
+| textZoomRatio | number | 是    | 100 | 要设置的页面的文本缩放百分比。 |
 
 **示例：**
   ```ts
@@ -648,10 +649,10 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
         .onPrompt((event) => {
           console.log("url:" + event.url);
           console.log("message:" + event.message);
@@ -1117,7 +1118,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     responseweb: WebResourceResponse = new WebResourceResponse();
     heads:Header[] = new Array();
     @State webdata: string = "<!DOCTYPE html>\n" +
@@ -1131,7 +1132,7 @@ onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebRe
     "</html>"
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             console.log('url:' + event.request.getRequestUrl());
             var head1:Header = {
@@ -1181,36 +1182,37 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    httpAuth:boolean = false;
+    controller: WebController = new WebController();
+    httpAuth: boolean = false;
+
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onHttpAuthRequest((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-              value: 'onConfirm',
-              action: () => {
-                this.httpAuth = event.handler.isHttpAuthInfoSaved();
-                if (this.httpAuth == false) {
-                  web.WebDataBase.saveHttpAuthCredentials(
-                   event.host,
-                   event.realm,
-                   "2222",
-                   "2222"
-                  )
-                  event.handler.cancel();
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onHttpAuthRequest((event) => {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                  this.httpAuth = event.handler.isHttpAuthInfoSaved();
+                  if (this.httpAuth == false) {
+                    web.WebDataBase.saveHttpAuthCredentials(
+                      event.host,
+                      event.realm,
+                      "2222",
+                      "2222"
+                    )
+                    event.handler.cancel();
+                  }
                 }
+              },
+              cancel: () => {
+                event.handler.cancel();
               }
-            },
-            cancel: () => {
-             event.handler.cancel();
-            }
+            })
+            return true;
           })
-          return true;
-        })
       }
     }
   }
@@ -1232,25 +1234,25 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onPermissionRequest((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-              value: 'onConfirm',
-              action: () => {
-                event.request.grant(event.request.getAccessibleResource());
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onPermissionRequest((event) => {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                  event.request.grant(event.request.getAccessibleResource());
+                }
+              },
+              cancel: () => {
+               event.request.deny();
               }
-            },
-            cancel: () => {
-             event.request.deny();
-            }
+            })
           })
-        })
       }
     }
   }
@@ -1282,10 +1284,10 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
         .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x());
             console.info("link url = " + event.param.getLinkUrl());
@@ -2049,14 +2051,14 @@ backOrForward(step: number): void
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
         Button('backOrForward')
         .onClick(() => {
           this.controller.backOrForward();
         })
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
     }
   }
   ```
@@ -2733,6 +2735,88 @@ getCookieManager(): WebCookie
       }
     }
   }
+  ```
+
+### createWebMessagePorts<sup>9+</sup>
+
+createWebMessagePorts(): Array\<WebMessagePort\>
+
+创建Web信息端口。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| Array\<[WebMessagePort](#webmessageport9)\> | web信息端口列表。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+    build() {
+      Column() {
+        Button('createWebMessagePorts')
+          .onClick(() => {
+            this.ports = this.controller.createWebMessagePorts();
+            console.log("createWebMessagePorts size:" + this.ports.length)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### postMessage<sup>9+</sup>
+
+postMessage(options: { message: WebMessageEvent, uri: string}): void
+
+发送Web信息端口到HTML5。
+
+**参数：**
+
+| 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                      |
+| ---------- | --------------- | ---- | ---- | ------------------------- |
+| message     | [WebMessageEvent](#webmessageevent9)          | 是    | -    |要发送的信息，包含数据和信息端口 。 |
+| uri       | string          | 是    | -    | 接收该信息的URI。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+    build() {
+      Column() {
+        Button('postMessage')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[1]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("__init_ports__");
+            msgEvent.setPorts(sendPortArray);
+            this.controller.postMessage(msgEvent, uri:"*");
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  // xxx.js
+  var h5Port;
+  window.addEventListener('message', function(event){
+    if (event.data == '__init_ports__') {
+      if(event.ports[0] != null) {
+        h5Port = event.ports[0];
+        h5Port.onmessage = function(event) {
+          console.log('receive message from ets, on message:' + event.data);
+        }
+      }
+    }
+  })
   ```
 
 ## HitTestValue<sup>9+</sup>
@@ -3584,6 +3668,221 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
                   console.info(`save web archive success: ${filename}`)
                 }
               })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+## WebMessagePort<sup>9+</sup>
+
+通过WebMessagePort可以进行消息的发送以及接收。
+
+### close<sup>9+</sup>
+close(): void
+
+关闭该信息端口。
+
+### postMessageEvent<sup>9+</sup>
+postMessageEvent(message: WebMessageEvent): void
+
+发送消息。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| message   | [WebMessageEvent](#webmessageevent9) | 是    | -    | 要发送的消息。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('postMessageEvent')
+          .onClick(() => {
+            var msg = new WebMessageEvent();
+            msg.setData("post message from ets to html5");
+            this.port[0].postMessageEvent(msg);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### onMessageEvent<sup>9+</sup>
+onMessageEvent(callback: (result: string) => void): void
+
+注册回调函数，接收HTML5侧发送过来的消息。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| callback   | function | 是    | -    | 接收消息的回调函数。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('onMessageEvent')
+          .onClick(() => {
+            this.port[0].onMessageEvent((result: string) => {
+              console.log("received message from html5, on message:" + result);
+            })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+
+## WebMessageEvent<sup>9+</sup>
+
+通过WebMessagePort对要发送的消息和端口进行封装。
+
+### getData<sup>9+</sup>
+getData(): string
+
+获取当前对象中存放的消息。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| string | 当前该类型对象中存放的消息。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("message event data");
+            var messageData = msgEvent.getData();
+            console.log("message is:" + messageData);
+          })
+      }
+    }
+  }
+  ```
+
+### setData<sup>9+</sup>
+setData(data: string): void
+
+设置当前对象中的消息。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| data   | string | 是    | -    | 要发送的消息。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('setData')
+          .onClick(() => {
+            var msg = new WebMessageEvent();
+            msg.setData("post message from ets to HTML5");
+            this.port[0].postMessageEvent(msg);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+### getPorts<sup>9+</sup>
+getPorts(): Array\<WebMessagePort\>
+
+获取当前对象中存放的消息端口。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| Array\<[WebMessagePort](#webmessageport9)\> | 当前该类型对象中存放的消息端口。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    ports: WebMessagePorts[] = null;
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[0]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setPorts(sendPortArray);
+            var getPorts = msgEvent.getPorts();
+            console.log("Ports is:" + getPorts);
+          })
+      }
+    }
+  }
+  ```
+
+### setPorts<sup>9+</sup>
+setPorts(ports: Array\<WebMessagePort\>): void
+
+设置当前对象中的消息端口。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
+| ----- | ------ | ---- | ---- | ----------------- |
+| ports   | Array\<[WebMessagePort](#webmessageport9)\> | 是    | -    | 要发送的消息端口。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePorts[] = null;
+
+    build() {
+      Column() {
+        Button('setPorts')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[1]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("__init_ports__");
+            msgEvent.setPorts(sendPortArray);
+            this.controller.postMessage(msgEvent, uri:"*");
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }

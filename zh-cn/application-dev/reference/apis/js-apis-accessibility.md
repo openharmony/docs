@@ -268,6 +268,8 @@ constructor(jsonObject)
 
 构造函数。
 
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
 - **参数：**
 
   | 参数名 | 参数类型 | 必填 | 说明 |

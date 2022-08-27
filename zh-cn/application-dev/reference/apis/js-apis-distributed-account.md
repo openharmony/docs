@@ -19,6 +19,8 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 获取分布式帐号单实例对象。
 
+**系统能力：** SystemCapability.Account.OsAccount
+
 - 返回值：
   | 类型 | 说明 |
   | -------- | -------- |

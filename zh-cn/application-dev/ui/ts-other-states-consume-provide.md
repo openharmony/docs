@@ -30,44 +30,44 @@ Provide作为数据的提供方，可以更新其子孙节点的数据，并触�
 @Entry
 @Component
 struct CompA {
-    @Provide("reviewVote") reviewVotes : number = 0;
+  @Provide("reviewVote") reviewVotes : number = 0;
 
-    build() {
-        Column() {
-            CompB()
-            Button() {
-                Text(`${this.reviewVotes}`)
-                    .fontSize(30)
-            }
-            .onClick(() => {
-                this.reviewVotes += 1;
-            })
-        }
+  build() {
+    Column() {
+      CompB()
+      Button() {
+        Text(`${this.reviewVotes}`)
+          .fontSize(30)
+      }
+      .onClick(() => {
+        this.reviewVotes += 1;
+      })
     }
+  }
 }
 
 @Component
 struct CompB {
-    build() {
-        Column() {
-            CompC()
-        }
+  build() {
+    Column() {
+      CompC()
     }
+  }
 }
 
 @Component
 struct CompC {
-    @Consume("reviewVote") reviewVotes : number;
-    build() {
-        Column() {
-            Button() {
-                Text(`${this.reviewVotes}`)
-                    .fontSize(30)
-            }
-            .onClick(() => {
-                this.reviewVotes += 1;
-            })
-        }
+  @Consume("reviewVote") reviewVotes : number;
+  build() {
+    Column() {
+      Button() {
+        Text(`${this.reviewVotes}`)
+          .fontSize(30)
+      }
+      .onClick(() => {
+         this.reviewVotes += 1;
+      })
     }
+  }
 }
 ```
