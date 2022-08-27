@@ -39,22 +39,22 @@ struct MyComponent {
 
 ### 支持的装饰器列表
 
-| 装饰器           | 装饰内容                                     | 说明                                       |
-| ------------- | ---------------------------------------- | ---------------------------------------- |
-| @Component    | struct                                   | 结构体在装饰后具有基于组件的能力，需要实现build方法来更新UI。       |
-| @Entry        | struct                                   | 组件被装饰后作为页面的入口，页面加载时将被渲染显示。               |
-| @Preview      | struct                                   | 用@Preview装饰的自定义组件可以在DevEco&nbsp;Studio的预览器上进行预览，加载页面时，将创建并呈现@Preview装饰的自定义组件。 |
-| @Builder      | 方法                                       | 在@Builder装饰的方法里，通过声明式UI描述，可以在一个自定义组件内快速生成多个布局内容。 |
-| @Extend       | 方法                                       | @Extend装饰器将新的属性函数添加到内置组件上，通过@Extend装饰器可以快速定义并复用组件的自定义样式。 |
-| @CustomDialog | struct                                   | @CustomDialog装饰器用于装饰自定义弹窗。               |
-| @State        | 基本数据类型，类，数组                              | 修饰的状态数据被修改时会触发组件的build方法进行UI界面更新。        |
-| @Prop         | 基本数据类型                                   | 修改后的状态数据用于在父组件和子组件之间建立单向数据依赖关系。修改父组件关联数据时，更新当前组件的UI。 |
-| @Link         | 基本数据类型，类，数组                              | 父子组件之间的双向数据绑定，父组件的内部状态数据作为数据源，任何一方所做的修改都会反映给另一方。 |
-| @Observed     | 类                                        | @Observed应用于类，表示该类中的数据变更被UI页面管理。         |
-| @ObjectLink   | 被@Observed所装饰类的对象                        | 装饰的状态数据被修改时，在父组件或者其他兄弟组件内与它关联的状态数据所在的组件都会更新UI。 |
-| @Consume      | 基本数据类型，类，数组                              | @Consume装饰的变量在感知到@Provide装饰的变量更新后，会触发当前自定义组件的重新渲染。 |
-| @Provide      | 基本数据类型，类，数组                              | @Provide作为数据的提供方，可以更新其子孙节点的数据，并触发页面渲染。   |
-| @Watch        | 被@State,&nbsp;@Prop,&nbsp;@Link,&nbsp;@ObjectLink,&nbsp;<br>@Provide,&nbsp;@Consume,&nbsp;@StorageProp，&nbsp;@StorageLink中任意一个装饰的变量 | @Watch用于监听状态变量的变化，应用可以注册回调方法。            |
+| 装饰器        | 装饰内容                                                     | 说明                                                         |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| @Component    | struct                                                       | 结构体在装饰后具有基于组件的能力，需要实现build方法来更新UI。 |
+| @Entry        | struct                                                       | 组件被装饰后作为页面的入口，页面加载时将被渲染显示。         |
+| @Preview      | struct                                                       | 用@Preview装饰的自定义组件可以在DevEco&nbsp;Studio的预览器上进行预览，加载页面时，将创建并呈现@Preview装饰的自定义组件。 |
+| @Builder      | 方法                                                         | 在@Builder装饰的方法里，通过声明式UI描述，可以在一个自定义组件内快速生成多个布局内容。 |
+| @Extend       | 方法                                                         | @Extend装饰器将新的属性函数添加到内置组件上，通过@Extend装饰器可以快速定义并复用组件的自定义样式。 |
+| @CustomDialog | struct                                                       | @CustomDialog装饰器用于装饰自定义弹窗。                      |
+| @State        | 基本数据类型，类，数组                                       | 修饰的状态数据被修改时会触发组件的build方法进行UI界面更新。  |
+| @Prop         | 基本数据类型                                                 | 修改后的状态数据用于在父组件和子组件之间建立单向数据依赖关系。修改父组件关联数据时，更新当前组件的UI。 |
+| @Link         | 基本数据类型，类，数组                                       | 父子组件之间的双向数据绑定，父组件的内部状态数据作为数据源，任何一方所做的修改都会反映给另一方。 |
+| @Observed     | 类                                                           | @Observed应用于类，表示该类中的数据变更被UI页面管理。        |
+| @ObjectLink   | 被@Observed所装饰类的对象                                    | 装饰的状态数据被修改时，在父组件或者其他兄弟组件内与它关联的状态数据所在的组件都会更新UI。 |
+| @Consume      | 基本数据类型，类，数组                                       | @Consume装饰的变量在感知到@Provide装饰的变量更新后，会触发当前自定义组件的重新渲染。 |
+| @Provide      | 基本数据类型，类，数组                                       | @Provide作为数据的提供方，可以更新其子孙节点的数据，并触发页面渲染。 |
+| @Watch        | 被@State,&nbsp;@Prop,&nbsp;@Link,&nbsp;@ObjectLink,&nbsp;<br>@Provide,&nbsp;@Consume,&nbsp;@StorageProp，&nbsp;@StorageLink中任意一个装饰的变量 | @Watch用于监听状态变量的变化，应用可以注册回调方法。         |
 
 
 ## 链式调用
@@ -167,3 +167,31 @@ struct bindPopup {
 	}
 }
 ```
+
+## 状态变量多种数据类型声明使用限制
+
+@State、@Provide、 @Link和@Consume四种状态变量的多种数据类型只能同时由简单数据类型或引用数据类型其中一种构成。
+
+示例：
+
+```ts
+@Entry
+@Component
+struct Index {
+  //错误写法: @State message: string | Resource = 'Hello World'
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${ this.message }`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
