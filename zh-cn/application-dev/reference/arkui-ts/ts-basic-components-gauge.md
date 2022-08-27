@@ -37,7 +37,7 @@ Gauge(value:{value: number, min?: number, max?: number})
 | value | number | 0 | 设置当前数据图表的值。 | 
 | startAngle | number | -150 | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。 | 
 | endAngle | number | 150 | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。 | 
-| colors | Color&nbsp;\|&nbsp;Array&lt;ColorStop&gt; | - | 设置图表的颜色，支持纯色和分段渐变色设置。 | 
+| colors | Array&lt;any&gt; | - | 设置图表的颜色，支持纯色和分段渐变色设置。 | 
 | strokeWidth | Length | - | 设置环形图表的环形厚度。 |
 
 
