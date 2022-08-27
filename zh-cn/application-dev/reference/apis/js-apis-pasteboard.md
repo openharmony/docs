@@ -25,7 +25,7 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 是 | 否 | Want的MIME类型定义。 |
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 是 | 否 | Plain&nbsp;text文本的MIME类型定义。 |
 | MIMETYPE_TEXT_URI<sup>7+</sup> | string | 是 | 否 | URI文本的MIME类型定义。 |
-| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 是 | 否 | 像素映射的MIME类型定义。 |
+| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 是 | 否 | PixelMap的MIME类型定义。 |
 
 
 ## pasteboard.createPlainTextData
@@ -157,11 +157,11 @@ createPixelMapData((pixelMap: image.PixelMap): PasteData
   import image from '@ohos.multimedia.image';
   var buffer = new ArrayBuffer(128)
   var opt = {
-  size: { height: 3, width: 5 },
-  pixelFormat: 3,
-  editable: true,
-  alphaType: 1,
-  scaleMode: 1
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
   }
   image.createPixelMap(buffer, opt).then((pixelMap) => {
     var pasteData = pasteboard.createPixelMapData(pixelMap); 
@@ -170,16 +170,16 @@ createPixelMapData((pixelMap: image.PixelMap): PasteData
 
 ## pasteboard.createData<sup>9+</sup>
 
-createData(mineType:string, value: ArrayBuffer): PasteData;
+createData(mimeType:string, value: ArrayBuffer): PasteData;
 
-构建一个具有mineType和value的剪贴板内容对象。
+构建一个自定义类型的剪贴板内容对象，mimeType表明了自定义数据value的数据类型
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mineType | string | 是 | 待保存的mineType内容。 |
+| mimeType | string | 是 | 待保存的mimeType内容。 |
 | value | ArrayBuffer | 是 | 待保存的value内容。 |
 
 **返回值**
@@ -324,11 +324,11 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
   import image from '@ohos.multimedia.image';
   var buffer = new ArrayBuffer(128)
   var opt = {
-  size: { height: 3, width: 5 },
-  pixelFormat: 3,
-  editable: true,
-  alphaType: 1,
-  scaleMode: 1
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
   }
   image.createPixelMap(buffer, opt).then((pixelMap) => {
     var record = pasteboard.createPixelMapRecord(pixelMap); 
@@ -340,20 +340,20 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 
 createRecord(mimeType:string, value: ArrayBuffer):PasteDataRecord;
 
-创建一条具有mineType和value的对象内容的条目。
+创建一条具有mimeType和value的对象内容的条目。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mineType | string | 是 | mineType内容。 |
+| mimeType | string | 是 | mimeType内容。 |
 | value | ArrayBuffer | 是 | ArrayBuffer类型的value内容。 |
 
 **返回值**
 | 类型 | 说明 |
 | -------- | -------- |
-| [PasteDataRecord](#pastedatarecord7) | 一条新建的具有mineType和value的对象内容条目。 |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的具有mimeType和value的对象内容条目。 |
 
 **示例**
 
@@ -371,14 +371,14 @@ createRecord(mimeType:string, value: ArrayBuffer):PasteDataRecord;
 
 | 名称  | 说明                    |
 | -----  | ----------------------- |
-| InApp<sup>9+</sup>  |InApp表示仅允许应用内粘贴。  |
+| InApp<sup>9+</sup>  |InApp表示仅允许同应用内粘贴。  |
 | LocalDevice<sup>9+</sup> |LocalDevice表示仅允许在此设备中粘贴。  |
 | CrossDevice<sup>9+</sup>   |CrossDevice表示允许跨设备在任何应用程序中粘贴。  |
 
 
 ## PasteDataProperty
 
-定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型以及一些附加数据等。
+定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等。
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard。
 
@@ -431,7 +431,7 @@ convertToText(): Promise&lt;string&gt;
   var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
   record.convertToText().then((data) => {
       console.info('convertToText success data : ' + JSON.stringify(data));
-  }).catch((error) => { 
+  }).catch((error) => {
       console.error('convertToText failed because ' + JSON.stringify(error));
   });
   ```
@@ -580,17 +580,18 @@ getPrimaryPixelMap(): image.PixelMap
 
   ```js
   import image from '@ohos.multimedia.image';
+
   var buffer = new ArrayBuffer(128)
   var opt = {
-  size: { height: 3, width: 5 },
-  pixelFormat: 3,
-  editable: true,
-  alphaType: 1,
-  scaleMode: 1
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
   }
   image.createPixelMap(buffer, opt).then((pixelMap) => {
-    var pasteData = pasteboard.createPixelMapData(pixelMap); 
-    var pixelMap = pasteData.getPrimaryPixelMap();
+      var pasteData = pasteboard.createPixelMapData(pixelMap);
+      var pixelMap = pasteData.getPrimaryPixelMap();
   })
   ```
 
@@ -697,7 +698,7 @@ addPixelMapRecord(pixelMap: image.PixelMap): void
 
 向当前剪贴板内容中添加一条pixelMap条目，并将MIMETYPE_PIXELMAP添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
@@ -712,11 +713,11 @@ addPixelMapRecord(pixelMap: image.PixelMap): void
   import image from '@ohos.multimedia.image';
   var buffer = new ArrayBuffer(128)
   var opt = {
-  size: { height: 3, width: 5 },
-  pixelFormat: 3,
-  editable: true,
-  alphaType: 1,
-  scaleMode: 1
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
   }
   image.createPixelMap(buffer, opt).then((pixelMap) => {
     var record = pasteboard.createPlainTextData("hello").addPixelMapRecord(pixelMap); 
@@ -726,19 +727,19 @@ addPixelMapRecord(pixelMap: image.PixelMap): void
 
 ### addRecord<sup>9+</sup>
 
-addRecord(mineType: string, value: ArrayBuffer): void;
+addRecord(mimeType: string, value: ArrayBuffer): void;
 
 向当前剪贴板内容中添加一条键值对记录条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mineType | string | 是 | 待添加的mineType内容条目。 |
-| value | ArrayBuffer | 是 | 要保存的ArrayBuffer类型的value内容。 |
+| mimeType | string | 是 | 待添加的自定义数据的mimeType类型。 |
+| value | ArrayBuffer | 是 | 待添加的自定义数据内容。 |
 
 **示例**
 
