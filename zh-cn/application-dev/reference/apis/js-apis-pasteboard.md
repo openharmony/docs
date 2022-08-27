@@ -129,7 +129,7 @@ createUriData(uri:string): PasteData
 **示例**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
   ```
 
 
@@ -296,7 +296,7 @@ createUriRecord(uri:string): PasteDataRecord
 **示例**
 
   ```js
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   ```
 
 
@@ -428,7 +428,7 @@ convertToText(): Promise&lt;string&gt;
 **示例**
 
   ```js
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   record.convertToText().then((data) => {
       console.info('convertToText success data : ' + JSON.stringify(data));
   }).catch((error) => {
@@ -453,7 +453,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **示例**
 
   ```js
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   record.convertToText((err, data) => {    
       if (err) {        
           console.error('convertToText failed because ' + JSON.stringify(err));        
@@ -558,7 +558,7 @@ getPrimaryUri(): string
 **示例**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
   var uri = pasteData.getPrimaryUri();
   ```
 
@@ -689,7 +689,7 @@ addUriRecord(uri: string): void
 
   ```js
   var pasteData = pasteboard.createPlainTextData("hello");
-  pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
+  pasteData.addUriRecord("dataability:///com.example.myapplication1/user.txt");
   ```
 
 ### addPixelMapRecord<sup>9+</sup>
@@ -744,7 +744,7 @@ addRecord(mimeType: string, value: ArrayBuffer): void;
 **示例**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
   var dataXml = new ArrayBuffer(256)
   pasteData.addRecord('app/xml', dataXml);
   ```
@@ -768,7 +768,7 @@ addRecord(record: PasteDataRecord): void
 **示例**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
   var textRecord = pasteboard.createPlainTextRecord("hello");
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var htmlRecord = pasteboard.createHtmlTextRecord(html);
@@ -983,7 +983,7 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
   ```js
   var pasteData = pasteboard.createPlainTextData("hello");
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   var isReplace = pasteData.replaceRecordAt(0, record);
   ```
 
