@@ -6,7 +6,7 @@
 
 
 ## 接口说明
-具体分布式数据相关功能接口请见[分布式数据管理](../reference/apis/js-apis-distributed-data.md)。
+分布式数据相关功能接口请见[分布式数据管理](../reference/apis/js-apis-distributed-data.md)。
 
 
 **表1** 分布式数据服务关键API功能介绍
@@ -21,72 +21,74 @@
 | on(event:'dataChange',type:SubscribeType,observer:Callback&lt;ChangeNotification&gt;):void<br/>on(event:'syncComplete',syncCallback:Callback&lt;Array&lt;[string,number]&gt;&gt;):void | 订阅数据库中数据的变化。                        |
 | sync(deviceIdList:string[],mode:SyncMode,allowedDelayMs?:number):void | 在手动模式下，触发数据库同步。                  |
 
-
-
-
 ## 开发步骤
 
 以单版本分布式数据库为例，说明开发步骤。
 
 1. 导入模块。
+
    ```js
    import distributedData from '@ohos.data.distributedData';
    ```
 
 2. 根据配置构造分布式数据库管理类实例。
+
    1. 根据应用上下文创建`kvManagerConfig`对象。
    2. 创建分布式数据库管理器实例。
 
    以下为创建分布式数据库管理器的代码示例：
+
    ```js
    let kvManager;
    try {
-       const kvManagerConfig = {
-           bundleName : 'com.example.datamanagertest',
-           userInfo : {
-               userId : '0',
-               userType : distributedData.UserType.SAME_USER_ID
-           }
+     const kvManagerConfig = {
+       bundleName: 'com.example.datamanagertest',
+       userInfo: {
+         userId: '0',
+         userType: distributedData.UserType.SAME_USER_ID
        }
-       distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-           if (err) {
-               console.log("createKVManager err: "  + JSON.stringify(err));
-               return;
-           }
-           console.log("createKVManager success");
-           kvManager = manager;
-       });
+     }
+     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+       if (err) {
+         console.log("createKVManager err: " + JSON.stringify(err));
+         return;
+       }
+       console.log("createKVManager success");
+       kvManager = manager;
+     });
    } catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+     console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
 3. 获取/创建分布式数据库。
+
    1. 声明需要创建的分布式数据库ID描述。
    2. 创建分布式数据库，建议关闭自动同步功能（`autoSync:false`），需要同步时主动调用`sync`接口。
 
    以下为创建分布式数据库的代码示例：
+
    ```js
    let kvStore;
    try {
-       const options = {
-           createIfMissing : true,
-           encrypt : false,
-           backup : false,
-           autoSync : false,
-           kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-           securityLevel : distributedData.SecurityLevel.S0,
-       };
-       kvManager.getKVStore('storeId', options, function (err, store) {
-           if (err) {
-               console.log("getKVStore err: "  + JSON.stringify(err));
-               return;
-           }
-           console.log("getKVStore success");
-           kvStore = store;
-       });
+     const options = {
+       createIfMissing: true,
+       encrypt: false,
+       backup: false,
+       autoSync: false,
+       kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+       securityLevel: distributedData.SecurityLevel.S0
+     };
+     kvManager.getKVStore('storeId', options, function (err, store) {
+       if (err) {
+         console.log("getKVStore err: " + JSON.stringify(err));
+         return;
+       }
+       console.log("getKVStore success");
+       kvStore = store;
+     });
    } catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+     console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
@@ -95,7 +97,9 @@
    > 组网设备间同步数据的场景，建议在应用启动时打开分布式数据库，获取数据库的句柄。在该句柄（如示例中的`kvStore`）的生命周期内无需重复创建数据库，可直接使用句柄对数据库进行数据的插入等操作。
    
 4. 订阅分布式数据变化。
+
    以下为订阅单版本分布式数据库数据变化通知的代码示例:
+
    ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
        console.log("dataChange callback call data: " + JSON.stringify(data));
@@ -103,6 +107,7 @@
    ```
 
 5. 将数据写入分布式数据库。
+
    1. 构造需要写入分布式数据库的`Key`（键）和`Value`（值）。
    2. 将键值数据写入分布式数据库。
 
@@ -112,43 +117,46 @@
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
-       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
                console.log("put err: " + JSON.stringify(err));
                return;
            }
            console.log("put success");
        });
-   }catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+   } catch (e) {
+       console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
 6. 查询分布式数据库数据。
+
    1. 构造需要从单版本分布式数据库中查询的`Key`（键）。
    2. 从单版本分布式数据库中获取数据。
 
    以下为从分布式数据库中查询字符串类型数据的代码示例：
+
    ```js
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
    try {
-       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
+       kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
                console.log("put err: " + JSON.stringify(err));
                return;
            }
            console.log("put success");
-           kvStore.get(KEY_TEST_STRING_ELEMENT, function (err,data) {
+           kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
                console.log("get success data: " + data);
            });
        });
-   }catch (e) {
-       console.log("An unexpected error occurred. Error:" + e);
+   } catch (e) {
+       console.log("An unexpected error occurred. Error: " + e);
    }
    ```
 
 7. 同步数据到其他设备。
+
    选择同一组网环境下的设备以及同步模式，进行数据同步。
 
    > **说明**：
@@ -156,6 +164,7 @@
    > 其中`deviceManager`模块的接口均为系统接口。
    
    以下为单版本分布式数据库进行数据同步的代码示例：
+
    ```js
    import deviceManager from '@ohos.distributedHardware.deviceManager';
    
@@ -175,15 +184,19 @@
            try{
                // 1000表示最大延迟时间为1000ms
                kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
-           }catch (e) {
-                console.log("An unexpected error occurred. Error:" + e);
+           } catch (e) {
+                console.log("An unexpected error occurred. Error: " + e);
            }
        }
    });
    ```
 ## 相关实例
+
 针对分布式数据开发，有以下相关实例可供参考：
-- [`DistributedDataGobang`：分布式五子棋（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedDataGobang)
-- [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/DDMQuery)
-- [`KvStore`：分布式数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/Kvstore)
+
+- [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
+- [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
+- [`DistributedDataGobang`：分布式五子棋（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedDataGobang)
+- [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
+- [`KvStore`：分布式数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
 - [分布式数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)

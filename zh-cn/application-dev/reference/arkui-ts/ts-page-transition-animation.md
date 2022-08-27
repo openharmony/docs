@@ -24,8 +24,8 @@
 - RouteType枚举说明
   | 名称 | 描述             |
   | ---- | ---------------- |
-  | Pop  | 重定向指定页面。 |
-  | Push | 跳转到下一页面。 |
+  | Pop  | 重定向指定页面。PageA跳转到PageB时，PageA为Exit+Push，PageB为Enter+Push。 |
+  | Push | 跳转到下一页面。PageB返回至PageA时，PageA为Enter+Pop，PageB为Exit+Pop。 |
 
 
 ## 属性

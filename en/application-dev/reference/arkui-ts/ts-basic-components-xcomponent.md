@@ -1,9 +1,10 @@
 # XComponent
 
-  > **NOTE**<br>
-  > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+  >  **NOTE**
+  >
+  >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.  
 
-  The **\<XComponent>** can accept and display the EGL/OpenGLES and media data input.
+  The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data input.
 
 ## Required Permissions
 
@@ -19,20 +20,20 @@
 
   - Name
 
-    | Name        | Type                                    | Mandatory | Description                                                        |
-    | ----------- | --------------------------------------- | --------- | ------------------------------------------------------------ |
-    | id          | string                                        | Yes | Unique ID of the component. The value can contain a maximum of 128 characters.                   |
-    | type        | string                                        | Yes | Type of the component. The options are as follows:<br>- **surface**: The content of this component is displayed individually, without being combined with that of other components.<br>- **component**: The content of this component is displayed after having been combined with that of other components. |
-    | libraryname | string                                        | No  | Name of the dynamic library generated after compilation at the application native layer. |
-    | controller  | [XComponentController](#XComponentController) | No  | Controller bound to the component, which can be used to invoke methods of the component.              |
+    | Name         | Type                                    | Mandatory  | Description                                      |
+    | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
+    | id          | string                                   | Yes   | Unique ID of the component. The value can contain a maximum of 128 characters.                  |
+    | type        | string                                   | Yes   | Type of the component. The options are as follows:<br>-**surface**: The content of this component is displayed individually, without being combined with that of other components.<br>-**component**: The content of this component is displayed after having been combined with that of other components.|
+    | libraryname | string                                   | No   | Name of the dynamic library generated after compilation at the application native layer.                     |
+    | controller  | [XComponentController](#XComponentController) | No   | Controller bound to the component, which can be used to invoke methods of the component.                 |
 
 
 ## Events
 
-| Name                            | Description              |
-| ------------------------------- | ------------------------ |
-| onLoad(context?: object) => void | Triggered when the plug-in is loaded. |
-| onDestroy() => void              | Triggered when the plug-in is destroyed. |
+| Name                              | Description        |
+| -------------------------------- | ------------ |
+| onLoad(context?: object) => void | Triggered when the plug-in is loaded.|
+| onDestroy() => void              | Triggered when the plug-in is destroyed.|
 
 ## XComponentController
 
@@ -52,9 +53,9 @@ Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used 
 
   - Return value
 
-    | Type   | Description                 |
-    | ------ | --------------------------- |
-    | string | ID of the surface held by the **\<XComponent>**. |
+    | Type    | Description                     |
+    | ------ | ----------------------- |
+    | string | ID of the surface held by the **\<XComponent>**.|
 
 ### setXComponentSurfaceSize
 
@@ -64,10 +65,10 @@ Sets the width and height of the surface held by the **\<XComponent>**.
 
 - Parameters
 
-  | Name       | Type | Mandatory | Default Value | Description              |
-  | ------------- | -------- | ---- | ------ | ----------------------------- |
-  | surfaceWidth  | number   | Yes  | -      | Width of the surface held by the **\<XComponent>**. |
-  | surfaceHeight | number   | Yes  | -      | Height of the surface held by the **\<XComponent>**. |
+  | Name          | Type  | Mandatory  | Default Value | Description                     |
+  | ------------- | ------ | ---- | ---- | ----------------------- |
+  | surfaceWidth  | number | Yes   | -    | Width of the surface held by the **\<XComponent>**.|
+  | surfaceHeight | number | Yes   | -    | Height of the surface held by the **\<XComponent>**.|
 
 ### getXComponentContext
 
@@ -77,13 +78,15 @@ Obtains the context of an **\<XComponent>** object.
 
 - Return value
 
-  | Type  | Description                                                        |
-  | ------ | ------------------------------------------------------------ |
-  | Object | Context of an **\<XComponent>** object. The APIs contained in the context are defined by developers. |
+  | Type    | Description                                      |
+  | ------ | ---------------------------------------- |
+  | Object | Context of an **\<XComponent>** object. The APIs contained in the context are defined by developers.|
 
 ## Example
 
-Provide a surface-type **\<XComponent>** to support capabilities such as camera preview.
+Provide a surface-type **\<XComponent>** to support capabilities such as camera preview. 
+
+You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
 
 ```ts
 // xxx.ets

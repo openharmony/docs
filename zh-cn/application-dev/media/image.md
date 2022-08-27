@@ -115,6 +115,7 @@ pixelmap.release(()=>{
     done();
 })
 
+let path = '/data/local/tmp/test.jpg';
 // 用于创建imagesource(uri)
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
 
@@ -145,7 +146,7 @@ imagePackerApi.release();
 ### 解码场景
 
 ```js
-/data/local/tmp/test.jpg // 设置创建imagesource的路径
+let path = '/data/local/tmp/test.jpg'; // 设置创建imagesource的路径
 
 // 用路径创建imagesource
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
@@ -222,7 +223,7 @@ catch(error => {
 ### 编码场景
 
 ```js
-/data/local/tmp/test.png // 设置创建imagesource的路径
+let path = '/data/local/tmp/test.png' // 设置创建imagesource的路径
 
 // 用于设置imagesource
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.png'
@@ -267,7 +268,7 @@ imageSourceApi.getImageInfo(imageInfo => {
 })
 
 // 用于更新增量数据
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
+imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error, data)=> {})
 
 ```
 
@@ -302,5 +303,5 @@ public async init(surfaceId: any) {
 
 针对图片开发，有以下相关实例可供参考：
 
-- [`Image`：图片处理（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/media/Image)
-- [`GamePuzzle`：拼图（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/media/GamePuzzle)
+- [`Image`：图片处理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Image)
+- [`GamePuzzle`：拼图（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/GamePuzzle)

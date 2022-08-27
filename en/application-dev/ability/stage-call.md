@@ -19,7 +19,7 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 |API|Description|
 |:------|:------|
 |startAbilityByCall(want: Want): Promise\<Caller>|Obtains the caller interface of the specified ability and, if the specified ability is not running, starts the ability in the background.|
-|on(method: string, callback: CaleeCallBack): void|Callback invoked when the callee registers a method.|
+|on(method: string, callback: CalleeCallBack): void|Callback invoked when the callee registers a method.|
 |off(method: string): void|Callback invoked when the callee deregisters a method.|
 |call(method: string, data: rpc.Sequenceable): Promise\<void>|Sends agreed sequenceable data to the callee.|
 |callWithResult(method: string, data: rpc.Sequenceable): Promise\<rpc.MessageParcel>|Sends agreed sequenceable data to the callee and returns the agreed sequenceable data.|
@@ -28,7 +28,7 @@ The table below describes the ability call APIs. For details, see [Ability](../r
 
 ## How to Develop
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-> The sample code snippets provided in the **How to Develop** section are used to show specific development steps. They may not be able to run independently. For details about the complete project code, see [Samples](#samples).
+> The sample code snippets provided in the **How to Develop** section are used to show specific development steps. They may not be able to run independently.
 ### Creating a Callee
 For the callee, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use the **on** API to register a listener. When data does not need to be received, use the **off** API to deregister the listener.
 1. Configure the ability startup mode.

@@ -198,10 +198,10 @@
     import data_rdb from '@ohos.data.rdb'
 
     const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-    const STORE_CONFIG = {name: "rdbstore.db",}
+    const STORE_CONFIG = { name: "rdbstore.db" }
     data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-        rdbStore.executeSql(CREATE_TABLE_TEST)
-        console.info('create table done.')
+      rdbStore.executeSql(CREATE_TABLE_TEST)
+      console.info('create table done.')
     })
     ```
 
@@ -215,7 +215,7 @@
 
     ```js
     var u8 = new Uint8Array([1, 2, 3])
-    const valueBucket = {"name": "Tom", "age": 18, "salary": 100.5, "blobType": u8,}
+    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
     let insertPromise = rdbStore.insert("test", valueBucket)
     ```
 
@@ -314,6 +314,7 @@
             console.log('device=' + device[i] + 'data changed')
         }
     }
+
     try {
         rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
     } catch (err) {
@@ -364,9 +365,7 @@
 
    (1) 调用数据库的备份接口，备份当前数据库文件。
 
-   (2) 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
-   
-   示例代码如下：
+    示例代码如下：
 
     ```js
     let promiseBackup = rdbStore.backup("dbBackup.db")
@@ -376,6 +375,10 @@
         console.info('Backup failed, err: ' + err)
     })
     ```
+   (2) 调用数据库的恢复接口，从数据库的备份文件恢复数据库文件。
+   
+    示例代码如下：
+
     ```js
     let promiseRestore = rdbStore.restore("dbBackup.db")
     promiseRestore.then(() => {
@@ -387,6 +390,5 @@
 
 ## 相关实例
 针对关系型数据库开发，有以下相关实例可供参考：
-- [`Rdb`：关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/Rdb)
-- [`DistributedRdb`：分布式关系型数据库（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb)
+- [`DistributedRdb`：分布式关系型数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedRdb)
 - [关系型数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)

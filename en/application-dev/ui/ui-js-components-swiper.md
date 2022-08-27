@@ -8,9 +8,7 @@ The **&lt;swiper&gt;** component is a sliding container used to switch between c
 
 Create a **&lt;swiper&gt;** component in the .hml file under **pages/index**.
 
-
-
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper>
@@ -27,9 +25,7 @@ Create a **&lt;swiper&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-
-
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -60,7 +56,8 @@ text{
 ![en-us_image_0000001232003028](figures/en-us_image_0000001232003028.gif)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
+>
 > The **&lt;swiper&gt;** component supports child components except **&lt;list&gt;**.
 
 
@@ -69,7 +66,7 @@ text{
 When **loop** is set to **false**, the **autoplay** attribute is added to the **&lt;swiper&gt;** component and the autoplay interval (**interval**) is set. The component automatically switches between child components and stops at the last one. Add the **digital** attribute to enable the digital navigation point and set **scrolleffect** to **fade**.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper index="1"  autoplay="true" interval="2000" indicator="true" digital="true" duration="500"
@@ -91,7 +88,7 @@ When **loop** is set to **false**, the **autoplay** attribute is added to the **
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -100,7 +97,6 @@ When **loop** is set to **false**, the **autoplay** attribute is added to the **
   background-color: #F1F3F5;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 swiper{
   height: 30%;
@@ -120,7 +116,7 @@ text{
 
 ![en-us_image_0000001275923021](figures/en-us_image_0000001275923021.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
 > - The **digital** attribute takes effect only when the **indicator** attribute is set to **true**.
 > 
 > - The **loop** attribute takes effect only when there are two or more than two child components of the **&lt;swiper&gt;** component.
@@ -133,7 +129,7 @@ text{
 Set the width and height of the **&lt;swiper&gt;** component, the indicator's size (**indicator-size**), color (**indicator-color**), relative position (**indicator-top**), and color when it is selected (**indicator-selected-color**).
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper index="1" autoplay="true" interval="2000"  duration="500" >
@@ -151,7 +147,7 @@ Set the width and height of the **&lt;swiper&gt;** component, the indicator's si
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -192,7 +188,7 @@ text{
 Create two **&lt;text&gt;** components and bind click events. Clicking the component will call **showPrevious** to display the previous child component or **showNext** to display the next child component. Add a **&lt;select&gt;** component. A **change** event is triggered when a user selects a value from the drop-down list box and the **swipeTo** method is called to go to the specified page. Bind the **&lt;swiper&gt;** component with the **change** event (triggered when the index of the currently displayed component changes) and the **finish** event (triggered when the switchover animation ends).
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper interval="2000" onchange="change" loop="false" onanimationfinish="finish" id="swiper">
@@ -223,7 +219,7 @@ Create two **&lt;text&gt;** components and bind click events. Clicking the compo
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   width: 100%;
@@ -232,7 +228,6 @@ Create two **&lt;text&gt;** components and bind click events. Clicking the compo
   background-color: #F1F3F5;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 swiper{
   height: 30%;
@@ -265,7 +260,8 @@ select{
 ```
 
 
-```
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default{
   change(e){
@@ -294,7 +290,7 @@ export default{
 Use the **&lt;swiper&gt;** component to create an image carousel and a thumbnail module at the bottom of the carousel. After a thumbnail is clicked, the **swipeTo** method is called to switch to the corresponding image.
 
 
-```
+```html
 <!-- xxx.hml-->
 <div class="container">
   <swiper duration="500" indicator="false" id="swiper" onchange="change">
@@ -311,7 +307,7 @@ Use the **&lt;swiper&gt;** component to create an image carousel and a thumbnail
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -346,8 +342,8 @@ swiper{
 ```
 
 
-```
-// index.js
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default {
   data:{

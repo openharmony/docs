@@ -1,7 +1,9 @@
 # List
 
 > **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
 
 
 列表包含一系列相同宽度的列表项。适合连续、多行呈现同类数据，例如图片和文本。
@@ -33,22 +35,15 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| listDirection | [Axis](ts-appendix-enums.md#axis枚举说明) | Vertical | 设置List组件排列方向参照Axis枚举说明。 |
+| listDirection | [Axis](ts-appendix-enums.md#axis) | Vertical | 设置List组件排列方向参照Axis枚举说明。 |
 | divider | {<br/>strokeWidth:&nbsp;Length,<br/>color?:Color,<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>} | - | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
 | editMode | boolean | false | 声明当前List组件是否处于可编辑模式。 |
-| edgeEffect | EdgeEffect | EdgeEffect.Spring | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
+| edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | EdgeEffect.Spring | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
 | chainAnimation | boolean | false | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：list内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
 | multiSelectable<sup>8+</sup> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | restoreId<sup>8+</sup> | number | - | 组件迁移标识符，标识后的组件在应用迁移时，组件状态会被迁移到被拉起方的同标识组件。<br/>列表组件状态，包括起始位置显示的item序号。 |
 | lanes<sup>9+</sup> | number \|<br>{<br/>minLength: Length,<br/>maxLength: Length<br/>} | 1 | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局，规则如下：<br/>- lanes为指定的数量时，根据指定的数量与List组件的交叉轴宽度来决定每列的宽度；<br/>- lane设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的宽度符合最小宽度限制。例如在列模式下，设置了{minLength: 40vp，maxLength: 60vp}，则当List组件宽度为70vp时，ListItem为一列，并且根据alignListItem属性做靠左、居中或者靠右布局；当List组件宽度变化至80vp时，符合两倍的minLength，则ListItem自适应为两列。 |
 | alignListItem<sup>9+</sup> | ListItemAlign | ListItemAlign.Center | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为居中。 |
-
-- EdgeEffect枚举说明
-
-  | 名称   | 描述                                                         |
-  | ------ | ------------------------------------------------------------ |
-  | Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
-  | None   | 滑动到边缘后无效果。                                         |
 
 - ListItemAlign枚举说明
 

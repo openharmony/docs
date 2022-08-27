@@ -18,7 +18,8 @@ The lifecycle callbacks of a custom component are used to notify users of the li
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CountDownTimerComponent {

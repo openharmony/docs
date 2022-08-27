@@ -60,19 +60,19 @@ ColorStop is used to describe the progressive color stop.
 
 The Resource type is used to reference resources for setting the value of a component attribute.
 
-You can use  ` $r `  or  ` $rawfile `  to create a Resource object. For details, see [Resource Access](ts-application-resource-access.md).
+You can use  `$r`  or  `$rawfile`  to create a Resource object. For details, see [Resource Access](ts-resource-access.md).
 
-- ` $r('belonging.type.name') ` 
+- `$r('belonging.type.name')`
 
-   ` belonging ` : system or application resource. The value can be 'sys' or 'app'.
+   `belonging` : system or application resource. The value can be 'sys' or 'app'.
 
-   ` type ` : resource type, which can be 'color', 'float', 'string', or 'media'.
+   `type` : resource type, which can be 'color', 'float', 'string', or 'media'.
 
-   ` name ` : resource name, which is determined during resource definition.
+   `name` : resource name, which is determined during resource definition.
 
--  ` $rawfile('filename') ` 
+- `$rawfile('filename')`
 
-   ` filename ` : name of the file in resources/rawfile of the project.
+   `filename` : name of the file in resources/rawfile of the project.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
@@ -96,7 +96,7 @@ You can use  ` $r `  or  ` $rawfile `  to create a Resource object. For details,
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| Font | {<br>size?: Length;<br>weight?: FontWeight \| number  \| string;<br>family?: string  \| Resource;<br>style?: FontStyle;<br>} | Text style.<br>**size**: font size. For the number type, use the unit fp.<br>weight: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is 400. A larger value indicates a larger font weight.<br>**family**: font family. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, sans-serif'**.<br>**style**: font style. |
+| Font | {<br/>size?: Length;<br/>weight?: <a href="https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md">FontWeight</a>  \| number  \| string;<br/>family?: string  \| <a href="ts-types.md#Resource">Resource</a>;<br/>style?: <a href="https://gitee.com/superFat/docs/blob/master/en/application-dev/reference/arkui-ts/ts-universal-attributes-text-style.md">FontStyle</a>;<br/>}  | Text style.<br>**size**: font size. For the number type, use the unit fp.<br>weight: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is 400. A larger value indicates a larger font weight.<br>**family**: font family. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, sans-serif'**.<br>**style**: font style. |
 
 ## CustomBuilder Type<sup>8+</sup>
 
@@ -109,7 +109,8 @@ You can use CustomBuilder to define custom UI descriptions in component attribut
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct dataTypeExample {
