@@ -10,7 +10,7 @@ InputMethodExtensionAbility模块，提供生态输入法应用开发者通过In
 ## 导入模块
 
 ```
-import InputMethodExtension from '@ohos.inputmethodextensionability';
+import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 ```
 
 ## 属性
