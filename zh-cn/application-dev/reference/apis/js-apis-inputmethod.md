@@ -77,12 +77,11 @@ getInputMethodSetting(): InputMethodSetting
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
 
-switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolean&gt;): void;
+switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
 切换输入法。此接口仅可在Stage模型下使用。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
-
-**系统能力**：SystemCapability.Miscservices.InputMethodFramework
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -108,11 +107,11 @@ inputmethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:
 });
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
-switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
+switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 切换输入法。此接口仅可在Stage模型下使用。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
-**系统能力**： SystemCapability.Miscservices.InputMethodFramework
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
@@ -340,7 +339,7 @@ InputMethodSetting.listInputMethod((err,data) => {
 
 ### listInputMethod
 
-listInputMethod(): Promise<Array<InputMethodProperty>>;
+listInputMethod(): Promise&lt;Array<InputMethodProperty>&gt;
 
 查询已安装的输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
 

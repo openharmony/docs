@@ -9,10 +9,18 @@ AccessibilityExtensionContext模块提供扩展的上下文的能力，包括允
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
-## 导入模块
+## 使用说明
+
+在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取。
 
 ```js
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+class MainAbility extends AccessibilityExtensionAbility {
+    onConnect(): void {
+        console.log("AxExtensionAbility onConnect");
+        let axContext = this.context;
+    }
+}
 ```
 
 ## FocusDirection
@@ -203,9 +211,9 @@ this.context.getWindows().then(windows => {
 })
 ```
 
-## AccessibilityExtensionContext.gestureInject
+## AccessibilityExtensionContext.injectGesture
 
-gestureInject(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<boolean
+injectGesture(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<boolean
 
 注入手势。
 

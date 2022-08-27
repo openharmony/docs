@@ -1,9 +1,9 @@
 # Standard NFC Card Emulation
 
-The cardEmulation module implements Near-Field Communication (NFC) card emulation.
+The **cardEmulation** module implements Near-Field Communication (NFC) card emulation.
 
 > **NOTE**<br>
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -19,7 +19,7 @@ isSupported(feature: number): boolean
 
 Checks whether a certain type of card emulation is supported.
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -27,11 +27,11 @@ Checks whether a certain type of card emulation is supported.
   | -------- | -------- |
   | boolean | Returns **true** if the card emulation is supported; returns **false** otherwise.|
 
-## HceService
+## HceService<sup>8+</sup>
 
 Implements Host-based Card Emulation (HCE). Before calling any API in **HceService**, you must use **new cardEmulation.HceService()** to create an **HceService** instance.
 
-### startHCE
+### startHCE<sup>8+</sup>
 
 startHCE(aidList: string[]): boolean
 
@@ -39,7 +39,7 @@ Starts HCE.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Parameters**
 
@@ -47,7 +47,7 @@ Starts HCE.
 | ------- | -------- | ---- | ----------------------- |
 | aidList | string[] | Yes  | Application ID (AID) list to be registered for card emulation.|
 
-### stopHCE
+### stopHCE<sup>8+</sup>
 
 stopHCE(): boolean
 
@@ -55,9 +55,9 @@ Stops HCE.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
-### on
+### on<sup>8+</sup>
 
 on(type: "hceCmd", callback: AsyncCallback<number[]>): void;
 
@@ -65,7 +65,7 @@ Subscribes to messages from the peer device after **startHCE()**.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Parameters**
 
@@ -74,7 +74,7 @@ Subscribes to messages from the peer device after **startHCE()**.
 | type     | string                  | Yes  | Event type to subscribe to. The value is **hceCmd**.                        |
 | callback | AsyncCallback<number[]> | Yes  | Callback invoked to return the subscribed event. The input parameter is a data array that complies with the Application Protocol Data Unit (APDU).|
 
-### sendResponse
+### sendResponse<sup>8+</sup>
 
 sendResponse(responseApdu: number[]): void;
 
@@ -82,7 +82,7 @@ Sends a response to the peer device.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Parameters**
 

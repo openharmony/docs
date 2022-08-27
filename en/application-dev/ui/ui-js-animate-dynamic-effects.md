@@ -4,7 +4,8 @@
 You can set the interpolator to implement the animation effect.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
+>
 > This feature is supported since API version 6.
 
 
@@ -12,8 +13,7 @@ You can set the interpolator to implement the animation effect.
 
 Use createAnimator to create an animation object and set the animation attributes by using the options parameter.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div style="width: 300px;height: 300px;margin-top: 100px;background: linear-gradient(pink, purple);transform: translate({{translateVal}});">
@@ -24,10 +24,11 @@ Use createAnimator to create an animation object and set the animation attribute
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
+  width:100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -45,9 +46,8 @@ button{
 }
 ```
 
-
-```
-/* xxx.js */
+```js
+// xxx.js
 import animator from '@ohos.animator';
 export default {
   data: {
@@ -80,7 +80,8 @@ export default {
 
 ![en-us_image_0000001267887885](figures/en-us_image_0000001267887885.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
+>
 > - When you use createAnimator to create an animation object, you must pass the options parameter.
 >
 > - begin indicates the start point of the animation interpolation. If it is not set, the default value 0 is used.
@@ -92,10 +93,9 @@ export default {
 
 The animator supports events and methods, which you can use to customize the animation effect. Events include frame, cancel, repeat, and finish. Methods include update, play, pause, cancel, reverse, and finish. For details about the supported events and methods, see [animator supported events and animator supported APIs](../reference/apis/js-apis-animator.md).
 
-
-```
+```html
 <!-- xxx.hml -->
-<div style="flex-direction: column;align-items: center;">
+<div style="flex-direction: column;align-items: center;width: 100%;height: 100%;">
   <div style="width:200px;height: 200px;margin-top: 100px;background: linear-gradient(#b30d29, #dcac1b);
   transform: scale({{scaleVal}});"></div>
   <div style="width: {{DivWidth}};height: {{DivHeight}};margin-top: 200px;
@@ -116,14 +116,8 @@ The animator supports events and methods, which you can use to customize the ani
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
-.container {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 button{
   width: 200px;
 }
@@ -134,7 +128,7 @@ button{
   justify-content: space-between;
   margin-top: 150px;
   position: fixed;
-  top: 55%;
+  top: 52%;
   left: 120px;
 }
 .row1{
@@ -159,9 +153,8 @@ button{
 }
 ```
 
-
-```
-/* xxx.js */
+```js
+// xxx.js
 import animator from '@ohos.animator';
 import prompt from '@system.prompt';
 export default {
@@ -244,5 +237,6 @@ export default {
 
 ![en-us_image_0000001223287724](figures/en-us_image_0000001223287724.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
+>
 > When calling the update method, you can use it to update the animation parameters. The input parameters are the same as those of createAnimator.

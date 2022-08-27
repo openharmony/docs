@@ -1,7 +1,9 @@
 # TapGesture
 
+A tap gesture can recognize one or more taps.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -15,23 +17,24 @@ None
 TapGesture(options?: { count?: number, fingers?: number })
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description | 
+    | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | count | number | No | 1 | Number of consecutive taps. If this parameter is set to a value less than **1**, the default value will be used.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms. | 
-  | fingers | number | No | 1 | Minimum number of fingers to trigger a tap. The value ranges from 1 to 10.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>> 1. When multi-finger is configured, if the number of fingers used for tap does not reach the specified number within 300 ms after the first finger is tapped, the gesture fails to be recognized.<br/>> <br/>> 2. Gesture recognition fails if the number of fingers used for tap exceeds the configured number. | 
+  | count | number | No | 1 | Number of consecutive taps. If this parameter is set to a value less than **1**, the default value will be used.<br/>> **NOTE**<br/>> If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms. |
+  | fingers | number | No | 1 | Minimum number of fingers to trigger a tap. The value ranges from 1 to 10.<br/>> **NOTE**<br/>> 1. When multi-finger is configured, if the number of fingers used for tap does not reach the specified number within 300 ms after the first finger is tapped, the gesture fails to be recognized.<br/>> 2. Gesture recognition fails if the number of fingers used for tap exceeds the configured number. |
 
 
 ## Events
 
-  | Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onAction((event?: GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized. | 
+| onAction((event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Callback invoked when a tap gesture is recognized. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TapGestureExample {

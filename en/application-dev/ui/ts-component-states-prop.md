@@ -18,8 +18,8 @@ The @Prop state data has the following features:
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ParentComponent {
@@ -68,5 +68,6 @@ struct CountDownComponent {
 
 In the preceding example, when you press +1 or -1, the status of the parent component changes and the build method is executed again. In this case, a new CountDownComponent is created. The countDownStartValue property of the parent component is used to initialize the @Prop decorated variable of the child component. When you tap the Try again button of the child component, the value of the @Prop decorated variable count is changed. As a result, the CountDownComponent is rendered again. However, the change of the count value does not affect the countDownStartValue value of the parent component.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
+>
 > When a new component instance is created, all its @Prop decorated variables must be initialized.

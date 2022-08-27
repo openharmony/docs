@@ -11,7 +11,8 @@ import deviceInfo from '@ohos.deviceInfo'
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Startup.SysInfo。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Startup.SystemInfo。
+
 **权限**：以下各项所需要的权限有所不同，详见下表。
 
 | 名称 | 参数类型 | 可读 | 可写 | 描述 |

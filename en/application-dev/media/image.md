@@ -267,7 +267,7 @@ imageSourceApi.getImageInfo(imageInfo => {
 })
 
 // Update incremental data.
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
+imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error, data)=> {})
 
 ```
 

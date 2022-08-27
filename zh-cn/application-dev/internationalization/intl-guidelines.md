@@ -37,14 +37,6 @@
       | kn | 表示字符串排序、比较时是否考虑数字的实际值 |
       | kf | 表示字符串排序、比较时是否考虑大小写 |
 
-| 扩展参数ID | 扩展参数说明 |
-| -------- | -------- |
-| ca | 表示日历系统 |
-| co | 表示排序规则 |
-| hc | 表示守时惯例 |
-| nu | 表示数字系统 |
-| kn | 表示字符串排序、比较时是否考虑数字的实际值 |
-| kf | 表示字符串排序、比较时是否考虑大小写 |
    
    ```js
    var locale = "zh-CN";
@@ -328,6 +320,6 @@
 
 针对Intl开发，有以下相关实例可供参考：
 
--[`International`：国际化（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/International)
+-[`International`：国际化（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
 
--[`International`：国际化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/International)
+-[`International`：国际化（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)

@@ -132,13 +132,27 @@
 
 ### 密钥导入导出
 
-可以将密钥导出储存到本地和导入使用已在本地存放的密钥。 
+HUKS支持非对称密钥的公钥导出能力，开发者可以通过密钥别名导出应用自己密钥对的公钥，只允许导出属于应用自己的密钥对的公钥。
+
+HUKS支持密钥从外部导入的能力。密钥导入后全生命周期存在HUKS中，不能再被导出（非对称密钥的公钥除外）。 如果该别名的密钥已经存在，新导入的密钥将覆盖已经存在的密钥。 
 
 开发步骤如下：
 
 1. 生成密钥。
 2. 导出密钥。
 3. 导入密钥。
+
+**支持导入的密钥类型：**
+
+AES128, AES192, AES256, RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, HmacSHA1, HmacSHA224, HmacSHA256, HmacSHA384, HmacSHA512, ECC224, ECC256, ECC384, ECC521, Curve25519, DSA, SM2, SM3, SM4.
+
+**支持导出的密钥类型：**
+
+RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC521, Curve25519, DSA, SM2.
+
+> **说明**
+>
+> 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 
@@ -250,14 +264,25 @@ async function testImportExport() {
 
 ### 安全导入
 
-导入加密密钥。
+基于密钥协商和中间密钥二次加密的方式，业务调用方和HUKS各自协商出共享的对称密钥来对中间密钥、待导入密钥进行加解密。从而实现密文导入后，在HUKS中对导入密钥进行解密再保存。对明文密钥的处理仅在HUKS 安全环境中，保证密钥明文生命周期内不出安全环境。 
 
 开发步骤如下：
 
-1. huks中生成用于加密导入协商的密钥。
-2. 导出该密钥的公钥，协商出共享密钥。
-3. 生成中间密钥材料并加密密钥。
-4. 导入密钥。
+1.   huks中生成用于加密导入协商的密钥。
+2.  导出该密钥的公钥，协商出共享密钥。
+3.  生成中间密钥材料并加密密钥。
+4.  导入密钥。 
+
+**支持的密钥类型：**
+
+AES128, AES192, AES256, RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, HmacSHA1, HmacSHA224, HmacSHA256, HmacSHA384, HmacSHA512, ECC224, ECC256, ECC384, ECC521, Curve25519, DSA, SM2, SM3, SM4.
+
+> **注意**
+>
+> - 生成公共密钥时，要设置参数HUKS_TAG_PURPOSE = HUKS_KEY_PURPOSE_UNWRAP
+> - 参数HUKS_TAG_IMPORT_KEY_TYPE = HUKS_KEY_TYPE_KEY_PAIR
+> - 安全导入密钥时，参数集须加上参数HUKS_TAG_UNWRAP_ALGORITHM_SUITE, 值为HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING或者HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
+> - 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 
@@ -478,13 +503,36 @@ function huksImportWrappedKey() {
 
 ### 密钥加解密
 
-发送和接收数据的双方使用对称或非对称密钥对密钥数据进行加密或解密运算的方法。
+通过指定别名的方式，使用HUKS中存储的对称或非对称密钥对数据进行加密或解密运算，运算过程中密钥明文不出安全环境。
 
 开发步骤如下：
 
 1. 生成密钥。
 2. 密钥加密。
 3. 密钥解密。
+
+**支持的密钥类型：**
+
+| HUKS_ALG_ALGORITHM                                           | HUKS_TAG_PURPOSE                                   | HUKS_TAG_DIGEST                                              | HUKS_TAG_PADDING                                             | HUKS_TAG_BLOCK_MODE                         | HUKS_TAG_IV |
+| ------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------- | ----------- |
+| HUKS_ALG_SM4                  （支持长度：  HUKS_SM4_KEY_SIZE_128） | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | 【非必选】                                                   | HUKS_PADDING_NONE                                            | HUKS_MODE_CTR  HUKS_MODE_ECB  HUKS_MODE_CBC | 【必选】    |
+| HUKS_ALG_SM4                  （支持长度：  HUKS_SM4_KEY_SIZE_128） | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | 【非必选】                                                   | HUKS_PADDING_PKCS7                                           | HUKS_MODE_ECB  HUKS_MODE_CBC                | 【必选】    |
+| HUKS_ALG_RSA                 （支持长度：  HUKS_SM4_KEY_SIZE_512  HUKS_SM4_KEY_SIZE_768  HUKS_SM4_KEY_SIZE_1024  HUKS_SM4_KEY_SIZE_2048  HUKS_SM4_KEY_SIZE_3072  HUKS_SM4_KEY_SIZE_4096） | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | HUKS_DIGEST_SHA1 HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | HUKS_PADDING_NONE  HUKS_PADDING_PKCS1_V1_5  HUKS_PADDING_OAEP | HUKS_MODE_ECB                               | 【非必选】  |
+
+| HUKS_ALG_ALGORITHM                                           | HUKS_TAG_PURPOSE         | HUKS_TAG_PADDING                      | HUKS_TAG_BLOCK_MODE          | HUKS_TAG_IV | HUKS_TAG_NONCE | HUKS_TAG_ASSOCIATED_DATA | HUKS_TAG_AE_TAG |
+| ------------------------------------------------------------ | ------------------------ | ------------------------------------- | ---------------------------- | ----------- | -------------- | ------------------------ | --------------- |
+| HUKS_ALG_AES                 （支持长度：  HUKS_AES_KEY_SIZE_128  HUKS_AES_KEY_SIZE_192  HUKS_AES_KEY_SIZE_256） | HUKS_KEY_PURPOSE_ENCRYPT | HUKS_PADDING_NONE  HUKS_PADDING_PKCS7 | HUKS_MODE_CBC                | 【必选】    | 【非必选】     | 【非必选】               | 【非必选】      |
+| HUKS_ALG_AES                                                 | HUKS_KEY_PURPOSE_ENCRYPT | HUKS_PADDING_NONE                     | HUKS_MODE_CCM  HUKS_MODE_GCM | 【非必选】  | 【必选】       | 【必选】                 | 【非必选】      |
+| HUKS_ALG_AES                                                 | HUKS_KEY_PURPOSE_ENCRYPT | HUKS_PADDING_NONE                     | HUKS_MODE_CTR                | 【必选】    | 【非必选】     | 【非必选】               | 【非必选】      |
+| HUKS_ALG_AES                                                 | HUKS_KEY_PURPOSE_ENCRYPT | HUKS_PADDING_PKCS7  HUKS_PADDING_NONE | HUKS_MODE_ECB                | 【必选】    | 【非必选】     | 【非必选】               | 【非必选】      |
+| HUKS_ALG_AES                                                 | HUKS_KEY_PURPOSE_DECRYPT | HUKS_PADDING_NONE  HUKS_PADDING_PKCS7 | HUKS_MODE_CBC                | 【必选】    | 【非必选】     | 【非必选】               | 【必选】        |
+| HUKS_ALG_AES                                                 | HUKS_KEY_PURPOSE_DECRYPT | HUKS_PADDING_NONE                     | HUKS_MODE_CCM  HUKS_MODE_GCM | 【非必选】  | 【必选】       | 【必选】                 | 【非必选】      |
+| HUKS_ALG_AES                                                 | HUKS_KEY_PURPOSE_DECRYPT | HUKS_PADDING_NONE                     | HUKS_MODE_CTR                | 【必选】    | 【非必选】     | 【非必选】               | 【非必选】      |
+| HUKS_ALG_AES                                                 | HUKS_KEY_PURPOSE_DECRYPT | HUKS_PADDING_NONE  HUKS_PADDING_PKCS7 | HUKS_MODE_ECB                | 【必选】    | 【非必选】     | 【非必选】               | 【非必选】      |
+
+> **说明**
+>
+> 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 
@@ -497,7 +545,7 @@ function huksImportWrappedKey() {
 
 关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。 
 
-**示例：**
+**示例1：**
 
 ```ts
 /* Cipher操作支持RSA、AES、SM4类型的密钥。
@@ -600,7 +648,6 @@ async function testCipher() {
     }).catch((err) => {
         console.info('test init err information: ' + JSON.stringify(err));
     });
-    console.info(`leave init`);
     encryptOptions.inData = sm4CipherStringToUint8Array(cipherInData);
     await huks.update(handle, encryptOptions).then(async (data) => {
         console.info(`test update data ${JSON.stringify(data)}`);
@@ -666,6 +713,193 @@ async function testCipher() {
 }
 ```
 
+**示例2：**
+
+```ts
+/* Cipher操作支持RSA、AES、SM4类型的密钥。
+ *
+ * 以下以AES128 GCM密钥的Promise操作使用为例
+ */
+function aesCipherStringToUint8Array(str) {
+    var arr = [];
+    for (var i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    return new Uint8Array(arr);
+}
+function aesCipherUint8ArrayToString(fileData) {
+    var dataString = '';
+    for (var i = 0; i < fileData.length; i++) {
+        dataString += String.fromCharCode(fileData[i]);
+    }
+    return dataString;
+}
+
+async function aesCipher() {
+    var handle;
+    var AAD = '0000000000000000';
+    var NONCE = '000000000000';
+    var AEAD = '0000000000000000';
+    var cipherInData = 'Hks_AES_Cipher_Test_00000000000000000000000000000000000000000000000000000_string';
+    var srcKeyAlias = 'huksCipherAesSrcKeyAlias';
+    var encryptUpdateResult = new Array();
+    var decryptUpdateResult = new Array();
+    /* 集成生成密钥参数集 & 加密参数集 */
+    var properties = new Array();
+    properties[0] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES,
+    }
+    properties[1] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value:
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+        huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+    }
+    properties[2] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+    }
+    properties[3] = {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_GCM,
+    }
+    properties[4] = {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+    }
+    var HuksOptions = {
+        properties: properties,
+        inData: new Uint8Array(new Array())
+    }
+
+    var propertiesEncrypt = new Array();
+    propertiesEncrypt[0] = {
+        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+        value: huks.HuksKeyAlg.HUKS_ALG_AES,
+    }
+    propertiesEncrypt[1] = {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
+    }
+    propertiesEncrypt[2] = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+        value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
+    }
+    propertiesEncrypt[3] = {
+        tag: huks.HuksTag.HUKS_TAG_PADDING,
+        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+    }
+    propertiesEncrypt[4] = {
+        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+        value: huks.HuksCipherMode.HUKS_MODE_GCM,
+    }
+    propertiesEncrypt[5] = {
+        tag: huks.HuksTag.HUKS_TAG_DIGEST,
+        value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
+    }
+    propertiesEncrypt[6] = {
+        tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
+        value: aesCipherStringToUint8Array(AAD),
+    }
+    propertiesEncrypt[7] = {
+        tag: huks.HuksTag.HUKS_TAG_NONCE,
+        value: aesCipherStringToUint8Array(NONCE),
+    }
+    propertiesEncrypt[8] = {
+        tag: huks.HuksTag.HUKS_TAG_AE_TAG,
+        value: aesCipherStringToUint8Array(AEAD),
+    }
+    var encryptOptions = {
+        properties: propertiesEncrypt,
+        inData: new Uint8Array(new Array())
+    }
+
+    /* 生成密钥 */
+    await huks.generateKey(srcKeyAlias, HuksOptions).then((data) => {
+        console.info(`test generateKey data: ${JSON.stringify(data)}`);
+    }).catch((err) => {
+        console.info('test generateKey err information: ' + JSON.stringify(err));
+    });
+
+    /* 进行密钥加密操作 */
+    await huks.init(srcKeyAlias, encryptOptions).then((data) => {
+        console.info(`test init data: ${JSON.stringify(data)}`);
+        handle = data.handle;
+    }).catch((err) => {
+        console.info('test init err information: ' + JSON.stringify(err));
+    });
+    encryptOptions.inData = aesCipherStringToUint8Array(cipherInData.slice(0,64));
+    await huks.update(handle, encryptOptions).then(async (data) => {
+        console.info(`test update data ${JSON.stringify(data)}`);
+        encryptUpdateResult = Array.from(data.outData);
+    }).catch((err) => {
+        console.info('test update err information: ' + err);
+    });
+    encryptOptions.inData = aesCipherStringToUint8Array(cipherInData.slice(64,80));
+    await huks.finish(handle, encryptOptions).then((data) => {
+        console.info(`test finish data: ${JSON.stringify(data)}`);
+        encryptUpdateResult = encryptUpdateResult.concat(Array.from(data.outData));
+        var finishData = aesCipherUint8ArrayToString(new Uint8Array(encryptUpdateResult));
+        if (finishData === cipherInData) {
+            console.info('test finish encrypt err ');
+        } else {
+            console.info('test finish encrypt success');
+        }
+    }).catch((err) => {
+        console.info('test finish err information: ' + JSON.stringify(err));
+    });
+
+    /* 修改加密参数集为解密参数集 */
+    propertiesEncrypt.splice(1, 1, {
+        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+    });
+    propertiesEncrypt.splice(8, 1, {
+        tag: huks.HuksTag.HUKS_TAG_AE_TAG,
+        value: new Uint8Array(encryptUpdateResult.splice(encryptUpdateResult.length - 16,encryptUpdateResult.length))
+    });
+    var decryptOptions = {
+        properties: propertiesEncrypt,
+        inData: new Uint8Array(new Array())
+    }
+
+    /* 进行解密操作 */
+    await huks.init(srcKeyAlias, decryptOptions).then((data) => {
+        console.info(`test init data: ${JSON.stringify(data)}`);
+        handle = data.handle;
+    }).catch((err) => {
+        console.info('test init err information: ' + JSON.stringify(err));
+    });
+    decryptOptions.inData = new Uint8Array(encryptUpdateResult.slice(0,64));
+    await huks.update(handle, decryptOptions).then(async (data) => {
+        console.info(`test update data ${JSON.stringify(data)}`);
+        decryptUpdateResult = Array.from(data.outData);
+    }).catch((err) => {
+        console.info('test update err information: ' + err);
+    });
+    decryptOptions.inData = new Uint8Array(encryptUpdateResult.slice(64,encryptUpdateResult.length));
+    await huks.finish(handle, decryptOptions).then((data) => {
+        console.info(`test finish data: ${JSON.stringify(data)}`);
+        decryptUpdateResult = decryptUpdateResult.concat(Array.from(data.outData));
+        var finishData = aesCipherUint8ArrayToString(new Uint8Array(decryptUpdateResult));
+        if (finishData === cipherInData) {
+            console.info('test finish decrypt success ');
+        } else {
+            console.info('test finish decrypt err');
+        }
+    }).catch((err) => {
+        console.info('test finish err information: ' + JSON.stringify(err));
+    });
+
+    await huks.deleteKey(srcKeyAlias, HuksOptions).then((data) => {
+        console.info(`test deleteKey data: ${JSON.stringify(data)}`);
+    }).catch((err) => {
+        console.info('test deleteKey err information: ' + JSON.stringify(err));
+    });
+}
+```
+
 ### 密钥签名验签
 
 签名：给我们将要发送的数据，做上一个唯一签名；验签： 对发送者发送过来的签名进行验证 。
@@ -677,6 +911,29 @@ async function testCipher() {
 3. 导出签名密钥。
 4. 导入签名密钥。
 5. 密钥验签。
+
+**支持的密钥类型：**
+
+仅HksInit对paramSet中参数有要求，其他三段式接口对paramSet无要求
+
+| HUKS_ALG_ALGORITHM | HUKS_ALG_KEY_SIZE                                            | HUKS_ALG_PURPOSE                               | HUKS_ALG_PADDING        | HUKS_TAG_DIGEST                                              |
+| ------------------ | ------------------------------------------------------------ | ---------------------------------------------- | ----------------------- | ------------------------------------------------------------ |
+| HUKS_ALG_RSA       | HUKS_RSA_KEY_SIZE_512  HUKS_RSA_KEY_SIZE_768  HUKS_RSA_KEY_SIZE_1024  HUKS_RSA_KEY_SIZE_2048  HUKS_RSA_KEY_SIZE_3072  HUKS_RSA_KEY_SIZE_4096 | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY | HUKS_PADDING_PKCS1_V1_5 | HUKS_DIGEST_MD5  HUKS_DIGEST_NONE  HUKS_DIGEST_SHA1  HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 |
+| HUKS_ALG_RSA       | HUKS_RSA_KEY_SIZE_512  HUKS_RSA_KEY_SIZE_768  HUKS_RSA_KEY_SIZE_1024  HUKS_RSA_KEY_SIZE_2048  HUKS_RSA_KEY_SIZE_3072  HUKS_RSA_KEY_SIZE_4096 | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY | HUKS_PADDING_PSS        | HUKS_DIGEST_SHA1  HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 |
+| HUKS_ALG_DSA       | HUKS_RSA_KEY_SIZE_1024                                       | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY | 【非必选】              | HUKS_DIGEST_SHA1  HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 |
+| HUKS_ALG_ECC       | HUKS_ECC_KEY_SIZE_224  HUKS_ECC_KEY_SIZE_256  HUKS_ECC_KEY_SIZE_384  HUKS_ECC_KEY_SIZE_521 | HUKS_KEY_PURPOSE_SIGN  HUKS_KEY_PURPOSE_VERIFY | 【非必选】              | HUKS_DIGEST_NONE  HUKS_DIGEST_SHA1  HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 |
+
+Ed25519的签名验签是在算法引擎中做的HASH操作，因此该算法的三段式接口处理较特殊：
+
+Update过程只将inData发送到Core中记录在ctx中，不进行Hash计算，最后在finish操作时，对inData组合后的数据进行签名、验签计算.
+
+| HUKS_ALG_ALGORITHM | HUKS_ALG_KEY_SIZE            | HUKS_ALG_PURPOSE                                |
+| ------------------ | ---------------------------- | ----------------------------------------------- |
+| HUKS_ALG_ED25519   | HUKS_CURVE25519_KEY_SIZE_256 | HUKS_KEY_PURPOSE_SIGN   HUKS_KEY_PURPOSE_VERIFY |
+
+> **说明**
+>
+> 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 
@@ -878,6 +1135,35 @@ async function testSignVerify() {
 2. 分别导出密钥。
 3. 交叉进行密钥协商。
 
+**支持的密钥类型：**
+
+仅HksInit和HksFinish接口对paramSet参数有要求，HksUpdate接口对paramSet无要求
+
+HksInit对paramSet中参数的要求
+
+| HUKS_ALG_ALGORITHM | HUKS_ALG_KEY_SIZE                                            | HUKS_ALG_PURPOSE       |
+| ------------------ | ------------------------------------------------------------ | ---------------------- |
+| HUKS_ALG_ECDH      | HUKS_ECC_KEY_SIZE_224  HUKS_ECC_KEY_SIZE_256 HUKS_ECC_KEY_SIZE_384 HUKS_ECC_KEY_SIZE_521 | HUKS_KEY_PURPOSE_AGREE |
+| HUKS_ALG_DH        | HUKS_DH_KEY_SIZE_2048 HUKS_DH_KEY_SIZE_3072 HUKS_DH_KEY_SIZE_4096 | HUKS_KEY_PURPOSE_AGREE |
+| HUKS_ALG_X25519    | HUKS_CURVE25519_KEY_SIZE_256                                 | HUKS_KEY_PURPOSE_AGREE |
+
+HksFinish对paramSet中参数的要求：
+
+派生后的密钥作为对称密钥进行使用
+
+| HUKS_TAG_KEY_STORAGE_FLAG      | HUKS_TAG_KEY_ALIAS | HUKS_TAG_IS_KEY_ALIAS | HUKS_TAG_ALGORITHM | HUKS_TAG_KEY_SIZE                                            | HUKS_TAG_PURPOSE                                   | HUKS_TAG_PADDING   | HUKS_TAG_DIGEST                                              | HUKS_TAG_BLOCK_MODE                         |
+| ------------------------------ | ------------------ | --------------------- | ------------------ | ------------------------------------------------------------ | -------------------------------------------------- | ------------------ | ------------------------------------------------------------ | ------------------------------------------- |
+| 未设置 或者  HUKS_STORAGE_TEMP | 不需要             | TRUE                  | 不需要             | 不需要                                                       | 不需要                                             | 不需要             | 不需要                                                       | 不需要                                      |
+| HUKS_STORAGE_PERSISTENT        | 【必选】最大64字节 | TRUE                  | HUKS_ALG_AES       | HUKS_AES_KEY_SIZE_128   HUKS_AES_KEY_SIZE_192  HUKS_AES_KEY_SIZE_256 | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | HUKS_PADDING_PKCS7 | 【非必选】                                                   | HUKS_MODE_CCM  HUKS_MODE_GCM  HUKS_MODE_CTP |
+| HUKS_STORAGE_PERSISTENT        | 【必选】最大64字节 | TRUE                  | HUKS_ALG_AES       | HUKS_AES_KEY_SIZE_128   HUKS_AES_KEY_SIZE_192  HUKS_AES_KEY_SIZE_256 | HUKS_KEY_PURPOSE_DERIVE                            | 【非必选】         | HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512   | 【非必选】                                  |
+| HUKS_STORAGE_PERSISTENT        | 【必选】最大64字节 | TRUE                  | HUKS_ALG_HMAC      | 8的倍数（单位：bit）                                         | HUKS_KEY_PURPOSE_MAC                               | 【非必选】         | HUKS_DIGEST_SHA1  HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384 HUKS_DIGEST_SHA512 | 【非必选】                                  |
+
+> **说明**
+>
+> HUKS_ALG_AES的SIZE需要满足：协商后的密钥长度（转换成bit）>=选择的HUKS_TAG_KEY_SIZE
+>
+> 存储的 keyAlias 密钥别名最大为64字节
+
 在使用示例前，需要先了解几个预先定义的变量： 
 
 | 参数名              | 类型        | 必填 | 说明                                   |
@@ -895,7 +1181,7 @@ async function testSignVerify() {
 ```ts
 /* agree操作支持ECDH、DH、X25519类型的密钥。
  *
- * 以下以X25519 256密钥的Promise操作使用为例
+ * 以下以X25519 256 TEMP密钥的Promise操作使用为例
  */
 function AgreeStringToUint8Array(str) {
     var arr = [];
@@ -938,29 +1224,29 @@ async function testAgree() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_CBC,
     }
-    var huksOptions = {
+    var HuksOptions = {
         properties: properties,
         inData: new Uint8Array(new Array())
     }
 
     /* 1.生成两个密钥并导出 */
-    await huks.generateKey(srcKeyAliasFirst, huksOptions).then((data) => {
+    await huks.generateKey(srcKeyAliasFirst, HuksOptions).then((data) => {
         console.info('test generateKey data = ' + JSON.stringify(data));
     }).catch((err) => {
         console.info(`test generateKey err: " + ${JSON.stringify(err)}`);
     });
-    await huks.generateKey(srcKeyAliasSecond, huksOptions).then((data) => {
+    await huks.generateKey(srcKeyAliasSecond, HuksOptions).then((data) => {
         console.info('test generateKey data = ' + JSON.stringify(data));
     }).catch((err) => {
         console.info(`test generateKey err: " + ${JSON.stringify(err)}`);
     });
-    await huks.exportKey(srcKeyAliasFirst, huksOptions).then((data) => {
+    await huks.exportKey(srcKeyAliasFirst, HuksOptions).then((data) => {
         console.info('test exportKey data = ' + JSON.stringify(data));
         exportKeyFrist = data.outData;
     }).catch((err) => {
         console.info(`test exportKey err: " + ${JSON.stringify(err)}`);
     });
-    await huks.exportKey(srcKeyAliasSecond, huksOptions).then((data) => {
+    await huks.exportKey(srcKeyAliasSecond, HuksOptions).then((data) => {
         console.info('test exportKey data = ' + JSON.stringify(data));
         exportKeySecond = data.outData;
     }).catch((err) => {
@@ -971,7 +1257,7 @@ async function testAgree() {
     var finishProperties = new Array();
     finishProperties[0] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
-        value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT,
+        value: huks.HuksKeyStorageType.HUKS_STORAGE_TEMP,
     }
     finishProperties[1] = {
         tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS,
@@ -1011,16 +1297,16 @@ async function testAgree() {
         properties: finishProperties,
         inData: AgreeStringToUint8Array(agreeX25519InData)
     }
-
+    
     /* 对第一个密钥进行协商 */
-    await huks.init(srcKeyAliasFirst, huksOptions).then((data) => {
+    await huks.init(srcKeyAliasFirst, HuksOptions).then((data) => {
         console.info(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
     }).catch((err) => {
         console.info(`test init err: " + ${JSON.stringify(err)}`);
     });
-    huksOptions.inData = exportKeySecond;
-    await huks.update(handle, huksOptions).then((data) => {
+    HuksOptions.inData = exportKeySecond;
+    await huks.update(handle, HuksOptions).then((data) => {
         console.info(`test update data: ${JSON.stringify(data)}`);
     }).catch((err) => {
         console.info(`test update err: " + ${JSON.stringify(err)}`);
@@ -1040,16 +1326,16 @@ async function testAgree() {
         tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
         value: AgreeStringToUint8Array(srcKeyAliasSecond + 'final'),
     })
-    await huks.init(srcKeyAliasSecond, huksOptions).then((data) => {
+    
+    /* 对第二个密钥进行协商 */
+    await huks.init(srcKeyAliasSecond, HuksOptions).then((data) => {
         console.info(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
     }).catch((err) => {
         console.info(`test init err: " + ${JSON.stringify(err)}`);
     });
-
-    /* 对第二个密钥进行协商 */
-    huksOptions.inData = exportKeyFrist;
-    await huks.update(handle, huksOptions).then((data) => {
+    HuksOptions.inData = exportKeyFrist;
+    await huks.update(handle, HuksOptions).then((data) => {
         console.info(`test update data: ${JSON.stringify(data)}`);
     }).catch((err) => {
         console.info(`test update err: " + ${JSON.stringify(err)}`);
@@ -1077,13 +1363,39 @@ async function testAgree() {
 
 从一个密钥产生出一个或者多个密钥。 
 
-**测试流程**：1.生成密钥；2.密钥派生
-
 开发步骤如下：
 
-1. 生成两个密钥。
-2. 分别导出密钥。
-3. 交叉进行密钥协商。
+1. 生成密钥。
+2. 进行密钥派生。
+
+**支持的密钥类型：**
+
+仅HksInit和HksFinish接口对paramSet参数有要求，HksUpdate接口对paramSet无要求
+
+HksInit对paramSet中参数的要求
+
+| HUKS_TAG_ALGORITHM                                           | HUKS_TAG_PURPOSE        | HUKS_TAG_DIGEST                                            | HUKS_TAG_DERIVE_KEY_SIZE |
+| ------------------------------------------------------------ | ----------------------- | ---------------------------------------------------------- | ------------------------ |
+| HUKS_ALG_HKDF  （支持长度：  HUKS_AES_KEY_SIZE_128 HUKS_AES_KEY_SIZE_192 HUKS_AES_KEY_SIZE_256） | HUKS_KEY_PURPOSE_DERIVE | HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | 【必选】                 |
+| HUKS_ALG_PBKDF2  （支持长度：  HUKS_AES_KEY_SIZE_128 HUKS_AES_KEY_SIZE_192 HUKS_AES_KEY_SIZE_256） | HUKS_KEY_PURPOSE_DERIVE | HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | 【必选】                 |
+
+HksFinish对paramSet中参数的要求：
+
+派生后的密钥作为对称密钥进行使用
+
+| HUKS_TAG_KEY_STORAGE_FLAG      | HUKS_TAG_KEY_ALIAS | HUKS_TAG_IS_KEY_ALIAS | HUKS_TAG_ALGORITHM | HUKS_TAG_KEY_SIZE                                            | HUKS_TAG_PURPOSE                                   | HUKS_TAG_PADDING                      | HUKS_TAG_DIGEST                                              | HUKS_TAG_BLOCK_MODE                         |
+| ------------------------------ | ------------------ | --------------------- | ------------------ | ------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------- |
+| 未设置 或者  HUKS_STORAGE_TEMP | 不需要             | TRUE                  | 不需要             | 不需要                                                       | 不需要                                             | 不需要                                | 不需要                                                       | 不需要                                      |
+| HUKS_STORAGE_PERSISTENT        | 【必选】最大64字节 | TRUE                  | HUKS_ALG_AES       | HUKS_AES_KEY_SIZE_128  HUKS_AES_KEY_SIZE_192  HUKS_AES_KEY_SIZE_256 | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | HUKS_PADDING_NONE  HUKS_PADDING_PKCS7 | 【非必选】                                                   | HUKS_MODE_CBC  HUKS_MODE_ECB                |
+| HUKS_STORAGE_PERSISTENT        | 【必选】最大64字节 | TRUE                  | HUKS_ALG_AES       | HUKS_AES_KEY_SIZE_128  HUKS_AES_KEY_SIZE_192  HUKS_AES_KEY_SIZE_256 | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | HUKS_PADDING_NONE                     | 【非必选】                                                   | HUKS_MODE_CCM  HUKS_MODE_GCM  HUKS_MODE_CTR |
+| HUKS_STORAGE_PERSISTENT        | 【必选】最大64字节 | TRUE                  | HUKS_ALG_AES       | HUKS_AES_KEY_SIZE_128  HUKS_AES_KEY_SIZE_192  HUKS_AES_KEY_SIZE_256 | HUKS_KEY_PURPOSE_DERIVE                            | 【非必选】                            | HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512   | 【非必选】                                  |
+| HUKS_STORAGE_PERSISTENT        | 【必选】最大64字节 | TRUE                  | HUKS_ALG_HMAC      | 8的倍数（单位：bit）                                         | HUKS_KEY_PURPOSE_MAC                               | 【非必选】                            | HUKS_DIGEST_SHA1  HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | 【非必选】                                  |
+
+> **说明**
+>
+> HUKS_ALG_AES的SIZE需要满足：协商后的密钥长度（转换成bit）>=选择的HUKS_TAG_KEY_SIZE
+>
+> 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 
@@ -1112,6 +1424,7 @@ function hkdfStringToUint8Array(str) {
 
 var deriveHkdfInData = "deriveHkdfTestIndata";
 var srcKeyAlias = "deriveHkdfKeyAlias";
+var HuksKeyDeriveKeySize = 32;
 
 async function testDerive() {
     /* 集成生成密钥参数集 */
@@ -1151,7 +1464,7 @@ async function testDerive() {
     });
     huksOptions.properties.splice(3, 1, {
         tag: huks.HuksTag.HUKS_TAG_DERIVE_KEY_SIZE,
-        value: HuksKeyDERIVEKEYSIZE,
+        value: HuksKeyDeriveKeySize,
     });
 
     var finishProperties = new Array();
@@ -1242,6 +1555,19 @@ async function testDerive() {
 
 1. 生成密钥。
 2. 密钥mac。
+
+**支持的密钥类型：**
+
+HksInit对paramSet中参数的要求，其他三段式接口对paramSet无要求
+
+| HUKS_TAG_ALGORITHM | HUKS_TAG_KEY_SIZE | HUKS_TAG_PURPOSE    | HUKS_TAG_DIGEST                                              | HUKS_TAG_PADDING | HUKS_TAG_BLOCK_MODE |
+| ------------ | ---------- | ------------------- | ------------------------------------------------------------ | ---------- | ---------- |
+| HUKS_ALG_HMAC | 【非必选】 | HUKS_KEY_PURPOSE_MAC | HUKS_DIGEST_SHA1  HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | 【非必选】 | 【非必选】 |
+| HUKS_ALG_SM3 | 【非必选】 | HUKS_KEY_PURPOSE_MAC | HUKS_DIGEST_SM3                                              | 【非必选】 | 【非必选】 |
+
+> **说明**
+>
+> 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 
@@ -1338,12 +1664,24 @@ async function testMac() {
 
 ### AttestID
 
-测试获取udid等证书信息，并打印相关信息。
+应用生成非对称密钥后，可以通过id attestation获取证书链，ID Attestation包含支持如下设备信息: BRAND, DEVICE, PRODUCT, SERIAL, IMEI, MEID, MANUFACTURER, MODEL, SOCID, UDID。
+
+应用还可以通过key attestation获取证书链。
+
+ID Attestation和Key Attestation只有拥有TEE环境的设备才具备该功能。
 
 开发步骤如下：
 
 1. 生成证书。
 2. 获取证书信息。
+
+**支持的密钥类型：**
+
+RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC521, X25519
+
+> **说明**
+>
+> 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 
@@ -1467,12 +1805,22 @@ async function attestId() {
 
 ### AttestKey
 
-测试获取密钥证书，并打印相关信息。
+应用生成非对称密钥后，可以通过Key attestation获取证书链。应用还可以通过id attestation获取证书链，其中公证书带有设备id等信息。
+
+ID Attestation和Key Attestation只有拥有TEE环境的设备才具备该功能。
 
 开发步骤如下：
 
 1. 生成证书。
 2. 获取证书信息。
+
+**支持的密钥类型：**
+
+RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC521, X25519
+
+> **说明**
+>
+> 存储的 keyAlias 密钥别名最大为64字节
 
 在使用示例前，需要先了解几个预先定义的变量： 
 

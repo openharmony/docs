@@ -1482,7 +1482,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-****unlockPin2****(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
 Unlocks PIN 2 of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1549,7 +1549,7 @@ promise.then(data => {
 
 ## sim.**unlockPuk**2<sup>8+</sup>
 
-unlockPuk2(slotId: number,newPin2: string,puk2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 Unlocks PUK 2 of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1581,7 +1581,7 @@ sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
 
 ## sim.**unlockPuk2**<sup>8+</sup>
 
-unlockPuk2slotId: number,newPin2: string,puk2: string): Promise&lt;LockStatusResponse\>
+unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
 Unlocks PUK 2 of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2653,7 +2653,7 @@ promise.then(data => {
 
 ## sim.getOpKey<sup>9+</sup>
 
-getOpKey(slotId: number, callback: AsyncCallback<number\>): void
+getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the opkey of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -2666,7 +2666,7 @@ This is a system API.
 | Name  | Type                  | Mandatory| Description                                  |
 | -------- | ---------------------- | ---- | -------------------------------------- |
 | slotId   | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback<string\> | Yes  | Callback used to return the result.                              |
 
 **Example**
 
@@ -2679,7 +2679,7 @@ sim.getOpKey(0, (err, data) => {
 
 ## sim.getOpKey<sup>9+</sup>
 
-getOpKey(slotId: number): Promise<number\>
+getOpKey(slotId: number): Promise<string\>
 
 Obtains the opkey of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2697,7 +2697,7 @@ This is a system API.
 
 | Type            | Description                                     |
 | ---------------- | ----------------------------------------- |
-| Promise<number\> | Promise used to return the result.|
+| Promise<string\> | Promise used to return the result.|
 
 **Example**
 
