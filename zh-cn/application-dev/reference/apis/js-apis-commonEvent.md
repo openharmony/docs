@@ -186,10 +186,10 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 读写属性 | 类型                 | 必填 | 描述                   |
-| -------- | -------- | -------------------- | ---- | ---------------------- |
-| event    | 只读     | string               | 是   | 表示要发送的公共事件。 |
-| callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| 名称     | 类型                 | 必填 | 描述                   |
+| -------- | -------------------- | ---- | ---------------------- |
+| event    | string               | 是   | 表示要发送的公共事件。 |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -219,11 +219,11 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 **参数：**
 
-| 名称     | 读写属性 | 类型                   | 必填 | 描述                   |
-| -------- | -------- | ---------------------- | ---- | ---------------------- |
-| event    | 只读     | string                 | 是   | 表示要发布的公共事件。  |
-| options  | 只读     | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
-| callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
+| 名称     | 类型                   | 必填 | 描述                   |
+| -------- | ---------------------- | ---- | ---------------------- |
+| event    | string                 | 是   | 表示要发布的公共事件。  |
+| options  | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| callback | syncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
 **示例：**
 
@@ -263,11 +263,11 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **参数：**
 
-| 名称     | 读写属性 | 类型                 | 必填 | 描述                               |
-| -------- | -------- | -------------------- | ---- | ---------------------------------- |
-| event    | 只读     | string               | 是   | 表示要发送的公共事件。             |
-| userId   | 只读     | number               | 是   | 表示指定向该用户ID发送此公共事件。 |
-| callback | 只读     | AsyncCallback\<void> | 是   | 表示被指定的回调方法。             |
+| 名称     | 类型                 | 必填 | 描述                               |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| event    | string               | 是   | 表示要发送的公共事件。             |
+| userId   | number               | 是   | 表示指定向该用户ID发送此公共事件。 |
+| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。             |
 
 **示例：**
 
@@ -302,12 +302,12 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 **参数：**
 
-| 名称     | 读写属性 | 类型                   | 必填 | 描述                   |
-| -------- | -------- | ---------------------- | ---- | ---------------------- |
-| event    | 只读     | string                 | 是   | 表示要发布的公共事件。  |
-| userId | 只读 | number | 是 | 表示指定向该用户ID发送此公共事件。 |
-| options  | 只读     | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
-| callback | 只读     | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
+| 名称     | 类型                   | 必填 | 描述                   |
+| -------- | ---------------------- | ---- | ---------------------- |
+| event    | string                 | 是   | 表示要发布的公共事件。  |
+| userId   | number | 是 | 表示指定向该用户ID发送此公共事件。 |
+| options  | [CommonEventPublishData](#commoneventpublishdata) | 是   | 表示发布公共事件的属性。 |
+| callback | AsyncCallback\<void>   | 是   | 表示被指定的回调方法。  |
 
 **示例：**
 
@@ -347,10 +347,10 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 **参数：**
 
-| 名称          | 读写属性 | 类型                                                         | 必填 | 描述                       |
-| ------------- | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| subscribeInfo | 只读     | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | 是   | 表示订阅信息。             |
-| callback      | 只读     | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | 是   | 表示创建订阅者的回调方法。 |
+| 名称          | 类型                                                         | 必填 | 描述                       |
+| ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | 是   | 表示订阅信息。             |
+| callback      | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | 是   | 表示创建订阅者的回调方法。 |
 
 **示例：**
 
@@ -389,9 +389,9 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 
 **参数：**
 
-| 名称          | 读写属性 | 类型                                                  | 必填 | 描述           |
-| ------------- | -------- | ----------------------------------------------------- | ---- | -------------- |
-| subscribeInfo | 只读     | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | 是   | 表示订阅信息。 |
+| 名称          | 类型                                                  | 必填 | 描述           |
+| ------------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | 是   | 表示订阅信息。 |
 
 **返回值：**
 | 类型                                                      | 说明             |
@@ -429,10 +429,10 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 **参数：**
 
-| 名称       | 读写属性 | 类型                                                | 必填 | 描述                             |
-| ---------- | -------- | --------------------------------------------------- | ---- | -------------------------------- |
-| subscriber | 只读     | [CommonEventSubscriber](#commoneventsubscriber)     | 是   | 表示订阅者对象。                 |
-| callback   | 只读     | AsyncCallback\<[CommonEventData](#commoneventdata)> | 是   | 表示接收公共事件数据的回调函数。 |
+| 名称       | 类型                                                | 必填 | 描述                             |
+| ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| subscriber | [CommonEventSubscriber](#commoneventsubscriber)     | 是   | 表示订阅者对象。                 |
+| callback   | AsyncCallback\<[CommonEventData](#commoneventdata)> | 是   | 表示接收公共事件数据的回调函数。 |
 
 **示例：**
 
@@ -481,10 +481,10 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 **参数：**
 
-| 名称       | 读写属性 | 类型                                             | 必填 | 描述                     |
-| ---------- | -------- | ----------------------------------------------- | ---- | ------------------------ |
-| subscriber | 只读     | [CommonEventSubscriber](#commoneventsubscriber) | 是   | 表示订阅者对象。         |
-| callback   | 只读     | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |
+| 名称       | 类型                                             | 必填 | 描述                     |
+| ---------- | ----------------------------------------------- | ---- | ------------------------ |
+| subscriber | [CommonEventSubscriber](#commoneventsubscriber) | 是   | 表示订阅者对象。         |
+| callback   | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |
 
 **示例：**
 
@@ -1242,37 +1242,37 @@ subscriber.finishCommonEvent().then(() => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
-| 名称       | 读写属性 | 类型                 | 必填 | 描述                                                    |
-| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------- |
-| event      | 只读     | string               | 是   | 表示当前接收的公共事件名称。                              |
-| bundleName | 只读     | string               | 否   | 表示包名称。                                              |
-| code       | 只读     | number               | 否   | 表示公共事件的结果代码，用于传递int类型的数据。           |
-| data       | 只读     | string               | 否   | 表示公共事件的自定义结果数据，用于传递string类型的数据。 |
-| parameters | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息。                                  |
+| 名称       | 可读 | 可写 | 类型                 | 描述                                                    |
+| ---------- | ---- | ---- | -------------------- | ------------------------------------------------------- |
+| event      | 是  | 否  | string               | 表示当前接收的公共事件名称。                              |
+| bundleName | 是  | 否  | string               | 表示包名称。                                              |
+| code       | 是  | 否  | number               | 表示公共事件的结果代码，用于传递int类型的数据。           |
+| data       | 是  | 否  | string               | 表示公共事件的自定义结果数据，用于传递string类型的数据。 |
+| parameters | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。                                  |
 
 
 ## CommonEventPublishData
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
-| 名称                  | 读写属性 | 类型                 | 必填 | 描述                         |
-| --------------------- | -------- | -------------------- | ---- | ---------------------------- |
-| bundleName            | 只读     | string               | 否   | 表示包名称。                   |
-| code                  | 只读     | number               | 否   | 表示公共事件的结果代码。       |
-| data                  | 只读     | string               | 否   | 表示公共事件的自定义结果数据。 |
-| subscriberPermissions | 只读     | Array\<string>       | 否   | 表示订阅者的权限。             |
-| isOrdered             | 只读     | boolean              | 否   | 表示是否是有序事件。           |
-| isSticky              | 只读     | boolean              | 否   | 表示是否是粘性事件。           |
-| parameters            | 只读     | {[key: string]: any} | 否   | 表示公共事件的附加信息。       |
+| 名称                  | 可读 | 可写 | 类型                 | 描述                         |
+| --------------------- | ---- | ---- | -------------------- | ---------------------------- |
+| bundleName            | 是  | 否  | string               | 表示包名称。                   |
+| code                  | 是  | 否  | number               | 表示公共事件的结果代码。       |
+| data                  | 是  | 否  | string               | 表示公共事件的自定义结果数据。 |
+| subscriberPermissions | 是  | 否  | Array\<string>       | 表示订阅者的权限。             |
+| isOrdered             | 是  | 否  | boolean              | 表示是否是有序事件。           |
+| isSticky              | 是  | 否  | boolean              | 表示是否是粘性事件。           |
+| parameters            | 是  | 否  | {[key: string]: any} | 表示公共事件的附加信息。       |
 
 ## CommonEventSubscribeInfo
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Notification.CommonEvent
 
-| 名称                | 读写属性 | 类型           | 必填 | 描述                                                         |
-| ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
-| events              | 只读     | Array\<string> | 是   | 表示要发送的公共事件。                                         |
-| publisherPermission | 只读     | string         | 否   | 表示发布者的权限。                                             |
-| publisherDeviceId   | 只读     | string         | 否   | 表示设备ID，该值必须是同一ohos网络上的现有设备ID。             |
-| userId              | 只读     | number         | 否   | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
-| priority            | 只读     | number         | 否   | 表示订阅者的优先级。值的范围是-100到1000。                     |
+| 名称                | 可读 | 可写 | 类型           | 描述                                                         |
+| ------------------- | ---- | ---- | -------------- | ------------------------------------------------------------ |
+| events              | 是  | 否  | Array\<string> | 表示要发送的公共事件。                                         |
+| publisherPermission | 是  | 否  | string         | 表示发布者的权限。                                             |
+| publisherDeviceId   | 是  | 否  | string         | 表示设备ID，该值必须是同一ohos网络上的现有设备ID。             |
+| userId              | 是  | 否  | number         | 表示用户ID。此参数是可选的，默认值当前用户的ID。如果指定了此参数，则该值必须是系统中现有的用户ID。 |
+| priority            | 是  | 否  | number         | 表示订阅者的优先级。值的范围是-100到1000。                     |

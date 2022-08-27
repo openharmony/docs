@@ -899,7 +899,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 **示例：**
 
   ```js
-  const appAccountManager = account.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
   	console.debug("getAllAccounts err:" + JSON.stringify(err));
@@ -960,7 +960,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 **示例：**
 
   ```js
-  const appAccountManager = account.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
   }
@@ -990,7 +990,7 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 **示例：**
 
   ```js
-  const appAccountManager = account.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
   	appAccountManager.off('change', function(){
@@ -1400,7 +1400,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo").then((data) => {
-       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+      console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err) => {
       console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
   });
@@ -1495,7 +1495,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
                       [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
                       [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                       [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-        callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     });
   });
   ```
@@ -1531,7 +1531,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
                         [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
                         [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                         [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-          callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
           console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
       });
@@ -1733,7 +1733,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo", (err, data) => {
+  var labels = ["student"];
+  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo", labels, (err, data) => {
       console.log('checkAccountLabels: ' + JSON.stringify(data));
       console.log("checkAccountLabels err: "  + JSON.stringify(err));
   });
@@ -1765,7 +1766,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo").then((data) => {
+  var labels = ["student"];
+  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo", labels).then((data) => {
        console.log('checkAccountLabels: ' + JSON.stringify(data));
   }).catch((err) => {
       console.log("checkAccountLabels err: "  + JSON.stringify(err));
@@ -2115,7 +2117,7 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
                     [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
                     [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                     [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-      callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
+      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
       console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
   });
@@ -2168,7 +2170,7 @@ onRequestContinued?: () =&gt; void
   const appAccountManager = account_appAccount.createAppAccountManager();
   var sessionId = "1234";
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      callback.OnRequestContinued();
+      callback.onRequestContinued();
   }).catch((err) => {
       console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
   });
@@ -2295,7 +2297,7 @@ getRemoteObject(): rpc.RemoteObject;
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
 
-      verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthenticatorCallback) {
+      verifyCredential(name, options, callback) {
           callback.onRequestRedirected({
               bundleName: "com.example.ohos.accountjsdemo",
               abilityName: "com.example.ohos.accountjsdemo.VerifyAbility",
@@ -2305,11 +2307,11 @@ getRemoteObject(): rpc.RemoteObject;
           });
       }
 
-      setProperties(options: SetPropertiesOptions, callback: AuthenticatorCallback) {
+      setProperties(options, callback) {
           callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
       }
 
-      checkAccountLabels(name: string, labels: Array<string>, callback: AuthenticatorCallback) {
+      checkAccountLabels(name, labels, callback) {
           var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }

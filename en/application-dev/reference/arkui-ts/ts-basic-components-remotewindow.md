@@ -31,6 +31,7 @@ Implements a target window, which is used to remotely control the animation.
 | bundleName  | string | Process corresponding to the animation window.|
 | abilityName | string | Ability corresponding to the animation window.|
 | windowBounds | [RRect](#rrect) | Actual size of the animation window.|
+| missionId  | number | Mission ID. |
 
 ## RRect
 Implements a rounded rectangle.

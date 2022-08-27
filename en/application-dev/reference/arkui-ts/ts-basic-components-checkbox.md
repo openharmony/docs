@@ -31,7 +31,7 @@ Checkbox( name?: string,  group?: string )
 | Name         | Type| Default Value| Description|
 | ------------- | ------- | ------ | -------- |
 | select        | boolean   | false | Whether the check box is selected.|
-| selectedColor | Color | - | Color of the check box when it is selected.|
+| selectedColor | [ResourceColor](../../ui/ts-types.md) | - | Color of the check box when it is selected.|
 
 ## Events
 

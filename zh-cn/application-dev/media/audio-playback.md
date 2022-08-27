@@ -8,6 +8,8 @@
 
 ![zh-ch_image_audio_state_machine](figures/zh-ch_image_audio_state_machine.png)
 
+**说明**：当前为Idle状态，设置src不会改变状态；且src设置成功后，不能再次设置其它src，需调用reset()接口后，才能重新设置src。
+
 
 
 **图2** 音频播放零层图

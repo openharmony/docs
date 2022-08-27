@@ -4,17 +4,15 @@
 
 ### System Capabilities and APIs
 
-SysCap is short for System Capability. It refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of bound APIs, whose availability depends on the support of the target device. Such a set of APIs are provided in DevEco Studio for association.
+SysCap is short for System Capability. It refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of bound APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
-
-
 
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 
 The supported SysCap set, associated SysCap set, and required SysCap set are collections of SysCaps.
 The supported SysCap set covers the device capabilities, and the required SysCap set covers the application capabilities. If the SysCap set required by application A is a subset of the SysCap set supported by device N, application A can be distributed to device N for installation and running. Otherwise, application A cannot be distributed.
-The associated SysCap set covers the system capabilities of associated APIs that the IDE offers during application development.
+The associated SysCap set covers the system capabilities of associated APIs that DevEco Studio offers during application development.
 
 ![image-20220326064913834](figures/image-20220326064913834.png)
 
@@ -31,13 +29,19 @@ The SDK classifies devices into general devices and custom devices. The general 
 
 ### Mapping Between Devices and SDK Capabilities
 
-The SDK provides a full set of APIs for the IDE. DevEco Studio identifies the supported SysCap set based on the devices supported by the project, filters the APIs contained in the SysCap set, and provides the supported APIs for association (to autocomplete input).
+The SDK provides a full set of APIs for DevEco Studio. DevEco Studio identifies the supported SysCap set based on the devices supported by the project, filters the APIs contained in the SysCap set, and provides the supported APIs for association (to autocomplete input).
 
 ![image-20220326065043006](figures/image-20220326065043006.png)
 
 
 
 ## How to Develop
+
+### Obtaining the PCID
+
+The Product Compatibility ID (PCID) contains the SysCap information supported by the current device. For the moment, you can obtain the PCID of a device from the device vendor. In the future, you'll be able to obtain the PCIDs of all devices from the authentication center, which is in development.
+
+
 
 ### Importing the PCID
 
@@ -55,34 +59,30 @@ DevEco Studio automatically configures the associated SysCap set and required Sy
 You can add APIs to the associated SysCap set in DevEco Studio by adding system capabilities. However, note that these APIs may not be supported on the device. Therefore, check whether these APIs are supported before using them.
 Exercise caution when modifying the required SysCap set. Incorrect modifications may result in the application being unable to be distributed to the target device.
 
-```
+```json
 /* syscap.json */
 {
-	devices: {
-		general: [            /* General devices. Each general device supports a SysCap set. Multiple general devices can be configured. */
+	"devices": {
+		"general": [            /* General devices. Each general device supports a SysCap set. Multiple general devices can be configured. */
 			"default",
-			"car,
-			...
+			"car"
 		],
-		custom: [             /* Custom devices. */
+		"custom": [             /* Custom devices. */
 			{
 				"Custom device": [
-					"SystemCapability.Communication.SoftBus.Core",
-					...
+					"SystemCapability.Communication.SoftBus.Core"
 				]
-			},
-			...
+			}
 		]
 	},
-	development: {             /* The SysCap set in addedSysCaps and the SysCap set supported by each device configured in devices form the associated SysCap set. */
-		addedSysCaps: [
-			"SystemCapability.Location.Location.Lite",
-			...
+	"development": {             /* The SysCap set in addedSysCaps and the SysCap set supported by each device configured in devices form the associated SysCap set. */
+		"addedSysCaps": [
+			"SystemCapability.Location.Location.Lite"
 		]
 	},
-	production: {              /* Used to generate the RPCID. Exercise caution when adding this parameter. Under incorrect settings, applications may fail to be distributed to target devices. */
-		addedSysCaps: [],      // Intersection of SysCap sets supported by devices configured in devices. It is the required SysCap set with addedSysCaps set and removedSysCaps set.
-		removedSysCaps: []     // When the required SysCap set is a capability subset of a device, the application can be distributed to the device.
+	"production": {              /* Used to generate the RPCID. Exercise caution when adding this parameter. Under incorrect settings, applications may fail to be distributed to target devices. */
+		"addedSysCaps": [],      // Intersection of SysCap sets supported by devices configured in devices. It is the required SysCap set with addedSysCaps set and removedSysCaps set.
+		"removedSysCaps": []     // When the required SysCap set is a capability subset of a device, the application can be distributed to the device.
 	}
 }
 ```
@@ -113,7 +113,7 @@ Use **canIUse** if you want to check whether a project supports a specific SysCa
 if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
 	console.log("This application supports SystemCapability.ArkUI.ArkUI.Full.");
 } else {
-	Console.log("This application does not support SystemCapability.ArkUI.ArkUI.Full".);
+	console.log("This application does not support SystemCapability.ArkUI.ArkUI.Full".);
 }
 ```
 
@@ -127,7 +127,7 @@ if (geolocation) {
 		console.log(location.latitude, location.longitude);
 	});
 } else {
-	Console.log('This device does not support location information.');
+	console.log('This device does not support location information.');
 }
 ```
 
@@ -144,7 +144,7 @@ const authenticator = userAuth.getAuthenticator();
 const result = authenticator.checkAbility('FACE_ONLY', 'S1');
 
 if (result == authenticator.CheckAvailabilityResult.AUTH_NOT_SUPPORT) {
-	Console.log('This device does not support facial recognition.');
+	console.log('This device does not support facial recognition.');
 }
 // If an unsupported API is forcibly called, an error message is returned, but no syntax error occurs.
 authenticator.execute('FACE_ONLY', 'S1', (err, result) => {

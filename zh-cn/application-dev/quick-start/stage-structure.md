@@ -2,7 +2,7 @@
 
 # 应用包结构配置文件的说明
 
-在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json和app.json配置文件中对应用的包结构进行声明。
+在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json5和app.json配置文件中对应用的包结构进行声明。
 
 ## 配置文件内部结构
 
@@ -73,7 +73,7 @@ app.json示例：
 
 ### module对象内部结构
 
-module.json示例:
+module.json5示例:
 
 ```json
 {
@@ -186,10 +186,10 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | pages                | 该标签是一个profile资源，用于列举JS Component中每个页面信息。pages使用参考pages示例。 | 对象       | 在有ability的场景下，该标签不可缺省。                        |
 | metadata             | 该标签标识Hap的自定义元信息，标签值为数组类型，该标签下的配置只对当前module、或者ability、或者extensionAbility生效。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | abilities            | 描述元能力的配置信息，标签值为数组类型，该标签下的配置只对当前ability生效。abilities参考[abilities对象内部结构](#abilities对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| extensionAbilities   | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionAbility对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| definePermissions    | 标识hap定义的权限，仅支持系统应用配置，三方应用配置不生效。该应用的调用者必须申请这些权限才能正常调用该应用。definePermissions参考[definePermissions对象内部结构](#definePermissions对象内部结构) | 对象       | 该标签可缺省，缺省值为空，表示调用者无需任何权限即可调用该应用。 |
-| requestPermissions   | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestPermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| testRunner           | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testRunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                                           |
+| extensionAbilities   | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionability对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
+| definePermissions    | 标识hap定义的权限，仅支持系统应用配置，三方应用配置不生效。该应用的调用者必须申请这些权限才能正常调用该应用。definePermissions参考[definePermissions对象内部结构](#definepermissions对象内部结构) | 对象       | 该标签可缺省，缺省值为空，表示调用者无需任何权限即可调用该应用。 |
+| requestPermissions   | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestpermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
+| testRunner           | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testrunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                                           |
 
 表4 deviceTypes对象的系统预定义设备
 
@@ -606,7 +606,7 @@ form示例 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息
+在module.json5的extension组件下面定义metadata信息
 
 ```json
 {
@@ -654,7 +654,7 @@ metadata中指定shortcut信息，其中 :
 }
 ```
 
-在module.json的module下面定义metadata信息，如下 :
+在module.json5的module下面定义metadata信息，如下 :
 
 ```json
 {
@@ -714,7 +714,7 @@ metadata中指定commonEvent信息，其中 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息，如下 :
+在module.json5的extension组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [
@@ -804,7 +804,7 @@ distroFilter示例 :
 ]
 ```
 
-在module.json的extensionAbilities组件下面定义metadata信息，如下 :
+在module.json5的extensionAbilities组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [

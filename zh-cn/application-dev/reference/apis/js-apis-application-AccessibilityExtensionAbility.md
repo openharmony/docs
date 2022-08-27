@@ -14,6 +14,14 @@
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 ```
 
+## 属性
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称      | 参数类型 | 可读 | 可写 | 说明                      |
+| --------- | -------- | ---- | ---- | ------------------------- |
+| context | [AccessibilityExtensionContext](js-apis-accessibility-extension-context.md) | 是 | 否 | 表示辅助扩展能力上下文。 |
+
 ## AccessibilityEvent
 
 辅助事件信息。

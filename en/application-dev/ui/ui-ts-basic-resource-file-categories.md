@@ -77,7 +77,8 @@ You can create resource group sub-directories (including element, media, animati
 
 ### Media Resource Types
 
-Table 4 Image resource types
+**Table 4** Image resource types
+
 | Format| File Name Extension|
 | -------- | -------- |
 | JPEG | .jpg |
@@ -87,7 +88,7 @@ Table 4 Image resource types
 | WEBP | .webp |
 | BMP | .bmp |
 
-Table 5 Audio and video resource types
+**Table 5** Audio and video resource types
 | Format| File Name Extension|
 | -------- | -------- |
 | H.263 | .3gp <br>.mp4 |
