@@ -86,7 +86,9 @@
    ```js   
    import distributedObject from '@ohos.data.distributedDataObject';   
    ```
-2. 请求权限。需要在`config.json`或`module.json5`文件里进行配置请求权限，示例代码如下：
+2. 请求权限。
+
+   需要在`config.json`文件里进行配置请求权限（FA模型），示例代码如下：
 
     ```json
      {
@@ -99,7 +101,9 @@
        }
      }
     ```
-    这个权限还需要在应用首次启动的时候弹窗获取用户授权，可以通过如下代码实现：
+   Stage模型下的权限请求请参见[权限声明-Stage模型](../security/accesstoken-guidelines.md#stage模型)。
+
+   这个权限还需要在应用首次启动的时候弹窗获取用户授权，可以通过如下代码实现：
 
     ```js
     import featureAbility from '@ohos.ability.featureAbility';
