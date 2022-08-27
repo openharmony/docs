@@ -22,8 +22,7 @@ A gesture represents a semantic action (for example, tap, drag, or longpress) th
 
 The following is an example:
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="text-container" onclick="click">
@@ -47,8 +46,7 @@ The following is an example:
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -71,8 +69,7 @@ The following is an example:
 }
 ```
 
-
-```
+```js
 // xxx.js
 export default {
   data: {
