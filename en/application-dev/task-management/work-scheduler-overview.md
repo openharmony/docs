@@ -11,10 +11,23 @@ If your application needs to execute a non-real-time task, for example, data lea
 The use of the Work Scheduler must comply with the following restrictions and rules:
 
 - **Timeout**: The Work Scheduler callback can run only within the specified period of time. After the timeout, the callback automatically stops.
+- **Execution frequency**: The system controls the execution frequency of Work Scheduler tasks based on the activity level of their respective applications.
+
+  Application Group            |     Work Scheduler Task Execution Frequency                           
+  --------------------|-------------------------
+  Active| At a minimum interval of 2 hours
+  Used every day| At a minimum interval of 4 hours
+  Frequently used| At a minimum interval of 24 hours
+  Infrequently used| At a minimum interval of 48 hours
+  Restricted| Prohibited
+  Unused| Prohibited
+
 - **WorkInfo setting**
 
-(1) **workId**, **bundleName**, and **abilityName** are mandatory. **bundleName** must be set to the name of the current application. Otherwise, the verification will fail.
+  - **workId**, **bundleName**, and **abilityName** are mandatory. **bundleName** must be set to the name of the current application. Otherwise, the verification will fail.
 
-(2) At least one condition must be set.
+  - At least one condition must be set.
 
-(3) The repeat interval must be at least 20 minutes and must work with the Always repeat pattern or repeat times.
+  - The repeat interval must be at least 20 minutes and must work with the Always repeat pattern or repeat times.
+
+  - The carried parameters can be of the number, string, or bool type.
