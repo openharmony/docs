@@ -3049,7 +3049,7 @@ Notification.isNotificationSlotEnabled(
 
 ## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean callback: AsyncCallback\<void>): void
+setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
 设置是否将通知同步到未安装应用程序的设备(callback形式)。
 
@@ -3073,8 +3073,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean callback: A
 let userId = 100;
 let enable = true;
 
-function setSyncNotificationEnabledWithoutAppCallback(err, data) {
-    console.log('setSyncNotificationEnabledWithoutAppCallback, data: ', data);
+function setSyncNotificationEnabledWithoutAppCallback(err) {
+    console.log('setSyncNotificationEnabledWithoutAppCallback');
 }
 
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
@@ -3114,10 +3114,10 @@ let enable = true;
 
 Notification.setSyncNotificationEnabledWithoutApp(userId, enable)
     .then((data) => {
-        console.log('setSyncNotificationEnabledWithoutApp, data: ', data);
+        console.log('setSyncNotificationEnabledWithoutApp');
     })
     .catch((err) => {
-        console.log('setSyncNotificationEnabledWithoutApp, err: ', err);
+        console.log('setSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
@@ -3787,7 +3787,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | desc                 | 是  | 是  | string                | 通知渠道描述信息。                           |
 | badgeFlag            | 是  | 是  | boolean               | 是否显示角标。                               |
 | bypassDnd            | 是  | 是  | boolean               | 置是否在系统中绕过免打扰模式。               |
-| lockscreenVisibility | 是  | 是  | boolean               | 在锁定屏幕上显示通知的模式。                 |
+| lockscreenVisibility | 是  | 是  | number                | 在锁定屏幕上显示通知的模式。                 |
 | vibrationEnabled     | 是  | 是  | boolean               | 是否可振动。                                 |
 | sound                | 是  | 是  | string                | 通知提示音。                                 |
 | lightEnabled         | 是  | 是  | boolean               | 是否闪灯。                                   |
