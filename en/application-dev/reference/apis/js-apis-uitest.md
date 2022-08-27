@@ -1,25 +1,35 @@
 # UiTest
 
->**NOTE**<br>The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The **UiTest** module provides APIs that you can use to simulate UI actions during testing, such as clicks, double-clicks, long-clicks, and swipes.
+
+This module provides the following functions:
+
+- [By](#by): provides UI component feature description APIs for component filtering and matching.
+- [UiComponent](#uicomponent): represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+- [UiDriver](#uidriver): works as the entry class and provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
+- [UiWindow<sup>9+</sup>](#uiwindow9): works as the entry class and provides APIs for obtaining window attributes, dragging windows, and adjusting window sizes.
+
+>**NOTE**<br>
 >
+>The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
 ```
-import {UiDriver,BY,MatchPattern} from '@ohos.uitest'
+import {UiDriver, BY, MatchPattern, ResizeDirection, WindowMode} from '@ohos.uitest'
 ```
 
 ## By
 
-The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.<br>
-The API capabilities provided by the **By** class exhibit the following features: <br>1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [By.isBefore](#byisbefore) and [By.isAfter](#byisafter) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
+The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
+The API capabilities provided by the **By** class exhibit the following features: <br>1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [By.isBefore](#isbefore) and [By.isAfter](#isafter) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
 ```js
 BY.text('123').type('button')
 ```
 
-### By.text
+### text
 
 text(txt: string, pattern?: MatchPattern): By
 
@@ -47,7 +57,7 @@ let by = BY.text('123') // Use the static constructor BY to create a By object a
 ```
 
 
-### By.key
+### key
 
 key(key: string): By
 
@@ -74,7 +84,7 @@ let by = BY.key('123') // Use the static constructor BY to create a By object an
 ```
 
 
-### By.id
+### id
 
 id(id: number): By
 
@@ -101,7 +111,7 @@ let by = BY.id(123) // Use the static constructor BY to create a By object and s
 ```
 
 
-### By.type
+### type
 
 type(tp: string): By
 
@@ -128,11 +138,11 @@ let by = BY.type('button') // Use the static constructor BY to create a By objec
 ```
 
 
-### By.clickable
+### clickable
 
 clickable(b?: bool): By
 
-Specifies the clickable attribute of the target component.
+Specifies the clickable status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -151,14 +161,14 @@ Specifies the clickable attribute of the target component.
 **Example**
 
 ```js
-let by = BY.clickable(true) // Use the static constructor BY to create a By object and specify the clickable status attribute of the target component.
+let by = BY.clickable(true) // Use the static constructor BY to create a By object and specify the clickable status of the target component.
 ```
 
-### By.longClickable<sup>9+</sup>
+### longClickable<sup>9+</sup>
 
 longClickable(b?: bool): By
 
-Specifies the long-clickable status attribute of the target component.
+Specifies the long-clickable status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -177,15 +187,15 @@ Specifies the long-clickable status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.longClickable(true) // Use the static constructor BY to create a By object and specify the long-clickable status attribute of the target component.
+let by = BY.longClickable(true) // Use the static constructor BY to create a By object and specify the long-clickable status of the target component.
 ```
 
 
-### By.scrollable
+### scrollable
 
 scrollable(b?: bool): By
 
-Specifies the scrollable status attribute of the target component.
+Specifies the scrollable status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -204,14 +214,14 @@ Specifies the scrollable status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.scrollable(true) // Use the static constructor BY to create a By object and specify the scrollable status attribute of the target component.
+let by = BY.scrollable(true) // Use the static constructor BY to create a By object and specify the scrollable status of the target component.
 ```
 
-### By.enabled
+### enabled
 
 enabled(b?: bool): By
 
-Specifies the enabled status attribute of the target component.
+Specifies the enabled status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -230,14 +240,14 @@ Specifies the enabled status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the enabled status attribute of the target component.
+let by = BY.enabled(true) // Use the static constructor BY to create a By object and specify the enabled status of the target component.
 ```
 
-### By.focused
+### focused
 
 focused(b?: bool): By
 
-Specifies the focused status attribute of the target component.
+Specifies the focused status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -256,14 +266,14 @@ Specifies the focused status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.focused(true) // Use the static constructor BY to create a By object and specify the focused status attribute of the target component.
+let by = BY.focused(true) // Use the static constructor BY to create a By object and specify the focused status of the target component.
 ```
 
-### By.selected
+### selected
 
 selected(b?: bool): By
 
-Specifies the selected status attribute of the target component.
+Specifies the selected status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -282,14 +292,14 @@ Specifies the selected status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.selected(true) // Use the static constructor BY to create a By object and specify the selected status attribute of the target component.
+let by = BY.selected(true) // Use the static constructor BY to create a By object and specify the selected status of the target component.
 ```
 
-### By.checked<sup>9+</sup>
+### checked<sup>9+</sup>
 
 checked(b?: bool): By
 
-Specifies the checked status attribute of the target component.
+Specifies the checked status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -308,14 +318,14 @@ Specifies the checked status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.checked(true) // Use the static constructor BY to create a By object and specify the checked status attribute of the target component.
+let by = BY.checked(true) // Use the static constructor BY to create a By object and specify the checked status of the target component.
 ```
 
-### By.checkable<sup>9+</sup>
+### checkable<sup>9+</sup>
 
 checkable(b?: bool): By
 
-Specifies the checkable status attribute of the target component.
+Specifies the checkable status of the target component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -334,10 +344,10 @@ Specifies the checkable status attribute of the target component.
 **Example**
 
 ```js
-let by = BY.checkable(true) // Use the static constructor BY to create a By object and specify the checkable status attribute of the target component.
+let by = BY.checkable(true) // Use the static constructor BY to create a By object and specify the checkable status of the target component.
 ```
 
-### By.isBefore
+### isBefore
 
 isBefore(by: By): By
 
@@ -363,7 +373,7 @@ Specifies the attributes of the component before which the target component is l
 let by = BY.isBefore(BY.text('123')) // Use the static constructor BY to create a By object and specify the attributes of the component before which the target component is located.
 ```
 
-### By.isAfter
+### isAfter
 
 isAfter(by: By): By
 
@@ -394,18 +404,25 @@ let by = BY.isAfter(BY.text('123')) // Use the static constructor BY to create a
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
+### Point<sup>9+</sup>
+
+Provides the coordinates of a point.
+
+| Name| Type| Readable| Writable| Description            |
+| ---- | -------- | ---- | ---- | ---------------- |
+| X    | number   | Yes  | No  | X-coordinate of a point.|
+| Y    | number   | Yes  | No  | Y-coordinate of a point.|
+
 ### Rect<sup>9+</sup>
 
-Provides border information of a component.
-
-**System capability**: SystemCapability.Test.UiTest
+Provides bounds information of a component.
 
 | Name   | Type| Readable| Writable| Description                     |
 | ------- | -------- | ---- | ---- | ------------------------- |
-| leftX   | number   | Yes  | No  | X coordinate of the upper left corner of the component borders.|
-| topY    | number   | Yes  | No  | Y coordinate of the upper left corner of the component borders.|
-| rightX  | number   | Yes  | No  | X coordinate of the lower right corner of the component borders.|
-| bottomY | number   | Yes  | No  | Y coordinate of the lower right corner of the component borders.|
+| leftX   | number   | Yes  | No  | X-coordinate of the upper left corner of the component bounds.|
+| topY    | number   | Yes  | No  | Y-coordinate of the upper left corner of the component bounds.|
+| rightX  | number   | Yes  | No  | X-coordinate of the lower right corner of the component bounds.|
+| bottomY | number   | Yes  | No  | Y-coordinate of the lower right corner of the component bounds.|
 
 ### UiComponent.click
 
@@ -425,7 +442,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.doubleClick
+### doubleClick
 
 doubleClick(): Promise\<void>
 
@@ -443,7 +460,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.longClick
+### longClick
 
 longClick(): Promise\<void>
 
@@ -461,7 +478,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getId
+### getId
 
 getId(): Promise\<number>
 
@@ -485,7 +502,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getKey
+### getKey
 
 getKey(): Promise\<string>
 
@@ -509,7 +526,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getText
+### getText
 
 getText(): Promise\<string>
 
@@ -533,7 +550,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getType
+### getType
 
 getType(): Promise\<string>
 
@@ -557,7 +574,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.getBounds<sup>9+</sup>
+### getBounds<sup>9+</sup>
 
 getBounds(): Promise\<Rect>
 
@@ -581,7 +598,31 @@ async function demo() {
 }
 ```
 
-### UiComponent.isClickable
+### getBoundsCenter<sup>9+</sup>
+
+getBoundsCenter(): Promise\<Point>
+
+Obtains the bound center information of a component.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type           | Description                                   |
+| --------------- | --------------------------------------- |
+| Promise\<Point> | Promise used to return the bound center information.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let button = await driver.findComponent(BY.type('button'))
+    let point = await button.getBoundsCenter()
+}
+```
+
+### isClickable
 
 isClickable(): Promise\<bool>
 
@@ -610,7 +651,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isLongClickable<sup>9+</sup>
+### isLongClickable<sup>9+</sup>
 
 isLongClickable(): Promise\<bool> 
 
@@ -639,7 +680,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isChecked<sup>9+</sup>
+### isChecked<sup>9+</sup>
 
 isChecked(): Promise\<bool>
 
@@ -668,7 +709,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isCheckable<sup>9+</sup>
+### isCheckable<sup>9+</sup>
 
 isCheckable(): Promise\<bool>
 
@@ -697,7 +738,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isScrollable
+### isScrollable
 
 isScrollable(): Promise\<bool>
 
@@ -727,7 +768,7 @@ async function demo() {
 ```
 
 
-### UiComponent.isEnabled
+### isEnabled
 
 isEnabled(): Promise\<bool>
 
@@ -757,7 +798,7 @@ async function demo() {
 
 ```
 
-### UiComponent.isFocused
+### isFocused
 
 isFocused(): Promise\<bool>
 
@@ -786,7 +827,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.isSelected
+### isSelected
 
 isSelected(): Promise\<bool>
 
@@ -815,7 +856,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.inputText
+### inputText
 
 inputText(text: string): Promise\<void>
 
@@ -839,11 +880,11 @@ async function demo() {
 }
 ```
 
-### UiComponent.clearText<sup>9+</sup>
+### clearText<sup>9+</sup>
 
 clearText(): Promise\<void>
 
-Clears text in this component (available for text boxes).
+Clears text in this component. This API is applicable to text boxes.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -857,7 +898,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.scrollSearch
+### scrollSearch
 
 scrollSearch(by: By): Promise\<UiComponent>
 
@@ -887,13 +928,19 @@ async function demo() {
 }
 ```
 
-### UiComponent.scrollToTop<sup>9+</sup>
+### scrollToTop<sup>9+</sup>
 
-scrollToTop(): Promise\<void>
+scrollToTop(speed?: number): Promise\<void>
 
-Scrolls to the top of this a component (applicable to component that support scrolling, such as **\<List>**).
+Scrolls to the top of this a component. This API is applicable to components that support scrolling, such as **\<List>**.
 
 **System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| speed  | number | No  | Scroll speed, in pixels/s. The default value is **600**.|
 
 **Example**
 
@@ -905,13 +952,19 @@ async function demo() {
 }
 ```
 
-### UiComponent.scrollToBottom<sup>9+</sup>
+### scrollToBottom<sup>9+</sup>
 
-scrollToBottom(): Promise\<void>
+scrollToBottom(speed?: number): Promise\<void>
 
-Scrolls to the bottom of this a component (applicable to component that support scrolling, such as **\<List>**).
+Scrolls to the bottom of this a component. This API is applicable to components that support scrolling, such as **\<List>**.
 
 **System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| speed  | number | No  | Scroll speed, in pixels/s. The default value is **600**.|
 
 **Example**
 
@@ -923,7 +976,7 @@ async function demo() {
 }
 ```
 
-### UiComponent.dragTo<sup>9+</sup>
+### dragTo<sup>9+</sup>
 
 dragTo(target: UiComponent): Promise\<void>
 
@@ -948,12 +1001,60 @@ async function demo() {
     }
 ```
 
+### pinchOut<sup>9+</sup>
+
+pinchOut(scale: number): Promise\<void>
+
+Pinches a component to scale it up to the specified ratio.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description      |
+| ------ | ----------- | ---- | ---------- |
+| scale  | number      | Yes  | Scale ratio.  |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let image = await driver.findComponent(BY.type('image'))
+    await image.pinchOut(1.5)
+    }
+```
+
+### pinchIn<sup>9+</sup>
+
+pinchIn(scale: number): Promise\<void>
+
+Pinches a component to scale it down to the specified ratio.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description      |
+| ------ | ----------- | ---- | ---------- |
+| scale  | number      | Yes  | Scale ratio.  |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let image = await driver.findComponent(BY.type('image'))
+    await image.pinchIn(0.5)
+    }
+```
+
 ## UiDriver
 
-The **UiDriver** class is the main entry to the **uitest** test framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
+The **UiDriver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
 All APIs provided by this class, except for **UiDriver.create()**, use a promise to return the result and must be invoked using **await**.
 
-### UiDriver.create
+### create
 
 static create(): UiDriver
 
@@ -975,7 +1076,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.delayMs
+### delayMs
 
 delayMs(duration: number): Promise\<void>
 
@@ -998,7 +1099,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.findComponent
+### findComponent
 
 findComponent(by: By): Promise\<UiComponent>
 
@@ -1027,7 +1128,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.findComponents
+### findComponents
 
 findComponents(by: By): Promise\<Array\<UiComponent>>
 
@@ -1056,7 +1157,36 @@ async function demo() {
 }
 ```
 
-### UiDriver.waitForComponent<sup>9+</sup>
+### findWindow<sup>9+</sup>
+
+findWindow(filter: WindowFilter): Promise\<UiWindow>
+
+Searches for the window that matches the specified attributes.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description            |
+| ------ | ------------------------------ | ---- | ---------------- |
+| filter | [WindowFilter](#windowfilter9) | Yes  | Attributes of the target window.|
+
+**Return value**
+
+| Type                            | Description                                 |
+| -------------------------------- | ------------------------------------- |
+| Promise\<[UiWindow](#uiwindow9)> | Promise used to return the target window.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+}
+```
+
+### waitForComponent<sup>9+</sup>
 
 waitForComponent(by: By, time: number): Promise\<UiComponent>
 
@@ -1086,7 +1216,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.assertComponentExist   
+### assertComponentExist   
 
 assertComponentExist(by: By): Promise\<void>
 
@@ -1109,7 +1239,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.pressBack
+### pressBack
 
 pressBack(): Promise\<void>
 
@@ -1126,7 +1256,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.triggerKey
+### triggerKey
 
 triggerKey(keyCode: number): Promise\<void>
 
@@ -1149,7 +1279,33 @@ async function demo() {
 }
 ```
 
-### UiDriver.click
+### triggerCombineKeys<sup>9+</sup>
+
+triggerCombineKeys(key0: number, key1: number, key2: number): Promise\<void>
+
+Triggers a key combination based on the specified key values. For example, if the key values are (2072, 2019), the **UiDriver** triggers the key combination **Ctrl+C**.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description               |
+| ------- | ------ | ---- | ------------------- |
+| key0    | number | Yes  | The first key value.|
+| key1    | number | Yes  | The second key value.|
+| key2    | number | No  | The third key value.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    await driver.triggerCombineKeys(2072, 2047, 2035)
+}
+```
+
+
+### click
 
 click(x: number, y: number): Promise\<void>
 
@@ -1161,8 +1317,8 @@ Clicks a specific point of this **UiDriver** object based on the given coordinat
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X-coordinate of the target point.|
+| y      | number | Yes  | Y-coordinate of the target point.|
 
 **Example**
 
@@ -1173,7 +1329,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.doubleClick
+### doubleClick
 
 doubleClick(x: number, y: number): Promise\<void>
 
@@ -1185,8 +1341,8 @@ Double-clicks a specific point of this **UiDriver** object based on the given co
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X-coordinate of the target point.|
+| y      | number | Yes  | Y-coordinate of the target point.|
 
 **Example**
 
@@ -1197,7 +1353,7 @@ async function demo() {
 }
 ```
 
-### UiDriver.longClick
+### longClick
 
 longClick(x: number, y: number): Promise\<void>
 
@@ -1209,8 +1365,8 @@ Long-clicks a specific point of this **UiDriver** object based on the given coor
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | Yes  | X coordinate of the target point.|
-| y      | number | Yes  | Y coordinate of the target point.|
+| x      | number | Yes  | X-coordinate of the target point.|
+| y      | number | Yes  | Y-coordinate of the target point.|
 
 **Example**
 
@@ -1221,9 +1377,9 @@ async function demo() {
 }
 ```
 
-### UiDriver.swipe
+### swipe<sup>9+</sup>
 
-swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void>
+swipe(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
 Swipes on this **UiDriver** object from the start point to the end point based on the given coordinates.
 
@@ -1231,25 +1387,26 @@ Swipes on this **UiDriver** object from the start point to the end point based o
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| startx | number | Yes  | X coordinate of the start point.|
-| starty | number | Yes  | Y coordinate of the start point.|
-| endx   | number | Yes  | X coordinate of the end point.|
-| endy   | number | Yes  | Y coordinate of the end point.|
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| startx | number | Yes  | X-coordinate of the start point.  |
+| starty | number | Yes  | Y-coordinate of the start point.  |
+| endx   | number | Yes  | X-coordinate of the end point.  |
+| endy   | number | Yes  | Y-coordinate of the end point.  |
+| speed  | number | No  | Scroll speed, in pixels/s. The default value is **600**.|
 
 **Example**
 
 ```js
 async function demo() {
     let driver = UiDriver.create()
-    await driver.swipe(100,100,200,200)
+    await driver.swipe(100,100,200,200,600)
 }
 ```
 
-### UiDriver.drag<sup>9+</sup>
+### drag<sup>9+</sup>
 
-drag(startx: number, starty: number, endx: number, endy: number): Promise\<void>
+drag(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
 Drags this **UiDriver** object from the given start point to the given end point.
 
@@ -1257,23 +1414,24 @@ Drags this **UiDriver** object from the given start point to the given end point
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| startx | number | Yes  | X coordinate of the start point.|
-| starty | number | Yes  | Y coordinate of the start point.|
-| endx   | number | Yes  | X coordinate of the end point.|
-| endy   | number | Yes  | Y coordinate of the end point.|
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| startx | number | Yes  | X-coordinate of the start point.  |
+| starty | number | Yes  | Y-coordinate of the start point.  |
+| endx   | number | Yes  | X-coordinate of the end point.  |
+| endy   | number | Yes  | Y-coordinate of the end point.  |
+| speed  | number | No  | Scroll speed, in pixels/s. The default value is **600**.|
 
 **Example**
 
 ```js
 async function demo() {
     let driver = UiDriver.create()
-    await driver.drag(100,100,200,200)
+    await driver.drag(100,100,200,200,600)
 }
 ```
 
-### UiDriver.screenCap
+### screenCap
 
 screenCap(savePath: string): Promise\<bool>
 
@@ -1302,6 +1460,375 @@ async function demo() {
 }
 ```
 
+## UiWindow<sup>9+</sup>
+
+The **UiWindow** class represents a window on the UI and provides APIs for obtaining window attributes, dragging a window, and adjusting the window size.
+All APIs provided in this class use a promise to return the result and must be invoked using **await**.
+
+### WindowFilter<sup>9+</sup>
+
+Provides the flag attributes of this window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name      | Type| Mandatory| Readable| Writable| Description                      |
+| ---------- | -------- | ---- | ---- | ---- | -------------------------- |
+| bundleName | string   | No  | Yes  | No  | Bundle name of the window.          |
+| title      | string   | No  | Yes  | No  | Title of the window.              |
+| focused    | bool     | No  | Yes  | No  | Whether the window has focus.            |
+| actived    | bool     | No  | Yes  | No  | Whether the window is interacting with the user.|
+
+### getBundleName<sup>9+</sup>
+
+getBundleName(): Promise\<string>
+
+Obtains the bundle name of this window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type            | Description                             |
+| ---------------- | --------------------------------- |
+| Promise\<string> | Promise used to return the bundle name of the window.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    let name = await window.getBundleName()
+}
+```
+
+### getBounds<sup>9+</sup>
+
+getBounds(): Promise\<Rect>
+
+Obtains the bounds information of this window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                             |
+| -------------- | --------------------------------- |
+| Promise\<Rect> | Promise used to return the bounds information of the window.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    let rect = await window.getBounds()
+}
+```
+
+### getTitle<sup>9+</sup>
+
+getTitle(): Promise\<string>
+
+Obtains the title of this window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type            | Description                             |
+| ---------------- | --------------------------------- |
+| Promise\<string> | Promise used to return the title of the window.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    let rect = await window.getTitle()
+}
+```
+
+### getWindowMode<sup>9+</sup>
+
+getWindowMode(): Promise\<WindowMode>
+
+Obtains the window mode of this window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type                                            | Description                                 |
+| ------------------------------------------------ | ------------------------------------- |
+| Promise\<[WindowMode](#windowmode9)> | Promise used to return the window mode of the window.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    let mode = await window.getWindowMode()
+}
+```
+
+### isFocused<sup>9+</sup>
+
+isFocused(): Promise\<bool>
+
+Checks whether this window has focus.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return whether the window has focus.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    let focused = await window.isFocused()
+}
+```
+
+### isActived<sup>9+</sup>
+
+isActived(): Promise\<bool>
+
+Checks whether this window is interacting with the user.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                                         |
+| -------------- | --------------------------------------------- |
+| Promise\<bool> | Promise used to return whether the window is interacting with the user.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    let focused = await window.isActived()
+}
+```
+
+### focus<sup>9+</sup>
+
+focus(): Promise\<bool>
+
+Moves the focus to this window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.focus()
+}
+```
+
+### moveTo<sup>9+</sup>
+
+moveTo(x: number, y: number): Promise\<bool>;
+
+Moves this window to the target point. This API is applicable to moveable windows.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| x      | number | Yes  | X coordinate of the target point.|
+| y      | number | Yes  | Y coordinate of the target point.|
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.moveTo(100, 100)
+}
+```
+
+### resize<sup>9+</sup>
+
+resize(wide: number, height: number, direction: ResizeDirection): Promise\<bool>
+
+Resizes this window based on the specified width, height, and resize direction. This API is applicable to windows that support resizing.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name   | Type                                            | Mandatory| Description                                                        |
+| --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| wide      | number                                           | Yes  | Target width.                        |
+| height    | number                                           | Yes  | Target height.                        |
+| direction | [ResizeDirection](#resizedirection9)| Yes  | Target direction in which the window is adjusted.|
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.resize(100, 100, ResizeDirection.LEFT)
+}
+```
+
+### split<sup>9+</sup>
+
+split(): Promise\<bool>
+
+Switches the window to split-screen mode. This API is applicable to windows that support split-screen mode.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.split()
+}
+```
+
+### maximize<sup>9+</sup>
+
+maximize(): Promise\<bool>
+
+Maximizes this window. This API is applicable to windows that can be maximized.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.maximize()
+}
+```
+
+### minimize<sup>9+</sup>
+
+minimize(): Promise\<bool>
+
+Minimizes this window. This API is applicable to windows that can be minimized.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.minimize()
+}
+```
+
+### resume<sup>9+</sup>
+
+resume(): Promise\<bool>
+
+Restores this window to the previous window mode.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.resume()
+}
+```
+
+### close<sup>9+</sup>
+
+close(): Promise\<bool>
+
+Closes this window.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<bool> | Promise used to return the result.|
+
+**Example**
+
+```js
+async function demo() {
+    let driver = UiDriver.create()
+    let window = await driver.findWindow({actived: true})
+    await window.close()
+}
+```
+
 ## MatchPattern
 
 Enumerates the match patterns supported for component attributes.
@@ -1315,4 +1842,32 @@ Enumerates the match patterns supported for component attributes.
 | STARTS_WITH | 2    | Starting from the given value.|
 | ENDS_WITH   | 3    | Ending with the given value.|
 
-### 
+## ResizeDirection<sup>9+</sup>
+
+Enumerates the directions in which a window can be resized.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name      | Description    |
+| ---------- | -------- |
+| LEFT       | Left.  |
+| RIGHT      | Right.  |
+| UP         | Up.  |
+| DOWN       | Down.  |
+| LEFT_UP    | Upper left.|
+| LEFT_DOWN  | Lower left.|
+| RIGHT_UP   | Upper right.|
+| RIGHT_DOWN | Lower right.|
+
+## WindowMode<sup>9+</sup>
+
+Enumerates the window modes.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name      | Description      |
+| ---------- | ---------- |
+| FULLSCREEN | Full-screen mode.|
+| PRIMARY    | Primary window mode.  |
+| SECONDARY  | Secondary window mode.|
+| FLOATING   | Floating window mode.|
