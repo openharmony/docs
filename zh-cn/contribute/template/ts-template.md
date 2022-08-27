@@ -75,7 +75,7 @@ import Curves from '@ohos.curves'
 >   **需要权限：** ohos.permission.A 和 ohos.permission.B
 >   **需要权限：** ohos.permission.A 或 ohos.permission.B
 
- ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../application-dev/security/accesstoken-guidelines.md)。。
+ ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../application-dev/security/accesstoken-guidelines.md)。
 
 ## 子组件
 
