@@ -68,11 +68,15 @@ import Curves from '@ohos.curves'
 >
 > 1. 可选，若该模块的使用无需申请权限，则删除。
 > 2. 如果仅系统应用可申请，格式：
+>
 >    **需要权限：** ohos.permission.xxxx，仅系统应用可用。
 > 3. 如果该权限所有应用可申请，格式：
+>
 >   **需要权限：** ohos.permission.xxxx
 > 4. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：
+>
 >   **需要权限：** ohos.permission.A 和 ohos.permission.B
+>
 >   **需要权限：** ohos.permission.A 或 ohos.permission.B
 
  ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../application-dev/security/accesstoken-guidelines.md)。
