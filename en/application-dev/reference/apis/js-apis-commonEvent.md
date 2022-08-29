@@ -2,7 +2,7 @@
 
 The **CommonEvent** module provides common event capabilities, including the capabilities to publish, subscribe to, and unsubscribe from common events, as well obtaining and setting the common event result code and result data.
 
-> **NOTE**<br>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -18,7 +18,7 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name     | Value         | Subscriber Permissions    | Description              |
+| Name | Value | Subscriber Permission | Description              |
 | ------------ | ------------------ | ---------------------- | -------------------- |
 | COMMON_EVENT_BOOT_COMPLETED                                  | usual.event.BOOT_COMPLETED                                  | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | Indicates the common event that the user has finished booting and the system has been loaded.       |
 | COMMON_EVENT_LOCKED_BOOT_COMPLETED                           | usual.event.LOCKED_BOOT_COMPLETED                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | Indicates the common event that the user has finished booting and the system has been loaded but the screen is still locked.         |
@@ -30,7 +30,7 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 | COMMON_EVENT_POWER_DISCONNECTED                              | usual.event.POWER_DISCONNECTED                              | -                                                          | Indicates the common event that the device is disconnected from the external power supply.           |
 | COMMON_EVENT_SCREEN_OFF                                      | usual.event.SCREEN_OFF                                      | -                                                          | Indicates the common event that the device screen is off and the device is sleeping.           |
 | COMMON_EVENT_SCREEN_ON                                       | usual.event.SCREEN_ON                                       | -                                                          | Indicates the common event that the device screen is on and the device is in interactive state. |
-| COMMON_EVENT_THERMAL_LEVEL_CHANGED<sup>8+<sup>               | usual.event.THERMAL_LEVEL_CHANGED                           | -                                                          | Indicates the common event that the device's thermal level has changed. |
+| COMMON_EVENT_THERMAL_LEVEL_CHANGED<sup>8+<sup>                           | usual.event.THERMAL_LEVEL_CHANGED                           | -                                                          | Indicates the common event that the device's thermal level has changed. |
 | COMMON_EVENT_USER_PRESENT                                    | usual.event.USER_PRESENT                                    | -                                                          | Indicates the common event that the user unlocks the device.     |
 | COMMON_EVENT_TIME_TICK                                       | usual.event.TIME_TICK                                       | -                                                          | Indicates the common event that the system time has changed.       |
 | COMMON_EVENT_TIME_CHANGED                                    | usual.event.TIME_CHANGED                                    | -                                                          | Indicates the common event that the system time is set.     |
@@ -39,7 +39,7 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 | COMMON_EVENT_CLOSE_SYSTEM_DIALOGS                            | usual.event.CLOSE_SYSTEM_DIALOGS                            | -                                                          | Indicates the common event that a user closes a temporary system dialog box.       |
 | COMMON_EVENT_PACKAGE_ADDED                                   | usual.event.PACKAGE_ADDED                                   | -                                                          | Indicates the common event that a new application package has been installed on the device.     |
 | COMMON_EVENT_PACKAGE_REPLACED                                | usual.event.PACKAGE_REPLACED                                | -                                                          | Indicates the common event that a later version of an installed application package has replaced the previous one on the device.       |
-| COMMON_EVENT_MY_PACKAGE_REPLACED                             | usual.event.MY_PACKAGE_REPLACED                             | -                                                          | Indicates the common event that a later version of your application package has replaced the previous one.       |
+| COMMON_EVENT_MY_PACKAGE_REPLACED                             | usual.event.MY_PACKAGE_REPLACED                             | -                                                          | Indicates the common event that a later version of your application package has replaced the previous one. 
 | COMMON_EVENT_PACKAGE_REMOVED                                 | usual.event.PACKAGE_REMOVED                                 | -                                                          | Indicates the common event that an installed application has been uninstalled from the device with the application data retained.   |
 | COMMON_EVENT_BUNDLE_REMOVED                                  | usual.event.BUNDLE_REMOVED                                  | -                                                          | Indicates the common event that an installed bundle has been uninstalled from the device with the application data retained.   |
 | COMMON_EVENT_PACKAGE_FULLY_REMOVED                           | usual.event.PACKAGE_FULLY_REMOVED                           | -                                                          | Indicates the common event that an installed application, including both the application data and code, has been completely uninstalled from the device.   |
@@ -66,21 +66,21 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 | COMMON_EVENT_USER_STARTED                                    | usual.event.USER_STARTED                                    | -                                                          | Indicates the common event that the user has been started.     |
 | COMMON_EVENT_USER_BACKGROUND                                 | usual.event.USER_BACKGROUND                                 | -                                                          | Indicates the common event that the user has been brought to the background.     |
 | COMMON_EVENT_USER_FOREGROUND                                 | usual.event.USER_FOREGROUND                                 | -                                                          | Indicates the common event that the user has been brought to the foreground.       |
-| COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_USERS                               | Indicates the common event that user switching is happening.     |
-| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_USERS                      | Indicates the common event that the user is going to be started.       |
+| COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_USERS                                 | Indicates the common event that user switching is happening.     |
+| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_USERS                        | Indicates the common event that the user is going to be started.       |
 | COMMON_EVENT_USER_UNLOCKED                                   | usual.event.USER_UNLOCKED                                   | -                                                          | Indicates the common event that the credential-encrypted storage has been unlocked for the current user when the device is unlocked after being restarted.    |
-| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_USERS                      | Indicates the common event that the user is going to be stopped.   |
+| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_USERS                        | Indicates the common event that the user is going to be stopped.   |
 | COMMON_EVENT_USER_STOPPED                                    | usual.event.USER_STOPPED                                    | -                                                          | Indicates the common event that the user has been stopped.   |
 | COMMON_EVENT_HWID_LOGIN                                      | common.event.HWID_LOGIN                                     | -                                                          | Indicates the common event about a HUAWEI ID login.        |
 | COMMON_EVENT_HWID_LOGOUT                                     | common.event.HWID_LOGOUT                                    | -                                                          | Indicates the common event about a HUAWEI ID logout.          |
 | COMMON_EVENT_HWID_TOKEN_INVALID                              | common.event.HWID_TOKEN_INVALID                             | -                                                          | Indicates the common event that the HUAWEI ID is invalid.      |
 | COMMON_EVENT_HWID_LOGOFF                                     | common.event.HWID_LOGOFF                                    | -                                                          | Indicates the common event about a HUAWEI ID logoff.      |
 | COMMON_EVENT_WIFI_POWER_STATE                                | usual.event.wifi.POWER_STATE                                | -                                                          | Indicates the common event about the Wi-Fi network state, such as enabled and disabled.     |
-| COMMON_EVENT_WIFI_SCAN_FINISHED                              | usual.event.wifi.SCAN_FINISHED                              | ohos.permission.LOCATION                                   | Indicates the common event that the Wi-Fi access point has been scanned and proven to be available.      |
-| COMMON_EVENT_WIFI_RSSI_VALUE                                 | usual.event.wifi.RSSI_VALUE                                 | ohos.permission.GET_WIFI_INFO                              | Indicates the common event that the Wi-Fi signal strength (RSSI) has changed.     |
+| COMMON_EVENT_WIFI_SCAN_FINISHED                              | usual.event.wifi.SCAN_FINISHED                              | ohos.permission.LOCATION                                     | Indicates the common event that the Wi-Fi access point has been scanned and proven to be available.      |
+| COMMON_EVENT_WIFI_RSSI_VALUE                                 | usual.event.wifi.RSSI_VALUE                                 | ohos.permission.GET_WIFI_INFO                                | Indicates the common event that the Wi-Fi signal strength (RSSI) has changed.     |
 | COMMON_EVENT_WIFI_CONN_STATE                                 | usual.event.wifi.CONN_STATE                                 | -                                                          | Indicates the common event that the Wi-Fi connection state has changed.      |
 | COMMON_EVENT_WIFI_HOTSPOT_STATE                              | usual.event.wifi.HOTSPOT_STATE                              | -                                                          | Indicates the common event about the Wi-Fi hotspot state, such as enabled or disabled.  |
-| COMMON_EVENT_WIFI_AP_STA_JOIN                                | usual.event.wifi.WIFI_HS_STA_JOIN                           | ohos.permission.GET_WIFI_INFO                              | Indicates the common event that a client has joined the Wi-Fi hotspot of the current device.      |
+| COMMON_EVENT_WIFI_AP_STA_JOIN                                | usual.event.wifi.WIFI_HS_STA_JOIN                           | ohos.permission.GET_WIFI_INFO                                | Indicates the common event that a client has joined the Wi-Fi hotspot of the current device.      |
 | COMMON_EVENT_WIFI_AP_STA_LEAVE                               | usual.event.wifi.WIFI_HS_STA_LEAVE                          | ohos.permission.GET_WIFI_INFO                                |Indicates the common event that a client has disconnected from the Wi-Fi hotspot of the current device.      |
 | COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE                        | usual.event.wifi.mplink.STATE_CHANGE                        | ohos.permission.MPLINK_CHANGE_STATE                          | Indicates the common event that the state of MPLINK (an enhanced Wi-Fi feature) has changed.    |
 | COMMON_EVENT_WIFI_P2P_CONN_STATE                             | usual.event.wifi.p2p.CONN_STATE_CHANGE                      | ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION   | Indicates the common event that the Wi-Fi P2P connection state has changed.     |
@@ -104,7 +104,7 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_NAME_UPDATE              | usual.event.bluetooth.remotedevice.NAME_UPDATE              | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the friendly name of a remote Bluetooth device is retrieved for the first time or is changed since the last retrieval.       |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIR_STATE               | usual.event.bluetooth.remotedevice.PAIR_STATE               | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the connection state of a remote Bluetooth device has changed.       |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_BATTERY_VALUE_UPDATE     | usual.event.bluetooth.remotedevice.BATTERY_VALUE_UPDATE     | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the battery level of a remote Bluetooth device is retrieved for the first time or is changed since the last retrieval.     |
-| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT               | usual.event.bluetooth.remotedevice.SDP_RESULT               | -                                                            | Indicates the common event about the SDP state of a remote Bluetooth device.    |
+| COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_SDP_RESULT               | usual.event.bluetooth.remotedevice.SDP_RESULT               | -                                                          | Indicates the common event about the SDP state of a remote Bluetooth device.    |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_UUID_VALUE               | usual.event.bluetooth.remotedevice.UUID_VALUE               | ohos.permission.DISCOVER_BLUETOOTH                           | Indicates the common event about the UUID connection state of a remote Bluetooth device.     |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_REQ              | usual.event.bluetooth.remotedevice.PAIRING_REQ              | ohos.permission.DISCOVER_BLUETOOTH                           | Indicates the common event about the pairing request from a remote Bluetooth device.       |
 | COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_PAIRING_CANCEL           | usual.event.bluetooth.remotedevice.PAIRING_CANCEL           | -                                                          | Indicates the common event that Bluetooth pairing is canceled.       |
@@ -115,29 +115,29 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AUDIO_STATE_UPDATE      | usual.event.bluetooth.handsfreeunit.AUDIO_STATE_UPDATE      | -                                                          | Indicates the common event that the audio state of a Bluetooth handsfree has changed.       |
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_COMMON_EVENT         | usual.event.bluetooth.handsfreeunit.AG_COMMON_EVENT         | -                                                          | Indicates the common event that the audio gateway state of a Bluetooth handsfree has changed.       |
 | COMMON_EVENT_BLUETOOTH_HANDSFREEUNIT_AG_CALL_STATE_UPDATE    | usual.event.bluetooth.handsfreeunit.AG_CALL_STATE_UPDATE    | -                                                          | Indicates the common event that the calling state of a Bluetooth handsfree has changed.       |
-| COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE                     | usual.event.bluetooth.host.STATE_UPDATE                     | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the state of a Bluetooth adapter has been changed, for example, Bluetooth has been enabled or disabled.       |
+| COMMON_EVENT_BLUETOOTH_HOST_STATE_UPDATE                     | usual.event.bluetooth.host.STATE_UPDATE                     | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the state of a Bluetooth adapter has been changed, for example, Bluetooth has been enabled or disabled.       |
 | COMMON_EVENT_BLUETOOTH_HOST_REQ_DISCOVERABLE                 | usual.event.bluetooth.host.REQ_DISCOVERABLE                 | -                                                          | Indicates the common event about the request for the user to allow Bluetooth device scanning.     |
-| COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE                       | usual.event.bluetooth.host.REQ_ENABLE                       | ohos.permission.USE_BLUETOOTH                              | Indicates the common event about the request for the user to enable Bluetooth.       |
-| COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE                      | usual.event.bluetooth.host.REQ_DISABLE                      | ohos.permission.USE_BLUETOOTH                              | Indicates the common event about the request for the user to disable Bluetooth.     |
-| COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE                 | usual.event.bluetooth.host.SCAN_MODE_UPDATE                 | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the Bluetooth scanning mode of a device has changed.       |
-| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED                | usual.event.bluetooth.host.DISCOVERY_STARTED                | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the Bluetooth scanning has been started on the device.       |
-| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED               | usual.event.bluetooth.host.DISCOVERY_FINISHED               | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the Bluetooth scanning is finished on the device.       |
-| COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE                      | usual.event.bluetooth.host.NAME_UPDATE                      | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the Bluetooth adapter name of the device has changed.       |
-| COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the connection state of Bluetooth A2DP Sink has changed.       |
-| COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the playing state of Bluetooth A2DP Sink has changed.       |
-| COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE           | usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE           | ohos.permission.USE_BLUETOOTH                              | Indicates the common event that the audio state of Bluetooth A2DP Sink has changed.       |
+| COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE                       | usual.event.bluetooth.host.REQ_ENABLE                       | ohos.permission.USE_BLUETOOTH                                | Indicates the common event about the request for the user to enable Bluetooth.       |
+| COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE                      | usual.event.bluetooth.host.REQ_DISABLE                      | ohos.permission.USE_BLUETOOTH                                | Indicates the common event about the request for the user to disable Bluetooth.     |
+| COMMON_EVENT_BLUETOOTH_HOST_SCAN_MODE_UPDATE                 | usual.event.bluetooth.host.SCAN_MODE_UPDATE                 | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the Bluetooth scanning mode of a device has changed.       |
+| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED                | usual.event.bluetooth.host.DISCOVERY_STARTED                | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the Bluetooth scanning has been started on the device.       |
+| COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_FINISHED               | usual.event.bluetooth.host.DISCOVERY_FINISHED               | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the Bluetooth scanning is finished on the device.       |
+| COMMON_EVENT_BLUETOOTH_HOST_NAME_UPDATE                      | usual.event.bluetooth.host.NAME_UPDATE                      | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the Bluetooth adapter name of the device has changed.       |
+| COMMON_EVENT_BLUETOOTH_A2DPSINK_CONNECT_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.CONNECT_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the connection state of Bluetooth A2DP Sink has changed.       |
+| COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE         | usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE         | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the playing state of Bluetooth A2DP Sink has changed.       |
+| COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE           | usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE           | ohos.permission.USE_BLUETOOTH                                | Indicates the common event that the audio state of Bluetooth A2DP Sink has changed.       |
 | COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED                | usual.event.nfc.action.ADAPTER_STATE_CHANGED                | -                                                          | Indicates the common event that the state of the device's NFC adapter has changed.    |
-| COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED                 | usual.event.nfc.action.RF_FIELD_ON_DETECTED                 | ohos.permission.MANAGE_SECURE_SETTINGS                     | Indicates the common event that the NFC RF field is detected to be in the enabled state.      |
-| COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED                | usual.event.nfc.action.RF_FIELD_OFF_DETECTED                | ohos.permission.MANAGE_SECURE_SETTINGS                     | Indicates the common event that the NFC RF field is detected to be in the disabled state.  |
+| COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED                 | usual.event.nfc.action.RF_FIELD_ON_DETECTED                 | ohos.permission.MANAGE_SECURE_SETTINGS                       | Indicates the common event that the NFC RF field is detected to be in the enabled state.      |
+| COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED                | usual.event.nfc.action.RF_FIELD_OFF_DETECTED                | ohos.permission.MANAGE_SECURE_SETTINGS                       | Indicates the common event that the NFC RF field is detected to be in the disabled state.  |
 | COMMON_EVENT_DISCHARGING                                     | usual.event.DISCHARGING                                     | -                                                          | Indicates the common event that the system stops charging the battery.    |
 | COMMON_EVENT_CHARGING                                        | usual.event.CHARGING                                        | -                                                          | Indicates the common event that the system starts charging the battery.   |
 | COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED                        | usual.event.DEVICE_IDLE_MODE_CHANGED                        | -                                                          | Indicates the common event that the system idle mode has changed.   |
 | COMMON_EVENT_POWER_SAVE_MODE_CHANGED                         | usual.event.POWER_SAVE_MODE_CHANGED                         | -                                                          | Indicates the common event that the power saving mode of the system has changed.     |
-| COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_USERS                               | Indicates the common event that a user has been added to the system.       |
-| COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_USERS                               | Indicates the common event that a user has been removed from the system.       |
-| COMMON_EVENT_ABILITY_ADDED                                   | usual.event.ABILITY_ADDED                                   | ohos.permission.LISTEN_BUNDLE_CHANGE                       | Indicates the common event that an ability has been added.    |
-| COMMON_EVENT_ABILITY_REMOVED                                 | usual.event.ABILITY_REMOVED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                       | Indicates the common event that an ability has been removed.    |
-| COMMON_EVENT_ABILITY_UPDATED                                 | usual.event.ABILITY_UPDATED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                       | Indicates the common event that an ability has been updated.    |
+| COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_USERS                                 | Indicates the common event that a user has been added to the system.       |
+| COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_USERS                                 | Indicates the common event that a user has been removed from the system.       |
+| COMMON_EVENT_ABILITY_ADDED                                   | usual.event.ABILITY_ADDED                                   | ohos.permission.LISTEN_BUNDLE_CHANGE                         | Indicates the common event that an ability has been added.    |
+| COMMON_EVENT_ABILITY_REMOVED                                 | usual.event.ABILITY_REMOVED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         | Indicates the common event that an ability has been removed.    |
+| COMMON_EVENT_ABILITY_UPDATED                                 | usual.event.ABILITY_UPDATED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         | Indicates the common event that an ability has been updated.    |
 | COMMON_EVENT_LOCATION_MODE_STATE_CHANGED                     | usual.event.location.MODE_STATE_CHANGED                     | -                                                          | Indicates the common event that the location mode of the system has changed.    |
 | COMMON_EVENT_IVI_SLEEP                                       | common.event.IVI_SLEEP                                      | -                                                          | Indicates the common event that the in-vehicle infotainment (IVI) system of a vehicle is sleeping.       |
 | COMMON_EVENT_IVI_PAUSE                                       | common.event.IVI_PAUSE                                      | -                                                          | Indicates the common event that the IVI system of a vehicle has entered sleep mode and the playing application is instructed to stop playback.   |
@@ -153,7 +153,7 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 |COMMON_EVENT_USB_STATE<sup>9+</sup>                           | usual.event.hardware.usb.action.USB_STATE                   | -                                                          | Indicates the common event that the USB device status has changed.    |
 |COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>                    | usual.event.hardware.usb.action.USB_PORT_CHANGED            | -                                                          | Indicates the common event that the USB port status of the user device has changed.         |
 | COMMON_EVENT_USB_DEVICE_ATTACHED                             | usual.event.hardware.usb.action.USB_DEVICE_ATTACHED         | -                                                          | Indicates the common event that a USB device has been attached when the user device functions as a USB host.      |
-| COMMON_EVENT_USB_DEVICE_DETACHED                             | usual.event.hardware.usb.action.USB_DEVICE_DETACHED         | -                                                          | Indicates the common event that a USB device has been detached when the user device functions as a USB host.      |
+| COMMON_EVENT_USB_DEVICE_DETACHED                             | usual.event.hardware.usb.action.USB_DEVICE_DETACHED         | -                                                          | Indicates the common event that a USB device has been detached when the user device functions as a USB host.      | 
 | COMMON_EVENT_USB_ACCESSORY_ATTACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED      | -                                                          | Indicates the common event that a USB accessory was attached.      |
 | COMMON_EVENT_USB_ACCESSORY_DETACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED      | -                                                          | Indicates the common event that a USB accessory was detached.    |
 | COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was removed.    |
@@ -162,18 +162,18 @@ Provides the event types supported by the **CommonEvent** module. The name and v
 | COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was removed without being unmounted.      |
 | COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device becomes unmountable.    |
 | COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was ejected.      |
-| COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>                      | usual.event.data.VOLUME_REMOVED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was removed.    |
-| COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>                    | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was unmounted.    |
-| COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>                      | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was mounted.    |
-| COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>                  | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was removed without being unmounted.      |
-| COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>                        | usual.event.data.VOLUME_EJECT                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was ejected.      |
+| COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>                                  | usual.event.data.VOLUME_REMOVED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was removed.    |
+| COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>                                | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was unmounted.    |
+| COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>                                  | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was mounted.    |
+| COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>                              | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was removed without being unmounted.      |
+| COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>                                    | usual.event.data.VOLUME_EJECT                               | ohos.permission.WRITE_USER_STORAGE or ohos.permission.READ_USER_STORAGE| Indicates the common event that an external storage device was ejected.      |
 | COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED                        | usual.event.data.VISIBLE_ACCOUNTS_UPDATED                   | ohos.permission.GET_APP_ACCOUNTS                             | Indicates the common event that the account visibility changed.       |
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | Indicates the common event that the account was deleted.     |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | Indicates the common event that the foundation is ready.     |
-| COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | -                                                            | Indicates the common event that the airplane mode of the device has changed.     |
-| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                        | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | Indicates the common event of screen splitting.     |
-| COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                         | usual.event.SLOT_CHANGE                                     | ohos.permission.NOTIFICATION_CONTROLLER                      | Indicates the common event that the notification slot has changed.     |
-| COMMON_EVENT_SPN_INFO_CHANGED<sup>9+<sup>                   | usual.event.SPN_INFO_CHANGED                                | -                                                            | Indicates the common event that the SPN displayed has been updated.     |
+| COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | -                                                          | Indicates the common event that the airplane mode of the device has changed.     |
+| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | Indicates the common event of screen splitting.     |
+| COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | Indicates the common event that the notification slot has changed.     |
+| COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | -                       | Indicates the common event that the SPN displayed has been updated.     |
 
 
 ## CommonEvent.publish
@@ -186,10 +186,10 @@ Publishes a common event. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name    | Readable/Writable| Type                | Mandatory| Description                  |
-| -------- | -------- | -------------------- | ---- | ---------------------- |
-| event    | Read only    | string               | Yes  | Name of the common event to publish.|
-| callback | Read only    | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| Name    | Type                | Mandatory| Description                  |
+| -------- | -------------------- | ---- | ---------------------- |
+| event    | string               | Yes  | Name of the common event to publish.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -219,11 +219,11 @@ Publishes a common event with given attributes. This API uses a callback to retu
 
 **Parameters**
 
-| Name    | Readable/Writable| Type                  | Mandatory| Description                  |
-| -------- | -------- | ---------------------- | ---- | ---------------------- |
-| event    | Read only    | string                 | Yes  | Name of the common event to publish. |
-| options  | Read only    | [CommonEventPublishData](#commoneventpublishdata) | Yes  | Attributes of the common event to publish.|
-| callback | Read only    | AsyncCallback\<void>   | Yes  | Callback used to return the result. |
+| Name    | Type                  | Mandatory| Description                  |
+| -------- | ---------------------- | ---- | ---------------------- |
+| event    | string                 | Yes  | Name of the common event to publish. |
+| options  | [CommonEventPublishData](#commoneventpublishdata) | Yes  | Attributes of the common event to publish.|
+| callback | syncCallback\<void>   | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -263,11 +263,11 @@ Publishes a common event to a specific user. This API uses a callback to return 
 
 **Parameters**
 
-| Name    | Readable/Writable| Type                | Mandatory| Description                              |
-| -------- | -------- | -------------------- | ---- | ---------------------------------- |
-| event    | Read only    | string               | Yes  | Name of the common event to publish.            |
-| userId   | Read only    | number               | Yes  | User ID.|
-| callback | Read only    | AsyncCallback\<void> | Yes  | Callback used to return the result.            |
+| Name    | Type                | Mandatory| Description                              |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| event    | string               | Yes  | Name of the common event to publish.            |
+| userId   | number               | Yes  | User ID.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.            |
 
 **Example**
 
@@ -302,12 +302,12 @@ Publishes a common event with given attributes to a specific user. This API uses
 
 **Parameters**
 
-| Name    | Readable/Writable| Type                  | Mandatory| Description                  |
-| -------- | -------- | ---------------------- | ---- | ---------------------- |
-| event    | Read only    | string                 | Yes  | Name of the common event to publish. |
-| userId | Read only| number | Yes| User ID.|
-| options  | Read only    | [CommonEventPublishData](#commoneventpublishdata) | Yes  | Attributes of the common event to publish.|
-| callback | Read only    | AsyncCallback\<void>   | Yes  | Callback used to return the result. |
+| Name    | Type                  | Mandatory| Description                  |
+| -------- | ---------------------- | ---- | ---------------------- |
+| event    | string                 | Yes  | Name of the common event to publish. |
+| userId   | number | Yes| User ID.|
+| options  | [CommonEventPublishData](#commoneventpublishdata) | Yes  | Attributes of the common event to publish.|
+| callback | AsyncCallback\<void>   | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -347,10 +347,10 @@ Creates a subscriber. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name         | Readable/Writable| Type                                                        | Mandatory| Description                      |
-| ------------- | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| subscribeInfo | Read only    | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | Yes  | Subscriber information.            |
-| callback      | Read only    | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | Yes  | Callback used to return the result.|
+| Name         | Type                                                        | Mandatory| Description                      |
+| ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo)        | Yes  | Subscriber information.            |
+| callback      | AsyncCallback\<[CommonEventSubscriber](#commoneventsubscriber)> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -389,9 +389,9 @@ Creates a subscriber. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name         | Readable/Writable| Type                                                 | Mandatory| Description          |
-| ------------- | -------- | ----------------------------------------------------- | ---- | -------------- |
-| subscribeInfo | Read only    | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | Yes  | Subscriber information.|
+| Name         | Type                                                 | Mandatory| Description          |
+| ------------- | ----------------------------------------------------- | ---- | -------------- |
+| subscribeInfo | [CommonEventSubscribeInfo](#commoneventsubscribeinfo) | Yes  | Subscriber information.|
 
 **Return value**
 | Type                                                     | Description            |
@@ -429,10 +429,10 @@ Subscribes to common events. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name      | Readable/Writable| Type                                               | Mandatory| Description                            |
-| ---------- | -------- | --------------------------------------------------- | ---- | -------------------------------- |
-| subscriber | Read only    | [CommonEventSubscriber](#commoneventsubscriber)     | Yes  | Subscriber object.                |
-| callback   | Read only    | AsyncCallback\<[CommonEventData](#commoneventdata)> | Yes  | Callback used to return the result.|
+| Name      | Type                                               | Mandatory| Description                            |
+| ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| subscriber | [CommonEventSubscriber](#commoneventsubscriber)     | Yes  | Subscriber object.                |
+| callback   | AsyncCallback\<[CommonEventData](#commoneventdata)> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -481,10 +481,10 @@ Unsubscribes from common events. This API uses a callback to return the result.
 
 **Parameters**
 
-| Name      | Readable/Writable| Type                                            | Mandatory| Description                    |
-| ---------- | -------- | ----------------------------------------------- | ---- | ------------------------ |
-| subscriber | Read only    | [CommonEventSubscriber](#commoneventsubscriber) | Yes  | Subscriber object.        |
-| callback   | Read only    | AsyncCallback\<void>                            | No  | Callback used to return the result.|
+| Name      | Type                                            | Mandatory| Description                    |
+| ---------- | ----------------------------------------------- | ---- | ------------------------ |
+| subscriber | [CommonEventSubscriber](#commoneventsubscriber) | Yes  | Subscriber object.        |
+| callback   | AsyncCallback\<void>                            | No  | Callback used to return the result.|
 
 **Example**
 
@@ -1234,37 +1234,37 @@ subscriber.finishCommonEvent().then(() => {
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name      | Readable/Writable| Type                | Mandatory| Description                                                   |
-| ---------- | -------- | -------------------- | ---- | ------------------------------------------------------- |
-| event      | Read only    | string               | Yes  | Name of the common event that is being received.                             |
-| bundleName | Read only    | string               | No  | Bundle name.                                             |
-| code       | Read only    | number               | No  | Result code of the common event, which is used to transfer data of the int type.          |
-| data       | Read only    | string               | No  | Custom result data of the common event, which is used to transfer data of the string type.|
-| parameters | Read only    | {[key: string]: any} | No  | Additional information about the common event.                                 |
+| Name      | Readable| Writable| Type                | Description                                                   |
+| ---------- | ---- | ---- | -------------------- | ------------------------------------------------------- |
+| event      | Yes | No | string               | Name of the common event that is being received.                             |
+| bundleName | Yes | No | string               | Bundle name.                                             |
+| code       | Yes | No | number               | Result code of the common event, which is used to transfer data of the int type.          |
+| data       | Yes | No | string               | Custom result data of the common event, which is used to transfer data of the string type.|
+| parameters | Yes | No | {[key: string]: any} | Additional information about the common event.                                 |
 
 
 ## CommonEventPublishData
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name                 | Readable/Writable| Type                | Mandatory| Description                        |
-| --------------------- | -------- | -------------------- | ---- | ---------------------------- |
-| bundleName            | Read only    | string               | No  | Bundle name.                  |
-| code                  | Read only    | number               | No  | Result code of the common event.      |
-| data                  | Read only    | string               | No  | Custom result data of the common event.|
-| subscriberPermissions | Read only    | Array\<string>       | No  | Permissions required for subscribers to receive the common event.            |
-| isOrdered             | Read only    | boolean              | No  | Whether the common event is an ordered one.          |
-| isSticky              | Read only    | boolean              | No  | Whether the common event is a sticky one.          |
-| parameters            | Read only    | {[key: string]: any} | No  | Additional information about the common event.      |
+| Name                 | Readable| Writable| Type                | Description                        |
+| --------------------- | ---- | ---- | -------------------- | ---------------------------- |
+| bundleName            | Yes | No | string               | Bundle name.                  |
+| code                  | Yes | No | number               | Result code of the common event.      |
+| data                  | Yes | No | string               | Custom result data of the common event.|
+| subscriberPermissions | Yes | No | Array\<string>       | Permissions required for subscribers to receive the common event.            |
+| isOrdered             | Yes | No | boolean              | Whether the common event is an ordered one.          |
+| isSticky              | Yes | No | boolean              | Whether the common event is a sticky one.          |
+| parameters            | Yes | No | {[key: string]: any} | Additional information about the common event.      |
 
 ## CommonEventSubscribeInfo
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-| Name               | Readable/Writable| Type          | Mandatory| Description                                                        |
-| ------------------- | -------- | -------------- | ---- | ------------------------------------------------------------ |
-| events              | Read only    | Array\<string> | Yes  | Name of the common event to publish.                                        |
-| publisherPermission | Read only    | string         | No  | Permissions required for publishers to publish the common event.                                            |
-| publisherDeviceId   | Read only    | string         | No  | Device ID. The value must be the ID of an existing device on the same network.            |
-| userId              | Read only    | number         | No  | User ID. The default value is the ID of the current user. If this parameter is specified, the value must be an existing user ID in the system.|
-| priority            | Read only    | number         | No  | Subscriber priority. The value ranges from -100 to 1000.                    |
+| Name               | Readable| Writable| Type          | Description                                                        |
+| ------------------- | ---- | ---- | -------------- | ------------------------------------------------------------ |
+| events              | Yes | No | Array\<string> | Name of the common event to publish.                                        |
+| publisherPermission | Yes | No | string         | Permissions required for publishers to publish the common event.                                            |
+| publisherDeviceId   | Yes | No | string         | Device ID. The value must be the ID of an existing device on the same network.            |
+| userId              | Yes | No | number         | User ID. The default value is the ID of the current user. If this parameter is specified, the value must be an existing user ID in the system.|
+| priority            | Yes | No | number         | Subscriber priority. The value ranges from -100 to 1000.                    |
