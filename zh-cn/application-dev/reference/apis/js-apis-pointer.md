@@ -280,7 +280,7 @@ window.getTopWindow((err, data) => {
 
 ## pointer.setPointerStyle<sup>9+</sup>
 
-setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&lt;): void
+setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
 设置鼠标的样式类型，使用callback异步回调。
 
