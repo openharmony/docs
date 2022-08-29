@@ -73,7 +73,7 @@ getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
 ```js
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     let audioStreamManager = data;
@@ -103,7 +103,7 @@ audio.getStreamManager().then((data) => {
   audioStreamManager = data;
   console.info('getStreamManager: Success!');
 }).catch((err) => {
-  console.error(`getStreamManager: ERROR : ${err.message}`);
+  console.error(`getStreamManager: ERROR : ${err}`);
 });
 
 ```
@@ -147,7 +147,7 @@ var audioRendererOptions = {
 
 audio.createAudioRenderer(audioRendererOptions,(err, data) => {
   if (err) {
-    console.error(`AudioRenderer Created: Error: ${err.message}`);
+    console.error(`AudioRenderer Created: Error: ${err}`);
   } else {
     console.info('AudioRenderer Created: Success: SUCCESS');
     let audioRenderer = data;
@@ -203,7 +203,7 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
 }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: AudioRenderer Created : ERROR : ${err.message}`);
+  console.error(`AudioFrameworkRenderLog: AudioRenderer Created : ERROR : ${err}`);
 });
 ```
 
@@ -245,7 +245,7 @@ var audioCapturerOptions = {
 
 audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
-    console.error(`AudioCapturer Created : Error: ${err.message}`);
+    console.error(`AudioCapturer Created : Error: ${err}`);
   } else {
     console.info('AudioCapturer Created : Success : SUCCESS');
     let audioCapturer = data;
@@ -300,7 +300,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
   console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
 }).catch((err) => {
-  console.error(`AudioCapturer Created : ERROR : ${err.message}`);
+  console.error(`AudioCapturer Created : ERROR : ${err}`);
 });
 ```
 
@@ -335,15 +335,15 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称                | 默认值 | 描述       |
-| ------------------- | ------ | ---------- |
-| NONE_DEVICES_FLAG<sup>9+</sup>   | 0      | 无         |
-| OUTPUT_DEVICES_FLAG | 1      | 输出设备。 |
-| INPUT_DEVICES_FLAG  | 2      | 输入设备。 |
-| ALL_DEVICES_FLAG    | 3      | 所有设备。 |
-| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | 分布式输出设备。  |
-| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。  |
-| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。  |
+| 名称                             | 默认值 | 描述       |
+| --------------------------- ----| ------ | ---------- |
+| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无 <br/>此接口为系统接口，三方应用不支持调用。        |
+| OUTPUT_DEVICES_FLAG             | 1      | 输出设备。 |
+| INPUT_DEVICES_FLAG              | 2      | 输入设备。 |
+| ALL_DEVICES_FLAG                | 3      | 所有设备。 |
+| DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | 分布式输出设备。<br/>此接口为系统接口，三方应用不支持调用。  |
+| DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口，三方应用不支持调用。  |
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口，三方应用不支持调用。  |
 
 
 ## DeviceRole
@@ -364,18 +364,18 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称             | 默认值 | 描述                                                      |
-| ---------------- | ------ | --------------------------------------------------------- |
-| INVALID          | 0      | 无效设备。                                                |
-| EARPIECE         | 1      | 听筒。                                                    |
-| SPEAKER          | 2      | 扬声器。                                                  |
-| WIRED_HEADSET    | 3      | 有线耳机，带麦克风。                                      |
-| WIRED_HEADPHONES | 4      | 有线耳机，无麦克风。                                      |
-| BLUETOOTH_SCO    | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
-| BLUETOOTH_A2DP   | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
-| MIC              | 15     | 麦克风。                                                  |
-| USB_HEADSET      | 22     | USB耳机，带麦克风。                                       |
-| DEFAULT          | 1000   | 默认设备类型。                                            |
+| 名称                 | 默认值 | 描述                                                      |
+| ---------------------| ------ | --------------------------------------------------------- |
+| INVALID              | 0      | 无效设备。                                                |
+| EARPIECE             | 1      | 听筒。                                                    |
+| SPEAKER              | 2      | 扬声器。                                                  |
+| WIRED_HEADSET        | 3      | 有线耳机，带麦克风。                                      |
+| WIRED_HEADPHONES     | 4      | 有线耳机，无麦克风。                                      |
+| BLUETOOTH_SCO        | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
+| BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
+| MIC                  | 15     | 麦克风。                                                  |
+| USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
+| DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
 ## ActiveDeviceType
 
@@ -798,9 +798,9 @@ getRoutingManager(callback: AsyncCallback&lt;AudioRoutingManager&gt;): void
 
 **示例：**
 ```js
-await audioManager.getRoutingManager((err,callback) => {
+await audioManager.getRoutingManager((err, callback) => {
   if (err) {
-    console.error(`Result ERROR: ${err.message}`);
+    console.error(`Result ERROR: ${err}`);
   }
   console.info('getRoutingManager Callback SUCCESS.');
   var audioRoutingManager;
@@ -828,7 +828,7 @@ await audioManager.getRoutingManager().then((value) => {
   var routingManager = value;
   console.info('getRoutingManager Promise SUCCESS.');
 }).catch((err) => {
-  console.error(`Result ERROR: ${err.message}`);
+  console.error(`Result ERROR: ${err}`);
 });
 ```
 
@@ -857,7 +857,7 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 ```js
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
   if (err) {
-    console.error(`Failed to set the volume. ${err.message}`);
+    console.error(`Failed to set the volume. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate a successful volume setting.');
@@ -917,7 +917,7 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 ```js
 audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the volume. ${err.message}`);
+    console.error(`Failed to obtain the volume. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate that the volume is obtained.');
@@ -972,7 +972,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 ```js
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the minimum volume. ${err.message}`);
+    console.error(`Failed to obtain the minimum volume. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
@@ -1027,7 +1027,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 ```js
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the maximum volume. ${err.message}`);
+    console.error(`Failed to obtain the maximum volume. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
@@ -1087,7 +1087,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 ```js
 audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
   if (err) {
-    console.error(`Failed to mute the stream. ${err.message}`);
+    console.error(`Failed to mute the stream. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate that the stream is muted.');
@@ -1149,7 +1149,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 ```js
 audioManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the mute status. ${err.message}`);
+    console.error(`Failed to obtain the mute status. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the mute status of the stream is obtained. ${value}`);
@@ -1205,7 +1205,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 ```js
 audioManager.isActive(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the active status of the stream. ${err.message}`);
+    console.error(`Failed to obtain the active status of the stream. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the active status of the stream is obtained ${value}.`);
@@ -1264,7 +1264,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 ```js
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err) => {
   if (err) {
-    console.error(`Failed to set the ringer mode.​ ${err.message}`);
+    console.error(`Failed to set the ringer mode.​ ${err}`);
     return;
   }
   console.info('Callback invoked to indicate a successful setting of the ringer mode.');
@@ -1323,7 +1323,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 ```js
 audioManager.getRingerMode((err, value) => {
   if (err) {
-    console.error(`Failed to obtain the ringer mode.​ ${err.message}`);
+    console.error(`Failed to obtain the ringer mode.​ ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the ringer mode is obtained ${value}.`);
@@ -1378,7 +1378,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 ```js
 audioManager.setAudioParameter('key_example', 'value_example', (err) => {
   if (err) {
-    console.error(`Failed to set the audio parameter. ${err.message}`);
+    console.error(`Failed to set the audio parameter. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate a successful setting of the audio parameter.');
@@ -1440,7 +1440,7 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 ```js
 audioManager.getAudioParameter('key_example', (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the value of the audio parameter. ${err.message}`);
+    console.error(`Failed to obtain the value of the audio parameter. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the value of the audio parameter is obtained ${value}.`);
@@ -1496,7 +1496,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 ```js
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the device list. ${err.message}`);
+    console.error(`Failed to obtain the device list. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate that the device list is obtained.');
@@ -1552,7 +1552,7 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 ```js
 audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err) => {
   if (err) {
-    console.error(`Failed to set the active status of the device. ${err.message}`);
+    console.error(`Failed to set the active status of the device. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate that the device is set to the active status.');
@@ -1609,7 +1609,7 @@ isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&
 ```js
 audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the active status of the device. ${err.message}`);
+    console.error(`Failed to obtain the active status of the device. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate that the active status of the device is obtained.');
@@ -1667,7 +1667,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 ```js
 audioManager.setMicrophoneMute(true, (err) => {
   if (err) {
-    console.error(`Failed to mute the microphone. ${err.message}`);
+    console.error(`Failed to mute the microphone. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate that the microphone is muted.');
@@ -1725,7 +1725,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 audioManager.isMicrophoneMute((err, value) => {
   if (err) {
-    console.error(`Failed to obtain the mute status of the microphone. ${err.message}`);
+    console.error(`Failed to obtain the mute status of the microphone. ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the mute status of the microphone is obtained ${value}.`);
@@ -1950,7 +1950,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 ```js
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
   if (err) {
-    console.error(`Failed to set the audio scene mode.​ ${err.message}`);
+    console.error(`Failed to set the audio scene mode.​ ${err}`);
     return;
   }
   console.info('Callback invoked to indicate a successful setting of the audio scene mode.');
@@ -1985,7 +1985,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
-  console.error(`Failed to set the audio scene mode ${err.message}`);
+  console.error(`Failed to set the audio scene mode ${err}`);
 });
 ```
 
@@ -2008,7 +2008,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 ```js
 audioManager.getAudioScene((err, value) => {
   if (err) {
-    console.error(`Failed to obtain the audio scene mode.​ ${err.message}`);
+    console.error(`Failed to obtain the audio scene mode.​ ${err}`);
     return;
   }
   console.info(`Callback invoked to indicate that the audio scene mode is obtained ${value}.`);
@@ -2036,7 +2036,7 @@ getAudioScene\(\): Promise<AudioScene\>
 audioManager.getAudioScene().then((value) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err) => {
-  console.error(`Failed to obtain the audio scene mode ${err.message}`);
+  console.error(`Failed to obtain the audio scene mode ${err}`);
 });
 ```
 
@@ -2061,7 +2061,7 @@ getVolumeGroups(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\):
 ```js
 audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the volume group infos list. ${err.message}`);
+    console.error(`Failed to obtain the volume group infos list. ${err}`);
     return;
   }
   console.info('Callback invoked to indicate that the volume group infos list is obtained.');
@@ -2125,7 +2125,7 @@ async function getGroupManager(){
     let groupid = value[0].groupId;
     audioManager.getGroupManager(groupid, (err, value) => {
       if (err) {
-        console.error(`Failed to obtain the volume group infos list. ${err.message}`);
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
         return;
       }
       audioGroupManager = value
@@ -2202,10 +2202,10 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 ```js
 audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
   if (err) {
-    console.error(`Failed to set the volume. ${err.message}`);
+    console.error(`Failed to set the volume. ${err}`);
     return;
   }
-  console.log(`Callback invoked to indicate a successful volume setting.`);
+  console.info('Callback invoked to indicate a successful volume setting.');
 });
 ```
 
@@ -2238,7 +2238,7 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 ```js
 audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
-  console.log(`Promise returned to indicate a successful volume setting.`);
+  console.info('Promise returned to indicate a successful volume setting.');
 });
 ```
 
@@ -2262,10 +2262,10 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 ```js
 audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the volume. ${err.message}`);
+    console.error(`Failed to obtain the volume. ${err}`);
     return;
   }
-  console.log(`Callback invoked to indicate that the volume is obtained.`);
+  console.info('Callback invoked to indicate that the volume is obtained.');
 });
 ```
 
@@ -2293,7 +2293,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```js
 audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.log(`Promise returned to indicate that the volume is obtained.` + value);
+  console.info(`Promise returned to indicate that the volume is obtained ${value}.`);
 });
 ```
 
@@ -2317,10 +2317,10 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 ```js
 audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the minimum volume. ${err.message}`);
+    console.error(`Failed to obtain the minimum volume. ${err}`);
     return;
   }
-  console.log(`Callback invoked to indicate that the minimum volume is obtained.` + value);
+  console.info(`Callback invoked to indicate that the minimum volume is obtained. ${value}`);
 });
 ```
 
@@ -2348,7 +2348,7 @@ getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```js
 audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.log(`Promised returned to indicate that the minimum volume is obtained.` + value);
+  console.info(`Promised returned to indicate that the minimum volume is obtained ${value}.`);
 });
 ```
 
@@ -2372,10 +2372,10 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 ```js
 audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the maximum volume. ${err.message}`);
+    console.error(`Failed to obtain the maximum volume. ${err}`);
     return;
   }
-  console.log(`Callback invoked to indicate that the maximum volume is obtained.` + value);
+  console.info(`Callback invoked to indicate that the maximum volume is obtained. ${value}`);
 });
 ```
 
@@ -2403,7 +2403,7 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 ```js
 audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
-  console.log(`Promised returned to indicate that the maximum volume is obtained.`);
+  console.info('Promised returned to indicate that the maximum volume is obtained.');
 });
 ```
 
@@ -2432,10 +2432,10 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 ```js
 audioGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
   if (err) {
-    console.error(`Failed to mute the stream. ${err.message}`);
+    console.error(`Failed to mute the stream. ${err}`);
     return;
   }
-  console.log(`Callback invoked to indicate that the stream is muted.`);
+  console.info('Callback invoked to indicate that the stream is muted.');
 });
 ```
 
@@ -2468,7 +2468,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 ```js
 audioGroupManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
-  console.log(`Promise returned to indicate that the stream is muted.`);
+  console.info('Promise returned to indicate that the stream is muted.');
 });
 ```
 
@@ -2492,10 +2492,10 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 ```js
 audioGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
-    console.error(`Failed to obtain the mute status. ${err.message}`);
+    console.error(`Failed to obtain the mute status. ${err}`);
     return;
   }
-  console.log(`Callback invoked to indicate that the mute status of the stream is obtained.` + value);
+  console.info(`Callback invoked to indicate that the mute status of the stream is obtained ${value}.`);
 });
 ```
 
@@ -2523,7 +2523,7 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 ```js
 audioGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
-  console.log(`Promise returned to indicate that the mute status of the stream is obtained.` + value);
+  console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
 });
 ```
 
@@ -2551,7 +2551,7 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2561,7 +2561,7 @@ audio.getStreamManager((err, data) => {
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
-    console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err.message}`);
+    console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
   } else {
     if (AudioRendererChangeInfoArray != null) {
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
@@ -2608,7 +2608,7 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2639,7 +2639,7 @@ await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (Audi
     }
   }
 }).catch((err) => {
-  console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err.message}`);
+  console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
 });
 ```
 
@@ -2663,7 +2663,7 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2673,7 +2673,7 @@ audio.getStreamManager((err, data) => {
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
-    console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err.message}`);
+    console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
   } else {
     if (AudioCapturerChangeInfoArray != null) {
       for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
@@ -2718,7 +2718,7 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2747,7 +2747,7 @@ await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (Audi
     }
   }
 }).catch((err) => {
-  console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err.message}`);
+  console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
 });
 ```
 
@@ -2772,7 +2772,7 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2823,7 +2823,7 @@ off(type: "audioRendererChange");
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2855,7 +2855,7 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2905,7 +2905,7 @@ off(type: "audioCapturerChange");
 let audioStreamManager;
 audio.getStreamManager((err, data) => {
   if (err) {
-    console.error(`getStreamManager : Error: ${err.message}`);
+    console.error(`getStreamManager : Error: ${err}`);
   } else {
     console.info('getStreamManager : Success : SUCCESS');
     audioStreamManager = data;
@@ -2941,15 +2941,15 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 ```js
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
   }
   else {
     AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
       if (err) {
-        console.error(`Failed to obtain the device list. ${err.message}`);
+        console.error(`Failed to obtain the device list. ${err}`);
         return;
       }
-      console.log(`Callback invoked to indicate that the device list is obtained.`);
+      console.info('Callback invoked to indicate that the device list is obtained.');
     });
   }
 })
@@ -2980,11 +2980,11 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 ```js
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
   }
   else {
     AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
-      console.log(`Promise returned to indicate that the device list is obtained.`);
+      console.info('Promise returned to indicate that the device list is obtained.');
     });
   }
 });
@@ -2992,7 +2992,7 @@ audioManager.getRoutingManager((err,AudioRoutingManager)=>{
 
 ### on<sup>9+</sup>
 
-on(type: 'deviceChange', deviceFlag: DeviceFlag,, callback: Callback<DeviceChangeAction\>): void
+on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
 设备更改。音频设备连接状态变化。
 
@@ -3011,7 +3011,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag,, callback: Callback<DeviceChang
 ```js
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
   }
   else {
     AudioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
@@ -3045,11 +3045,11 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 ```js
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
-    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err.message}`);
+    console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
   }
   else {
     AudioRoutingManager.off('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
-      console.log('Should be no callback.');
+      console.info('Should be no callback.');
     });
   }
 });
@@ -3084,7 +3084,7 @@ await audioManager.getRoutingManager().then((value) => {
   audioRoutingManager = value;
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
     if (err) {
-      console.error(`Result ERROR: ${err.message}`);
+      console.error(`Result ERROR: ${err}`);
     } else {
       console.info('Select output devices result callback: SUCCESS'); }
   });
@@ -3127,14 +3127,14 @@ await audioManager.getRoutingManager().then((value) => {
   audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
     console.info('Select output devices result promise: SUCCESS');
   }).catch((err) => {
-    console.error(`Result ERROR: ${err.message}`);
+    console.error(`Result ERROR: ${err}`);
   });
 });
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
 
-selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
 **系统接口：** 该接口为系统接口
 
@@ -3146,7 +3146,7 @@ selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, outputAudio
 
 | 参数名                       | 类型                                                         | 必填 | 说明                      |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| audiorendererfilter         | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
+| filter                      | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
 | outputAudioDevices          | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输出设备类。               |
 | callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调，返回获取输出设备结果。 |
 
@@ -3169,7 +3169,7 @@ await audioManager.getRoutingManager().then((value) => {
   audioRoutingManager = value;
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
     if (err) {
-      console.error(`Result ERROR: ${err.message}`);
+      console.error(`Result ERROR: ${err}`);
     } else {
       console.info('Select output devices by filter result callback: SUCCESS'); }
   });
@@ -3178,7 +3178,7 @@ await audioManager.getRoutingManager().then((value) => {
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
 
-selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
 
 **系统接口：** 该接口为系统接口
 
@@ -3188,10 +3188,10 @@ selectOutputDeviceByFilter(audiorendererfilter: AudioRendererFilter, outputAudio
 
 **参数：**
 
-| 参数名                        | 类型                                                         | 必填 | 说明                      |
-| ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
-| audiorendererfilter          | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
-| outputAudioDevices         | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输出设备类。               |
+| 参数名                 | 类型                                                         | 必填 | 说明                      |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| filter                | [AudioRendererFilter](#audiorendererfilter9)                 | 是   | 过滤条件类。               |
+| outputAudioDevices    | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输出设备类。               |
 
 **返回值：**
 
@@ -3220,7 +3220,7 @@ await audioManager.getRoutingManager().then((value) => {
   audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
     console.info('Select output devices by filter result promise: SUCCESS');
   }).catch((err) => {
-    console.error(`Result ERROR: ${err.message}`);
+    console.error(`Result ERROR: ${err}`);
   })
 });
 ```
@@ -3257,12 +3257,12 @@ await audioManager.getStreamManager().then(async function (data) {
   audioStreamManager = data;
   console.info('Get AudioStream Manager : Success');
 }).catch((err) => {
-  console.error(`Get AudioStream Manager : ERROR : ${err.message}`);
+  console.error(`Get AudioStream Manager : ERROR : ${err}`);
 });
 
 audioManager.getStreamManager((err, data) => {
   if (err) {
-    console.error(`Get AudioStream Manager : ERROR : ${err.message}`);
+    console.error(`Get AudioStream Manager : ERROR : ${err}`);
   } else {
     audioStreamManagerCB = data;
     console.info('Get AudioStream Manager : Success');
@@ -3490,7 +3490,7 @@ audioRenderer.getRendererInfo().then((rendererInfo) => {
   console.info(`Renderer usage: ${rendererInfo.usage}`);
   console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
 }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${err.message}`);
+  console.error(`AudioFrameworkRenderLog: RendererInfo :ERROR: ${err}`);
 });
 ```
 
@@ -3544,7 +3544,7 @@ audioRenderer.getStreamInfo().then((streamInfo) => {
   console.info(`Renderer format: ${streamInfo.sampleFormat}`);
   console.info(`Renderer encoding type: ${streamInfo.encodingType}`);
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -3594,7 +3594,7 @@ start(): Promise<void\>
 audioRenderer.start().then(() => {
   console.info('Renderer started');
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -3644,7 +3644,7 @@ pause(): Promise\<void>
 audioRenderer.pause().then(() => {
   console.info('Renderer paused');
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -3694,7 +3694,7 @@ drain(): Promise\<void>
 audioRenderer.drain().then(() => {
   console.info('Renderer drained successfully');
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -3744,7 +3744,7 @@ stop(): Promise\<void>
 audioRenderer.stop().then(() => {
   console.info('Renderer stopped successfully');
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -3794,7 +3794,7 @@ release(): Promise\<void>
 audioRenderer.release().then(() => {
   console.info('Renderer released successfully');
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -3842,14 +3842,14 @@ audio.createAudioRenderer(audioRendererOptions).then((data)=> {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
   }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err.message}`);
+  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
   });
 var bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-  console.error.(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err.message}`);
+  console.error.(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
   });
 console.info(`Buffer size: ${bufferSize}`);
 var context = featureAbility.getContext();
@@ -3910,14 +3910,14 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
   }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err.message}`);
+  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
   });
 var bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err.message}`);
+  console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
   });
 console.info(`BufferSize: ${bufferSize}`);
 var context = featureAbility.getContext();
@@ -3933,7 +3933,7 @@ audioRenderer.write(buf).then((writtenbytes) => {
       console.info(`Actual written bytes: ${writtenbytes}`);
   }
 }).catch((err) => {
-    console.error(`ERROR: ${err.message}`);
+    console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -3979,7 +3979,7 @@ getAudioTime(): Promise\<number>
 audioRenderer.getAudioTime().then((timestamp) => {
   console.info(`Current timestamp: ${timestamp}`);
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -4049,14 +4049,14 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
   }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err.message}`);
+  console.info(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
   });
 var bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
 }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err.message}`);
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
 ```
 
@@ -4113,7 +4113,7 @@ setRenderRate(rate: AudioRendererRate): Promise\<void>
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() => {
   console.info('setRenderRate SUCCESS');
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 
@@ -4159,7 +4159,7 @@ getRenderRate(): Promise\<AudioRendererRate>
 audioRenderer.getRenderRate().then((renderRate) => {
   console.info(`getRenderRate: ${renderRate}`);
 }).catch((err) => {
-  console.error(`ERROR: ${err.message}`);
+  console.error(`ERROR: ${err}`);
 });
 ```
 ### setInterruptMode<sup>9+</sup>
@@ -4205,7 +4205,7 @@ let mode = 0;
 audioRenderer.setInterruptMode(mode).then(data=>{
   console.info('setInterruptMode Success!');
 }).catch((err) => {
-  console.error(`setInterruptMode Fail: ${err.message}`);
+  console.error(`setInterruptMode Fail: ${err}`);
 });
 ```
 ### setInterruptMode<sup>9+</sup>
@@ -4245,7 +4245,7 @@ let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 let mode = 1;
 audioRenderer.setInterruptMode(mode, (err, data)=>{
   if(err){
-    console.error(`setInterruptMode Fail: ${err.message}`);
+    console.error(`setInterruptMode Fail: ${err}`);
   }
   console.info('setInterruptMode Success!');
 });
@@ -4290,7 +4290,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
           console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
           started = true;
         }).catch((err) => {
-          console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err.message}`);
+          console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
           started = false;
         });
         if (started) {
@@ -4510,7 +4510,7 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
     console.info('AudioFrameworkRecLog: audioParams getCapturerInfo are incorrect');
   }
 }).catch((err) => {
-  console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${err.message}`);
+  console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${err}`);
 });
 ```
 
@@ -4568,7 +4568,7 @@ audioCapturer.getStreamInfo().then((audioParamsGet) => {
   console.info(`channels: ${audioParamsGet.channels}`);
   console.info(`encodingType: ${audioParamsGet.encodingType}`);
 }).catch((err) => {
-  console.error(`getStreamInfo :ERROR: ${err.message}`);
+  console.error(`getStreamInfo :ERROR: ${err}`);
 });
 ```
 
@@ -4636,7 +4636,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
   console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
   }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: AudioCapturer Created: ERROR: ${err.message}`);
+  console.info(`AudioFrameworkRecLog: AudioCapturer Created: ERROR: ${err}`);
   });
 audioCapturer.start().then(() => {
   console.info('AudioFrameworkRecLog: ---------START---------');
@@ -4647,7 +4647,7 @@ audioCapturer.start().then(() => {
     console.info('AudioFrameworkRecLog: AudioCapturer is in Running State');
   }
 }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err.message}`);
+  console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
 });
 ```
 
@@ -4702,7 +4702,7 @@ audioCapturer.stop().then(() => {
     console.info('AudioFrameworkRecLog: State is Stopped:');
   }
 }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err.message}`);
+  console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
 ```
 
@@ -4757,7 +4757,7 @@ audioCapturer.release().then(() => {
   console.info(`AudioFrameworkRecLog: AudioCapturer : STATE : ${audioCapturer.state}`);
   console.info(`AudioFrameworkRecLog: stateFlag : ${stateFlag}`);
 }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err.message}`);
+  console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
 ```
 
@@ -4786,7 +4786,7 @@ audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-    console.error(`AudioFrameworkRecLog: getBufferSize: EROOR: ${err.message}`);
+    console.error(`AudioFrameworkRecLog: getBufferSize: EROOR: ${err}`);
   });
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
   if (!err) {
@@ -4825,13 +4825,13 @@ audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize: ERROR ${err.message}`);
+  console.info(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
   });
 console.info(`Buffer size: ${bufferSize}`);
 audioCapturer.read(bufferSize, true).then((buffer) => {
   console.info('buffer read successfully');
 }).catch((err) => {
-  console.info(`ERROR : ${err.message}`);
+  console.info(`ERROR : ${err}`);
 });
 ```
 
@@ -4879,7 +4879,7 @@ getAudioTime(): Promise<number\>
 audioCapturer.getAudioTime().then((audioTime) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTime : Success ${audioTime}`);
 }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err.message}`);
+  console.info(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
 });
 ```
 
@@ -4907,7 +4907,7 @@ audioCapturer.getBufferSize((err, bufferSize) => {
     audioCapturer.read(bufferSize, true).then((buffer) => {
       console.info(`Buffer read is ${buffer}`);
     }).catch((err) => {
-      console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err.message}`);
+      console.error(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
     });
   }
 });
@@ -4936,7 +4936,7 @@ audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
   bufferSize = data;
 }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err.message}`);
+  console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
 ```
 
