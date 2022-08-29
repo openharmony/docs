@@ -224,7 +224,7 @@ import window from '@ohos.window';
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。                                      |
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持 |
 | isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。                                  |
-| id<sup>9+</sup>                       | number                    | 是   | 是   | 窗口ID。                                                  |
+| id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID。                                                  |
 
 ## ColorSpace<sup>8+</sup>
 
