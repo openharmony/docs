@@ -1,8 +1,9 @@
 # 设置数据项名称
 
-本模块提供设置数据项的访问功能相关接口的说明及示例。
+本模块提供对设置数据项访问的相关接口的说明及示例。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -15,11 +16,11 @@ import settings from '@ohos.settings';
 
 ## date
 
-提供用于设置时间和日期格式的方法。
+提供用于设置时间和日期格式的数据项。
 
-### 属性
+### 常量
 
-**系统能力：** SystemCapability.Setting.Core。
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -30,11 +31,11 @@ import settings from '@ohos.settings';
 
 ## display
 
-提供设置显示效果的方法，包括字体大小、屏幕亮度、屏幕旋转、动画系数和显示颜色。
+提供设置显示效果的数据项。
 
-### 属性
+### 常量
 
-**系统能力：** SystemCapability.Setting.Core
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称                          | 类型   | 可读 | 可写 | 说明                                                         |
 | ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -52,11 +53,11 @@ import settings from '@ohos.settings';
 
 ## general
 
-提供用于设置设备常规信息的方法，包括设备名称、启动向导、飞行模式、调试信息、辅助功能开关和触摸浏览状态。
+提供用于设置设备常规信息的数据项。
 
-### 属性
+### 常量
 
-**系统能力：** SystemCapability.Setting.Core。
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称                             | 类型   | 可读 | 可写 | 说明                                                         |
 | -------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -81,11 +82,11 @@ import settings from '@ohos.settings';
 
 ## input
 
-提供用于设置有关输入法的信息的方法，包括自动大写、自动标点符号、自动更正、密码显示、输入法引擎和输入法子类型。
+提供用于设置有关输入法的信息的数据项。
 
-### 属性
+### 常量
 
-**系统能力：** SystemCapability.Setting.Core。
+**系统能力：** SystemCapability.Applications.settings.Core
 
 
 | 名称                                 | 类型   | 可读 | 可写 | 说明                                                         |
@@ -101,11 +102,11 @@ import settings from '@ohos.settings';
 
 ## network
 
-提供用于设置网络信息的方法，包括数据漫游状态、HTTP 代理配置和首选网络。
+提供用于设置网络信息的数据项。
 
-### 属性
+### 常量
 
-**系统能力：** SystemCapability.Setting.Core。
+**系统能力：** SystemCapability.Applications.settings.Core
 
 
 | 名称                     | 类型   | 可读 | 可写 | 说明                                                         |
@@ -116,20 +117,20 @@ import settings from '@ohos.settings';
 
 ## phone
 
-提供设置来电和去电接听方式的方法。
+提供设置来电和去电接听方式的数据项。
 
-### 属性
-**系统能力：** SystemCapability.Applications.settings.core
+### 常量
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称               | 类型   |   可读   | 可写 | 说明                                                         |
 | ------------------ | ------ | ----------- | --------------- | ------------------------------------------------------------ |
 | RTT_CALLING_STATUS | string | 是   | 否   | 是否启用实时文本 (RTT) 呼叫。 <br>如果启用，来电和去电在设备和运营商支持时作为 RTT 呼叫应答。 如果值为 1 ，则 启用RTT 呼叫， 如果值为 0 ，则禁用 RTT 呼叫。 |
 
 ## sound
-提供设置声音效果的方法，包括铃声、拨号音、闹钟声音、通知音和触觉反馈。
+提供设置声音效果的数据项。
 
-### 属性
-**系统能力：** SystemCapability.Applications.settings.core
+### 常量
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称                         | 类型   | 可读 | 可写 | 说明                                                         |
 | ---------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -146,10 +147,10 @@ import settings from '@ohos.settings';
 | HAPTIC_FEEDBACK_STATUS       | string | 是   | 否   | 设备是否启用触觉反馈。                                   |
 
 ## TTS
-提供设置文本到语音 (TTS) 转换信息的方法，包括音高、语速、引擎和插件。
+提供设置文本到语音 (TTS) 转换信息的数据项。
 
-### 属性
-**系统能力：** SystemCapability.Applications.settings.core
+### 常量
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -159,10 +160,10 @@ import settings from '@ohos.settings';
 | ENABLED_TTS_PLUGINS | string | 是   | 否   | 用于 TTS 的已激活插件包列表， 多个插件包以空格分隔。     |
 
 ## wireless
-提供无线网络信息设置方法，包括蓝牙、Wi-Fi、NFC、飞行模式等信息。
+提供无线网络信息设置数据项。
 
-### 属性
-**系统能力：** SystemCapability.Applications.settings.core
+### 常量
+**系统能力：** SystemCapability.Applications.settings.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
@@ -185,9 +186,9 @@ import settings from '@ohos.settings';
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
-为特定的一对值构造一个 URI，用于监视使用 Data 模板的功能的数据。
+获取数据项的URI。使用callback异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
@@ -210,9 +211,9 @@ settings.getUri(settings.display.SCREEN_BRIGHTNESS_STATUS, (urivar) => {
 
 getURI(name: string): Promise\<object>
 
-为特定的一对值构造一个 URI，用于监视使用 Data 模板的功能的数据，通过Promise获取结果。
+获取数据项的URI。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
@@ -242,17 +243,17 @@ settings.getUri(settings.display.SCREEN_BRIGHTNESS_STATUS).then((urivar) => {
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
 
-获取数据库中字符串的值，通过注册回调函数获取结果。
+获取数据库中指定字符串的值。使用callback异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
-| 参数名            | 类型                   | 必填 | 说明                                                         |
-| ----------------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | DataAbilityHelper      | 是   | 数据管理辅助类。                                             |
-| name              | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br/> <ul><li>数据库中已存在的数据项，包括：<br/></li> <ul><li>亮度：settings.display.SCREEN_BRIGHTNESS_STATUS <br/> </li> <li> 时间格式：settings.date.TIME_FORMAT <br/> </li></ul> <li>开发者自行添加的数据项。</li></ul> |
-| callback          | AsyncCallback\<object> | 是   | 使用callback方式获取数据库中字符串的值                   |
+| 参数名            | 类型                                              | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br/> <ul><li>数据库中已存在的数据项，包括：<br/></li> <ul><li>亮度：settings.display.SCREEN_BRIGHTNESS_STATUS <br/> </li> <li> 时间格式：settings.date.TIME_FORMAT <br/> </li></ul> <li>开发者自行添加的数据项。</li></ul> |
+| callback          | AsyncCallback\<object>                            | 是   | 使用callback方式获取数据库中字符串的值                       |
 
 
 **示例**：
@@ -274,16 +275,16 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
-获取数据库中字符串的值，通过Promise获取结果。
+获取数据库中字符串的值，使用Promise异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
-| 参数名            | 类型              | 必填 | 说明                                                         |
-| ----------------- | ----------------- | ---- | ------------------------------------------------------------ |
-| dataAbilityHelper | DataAbilityHelper | 是   | 数据管理辅助类。                                             |
-| name              | string            | 是   | 数据项的名称。数据项名称分为以下两种：<br/> <ul><li>数据库中已存在的数据项，包括：<br/></li> <ul><li>亮度：settings.display.SCREEN_BRIGHTNESS_STATUS <br/> </li> <li> 时间格式：settings.date.TIME_FORMAT <br/> </li></ul> <li>开发者自行添加的数据项。</li></ul> |
+| 参数名            | 类型                                              | 必填 | 说明                                                         |
+| ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
+| name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br/> <ul><li>数据库中已存在的数据项，包括：<br/></li> <ul><li>亮度：settings.display.SCREEN_BRIGHTNESS_STATUS <br/> </li> <li> 时间格式：settings.date.TIME_FORMAT <br/> </li></ul> <li>开发者自行添加的数据项。</li></ul> |
 
 
 **返回值**：
@@ -309,18 +310,18 @@ settings.getUri(dataAbilityHelper, name).then((value) => {
 
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, callback: AsyncCallback\<boolean>): void
 
-将字符串名称及其值保存到数据库中。
+将字符串名称及其值保存到数据库中。使用callback异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
-| 参数名            | 类型                    | 必填 | 说明                                         |
-| ----------------- | ----------------------- | ---- | -------------------------------------------- |
-| dataAbilityHelper | DataAbilityHelper       | 是   | 数据管理辅助类。                             |
-| name              | string                  | 是   | 数据项名称。                                 |
-| value             | object                  | 是   | 数据项值。取值范围随业务变动。               |
-| callback          | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示操作成功，否则操作失败 |
+| 参数名            | 类型                                              | 必填 | 说明                                         |
+| ----------------- | ------------------------------------------------- | ---- | -------------------------------------------- |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                             |
+| name              | string                                            | 是   | 数据项名称。                                 |
+| value             | object                                            | 是   | 数据项值。取值范围随业务变动。               |
+| callback          | AsyncCallback\<boolean>                           | 是   | 回调函数。返回true表示操作成功，否则操作失败 |
 
 **示例**：
 
@@ -343,15 +344,15 @@ settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (sta
 
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise\<boolean>
 
-将字符串名称及其值保存到数据库中。
+将字符串名称及其值保存到数据库中。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
 | 参数名            | 类型              | 必填 | 说明             |
 | ----------------- | ----------------- | ---- | ---------------- |
-| dataAbilityHelper | DataAbilityHelper | 是   | 数据管理辅助类   |
+| dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类   |
 | name              | string            | 是   | 字符串名称。 |
 | value             | object            | 是   | 字符串值。   |
 
@@ -380,9 +381,9 @@ settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then
 
 enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
-启用或禁用飞行模式。
+启用或禁用飞行模式。使用callback异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
@@ -412,7 +413,7 @@ enableAirplaneMode(enable: boolean): Promise<void>
 
 启用或禁用飞行模式。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
@@ -445,9 +446,9 @@ enableAirplaneMode(isEnabled).then((err) => {
 
 canShowFloating(callback: AsyncCallback\<boolean>): void
 
-检查应用能够作为悬浮窗显示。
+检查应用能够作为悬浮窗显示。使用callback异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 
@@ -471,7 +472,7 @@ canShowFloating(): Promise\<boolean>
 
 检查应用能够作为悬浮窗显示。使用Promise异步回调。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **返回值**：
 
@@ -487,13 +488,13 @@ canShowFloating().then((status) => {
 });
 ```
 
-## settings.getUriSync
+## settings.getUriSync<sup>8+</sup>
 
 getUriSync(name: string): string
 
 获取数据项的URI。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
   | 参数名 | 类型 | 必填 | 说明 |
@@ -513,13 +514,13 @@ getUriSync(name: string): string
   ```
 
 
-## settings.getValueSync
+## settings.getValueSync<sup>8+</sup>
 
 getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
 获取数据项的值。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 | 参数名 | 类型 | 必填 | 说明 |
@@ -534,6 +535,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
   | string | 返回数据项的值。 |
 
 **示例**：
+
   ```ts
  import featureAbility from '@ohos.ability.featureAbility';
 
@@ -544,7 +546,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
   ```
 
 
-## settings.setValueSync
+## settings.setValueSync<sup>8+</sup>
 
 setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
@@ -553,7 +555,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 **需要权限**：ohos.permission.MODIFY_SETTINGS。
 
-**系统能力**：SystemCapability.Applications.settings.Core。
+**系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
 | 参数名 | 类型 | 必填 | 说明 |
