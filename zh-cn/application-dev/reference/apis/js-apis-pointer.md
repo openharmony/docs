@@ -216,7 +216,7 @@ pointer.getPointerSpeed().then( data => {
 
 ## pointer.getPointerStyle<sup>9+</sup>
 
-getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void;
+getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
 获取鼠标样式类型，使用callback异步回调。
 
@@ -233,6 +233,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 
 ```js
 // 获取设备的鼠标样式。
+import window from '@ohos.window';
 var windowClass = null;
 window.getTopWindow((err, data) => {
   windowClass = data;
@@ -247,7 +248,7 @@ window.getTopWindow((err, data) => {
 
 ## pointer.getPointerStyle<sup>9+</sup>
 
-getPointerStyle(windowId: number): Promise&lt;PointerStyle&lt;
+getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 获取鼠标样式类型，使用Promise方式作为异步方法。
 
@@ -264,6 +265,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&lt;
 
 ```js
 // 获取设备的鼠标样式。
+import window from '@ohos.window';
 var windowClass = null;
 window.getTopWindow((err, data) => {
   windowClass = data;
@@ -278,7 +280,7 @@ window.getTopWindow((err, data) => {
 
 ## pointer.setPointerStyle<sup>9+</sup>
 
-setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&lt;): void;
+setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&lt;): void
 
 设置鼠标的样式类型，使用callback异步回调。
 
@@ -296,6 +298,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 
 ```js
 // 设置设备的鼠标样式。
+import window from '@ohos.window';
 var windowClass = null;
 window.getTopWindow((err, data) => {
   windowClass = data;
@@ -309,7 +312,7 @@ window.getTopWindow((err, data) => {
 ```
 ## pointer.setPointerStyle<sup>9+</sup>
 
-setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&lt;;
+setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
 设置鼠标的样式类型，使用Promise方式作为异步方法。
 
@@ -327,6 +330,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&l
 
 ```js
 // 设置设备的鼠标样式。
+import window from '@ohos.window';
 var windowClass = null;
 window.getTopWindow((err, data) => {
   windowClass = data;
