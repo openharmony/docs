@@ -771,15 +771,16 @@ setProperty(property: PasteDataProperty): void;
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| property | [PasteDataProperty](#pastedataproperty7) | 是 | 属性保存到PasteData对象。 |
+| property | [PasteDataProperty](#pastedataproperty7) | 是 | 属性保存到PasteData对象，仅支持设置ShareOption。 |
 
 **示例**
 
   ```js
   var pasteData = pasteboard.createHtmlData('application/xml');
-  var props	 = pasteData.getProperty();
-  props.shareOption = pasteboard.ShareOption.InApp;
-  pasteData.setProperty(props);
+  let prop : pasteboard.PasteDataProperty = {
+      shareOption: pasteboard.ShareOption.InApp
+  }
+  pasteData.setProperty(prop);
   ```
 
 
