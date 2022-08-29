@@ -113,9 +113,9 @@ Registers a mission status listener. This API uses a promise to return the resul
   ```
 
 
-## distributedMissionManager.unregisterMissionListener
+## distributedMissionManager.unRegisterMissionListener
 
-unregisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
+unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
 Deregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
@@ -136,15 +136,15 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
   var parameter =  {
   	deviceId: remoteDeviceId
   };
-  distributedMissionManager.unregisterMissionListener(parameter, (error) => {
+  distributedMissionManager.unRegisterMissionListener(parameter, (error) => {
       console.log("error.code = " + error.code)
   })
   ```
 
 
-## distributedMissionManager.unregisterMissionListener
+## distributedMissionManager.unRegisterMissionListener
 
-unregisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
+unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 Deregisters a mission status listener. This API uses a promise to return the result.
 
@@ -170,7 +170,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
   var parameter =  {
   	deviceId: remoteDeviceId
   };
-  distributedMissionManager.unregisterMissionListener(parameter)
+  distributedMissionManager.unRegisterMissionListener(parameter)
   .then(data => {
       console.info('success data is ' + data);
   }).catch(error => {
