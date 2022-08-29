@@ -36,9 +36,9 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
   | 名称 | 功能描述 | 
 | -------- | -------- |
-| onStart(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 开始滚动时触发回调。 | 
-| onBounce(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动到底时触发回调。 | 
-| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动完成时触发回调。 | 
+| onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 开始滚动时触发回调。 | 
+| onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动到底时触发回调。 | 
+| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 滚动完成时触发回调。 | 
 
 
 ## 示例
