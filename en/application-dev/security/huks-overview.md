@@ -16,7 +16,7 @@ HUKS manages keys through the following operations:
 
 - **Init**: reads the key, creates a session ID, and returns the session ID to the caller.
 
-- **Update**: updates data by segment based on the session ID obtained.
+- **Update**: updates data by segment based on the session ID obtained by the **Init** operation.
 
 - **Finish**: processes all data transferred to HUKS and then releases resources.
 

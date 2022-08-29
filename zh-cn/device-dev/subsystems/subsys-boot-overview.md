@@ -57,9 +57,7 @@
 
 - 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-
-  > 配置文件init.cfg仅支持json格式。
+  >  **说明：** 配置文件init.cfg仅支持json格式。
 
 - bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
 

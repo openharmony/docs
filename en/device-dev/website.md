@@ -52,6 +52,7 @@
             - [Introduction to the Hi3861 Development Board](quick-start/quickstart-lite-introduction-hi3861.md)
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-lite-introduction-hi3516.md)
         - [Reference](quick-start/quickstart-lite-reference.md)
+        - [Burning Code by Using HiTool](quick-start/quickstart-lite-hitool.md)
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - Getting Started with Standard System (IDE Mode, Recommended)
     - [Standard System Overview](quick-start/quickstart-ide-standard-overview.md)
@@ -97,9 +98,11 @@
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
+        - [Burning Code by Using HiTool](quick-start/quickstart-standard-hitool.md)
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
-  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
 
+  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+  
 - Compatibility and Security
 
   - [Privacy Protection](security/security-privacy-protection.md)
@@ -466,10 +469,15 @@
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
-    - [init Module](subsystems/subsys-boot-init.md)
+    - init Module
+      - [init Configuration File](subsystems/subsys-boot-init-cfg.md)
+      - [Job Management](subsystems/subsys-boot-init-jobs.md)
+      - [Service Management](subsystems/subsys-boot-init-service.md)
+      - [Parameter Management](subsystems/subsys-boot-init-sysparam.md)
+      - [Sandbox Management](subsystems/subsys-boot-init-sandbox.md)
+      - [Plug-in Management](subsystems/subsys-boot-init-plugin.md)
     - [appspawn Module](subsystems/subsys-boot-appspawn.md)
     - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
-    - [syspara Module](subsystems/subsys-boot-syspara.md)
     - [FAQs](subsystems/subsys-boot-faqs.md)
     - [Reference](subsystems/subsys-boot-ref.md)
   - DFX

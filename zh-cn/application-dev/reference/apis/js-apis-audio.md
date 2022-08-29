@@ -2548,6 +2548,16 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
@@ -2555,7 +2565,7 @@ audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererCha
   } else {
     if (AudioRendererChangeInfoArray != null) {
       for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-        AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
         console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
         console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
         console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
@@ -2595,11 +2605,21 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
   console.info(`getCurrentAudioRendererInfoArray ######### Get Promise is called ##########`);
   if (AudioRendererChangeInfoArray != null) {
     for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-      AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+      let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
       console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
       console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
       console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
@@ -2640,6 +2660,16 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
@@ -2685,6 +2715,16 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
   console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
   if (AudioCapturerChangeInfoArray != null) {
@@ -2729,9 +2769,19 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-    AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+    let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
     console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
@@ -2770,6 +2820,16 @@ off(type: "audioRendererChange");
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 audioStreamManager.off('audioRendererChange');
 console.info('######### RendererChange Off is called #########');
 ```
@@ -2792,6 +2852,16 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##');
@@ -2832,6 +2902,16 @@ off(type: "audioCapturerChange");
 **示例：**
 
 ```js
+let audioStreamManager;
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err.message}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
@@ -4552,7 +4632,6 @@ var audioCapturerInfo = {
 }
 
 var audioCapturer;
-var stateFlag;
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
   console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
@@ -4569,7 +4648,6 @@ audioCapturer.start().then(() => {
   }
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err.message}`);
-  stateFlag = false;
 });
 ```
 

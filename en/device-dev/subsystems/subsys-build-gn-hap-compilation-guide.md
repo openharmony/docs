@@ -84,9 +84,9 @@ Resource files, which are stored in the **assets/entry/resources** directory for
 
 1. Save the developed application example to the **applications/standard/** directory.
 
-2. Configure the GN script **applications/standard/example/BUILD.gn**. The following is an example of the FA model. For details about more **BUILD.gn** configurations, see [GN Script Configuration Example](#gn-script-configuration-example).
+2. Configure the GN script **applications/standard/example/BUILD.gn**. <br>The following is an example of the FA model. For details about more **BUILD.gn** configurations, see [GN Script Configuration Example](#gn-script-configuration-example).
    ```
-   import("//build/ohos.gni") # Reference ohos.gni.
+   import("//build/ohos.gni") # Import ohos.gni.
 
    ohos_hap("example") {
      hap_profile = "./src/main/config.json" # config.json
@@ -97,13 +97,13 @@ Resource files, which are stored in the **assets/entry/resources** directory for
        "//third_party/libpng:libpng", # Native library
      ]
      certificate_profile = "../signature/systemui.p7b" # Certificate profile
-     hap_name = "SystemUI-NavigationBar" # Name
+     hap_name = "SystemUI-NavigationBar" # HAP name
      part_name = "prebuilt_hap"
      subsystem_name = "applications"
    }
    ```
 
-3. Modify the **applications/standard/hap/ohos.build** file. The following is an example:
+3. Modify the **applications/standard/hap/ohos.build** file. <br>The following is an example:
    ```
    {
      "subsystem": "applications",
@@ -118,7 +118,7 @@ Resource files, which are stored in the **assets/entry/resources** directory for
    }
    ```
 
-4. Run the build command.
+4. Start build.
    ```
    # Perform full building.
    ./build.sh --product-name {product_name}
@@ -127,25 +127,26 @@ Resource files, which are stored in the **assets/entry/resources** directory for
    ./build.sh --product-name {product_name} --build-target applications/standard/example:example
    ```
 
-5. The build target is generated. The following shows the decompressed HAP in the FA model.
-   ```
-     Length      Date    Time    Name
-   ---------  ---------- -----   ----
-        1439  2009-01-01 00:00   assets/raw_assets                                 -----> raw_assets
-         354  2009-01-01 00:00   assets/entry/resources.index                      ------> resources
-           1  2009-01-01 00:00   assets/entry/resources/base/media/attributes.key  ------> resources
-           1  2009-01-01 00:00   assets/entry/resources/base/media/constants.key   ------> resources
-           1  2009-01-01 00:00   assets/entry/resources/base/media/contents.key    ------> resources
-        6790  2009-01-01 00:00   assets/entry/resources/base/media/icon.png        ------> resources
-           1  2009-01-01 00:00   assets/entry/resources/base/media/nodes.key       ------> resources
-       11170  2009-01-01 00:00   assets/js/default/app.js                          ------> js_assets
-          48  2009-01-01 00:00   assets/js/default/i18n/en-US.json                 ------> js_assets
-          50  2009-01-01 00:00   assets/js/default/i18n/zh-CN.json                 ------> js_assets
-         224  2009-01-01 00:00   assets/js/default/manifest.json                   ------> js_assets
-       41481  2009-01-01 00:00   assets/js/default/pages/index/index.js            ------> js_assets
-         909  2009-01-01 00:00   config.json                                       ------> hap_profile
-      266248  2009-01-01 00:00   libs/libpng.z.so                                  ------> shared_libraries
-   ```
+
+The build target is generated. The following shows the decompressed HAP in the FA model.
+```
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+     1439  2009-01-01 00:00   assets/raw_assets                                 -----> raw_assets
+      354  2009-01-01 00:00   assets/entry/resources.index                      ------> resources
+        1  2009-01-01 00:00   assets/entry/resources/base/media/attributes.key  ------> resources
+        1  2009-01-01 00:00   assets/entry/resources/base/media/constants.key   ------> resources
+        1  2009-01-01 00:00   assets/entry/resources/base/media/contents.key    ------> resources
+     6790  2009-01-01 00:00   assets/entry/resources/base/media/icon.png        ------> resources
+        1  2009-01-01 00:00   assets/entry/resources/base/media/nodes.key       ------> resources
+    11170  2009-01-01 00:00   assets/js/default/app.js                          ------> js_assets
+       48  2009-01-01 00:00   assets/js/default/i18n/en-US.json                 ------> js_assets
+       50  2009-01-01 00:00   assets/js/default/i18n/zh-CN.json                 ------> js_assets
+      224  2009-01-01 00:00   assets/js/default/manifest.json                   ------> js_assets
+    41481  2009-01-01 00:00   assets/js/default/pages/index/index.js            ------> js_assets
+      909  2009-01-01 00:00   config.json                                       ------> hap_profile
+   266248  2009-01-01 00:00   libs/libpng.z.so                                  ------> shared_libraries
+```
 
 ### GN Script Configuration Example
 - Example of multiple abilities in the FA model

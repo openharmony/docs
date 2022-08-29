@@ -24,8 +24,8 @@ TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, con
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | No | - | Hint text displayed when there is no input. |
-  | text             | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)                                   | No    | -    | Current text input. |
+  | placeholder | string \|&nbsp;[Resource](../../ui/ts-types.md#resource-type) | No | - | Hint text displayed when there is no input. |
+  | text             | string \| [Resource](../../ui/ts-types.md#resource-type)                                   | No    | -    | Current text input. |
   | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. |
 
 
@@ -41,8 +41,10 @@ In addition to the universal attributes, the following attributes are supported.
 | enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
 | caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
 | maxLength | number | - | Maximum number of characters in the text input. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: regular expression to set.<br/>- **error**: error message containing the ignored content returned when regular expression matching fails. |
-| copyOption<sup>9+</sup> | boolean\|[CopyOption](ts-basic-components-text.md) | true | Whether copy and paste is allowed. |
+| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br>- **value**: regular expression to set.<br>- **error**: error message containing the ignored content returned when regular expression matching fails. |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-basic-components-text.md) | CopyOptions.CrossDevice | Whether copy and paste is allowed. |
+| showPasswordIcon<sup>9+</sup> | boolean | true | Whether to display the show password icon at the end of the password text box.|
+| style<sup>9+</sup> | TextInputStyle | Default | Text input style.|
 
 - EnterKeyType enums
   | Name | Description |
@@ -61,6 +63,11 @@ In addition to the universal attributes, the following attributes are supported.
   | InputType.Email | Email address input mode. |
   | InputType.Number | Digit input mode. |
 
+- TextInputStyle
+  | Name                | Description           |
+  | ------------------ | ------------- |
+  | Default   | Default style. The caret width is fixed at 1.5 vp, and the caret height increases with the font size. |
+  | Inline | Inline input style. When text is selected, its background height is the same as the height of the text box.     |
 
 ## Events
 
@@ -70,9 +77,9 @@ In addition to the universal attributes, the following attributes are supported.
 | onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed. |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | Triggered when the input status changes. |
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup> | Triggered when the input status changes. |
-| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
-| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
-| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
+| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied. |
+| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut. |
+| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted. |
 
 ### TextInputController<sup>8+</sup>
 

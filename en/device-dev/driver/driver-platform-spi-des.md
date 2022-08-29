@@ -1,7 +1,7 @@
 # SPI
 
 
-## **Overview**
+## Overview
 
 Serial Peripheral Interface (SPI) is a serial bus specification used for high-speed, full-duplex, and synchronous communication. SPI is developed by Motorola. It is commonly used for communication with flash memory, real-time clocks, sensors, and analog-to-digital (A/D) converters.
 
@@ -38,7 +38,7 @@ The figure below shows the connection between one controller and two devices (de
 > Currently, these functions are only applicable in the communication initiated by the SPI controller.
 
 
-## **Available APIs**
+## Available APIs
 
   **Table 1** SPI driver APIs
 

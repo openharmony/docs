@@ -30,7 +30,8 @@ QRCode(value: string)
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| color | Color | Black | 设置二维码颜色。 |
+| color | [ResourceColor](../../ui/ts-types.md) | Black | 设置二维码颜色。 |
+| backgroundColor | [ResourceColor](../../ui/ts-types.md) | - | 设置二维码背景颜色。 |
 
 
 ## 事件

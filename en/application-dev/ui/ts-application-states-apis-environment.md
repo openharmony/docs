@@ -4,8 +4,7 @@
 Environment is a singleton object created by the framework when the application is started. It provides the AppStorage with a series of environment state attributes required by the application. These attributes describe the device environment where the application runs. Environment and its attributes are immutable, and all attribute values are of the simple type. The following example shows how to obtain the semantic environment from Environment:
 
 
-
-```
+```ts
 Environment.EnvProp("accessibilityEnabled", "default");
 var enable = AppStorage.Get("accessibilityEnabled");
 ```
@@ -25,11 +24,11 @@ accessibilityEnabled is the default system variable identifier provided by Envir
 
 ## Built-in Environment Variables
 
-  | key | Type | Description | 
+| key | Type | Description |
 | -------- | -------- | -------- |
-| accessibilityEnabled | boolean | Whether to enable accessibility. | 
-| colorMode | ColorMode | Color mode. The options are as follows:<br/>- ColorMode.LIGHT: light mode.<br/>- ColorMode.DARK: dark mode. | 
-| fontScale | number | Font scale. The value range is [0.85, 1.45]. | 
-| fontWeightScale | number | Font weight scale. The value range is [0.6, 1.6]. | 
-| layoutDirection | LayoutDirection | Layout direction. The options are as follows:<br/>- LayoutDirection.LTR: The direction is from left to right.<br/>- LayoutDirection.RTL: The direction is from right to left. | 
-| languageCode | string | Current system language. The value is in lowercase, for example, zh. | 
+| accessibilityEnabled | boolean | Whether to enable accessibility. |
+| colorMode | ColorMode | Color mode. The options are as follows:<br/>- **ColorMode.LIGHT**: light mode.<br/>- **ColorMode.DARK**: dark mode. |
+| fontScale | number | Font scale. The value range is [0.85, 1.45]. |
+| fontWeightScale | number | Font weight scale. The value range is [0.6, 1.6]. |
+| layoutDirection | LayoutDirection | Layout direction. The options are as follows:<br/>- **LayoutDirection.LTR**: The direction is from left to right.<br/>- **LayoutDirection.RTL**: The direction is from right to left. |
+| languageCode | string | Current system language. The value is in lowercase, for example, zh. |

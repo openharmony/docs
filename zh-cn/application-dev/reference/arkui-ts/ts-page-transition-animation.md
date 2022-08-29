@@ -24,8 +24,8 @@
 - RouteType枚举说明
   | 名称 | 描述             |
   | ---- | ---------------- |
-  | Pop  | 重定向指定页面。 |
-  | Push | 跳转到下一页面。 |
+  | Pop  | 重定向指定页面。PageA跳转到PageB时，PageA为Exit+Push，PageB为Enter+Push。 |
+  | Push | 跳转到下一页面。PageB返回至PageA时，PageA为Enter+Pop，PageB为Exit+Pop。 |
 
 
 ## 属性
@@ -35,8 +35,8 @@ PageTransitionEnter和PageTransitionExit组件支持的属性：
 | 参数名称      | 参数类型                                     | 默认值               | 必填   | 参数描述                                     |
 | --------- | ---------------------------------------- | ----------------- | ---- | ---------------------------------------- |
 | slide     | SlideEffect                              | SlideEffect.Right | 否    | 设置转场的滑入效果，有效值参见SlideEffect枚举说明。          |
-| translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | -                 | 否    | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。 |
-| scale     | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | -                 | 否    | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。             |
+| translate | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | -                 | 否    | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。 |
+| scale     | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | -                 | 否    | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。             |
 | opacity   | number                                   | 1                 | 否    | 设置入场的起点透明度值或者退场的终点透明度值。                  |
 
 - SlideEffect枚举说明

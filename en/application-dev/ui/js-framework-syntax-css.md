@@ -107,7 +107,7 @@ div {
 }
 /\* Set the style for direct descendant texts of components whose class is container.\*/
 .container &gt; text {
-  color: \#fa2a2d;
+  color: #fa2a2d;
 }
 ```
 
@@ -134,7 +134,6 @@ In addition to a single pseudo-class, a combination of pseudo-classes is support
 | Pseudo-class | Available Components | Description |
 | -------- | -------- | -------- |
 | :disabled | Components that support the disabled attribute | Selects the element whose disabled attribute is changed to true (unavailable for animation attributes). |
-| :focus | Components that support the focusable attribute | Selects the element that takes focus (unavailable for animation attributes). |
 | :active | Components that support the click event | Selects the element activated by a user. For example, a pressed button or a selected tab-bar (unavailable for animation attributes).  |
 | :waiting | button | Selects the element whose waiting attribute is true (unavailable for animation attributes). |
 | :checked | input[type="checkbox", type="radio"], and switch | Selects the element whose checked attribute is true (unavailable for animation attributes).  |

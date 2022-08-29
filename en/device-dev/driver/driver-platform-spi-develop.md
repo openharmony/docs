@@ -9,7 +9,7 @@ Serial Peripheral Interface (SPI) is a serial bus specification used for high-sp
 
   ![image](figures/independent-service-mode.png)
 
-## **Available APIs**
+## Available APIs
 
 **SpiCntlrMethod**:
 

@@ -208,12 +208,12 @@ root {
     ...
     display :: host {
         device_lcd :: device {
-                deviceN :: deviceNode {
-                    policy = 0;
-                    priority = 100;
-                    preload = 2;
-                    moduleName = "LCD_XXXX";
-                }
+            deviceN :: deviceNode {
+                policy = 0;
+                priority = 100;
+                preload = 2;
+                moduleName = "LCD_XXXX";
+            }
         }
     }
 }

@@ -1,10 +1,6 @@
 # Native Standard Libraries Supported by OpenHarmony
 
-
-
 ## Overview
-
-
 
 **Table 1** Standard libraries supported by OpenHarmony
 
@@ -13,13 +9,11 @@
 | C standard library  | C11 standard library implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header).      |
 | C++ standard library ([libc++](https://libcxx.llvm.org/))| An implementation of the C++ standard library.  |
 | Open Sound Library for Embedded Systems ([OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/))| An embedded, cross-platform audio processing library.|
-| [zlib](https://zlib.net/)     | A general data compression library implemented in C/C++.|
+| [zlib](https://zlib.net/)    | A general data compression library implemented in C/C++.|
 | [EGL](https://www.khronos.org/egl/)  | A standard software interface between rendering APIs and the underlying native window system.|
 | Open Graphics Library for Embedded Systems ([OpenGL ES](https://www.khronos.org/opengles/))| A cross-platform software interface for rendering 3D graphics on embedded and mobile systems.|
 
 ## C Standard Library
-
-
 
 The C standard library is a C11 standard library implemented by:
 
@@ -43,8 +37,6 @@ C standard library includes a set of header files in accordance with standard C 
 
 ## libc++
 
-
-
 [libc++](https://libcxx.llvm.org/) is an implementation of the C++ standard library.
 
 **Version**
@@ -57,23 +49,11 @@ The C++11 and C++14 standards are supported, and the C++17 and C++20 standards a
 
 ## OpenSL ES
 
-
-
 [OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/) is an embedded, cross-platform audio processing library.
-
-
 
 ## zlib
 
-
-
 [zlib](https://zlib.net/) is a general data compression library implemented in C/C++.
-
-
-
-
-
-
 
 ## EGL
 
@@ -82,8 +62,6 @@ EGL is an interface between Khronos rendering APIs (such as OpenGL ES and OpenVG
 **Symbols Exported from the Standard Library**
 
 [EGL Symbols Exported from Native APIs](../third_party_opengl/egl-symbol.md)
-
-
 
 ## OpenGL ES
 

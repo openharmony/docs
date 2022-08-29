@@ -119,8 +119,6 @@ constructor()
 
 表示获取的认证器对象。
 
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
@@ -492,8 +490,6 @@ getAuthenticator(): Authenticator
 
 获取Authenticator对象，用于执行用户身份认证。
 
-**需要权限**：ohos.permission.ACCESS_BIOMETRIC
-
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
@@ -516,7 +512,7 @@ getAuthenticator(): Authenticator
 
 ### execute<sup>(deprecated)</sup>
 
-execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
+execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：**
 > 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
@@ -531,8 +527,8 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                      | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-| level    | string                      | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
+| type     | AuthType                      | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| level    | SecureLevel                      | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
 | callback | AsyncCallback&lt;number&gt; | 否   | 回调函数。                                                   |
 
  callback返回值：
@@ -555,7 +551,7 @@ execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): voi
 
 ### execute<sup>(deprecated)</sup>
 
-execute(type:string, level:string): Promise&lt;number&gt;
+execute(type:AuthType, level:SecureLevel): Promise&lt;number&gt;
 
 > **说明：**
 > 从 API Version 8 开始废弃，建议使用[auth](#auth8)替代。
@@ -569,8 +565,8 @@ execute(type:string, level:string): Promise&lt;number&gt;
 **参数：**
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 认证类型，当前只支持FACE_ONLY。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
-| level  | string | 是   | 安全级别，对应认证的安全级别，有效值为S1（最低）、S2、S3、S4（最高）。<br/>具备3D人脸识别能力的设备支持S3及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持S2及以下安全级别的认证。 |
+| type   | AuthType | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| level  | SecureLevel | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
 
 **返回值：**
 | 类型                  | 说明                                                         |

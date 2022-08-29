@@ -185,13 +185,13 @@ Defines authentication information.
 | token     | number               | Yes   | Authentication token.  |
 | extraInfo | {[key:string] : any} | No   | Extended field.|
 
-## PublishInfo
+## PublishInfo9+</sup>
 
 Defines published device information.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-| Name         | Type                             | Mandatory  | Description               |
+| Name         | Type                             | Mandatory  | Description |
 | ------------- | --------------------------------- | ---- | ----------------- |
 | publishId     | number                            | Yes   | ID used to identify a publication period.|
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
@@ -346,7 +346,7 @@ Obtains local device information. This API uses a promise to return the result.
   });
   ```
 
-### startDeviceDiscovery
+### startDeviceDiscovery8+</sup>
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
@@ -377,7 +377,7 @@ Starts to discover peripheral devices.
 
 ### startDeviceDiscovery9+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions: string): void
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 Starts to discover peripheral devices and filters discovered devices.
 
@@ -390,6 +390,7 @@ Starts to discover peripheral devices and filters discovered devices.
 | filterOptions | string        | No  | Options for filtering discovered devices.|
 
 **Example**
+
   ```js
   // Automatically generate a unique subscription ID.
   var subscribeId = Math.floor(Math.random() * 10000 + 1000);
@@ -459,7 +460,7 @@ Publishes device information for discovery purposes.
   dmInstance.publishDeviceDiscovery(publishInfo); // A callback is invoked to notify the application when the device information is published.
   ```
 
-### unPublishDeviceDiscovery
+### unPublishDeviceDiscovery9+</sup>
 
 unPublishDeviceDiscovery(publishId: number): void
 
@@ -702,7 +703,7 @@ Unsubscribes from device discovery failures.
   );
   ```
 
-### on('publishSuccess')
+### on('publishSuccess')9+</sup>
 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
@@ -724,7 +725,7 @@ dmInstance.on('publishSuccess', (data) => {
 );
 ```
 
-### off('publishSuccess')
+### off('publishSuccess')9+</sup>
 
 off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
@@ -746,7 +747,7 @@ Unsubscribes from device information publication success events.
   );
   ```
 
-### on('publishFail')
+### on('publishFail')9+</sup>
 
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
@@ -768,7 +769,7 @@ Subscribes to device information publication failures.
   );
   ```
 
-### off('publishFail')
+### off('publishFail')9+</sup>
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 

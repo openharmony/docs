@@ -1379,7 +1379,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 | 名称              | 参数类型                                | 必填   | 说明       |
 | --------------- | ----------------------------------- | ---- | -------- |
-| componentId     | number                              | 是    | 组件标识     |
+| componentId     | string                              | 是    | 组件标识     |
 | componentType   | [ComponentType](#componenttype)     | 是    | 组件类型     |
 | upgradeAction   | [UpgradeAction](#upgradeaction)     | 是    | 升级方式     |
 | displayVersion  | string                              | 是    | 显示版本号    |

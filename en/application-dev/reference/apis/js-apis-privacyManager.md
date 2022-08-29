@@ -192,7 +192,7 @@ Represents the permission usage records of all applications.
 | -------- | -------------- | ---- | ---------------------------------------- |
 | beginTime | number         | No   | Start time of the query, in ms.|
 | endTime | number         | No   | End time of the query, in ms.|
-| bundleRecords  | Array&lt;[BundleUsedRecord](#BundleUsedRecord)&gt;         | No   | Permission usage records obtained.                                |
+| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | No   | Permission usage records obtained.                                |
 
 ## BundleUsedRecord
 
@@ -206,7 +206,7 @@ Represents the permission access records of an application.
 | isRemote | boolean         | No   | Whether the token ID belongs to a remote device. The default value is **false**.|
 | deviceId  | string         | No   | ID of the device hosting the target application.                                |
 | bundleName | string         | No   | Bundle name of the target application.|
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#PermissionUsedRecord)&gt;         | No   | Permission usage records of the target application.                                |
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | No   | Permission usage records of the target application.                                |
 
 ## PermissionUsedRecord
 

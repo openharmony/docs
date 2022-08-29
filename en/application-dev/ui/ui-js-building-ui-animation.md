@@ -16,8 +16,7 @@ The transform attributes are the core of the static animation. A static animatio
 
 For more information, see [Component Methods](../reference/arkui-js/js-components-common-methods.md). The following is an example:
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text class="translate">hello</text>
@@ -26,8 +25,7 @@ For more information, see [Component Methods](../reference/arkui-js/js-component
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -57,10 +55,9 @@ For more information, see [Component Methods](../reference/arkui-js/js-component
 }
 ```
 
+**Figure 1** Static animation
 
-  Figure 1 Static animation
-  
-  ![en-us_image_0000001223127724](figures/en-us_image_0000001223127724.png)
+![en-us_image_0000001223127724](figures/en-us_image_0000001223127724.png)
 
 
 ## Continuous Animation
@@ -81,8 +78,7 @@ The core of a continuous animation is animation attributes, which define the sta
 
 To use the animation attributes, you need to define a @keyframes rule in the .css file, set the animation transition effect in @keyframes, and invoke the effect through a style class in the .hml file. The following is an example for animation-name:
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="item-container">
   <text class="header">animation-name</text>
@@ -96,8 +92,7 @@ To use the animation attributes, you need to define a @keyframes rule in the .cs
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .item-container {
   margin-right: 60px;
@@ -146,7 +141,6 @@ To use the animation attributes, you need to define a @keyframes rule in the .cs
 }
 ```
 
-
 ```
 // xxx.js
 export default {
@@ -163,6 +157,6 @@ export default {
 }
 ```
 
-  Figure 2 Continuous animation effect
-  
-  ![en-us_image_0000001223287696](figures/en-us_image_0000001223287696.gif)
+**Figure 2** Continuous animation effect
+
+![en-us_image_0000001223287696](figures/en-us_image_0000001223287696.gif)
