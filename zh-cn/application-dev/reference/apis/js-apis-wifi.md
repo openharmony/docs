@@ -16,7 +16,8 @@ import wifi from '@ohos.wifi';
 enableWifi(): boolean
 
 使能WLAN。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -33,7 +34,8 @@ enableWifi(): boolean
 disableWifi(): boolean
 
 去使能WLAN。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -197,6 +199,8 @@ WLAN热点信息。
 
 WLAN热点信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | **参数名** | **类型** | **读写属性** | **说明** |
@@ -242,7 +246,8 @@ getScanInfosSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 添加网络配置，使用Promise异步回调。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
 
@@ -271,19 +276,21 @@ WLAN配置信息。
 | preSharedKey | string | 只读 | 热点的密钥。 |
 | isHiddenSsid | boolean | 只读 | 是否是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 只读 | 加密类型。 |
-| creatorUid | number | 只读 | 创建用户的ID，仅系统应用可用。 |
-| disableReason | number | 只读 | 禁用原因，仅系统应用可用。 |
-| netId | number | 只读 | 分配的网络ID， 仅系统应用可用。 |
-| randomMacType | number | 只读 | 随机MAC类型，仅系统应用可用。 |
-| randomMacAddr | string | 只读 | 随机MAC地址，仅系统应用可用。 |
-| ipType | [IpType](#iptype7) | 只读 | IP地址类型，仅系统应用可用。 |
-| staticIp | [IpConfig](#ipconfig7) | 只读 | 静态IP配置信息，仅系统应用可用。 |
-| eapConfig<sup>9+</sup> | [WifiEapConfig](#wifieapconfig9) | 只读 | 可扩展身份验证协议配置，仅系统应用可用。 |
+| creatorUid | number | 只读 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| disableReason | number | 只读 | 禁用原因。 <br /> **系统接口：** 此接口为系统接口。 |
+| netId | number | 只读 | 分配的网络ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| randomMacType | number | 只读 | 随机MAC类型。 <br /> **系统接口：** 此接口为系统接口。 |
+| randomMacAddr | string | 只读 | 随机MAC地址。 <br /> **系统接口：** 此接口为系统接口。 |
+| ipType | [IpType](#iptype7) | 只读 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
+| staticIp | [IpConfig](#ipconfig7) | 只读 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
+| eapConfig<sup>9+</sup> | [WifiEapConfig](#wifieapconfig9) | 只读 | 可扩展身份验证协议配置。 <br /> **系统接口：** 此接口为系统接口。 |
 
 
 ## IpType<sup>7+</sup>
 
 表示IP类型的枚举。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -298,6 +305,8 @@ WLAN配置信息。
 
 IP配置信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | **参数名** | **类型** | **读写属性** | **说明** |
@@ -311,6 +320,8 @@ IP配置信息。
 ## WifiEapConfig<sup>9+</sup>
 
 可扩展身份验证协议配置信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -335,6 +346,8 @@ IP配置信息。
 
 表示EAP认证方式的枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 | 名称 | 默认值 | 说明 |
@@ -353,6 +366,8 @@ IP配置信息。
 ## Phase2Method<sup>9+</sup>
 
 表示第二阶段认证方式的枚举。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -373,7 +388,8 @@ IP配置信息。
 addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
 
 添加网络配置，使用callback异步回调。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
 
@@ -556,7 +572,7 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 ## wifi.connectToCandidateConfig<sup>9+</sup>
 
-connectToCandidateConfig(networkId: number): boolean
+connectToCandidateConfig(networkId: number): void
 
 连接到候选网络。
 
@@ -569,18 +585,14 @@ connectToCandidateConfig(networkId: number): boolean
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 候选网络配置的ID。 |
 
-**返回值：**
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
-
 
 ## wifi.connectToNetwork
 
 connectToNetwork(networkId: number): boolean
 
 连接到指定网络。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -602,10 +614,10 @@ connectToNetwork(networkId: number): boolean
 connectToDevice(config: WifiDeviceConfig): boolean
 
 连接到指定网络。
-此接口为系统接口。
 
-**需要权限：**
-  ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG 和 ohos.permissio.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG 和 ohos.permissio.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
 **系统能力：**
   SystemCapability.Communication.WiFi.STA
@@ -626,10 +638,10 @@ connectToDevice(config: WifiDeviceConfig): boolean
 disconnect(): boolean
 
 连接到指定网络。
-此接口为系统接口。
 
-**需要权限：**
-  ohos.permission.SET_WIFI_INFO 和 ohos.permissio.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
 **系统能力：**
   SystemCapability.Communication.WiFi.STA
@@ -723,19 +735,19 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | -------- | -------- | -------- | -------- |
 | ssid | string | 只读 | 热点的SSID，编码格式为UTF-8。 |
 | bssid | string | 只读 | 热点的BSSID。 |
-| networkId | number | 只读 | 网络配置ID， 仅系统应用可用。 |
+| networkId | number | 只读 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | rssi | number | 只读 | 热点的信号强度(dBm)。 |
 | band | number | 只读 | WLAN接入点的频段。 |
 | linkSpeed | number | 只读 | WLAN接入点的速度。 |
 | frequency | number | 只读 | WLAN接入点的频率。 |
 | isHidden | boolean | 只读 | WLAN接入点是否是隐藏网络。 |
 | isRestricted | boolean | 只读 | WLAN接入点是否限制数据量。 |
-| chload | number | 只读 | 连接负载，值越大表示负载约高，仅系统应用可用。 |
-| snr | number | 只读 | 信噪比，仅系统应用可用。 |
+| chload | number | 只读 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
+| snr | number | 只读 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
 | macType<sup>9+</sup> | number | 只读 | MAC地址类型。 |
 | macAddress | string | 只读 | 设备的MAC地址。 |
 | ipAddress | number | 只读 | WLAN连接的IP地址。 |
-| suppState | [SuppState](#suppstate) | 只读 | 请求状态，仅系统应用可用。|
+| suppState | [SuppState](#suppstate) | 只读 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
 | connState | [ConnState](#connstate) | 只读 | WLAN连接状态。 |
 
 
@@ -760,6 +772,8 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 ## SuppState
 
 表示请求状态的枚举。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -800,7 +814,8 @@ isConnected(): boolean
 getSupportedFeatures(): number
 
 查询设备支持的特性。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -854,7 +869,8 @@ isFeatureSupported(featureId: number): boolean
 getDeviceMacAddress(): string[]
 
 获取设备的MAC地址。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_LOCAL_MAC 和 ohos.permission.GET_WIFI_INFO，仅系统应用可用。
 
@@ -920,7 +936,8 @@ getCountryCode(): string
 reassociate(): boolean
 
 重新关联网络。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -937,7 +954,8 @@ reassociate(): boolean
 reconnect(): boolean
 
 重新连接网络。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -954,7 +972,8 @@ reconnect(): boolean
 getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 获取网络配置。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.GET_WIFI_CONFIG
 
@@ -968,10 +987,11 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 
 ## wifi.updateNetwork<sup>7+</sup>
 
-updateNetwork(config: WifiDeviceConfig): boolean
+updateNetwork(config: WifiDeviceConfig): number
 
 更新网络配置。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
 
@@ -985,7 +1005,7 @@ updateNetwork(config: WifiDeviceConfig): boolean
 **返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:操作成功，&nbsp;false:操作失败。 |
+  | number | 返回更新的网络配置ID，如果值为-1表示更新失败。 |
 
 
 ## wifi.disableNetwork<sup>7+</sup>
@@ -993,7 +1013,8 @@ updateNetwork(config: WifiDeviceConfig): boolean
 disableNetwork(netId: number): boolean
 
 去使能网络配置。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -1015,7 +1036,8 @@ disableNetwork(netId: number): boolean
 removeAllNetwork(): boolean
 
 移除所有网络配置。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -1032,7 +1054,8 @@ removeAllNetwork(): boolean
 removeDevice(id: number): boolean
 
 移除指定的网络配置。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
@@ -1054,7 +1077,8 @@ removeDevice(id: number): boolean
 enableHotspot(): boolean
 
 使能热点。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
 
@@ -1071,7 +1095,8 @@ enableHotspot(): boolean
 disableHotspot(): boolean
 
 去使能热点。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
 
@@ -1088,7 +1113,8 @@ disableHotspot(): boolean
 isHotspotDualBandSupported(): boolean
 
 热点是否支持双频。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
 
@@ -1105,7 +1131,8 @@ isHotspotDualBandSupported(): boolean
 isHotspotActive(): boolean
 
 热点是否已使能。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -1122,7 +1149,8 @@ isHotspotActive(): boolean
 setHotspotConfig(config: HotspotConfig): boolean
 
 设置热点配置信息。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 
@@ -1143,6 +1171,8 @@ setHotspotConfig(config: HotspotConfig): boolean
 
 热点配置信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 | **参数名** | **类型** | **读写属性** | **说明** |
@@ -1159,7 +1189,8 @@ setHotspotConfig(config: HotspotConfig): boolean
 getHotspotConfig(): HotspotConfig
 
 获取热点配置信息。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 
@@ -1176,7 +1207,8 @@ getHotspotConfig(): HotspotConfig
 getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
 
 获取连接的设备。
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
 
@@ -1191,6 +1223,8 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
 ## StationInfo<sup>7+</sup>
 
 接入的设备信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
@@ -1594,7 +1628,7 @@ deletePersistentGroup(netId: number): boolean
 
 删除永久组。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -1611,7 +1645,8 @@ deletePersistentGroup(netId: number): boolean
 
 
 ## wifi.getP2pGroups<sup>9+</sup>
-此接口为系统接口。
+
+**系统接口：** 此接口为系统接口。
 
 getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
@@ -1667,10 +1702,10 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
 setDeviceName(devName: string): boolean
 
 设置设备名称。
-此接口为系统接口。
 
-**需要权限：**
-  ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
