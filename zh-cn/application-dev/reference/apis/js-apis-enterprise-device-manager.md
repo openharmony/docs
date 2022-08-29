@@ -27,8 +27,8 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 | 参数名            | 类型                                  | 必填   | 说明                 |
 | -------------- | ----------------------------------- | ---- | ------------------ |
 | admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用            |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息       |
-| type           | [AdminType](#AdminType)             | 是    | 激活的设备管理员类型         |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息       |
+| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型         |
 | callback       | AsyncCallback\<boolean>             | 是    | callback方式返回是否激活成功 |
 
 **示例**：
@@ -66,8 +66,8 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
 | admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                      |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息                 |
-| type           | [AdminType](#AdminType)             | 是    | 激活的设备管理员类型                   |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息                 |
+| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型                   |
 | userId         | number                              | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback       | AsyncCallback\<boolean>             | 是    | callback方式返回是否激活成功           |
 
@@ -106,8 +106,8 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 | 参数名            | 类型                                  | 必填   | 说明                           |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
 | admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                      |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息                 |
-| type           | [AdminType](#AdminType)             | 是    | 激活的设备管理员类型                   |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息                 |
+| type           | [AdminType](#admintype)             | 是    | 激活的设备管理员类型                   |
 | userId         | number                              | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -536,7 +536,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 | 参数名            | 类型                                  | 必填   | 说明                     |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用                |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息           |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息           |
 | callback       | AsyncCallback\<boolean&gt;          | 是    | callback方式返回是否设置企业信息成功 |
 
 **示例：**
@@ -571,7 +571,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise&lt;boole
 | 参数名            | 类型                                  | 必填   | 说明           |
 | -------------- | ----------------------------------- | ---- | ------------ |
 | admin          | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用      |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | 是    | 设备管理员应用的企业信息 |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理员应用的企业信息 |
 
 **返回值：**
 
@@ -611,7 +611,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | admin    | [Want](js-apis-application-Want.md)      | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | 是    | callback方式返回设备管理员应用的企业信息 |
+| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | 是    | callback方式返回设备管理员应用的企业信息 |
 
 **示例：**
 
@@ -648,7 +648,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 | 类型                                       | 说明                        |
 | ---------------------------------------- | ------------------------- |
-| Promise&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Promise方式返回设备管理员应用的企业信息对象 |
+| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise方式返回设备管理员应用的企业信息对象 |
 
 **示例：**
 
