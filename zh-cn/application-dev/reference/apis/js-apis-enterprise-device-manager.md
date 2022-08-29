@@ -459,7 +459,7 @@ enterpriseDeviceManager.isSuperAdmin(bundleName).then((result) => {
 
 getDeviceSettingsManager(callback: AsyncCallback&lt;DeviceSettingsManager&gt;): void
 
-获取[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager)对象，使用callback形式返回DeviceSettingsManager对象。
+获取[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)对象，使用callback形式返回DeviceSettingsManager对象。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -495,7 +495,7 @@ enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
 
 getDeviceSettingsManager(): Promise&lt;DeviceSettingsManager&gt;
 
-获取[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager)对象，使用Promise形式返回DeviceSettingsManager对象。
+获取[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)对象，使用Promise形式返回DeviceSettingsManager对象。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
