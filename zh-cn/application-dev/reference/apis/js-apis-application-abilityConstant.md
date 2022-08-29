@@ -76,3 +76,15 @@ import AbilityConstant from '@ohos.application.AbilityConstant';
 | WINDOW_MODE_SPLIT_PRIMARY   | 100 | 分屏多窗口主要模式。   |
 | WINDOW_MODE_SPLIT_SECONDARY | 101 | 分屏多窗口次要模式。   |
 | WINDOW_MODE_FLOATING        | 102 | 自由悬浮形式窗口模式。 |
+
+## AbilityConstant.MemoryLevel
+
+内存级别的类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 变量                         | 取值 | 说明                |
+| ---                         | --- | ---                  |
+| MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。       |
+| MEMORY_LEVEL_LOW            | 1   | 内存占用低。            |
+| MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
