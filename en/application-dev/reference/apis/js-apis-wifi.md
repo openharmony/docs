@@ -1,5 +1,5 @@
 # WLAN
-The WLAN module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
+The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -23,9 +23,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.disableWifi
@@ -40,9 +40,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.isWifiActive
@@ -56,9 +56,9 @@ Checks whether WLAN is enabled.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
 
 ## wifi.scan
@@ -72,9 +72,9 @@ Starts a scan for WLAN.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getScanInfos
@@ -88,9 +88,9 @@ Obtains the scan result. This API uses a promise to return the result.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
 
 
 ## wifi.getScanInfos
@@ -104,9 +104,9 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
 
 **Example**
   ```js
@@ -159,7 +159,7 @@ Represents WLAN hotspot information.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| Hotspot service set identifier (SSID), in UTF-8 format.|
+| ssid | string | Read only| Service set identifier (SSID) of the hotspot, in UTF-8 format.|
 | bssid | string | Read only| Basic service set identifier (BSSID) of the hotspot.|
 | capabilities | string | Read only| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Read only| WLAN security type.|
@@ -207,7 +207,7 @@ Represents a WLAN information element.
 
 ## WifiChannelWidth<sup>9+</sup>
 
-Enumerates the Wi-Fi channel widths.
+Enumerates the WLAN channel widths.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -232,9 +232,9 @@ Obtains the scan result. This API returns the result synchronously.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Scan result obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Scan result obtained.|
 
 
 ## wifi.addDeviceConfig
@@ -249,14 +249,14 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the operation has failed.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the operation has failed.|
 
 ## WifiDeviceConfig
 
@@ -269,7 +269,7 @@ Represents the WLAN configuration.
 | ssid | string | Read only| SSID of the hotspot, in UTF-8 format.|
 | bssid | string | Read only| BSSID of the hotspot.|
 | preSharedKey | string | Read only| PSK of the hotspot.|
-| isHiddenSsid | boolean | Read only| Whether to hide the network.|
+| isHiddenSsid | boolean | Read only| Whether the network is hidden.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Read only| Security type.|
 | creatorUid | number | Read only| User ID, which is available only to system applications.|
 | disableReason | number | Read only| Reason for disabling WLAN. This parameter is available only to system applications.|
@@ -380,10 +380,10 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -397,14 +397,14 @@ Adds the configuration of an untrusted network. This API uses a promise to retur
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -418,10 +418,10 @@ Adds the configuration of an untrusted network. This API uses an asynchronous ca
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.removeUntrustedConfig<sup>7+</sup>
@@ -435,14 +435,14 @@ Removes the configuration of an untrusted network. This API uses a promise to re
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 
 ## wifi.removeUntrustedConfig<sup>7+</sup>
@@ -456,10 +456,10 @@ Removes the configuration of an untrusted network. This API uses an asynchronous
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.addCandidateConfig<sup>9+</sup>
@@ -473,14 +473,14 @@ Adds the configuration of a candidate network. This API uses a promise to return
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the network configuration ID.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the network configuration ID.|
 
 
 ## wifi.addCandidateConfig<sup>9+</sup>
@@ -494,10 +494,10 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
@@ -511,14 +511,14 @@ Removes the configuration of a candidate network. This API uses a promise to ret
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| Network configuration to remove.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
@@ -532,10 +532,10 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| Network configuration to remove.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
@@ -549,9 +549,9 @@ Obtains candidate network configuration.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Candidate network configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Candidate network configuration obtained.|
 
 
 ## wifi.connectToCandidateConfig<sup>9+</sup>
@@ -565,14 +565,14 @@ Connects to a candidate network.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| networkId | number | Yes| ID of the candidate network configuration.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | Yes| ID of the candidate network configuration.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.connectToNetwork
@@ -587,14 +587,14 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| networkId | number | Yes| Network configuration ID.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | Yes| Network configuration ID.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.connectToDevice
@@ -611,21 +611,21 @@ This is a system API.
   SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.disconnect
 
 disconnect(): boolean
 
-Connects to the specified network.
+Disconnects from the specified network.
 This is a system API.
 
 **Required permissions**:
@@ -635,9 +635,9 @@ This is a system API.
   SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getSignalLevel
@@ -651,15 +651,15 @@ Obtains the WLAN signal level.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| rssi | number | Yes| RSSI of the hotspot, in dBm.|
-| band | number | Yes| Frequency band of the WLAN AP.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | rssi | number | Yes| RSSI of the hotspot, in dBm.|
+  | band | number | Yes| Frequency band of the WLAN AP.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| number | Signal level obtained. The value range is [0, 4].|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | Signal level obtained. The value range is [0, 4].|
 
 
 ## wifi.getLinkedInfo
@@ -673,9 +673,9 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information obtained.|
 
 
 ## wifi.getLinkedInfo
@@ -689,9 +689,9 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
   ```js
@@ -721,7 +721,7 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable/Writable| Description|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| SSID, in UTF-8 format.|
+| ssid | string | Read only| SSID of the hotspot, in UTF-8 format.|
 | bssid | string | Read only| BSSID of the hotspot.|
 | networkId | number | Read only| Network configuration ID, which is available only to system applications.|
 | rssi | number | Read only| RSSI of the hotspot, in dBm.|
@@ -754,7 +754,7 @@ Enumerates the WLAN connection states.
 | CONNECTED | 4 | A WLAN connection is established.|
 | DISCONNECTING | 5 | The WLAN connection is being disconnected.|
 | DISCONNECTED | 6 | The WLAN connection is disconnected.|
-| UNKNOWN | 7 | Failed to set up a WLAN connection.|
+| UNKNOWN | 7 | Failed to set up the WLAN connection.|
 
 
 ## SuppState
@@ -775,7 +775,7 @@ Enumerates the supplicant states.
 | FOUR_WAY_HANDSHAKE | 7 | A four-way handshake is being performed for the supplicant.|
 | GROUP_HANDSHAKE | 8 | A group handshake is being performed for the supplicant.|
 | COMPLETED | 9 | The authentication is complete.|
-| UNINITIALIZED | 10 | The supplicant failed to set up a connection.|
+| UNINITIALIZED | 10 | The supplicant failed to set up the connection.|
 | INVALID | 11 | Invalid value.|
 
 
@@ -790,9 +790,9 @@ Checks whether the WLAN is connected.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
 
 
 ## wifi.getSupportedFeatures<sup>7+</sup>
@@ -807,9 +807,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| number | Feature value.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | Feature value. |
 
 **Feature IDs**
 
@@ -839,14 +839,14 @@ Checks whether the device supports the specified WLAN feature.
 
 **Parameters**
 
-| **Name**| **Type**| Mandatory| **Description**|
-| -------- | -------- | -------- | -------- |
-| featureId | number | Yes| Feature ID.|
+  | **Name**| **Type**| Mandatory| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | featureId | number | Yes| Feature ID.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 
 ## wifi.getDeviceMacAddress<sup>7+</sup>
@@ -861,9 +861,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| string[] | MAC address obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | string[] | MAC address obtained.|
 
 
 ## wifi.getIpInfo<sup>7+</sup>
@@ -877,9 +877,9 @@ Obtains IP information.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| [IpInfo](#ipinfo7) | IP information obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | [IpInfo](#ipinfo7) | IP information obtained.|
 
 
 ## IpInfo<sup>7+</sup>
@@ -910,9 +910,9 @@ Obtains the country code.
 **System capability**: SystemCapability.Communication.WiFi.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| string | Country code obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | string | Country code obtained.|
 
 
 ## wifi.reassociate<sup>7+</sup>
@@ -927,9 +927,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.reconnect<sup>7+</sup>
@@ -944,9 +944,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getDeviceConfigs<sup>7+</sup>
@@ -961,9 +961,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
 
 
 ## wifi.updateNetwork<sup>7+</sup>
@@ -978,14 +978,14 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.disableNetwork<sup>7+</sup>
@@ -1000,14 +1000,14 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of the network configuration to disable.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the network configuration to disable.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.removeAllNetwork<sup>7+</sup>
@@ -1022,16 +1022,16 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.removeDevice<sup>7+</sup>
 
 removeDevice(id: number): boolean
 
-Removes the configuration of a network.
+Removes the specified network configuration.
 This is a system API.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
@@ -1039,14 +1039,14 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| id | number | Yes| ID of the network configuration to remove.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | id | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.enableHotspot<sup>7+</sup>
@@ -1061,9 +1061,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.disableHotspot<sup>7+</sup>
@@ -1078,9 +1078,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.isHotspotDualBandSupported<sup>7+</sup>
@@ -1095,9 +1095,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 
 ## wifi.isHotspotActive<sup>7+</sup>
@@ -1112,9 +1112,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
 
 ## wifi.setHotspotConfig<sup>7+</sup>
@@ -1129,14 +1129,14 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## HotspotConfig<sup>7+</sup>
@@ -1147,10 +1147,10 @@ Represents the hotspot configuration.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| SSID, in UTF-8 format.|
+| ssid | string | Read only| SSID of the hotspot, in UTF-8 format.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Read only| Security type.|
 | band | number | Read only| Hotspot band. The value **1** stands for 2.4 GHz, the value **2** for 5 GHz, and the value **3** for dual band.|
-| preSharedKey | string | Read only| SPK of the hotspot.|
+| preSharedKey | string | Read only| PSK of the hotspot.|
 | maxConn | number | Read only| Maximum number of connections allowed.|
 
 
@@ -1166,9 +1166,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
 
 
 ## wifi.getStations<sup>7+</sup>
@@ -1183,9 +1183,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
 
 
 ## StationInfo<sup>7+</sup>
@@ -1212,9 +1212,9 @@ Obtains P2P link information. This API uses a promise to return the result.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
 
 
 
@@ -1254,9 +1254,9 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getCurrentGroup<sup>8+</sup>
@@ -1270,9 +1270,9 @@ Obtains the current P2P group information. This API uses a promise to return the
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the group information obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the group information obtained.|
 
 
 ## wifi.getCurrentGroup<sup>8+</sup>
@@ -1286,41 +1286,41 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getP2pPeerDevices<sup>8+</sup>
 
 getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
-Obtains the peer device list in a P2P connection. This API uses a promise to return the result.
+Obtains the peer device list in the P2P connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
 
 
 ## wifi.getP2pPeerDevices<sup>8+</sup>
 
 getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
-Obtains the peer device list in a P2P connection. This API uses an asynchronous callback to return the result.
+Obtains the peer device list in the P2P connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## WifiP2pDevice<sup>8+</sup>
@@ -1357,32 +1357,32 @@ Enumerates the P2P device states.
 
 getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
 
-Obtains the local device information in a P2P connection. This API uses a promise to return the result.
+Obtains the local device information in the P2P connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Promise used to return the local device information obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Promise used to return the local device information obtained.|
 
 
 ## wifi.getP2pLocalDevice<sup>9+</sup>
 
 getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 
-Obtains the local device information in a P2P connection. This API uses an asynchronous callback to return the result.
+Obtains the local device information in the P2P connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the local device information obtained. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the local device information obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.createGroup<sup>8+</sup>
@@ -1397,19 +1397,19 @@ Creates a P2P group.
 
 **Parameters**
 
-| **Name**| **Type**| Mandatory| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
+  | **Name**| **Type**| Mandatory| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## WifiP2PConfig<sup>8+</sup>
 
-Represents P2P configuration.
+Represents P2P group configuration.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
@@ -1446,9 +1446,9 @@ Removes this P2P group.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.p2pConnect<sup>8+</sup>
@@ -1463,14 +1463,14 @@ Sets up a P2P connection.
 
 **Parameters**
 
-| **Name**| **Type**| Mandatory| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Connection configuration.|
+  | **Name**| **Type**| Mandatory| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 **Example**
@@ -1551,9 +1551,9 @@ Cancels this P2P connection.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.startDiscoverDevices<sup>8+</sup>
@@ -1567,9 +1567,9 @@ Starts to discover devices.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.stopDiscoverDevices<sup>8+</sup>
@@ -1583,9 +1583,9 @@ Stops discovering devices.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.deletePersistentGroup<sup>8+</sup>
@@ -1600,21 +1600,21 @@ Deletes a persistent group.
 
 **Parameters**
 
-| **Name**| **Type**| Mandatory| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of a group to delete.|
+  | **Name**| **Type**| Mandatory| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the group to delete.|
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getP2pGroups<sup>9+</sup>
+
 getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
-Obtains information about all P2P groups. This API uses a promise to return the result. 
-
+Obtains information about all P2P groups. This API uses a promise to return the result.
 This is a system API.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
@@ -1622,9 +1622,9 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Return value**
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&nbsp;&gt; | Promise used to return the group information obtained.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&nbsp;&gt; | Promise used to return the group information obtained.|
 
 
 ## WifiP2pGroupInfo<sup>8+</sup>
@@ -1657,9 +1657,9 @@ Obtains information about all P2P groups. This API uses an asynchronous callback
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.setDeviceName<sup>8+</sup>
@@ -1675,14 +1675,14 @@ This is a system API.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| devName | string | Yes| Device name to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | devName | string | Yes| Device name to set.|
 
 **Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.on('wifiStateChange')<sup>7+</sup>
@@ -1696,10 +1696,10 @@ Registers the WLAN state change events.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiStateChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **wifiStateChange**.|
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
 
 **WLAN states** 
 
@@ -1722,10 +1722,10 @@ Unregisters the WLAN state change events.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **wifiStateChange**.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
   ```js
@@ -1755,10 +1755,10 @@ Registers the WLAN connection state change events.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
 
 **WLAN connection states**
 
@@ -1779,10 +1779,10 @@ Unregisters the WLAN connection state change events.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
@@ -1796,10 +1796,10 @@ Registers the WLAN scan state change events.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiScanStateChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
 
 **WLAN scan states**
 
@@ -1838,10 +1838,10 @@ Registers the RSSI change events.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiRssiChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
 
 
 ## wifi.off('wifiRssiChange')<sup>7+</sup>
@@ -1855,10 +1855,10 @@ Unregisters the RSSI change events.
 **System capability**: SystemCapability.Communication.WiFi.STA
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **wifiRssiChange**.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
@@ -1872,10 +1872,10 @@ Registers the hotspot state change events.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **hotspotStateChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
 
 **Hotspot states**
 
@@ -1898,10 +1898,10 @@ Unregisters the hotspot state change events.
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **hotspotStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
@@ -1915,10 +1915,10 @@ Registers the P2P state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pStateChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pStateChange**.|
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
 
 **P2P states**
 
@@ -1941,10 +1941,10 @@ Unregisters the P2P state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pStateChange**.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pStateChange**.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
   ## wifi.on('p2pConnectionChange')<sup>8+</sup>
@@ -1958,10 +1958,10 @@ Registers the P2P connection state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the P2P connection state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
+  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the P2P connection state.|
 
 
 ## wifi.off('p2pConnectionChange')<sup>8+</sup>
@@ -1975,10 +1975,10 @@ Unregisters the P2P connection state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback used to return the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
+  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback used to return the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
@@ -1992,10 +1992,10 @@ Registers the P2P device state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P device state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
+  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P device state.|
 
 
 ## wifi.off('p2pDeviceChange')<sup>8+</sup>
@@ -2009,10 +2009,10 @@ Unregisters the P2P device state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback used to return the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
+  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback used to return the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
@@ -2026,10 +2026,10 @@ Registers the P2P peer device state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
+  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
 
 
 ## wifi.off('p2pPeerDeviceChange')<sup>8+</sup>
@@ -2043,10 +2043,10 @@ Unregisters the P2P peer device state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback used to return the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
+  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback used to return the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
@@ -2060,10 +2060,10 @@ Registers the P2P persistent group state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-| callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
+  | callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
 
 
 ## wifi.off('p2pPersistentGroupChange')<sup>8+</sup>
@@ -2077,10 +2077,10 @@ Unregisters the P2P persistent group state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-| callback | Callback&lt;void&gt; | No| Callback used to return the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
+  | callback | Callback&lt;void&gt; | No| Callback used to return the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
@@ -2094,10 +2094,10 @@ Registers the P2P device discovery state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
+  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
 
 **P2P discovered device states**
 
@@ -2118,7 +2118,7 @@ Unregisters the P2P device discovery state change events.
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
 **Parameters**
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-| callback | Callback&lt;number&gt; | No| Callback used to return the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
+  | callback | Callback&lt;number&gt; | No| Callback used to return the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|

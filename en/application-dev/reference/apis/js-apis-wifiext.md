@@ -1,7 +1,7 @@
 # WLAN
 This **wifiext** module provides WLAN extension interfaces for non-universal products.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 The APIs described in this document are used only for non-universal products, such as routers.
 
@@ -62,7 +62,7 @@ Obtains the supported power models. This API uses a promise to return the result
 
 ## PowerModel
 
-Enumerates of the power models.
+Enumerates the power models.
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
@@ -118,7 +118,7 @@ Obtains the power model. This API uses an asynchronous callback to return the re
 **Parameters**
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If **err** is not **0**, an error has occurred.|
+  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power model obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifiext.setPowerModel
