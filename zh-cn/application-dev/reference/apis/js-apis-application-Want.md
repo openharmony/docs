@@ -73,29 +73,32 @@ import Want from '@ohos.application.Want';
 - 传递RemoteObject数据
 
   ```  js
+    import rpc from '@ohos.rpc';
+    import Ability from '@ohos.application.Ability'
+
     class Stub extends rpc.RemoteObject {
-      constructor(des) {
-          if (typeof des == 'string') {
-              super(des);
-          } else {
-              return null;
-          }
-      }
+        constructor(des) {
+            if (typeof des == 'string') {
+                super(des);
+            } else {
+                return null;
+            }
+        }
 
-      onRemoteRequest(code, data, reply, option) {
-          if (code === 1) {
-              console.log('onRemoteRequest called')
-              let token = data.readInterfaceToken();
-              let num = data.readInt();
-              this.method();
-              return true;
-          }
-          return false;
-      }
+        onRemoteRequest(code, data, reply, option) {
+            if (code === 1) {
+                console.log('onRemoteRequest called')
+                let token = data.readInterfaceToken();
+                let num = data.readInt();
+                this.method();
+                return true;
+            }
+            return false;
+        }
 
-      method() {
-          console.log('method called');
-      }
+        method() {
+            console.log('method called');
+        }
     }
 
     var remoteObject = new Stub('want-test');
@@ -103,13 +106,15 @@ import Want from '@ohos.application.Want';
         "deviceId": "", // deviceId为空表示本设备
         "bundleName": "com.extreme.test",
         "abilityName": "MainAbility",
-        "moduleName": "entry" // moduleName非必选
+        "moduleName": "entry", // moduleName非必选
         "parameters": {
-          "keyRemoteObject":{"type":"RemoteObject", "value":remoteObject}
+            "keyRemoteObject":{"type":"RemoteObject", "value":remoteObject}
         }
     };
+
     this.context.startAbility(want, (error) => {
         // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
         console.log("error.code = " + error.code)
     })
+
   ```
