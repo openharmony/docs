@@ -50,13 +50,13 @@ Use the `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeTyp
 
 - Use the **columns**, **gutter**, and **margin** parameters to define your grid layout. In the sample below, the grid container is divided into six columns, with the gutter (spacing between columns) of 10 vp and the margin (spacing around a column) of 20 vp.
 
-  ```
+  ```ts
   GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
   ```
 
   In the sample below, the grid container does not have any parameter set. In this case, it follows the default layout, as in the case when sizeType is set to SizeType.Auto.
 
-  ```
+  ```ts
   GridContainer() {}
   ```
 
@@ -64,14 +64,13 @@ Use the `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeTyp
 
 - You can also use **sizeType** to configure child components in the grid container to follow the grid settings for a specific device width type, as shown below:
 
-  ```
-  GridContainer({ sizeType: SizeType.SM) {
+  ```ts
+  GridContainer({ sizeType: SizeType.SM }) {
        Row() {
-
          Text('1')
            .useSizeType({
-             xs: { span: 2},
-             sm: { span: 3, offset: 1 },
+             xs: { span: 2, offset: 0 },
+             sm: { span: 2, offset: 0 },
              md: { span: 6, offset: 2 },
              lg: { span: 8, offset: 2 },
            })
@@ -85,25 +84,28 @@ Use the `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeTyp
 
 Use the universal attribute **useSizeType** to configure the positioning of child components in the grid container. **span** indicates the number of columns occupied by the child component. **offset** indicates the column offset, that is, the column where the component is located. The sample code is as follows:
 
-```
+```ts
 GridContainer() {
    Row() {
      Text('1')
        .useSizeType({
-         xs: { span: 2},
-         sm: { span: 3, offset: 1 },
+         xs: { span: 2, offset: 0 },
+         sm: { span: 0, offset: 0 },
          md: { span: 6, offset: 2 },
          lg: { span: 8, offset: 2 },
        })
    }
 }
 ```
-In the preceding example, `sm: { span: 2, offset: 0 }` indicates that on a medium-sized device, the **\<Text>** component occupies three columns and is placed in the first column of the grid container.
+In the preceding example, `sm: { span: 2, offset: 0 }` indicates that on a medium-sized device, the **\<Text>** component occupies two columns and is placed in the first column of the grid container.
+
+![en-us_image_0000001218108718](figures/en-us_image_0000001218108719.png)
+
 ## Example Scenario
 
 The grid layout helps ensure proper display of components among different device width types, eliminating the hassle of writing a large amount of code for device compatibility. 
 
-```
+```ts
 @Entry
 @Component
 struct GridContainerExample {

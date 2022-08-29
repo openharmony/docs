@@ -52,6 +52,7 @@
             - [Introduction to the Hi3861 Development Board](quick-start/quickstart-lite-introduction-hi3861.md)
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-lite-introduction-hi3516.md)
         - [Reference](quick-start/quickstart-lite-reference.md)
+        - [Burning Code by Using HiTool](quick-start/quickstart-lite-hitool.md)
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - Getting Started with Standard System (IDE Mode, Recommended)
     - [Standard System Overview](quick-start/quickstart-ide-standard-overview.md)
@@ -97,10 +98,11 @@
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
+        - [Burning Code by Using HiTool](quick-start/quickstart-standard-hitool.md)
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
+
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
-
-
+  
 - Compatibility and Security
 
   - [Privacy Protection](security/security-privacy-protection.md)
@@ -399,6 +401,7 @@
     - [Building the Standard System](subsystems/subsys-build-standard-large.md)
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
+    - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   - Graphics
     - [Graphics Overview](subsystems/subsys-graphics-overview.md)

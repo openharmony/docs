@@ -115,7 +115,7 @@ The following uses the Hi3516D V300 development board as an example to demonstra
 
 The development procedure is as follows:
 
-1. Develop the Face_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [face_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/face_auth_interface_driver.cpp).
+1. Develop the Face_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [face_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/face_auth/hdi_service/src/face_auth_interface_driver.cpp).
 
    ```c++
    // Create an IRemoteObject object by using the custom HdfFaceAuthInterfaceHost object, which consists of the IoService object and HDI service.
@@ -214,7 +214,7 @@ The development procedure is as follows:
    HDF_INIT(g_faceAuthInterfaceDriverEntry);
    ```
 
-2. Implement the API for obtaining the executor list. For details about the code, see [face_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/face_auth_interface_service.cpp).
+2. Implement the API for obtaining the executor list. For details about the code, see [face_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/face_auth/hdi_service/src/face_auth_interface_service.cpp).
 
    ```c++
    // Executor implementation class
@@ -267,7 +267,7 @@ The development procedure is as follows:
    }
    ```
 
-3. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/face_auth/hdi_service/src/executor_impl.cpp).
+3. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/face_auth/hdi_service/src/executor_impl.cpp).
 
    ```c++
    // Obtain the executor information.

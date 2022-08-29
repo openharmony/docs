@@ -4,8 +4,7 @@
 The @CustomDialog decorator is used to decorate custom pop-up dialog boxes.
 
 
-  
-```
+```ts
 // custom-dialog-demo.ets
 @CustomDialog
 struct DialogExample {

@@ -3,11 +3,12 @@
 
 The **@Styles** decorator adds new attribute functions to basic components, such as **\<Text>**, **\<Column>**, and **\<Button>**. Currently, **@Styles** supports only universal attributes. You can use the **@Styles** decorator to quickly define and reuse the custom styles of a component.
 
-**@Styles** can be defined inside or outside a component. When it is defined outside a component, the keyword function must be included.
+**@Styles** can be defined inside or outside a component. When it is defined outside a component, the keyword **function** must be added before the API name.
 
 
 
-```
+```ts
+// xxx.ets
 @Styles function globalFancy() {
   .backgroundColor(Color.Red)
 }
@@ -40,9 +41,8 @@ struct FancyUse {
 
 In **StateStyles**, styles defined outside the component can be directly called. However, the keyword **this** must be used to call styles defined in the component.
 
-
-
-```
+```ts
+// xxx.ets
 @Styles function globalFancy() {
   .width(100)
   .height(100)

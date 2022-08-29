@@ -63,7 +63,7 @@ struct Index {
 }
 ```
 
-![zh-cn_image_borderImage](figures/borderImage.png)
+![en-us_image_borderImage](figures/borderImage.png)
 
 
 ```ts

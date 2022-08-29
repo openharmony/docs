@@ -6,7 +6,7 @@ The **&lt;svg&gt;** component can also be used to draw text.
 
 ## Text
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
 > - The text content must be written in the **&lt;text&gt;** area. The **&lt;tspan&gt;** child element label can be nested.
 > 
 > - **&lt;text&gt;** can be nested only by the parent element label **svg**.
@@ -15,13 +15,12 @@ The **&lt;svg&gt;** component can also be used to draw text.
 
 Set the following attributes to define text styles: **x** (X coordinate), **y** (Y coordinate), **dx** (x-axis offset of the text), **dy** (y-axis offset of the text), **fill** (font fill color), **stroke** (text border color), and **stroke-width** (text border width).
 
-  
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
-    <text x="200" y="300" font-size="80px" fill="blue" >Hello World</text>
-    <text x="200" y="300" dx="20" dy="80" font-size="80px" fill="blue" fill-opacity="0.5" stroke="red" stroke-width="2">Hello World</text>
+    <text x="200" y="300" font-size="80px" fill="blue" >Hello World</text>    <text x="200" y="300" dx="20" dy="80" font-size="80px" fill="blue" fill-opacity="0.5" stroke="red" stroke-width="2">Hello World</text>
     <text x="20" y="550" fill="#D2691E">
       <tspan dx="40" fill="red" font-size="80" fill-opacity="0.4">Hello World </tspan>
     </text>
@@ -36,8 +35,8 @@ Set the following attributes to define text styles: **x** (X coordinate), **y** 
 
 Set **textpath** to draw text along the path.
 
-  
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="100" y="400">

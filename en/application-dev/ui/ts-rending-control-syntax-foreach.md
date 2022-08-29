@@ -1,11 +1,9 @@
 # ForEach
 
+The development framework provides **ForEach** to iterate arrays and create components for each array item. If a large number of elements are involved in **ForEach**, the page loading may become slow. For best possible results, you are advised to use **[LazyForEach](ts-rending-control-syntax-lazyforeach.md)** instead. **ForEach** is defined as follows:
 
-The development framework provides ForEach to iterate arrays and create components for each array item. ForEach is defined as follows:
 
-
-  
-```
+```ts
 ForEach(
     arr: any[], // Array to be iterated
     itemGenerator: (item: any, index?: number) => void, // child component generator
@@ -17,33 +15,31 @@ ForEach(
 ## ForEach
 
 
-ForEach(arr: any[],itemGenerator: (item: any, index?: number) => void, keyGenerator?: (item: any, index?: number) => string):void
+ForEach(arr: any[],itemGenerator: (item: any, index?: number) =&gt; void, keyGenerator?: (item: any, index?: number) =&gt; string):void
 
 
-  Table1 Parameters
+Table 1 Parameters
 
-| Name | Type | Mandatory | Default Value | Description | 
-| -------- | -------- | -------- | -------- | -------- |
-| arr | any[] | Yes | - | Must be an array. An empty array is allowed. If an array is empty, no child component is created. You can set the functions whose return values are of the array type, for example, arr.slice (1, 3). The set functions cannot change any state variables including the array itself, such as Array.splice, Array.sort, and Array.reverse. | 
-| itemGenerator | (item: any, index?: number) => void | Yes | - | Used to generate the lambda function of the child components. It generates one or more child components for a given array item. A single component and its child component list must be contained in braces ({...}) | 
-| keyGenerator | (item: any, index?: number) => string | No | - | Used as an anonymous parameter for generating a unique and stable key value for a given array item. When the position of a subitem in the array is changed, the key value of the subitem cannot be changed. When a subitem in the array is replaced with a new item, the key value of the current item must be different from that of the new item. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. If the array is reversed while no key-value generator is provided, all nodes in ForEach will be rebuilt. | 
+| Name          | Type                                    | Mandatory  | Default Value | Description                                    |
+| ------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| arr           | any[]                                    | Yes   | -    | Must be an array. An empty array is allowed. If the array is empty, no child component is created. The functions that return array-type values are also allowed, for example, **arr.slice (1, 3)**. The set functions cannot change any state variables including the array itself, such as **Array.splice**, **Array.sort**, and **Array.reverse**.|
+| itemGenerator | (item: any, index?: number) =&gt; void | Yes   | -    | Lambda function used to generate one or more child components for a given array item. A component and its child component list must be enclosed in braces ({...}).|
+| keyGenerator  | (item: any, index?: number) =&gt; string | No   | -    | Anonymous parameter used to generate a unique and stable key value for a given array item. When the position of a subitem in the array is changed, the key value of the subitem cannot be changed. When a subitem in the array is replaced with a new item, the key value of the current item must be different from that of the new item. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. If the array is reversed while no key-value generator is provided, all nodes in **ForEach** will be rebuilt.|
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - ForEach must be used in container components.
-> 
-> - The generated child components are allowed in the parent container component of ForEach. The child component generator function can contain the if/else conditional statement, and the if/else conditional statement can contain ForEach.
-> 
-> - The calling sequence of subitem generator functions may be different from that of the data items in the array. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. The following is an example of incorrect usage:
->     
->   ```
+> **NOTE**
+> - **ForEach** must be used in container components.
+>
+> - The generated child components are allowed in the parent container component of **ForEach**. The child component generator function can contain the **if/else** conditional statement, and the **if/else** conditional statement can contain **ForEach**.
+>
+> - The call sequence of subitem generator functions may be different from that of the data items in the array. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. Below is an example of incorrect usage:
+>   ```ts
 >   ForEach(anArray, item => {Text(`${++counter}. item.label`)})
 >   ```
-> 
+>
 >   Below is an example of correct usage:
-> 
->     
->   ```
+>
+>   ```ts
 >   ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
 >           item => Text(`${item.i}. item.data.label`),
 >           item => item.data.id.toString())
@@ -54,8 +50,8 @@ ForEach(arr: any[],itemGenerator: (item: any, index?: number) => void, keyGenera
 
 The following is an example of a simple-type array:
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MyComponent {
@@ -80,9 +76,9 @@ struct MyComponent {
 }
 ```
 
-  The following is an example of a complex-type array:
-  
-```
+The following is an example of a complex-type array:
+```ts
+// xxx.ets
 class Month {
   year: number
   month: number

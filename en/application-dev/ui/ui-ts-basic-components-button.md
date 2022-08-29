@@ -45,7 +45,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 - Capsule button (default type)
 
-  ```
+  ```ts
   Button('Disable', { type: ButtonType.Capsule, stateEffect: false })
     .backgroundColor(0x317aff)
     .width(90)
@@ -55,7 +55,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 - Circle button
 
-  ```
+  ```ts
   Button('Circle', { type: ButtonType.Circle, stateEffect: false })
     .backgroundColor(0x317aff)
     .width(90)
@@ -71,7 +71,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   In general cases, you can use universal attributes to define the button styles. For example, you can use the **borderRadius** attribute to set the border radius.
 
 
-  ```
+  ```ts
   Button('circle border', { type: ButtonType.Normal })
     .borderRadius(20)
   ```
@@ -83,7 +83,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   Add a font style for text displayed on the button.
 
 
-  ```
+  ```ts
   Button('font style', { type: ButtonType.Normal })
     .fontSize(20)
     .fontColor(Color.Red)
@@ -97,7 +97,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   You can do so by adding the **backgroundColor** attribute.
 
 
-  ```
+  ```ts
   Button('background color').backgroundColor(0xF55A42)
   ```
 
@@ -108,7 +108,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
   In this example, we are creating a button with the delete function.
 
 
-  ```
+  ```ts
   Button({ type: ButtonType.Circle, stateEffect: true }) {
     Image($r('app.media.ic_public_delete_filled')).width(30).height(30)
   }.width(55).height(55).margin({ left: 20 }).backgroundColor(0xF55A42)
@@ -122,7 +122,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 The **\<Button>** component is usually used to trigger actions. You can bind the **onClick** event to the button to have it respond with custom behavior after being clicked.
 
 
-```
+```ts
 Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   .onClick(()=>{
     console.info('Button onClick')
@@ -136,7 +136,8 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **\<List>** container to redirect the user to another page.
 
-  ```
+  ```ts
+  // xxx.ets  
   import router from '@ohos.router'
 
   @Entry
@@ -177,18 +178,19 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   On the user login/registration page, you can use a button to submit a login or registration request.
 
 
-  ```
+  ```ts
+  // xxx.ets  
   @Entry
-  @Component
-  struct ButtonCase2 {
-    build() {
-      Column() {
-        TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
-        TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
-        Button('Register').width(300).margin({ top: 20 })
-      }.padding(20)
+    @Component
+    struct ButtonCase2 {
+      build() {
+        Column() {
+          TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
+          TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
+          Button('Register').width(300).margin({ top: 20 })
+        }.padding(20)
+      }
     }
-  }
   ```
 
   ![en-us_image_0000001190466492](figures/en-us_image_0000001190466492.png)
