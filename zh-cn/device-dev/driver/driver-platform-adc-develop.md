@@ -98,12 +98,12 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
    统一服务模式的特点是device_info文件中第一个设备节点必须为ADC管理器，其各项参数必须如下设置：
 
 
-| 成员名 | 值 |
-| -------- | -------- |
-| moduleName | 固定为HDF_PLATFORM_ADC_MANAGER |
-| serviceName | 无 |
-| policy | 具体配置为0，不发布服务 |
-| deviceMatchAttr | 没有使用，可忽略 |
+   | 成员名 | 值 | 
+   | -------- | -------- |
+   | moduleName | 固定为HDF_PLATFORM_ADC_MANAGER | 
+   | serviceName | 无 | 
+   | policy | 具体配置为0，不发布服务 | 
+   | deviceMatchAttr | 没有使用，可忽略 | 
 
 
    从第二个节点开始配置具体ADC控制器信息，此节点并不表示某一路ADC控制器，而是代表一个资源性质设备，用于描述一类ADC控制器的信息。本例只有一个ADC设备，如有多个设备，则需要在device_info文件增加deviceNode信息，以及在adc_config文件中增加对应的器件属性。
