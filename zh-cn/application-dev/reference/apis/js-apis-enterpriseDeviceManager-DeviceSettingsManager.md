@@ -41,7 +41,7 @@ let wantTemp = {
 };
 enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
     mgr.setDateTime(wantTemp, 1526003846000, (error, value) => { 
-        if (error != null) {
+        if (error) {
             console.log(error);
         } else {
             console.log(value);
@@ -52,7 +52,7 @@ enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
 })
 ```
 
-## eDeviceSettingsManager.setDateTime
+## DeviceSettingsManager.setDateTime
 
 setDateTime(admin: Want, time: number): Promise<void>;
 
