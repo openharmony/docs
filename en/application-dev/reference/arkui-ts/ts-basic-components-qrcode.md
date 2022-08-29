@@ -1,11 +1,10 @@
 # QRCode
 
+The **\<QRCode>** component is used to display a QR code.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;QRCode&gt;** component is used to display QR code information.
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -15,7 +14,7 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
@@ -23,16 +22,17 @@ None
 QRCode(value: string)
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | QR code content string. | 
+  | value | string | Yes| - | Content of the QR code.|
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description | 
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| color | Color | Black | QR code color. | 
+| color | [ResourceColor](../../ui/ts-types.md) | Black | Color of the QR code.|
+| backgroundColor | [ResourceColor](../../ui/ts-types.md) | - | Background color of the QR code.|
 
 
 ## Events
@@ -42,8 +42,8 @@ Among all the universal events, only the click event is supported.
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct QRCodeExample {
