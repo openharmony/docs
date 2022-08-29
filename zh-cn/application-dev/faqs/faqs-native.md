@@ -42,7 +42,7 @@ module.exports = {
 
   
 ```
-// hellp.cpp 读取
+// hello.cpp 读取
 #define _NWEBEX_VERSION(v) #v
 #define _NWEBEX_VER2STR(v) _NWEBEX_VERSION(v)
 
