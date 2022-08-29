@@ -60,7 +60,7 @@ Based on the preceding process, the recommended verification procedure is as fol
 
 1.  Create a root file system image.
 
-    Create a root file system image  **rootfs.img**  by following instructions in  [Adding a Chipset Solution and a Product Solution](../subsystems/subsys-build-mini-lite.md). As shown in the preceding figure, the startup process is closely related to the product configuration. You need to complete the following configuration when creating  **rootfs.img**:
+    Create a root file system image  **rootfs.img**  by following instructions in  [Adding a Chipset Solution and a Product Solution](../subsystems/subsys-build-all.md). As shown in the preceding figure, the startup process is closely related to the product configuration. You need to complete the following configuration when creating  **rootfs.img**:
 
     -   Component configuration
 
