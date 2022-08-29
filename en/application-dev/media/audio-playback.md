@@ -8,6 +8,8 @@ You can use audio playback APIs to convert audio data into audible analog signal
 
 ![en-us_image_audio_state_machine](figures/en-us_image_audio_state_machine.png)
 
+**Note**: If the status is **Idle**, setting the **src** attribute does not change the status. In addition, after the **src** attribute is set successfully, you must call **reset()** before setting it to another value.
+
 
 
 **Figure 2** Layer 0 diagram of audio playback
@@ -197,8 +199,8 @@ export class AudioDemo {
   }
 
   async audioPlayerDemo() {
-    let audioPlayer = media.createAudioPlayer(); // Create an AudioPlayer instance.
-    this.setCallBack(audioPlayer); // Set the event callbacks.
+    let audioPlayer = media.createAudioPlayer();       // Create an AudioPlayer instance.
+    this.setCallBack(audioPlayer);                     // Set the event callbacks.
     let fdPath = 'fd://'
     // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile" command.
     let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.audio.audioplayer/ohos.acts.multimedia.audio.audioplayer/assets/entry/resources/rawfile/01.mp3';
