@@ -331,15 +331,17 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 ## Usage
 
-| 名称             | 类型   | 说明       |
-| ---------------- | ------ | ---------- |
-| unknown          | string | 未知。     |
-| alarm            | string | 闹钟。     |
-| ring             | string | 来电。     |
-| notification     | string | 通知。     |
-| communication    | string | 通信。     |
-| touch            | string | 触摸。     |
-| media            | string | 多媒体。   |
-| physicalFeedback | string | 物理反馈。 |
-| simulateReality  | string | 虚拟现实。 |
+振动使用场景。
+
+| 名称             | 类型   | 说明                           |
+| ---------------- | ------ | ------------------------------ |
+| unknown          | string | 没有明确使用场景，最低优先级。 |
+| alarm            | string | 用于警报振动的场景。           |
+| ring             | string | 用于铃声振动的场景。           |
+| notification     | string | 用于通知振动的场景。           |
+| communication    | string | 用于通信振动的场景。           |
+| touch            | string | 用于触摸振动的场景。           |
+| media            | string | 用于多媒体振动的场景。         |
+| physicalFeedback | string | 用于物理反馈振动的场景。       |
+| simulateReality  | string | 用于模拟现实振动的场景。       |
 
