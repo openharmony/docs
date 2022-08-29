@@ -4,14 +4,6 @@
 
 这个类提供管理Settings的API，仅企业设备管理员应用才能调用。
 
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-**示例：**
-
-```js
-let deviceSettingsManager : enterpriseDeviceManager.DeviceSettingsManager
-```
-
 ## DeviceSettingsManager.setDateTime
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback<void>): void;
@@ -37,17 +29,14 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
-    mgr.setDateTime(wantTemp, 1526003846000, (error, value) => { 
-        if (error) {
-            console.log(error);
-        } else {
-            console.log(value);
-        }
-    });
-}).catch((error) => {
-    console.log(error);
-})
+let deviceSettingsMgr = enterpriseDeviceManager.getDeviceSettingsManager();
+deviceSettingsMgr.setDateTime(wantTemp, 1526003846000, (error, value) => { 
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(value);
+    }
+});
 ```
 
 ## DeviceSettingsManager.setDateTime
@@ -81,12 +70,9 @@ let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
-    mgr.setDateTime(wantTemp, 1526003846000).then((value) => {
-        console.log(value);
-    }).catch((error) => {
-        console.log(error);
-    })
+let deviceSettingsMgr = enterpriseDeviceManager.getDeviceSettingsManager();
+deviceSettingsMgr.setDateTime(wantTemp, 1526003846000).then((value) => {
+    console.log(value);
 }).catch((error) => {
     console.log(error);
 })
