@@ -4,8 +4,7 @@
 
 >  **NOTE**
 >
->  - The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
->  - The APIs provided by this module are system APIs.
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -27,7 +26,7 @@ None
 
 getInspectorByKey(id: string): string
 
-Obtains all attributes of the component with the specified ID, excluding the information about child components.
+Obtains all attributes of the component with the specified ID, excluding the information about child components. This is a system API. 
 
 - Parameters
   | Name  | Type    | Mandatory  | Default Value | Description         |
@@ -43,7 +42,7 @@ Obtains all attributes of the component with the specified ID, excluding the inf
 
 getInspectorTree(): string
 
-Obtains the component tree and component attributes.
+Obtains the component tree and component attributes. This is a system API. 
 
 - Return value
 
@@ -55,7 +54,7 @@ Obtains the component tree and component attributes.
 
 sendEventByKey(id: string, action: number, params: string): boolean
 
-Sends an event to the component with the specified ID.
+Sends an event to the component with the specified ID. This is a system API. 
 
 - Parameters
   | Name    | Type    | Mandatory  | Default Value | Description                                      |
@@ -73,7 +72,7 @@ Sends an event to the component with the specified ID.
 
 sendTouchEvent(event: TouchObject): boolean
 
-Sends a touch event.
+Sends a touch event. This is a system API. 
 
 - Parameters
 
@@ -91,7 +90,7 @@ Sends a touch event.
 
 sendKeyEvent(event: KeyEvent): boolean
 
-Sends a key event.
+Sends a key event. This is a system API. 
 
 - Parameters
 
@@ -109,7 +108,7 @@ Sends a key event.
 
 sendMouseEvent(event: MouseEvent): boolean
 
-Sends a mouse event.
+Sends a mouse event. This is a system API. 
 
 - Parameters
 
