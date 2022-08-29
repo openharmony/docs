@@ -2717,7 +2717,7 @@ device.getServices().then(result => {
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
-Reads the characteristic value of the specific service of the peer BLE device. This API uses an asynchronous callback to return the result.
+Reads the characteristic value of the specific service of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2771,7 +2771,7 @@ device.readCharacteristicValue(characteristic, readCcc);
 
 readCharacteristicValue(characteristic: BLECharacteristic): Promise&lt;BLECharacteristic&gt;
 
-Reads the characteristic value of the specific service of the peer BLE device. This API uses a promise to return the result.
+Reads the characteristic value of the specific service of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2818,7 +2818,7 @@ device.readCharacteristicValue(characteristic);
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
-Reads the descriptor contained in the specific characteristic of the peer BLE device. This API uses an asynchronous callback to return the result.
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2862,7 +2862,7 @@ device.readDescriptorValue(descriptor, readDesc);
 
 readDescriptorValue(descriptor: BLEDescriptor): Promise&lt;BLEDescriptor&gt;
 
-Reads the descriptor contained in the specific characteristic of the peer BLE device. This API uses a promise to return the result.
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
