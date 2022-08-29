@@ -61,10 +61,10 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 **参数：** 
 
-| 参数名    | 类型             | 必填 | 说明           |
-| --------- | ---------------- | ---- | :------------- |
-| effect    | VibrateEffect    | 是   | 马达振动效果。 |
-| attribute | VibrateAttribute | 是   | 马达振动属性。 |
+| 参数名    | 类型                                  | 必填 | 说明           |
+| --------- | ------------------------------------- | ---- | :------------- |
+| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果。 |
+| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。 |
 
 **返回值：** 
 
@@ -187,11 +187,11 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallb
 
 **参数：** 
 
-| 参数名    | 类型                      | 必填 | 说明                     |
-| --------- | ------------------------- | ---- | :----------------------- |
-| effect    | VibrateEffect             | 是   | 马达振动效果。           |
-| attribute | VibrateAttribute          | 是   | 马达振动属性。           |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 指定的callback回调方法。 |
+| 参数名    | 类型                                  | 必填 | 说明                     |
+| --------- | ------------------------------------- | ---- | :----------------------- |
+| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果。           |
+| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。           |
+| callback  | AsyncCallback&lt;void&gt;             | 是   | 指定的callback回调方法。 |
 
 示例：
 
@@ -293,6 +293,13 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | ------------------------- | -------- | ------------------------------------------------------------ |
 | VIBRATOR_STOP_MODE_TIME   | "time"   | 停止模式为duration模式的振动。即触发振动时参数类型为number，参数本身为振动持续时间的触发方式。 |
 | VIBRATOR_STOP_MODE_PRESET | "preset" | 停止模式为预置EffectId的振动。即触发振动时参数类型为EffectId，参数本身为马达振动效果的字符串的触发方式。 |
+
+## VibrateEffect
+
+| 名称          | 类型   | 说明               |
+| ------------- | ------ | ------------------ |
+| VibrateTime   | string | 马达振动时长。     |
+| VibratePreset | string | 马达预置振动类型。 |
 
 ## VibrateTime
 
