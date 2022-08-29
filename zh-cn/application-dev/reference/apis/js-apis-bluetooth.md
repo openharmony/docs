@@ -1289,6 +1289,7 @@ getDeviceState(device: string): ProfileConnectionState
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
+
 **返回值：**
 
 |   类型                                                | 说明                        |
