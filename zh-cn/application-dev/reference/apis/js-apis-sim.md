@@ -17,7 +17,7 @@ import sim from '@ohos.telephony.sim';
 
 isSimActive\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-获取指定卡槽SIM卡是否激活，使用callback方式作为异步方法。
+获取指定卡槽SIM卡是否激活。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -41,7 +41,7 @@ sim.isSimActive(0, (err, data) => {
 
 isSimActive\(slotId: number\): Promise<boolean\>
 
-获取指定卡槽SIM卡是否激活，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡是否激活。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -73,7 +73,7 @@ promise.then(data => {
 
 getDefaultVoiceSlotId\(callback: AsyncCallback<number\>\): void
 
-获取默认语音业务的卡槽ID，使用callback方式作为异步方法。
+获取默认语音业务的卡槽ID。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -96,7 +96,7 @@ sim.getDefaultVoiceSlotId((err, data) => {
 
 getDefaultVoiceSlotId\(\): Promise<number\>
 
-获取默认语音业务的卡槽ID，使用Promise方式作为异步方法。
+获取默认语音业务的卡槽ID。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -121,7 +121,7 @@ promise.then(data => {
 
 hasOperatorPrivileges(slotId: number, callback: AsyncCallback\<boolean\>): void
 
-检查应用（调用者）是否已被授予运营商权限，使用callback方式作为异步方法。
+检查应用（调用者）是否已被授予运营商权限。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -144,7 +144,7 @@ sim.hasOperatorPrivileges(0, (err, data) => {
 
 hasOperatorPrivileges(slotId: number): Promise<boolean\>
 
-检查应用（调用者）是否已被授予运营商权限，使用Promise方式作为异步方法。
+检查应用（调用者）是否已被授予运营商权限。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -175,7 +175,7 @@ promise.then(data => {
 
 getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取指定卡槽SIM卡的ISO国家码，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的ISO国家码。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -199,7 +199,7 @@ sim.getISOCountryCodeForSim(0, (err, data) => {
 
 getISOCountryCodeForSim\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的ISO国家码，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的ISO国家码。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -231,7 +231,7 @@ promise.then(data => {
 
 getSimOperatorNumeric\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -255,7 +255,7 @@ sim.getSimOperatorNumeric(0, (err, data) => {
 
 getSimOperatorNumeric\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的归属PLMN（Public Land Mobile Network）号。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -287,7 +287,7 @@ promise.then(data => {
 
 getSimSpn\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用callback方式作为异步方法。
+获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -311,7 +311,7 @@ sim.getSimSpn(0, (err, data) => {
 
 getSimSpn\(slotId: number\): Promise<string\>
 
-获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN），使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的服务提供商名称（Service Provider Name，SPN）。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -343,7 +343,7 @@ promise.then(data => {
 
 getSimState\(slotId: number, callback: AsyncCallback<SimState\>\): void
 
-获取指定卡槽的SIM卡状态，使用callback方式作为异步方法。
+获取指定卡槽的SIM卡状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -367,7 +367,7 @@ sim.getSimState(0, (err, data) => {
 
 getSimState\(slotId: number\): Promise<SimState\>
 
-获取指定卡槽的SIM卡状态，使用Promise方式作为异步方法。
+获取指定卡槽的SIM卡状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -398,7 +398,7 @@ promise.then(data => {
 
 getCardType\(slotId: number, callback: AsyncCallback<CardType\>\): void
 
-获取指定卡槽SIM卡的卡类型，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的卡类型。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -422,7 +422,7 @@ sim.getCardType(0, (err, data) => {
 
 getCardType\(slotId: number\): Promise<CardType\>
 
-获取指定卡槽SIM卡的卡类型，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的卡类型。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -454,7 +454,7 @@ promise.then(data => {
 
 hasSimCard\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-获取指定卡槽SIM卡是否插卡，使用callback方式作为异步方法。
+获取指定卡槽SIM卡是否插卡。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -478,7 +478,7 @@ sim.hasSimCard(0, (err, data) => {
 
 hasSimCard\(slotId: number\): Promise<boolean\>
 
-获取指定卡槽SIM卡是否插卡，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡是否插卡。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -509,7 +509,7 @@ promise.then(data => {
 
 getSimAccountInfo(slotId: number, callback: AsyncCallback<IccAccountInfo\>): void
 
-获取SIM卡账户信息，使用callback方式作为异步方法。
+获取SIM卡账户信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -537,7 +537,7 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo(slotId: number): Promise<IccAccountInfo\>
 
-获取SIM卡账户信息，使用Promise方式作为异步方法。
+获取SIM卡账户信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -572,7 +572,7 @@ promise.then(data => {
 
 getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo\>>): void
 
-获取活跃SIM卡账户信息列表，使用callback方式作为异步方法。
+获取活跃SIM卡账户信息列表。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -599,7 +599,7 @@ sim.getActiveSimAccountInfoList(0, (err, data) => {
 
 getActiveSimAccountInfoList(): Promise<Array<IccAccountInfo\>>;
 
-获取活跃SIM卡账户信息列表，使用Promise方式作为异步方法。
+获取活跃SIM卡账户信息列表。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -628,7 +628,7 @@ promise.then(data => {
 
 setDefaultVoiceSlotId(slotId: number, callback: AsyncCallback<void\>): void
 
-设置默认语音业务的卡槽ID，使用callback方式作为异步方法。
+设置默认语音业务的卡槽ID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -656,7 +656,7 @@ sim.setDefaultVoiceSlotId(0, (err, data) => {
 
 setDefaultVoiceSlotId(slotId: number): Promise\<void\>
 
-设置默认语音业务的卡槽ID，使用Promise方式作为异步方法。
+设置默认语音业务的卡槽ID。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -691,7 +691,7 @@ promise.then(data => {
 
 setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
 
-设置指定卡槽SIM卡显示的名称，使用callback方式作为异步方法。
+设置指定卡槽SIM卡显示的名称。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -720,7 +720,7 @@ sim.setShowName(0, name, (err, data) => {
 
 setShowName\(slotId: number, name: string\): Promise\<void\>
 
-设置指定卡槽SIM卡显示的名称，使用Promise方式作为异步方法。
+设置指定卡槽SIM卡显示的名称。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -757,7 +757,7 @@ promise.then(data => {
 
 getShowName(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽SIM卡的名称，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的名称。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -785,7 +785,7 @@ sim.getShowName(0, (err, data) => {
 
 getShowName(slotId: number): Promise<string\>
 
-获取指定卡槽SIM卡的名称，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的名称。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -820,7 +820,7 @@ promise.then(data => {
 
 setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): void
 
-设置指定卡槽SIM卡的号码，使用callback方式作为异步方法。
+设置指定卡槽SIM卡的号码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -850,7 +850,7 @@ sim.setShowNumber(0, number, (err, data) => {
 
 setShowNumber\(slotId: number,number: string\): Promise\<void\>
 
-设置指定卡槽SIM卡的号码，使用Promise方式作为异步方法。
+设置指定卡槽SIM卡的号码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -887,7 +887,7 @@ promise.then(data => {
 
 getShowNumber(slotId: number,callback: AsyncCallback<string\>): void
 
-获取指定卡槽SIM卡的号码，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的号码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -915,7 +915,7 @@ sim.getShowNumber(0, (err, data) => {
 
 getShowNumber(slotId: number): Promise<string\>
 
-获取指定卡槽SIM卡的号码，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的号码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -950,7 +950,7 @@ promise.then(data => {
 
 activateSim(slotId: number, callback: AsyncCallback<void\>): void
 
-激活指定卡槽SIM卡，使用callback方式作为异步方法。
+激活指定卡槽SIM卡。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -978,7 +978,7 @@ sim.activateSim(0, (err, data) => {
 
 activateSim(slotId: number): Promise\<void\>
 
-激活指定卡槽SIM卡，使用Promise方式作为异步方法。
+激活指定卡槽SIM卡。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1013,7 +1013,7 @@ promise.then(data => {
 
 deactivateSim(slotId: number, callback: AsyncCallback<void\>): void
 
-禁用指定卡槽SIM卡，使用callback方式作为异步方法。
+禁用指定卡槽SIM卡。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1041,7 +1041,7 @@ sim.deactivateSim(0, (err, data) => {
 
 deactivateSim(slotId: number): Promise\<void\>
 
-禁用指定卡槽SIM卡，使用Promise方式作为异步方法。
+禁用指定卡槽SIM卡。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1076,7 +1076,7 @@ promise.then(data => {
 
 setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStatusResponse\>): void
 
-设置指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+设置指定卡槽SIM卡的锁状态。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1110,7 +1110,7 @@ sim.setLockState(0, lockInfo, (err, data) => {
 
 setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 
-设置指定卡槽SIM卡的锁状态，使用Promise方式作为异步方法。
+设置指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1151,7 +1151,7 @@ promise.then(data => {
 
 getLockState(slotId: number, lockType: LockType, callback: AsyncCallback<LockState\>): void
 
-获取指定卡槽SIM卡的锁状态，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的锁状态。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1178,7 +1178,7 @@ sim.getLockState(0, 1, (err, data) => {
 
 getLockState(slotId: number, lockType: LockType): Promise<LockState\>
 
-获取指定卡槽SIM卡的锁状态，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的锁状态。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1212,7 +1212,7 @@ promise.then(data => {
 
 alterPin(slotId: number, newPin: string, oldPin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-更改Pin密码，使用callback方式作为异步方法。
+更改Pin密码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1242,7 +1242,7 @@ sim.alterPin(0, "1234", "0000", (err, data) => {
 
 alterPin(slotId: number, newPin: string, oldPin: string): Promise<LockStatusResponse\>;
 
-更改Pin密码，使用Promise方式作为异步方法。
+更改Pin密码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1279,7 +1279,7 @@ promise.then(data => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-更改Pin2密码，使用callback方式作为异步方法。
+更改Pin2密码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1309,7 +1309,7 @@ sim.alterPin2(0, "1234", "0000", (err, data) => {
 
 alterPin2(slotId: number, newPin2: string, oldPin2: string): Promise<LockStatusResponse\>
 
-更改Pin2密码，使用Promise方式作为异步方法。
+更改Pin2密码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1346,7 +1346,7 @@ promise.then(data => {
 
 unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1376,7 +1376,7 @@ sim.unlockPin(0, pin, (err, data) => {
 
 unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1413,7 +1413,7 @@ promise.then(data => {
 
 unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码的解锁密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1445,7 +1445,7 @@ sim.unlockPuk(0, newPin, puk, (err, data) => {
 
 unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码的解锁密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1484,7 +1484,7 @@ promise.then(data => {
 
 unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1514,7 +1514,7 @@ sim.unlockPin2(0, pin2, (err, data) => {
 
 unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1551,7 +1551,7 @@ promise.then(data => {
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁指定卡槽SIM卡密码的解锁密码，使用callback方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1583,7 +1583,7 @@ sim.unlockPuk2(0, newPin2, puk2, (err, data) => {
 
 unlockPuk2(slotId: number, newPin2: string, puk2: string): Promise&lt;LockStatusResponse\>
 
-解锁指定卡槽SIM卡密码的解锁密码，使用Promise方式作为异步方法。
+解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1642,7 +1642,7 @@ console.log("Result: "+ sim.getMaxSimCount())
 
 getSimIccId(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽SIM卡的ICCID，使用callback方式作为异步方法。
+获取指定卡槽SIM卡的ICCID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1670,7 +1670,7 @@ sim.getSimIccId(0, (err, data) => {
 
 getSimIccId(slotId: number): Promise<string\>
 
-获取指定卡槽SIM卡的ICCID，使用Promise方式作为异步方法。
+获取指定卡槽SIM卡的ICCID。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1705,7 +1705,7 @@ promise.then(data => {
 
 getVoiceMailIdentifier(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽中SIM卡语音信箱的alpha标识符，使用callback方式作为异步方法。
+获取指定卡槽中SIM卡语音信箱的alpha标识符。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1733,7 +1733,7 @@ sim.getVoiceMailIdentifier(0, (err, data) => {
 
 getVoiceMailIdentifier(slotId: number): Promise<string\>
 
-获取指定卡槽中SIM卡语音信箱的alpha标识符，使用Promise方式作为异步方法。
+获取指定卡槽中SIM卡语音信箱的alpha标识符。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1768,7 +1768,7 @@ promise.then(data => {
 
 getVoiceMailNumber(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽中SIM卡的语音信箱号，使用callback方式作为异步方法。
+获取指定卡槽中SIM卡的语音信箱号。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1796,7 +1796,7 @@ sim.getVoiceMailNumber(0, (err, data) => {
 
 getVoiceMailNumber(slotId: number): Promise<string\>
 
-获取指定卡槽中SIM卡的语音信箱号，使用Promise方式作为异步方法。
+获取指定卡槽中SIM卡的语音信箱号。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1831,7 +1831,7 @@ promise.then(data => {
 
 setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback: AsyncCallback<void\>): void
 
-设置语音邮件信息，使用callback方式作为异步方法。
+设置语音邮件信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1861,7 +1861,7 @@ sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com" , (err, data) => {
 
 setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string): Promise<void\>
 
-设置语音邮件信息，使用Promise方式作为异步方法。
+设置语音邮件信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1898,7 +1898,7 @@ promise.then(data => {
 
 getSimTelephoneNumber(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽中SIM卡的MSISDN，使用callback方式作为异步方法。
+获取指定卡槽中SIM卡的MSISDN。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1926,7 +1926,7 @@ sim.getSimTelephoneNumber(0, (err, data) => {
 
 getSimTelephoneNumber(slotId: number): Promise<string\>
 
-获取指定卡槽中SIM卡的MSISDN，使用Promise方式作为异步方法。
+获取指定卡槽中SIM卡的MSISDN。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1961,7 +1961,7 @@ promise.then(data => {
 
 getSimGid1(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽中SIM卡的组标识符级别1（GID1），使用callback方式作为异步方法。
+获取指定卡槽中SIM卡的组标识符级别1（GID1）。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1989,7 +1989,7 @@ sim.getSimGid1(0, (err, data) => {
 
 getSimGid1(slotId: number): Promise<string\>
 
-获取指定卡槽中SIM卡的组标识符级别1（GID1），使用Promise方式作为异步方法。
+获取指定卡槽中SIM卡的组标识符级别1（GID1）。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2024,7 +2024,7 @@ promise.then(data => {
 
 getIMSI(slotId: number, callback: AsyncCallback<string\>): void
 
-获取国际移动用户识别码，使用callback方式作为异步方法。
+获取国际移动用户识别码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2052,7 +2052,7 @@ sim.getIMSI(0, (err, data) => {
 
 getIMSI(slotId: number): Promise<string\>
 
-获取国际移动用户识别码，使用Promise方式作为异步方法。
+获取国际移动用户识别码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2087,7 +2087,7 @@ promise.then(data => {
 
 getOperatorConfigs(slotId: number, callback: AsyncCallback<Array<OperatorConfig\>>): void
 
-获取运营商配置，使用callback方式作为异步方法。
+获取运营商配置。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2115,7 +2115,7 @@ sim.getOperatorConfigs(0, (err, data) => {
 
 getOperatorConfigs(slotId: number): Promise<Array<OperatorConfig\>>
 
-获取运营商配置，使用Promise方式作为异步方法。
+获取运营商配置。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2150,7 +2150,7 @@ promise.then(data => {
 
 queryIccDiallingNumbers(slotId: number, type: ContactType, callback: AsyncCallback<Array<DiallingNumbersInfo\>>): void
 
-查询SIM卡联系人号码，使用callback方式作为异步方法。
+查询SIM卡联系人号码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2179,7 +2179,7 @@ sim.queryIccDiallingNumbers(0, 1, (err, data) => {
 
 queryIccDiallingNumbers(slotId: number, type: ContactType): Promise<Array<DiallingNumbersInfo\>>
 
-查询SIM卡联系人号码，使用Promise方式作为异步方法。
+查询SIM卡联系人号码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2215,7 +2215,7 @@ promise.then(data => {
 
 addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
 
-添加SIM卡联系人号码，使用callback方式作为异步方法。
+添加SIM卡联系人号码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2251,7 +2251,7 @@ sim.addIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
 
 addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
 
-添加SIM卡联系人号码，使用Promise方式作为异步方法。
+添加SIM卡联系人号码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2294,7 +2294,7 @@ promise.then(data => {
 
 delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
 
-删除SIM卡联系人号码，使用callback方式作为异步方法。
+删除SIM卡联系人号码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2330,7 +2330,7 @@ sim.delIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
 
 delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
 
-删除SIM卡联系人号码，使用Promise方式作为异步方法。
+删除SIM卡联系人号码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2373,7 +2373,7 @@ promise.then(data => {
 
 updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo, callback: AsyncCallback<void\>): void
 
-更新SIM卡联系人号码，使用callback方式作为异步方法。
+更新SIM卡联系人号码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2409,7 +2409,7 @@ sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
 
 updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: DiallingNumbersInfo): Promise<void\>
 
-更新SIM卡联系人号码，使用Promise方式作为异步方法。
+更新SIM卡联系人号码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2452,7 +2452,7 @@ promise.then(data => {
 
 sendEnvelopeCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
 
-发送信封命令，使用callback方式作为异步方法。
+发送信封命令。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2481,7 +2481,7 @@ sim.sendEnvelopeCmd(0, "ls", (err, data) => {
 
 sendEnvelopeCmd(slotId: number, cmd: string): Promise<void\>
 
-发送信封命令，使用Promise方式作为异步方法。
+发送信封命令。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2517,7 +2517,7 @@ promise.then(data => {
 
 sendTerminalResponseCmd(slotId: number, cmd: string, callback: AsyncCallback<void\>): void
 
-发送终端响应命令，使用callback方式作为异步方法。
+发送终端响应命令。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2546,7 +2546,7 @@ sim.sendTerminalResponseCmd(0, "ls", (err, data) => {
 
 sendTerminalResponseCmd(slotId: number, cmd: string): Promise<void\>
 
-发送终端响应命令，使用Promise方式作为异步方法。
+发送终端响应命令。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2582,7 +2582,7 @@ promise.then(data => {
 
 unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<LockStatusResponse\>): void
 
-解锁SIM卡锁，使用callback方式作为异步方法。
+解锁SIM卡锁。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2615,7 +2615,7 @@ sim.unlockSimLock(0, persoLockInfo, (err, data) => {
 
 unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusResponse\>
 
-解锁SIM卡锁，使用Promise方式作为异步方法。
+解锁SIM卡锁。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2655,7 +2655,7 @@ promise.then(data => {
 
 getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽中SIM卡的opkey，使用callback方式作为异步方法。
+获取指定卡槽中SIM卡的opkey。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2681,7 +2681,7 @@ sim.getOpKey(0, (err, data) => {
 
 getOpKey(slotId: number): Promise<string\>
 
-获取指定卡槽中SIM卡的opkey，使用Promise方式作为异步方法。
+获取指定卡槽中SIM卡的opkey。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -2714,7 +2714,7 @@ promise.then(data => {
 
 getOpName(slotId: number, callback: AsyncCallback<string\>): void
 
-获取指定卡槽中SIM卡的OpName，使用callback方式作为异步方法。
+获取指定卡槽中SIM卡的OpName。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -2740,7 +2740,7 @@ sim.getOpName(0, (err, data) => {
 
 getOpName(slotId: number): Promise<string\>
 
-获取指定卡槽中SIM卡的OpName，使用Promise方式作为异步方法。
+获取指定卡槽中SIM卡的OpName。使用Promise异步回调。
 
 此接口为系统接口。
 
