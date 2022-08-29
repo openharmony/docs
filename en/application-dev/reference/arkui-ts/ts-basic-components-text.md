@@ -32,16 +32,17 @@ Text(content?: string)
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
 | textAlign | [TextAlign](ts-appendix-enums.md) | TextAlign.Start | Text alignment mode of multiple lines of text.|
-| textOverflow | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md)} | {overflow:&nbsp;TextOverflow.Clip} | Display mode when the text is too long.<br>**NOTE**<br/><br>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect.|
-| maxLines | number | Infinity | Maximum number of lines in the text.<br>**NOTE**<br/><br>By default, text is automatically folded. If this parameter is specified, the text does not exceed the specified number of lines. If there is extra text, you can use `textOverflow` to specify the truncation mode.|
+| textOverflow | {overflow: [TextOverflow](ts-appendix-enums.md)} | {overflow: TextOverflow.Clip} | Display mode when the text is too long.<br>**NOTE**<br/>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect. |
+| maxLines | number | Infinity | Maximum number of lines in the text.<br>**NOTE**<br/>By default, text is automatically folded. If this parameter is specified, the text does not exceed the specified number of lines. If there is extra text, you can use `textOverflow` to specify the truncation mode. |
 | lineHeight | Length | - | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.|
-| decoration | {<br>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?:&nbsp;Color<br>} | {<br>type:&nbsp;TextDecorationType.None,<br>color: Color.Black<br>} | Style and color of the text decorative line.|
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: Color<br>} | {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} | Style and color of the text decorative line.|
 | baselineOffset | Length | - | Offset of the text baseline.|
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | TextCase.Normal | Text case.|
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md) | CopyOptions.None | Whether copy and paste is allowed.|
 
->  **NOTE**<br/>
-> The **\<Text>** component cannot contain both the text and the child component **\<Span>**. If both of them exist, only the content in **\<Span>** is displayed.
+>  **NOTE**
+>
+>  The **\<Text>** component cannot contain both the text and the child component **\<Span>**. If both of them exist, only the content in **\<Span>** is displayed.
 
 
 ## Example
