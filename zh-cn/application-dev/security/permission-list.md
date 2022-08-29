@@ -5,7 +5,7 @@
 权限的使用示例请参考[访问控制开发指导](accesstoken-guidelines.md)。
 
 | 权限名                                                   | 权限级别     | 授权方式     | ACL使能 | 权限说明                                                     |
-| -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------------------------ |
+| -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------- |
 | ohos.permission.USE_BLUETOOTH                            | normal       | system_grant | TRUE    | 允许应用查看蓝牙的配置。                                     |
 | ohos.permission.DISCOVER_BLUETOOTH                       | normal       | system_grant | TRUE    | 允许应用配置本地蓝牙，查找远端设备且与之配对连接。           |
 | ohos.permission.MANAGE_BLUETOOTH                         | system_basic | system_grant | TRUE    | 允许应用配对蓝牙设备，并对设备的电话簿或消息进行访问。       |
@@ -48,7 +48,7 @@
 | ohos.permission.<br>GRANT_SENSITIVE_PERMISSIONS              | system_core  | system_grant | TRUE    | 允许应用为其他应用授予敏感权限。                             |
 | ohos.permission.<br>REVOKE_SENSITIVE_PERMISSIONS             | system_core  | system_grant | TRUE    | 允许应用撤销给其他应用授予的敏感信息。                       |
 | ohos.permission.<br>GET_SENSITIVE_PERMISSIONS                | system_core  | system_grant | TRUE    | 允许应用读取其他应用的敏感权限的状态。                       |
-| ohos.permission.INTERACT <br> _ACROSS_LOCAL_ACCOUNTS_EXTENSION | system_core  | system_grant | TRUE    | 允许应用跨用户对其他应用的属性进行设置。                     |
+| ohos.permission.INTERACT_<br>ACROSS_LOCAL_ACCOUNTS_EXTENSION | system_core  | system_grant | TRUE    | 允许应用跨用户对其他应用的属性进行设置。                     |
 | ohos.permission.LISTEN_BUNDLE_CHANGE                     | system_basic | system_grant | TRUE    | 允许应用监听其他应用安装、更新、卸载状态的变化。             |
 | ohos.permission.GET_BUNDLE_INFO                          | normal       | system_grant | TRUE    | 允许应用查询其他应用的信息。                                 |
 | ohos.permission.ACCELEROMETER                            | normal       | system_grant | TRUE    | 允许应用读取加速度传感器的数据。                             |
