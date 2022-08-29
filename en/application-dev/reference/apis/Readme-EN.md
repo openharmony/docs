@@ -194,6 +194,8 @@
   - [@ohos.nfc.cardEmulation](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller](js-apis-nfcController.md)
   - [@ohos.nfc.tag](js-apis-nfcTag.md)
+  - [@ohos.nfc.tag](js-apis-nfctech.md)
+  - [@ohos.nfc.tag](js-apis-tagSession.md)
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
