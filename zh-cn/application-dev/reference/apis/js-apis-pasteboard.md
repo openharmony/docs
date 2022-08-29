@@ -144,7 +144,7 @@ createPixelMapData((pixelMap: image.PixelMap): PasteData
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | 待保存的PixelMap内容。 |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 待保存的PixelMap内容。 |
 
 **返回值**
 | 类型 | 说明 |
@@ -285,7 +285,7 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | PixelMap对象内容。 |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | PixelMap对象内容。 |
 
 **返回值**
 | 类型 | 说明 |
@@ -310,7 +310,7 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
   ```
 
 
-## ShareOption <sup>9+</sup>
+## ShareOption<sup>9+</sup>
 
 可粘贴数据的范围类型枚举。
 
@@ -318,11 +318,11 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 
 | 名称  | 说明                    |
 | -----  | ----------------------- |
-| InApp<sup>9+</sup>  |InApp表示仅允许同应用内粘贴。  |
-| LocalDevice<sup>9+</sup> |LocalDevice表示仅允许在此设备中粘贴。  |
+| InApp  |InApp表示仅允许同应用内粘贴。  |
+| LocalDevice  |LocalDevice表示仅允许在此设备中粘贴。  |
 
 
-## PasteDataProperty
+## PasteDataProperty<sup>7+</sup>
 
 定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等。
 
@@ -335,7 +335,7 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 | tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（毫秒）。 |
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容的“仅在本地”标志位。<br/>-&nbsp;默认情况为true。<br/>-&nbsp;配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>-&nbsp;配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | ShareOption | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CrossDevice。 |
+| shareOption<sup>9+</sup> | [shareOption](#shareOption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CrossDevice。 |
 
 
 ## PasteDataRecord<sup>7+</sup>
@@ -354,7 +354,7 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md) | 是 | 否 | PixelMap内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
 
 
 ### convertToText<sup>7+</sup>
@@ -519,7 +519,7 @@ getPrimaryPixelMap(): image.PixelMap
 **返回值**
 | 类型 | 说明 |
 | -------- | -------- |
-| [image.PixelMap](js-apis-image.md) | PixelMap对象内容。 |
+| [image.PixelMap](js-apis-image.md#pixelmap7) | PixelMap对象内容。 |
 
 **示例**
 
@@ -650,7 +650,7 @@ addPixelMapRecord(pixelMap: image.PixelMap): void
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pixelMap | [image.PixelMap](js-apis-image.md) | 是 | PixelMap对象内容。 |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | PixelMap对象内容。 |
 
 **示例**
 
@@ -760,7 +760,7 @@ getProperty(): PasteDataProperty
   ```
 
 
-### setProperty<sup>7+</sup>
+### setProperty<sup>9+</sup>
 
 setProperty(property: PasteDataProperty): void;
 
@@ -777,8 +777,9 @@ setProperty(property: PasteDataProperty): void;
 
   ```js
   var pasteData = pasteboard.createHtmlData('application/xml');
-  var property = pasteData.getProperty();
-  pasteData.setProperty(property);
+  var props	 = pasteData.getProperty();
+  props.shareOption = pasteboard.ShareOption.InApp;
+  pasteData.setProperty(props);
   ```
 
 
