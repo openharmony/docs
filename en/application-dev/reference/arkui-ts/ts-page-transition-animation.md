@@ -18,15 +18,15 @@ Customize the page transition animations by configuring the page entrance and ex
   | -------- | ------------------------- | ------ | ---- | ---------------------------------------- |
   | type     | RouteType                 | -      | No   | Animation type. If this parameter is not set, the reverse playback effect as **pop** switches to **push** is used.                   |
   | duration | number                    | 1000   | No   | Animation duration, in ms.                             |
-  | curve    | Curve&nbsp;\|&nbsp;Curves | Linear | No   | Animation curve. For details about the valid values, see [Curve](ts-animatorproperty.md).|
+  | curve    | Curve \| Curves | Linear | No   | Animation curve. For details about the valid values, see [Curve](ts-animatorproperty.md).|
   | delay    | number                    | 0      | No   | Animation delay, in ms. Delayed animation is disabled by default.                   |
 
 
 - RouteType enums
   | Name| Description            |
   | ---- | ---------------- |
-  | Pop  | Redirects to a specified page.|
-  | Push | Redirects to the next page.|
+  | Pop  | Redirects to a specified page. When the user is redirected from page A to page B, page A is Exit+Push, and page B is Enter+Push.|
+  | Push | Redirects to the next page. When the user is redirected back from page B to page A, page A is Enter+Pop, and page B is Exit+Pop.|
 
 
 ## Attributes
@@ -36,8 +36,8 @@ The **PageTransitionEnter** and **PageTransitionExit** parameters support the fo
 | Name     | Type                                    | Default Value              | Mandatory  | Description                                    |
 | --------- | ---------------------------------------- | ----------------- | ---- | ---------------------------------------- |
 | slide     | SlideEffect                              | SlideEffect.Right | No   | Slide effect during page transition. For details about the valid values, see **SlideEffect** enums.         |
-| translate | {<br>x?&nbsp;:&nbsp;number,<br>y?&nbsp;:&nbsp;number,<br>z?&nbsp;:&nbsp;number<br>} | -                 | No   | Translation effect during page transition, which is the value of the start point of entrance and the end point of exit. When this parameter is set together with **slide**, the latter takes effect by default.|
-| scale     | {<br>x?&nbsp;:&nbsp;number,<br>y?&nbsp;:&nbsp;number,<br>z?&nbsp;:&nbsp;number,<br>centerX?&nbsp;:&nbsp;number,<br>centerY?&nbsp;:&nbsp;number<br>} | -                 | No   | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit.            |
+| translate | {<br>x? : number \| string,<br>y? : number \| string,<br>z? : number \| string<br>} | -                 | No   | Translation effect during page transition, which is the value of the start point of entrance and the end point of exit. When this parameter is set together with **slide**, the latter takes effect by default.|
+| scale     | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number \| string,<br>centerY? : number \| string<br>} | -                 | No   | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit.            |
 | opacity   | number                                   | 1                 | No   | Opacity, which is the opacity value of the start point of entrance or the end point of exit.                 |
 
 - SlideEffect enums
@@ -55,8 +55,8 @@ The **PageTransitionEnter** and **PageTransitionExit** parameters support the fo
 
 | Name                                      | Description                               |
 | ---------------------------------------- | ----------------------------------- |
-| onEnter(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1.|
-| onExit(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1.|
+| onEnter(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1.|
+| onExit(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1.|
 
 
 ## Example
