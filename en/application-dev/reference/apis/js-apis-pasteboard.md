@@ -1,8 +1,10 @@
 # Pasteboard
 
+The **pasteboard** module provides the pasteboard management client and pasteboard server. The pasteboard management client manages pasteboard APIs. Specifically, it provides pasteboard APIs in JavaScript for applications, creates pasteboard data on the application framework side, and requests the pasteboard SA to create, delete, query, convert text, and configure pasteboards. The pasteboard server manages pasteboard events as well as the pasteboard SA lifecycle, providing support for the copy and paste functions of the system.
 
-> **NOTE**<br>The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
 >
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -461,10 +463,10 @@ The pasteboard supports a maximum number of 128 data records.
 
 **Example**
 
-```js
-var pasteData = pasteboard.createPlainTextData("hello");
-pasteData.addTextRecord("good");
-```
+  ```js
+  var pasteData = pasteboard.createPlainTextData("hello");
+  pasteData.addTextRecord("good");
+  ```
 
 
 ### addHtmlRecord<sup>7+</sup>
@@ -1037,13 +1039,13 @@ Checks whether the system pasteboard contains content. This API uses a promise t
 
 **Example**
 
-```js
-systemPasteboard.hasPasteData().then((data) => { 
-    console.info('Operation succeeded. ' + JSON.stringify(data));
-}).catch((error) => {
-    console.error('failed to hasPasteData because ' + JSON.stringify(error));
-});
-```
+  ```js
+  systemPasteboard.hasPasteData().then((data) => { 
+      console.info('success hasPasteData : ' + JSON.stringify(data));
+  }).catch((error) => {
+      console.error('failed to hasPasteData because ' + JSON.stringify(error));
+  });
+  ```
 
 
 ### clear<sup>7+</sup>

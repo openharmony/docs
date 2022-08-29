@@ -1,5 +1,6 @@
 # Wallpaper
 
+The **wallpaper** module is part of the theme framework and provides the system-level wallpaper management service in OpenHarmony. You can use the APIs of this module to show, set, and switch between wallpapers.
 
 > **NOTE**
 >
