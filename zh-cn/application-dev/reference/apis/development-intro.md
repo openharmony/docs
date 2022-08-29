@@ -21,14 +21,14 @@ Ability是系统调度应用的最小单元，是能够完成一个独立功能�
 
 OpenHarmony中提供的接口，部分是仅供OEM厂商使用的system api，普通应用无法使用。
 
-普通应用即应用APL等级为normal的应用。默认情况下，应用的等级都为normal应用。
-
-APL等级的详细说明及如何将应用的APL等级声明为normal以上，请参考[访问控制开发概述-应用APL等级说明](../../security/accesstoken-overview.md#应用apl等级说明)。
-
 针对这种情况，在文档中会进行系统接口的声明：
 
 - 如果某个模块的接口均为system api，会在文档开头说明：该模块接口为系统接口。
 - 如果某个接口为system api，会在具体的接口描述中说明：此接口为系统接口。
+
+普通应用即应用APL等级为normal的应用。默认情况下，应用的等级都为normal应用。
+
+APL等级的详细说明及如何将应用的APL等级声明为normal以上，请参考[访问控制开发概述-应用APL等级说明](../../security/accesstoken-overview.md#应用apl等级说明)。
 
 ## 权限说明
 
