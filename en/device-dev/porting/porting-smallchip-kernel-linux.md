@@ -10,7 +10,7 @@ The current Linux kernel baseline evolves based on the Linux LTS version 4.19 an
 
 ### Bootloader<a name="section19062510518"></a>
 
-You can use the Bootloader provided by the chipset vendor or open-source U-Boot to load the kernel image. For example, you can use  [U-Boot](https://gitee.com/openharmony/device_hisilicon_third_party_uboot)  for the Hi3516D V300 development board.
+You can use the Bootloader provided by the chipset vendor or open-source U-Boot to load the kernel image. For example, you can use  [U-Boot](https://gitee.com/openharmony/third_party_u-boot)  for the Hi3516D V300 development board.
 
 ## Adaptation, Building, Burning, and Startup<a name="section11112101695215"></a>
 
