@@ -18,9 +18,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback<void>): void;
 
 设置系统时间，使用callback形式返回结果。
 
-**需要权限：**
-
-ohos.permission.EDM_MANAGE_DATETIME
+**需要权限：** ohos.permission.EDM_MANAGE_DATETIME
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -58,9 +56,7 @@ setDateTime(admin: Want, time: number): Promise<void>;
 
 设置系统时间，使用Promise形式返回。
 
-**需要权限：**
-
-ohos.permission.EDM_MANAGE_DATETIME
+**需要权限：** ohos.permission.EDM_MANAGE_DATETIME
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
