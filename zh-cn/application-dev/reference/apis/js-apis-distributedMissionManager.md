@@ -314,6 +314,8 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 表示开始同步后，建立的回调函数。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称                    | 类型       | 可读   | 可写   | 说明                 |
@@ -326,6 +328,8 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
 表示同步时所需参数的枚举。
 
+**需要权限**：ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称          | 参数类型    | 可读   | 可写   | 说明          |
@@ -337,6 +341,8 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 ## MissionDeviceInfo
 
 表示注册监听时所需参数的枚举。
+
+**需要权限**：ohos.permission.MANAGE_MISSIONS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
