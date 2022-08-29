@@ -23,21 +23,21 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 按照指定持续时间触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
 
-| 参数名      | 类型     | 必填   | 说明           |
-| -------- | ------ | ---- | ------------ |
-| duration | number | 是    | 指示马达振动的持续时间。 |
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| duration | number | 是   | 马达振动时长, 单位ms。 |
 
 **返回值：** 
 
-| 类型                  | 说明          |
-| ------------------- | ----------- |
-| Promise&lt;void&gt; | 指示触发振动是否成功。 |
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise实例。 |
 
 **示例：** 
 
@@ -49,13 +49,13 @@ vibrate(duration: number): Promise&lt;void&gt;
   });
   ```
 
-## vibrator.vibrate
+## vibrator.vibrate<sup>9+</sup>
 
 vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 按照指定振动效果和振动属性触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -76,15 +76,15 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 ```js
 vibrator.vibrate({
-	'type': 'time',
+    'type': 'time',
     'duration': 1000
 }, {
-   	'id': 1,
-	'usage': 'alarm'
+   	'id': 0,
+    'usage': 'alarm'
 }).then((result)=>{
-   	console.log("Promise returned to indicate a successful vibration");
+    console.log("Promise returned to indicate a successful vibration");
 }).catch((error)=>{
-  	console.log("error.code"+error.code+"error.message"+error.message);
+    console.log("error.code"+error.code+"error.message"+error.message);
 })
 ```
 
@@ -94,17 +94,18 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定持续时间触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名      | 类型                        | 必填   | 说明                      |
-| -------- | ------------------------- | ---- | ----------------------- |
-| duration | number                    | 是    | 指示马达振动的持续时间。            |
-| callback | AsyncCallback&lt;void&gt; | 否    | 马达执行振动的回调函数，指示触发振动是否成功。 |
+| 参数名   | 类型                      | 必填 | 说明                     |
+| -------- | ------------------------- | ---- | ------------------------ |
+| duration | number                    | 是   | 马达振动时长, 单位ms。   |
+| callback | AsyncCallback&lt;void&gt; | 否   | 指定的callback回调方法。 |
 
 **示例：** 
+
   ```js
   vibrator.vibrate(1000,function(error){
       if(error){
@@ -120,21 +121,21 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 vibrate(effectId: EffectId): Promise&lt;void&gt;
 
-按照指定振动效果触发马达振动。
+按照预置振动效果触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名      | 类型                    | 必填   | 说明            |
-| -------- | --------------------- | ---- | ------------- |
-| effectId | [EffectId](#effectid) | 是    | 指示马达振动效果的字符串。 |
+| 参数名   | 类型                  | 必填 | 说明               |
+| -------- | --------------------- | ---- | ------------------ |
+| effectId | [EffectId](#effectid) | 是   | 预置的振动效果ID。 |
 
 **返回值：** 
-| 类型                  | 说明          |
-| ------------------- | ----------- |
-| Promise&lt;void&gt; | 指示触发振动是否成功。 |
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise实例。 |
 
 **示例：** 
   ```js
@@ -152,15 +153,15 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定振动效果触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名      | 类型                        | 必填   | 说明                      |
-| -------- | ------------------------- | ---- | ----------------------- |
-| effectId | [EffectId](#effectid)     | 是    | 指示马达振动效果的字符串。           |
-| callback | AsyncCallback&lt;void&gt; | 否    | 马达执行振动的回调函数，指示触发振动是否成功。 |
+| 参数名   | 类型                      | 必填 | 说明                     |
+| -------- | ------------------------- | ---- | ------------------------ |
+| effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。       |
+| callback | AsyncCallback&lt;void&gt; | 否   | 指定的callback回调方法。 |
 
 **示例：** 
 
@@ -174,13 +175,13 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
   })
   ```
 
-## vibrator.vibrate
+## vibrator.vibrate<sup>9+</sup>
 
 vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void
 
 按照指定振动效果和振动属性触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -196,17 +197,17 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallb
 
 ```js
 vibrator.vibrate({
-	'type':'time',
+    'type':'time',
     'duration':1000,
 },{
-    'id':1,
+    'id':0,
     'usage': 'alarm'
 }, (error)=>{
-  	if(error){
-    	console.log(TAG + " fail, error.code:"+error.code+",error.message:"+error.message);
+    if(error){
+        console.log(TAG + " fail, error.code:"+error.code+",error.message:"+error.message);
     }else{
-       	console.log("Callback returned to indicate a successful vibration.");
-   	}
+        console.log("Callback returned to indicate a successful vibration.");
+    }
 });
 ```
 
@@ -216,21 +217,23 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名      | 类型                                    | 必填   | 说明              |
-| -------- | ------------------------------------- | ---- | --------------- |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是    | 指示马达要停止指定的振动模式。 |
+| 参数名   | 类型                                  | 必填 | 说明                     |
+| -------- | ------------------------------------- | ---- | ------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。 |
 
 **返回值：** 
-| 类型                  | 说明          |
-| ------------------- | ----------- |
-| Promise&lt;void&gt; | 指示停止振动是否成功。 |
+
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise实例。 |
 
 **示例：** 
+
   ```js
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
@@ -246,17 +249,18 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**需要权限**：ohos.permission.VIBRATE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名      | 类型                                    | 必填   | 说明                      |
-| -------- | ------------------------------------- | ---- | ----------------------- |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是    | 指示马达要停止指定的振动模式。         |
-| callback | AsyncCallback&lt;void&gt;             | 否    | 马达停止振动的回调函数，指示停止振动是否成功。 |
+| 参数名   | 类型                                  | 必填 | 说明                     |
+| -------- | ------------------------------------- | ---- | ------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。 |
+| callback | AsyncCallback&lt;void&gt;             | 否   | 指定的callback回调方法。 |
 
 **示例：** 
+
   ```js
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
       if(error){
@@ -270,51 +274,65 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 ## EffectId
 
-表示马达振动效果的字符串。
+马达振动效果的字符串。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
-| 名称                 | 默认值                  | 说明              |
-| ------------------ | -------------------- | --------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 调整定时器时振动器的振动效果。 |
+| 名称               | 默认值               | 说明               |
+| ------------------ | -------------------- | ------------------ |
+| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 预置的振动效果ID。 |
 
 
 ## VibratorStopMode
 
-表示马达要停止指定的振动模式。
+马达要停止指定的振动模式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
-| 名称                        | 默认值      | 说明                                       |
-| ------------------------- | -------- | ---------------------------------------- |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止模式为duration模式的振动。即触发振动时参数类型为number，参数本身为指示振动持续时间的触发方式。 |
-| VIBRATOR_STOP_MODE_PRESET | "preset" | 停止模式为预置EffectId的振动。即触发振动时参数类型为EffectId，参数本身为指示马达振动效果的字符串的触发方式。 |
+| 名称                      | 默认值   | 说明                                                         |
+| ------------------------- | -------- | ------------------------------------------------------------ |
+| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止模式为duration模式的振动。即触发振动时参数类型为number，参数本身为振动持续时间的触发方式。 |
+| VIBRATOR_STOP_MODE_PRESET | "preset" | 停止模式为预置EffectId的振动。即触发振动时参数类型为EffectId，参数本身为马达振动效果的字符串的触发方式。 |
 
 ## VibrateTime
 
-表示马达振动时间
+马达振动时长。
 
-| 名称     | 默认值 | 说明                     |
-| -------- | ------ | ------------------------ |
-| type     | "time" | 指定振动效果类型。       |
-| duration | 100    | 指定振动效果的持续时间。 |
+| 名称     | 默认值 | 说明                           |
+| -------- | ------ | ------------------------------ |
+| type     | "time" | 按照指定持续时间触发马达振动。 |
+| duration |        | 马达振动时长, 单位ms。         |
 
 ## VibratePreset
 
-表示马达预置振动类型
+马达预置振动类型。
 
-| 名称     | 默认值               | 说明                           |
-| -------- | -------------------- | ------------------------------ |
-| type     | "preset"             | 预置振动类型。                 |
-| effectId | "haptic.clock.timer" | 调整定时器时振动器的振动效果。 |
-| count    | 1                    | 循环振动的次数。               |
+| 名称     | 默认值   | 说明                           |
+| -------- | -------- | ------------------------------ |
+| type     | "preset" | 按照预置振动效果触发马达振动。 |
+| effectId |          | 预置的振动效果ID。             |
+| count    |          | 重复振动的次数。               |
 
 ## VibrateAttribute
 
-表示马达振动属性
+马达振动属性。
 
-| 名称  | 默认值    | 说明                                                         |
-| ----- | --------- | ------------------------------------------------------------ |
-| id    | 123       | 振动器id。                                                   |
-| usage | "unknown" | 振动的使用。取值范围["unknown" , "alarm" ,  "ring" ,  "notification" ,  "communication" ]。 |
+| 名称  | 默认值 | 说明           |
+| ----- | ------ | -------------- |
+| id    | 0      | 振动器id。     |
+| usage |        | 马达振动场景。 |
+
+## Usage
+
+| 名称             | 类型   | 说明       |
+| ---------------- | ------ | ---------- |
+| unknown          | string | 未知。     |
+| alarm            | string | 闹钟。     |
+| ring             | string | 来电。     |
+| notification     | string | 通知。     |
+| communication    | string | 通信。     |
+| touch            | string | 触摸。     |
+| media            | string | 多媒体。   |
+| physicalFeedback | string | 物理反馈。 |
+| simulateReality  | string | 虚拟现实。 |
 
