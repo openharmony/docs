@@ -487,7 +487,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
 
-添加不可信网络配置，使用callback异步回调。
+添加候选网络配置，使用callback异步回调。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
@@ -502,9 +502,9 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
-removeCandidateConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
+removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
-移除候选候选网络配置，使用Promise异步回调。
+移除候选网络配置，使用Promise异步回调。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
@@ -513,17 +513,17 @@ removeCandidateConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 **参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
+  | networkId | number | 是 | 网络配置ID。 |
 
 **返回值：**
   | **类型** | **说明** |
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise对象。返回操作结果，true: 成功， false |
+  | Promise&lt;void&gt; | Promise对象。 |
 
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
-removeCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
+removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): void
 
 移除候选网络配置，使用callback异步回调。
 
@@ -534,8 +534,8 @@ removeCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
 **参数：**
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当操作成功时，err为0，data表示操作结果，true: 成功， false: 失败。如果error为非0，表示处理出现错误。 |
+  | networkId | number | 是 | 网络配置ID。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当操作成功时，err为0。如果error为非0，表示处理出现错误。 |
 
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
