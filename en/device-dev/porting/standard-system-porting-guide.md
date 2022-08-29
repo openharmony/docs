@@ -32,8 +32,8 @@ Create a file named **config.json** in the **//vendor/MyProductVendor/*{product_
         "components": [
           { "component": "ace_engine_lite", "features":[""] }
         ]
-      },
-	    ...
+      }，
+	    …
     ]
 }
 
@@ -201,17 +201,18 @@ HDF_INIT(g_xxxxDevEntry);
 
 - Configure and load the panel driver. All device information about the product is defined in the **//vendor/MyProductVendor/MyProduct/config/device_info/device_info.hcs** file. Modify the file by adding configurations for the device named **device_lcd** to the host named **display**. Note: The value of **moduleName** must be the same as that in the panel driver.
 
+  
 ```
 root {
     ...
     display :: host {
         device_lcd :: device {
-                deviceN :: deviceNode {
-                    policy = 0;
-                    priority = 100;
-                    preload = 2;
-                    moduleName = "LCD_XXXX";
-                }
+            deviceN :: deviceNode {
+                policy = 0;
+                priority = 100;
+                preload = 2;
+                moduleName = "LCD_XXXX";
+            }
         }
     }
 }
