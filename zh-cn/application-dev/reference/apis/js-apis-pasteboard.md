@@ -762,7 +762,7 @@ getProperty(): PasteDataProperty
 
 ### setProperty<sup>9+</sup>
 
-setProperty(property: PasteDataProperty): void;
+setProperty(property: PasteDataProperty): void
 
 设置属性描述对象。
 
