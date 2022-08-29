@@ -412,7 +412,6 @@
 | None        | 不支持复制粘贴。     |
 | InApp       | 支持应用内复制粘贴。 |
 | LocalDevice | 支持设备内复制粘贴。 |
-| CrossDevice | 支持跨设备复制粘贴。 |
 
 ## HitTestMode<sup>9+</sup>
 
