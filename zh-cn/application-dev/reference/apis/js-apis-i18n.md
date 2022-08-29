@@ -679,7 +679,7 @@ format(number: string): string
 
 ### getLocationName<sup>9+</sup>
 
-static getLocationName(number: string, locale: string): string
+getLocationName(number: string, locale: string): string
 
 获取电话号码归属地。
 
