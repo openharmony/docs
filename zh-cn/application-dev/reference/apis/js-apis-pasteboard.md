@@ -777,8 +777,8 @@ setProperty(property: PasteDataProperty): void
 
   ```js
   var pasteData = pasteboard.createHtmlData('application/xml');
-  let prop = ppasteData.getProperty();
-  props.shareOption = pasteboard.ShareOption.InApp;
+  let prop = pasteData.getProperty();
+  prop.shareOption = pasteboard.ShareOption.InApp;
   pasteData.setProperty(prop);
   ```
 
