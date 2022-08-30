@@ -88,9 +88,9 @@
    context.getFilesDir().then((filePath) => {
        path = filePath;
        console.info("======================>getFilesDirPromsie====================>");
+       
+       let promise = dataStorage.getStorage(path + '/mystore');
    });
-
-   let promise = dataStorage.getStorage(path + '/mystore');
    ```
 
 3. 存入数据。
