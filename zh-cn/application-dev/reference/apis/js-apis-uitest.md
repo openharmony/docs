@@ -17,7 +17,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块 
 
 ```
-import {UiDriver, BY, MatchPattern, ResizeDirection, WindowMode} from '@ohos.uitest'
+import {UiDriver, BY, MatchPattern, ResizeDirection, WindowMode, DisplayRotation, PointerMatrix} from '@ohos.uitest'
 ```
 
 ## By
