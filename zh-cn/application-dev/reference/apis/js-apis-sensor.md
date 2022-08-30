@@ -246,6 +246,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。   |
@@ -1485,6 +1486,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+ **需要权限**: ohos.permission.ACTIVITY_MOTION 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
