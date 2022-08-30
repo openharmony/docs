@@ -434,7 +434,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 ## MaxScreenWantAgent
 
-提醒到达时自动拉起的目标ability信息。(现版本暂不支持此功能)
+提醒到达时自动拉起的目标ability信息（全屏显示）。(该接口预留)
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
