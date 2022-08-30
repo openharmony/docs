@@ -125,7 +125,7 @@ The LiteOS-M kernel porting projects for specific development boards are provide
 
 ## Contribution<a name="section1371123476307"></a>
 
-[How to involve](../../contribute/contribution.md)
+[How to involve](../../contribute/contribution-process.md)
 
 [Commit message spec](https://gitee.com/openharmony/kernel_liteos_m/wikis/Commit%20message%E8%A7%84%E8%8C%83)
 
