@@ -1825,7 +1825,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 **示例：** 
 
 ```js
-sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'x':2, 'y':3}, function(err, data) {
+sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(err, data) {
     if (err) {
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
@@ -1860,7 +1860,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 **示例：** 
 
 ```js
-const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'x':2, 'y':3});
+const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
         console.info("Operation successed.");
         for (var i=0; i < data.length; i++) {
@@ -1888,7 +1888,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 
 **示例：** 
 ```js
-sensor.getGeomagneticField({'latitude':80, 'longitude':0, 'altitude':0}, 1580486400000, function(err, data)  {
+sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000, function(err, data)  {
     if (err) {
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
@@ -1919,7 +1919,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 
 **示例：** 
   ```js
-  const promise = sensor.getGeomagneticField({'latitude':80, 'longitude':0, 'altitude':0}, 1580486400000);
+  const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
       promise.then((data) => {
           console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
@@ -2594,7 +2594,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 | 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
 | ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，1表示有。 |
+| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
 
 
 ## MagneticFieldResponse
