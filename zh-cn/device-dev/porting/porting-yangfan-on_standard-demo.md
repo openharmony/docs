@@ -151,7 +151,7 @@ init相关配置请参考[启动子系统的规范要求](https://gitee.com/open
 
 ### 2.Audio驱动框架图
 
-![](.\ADM框架图.png)
+![](figures/isoftstone/yangfan-Audio-ADM.png)
 
 **ADM（Audio Driver Model）:**音频驱动框架模型，向上服务于多媒体音频子系统，便于系统开发者能够更便捷的根据场景来开发应用。向下服务于具体的设备厂商，对于Codec和DSP设备厂商来说，可根据ADM模块提供的向下统一接口适配各自的驱动代码，就可以实现快速开发和适配HOS系统。
 **Audio Control Dispatch:** 接收lib层的控制指令并将控制指令分发到驱动层。
@@ -193,7 +193,7 @@ drivers
 
 1. ##### 启动流程
 
-   ![](.\启动流程图.png)
+   ![](figures/isoftstone/yangfan-Audio-start.png)
 
    1.系统启动时audio模块的Platform、Codec、Accessory、Dsp、Dai各个驱动首先被拉起，各驱动从各自私有配置文件中获取配置信息，并将获取的配置信息保存到各驱动的Data数据结构中。
    2.各驱动模块调用ADM注册接口将自己添加到各驱动模块的链表中。
@@ -203,7 +203,7 @@ drivers
 
 2. ##### 播放流程
 
-   ![](.\播放流程.png)
+   ![](figures/isoftstone/yangfan-Audio-play.png)
 
    1.播放音频，首先Interface Lib层通过播放流服务下发Render Open指令，Render Stream Dispatch服务收到指令后分别调用各模块的函数接口对指令进行下发。
    2.Interface Lib层通过控制服务下发通路选择指令，Control Dispatch控制服务收到指令后调用Dai模块接口设置通路。
@@ -215,7 +215,7 @@ drivers
 
 3. ##### 控制流程
 
-   ![](.\控制流程.png)
+   ![](figures/isoftstone/yangfan-Audio-commond.png)
 
 1.设置音量，首先Interface Lib层通过控制服务下发获取音量范围指令，Control Dispatch控制服务收到指令后进行解析并调用Codec模块Get函数接口获取可设置音量范围。
 2.Interface Lib层通过控制服务下发设置音量指令，Control Dispatch控制服务收到指令后进行解析并调用Codec模块Set函数接口设置音量。
@@ -924,7 +924,7 @@ ioctl(fd, VIDIOC_REQBUFS, &reqbuffer)。由此分析出OHOS上的ioctl VIDIOC_RE
 
 https://gitee.com/openharmony/drivers_peripheral/issues/I4EFWP  
 
-![image-20220106111138122](C:\Users\issuser\AppData\Roaming\Typora\typora-user-images\image-20220106111138122.png)
+![](figures/isoftstone/yangfan-camera-01.png)
 
 接着再分析ioctl(fd, VIDIOC_QUERYBUF, &buf)失败，查看VIDIOC_QUERYBUF的定义：videodev2.h
 
@@ -1167,7 +1167,7 @@ index 0842a47c6..8aa60407f 100644
 
 打印结果对比：VIDIOC_QUERYBUF用户态为0xc0505609，内核态为0xc0585609  还有其他几处命令码也不同。
 
-![image-20220106114629003](C:\Users\issuser\AppData\Roaming\Typora\typora-user-images\image-20220106114629003.png)
+![](figures/isoftstone/yangfan-print-01.png)
 
 分析命令码不一致问题，先找出VIDIOC_QUERYBUF用户态和内核态实际编译时所定义的地方差异：
 
@@ -1179,7 +1179,7 @@ index 0842a47c6..8aa60407f 100644
 
 找到了相似的issuse：https://gitee.com/openharmony/drivers_peripheral/issues/I4NI4M?from=project-issue
 
-![image-20220106115625779](C:\Users\issuser\AppData\Roaming\Typora\typora-user-images\image-20220106115625779.png)
+![](figures/isoftstone/yangfan-picture-02.png)
 
 接下来，调试思路分为2路：
 
@@ -1400,7 +1400,7 @@ index 0842a47c6..8aa60407f 100644
    +#endif
    ```
 
-   再次编译v4l2_main后执行，log无报错。HDMI屏上就出来预览画面。![image-20220106155128745](C:\Users\issuser\AppData\Roaming\Typora\typora-user-images\image-20220106155128745.png)
+   再次编译v4l2_main后执行，log无报错。HDMI屏上就出来预览画面。![](figures/isoftstone/yangfan-picture-hdmi.png)
 
    
 
@@ -1428,7 +1428,7 @@ index b351f49..5483b85 100755
 
 v4l2_main执行结果：该显示异常，目前先不分析MJPEG格式。
 
-![image-20220106162716348](C:\Users\issuser\AppData\Roaming\Typora\typora-user-images\image-20220106162716348.png)
+![](figures/isoftstone/yangfan-picture-v4l2_main.png)
 
 
 
@@ -1451,7 +1451,7 @@ v4l2_main执行结果：该显示异常，目前先不分析MJPEG格式。
 
 照片uvc0.jpeg
 
-![image-20220106163649174](C:\Users\issuser\AppData\Roaming\Typora\typora-user-images\image-20220106163649174.png)
+![](figures/isoftstone/yangfan-picture-uvc0.png)
 
 录像uvc.h264在手机端可查看，播放正常。
 
