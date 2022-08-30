@@ -98,11 +98,11 @@ LiteOS-M内核的编译构建系统是一个基于gn和ninja的组件化构建�
 
 ### 搭建系统基础环境
 
-在搭建各个开发板环境前，需要完成OpenHarmony系统基础环境搭建。系统基础环境主要是指OpenHarmony的编译环境和开发环境，详细介绍请参考官方站点[开发环境准备](https://gitee.com/openharmony/docs/blob/HEAD/zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md)。开发者需要根据环境搭建文档完成环境搭建。
+在搭建各个开发板环境前，需要完成OpenHarmony系统基础环境搭建。系统基础环境主要是指OpenHarmony的编译环境和开发环境，详细介绍请参考官方站点[开发环境准备](../quick-start/quickstart-lite-env-setup.md)。开发者需要根据环境搭建文档完成环境搭建。
 
 ### 获取OpenHarmony源码
 
-详细的源码获取方式，请见[源码获取](https://gitee.com/openharmony/docs/blob/HEAD/zh-cn/device-dev/get-code/sourcecode-acquire.md)。获取OpenHarmony完整仓代码后，假设克隆目录为`~/openHarmony`。
+详细的源码获取方式，请见[源码获取](../get-code/sourcecode-acquire.md)。获取OpenHarmony完整仓代码后，假设克隆目录为`~/openHarmony`。
 
 ### 已支持的示例工程
 
@@ -128,7 +128,7 @@ LiteOS-M内核移植的具体开发板的工程由社区开发者提供，可以
 
 ## 贡献<a name="section1371123476307"></a>
 
-[如何贡献](https://gitee.com/openharmony/docs/blob/HEAD/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
+[如何贡献](../../contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
 
 [Commit message规范](https://gitee.com/openharmony/kernel_liteos_m/wikis/Commit%20message%E8%A7%84%E8%8C%83)
 
@@ -136,15 +136,15 @@ LiteOS-M内核移植的具体开发板的工程由社区开发者提供，可以
 
 如何基于Liteos-M内核贡献一款芯片:
 
-[板级目录规范](https://gitee.com/openharmony/docs/blob/HEAD/zh-cn/device-dev/porting/porting-chip-board-overview.md)
+[板级目录规范](../porting/porting-chip-board-overview.md)
 
-[轻量系统芯片移植指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-minichip.md)
+[轻量系统芯片移植指导](../porting/porting-minichip.md)
 
-[轻量系统芯片移植案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-minichip-cases.md)
+[轻量系统芯片移植案例](../porting/porting-minichip-cases.md)
 
 ## 相关仓<a name="section1371113476307"></a>
 
-[内核子系统](https://gitee.com/openharmony/docs/blob/HEAD/zh-cn/readme/%E5%86%85%E6%A0%B8%E5%AD%90%E7%B3%BB%E7%BB%9F.md)
+[内核子系统](../../readme/内核子系统.md)
 
 [kernel\_liteos\_m](https://gitee.com/openharmony/kernel_liteos_m/blob/master/README_zh.md)
 
