@@ -10,9 +10,9 @@
 | 4    | 文件命名        | 一个d.ts对应一个组件文档，文件名称需包含组件所属类和组件名，格式为：**ts-组件所属类名-组件名.md**。<br/>示例：<br/>基础组件text，文件命名为：ts-basic-component-text.md<br/>容器组件list，文件命名为：js-container-component-list.md |
 | 5    | 目录修改        | 新增文件，需要修改对应的Readme，即`docs/zh-cn/application-dev/reference/arkui-ts/Readme-CN.md`。 |
 | 6    | 文档结构        | - 模块说明<br/>- 起始版本说明<br/>- 导入模块/使用说明<br/>- 权限说明<br>- 接口、属性、事件、对象、枚举、自定义类型<br/>  描述顺序和代码保持一致，如果某些接口具有逻辑顺序，请注意排列。 |
-| 7    | 接口版本说明      | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。<br/>如果新增了一个属性，则在属性后增加标记，即 font<sup>7+</sup>，枚举、事件、对象等同理。 |
+| 7    | 接口版本说明      | 1. 每个模块要有起始版本说明，使用引用语法“>”对接口的起始版本进行说明。接口没有标记的，默认与模块同一个起始版本。<br/>2. 已有模块新增接口使用\<sup>标签标记对应版本号。写法：`<sup>版本号+</sup>`<br/> 例如`<sup>7+</sup>`<br/> 示例：API 6已有的模块，在API 7新增了一个属性字段，则在属性后加标记，即newAttribute<sup>7+</sup>。|
 | 8    | 废弃接口说明      | 废弃内容不能直接删去，在废弃内容后面加标注deprecated，并使用“>”引用语法建议使用的替代方式，加上对应的链接。<br/>示例：abandonmentMethod<sup>(deprecated) </sup><br/>> 从API Version 7 开始不再维护，建议使用[newMethod]\(#newmethod)替代。 |
-| 9    | 权限说明        | 以二级标题的形式。<br/>1. 如果仅系统应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx，仅系统应用可用。<br/>2. 如果该权限所有应用可申请，格式：<br/>    **需要权限：** ohos.permission.xxxx   <br/>3. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>    **需要权限：** ohos.permission.A 和 ohos.permission.B<br/>    **需要权限：** ohos.permission.A 或 ohos.permission.B |
+| 9    | 权限说明        | 以二级标题的形式，标题名为“需要权限”<br/>1. 如果仅系统应用可申请，格式：<br/>  ohos.permission.xxxx，仅系统应用可用。<br/>2. 如果该权限所有应用可申请，格式：<br/>   ohos.permission.xxxx   <br/>3. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br/>   ohos.permission.A 和 ohos.permission.B<br/>   ohos.permission.A 或 ohos.permission.B |
 | 10   | @system api | 1. 如果某个模块全部接口均为system api，则在模块开头的版本说明下一行，增加：<br/>    - 本模块接口为系统接口。<br/>2. 如果某个接口为system api，仅供OEM厂商使用，则需要在描述中增加：<br/>    **系统接口：** 此接口为系统接口。 |
 | 11   | 示例代码语言      | 所有的示例代码采用代码块的样式，并标记开发语言为ts，且在示例代码最开始添加注释`// xxx.ets` |
 | 12   | 链接写法        | 格式：[链接文字]\(链接内容)<br/>跨文件夹链接：[指南]\(\.\./../xxx/xxx.md)，一个`../`表示上移一层文件夹。<br/>页面内链接：[接口A<sup>7+</sup>]\(#xxxa7)，页面内链接和需要链接到的标题保持一致，全小写无特殊符号无标签。 |
@@ -51,8 +51,8 @@
 
 > *写作说明*
 >
-> 1. 可选，若该模块为组件，则删除此项。
-> 2. 若该模块为方法，必选。
+> 1. 可选，若该模块为组件和通用方法，则删除此项。
+> 2. 若该模块为需要导入的API接口，必选。
 > 3. 根据实际情况填写导入模块。采用代码段的样式，给出import语句。
 >
 
@@ -66,12 +66,12 @@ import Curves from '@ohos.curves'
 >
 > 1. 可选，若该模块的使用无需申请权限，则删除。
 > 2. 如果仅系统应用可申请，格式：<br>
->    **需要权限：** ohos.permission.xxxx，仅系统应用可用。
+>    ohos.permission.xxxx，仅系统应用可用。
 > 3. 如果该权限所有应用可申请，格式：<br>
->   **需要权限：** ohos.permission.xxxx
+>   ohos.permission.xxxx
 > 4. 如果该接口涉及多个权限，则采用“和、或”进行分割，格式：<br>
->   **需要权限：** ohos.permission.A 和 ohos.permission.B<br>
->   **需要权限：** ohos.permission.A 或 ohos.permission.B
+>   ohos.permission.A 和 ohos.permission.B<br>
+>   ohos.permission.A 或 ohos.permission.B
 
  ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../application-dev/security/accesstoken-guidelines.md)。
 
@@ -79,7 +79,8 @@ import Curves from '@ohos.curves'
 
 > *写作说明*
 >
-> 1. 可选，若组件不包含子组件，则删除。
+> 1. 若该模块为系统内置组件，且组件包含子组件，必选。
+> 2. 若该模块非系统内置组件，或组件不包含子组件，则删除。
 
 示例：可以包含子组件。
 
@@ -120,7 +121,7 @@ import Curves from '@ohos.curves'
 > 2. 类型如果为自定义类型（对象、枚举等）需要建立链接到对应的interface或enum中。
 > 3. 注意：默认值需要在描述中换行说明。
 
-此处需说明该组件是否支持通用属性。
+若该模块为系统内置组件，则此处需说明该组件是否支持通用属性。
 
 示例：
 
@@ -137,7 +138,7 @@ import Curves from '@ohos.curves'
 > 1. 可选，如果没有事件可删除此二级标题。
 > 2. 类型如果为自定义类型（对象、枚举等）需要建立链接到对应的interface或enum中。若该类型首次出现，以二级标题的形式，在该事件下方描述。若该类型在其他模块已做说明，则建立相对链接。
 
-此处需说明该组件是否支持通用事件。
+若该模块为系统内置组件，则此处需说明该组件是否支持通用事件。
 
 示例：
 
