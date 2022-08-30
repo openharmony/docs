@@ -335,7 +335,7 @@ createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
 | tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（毫秒）。 |
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容的“仅在本地”标志位。<br/>-&nbsp;默认情况为true。<br/>-&nbsp;配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>-&nbsp;配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [shareOption](#shareOption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CrossDevice。 |
+| shareOption<sup>9+</sup> | [shareOption](#ShareOption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
 
 
 ## PasteDataRecord<sup>7+</sup>
