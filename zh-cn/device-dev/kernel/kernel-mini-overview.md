@@ -128,7 +128,7 @@ LiteOS-M内核移植的具体开发板的工程由社区开发者提供，可以
 
 ## 贡献<a name="section1371123476307"></a>
 
-[如何贡献](../../contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)
+[如何贡献](../../contribute/contribution.md)
 
 [Commit message规范](https://gitee.com/openharmony/kernel_liteos_m/wikis/Commit%20message%E8%A7%84%E8%8C%83)
 
