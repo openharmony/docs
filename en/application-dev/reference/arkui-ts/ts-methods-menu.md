@@ -1,10 +1,10 @@
 # Menu
 
-The menu bound to a component through [bindContextMenu](./ts-universal-attributes-menu.md#Atrributes) on a page can be closed as needed.
+The menu bound to a component through [bindContextMenu](../ts-universal-attributes-menu.md#atrributes) on a page can be closed as needed.
 
-> **NOTE**
+>  **NOTE**
 >
-> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -13,9 +13,9 @@ None
 
 
 ## ContextMenu.close
-| API | Description |
-| ---- | --- |
-|close(): void| Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#Atrributes) on a page. |
+|Name|Description|
+|----|---|
+| close(): void | Closes the menu bound to this component through [bindContextMenu](../ts-universal-attributes-menu.md#atrributes) on a page. |
 
 
 ## Example
