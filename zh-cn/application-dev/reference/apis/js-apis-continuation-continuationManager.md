@@ -112,32 +112,36 @@ register(options?: ContinuationExtraParams): Promise\<number>;
   ```
 
 ## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
-> 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondeviceconnect)替代。
 
 on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
+> 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondeviceconnect9)替代。
+
 ## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
-> 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondevicedisconnect)替代。
 
 on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
+> 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondevicedisconnect9)替代。
+
 ## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
-> 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceconnect)替代。
 
 off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 异步方法，取消监听设备连接状态，使用Callback形式返回连接的设备信息。
 
+> 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceconnect9)替代。
+
 ## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
-> 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdevicedisconnect)替代。
 
 off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
+
+> 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdevicedisconnect9)替代。
 
 ## continuationManager.on("deviceConnect")<sup>9+</sup>
 
