@@ -764,14 +764,14 @@ getProperty(): PasteDataProperty
 
 setProperty(property: PasteDataProperty): void
 
-设置属性描述对象。
+设置属性描述对象，当前仅支持设置shareOption属性。
 
 **系统能力**: SystemCapability.MiscServices.Pasteboard
 
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| property | [PasteDataProperty](#pastedataproperty7) | 是 | 属性保存到PasteData对象，仅支持设置ShareOption。 |
+| property | [PasteDataProperty](#pastedataproperty7) | 是 | 属性描述对象。 |
 
 **示例**
 
