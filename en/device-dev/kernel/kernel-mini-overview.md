@@ -35,7 +35,7 @@ In the  **target\_config.h**  file of the development board, configure the syste
   ![](figures/kernel-startup-process.png "kernel-startup-process")
 ## Directory Structure<a name="section161941989596"></a>
 
-The directory structure is as follows. For more details, see [arch_spec.md](arch_spec.md).
+The directory structure is as follows.
 
 ```
 /kernel/liteos_m
