@@ -1106,12 +1106,6 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 | timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。                     |
 
-**返回值：**
-
-| 类型           | 说明                |
-| -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
-
 **示例：**
 
 ```js
