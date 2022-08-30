@@ -14,7 +14,7 @@
 
    ![01](figures/01.png)
 
-2. On the project configuration page, set **Compile SDK** to **9**, **Model** to **Stage**, **Language** to **eTS** and retain the default values for other parameters.
+2. On the project configuration page, set **Compile SDK** to **9**, **Model** to **Stage**, and retain the default values for other parameters.
 
    ![07](figures/07.png)
 

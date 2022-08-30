@@ -5,7 +5,7 @@
 > **NOTE**
 > - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 > 
-> - The APIs provided by this module are system APIs.
+> - The APIs provided by this component are system APIs.
 
 
 ## Required Permissions
