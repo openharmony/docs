@@ -25,6 +25,7 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 是 | 否 | Want的MIME类型定义。 |
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 是 | 否 | Plain&nbsp;text文本的MIME类型定义。 |
 | MIMETYPE_TEXT_URI<sup>7+</sup> | string | 是 | 否 | URI文本的MIME类型定义。 |
+| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 是 | 否 | PixelMap的MIME类型定义。 |
 
 
 ## pasteboard.createPlainTextData
@@ -128,7 +129,43 @@ createUriData(uri:string): PasteData
 **示例**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
+  ```
+
+
+## pasteboard.createPixelMapData<sup>9+</sup>
+
+createPixelMapData((pixelMap: image.PixelMap): PasteData
+
+构建一个PixelMap剪贴板内容对象。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**参数**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 待保存的PixelMap内容。 |
+
+**返回值**
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) | 包含此内容的剪贴板内容对象。 |
+
+**示例**
+
+  ```js
+  import image from '@ohos.multimedia.image';
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+    var pasteData = pasteboard.createPixelMapData(pixelMap); 
+  })
   ```
 
 
@@ -233,23 +270,72 @@ createUriRecord(uri:string): PasteDataRecord
 **示例**
 
   ```js
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   ```
+
+
+## pasteboard.createPixelMapRecord<sup>9+</sup>
+
+createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
+
+创建一条PixelMap对象内容的条目。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**参数**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | PixelMap对象内容。 |
+
+**返回值**
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的PixelMap对象内容条目。 |
+
+**示例**
+
+  ```js
+  import image from '@ohos.multimedia.image';
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+    var record = pasteboard.createPixelMapRecord(pixelMap); 
+  })
+  ```
+
+
+## ShareOption<sup>9+</sup>
+
+可粘贴数据的范围类型枚举。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+| 名称  | 说明                    |
+| -----  | ----------------------- |
+| InApp  |InApp表示仅允许同应用内粘贴。  |
+| LocalDevice  |LocalDevice表示仅允许在此设备中粘贴。  |
 
 
 ## PasteDataProperty<sup>7+</sup>
 
-定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型以及一些附加数据等。
+定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等。
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard。
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| additions | {[key:&nbsp;string]:&nbsp;object} | 是 | 是 | 设置的其他附加属性数据。 |
-| mimeTypes | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型,&nbsp;非重复的类型列表。 |
-| tag | string | 是 | 是 | 用户自定义标签。 |
-| timestamp | number | 是 | 否 | 剪贴板数据的写入时间戳（毫秒）。 |
-| localOnly | boolean | 是 | 是 | 配置剪贴板内容的“仅在本地”标志位。<br/>-&nbsp;默认情况为true。<br/>-&nbsp;配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>-&nbsp;配置为false时，表示内容将在设备间传递。 |
+| additions<sup>7+</sup> | {[key:&nbsp;string]:&nbsp;object} | 是 | 是 | 设置的其他附加属性数据。 |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型,&nbsp;非重复的类型列表。 |
+| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
+| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（毫秒）。 |
+| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容的“仅在本地”标志位。<br/>-&nbsp;默认情况为true。<br/>-&nbsp;配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>-&nbsp;配置为false时，表示内容将在设备间传递。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
 
 
 ## PasteDataRecord<sup>7+</sup>
@@ -268,6 +354,7 @@ createUriRecord(uri:string): PasteDataRecord
 | mimeType<sup>7+</sup> | string | 是 | 否 | 数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
 
 
 ### convertToText<sup>7+</sup>
@@ -286,10 +373,10 @@ convertToText(): Promise&lt;string&gt;
 **示例**
 
   ```js
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   record.convertToText().then((data) => {
       console.info('convertToText success data : ' + JSON.stringify(data));
-  }).catch((error) => { 
+  }).catch((error) => {
       console.error('convertToText failed because ' + JSON.stringify(error));
   });
   ```
@@ -311,7 +398,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **示例**
 
   ```js
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   record.convertToText((err, data) => {    
       if (err) {        
           console.error('convertToText failed because ' + JSON.stringify(err));        
@@ -416,8 +503,41 @@ getPrimaryUri(): string
 **示例**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
   var uri = pasteData.getPrimaryUri();
+  ```
+
+
+### getPrimaryPixelMap<sup>9+</sup>
+
+getPrimaryPixelMap(): image.PixelMap
+
+获取首个条目的PixelMap对象内容。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**返回值**
+| 类型 | 说明 |
+| -------- | -------- |
+| [image.PixelMap](js-apis-image.md#pixelmap7) | PixelMap对象内容。 |
+
+**示例**
+
+  ```js
+  import image from '@ohos.multimedia.image';
+
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+      var pasteData = pasteboard.createPixelMapData(pixelMap);
+      var pixelMap = pasteData.getPrimaryPixelMap();
+  })
   ```
 
 
@@ -514,7 +634,39 @@ addUriRecord(uri: string): void
 
   ```js
   var pasteData = pasteboard.createPlainTextData("hello");
-  pasteData.addUriRecord("dataability:///com.example.myapplication1?user.txt");
+  pasteData.addUriRecord("dataability:///com.example.myapplication1/user.txt");
+  ```
+
+### addPixelMapRecord<sup>9+</sup>
+
+addPixelMapRecord(pixelMap: image.PixelMap): void
+
+向当前剪贴板内容中添加一条pixelMap条目，并将MIMETYPE_PIXELMAP添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**参数**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | PixelMap对象内容。 |
+
+**示例**
+
+  ```js
+  import image from '@ohos.multimedia.image';
+  var buffer = new ArrayBuffer(128)
+  var opt = {
+    size: { height: 3, width: 5 },
+    pixelFormat: 3,
+    editable: true,
+    alphaType: 1,
+    scaleMode: 1
+  }
+  image.createPixelMap(buffer, opt).then((pixelMap) => {
+    var record = pasteboard.createPlainTextData("hello").addPixelMapRecord(pixelMap); 
+  })
   ```
 
 
@@ -536,7 +688,7 @@ addRecord(record: PasteDataRecord): void
 **示例**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1?user.txt");
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
   var textRecord = pasteboard.createPlainTextRecord("hello");
   var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
   var htmlRecord = pasteboard.createHtmlTextRecord(html);
@@ -605,6 +757,29 @@ getProperty(): PasteDataProperty
   ```js
   var pasteData = pasteboard.createPlainTextData("hello");
   var property = pasteData.getProperty();
+  ```
+
+
+### setProperty<sup>9+</sup>
+
+setProperty(property: PasteDataProperty): void
+
+设置属性描述对象，当前仅支持设置shareOption属性。
+
+**系统能力**: SystemCapability.MiscServices.Pasteboard
+
+**参数**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| property | [PasteDataProperty](#pastedataproperty7) | 是 | 属性描述对象。 |
+
+**示例**
+
+  ```js
+  var pasteData = pasteboard.createHtmlData('application/xml');
+  let prop = pasteData.getProperty();
+  prop.shareOption = pasteboard.ShareOption.InApp;
+  pasteData.setProperty(prop);
   ```
 
 
@@ -751,7 +926,7 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
   ```js
   var pasteData = pasteboard.createPlainTextData("hello");
-  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1?user.txt");
+  var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
   var isReplace = pasteData.replaceRecordAt(0, record);
   ```
 
