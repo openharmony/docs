@@ -1411,6 +1411,56 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
     }
   }
   ```
+### onSslErrorEventReceive<sup>9+</sup>
+
+onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError}) => boolean)
+
+通知发生SSL错误。
+
+**参数：**
+| 参数名     | 参数类型                           | 参数描述             |
+| ------- | ------------------------------------ | ---------------- |
+| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。   |
+| error   | [SslError](sslerror枚举说明)          | 错误码。 |
+
+**返回值：**
+| 类型      | 说明                    |
+| ------- | --------------------- |
+| boolean | 返回false表示此次处理，否则成功。 |
+
+  **示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onHttpAuthRequest((event) => {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              confirm: {
+                value: 'onConfirm',
+                action: () => {
+                    event.handler.handleConfirm();
+                  }
+                }
+              },
+              cancel: () => {
+                event.handler.handleCancel();
+              }
+            })
+            return true;
+          })
+      }
+    }
+  }
+  ```
+
 ### onPermissionRequest<sup>9+</sup>
 
 onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
@@ -2016,6 +2066,23 @@ isHttpAuthInfoSaved(): boolean
 | 类型      | 说明                        |
 | ------- | ------------------------- |
 | boolean | 存在密码认证成功返回true，其他返回false。 |
+
+## SslErrorHandler<sup>9+</sup>
+
+Web组件返回的SSL错误通知用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerrorEventreceive9)。
+
+### handleCancel<sup>9+</sup>
+
+handleCancel(): void
+
+通知Web组件用户取消次请求。
+
+### handleConfirm<sup>9+</sup>
+
+handleConfirm(): void
+
+通知Web组件用户继续使用SSL证书。
+
 
 ## PermissionRequest<sup>9+</sup>
 
@@ -4701,6 +4768,17 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Img           | HTML::img标签。             |
 | Map           | 地理地址。                    |
 | Unknown       | 未知内容。                    |
+
+## SslError枚举说明
+
+onSslErrorEventReceive接口返回的SSL错误的具体原因。
+
+| 名称           | 描述               |
+| -------------- | ----------------- |
+| Invalid        | 一般错误。         |
+| HostMismatch   | 主机名不匹配。 |
+| DataInvalid    | 证书日志无效。    |
+| Untrusted      | 证书颁发机构不受信任。  |
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 
