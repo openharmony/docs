@@ -64,7 +64,7 @@ media.createVideoPlayer((error, video) => {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
-       console.info(`video createVideoPlayer fail, error:${error.message}`);
+       console.info(`video createVideoPlayer fail, error:${error}`);
    }
 });
 ```
@@ -96,7 +96,7 @@ media.createVideoPlayer().then((video) => {
        console.info('video createVideoPlayer fail');
    }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -146,7 +146,7 @@ media.createVideoRecorder((error, video) => {
        videoRecorder = video;
        console.info('video createVideoRecorder success');
    } else {
-       console.info(`video createVideoRecorder fail, error:${error.message}`);
+       console.info(`video createVideoRecorder fail, error:${error}`);
    }
 });
 ```
@@ -179,7 +179,7 @@ media.createVideoRecorder().then((video) => {
        console.info('video createVideoRecorder fail');
    }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -447,7 +447,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
             printfDescription(arrlist[i]);
         }
     } else {
-        console.log(`audio getTrackDescription fail, error:${error.message}`);
+        console.log(`audio getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -484,7 +484,7 @@ audioPlayer.getTrackDescription().then((arrlist) => {
         console.log('audio getTrackDescription fail');
     }
 }).catch((error) => {
-   console.info(`audio catchCallback, error:${error.message}`);
+   console.info(`audio catchCallback, error:${error}`);
 });
 
 for (let i = 0; i < arrayDescription.length; i++) {
@@ -569,9 +569,7 @@ audioPlayer.on('finish', () => {               //设置'finish'事件回调
     audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
 });
 audioPlayer.on('error', (error) => {           //设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);
-    console.info(`audio error called, errCode is ${error.code}`);
-    console.info(`audio error called, errMessage is ${error.message}`);
+    console.info(`audio error called, error: ${error}`);
 });
 
 // 用户选择视频设置fd(本地播放)
@@ -636,9 +634,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 audioPlayer.on('error', (error) => {      //设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);      //打印错误类型名称
-    console.info(`audio error called, errCode is ${error.code}`);      //打印错误码
-    console.info(`audio error called, errMessage is ${error.message}`);//打印错误类型详细描述
+    console.info(`audio error called, error: ${error}`); 
 });
 audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
@@ -762,7 +758,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
     console.info('setDisplaySurface success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -812,7 +808,7 @@ prepare(): Promise\<void>
 videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -862,7 +858,7 @@ play(): Promise\<void>;
 videoPlayer.play().then(() => {
     console.info('play success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -912,7 +908,7 @@ pause(): Promise\<void>
 videoPlayer.pause().then(() => {
     console.info('pause success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -962,7 +958,7 @@ stop(): Promise\<void>
 videoPlayer.stop().then(() => {
     console.info('stop success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1012,7 +1008,7 @@ reset(): Promise\<void>
 videoPlayer.reset().then(() => {
     console.info('reset success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1103,13 +1099,13 @@ let seekTime = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
     console.info('seek success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 
 videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
     console.info('seek success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1168,7 +1164,7 @@ let vol = 0.5;
 videoPlayer.setVolume(vol).then() => {
     console.info('setVolume success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1218,7 +1214,7 @@ release(): Promise\<void>
 videoPlayer.release().then() => {
     console.info('release success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1253,7 +1249,7 @@ videoPlayer.getTrackDescription((error, arrlist) => {
             printfDescription(arrlist[i]);
         }
     } else {
-        console.log(`video getTrackDescription fail, error:${error.message}`);
+        console.log(`video getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -1291,7 +1287,7 @@ videoPlayer.getTrackDescription().then((arrlist) => {
         console.log('video getTrackDescription fail');
     }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
@@ -1357,7 +1353,7 @@ let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed).then() => {
     console.info('setSpeed success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1416,7 +1412,7 @@ let bitrate = 1024000;
 videoPlayer.selectBitrate(bitrate).then() => {
     console.info('selectBitrate success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1533,9 +1529,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 videoPlayer.on('error', (error) => {      // 设置'error'事件回调
-    console.info(`video error called, errName is ${error.name}`);      // 打印错误类型名称
-    console.info(`video error called, errCode is ${error.code}`);      // 打印错误码
-    console.info(`video error called, errMessage is ${error.message}`);// 打印错误类型详细描述
+    console.info(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
 ```
@@ -1644,7 +1638,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
             printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
         }
     } else {
-        console.log(`audio getTrackDescription fail, error:${error.message}`);
+        console.log(`audio getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -1824,9 +1818,7 @@ let audioRecorderConfig = {
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('error', (error) => {                                             // 设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);
-    console.info(`audio error called, errCode is ${error.code}`);
-    console.info(`audio error called, errMessage is ${error.message}`);
+    console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {                                              // 设置'prepare'事件回调
     console.log('prepare success');
@@ -1872,9 +1864,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 audioRecorder.on('error', (error) => {                                  // 设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
-    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
-    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
+    console.info(`audio error called, error: ${error}`); 
 });
 audioRecorder.prepare();                                                  // prepare不设置参数，触发'error'事件
 ```
@@ -2492,10 +2482,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
-    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
-    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
-});
+    console.info(`audio error called, error: ${error}`); 
 // 当获取videoRecordState接口出错时通过此订阅事件上报
 ```
 
