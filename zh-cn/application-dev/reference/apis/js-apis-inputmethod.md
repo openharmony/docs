@@ -336,7 +336,7 @@ InputMethodSetting.listInputMethod((err,data) => {
 
 ### listInputMethod
 
-listInputMethod(): Promise&lt;Array<InputMethodProperty>&gt;
+listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 查询已安装的输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
