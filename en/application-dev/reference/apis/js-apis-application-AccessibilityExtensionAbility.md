@@ -14,6 +14,14 @@ The **AccessibilityExtensionAbility** module is based on the ExtensionAbility fr
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 ```
 
+## Attributes
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+| Name  | Type | Readable | Writable | Description           |
+| --------- | -------- | ---- | ---- | ------------------------- |
+| context | [AccessibilityExtensionContext](js-apis-accessibility-extension-context.md) | Yes | No | Context of the accessibility extension ability. |
+
 ## AccessibilityEvent
 
 Defines an accessibility event.
@@ -24,7 +32,7 @@ Defines an accessibility event.
 
 | Name       | Type                                    | Readable  | Writable  | Description        |
 | --------- | ---------------------------------------- | ---- | ---- | ---------- |
-| eventType | [EventType](js-apis-accessibility.md#EventType) \| [WindowUpdateType](js-apis-accessibility.md#WindowUpdateType) \| [TouchGuideType](touchguidetype) \| [GestureType](gesturetype) \| [PageUpdateType](pageupdatetype) | Yes   | No   | Event type.   |
+| eventType | [EventType](js-apis-accessibility.md#eventtype) \| [WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes   | No   | Event type.   |
 | target    | AccessibilityElement                     | Yes   | No   | Target component where the event occurs.|
 | timeStamp | number                                   | Yes   | No   | Timestamp of the event.    |
 
@@ -41,24 +49,6 @@ Defines a gesture path.
 | points       | Array&lt;[GesturePoint](gesturepoint)&gt; | Yes   | Yes   | An array of gesture touch points. |
 | durationTime | number                                   | Yes   | Yes   | Total time consumed by the gesture.|
 
-### constructor
-
-constructor(durationTime: number)
-
-A constructor used to create a **GesturePath** object.
-
-**Parameters**
-
-| Name         | Type  | Mandatory  | Description    |
-| ------------ | ------ | ---- | ------ |
-| durationTime | number | Yes   | Total time consumed by the gesture.|
-
-**Example**
-
-```typescript
-let gesturePath = new GesturePath(100);
-```
-
 ## GesturePoint
 
 Defines a gesture touch point.
@@ -71,25 +61,6 @@ Defines a gesture touch point.
 | --------- | ------ | ---- | ---- | ------- |
 | positionX | number | Yes   | Yes   | X-coordinate of the touch point.|
 | positionY | number | Yes   | Yes   | Y-coordinate of the touch point.|
-
-### constructor
-
-constructor(positionX: number, positionY: number)
-
-A constructor used to create a **GesturePoint** object.
-
-**Parameters**
-
-| Name      | Type  | Mandatory  | Description     |
-| --------- | ------ | ---- | ------- |
-| positionX | number | Yes   | X-coordinate of the touch point.|
-| positionY | number | Yes   | Y-coordinate of the touch point.|
-
-**Example**
-
-```typescript
-let gesturePoint = new GesturePoint(100, 200);
-```
 
 ## GestureType
 
@@ -190,7 +161,7 @@ Called when an event that matches the specified bundle and event type occurs. In
 
 | Name  | Type                                    | Mandatory  | Description             |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](accessibilityevent) | Yes   | Accessibility event. No value is returned.|
+| event | [AccessibilityEvent](#accessibilityevent) | Yes   | Accessibility event. No value is returned.|
 
 **Example**
 
@@ -215,7 +186,7 @@ Called when a physical key is pressed. In this API, you can determine whether to
 
 | Name     | Type                                    | Mandatory  | Description                     |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| keyEvent | [KeyEvent](js-apis-inputeventclient.md#KeyEvent) | Yes   | Key event. If **true** is returned, the key is intercepted.|
+| keyEvent | [KeyEvent](js-apis-keyevent.md#KeyEvent) | Yes   | Key event. If **true** is returned, the key is intercepted.|
 
 **Example**
 
