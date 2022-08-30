@@ -1648,7 +1648,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 **示例：** 
 
 ```js
-sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(err, data) {
+sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'x':2, 'y':3}, function(err, data) {
     if (err) {
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
@@ -1683,7 +1683,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 **示例：** 
 
 ```js
-const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
+const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {'x':2, 'y':3});
     promise.then((data) => {
         console.info("Operation successed.");
         for (var i=0; i < data.length; i++) {
@@ -1711,12 +1711,12 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 
 **示例：** 
 ```js
-sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000, function(err, data)  {
+sensor.getGeomagneticField({'latitude':80, 'longitude':0, 'altitude':0}, 1580486400000, function(err, data)  {
     if (err) {
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
     }
-    console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+    console.info('sensor_getGeomagneticField_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
 	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
@@ -1742,7 +1742,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 
 **示例：** 
   ```js
-  const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
+  const promise = sensor.getGeomagneticField({'latitude':80, 'longitude':0, 'altitude':0}, 1580486400000);
       promise.then((data) => {
           console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
@@ -1898,7 +1898,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -1966,7 +1966,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2033,7 +2033,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2168,7 +2168,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
+      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data);
       for (var i=0; i < data.rotation.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }
@@ -2417,9 +2417,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型   | 可读   | 可写   | 说明                                |
-| ------ | ------ | ---- | ---- | --------------------------------- |
-| status | number | 是    | 是    | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示有，1表示没有。 |
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，1表示有。 |
 
 
 ## MagneticFieldResponse
