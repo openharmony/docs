@@ -1496,7 +1496,7 @@ finish操作密钥接口，使用Promise方式异步返回结果。
 | handle  | number                              | 是   | Finish操作的handle。                |
 | options | [HuksOptions](#huksoptions)         | 是   | Finish操作的参数集合。              |
 | token   | Uint8Array                          | 否   | Finish操作的token。                 |
-| promise | Promise\<[HuksResult](#Huksresult)> | 是   | promise实例，用于获取异步返回结果。 |
+| promise | Promise\<[HuksResult](#huksresult)> | 是   | promise实例，用于获取异步返回结果。 |
 
 ## huks.abort
 
