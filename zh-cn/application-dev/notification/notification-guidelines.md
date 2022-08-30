@@ -136,7 +136,7 @@ var subscriber = {
 应用发布通知的使能开关默认是关闭的，所以应用发布通知前需要用户允许后才能发送。应用可以通过Notification.requestEnableNotification弹窗提醒用户允许发送通知。
 
 ```js
-Notification.requestEnableNotification() .then((data) => {
+Notification.requestEnableNotification().then((data) => {
 	console.info('===>requestEnableNotification success');
 }).catch((err) => {
 	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
@@ -166,7 +166,7 @@ var notificationRequest = {
 }
 
 //通知发送
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest).then((data) => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));
@@ -235,7 +235,7 @@ var notificationRequest = {
 }
 
 //通知发送
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest).then((data) => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));
