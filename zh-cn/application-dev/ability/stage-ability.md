@@ -1,6 +1,6 @@
 # Ability开发指导
 ## 场景介绍
-Stage模型是区别于FA模型的一种应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。开发Stage模型应用时，需要在module.json和app.json配置文件中对应用的包结构进行声明，对应用包结构配置文件的说明详见[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
+Stage模型是区别于FA模型的一种应用开发模型，对此模型的介绍详见[Stage模型综述](stage-brief.md)。开发Stage模型应用时，需要在module.json5和app.json5配置文件中对应用的包结构进行声明，对应用包结构配置文件的说明详见[应用包结构配置文件的说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/stage-structure.md)。基于Stage模型的Ability应用开发，主要涉及如下功能逻辑：
 - 创建支持使用屏幕浏览及人机交互的Ability应用，包括实现Ability的生命周期、获取Ability配置信息、向用户申请授权及环境变化通知等场景。
 - 启动Ability应用，包括相同设备启动Ability、跨设备启动Ability以及指定页面启动Ability等场景。
 - 通用组件Call功能，详见[Call调用开发指导](stage-call.md)。
@@ -8,7 +8,7 @@ Stage模型是区别于FA模型的一种应用开发模型，对此模型的介�
 - 应用迁移，详见[应用迁移开发指导](stage-ability-continuation.md)。
 
 ### 启动模式
-ability支持单实例、多实例和指定实例3种启动模式，在module.json中通过launchType配置。启动模式对应Ability被启动时的行为，对启动模式的详细说明如下：
+ability支持单实例、多实例和指定实例3种启动模式，在module.json5中通过launchType配置。启动模式对应Ability被启动时的行为，对启动模式的详细说明如下：
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
@@ -16,7 +16,7 @@ ability支持单实例、多实例和指定实例3种启动模式，在module.js
 | singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例 |
 | specified   | 指定实例 | 运行时由ability内部业务决定是否创建多实例 |
 
-缺省情况下是singleton模式，module.json示例如下：
+缺省情况下是singleton模式，module.json5示例如下：
 ```json
 {
   "module": {
@@ -146,9 +146,9 @@ export default class MainAbility extends Ability {
 }
 ```
 ### 应用向用户申请授权
-应用需要获取用户的隐私信息或使用系统能力时，比如获取位置信息、使用相机拍摄照片或录制视频等，需要向用户申请授权。在开发过程中，首先需要明确涉及的敏感权限并在module.json中声明需要的权限，同时通过接口`requestPermissionsFromUser`以动态弹窗的方式向用户申请授权。以访问日历为例，具体示例代码如下：
+应用需要获取用户的隐私信息或使用系统能力时，比如获取位置信息、使用相机拍摄照片或录制视频等，需要向用户申请授权。在开发过程中，首先需要明确涉及的敏感权限并在module.json5中声明需要的权限，同时通过接口`requestPermissionsFromUser`以动态弹窗的方式向用户申请授权。以访问日历为例，具体示例代码如下：
 
-在module.json声明需要的权限：
+在module.json5声明需要的权限：
 ```json
 "requestPermissions": [
     {
