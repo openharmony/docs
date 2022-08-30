@@ -57,7 +57,7 @@ interface WantAgent: 设置点击通知后需要跳转的目标ability信息
 | pkgName | string | 是 | 目标包的名称 |
 | abilityName | string | 是 | 目标ability的名称 |
 
-interface MaxScreenWantAgent: 设置提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框
+interface MaxScreenWantAgent: 提醒到达时自动拉起的目标界面信息，如果设备在使用中，则只弹出通知横幅框（现版本暂不支持此功能）
 
 **表6** MaxScreenWantAgent
 
