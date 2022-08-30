@@ -104,6 +104,7 @@
     - [GridItem](ts-container-griditem.md)
     - [List](ts-container-list.md)
     - [ListItem](ts-container-listitem.md)
+    - [ListItemGroup](ts-container-listitemgroup.md)
     - [Navigator](ts-container-navigator.md)        
     - [Panel](ts-container-panel.md)
     - [Refresh](ts-container-refresh.md)

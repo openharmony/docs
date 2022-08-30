@@ -24,7 +24,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 
 ## 开发步骤
 
-1. 需要在应用配置文件module.json中进行注册，注册类型type需要设置为service。module.json配置样例如下所示：
+1. 需要在应用配置文件module.json5中进行注册，注册类型type需要设置为service。module.json5配置样例如下所示：
 
 
    ```json

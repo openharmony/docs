@@ -16,7 +16,7 @@ import sms from '@ohos.telephony.sms';
 
 createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncCallback<ShortMessage\>\): void
 
-根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用callback方式作为异步方法。
+根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -25,7 +25,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 | 参数名        | 类型                                               | 必填 | 说明                                                         |
 | ------------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | pdu           | Array&lt;number&gt;                                | 是   | 协议数据单元，从收到的信息中获取。                           |
-| specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
+| specification | string                                             | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
 | callback      | AsyncCallback&lt;[ShortMessage](#shortmessage)&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -44,7 +44,7 @@ sms.createMessage(pdu, specification, (err, data) => {
 
 createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortMessage\>
 
-根据协议数据单元（PDU）和指定的短信协议创建短信实例，使用Promise方式作为异步方法。
+根据协议数据单元（PDU）和指定的短信协议创建短信实例。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -53,7 +53,7 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise<ShortM
 | 参数名        | 类型                | 必填 | 说明                                                         |
 | ------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | pdu           | Array&lt;number&gt; | 是   | 协议数据单元，从收到的信息中获取。                           |
-| specification | string              | 是   | 短信协议类型。<br/>- 3gpp表示GSM/UMTS/LTE SMS<br/>- 3gpp2表示CDMA SMS |
+| specification | string              | 是   | 短信协议类型。<br/>- 3gpp：表示GSM/UMTS/LTE SMS<br/>- 3gpp2：表示CDMA SMS |
 
 **返回值：**
 
@@ -71,7 +71,7 @@ let promise = sms.createMessage(pdu, specification);
 promise.then(data => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`createMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -114,7 +114,7 @@ sms.sendMessage(options);
 
 getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 
-获取发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
+获取发送短信的默认SIM卡槽ID。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -137,7 +137,7 @@ sms.getDefaultSmsSlotId((err, data) => {
 
 getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 
-获取发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
+获取发送短信的默认SIM卡槽ID。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.SmsMms
 
@@ -154,7 +154,7 @@ let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -162,7 +162,7 @@ promise.then(data => {
 
 setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
 
-设置发送短信的默认SIM卡槽ID，使用callback方式作为异步方法。
+设置发送短信的默认SIM卡槽ID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -190,7 +190,7 @@ sms.setDefaultSmsSlotId(0,(err, data) => {
 
 setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
-设置发送短信的默认SIM卡槽ID，使用Promise方式作为异步方法。
+设置发送短信的默认SIM卡槽ID。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -217,7 +217,7 @@ let promise = sms.setDefaultSmsSlotId(0);
 promise.then(data => {
     console.log(`setDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -225,7 +225,7 @@ promise.then(data => {
 
 setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\): void
 
-设置短信服务中心（SMSC）地址，使用callback方式作为异步方法。
+设置短信服务中心（SMSC）地址。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -256,7 +256,7 @@ sms.setSmscAddr(slotId, smscAddr, (err,data) => {
 
 setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
-设置短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
+设置短信服务中心（SMSC）地址。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -286,7 +286,7 @@ let promise = sms.setSmscAddr(slotId, smscAddr);
 promise.then(data => {
     console.log(`setSmscAddr success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -295,7 +295,7 @@ promise.then(data => {
 
 getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取短信服务中心（SMSC）地址，使用callback方式作为异步方法。
+获取短信服务中心（SMSC）地址。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -324,7 +324,7 @@ sms.getSmscAddr(slotId, (err, data) => {
 
 getSmscAddr\(slotId: number\): Promise<string\>
 
-获取短信服务中心（SMSC）地址，使用Promise方式作为异步方法。
+获取短信服务中心（SMSC）地址。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -352,7 +352,7 @@ let promise = sms.getSmscAddr(slotId);
 promise.then(data => {
     console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -368,7 +368,7 @@ hasSmsCapability(): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | - true：设备具备短信发送和接收能力<br/>- false：设备不具备短信发送和接收能力 |
+| boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
 
 ```js
 let result = sms.hasSmsCapability(); 
@@ -379,7 +379,7 @@ console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
 
 splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
 
-将长短信拆分为多个片段，使用callback方式作为异步方法。
+将长短信拆分为多个片段。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -408,7 +408,7 @@ sms.splitMessage(content, (err, data) => {
 
 splitMessage(content: string): Promise<Array<string\>>
 
-将长短信拆分为多个片段，使用Promise方式作为异步方法。
+将长短信拆分为多个片段。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -436,7 +436,7 @@ let promise = sms.splitMessage(content);
 promise.then(data => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`splitMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -444,7 +444,7 @@ promise.then(data => {
 
 addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
-添加SIM卡消息，使用callback方式作为异步方法。
+添加SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -478,7 +478,7 @@ sms.addSimMessage(simMessageOptions, (err, data) => {
 
 addSimMessage(options: SimMessageOptions): Promise<void\>
 
-添加SIM卡消息，使用Promise方式作为异步方法。
+添加SIM卡消息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -511,7 +511,7 @@ let promise = sms.addSimMessage(simMessageOptions);
 promise.then(data => {
     console.log(`addSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`addSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`addSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -519,7 +519,7 @@ promise.then(data => {
 
 delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>): void
 
-删除SIM卡消息，使用callback方式作为异步方法。
+删除SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -532,7 +532,7 @@ delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>):
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                    | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| msgIndex | number                    | 是   | 消息索引                                  |
+| msgIndex | number                    | 是   | 消息索引。                                  |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                |
 
 **示例：**
@@ -550,7 +550,7 @@ sms.delSimMessage(slotId, msgIndex, (err, data) => {
 
 delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 
-删除SIM卡信息，使用Promise方式作为异步方法。
+删除SIM卡信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -563,7 +563,7 @@ delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 | 参数名   | 类型   | 必填 | 说明                                      |
 | -------- | ------ | ---- | ----------------------------------------- |
 | slotId   | number | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| msgIndex | number | 是   | 消息索引                                  |
+| msgIndex | number | 是   | 消息索引。                                  |
 
 **返回值：**
 
@@ -580,7 +580,7 @@ let promise = sms.delSimMessage(slotId, msgIndex);
 promise.then(data => {
     console.log(`delSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`delSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`delSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -588,7 +588,7 @@ promise.then(data => {
 
 updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\>): void
 
-更新SIM卡消息，使用callback方式作为异步方法。
+更新SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -623,7 +623,7 @@ sms.updateSimMessage(updateSimMessageOptions, (err, data) => {
 
 updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
-更新SIM卡消息，使用Promise方式作为异步方法。
+更新SIM卡消息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -657,7 +657,7 @@ let promise = sms.updateSimMessage(updateSimMessageOptions);
 promise.then(data => {
     console.log(`updateSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`updateSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`updateSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -665,7 +665,7 @@ promise.then(data => {
 
 getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\>>): void
 
-获取所有SIM卡消息，使用callback方式作为异步方法。
+获取所有SIM卡消息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -694,7 +694,7 @@ sms.getAllSimMessages(slotId, (err, data) => {
 
 getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
-获取所有SIM卡消息，使用Promise方式作为异步方法。
+获取所有SIM卡消息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -722,7 +722,7 @@ let promise = sms.getAllSimMessages(slotId);
 promise.then(data => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getAllSimMessages fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -730,7 +730,7 @@ promise.then(data => {
 
 setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
-设置小区广播配置，使用callback方式作为异步方法。
+设置小区广播配置。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -764,7 +764,7 @@ sms.setCBConfig(cbConfigOptions, (err, data) => {
 
 setCBConfig(options: CBConfigOptions): Promise<void\>
 
-设置小区广播配置，使用Promise方式作为异步方法。
+设置小区广播配置。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -797,7 +797,7 @@ let promise = sms.setCBConfig(cbConfigOptions);
 promise.then(data => 
     console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setCBConfig fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -805,7 +805,7 @@ promise.then(data =>
 
 getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback: AsyncCallback<SmsSegmentsInfo\>): void
 
-获取短信段信息，使用callback方式作为异步方法。
+获取短信段信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -816,9 +816,9 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 | 参数名    | 类型                                                         | 必填 | 说明                                      |
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | slotId    | number                                                       | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| message   | string                                                       | 是   | 消息                                      |
-| force7bit | boolean                                                      | 是   | 是否使用7bit编码                          |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数                                  |
+| message   | string                                                       | 是   | 消息。                                      |
+| force7bit | boolean                                                      | 是   | 是否使用7 bit编码。                          |
+| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#smssegmentsinfo8)&gt; | 是   | 回调函数。                                  |
 
 **示例：**
 
@@ -834,7 +834,7 @@ sms.getSmsSegmentsInfo(slotId, "message", false, (err, data) => {
 
 getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise<SmsSegmentsInfo\>
 
-获取短信段信息，使用Promise方式作为异步方法。
+获取短信段信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -845,8 +845,8 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 | 参数名    | 类型    | 必填 | 说明                                      |
 | --------- | ------- | ---- | ----------------------------------------- |
 | slotId    | number  | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| message   | string  | 是   | 消息                                      |
-| force7bit | boolean | 是   | 是否使用7bit编码                          |
+| message   | string  | 是   | 消息。                                      |
+| force7bit | boolean | 是   | 是否使用7 bit编码。                          |
 
 **返回值：**
 
@@ -862,7 +862,7 @@ let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
 promise.then(data => 
     console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSmsSegmentsInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -870,7 +870,7 @@ promise.then(data =>
 
 isImsSmsSupported(callback: AsyncCallback<boolean\>): void
 
-如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS，使用callback方式作为异步方法。
+如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -895,7 +895,7 @@ sms.isImsSmsSupported((err, data) => {
 
 isImsSmsSupported(): Promise<boolean\>
 
-如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS，使用Promise方式作为异步方法。
+如果IMS已注册并且在IMS上支持SMS，则支持通过IMS发送SMS。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -914,7 +914,7 @@ let promise = sms.isImsSmsSupported();
 promise.then(data => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`isImsSmsSupported fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isImsSmsSupported failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -922,7 +922,7 @@ promise.then(data => {
 
 getImsShortMessageFormat(callback: AsyncCallback<string\>): void
 
-获取IMS上支持的SMS格式，使用callback方式作为异步方法。
+获取IMS上支持的SMS格式。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -947,7 +947,7 @@ sms.getImsShortMessageFormat((err, data) => {
 
 getImsShortMessageFormat(): Promise<string\>
 
-获取IMS上支持的SMS格式，使用Promise方式作为异步方法。
+获取IMS上支持的SMS格式。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -966,7 +966,7 @@ let promise = sms.getImsShortMessageFormat();
 promise.then(data => {
     console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getImsShortMessageFormat fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getImsShortMessageFormat failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -974,7 +974,7 @@ promise.then(data => {
 
 decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsInformation\>): void
 
-彩信解码，使用callback方式作为异步方法。
+彩信解码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -984,7 +984,7 @@ decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsI
 
 | 参数名          | 类型                                                    | 必填 | 说明           |
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
-| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名 |
+| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名。 |
 | callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 回调函数。     |
 
 **示例：**
@@ -1001,7 +1001,7 @@ sms.decodeMms(mmsFilePathName, (err, data) => {
 
 decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
 
-彩信解码，使用Promise方式作为异步方法。
+彩信解码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1027,7 +1027,7 @@ let promise = sms.getSmscAddr(mmsFilePathName);
 promise.then(data => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`decodeMms fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1035,7 +1035,7 @@ promise.then(data => {
 
 encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
-彩信编码，使用callback方式作为异步方法。
+彩信编码。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1070,7 +1070,7 @@ sms.encodeMms(mmsInformation, (err, data) => {
 
 encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
-彩信编码，使用Promise方式作为异步方法。
+彩信编码。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1104,7 +1104,7 @@ let promise = sms.encodeMms(mmsInformation);
 promise.then(data => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`encodeMms fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1176,7 +1176,7 @@ promise.then(data => {
 
 ## IDeliveryShortMessageCallback
 
-回调实例。返回短信送达报告。
+回调实例，返回短信送达报告。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Telephony.SmsMms。
 
@@ -1208,8 +1208,8 @@ promise.then(data => {
 
 | 参数名      | 类型                                                         | 必填 | 说明      |
 | ----------- | ------------------------------------------------------------ | ---- | --------- |
-| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型  |
-| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | pdu头类型 |
+| messageType | [MessageType](#messagetype8)                                 | 是   | 消息类型。  |
+| mmsType     | [MmsSendReq](#mmssendreq8) \|[MmsSendConf](#mmssendconf8) \|[MmsNotificationInd](#mmsnotificationind8) \|[MmsRespInd](#mmsrespind8) \|[MmsRetrieveConf](#mmsretrieveconf8)\|[MmsAcknowledgeInd](#mmsacknowledgeind8)\|[MmsDeliveryInd](#mmsdeliveryind8)\|[MmsReadOrigInd](#mmsreadorigind8)\|[MmsReadRecInd](#mmsreadrecind8) | 是   | PDU头类型 |
 | attachment  | Array<[MmsAttachment](#mmsattachment8)\>                     | 否   | 附件      |
 
 ## MmsSendReq<sup>8+</sup>
