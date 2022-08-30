@@ -35,9 +35,9 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 **返回值：** 
 
-| 类型                | 说明          |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise实例。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：** 
 
@@ -68,9 +68,9 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 **返回值：** 
 
-| 类型                | 说明          |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise实例。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：** 
 
@@ -99,10 +99,10 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名   | 类型                      | 必填 | 说明                     |
-| -------- | ------------------------- | ---- | ------------------------ |
-| duration | number                    | 是   | 马达振动时长, 单位ms。   |
-| callback | AsyncCallback&lt;void&gt; | 否   | 指定的callback回调方法。 |
+| 参数名   | 类型                      | 必填 | 说明                                                       |
+| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| duration | number                    | 是   | 马达振动时长, 单位ms。                                     |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
@@ -133,9 +133,9 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 | effectId | [EffectId](#effectid) | 是   | 预置的振动效果ID。 |
 
 **返回值：** 
-| 类型                | 说明          |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise实例。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：** 
   ```js
@@ -158,10 +158,10 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名   | 类型                      | 必填 | 说明                     |
-| -------- | ------------------------- | ---- | ------------------------ |
-| effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。       |
-| callback | AsyncCallback&lt;void&gt; | 否   | 指定的callback回调方法。 |
+| 参数名   | 类型                      | 必填 | 说明                                                       |
+| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。                                         |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
@@ -187,11 +187,11 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallb
 
 **参数：** 
 
-| 参数名    | 类型                                  | 必填 | 说明                     |
-| --------- | ------------------------------------- | ---- | :----------------------- |
-| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果。           |
-| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。           |
-| callback  | AsyncCallback&lt;void&gt;             | 是   | 指定的callback回调方法。 |
+| 参数名    | 类型                                  | 必填 | 说明                                                       |
+| --------- | ------------------------------------- | ---- | :--------------------------------------------------------- |
+| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果。                                             |
+| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。                                             |
+| callback  | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
 
 示例：
 
@@ -228,9 +228,9 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **返回值：** 
 
-| 类型                | 说明          |
-| ------------------- | ------------- |
-| Promise&lt;void&gt; | Promise实例。 |
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：** 
 
@@ -254,10 +254,10 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 **参数：** 
-| 参数名   | 类型                                  | 必填 | 说明                     |
-| -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。 |
-| callback | AsyncCallback&lt;void&gt;             | 否   | 指定的callback回调方法。 |
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。                                     |
+| callback | AsyncCallback&lt;void&gt;             | 否   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
 
 **示例：** 
 
