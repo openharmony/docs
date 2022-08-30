@@ -1965,7 +1965,6 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
