@@ -185,9 +185,9 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 ```js
 let promise = display.getAllDisplay();
 promise.then((data) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-}).catch((err) => {
     console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 
@@ -216,14 +216,24 @@ hasPrivateWindow(displayId: number): boolean
 **示例：**
 
 ```js
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+  if (err.code) {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+  displayClass = data;
+});
+
 var ret = display.hasPrivateWindow(displayClass.id);
 if (ret == undefined) {
-    console.log("Failed to check  has privateWindow or not.");
+  console.log("Failed to check  has privateWindow or not.");
 }
 if (ret) {
-    console.log("There has privateWindow.");
+  console.log("There has privateWindow.");
 } else if (!ret) {
-    console.log("There has no privateWindow.");
+  console.log("There has no privateWindow.");
 }
 ```
 
