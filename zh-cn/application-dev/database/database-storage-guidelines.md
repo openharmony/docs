@@ -99,7 +99,7 @@
 
    ```js
    promise.then((storage) => {
-       let getPromise = storage.put('startup', 'auto'); // 保存数据到缓存的storage示例中。
+       let getPromise = storage.put('startup', 'auto'); // 保存数据到缓存的storage实例中
        getPromise.then(() => {
            console.info("Succeeded in putting the value of startup.");
        }).catch((err) => {
