@@ -382,7 +382,7 @@ let promise = preferences.put('startup', 'auto');
 promise.then(() => {
     console.info("Succeeded in putting value of 'startup'.");
 }).catch((err) => {
-    console.info("Failed to put value of 'startup'. Cause: " + err));
+    console.info("Failed to put value of 'startup'. Cause: " + err);
 })
 ```
 
