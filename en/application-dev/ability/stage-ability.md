@@ -86,7 +86,7 @@ To create Page abilities for an application in the stage model, you must impleme
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
 
-        windowStage.loadContent("pages/index").then((data) => {
+        windowStage.loadContent("pages/index").then(() => {
             console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
@@ -227,8 +227,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start ability")
 }).catch((error) => {
     console.error("Failed to start ability with error: "+ JSON.stringify(error))
 })
@@ -244,8 +244,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start remote ability")
 }).catch((error) => {
     console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })

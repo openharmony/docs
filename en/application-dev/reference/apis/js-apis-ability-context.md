@@ -126,7 +126,7 @@ var options = {
   windowMode: 0,
 };
 this.context.startAbility(want, options)
-.then((data) => {
+.then(() => {
     console.log('Operation successful.')
 }).catch((error) => {
     console.log('Operation failed.');
@@ -273,7 +273,7 @@ var options = {
 };
 var accountId = 11;
 this.context.startAbility(want, accountId, options)
-.then((data) => {
+.then(() => {
     console.log('Operation successful.')
 }).catch((error) => {
     console.log('Operation failed.');
@@ -352,7 +352,7 @@ Starts an ability with **options** specified. This API uses a promise to return 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | Yes| Information about the **Want** used for starting an ability.|
-| options | StartOptions | Yes| Parameters used for starting the ability.|
+| options | StartOptions | No | Parameters used for starting the ability.|
 
 **Return value**
 
@@ -511,8 +511,8 @@ Terminates this ability. This API uses a promise to return the result.
 **Example**
 
 ```js
-this.context.terminateSelf(want).then((data) => {
-    console.log('success:' + JSON.stringify(data));
+this.context.terminateSelf(want).then(() => {
+    console.log('success:');
 }).catch((error) => {
     console.log('failed:' + JSON.stringify(error));
 });
@@ -571,7 +571,7 @@ this.context.terminateSelfWithResult(
 {
     want: {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo"},
     resultCode: 100
-}).then((result) => {
+}).then(() => {
     console.log("terminateSelfWithResult")
 })
 ```
@@ -768,8 +768,8 @@ Sets the label of the ability in the mission. This API uses a promise to return 
 **Example**
     
 ```js
-this.context.setMissionLabel("test").then((data) => {
-    console.log('success:' + JSON.stringify(data));
+this.context.setMissionLabel("test").then(() => {
+    console.log('success:');
 }).catch((error) => {
     console.log('failed:' + JSON.stringify(error));
 });
