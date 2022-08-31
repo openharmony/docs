@@ -7,7 +7,7 @@
 
 ## Modules to Import
 
- ```js
+```js
 import bytrace from '@ohos.bytrace';
 ```
 
@@ -23,7 +23,7 @@ Marks the start of a timeslice trace task.
 > 
 > If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same taskId can be used. For details, see the bytrace.finishTrace example.
 
-**System capability**: SystemCapability.Developtools.Bytrace
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -36,7 +36,7 @@ Marks the start of a timeslice trace task.
 
 **Example**
 
- ```js
+```js
 bytrace.startTrace("myTestFunc", 1);
 bytrace.startTrace("myTestFunc", 1, 5); // The expected duration of the trace is 5 ms.
 ```
@@ -52,7 +52,7 @@ Marks the end of a timeslice trace task.
 > 
 > To stop a trace task, the values of name and task ID in **finishTrace** must be the same as those in **startTrace**.
 
-**System capability**: SystemCapability.Developtools.Bytrace
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
 
@@ -64,7 +64,7 @@ Marks the end of a timeslice trace task.
 
 **Example**
 
- ```js
+```js
 bytrace.finishTrace("myTestFunc", 1);
 ```
 
@@ -97,7 +97,7 @@ traceByValue(name: string, count: number): void
 
 Defines the variable that indicates the number of timeslice trace tasks.
 
-**System capability**: SystemCapability.HiviewDFX.HiTrace
+**System capability**: HiviewDFX.HiTrace
 
 **Parameters**
 | Name| Type| Mandatory| Description|
@@ -107,7 +107,7 @@ Defines the variable that indicates the number of timeslice trace tasks.
 
 **Example**
 
- ```js
+```js
 let traceCount = 3;
 bytrace.traceByValue("myTestCount", traceCount);
 traceCount = 4;
