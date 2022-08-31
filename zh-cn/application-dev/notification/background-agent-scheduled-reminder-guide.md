@@ -9,6 +9,8 @@
 
 reminderAgent：封装了发布、取消提醒类通知的方法
 
+具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgent.md)。
+
 **表1** reminderAgent主要接口
 
 | 接口名 | 描述 |
@@ -19,116 +21,6 @@ reminderAgent：封装了发布、取消提醒类通知的方法
 | cancelAllReminders(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>cancelAllReminders():&nbsp;Promise&lt;void&gt; | 取消当前应用设置的所有提醒 |
 | addNotificationSlot(slot:&nbsp;NotificationSlot,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>addNotificationSlot(slot:&nbsp;NotificationSlot):&nbsp;Promise&lt;void&gt; | 注册一个提醒类需要使用的NotificationSlot |
 | removeNotificationSlot(slotType:&nbsp;notification.SlotType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>removeNotificationSlot(slotType:&nbsp;notification.SlotType):&nbsp;Promise&lt;void&gt; | 删除指定类型的NotificationSlot |
-
-enum ActionButtonType: 在提醒弹出的通知界面上的按钮的类型。
-
-**表2** ActionButtonType 枚举类型
-
-| 枚举名 | 描述 |
-| -------- | -------- |
-| ACTION_BUTTON_TYPE_CLOSE | 关闭按钮。关闭提醒的通知，取消延迟提醒。如果正在响铃，点击后会关闭当前提醒的铃声。 |
-| ACTION_BUTTON_TYPE_SNOOZE | 延迟按钮。点击当前的提醒会延迟相应时间。 |
-
-enum ReminderType: 提醒类型
-
-**表3** ReminderType 提醒类型枚举
-
-| 枚举名 | 描述 |
-| -------- | -------- |
-| REMINDER_TYPE_TIMER | 指明是倒计时类型 |
-| REMINDER_TYPE_CALENDAR | 指明是日历类型 |
-| REMINDER_TYPE_ALARM | 指明是闹钟类型 |
-
-interface ActionButton：在提醒弹出的通知界面上的按钮实例
-
-**表4** ActionButton
-
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| title | string | 是 | 按钮上显示的名称 |
-| type | ActionButtonType | 是 | 按钮的类型 |
-
-interface WantAgent: 设置点击通知后需要跳转的目标ability信息
-
-**表5** WantAgent
-
-| 参数名 | 类型 | 是否必选 | 描述 |
-| -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 目标包的名称 |
-| abilityName | string | 是 | 目标ability的名称 |
-
-interface MaxScreenWantAgent: 全屏显示提醒到达时自动拉起的目标ability信息，如果设备在使用中，则只弹出通知横幅框，该接口预留
-
-**表6** MaxScreenWantAgent
-
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 目标包的名称 |
-| abilityName | string | 是 | 目标ability的名称 |
-
-interface ReminderRequest: 需要发布的提醒实例的信息
-
-**表7** ReminderRequest
-
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| reminderType | ReminderType | 是 | 提醒的类型 |
-| actionButton | [ActionButton?,ActionButton?] | 否 | 弹出的提醒通知栏中显示的按钮 |
-| wantAgent | WantAgent | 否 | 点击通知后需要跳转的目标ability信息 |
-| maxScreenWantAgent | MaxScreenWantAgent | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框 |
-| ringDuration | number | 否 | 响铃时长 |
-| snoozeTimes | number | 否 | 延迟提醒次数 |
-| timeInterval | number | 否 | 延迟提醒间隔 |
-| title | string | 否 | 提醒的标题 |
-| content | string | 否 | 提醒的内容 |
-| expiredContent | string | 否 | 提醒“过期”时显示的扩展内容 |
-| snoozeContent | string | 否 | 提醒“再响”时显示的扩展内容 |
-| notificationId | number | 否 | 提醒使用的notificationRequest的id，参见NotificationRequest::SetNotificationId(int32_t&nbsp;id) |
-| slotType | SlotType | 否 | 提醒使用的slot类型 |
-
-interface ReminderRequestCalendar extends ReminderRequest: 日历类提醒实例。
-
-如果没有指定重复的月或天，那么第一次指定的目标时间必须大于当前时间，否则应用将异常退出。
-
-**表8** ReminderRequestCalendar
-
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| dateTime | LocalDateTime | 是 | 设置目标时间(精确到分钟级别) |
-| repeatMonths | Array&lt;number&gt; | 否 | 设置重复提醒的月份，范围从 1 到 12 |
-| repeatDays | Array&lt;number&gt; | 否 | 设置重复提醒的日期，范围从 1 到 31 |
-
-interface ReminderRequestAlarm extends ReminderRequest: 闹钟类提醒实例。
-
-**表9** ReminderRequestAlarm
-
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| hour | number | 是 | 设置目标时间（小时），范围从 0 到 23 |
-| minute | number | 是 | 设置目标时间（分钟），范围从 0 到 59 |
-| daysOfWeek | Array&lt;number&gt; | 否 | 设置每个星期哪一天重复提醒，范围从 1 到 7 |
-
-interface ReminderRequestTimer extends ReminderRequest：倒计时提醒实例
-
-**表10** ReminderRequestTimer
-
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| triggerTimeInSeconds | number | 是 | 设置倒计时秒数 |
-
-interface LocalDateTime：时间信息实例
-
-**表11** LocalDateTime
-
-| 参数名 | 类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| year | number | 是 | 年 |
-| month | number | 是 | 月 |
-| day | number | 是 | 日 |
-| hour | number | 是 | 时 |
-| minute | number | 是 | 分 |
-| second | number | 否 | 秒 |
-
 
 ## 开发步骤
 
