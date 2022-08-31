@@ -24,7 +24,7 @@ Divider()
 | ----------- | --------------------------------------------------------- | ----------------- | ------------------------------------------------------------ |
 | vertical    | boolean                                                   | false             | 使用水平分割线还是垂直分割线，false:&nbsp;水平分割线，&nbsp;true:垂直分割线。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor8)               | -                 | 设置分割线颜色。                                             |
-| strokeWidth | [Length](ts-types.md#length)                              | 1                 | 设置分割线宽度。                                             |
+| strokeWidth | number \| string                                          | 1                 | 设置分割线宽度。                                             |
 | lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle枚举说明) | LineCapStyle.Butt | 设置分割线条的端点样式。                                     |
 
 

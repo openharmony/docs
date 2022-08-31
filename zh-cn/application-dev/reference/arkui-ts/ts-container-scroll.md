@@ -30,8 +30,8 @@ Scroll(scroller?: Scroller)
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | 设置滚动方法。   |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | -                  | 设置滚动条的颜色。 |
-| scrollBarWidth | number&nbsp;\|&nbsp;string          | -                        | 设置滚动条的宽度。 |
-| edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
+| scrollBarWidth | string&nbsp;\|&nbsp;number      | -                        | 设置滚动条的宽度。 |
+| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | EdgeEffect.Spring | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
 
 ## ScrollDirection枚举说明
 
@@ -41,14 +41,6 @@ Scroll(scroller?: Scroller)
 | Vertical   | 仅支持竖直方向滚动。     |
 | None       | 不可滚动。               |
 | Free       | 支持竖直或水平方向滚动。 |
-
-## EdgeEffect枚举说明
-
-| 名称     | 描述                                       |
-| ------ | ---------------------------------------- |
-| Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
-| Fade   | 阴影效果，滑动到边缘后会有圆弧状的阴影。          |
-| None   | 滑动到边缘后无效果。                               |
 
 ## 事件
 
@@ -79,30 +71,18 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 **参数：**
 
-| 参数名       | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
-| --------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| xOffset   | Length                                   | 是    | -    | 水平滑动偏移。                                  |
-| yOffset   | Length                                   | 是    | -    | 竖直滑动偏移。                                  |
-| animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-animatorproperty.md)&nbsp;\|<br/>CubicBezier&nbsp;\|<br/>SpringCurve<br/>} | 否    |      | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。 |
+| 参数名    | 参数类型                                                     | 必填 | 默认值 | 参数描述                                                     |
+| --------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
+| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | -      | 水平滑动偏移。                                               |
+| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | -      | 竖直滑动偏移。                                               |
+| animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-animatorproperty.md)&nbsp;<br/>} | 否   |        | 动画配置：<br/>-&nbsp;duration:&nbsp;滚动时长设置。<br/>-&nbsp;curve:&nbsp;滚动曲线设置。 |
 
 ### scrollEdge
 
-scrollEdge(value: Edge): void
+scrollEdge(value: [Edge](ts-appendix-enums.md#edge)): void
 
 
 滚动到容器边缘。
-
-## Edge枚举说明
-
-| 名称   | 描述 |
-| ----- | ---- |
-| Top | 竖直方向上边缘 |
-| Center | 竖直方向居中位置 |
-| Bottom | 竖直方向下边缘 |
-| Baseline | 交叉轴方向文本基线位置 |
-| Start | 水平方向起始位置 |
-| Middle | 水平方向居中位置 |
-| End | 水平方向末尾位置 |
 
 ### scrollPage
 
@@ -123,12 +103,6 @@ currentOffset()
 
 
 返回当前的滚动偏移量。
-
-**返回值：**
-
-| 类型                                       | 描述                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| {<br/>xOffset:&nbsp;number,<br/>yOffset:&nbsp;number<br/>} | xOffset:&nbsp;水平滑动偏移;<br/>yOffset:&nbsp;竖直滑动偏移。 |
 
 ### scrollToIndex
 

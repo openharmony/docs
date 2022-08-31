@@ -77,7 +77,6 @@
 | ohos.permission.SET_ABILITY_CONTROLLER                   | system_basic | system_grant | TRUE    | 允许设置ability组件启动和停止控制权。                        |
 | ohos.permission.USE_USER_IDM                             | system_basic | system_grant | FALSE   | 允许应用访问系统身份凭据信息。                               |
 | ohos.permission.MANAGE_USER_IDM                          | system_basic | system_grant | FALSE   | 允许应用使用系统身份凭据管理能力进行口令、人脸、指纹等录入、修改、删除等操作。 |
-| ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | TRUE    | 允许应用使用生物特征识别能力进行身份认证。                   |
 | ohos.permission.ACCESS_USER_AUTH_INTERNAL                | system_basic | system_grant | FALSE   | 允许应用使用系统身份认证能力进行用户身份认证或身份识别。     |
 | ohos.permission.ACCESS_PIN_AUTH                          | system_basic | system_grant | FALSE   | 允许应用使用口令输入接口，用于系统应用完成口令输入框绘制场景。 |
 | ohos.permission.GET_RUNNING_INFO                         | system_basic | system_grant | TRUE    | 允许应用获取运行态信息。                                     |

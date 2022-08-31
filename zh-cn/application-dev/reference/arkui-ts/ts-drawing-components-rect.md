@@ -28,19 +28,19 @@ Rect(value:{value?: {width?: number&nbsp;|&nbsp;string&nbsp;,height?: number&nbs
 | ------------ | ----------------------------------------------------------- | ---- | ------ | ---------------------------------------- |
 | width        | number&nbsp;\|&nbsp;string                                  | 是   | -      | 宽度。                                   |
 | height       | number&nbsp;\|&nbsp;string                                  | 是   | -      | 高度。                                   |
-| radius       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;Length&gt; | 否   | 0      | 圆角半径，支持分别设置四个角的圆角度数。 |
+| radius       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;any&gt; | 否   | 0      | 圆角半径，支持分别设置四个角的圆角度数。 |
 | radiusWidth  | number&nbsp;\|&nbsp;string                                  | 否   | 0      | 圆角宽度。                               |
 | radiusHeight | number&nbsp;\|&nbsp;string                                  | 否   | 0      | 圆角高度。                               |
 
 ## 属性
 
-| 参数名称         | 参数类型                                    | 默认值  | 必填   | 参数描述             |
-| ------------ | --------------------------------------- | ---- | ---- | ---------------- |
-| width        | Length                                  | 0    | 否    | 宽度。              |
-| height       | Length                                  | 0    | 否    | 高度。              |
-| radiusWidth  | Length                                  | 0    | 否    | 圆角的宽度，仅设置宽时宽高一致。 |
-| radiusHeight | Length                                  | 0    | 否    | 圆角的高度，仅设置高时宽高一致。 |
-| radius       | Length&nbsp;\|&nbsp;Array&lt;Length&gt; | 0    | 否    | 圆角大小。            |
+| 参数名称     | 参数类型                             | 默认值 | 必填 | 参数描述                         |
+| ------------ | ------------------------------------ | ------ | ---- | -------------------------------- |
+| width        | Length                               | 0      | 否   | 宽度。                           |
+| height       | Length                               | 0      | 否   | 高度。                           |
+| radiusWidth  | string&nbsp;\|&nbsp;number           | 0      | 否   | 圆角的宽度，仅设置宽时宽高一致。 |
+| radiusHeight | string&nbsp;\|&nbsp;number           | 0      | 否   | 圆角的高度，仅设置高时宽高一致。 |
+| radius       | Length&nbsp;\|&nbsp;Array&lt;any&gt; | 0      | 否   | 圆角大小。                       |
 
 
 ## 示例

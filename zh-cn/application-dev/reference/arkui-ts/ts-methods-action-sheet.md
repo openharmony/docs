@@ -14,7 +14,7 @@
 
 ## ActionSheet.show
 
-show(options: {&nbsp;paramObject1})
+show(value?: {&nbsp; title?: string&nbsp;|&nbsp;Resource,message?:  string&nbsp;|&nbsp;Resource,confirm?:{value: string&nbsp;|&nbsp;Resource,action:() => void},cancel?:()=>void,sheets?:Array<SheetInfo&gt;,autoCancel?:boolean, alignment?: DialogAlignment , offset?: { dx: number | string | Resource; dy: number | string | Resource } })
 
 定义列表弹窗并弹出。
 
@@ -27,7 +27,7 @@ show(options: {&nbsp;paramObject1})
   | confirm | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 确认按钮的文本内容和点击回调。<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
   | cancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 点击遮障层关闭dialog时的回调。 |
   | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md) | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
-  | offset | {<br/>dx:&nbsp;Length,<br/>dy:&nbsp;Length<br/>} | 否 | {<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} | 弹窗相对alignment所在位置的偏移量。 |
+  | offset | {<br/>dx:&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否 | {<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} | 弹窗相对alignment所在位置的偏移量。 |
   | sheets | Array<SheetInfo&gt; | 是 | - | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。 |
 
 - SheetInfo接口说明

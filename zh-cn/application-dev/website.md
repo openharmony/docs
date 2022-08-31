@@ -11,7 +11,6 @@
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
     - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
-    - [资源文件的分类](quick-start/basic-resource-file-categories.md)
     - [SysCap说明](quick-start/syscap.md)
 - 开发
   - Ability开发
@@ -42,12 +41,10 @@
           - [目录结构](ui/ts-framework-directory.md)
           - [应用代码文件访问规则](ui/ts-framework-file-access-rules.md)
         - [js标签配置](ui/ts-framework-js-tag.md)
-        - 资源访问
-          - [访问应用资源](ui/ts-application-resource-access.md)
-          - [访问系统资源](ui/ts-system-resource-access.md)
-          - [媒体资源类型说明](ui/ts-media-resource-type.md)
+        - 资源管理
+          - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
+          - [资源访问](ui/ts-resource-access.md)
         - [像素单位](ui/ts-pixel-units.md)
-        - [类型定义](ui/ts-types.md)
       - 声明式语法
         - [描述规范使用说明](ui/ts-syntax-intro.md)
         - 通用UI描述规范
@@ -249,9 +246,9 @@
     - 轻量级数据存储
       - [轻量级数据存储概述](database/database-storage-overview.md)
       - [轻量级数据存储开发指导](database/database-storage-guidelines.md)
-  - 分布式数据对象
-    - [分布式数据对象概述](database/database-distributedobject-overview.md)
-    - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
+    - 分布式数据对象
+      - [分布式数据对象概述](database/database-distributedobject-overview.md)
+      - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
   - 任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
@@ -446,7 +443,8 @@
         - [时间选择弹窗](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
-    - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
+    - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
+    - [类型说明](reference/arkui-ts/ts-types.md)
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
@@ -713,9 +711,9 @@
     - 网络管理
       - [@ohos.net.connection (网络连接管理)](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.http (数据请求)](reference/apis/js-apis-http.md)
-      - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
+      - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
       - [@ohos.bluetooth (蓝牙)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
@@ -731,7 +729,7 @@
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.hichecker (检测模式)](reference/apis/js-apis-hichecker.md)
       - [@ohos.hidebug (Debug调试)](reference/apis/js-apis-hidebug.md)
-      - [@ohos.hilog (日志打印)](reference/apis/js-apis-hilog.md)
+      - [@ohos.hilog (HiLog日志打印)](reference/apis/js-apis-hilog.md)
       - [@ohos.hiTraceChain (分布式跟踪)](reference/apis/js-apis-hitracechain.md)
       - [@ohos.hiTraceMeter (性能打点)](reference/apis/js-apis-hitracemeter.md)
       - [@ohos.inputMethod (输入法框架)](reference/apis/js-apis-inputmethod.md)
@@ -740,6 +738,7 @@
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime (设置系统时间)](reference/apis/js-apis-system-time.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
+      - [console (日志打印)](reference/apis/js-apis-logs.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
     - 设备管理
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
@@ -810,7 +809,6 @@
       - [@system.sensor (传感器)](reference/apis/js-apis-system-sensor.md)
       - [@system.storage (数据存储)](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
-      - [console (日志打印)](reference/apis/js-apis-logs.md)
   - 接口参考（Native API）
     - 模块
       - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)

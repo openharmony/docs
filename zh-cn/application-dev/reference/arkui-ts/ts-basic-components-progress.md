@@ -42,13 +42,23 @@ Progress(options: {value: number, total?: number, style?: ProgressStyle, type?: 
 | ScaleRing<sup>8+</sup> | 环形有刻度样式，类似时钟刻度形式加载进度。                    |
 | Capsule<sup>8+</sup>   | 胶囊样式，头尾两端处，进度条由弧形变成直线和直线变成弧形的过程；中段处，进度条正常往右走的过程。 |
 
+## ProgressStyle枚举说明
+
+| 名称                   | 描述                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Linear                 | 线性样式。                                                   |
+| Ring<sup>8+</sup>      | 环形无刻度样式，环形圆环逐渐填充完成过程。                   |
+| Eclipse                | 圆形样式，展现类似月圆月缺的进度展示效果，从月牙逐渐到满月的这个过程代表了下载的进度。 |
+| ScaleRing<sup>8+</sup> | 环形有刻度样式，类似时钟刻度形式加载进度。                   |
+| Capsule<sup>8+</sup>   | 胶囊样式，头尾两端处，进度条由弧形变成直线和直线变成弧形的过程；中段处，进度条正常往右走的过程。 |
+
 ## 属性
 
 | 名称               | 参数类型                                                     | 默认值 | 描述                                                         |
 | ------------------ | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
 | value              | number                                                       | -      | 设置当前进度值。                                             |
 | color              | [ResourceColor](ts-types.md#resourcecolor8)                  | -      | 设置进度条前景色。                                           |
-| style<sup>8+</sup> | {<br/>strokeWidth？:&nbsp;[Length](ts-types.md#length),<br/>scaleCount？:&nbsp;number,<br/>scaleWidth？:&nbsp;[Length](ts-types.md#length)<br/>} | -      | 定义组件的样式。<br/>strokeWidth:&nbsp;设置进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
+| style<sup>8+</sup> | {<br/>strokeWidth?:&nbsp;[Length](ts-types.md#length),<br/>scaleCount?:&nbsp;number,<br/>scaleWidth?:&nbsp;[Length](ts-types.md#length)<br/>} | -      | 定义组件的样式。<br/>strokeWidth:&nbsp;设置进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
 
 
 ## 示例

@@ -23,7 +23,7 @@
 
 ## 接口
 
-Shape(value:{target?: PixelMap})
+Shape(value?: {target?: PixelMap})
 
 **参数：**
 

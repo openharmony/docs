@@ -19,14 +19,14 @@
 
 ## 接口
 
-Polygon(value:{value?: {width?: number&nbsp;|&nbsp;string, height?: number&nbsp;|&nbsp;string}})
+Polygon(value?:{width?: string&nbsp;|&nbsp;number, height?: string&nbsp;|&nbsp;number})
 
-**参数说明：**
+**参数：**
 
 | 参数名 | 参数类型                   | 必填 | 默认值 | 参数描述 |
 | ------ | -------------------------- | ---- | ------ | -------- |
-| width  | number&nbsp;\|&nbsp;string | 是   | -      | 宽度。   |
-| height | number&nbsp;\|&nbsp;string | 是   | -      | 高度。   |
+| width  | string&nbsp;\|&nbsp;number | 是   | -      | 宽度。   |
+| height | string&nbsp;\|&nbsp;number | 是   | -      | 高度。   |
 
 ## 属性
 
