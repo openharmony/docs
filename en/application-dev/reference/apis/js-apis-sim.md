@@ -1090,7 +1090,7 @@ This is a system API.
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                                                  |
-| options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>- lockType: [LockType](#locktype8)<br>- password: string<br>state: [LockState](#lockstate8) |
+| options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>- **lockType**: [LockType](#locktype8)<br>- **password**: string<br>- **state**: [LockState](#lockstate8) |
 
 **Example**
 
@@ -1123,7 +1123,7 @@ This is a system API.
 | Name | Type                  | Mandatory| Description                                                        |
 | ------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | slotId  | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| options | [LockInfo](#lockinfo8) | Yes  | Lock information.<br>- lockType: [LockType](#locktype8)<br>- password: string<br>state: [LockState](#lockstate8) |
+| options | [LockInfo](#lockinfo8) | Yes  | Lock information.<br>- **lockType**: [LockType](#locktype8)<br>- **password**: string<br>- **state**: [LockState](#lockstate8) |
 
 **Return value**
 
