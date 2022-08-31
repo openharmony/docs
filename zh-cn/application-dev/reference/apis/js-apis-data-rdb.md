@@ -780,7 +780,7 @@ distinct(): RdbPredicates
 **示例：**
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").distinct("NAME")
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
 
