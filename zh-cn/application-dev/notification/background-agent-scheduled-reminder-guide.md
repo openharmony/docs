@@ -133,7 +133,10 @@ interface LocalDateTime：时间信息实例
 ## 开发步骤
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 应用需要配置权限：ohos.permission.PUBLISH_AGENT_REMINDER
+
+> 1. 应用需要配置权限：ohos.permission.PUBLISH_AGENT_REMINDER
+
+> 2. 应用需要申请通知弹窗：[Notification.requestEnableNotification](../reference/apis/js-apis-notification.md#notificationrequestenablenotification8)
 
 发布一个10秒倒计时提醒
 
