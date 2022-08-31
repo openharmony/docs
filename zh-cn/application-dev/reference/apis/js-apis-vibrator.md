@@ -292,10 +292,10 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 ## VibrateEffect
 
-| 名称          | 类型   | 说明               |
-| ------------- | ------ | ------------------ |
-| VibrateTime   | string | 马达振动时长。     |
-| VibratePreset | string | 马达预置振动类型。 |
+| 类型          | 说明               |
+| ------------- | ------------------ |
+| VibrateTime   | 马达振动时长。     |
+| VibratePreset | 马达预置振动类型。 |
 
 ## VibrateTime
 
