@@ -16,7 +16,7 @@
 
 ## 接口
 
-  XComponent\(value: {id: string, type: string, libraryname?: string, controller?: XComponentController}\)
+  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **参数:** 
 

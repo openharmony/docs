@@ -138,3 +138,4 @@
 | ohos.permission.WRITE_IMAGEVIDEO                         | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的图片或视频文件。                         |
 | ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的音频文件。                               |
 | ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的文档。                                   |
+| ohos.permission.ABILITY_BACKGROUND_COMMUNICATION         | system_basic | system_grant | TRUE    | 允许应用将Ability组件在后台启动并与该Ability建立通信连接。     |

@@ -18,13 +18,13 @@
 
 ## 接口
 
-TextArea(value?:{placeholder?: string| Resource, text?: string| Resource, controller?: TextAreaController})
+TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
 
 - 参数
   | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述           |
   | ----------------------- | ---------------------------------------- | ---- | ---- | -------------- |
-  | placeholder             | string \|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                  | 否    | -    | 无输入时的提示文本。     |
-  | text             | string \|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                  | 否    | -    | 设置提示文本的当前值。     |
+  | placeholder      | [ResourceStr](../../ui/ts-types.md)  | 否    | -    | 无输入时的提示文本。     |
+  | text             | [ResourceStr](../../ui/ts-types.md)  | 否    | -    | 设置输入框当前的文本内容。     |
   | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | -    | 设置TextArea控制器。 |
 
 

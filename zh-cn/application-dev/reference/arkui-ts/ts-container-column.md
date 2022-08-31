@@ -19,7 +19,7 @@
 
 ## 接口
 
-Column(value:{space?: Length})
+Column(value?:{space?: Length})
 
 
 - 参数

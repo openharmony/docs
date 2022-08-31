@@ -19,7 +19,7 @@
 
 ## 接口
 
-ScrollBar(value: ScrollBarOptions)
+ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: BarState })
 
 - ScrollBarOptions的参数描述
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |

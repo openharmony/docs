@@ -30,9 +30,9 @@ Navigation()
 | -------------- | ---------------------------------------- | ------------------------ | ---------------------------------------- |
 | title          | string&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md) | -                        | 页面标题。                                    |
 | subTitle       | string                                   | -                        | 页面副标题。                                   |
-| menus          | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md) | -                        | 页面右上角菜单。                                 |
+| menus          | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | -                        | 页面右上角菜单。      |
 | titleMode      | NavigationTitleMode                      | NavigationTitleMode.Free | 页面标题栏显示模式。                               |
-| toolBar        | {<br/>items:[<br/>Object<br/>]&nbsp;}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md) | -                        | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。         |
+| toolBar        | {<br/>items:Array&lt;Object&gt;&nbsp;}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md#custombuilder8)<sup>8+</sup> | -      | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。     |
 | hideToolBar    | boolean                                  | false                    | 设置隐藏/显示工具栏：<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
 | hideTitleBar   | boolean                                  | false                    | 隐藏标题栏。                                   |
 | hideBackButton | boolean                                  | false                    | 隐藏返回键。                                   |
@@ -44,7 +44,7 @@ Navigation()
   | icon   | string                  | 否    | -    | 菜单栏单个选项的图标资源路径。 |
   | action | ()&nbsp;=&gt;&nbsp;void | 否    | -    | 当前选项被选中的事件回调。   |
 
-- Object类型接口说明
+- Object类型说明
   | 名称     | 类型                      | 必填   | 默认值  | 描述              |
   | ------ | ----------------------- | ---- | ---- | --------------- |
   | value  | string                  | 是    | -    | 工具栏单个选项的显示文本。   |
