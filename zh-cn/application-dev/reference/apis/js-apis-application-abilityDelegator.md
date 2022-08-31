@@ -1141,6 +1141,6 @@ abilityDelegator.waitAbilityStageMonitor(monitor, timeout, (err : any, data : an
 
 | 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
 | ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| moduleName                                                 | string   | 是   | 是   | 要监视的abilityStage的模块名。 |
-| srcEntrance | string | 是   | 是   | 要监视的abilityStage的源路径。 |
+| moduleName<sup>9+</sup>                                                 | string   | 是   | 是   | 要监视的abilityStage的模块名。 |
+| srcEntrance<sup>9+</sup> | string | 是   | 是   | 要监视的abilityStage的源路径。 |
 
