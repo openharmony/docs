@@ -1,6 +1,6 @@
 # Performance Tracing
 
-This module provides the functions of tracing service processes and monitoring the system performance. It provides the data needed for hiTraceMeter to carry out performance analysis.
+The Performance Tracing module provides the functions of tracing service processes and monitoring the system performance. It provides the data needed for hiTraceMeter to carry out performance analysis.
 
 > **NOTE**
 > 

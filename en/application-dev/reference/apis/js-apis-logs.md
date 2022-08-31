@@ -1,6 +1,6 @@
 # Log
 
-This module provides basic log printing capabilities and supports log printing by log level.
+The Log module provides basic log printing capabilities and supports log printing by log level.
 
 If you want to use more advanced log printing services, for example, filtering logs by the specified ID, you are advised to use [`@ohos.hilog`](js-apis-hilog.md).
 
@@ -12,22 +12,7 @@ If you want to use more advanced log printing services, for example, filtering l
 
 debug(message: string): void
 
-Prints debug logs.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type    | Mandatory  | Description         |
-| ------- | ------ | ---- | ----------- |
-| message | string | Yes   | Text to print.|
-
-
-## console.log
-
-log(message: string): void
-
-Prints debug logs.
+Prints debug-level logs.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
