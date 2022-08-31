@@ -314,6 +314,8 @@ Stops synchronizing the remote mission list. This API uses a promise to return t
 
 Defines the callbacks that can be registered as a mission status listener.
 
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name                   | Type      | Readable  | Writable  | Description                |
@@ -326,6 +328,8 @@ Defines the callbacks that can be registered as a mission status listener.
 
 Defines the parameters required for mission synchronization.
 
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name         | Type   | Readable  | Writable  | Description         |
@@ -337,6 +341,8 @@ Defines the parameters required for mission synchronization.
 ## MissionDeviceInfo
 
 Defines the parameters required for registering a listener.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
