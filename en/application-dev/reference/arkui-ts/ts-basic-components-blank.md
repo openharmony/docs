@@ -26,14 +26,14 @@ Blank(min?:  Length)
 - Parameters
   | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | min | Length | No | 0 | Minimum size of the **&lt;Blank&gt;** component in the container along the main axis. |
+  | min | [Length](../../ui/ts-types.md) | No | 0 | Minimum size of the **&lt;Blank&gt;** component in the container along the main axis. |
 
 
 ## Attributes
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| color | [ResourceColor](../../ui/ts-types.md) | 0x00000000 | Color to fill the blank. |
+| color | [ResourceColor](../../ui/ts-types.md) | 0xffffff | Color to fill the blank. |
 
 > **NOTE**
 >
