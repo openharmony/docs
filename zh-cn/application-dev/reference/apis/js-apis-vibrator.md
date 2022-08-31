@@ -292,10 +292,10 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 ## VibrateEffect
 
-| 类型          | 说明               |
-| ------------- | ------------------ |
-| VibrateTime   | 马达振动时长。     |
-| VibratePreset | 马达预置振动类型。 |
+| 类型                            | 说明               |
+| ------------------------------- | ------------------ |
+| [VibrateTime](#vibratetime)     | 马达振动时长。     |
+| [VibratePreset](#vibratepreset) | 马达预置振动类型。 |
 
 ## VibrateTime
 
@@ -304,7 +304,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | 名称     | 默认值 | 说明                           |
 | -------- | ------ | ------------------------------ |
 | type     | "time" | 按照指定持续时间触发马达振动。 |
-| duration |        | 马达振动时长, 单位ms。         |
+| duration | -      | 马达振动时长, 单位ms。         |
 
 ## VibratePreset
 
@@ -313,8 +313,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | 名称     | 默认值   | 说明                           |
 | -------- | -------- | ------------------------------ |
 | type     | "preset" | 按照预置振动效果触发马达振动。 |
-| effectId |          | 预置的振动效果ID。             |
-| count    |          | 重复振动的次数。               |
+| effectId | -        | 预置的振动效果ID。             |
+| count    | -        | 重复振动的次数。               |
 
 ## VibrateAttribute
 
@@ -323,7 +323,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | 名称  | 默认值 | 说明           |
 | ----- | ------ | -------------- |
 | id    | 0      | 振动器id。     |
-| usage |        | 马达振动场景。 |
+| usage | -      | 马达振动场景。 |
 
 ## Usage
 
