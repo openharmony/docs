@@ -45,11 +45,6 @@ import inputMethodEngine from '@ohos.inputmethodengine';
 | FLAG_SINGLE_LINE | number | 是 | 否 | 编辑框为单行。 |
 | DISPLAY_MODE_PART | number | 是 | 否 | 编辑框显示为半屏。 |
 | DISPLAY_MODE_FULL | number | 是 | 否 | 编辑框显示为全屏。 |
-| CURSOR_UP<sup>9+</sup> | number | 是 | 否 | 光标上移。 |
-| CURSOR_DOWN<sup>9+</sup> | number | 是 | 否 | 光标下移。 |
-| CURSOR_LEFT<sup>9+</sup> | number | 是 | 否 | 光标左移。 |
-| CURSOR_RIGHT<sup>9+</sup> | number | 是 | 否 | 光标右移。 |
-| WINDOW_TYPE_INPUT_METHOD_FLOAT<sup>9+</sup> | number | 是 | 否 | 输入法应用窗口风格标识。 |
 
 ## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a>
 
@@ -142,98 +137,6 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
   InputMethodEngine.off('inputStart', (kbController, textInputClient) => {
       console.log("delete inputStart notification.");
   });
-  ```
-
-### on('inputStop')<sup>9+</sup>
-
-on(type: 'inputStop', callback: () => void): void
-
-订阅停止输入法应用事件，使用callback回调。
-
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | void   | 是   | 回调函数。                                                   |
-
-**示例：**
-
-  ```js
-InputMethodEngine.getInputMethodEngine().on('inputStop', () => {
-    console.log("inputMethodEngine inputStop");
-});
-  ```
-
-### off('inputStop')<sup>9+</sup>
-
-off(type: 'inputStop', callback: () => void): void
-
-取消订阅停止输入法应用事件。使用callback回调。
-
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘inputStop’时表示订阅停止输入法应用事件。 |
-| callback | void   | 是   | 回调函数。                                                   |
-
-**示例：**
-
-  ```js
-InputMethodEngine.getInputMethodEngine().off('inputStop', () => {
-    console.log("inputMethodEngine delete inputStop notification.");
-});
-  ```
-
-### on('setCallingWindow')<sup>9+</sup>
-
-on(type: 'setCallingWindow', callback: (wid:number) => void): void
-
-订阅设置调用窗口事件，使用callback回调。
-
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 调用方window id。                                            |
-
-**示例：**
-
-  ```js
-InputMethodEngine.getInputMethodEngine().on('setCallingWindow', (wid) => {
-    console.log("inputMethodEngine setCallingWindow");
-});
-  ```
-
-### off('setCallingWindow')<sup>9+</sup>
-
-off(type: 'setCallingWindow', callback: (wid:number) => void): void
-
-取消订阅设置调用窗口事件。使用callback回调。
-
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 调用方window id。                                 |
-
-**示例：**
-
-  ```js
-InputMethodEngine.getInputMethodEngine().off('setCallingWindow', () => {
-    console.log("inputMethodEngine delete setCallingWindow notification.");
-});
   ```
 
 ### on('keyboardShow'|'keyboardHide')
@@ -1004,64 +907,6 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
        });
    }
    ```
-
-### moveCursor<sup>9+</sup>
-
-moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
-
-移动光标。使用callback形式返回结果。参数个数为1，否则抛出异常。
-
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名    | 类型                      | 必填 | 说明           |
-| --------- | ------------------------- | ---- | -------------- |
-| direction | number                    | 是   | 光标移动方向。 |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。     |
-
-**示例：**
-
-```js
-TextInputClient.moveCursor(inputMethodEngine.CURSOR_xxx, (err) => {
-    if (err == undefined) {
-        console.error("moveCursor callback result---err: " + err.msg);
-        return;
-    }
-});
-```
-
-### moveCursor<sup>9+</sup>
-
-moveCursor(direction: number): Promise&lt;void&gt;
-
-移动光标。使用promise形式返回结果。参数个数为1，否则抛出异常。
-
-**系统能力**： SystemCapability.MiscServices.InputMethodFramework
-
-**参数：**
-
-| 参数名    | 类型   | 必填 | 说明           |
-| --------- | ------ | ---- | -------------- |
-| direction | number | 是   | 光标移动方向。 |
-
-**返回值：**  
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**示例：**
-
-  ```js
-async function InputMethodEngine() {
-    await TextInputClient.moveCursor(inputMethodEngine.CURSOR_xxx).then(async (err) => {
-        console.log('moveCursor success');
-    }).catch((err) => {
-        console.error("moveCursor success err: " + err.msg);
-    });
-}
-  ```
 
 ## EditorAttribute<a name="EditorAttribute"></a>
 
