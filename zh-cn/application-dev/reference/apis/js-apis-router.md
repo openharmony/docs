@@ -183,6 +183,7 @@ getState(): RouterState
 | 类型                          | 说明      |
 | --------------------------- | ------- |
 | [RouterState](#routerstate) | 页面状态信息。 |
+
 **示例：** 
 
 ```js
