@@ -32,7 +32,7 @@
 @Entry
 @Component
 struct TransitionExample {
-  @State btn1: boolean = false
+  @State btn: boolean = false
   @State show: string = "show"
 
   build() {
@@ -40,15 +40,15 @@ struct TransitionExample {
       Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({bottom:50})
         .onClick(() => {
           animateTo({ duration: 1000 }, () => {
-            this.btn1 = !this.btn1
-            if(this.btn1){
+            this.btn = !this.btn
+            if(this.btn){
               this.show = "hide"
             }else{
               this.show = "show"
             }
           })
         })
-      if (this.btn1) {
+      if (this.btn) {
         // 插入和删除配置为不同的过渡效果
         Button() {
           Image($r('app.media.bg1')).width("80%").height(300)
