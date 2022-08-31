@@ -1,7 +1,8 @@
 # SideBarContainer
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 The **\<SideBarContainer>** component contains a sidebar and content area as its child components. The sidebar is the first child component and can be shown or hidden as needed. The content area is the second child component.
@@ -39,10 +40,11 @@ SideBarContainer( type?: SideBarContainerType )
 | showSideBar | boolean | true | Whether to display the sidebar.|
 | controlButton | ButtonStyle                                                | - | Attributes of the sidebar control button.|
 | showControlButton | boolean | true | Whether to display the sidebar control button.|
-| sideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md) | 200 | Width of the sidebar.|
-| minSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md) | 200 | Minimum width of the sidebar.|
-| maxSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md) | 280 | Maximum width of the sidebar.|
+| sideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md#length-type)| 200 | Width of the sidebar.|
+| minSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md#length-type)| 200 | Minimum width of the sidebar.|
+| maxSideBarWidth | number \| [Length<sup>9+</sup>](../../ui/ts-types.md#length-type)| 280 | Maximum width of the sidebar.|
 | autoHide<sup>9+</sup> | boolean | true | Whether to automatically hide the sidebar when it is dragged to be smaller than the minimum width.|
+| sideBarPosition<sup>9+</sup> | SideBarPosition | SideBarPosition.Start | Position of the sidebar.|
 
 - ButtonStyle
   | Name| Type| Mandatory| Default Value| Description|
@@ -53,6 +55,11 @@ SideBarContainer( type?: SideBarContainerType )
   | height | number | No| 32 | Height of the sidebar control button.|
   | icons | {<br>shown:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br>hidden:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br>switching?:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) <br>} | No| - | Icons of the sidebar control button.<br> </p> - **shown**: icon of the control button when the sidebar is shown.<br>- **hidden**: icon of the control button when the sidebar is hidden.<br>- **switching**: icon of the control button when the sidebar is switching between the shown and hidden states.|
 
+- SideBarPosition<sup>9+</sup>
+  | Name| Description|
+  | -------- | -------- |
+  | Start | The sidebar is on the left side of the container.|
+  | End | The sidebar is on the right side of the container.|
 
 
 
@@ -60,12 +67,13 @@ SideBarContainer( type?: SideBarContainerType )
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: boolean) =&gt; void) | Triggered when the status of the sidebar switches between shown and hidden. <p>The value **true** means that the sidebar is shown, and **false** means the opposite. |
+| onChange(callback: (value: boolean) =&gt; void) | Triggered when the status of the sidebar switches between shown and hidden. <p>The value **true** means that the sidebar is shown, and **false** means the opposite.|
 
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct SideBarContainerExample {
