@@ -19,10 +19,7 @@ import reminderAgent from'@ohos.reminderAgent';
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
-发布一个后台代理提醒，使用callback方式实现异步调用。
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 应用需要申请通知弹窗：[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)。
+发布一个后台代理提醒，使用callback方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -51,10 +48,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
-发布一个后台代理提醒，使用Promise方式实现异步调用。
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 应用需要申请通知弹窗：[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)。
+发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 

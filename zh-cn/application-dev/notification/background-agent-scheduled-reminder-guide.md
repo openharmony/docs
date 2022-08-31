@@ -1,4 +1,4 @@
-# 开发指导
+# 后台提醒开发指导
 
 ## 场景介绍
 
@@ -13,12 +13,12 @@ reminderAgent：封装了发布、取消提醒类通知的方法
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| function&nbsp;publishReminder(reminderReq:&nbsp;ReminderRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;<br/>function&nbsp;publishReminder(reminderReq:&nbsp;ReminderRequest):&nbsp;Promise&lt;number&gt;; | 发布一个定时提醒类通知。<br/>单个应用有效的提醒个数最多支持30个（不包括已经超时，即后续不会再提醒的提醒实例）<br/>整个系统有效的提醒个数最多支持2000个（不包括已经超时，即后续不会再提醒的提醒实例） |
-| function&nbsp;cancelReminder(reminderId:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;cancelReminder(reminderId:&nbsp;number):&nbsp;Promise&lt;void&gt;; | 取消一个指定的提醒类通知。(reminderId从publishReminder的返回值获取) |
-| function&nbsp;getValidReminders(callback:&nbsp;AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;):&nbsp;void;<br/>function&nbsp;getValidReminders():&nbsp;Promise&lt;Array&lt;ReminderRequest&gt;&gt;; | 获取当前应用设置的所有有效的提醒。 |
-| function&nbsp;cancelAllReminders(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;cancelAllReminders():&nbsp;Promise&lt;void&gt;; | 取消当前应用设置的所有提醒 |
-| function&nbsp;addNotificationSlot(slot:&nbsp;NotificationSlot,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;addNotificationSlot(slot:&nbsp;NotificationSlot):&nbsp;Promise&lt;void&gt;; | 注册一个提醒类需要使用的NotificationSlot |
-| function&nbsp;removeNotificationSlot(slotType:&nbsp;notification.SlotType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;<br/>function&nbsp;removeNotificationSlot(slotType:&nbsp;notification.SlotType):&nbsp;Promise&lt;void&gt;; | 删除指定类型的NotificationSlot |
+| publishReminder(reminderReq:&nbsp;ReminderRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void<br/>publishReminder(reminderReq:&nbsp;ReminderRequest):&nbsp;Promise&lt;number&gt; | 发布一个定时提醒类通知。<br/>单个应用有效的提醒个数最多支持30个（不包括已经超时，即后续不会再提醒的提醒实例）<br/>整个系统有效的提醒个数最多支持2000个（不包括已经超时，即后续不会再提醒的提醒实例） |
+| cancelReminder(reminderId:&nbsp;number,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>cancelReminder(reminderId:&nbsp;number):&nbsp;Promise&lt;void&gt; | 取消一个指定的提醒类通知。(reminderId从publishReminder的返回值获取) |
+| getValidReminders(callback:&nbsp;AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;):&nbsp;void<br/>getValidReminders():&nbsp;Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒。 |
+| cancelAllReminders(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>cancelAllReminders():&nbsp;Promise&lt;void&gt; | 取消当前应用设置的所有提醒 |
+| addNotificationSlot(slot:&nbsp;NotificationSlot,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>addNotificationSlot(slot:&nbsp;NotificationSlot):&nbsp;Promise&lt;void&gt; | 注册一个提醒类需要使用的NotificationSlot |
+| removeNotificationSlot(slotType:&nbsp;notification.SlotType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void<br/>removeNotificationSlot(slotType:&nbsp;notification.SlotType):&nbsp;Promise&lt;void&gt; | 删除指定类型的NotificationSlot |
 
 enum ActionButtonType: 在提醒弹出的通知界面上的按钮的类型。
 
@@ -133,9 +133,9 @@ interface LocalDateTime：时间信息实例
 ## 开发步骤
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-
+>
 > 1. 应用需要配置权限：ohos.permission.PUBLISH_AGENT_REMINDER
-
+>
 > 2. 应用需要申请通知弹窗：[Notification.requestEnableNotification](../reference/apis/js-apis-notification.md#notificationrequestenablenotification8)
 
 发布一个10秒倒计时提醒
