@@ -74,7 +74,7 @@ The implementation is similar for UDPSocket and TCPSocket. The following uses th
        console.log("on close")
    });
    
-   // Bind the IP address and port number.
+   // Bind the local IP address and port number.
    let bindAddress = {
        address: '192.168.xx.xx',
        port: 1234, // Bound port, for example, 1234.

@@ -32,14 +32,6 @@ Use [Locale](../reference/apis/js-apis-intl.md) APIs to maximize or minimize loc
    -  Script: optional. It is represented by a four-letter code as defined in ISO-15924. The first letter is in uppercase, and the remaining three letters are in lowercase. For example, **Hant** represents the traditional Chinese, and **Hans** represents the simplified Chinese.
    -  Country or region: optional. It is represented by two-letter code as defined in ISO-3166. Both letters are in uppercase. For example, **CN** represents China, and **US** represents the United States.
    -  Extensions: optional. Each extension consists of two parts, key and value. Currently, the extensions listed in the following table are supported (see BCP 47 Extensions). Extensions can be in any sequence and are written in the format of **-key-value**. They are appended to the language, script, and region by using **-u**. For example, **zh-u-nu-latn-ca-chinese** indicates that the Latin numbering system and Chinese calendar system are used. Extensions can also be passed via the second parameter.
-      | Extended Parameter ID| Description|
-      | -------- | -------- |
-      | ca | Calendar algorithm.|
-      | co | Collation type.|
-      | hc | Hour cycle.|
-      | nu | Numbering system.|
-      | kn | Whether numeric collation is used when sorting or comparing strings.|
-      | kf | Whether upper case or lower case is considered when sorting or comparing strings.|
 
    
    ```

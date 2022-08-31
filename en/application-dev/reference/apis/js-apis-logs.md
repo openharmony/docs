@@ -1,30 +1,26 @@
 # Log
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> The APIs of this module are no longer maintained since API version 7. You are advised to use ['@ohos.hilog](js-apis-hilog.md)' instead.
+The Log module provides basic log printing capabilities and supports log printing by log level.
+
+If you want to use more advanced log printing services, for example, filtering logs by the specified ID, you are advised to use [`@ohos.hilog`](js-apis-hilog.md).
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## console.debug
 
 debug(message: string): void
 
-Prints debug logs.
+Prints debug-level logs.
 
-- Parameters
-  | Name    | Type    | Mandatory  | Description         |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | Yes   | Text to print.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
 
-## console.log
-
-log(message: string): void
-
-Prints debug logs.
-
-- Parameters
-  | Name    | Type    | Mandatory  | Description         |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | Yes   | Text to print.|
+| Name    | Type    | Mandatory  | Description         |
+| ------- | ------ | ---- | ----------- |
+| message | string | Yes   | Text to print.|
 
 
 ## console.info
@@ -33,10 +29,13 @@ info(message: string): void
 
 Prints info-level logs.
 
-- Parameters
-  | Name    | Type    | Mandatory  | Description         |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | Yes   | Text to print.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description         |
+| ------- | ------ | ---- | ----------- |
+| message | string | Yes   | Text to print.|
 
 
 ## console.warn
@@ -45,10 +44,13 @@ warn(message: string): void
 
 Prints warn-level logs.
 
-- Parameters
-  | Name    | Type    | Mandatory  | Description         |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | Yes   | Text to print.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description         |
+| ------- | ------ | ---- | ----------- |
+| message | string | Yes   | Text to print.|
 
 
 ## console.error
@@ -57,10 +59,13 @@ error(message: string): void
 
 Prints error-level logs.
 
-- Parameters
-  | Name    | Type    | Mandatory  | Description         |
-  | ------- | ------ | ---- | ----------- |
-  | message | string | Yes   | Text to print.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description         |
+| ------- | ------ | ---- | ----------- |
+| message | string | Yes   | Text to print.|
 
 
 ## Example
