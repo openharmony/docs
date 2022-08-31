@@ -1,8 +1,9 @@
 # Performance Tracing
 
-This module provides the functions of tracing service processes and monitoring the system performance. It provides the data needed for hiTraceMeter to carry out performance analysis.
+The Performance Tracing module provides the functions of tracing service processes and monitoring the system performance. It provides the data needed for hiTraceMeter to carry out performance analysis.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -17,7 +18,7 @@ import hiTraceMeter from '@ohos.hiTraceMeter';
 
 startTrace(name: string, taskId: number): void
 
-Starts a trace task. **expectedTime** is an optional parameter, which specifies the expected duration of the trace.
+Starts a trace task.
 
 If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**.
 
