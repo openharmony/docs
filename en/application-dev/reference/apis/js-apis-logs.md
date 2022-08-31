@@ -8,6 +8,22 @@ If you want to use more advanced log printing services, for example, filtering l
 >
 > The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
+## console.log
+
+log(message: string): void
+
+Prints logs.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description         |
+| ------- | ------ | ---- | ----------- |
+| message | string | Yes   | Text to print.|
+
+
 ## console.debug
 
 debug(message: string): void
