@@ -1298,6 +1298,50 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   }
   ```
 
+### onGeolocationShow
+
+onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void)
+
+通知收到地理位置信息获取请求。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| origin      | string                          | 指定源的字符串索引。     |
+| geolocation | [JsGeolocation](#jsgeolocation) | 通知Web组件用户操作行为。|
+
+**示例：**
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .geolocationAccess(true)
+        .onGeolocationShow((event) => {
+          AlertDialog.show({
+            title: 'title',
+            message: 'text',
+            confirm: {
+              value: 'onConfirm',
+              action: () => {
+                event.geolocation.invoke(event.origin, true, true);
+              }
+            },
+            cancel: () => {
+              event.geolocation.invoke(event.origin, false, true);
+            }
+          })
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -1843,6 +1887,24 @@ closeContextMenu(): void
 copyImage(): void
 
 WebContextMenuParam有图片内容则复制图片。
+
+## JsGeolocation
+
+Web组件返回授权或拒绝权限功能的对象。示例代码参考[onGeolocationShow事件](#ongeolocationshow)。
+
+### invoke
+
+invoke(origin: string, allow: boolean, retain: boolean): void
+
+设置网页地理位置权限状态。
+
+**参数：**
+
+| 参数名     | 参数类型 | 必填 | 默认值 | 参数描述               |
+| --------- | ------- | ---- | ----- | ---------------------- |
+| origin    | string  | 是   | -     | 指定源的字符串索引。     |
+| allow     | boolean | 是   | -     | 设置的地理位置权限状态。 |
+| retain    | boolean | 是   | -     | 是否允许将地理位置权限状态保存到系统中。可通过[GeolocationPermissions](#geolocationpermissions9)接口管理保存到系统的地理位置权限。 |
 
 ## WebController
 
@@ -3183,7 +3245,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
           .onClick(() => {
             web.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                console.log('getAccessibleGeolocationAsync error: ' + error);
+                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
                 return;
               }
               console.log('getAccessibleGeolocationAsync result: ' + result);
@@ -3229,7 +3291,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
             web.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
               console.log('getAccessibleGeolocationPromise result: ' + result);
             }).catch(error => {
-              console.log('getAccessibleGeolocationPromise error: ' + error);
+              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
             });
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3264,13 +3326,10 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
           .onClick(() => {
             web.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.log('getStoredGeolocationAsync error: ' + error);
+                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
                 return;
               }
-              let origins_str: string = "";
-              for (let i = 0; i < origins.length; i++) {
-                origins_str = origins_str + origins[i] + " ";
-              }
+              let origins_str: string = origins.join();
               console.log('getStoredGeolocationAsync origins: ' + origins_str);
             });
           })
@@ -3311,13 +3370,10 @@ static getStoredGeolocation(): Promise\<Array\<string\>\>
         Button('getStoredGeolocationPromise')
           .onClick(() => {
             web.GeolocationPermissions.getStoredGeolocation().then(origins => {
-              let origins_str: string = "";
-              for (let i = 0; i < origins.length; i++) {
-                origins_str = origins_str + origins[i] + " ";
-              }
+              let origins_str: string = origins.join();
               console.log('getStoredGeolocationPromise origins: ' + origins_str);
             }).catch(error => {
-                console.log('getStoredGeolocationPromise error: ' + error);
+                console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
             });
           })
         Web({ src: 'www.example.com', controller: this.controller })
