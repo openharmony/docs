@@ -24,7 +24,7 @@
   - [SDIO](driver-platform-sdio-develop.md)
   - [SPI](driver-platform-spi-develop.md)
   - [UART](driver-platform-uart-develop.md)
-  - [WatchDog](driver-platform-watchdog-develop.md)
+  - [Watchdog](driver-platform-watchdog-develop.md)
 - 平台驱动使用
   - [ADC](driver-platform-adc-des.md)
   - [DAC](driver-platform-dac-des.md)
@@ -41,7 +41,7 @@
   - [SDIO](driver-platform-sdio-des.md)
   - [SPI](driver-platform-spi-des.md)
   - [UART](driver-platform-uart-des.md)
-  - [WatchDog](driver-platform-watchdog-des.md)
+  - [Watchdog](driver-platform-watchdog-des.md)
 - 外设驱动使用
   - [Audio](driver-peripherals-audio-des.md)
   - [Camera](driver-peripherals-camera-des.md)
