@@ -3,12 +3,7 @@
 The **BundleInstaller** module provides APIs for installing, updating, and deleting bundles on devices.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-## System Capability
-
-SystemCapability.BundleManager.BundleFramework
 
 ## BundleInstaller.install
 
@@ -23,6 +18,8 @@ ohos.permission.INSTALL_BUNDLE
 **System capability**
 
 SystemCapability.BundleManager.BundleFramework
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -46,6 +43,8 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Type                                                | Mandatory| Description                                          |
@@ -54,7 +53,7 @@ SystemCapability.BundleManager.BundleFramework
 | param      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation or uninstall.                      |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | Yes  | Callback used to return the installation status.|
 
-## BundleInstaller.recover
+## BundleInstaller.recover<sup>8+</sup>
 
 recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
@@ -68,6 +67,8 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Type                                                | Mandatory| Description                                          |
@@ -76,23 +77,42 @@ SystemCapability.BundleManager.BundleFramework
 | param      | [InstallParam](#installparam)                        | Yes  | Parameters required for the installation or uninstall.                      |
 | callback   | AsyncCallback&lt;[InstallStatus](#installstatus)&gt; | Yes  | Callback used to return the installation status.|
 
+## HashParam<sup>9+</sup>
+
+Describes the parameters required for bundle installation or uninstall.
+
+ **System capability**: SystemCapability.BundleManager.BundleFramework
+
+ **System API**: This is a system API and cannot be called by third-party applications.
+
+| Name      | Type  | Description            |
+| ---------- | ------ | ---------------- |
+| moduleName | string | Module name of the application.|
+| hashValue  | string | Hash value.          |
+
 ## InstallParam
 
 Describes the parameters required for bundle installation or uninstall.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 
-| Name       | Type   | Description              |
-| ----------- | ------- | ------------------ |
-| userId      | number  | User ID.        |
-| installFlag | number  | Installation flag.      |
-| isKeepData  | boolean | Whether data is kept.|
+ **System API**: This is a system API and cannot be called by third-party applications.
+
+| Name                          | Type                          | Description              |
+| ------------------------------ | ------------------------------ | ------------------ |
+| userId                         | number                         | User ID.        |
+| installFlag                    | number                         | Installation flag.      |
+| isKeepData                     | boolean                        | Whether data is kept.|
+| hashParams<sup>9+</sup>        | Array<[HashParam](#hashparam)> | Hash parameters.        |
+| crowdtestDeadline<sup>9+</sup> | number                         | Time when the test package is killed.|
 
 ## InstallStatus
 
 Describes the bundle installation status.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
+
+ **System API**: This is a system API and cannot be called by third-party applications.
 
 | Name         | Type                                                        | Readable| Writable| Description                          |
 | ------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------ |
