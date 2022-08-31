@@ -174,7 +174,7 @@ Requests certain permissions from the system. This API uses an asynchronous call
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | Yes   | Permissions to request. This parameter cannot be **null**.             |
 | requestCode    | number                                   | Yes   | Request code to be passed to **PermissionRequestResult**.|
-| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | Yes   | Permission request result.                          |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | Yes   | Callback used to return the permission request result.                          |
 
 **Example**
 
@@ -192,6 +192,44 @@ context.requestPermissionsFromUser(
         console.info("====>requesterrcode====>" + JSON.stringify(err.code));
     }
 )
+```
+
+
+## Context.requestPermissionsFromUser<sup>7+</sup>
+
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](#permissionrequestresult7)>
+
+Requests certain permissions from the system. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name          | Type                | Mandatory | Description                                         |
+| -------------- | ------------------- | ----- | -------------------------------------------- |
+| permissions    | Array\<string>      | Yes   | Permissions to request. This parameter cannot be **null**.        |
+| requestCode    | number              | Yes   | Request code to be passed to **PermissionRequestResult**.|
+
+**Return value**
+
+| Type                                                          | Description            |
+| ------------------------------------------------------------- | ---------------- |
+| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | Promise used to return the permission request result.|
+
+**Example**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.requestPermissionsFromUser(
+    ["com.example.permission1",
+     "com.example.permission2",
+     "com.example.permission3",
+     "com.example.permission4",
+     "com.example.permission5"],
+    1).then((data)=>{
+        console.info("====>requestdata====>" + JSON.stringify(data));
+    });
 ```
 
 
@@ -991,7 +1029,7 @@ context.getHapModuleInfo().then((data) => {
 
 getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
-Obtains the version information of this application. This API uses an asynchronous callback to return the result.
+Obtains the version information of the application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1019,7 +1057,7 @@ context.getAppVersionInfo((err, data) => {
 
 getAppVersionInfo(): Promise\<AppVersionInfo>
 
-Obtains the version information of this application. This API uses a promise to return the result.
+Obtains the version information of the application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
