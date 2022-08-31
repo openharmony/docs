@@ -19,7 +19,7 @@
 
 ## 接口
 
-DataPanel(value:{values: number[], max?: number, type?: DataPanelType})
+DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |

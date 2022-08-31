@@ -19,7 +19,7 @@
 
 ## 接口说明
 
-Progress(value: {value: number, total?: number, type?: ProgressType})
+Progress(options: {value: number, total?: number, type?: ProgressType})
 
 创建进度组件，用于显示内容加载或操作处理进度。
 

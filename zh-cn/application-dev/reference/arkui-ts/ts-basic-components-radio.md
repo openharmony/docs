@@ -39,7 +39,7 @@ Radio(options: {value: string, group: string})
 
 | 名称 | 功能描述 | 
 | -------- | -------- |
-| onChange(callback: (value: boolean) => void) | 单选框选中状态改变时触发回调。<br> -value为true时，代表选中。<br> -value为false时，代表未选中。 | 
+| onChange(callback: (isChecked: boolean) => void) | 单选框选中状态改变时触发回调。<br> -isChecked为true时，代表选中。<br> -isChecked为false时，代表未选中。 |
 
 
 ## 示例
@@ -56,8 +56,8 @@ struct RadioExample {
         Radio({ value: 'Radio1', group: 'radioGroup' }).checked(true)
           .height(50)
           .width(50)
-          .onChange((value: boolean) => {
-            console.log('Radio1 status is ' + value)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio1 status is ' + isChecked)
           })
       }
       Column() {
@@ -65,8 +65,8 @@ struct RadioExample {
         Radio({ value: 'Radio2', group: 'radioGroup' }).checked(false)
           .height(50)
           .width(50)
-          .onChange((value: boolean) => {
-            console.log('Radio2 status is ' + value)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio2 status is ' + isChecked)
           })
       }
       Column() {
@@ -74,8 +74,8 @@ struct RadioExample {
         Radio({ value: 'Radio3', group: 'radioGroup' }).checked(false)
           .height(50)
           .width(50)
-          .onChange((value: boolean) => {
-            console.log('Radio3 status is ' + value)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio3 status is ' + isChecked)
           })
       }
     }.padding({ top: 30 })

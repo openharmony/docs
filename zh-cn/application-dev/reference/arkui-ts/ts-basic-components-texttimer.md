@@ -25,7 +25,7 @@ TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTim
   | -------- | -------- | -------- | -------- | -------- |
   | isCountDown | boolean | 否 | false | 是否倒计时。 |
   | count | number | 否 | 60000 | 倒计时时间（isCountDown为true时生效），单位为毫秒。<br/>-&nbsp;count&lt;=0时，使用默认值为倒计时初始值。<br/>-&nbsp;count&gt;0时，count值为倒计时初始值。 |
-  | controller | [TextTimerController](#texttimercontroller) | 否 | null | TextTimer控制器。 |
+  | controller | [TextTimerController](#texttimercontroller) | 否 | - | TextTimer控制器。 |
 
 ## 属性
 
@@ -38,7 +38,7 @@ TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTim
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onTimer(callback:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 时间文本发生变化时触发。<br/>utc：当前显示的时间，单位为毫秒。<br/>elapsedTime：计时器经过的时间，单位为毫秒。 |
+| onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 时间文本发生变化时触发。<br/>utc：当前显示的时间，单位为毫秒。<br/>elapsedTime：计时器经过的时间，单位为毫秒。 |
 
 
 ## TextTimerController
