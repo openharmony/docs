@@ -489,6 +489,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 表示焦点类型的枚举。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：**: SystemCapability.Multimedia.Audio.Core
 
 | 名称                               | 默认值  | 描述                            |
@@ -596,6 +598,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | content       | [ContentType](#contenttype) | 是   | 媒体类型。       |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
 | rendererFlags | number                      | 是   | 音频渲染器标志。 |
+
+## AudioRendererFlag<sup>9+</sup>
+
+枚举，决定输出策略的音频渲染器标志。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Core
+
+| 名称              | 默认值        | 说明                   |
+| ------------------| ------------ | ---------------------- |
+| FLAG_NONE         | 0            | 无特殊策略。            |
+| FLAG_LOW_LATENCY  | 1            | 使用低延迟进程的标志。   |
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -751,6 +764,17 @@ getVolumeGroupInfos();
 | :------------ | :------------------------ | :--- | :--------------- |
 | source        | [SourceType](#sourcetype) | 是   | 音源类型。       |
 | capturerFlags | number                    | 是   | 音频采集器标志。 |
+
+## AudioRendererDataInfo<sup>9+</sup>
+
+音频渲染器的数据信息。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+| 名称    | 类型        | 必填    | 说明                     |
+| ------- | ----------- | -------| ------------------------ |
+| buffer  | ArrayBuffer | 是     | 要填充的缓冲区。          |
+| flags   | number      | 是     | 缓冲区扩展信息。          |
 
 ## SourceType<sup>8+</sup><a name="sourcetype"></a>
 
@@ -2917,6 +2941,76 @@ console.info('######### CapturerChange Off is called #########');
 
 ```
 
+### isAudioRendererLowLatencySupported<sup>9+</sup>
+
+isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo, callback: Callback&lt;boolean&gt;): void;
+
+检查系统是否支持音频渲染器中的低延迟配置。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 名称       |  类型                   | 必填      | 说明                                    |
+| ---------- | ----------------------- | -------- | --------------------------------------- |
+| streaminfo | [AudioStreamInfo](#audiostreaminfo8)         |  是      | 音频渲染器流信息。  |
+| callback   | Callback&lt;boolean&gt; |  是      | 返回系统是否支持音频渲染器中的低延迟配置。 |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+
+var AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  channels: audio.AudioChannel.CHANNEL_1,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioStreamManager = audioManager.getStreamManager();
+audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo, (result) => {
+  console.info(`isAudioRendererLowLatencySupported success var ${result}`);
+});
+```
+
+### isAudioRendererLowLatencySupported<sup>9+</sup>
+
+isAudioRendererLowLatencySupported(streaminfo: AudioStreamInfo): Promise&lt;boolean&gt;
+
+检查系统是否支持音频渲染器中的低延迟配置。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填 | 说明         |
+| ---------- | ------------------------------------ | ---- | ------------|
+| streaminfo | [AudioStreamInfo](#audiostreaminfo8) | 是   | 数据流信息   |
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ------------------- | ---------------------------------------------------- |
+| Promise&lt;void&gt; | Promise方式异步返回系统是否支持音频渲染器中的低延迟配置。 |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+
+var AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  channels: audio.AudioChannel.CHANNEL_1,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+var audioStreamManager = await audioManager.getStreamManager();
+let result = audioStreamManager.isAudioRendererLowLatencySupported(AudioStreamInfo);
+console.info(`isAudioRendererLowLatencySupported success var ${result}`);
+```
+
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
@@ -4317,7 +4411,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: 'markReach', frame: number, callback: (position: number) => {}): void
+on(type: "markReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用。
 
@@ -4329,7 +4423,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :---------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。         |
-| callback | (position: number) => {} | 是   | 触发事件时调用的回调。                    |
+| callback | Callback<number>         | 是   | 触发事件时调用的回调。                    |
 
 **示例：**
 
@@ -4364,7 +4458,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: (position: number) => {}): void
+on(type: "periodReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -4376,7 +4470,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。           |
-| callback | (position: number) => {} | 是   | 触发事件时调用的回调。                      |
+| callback | Callback<number>         | 是   | 触发事件时调用的回调。                      |
 
 **示例：**
 
@@ -4434,6 +4528,36 @@ audioRenderer.on('stateChange', (state) => {
     console.info('audio renderer state is: STATE_RUNNING');
   }
 });
+```
+
+### on('dataRequest') <sup>9+</sup>
+
+on(type: "dataRequest", callback: Callback\<AudioRendererDataInfo>): void;
+
+订阅音频数据request事件回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 名称     | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | --------- | ------------------------------------------------------------------- |
+| type     | string  | 是       | 事件类型。值**dataRequest**表示数据请求事件。 |
+| callback | [AudioRendererDataInfo](#audiorendererdatainfo9) | 是  | 需要音频数据时调用回调。|
+
+**示例：**
+
+```js
+const path = '/data/storage/el2/base/haps/entry/cache/PinkPanther60-44100-1c.wav';
+  let ss = fileio.createStreamSync(path, 'r');
+  let discardHeader = new ArrayBuffer(44);
+  ss.readSync(discardHeader);
+  let rlen = 0;
+  audioRenderer.on('dataRequest', (audioRendererDataInfo) => {
+    var viewObject = new DataView(audioRendererDataInfo.buffer);
+    rlen += ss.readSync(viewObject.buffer);
+    console.info(`AudioRenderLog: bytes read from file: ${rlen}`);
+  })
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -4943,7 +5067,7 @@ audioCapturer.getBufferSize().then((data) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: 'markReach', frame: number, callback: (position: number) => {}): void
+on(type: "markReach", frame: number, callback: Callback<number>): void
 
 订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发。
 
@@ -4955,7 +5079,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------  | :--- | :----------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | (position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调。 |
+| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调。 |
 
 **示例：**
 
@@ -4989,7 +5113,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: (position: number) => {}): void
+on(type: "periodReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -5001,7 +5125,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。            |
-| callback | (position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调    |
+| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调    |
 
 **示例：**
 
