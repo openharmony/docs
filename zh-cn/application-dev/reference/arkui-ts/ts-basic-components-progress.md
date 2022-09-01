@@ -19,18 +19,18 @@
 
 ## 接口
 
-Progress(options: {value: number, total?: number, style?: ProgressStyle,  type?: ProgressType})
+Progress(options: {value: number, total?: number, style?: ProgressStyle, type?: ProgressType})
 
 创建进度组件，用于显示内容加载或操作处理进度。
 
 **参数：** 
 
-| 参数名 | 参数类型      | 必填 | 默认值               | 参数描述         |
-| ------ | ------------- | ---- | -------------------- | ---------------- |
-| value  | number        | 是   | -                    | 指定当前进度值。 |
-| total  | number        | 否   | 100                  | 指定进度总长。   |
-| type   | ProgressType  | 否   | ProgressType.Linear  | 指定进度条样式。 |
-| style  | ProgressStyle | 否   | ProgressStyle.Linear | 指定进度条样式。 |
+| 参数名                     | 参数类型      | 必填 | 默认值               | 参数描述                                            |
+| -------------------------- | ------------- | ---- | -------------------- | --------------------------------------------------- |
+| value                      | number        | 是   | -                    | 指定当前进度值。                                    |
+| total                      | number        | 否   | 100                  | 指定进度总长。                                      |
+| type<sup>8+</sup>          | ProgressType  | 否   | ProgressType.Linear  | 指定进度条类型。                                    |
+| style<sup>deprecated</sup> | ProgressStyle | 否   | ProgressStyle.Linear | 指定进度条样式。<br/>该参数从API Version8开始废弃。 |
 
 ## ProgressType枚举说明
 

@@ -20,7 +20,7 @@
 
 ## 接口
 
-Polyline(value?: {width: string&nbsp;|&nbsp;number, height: string&nbsp;|&nbsp;number})
+Polyline(value?: {width?: string&nbsp;|&nbsp;number, height?: string&nbsp;|&nbsp;number})
 
 **参数：**
 

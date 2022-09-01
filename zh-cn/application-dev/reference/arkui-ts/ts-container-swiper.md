@@ -42,7 +42,7 @@ Swiper(value?:{controller?: SwiperController})
 | loop                        | boolean                                  | true       | 是否开启循环。<br> 设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。 |
 | duration                    | number                                   | 400        | 子组件切换的动画时长，单位为毫秒。                        |
 | vertical                    | boolean                                  | false      | 是否为纵向滑动。                                 |
-| itemSpace                   | number&nbsp;\|&nbsp;string | 0          | 设置子组件与子组件之间间隙。                           |
+| itemSpace                   | number \| string                    | 0          | 设置子组件与子组件之间间隙。                           |
 | displayMode                 | SwiperDisplayMode                        | SwiperDisplayMode.Stretch          | 设置子组件显示模式。                           |
 | cachedCount<sup>8+</sup>    | number                                   | 1          | 设置预加载子组件个数。                              |
 | disableSwipe<sup>8+</sup>   | boolean                                  | false      | 禁用组件滑动切换功能。                              |

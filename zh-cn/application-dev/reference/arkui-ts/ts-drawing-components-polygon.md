@@ -19,7 +19,7 @@
 
 ## 接口
 
-Polygon(value?:{width: string&nbsp;|&nbsp;number, height: string&nbsp;|&nbsp;number})
+Polygon(value?:{width?: string&nbsp;|&nbsp;number, height?: string&nbsp;|&nbsp;number})
 
 **参数：**
 
