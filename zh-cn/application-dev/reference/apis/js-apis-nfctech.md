@@ -59,7 +59,7 @@ getAtqa(): number[]
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| number[]  | NfcA 标签的Ataq值。 |
+| number[]  | NfcA 标签的Atqa值。 |
 
 **示例：**
 
@@ -93,7 +93,7 @@ getRespAppData(): number[]
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| number[]  | NfcB 标签的Resp数据。 |
+| number[]  | NfcB 标签的应用程序数据。 |
 
 **示例：**
 
@@ -153,7 +153,7 @@ getSystemCode(): number[]
 
 | **类型** | **说明**                            |
 | ------------------ | --------------------------|
-| number[]  | NfcF 标签的协议信息。|
+| number[]  | NfcF 标签的系统代码。|
 
 **示例：**
 
@@ -325,7 +325,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | 检查结果，ture: 支持， false: 不支持。|
+| Promise&lt;boolean&gt; | 检查结果，true: 支持， false: 不支持。|
 
 **示例：**
 
@@ -352,7 +352,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，ture: 支持， false: 不支持。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，true: 支持， false: 不支持。 |
 
 ```js
 import tag from '@ohos.nfc.tag';
@@ -540,7 +540,7 @@ isNdefWritable(): Promise&lt;boolean&gt;
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | 检查结果，ture: 可写， false: 不可写。|
+| Promise&lt;boolean&gt; | 检查结果，true: 可写， false: 不可写。|
 
 **示例：**
 
@@ -712,7 +712,7 @@ canSetReadOnly(): Promise\<boolean>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | ture: 标签可设置为只读， false: 标签不可设置为只读。 |
+| Promise&lt;boolean&gt; | true: 标签可设置为只读， false: 标签不可设置为只读。 |
 
 **示例：**
 
@@ -727,7 +727,7 @@ tag.NdefTag(taginfo).canSetReadOnly().then(function (has) {
 
 ### NdefTag.canSetReadOnly<sup>9+</sup>
 
-isNdefWritable(callback: AsyncCallback&lt;boolean&gt;): void;
+canSetReadOnly(callback: AsyncCallback&lt;boolean&gt;): void;
 
 检查ndef标签是否可以设置为只读，使用callback方式作为异步方法。
 
@@ -784,7 +784,7 @@ tag.NdefTag(taginfo).setReadOnly().then(function (errcode) {
 
 setReadOnly(callback: AsyncCallback<number>): void
 
-检查ndef标签是否可以设置为只读，使用callback方式作为异步方法。
+将Ndef标签设置为只读，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.NFC_TAG
 

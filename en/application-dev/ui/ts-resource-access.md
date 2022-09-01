@@ -11,7 +11,7 @@ When referencing resources in the **rawfile** sub-directory, use the ```"$rawfil
 >
 > Resource descriptors accept only strings, such as `'app.type.name'`, and cannot be combined.
 >
->  `$r` returns a **Resource** object. To obtain the corresponding string, use [getString](../../reference/apis/js-apis-resource-manager.md#getstring). 
+>  `$r` returns a **Resource** object. To obtain the corresponding string, use [getString](../reference/apis/js-apis-resource-manager.md#getstring). 
 
   In the **.ets** file, you can use the resources defined in the **resources** directory.
 

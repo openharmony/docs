@@ -55,8 +55,11 @@ Image(src: string | PixelMap | Resource)
 | fillColor              | [ResourceColor](../../ui/ts-types.md#resourcecolor8) | -    | 仅对svg图源生效，设置后会替换svg图片的fill颜色。                 |
 | autoResize             | boolean | true        | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。           |
 | syncLoad<sup>8+</sup> | boolean                                  | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | CopyOptions.None | 设置图片是否可复制（SVG图片不支持复制）。 |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | CopyOptions.None | 设置图片是否可复制（SVG图片不支持复制）。<br/>当设置copyOption为非CopyOptions.None时，支持快捷组合键'CTRL+C'进行复制。 |
 | colorFilter<sup>9+</sup> | [ColorFilter](../../ui/ts-types.md#colorfilter9) | - | 给图像设置颜色滤镜效果。 |
+
+>  **说明：**
+>  使用快捷组合键对Image组件复制的前提是，该组件必须处于获焦状态。将Image组件的属性focusable设置为true，即可使用TAB键将焦点切换到Image组件上，再将Image组件的focusOnTouch属性设置为true，即可实现点击获焦。
 
 ### ImageInterpolation
 

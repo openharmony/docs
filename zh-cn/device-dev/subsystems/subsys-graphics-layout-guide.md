@@ -9,7 +9,7 @@
 
 ### 使用场景
 
-UISwipeView继承UIViewGroup，除提供容器类组件Add、Remove、Insert等方法外还提供按页面滑动功能，滑动结束后当前页面居中对齐显示。该组件分为水平方向和垂直方向，通过Add方法添加的子组件会根据Add的顺序和UISwipeView方向自动水平对齐或则垂直对齐。
+UISwipeView继承UIViewGroup，除提供容器类组件Add、Remove、Insert等方法外还提供按页面滑动功能，滑动结束后当前页面居中对齐显示。该组件分为水平方向和垂直方向，通过Add方法添加的子组件会根据Add的顺序和UISwipeView方向自动水平对齐或者垂直对齐。
 
 
 ### 接口说明
