@@ -40,7 +40,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | popupFont               | [Font](../../ui/ts-types.md) | 设置提示弹窗字体样式。                         |
 | font                    | [Font](../../ui/ts-types.md) | 设置字母索引条默认字体样式。                      |
 | itemSize                | Length                                   | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
-| alignStyle              | IndexerAlign                             | 设置提示弹窗的弹出位置。 |
+| alignStyle              | IndexerAlign                             | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值：IndexerAlign.Right |
 
 - IndexerAlign枚举说明
   | 名称 | 描述 |
