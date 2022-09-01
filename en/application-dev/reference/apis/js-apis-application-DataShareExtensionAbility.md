@@ -4,11 +4,11 @@ The **DataShareExtensionAbility** module provides Extension abilities for data s
 
 >**NOTE**
 >
->The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->The APIs provided by this module are system APIs.
+> The APIs provided by this module are system APIs.
 >
->The APIs of this module can be used only in the stage model.
+> The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -66,62 +66,6 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
                 callback();
             }
         });
-    }
-};
-```
-
-## getFileTypes
-
-getFileTypes?(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
-
-Obtains the Multipurpose Internet Mail Extensions (MIME) types supported by a file. This API is called by the server and can be overridden as required.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
-
-**Parameters**
-
-| Name          | Type                                    | Mandatory| Description                              |
-| -------------- | ---------------------------------------- | ---- | ---------------------------------- |
-| uri            | string                                   | Yes  | URI of the file.          |
-| mimeTypeFilter | string                                   | Yes  | MIME types to match.      |
-| callback       | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the MIME types obtained.|
-
-**Example**
-
-```ts
-export default class DataShareExtAbility extends DataShareExtensionAbility {
-    getFileTypes(uri, mimeTypeFilter, callback) {
-        let err = {"code":0};
-        let ret = new Array("type01", "type02", "type03");
-        callback(err, ret);
-    }
-};
-```
-
-## openFile
-
-openFile?(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
-
-Opens a file. This API is called by the server and can be overridden as required.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
-
-**Parameters**
-
-| Name    | Type                 | Mandatory| Description                                      |
-| -------- | --------------------- | ---- | ------------------------------------------ |
-| uri      | string                | Yes  | URI of the file to open.       |
-| mode     | string                | Yes  | File open mode, which can be read-only or read/write.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the file descriptor.       |
-
-**Example**
-
-```ts
-export default class DataShareExtAbility extends DataShareExtensionAbility {
-    openFile(uri, mode, callback) {
-        let err = {"code":0};
-        let fd = 0;
-        callback(err,fd);
     }
 };
 ```
@@ -297,33 +241,6 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
                 callback(err, resultSet);
             }
         });
-    }
-};
-```
-
-## getType
-
-getType?(uri: string, callback: AsyncCallback&lt;string&gt;): void
-
-Obtains the MIME type corresponding to the given URI. This API can be overridden as required.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ----- | ------ | ------ | ------ |
-| uri | string | Yes | URI of the target data.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the MIME type obtained.|
-
-**Example**
-
-```ts
-export default class DataShareExtAbility extends DataShareExtensionAbility {
-    getType(uri, callback) {
-        let err = {"code":0};
-        let ret = "image";
-        callback(err, ret);
     }
 };
 ```

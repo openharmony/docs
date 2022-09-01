@@ -1,5 +1,5 @@
 # DataShare Development
-The **DataShare** module allows an application to manage its own data and share data with other applications. Currently, data can be shared only between the applications on the same device.
+The **DataShare** module allows an application to manage its own data and share data with other applications. Currently, data can be shared only between applications on the same device.
 
 ## Available APIs
 
@@ -29,10 +29,10 @@ For more details, see [DataShareHelper](../reference/apis/js-apis-data-dataShare
 
 ## When to Use
 
-**DataShare** can be divided into the following: 
+There are two roles in **DataShare**.
 
-- Data provider: Implement functions of adding, deleting, modifying, and querying data, and opening files, and share data.
-- Data consumer: Access the data provided by the provider using **DataShareHelper**.
+- Data provider: adds, deletes, modifies, and queries data, opens files, and shares data.
+- Data consumer: accesses the data provided by the provider using **DataShareHelper**.
 
 Examples are given below.
 
@@ -47,7 +47,7 @@ Examples are given below.
    import dataSharePredicates from '@ohos.data.dataSharePredicates'
    ```
 
-2. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only the query() API.
+2. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only the **query()** API.
 
 3. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
 
@@ -107,9 +107,9 @@ Examples are given below.
    | Field| Description                                                    |
    | ------------ | ------------------------------------------------------------ |
    | "name"       | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.        |
-   | "type"       | Ability type. The value is **dataShare**, indicating the development is based on the **Datashare** template.|
-   | "uri"        | URI used for communication. It is the unique identifier for the client to connect to the server.               |
-   | "visible"    | Whether it is visible to other applications. Communication with other applications is allowed only when the value is **true**.|
+   | "type"       | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template.|
+   | "uri"        | URI used for communication. It is the unique identifier for the data consumer to connect to the provider.               |
+   | "visible"    | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.|
 
    **module.json5 example**
 
@@ -129,7 +129,7 @@ Examples are given below.
 
 ### Data Consumer Application Development
 
-1. Import basic dependencies.
+1. Import the dependencies.
 
    ```ts
    import Ability from '@ohos.application.Ability'
@@ -175,7 +175,7 @@ Examples are given below.
    dsHelper.insert(dseUri, valuesBucket, (err,data) => {
        console.log("dsHelper insert result: " + data);
    });
-   // Delete the specified data.
+   // Delete data.
    dsHelper.delete(dseUri, da, (err,data) => {
        console.log("dsHelper delete result: " + data);
    });
