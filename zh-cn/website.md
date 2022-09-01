@@ -4,7 +4,6 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 3.x Releases
-
     -   [OpenHarmony v3.2 Beta2 (2022-07-30)](release-notes/OpenHarmony-v3.2-beta2.md)
     -   [OpenHarmony v3.2 Beta1 (2022-05-31)](release-notes/OpenHarmony-v3.2-beta1.md)
     -   [OpenHarmony v3.1.1 Release (2022-05-31)](release-notes/OpenHarmony-v3.1.1-release.md)
@@ -15,23 +14,17 @@
     -   [OpenHarmony v3.0.2 LTS (2022-03-18)](release-notes/OpenHarmony-v3.0.2-LTS.md)
     -   [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
     -   [OpenHarmony v3.0 LTS (2021-09-30)](release-notes/OpenHarmony-v3.0-LTS.md)
-  
-- OpenHarmony 2.x Releases
-  
+  - OpenHarmony 2.x Releases
     -   [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     -   [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
-  
-- OpenHarmony 1.x Releases 
-  
+  - OpenHarmony 1.x Releases 
     -   [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
     -   [OpenHarmony v1.1.3 LTS (2021-09-30)](release-notes/OpenHarmony-v1-1-3-LTS.md)
     -   [OpenHarmony v1.1.2 LTS (2021-08-04)](release-notes/OpenHarmony-v1.1.2-LTS.md)
     -   [OpenHarmony 1.1.1 LTS (2021-06-22)](release-notes/OpenHarmony-1-1-1-LTS.md)
     -   [OpenHarmony 1.1.0 LTS (2021-04-01)](release-notes/OpenHarmony-1-1-0-LTS.md)
     -   [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
-    
   - API差异报告
-    
     - OpenHamrony 3.2 Beta2
       - JS API差异报告
         - [元能力](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
@@ -61,6 +54,9 @@
         - [用户身份认证](release-notes/api-change/v3.2-beta2/js-apidiff-user-authentication.md)
         - [Web](release-notes/api-change/v3.2-beta2/js-apidiff-web.md)
         - [窗口管理](release-notes/api-change/v3.2-beta2/js-apidiff-window.md)
+      - 变更说明
+        - [3.2 beta2相对3.2 beta1变更详细说明](release-notes/api-change/v3.2-beta2/changelog-v3.2-beta2.md)
+        - [OpenHarmony启用应用沙箱机制-适配指导](release-notes/api-change/v3.2-beta2/application-sandbox-adaptation-guide.md)
     - OpenHarmony 3.2 Beta1
       - JS API差异报告
         - [元能力](release-notes/api-change/v3.2-beta1/js-apidiff-ability.md)
@@ -128,17 +124,12 @@
     - OpenHarmony 3.1 Beta
       - [JS API差异报告](release-notes/api-change/v3.1-beta/js-apidiff-v3.1-beta.md)
       - [Native API差异报告](release-notes/api-change/v3.1-beta/native-apidiff-v3.1-beta.md)
+      - [3.1 beta相对于3.0变更详细说明](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
     - OpenHarmony 3.0 LTS  
       - [JS API差异报告](release-notes/api-change/v3.0-LTS/js-apidiff-v3.0-lts.md) 
     - OpenHarmony v2.2 Beta2 
       - [JS API差异报告](release-notes/api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
       - [Native API差异报告](release-notes/api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
-  - 变更说明
-    - OpenHamrony 3.2 Beta2
-      - [3.2 beta2相对3.2 beta1变更详细说明](release-notes/changelog/v3.2-beta2/changelog-v3.2-beta2.md)
-      - [OpenHarmony启用应用沙箱机制-适配指导](release-notes/changelog/v3.2-beta2/application-sandbox-adaptation-guide.md)  
-    - OpenHarmony 3.1 Beta
-      - [3.1 beta相对于3.0变更详细说明](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
   - [OpenHarmony JS/TS三方组件使用指导](third-party-components/npm-third-party-guide.md)

@@ -3,23 +3,19 @@
 
 The **&lt;svg&gt;** component uses instructions **M** (start point), **H** (horizontal line), and **a** (drawing an arc to a specified position) to control a path and sets the fill colors to create a pie chart.
 
-
-  
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="100" y="400">
-    <path d="M300,200 h-150 a150 150 0 1 0 150 -150 z" fill="red" stroke="blue" stroke-width="5" >
-    </path>
-    <path d="M275,175 v-150 a150 150 0 0 0 -150 150 z" fill="yellow" stroke="blue" stroke-width="5">
+    <path d="M300,200 h-150 a150 150 0 1 0 150 -150 z" fill="red" stroke="blue" stroke-width="5" >    
+    </path> 
+    <path d="M275,175 v-150 a150 150 0 0 0 -150 150 z" fill="yellow" stroke="blue" stroke-width="5">    
     </path>
   </svg>
 </div>
 ```
 
-
-  
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: row;
@@ -35,7 +31,7 @@ The **&lt;svg&gt;** component uses instructions **M** (start point), **H** (hori
 ![en-us_image_0000001232162340](figures/en-us_image_0000001232162340.png)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
 > - M/m = moveto   The **x** and **y** parameters indicate the destination X and Y coordinates of a point. The **M** command only moves the brush, but does not draw a line between two points. Therefore, the **M** command is often used at the beginning of a path to indicate the start point.
 > 
 > - L/l = lineto   The **x** and **y** parameters indicate the X and Y coordinates of a point. The **L** command draws a line between the current position and the destination position (the previous point of the brush).

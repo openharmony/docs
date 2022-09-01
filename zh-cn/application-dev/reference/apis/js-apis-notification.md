@@ -556,7 +556,7 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 | 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                 |
 | -------- | ---- | --- | --------------------------------- | ---- | -------------------- |
-| callback | 是   | 否  | AsyncCallback\<[NotificationSlot](#notificationslot)\> | 是   | 表示被指定的回调方法。 |
+| callback | 是   | 否  | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -3765,7 +3765,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | desc                 | 是  | 是  | string                | 否   | 通知渠道描述信息。                           |
 | badgeFlag            | 是  | 是  | boolean               | 否   | 是否显示角标。                               |
 | bypassDnd            | 是  | 是  | boolean               | 否   | 置是否在系统中绕过免打扰模式。               |
-| lockscreenVisibility | 是  | 是  | boolean               | 否   | 在锁定屏幕上显示通知的模式。                 |
+| lockscreenVisibility | 是  | 是  | number         | 否   | 在锁定屏幕上显示通知的模式。                 |
 | vibrationEnabled     | 是  | 是  | boolean               | 否   | 是否可振动。                                 |
 | sound                | 是  | 是  | string                | 否   | 通知提示音。                                 |
 | lightEnabled         | 是  | 是  | boolean               | 否   | 是否闪灯。                                   |

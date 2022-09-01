@@ -21,7 +21,7 @@ The name of a resource qualifier consists of one or more qualifiers that represe
 - In the resource qualifier file, color enumeration cannot be used to set resources.
 
 
-  Table1 Resource qualifiers
+**Table 1** Resource qualifiers
 
 | Data Type | Description and Value Range |
 | -------- | -------- |
@@ -41,7 +41,7 @@ You can use the $r syntax in the application development files .hml and .js to f
 
 | Attribute | Type | Description |
 | -------- | -------- | -------- |
-| $r | (key: string) => string | Obtains the resource content that matches the specific qualifiers, for example, this.$r('strings.hello loaded).<br/>Parameter description:<br/>- key: key value defined in the resource qualifier file, for example, strings.hello.<br/> |
+| $r | (key: string) => string | Obtains the resource content that matches the specific qualifiers, for example, **this.$r('strings.hello loaded)**.<br/>Parameter description:<br/>- **key**: key value defined in the resource qualifier file, for example, **strings.hello**. |
 
 Example of res-defaults.json:<br/>
 
@@ -57,7 +57,6 @@ Example of res-defaults.json:<br/>
 
 resources/res-dark.json:
 
-
 ```
 {
     "image": {
@@ -71,7 +70,6 @@ resources/res-dark.json:
 
 resources/res-defaults.json:
 
-
 ```
 {
     "image": {
@@ -83,7 +81,6 @@ resources/res-defaults.json:
 }
 ```
 
-
 ```
 <!-- xxx.hml -->
 <div style="background-color: {{ $r('colors.background') }}">
@@ -91,5 +88,6 @@ resources/res-defaults.json:
 </div>
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**
+>
 > The resource qualifier file does not support color enumeration.

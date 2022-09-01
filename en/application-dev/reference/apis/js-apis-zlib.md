@@ -136,7 +136,7 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
 | Name             | Value  | Description                            |
 | ----------------- | ---- | -------------------------------- |
 | MEM_LEVEL_MIN     | 1    | Minimum memory used by the **zip** API during compression.|
-| MEM_LEVEL_MIN     | 9    | Maximum memory used by the **zip** API during compression.|
+| MEM_LEVEL_MAX     | 9    | Maximum memory used by the **zip** API during compression.|
 | MEM_LEVEL_DEFAULT | 8    | Default memory used by the **zip** API during compression.|
 
 ## zip.CompressLevel

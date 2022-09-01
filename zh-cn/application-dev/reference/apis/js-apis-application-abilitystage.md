@@ -89,6 +89,31 @@ onConfigurationUpdated(config: Configuration): void;
       }
   }
   ```
+
+## AbilityStage.onMemoryLevel
+
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+
+当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | 是 | 回调返回内存微调级别，显示当前内存使用状态。| 
+
+**示例：**
+    
+  ```js
+  class MyAbilityStage extends AbilityStage {
+    onMemoryLevel(level) {
+        console.log('onMemoryLevel, level:' + JSON.stringify(level));
+    } 
+  }
+  ```
+
 ## AbilityStage.context
 
 context: AbilityStageContext;

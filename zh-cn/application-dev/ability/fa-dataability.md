@@ -311,4 +311,4 @@ URI示例：
 
 针对DataAbility开发，有以下相关实例可供参考：
 
-- [`DataAbility`：DataAbility的创建与访问（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ability/DataAbility)
+- [`DataAbility`：DataAbility的创建与访问（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DataAbility)

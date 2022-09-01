@@ -3,7 +3,6 @@
 The **\<Image>** component is used to render and display local and online images.
 
 > **NOTE**
->
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -35,33 +34,33 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 **Parameters**
 
-| Name| Type                                                    | Mandatory| Default Value| Description                                                    |
-| ------ | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| src    | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](../../ui/ts-types.md) | Yes  | -      | Image source. Both local and online images are supported.<br>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>\- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability. |
+| Name | Type                                    | Mandatory  | Default Value | Description                                    |
+| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| src  | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](../../ui/ts-types.md#resource-type) | Yes   | -    | Image source. Both local and online images are supported.<br>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. \ The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability.|
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name                   | Type                                    | Default Value                     | Description                                      |
-| --------------------- | ---------------------------------------- | ------------------------ | ---------------------------------------- |
-| alt                   | string \| [Resource](../../ui/ts-types.md) | -                        | Placeholder image displayed during loading. Both local and Internet URIs are supported.                  |
-| objectFit             | [ImageFit](#imagefit-enums)               | ImageFit.Cover           | Image scale type.                              |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat                 | Whether the image is repeated.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
-| interpolation         | [ImageInterpolation](#imageinterpolation) | ImageInterpolation.None  | Interpolation effect of the image. This attribute is valid only when the image is zoomed in.<br>**NOTE**<br>This attribute is not applicable to SVG images or **PixelMap** objects. |
-| renderMode            | [ImageRenderMode](#imagerendermode)      | ImageRenderMode.Original | Rendering mode of the image.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
+| Name                 | Type                                               | Default Value                  | Description                                                        |
+| --------------------- | ------------------------------------------------------- | ------------------------ | ------------------------------------------------------------ |
+| alt                   | string \| [Resource](../../ui/ts-types.md#resource-type) | -                        | Placeholder image displayed during loading. Both local and Internet URIs are supported.                |
+| objectFit             | ImageFit                           | ImageFit.Cover           | Image scale type.                                        |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | NoRepeat                 | Whether the image is repeated.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
+| interpolation         | [ImageInterpolation](#imageinterpolation)               | ImageInterpolation.None  | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>**NOTE**<br>> This attribute is not applicable to SVG images.<br>> This attribute is not applicable to **PixelMap** objects. |
+| renderMode            | [ImageRenderMode](#imagerendermode)                     | ImageRenderMode.Original | Rendering mode of the image.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
 | sourceSize            | {<br>width: number,<br>height: number<br>} | -                        | Decoding size of the image. The original image is decoded into an image of the specified size, in px.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects. |
 | syncLoad<sup>8+</sup> | boolean                                  | false                    | Whether to load images synchronously. By default, images are loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed. |
 
 ### ImageFit
 
-| Name       | Description                              |
-| --------- | -------------------------------- |
-| Cover     | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. |
-| Contain   | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.   |
-| Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.        |
-| None      | The image is displayed in its original size. Generally, this enum is used together with the **objectRepeat** attribute.|
-| ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.             |
+| Name     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Cover     | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.|
+| Contain   | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.  |
+| Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.            |
+| None      | The image is displayed in its original size.                                          |
+| ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.                      |
 
 ### ImageInterpolation
 
@@ -78,6 +77,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | -------- | --------------------- |
 | Original | The image is rendered based on the original image, including the color.       |
 | Template | The image is rendered as a template image, and its color is ignored.|
+
 
 ## Events
 
@@ -159,7 +159,7 @@ struct ImageExample1 {
 }
 ```
 
-![en-us_image_0000001211898484](figures/en-us_image_0000001211898484.gif)
+![zh-cn_image_0000001250492613](figures/zh-cn_image_0000001250492613.gif)
 
 ### Setting Attributes
 
@@ -227,7 +227,7 @@ struct ImageExample2 {
 }
 ```
 
-![en-us_image_0000001212058474](figures/en-us_image_0000001212058474.png)
+![zh-cn_image_0000001205812616](figures/zh-cn_image_0000001205812616.png)
 
 ### Invoking Events
 
@@ -235,8 +235,8 @@ struct ImageExample2 {
 @Entry
 @Component
 struct ImageExample3 {
-  @State width: number = 0
-  @State height: number = 0
+  @State widthValue: number = 0
+  @State heightValue: number = 0
   private on: Resource = $r('app.media.image_on')
   private off: Resource = $r('app.media.image_off')
   private on2off: Resource = $r('app.media.image_on2off')
@@ -257,8 +257,8 @@ struct ImageExample3 {
             .height(180).width(180)
             // Obtain the size of an image after the image loading is complete.
             .onComplete((msg: { width: number,height: number }) => {
-              this.width = msg.width
-              this.height = msg.height
+              this.widthValue = msg.width
+              this.heightValue = msg.height
             })
             .onError(() => {
               console.log('load image fail')
@@ -291,4 +291,4 @@ struct ImageExample3 {
 }
 ```
 
-![en-us_image_0000001256858397](figures/en-us_image_0000001256858397.gif)
+![zh-cn_image_0000001205972610](figures/zh-cn_image_0000001205972610.gif)

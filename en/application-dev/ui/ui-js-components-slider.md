@@ -10,16 +10,14 @@ Create a **&lt;slider&gt;** component in the .hml file under **pages/index**.
 
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
-<slider></slider>
+  <slider></slider>
 </div>
 ```
 
-
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -40,7 +38,7 @@ Create a **&lt;slider&gt;** component in the .hml file under **pages/index**.
 Use the **&lt;slider&gt;** component to set the background color, selected color, and slider color using the **color**, **selected-color**, and **block-color** attributes, respectively.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <slider class= "sli"></slider>
@@ -48,7 +46,7 @@ Use the **&lt;slider&gt;** component to set the background color, selected color
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -70,7 +68,7 @@ Use the **&lt;slider&gt;** component to set the background color, selected color
 Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set the minimum value, maximum value, initial value, step, and style of the slider.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <slider min="0" max="100" value="1" step="2" mode="inset" showtips="true"></slider>
@@ -78,7 +76,7 @@ Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set th
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -92,7 +90,8 @@ Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set th
 
 ![en-us_image_0000001276003517](figures/en-us_image_0000001276003517.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE:**
+> **NOTE**
+>
 > Set the **mode** attribute to specify the slider style. It can be set to:
 >
 > - **outset**: The slider is on the sliding bar.
@@ -105,7 +104,7 @@ Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set th
 Add the **change** event to the **&lt;rating&gt;** component and pass the ChangeEvent attribute when adding the event.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text>slider start value is {{startValue}}</text>
@@ -116,11 +115,11 @@ Add the **change** event to the **&lt;rating&gt;** component and pass the Change
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -129,7 +128,7 @@ Add the **change** event to the **&lt;rating&gt;** component and pass the Change
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -161,7 +160,7 @@ export default {
 Adjust the value of the slider to change the image size and dynamically print the width and height of the current image.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <image src="common/landscape3.jpg" style=" width: {{WidthVal}}px;height:{{HeightVal}}px;margin-top: -150px;"></image>
@@ -174,7 +173,7 @@ Adjust the value of the slider to change the image size and dynamically print th
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -197,7 +196,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 export default{
   data: {

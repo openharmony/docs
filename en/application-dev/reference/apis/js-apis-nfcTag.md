@@ -1,17 +1,15 @@
 # Standard NFC Tag
 
-Manages Near-Field Communication (NFC) tags.
+The **nfcTag** module provides methods for managing Near-Field Communication (NFC) tags.
 
 > **NOTE**<br>
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## **Modules to Import**
 
 ```
 import tag from '@ohos.nfc.tag';
 ```
-
 
 ## tag.getNfcATag
 
@@ -21,7 +19,7 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -37,7 +35,7 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -53,7 +51,7 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
@@ -69,10 +67,11 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-**System capability**: SystemCapability.Communication.NFC
+**System capability**: SystemCapability.Communication.NFC.Core
 
 **Return value**
 
 | **Type**| **Description**        |
 | -------- | ---------------- |
 | NfcVTag  | **NfcVTag** object obtained.|
+

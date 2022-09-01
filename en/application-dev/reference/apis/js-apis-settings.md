@@ -21,7 +21,7 @@ getUriSync(name: string): string
 
 Obtains the URI of a data item.
 
-**System capability**: SystemCapability.Applictaions.settings.Core
+**System capability**: SystemCapability.Applications.settings.Core
 
 **Parameters**
 
@@ -50,7 +50,7 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 Obtains the value of a data item.
 
-**System capability**: SystemCapability.Applictaions.settings.Core
+**System capability**: SystemCapability.Applications.settings.Core
 
 **Parameters**
 | Name| Type| Mandatory| Description|
@@ -87,7 +87,7 @@ If the specified data item exists in the database, the **setValueSync** method u
 
 **Required permissions**: ohos.permission.MODIFY_SETTINGS
 
-**System capability**: SystemCapability.Applictaions.settings.Core
+**System capability**: SystemCapability.Applications.settings.Core
 
 **Parameters**
 

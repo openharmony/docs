@@ -1,12 +1,11 @@
 # CanvasRenderingContext2D
 
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<RenderingContext>** component is used to draw rectangles, text, images, and other objects on a canvas.
 
+> **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## APIs
 
@@ -20,14 +19,14 @@ CanvasRenderingContext2D(setting: RenderingContextSetting)
 
 ### RenderingContextSettings
 
-RenderingContextSettings(antialias?: bool)
+RenderingContextSettings(antialias?: boolean)
 
 Configures the settings of a **CanvasRenderingContext2D** object, including whether to enable antialiasing.
 
 - Parameters
     | Name      | Type | Mandatory | Default Value | Description                      |
     | --------- | ---- | --------- | ------------- | -------------------------------- |
-    | antialias | bool | No        | false         | Whether antialiasing is enabled. |
+    | antialias | boolean | No        | false         | Whether antialiasing is enabled. |
 
 
 ## Attributes
@@ -259,7 +258,7 @@ struct MiterLimit {
 // xxx.ets
 @Entry
 @Component
-struct Font {
+struct Fonts {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   
@@ -1282,7 +1281,8 @@ Draws an arc on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Arc {
@@ -1854,7 +1854,7 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
 
 getImageData(sx: number, sy: number, sw: number, sh: number): Object
 
-Creates an **[ImageData](ts-components-canvas-imagebitmap.md)** object with pixels in the specified area on the canvas.
+Obtains the **[ImageData](ts-components-canvas-imagebitmap.md)** object created with the pixels within the specified area on the canvas.
 - Parameters
     | Name | Type   | Mandatory | Default Value | Description                              |
     | ---- | ------ | --------- | ------------- | ---------------------------------------- |

@@ -20,8 +20,8 @@ The @State data has the following features:
 
 ## Simple Example of @State Decorated Attribute
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MyComponent {
@@ -45,9 +45,9 @@ struct MyComponent {
 
 ## Complex Example of @State Decorated Variable
 
-
-```
+```ts
 // Customize the status data class.
+// xxx.ets
 class Model {
     value: string
     constructor(value: string) {
@@ -60,8 +60,8 @@ class Model {
 struct EntryComponent {
     build() {
         Column() {
-            MyComponent({count: 1, increaseBy: 2})  // MyComponent1 in this document
-            MyComponent({title: {value: 'Hello, World 2'}, count: 7})   // MyComponent2 in this document
+            MyComponent({count: 1, increaseBy: 2})  // MyComponent1 in this document            
+            MyComponent({title: {value: 'Hello, World 2'}, count: 7})   //MyComponent2 in this document
         }
     }
 }
@@ -102,6 +102,6 @@ In the preceding example:
 
 - When creating a MyComponent instance, initialize the variables in the component based on the variable name. For example:
   
-  ```
+  ```ts
   MyComponent({title: {value: 'Hello, World 2'}, count: 7})
   ```

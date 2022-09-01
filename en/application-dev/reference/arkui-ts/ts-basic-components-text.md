@@ -1,15 +1,15 @@
 # Text
 
->  **NOTE**<br/>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<Text>** component is used to display a piece of textual information.
+
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
 
-N/A
+None
 
 
 ## Child Components
@@ -32,8 +32,8 @@ Text(content?: string)
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
 | textAlign | TextAlign | TextAlign.Start | Text alignment mode of multiple lines of text.|
-| textOverflow | {overflow: TextOverflow} | {overflow: TextOverflow.Clip} | Display mode when the text is too long.<br>**NOTE**<br>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters. |
-| maxLines | number | Infinity | Maximum number of lines in the text.|
+| textOverflow | {overflow: TextOverflow} | {overflow: TextOverflow.Clip} | Display mode when the text is too long.<br>**NOTE**<br/><br>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect.|
+| maxLines | number | Infinity | Maximum number of lines in the text.<br>**NOTE**<br/><br>By default, text is automatically folded. If this parameter is specified, the text does not exceed the specified number of lines. If there is extra text, you can use `textOverflow` to specify the truncation mode.|
 | lineHeight | Length | - | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.|
 | decoration | {<br>type: TextDecorationType,<br>color?: Color<br>} | {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} | Style and color of the text decorative line.|
 | baselineOffset | Length | - | Offset of the text baseline.|
@@ -78,7 +78,8 @@ Text(content?: string)
   | LocalDevice | Intra-device copy and paste is allowed.|
   | CrossDevice | Cross-device copy and paste is allowed.|
 
->  **NOTE**<br/>
+> **NOTE**
+>
 > If the **\<Text>** component contains both the text and the **\<Span>** child component, only the content in **\<Span>** is displayed.
 
 

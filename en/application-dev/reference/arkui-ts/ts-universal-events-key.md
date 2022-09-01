@@ -22,15 +22,15 @@ None
 ## KeyEvent
 
 - Attributes
-  | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | type | [KeyType](#keytype-enums) | Type of a key. |
-  | keyCode | number | Key code. |
-  | keyText | string | Key value. |
-  | keySource | [KeySource](#keysource-enums) | Type of the input device that triggers the key event. |
-  | deviceId | number | ID of the input device that triggers the key event. |
-  | metaKey | number | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. |
-  | timestamp | number | Timestamp when the key is pressed. |
+  | Name                                         | Type                   | Description                  |
+  | ------------------------------------- | --------------------------- | -------------------------- |
+  | type                                  | [KeyType](#keytype-enums)   | Type of a key.                 |
+  | [keyCode](../apis/js-apis-keycode.md) | number                      | Key code.                      |
+  | keyText                               | string                      | Key value.                     |
+  | keySource                             | [KeySource](#keysource-enums) | Type of the input device that triggers the key event. |
+  | deviceId                              | number                        | ID of the input device that triggers the key event. |
+  | metaKey                               | number                        | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. |
+  | timestamp                             | number                        | Timestamp when the key is pressed. |
 
 - APIs
   | Name | Description |
@@ -48,20 +48,10 @@ None
 ## KeySource Enums
 | Name | Description |
 | -------- | -------- |
-| Unknown | Unknown input device. |
-| [KeyCode](#common-keycode-enums) | The input device is a keyboard. |
+| Unknown  | Unknown input device. |
+| Keyboard | The input device is a keyboard. |
 
-## Common KeyCode Enums
 
-| Value | Behavior | Physical Button |
-| -------- | -------- | -------- |
-| 19 | Upward | Up button. |
-| 20 | Downward | Down button. |
-| 21 | Leftward | Left button. |
-| 22 | Rightward | Right button. |
-| 23 | OK | **OK** key on a remote control. |
-| 66 | OK | **Enter** key on a keyboard. |
-| 160 | OK | **Enter** button on the numeric keypad. |
 
 
 ## Example

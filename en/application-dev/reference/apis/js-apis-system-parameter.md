@@ -7,7 +7,7 @@
 ## Modules to Import
 
 ```ts
-import parameter from '@ohos.systemParameter'
+import parameter from '@ohos.systemparameter'
 ```
 
 
@@ -216,7 +216,7 @@ Sets a value for the attribute with the specified key. This API uses a promise t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| value| string | Yes | System attribute value to set.|
+| value| string | Yes| System attribute value to set.|
 
 **Return value**
 

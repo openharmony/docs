@@ -18,7 +18,7 @@
 | [busType](#bustype) | 总线类型 | 
 | [vendor](#vendor) | 生产商编号 | 
 | [product](#product)  | 产品编号 |
-| [fuzz](#version)  | 版本号 |
+| [version](#version)  | 版本号 |
 
 ## **详细描述**
 
@@ -30,7 +30,7 @@ Input设备的识别信息。
 
 ### busType
 
-```
+```cpp
 uint16_t InputDevIdentify::busType
 ```
 
@@ -40,7 +40,7 @@ uint16_t InputDevIdentify::busType
 
 ### vendor
 
-```
+```cpp
 uint16_t InputDevIdentify::vendor
 ```
 
@@ -50,7 +50,7 @@ uint16_t InputDevIdentify::vendor
 
 ### product
 
-```
+```cpp
 uint16_t InputDevIdentify::product
 ```
 
@@ -60,7 +60,7 @@ uint16_t InputDevIdentify::product
 
 ### version
 
-```
+```cpp
 uint16_t InputDevIdentify::version
 ```
 

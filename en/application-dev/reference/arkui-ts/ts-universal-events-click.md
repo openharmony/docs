@@ -15,7 +15,7 @@ None
 
 | Name | Bubbling Supported | Description |
 | -------- | -------- | -------- |
-| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about the event parameters, see [ClickEvent](#clickevent). |
+| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about the event parameters, see **ClickEvent**. |
 
 
 ## ClickEvent
@@ -41,8 +41,8 @@ None
 | -------- | -------- | -------- |
 | width | number | Width of the target element, in vp. |
 | height | number | Height of the target element, in vp. |
-| position | [Position](#position8) | Position of the upper left corner of the target element relative to that of the parent element. |
-| globalPosition | [Position](#position8) | Position of the upper left corner of the target element relative to that of the page. |
+| position | Position | Position of the upper left corner of the target element relative to that of the parent element. |
+| globalPosition | Position | Position of the upper left corner of the target element relative to that of the page. |
 
 ## Position<sup>8+</sup>
 

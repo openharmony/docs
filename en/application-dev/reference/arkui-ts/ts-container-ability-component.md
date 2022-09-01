@@ -1,13 +1,13 @@
 # AbilityComponent
 
+**\<AbilityComponent>** is a container for independently displaying an ability.
+
 >  **NOTE**
 >
 >  This component is supported since API version 9.
 >
 >  The APIs of this module are system APIs and cannot be called by third-party applications.
 
-
-**\<AbilityComponent>** is a container for independently displaying an ability.
 
 ## Constraints
 
@@ -41,34 +41,20 @@ Not supported
 
 ## APIs
 
-AbilityComponent(value: {want : Want, controller? : AbilityController})
+AbilityComponent(value: {want : Want})
 
 - Parameters
   | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
   | want | [Want](../../reference/apis/js-apis-application-Want.md) | Yes| - | Description of the default ability to load.|
-  | controller | [AbilityController](#abilityController) | No| - | Ability controller.|
 
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onReady()&nbsp;=&gt;&nbsp;void | Called when this **\<AbilityComponent>** is started. You can then use APIs in the **\<AbilityComponent>**.|
-| onDestroy()&nbsp;=&gt;&nbsp;void | Called when this **\<AbilityComponent>** is destroyed.|
-| onAbilityCreated(name:&nbsp;string)&nbsp;=&gt;&nbsp;void | Called when the specified ability is loaded.|
-| onAbilityMoveToFont()&nbsp;=&gt;&nbsp;void               | Called when this ability is moved to the foreground.|
-| onAbilityWillRemove()&nbsp;=&gt;&nbsp;void | Called when this ability is about to be removed.|
-
-## AbilityController
-
-Implements an ability controller, which provides the control APIs for **\<AbilityComponent>**.
-
-| Name                                   | Description                                                    |
-| --------------------------------------- | ------------------------------------------------------------ |
-| startAbility()&nbsp;=&gt;&nbsp;want     | Loads an ability inside the **\<AbilityComponent>**.<br>**want**: description of the ability to be loaded.|
-| preformBackPress()&nbsp;=&gt;&nbsp;void | Performs a return operation inside the **\<AbilityComponent>**.                        |
-| getStackCount()&nbsp;=&gt;&nbsp;void    | Obtains the number of tasks in the internal task stack of the **\<AbilityComponent>**.                |
+| onConnect()&nbsp;=&gt;&nbsp;void | Called when this **\<AbilityComponent>** is started. You can then use APIs in the **\<AbilityComponent>**.|
+| onDisconnect()&nbsp;=&gt;&nbsp;void | Called when this **\<AbilityComponent>** is destroyed.|
 
 
 ## Example
@@ -78,7 +64,6 @@ Implements an ability controller, which provides the control APIs for **\<Abilit
 @Entry
 @Component
 struct MyComponent {
- @State controller: AbilityController = new AbilityController()
 
   build() {
       Column() {
@@ -87,26 +72,12 @@ struct MyComponent {
                   bundleName: '',
                   abilityName: ''
               },
-              controller: this.controller
           })
-          .onReady(() => {
-              console.log('AbilityComponent ready');
+          .onConnect(() => {
+              console.log('AbilityComponent connect');
           })
-          .onDestory(() => {
-              console.log('AbilityComponent destory');
-          })
-          Button("Start New")
-          .onClick(() => {
-              this.controller.startAbility({
-                  bundleName: '',
-                  abilityName: ''
-              });
-          })
-          Button("Back")
-          .onClick(() => {
-              if (this.controller.getStacjCount() > 1) {
-                  this.controller.preformBackPress();
-              }
+          .onDisconnect(() => {
+              console.log('AbilityComponent disconnect');
           })
       }
   }

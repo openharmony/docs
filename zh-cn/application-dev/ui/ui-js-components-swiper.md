@@ -370,4 +370,4 @@ export default {
 
 针对swiper开发，有以下相关实例可供参考：
 
-- [`swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/swiper)
+- [`swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/swiper)

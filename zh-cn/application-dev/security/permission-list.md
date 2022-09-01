@@ -1,4 +1,4 @@
-# 权限定义列表
+# 应用权限列表
 
 在申请目标权限前，建议开发者先阅读[访问控制开发概述-权限的工作流程](accesstoken-overview.md#权限的工作流程)。对权限的工作流程有基本的了解后，再结合下表判断应用能否申请目标权限，提高开发效率。
 
@@ -20,7 +20,6 @@
 | ohos.permission.REMOVE_CACHE_FILES                       | system_basic | system_grant | TRUE    | 允许清理指定应用的缓存。                                     |
 | ohos.permission.REBOOT                                   | system_basic | system_grant | TRUE    | 允许应用重启设备。                                           |
 | ohos.permission.RUNNING_LOCK                             | normal       | system_grant | TRUE    | 允许应用获取运行锁，保证应用在后台的持续运行。               |
-| ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | FALSE   | 允许应用使用生物特征识别能力进行身份认证。                   |
 | ohos.permission.SET_TIME                                 | system_basic | system_grant | TRUE    | 允许应用修改系统时间。                                       |
 | ohos.permission.SET_TIME_ZONE                            | system_basic | system_grant | TRUE    | 允许应用修改系统时区。                                       |
 | ohos.permission.DOWNLOAD_SESSION_MANAGER                 | system_core  | system_grant | TRUE    | 允许应用管理下载任务会话。                                   |

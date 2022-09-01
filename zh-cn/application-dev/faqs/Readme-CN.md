@@ -1,0 +1,15 @@
+# 常见问题
+
+- [Ability框架开发常见问题](faqs-ability.md)
+- [UI框架（JS）开发常见问题](faqs-ui-js.md)
+- [UI框架（eTS）开发常见问题](faqs-ui-ets.md)
+- [图形图像开发常见问题](faqs-graphics.md)
+- [文件管理开发常见问题](faqs-file-management.md)
+- [网络与连接开发常见问题](faqs-connectivity.md)
+- [数据管理开发常见问题](faqs-data-management.md)
+- [设备管理开发常见问题](faqs-device-management.md)
+- [Native API使用常见问题](faqs-native.md)
+- [三四方库使用常见问题](faqs-third-party-library.md)
+- [IDE使用常见问题](faqs-ide.md)
+- [hdc_std命令使用常见问题](faqs-hdc-std.md)
+- [开发板](faqs-development-board.md)

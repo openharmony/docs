@@ -1,8 +1,10 @@
 # Visibility
 
+The visibility attribute controls whether a component is visible.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+>
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -13,23 +15,23 @@ None
 ## Attributes
 
 
-  | Name | Type | Default Value | Description | 
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| visibility | Visibility | Visibility.Visible | Whether the component is shown or hidden. | 
+| visibility | Visibility | Visibility.Visible | Whether the component is visible. Note that even if a component is hidden, it needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../ui/ts-rending-control-syntax-if-else.md) instead under scenarios where consistently high performance is required. |
 
 
 - Visibility enums
-    | Name | Description | 
+  | Name| Description|
   | -------- | -------- |
-  | Hidden | The component is hidden, and a placeholder is used for it in the layout. | 
-  | Visible | The component is shown. | 
-  | None | The component is hidden. It is not involved in the layout, and no placeholder is used for it. | 
+  | Hidden | The component is hidden, and a placeholder is used for it in the layout.|
+  | Visible | The component is visible.|
+  | None | The component is hidden. It is not involved in the layout, and no placeholder is used for it.|
 
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct VisibilityExample {
@@ -40,11 +42,11 @@ struct VisibilityExample {
         Row().visibility(Visibility.Visible).width('90%').height(80).backgroundColor(0xAFEEEE)
 
         Text('None').fontSize(9).width('90%').fontColor(0xCCCCCC)
-        // The component is hidden and no placeholder is used.
+        // The component is hidden, and no placeholder is used.
         Row().visibility(Visibility.None).width('90%').height(80).backgroundColor(0xAFEEEE)
 
         Text('Hidden').fontSize(9).width('90%').fontColor(0xCCCCCC)
-        // The component is hidden and a placeholder is used.
+        // The component is hidden, and a placeholder is used for it in the layout.
         Row().visibility(Visibility.Hidden).width('90%').height(80).backgroundColor(0xAFEEEE)
       }.width('90%').border({ width: 1 })
     }.width('100%').margin({ top: 5 })

@@ -6,8 +6,8 @@ The **&lt;svg&gt;** component can be used to draw simple shapes, such as rectang
 
 In this example, you can draw different shapes and stitch them to form a house graph.
 
-  
-```
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg width="1000" height="1000">
@@ -25,8 +25,8 @@ In this example, you can draw different shapes and stitch them to form a house g
 </div>
 ```
 
-  
-```
+
+```css
 /* xxx.css */
 .container {
   width: 100%;

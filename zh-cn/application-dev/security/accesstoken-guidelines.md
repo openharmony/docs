@@ -1,4 +1,4 @@
-# 访问控制开发指导
+# 访问控制（权限）开发指导
 
 ## 场景介绍
 
@@ -8,7 +8,7 @@
 - 权限"ohos.permission.PERMISSION1"的权限等级为normal，权限类型为system_grant。
 - 权限"ohos.permission.PERMISSION2"的权限等级为system_basic, 权限类型为user_grant。
 
-> **注意事项：** 
+> **注意：** 
 >
 > 当前场景下，应用申请的权限包括了user_grant权限，对这部分user_grant权限，可以先通过权限校验，判断当前调用者是否具备相应权限。
 >
@@ -28,48 +28,49 @@
 
 不同的Ability框架模型的应用包结构不同，所使用的配置文件不同，请开发者在申请权限时注意区分。
 
-### FA模型
-
-使用FA模型的应用，需要在config.json文件中声明权限。
-
-**config.json标签说明：**
+配置文件标签说明如下表。
 
 | 标签      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
 | name      | 权限名称。                                                   |
 | reason    | 当申请的权限为user_grant权限时，此字段必填，描述申请权限的原因。 |
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
-| abilities | 标识需要使用到该权限的元能力，标签为数组形式。               |
+| ability   | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** FA模型            |
+| abilities | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** Stage模型            |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
+
+### FA模型
+
+使用FA模型的应用，需要在config.json文件中声明权限。
 
 **示例：**
 
 ```json
 {
-    "module" : {
-        "reqPermissions":[
-           {
-                "name" : "ohos.permission.PERMISSION1",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"inuse"
-                }
-            },
-           {
-                "name" : "ohos.permission.PERMISSION2",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"always"
-                }
-            }
-        ],
-    }
+  "module" : {
+    "reqPermissions":[
+      {
+        "name" : "ohos.permission.PERMISSION1",
+        "reason": "$string:reason",
+        "usedScene": {
+          "ability": [
+            "FormAbility"
+          ],
+          "when":"inuse"
+        }
+      },
+      {
+        "name" : "ohos.permission.PERMISSION2",
+        "reason": "$string:reason",
+        "usedScene": {
+          "ability": [
+            "FormAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -81,30 +82,30 @@
 
 ```json
 {
-    "module" : {
-        "requestPermissions":[
-           {
-                "name" : "ohos.permission.PERMISSION1",
-                "reason": "$string:reason",
-                "usedScene": {
+  "module" : {
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.PERMISSION1",
+        "reason": "$string:reason",
+        "usedScene": {
                      "abilities": [
                          "FormAbility"
                      ],
                      "when":"inuse"
-                }
-            },
-           {
-                "name" : "ohos.permission.PERMISSION2",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"always"
-                }
-            }
-        ],
-    }
+        }
+      },
+      {
+        "name" : "ohos.permission.PERMISSION2",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+        "when":"always"
+        }
+      }
+    ],
+  }
 }
 ```
 
@@ -112,34 +113,17 @@
 
 如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于应用此时应用的APL等级，用户的最佳做法是使用ACL方式。
 
-在配置文件声明的基础上，应用还需要在[profile文件](../quick-start/app-provision-structure.md)中声明不满足申请条件部分的权限。该场景中，用户应该在字段"acls"中做声明如下：
+在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
+
+该场景中，用户应该在字段"acls"中做声明如下：
+
 ```json
 {
-    "version-name": "1.0.0",
-    "version-code": 1,
-    "app-distribution-type": "os_integration",
-    "uuid": "5027b99e-5f9e-465d-9508-a9e0134ffe18",
-    "validity": {
-        "not-before": 1594865258,
-        "not-after": 1689473258
-    },
-    "type": "release",
-    "bundle-info": {
-        "developer-id": "OpenHarmony",
-        "distribution-certificate": "-----BEGIN CERTIFICATE-----\nMIICMzCCAbegAwIBAgIEaOC/zDAMBggqhkjOPQQDAwUAMGMxCzAJBgNVBAYTAkNO\nMRQwEgYDVQQKEwtPcGVuSGFybW9ueTEZMBcGA1UECxMQT3Blbkhhcm1vbnkgVGVh\nbTEjMCEGA1UEAxMaT3Blbkhhcm1vbnkgQXBwbGljYXRpb24gQ0EwHhcNMjEwMjAy\nMTIxOTMxWhcNNDkxMjMxMTIxOTMxWjBoMQswCQYDVQQGEwJDTjEUMBIGA1UEChML\nT3Blbkhhcm1vbnkxGTAXBgNVBAsTEE9wZW5IYXJtb255IFRlYW0xKDAmBgNVBAMT\nH09wZW5IYXJtb255IEFwcGxpY2F0aW9uIFJlbGVhc2UwWTATBgcqhkjOPQIBBggq\nhkjOPQMBBwNCAATbYOCQQpW5fdkYHN45v0X3AHax12jPBdEDosFRIZ1eXmxOYzSG\nJwMfsHhUU90E8lI0TXYZnNmgM1sovubeQqATo1IwUDAfBgNVHSMEGDAWgBTbhrci\nFtULoUu33SV7ufEFfaItRzAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0OBBYEFPtxruhl\ncRBQsJdwcZqLu9oNUVgaMAwGCCqGSM49BAMDBQADaAAwZQIxAJta0PQ2p4DIu/ps\nLMdLCDgQ5UH1l0B4PGhBlMgdi2zf8nk9spazEQI/0XNwpft8QAIwHSuA2WelVi/o\nzAlF08DnbJrOOtOnQq5wHOPlDYB4OtUzOYJk9scotrEnJxJzGsh/\n-----END CERTIFICATE-----\n",
-        "bundle-name": "com.ohos.permissionmanager",
-		"apl": "system_core",
-        "app-feature": "hos_system_app"
-    },
-    "acls": {
-        "allowed-acls": [
-            "ohos.permission.PERMISSION2"
-        ]
-    },
-    "permissions": {
-        "restricted-permissions": []
-    },
-    "issuer": "pki_internal"
+  "acls": {
+    "allowed-acls": [
+      "ohos.permission.PERMISSION2"
+    ]
+  },
 }
 ```
 
@@ -151,7 +135,7 @@
 
 如果校验结果显示，应用已经获取了该权限，那么应用可以直接访问该目标接口，否则，应用需要通过动态弹框先申请用户授权，并根据授权结果进行相应处理，处理方式可参考[访问控制开发概述](accesstoken-overview.md)。
 
-> **注意事项：**
+> **注意：**
 >
 > 不能把之前授予的状态持久化，每次访问受目标权限保护的接口前，都应该检查权限授权状态，因为用户在动态授予后可能通过设置取消应用的权限。
 
@@ -170,12 +154,12 @@
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
     context.requestPermissionsFromUser(array).then(function(data) {
-        console.log("data type:" + typeof(data));
-        console.log("data:" + data);
-        console.log("data permissions:" + data.permissions);
-        console.log("data result:" + data.authResults);
+      console.log("data type:" + typeof(data));
+      console.log("data:" + data);
+      console.log("data permissions:" + data.permissions);
+      console.log("data result:" + data.authResults);
     }, (err) => {
-        console.error('Failed to start ability', err.code);
+      console.error('Failed to start ability', err.code);
     });
   }
 
@@ -187,5 +171,5 @@
 
 针对访问控制，有以下相关实例可供参考：
 
-- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
 - [为应用添加运行时权限（eTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

@@ -710,8 +710,8 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct FillRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -755,8 +755,8 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct StrokeRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -799,8 +799,8 @@ clearRect(x: number, y: number, w: number, h: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct ClearRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -844,8 +844,8 @@ fillText(text: string, x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct FillText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -888,8 +888,8 @@ strokeText(text: string, x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct StrokeText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -940,8 +940,8 @@ measureText(text: string): TextMetrics
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct MeasureText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -983,8 +983,8 @@ stroke(path?: Path2D): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Stroke {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1022,8 +1022,8 @@ beginPath(): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct BeginPath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1069,8 +1069,8 @@ moveTo(x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct MoveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1114,8 +1114,8 @@ lineTo(x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct LineTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1153,8 +1153,8 @@ closePath(): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct ClosePath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1200,8 +1200,8 @@ createPattern(image: ImageBitmap, repetition: string): CanvasPattern
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CreatePattern {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1249,8 +1249,8 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct BezierCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1296,8 +1296,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct QuadraticCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1345,8 +1345,8 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Arc {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1392,8 +1392,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct ArcTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1443,8 +1443,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 - 示例
 
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1489,8 +1489,8 @@ rect(x: number, y: number, width: number, height: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1526,8 +1526,8 @@ fill(): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Fill {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1563,8 +1563,8 @@ clip(): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Clip {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1608,8 +1608,8 @@ rotate(rotate: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Rotate {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1651,8 +1651,8 @@ scale(x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Scale {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1706,8 +1706,8 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Transform {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1759,8 +1759,8 @@ setTransfrom方法使用的参数和transform()方法相同，但setTransform()�
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct SetTransform {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1805,8 +1805,8 @@ translate(x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Translate {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1861,8 +1861,8 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sWidth: number,
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Index {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -1961,8 +1961,8 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct PutImageData {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -2004,8 +2004,8 @@ restore(): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -2038,8 +2038,8 @@ save(): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -2080,8 +2080,8 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CreateLinearGradient {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -2132,8 +2132,8 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CreateRadialGradient {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)

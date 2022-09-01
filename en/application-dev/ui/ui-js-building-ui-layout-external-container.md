@@ -8,8 +8,7 @@ To assemble the basic elements of a page, you need a container component. The &l
 
 If you use &lt;div&gt; repeatedly to render a complex page, frame freezing may occur. In this case, use the &lt;list&gt; component instead of &lt;div&gt; to lay out list items, which provides a smooth list scrolling. **NOTE** that &lt;list&gt; supports only &lt;list-item&gt; as it child components. The following is an example:
 
-
-```
+```html
 <!-- xxx.hml -->
 <list class="list">
   <list-item type="listItem" for="{{textList}}">
@@ -18,8 +17,7 @@ If you use &lt;div&gt; repeatedly to render a complex page, frame freezing may o
 </list>
 ```
 
-
-```
+```css
 /* xxx.css */
 .desc-text {
   width: 683.3px;
@@ -27,8 +25,7 @@ If you use &lt;div&gt; repeatedly to render a complex page, frame freezing may o
 }
 ```
 
-
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -44,8 +41,7 @@ To shorten the sample code, the list contains only one &lt;list-item&gt; compone
 
 If your page needs to be dynamically loaded, use the &lt;tabs&gt; component. This component supports the change event, which is triggered after tab switching. A &lt;tabs&gt; component can hold only one &lt;tab-bar&gt; and one &lt;tab-content&gt;. The following is an example:
 
-
-```
+```html
 <!-- xxx.hml -->
 <tabs>
   <tab-bar>
@@ -61,8 +57,7 @@ If your page needs to be dynamically loaded, use the &lt;tabs&gt; component. Thi
 </tabs>
 ```
 
-
-```
+```js
 // xxx.js
 export default {
   data: {

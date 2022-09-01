@@ -4,8 +4,7 @@
 @Watch is used to listen for changes of state variables. The syntax structure is as follows:
 
 
-  
-```
+```ts
 @State @Watch("onChanged") count : number = 0
 ```
 
@@ -16,8 +15,8 @@ As shown above, add an @Watch decorator to the target state variable to register
 @Watch can be used to listen for changes of variables decorated by @State, @Prop, @Link, @ObjectLink, @Provide, @Consume, @StorageProp, or @StorageLink.
 
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct CompA {

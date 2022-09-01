@@ -4,8 +4,7 @@
 The development framework provides LazyForEach to iterate data from provided data sources and create corresponding components during each iteration. LazyForEach is defined as follows:
 
 
-
-```
+```ts
 LazyForEach(
     dataSource: IDataSource,             // Data source to be iterated 
     itemGenerator: (item: any) => void,  // child component generator
@@ -21,10 +20,10 @@ interface IDataSource {
 
 interface DataChangeListener {
     onDataReloaded(): void;                      // Called while data reloaded
-    onDataAdded(index: number): void;            // Called while single data added
-    onDataMoved(from: number, to: number): void; // Called while single data moved
-    onDataDeleted(index: number): void;          // Called while single data deleted
-    onDataChanged(index: number): void;          // Called while single data changed
+    onDataAdd(index: number): void;            // Called while single data added
+    onDataMove(from: number, to: number): void; // Called while single data moved
+    onDataDelete(index: number): void;          // Called while single data deleted
+    onDataChange(index: number): void;          // Called while single data changed
 }
 ```
 
@@ -36,7 +35,7 @@ interface DataChangeListener {
 
 LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) => void, keyGenerator?: (item: any) => string):void
 
-  Table1 Parameters
+Table 1 Parameters
 
 | Name | Type | Mandatory | Default Value | Description |
 | -------- | -------- | -------- | -------- | -------- |
@@ -45,7 +44,7 @@ LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) => void, keyGene
 | keyGenerator | (item: any) => string | No | - | Used as an anonymous parameter for generating a unique and stable key value for a given array item. When the position of a subitem in the array is changed, the key value of the subitem cannot be changed. When a subitem in the array is replaced with a new item, the key value of the current item must be different from that of the new item. This key-value generator is optional. However, for performance reasons, it is strongly recommended that the key-value generator be provided, so that the development framework can better identify array changes. If the array is reversed while no key-value generator is provided, all nodes in LazyForEach will be rebuilt. |
 
 
-  Table2 Description of IDataSource
+Table 2 Description of IDataSource
 
 | Name | Description |
 | -------- | -------- |
@@ -55,38 +54,41 @@ LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) => void, keyGene
 | unregisterDataChangeListener(listener: DataChangeListener): void | Unregisters the data change listener. |
 
 
-  Table3 Description of DataChangeListener
+Table 3 Description of DataChangeListener
 
-| Name | Description | 
+| Name | Description |
 | -------- | -------- |
-| onDataReloaded(): void | Reloads all data. | 
-| onDataAdded(index: number): void | Notifies the component that data is added to the position indicated by the specified index. | 
-| onDataMoved(from: number, to: number): void | Notifies the component that data is moved from the from position to the to position. | 
-| onDataDeleted(index: number): void | Notifies the component that data is deleted from the position indicated by the specified index. | 
-| onDataChanged(index: number): void | Notifies the component that data in the position indicated by the specified index is changed. | 
+| onDataReloaded(): void | Reloads all data. |
+| onDataAdded(index: number): void | Notifies the component that data is added to the position indicated by the specified index. |
+| onDataMoved(from: number, to: number): void | Notifies the component that data is moved from the **from** position to the **to** position. |
+| onDataDeleted(index: number): void | Notifies the component that data is deleted from the position indicated by the specified index. |
+| onDataChanged(index: number): void | Notifies the component that data in the position indicated by the specified index is changed. |
+| onDataAdd(index: number): void<sup>8+</sup> | Notifies the component that data is added to the position indicated by the specified index. |
+| onDataMove(from: number, to: number): void<sup>8+</sup> | Notifies the component that data is moved from the **from** position to the **to** position. |
+| onDataDelete(index: number): void<sup>8+</sup> | Notifies the component that data is deleted from the position indicated by the specified index. |
+| onDataChange(index: number): void<sup>8+</sup> | Notifies the component that data in the position indicated by the specified index is changed. |
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - LazyForEach must be used in the container component. Only the &lt;List&gt;, &lt;Grid&gt;, and &lt;Swiper&gt; components support LazyForEach (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at a time.
-> 
+> **NOTE**
+>
+> - LazyForEach must be used in the container component. Only the **\<List>**, **\<Grid>**, and \**<Swiper>** components support LazyForEach (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at a time.
+>
 > - LazyForEach must create one and only one child component in each iteration.
-> 
+>
 > - The generated child component must be in the parent container component of LazyForEach.
-> 
+>
 > - LazyForEach can be included in an if/else conditional statement, but cannot contain an if/else conditional statement.
-> 
+>
 > - For the purpose of high-performance rendering, when the onDataChanged method of the DataChangeListener object is used to update the UI, the component update is triggered only when the state variable is used in the component specified in the UI description of itemGenerator.
-> 
+>
 > - The calling sequence of the subitem generator function may be different from that of the data items in the data source. During the development, do not assume whether the subitem generator and key value generator functions are executed and the execution sequence. The following is an example of incorrect usage:
->     
->   ```
+>   ```ts
 >   LazyForEach(dataSource, item => {Text(`${++counter}. item.label`)})
 >   ```
-> 
->   Below is an example of correct usage:
-> 
->     
->   ```
+>
+> Below is an example of correct usage:
+>
+>   ```ts
 >   LazyForEach(dataSource, 
 >           item => Text(`${item.i}. item.data.label`)),
 >           item => item.data.id.toString())
@@ -96,7 +98,7 @@ LazyForEach(dataSource: IDataSource, itemGenerator: (item: any) => void, keyGene
 ## Example
 
 
-```
+```ts
 // Basic implementation of IDataSource to handle data listener
 class BasicDataSource implements IDataSource {
     private listeners: DataChangeListener[] = []
@@ -129,22 +131,22 @@ class BasicDataSource implements IDataSource {
     }
     notifyDataAdd(index: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataAdded(index)
+            listener.onDataAdd(index)
         })
     }
     notifyDataChange(index: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataChanged(index)
+            listener.onDataChange(index)
         })
     }
     notifyDataDelete(index: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataDeleted(index)
+            listener.onDataDelete(index)
         })
     }
     notifyDataMove(from: number, to: number): void {
         this.listeners.forEach(listener => {
-            listener.onDataMoved(from, to)
+            listener.onDataMove(from, to)
         })
     }
 }

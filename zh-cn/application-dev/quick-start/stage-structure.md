@@ -2,7 +2,7 @@
 
 # 应用包结构配置文件的说明
 
-在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json和app.json配置文件中对应用的包结构进行声明。
+在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json5和app.json配置文件中对应用的包结构进行声明。
 
 ## 配置文件内部结构
 
@@ -66,7 +66,7 @@ app.json示例：
 
 ### module对象内部结构
 
-module.json示例:
+module.json5示例:
 
 ```json
 {
@@ -296,10 +296,10 @@ abilities描述ability的配置信息，标签值为数组类型。
 |supportWindowMode|表示该ability所支持的窗口模式，包含：<br/> fullscreen: 全屏模式， <br /> split: 分屏模式， <br />floating: 悬浮窗模式。 |数组       | 该标签可缺省，缺省值为<br/>["fullscreen", "split", "floating"]。|
 |maxWindowRatio|表示该ability支持的最大的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最大的宽高比。|
 |minWindowRatio|表示该ability支持的最小的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最小的宽高比。|
-|maxWindowWidth|表示该ability支持的最大的窗口宽度，宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口宽度。|
-|minWindowWidth|表示该ability支持的最小的窗口宽度, 宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
-|maxWindowHeight|表示该ability支持的最大的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
-|minWindowHeight|表示该ability支持的最小的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
+|maxWindowWidth|表示该ability支持的最大的窗口宽度，宽度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口宽度。|
+|minWindowWidth|表示该ability支持的最小的窗口宽度, 宽度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
+|maxWindowHeight|表示该ability支持的最大的窗口高度, 高度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
+|minWindowHeight|表示该ability支持的最小的窗口高度, 高度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
 | excludeFromMissions    | 该标签标识ability是否在最近任务列表中显示，仅支持系统应用配置。为布尔类型，true表示不在任务列表中显示，false表示在任务列表中显示。 | 布尔值       | 该标签可缺省，缺省值为false。|
 
 abilities示例
@@ -581,7 +581,7 @@ form示例 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息
+在module.json5的extension组件下面定义metadata信息
 
 ```json
 {
@@ -689,7 +689,7 @@ metadata中指定commonEvent信息，其中 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息，如下 :
+在module.json5的extension组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [
@@ -779,7 +779,7 @@ distroFilter示例 :
 ]
 ```
 
-在module.json的extensionAbilities组件下面定义metadata信息，如下 :
+在module.json5的extensionAbilities组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [

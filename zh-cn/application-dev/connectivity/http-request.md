@@ -74,5 +74,5 @@ httpRequest.request(
 
 ## 相关实例
 针对HTTP数据请求，有以下相关实例可供参考：
-- [`Http`：数据请求（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Network/Http)
+- [`Http:`数据请求（eTS）（API9））](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Http)
 - [使用HTTP实现与服务端通信（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)

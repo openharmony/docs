@@ -4,7 +4,9 @@
 
 ### Function
 
-Fingerprint authentication is indispensable in identity authentication scenarios, such as device unlocking, payment, and app logins. The fingerprint authentication (Fingerprint_auth) module provides fingerprint authentication for a device after a user enrolls a fingerprint. The figure below shows the fingerprint authentication architecture.
+Fingerprint authentication is indispensable in identity authentication scenarios, such as device unlocking, payment, and app logins. The fingerprint authentication (Fingerprint_auth) module provides fingerprint authentication for a device after a user enrolls a fingerprint. 
+
+The figure below shows the fingerprint authentication architecture.
 
 The Fingerprint_auth driver is developed based on the Hardware Driver Foundation (HDF). It shields hardware differences and provides stable fingerprint authentication capabilities for the upper-layer user authentication (User_auth) framework and Fingerprint_auth service. It provides APIs for obtaining the fingerprint authentication executor list, executor information, and template information by template ID, comparing fingerprint template information of the executor and that of User_auth, enrolling or deleting fingerprints, and performing fingerprint authentication.
 
@@ -65,11 +67,7 @@ The identity authentication consists of the User_auth framework and basic authen
 
 ### Working Principles
 
-The fingerprint_auth driver provides stable basic fingerprint authentication capabilities for the upper-layer User_auth framework and Fingerprint_auth service to ensure successful fingerprint authentication on devices. 
-
-The figure below shows the interaction between the Fingerprint_auth service and the Fingerprint_auth driver. 
-
-The Fingerprint_auth service obtains the executor information by using **GetExecutorInfo()** and registers the executor with the User_auth framework. The Fingerprint_auth service exchanges information with the Fingerprint_auth driver for authentication, identification, and query through the executor APIs.
+The fingerprint_auth driver provides stable basic fingerprint authentication capabilities for the upper-layer User_auth framework and Fingerprint_auth service to ensure successful fingerprint authentication on devices. The figure below shows the interaction between the Fingerprint_auth service and the Fingerprint_auth driver. The Fingerprint_auth service obtains executor information by using **GetExecutorInfo()** and registers the executor with the User_auth framework. The Fingerprint_auth service exchanges information with the Fingerprint_auth driver for authentication, identification, and query through the executor APIs.
 You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
 
 **Figure 2** Interaction between the Fingerprint_auth service and Fingerprint_auth driver
@@ -129,7 +127,7 @@ The following uses the Hi3516D V300 development board as an example to demonstra
 
 The development procedure is as follows:
 
-1. Develop the Fingerprint_auth driver based on the HDF using the **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions. For details about the code, see [fingerprint_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_driver.cpp).<br>The sample code is as follows:
+1. Develop the Fingerprint_auth driver based on the HDF using the **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions. For details about the code, see [fingerprint_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_driver.cpp).<br>The sample code is as follows:
 
    ```c++
    // Create an IRemoteObject object by using the custom HdfFingerprintAuthInterfaceHost object, which consists of the IoService object and HDI service.
@@ -228,7 +226,7 @@ The development procedure is as follows:
    HDF_INIT(g_fingerprintAuthInterfaceDriverEntry);
    ```
 
-2. Implement the API for obtaining the executor list. For details about the code, see [fingerprint_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_service.cpp).<br>The sample code is as follows:
+2. Implement the API for obtaining the executor list. For details about the code, see [fingerprint_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/fingerprint_auth/hdi_service/src/fingerprint_auth_interface_service.cpp).<br>The sample code is as follows:
 
    ```c++
    // Executor implementation class
@@ -281,7 +279,7 @@ The development procedure is as follows:
    }
    ```
 
-3. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/executor_impl.cpp).<br>The sample code is as follows:
+3. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/fingerprint_auth/hdi_service/src/executor_impl.cpp).<br>The sample code is as follows:
 
    ```c++
    // Obtain the executor information.
@@ -364,7 +362,7 @@ The development procedure is as follows:
        return HDF_SUCCESS;
    }
    
-   // Delete a fingerprint template.
+   // Delete fingerprints.
    int32_t Delete(const std::vector<uint64_t>& templateIdList)
    {
        IAM_LOGI("interface mock start");

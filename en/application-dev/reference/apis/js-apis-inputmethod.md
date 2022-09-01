@@ -1,6 +1,8 @@
 # Input Method Framework
 
-> **NOTE**
+The **inputMethod** module provides an input method framework, which can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
+
+>  **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -8,14 +10,14 @@
 ## Modules to Import
 
 ```
-import inputMethod from '@ohos.inputMethod';
+import inputMethod from '@ohos.inputmethod';
 ```
 
 ## inputMethod<sup>8+</sup>
 
 Provides the constants.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -26,7 +28,7 @@ Provides the constants.
 
 Describes the input method application attributes.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -37,15 +39,15 @@ Describes the input method application attributes.
 
 getInputMethodController(): InputMethodController
 
-Obtains an [InputMethodController](#InputMethodController) instance.
+Obtains an **[InputMethodController](#inputmethodcontroller)** instance.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| [InputMethodController](#InputMethodController) | Returns the current **InputMethodController** instance.|
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| [InputMethodController](#inputmethodcontroller) | Returns the current **InputMethodController** instance.|
 
 **Example**
 
@@ -57,25 +59,74 @@ Obtains an [InputMethodController](#InputMethodController) instance.
 
 getInputMethodSetting(): InputMethodSetting
 
-Obtains an [InputMethodSetting](#InputMethodSetting) instance.
+Obtains an **[InputMethodSetting](#inputmethodsetting8)** instance.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
 | Type                                     | Description                        |
 | ----------------------------------------- | ---------------------------- |
-| [InputMethodSetting](#InputMethodSetting) | Returns the current **InputMethodSetting** instance.|
+| [InputMethodSetting](#inputmethodsetting8) | Returns the current **InputMethodSetting** instance.|
+
 
 **Example**
 
 ```js
   var InputMethodSetting = inputMethod.getInputMethodSetting();
 ```
+## inputMethod.switchInputMethod<sup>9+</sup>
 
+switchInputMethod(target: InputmethodProperty, callback: AsyncCallback&lt;boolean&gt;): void;
+
+Switches to another input method. This API uses an asynchronous callback to return the result. This API can be used only in the stage model.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|target | [InputmethodProperty](#inputmethodproperty8) | Yes| Input method to switch to.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the execution result. |
+
+
+**Example**
+
+```js
+  inputMethod.switchInputMethod({packageName:"com.ohos.inputApp", methodId:"InputDemoService"}).then(res => {
+     prompt.showToast({message:"Input method switched." + this.imeList[this.flag].packageName, duration: 200});
+ });
+```
+## inputMethod.switchInputMethod<sup>9+</sup>
+switchInputMethod(target: InputmethodProperty): Promise&lt;boolean&gt;
+
+Switches to another input method. This API uses a promise to return the result. This API can be used only in the stage model.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|target |  [InputmethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+
+**Return value**
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the execution result. |
+
+**Example**
+
+
+```js
+  inputMethod.switchInputMethod({packageName:"com.ohos.inputApp", methodId:"InputDemoService"}).then(res => {
+     prompt.showToast({message:"Input method switched." + this.imeList[this.flag].packageName, duration: 200});
+ });
+```
 ## InputMethodController
 
-In the following API examples, you must first use [getInputMethodController](#getInputMethodController) to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getInputMethodController](#getinputmethodcontroller) to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
 
 ### stopInput
 
@@ -83,7 +134,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 Hides the keyboard. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -105,13 +156,13 @@ stopInput(): Promise&lt;boolean&gt;
 
 Hides the keyboard. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return whether the keyboard is successfully hidden.|
+| Promise&lt;boolean&gt; | Promise used to return whether the keyboard is successfully hidden. |
 
 **Example**
 
@@ -123,7 +174,7 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 ## InputMethodSetting<sup>8+</sup>
 
-In the following API examples, you must first use [getInputMethodSetting](#getInputMethodSetting) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getInputMethodSetting](#getinputmethodsetting) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
 
 ### listInputMethod
 
@@ -131,13 +182,12 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 
 Obtains the list of installed input methods. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
-
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodProperty](#InputMethodProperty)> | Yes  | Callback used to return the list of installed input methods.|
+| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | Yes  | Callback used to return the list of installed input methods.|
 
 **Example**
 
@@ -156,13 +206,12 @@ listInputMethod(): Array&lt;InputMethodProperty&gt;
 
 Obtains the list of installed input methods. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
-
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodProperty](#InputMethodProperty)>> | Promise used to return the list of installed input methods.|
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | Promise used to return the list of installed input methods. |
 
 **Example**
 
@@ -180,15 +229,16 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-- Parameters
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the execution result.|
 
 **Example**
+
 ```js
   InputMethodSetting.displayOptionalInputMethod(()=>{
     console.info('displayOptionalInputMethod is called');
@@ -197,17 +247,17 @@ Displays a dialog box for selecting an input method. This API uses an asynchrono
 
 ### displayOptionalInputMethod
 
-  displayOptionalInputMethod(): Promise&lt;void&gt;
+displayOptionalInputMethod(): Promise&lt;void&gt;
 
 Displays a dialog box for selecting an input method. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the execution result.|
+| Promise&lt;void&gt; | Promise used to return the execution result. |
 
 **Example**
 

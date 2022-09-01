@@ -54,13 +54,13 @@ import featureAbility from '@ohos.ability.featureAbility';
 var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromsie====================>");
 
-let storage = data_storage.getStorageSync(path + '/mystore');
-storage.putSync('startup', 'auto');
-storage.flushSync();
+  let storage = data_storage.getStorageSync(path + '/mystore');
+  storage.putSync('startup', 'auto');
+  storage.flushSync();
+});
 ```
 
 
@@ -87,18 +87,18 @@ import featureAbility from '@ohos.ability.featureAbility';
 var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromsie====================>");
 
-data_storage.getStorage(path + '/mystore', function (err, storage) {
+  data_storage.getStorage(path + '/mystore', function (err, storage) {
     if (err) {
-        console.info("Failed to get the storage. path: " + path + '/mystore');
-        return;
+      console.info("Failed to get the storage. path: " + path + '/mystore');
+      return;
     }
     storage.putSync('startup', 'auto');
     storage.flushSync();
-})
+  })
+});
 ```
 
 
@@ -130,17 +130,17 @@ import featureAbility from '@ohos.ability.featureAbility';
 var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromsie====================>");
 
-let getPromise = data_storage.getStorage(path + '/mystore');
-getPromise.then((storage) => {
+  let getPromise = data_storage.getStorage(path + '/mystore');
+  getPromise.then((storage) => {
     storage.putSync('startup', 'auto');
     storage.flushSync();
-}).catch((err) => {
+  }).catch((err) => {
     console.info("Failed to get the storage. path: " + path + '/mystore');
-})
+  })
+});
 ```
 
 
@@ -168,11 +168,10 @@ var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromsie====================>");
+
+    data_storage.deleteStorageSync(path + '/mystore');
 });  
-
-data_storage.deleteStorageSync(path + '/mystore');
 ```
-
 
 ## data_storage.deleteStorage
 
@@ -197,17 +196,17 @@ import featureAbility from '@ohos.ability.featureAbility';
 var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromsie====================>");
 
-data_storage.deleteStorage(path + '/mystore', function (err) {
+  data_storage.deleteStorage(path + '/mystore', function (err) {
     if (err) {
-        console.info("Failed to delete the storage with err: " + err);
-        return;
+      console.info("Failed to delete the storage with err: " + err);
+      return;
     }
     console.info("Succeeded in deleting the storage.");
-})
+  })
+});
 ```
 
 
@@ -239,16 +238,16 @@ import featureAbility from '@ohos.ability.featureAbility';
 var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromsie====================>");
 
-let promisedelSt = data_storage.deleteStorage(path + '/mystore');
-promisedelSt.then(() => {
+  let promisedelSt = data_storage.deleteStorage(path + '/mystore');
+  promisedelSt.then(() => {
     console.info("Succeeded in deleting the storage.");
-}).catch((err) => {
+  }).catch((err) => {
     console.info("Failed to delete the storage with err: " + err);
-})
+  })
+});
 ```
 
 
@@ -275,9 +274,9 @@ var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
     console.info("======================>getFilesDirPromsie====================>");
+    
+    data_storage.removeStorageFromCacheSync(path + '/mystore');
 });  
-
-data_storage.removeStorageFromCacheSync(path + '/mystore');
 ```
 
 
@@ -304,17 +303,17 @@ import featureAbility from '@ohos.ability.featureAbility';
 var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromsie====================>");
 
-data_storage.removeStorageFromCache(path + '/mystore', function (err) {
+  data_storage.removeStorageFromCache(path + '/mystore', function (err) {
     if (err) {
-        console.info("Failed to remove storage from cache with err: " + err);
-        return;
+      console.info("Failed to remove storage from cache with err: " + err);
+      return;
     }
     console.info("Succeeded in removing storage from cache.");
-})
+  })
+});
 ```
 
 
@@ -346,23 +345,21 @@ import featureAbility from '@ohos.ability.featureAbility';
 var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
-    path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
-});  
+  path = filePath;
+  console.info("======================>getFilesDirPromsie====================>");
 
-let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
-promiserevSt.then(() => {
+  let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
+  promiserevSt.then(() => {
     console.info("Succeeded in removing storage from cache.");
-}).catch((err) => {
+  }).catch((err) => {
     console.info("Failed to remove storage from cache with err: " + err);
-})
+  })
+});
 ```
-
 
 ## Storage
 
 提供获取和修改存储数据的接口。
-
 
 ### getSync
 

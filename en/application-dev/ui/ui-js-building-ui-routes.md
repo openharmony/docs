@@ -18,8 +18,7 @@ The page router finds the target page based on the page URI. The following descr
 
 The index and detail pages each contains a &lt;text> component that specifies the current page, and a **\<button>** component that implements the switching between two pages. Example code in .hml files is as follows:
 
-
-```
+```html
 <!-- index.hml -->
 <div class="container">
   <text class="title">This is the index page.</text>
@@ -27,8 +26,7 @@ The index and detail pages each contains a &lt;text> component that specifies th
 </div>
 ```
 
-
-```
+```html
 <!-- detail.hml -->
 <div class="container">
   <text class="title">This is the detail page.</text>
@@ -41,8 +39,7 @@ The index and detail pages each contains a &lt;text> component that specifies th
 
 Set styles for the index and detail pages. Center the **\<text>** and **\<button>** components and space the two components with 50 pixels. The CSS code for the two pages is as follows:
 
-
-```
+```css
 /* index.css */
 /* detail.css */
 .container {
@@ -62,8 +59,7 @@ Set styles for the index and detail pages. Center the **\<text>** and **\<button
 
 To make the launch method of the **\<button>** component take effect, the redirection logic needs to be implemented in the .js file of the page. Call router.push() to add the page URI to the route stack, that is, to jump to the page specified by the URI. You need to import the router module before calling the router method. The sample code is as follows:
 
-
-```
+```js
 // index.js
 import router from '@system.router';
 export default {
@@ -75,8 +71,7 @@ export default {
 }
 ```
 
-
-```
+```js
 // detail.js
 import router from '@system.router';
 export default {
@@ -88,10 +83,4 @@ export default {
 
 The figure below shows the effect.
 
-  ![en-us_image_0000001222967784](figures/en-us_image_0000001222967784.png)
-
-## Samples
-
-The following sample is provided to help you better understand how to develop page routing: 
-
-[`JsRouter`: Page Routing (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsRouter)
+![en-us_image_0000001222967784](figures/en-us_image_0000001222967784.png)

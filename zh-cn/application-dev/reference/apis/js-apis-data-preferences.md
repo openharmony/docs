@@ -30,7 +30,7 @@ import data_preferences from '@ohos.data.preferences';
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
-读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作，使用callback异步回调。
+获取Preferences实例，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -39,8 +39,8 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 | 参数名   | 类型                                             | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | context  | [Context](js-apis-ability-context.md)            | 是   | 应用上下文。                                                 |
-| name     | string                                           | 是   | 应用程序内部数据存储名称。                                   |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，object为获取的Preferences实例；否则err为错误码。 |
+| name     | string                                           | 是   | Preferences实例的名称。                                      |
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误码。 |
 
 **示例：**
 
@@ -61,17 +61,19 @@ data_preferences.getPreferences(this.context, 'mystore', function (err, object) 
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
-读取指定首选项持久化文件，将数据加载到Preferences实例，用于数据操作，使用Promise异步回调。
+获取Preferences实例，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
-| 参数名  | 类型                                  | 必填 | 说明                       |
-| ------- | ------------------------------------- | ---- | -------------------------- |
-| context | [Context](js-apis-ability-context.md) | 是   | 应用上下文。               |
-| name    | string                                | 是   | 应用程序内部数据存储名称。 |
+
+| 参数名  | 类型                                  | 必填 | 说明                    |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | [Context](js-apis-ability-context.md) | 是   | 应用上下文。            |
+| name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
+
 | 类型                                       | 说明                               |
 | ------------------------------------------ | ---------------------------------- |
 | Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。 |
@@ -94,20 +96,24 @@ promise.then((object) => {
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例，并删除指定文件及其备份文件和损坏文件，使用callback异步回调。
+从内存中移除指定的Preferences实例，使用callback异步回调。
 
-删除指定首选项持久化文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
+若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
+
+调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                                  | 必填 | 说明                                                 |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | [Context](js-apis-ability-context.md) | 是   | 应用上下文。                                         |
-| name     | string                                | 是   | 应用程序内部数据存储名称。                           |
+| name     | string                                | 是   | Preferences实例的名称。                              |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
 
 **示例：**
+
 ```js
 data_preferences.deletePreferences(this.context, 'mystore', function (err) {
     if (err) {
@@ -123,24 +129,29 @@ data_preferences.deletePreferences(this.context, 'mystore', function (err) {
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例，并删除指定文件及其备份文件和损坏文件，使用Promise异步回调。
+从内存中移除指定的Preferences实例，使用Promise异步回调。
 
-删除指定首选项持久化文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
+若Preferences实例有对应的持久化文件，则同时删除其持久化文件。
+
+调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
-| 参数名  | 类型                                  | 必填 | 说明                       |
-| ------- | ------------------------------------- | ---- | -------------------------- |
-| context | [Context](js-apis-ability-context.md) | 是   | 应用程序或功能的上下文。   |
-| name    | string                                | 是   | 应用程序内部数据存储名称。 |
+
+| 参数名  | 类型                                  | 必填 | 说明                    |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | [Context](js-apis-ability-context.md) | 是   | 应用上下文。            |
+| name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
+
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
+
 ```js
 let promise = data_preferences.deletePreferences(this.context, 'mystore')
 promise.then(() => {
@@ -155,20 +166,22 @@ promise.then(() => {
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例，使用callback异步回调。
+从内存中移除指定的Preferences实例，使用callback异步回调。
 
-移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                                  | 必填 | 说明                                                 |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | [Context](js-apis-ability-context.md) | 是   | 应用程序或功能的上下文。                             |
-| name     | string                                | 是   | 应用程序内部数据存储名称。                           |
+| context  | [Context](js-apis-ability-context.md) | 是   | 应用上下文。                                         |
+| name     | string                                | 是   | Preferences实例的名称。                              |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误码。 |
 
 **示例：**
+
 ```js
 data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
     if (err) {
@@ -184,24 +197,27 @@ data_preferences.removePreferencesFromCache(this.context, 'mystore', function (e
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定首选项持久化文件对应的Preferences单实例，使用Promise异步回调。
+从内存中移除指定的Preferences实例，使用callback异步回调。
 
-移除Preferences单实例时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。
+调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
-| 参数名  | 类型                                  | 必填 | 说明                       |
-| ------- | ------------------------------------- | ---- | -------------------------- |
-| context | [Context](js-apis-ability-context.md) | 是   | 应用程序或功能的上下文。   |
-| name    | string                                | 是   | 应用程序内部数据存储名称。 |
+
+| 参数名  | 类型                                  | 必填 | 说明                    |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | [Context](js-apis-ability-context.md) | 是   | 应用上下文。            |
+| name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
+
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
+
 ```js
 let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
 promise.then(() => {
@@ -228,6 +244,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | 是   | 要获取的存储Key名称，不能为空。                              |
@@ -256,6 +273,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
  **参数：**
+ 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
@@ -268,6 +286,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 | Promise<[ValueType](#valuetype)&gt; | Promise对象，返回键对应的值。 |
 
 **示例：**
+
 ```js
 let promise = preferences.get('startup', 'default');
 promise.then((data) => {
@@ -286,6 +305,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为含有所有键值的Object对象；否则err为错误码。 |
@@ -314,11 +334,13 @@ getAll(): Promise&lt;Object&gt;
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
+
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
 | Promise&lt;Object&gt; | Promise对象，返回含有所有键值的Object对象。 |
 
 **示例：**
+
 ```js
 let promise = preferences.getAll();
 promise.then((value) => {
@@ -339,6 +361,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | 是   | 要修改的存储的Key，不能为空。                                |
@@ -346,6 +369,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误码。     |
 
 **示例：**
+
 ```js
 preferences.put('startup', 'auto', function (err) {
     if (err) {
@@ -366,23 +390,26 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名 | 类型                    | 必填 | 说明                                                         |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
 | value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>类型。 |
 
 **返回值：**
+
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
+
 ```js
 let promise = preferences.put('startup', 'auto');
 promise.then(() => {
     console.info("Succeeded in putting value of 'startup'.");
 }).catch((err) => {
-    console.info("Failed to put value of 'startup'. Cause: " + err));
+    console.info("Failed to put value of 'startup'. Cause: " + err);
 })
 ```
 
@@ -391,17 +418,19 @@ promise.then(() => {
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查存储对象是否包含名为给定Key的存储键值对，使用callback异步回调。
+检查Preferences实例是否包含名为给定Key的存储键值对，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                       | 是   | 要检查的存储key名称，不能为空。                              |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回存储对象是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回Preferences实例是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
 
 **示例：**
+
 ```js
 preferences.has('startup', function (err, isExist) {
     if (err) {
@@ -421,19 +450,21 @@ preferences.has('startup', function (err, isExist) {
 
 has(key: string): Promise&lt;boolean&gt;
 
-检查存储对象是否包含名为给定Key的存储键值对，使用Promise异步回调。
+检查Preferences实例是否包含名为给定Key的存储键值对，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
 | key    | string | 是   | 要检查的存储key名称，不能为空。 |
 
 **返回值：**
+
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象。返回存储对象是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
+| Promise&lt;boolean&gt; | Promise对象。返回Preferences实例是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
 
 **示例：**
 
@@ -455,17 +486,19 @@ promise.then((isExist) => {
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-从存储对象中删除名为给定Key的存储键值对，使用callback异步回调。
+从Preferences实例中删除名为给定Key的存储键值对，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | 是   | 要删除的存储Key名称，不能为空。                      |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当删除成功，err为undefined；否则为错误码。 |
 
 **示例：**
+
 ```js
 preferences.delete('startup', function (err) {
     if (err) {
@@ -481,21 +514,24 @@ preferences.delete('startup', function (err) {
 
 delete(key: string): Promise&lt;void&gt;
 
-从存储对象删除名为给定Key的存储键值对，使用Promise异步回调。
+从Preferences实例中删除名为给定Key的存储键值对，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
 | key    | string | 是   | 要删除的存储key名称，不能为空。 |
 
 **返回值：**
+
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
+
 ```js
 let promise = preferences.delete('startup');
 promise.then(() => {
@@ -510,16 +546,18 @@ promise.then(() => {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-将当前preferences对象中的修改保存到当前的preferences，并异步存储到首选项持久化文件中，使用callback异步回调。
+将当前Preferences实例的数据异步存储到首选项持久化文件中，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当保存成功，err为undefined；否则为错误码。 |
 
 **示例：**
+
 ```js
 preferences.flush(function (err) {
     if (err) {
@@ -535,16 +573,18 @@ preferences.flush(function (err) {
 
 flush(): Promise&lt;void&gt;
 
-将当前preferences对象中的修改保存到当前的preferences，并异步存储到首选项持久化文件中，使用Promise异步回调。
+将当前Preferences实例的数据异步存储到首选项持久化文件中，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
+
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
+
 ```js
 let promise = preferences.flush();
 promise.then(() => {
@@ -559,16 +599,18 @@ promise.then(() => {
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-清除此存储对象中的所有存储，使用callback异步回调。
+清除此Preferences实例中的所有存储，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误码。 |
 
 **示例：**
+
 ```js
 preferences.clear(function (err) {
     if (err) {
@@ -584,16 +626,18 @@ preferences.clear(function (err) {
 
 clear(): Promise&lt;void&gt;
 
-清除此存储对象中的所有存储，使用Promise异步回调。
+清除此Preferences实例中的所有存储，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
+
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
+
 ```js
 let promise = preferences.clear()
 promise.then(() => {
@@ -613,12 +657,14 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                             | 必填 | 说明                                     |
 | -------- | -------------------------------- | ---- | ---------------------------------------- |
 | type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。 |
 | callback | Callback&lt;{ key : string }&gt; | 是   | 回调对象实例。                           |
 
 **示例：**
+
 ```js
 data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
@@ -652,17 +698,19 @@ data_preferences.getPreferences(this.context, 'mystore', function (err, preferen
 
 off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 
-取消订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
+取消订阅数据变更。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
+
 | 参数名   | 类型                             | 必填 | 说明                                       |
 | -------- | -------------------------------- | ---- | ------------------------------------------ |
 | type     | string                           | 是   | 事件类型，固定值'change'，表示数据变更。   |
 | callback | Callback&lt;{ key : string }&gt; | 否   | 需要取消的回调对象实例，不填写则全部取消。 |
 
 **示例：**
+
 ```js
 data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {

@@ -4,12 +4,12 @@
 The framework provides four pixel units, with vp as the reference data unit.
 
 
-  | Name | Description | 
+| Name | Description | 
 | -------- | -------- |
 | px | Physical pixel unit of the screen. | 
 | vp | Pixels specific to the screen density, which are converted into physical pixels of the screen based on the screen pixel density. | 
 | fp | Font pixel, which is similar to vp and varies according to the system font size. | 
-| lpx | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by [designWidth](ts-framework-js-tag.md)). For example, if designWidth is set to 720, then 1lpx is equal to 2px for a screen with an actual width of 1440 physical pixels. | 
+| lpx | Logical pixel unit of the window. It is the ratio of the actual screen width to the logical width (configured by [designWidth](../ui/ts-framework-js-tag.md)). For example, if designWidth is set to 720, then 1lpx is equal to 2px for a screen with an actual width of 1440 physical pixels. | 
 
 
 ## Pixel Unit Conversion
@@ -29,7 +29,8 @@ Conversion from other pixel units to px is supported.
 ## Example
 
   
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct Example {

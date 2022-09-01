@@ -12,14 +12,15 @@ ArkUI provides some static methods in the PersistentStorage class for managing p
 | Keys | void | Array &lt;string&gt; | Returns the flags of all persistent attributes. |
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - When using PersistProp, ensure that the input key exists in the AppStorage.
-> 
-> - DeleteProp takes effect only for the data that has been linked during the current startup.
+> **NOTE**
+>
+> - When using **PersistProp**, ensure that the input key exists in the AppStorage.
+>
+> - **DeleteProp** takes effect only for the data that has been linked during the current startup.
 
 
-
-```
+```ts
+// xxx.ets
 PersistentStorage.PersistProp("highScore", "0");
 
 @Entry

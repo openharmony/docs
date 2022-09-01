@@ -31,13 +31,13 @@ Creates a **DeviceManager** instance.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name       | Type                                      | Mandatory  | Description                                  |
-  | ---------- | ---------------------------------------- | ---- | ------------------------------------ |
-  | bundleName | string                                   | Yes   | Bundle name of an application.                          |
-  | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes   | Callback used to return the **DeviceManager** instance created.|
+**Parameters**
+| Name       | Type                                      | Mandatory  | Description                                  |
+| ---------- | ---------------------------------------- | ---- | ------------------------------------ |
+| bundleName | string                                   | Yes   | Bundle name of an application.                          |
+| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes   | Callback used to return the **DeviceManager** instance created.|
 
-- Example
+**Example**
   ```
   deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {     
       if (err) { 
@@ -198,7 +198,7 @@ Releases this **DeviceManager** instance when it is no longer used.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- Example
+**Example**
   ```js
   dmInstance.release();
   ```
@@ -212,12 +212,13 @@ Obtains all trusted devices synchronously.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- Return value
-  | Name                                    | Description       |
-  | -------------------------------------- | --------- |
-  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+**Return value**
 
-- Example
+| Name                                    | Description       |
+| -------------------------------------- | --------- |
+| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+
+**Example**
   ```js
   var deviceInfoList = dmInstance.getTrustedDeviceListSync();
   ```
@@ -231,12 +232,12 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description                   |
-  | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description                   |
+| -------- | ---------------------------------------- | ---- | --------------------- |
+| callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
 
-- Example
+**Example**
   ```js
   dmInstance.getTrustedDeviceList((err, data) => {
       console.log("getTrustedDeviceList err: " + JSON.stringify(err));
@@ -253,12 +254,12 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- Return value
-  | Type                                      | Description                   |
-  | ---------------------------------------- | --------------------- |
-  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the list of trusted devices.|
+**Return value**
+| Type                                      | Description                   |
+| ---------------------------------------- | --------------------- |
+| Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the list of trusted devices.|
 
-- Example
+**Example**
   ```js
   dmInstance.getTrustedDeviceList().then((data) => { 
       console.log('get trusted device info: ' + JSON.stringify(data));
@@ -275,12 +276,12 @@ Obtains local device information synchronously.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- Return value
-  | Name                                    | Description       |
-  | -------------------------------------- | --------- |
-  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of local devices obtained.|
+**Return value**
+| Name                                    | Description       |
+| -------------------------------------- | --------- |
+| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of local devices obtained.|
 
-- Example
+**Example**
   ```js
   var deviceInfo = dmInstance.getLocalDeviceInfoSync();
   ```
@@ -294,12 +295,12 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description       |
-  | -------- | ---------------------------------------- | ---- | --------- |
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description       |
+| -------- | ---------------------------------------- | ---- | --------- |
+| callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
 
-- Example
+**Example**
   ```js
   dmInstance.getLocalDeviceInfo((err, data) => {
       console.log("getLocalDeviceInfo err: " + JSON.stringify(err));
@@ -316,12 +317,12 @@ Obtains local device information. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- Return value
-  | Type                                      | Description                   |
-  | ---------------------------------------- | --------------------- |
-  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the local device information.|
+**Return value**
+| Type                                      | Description                   |
+| ---------------------------------------- | --------------------- |
+| Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the local device information.|
 
-- Example
+**Example**
   ```js
   dmInstance.getLocalDeviceInfo().then((data) => { 
       console.log('get local device info: ' + JSON.stringify(data));
@@ -338,12 +339,12 @@ Starts to discover peripheral devices.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name           | Type                           | Mandatory  | Description   |
-  | ------------- | ------------------------------- | ---- | ----- |
-  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes   | Subscription information.|
+**Parameters**
+| Name           | Type                           | Mandatory  | Description   |
+| ------------- | ------------------------------- | ---- | ----- |
+| subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes   | Subscription information.|
 
-- Example
+**Example**
   ```js
   // Automatically generate a unique subscription ID.
   var subscribeId = Math.floor(Math.random() * 10000 + 1000);
@@ -367,12 +368,12 @@ Stops device discovery.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name         | Type  | Mandatory  | Description   |
-  | ----------- | ------ | ---- | ----- |
-  | subscribeId | number | Yes   | Subscription ID.|
+**Parameters**
+| Name         | Type  | Mandatory  | Description   |
+| ----------- | ------ | ---- | ----- |
+| subscribeId | number | Yes   | Subscription ID.|
 
-- Example
+**Example**
   ```js
   // The subscribeId input must be the same as that automatically generated in startDeviceDiscovery.
   dmInstance.stopDeviceDiscovery(subscribeId);
@@ -386,14 +387,14 @@ Authenticates a device.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name        | Type                                    | Mandatory  | Description     |
-  | ---------- | ---------------------------------------- | ---- | ------- |
-  | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
-  | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-  | callback   | AsyncCallback<{ deviceId: string, pinToken ?: number }> | Yes   | Callback used to return the authentication result.|
+**Parameters**
+| Name        | Type                                    | Mandatory  | Description     |
+| ---------- | ---------------------------------------- | ---- | ------- |
+| deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
+| authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
+| callback   | AsyncCallback<{ deviceId: string, pinToken ?: number }> | Yes   | Callback used to return the authentication result.|
 
-- Example
+**Example**
   ```js
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
   var deviceInfo ={
@@ -423,12 +424,13 @@ Deauthenticates a device.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name        | Type                     | Mandatory  | Description   |
-  | ---------- | ------------------------- | ---- | ----- |
-  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+**Parameters**
 
-- Example
+| Name        | Type                     | Mandatory  | Description   |
+| ---------- | ------------------------- | ---- | ----- |
+| deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+
+**Example**
   ```js
   dmInstance.unAuthenticateDevice(deviceInfo);
   ```
@@ -442,13 +444,13 @@ Verifies authentication information.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description     |
-  | -------- | ---------------------------------------- | ---- | ------- |
-  | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-  | authInfo | AsyncCallback<{ deviceId: string, level: number }> | Yes   | Callback used to return the verification result.|
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description     |
+| -------- | ---------------------------------------- | ---- | ------- |
+| authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
+| authInfo | AsyncCallback<{ deviceId: string, level: number }> | Yes   | Callback used to return the verification result.|
 
-- Example
+**Example**
   ```js
   let authInfo = {
     "authType": 1,
@@ -473,13 +475,13 @@ Subscribes to changes in the device state.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
-  | callback | Callback&lt;{ action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback invoked to return the device information and state.     |
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.|
+| callback | Callback&lt;{ action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback invoked to return the device information and state.     |
 
-- Example
+**Example**
   ```js
   dmInstance.on('deviceStateChange', (data) => {      
         console.info("deviceStateChange on:" + JSON.stringify(data));
@@ -496,13 +498,13 @@ Unsubscribes from changes in the device state.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description                         |
-  | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
-  | callback | Callback&lt;{ action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback invoked to return the device information and state.|
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description                         |
+| -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates a device state change event.       |
+| callback | Callback&lt;{ action: [DeviceStateChangeAction](#devicestatechangeaction), device: [DeviceInfo](#deviceinfo)  }&gt; | Yes   | Callback invoked to return the device information and state.|
 
-- Example
+**Example**
   ```js
   dmInstance.off('deviceStateChange', (data) => {      
         console.info('deviceStateChange' + JSON.stringify(data));
@@ -519,13 +521,13 @@ Subscribes to device discovery events.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description                        |
-  | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.|
-  | callback | Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt; | Yes   | Callback used for device discovery.              |
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description                        |
+| -------- | ---------------------------------------- | ---- | -------------------------- |
+| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.|
+| callback | Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt; | Yes   | Callback used for device discovery.              |
 
-- Example
+**Example**
   ```js
   dmInstance.on('deviceFound', (data) => {
         console.info("deviceFound:" + JSON.stringify(data));
@@ -541,13 +543,13 @@ Unsubscribes from device discovery events.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description                         |
-  | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.                |
-  | callback | Callback&lt;{ subscribeId: number, device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback used for device discovery, which is invoked to return the device information and state.|
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description                         |
+| -------- | ---------------------------------------- | ---- | --------------------------- |
+| type     | string                                   | Yes   | Event type. The value **'deviceFound'** indicates an event reported when a device is discovered.                |
+| callback | Callback&lt;{ subscribeId: number, device: [DeviceInfo](#deviceinfo) }&gt; | Yes   | Callback invoked to return the device information and state.|
 
-- Example
+**Example**
   ```js
   dmInstance.off('deviceFound', (data) => {      
         console.info('deviceFound' + JSON.stringify(data));
@@ -563,13 +565,13 @@ Subscribes to device discovery failures.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description                            |
-  | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.|
-  | callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | Yes   | Callback used for the device discovery failure.                |
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description                            |
+| -------- | ---------------------------------------- | ---- | ------------------------------ |
+| type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.|
+| callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | Yes   | Callback used for the device discovery failure.                |
 
-- Example
+**Example**
   ```js
   dmInstance.on('discoverFail', (data) => {
         this.log("discoverFail on:" + JSON.stringify(data));
@@ -585,13 +587,13 @@ Unsubscribes from device discovery failures.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                                    | Mandatory  | Description               |
-  | -------- | ---------------------------------------- | ---- | ----------------- |
-  | type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.    |
-  | callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | Yes   | Callback used for the device discovery failure.|
+**Parameters**
+| Name      | Type                                    | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| type     | string                                   | Yes   | Event type. The event **'discoverFail'** indicates an event reported when device discovery fails.    |
+| callback | Callback&lt;{ subscribeId: number, reason: number }&gt; | Yes   | Callback used for the device discovery failure.|
 
-- Example
+**Example**
   ```js
   dmInstance.off('deviceFound', (data) => {      
         console.info('deviceFound' + JSON.stringify(data));
@@ -608,13 +610,13 @@ Subscribes to dead events of the **DeviceManager** service.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                   | Mandatory  | Description                                      |
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-  | callback | () =&gt; void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+**Parameters**
+| Name      | Type                   | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
+| callback | () =&gt; void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
 
-- Example
+**Example**
   ```js
   dmInstance.on("serviceDie", () => {      
         console.info("serviceDie on");
@@ -631,13 +633,13 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-- **Parameters**
-  | Name      | Type                   | Mandatory  | Description                                      |
-  | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
-  | callback | () =&gt; void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
+**Parameters**
+| Name      | Type                   | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type. The value **'serviceDie'** indicates an event reported when the **DeviceManager** service is terminated unexpectedly.|
+| callback | () =&gt; void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
 
-- Example
+**Example**
   ```js
   dmInstance.off("serviceDie", () => {      
         console.info("serviceDie off");

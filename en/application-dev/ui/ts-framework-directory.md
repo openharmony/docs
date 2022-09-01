@@ -16,13 +16,15 @@ Functions of the files are as follows:
 Functions of the folders and files are as follows:
 
 
-- The app.ets file manages global application logics and lifecycles.
+- The **app.ets** file manages global application logics and lifecycles.
 
-- The pages directory stores all component pages.
+- The **pages** directory stores all component pages.
 
-- The common directory stores common code files, such as custom components and public methods.
+- The **common** directory stores common code files, such as custom components and public methods.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
 >
-> TypeScript and JavaScript files can be imported as page files.
+> - The **resources** directory is located in **src/main**. For details about this directory, see [Resource File Categories](ui-ts-basic-resource-file-categories.md).
+>
+> - TypeScript and JavaScript files can be imported as page files.

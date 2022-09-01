@@ -28,7 +28,7 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 ## 接口说明
 
-部分接口仅系统应用才可以调用，且需要具备权限：SystemCapability.Notification.Notification ，接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同，具体API说明详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notification.md)。
+部分接口仅系统应用才可以调用，且需要具备权限：SystemCapability.Notification.Notification ，接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同，具体API说明详见[接口文档](../reference/apis/js-apis-notification.md)。
 
 **表1** 通知使能开关接口功能介绍 
 
@@ -262,6 +262,6 @@ Notification.cancel(1, "label", cancelCallback)
 
 针对通知开发，有以下相关可供参考：
 
-- [`Notification`：订阅、发送通知（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/Notification/Notification)
+- [`Notification:`订阅、发送通知（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/Notification)
 
-- [`Notification`：通知（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/common/Notification)
+- [`Notification`：通知（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/Notification)

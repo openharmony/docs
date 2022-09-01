@@ -10,7 +10,7 @@ The User_auth driver is developed based on the Hardware Driver Foundation (HDF).
 
 **Figure 1** User authentication architecture
 
-![image](figures/user_auth_architecture.png "User authentication architecture")
+![image](figures/user_auth_architecture.png "User Authentication Architecture")
 
 ### Basic Concepts
 The identity authentication consists of the User_auth framework and basic authentication services (including PIN authentication and facial recognition). It supports basic functions such as setting and deleting user credentials and performing authentication.
@@ -141,7 +141,7 @@ The following uses the Hi3516D V300 development board as an example to demonstra
 
 The development procedure is as follows:
 
-1. Develop the User_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [user_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_driver.cpp).
+1. Develop the User_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [user_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/user_auth/hdi_service/service/user_auth_interface_driver.cpp).
 
    ```c++
    // Create an IRemoteObject object by using the custom HdfUserAuthInterfaceHost object, which consists of the IoService object and HDI service.
@@ -238,7 +238,7 @@ The development procedure is as follows:
    #endif
    ```
 
-2. Register the executor. For details about the code, see [user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_service.cpp).
+2. Register the executor. For details about the code, see [user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/user_auth/hdi_service/service/user_auth_interface_service.cpp).
 
    ```c++
    // Add an executor.
@@ -260,7 +260,7 @@ The development procedure is as follows:
    }
    ```
    
-3. Enroll user authentication data. For details about the code, see [user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_service.cpp).
+3. Enroll user authentication data. For details about the code, see [user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/tree/OpenHarmony-3.2-Beta2/user_auth/hdi_service/service/user_auth_interface_service.cpp).
 
    ```c++
    // Open a session for authentication credential management.
@@ -397,7 +397,7 @@ The development procedure is as follows:
    {
        IAM_LOGI("start");
        if (param.challenge.size() != sizeof(uint64_t)) {
-           IAM_LOGE("challenge copy failed");
+           IAM_LOGE("Failed to copy challenge");
            return RESULT_BAD_PARAM;
        }
        GlobalLock();
@@ -410,7 +410,7 @@ The development procedure is as follows:
        solutionIn.authTrustLevel = param.authTrustLevel;
        if (memcpy_s(&solutionIn.challenge, sizeof(uint64_t), &param.challenge[0],
            param.challenge.size()) != EOK) {
-           IAM_LOGE("challenge copy failed");
+           IAM_LOGE("Failed to copy challenge");
            GlobalUnLock();
            return RESULT_BAD_COPY;
        }
@@ -456,7 +456,7 @@ The development procedure is as follows:
        UserAuthTokenHal authTokenHal;
        info.result = RequestAuthResultFunc(contextId, scheduleResultBuffer, &authTokenHal);
        if (info.result != RESULT_SUCCESS) {
-           IAM_LOGE("Failed to execute the function");
+           IAM_LOGE("Failed to execute func");
            DestoryBuffer(scheduleResultBuffer);
            GlobalUnLock();
            return info.result;
@@ -481,7 +481,7 @@ The development procedure is as follows:
        uint32_t scheduleIdNum = 0;
        int32_t ret = CancelContextFunc(contextId, nullptr, &scheduleIdNum);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("Failed to execute the function");
+           IAM_LOGE("Failed to execute func");
            GlobalUnLock();
            return ret;
        }

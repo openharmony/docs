@@ -4,7 +4,7 @@
 Use if/else for conditional rendering.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
 > - State variables can be used in the if conditional statement.
 > 
 > - You can use the if conditional statement to implement rendering of child components.
@@ -19,7 +19,7 @@ Use if/else for conditional rendering.
 Example of using the if conditional statement:
 
 
-```
+```ts
 Column() {
     if (this.count > 0) {
         Text('count is positive')
@@ -31,8 +31,7 @@ Column() {
 Example of using the if, else if, and else conditional statements:
 
 
-
-```
+```ts
 Column() {
     if (this.count < 0) {
         Text('count is negative')

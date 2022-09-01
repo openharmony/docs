@@ -4,7 +4,7 @@
 When multiple steps are required to complete a task, you can use the **&lt;stepper&gt;** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > This component is supported since API version 5.
 
@@ -13,8 +13,8 @@ When multiple steps are required to complete a task, you can use the **&lt;stepp
 
 Create a **&lt;stepper&gt;** component in the .hml file under **pages/index**.
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <stepper>    
    <stepper-item>     
@@ -27,7 +27,7 @@ Create a **&lt;stepper&gt;** component in the .hml file under **pages/index**.
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -51,9 +51,8 @@ text{
 
 Set **index** to the index value of the step that you want to display by default.
 
-
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"> 
  <stepper index="2">    
    <stepper-item>     
@@ -69,8 +68,8 @@ Set **index** to the index value of the step that you want to display by default
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width:100%;
   height:100%;
@@ -88,10 +87,9 @@ text{
 
 Set the **label** attribute to customize the button text for the **&lt;stepper-item&gt;**.
 
-
-```
-<!-- index.hml -->
-<div class="container" style="background-color:#F1F3F5;"> 
+```html
+<!-- xxx.hml -->
+<div class="container"> 
  <stepper index="1">    
    <stepper-item label="{{label_1}}">     
      <text>stepper-item1</text>
@@ -109,8 +107,8 @@ Set the **label** attribute to customize the button text for the **&lt;stepper-i
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {  
   width:100%;
   height:100%;
@@ -124,9 +122,8 @@ text{
 }
 ```
 
-
-```
-/* index.js */
+```js
+// xxx.js
 export default { 
   data: {
     label_1:{
@@ -154,8 +151,8 @@ export default {
 
 By default, the **&lt;stepper&gt;** component fills entire space of its container. The sample code below shows how to set the border and background color using the **border** and **background-color** attributes.
 
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container" > 
   <div class="stepperContent">
     <stepper class="stepperClass">    
@@ -167,8 +164,8 @@ By default, the **&lt;stepper&gt;** component fills entire space of its containe
 </div>
 ```
 
-```
-/* index.css */
+```css
+/* xxx.css */
 .container {
   width:100%;
   height:100%;
@@ -203,9 +200,8 @@ The **&lt;stepper&gt;** component supports the **finish**, **change**, **next**,
 
 - Before resetting the **index** attribute, you must remove the current value. Otherwise, the value change cannot be detected.
 
-  
-```
-<!-- index.hml -->
+```html
+<!-- xxx.hml -->
 <div class="container"  style="background-color:#F1F3F5;">
   <div >
     <stepper onfinish="stepperFinish" onchange="stepperChange" onnext="stepperNext" onback="stepperBack" onskip="stepperSkip" id="stepperId" index="{{index}}">
@@ -225,8 +221,7 @@ The **&lt;stepper&gt;** component supports the **finish**, **change**, **next**,
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .doc-page {
   width:100%;
@@ -254,9 +249,8 @@ button{
 }
 ```
 
-
-```
-/* index.js */
+```js
+// xxx.js
 import prompt from '@system.prompt';
 export default {
   data: {
@@ -305,8 +299,8 @@ Select the options displayed on the page. Your selection will be shown in real t
 
 Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;toggle&gt;](../reference/arkui-js/js-components-basic-toggle.md) component to implement the functions of selection and displaying the selection result. Then use the [&lt;select&gt;](../reference/arkui-js/js-components-basic-select.md) component to dynamically change the font color or size of the selected options.
 
-
-```
+```html
+<!-- xxx.hml -->
 <div class="container">
   <stepper id="mystep" index="0" onfinish="back" style="text-color: indigo;">
     <stepper-item label="{{label1}}">
@@ -347,7 +341,7 @@ Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;t
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .container {
   width:100%;
@@ -368,9 +362,8 @@ Use the &lt;stepper&gt; component to navigate through the steps. Create a [&lt;t
 }
 ```
 
-
-```
-/* index.js */
+```js
+// xxx.js
 import prompt from '@system.prompt';
 import router from '@system.router';
 let myset = new Set();

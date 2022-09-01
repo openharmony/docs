@@ -1,6 +1,11 @@
 # Notification
 
+The **Notification** module provides notification management capabilities, covering notifications, notification slots, notification subscription, notification enabled status, and notification badge status.
+
+Generally, only system applications have the permission to subscribe to and unsubscribe from notifications.
+
 > **NOTE**<br>
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -21,7 +26,7 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 | Name    | Readable| Writable| Type                                       | Mandatory| Description                                       |
 | -------- | ---- | ---- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | Yes  | No  |[NotificationRequest](#notificationrequest) | Yes  | Notification to publish.|
+| request  | Yes  | No  |[NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
 | callback | Yes  | No  |AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                           |
 
 **Example**
@@ -85,13 +90,15 @@ Publishes a notification. This API uses an asynchronous callback to return the r
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
 | Name    | Readable| Writable| Type                                       | Mandatory| Description                                       |
 | -------- | ---- | ---- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | Yes  | No  |[NotificationRequest](#notificationrequest) | Yes  | Notification to publish.|
+| request  | Yes  | No  |[NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
 | userId   | Yes  | No  |number                                      | Yes  | ID of the user who receives the notification.                          |
 | callback | Yes  | No  |AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
@@ -127,13 +134,15 @@ Publishes a notification. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
 | Name    | Readable| Writable| Type                                       | Mandatory| Description                                       |
 | -------- | ---- | ---- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | Yes  | No  |[NotificationRequest](#notificationrequest) | Yes  | Notification to publish.|
+| request  | Yes  | No  |[NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
 | userId   | Yes  | No  |number                                      | Yes  | ID of the user who receives the notification.                          |
 
 **Example**
@@ -291,6 +300,8 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -323,6 +334,8 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 Adds a notification slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -405,6 +418,8 @@ Adds multiple notification slots. This API uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -441,6 +456,8 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 Adds multiple notification slots. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -681,6 +698,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -720,6 +739,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -754,6 +775,8 @@ Subscribes to a notification with the subscription information specified. This A
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -786,6 +809,8 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 Unsubscribes from a notification. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -821,6 +846,8 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -852,6 +879,8 @@ enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallbac
 Sets whether to enable notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -885,6 +914,8 @@ Sets whether to enable notification for a specified bundle. This API uses a prom
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -917,6 +948,8 @@ Checks whether notification is enabled for a specified bundle. This API uses an 
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                    |
@@ -945,6 +978,8 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 Checks whether notification is enabled for a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -981,6 +1016,8 @@ Checks whether notification is enabled for this application. This API uses an as
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1008,6 +1045,8 @@ isNotificationEnabled(): Promise\<boolean\>
 Checks whether notification is enabled for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1041,6 +1080,8 @@ Sets whether to enable the notification badge for a specified bundle. This API u
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1073,6 +1114,8 @@ Sets the notification slot for a specified bundle. This API uses a promise to re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1102,6 +1145,8 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 Checks whether the notification badge is enabled for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1133,6 +1178,8 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 Checks whether the notification badge is enabled for a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1169,6 +1216,8 @@ Sets the notification slot for a specified bundle. This API uses an asynchronous
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1204,6 +1253,8 @@ Sets the notification slot for a specified bundle. This API uses a promise to re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1237,6 +1288,8 @@ Obtains the notification slots of a specified bundle. This API uses an asynchron
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1267,6 +1320,8 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 Obtains the notification slots of a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1303,6 +1358,8 @@ Obtains the number of notification slots of a specified bundle. This API uses an
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1333,6 +1390,8 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 Obtains the number of notification slots of a specified bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1368,6 +1427,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCa
 Removes a notification for a specified bundle. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1405,6 +1466,8 @@ Removes a notification for a specified bundle. This API uses a promise to return
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1439,6 +1502,8 @@ Removes a notification for a specified bundle. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1470,6 +1535,8 @@ Removes a notification for a specified bundle. This API uses a promise to return
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1500,6 +1567,8 @@ Removes all notifications for a specified bundle. This API uses an asynchronous 
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **Parameters**
 
 | Name    | Readable| Writable| Type                 | Mandatory| Description                        |
@@ -1529,6 +1598,8 @@ Removes all notifications. This API uses an asynchronous callback to return the 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1557,6 +1628,8 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1580,6 +1653,8 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 Removes all notifications for a specified user. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1610,6 +1685,8 @@ Removes all notifications for a specified user. This API uses a promise to retur
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1639,6 +1716,8 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1667,7 +1746,9 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API and cannot be called by third-party applications.removeGroupByBundle
 
 **Return value**
 
@@ -1847,6 +1928,8 @@ Removes a notification group for a specified bundle. This API uses an asynchrono
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1880,6 +1963,8 @@ Removes a notification group for a specified bundle. This API uses a promise to 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1908,6 +1993,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 Sets the DND time. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -1944,6 +2031,8 @@ Sets the DND time. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -1973,6 +2062,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 Sets the DND time for a specified user. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -2012,6 +2103,8 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2046,6 +2139,8 @@ Obtains the DND time. This API uses an asynchronous callback to return the resul
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2074,6 +2169,8 @@ Obtains the DND time. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
@@ -2098,6 +2195,10 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 Obtains the DND time of a specified user. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -2127,6 +2228,10 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 Obtains the DND time of a specified user. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -2159,6 +2264,8 @@ Checks whether the DND mode is supported. This API uses an asynchronous callback
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2186,6 +2293,8 @@ supportDoNotDisturbMode(): Promise\<boolean\>
 Checks whether the DND mode is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -2317,6 +2426,8 @@ Sets whether this device supports distributed notifications. This API uses an as
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2347,6 +2458,8 @@ enableDistributed(enable: boolean): Promise\<void>
 Sets whether this device supports distributed notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -2426,6 +2539,8 @@ Sets whether an application supports distributed notifications based on the bund
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2456,11 +2571,13 @@ Notification.enableDistributedByBundle(bundle, enable, enableDistributedByBundle
 
 ## Notification.enableDistributedByBundle<sup>8+</sup>
 
-bundleenableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
+enableDistributedByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
 Sets whether an application supports distributed notifications based on the bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -2494,6 +2611,8 @@ Obtains whether an application supports distributed notifications based on the b
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2526,6 +2645,8 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 Obtains whether an application supports distributed notifications based on the bundle. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -2563,6 +2684,8 @@ Obtains the notification reminder type. This API uses an asynchronous callback t
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2591,6 +2714,8 @@ Obtains the notification reminder type. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
@@ -2608,6 +2733,7 @@ Notification.getDeviceRemindType()
     });
 ```
 
+
 ## Notification.publishAsBundle<sup>9+</sup>
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
@@ -2616,14 +2742,15 @@ Publishes an agent-powered notification. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-
 | Name              | Type                                       | Mandatory| Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | Notification to publish.|
+| request              | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | ID of the user who receives the notification.                           |
 | callback             | AsyncCallback                               | Yes  | Callback used to return the result.                     |
@@ -2663,6 +2790,8 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
@@ -2670,7 +2799,7 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 | Name              | Type                                       | Mandatory| Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | Notification to publish.|
+| request              | [NotificationRequest](#notificationrequest) | Yes  | **NotificationRequest** object.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | ID of the user who receives the notification.                           |
 
@@ -2707,6 +2836,8 @@ Cancels a notification published by the reminder agent. This API uses an asynchr
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
 **Parameters**
 
 
@@ -2740,6 +2871,8 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 **System capability**: SystemCapability.Notification.Notification
 
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
 **Parameters**
 
 
@@ -2762,15 +2895,17 @@ Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
 });
 ```
 
-## Notification.enableNotificationSlot<sup>9+</sup>
+## Notification.enableNotificationSlot <sup>9+</sup>
 
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback<void>): void
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
 Sets the enabled status for a notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **Parameters**
 
@@ -2791,20 +2926,22 @@ function enableSlotCallback(err) {
 
 Notification.enableNotificationSlot(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
+    Notification.SlotType.SOCIAL_COMMUNICATION,
     true,
     enableSlotCallback);
 ```
 
-## Notification.enableNotificationSlot<sup>9+</sup>
+## Notification.enableNotificationSlot <sup>9+</sup>
 
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise<void> 
+enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
 
 Sets the enabled status for a notification slot of a specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **Parameters**
 
@@ -2820,21 +2957,23 @@ Sets the enabled status for a notification slot of a specified type. This API us
 //enableNotificationSlot
 Notification.enableNotificationSlot(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
+    Notification.SlotType.SOCIAL_COMMUNICATION,
     true).then(() => {
         console.log('====================>enableNotificationSlot====================>');
     });
 ```
 
-## Notification.isNotificationSlotEnabled<sup>9+</sup>
+## Notification.isNotificationSlotEnabled <sup>9+</sup>
 
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback<boolean>): void
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
-Obtains the enabled status of a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+Obtains the enabled status of the notification slot of a specified type. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **Parameters**
 
@@ -2842,7 +2981,7 @@ Obtains the enabled status of a notification slot of a specified type. This API 
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
-| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2854,19 +2993,21 @@ function getEnableSlotCallback(err, data) {
 
 Notification.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
+    Notification.SlotType.SOCIAL_COMMUNICATION,
     getEnableSlotCallback);
 ```
 
-## Notification.isNotificationSlotEnabled<sup>9+</sup>
+## Notification.isNotificationSlotEnabled <sup>9+</sup>
 
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise<boolean>  
+isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
 
-Obtains the enabled status of a notification slot of a specified type. This API uses a promise to return the result.
+Obtains the enabled status of the notification slot of a specified type. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **Parameters**
 
@@ -2875,17 +3016,165 @@ Obtains the enabled status of a notification slot of a specified type. This API 
 | bundle | [BundleOption](#bundleoption) | Yes  | Bundle information.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
 
+**Return value**
+
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | Promise used to return the enabled status of the notification slot of the specified type.|
+
 **Example**
 
 ```js
 //isNotificationSlotEnabled
 Notification.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
-    notify.SlotType.SOCIAL_COMMUNICATION,
-    true).then((data) => {
+    Notification.SlotType.SOCIAL_COMMUNICATION
+    ).then((data) => {
       console.log('====================>isNotificationSlotEnabled====================>');
     });
 ```
+
+
+## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
+
+Sets whether to sync notifications to devices where the application is not installed. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | Yes  | User ID.  |
+| enable   | boolean         | Yes  | Whether to sync notifications to devices where the application is not installed. The value **true** means to sync notifications to devices where the application is not installed, and **false** means the opposite.|
+| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+let userId = 100;
+let enable = true;
+
+function setSyncNotificationEnabledForUninstallAppCallback(err) {
+    console.log('setSyncNotificationEnabledForUninstallAppCallback');
+}
+
+Notification.setSyncNotificationEnabledForUninstallApp(userId, enable, setSyncNotificationEnabledForUninstallAppCallback);
+```
+
+
+## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Promise\<void>
+
+Sets whether to sync notifications to devices where the application is not installed. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | Yes  | User ID.  |
+| enable   | boolean         | Yes  | Whether to sync notifications to devices where the application is not installed. The value **true** means to sync notifications to devices where the application is not installed, and **false** means the opposite.|
+
+**Example**
+
+```js
+let userId = 100;
+let enable = true;
+
+Notification.setSyncNotificationEnabledForUninstallApp(userId, enable)
+    .then((data) => {
+        console.log('setSyncNotificationEnabledForUninstallApp, data:', data);
+    })
+    .catch((err) => {
+        console.log('setSyncNotificationEnabledForUninstallApp, err:', err);
+    });
+```
+
+
+## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+getSyncNotificationEnabledForUninstallApp(userId: number, callback: AsyncCallback\<boolean>): void
+
+Checks whether notifications are synced to devices where the application is not installed. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | Yes  | User ID.  |
+| callback | AsyncCallback\<boolean\>    | Yes  | Callback used to return the result. The value **true** means that notifications are synced to devices where the application is not installed, and **false** means the opposite.|
+
+**Example**
+
+```js
+let userId = 100;
+
+function getSyncNotificationEnabledForUninstallAppCallback(err, data) {
+    console.log('getSyncNotificationEnabledForUninstallAppCallback, data: ', data);
+}
+
+Notification.getSyncNotificationEnabledForUninstallApp(userId, getSyncNotificationEnabledForUninstallAppCallback);
+```
+
+
+## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+
+getSyncNotificationEnabledForUninstallApp(userId: number): Promise\<boolean>
+
+Checks whether notifications are synced to devices where the application is not installed. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description          |
+| ------ | ----------------------------- | ---- | -------------- |
+| userId | number | Yes  | User ID.  |
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that notifications are synced to devices where the application is not installed, and **false** means the opposite.|
+
+**Example**
+
+```js
+let userId = 100;
+
+Notification.getSyncNotificationEnabledForUninstallApp(userId)
+    .then((data) => {
+        console.log('getSyncNotificationEnabledForUninstallApp, data: ', data);
+    })
+    .catch((err) => {
+        console.log('getSyncNotificationEnabledForUninstallApp, err: ', err);
+    });
+```
+
+
 
 ## NotificationSubscriber
 
@@ -2893,11 +3182,13 @@ Notification.isNotificationSlotEnabled(
 
 ### onConsume
 
-onConsume?:(data: [SubscribeCallbackData](#subscribecallbackdata))
+onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 Callback for receiving notifications.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -2940,11 +3231,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onCancel
 
-onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata))
+onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 Callback for removing notifications.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -2978,11 +3271,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onUpdate
 
-onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap))
+onUpdate?:(data: [NotificationSortingMap](#notificationsortingmap)) => void
 
 Callback for notification sorting updates.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -3014,11 +3309,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onConnect
 
-onConnect?:void
+onConnect?:() => void
 
 Callback for subscription.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Example**
 
@@ -3044,11 +3341,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDisconnect
 
-onDisconnect?:void
+onDisconnect?:() => void
 
 Callback for unsubscription.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Example**
 
@@ -3074,11 +3373,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDestroy
 
-onDestroy?:void
+onDestroy?:() => void
 
 Callback for service disconnection.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Example**
 
@@ -3104,17 +3405,19 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onDoNotDisturbDateChange<sup>8+</sup>
 
-onDoNotDisturbDateChange?:(mode: Notification.[DoNotDisturbDate](#donotdisturbdate8))
+onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](#donotdisturbdate8)) => void
 
 Callback for DND time setting updates.
 
 **System capability**: SystemCapability.Notification.Notification
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | Notification.[DoNotDisturbDate](#donotdisturbdate8) | Yes| DND time setting updates.|
+| mode | notification.[DoNotDisturbDate](#donotdisturbdate8) | Yes| DND time setting updates.|
 
 **Example**
 ```javascript
@@ -3140,11 +3443,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8))
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](#enablednotificationcallbackdata8)) => void
 
 Listens for the notification enable status changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -3201,7 +3506,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | ------ | ---- | --- | ------- | ---- | ---------------- |
 | bundle | Yes | No | string  | Yes  | Bundle name of the application.      |
 | uid    | Yes | No | number  | Yes  | UID of the application.       |
-| enable | Yes | No | boolean | Yes  | Notification enable status of the application.|
+| enable | Yes | No | boolean | Yes  | Notification enabled status of the application.|
 
 
 ## DoNotDisturbDate<sup>8+</sup>
@@ -3300,7 +3605,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | title     | Yes | Yes | string                                          | Yes  | Button title.                 |
 | wantAgent | Yes | Yes | WantAgent                                       | Yes  | **WantAgent** of the button.|
 | extras    | Yes | Yes | { [key: string]: any }                          | No  | Extra information of the button.             |
-| userInput<sup>9+</sup> | Yes | Yes | [NotificationUserInput](#notificationuserinput8) | No  | User input object.         |
+| userInput<sup>8+</sup> | Yes | Yes | [NotificationUserInput](#notificationuserinput8) | No  | User input object.         |
 
 
 ## NotificationBasicContent
@@ -3425,14 +3730,16 @@ Notification.subscribe(subscriber, subscribeCallback);
 | creatorPid            | Yes | No | number                                        | No  | PID used for creating the notification.             |
 | creatorUserId<sup>8+</sup>| Yes | No | number                                    | No  | ID of the user who creates the notification.          |
 | hashCode              | Yes | No | string                                        | No  | Unique ID of the notification.              |
-| classification        | Yes | Yes | string                                        | No  | Notification category.                  |
+| classification        | Yes | Yes | string                                        | No  | Notification category.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
 | groupName<sup>8+</sup>| Yes | Yes | string                                        | No  | Group notification name.                |
 | template<sup>8+</sup> | Yes | Yes | [NotificationTemplate](#notificationtemplate8) | No  | Notification template.                  |
-| isRemoveAllowed<sup>8+</sup> | Yes | No | boolean                                | No  | Whether the notification can be removed.                  |
-| source<sup>8+</sup>   | Yes | No | number                                        | No  | Notification source.                  |
+| isRemoveAllowed<sup>8+</sup> | Yes | No | boolean                                | No  | Whether the notification can be removed.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
+| source<sup>8+</sup>   | Yes | No | number                                        | No  | Notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.                  |
 | distributedOption<sup>8+</sup>   | Yes | Yes | [DistributedOptions](#distributedoptions8)                 | No  | Option of distributed notification.         |
-| deviceId<sup>8+</sup> | Yes | No | string                                        | No  | Device ID of the notification source.         |
+| deviceId<sup>8+</sup> | Yes | No | string                                        | No  | Device ID of the notification source.<br>**System API**: This is a system API and cannot be called by third-party applications.         |
 | notificationFlags<sup>8+</sup> | Yes | No | [NotificationFlags](#notificationflags8)                    | No  | Notification flags.         |
+| removalWantAgent<sup>9+</sup> | Yes | Yes | WantAgent                    | No  | **WantAgent** instance to which the notification will be redirected when it is removed.         |
+| badgeNumber<sup>9+</sup> | Yes | Yes | number                    | No  | Number of notifications displayed on the application icon.         |
 
 
 ## DistributedOptions<sup>8+</sup>
@@ -3444,7 +3751,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | isDistributed          | Yes  | Yes  | boolean        | No  | Whether the notification is a distributed notification.                 |
 | supportDisplayDevices  | Yes  | Yes  | Array\<string> | Yes  | Types of the devices to which the notification can be synchronized.          |
 | supportOperateDevices  | Yes  | Yes  | Array\<string> | No  | Devices on which notification can be enabled.               |
-| remindType             | Yes  | No  | number         | No  | Notification reminder type.                   |
+| remindType             | Yes  | No  | number         | No  | Notification reminder type.<br>**System API**: This is a system API and cannot be called by third-party applications.                   |
 
 
 ## NotificationSlot
@@ -3535,3 +3842,16 @@ Notification.subscribe(subscriber, subscribeCallback);
 | IDLE_REMIND          | 1   | The device is not in use.                |
 | ACTIVE_DONOT_REMIND  | 2   | The device is in use. No notification is required.           |
 | ACTIVE_REMIND        | 3   | The device is in use.                |
+
+
+## SourceType<sup>8+</sup>
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+| Name                | Value | Description                 |
+| -------------------- | --- | -------------------- |
+| TYPE_NORMAL          | 0   | Normal notification.           |
+| TYPE_CONTINUOUS      | 1   | Continuous notification.           |
+| TYPE_TIMER           | 2   | Timed notification.           |
