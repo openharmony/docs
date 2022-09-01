@@ -39,7 +39,7 @@ AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
 | popupFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 弹出提示文本字体样式。 |
 | font | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 字母索引条默认文本字体样式。 |
 | itemSize | Length | 字母索引条字母区域大小，字母区域为正方形，设置正方形边长。 |
-| alignStyle | IndexerAlign | 字母索引条对齐样式，支持左侧对齐样式与右侧对齐样式，影响弹窗弹出位置。 |
+| alignStyle | IndexerAlign | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值：IndexerAlign.Right |
 
 - IndexerAlign枚举说明
   | 名称 | 描述 |
