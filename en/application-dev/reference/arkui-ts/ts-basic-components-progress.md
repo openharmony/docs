@@ -1,12 +1,10 @@
 # Progress
 
-
-> **NOTE**
->
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<Progress>** component is used to provide a progress bar that displays the progress of content loading or an operation.
+
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -26,34 +24,33 @@ Progress(value: {value: number, total?: number, type?: ProgressType})
 Creates a progress bar.
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description |
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Current progress. |
-  | total | number | No | 100 | Total progress. |
-  | type | ProgressType | No | ProgressType.Linear | Type of the progress bar. |
+  | value | number | Yes| - | Current progress.|
+  | total | number | No| 100 | Total progress.|
+  | type | ProgressType | No| ProgressType.Linear | Type of the progress bar.|
 
 
-- ProgressType enums
-  | Name | Description |
+- ProgressType
+  | Name| Description|
   | -------- | -------- |
-  | Linear | Linear type. |
-  | Ring<sup>8+</sup> | Ring type without scale. The ring fills up as the progress increases. |
-  | Eclipse | Eclipse type, which visualizes the progress in a way similar to the moon waxing from new to full. |
-  | ScaleRing<sup>8+</sup> | Ring type with scale, which is similar to the clock scale style. |
-  | Capsule<sup>8+</sup> | Capsule type. At both ends, the progress bar changes from an arc to a straight line and from a straight line to an arc. In the middle part of the capsule, the progress bar moves to the right. |
+  | Linear<sup>8+</sup> | Linear type.|
+  | Ring<sup>8+</sup> | Ring type without scale. The ring fills up as the progress increases.|
+  | Eclipse<sup>8+</sup> | Eclipse type, which visualizes the progress in a way similar to the moon waxing from new to full.|
+  | ScaleRing<sup>8+</sup> | Ring type with scale, which is similar to the clock scale.|
+  | Capsule<sup>8+</sup> | Capsule type. At both ends, the progress bar changes from an arc to a straight line and from a straight line to an arc. In the middle part of the capsule, the progress bar moves to the right.|
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | - | Current progress. |
-| color | Color | - | Background color of the progress bar. |
-| style<sup>8+</sup> | {<br/>strokeWidth? : Length,<br/>scaleCount? : number,<br/>scaleWidth? : Length<br/>} | - | Component style.<br/>- **strokeWidth**: width of the progress bar.<br/>- **scaleCount**: scale count of the circular progress bar.<br/>- **scaleWidth**: scale width of the circular progress bar.<br/>If the scale thickness is greater than the progress bar width, the default scale thickness is used. |
+| value | number | - | Current progress.|
+| color | [ResourceColor](../../ui/ts-types.md) | - | Background color of the progress bar.|
+| style<sup>8+</sup> | {<br>strokeWidth?: Length,<br>scaleCount?: number,<br>scaleWidth?: Length<br>} | - | Component style.<br>**strokeWidth**: width of the progress bar.<br>**scaleCount**: scale count of the circular progress bar.<br>**scaleWidth**: scale width of the circular progress bar.<br>If the scale width is greater than the width of the progress bar, the default scale width is used.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
