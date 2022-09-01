@@ -19,7 +19,7 @@ import reminderAgent from'@ohos.reminderAgent';
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
-发布一个后台代理提醒，使用callback方式实现异步调用。
+发布一个后台代理提醒，使用callback方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -48,7 +48,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
-发布一个后台代理提醒，使用Promise方式实现异步调用。
+发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -434,7 +434,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 ## MaxScreenWantAgent
 
-提醒到达时自动拉起的目标ability信息。
+全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
