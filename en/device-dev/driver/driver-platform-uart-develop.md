@@ -61,7 +61,7 @@ The UART module adaptation involves the following steps:
 3. Instantiate the UART controller object.
    - Initialize **UartHost**.
    - Instantiate **UartHostMethod** in the **UartHost** object.
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+      > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
       > For details about the functions in **UartHostMethod**, see [Available APIs](#available-apis).
 
 4. Debug the driver.<br>

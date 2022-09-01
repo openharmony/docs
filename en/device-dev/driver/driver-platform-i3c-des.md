@@ -48,6 +48,7 @@ In the Hardware Driver Foundation (HDF), the I3C module uses the unified service
 Multiple devices, such as I2C target device, I3C target device, and I3C secondary controller, can be connected to an I3C bus. However, the I3C bus must have only one controller.
 
 **Figure 1** I3C physical connection 
+
 ![](figures/I3C_physical_connection.png "I3C_physical_connection")
 
 ### Constraints
@@ -159,7 +160,7 @@ if (ret != 2) {
 }
 ```
 
->![](./public_sys-resources/icon-caution.gif) **Caution**<br>
+>![](../public_sys-resources/icon-caution.gif) **Caution**<br>
 >-   The device address in the **I3cMsg** structure does not contain the read/write flag bit. The read/write information is passed by the read/write control bit in the member variable **flags**.
 >-   The **I3cTransfer()** function does not limit the number of message structures or the length of data in each message structure. The I3C controller determines these two limits.
 >-   Using **I3cTransfer()** may cause the system to sleep. Do not call it in the interrupt context.
