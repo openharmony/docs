@@ -1070,9 +1070,10 @@ async function testSignVerify() {
     }).catch((err) => {
         console.info('test update err information: ' + err);
     });
-    rsaVerifyOptions.inData = finishRsaSignData;
+    rsaSignOptionsSecond.inData = new Uint8Array(new Array());
     await huks.finish(rsaSignHandle, rsaSignOptionsSecond).then((data) => {
         console.info(`test finish data: ${JSON.stringify(data)}`);
+        finishRsaSignData = data.outData;
     }).catch((err) => {
         console.info('test finish err information: ' + JSON.stringify(err));
     });
@@ -1797,9 +1798,9 @@ async function attestId() {
     };
 
     generateKey(aliasString);
-    setTimeout(()=>huks.attestKey(aliasString, options, function (err, data) {
+    huks.attestKey(aliasString, options, function (err, data) {
         printLog(`key attest result : ${JSON.stringify(data)}`);
-    }), 1000);
+    });
 }
 ```
 
@@ -1920,9 +1921,9 @@ async function attestKey() {
         properties: properties
     };
     generateKey(aliasString);
-    setTimeout(()=>huks.attestKey(aliasString, options, function (err, data) {
+    huks.attestKey(aliasString, options, function (err, data) {
         printLog(`key attest result : ${JSON.stringify(data)}`);
-    }), 1000);
+    });
 }
 ```
 
