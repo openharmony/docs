@@ -137,7 +137,7 @@
               "pages": [
                 "pages/index",
                 "pages/second"
-              ],
+              ]
               }
           ]
         }
