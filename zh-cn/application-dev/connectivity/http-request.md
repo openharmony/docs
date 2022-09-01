@@ -10,6 +10,8 @@ HTTP数据请求功能主要由http模块提供。
 
 使用该功能需要申请ohos.permission.INTERNET权限。
 
+权限申请请参考[访问控制（权限）开发指导](../security/accesstoken-guidelines.md)。
+
 具体接口说明如下表。
 
 | 接口名                                    | 功能描述                            |
