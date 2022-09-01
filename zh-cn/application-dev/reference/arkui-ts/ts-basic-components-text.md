@@ -28,6 +28,8 @@ Text(content?: ResourceStr)
 
 ## 属性
 
+Text组件除以下属性外同时包含[文本样式设置](ts-universal-attributes-text-style.md)的属性。
+
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | textAlign | [TextAlign](ts-appendix-enums.md#textalign) | TextAlign.Start | 设置多行文本的文本对齐方式。 |
@@ -35,7 +37,7 @@ Text(content?: ResourceStr)
 | maxLines | number | Infinity | 设置文本的最大行数。<br />**说明：**<br />默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过        `textOverflow`来指定截断方式。 |
 | lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)  | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
 | decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
-| baselineOffset | [Length](../../ui/ts-types.md)         | -         | 设置文本基线的偏移量。                              |
+| baselineOffset | number \| string         | -         | 设置文本基线的偏移量。                              |
 | letterSpacing       | [Length](../../ui/ts-types.md)                 | -                          | 设置文本字符间距。                                 |
 | minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最小显示字号。                                 |
 | maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最大显示字号。                                 |
