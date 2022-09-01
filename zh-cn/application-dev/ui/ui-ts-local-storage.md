@@ -282,7 +282,7 @@ clear(): boolean
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {    
   storage : LocalStorage    
-  onCreate(want) {    
+  onCreate() {    
     this.storage = new LocalStorage();
     this.storage.setOrCreate("storageSimpleProp",121);    
     console.log("[Demo MainAbility onCreate]"); 
