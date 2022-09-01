@@ -467,7 +467,7 @@ getDeviceSettingsManager(callback: AsyncCallback&lt;DeviceSettingsManager&gt;): 
 
 | 参数名      | 类型                                      | 必填   | 说明                                  |
 | -------- | --------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback<DeviceSettingsManager&gt; | 是    | callback方式返回DeviceSettingsManager对象 |
+| callback | AsyncCallback<[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | 是    | callback方式返回DeviceSettingsManager对象 |
 
 **示例：**
 
@@ -503,7 +503,7 @@ getDeviceSettingsManager(): Promise&lt;DeviceSettingsManager&gt;
 
 | 类型                                   | 说明                                 |
 | ------------------------------------ | ---------------------------------- |
-| Promise&lt;DeviceSettingsManager&gt; | Promise方式返回DeviceSettingsManager对象 |
+| Promise&lt;[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | Promise方式返回DeviceSettingsManager对象 |
 
 **示例：**
 
