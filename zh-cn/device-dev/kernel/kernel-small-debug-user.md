@@ -72,24 +72,24 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 
   **表1** 内存调测功能
 
-| 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
-| mem_check_init | 初始化内存检测模块。 | 
-| watch_mem | 获取线程级堆内存使用信息。 | 
-| check_leak | 检查是否有堆内存泄漏。 | 
-| check_heap_integrity | 检查堆内存的完整性。 | 
-| backtrace | 获取调用栈地址信息。 | 
-| backtrace_symbols | 根据地址信息获取符号信息。 | 
-| print_trace | 输出函数调用栈信息。 | 
+| mem_check_init | 初始化内存检测模块。 |
+| watch_mem | 获取线程级堆内存使用信息。 |
+| check_leak | 检查是否有堆内存泄漏。 |
+| check_heap_integrity | 检查堆内存的完整性。 |
+| backtrace | 获取调用栈地址信息。 |
+| backtrace_symbols | 根据地址信息获取符号信息。 |
+| print_trace | 输出函数调用栈信息。 |
 
 
   **表2** 调用栈回溯功能
 
-| 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
-| backtrace | 获取调用栈地址信息。 | 
-| backtrace_symbols | 根据地址信息获取符号信息。 | 
-| print_trace | 输出函数调用栈信息。 | 
+| backtrace | 获取调用栈地址信息。 |
+| backtrace_symbols | 根据地址信息获取符号信息。 |
+| print_trace | 输出函数调用栈信息。 |
 
 ### 使用说明
 
@@ -109,11 +109,6 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 > 内存调测功能使能后，进程退出时会默认进行一次堆内存泄漏和堆内存完整性检查。内存调测功能未使能时，堆内存统计、堆内存泄漏检查、堆内存完整性校验功能不会开启，调用相关调测接口无响应。
 
 
-- **[接口调用方式](kernel-small-debug-user-guide-use-api.md)**
-
-- **[命令行参数方式](kernel-small-debug-user-guide-use-cli.md)**
-
-
 
 
 #### 接口调用方式
@@ -123,7 +118,7 @@ Debug版本的musl-libc库为用户提供内存泄漏检测、堆内存统计、
 
 代码功能：显式调用调测模块的相关接口对用户代码进行内存校验。
 
-  
+
 ```
 #include <pthread.h>
 #include <stdlib.h>
@@ -155,7 +150,7 @@ int main()
 
 ##### 编译
 
-  
+
 ```
 $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos --sysroot=/home/<user-name>/directory/out/hispark_taurus/ipcamera_hispark_taurus/sysroot $(clang -mfloat-abi=softfp -mcpu=cortex-a7 -mfpu=neon-vfpv4 -target arm-liteos -print-file-name=libunwind.a)
 ```
@@ -177,7 +172,7 @@ $ clang -o mem_check mem_check.c -funwind-tables -rdynamic -g -mfloat-abi=softfp
 
 ##### 调测信息
 
-  
+
 ```
 OHOS # ./mem_check
 OHOS # 
@@ -232,14 +227,14 @@ Check heap integrity ok!
 
 提供parse_mem_info.sh脚本可以对调用栈进行解析，解析脚本存放的路径：kernel/liteos_a/tools/scripts/parse_memory/parse_mem_info.sh。利用脚本可以将相应的调测信息转换成具体的源码行号，如下命令所示，mem_debug.txt保存的是内存调测信息，elf1、elf2等文件是需要解析的elf文件。
 
-  
+
 ```
 $ ./parse_mem_info.sh mem_debug.txt elf1 elf2 elf3 ...
 ```
 
 例如：
 
-  
+
 ```
 $ ./parse_mem_info.sh mem_debug.txt mem_check
 Compiler is [gcc/llvm]: llvm
@@ -322,7 +317,7 @@ int main()
 
 ##### 编译
 
-参考[接口调用一节](../kernel/kernel-small-debug-user-guide-use-api.md#编译)。
+参考接口调用章节里的编译。
 
 
 ##### 使用mwatch参数命令
@@ -534,7 +529,7 @@ Double free时，用户程序将会异常退出。
 - 申请小块内存（不大于0x1c000）
   堆内存节点被踩时，用户程序将会异常退出，并输出破坏被踩节点的可能的堆内存申请调用栈，对于野指针踩内存情况无法校验出来。例如用户程序mem_check中存在堆内存越界踩的情况，利用命令行方式可以获得踩内存的可能的具体位置。
 
-    
+  
   ```
   OHOS # ./mem_check --mwatch  
   OHOS # 

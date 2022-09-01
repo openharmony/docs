@@ -23,7 +23,7 @@
 启动子系统内部涉及以下组件：
 
 - init启动引导组件：
-  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](../subsystems/subsys-boot-init.md)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
+  init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[第2章表2](../subsystems/subsys-boot-init-jobs.md)描述）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
 
 - ueventd启动引导组件：
   ueventd负责监听内核设备驱动插拔的netlink事件，根据事件类型动态管理相应设备的dev节点。
@@ -57,7 +57,9 @@
 
 - 新芯片平台移植时，平台相关的初始化配置需要增加平台相关的初始化配置文件/vendor/etc/init/init.{hardware}.cfg；该文件完成平台相关的初始化设置，如安装ko驱动，设置平台相关的/proc节点信息。
 
-  >  **说明：** 配置文件init.cfg仅支持json格式。
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+
+  > 配置文件init.cfg仅支持json格式。
 
 - bootstrap服务启动组件：需要在链接脚本中配置zInit代码段。
 
@@ -330,7 +332,7 @@
 
 - init执行system和vendor中的启动脚本，挂载vendor中更多的分区
 
-​	挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
+		挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
 
 
 ### 无ramdisk的启动加载流程

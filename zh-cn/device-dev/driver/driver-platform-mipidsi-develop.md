@@ -14,7 +14,7 @@ DSI（Display Serial Interface）是由移动行业处理器接口联盟（Mobil
 
 MipiDsiCntlrMethod定义：
 
-
+  
 ```
 struct MipiDsiCntlrMethod { // 核心层结构体的成员函数
     int32_t (*setCntlrCfg)(struct MipiDsiCntlr *cntlr);
@@ -31,13 +31,13 @@ struct MipiDsiCntlrMethod { // 核心层结构体的成员函数
 
   **表1** MipiDsiCntlrMethod成员的回调函数功能说明
 
-| 成员函数 | 入参 | 出参 | 返回状态 | 功能 |
+| 成员函数 | 入参 | 出参 | 返回状态 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| setCntlrCfg | cntlr：结构体指针，MipiDsi控制器 | 无 | HDF_STATUS相关状态 | 设置控制器参数 |
-| setCmd | cntlr：结构体指针，MipiDsi控制器<br>cmd：结构体指针，指令传入值 | 无 | HDF_STATUS相关状态 | 向显示设备发送指令 |
-| getCmd | cntlr：结构体指针，MipiDsi控制器<br>cmd：传入的命令描述结构体指针<br>readLen：读取的数据大小 | out：结构体指针，用于存储读取的数据 | HDF_STATUS相关状态 | 通过发送指令读取数据 |
-| toHs | cntlr：结构体指针，MipiDsi控制器 | 无 | HDF_STATUS相关状态 | 设置为高速模式 |
-| toLp | cntlr：结构体指针，MipiDsi控制器 | 无 | HDF_STATUS相关状态 | 设置为低电模式 |
+| setCntlrCfg | cntlr：结构体指针，MipiDsi控制器 | 无 | HDF_STATUS相关状态 | 设置控制器参数 | 
+| setCmd | cntlr：结构体指针，MipiDsi控制器<br>cmd：结构体指针，指令传入值 | 无 | HDF_STATUS相关状态 | 向显示设备发送指令 | 
+| getCmd | cntlr：结构体指针，MipiDsi控制器<br>cmd：传入的命令描述结构体指针<br>readLen：读取的数据大小 | out：结构体指针，用于存储读取的数据 | HDF_STATUS相关状态 | 通过发送指令读取数据 | 
+| toHs | cntlr：结构体指针，MipiDsi控制器 | 无 | HDF_STATUS相关状态 | 设置为高速模式 | 
+| toLp | cntlr：结构体指针，MipiDsi控制器 | 无 | HDF_STATUS相关状态 | 设置为低电模式 | 
 
 
 ## 开发步骤
@@ -74,25 +74,25 @@ MIPI DSI模块适配的三个必选环节是配置属性文件，实例化驱动
    但本例中MIPI控制器无需配置额外属性，如有厂商需要，则需要在device_info文件的deviceNode增加deviceMatchAttr信息，以及增加mipidsi_config文件。
 
      device_info.hcs 配置参考：
-   
+     
    ```
    root {
-       device_info {
-           match_attr = "hdf_manager";
-           platform :: host {
-           hostName = "platform_host";
-           priority = 50;
-           device_mipi_dsi:: device {
-               device0 :: deviceNode {
-               policy = 0;
-               priority = 150;
-               permission = 0644;
-               moduleName = "HDF_MIPI_TX";   // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
-               serviceName = "HDF_MIPI_TX";  // 【必要且唯一】驱动对外发布服务的名称。
-               }
-           }
+   device_info {
+       match_attr = "hdf_manager";
+       platform :: host {
+       hostName = "platform_host";
+       priority = 50;
+       device_mipi_dsi:: device {
+           device0 :: deviceNode {
+           policy = 0;
+           priority = 150;
+           permission = 0644;
+           moduleName = "HDF_MIPI_TX";   // 【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
+           serviceName = "HDF_MIPI_TX";  // 【必要且唯一】驱动对外发布服务的名称。
            }
        }
+       }
+   }
    }
    ```
 
@@ -120,33 +120,33 @@ MIPI DSI模块适配的三个必选环节是配置属性文件，实例化驱动
 
       从驱动的角度看，自定义结构体是参数和数据的载体，一般来说，config文件中的数值也会用来初始化结构体成员，但本例的mipidsi无器件属性文件，故基本成员结构与MipiDsiCntlr无太大差异。
 
-      
+        
       ```
       typedef struct {
-          unsigned int    devno;                // 设备号
-          short           laneId[LANE_MAX_NUM]; // lane号
-          OutPutModeTag   outputMode;           // 输出模式选择：刷新模式，命令行模式或视频流模式 
-          VideoModeTag    videoMode;            // 显示设备的同步模式
-          OutputFormatTag outputFormat;         // 输出DSI图像数据格式：RGB或YUV
-          SyncInfoTag     syncInfo;             // 时序相关的设置
-          unsigned int    phyDataRate;          // 数据速率，单位Mbps 
-          unsigned int    pixelClk;             // 时钟，单位KHz
+        unsigned int    devno;                // 设备号
+        short           laneId[LANE_MAX_NUM]; // lane号
+        OutPutModeTag   outputMode;           // 输出模式选择：刷新模式，命令行模式或视频流模式 
+        VideoModeTag    videoMode;            // 显示设备的同步模式
+        OutputFormatTag outputFormat;         // 输出DSI图像数据格式：RGB或YUV
+        SyncInfoTag     syncInfo;             // 时序相关的设置
+        unsigned int    phyDataRate;          // 数据速率，单位Mbps 
+        unsigned int    pixelClk;             // 时钟，单位KHz
       } ComboDevCfgTag;
       
       // MipiDsiCntlr是核心层控制器结构体，其中的成员在Init函数中会被赋值。
       struct MipiDsiCntlr {
-          struct IDeviceIoService service;
-          struct HdfDeviceObject *device;
-          unsigned int devNo;          // 设备号
-          struct MipiCfg cfg;
-          struct MipiDsiCntlrMethod *ops;
-          struct OsalMutex  lock;
-          void *priv;
+        struct IDeviceIoService service;
+        struct HdfDeviceObject *device;
+        unsigned int devNo;          // 设备号
+        struct MipiCfg cfg;
+        struct MipiDsiCntlrMethod *ops;
+        struct OsalMutex  lock;
+        void *priv;
       };
       ```
    - MipiDsiCntlr成员回调函数结构体MipiDsiCntlrMethod的实例化，其他成员在Init函数中初始化。
 
-     
+        
       ```
       static struct MipiDsiCntlrMethod g_method = {
           .setCntlrCfg = Hi35xxSetCntlrCfg,
@@ -167,20 +167,20 @@ MIPI DSI模块适配的三个必选环节是配置属性文件，实例化驱动
       HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
 
       
-      | 状态(值) | 问题描述 |
+      | 状态(值) | 问题描述 | 
       | -------- | -------- |
-      | HDF_ERR_INVALID_OBJECT | 无效对象 |
-      | HDF_ERR_MALLOC_FAIL | 内存分配失败 |
-      | HDF_ERR_INVALID_PARAM | 无效参数 |
-      | HDF_ERR_IO | I/O&nbsp;错误 |
-      | HDF_SUCCESS | 执行成功 |
-      | HDF_FAILURE | 执行失败 |
+      | HDF_ERR_INVALID_OBJECT | 无效对象 | 
+      | HDF_ERR_MALLOC_FAIL | 内存分配失败 | 
+      | HDF_ERR_INVALID_PARAM | 无效参数 | 
+      | HDF_ERR_IO | I/O&nbsp;错误 | 
+      | HDF_SUCCESS | 执行成功 | 
+      | HDF_FAILURE | 执行失败 | 
 
       函数说明：
 
       MipiDsiCntlrMethod的实例化对象的挂载，调用MipiDsiRegisterCntlr，以及其他厂商自定义初始化操作。
 
-      
+        
       ```
       static int32_t Hi35xxMipiTxInit(struct HdfDeviceObject *device)
       {
@@ -232,7 +232,7 @@ MIPI DSI模块适配的三个必选环节是配置属性文件，实例化驱动
 
       > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
       > 所有强制转换获取相应对象的操作前提是在Init函数中具备对应赋值的操作。
-      
+        
       ```
       static void Hi35xxMipiTxRelease(struct HdfDeviceObject *device)
       {

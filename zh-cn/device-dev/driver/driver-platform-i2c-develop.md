@@ -14,10 +14,10 @@ I2C（Inter Integrated Circuit）总线是由Philips公司开发的一种简单�
 
 I2cMethod和I2cLockMethod定义：
 
-
+  
 ```
 struct I2cMethod {
-    int32_t (*transfer)(struct I2cCntlr *cntlr, struct I2cMsg *msgs, int16_t count);
+int32_t (*transfer)(struct I2cCntlr *cntlr, struct I2cMsg *msgs, int16_t count);
 };
 struct I2cLockMethod {// 锁机制操作结构体
     int32_t (*lock)(struct I2cCntlr *cntlr);// 加锁
@@ -27,9 +27,9 @@ struct I2cLockMethod {// 锁机制操作结构体
 
   **表1** I2cMethod结构体成员的回调函数功能说明
 
-| 函数成员 | 入参 | 出参 | 返回值 | 功能 |
+| 函数成员 | 入参 | 出参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| transfer | cntlr：结构体指针，核心层I2C控制器。<br>msgs：结构体指针，用户消息。<br>count：uint16_t，消息数量。 | 无 | HDF_STATUS相关状态 | 传递用户消息 |
+| transfer | cntlr：结构体指针，核心层I2C控制器。<br>msgs：结构体指针，用户消息。<br>count：uint16_t，消息数量。 | 无 | HDF_STATUS相关状态 | 传递用户消息 | 
 
 
 ## 开发步骤
@@ -74,7 +74,7 @@ I2C模块适配的三个必选环节是实例化驱动入口，配置属性文�
 
    I2C管理器服务的驱动由核心层实现，厂商不需要关注这部分内容的实现，但在实现Init函数的时候需要调用核心层的I2cCntlrAdd函数，它会实现相应功能。
 
-   
+     
    ```
    struct HdfDriverEntry g_i2cDriverEntry = {
        .moduleVersion = 1,
@@ -103,71 +103,71 @@ I2C模块适配的三个必选环节是实例化驱动入口，配置属性文�
 
      **表2** 统一服务模式的特点
    
-   | 成员名 | 值 |
+   | 成员名 | 值 | 
    | -------- | -------- |
-   | moduleName | 固定为HDF_PLATFORM_I2C_MANAGER |
-   | serviceName | 固定为HDF_PLATFORM_I2C_MANAGER |
-   | policy | 具体配置为1或2取决于是否对用户态可见 |
-   | deviceMatchAttr | 没有使用，可忽略 |
+   | moduleName | 固定为HDF_PLATFORM_I2C_MANAGER | 
+   | serviceName | 固定为HDF_PLATFORM_I2C_MANAGER | 
+   | policy | 具体配置为1或2取决于是否对用户态可见 | 
+   | deviceMatchAttr | 没有使用，可忽略 | 
 
      从第二个节点开始配置具体I2C控制器信息，此节点并不表示某一路I2C控制器，而是代表一个资源性质设备，用于描述一类I2C控制器的信息。多个控制器之间相互区分的参数是busID和reg_pbase，这在i2c_config文件中有所体现。
 
    - device_info.hcs配置参考
    
-     
+       
      ```
      root {
-         device_info {
-             match_attr = "hdf_manager";
-                 device_i2c :: device {
-                 device0 :: deviceNode {
-                     policy = 2;
-                     priority = 50;
-                     permission = 0644;
-                     moduleName = "HDF_PLATFORM_I2C_MANAGER";
-                     serviceName = "HDF_PLATFORM_I2C_MANAGER";
-                     deviceMatchAttr = "hdf_platform_i2c_manager";
-                 }
-                 device1 :: deviceNode {
-                     policy = 0;                               // 等于0，不需要发布服务。
-                     priority = 55;                            // 驱动启动优先级。
-                     permission = 0644;                        // 驱动创建设备节点权限。
-                     moduleName = "hi35xx_i2c_driver";         //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
-                     serviceName = "HI35XX_I2C_DRIVER";        //【必要】驱动对外发布服务的名称，必须唯一。
-                     deviceMatchAttr = "hisilicon_hi35xx_i2c"; //【必要】用于配置控制器私有数据，要与i2c_config.hcs中对应控制器保持一致，
-                                                               // 具体的控制器信息在 i2c_config.hcs中。
-                 }
-                 }
+     device_info {
+     match_attr = "hdf_manager";
+         device_i2c :: device {
+         device0 :: deviceNode {
+             policy = 2;
+             priority = 50;
+             permission = 0644;
+             moduleName = "HDF_PLATFORM_I2C_MANAGER";
+             serviceName = "HDF_PLATFORM_I2C_MANAGER";
+             deviceMatchAttr = "hdf_platform_i2c_manager";
          }
+         device1 :: deviceNode {
+             policy = 0;                               // 等于0，不需要发布服务。
+             priority = 55;                            // 驱动启动优先级。
+             permission = 0644;                        // 驱动创建设备节点权限。
+             moduleName = "hi35xx_i2c_driver";         //【必要】用于指定驱动名称，需要与期望的驱动Entry中的moduleName一致。
+             serviceName = "HI35XX_I2C_DRIVER";        //【必要】驱动对外发布服务的名称，必须唯一。
+             deviceMatchAttr = "hisilicon_hi35xx_i2c"; //【必要】用于配置控制器私有数据，要与i2c_config.hcs中对应控制器保持一致，
+                                                       // 具体的控制器信息在 i2c_config.hcs中。
+         }
+         }
+     }
      }
      ```
    
    - i2c_config.hcs 配置参考
    
-     
+       
      ```
      root {
-         platform {
-             i2c_config {
-                 match_attr = "hisilicon_hi35xx_i2c";  //【必要】需要和device_info.hcs中的deviceMatchAttr值一致
-                 template i2c_controller {             // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
-                     bus = 0;                          //【必要】i2c识别号
-                     reg_pbase = 0x120b0000;           //【必要】物理基地址
-                     reg_size = 0xd1;                  //【必要】寄存器位宽
-                     irq = 0;                          //【可选】根据厂商需要来使用
-                     freq = 400000;                    //【可选】根据厂商需要来使用
-                     clk = 50000000;                   //【可选】根据厂商需要来使用
-                 }
-                 controller_0x120b0000 :: i2c_controller {
-                     bus = 0;
-                 }
-                 controller_0x120b1000 :: i2c_controller {
-                     bus = 1;
-                     reg_pbase = 0x120b1000;
-                 }
-                 ...
-             }
+     platform {
+         i2c_config {
+         match_attr = "hisilicon_hi35xx_i2c";  //【必要】需要和device_info.hcs中的deviceMatchAttr值一致
+         template i2c_controller {             // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
+             bus = 0;                          //【必要】i2c识别号
+             reg_pbase = 0x120b0000;           //【必要】物理基地址
+             reg_size = 0xd1;                  //【必要】寄存器位宽
+             irq = 0;                          //【可选】根据厂商需要来使用
+             freq = 400000;                    //【可选】根据厂商需要来使用
+             clk = 50000000;                   //【可选】根据厂商需要来使用
          }
+         controller_0x120b0000 :: i2c_controller {
+             bus = 0;
+         }
+         controller_0x120b1000 :: i2c_controller {
+             bus = 1;
+             reg_pbase = 0x120b1000;
+         }
+         ...
+         }
+     }
      }
      ```
 
@@ -177,7 +177,7 @@ I2C模块适配的三个必选环节是实例化驱动入口，配置属性文�
 
       从驱动的角度看，自定义结构体是参数和数据的载体，而且i2c_config.hcs文件中的数值会被HDF读入通过DeviceResourceIface来初始化结构体成员，其中一些重要数值也会传递给核心层I2cCntlr对象，例如设备号、总线号等。
 
-      
+        
       ```
       // 厂商自定义功能结构体
       struct Hi35xxI2cCntlr {
@@ -204,7 +204,7 @@ I2C模块适配的三个必选环节是实例化驱动入口，配置属性文�
       ```
    - I2cCntlr成员回调函数结构体I2cMethod的实例化，和锁机制回调函数结构体I2cLockMethod实例化，其他成员在Init函数中初始化。
 
-     
+        
       ```
       // i2c_hi35xx.c中的示例
       static const struct I2cMethod g_method = {
@@ -228,20 +228,20 @@ I2C模块适配的三个必选环节是实例化驱动入口，配置属性文�
 
         **表3** Init函数入参及返回值参考
       
-      | 状态(值) | 问题描述 |
+      | 状态(值) | 问题描述 | 
       | -------- | -------- |
-      | HDF_ERR_INVALID_OBJECT | 控制器对象非法 |
-      | HDF_ERR_INVALID_PARAM | 参数非法 |
-      | HDF_ERR_MALLOC_FAIL | 内存分配失败 |
-      | HDF_ERR_IO | I/O&nbsp;错误 |
-      | HDF_SUCCESS | 传输成功 |
-      | HDF_FAILURE | 传输失败 |
+      | HDF_ERR_INVALID_OBJECT | 控制器对象非法 | 
+      | HDF_ERR_INVALID_PARAM | 参数非法 | 
+      | HDF_ERR_MALLOC_FAIL | 内存分配失败 | 
+      | HDF_ERR_IO | I/O&nbsp;错误 | 
+      | HDF_SUCCESS | 传输成功 | 
+      | HDF_FAILURE | 传输失败 | 
 
       函数说明：
 
       初始化自定义结构体对象，初始化I2cCntlr成员，调用核心层I2cCntlrAdd函数，接入VFS（可选）。
 
-      
+        
       ```
       static int32_t Hi35xxI2cInit(struct HdfDeviceObject *device)
       {
@@ -301,7 +301,7 @@ I2C模块适配的三个必选环节是实例化驱动入口，配置属性文�
 
       释放内存和删除控制器，该函数需要在驱动入口结构体中赋值给Release接口，当HDF框架调用Init函数初始化驱动失败时，可以调用Release释放驱动资源。
 
-      
+        
       ```
       static void Hi35xxI2cRelease(struct HdfDeviceObject *device)
       {

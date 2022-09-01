@@ -14,7 +14,7 @@
 
 使用链接脚本将如下init启动代码放置到系统镜像指定位置。
 
-  
+
 ```
 #define LITE_USER_SEC_ENTRY   __attribute__((section(".user.entry")))
 LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
@@ -38,7 +38,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 
 - 启动关键系统程序或服务，如交互进程shell。
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-  > 在OpenHarmony 中**init**进程通过读取/etc/init.cfg，根据配置执行指定命令，或启动指定进程（详见：[init启动引导](../subsystems/subsys-boot-init.md)）。
+  > 在OpenHarmony 中**init**进程通过读取/etc/init.cfg，根据配置执行指定命令，或启动指定进程（详见：[init启动引导](../subsystems/subsys-boot-init-cfg.md)）。
 
 - 监控回收孤儿进程，清理子进程中的僵尸进程。
 
@@ -48,7 +48,7 @@ LITE_USER_SEC_ENTRY VOID OsUserInit(VOID *args)
 用户态程序启动有如下常见方式：
 
 - shell命令启动进程。
-    
+  
   ```
   OHOS $ exec helloworld
   OHOS $ ./helloworld

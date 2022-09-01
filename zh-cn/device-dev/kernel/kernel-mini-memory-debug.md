@@ -15,7 +15,7 @@
 
 - 碎片率：衡量内存池的碎片化程度，碎片率高表现为内存池剩余内存很多，但是最大空闲内存块很小，可以用公式（fragment=100-100\*最大空闲内存块大小/剩余内存大小）来度量；
 
-- 其他参数：通过调用接口（详见[内存管理](../kernel/kernel-mini-basic-memory-basic.md)章节接口说明），扫描内存池的节点信息，统计出相关信息。
+- 其他参数：通过调用接口（详见[内存管理](../kernel/kernel-mini-basic-memory.md)章节接口说明），扫描内存池的节点信息，统计出相关信息。
 
 
 ### 功能配置
@@ -30,7 +30,7 @@ LOSCFG_MEM_WATERLINE：开关宏，默认打开；若关闭这个功能，在tar
 
 关键结构体介绍：
 
-  
+
 ```
 typedef struct {
     UINT32 totalUsedSize;       // 内存池的内存使用量
@@ -63,7 +63,7 @@ typedef struct {
 #### 示例代码
 
   代码实现如下：
-  
+
 ```
 #include <stdio.h>
 #include <string.h>
@@ -110,7 +110,7 @@ int MemTest(void)
 
 编译运行输出的结果如下：
 
-  
+
 ```
 usage = 22, fragment = 3, maxFreeSize = 49056, totalFreeSize = 50132, waterLine = 1414
 ```
@@ -145,7 +145,7 @@ usage = 22, fragment = 3, maxFreeSize = 49056, totalFreeSize = 50132, waterLine 
 
 调用LOS_MemUsedNodeShow接口输出的节点信息格式如下：每1行为一个节点信息；第1列为节点地址，可以根据这个地址，使用GDB等手段查看节点完整信息；第2列为节点的大小，等于节点头大小+数据域大小；第3~5列为函数调用关系LR地址，可以根据这个值，结合汇编文件，查看该节点具体申请的位置。
 
-  
+
 ```
 node        size   LR[0]      LR[1]       LR[2]  
 0x10017320: 0x528 0x9b004eba  0x9b004f60  0x9b005002 
@@ -179,7 +179,7 @@ node        size   LR[0]      LR[1]       LR[2]
 
 代码实现如下：
 
-  
+
 ```
 #include <stdio.h>
 #include <string.h>
@@ -200,7 +200,7 @@ void MemLeakTest(void)
 
 编译运行输出log如下：
 
-  
+
 ```
 node         size   LR[0]       LR[1]       LR[2]   
 0x20001b04:  0x24   0x08001a10  0x080035ce  0x080028fc 
@@ -221,7 +221,7 @@ node         size   LR[0]       LR[1]       LR[2]
 
 对比两次log，差异如下，这些内存节点就是疑似泄漏的内存块：
 
-  
+
 ```
 0x20003ac4:  0x1d   0x08001458  0x080014e0  0x080041e6 
 0x20003ae0:  0x1d   0x080041ee  0x08000cc2  0x00000000 
@@ -229,7 +229,7 @@ node         size   LR[0]       LR[1]       LR[2]
 
 部分汇编文件如下:
 
-  
+
 ```
                 MemLeakTest:
   0x80041d4: 0xb510         PUSH     {R4, LR}
@@ -295,7 +295,7 @@ LOSCFG_BASE_MEM_NODE_INTEGRITY_CHECK：开关宏，默认关闭；若打开这�
 
 代码实现如下：
 
-  
+
 ```
 #include <stdio.h>
 #include <string.h>
@@ -318,7 +318,7 @@ void MemIntegrityTest(void)
 
 编译运行输出log如下：
 
-  
+
 ```
 [ERR][OsMemMagicCheckPrint], 2028, memory check error!
 memory used but magic num wrong, magic num = 0x00000000   /* 提示信息，检测到哪个字段被破坏了，用例构造了将下个节点的头4个字节清零，即魔鬼数字字段 */

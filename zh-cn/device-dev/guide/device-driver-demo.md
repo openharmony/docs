@@ -425,21 +425,23 @@ HDF_INIT(g_sampleI2cDriverEntry);
 
 ## 编译及烧录<a name="section164824754712"></a>
 
-1.  编辑Makefile，添加源文件：
+1. 编辑Makefile，添加源文件：
 
-    ```
-    include drivers/hdf/khdf/platform/platform.mk
-    
-    obj-y  += $(HDF_PLATFORM_FRAMEWORKS_ROOT)/src/i2c_core.o \
-              $(HDF_PLATFORM_FRAMEWORKS_ROOT)/src/i2c_if.o \
-              ./i2c_adapter.o \
-              ./i2c_sample.o
-    ```
+   ```
+   include drivers/hdf/khdf/platform/platform.mk
+   
+   obj-y  += $(HDF_PLATFORM_FRAMEWORKS_ROOT)/src/i2c_core.o \
+             $(HDF_PLATFORM_FRAMEWORKS_ROOT)/src/i2c_if.o \
+             ./i2c_adapter.o \
+             ./i2c_sample.o
+   ```
 
-    "./i2c\_sample.o"为本示例中在Makefile中追加的内容。
+   "./i2c\_sample.o"为本示例中在Makefile中追加的内容。
 
-2.  编译及烧录。
+2. 编译及烧录。
 
-    具体操作请参考[标准系统快速入门编译及烧录章节](../quick-start/quickstart-standard.md)。
+   - 安装包方式具体操作请参考标准系统快速入门[编译](../quick-start/quickstart-ide-standard-running-hi3516-build.md)和[烧录](../quick-start/quickstart-ide-standard-running-hi3516-burning.md)。
+
+   - IDE方式具体操作请参考标准系统快速入门[编译](../quick-start/quickstart-standard-running-hi3516-build.md)和[烧录](../quick-start/quickstart-standard-running-hi3516-burning.md)。
 
 

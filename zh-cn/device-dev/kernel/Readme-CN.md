@@ -61,7 +61,6 @@
             - [虚拟动态共享库](kernel-small-bundles-share.md)
             - [轻量级进程间通信](kernel-small-bundles-ipc.md)
             - 文件系统
-                - [文件系统概述](kernel-small-bundles-fs.md)
                 - [虚拟文件系统](kernel-small-bundles-fs-virtual.md)
                 - [支持的文件系统](kernel-small-bundles-fs-support.md)
                 - [适配新的文件系统](kernel-small-bundles-fs-new.md)

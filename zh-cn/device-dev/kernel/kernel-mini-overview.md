@@ -18,13 +18,13 @@ CPU体系架构分为通用架构定义和特定架构定义两层，通用架�
 
   **表1** CPU体系架构规则
 
-| 规则 | 通用体系架构层 | 特定体系架构层 | 
+| 规则 | 通用体系架构层 | 特定体系架构层 |
 | -------- | -------- | -------- |
-| 头文件位置 | arch/include | arch/&lt;arch&gt;/&lt;arch&gt;/&lt;toolchain&gt;/ | 
-| 头文件命名 | los_&lt;function&gt;.h | los_arch_&lt;function&gt;.h | 
-| 函数命名 | Halxxxx | Halxxxx | 
+| 头文件位置 | arch/include | arch/&lt;arch&gt;/&lt;arch&gt;/&lt;toolchain&gt;/ |
+| 头文件命名 | los_&lt;function&gt;.h | los_arch_&lt;function&gt;.h |
+| 函数命名 | Halxxxx | Halxxxx |
 
-LiteOS-M已经支持ARM Cortex-M3、ARM Cortex-M4、ARM Cortex-M7、ARM Cortex-M33、RISC-V等主流架构，如果需要扩展CPU体系架构，请参考[芯片架构适配点](../porting/porting-chip-kernel-overview.md#芯片架构适配点)。
+LiteOS-M已经支持ARM Cortex-M3、ARM Cortex-M4、ARM Cortex-M7、ARM Cortex-M33、RISC-V等主流架构。
 
 
 ## 运行机制
