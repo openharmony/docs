@@ -72,11 +72,11 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 ```js
 vibrator.vibrate({
-    'type': 'time',
-    'duration': 1000
+    type: 'time',
+    duration: 1000
 }, {
-   	'id': 0,
-    'usage': 'alarm'
+   	id: 0,
+    usage: 'alarm'
 }).then((result)=>{
     console.log("Promise returned to indicate a successful vibration");
 }).catch((error)=>{
@@ -193,11 +193,11 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallb
 
 ```js
 vibrator.vibrate({
-    'type':'time',
-    'duration':1000,
+    type:'time',
+    duration:1000,
 },{
-    'id':0,
-    'usage': 'alarm'
+    id:0,
+    usage: 'alarm'
 }, (error)=>{
     if(error){
         console.log(TAG + " fail, error.code:"+error.code+",error.message:"+error.message);
@@ -290,14 +290,14 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | VIBRATOR_STOP_MODE_TIME   | "time"   | 停止模式为duration模式的振动。即触发振动时参数类型为number，参数本身为振动持续时间的触发方式。 |
 | VIBRATOR_STOP_MODE_PRESET | "preset" | 停止模式为预置EffectId的振动。即触发振动时参数类型为EffectId，参数本身为马达振动效果的字符串的触发方式。 |
 
-## VibrateEffect
+## VibrateEffect<sup>9+</sup>
 
-| 类型                            | 说明               |
-| ------------------------------- | ------------------ |
-| [VibrateTime](#vibratetime)     | 马达振动时长。     |
-| [VibratePreset](#vibratepreset) | 马达预置振动类型。 |
+| 类型                            | 说明                           |
+| ------------------------------- | ------------------------------ |
+| [VibrateTime](#vibratetime)     | 按照指定持续时间触发马达振动。 |
+| [VibratePreset](#vibratepreset) | 按照预置振动类型触发马达振动。 |
 
-## VibrateTime
+## VibrateTime<sup>9+</sup>
 
 马达振动时长。
 
@@ -306,7 +306,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | type     | "time" | 按照指定持续时间触发马达振动。 |
 | duration | -      | 马达振动时长, 单位ms。         |
 
-## VibratePreset
+## VibratePreset<sup>9+</sup>
 
 马达预置振动类型。
 
@@ -316,7 +316,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | effectId | -        | 预置的振动效果ID。             |
 | count    | -        | 重复振动的次数。               |
 
-## VibrateAttribute
+## VibrateAttribute<sup>9+</sup>
 
 马达振动属性。
 
@@ -325,7 +325,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 | id    | 0      | 振动器id。     |
 | usage | -      | 马达振动场景。 |
 
-## Usage
+## Usage<sup>9+</sup>
 
 振动使用场景。
 
