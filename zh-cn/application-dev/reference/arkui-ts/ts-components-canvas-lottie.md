@@ -18,7 +18,10 @@ import lottie from '@ohos/lottieETS'
 ```
 
 > **说明：**
+>
 > 在Terminal窗口使用 `npm install @ohos/lottieETS` 命令下载Lottie。
+>
+> 安装ohos npm 三方包时，需要先执行`npm config set @ohos:registry=https://repo.harmonyos.com/npm/`设置仓库地址。
 
 
 ## lottie.loadAnimation
