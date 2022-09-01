@@ -1,10 +1,10 @@
 # Data Share Predicates
 
-You can use **DataSharePredicates** to specify conditions for [updating](js-apis-data-dataShare.md#update), [deleting](js-apis-data-dataShare.md#delete), and [querying](js-apis-data-dataShare.md#query) data with **DataShare**.
+You can use **DataSharePredicates** to specify conditions for [updating](js-apis-data-dataShare.md#update), [deleting](js-apis-data-dataShare.md#delete), and [querying](js-apis-data-dataShare.md#query) data when **DataShare** is used to manage data.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -13,11 +13,14 @@ You can use **DataSharePredicates** to specify conditions for [updating](js-apis
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ```
 
-## equalTo
+## DataSharePredicates
+Provides methods for setting different **DataSharePredicates** objects.
+
+### equalTo
 
 equalTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is equal to the specified value.
 
 Currently, only the relational database (RDB) and key-value database (KVDB, schema) support this **DataSharePredicates** object.
 
@@ -34,7 +37,7 @@ Currently, only the relational database (RDB) and key-value database (KVDB, sche
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -43,11 +46,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose")
 ```
 
-## notEqualTo
+### notEqualTo
 
 notEqualTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value not equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is not equal to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -64,7 +67,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -73,11 +76,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.notEqualTo("NAME", "Rose")
 ```
 
-## beginWrap
+### beginWrap
 
 beginWrap(): DataSharePredicates
 
-Adds a left parenthesis to this **DataSharePredicates**. Currently, only the RDB supports this **DataSharePredicates** object.
+Adds a left parenthesis to this **DataSharePredicates**.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -99,11 +104,13 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-## endWrap
+### endWrap
 
 endWrap(): DataSharePredicates
 
-Adds a right parenthesis to this **DataSharePredicates** object. Currently, only the RDB supports this **DataSharePredicates** object.
+Adds a right parenthesis to this **DataSharePredicates** object.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -125,7 +132,7 @@ predicates.equalTo("NAME", "lisi")
     .endWrap()
 ```
 
-## or
+### or
 
 or(): DataSharePredicates
 
@@ -150,7 +157,7 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("NAME", "Rose")
 ```
 
-## and
+### and
 
 and(): DataSharePredicates
 
@@ -175,11 +182,13 @@ predicates.equalTo("NAME", "lisi")
     .equalTo("SALARY", 200.5)
 ```
 
-## contains
+### contains
 
 contains(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the string that contains the specified value. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the data that contains the specified value.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -188,13 +197,13 @@ Sets a **DataSharePredicates** object to match the string that contains the spec
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
 | field  | string | Yes  | Column name in the database table.  |
-| value  | string | Yes  | Value contained in the string.|
+| value  | string | Yes  | Value to match.|
 
 **Return value**
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -203,11 +212,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.contains("NAME", "os")
 ```
 
-## beginsWith
+### beginsWith
 
 beginsWith(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match a string that starts with the specified value. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the data that begins with the specified value.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -216,13 +227,13 @@ Sets a **DataSharePredicates** object to match a string that starts with the spe
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Start value of the string.|
+| value  | string | Yes  | Start value to match.|
 
 **Return value**
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -231,11 +242,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.beginsWith("NAME", "os")
 ```
 
-## endsWith
+### endsWith
 
 endsWith(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match a string that ends with the specified value. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the data that ends with the specified value.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -244,13 +257,13 @@ Sets a **DataSharePredicates** object to match a string that ends with the speci
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | End value of the string.|
+| value  | string | Yes  | End value to match.|
 
 **Return value**
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -259,11 +272,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.endsWith("NAME", "os")
 ```
 
-## isNull
+### isNull
 
 isNull(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field whose value is null.
+Sets a **DataSharePredicates** object to match the data whose value is null.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -279,7 +292,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -288,11 +301,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.isNull("NAME")
 ```
 
-## isNotNull
+### isNotNull
 
 isNotNull(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field whose value is not null.
+Sets a **DataSharePredicates** object to match the data whose value is not null.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -308,7 +321,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -317,11 +330,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.isNotNull("NAME")
 ```
 
-## like
+### like
 
 like(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match a string that is similar to the specified value.
+Sets a **DataSharePredicates** object to match the data that is similar to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -338,7 +351,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -347,11 +360,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.like("NAME", "%os%")
 ```
 
-## unlike
+### unlike
 
 unlike(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match a string that is not similar to the specified value.
+Sets a **DataSharePredicates** object to match the data that is not not similar to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -368,7 +381,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -377,11 +390,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.unlike("NAME", "%os%")
 ```
 
-## glob
+### glob
 
 glob(field: string, value: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the specified string. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the specified string.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -396,7 +411,7 @@ Sets a **DataSharePredicates** object to match the specified string. Currently, 
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified string.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -405,11 +420,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.glob("NAME", "?h*g")
 ```
 
-## between
+### between
 
 between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value within the specified range. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the data that is within the specified range.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -425,7 +442,7 @@ Sets a **DataSharePredicates** object to match the field with data type **ValueT
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -434,11 +451,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.between("AGE", 10, 50)
 ```
 
-## notBetween
+### notBetween
 
 notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value out of the specified range. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the data that is out of the specified range.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -454,7 +473,7 @@ Sets a **DataSharePredicates** object to match the field with data type **ValueT
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -463,11 +482,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.notBetween("AGE", 10, 50)
 ```
 
-## greaterThan
+### greaterThan
 
 greaterThan(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value greater than the specified value.
+Sets a **DataSharePredicates** object to match the data that is greater than the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -484,7 +503,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -493,11 +512,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.greaterThan("AGE", 10)
 ```
 
-## lessThan
+### lessThan
 
 lessThan(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value less than the specified value.
+Sets a **DataSharePredicates** object to match the data that is less than the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -514,7 +533,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -523,11 +542,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.lessThan("AGE", 50)
 ```
 
-## greaterThanOrEqualTo
+### greaterThanOrEqualTo
 
 greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value greater than or equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is greater than or equal to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -544,7 +563,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -553,11 +572,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.greaterThanOrEqualTo("AGE", 10)
 ```
 
-## lessThanOrEqualTo
+### lessThanOrEqualTo
 
 lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **ValueType** and value less than or equal to the specified value.
+Sets a **DataSharePredicates** object to match the data that is less than or equal to the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -574,7 +593,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -583,11 +602,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.lessThanOrEqualTo("AGE", 50)
 ```
 
-## orderByAsc
+### orderByAsc
 
 orderByAsc(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object that sorts the values in a column in ascending order.
+Sets a **DataSharePredicates** object that sorts data in ascending order.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -603,7 +622,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -612,11 +631,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.orderByAsc("AGE")
 ```
 
-## orderByDesc
+### orderByDesc
 
 orderByDesc(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object that sorts the values in a column in descending order.
+Sets a **DataSharePredicates** object that sorts data in descending order.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -632,7 +651,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -641,11 +660,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.orderByDesc("AGE")
 ```
 
-## distinct
+### distinct
 
 distinct(): DataSharePredicates
 
-Sets a **DataSharePredicates** object to filter out duplicate records. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to filter out duplicate data records.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -653,7 +674,7 @@ Sets a **DataSharePredicates** object to filter out duplicate records. Currently
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -662,7 +683,7 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose").distinct()
 ```
 
-## limit
+### limit
 
 limit(total: number, offset: number): DataSharePredicates
 
@@ -683,7 +704,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -692,11 +713,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "Rose").limit(10, 3)
 ```
 
-## groupBy
+### groupBy
 
 groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to group the records according to the specified parameters. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object group the records according to the specified fields.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -704,13 +727,13 @@ Sets a **DataSharePredicates** object to group the records according to the spec
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| fields | Array&lt;string&gt; | Yes  | Names of the columns to group.|
+| fields | Array&lt;string&gt; | Yes  | Names of the columns by which the records are grouped.|
 
 **Return value**
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -719,11 +742,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.groupBy(["AGE", "NAME"])
 ```
 
-## indexedBy
+### indexedBy
 
 indexedBy(field: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to specify the index column. Currently, only the RDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to list data by the specified index.
+
+Currently, only the RDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -737,7 +762,7 @@ Sets a **DataSharePredicates** object to specify the index column. Currently, on
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -746,11 +771,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.indexedBy("SALARY_INDEX")
 ```
 
-## in
+### in
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **Array<ValueType>** and value within the specified range.
+Sets a **DataSharePredicates** object to match the data that is within the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -761,13 +786,13 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name | Type            | Mandatory| Description                                   |
 | ------- | ---------------- | ---- | --------------------------------------- |
 | field   | string           | Yes| Column name in the database table.                     |
-| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | Yes  | Array of **ValueType**s to match.|
+| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
 
 **Return value**
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -776,11 +801,11 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.in("AGE", [18, 20])
 ```
 
-## notIn
+### notIn
 
 notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the field with data type **Array<ValueType>** and value out of the specified range.
+Sets a **DataSharePredicates** object to match the data that is not in the specified value.
 
 Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** object.
 
@@ -791,13 +816,13 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 | Name | Type            | Mandatory| Description                                   |
 | ------- | ---------------- | ---- | --------------------------------------- |
 | field   | string           | Yes  | Column name in the database table.                     |
-| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | Yes  | Array of **ValueType**s to match.|
+| value | Array&lt;[ValueType](js-apis-data-ValuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
 
 **Return value**
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -806,11 +831,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.notIn("NAME", ["Lisa", "Rose"])
 ```
 
-## prefixKey
+### prefixKey
 
 prefixKey(prefix: string): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match a field with the specified key prefix. Currently, only the KVDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the data with the specified key prefix.
+
+Currently, only the KVDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -824,7 +851,7 @@ Sets a **DataSharePredicates** object to match a field with the specified key pr
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
@@ -833,11 +860,13 @@ let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.prefixKey("NAME")
 ```
 
-## inKeys
+### inKeys
 
 inKeys(keys: Array&lt;string&gt;): DataSharePredicates
 
-Sets a **DataSharePredicates** object to match the fields whose keys are within the given range. Currently, only the KVDB supports this **DataSharePredicates** object.
+Sets a **DataSharePredicates** object to match the data whose keys are within the given range.
+
+Currently, only the KVDB supports this **DataSharePredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -851,7 +880,7 @@ Sets a **DataSharePredicates** object to match the fields whose keys are within 
 
 | Type                                       | Description                      |
 | ------------------------------------------- | -------------------------- |
-| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object that matches the specified field.|
+| [DataSharePredicates](#datasharepredicates) | **DataSharePredicates** object created.|
 
 **Example**
 
