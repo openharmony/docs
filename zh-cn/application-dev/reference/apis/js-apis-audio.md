@@ -335,8 +335,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称                             | 默认值 | 描述       |
-| --------------------------- ----| ------ | ---------- |
+| 名称                            | 默认值  | 描述                                              |
+| ------------------------------- | ------ | ------------------------------------------------- |
 | NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无 <br/>此接口为系统接口，三方应用不支持调用。        |
 | OUTPUT_DEVICES_FLAG             | 1      | 输出设备。 |
 | INPUT_DEVICES_FLAG              | 2      | 输入设备。 |
