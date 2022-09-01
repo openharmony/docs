@@ -33,8 +33,16 @@ Gauge(options:{value: number, min?: number, max?: number})
 | value       | number                                   | 0    | 设置当前数据图表的值。                 |
 | startAngle  | number                                    | -150 | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。 |
 | endAngle    | number                                    | 150  | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。 |
-| colors      | Array&lt;any&gt; | -    | 设置图表的颜色，支持分段颜色设置。       |
+| colors      | Array&lt;ColorStop&gt; | -    | 设置图表的颜色，支持分段颜色设置。       |
 | strokeWidth | [Length](ts-types.md#length)       | -    | 设置环形图表的环形厚度。                |
+
+## ColorStop
+
+颜色断点类型，用于描述渐进色颜色断点。
+
+| 名称      | 类型定义             | 描述                                                         |
+| --------- | -------------------- | ------------------------------------------------------------ |
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor8),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，第二个参数为0~1之间的比例值。 |
 
 
 ## 示例
