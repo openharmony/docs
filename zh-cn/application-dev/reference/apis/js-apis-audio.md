@@ -335,8 +335,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称                             | 默认值 | 描述       |
-| --------------------------- ----| ------ | ---------- |
+| 名称                            | 默认值  | 描述                                              |
+| ------------------------------- | ------ | ------------------------------------------------- |
 | NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无 <br/>此接口为系统接口，三方应用不支持调用。        |
 | OUTPUT_DEVICES_FLAG             | 1      | 输出设备。 |
 | INPUT_DEVICES_FLAG              | 2      | 输入设备。 |
@@ -488,6 +488,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## FocusType<sup>9+</sup>
 
 表示焦点类型的枚举。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：**: SystemCapability.Multimedia.Audio.Core
 
@@ -2916,7 +2918,6 @@ audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
 ```
-
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
@@ -4317,7 +4318,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: 'markReach', frame: number, callback: (position: number) => {}): void
+on(type: "markReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用。
 
@@ -4329,7 +4330,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :---------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。         |
-| callback | (position: number) => {} | 是   | 触发事件时调用的回调。                    |
+| callback | Callback<number>         | 是   | 触发事件时调用的回调。                    |
 
 **示例：**
 
@@ -4364,7 +4365,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: (position: number) => {}): void
+on(type: "periodReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -4376,7 +4377,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。           |
-| callback | (position: number) => {} | 是   | 触发事件时调用的回调。                      |
+| callback | Callback<number>         | 是   | 触发事件时调用的回调。                      |
 
 **示例：**
 
@@ -4943,7 +4944,7 @@ audioCapturer.getBufferSize().then((data) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: 'markReach', frame: number, callback: (position: number) => {}): void
+on(type: "markReach", frame: number, callback: Callback<number>): void
 
 订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发。
 
@@ -4955,7 +4956,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------  | :--- | :----------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | (position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调。 |
+| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调。 |
 
 **示例：**
 
@@ -4989,7 +4990,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: (position: number) => {}): void
+on(type: "periodReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -5001,7 +5002,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。            |
-| callback | (position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调    |
+| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调    |
 
 **示例：**
 
