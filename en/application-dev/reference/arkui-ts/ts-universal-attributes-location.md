@@ -1,8 +1,10 @@
 # Location
 
+The location attribute sets the alignment mode, layout direction, and position of a component.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -13,30 +15,23 @@ None
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment-enums) | Center | Alignment of the component content. This attribute is valid only when the values of **width** and **height** are greater than the size of the component content. |
-| direction | Direction | Auto | Horizontal layout of the component. For details about the options, see **Direction** enums. |
-| position | {<br/>x: Length,<br/>y: Length<br/>} | - | Offset of the component anchor point relative to the top start edge of the parent component. The offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing. |
-| markAnchor | {<br/>x: Length,<br/>y: Length<br/>} | {<br/>x: 0,<br/>y: 0<br/>} | Anchor point of the component for positioning. The top start edge of the component is used as the reference point for offset. |
-| offset | {<br/>x: Length,<br/>y: Length<br/>} | {<br/>x: 0,<br/>y: 0<br/>} | Coordinate offset of the relative layout. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing. |
-
-
-- Direction enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Ltr | Components are arranged from left to right. | 
-  | Rtl | Components are arranged from right to left. | 
-  | Auto | The default layout direction is used. | 
+| align | [Alignment](ts-appendix-enums.md#alignment) | Center | Alignment of the component content. This attribute is valid only when the values of **width** and **height** are greater than the size of the component content.|
+| direction | [Direction](ts-appendix-enums.md#direction) | Auto | Horizontal layout of the component. For details about the options, see **Direction** enums.|
+| position | {<br>x: Length,<br>y: Length<br>} | - | Offset of the component anchor point relative to the top start edge of the parent component. The offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
+| markAnchor | {<br>x: Length,<br>y: Length<br>} | {<br>x: 0,<br>y: 0<br>} | Anchor point of the component for positioning. The top start edge of the component is used as the reference point for offset.|
+| offset | {<br>x: Length,<br>y: Length<br>} | {<br>x: 0,<br>y: 0<br>} | Coordinate offset of the relative layout. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PositionExample {
+
   build() {
     Column() {
       Column({space: 10}) {
@@ -66,11 +61,12 @@ struct PositionExample {
 
 ![en-us_image_0000001212218456](figures/en-us_image_0000001212218456.gif)
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PositionExample2 {
+  
   build() {
     Column({ space: 20 }) {
       Text('position').fontSize(12).fontColor(0xCCCCCC).width('90%')
