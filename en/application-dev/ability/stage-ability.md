@@ -42,6 +42,7 @@ The table below describes the APIs provided by the `AbilityStage` class, which h
 The table below describes the APIs provided by the `Ability` class. For details about the APIs, see [Ability](../reference/apis/js-apis-application-ability.md).
 
 **Table 2** Ability APIs
+
 |API|Description|
 |:------|:------|
 |onCreate(want: Want, param: AbilityConstant.LaunchParam): void|Called when an ability is created.|
@@ -72,35 +73,35 @@ To create Page abilities for an application in the stage model, you must impleme
    ```
 4. Implement the lifecycle callbacks of the `Ability` class.
 
-   In the `onWindowStageCreate(windowStage)` API, use `loadContent` to set the application page to be loaded. For details about how to use the `Window` APIs, see [Window Development](../windowmanager/window-guidelines.md).
+   In the `onWindowStageCreate(windowStage)` API, use `loadContent` to set the application page to be loaded. For details about how to use the `Window` APIs, see [Window Development](../windowmanager/application-window-stage.md).
    ```ts
    export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-   
+
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-   
+
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-   
+
         windowStage.loadContent("pages/index").then((data) => {
-            console.log("MainAbility load content succeed with data: " + JSON.stringify(data))
+            console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: " + JSON.stringify(error))
         })
     }
-   
+
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-   
+
     onForeground() {
         console.log("MainAbility onForeground")
     }
-   
+
     onBackground() {
         console.log("MainAbility onBackground")
     }
@@ -108,6 +109,7 @@ To create Page abilities for an application in the stage model, you must impleme
    ```
 ### Obtaining AbilityStage and Ability Configurations
 Both the `AbilityStage` and `Ability` classes have the `context` attribute. An application can obtain the context of an `Ability` instance through `this.context` to obtain the configuration details. The following example shows how an application obtains the bundle code directory, HAP file name, ability name, and system language through the `context` attribute in the `AbilityStage` class. The sample code is as follows:
+
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
 export default class MyAbilityStage extends AbilityStage {
@@ -300,7 +302,7 @@ export default class MainAbility extends Ability {
 
 Obtain the `want` parameter that contains the page information from the custom component and process the route based on the URI.
 ```ts
-import router from '@system.router'
+import router from '@ohos.router'
 
 @Entry
 @Component
