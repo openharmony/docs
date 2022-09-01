@@ -67,7 +67,7 @@ httpRequest.request(
             console.info('cookies:' + data.cookies); // 8+
         } else {
             console.info('error:' + JSON.stringify(err));
-            // 当该请求使用完毕时，调用destroy方法主动销毁。
+            // 该请求不再使用，调用destroy方法主动销毁。
             httpRequest.destroy();
         }
     }
