@@ -157,12 +157,11 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
-
 getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 获取有关运行进程的信息。
+
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -187,6 +186,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
 > **说明：**
+>
 > 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
 
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
