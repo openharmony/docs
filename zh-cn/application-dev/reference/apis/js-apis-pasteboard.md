@@ -23,7 +23,6 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_WANT<sup>7+</sup>  | string   | 是   | 否   | Want内容的MIME类型定义。              |
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string   | 是   | 否   | 纯文本内容的MIME类型定义。            |
 | MIMETYPE_TEXT_URI<sup>7+</sup>   | string   | 是   | 否   | URI内容的MIME类型定义。               |
-| MIMETYPE_PIXELMAP<sup>9+</sup>   | string   | 是   | 否   | PixelMap内容的MIME类型定义。          |
 
 
 ## pasteboard.createPlainTextData
