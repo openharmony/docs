@@ -1302,7 +1302,7 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
 onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void)
 
-通知收到地理位置信息获取请求。
+通知用户收到地理位置信息获取请求。
 
 **参数：**
 
@@ -3228,7 +3228,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 | 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
 | -------- | -------- | ---- | ----- | ------------- |
 | origin   | string   | 是   | -     | 指定源的字符串索引。 |
-| callback | AsyncCallback\<boolean\> | 是 | - | 返回指定源的地理位置权限状态，获取成功，true表示已授权，false表示拒绝访问；获取失败，表示不存在指定源的权限状态。 |
+| callback | AsyncCallback\<boolean\> | 是 | - | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问；获取失败，表示不存在指定源的权限状态。 |
 
 **示例：**
   ```ts
