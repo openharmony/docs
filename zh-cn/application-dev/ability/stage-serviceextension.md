@@ -61,9 +61,9 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 
 2.注册ServiceExtensionAbility
 
-需要在应用配置文件module.json中进行注册，注册类型type需要设置为service。
+需要在应用配置文件module.json5中进行注册，注册类型type需要设置为service。
 
-**module.json配置样例**
+**module.json5配置样例**
 
 ```json
 "extensionAbilities":[{
@@ -72,6 +72,6 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
     "description": "service",
     "type": "service",
     "visible": true,
-    "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"    
+    "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
 }]
 ```
