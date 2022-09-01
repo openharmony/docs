@@ -285,14 +285,13 @@ export default class MainAbility extends Ability {
   onCreate(want) {    
     this.storage = new LocalStorage();
     this.storage.setOrCreate("storageSimpleProp",121);    
-    console.log("[Demo MainAbility onCreate]");    
-    globalThis.abilityWant = want;   
+    console.log("[Demo MainAbility onCreate]"); 
   }  
   onDestroy() {    
     console.log("[Demo MainAbility onDestroy]")  
   }    
   onWindowStageCreate(windowStage) {
-    windowStage.setUIContent(this.context,"pages/index",this.storage)    
+    windowStage.loadContent("pages/index",this.storage)    
   }    
   onWindowStageDestroy() {
     console.log("[Demo] MainAbility onWindoeStageDestroy")   
