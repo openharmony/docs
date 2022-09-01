@@ -9,11 +9,11 @@
 基于HDF（Hardware Driver Foundation）驱动框架开发的手势识别驱动，能够屏蔽硬件器件差异，为上层MSDP（Multimodal Sensor 
 Data Platform）服务层提供稳定的手势识别控制能力接口，包括手势识别使能/去使能、手势识别订阅/去订阅等。
 
-手势识别驱动框架如图1所示，上层为Framework层，提供MSDP服务，通过DAL层的Motion HDI Client与Motion HDI Server进行交互；而Motion HDI Server可调用Motion HDI实现类接口，从而实现上层服务的手势识别使能/去使能、手势识别订阅/去订阅等能力。
+手势识别驱动框架如图1所示，上层为Framework层，提供MSDP服务，通过UHDF（User Hardware Driver Foundation）层的Motion Proxy与Motion Stub进行交互；而Motion Stub可调用Motion HDI实现类接口，从而实现上层服务的手势识别使能/去使能、手势识别订阅/去订阅等能力。
 
 **图1** 手势识别驱动框架
 
-![1660105057660](figures/手势识别驱动框架.png)
+![1660105057660](figures/手势识别驱动框架图.png)
 
 ### 运作机制
 
