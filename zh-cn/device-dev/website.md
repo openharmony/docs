@@ -507,7 +507,7 @@
      - [编译构建指导](subsystems/subsys-build-all.md)
      - [构建系统编码规范与最佳实践](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
      - [编译构建Kconfig可视化配置指导](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
-     - 编译构建相关操作
+     - 编译构建参考
        - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
        - [产品配置规则](subsystems/subsys-build-product.md#产品配置规则)
        - [子系统配置规则](subsystems/subsys-build-subsystem.md#子系统配置规则)
@@ -601,7 +601,7 @@
      - [appspawn应用孵化组件](subsystems/subsys-boot-appspawn.md)
      - [bootstrap服务启动组件](subsystems/subsys-boot-bootstrap.md)
      - [常见问题](subsystems/subsys-boot-faqs.md)
-     - [参考](subsystems/subsys-boot-ref.md)
+     - [启动恢复参考](subsystems/subsys-boot-ref.md)
   -  DFX
      - [DFX概述](subsystems/subsys-dfx-overview.md)
      - [HiLog开发指导](subsystems/subsys-dfx-hilog-rich.md)
