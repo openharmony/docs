@@ -35,10 +35,10 @@ Checkbox( name?: string,  group?: string )
 
 ## 事件
 
-| 名称      | 功能描述 | 
+| 名称      | 功能描述 |
 | ----------| -------- |
-|onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。 | 
- 
+|onChange(callback: (value: boolean) => void) | 当选中状态发生变化时，触发该回调。<br>- value为true时，表示已选中。<br>- value为false时，表示未选中。 |
+
 ## 示例
 
 ```ts

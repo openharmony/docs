@@ -63,8 +63,8 @@ RenderingContextSettings(antialias?: boolean)
 @Entry
 @Component
 struct FillStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -93,8 +93,8 @@ struct FillStyleExample {
 @Entry
 @Component
 struct LineWidthExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -123,8 +123,8 @@ struct LineWidthExample {
 @Entry
 @Component
 struct StrokeStyleExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -155,8 +155,8 @@ struct StrokeStyleExample {
 @Entry
 @Component
 struct LineCapExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -189,8 +189,8 @@ struct LineCapExample {
 @Entry
 @Component
 struct LineJoinExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -224,8 +224,8 @@ struct LineJoinExample {
 @Entry
 @Component
 struct MiterLimit {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -259,8 +259,8 @@ struct MiterLimit {
 @Entry
 @Component
 struct Fonts {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -289,8 +289,8 @@ struct Fonts {
 @Entry
 @Component
 struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -334,8 +334,8 @@ struct CanvasExample {
 @Entry
 @Component
 struct TextBaseline {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -379,8 +379,8 @@ struct TextBaseline {
 @Entry
 @Component
 struct GlobalAlpha {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -412,8 +412,8 @@ struct GlobalAlpha {
 @Entry
 @Component
 struct LineDashOffset {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -457,8 +457,8 @@ struct LineDashOffset {
 @Entry
 @Component
 struct GlobalCompositeOperation {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -527,8 +527,8 @@ struct ShadowBlur {
 @Entry
 @Component
 struct ShadowColor {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -559,8 +559,8 @@ struct ShadowColor {
 @Entry
 @Component
 struct ShadowOffsetX {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -592,8 +592,8 @@ struct ShadowOffsetX {
 @Entry
 @Component
 struct ShadowOffsetY {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Canvas(this.context)
@@ -624,9 +624,9 @@ struct ShadowOffsetY {
 @Entry
 @Component
 struct ImageSmoothingEnabled {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg");
   
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -671,8 +671,8 @@ fillRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct FillRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -713,8 +713,8 @@ strokeRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct StrokeRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -754,8 +754,8 @@ clearRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct ClearRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -796,8 +796,8 @@ fillText(text: string, x: number, y: number): void
   @Entry
   @Component
   struct FillText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -837,8 +837,8 @@ strokeText(text: string, x: number, y: number): void
   @Entry
   @Component
   struct StrokeText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -886,8 +886,8 @@ measureText(text: string): TextMetrics
   @Entry
   @Component
   struct MeasureText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -926,8 +926,8 @@ stroke(path?: Path2D): void
   @Entry
   @Component
   struct Stroke {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -963,8 +963,8 @@ beginPath(): void
   @Entry
   @Component
   struct BeginPath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1008,8 +1008,8 @@ moveTo(x: number, y: number): void
   @Entry
   @Component
   struct MoveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1051,8 +1051,8 @@ lineTo(x: number, y: number): void
   @Entry
   @Component
   struct LineTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1088,8 +1088,8 @@ closePath(): void
   @Entry
   @Component
   struct ClosePath {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1133,9 +1133,9 @@ createPattern(image: ImageBitmap, repetition: string): void
   @Entry
   @Component
   struct CreatePattern {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1180,8 +1180,8 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   @Entry
   @Component
   struct BezierCurveTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1271,8 +1271,8 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
   @Entry
   @Component
   struct Arc {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1316,8 +1316,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
   @Entry
   @Component
   struct ArcTo {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1365,8 +1365,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1409,8 +1409,8 @@ rect(x: number, y: number, width: number, height: number): void
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1444,8 +1444,8 @@ fill(): void
   @Entry
   @Component
   struct Fill {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1479,8 +1479,8 @@ clip(): void
   @Entry
   @Component
   struct Clip {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1522,8 +1522,8 @@ rotate(rotate: number): void
   @Entry
   @Component
   struct Rotate {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1563,8 +1563,8 @@ scale(x: number, y: number): void
   @Entry
   @Component
   struct Scale {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1616,8 +1616,8 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   @Entry
   @Component
   struct Transform {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1667,8 +1667,8 @@ setTransfrom方法使用的参数和transform()方法相同，但setTransform()�
   @Entry
   @Component
   struct SetTransform {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1711,8 +1711,8 @@ translate(x: number, y: number): void
   @Entry
   @Component
   struct Translate {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1861,8 +1861,8 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX?: number, dirtyY?
   @Entry
   @Component
   struct PutImageData {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1902,8 +1902,8 @@ restore(): void
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1934,8 +1934,8 @@ save(): void
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -1974,8 +1974,8 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): void
   @Entry
   @Component
   struct CreateLinearGradient {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2023,8 +2023,8 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
   @Entry
   @Component
   struct CreateRadialGradient {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
