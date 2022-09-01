@@ -33,15 +33,15 @@ Image(src: string | PixelMap | Resource)
 
 **参数：**
 
-| 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
-| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| src  | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是    | -    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
+| 参数名 | 参数类型                                                     | 必填 | 默认值 | 参数描述                                                     |
+| ------ | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
+| src    | string\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)\|&nbsp;[Resource](ts-types.md#resource) | 是   | -      | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持该Image组件被跨包/跨模块调用，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`dataability://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。 |
 
 ## 属性
 
 | 名称                  | 参数类型                                                | 默认值   | 描述                                                         |
 | --------------------- | ------------------------------------------------------- | -------- | ------------------------------------------------------------ |
-| alt                   | string \| [Resource](../../ui/ts-types.md#resource类型) | -        | 加载时显示的占位图。支持本地图片和网络路径。                 |
+| alt                   | string \| [Resource](ts-types.md#resource) | -        | 加载时显示的占位图。支持本地图片和网络路径。                 |
 | objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                          | Cover    | 设置图片的缩放类型。                                         |
 | objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat枚举说明) | NoRepeat | 设置图片的重复样式。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
 | interpolation         | ImageInterpolation                                      | None     | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
@@ -49,7 +49,7 @@ Image(src: string | PixelMap | Resource)
 | sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -        | 设置图片解码尺寸，将原始图片解码成指定尺寸的图片，number类型单位为px。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
 | matchTextDirection     | boolean | false        | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。                 |
 | fitOriginalSize        | boolean | true        | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。                 |
-| fillColor              | [ResourceColor](../../ui/ts-types.md) | -    | 仅对svg图源生效，设置后会替换svg图片的fill颜色。                 |
+| fillColor              | [ResourceColor](ts-types.md#resourcecolor8) | -    | 仅对svg图源生效，设置后会替换svg图片的fill颜色。                 |
 | autoResize             | boolean | true        | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。           |
 | syncLoad<sup>8+</sup> | boolean                                                 | false    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。 |
 

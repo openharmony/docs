@@ -25,7 +25,7 @@ None
   | Name | Type | Description |
   | -------- | -------- | -------- |
   | type | [KeyType](#keytype-enums) | Type of a key. |
-  | [keyCode](../apis/js-apis-keycode.md) | number | Key code. |
+  | keyCode | number | Key code. |
   | keyText | string | Key value. |
   | keySource | [KeySource](#keysource-enums) | Type of the input device that triggers the key event. |
   | deviceId | number | ID of the input device that triggers the key event. |

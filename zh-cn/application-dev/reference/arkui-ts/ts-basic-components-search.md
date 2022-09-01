@@ -29,12 +29,12 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 ## 属性
 
-| 名称               | 参数类型                                  | 默认值  | 描述                    |
-| ---------------- | ------------------------------------- | ---- | --------------------- |
-| searchButton     | string                                | 无    | 搜索框末尾搜索按钮文本值，默认无搜索按钮。 |
-| placeholderColor | [ResourceColor](../../ui/ts-types.md) | -    | 设置placeholder颜色。      |
-| placeholderFont  | [Font](../../ui/ts-types.md)          | -    | 设置placeholder文本样式。    |
-| textFont         | [Font](../../ui/ts-types.md)          | -    | 设置搜索框内文本样式。           |
+| 名称             | 参数类型                                    | 默认值 | 描述                                       |
+| ---------------- | ------------------------------------------- | ------ | ------------------------------------------ |
+| searchButton     | string                                      | 无     | 搜索框末尾搜索按钮文本值，默认无搜索按钮。 |
+| placeholderColor | [ResourceColor](ts-types.md#resourcecolor8) | -      | 设置placeholder颜色。                      |
+| placeholderFont  | [Font](ts-types.md#font)                    | -      | 设置placeholder文本样式。                  |
+| textFont         | [Font](ts-types.md#font)                    | -      | 设置搜索框内文本样式。                     |
 
 ## 事件
 
@@ -74,29 +74,30 @@ caretPosition(value: number): void
 @Entry
 @Component
 struct SearchExample {
-  @State changevalue: string = ''
-  @State submitvalue: string = ''
+  @State changeValue: string = ''
+  @State submitValue: string = ''
   controller: SearchController = new SearchController()
 
   build() {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text(this.submitvalue)
-      Text(this.changevalue)
-      Search({value: '', placeholder: 'Type to search', controller: this.controller})
+      Text(this.submitValue)
+      Text(this.changeValue)
+      Search({value: this.changeValue, placeholder: 'Type to search', controller: this.controller})
         .searchButton('Search')
         .width(400)
         .height(35)
         .backgroundColor(Color.White)
         .placeholderColor(Color.Grey)
-        .placeholderFont({ size: 50, weight: 10, family: 'serif', style: FontStyle.Normal })
+        .placeholderFont({ size: 26, weight: 10, family: 'serif', style: FontStyle.Normal })
         .onSubmit((value: string) => {
-          this.submitvalue = value
+          this.submitValue = value
         })
         .onChange((value: string) => {
-          this.changevalue = value
+          this.changeValue = value
         })
-        .margin({ top: 30 })
+        .margin({ top: 30, left:10, right:10 })
     }
   }
 }
 ```
+![search](figures/search.png)

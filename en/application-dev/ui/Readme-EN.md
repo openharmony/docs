@@ -80,10 +80,9 @@
             - [Directory Structure](ts-framework-directory.md)
             - [Rules for Accessing Application Code Files](ts-framework-file-access-rules.md)
         - ["js" Tag](ts-framework-js-tag.md)
-        - Resource Access
-            - [Accessing Application Resources](ts-application-resource-access.md)
-            - [Accessing System Resources](ts-system-resource-access.md)
-            - [Media Resource Types](ts-media-resource-type.md)
+        - Resource Management
+            - [Resource File Categories](ui-ts-basic-resource-file-categories.md)
+            - [Accessing Resources](ts-resource-access.md)
         - [Pixel Units](ts-pixel-units.md)
         - [Types](ts-types.md)
     - Declarative Syntax

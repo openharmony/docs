@@ -4,7 +4,6 @@
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
 
 This subsystem offers various media services covering audio and video, which provide the following capabilities:
@@ -61,7 +60,7 @@ Creates a **VideoPlayer** instance in asynchronous mode. This API uses a callbac
 let videoPlayer
 
 media.createVideoPlayer((error, video) => {
-   if (typeof(video) != 'undefined') {
+   if (video != null) {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
@@ -90,7 +89,7 @@ Creates a **VideoPlayer** instance in asynchronous mode. This API uses a promise
 let videoPlayer
 
 media.createVideoPlayer().then((video) => {
-   if (typeof(video) != 'undefined') {
+   if (video != null) {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
@@ -106,7 +105,7 @@ media.createVideoPlayer().then((video) => {
 createAudioRecorder(): AudioRecorder
 
 Creates an **AudioRecorder** instance to control audio recording.
-Only one **AudioRecorder** instance can be created for a device.
+Only one **AudioRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -214,13 +213,13 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name       | Type                     | Readable| Writable| Description                                                        |
-| ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | Yes  | Yes  | Audio media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>4. HLS network playback: http://xx or https://xx<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
-| loop        | boolean                   | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
-| currentTime | number                    | Yes  | No  | Current audio playback position.                                        |
-| duration    | number                    | Yes  | No  | Audio duration.                                                  |
-| state       | [AudioState](#audiostate) | Yes  | No  | Audio playback state.                                            |
+| Name                           | Type                               | Readable| Writable| Description                                                        |
+| ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| src                             | string                              | Yes  | Yes  | Audio file URI. The mainstream audio formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**NOTE**<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| loop                            | boolean                             | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
+| currentTime                     | number                              | Yes  | No  | Current audio playback position.                      |
+| duration                        | number                              | Yes  | No  | Audio duration.                                |
+| state                           | [AudioState](#audiostate)           | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
 
 ### play<a name=audioplayer_play></a>
 
@@ -308,7 +307,7 @@ Seeks to the specified playback position.
 
 ```js
 audioPlayer.on('timeUpdate', (seekDoneTime) => {    // Set the 'timeUpdate' event callback.
-    if (typeof (seekDoneTime) == 'undefined') {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -381,7 +380,7 @@ function printfDescription(obj) {
 }
 
 audioPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
         }
@@ -417,7 +416,7 @@ function printfDescription(obj) {
 }
 
 audioPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         arrayDescription = arrlist;
     } else {
         console.log('audio getTrackDescription fail');
@@ -492,7 +491,7 @@ audioPlayer.on('reset', () => {               // Set the 'reset' event callback.
     audioPlayer = undefined;
 });
 audioPlayer.on('timeUpdate', (seekDoneTime) => {  // Set the 'timeUpdate' event callback.
-    if (typeof(seekDoneTime) == "undefined") {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -547,7 +546,7 @@ Subscribes to the 'timeUpdate' event.
 
 ```js
 audioPlayer.on('timeUpdate', (seekDoneTime) => {    // Set the 'timeUpdate' event callback.
-    if (typeof (seekDoneTime) == 'undefined') {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -560,7 +559,7 @@ audioPlayer.seek(30000); // Seek to 30000 ms.
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to the audio playback error event.
+Subscribes to audio playback error events.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -588,13 +587,13 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name              | Type  | Description          |
-| ------------------ | ------ | -------------- |
-| idle               | string | The audio player is idle.|
-| playing            | string | Audio playback is in progress.|
-| paused             | string | Audio playback is paused.|
-| stopped            | string | Audio playback is stopped.|
-| error<sup>8+</sup> | string | Audio playback is in the error state.    |
+| Name              | Type  | Description                                          |
+| ------------------ | ------ | ---------------------------------------------- |
+| idle               | string | No audio playback is in progress.|
+| playing            | string | Audio playback is in progress.          |
+| paused             | string | Audio playback is paused.         |
+| stopped            | string | Audio playback is stopped.     |
+| error<sup>8+</sup> | string | Audio playback is in the error state.                                    |
 
 ## VideoPlayer<sup>8+</sup>
 
@@ -608,13 +607,13 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD playback: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP network playback: http://xx<br>3. HTTPS network playback: https://xx<br>4. HLS network playback: http://xx or https://xx<br>**Note**:<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**NOTE**<br>To use media materials, you must declare the read permission. Otherwise, the media materials cannot be played properly.|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
-| currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                                        |
-| duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live streaming mode.                              |
+| currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position.                      |
+| duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration. The value **-1** indicates the live mode.            |
 | state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | Yes  | No  | Video playback state.                                            |
-| width<sup>8+</sup>       | number                             | Yes  | No  | Video width.                                                    |
-| height<sup>8+</sup>      | number                             | Yes  | No  | Video height.                                                    |
+| width<sup>8+</sup>       | number                             | Yes  | No  | Video width.                                  |
+| height<sup>8+</sup>      | number                             | Yes  | No  | Video height.                                  |
 
 ### setDisplaySurface<sup>8+</sup>
 
@@ -635,7 +634,7 @@ Sets **SurfaceId**. This API uses a callback to return the result.
 
 ```js
 videoPlayer.setDisplaySurface(surfaceId, (err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setDisplaySurface success!');
     } else {
         console.info('setDisplaySurface fail!');
@@ -691,7 +690,7 @@ Prepares for video playback. This API uses a callback to return the result.
 
 ```js
 videoPlayer.prepare((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('prepare success!');
     } else {
         console.info('prepare fail!');
@@ -741,7 +740,7 @@ Starts to play video resources. This API uses a callback to return the result.
 
 ```js
 videoPlayer.play((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('play success!');
     } else {
         console.info('play fail!');
@@ -791,7 +790,7 @@ Pauses video playback. This API uses a callback to return the result.
 
 ```js
 videoPlayer.pause((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('pause success!');
     } else {
         console.info('pause fail!');
@@ -841,7 +840,7 @@ Stops video playback. This API uses a callback to return the result.
 
 ```js
 videoPlayer.stop((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('stop success!');
     } else {
         console.info('stop fail!');
@@ -891,7 +890,7 @@ Switches the video resource to be played. This API uses a callback to return the
 
 ```js
 videoPlayer.reset((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('reset success!');
     } else {
         console.info('reset fail!');
@@ -942,7 +941,7 @@ Seeks to the specified playback position. The next key frame at the specified po
 
 ```js
 videoPlayer.seek((seekTime, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('seek success!');
     } else {
         console.info('seek fail!');
@@ -970,7 +969,7 @@ Seeks to the specified playback position. This API uses a callback to return the
 
 ```js
 videoPlayer.seek((seekTime, seekMode, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('seek success!');
     } else {
         console.info('seek fail!');
@@ -1034,7 +1033,7 @@ Sets the volume. This API uses a callback to return the result.
 
 ```js
 videoPlayer.setVolume((vol, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setVolume success!');
     } else {
         console.info('setVolume fail!');
@@ -1090,7 +1089,7 @@ Releases the video playback resource. This API uses a callback to return the res
 
 ```js
 videoPlayer.release((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('release success!');
     } else {
         console.info('release fail!');
@@ -1148,7 +1147,7 @@ function printfDescription(obj) {
 }
 
 videoPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
         }
@@ -1185,7 +1184,7 @@ function printfDescription(obj) {
 
 let arrayDescription;
 videoPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         arrayDescription = arrlist;
     } else {
         console.log('video getTrackDescription fail');
@@ -1217,7 +1216,7 @@ Sets the video playback speed. This API uses a callback to return the result.
 
 ```js
 videoPlayer.setSpeed((speed:number, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setSpeed success!');
     } else {
         console.info('setSpeed fail!');
@@ -1353,7 +1352,7 @@ videoPlayer.on('videoSizeChanged', (width, height) => {
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to the video playback error event.
+Subscribes to video playback error events.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1372,7 +1371,7 @@ videoPlayer.on('error', (error) => {      // Set the 'error' event callback.
     console.info(`video error called, errCode is ${error.code}`);      // Print the error code.
     console.info(`video error called, errMessage is ${error.message}`);// Print the detailed description of the error type.
 });
-videoPlayer.setVolume(3);  // Set volume to an invalid value to trigger the 'error' event.
+videoPlayer.setVolume(3);  //  Set volume to an invalid value to trigger the 'error' event.
 ```
 
 ## VideoPlayState<sup>8+</sup>
@@ -1438,7 +1437,7 @@ function printfItemDescription(obj, key) {
 }
 
 audioPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
         }
@@ -1656,7 +1655,7 @@ audioRecorder.prepare(audioRecorderConfig)                                      
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to the audio recording error event.
+Subscribes to audio recording error events.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -1692,7 +1691,7 @@ Describes audio recording configurations.
 | numberOfChannels      | number                                  | No  | Number of audio channels. The default value is **2**.                                 |
 | format<sup>(deprecated)</sup>                | [AudioOutputFormat](#audiooutputformat) | No  | Audio output format. The default value is **MPEG_4**.<br>**Note**: This parameter is deprecated since API version 8. Use **fileFormat** instead.                        |
 | location              | [Location](#location)                   | No  | Geographical location of the recorded audio.                                        |
-| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png)<br>The file must be created by the caller and granted with proper permissions.|
+| uri                   | string                                  | Yes  | Audio output URI. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) <br>The file must be created by the caller and granted with proper permissions.|
 | audioEncoderMime<sup>8+</sup>      | [CodecMimeType](#codecmimetype8)        | No  | Audio encoding format.          |
 | fileFormat<sup>8+</sup>      | [ContainerFormatType](#containerformattype8)        | No  | Audio encoding format.        |
 

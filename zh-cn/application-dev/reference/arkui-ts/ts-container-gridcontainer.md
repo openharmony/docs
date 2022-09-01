@@ -19,16 +19,16 @@
 
 ## 接口
 
-GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})
+GridContainer(options?: { columns?: number | auto, sizeType?: SizeType, gutter?: string|number, margin?: string|number})
 
 **参数：**
 
-| 参数名      | 类型                         | 必填   | 默认值           | 说明         |
-| -------- | -------------------------- | ---- | ------------- | ---------- |
-| columns  | number&nbsp;\|&nbsp;'auto' | 否    | 'auto'        | 设置当前布局总列数。 |
-| sizeType | SizeType                   | 否    | SizeType.Auto | 选用设备宽度类型。  |
-| gutter   | Length                     | 否    | -             | 栅格布局列间距。   |
-| margin   | Length                     | 否    | -             | 栅格布局两侧间距。  |
+| 参数名   | 类型                     | 必填 | 默认值        | 说明                 |
+| -------- | ------------------------ | ---- | ------------- | -------------------- |
+| columns  | number&nbsp;\|&nbsp;auto | 否   | auto          | 设置当前布局总列数。 |
+| sizeType | SizeType                 | 否   | SizeType.Auto | 选用设备宽度类型。   |
+| gutter   | Length                   | 否   | -             | 栅格布局列间距。     |
+| margin   | Length                   | 否   | -             | 栅格布局两侧间距。   |
 
 ## SizeType枚举说明
 

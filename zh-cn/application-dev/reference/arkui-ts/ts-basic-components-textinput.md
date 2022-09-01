@@ -19,14 +19,14 @@
 
 ## 接口
 
-TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
+TextInput(value?:{placeholder?: [ResourceStr](ts-types.md#resourcestr8), text?: [ResourceStr](ts-types.md#resourcestr8), controller?: TextInputController})
 
 **参数：**
 
 | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
 | ----------------------- | ---------------------------------------- | ---- | ---- | --------------- |
-| placeholder             | [ResourceStr](../../ui/ts-types.md)                                   | 否    | -    | 无输入时的提示文本。      |
-| text             | [ResourceStr](../../ui/ts-types.md)                                   | 否    | -    | 设置输入框当前的文本内容。     |
+| placeholder             | [ResourceStr](ts-types.md#resourcestr8)           | 否    | -    | 无输入时的提示文本。      |
+| text             | [ResourceStr](ts-types.md#resourcestr8)           | 否    | -    | 设置输入框当前的文本内容。     |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | -    | 设置TextInput控制器。 |
 
 ## 属性
@@ -36,13 +36,12 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                          | 参数类型                                                     | 默认值            | 描述                                                         |
 | ----------------------------- | ------------------------------------------------------------ | ----------------- | ------------------------------------------------------------ |
 | type                          | InputType                                                    | InputType.Normal  | 设置输入框类型。                                             |
-| placeholderColor              | [ResourceColor](../../ui/ts-types.md)                                 | -                 | 设置placeholder颜色。                                 |
-| placeholderFont               | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | -                 | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
+| placeholderColor              | [ResourceColor](ts-types.md#resourcecolor8)       | -                 | 设置placeholder颜色。                                 |
+| placeholderFont               | [Font](ts-types.md#font) | -                 | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
 | enterKeyType                  | EnterKeyType                                                 | EnterKeyType.Done | 设置输入法回车键类型。                                       |
-| caretColor                    | [ResourceColor](../../ui/ts-types.md)                  | -                 | 设置输入框光标颜色。                                         |
+| caretColor                    | [ResourceColor](ts-types.md#resourcecolor8) | -                 | 设置输入框光标颜色。                                         |
 | maxLength                     | number                                                       | -                 | 设置文本的最大输入字符数。                                   |
-| inputFilter<sup>8+</sup>      | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | -     | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
-| showPasswordIcon<sup>9+</sup> | boolean                                                      | true              | 密码输入模式时，密码框末尾的图标是否显示。                   |
+| inputFilter<sup>8+</sup>      | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr8)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | -     | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 
 ## EnterKeyType枚举说明
 

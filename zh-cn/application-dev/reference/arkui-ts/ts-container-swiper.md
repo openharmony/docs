@@ -1,10 +1,12 @@
 # Swiper
-
 滑动容器，提供切换子组件显示的能力。
 
 > **说明：**
 >
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+
+
 
 ## 权限列表
 
@@ -18,13 +20,14 @@
 
 ## 接口
 
-Swiper(value:{controller?: SwiperController})
+Swiper(value?:{controller?: SwiperController})
 
-**参数：**
+**参数：** 
 
-| 参数名        | 参数类型                                  | 必填   | 默认值  | 参数描述                 |
-| ---------- | ------------------------------------- | ---- | ---- | -------------------- |
-| controller | [SwiperController](#swipercontroller) | 否    | null | 给组件绑定一个控制器，用来控制组件翻页。 |
+  | 参数名        | 参数类型                           | 必填  | 参数描述                 |
+  | ---------- | ------------------------------------- | ---- | -------------------- |
+  | controller | [SwiperController](#swipercontroller) | 否   | 给组件绑定一个控制器，用来控制组件翻页。<br/>默认值：null |
+
 
 ## 属性
 
@@ -39,52 +42,76 @@ Swiper(value:{controller?: SwiperController})
 | loop                        | boolean                                  | true       | 是否开启循环。<br> 设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。 |
 | duration                    | number                                   | 400        | 子组件切换的动画时长，单位为毫秒。                        |
 | vertical                    | boolean                                  | false      | 是否为纵向滑动。                                 |
-| itemSpace                   | Length                                   | 0          | 设置子组件与子组件之间间隙。                           |
+| itemSpace                   | number \| string                    | 0          | 设置子组件与子组件之间间隙。                           |
 | displayMode                 | SwiperDisplayMode                        | SwiperDisplayMode.Stretch          | 设置子组件显示模式。                           |
 | cachedCount<sup>8+</sup>    | number                                   | 1          | 设置预加载子组件个数。                              |
 | disableSwipe<sup>8+</sup>   | boolean                                  | false      | 禁用组件滑动切换功能。                              |
 | displayCount<sup>8+</sup>   | number&nbsp;\|&nbsp;string               | 1          | 设置一页中显示子组件的个数，设置为“auto”时等同于SwiperDisplayMode.AutoLinear的显示效果。                           |
 | effectMode<sup>8+</sup>     | EdgeEffect                               | EdgeEffect.Spring          | 设置滑动到边缘时的显示效果。                           |
-| curve<sup>8+</sup>          | [Curve](ts-animatorproperty.md#Curve枚举说明) \| Curves | Curve.Ease | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-animatorproperty.md#Curve枚举说明)，也可以通过插值计算模块提供的接口创建自定义的Curves([插值曲线对象](ts-interpolation-calculation.md))。 |
-| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;Length,<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>size?:&nbsp;Length,<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md),<br/>selectedColor?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | -      | 设置indicator样式：<br/>-&nbsp;left:&nbsp;设置导航点距离Swiper组件左边的距离。<br/>-&nbsp;top:&nbsp;设置导航点距离Swiper组件顶部的距离。<br/>-&nbsp;right:&nbsp;设置导航点距离Swiper组件右边的距离。<br/>-&nbsp;bottom:&nbsp;设置导航点距离Swiper组件底部的距离。<br/>-&nbsp;size:&nbsp;设置导航点的直径。<br/>-&nbsp;mask:&nbsp;设置是否显示导航点蒙层样式。<br/>-&nbsp;color:&nbsp;设置导航点的颜色。<br/>-&nbsp;selectedColor:&nbsp;设置选中的导航点的颜色。 |
+| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve) \| string | Curve.Ease | 设置Swiper的动画曲线，默认为淡入淡出曲线，常用曲线参考[Curve枚举说明](ts-appendix-enums.md#curve)，也可以通过插值计算模块提供的接口创建自定义的Curves([插值曲线对象](ts-interpolation-calculation.md))。 |
+| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;[Length](ts-types.md#length),<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>size?:&nbsp;[Length](ts-types.md#length),<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8),<br/>selectedColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | -      | 设置indicator样式：<br/>-&nbsp;left:&nbsp;设置导航点距离Swiper组件左边的距离。<br/>-&nbsp;top:&nbsp;设置导航点距离Swiper组件顶部的距离。<br/>-&nbsp;right:&nbsp;设置导航点距离Swiper组件右边的距离。<br/>-&nbsp;bottom:&nbsp;设置导航点距离Swiper组件底部的距离。<br/>-&nbsp;size:&nbsp;设置导航点的直径。<br/>-&nbsp;mask:&nbsp;设置是否显示导航点蒙层样式。<br/>-&nbsp;color:&nbsp;设置导航点的颜色。<br/>-&nbsp;selectedColor:&nbsp;设置选中的导航点的颜色。 |
+## SwiperDisplayMode枚举说明
+  
+  | 名称 | 描述 |
+  | ----------- | ------------------------------------------ |
+  | Stretch     | Swiper滑动一页的宽度为Swiper组件自身的宽度。|
+  | AutoLinear  | Swiper滑动一页的宽度为子组件宽度中的最大值。| 
 
+## EdgeEffect枚举说明
+  
+  | 名称   | 描述                                                                      | 
+  | ------ | ------------------------------------------------------------------------- |
+  | Spring | 弹性物理动效，滑动到边缘后可以通过触摸事件继续滑动一段距离，松手后回弹。    |
+  | Fade   | 滑动到边缘后，可以通过触摸事件继续滑动一段阴影，松手后阴影回弹。            |
+  | None   | 滑动到边缘后无效果。                                                      |
 
 ## SwiperController
 
 Swiper容器组件的控制器，可以将此对象绑定至Swiper组件，然后通过它控制翻页。
 
-| 接口名称                | 功能描述   |
-| ------------------- | ------ |
-| showNext()     | 翻至下一页。 |
-| showPrevious() | 翻至上一页。 |
-| finishAnimation(callback?: () => void) | 停止Swiper动画。 |
+### showNext
 
-## SwiperDisplayMode枚举说明
+showNext(): void
 
-| 名称     | 描述                                       |
-| ------   | ---------------------------------------- |
-| Stretch  |  Swiper滑动一页的宽度为Swiper组件自身的宽度。     |
-| AutoLinear  |   Swiper滑动一页的宽度为子组件宽度中的最大值。     |
+翻至下一页。
 
-## EdgeEffect枚举说明
+### showPrevious
 
-| 名称     | 描述                                       |
-| ------ | ---------------------------------------- |
-| Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
-| Fade   | 阴影效果，滑动到边缘后会有圆弧状的阴影。          |
-| None   | 滑动到边缘后无效果。                               |
+showPrevious(): void
 
+翻至上一页。
+
+### finishAnimation
+
+finishAnimation(callback?: () => void): void
+
+停止播放动画。
+
+**参数：**
+
+| 参数名    | 参数类型   | 必填项 | 参数描述 |
+| --------- | ---------- | ------ | -------- |
+| callback  | () => void | 是     | 动画结束的回调。 |
 
 ## 事件
 
-| 名称                                       | 功能描述               |
-| ---------------------------------------- | ------------------ |
-| onChange(event: (index: number) => void) | 当前显示的子组件索引变化时触发该事件,返回值为当前显示的子组件的索引值。 |
+### onChange
+
+onChange(&nbsp;index:&nbsp;number)&nbsp;=&gt;&nbsp;void
+
+当前显示的组件索引变化时触发该事件。
+
+**参数：**
+
+| 参数名    | 参数类型   | 必填项 | 参数描述 |
+| --------- | ---------- | ------ | -------- |
+| index     | number     | 是     | 当前显示元素的索引。 |
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 class MyDataSource implements IDataSource {
   private list: number[] = []
   private listener: DataChangeListener

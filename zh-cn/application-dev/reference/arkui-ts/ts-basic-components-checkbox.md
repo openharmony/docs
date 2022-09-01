@@ -16,7 +16,7 @@
 
 ## 接口
 
-Checkbox( name?: string,  group?: string )
+Checkbox( options?: {name?: string,  group?: string} )
 
 **参数：** 
 
@@ -30,7 +30,7 @@ Checkbox( name?: string,  group?: string )
 | 名称            | 参数类型  | 默认值   | 描述           |
 | ------------- | ----- | ----- | ------------ |
 | select        | boolean  | false | 设置多选框是否选中。   |
-| selectedColor | [ResourceColor](../../ui/ts-types.md) | -     | 设置多选框选中状态颜色。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor8) | -     | 设置多选框选中状态颜色。 |
 
 ## 事件
 

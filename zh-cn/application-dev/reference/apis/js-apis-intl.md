@@ -1,14 +1,17 @@
 # 国际化-Intl
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+ 本模块提供提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
+[I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
+
+>  **说明：**
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - Intl模块包含国际化能力基础接口（在ECMA 402中定义）。
+> - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
 
 
 ## 导入模块
 
-```
+```js
 import Intl from '@ohos.intl';
 ```
 
@@ -43,7 +46,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```
+  ```js
   var locale = new Intl.Locale();
   ```
 
@@ -63,7 +66,7 @@ constructor(locale: string, options?: LocaleOptions)
 | options | LocaleOptions | 否    | 用于创建区域对象的选项。                 |
 
 **示例：** 
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   ```
 
@@ -82,7 +85,7 @@ toString(): string
 | string | 字符串形式的区域信息。 |
 
 **示例：** 
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   locale.toString();
   ```
@@ -102,7 +105,7 @@ maximize(): Locale
 | [Locale](#locale) | 最大化后的区域对象。 |
 
 **示例：** 
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   locale.maximize();
   ```
@@ -122,7 +125,7 @@ minimize(): Locale
 | [Locale](#locale) | 最小化后的区域对象。 |
 
 **示例：** 
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   locale.minimize();
   ```
@@ -132,7 +135,7 @@ minimize(): Locale
 
 表示区域初始化选项。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称              | 参数类型    | 可读   | 可写   | 说明                                       |
 | --------------- | ------- | ---- | ---- | ---------------------------------------- |
@@ -156,7 +159,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```
+  ```js
   var datefmt= new Intl.DateTimeFormat();
   ```
 
@@ -176,13 +179,13 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | options | [DateTimeOptions](#datetimeoptions) | 否    | 用于创建时间日期格式化的选项。              |
 
 **示例：** 
-  ```
+  ```js
   var datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **示例：** 
-  ```
+  ```js
   var datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
@@ -206,7 +209,7 @@ format(date: Date): string
 | string | 格式化后的时间日期字符串 |
 
 **示例：** 
-  ```
+  ```js
   var date = new Date(2021, 11, 17, 3, 24, 0);
   var datefmt = new Intl.DateTimeFormat("en-GB");
   datefmt.format(date);
@@ -233,7 +236,7 @@ formatRange(startDate: Date, endDate: Date): string
 | string | 格式化后的时间日期段字符串。 |
 
 **示例：** 
-  ```
+  ```js
   var startDate = new Date(2021, 11, 17, 3, 24, 0);
   var endDate = new Date(2021, 11, 18, 3, 24, 0);
   var datefmt = new Intl.DateTimeFormat("en-GB");
@@ -255,7 +258,7 @@ resolvedOptions(): DateTimeOptions
 | [DateTimeOptions](#datetimeoptions) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
-  ```
+  ```js
   var datefmt = new Intl.DateTimeFormat("en-GB");
   datefmt.resolvedOptions();
   ```
@@ -265,7 +268,7 @@ resolvedOptions(): DateTimeOptions
 
 表示时间日期格式化选项。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称              | 参数类型    | 可读   | 可写   | 说明                                       |
 | --------------- | ------- | ---- | ---- | ---------------------------------------- |
@@ -302,7 +305,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat();
   ```
 
@@ -322,7 +325,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | options | [NumberOptions](#numberoptions) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
 
@@ -347,7 +350,7 @@ format(number: number): string;
 
 
 **示例：** 
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   numfmt.format(1223);
   ```
@@ -368,7 +371,7 @@ resolvedOptions(): NumberOptions
 
 
 **示例：** 
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   numfmt.resolvedOptions();
   ```
@@ -388,7 +391,7 @@ resolvedOptions(): NumberOptions
 | currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
 | unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-| unitUsage<sup>8+</sup>                | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
+| unitUsage<sup>8+</sup>   | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
 | signDisplay              | string  | 是    | 是    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。 |
 | compactDisplay           | string  | 是    | 是    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。      |
 | notation                 | string  | 是    | 是    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。 |
@@ -415,7 +418,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```
+  ```js
   var collator = new Intl.Collator();
   ```
 
@@ -436,7 +439,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | options | [CollatorOptions](#collatoroptions) | 否    | 用于创建排序对象的选项。                 |
 
 **示例：** 
-  ```
+  ```js
   var collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
 
@@ -461,7 +464,7 @@ compare(first: string, second: string): number
 | number | 比较结果。当number为负数，表示first排序在second之前；当number为0，表示first与second排序相同；当number为正数，表示first排序在second之后。 |
 
 **示例：** 
-  ```
+  ```js
   var collator = new Intl.Collator("zh-Hans");
   collator.compare("first", "second");
   ```
@@ -481,17 +484,17 @@ resolvedOptions(): CollatorOptions
 | [CollatorOptions](#collatoroptions) | 返回的Collator对象的属性。 |
 
 **示例：** 
-  ```
+  ```js
   var collator = new Intl.Collator("zh-Hans");
   var options = collator.resolvedOptions();
   ```
 
 
-## CollatorOptions<sup>8+</sup><a name=collatoroptions></a>
+## CollatorOptions<sup>8+</sup>
 
 表示Collator可设置的属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称                | 参数类型    | 可读   | 可写   | 说明                                       |
 | ----------------- | ------- | ---- | ---- | ---------------------------------------- |
@@ -516,7 +519,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```
+  ```js
   var pluralRules = new Intl.PluralRules();
   ```
 
@@ -536,8 +539,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | options | [PluralRulesOptions](#pluralrulesoptions) | 否    | 用于创建单复数对象的选项。                |
 
 **示例：** 
-  ```
-  var pluralRules= new Intl.PluraRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
+  ```js
+  var pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
 
@@ -560,17 +563,17 @@ select(n: number): string
 | string | 单复数类别，取值包括："zero"，"one"，"two",&nbsp;"few",&nbsp;"many",&nbsp;"others"。 |
 
 **示例：** 
-  ```
+  ```js
   var pluralRules = new Intl.PluralRules("zh-Hans");
   pluralRules.select(1);
   ```
 
 
-## PluralRulesOptions<sup>8+</sup><a name=pluralrulesoptions></a>
+## PluralRulesOptions<sup>8+</sup>
 
 表示PluralRules对象可设置的属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称                       | 参数类型   | 可读   | 可写   | 说明                                       |
 | ------------------------ | ------ | ---- | ---- | ---------------------------------------- |
@@ -595,7 +598,7 @@ constructor()
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
-  ```
+  ```js
   var relativetimefmt = new Intl.RelativeTimeFormat();
   ```
 
@@ -615,7 +618,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | options | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
-  ```
+  ```js
   var relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
 
@@ -640,7 +643,7 @@ format(value: number, unit: string): string
 | string | 格式化后的相对时间。 |
 
 **示例：** 
-  ```
+  ```js
   var relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
   relativetimefmt.format(3, "quarter")
   ```
@@ -666,7 +669,7 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 | Array&lt;object&gt; | 返回可用于自定义区域设置格式的相对时间格式的对象数组。 |
 
 **示例：** 
-  ```
+  ```js
   var relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
   var parts = relativetimefmt.format(10, "seconds");
   ```
@@ -686,17 +689,17 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions) | RelativeTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
-  ```
+  ```js
   var relativetimefmt= new Intl.RelativeTimeFormat("en-GB");
   relativetimefmt.resolvedOptions();
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>8+</sup><a name=relativetimeformatinputoptions></a>
+## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称            | 参数类型   | 可读   | 可写   | 说明                                       |
 | ------------- | ------ | ---- | ---- | ---------------------------------------- |
@@ -705,11 +708,11 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 | style         | string | 是    | 是    | 国际化消息的长度，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
 
 
-## RelativeTimeFormatResolvedOptions<sup>8+</sup><a name=relativetimeformatresolvedoptions></a>
+## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 | 名称              | 参数类型   | 可读   | 可写   | 说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |

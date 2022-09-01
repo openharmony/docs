@@ -1,6 +1,9 @@
 # Accessibility
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+The **Accessibility** module implements the accessibility functions, including obtaining the accessibility application list, accessibility application enabled status, and captions configuration.
+
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -13,7 +16,7 @@ import accessibility from '@ohos.accessibility';
 
 Enumerates the states of an accessibility application.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -25,7 +28,7 @@ Enumerates the states of an accessibility application.
 
 Enumerates the types of accessibility applications.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -34,12 +37,13 @@ Enumerates the types of accessibility applications.
 | haptic | The accessibility application provides haptic feedback.|
 | spoken  | The accessibility application provides spoken feedback.|
 | visual | The accessibility application provides visual feedback.|
+| all<sup>9+</sup> | All the preceding types.|
 
 ## AccessibilityAbilityInfo
 
 Provides information about an accessibility application.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 ### Attributes
 
@@ -48,6 +52,7 @@ Provides information about an accessibility application.
 | id | number | Yes| No| Ability ID.|
 | name | string | Yes| No| Ability name.|
 | bundleName | string | Yes| No| Bundle name.|
+| targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | Yes| No| Name of the target bundle.|
 | abilityTypes | Array&lt;[AbilityType](#abilitytype)&gt; | Yes| No| Accessibility application type.|
 | capabilities | Array&lt;[Capability](#capability)&gt; | Yes| No| Capabilities list of the accessibility application.|
 | description | string | Yes| No| Description of the accessibility application.|
@@ -57,7 +62,7 @@ Provides information about an accessibility application.
 
 Describes the target action supported by an accessibility application.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -82,7 +87,7 @@ Describes the target action supported by an accessibility application.
 
 Enumerates the capabilities of an auxiliary application.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -94,9 +99,9 @@ Enumerates the capabilities of an auxiliary application.
 
 ## CaptionsFontEdgeType<sup>8+</sup>
 
-Enumerates the caption font edge type.
+Enumerates the font edge types of captions.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
 | Name| Description|
 | -------- | -------- |
@@ -108,9 +113,9 @@ Enumerates the caption font edge type.
 
 ## CaptionsFontFamily<sup>8+</sup>
 
-Enumerates the caption font families.
+Enumerates the font families of captions.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
 | Name| Description|
 | -------- | -------- |
@@ -125,50 +130,49 @@ Enumerates the caption font families.
 
 ## CaptionsStyle<sup>8+</sup>
 
-Describes the caption style.
+Describes the style of captions.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| fontFamily | [CaptionsFontFamily](#captionsfontfamily8) | Yes| No| Font family of the captions.|
-| fontScale | number | Yes| No| Font scale of the captions.|
-| fontColor | number \| string | Yes| No| Font color of the captions.|
-| fontEdgeType | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes| No| Font edge type of the captions.|
-| backgroundColor | number \| string | Yes| No| Background color of the captions.|
-| windowColor | number \| string | Yes| No| Window color of the captions.|
+| fontFamily | [CaptionsFontFamily](#captionsfontfamily8) | Yes| No| Font family of captions.|
+| fontScale | number | Yes| No| Font scale of captions.|
+| fontColor | number \| string | Yes| No| Font color of captions.|
+| fontEdgeType | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes| No| Font edge type of captions.|
+| backgroundColor | number \| string | Yes| No| Background color of captions.|
+| windowColor | number \| string | Yes| No| Window color of captions.|
 
 ## CaptionsManager<sup>8+</sup>
 
-Implements caption configuration management.
+Implements configuration management for captions.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
 ### Attributes
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| enabled | boolean | Yes| No| Whether to enable caption configuration.|
-| style | [CaptionsStyle](#captionsstyle8) | Yes| No| Caption style.|
+| enabled | boolean | Yes| No| Whether to enable captions configuration.|
+| style | [CaptionsStyle](#captionsstyle8) | Yes| No| Style of captions.|
 
 ### Methods
 
-In the following API examples, you must first use the [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8) method to obtain a **captionsManager** instance, and then call the methods using the obtained instance.
-
+In the following API examples, you must first use the [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8) API to obtain a **captionsManager** instance, and then call the methods using the obtained instance.
 #### on('enableChange')
 
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
-Enables listening for enable status changes of caption configuration.
-
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+Enables listening for enabled status changes of captions configuration.
 
 - **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to listen for, which is set to **enableChange** in this API.|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enable status of caption configuration changes.|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enabled status of captions configuration changes.|
 
-- Example
+- **Example**
 
   ```typescript
   captionsManager.on('enableChange',(data) => {
@@ -180,18 +184,16 @@ Enables listening for enable status changes of caption configuration.
 
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
-Enables listening for caption style changes.
-
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+Enables listening for captions style changes.
 
 - **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to listen for, which is set to **styleChange** in this API.|
-  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes| Callback invoked when the caption style changes.|
+  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes| Callback invoked when the style of captions changes.|
 
-- Example
+- **Example**
 
   ```typescript
   captionsManager.on('styleChange',(data) => {
@@ -203,18 +205,16 @@ Enables listening for caption style changes.
 
 off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
-Disables listening for enable status changes of caption configuration.
-
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+Disables listening for enabled status changes of captions configuration.
 
 - **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to listen for, which is set to **enableChange** in this API.|
-  | callback | Callback&lt;boolean&gt; | No| Callback invoked when the enable status of caption configuration changes.|
+  | callback | Callback&lt;boolean&gt; | No| Callback invoked when the enabled status of captions configuration changes.|
 
-- Example
+- **Example**
 
   ```typescript
   captionsManager.off('enableChange')
@@ -224,18 +224,16 @@ Disables listening for enable status changes of caption configuration.
 
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
-Disables listening for caption style changes.s is removed.
-
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+Disables listening for captions style changes.
 
 - **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to listen for, which is set to **styleChange** in this API.|
-  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No| Callback invoked when the caption style changes.|
+  | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No| Callback invoked when the style of captions changes.|
 
-- Example
+- **Example**
 
   ```typescript
   captionsManager.off('styleChange')
@@ -245,7 +243,7 @@ Disables listening for caption style changes.s is removed.
 
 Describes a GUI change event.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 ### Attributes
 
@@ -270,7 +268,7 @@ Describes a GUI change event.
 
 Enumerates accessibility event types.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -290,7 +288,7 @@ Enumerates accessibility event types.
 
 Enumerates the movement units for traversing the node text.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -304,7 +302,7 @@ Enumerates the movement units for traversing the node text.
 
 Enumerates window update types.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name| Description|
 | -------- | -------- |
@@ -326,7 +324,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 
 Obtains the accessibility application list. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 - **Parameters**
 
@@ -335,13 +333,13 @@ Obtains the accessibility application list. This API uses a promise to return th
   | abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
   | stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
 
-- Return value
+- **Return value**
 
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise used to return the accessibility application list.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.getAbilityLists("spoken", "enable")
@@ -369,7 +367,7 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 
 Obtains the accessibility application list. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 - **Parameters**
 
@@ -379,7 +377,7 @@ Obtains the accessibility application list. This API uses an asynchronous callba
   | stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
   | callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes| Callback used to return the accessibility application list.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.getAbilityLists("visual", "enable", (err, data) => {
@@ -406,17 +404,17 @@ Obtains the accessibility application list. This API uses an asynchronous callba
 
 getCaptionsManager(): CaptionsManager
 
-Obtains the accessibility caption configuration.
+Obtains the captions configuration.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Hearing
+**System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-- Return value
+- **Return value**
 
   | Type| Description|
   | -------- | -------- |
-  | [CaptionsManager](#captionsmanager8) | Accessibility caption configuration.|
+  | [CaptionsManager](#captionsmanager8) | Captions configuration.|
 
-- Example
+- **Example**
 
   ```typescript
   captionsManager = accessibility.getCaptionsManager()
@@ -432,10 +430,10 @@ Enables listening for the accessibility application or touch guide mode status c
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to listen for.<br>-&nbsp;**accessibilityStateChange** means to listen for enable status changes of the accessibility application.<br>**System capability**: SystemCapability.Barrierfree.Accessibility.Core<br>-&nbsp;**touchGuideStateChange** means to listen for enable status changes of the touch guide mode.<br>**System capability**: SystemCapability.Barrierfree.Accessibility.Vision|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enable status changes.|
+  | type | string | Yes| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
+  | callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enabled status of captions configuration changes.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.on('accessibilityStateChange',(data) => { 
@@ -447,18 +445,16 @@ Enables listening for the accessibility application or touch guide mode status c
 
 off(type: 'accessibilityStateChange ' | 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
-Disables listening for the accessibility application or touch guide mode status changes.
-
- 
+Disables listening for the accessibility application or touch guide mode status changes. 
 
 - **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type |  string | No| Type of the event to listen for.<br>-&nbsp;**accessibilityStateChange** means to listen for enable status changes of the accessibility application.<br>**System capability**: SystemCapability.Barrierfree.Accessibility.Core<br>-&nbsp;**touchGuideStateChange** means to listen for enable status changes of the touch guide mode.<br>**System capability**: SystemCapability.Barrierfree.Accessibility.Vision|
-  | callback | Callback&lt;boolean&gt; | No| Callback invoked when the enable status changes.|
+  | type |  string | No| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
+  | callback | Callback&lt;boolean&gt; | No| Callback invoked when the enabled status changes.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.off('accessibilityStateChange',(data) => {
@@ -472,15 +468,15 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 
 Checks whether accessibility is enabled. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- Return value
+- **Return value**
 
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Returns **true** if accessibility is enabled; returns **false** otherwise.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.isOpenAccessibility()
@@ -497,15 +493,15 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether accessibility is enabled. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-- Parameters
+- **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.isOpenAccessibility((err, data) => {
@@ -523,15 +519,15 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
 
 Checks whether touch guide mode is enabled. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
-- Return value
+- **Return value**
 
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.isOpenTouchGuide()
@@ -548,15 +544,15 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether touch guide mode is enabled. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
-- Parameters
+- **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.isOpenTouchGuide((err, data) => {
@@ -574,7 +570,7 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 Sends an accessibility event. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 - **Parameters**
 
@@ -582,13 +578,13 @@ Sends an accessibility event. This API uses a promise to return the result.
   | -------- | -------- | -------- | -------- |
   | event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
 
-- Return value
+- **Return value**
 
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result. Returns data if the accessibility event is sent successfully; returns an error otherwise.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.sendEvent(this.eventInfo)
@@ -605,7 +601,7 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 Sends an accessibility event. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Barrierfree.Accessibility.Core
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 - **Parameters**
 
@@ -614,7 +610,7 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
   | event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. Returns data if the accessibility event is sent successfully; returns an error otherwise.|
 
-- Example
+- **Example**
 
   ```typescript
   accessibility.sendEvent(this.eventInfo,(err, data) => {

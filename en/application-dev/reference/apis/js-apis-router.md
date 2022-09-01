@@ -115,7 +115,7 @@ Returns to the previous page or a specified page.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [RouterOptions](#routeroptions) | Yes| Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.|
+| options | [RouterOptions](#routeroptions) | Yes| Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the previous page is returned, and the page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
   ```js

@@ -2,18 +2,19 @@
 
 ## Color
 
-| 颜色名称                 | 颜色值   | 颜色示意                                                     |
-| ------------------------ | -------- | ------------------------------------------------------------ |
-| Black                    | 0x000000 | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) |
-| Blue                     | 0x0000ff | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
-| Brown                    | 0xa52a2a | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
-| Gray                     | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
-| Green                    | 0x008000 | ![zh-cn_image_0000001174422914](figures/zh-cn_image_0000001174422914.png) |
-| Orange                   | 0xffa500 | ![zh-cn_image_0000001219662661](figures/zh-cn_image_0000001219662661.png) |
-| Pink                     | 0xffc0cb | ![zh-cn_image_0000001219662663](figures/zh-cn_image_0000001219662663.png) |
-| Red                      | 0xff0000 | ![zh-cn_image_0000001219662665](figures/zh-cn_image_0000001219662665.png) |
-| White                    | 0xffffff | ![zh-cn_image_0000001174582866](figures/zh-cn_image_0000001174582866.png) |
-| Yellow                   | 0xffff00 | ![zh-cn_image_0000001174582864](figures/zh-cn_image_0000001174582864.png) |
+| 颜色名称 | 颜色值   | 颜色示意                                                     |
+| -------- | -------- | ------------------------------------------------------------ |
+| Black    | 0x000000 | ![zh-cn_image_0000001219864153](figures/zh-cn_image_0000001219864153.png) |
+| Blue     | 0x0000ff | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
+| Brown    | 0xa52a2a | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
+| Gray     | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
+| Green    | 0x008000 | ![zh-cn_image_0000001174422914](figures/zh-cn_image_0000001174422914.png) |
+| Orange   | 0xffa500 | ![zh-cn_image_0000001219662661](figures/zh-cn_image_0000001219662661.png) |
+| Pink     | 0xffc0cb | ![zh-cn_image_0000001219662663](figures/zh-cn_image_0000001219662663.png) |
+| Red      | 0xff0000 | ![zh-cn_image_0000001219662665](figures/zh-cn_image_0000001219662665.png) |
+| White    | 0xffffff | ![zh-cn_image_0000001174582866](figures/zh-cn_image_0000001174582866.png) |
+| Yellow   | 0xffff00 | ![zh-cn_image_0000001174582864](figures/zh-cn_image_0000001174582864.png) |
+| Grey     | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
 
 ## ImageFit
 
@@ -69,6 +70,7 @@
 | Press   | 鼠标按键按下。 |
 | Release | 鼠标按键松开。 |
 | Move    | 鼠标移动。     |
+| Hover   | 鼠标悬停。     |
 
 ## Curve
 
@@ -99,10 +101,12 @@
 
 ## FillMode
 
-| 名称     | 描述                             |
-| -------- | -------------------------------- |
-| None     | 播放完成后恢复初始状态。         |
-| Forwards | 播放完成后保持动画结束时的状态。 |
+| 名称      | 描述                                                     |
+| --------- | -------------------------------------------------------- |
+| None      | 播放完成后恢复初始状态。                                 |
+| Forwards  | 播放完成后保持动画结束时的状态。                         |
+| Backwards | 在显示动画之前，为动画延迟指定的时间段应用“开始”属性值。 |
+| Both      | 应用正向和反向填充模式。                                 |
 
 ## PlayMode
 

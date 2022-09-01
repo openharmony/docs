@@ -86,7 +86,7 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
 
-        windowStage.loadContent("pages/index").then((data) => {
+        windowStage.loadContent("pages/index").then(() => {
             console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: "+ JSON.stringify(error))
@@ -228,8 +228,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start ability")
 }).catch((error) => {
     console.error("Failed to start ability with error: "+ JSON.stringify(error))
 })
@@ -245,8 +245,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start remote ability")
 }).catch((error) => {
     console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
@@ -318,7 +318,3 @@ struct Index {
   }
 }
 ```
-
-## 相关实例
-针对Stage模型Ability开发，有以下相关示例可供参考：
-- [`StageCallAbility`：StageCallAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

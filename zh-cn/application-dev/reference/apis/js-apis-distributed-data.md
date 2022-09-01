@@ -2297,12 +2297,21 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
 ```js
 let kvStore;
-kvStore.on('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
-kvStore.off('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
 ```
 
 
@@ -3759,14 +3768,20 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
@@ -5118,14 +5133,20 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 

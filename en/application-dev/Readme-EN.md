@@ -7,16 +7,15 @@
     - [OpenHarmony Release Notes](../release-notes/Readme.md)
 - Quick Start
     - Getting Started
-      - [Preparations](quick-start/start-overview.md)
-      - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
-      - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
-      - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
-      - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
+        - [Preparations](quick-start/start-overview.md)
+        - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
+        - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
+        - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
+        - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
     - Development Fundamentals
-      - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
-      - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
-      - [Resource File Categories](quick-start/basic-resource-file-categories.md)
-      - [SysCap](quick-start/syscap.md)
+        - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
+        - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
+        - [SysCap](quick-start/syscap.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
     - [UI Development](ui/Readme-EN.md)
@@ -33,20 +32,16 @@
     - [Device Usage Statistics](device-usage-statistics/Readme-EN.md)
     - [DFX](dfx/Readme-EN.md)
     - [Internationalization](internationalization/Readme-EN.md)
-    - [Native APIs](napi/Readme-EN.md)
+    - [Using Native APIs in Application Projects](napi/Readme-EN.md)
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
     - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
-    - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master)
+    - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
-    - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
+    - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - APIs
-      - [JS and TS APIs](reference/apis/Readme-EN.md)
-      - Native APIs
-        -   [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
-        -   [Node_API](reference/native-lib/third_party_napi/napi.md)
+      -   [JS and TS APIs](reference/apis/Readme-EN.md)
 - Contribution
     - [How to Contribute](../contribute/documentation-contribution.md)
-

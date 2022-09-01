@@ -19,21 +19,21 @@
 
 ## 接口
 
-Circle(options?: {width: Length, height: Length})
+Circle(value?: {width: string&nbsp;|&nbsp;number, height: string&nbsp;|&nbsp;number})
 
-**options参数：**
+**参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述 |
-| ------ | ------ | ---- | ---- | ---- |
-| width  | Length | 是    | -    | 宽度。  |
-| height | Length | 是    | -    | 高度。  |
+| 参数名 | 参数类型                   | 必填 | 默认值 | 参数描述 |
+| ------ | -------------------------- | ---- | ------ | -------- |
+| width  | string&nbsp;\|&nbsp;number | 是   | -      | 宽度。   |
+| height | string&nbsp;\|&nbsp;number | 是   | -      | 高度。   |
 
 ## 属性
 
-| 参数名称   | 参数类型   | 默认值  | 必填   | 参数描述      |
-| ------ | ------ | ---- | ---- | --------- |
-| width  | Length | 0    | 否    | 圆所在矩形的宽度。 |
-| height | Length | 0    | 否    | 圆所在矩形的高度。 |
+| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述           |
+| -------- | -------- | ------ | ---- | ------------------ |
+| width    | Length   | 0      | 否   | 圆所在矩形的宽度。 |
+| height   | Length   | 0      | 否   | 圆所在矩形的高度。 |
 
 
 ## 示例

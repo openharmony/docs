@@ -19,7 +19,7 @@
 
 ## 接口
 
-Slider(options:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
+Slider(options?:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
 **参数：**
 
@@ -46,12 +46,14 @@ Slider(options:{value?: number, min?: number, max?: number, step?: number, style
 
 | 名称            | 参数类型    | 默认值   | 描述                |
 | ------------- | ------- | ----- | ----------------- |
-| blockColor    | [ResourceColor](../../ui/ts-types.md)   | -     | 设置滑块的颜色。          |
-| trackColor    | [ResourceColor](../../ui/ts-types.md)   | -     | 设置滑轨的背景颜色。        |
-| selectedColor | [ResourceColor](../../ui/ts-types.md)   | -     | 设置滑轨的已滑动颜色。       |
+| blockColor    | [ResourceColor](ts-types.md#resourcecolor8) | -     | 设置滑块的颜色。          |
+| trackColor    | [ResourceColor](ts-types.md#resourcecolor8) | -     | 设置滑轨的背景颜色。        |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor8) | -     | 设置滑轨的已滑动颜色。       |
 | showSteps     | boolean | false | 设置当前是否显示步长刻度值。    |
 | showTips      | boolean | false | 设置滑动时是否显示气泡提示百分比。 |
-| trackThickness      | [Length](../../ui/ts-types.md) | - | 设置滑轨的粗细。 |
+| trackThickness      | [Length](ts-types.md#length) | - | 设置滑轨的粗细。 |
+| maxLabel | string | - | 设置最大标号时使用。 |
+| minLabel | string | - | 设置最小标号时使用。 |
 
 
 ## 事件

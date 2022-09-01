@@ -14,6 +14,8 @@ getMediaLibrary(context: Context): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
 
+此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数：** 
@@ -28,7 +30,13 @@ getMediaLibrary(context: Context): MediaLibrary
 | ----------------------------- | :---- |
 | [MediaLibrary](#medialibrary) | 媒体库实例 |
 
-**示例：**
+**示例：（从API Version 9开始）**
+
+```
+var media = mediaLibrary.getMediaLibrary(this.context);
+```
+
+**示例：（API Version 8）**
 
 ```
 import featureAbility from '@ohos.ability.featureAbility';
@@ -41,6 +49,8 @@ var media = mediaLibrary.getMediaLibrary(context);
 getMediaLibrary(): MediaLibrary
 
 获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如音频、视频、图片、文档等）。
+
+此接口仅可在FA模型下使用。
 
 > **说明**： 从API Version 8开始，该接口不再维护，推荐使用新接口[mediaLibrary.getMediaLibrary<sup>8+</sup>](#medialibrarygetmedialibrary8)。
 
@@ -87,12 +97,14 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
+media.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
     if (fetchFileResult != undefined) {
         console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
         fetchFileResult.getAllObject((err, fileAssetList) => {
             if (fileAssetList != undefined) {
-                fileAssetList.forEach(getAllObjectInfo);
+                fileAssetList.forEach(function(getAllObjectInfo){
+                    console.info("getAllObjectInfo.displayName :" + getAllObjectInfo.displayName);
+                });
             }
     	});
     }
@@ -129,8 +141,8 @@ let imagesfetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
-    console.info("getFileAssets successfully:"+ JSON.stringify(dir));
+media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
+    console.info("getFileAssets successfully: image number is "+ fetchFileResult.getCount());
 }).catch(function(err){
     console.info("getFileAssets failed with error:"+ err);
 });
@@ -140,7 +152,7 @@ mediaLibrary.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
 
 on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback: Callback&lt;void&gt;): void
 
-打开媒体媒体库变更通知，使用callback方式返回异步结果。
+打开媒体库变更通知，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -154,7 +166,7 @@ on(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|
 **示例：**
 
 ```
-mediaLibrary.on('imageChange', () => {
+media.on('imageChange', () => {
     // image file had changed, do something
 })
 ```
@@ -162,7 +174,7 @@ mediaLibrary.on('imageChange', () => {
 
 off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'|'fileChange'|'remoteFileChange', callback?: Callback&lt;void&gt;): void
 
-关闭媒体媒体库变更通知，使用callback方式返回异步结果。
+关闭媒体库变更通知，使用callback方式返回异步结果。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -176,7 +188,7 @@ off(type: 'deviceChange'|'albumChange'|'imageChange'|'audioChange'|'videoChange'
 **示例：**
 
 ```
-mediaLibrary.off('imageChange', () => {
+media.off('imageChange', () => {
     // stop listening success
 })
 ```
@@ -208,7 +220,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
-    mediaLibrary.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
+    media.createAsset(mediaType, 'imageCallBack.jpg', path + 'myPicture/', (err, fileAsset) => {
         if (fileAsset != undefined) {
             console.info('createAsset successfully, message = ' + err);
         } else {
@@ -245,17 +257,12 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 **示例：**
 
 ```
-async function example() {
-    // 使用Promise方式创建Image类型文件
-    let mediaType = mediaLibrary.MediaType.IMAGE;
-    let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
-    const path = await media.getPublicDirectory(DIR_IMAGE);
-    mediaLibrary.createAsset(mediaType, "image01.jpg", path + 'myPicture/').then (function (asset) {
-        console.info("createAsset successfully:"+ JSON.stringify(asset));
-    }).catch(function(err){
-        console.info("createAsset failed with error:"+ err);
-    });
-}
+let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
+media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
+    console.info("getPublicDirectory successfully:"+ JSON.stringify(dicResult));
+}).catch(function(err){
+    console.info("getPublicDirectory failed with error:"+ err);
+});
 ```
 
 ### getPublicDirectory<sup>8+</sup>
@@ -344,7 +351,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
+media.getAlbums(AlbumNoArgsfetchOp, (err, albumList) => {
     if (albumList != undefined) {
         const album = albumList[0];
         console.info('album.albumName = ' + album.albumName);
@@ -384,7 +391,7 @@ let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
 };
-mediaLibrary.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
+media.getAlbums(AlbumNoArgsfetchOp).then(function(albumList){
     console.info("getAlbums successfully:"+ JSON.stringify(albumList));
 }).catch(function(err){
     console.info("getAlbums failed with error:"+ err);
@@ -433,7 +440,6 @@ release(): Promise&lt;void&gt;
 **示例：**
 
 ```
-var media = mediaLibrary.getMediaLibrary(context);
 media.release()
 ```
 
@@ -518,7 +524,7 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -560,7 +566,7 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 启动图片预览界面，可以预览列表中首张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用callback方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -600,7 +606,7 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 启动图片预览界面并限定预览开始显示的图片。可以预览指定序号的单张本地图片（dataability://），也可以预览列表中的所有网络图片（https://）。使用Promise方式进行异步回调。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用[Image组件](../arkui-ts/ts-basic-components-image.md)替代。<br/>Image组件，可用于本地图片和网络图片的渲染展示。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -645,7 +651,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用callback形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -660,7 +666,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
   ```
 let option = {
-    type : "image",
+    type : "media",
     count : 2
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
@@ -680,7 +686,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 启动媒体选择界面，以异步方法获取选择的媒体URI列表，使用Promise形式返回结果。
 
-> **说明**： 从API Version 9开始废弃。
+> **说明**： <br/>从API Version 9开始废弃。建议使用系统应用图库替代。图库是系统内置的可视资源访问应用，提供图片和视频的管理、浏览等功能，使用方法请参考[OpenHarmony/applications_photos](https://gitee.com/openharmony/applications_photos#4-%E5%85%B8%E5%9E%8B%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8)。
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -700,7 +706,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
   ```
 let option = {
-    type : "image",
+    type : "media",
     count : 2
 };
 mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
@@ -765,6 +771,7 @@ isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -800,6 +807,7 @@ isDirectory():Promise&lt;boolean&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -837,6 +845,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -873,6 +882,7 @@ commitModify(): Promise&lt;void&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -893,7 +903,9 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 打开当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
+
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -911,7 +923,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
-    asset = await media.createAsset(mediaType, "image00003.jpg", path);
+    const asset = await media.createAsset(mediaType, "image00003.jpg", path);
     asset.open('rw', (openError, fd) => {
             if(fd > 0){
                 asset.close(fd);
@@ -928,7 +940,9 @@ open(mode: string): Promise&lt;number&gt;
 
 打开当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**注意**：当前写操作是互斥的操作，写操作完成后需要调用close进行释放
+
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -951,7 +965,7 @@ async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
     const path = await media.getPublicDirectory(DIR_IMAGE);
-    asset = await media.createAsset(mediaType, "image00003.jpg", path);
+    const asset = await media.createAsset(mediaType, "image00003.jpg", path);
     asset.open('rw')
         .then((fd) => {
             console.info('File fd!' + fd);
@@ -968,7 +982,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭当前文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -983,6 +997,7 @@ close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -992,13 +1007,19 @@ async function example() {
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.close(fd, (closeErr) => {
-        if (closeErr != undefined) {
-            console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
-            console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
-        } else {
-            console.info("=======asset.close success====>");
-        }
+    asset.open('rw').then((fd) => {
+        console.info('File fd!' + fd);
+        asset.close(fd, (closeErr) => {
+            if (closeErr != undefined) {
+                console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+                console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
+            } else {
+                console.info("=======asset.close success====>");
+            }
+        });
+    })
+    .catch((err) => {
+        console.info('File err!' + err);
     });
 }
 ```
@@ -1009,7 +1030,7 @@ close(fd: number): Promise&lt;void&gt;
 
 关闭当前文件，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA（'r'模式打开），ohos.permission.WRITE_MEDIA（'w'模式打开）
+**需要权限**：ohos.permission.READ_MEDIA or ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1029,6 +1050,7 @@ close(fd: number): Promise&lt;void&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1038,14 +1060,20 @@ async function example() {
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.close(fd).then((closeErr) => {
-        if (closeErr != undefined) {
-            console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
-            console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
+    asset.open('rw').then((fd) => {
+        console.info('File fd!' + fd);
+        asset.close(fd).then((closeErr) => {
+            if (closeErr != undefined) {
+                console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+                console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
 
-        } else {
-            console.info("=======asset.close success====>");
-        }
+            } else {
+                console.info("=======asset.close success====>");
+            }
+        });
+    })
+    .catch((err) => {
+        console.info('File err!' + err);
     });
 }
 ```
@@ -1070,6 +1098,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1106,6 +1135,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1113,6 +1143,7 @@ async function example() {
       order: fileKeyObj.DATE_ADDED + " DESC",
       extendArgs: "",
     };
+    let size = { width: 720, height: 720 };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size, (err, pixelmap) => {
@@ -1147,6 +1178,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1154,6 +1186,7 @@ async function example() {
         order: fileKeyObj.DATE_ADDED + " DESC",
         extendArgs: "",
     };
+    let size = { width: 720, height: 720 };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size)
@@ -1187,6 +1220,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1228,6 +1262,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1265,6 +1300,7 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1304,6 +1340,7 @@ isFavorite():Promise&lt;boolean&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1344,6 +1381,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1388,6 +1426,7 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1425,6 +1464,7 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1438,7 +1478,7 @@ async function example() {
     function isTrashCallBack(err, isTrash) {
             if (isTrash == true) {
                 console.info('mediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
-                asset.trash(true, trashCallBack);
+                asset.trash(true, istrashCallBack);
 
             } else {
                 console.info('mediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
@@ -1469,6 +1509,7 @@ isTrash():Promise&lt;boolean&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1508,6 +1549,8 @@ getCount(): number
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
+    let fileType = mediaLibrary.MediaType.FILE;
     let getFileCountOneOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
@@ -1537,6 +1580,7 @@ isAfterLast(): boolean
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1574,6 +1618,7 @@ close(): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1604,6 +1649,7 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1612,12 +1658,12 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getFirstObject((err, value) => {
+    fetchFileResult.getFirstObject((err, fileAsset) => {
        if (err) {
            console.error('Failed ');
            return;
        }
-       console.log(value);
+       console.log('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -1640,6 +1686,7 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1662,8 +1709,6 @@ async function example() {
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
 
-**需要权限**：ohos.permission.READ_MEDIA
-
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
 **参数**：
@@ -1676,6 +1721,7 @@ async function example() {
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1684,12 +1730,12 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getNextObject((err, value) => {
+    fetchFileResult.getNextObject((err, fileAsset) => {
        if (err) {
            console.error('Failed ');
            return;
        }
-       console.log(value);
+       console.log('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -1699,8 +1745,6 @@ async function example() {
  getNextObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
-
-**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1714,6 +1758,7 @@ async function example() {
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1724,7 +1769,7 @@ async function example() {
     let fetchFileResult = await media.getFileAssets(getImageOp);
     const fetchCount = fetchFileResult.getCount();
     console.info('mediaLibraryTest : count:' + fetchCount);
-    fileAsset = await fetchFileResult.getNextObject();
+    let fileAsset = await fetchFileResult.getNextObject();
 }
 ```
 
@@ -1746,6 +1791,7 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1754,12 +1800,12 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getLastObject((err, value) => {
+    fetchFileResult.getLastObject((err, fileAsset) => {
        if (err) {
            console.error('Failed ');
            return;
        }
-       console.log(value);
+       console.log('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -1782,6 +1828,7 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1813,6 +1860,7 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1821,12 +1869,12 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(0, (err, value) => {
+    fetchFileResult.getPositionObject(0, (err, fileAsset) => {
        if (err) {
            console.error('Failed ');
            return;
        }
-       console.log(value);
+       console.log('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -1836,8 +1884,6 @@ async function example() {
 getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中具有指定索引的文件资产。此方法使用Promise形式返回文件Asset。
-
-**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1857,6 +1903,7 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1865,13 +1912,11 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getPositionObject(1, (err, value) => {
-       if (err) {
-           console.error('Failed ');
-           return;
-       }
-       console.log(value);
-    })
+    fetchFileResult.getPositionObject(1) .then(function (fileAsset){
+        console.log('[Demo] fileAsset.displayName : ' + fileAsset.displayName);
+    }).catch(function (err) {
+        console.info("[Demo] getFileAssets failed with error:" + err);
+    });
 }
 ```
 
@@ -1880,8 +1925,6 @@ async function example() {
 getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 获取文件检索结果中的所有文件资产。此方法使用Callback回调来返回FileAsset结果集。
-
-**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -1895,6 +1938,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1903,12 +1947,12 @@ async function example() {
       extendArgs: "",
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
-    fetchFileResult.getAllObject((err, value) => {
+    fetchFileResult.getAllObject((err, fileAsset) => {
        if (err) {
            console.error('Failed ');
            return;
        }
-       console.log(value);
+       console.log('fileAsset.displayName : ' + fileAsset.displayName);
     })
 }
 ```
@@ -1931,6 +1975,7 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 ```
 async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2058,6 +2103,10 @@ async function example() {
         selections: '',
         selectionArgs: [],
     };
+    let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+    }
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     album.getFileAssets(fileNoArgsfetchOp, getFileAssetsCallBack);
@@ -2097,6 +2146,10 @@ async function example() {
         selections: '',
         selectionArgs: [],
     };
+    let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+    }
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     album.getFileAssets(fileNoArgsfetchOp).then(function(albumFetchFileResult){
@@ -2110,8 +2163,9 @@ async function example() {
 ## PeerInfo<sup>8+</sup>
 
 注册设备的信息。
+此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
 | 名称       | 类型                       | 可读 | 可写 | 说明             |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
@@ -2128,12 +2182,12 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称  | 默认值 | 说明 |
-| ----- | ------ | ---- |
-| FILE  | 1      | 文件 |
-| IMAGE | 3      | 图片 |
-| VIDEO | 4      | 视频 |
-| AUDIO | 5      | 音频 |
+| 名称  |  说明 |
+| ----- |  ---- |
+| FILE  |  文件 |
+| IMAGE |  图片 |
+| VIDEO |  视频 |
+| AUDIO |  音频 |
 
 ## FileKey<sup>8+</sup>
 
@@ -2156,7 +2210,7 @@ async function example() {
 | TITLE         | title               | 文件标题                                                   |
 | ARTIST        | artist              | 作者                                                       |
 | AUDIOALBUM    | audio_album         | 专辑                                                       |
-| DURATION      | duration            | 持续时间（单位：秒）                                       |
+| DURATION      | duration            | 持续时间（单位：毫秒）                                       |
 | WIDTH         | width               | 图片宽度（单位：像素）                                     |
 | HEIGHT        | height              | 图片高度（单位：像素）                                     |
 | ORIENTATION   | orientation         | 图片显示方向，即顺时针旋转角度，如0，90，180。（单位：度） |
@@ -2169,30 +2223,31 @@ async function example() {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
-| 名称          | 默认值 | 说明               |
-| ------------- | ------ | ------------------ |
-| DIR_CAMERA    | 0      | 表示Camera文件路径 |
-| DIR_VIDEO     | 1      | 表示视频路径       |
-| DIR_IMAGE     | 2      | 表示图片路径       |
-| DIR_AUDIO     | 3      | 表示音频路径       |
-| DIR_DOCUMENTS | 4      | 表示文档路径       |
-| DIR_DOWNLOAD  | 5      | 表示下载路径       |
+| 名称          |  说明               |
+| ------------- |  ------------------ |
+| DIR_CAMERA    |  表示Camera文件路径 |
+| DIR_VIDEO     |  表示视频路径       |
+| DIR_IMAGE     |  表示图片路径       |
+| DIR_AUDIO     |  表示音频路径       |
+| DIR_DOCUMENTS |  表示文档路径       |
+| DIR_DOWNLOAD  |  表示下载路径       |
 
 ## DeviceType<sup>8+</sup>
 
 枚举，设备类型。
+此接口为系统接口。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
-| 名称         | 默认值 | 说明       |
-| ------------ | ------ | ---------- |
-| TYPE_UNKNOWN | 0      | 未识别设备 |
-| TYPE_LAPTOP  | 1      | 笔记本电脑 |
-| TYPE_PHONE   | 2      | 手机       |
-| TYPE_TABLET  | 3      | 平板电脑   |
-| TYPE_WATCH   | 4      | 智能手表   |
-| TYPE_CAR     | 5      | 车载设备   |
-| TYPE_TV      | 6      | 电视设备   |
+| 名称         |  说明       |
+| ------------ |  ---------- |
+| TYPE_UNKNOWN |  未识别设备 |
+| TYPE_LAPTOP  |  笔记本电脑 |
+| TYPE_PHONE   |  手机       |
+| TYPE_TABLET  |  平板电脑   |
+| TYPE_WATCH   |  智能手表   |
+| TYPE_CAR     |  车载设备   |
+| TYPE_TV      |  电视设备   |
 
 ## MediaFetchOptions<sup>7+</sup>
 
@@ -2202,9 +2257,9 @@ async function example() {
 
 | 名称                    | 类型                | 可读 | 可写 | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| selections              | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
+| selections              | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey8)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
 | selectionArgs           | Array&lt;string&gt; | 是   | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order      | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| order                   | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey8)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
 | uri<sup>8+</sup>        | string              | 是   | 是   | 否   | 文件URI                                                      |
 | networkId<sup>8+</sup>  | string              | 是   | 是   | 否   | 注册设备网络ID                                               |
 | extendArgs<sup>8+</sup> | string              | 是   | 是   | 否   | 扩展的检索参数，目前没有扩展检索参数                         |
@@ -2212,6 +2267,7 @@ async function example() {
 ## Size<sup>8+</sup>
 
 图片尺寸。
+系统能力： 以下各项对应的系统能力均为SystemCapability.Multimedia.MediaLibrary.Core
 
 | 名称     | 类型     | 可读   | 可写   | 说明       |
 | ------ | ------ | ---- | ---- | -------- |
@@ -2245,3 +2301,5 @@ async function example() {
 | ----- | ------ | ---- | -------------------- |
 | type  | string | 是    | 媒体类型，包括：image, video, media，当前仅支持media类型 |
 | count | number | 是    | 媒体选择，count = 1表示单选，count大于1表示多选。            |
+
+

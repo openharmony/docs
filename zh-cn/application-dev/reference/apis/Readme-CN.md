@@ -157,7 +157,7 @@
   - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
-  - [@ohos.hilog (日志打印)](js-apis-hilog.md)
+  - [@ohos.hilog (HiLog日志打印)](js-apis-hilog.md)
   - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
   - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
@@ -166,6 +166,7 @@
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemTime (设置系统时间)](js-apis-system-time.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+  - [console (日志打印)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
 - 设备管理
 
@@ -240,4 +241,3 @@
   - [@system.sensor (传感器)](js-apis-system-sensor.md)
   - [@system.storage (数据存储)](js-apis-system-storage.md)
   - [@system.vibrator (振动)](js-apis-system-vibrate.md)
-  - [console (日志打印)](js-apis-logs.md)

@@ -29,15 +29,15 @@
 
 ## CustomPopupOptions<sup>8+</sup>类型接口说明
 
-| 名称            | 类型                                       | 必填   | 默认值              | 描述                             |
-| ------------- | ---------------------------------------- | ---- | ---------------- | ------------------------------ |
-| builder       | ()&nbsp;=&gt;&nbsp;any                   | 是    | -                | 提示气泡内容的构造器。                    |
-| placement     | [Placement](ts-appendix-enums.md#placement8)        | 否    | Placement.Bottom | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。 |
-| maskColor     | [Color](../../ui/ts-types.md#颜色类型)       | 否    | -                | 提示气泡遮障层的颜色。                    |
-| popupColor    | [Color](../../ui/ts-types.md#颜色类型)       | 否    | -                | 提示气泡的颜色。                       |
-| enableArrow   | boolean                                  | 否    | true             | 是否显示箭头，只有上、下方向的气泡会显示箭头。        |
-| autoCancel    | boolean                                  | 否    | true             | 页面有操作时，是否自动关闭气泡                |
-| onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否    | -                | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。       |
+| 名称          | 类型                                           | 必填 | 默认值           | 描述                                                         |
+| ------------- | ---------------------------------------------- | ---- | ---------------- | ------------------------------------------------------------ |
+| builder       | ()&nbsp;=&gt;&nbsp;any                         | 是   | -                | 提示气泡内容的构造器。                                       |
+| placement     | [Placement](ts-appendix-enums.md#placement8)   | 否   | Placement.Bottom | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。 |
+| maskColor     | [Color](ts-appendix-enums.md#color)            | 否   | -                | 提示气泡遮障层的颜色。                                       |
+| popupColor    | [Color](ts-appendix-enums.md#color)            | 否   | -                | 提示气泡的颜色。                                             |
+| enableArrow   | boolean                                        | 否   | true             | 是否显示箭头，只有上、下方向的气泡会显示箭头。               |
+| autoCancel    | boolean                                        | 否   | true             | 页面有操作时，是否自动关闭气泡                               |
+| onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否   | -                | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。             |
 
 
 ## 示例

@@ -35,7 +35,7 @@
 | name      | 权限名称。                                                   |
 | reason    | 当申请的权限为user_grant权限时，此字段必填，描述申请权限的原因。 |
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
-| abilities | 标识需要使用到该权限的元能力，标签为数组形式。               |
+| ability | 标识需要使用到该权限的元能力，标签为数组形式。               |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
 
 **示例：**
@@ -43,12 +43,12 @@
 ```json
 {
     "module" : {
-        "requestPermissions":[
+        "reqPermissions":[
            {
                 "name" : "ohos.permission.PERMISSION1",
                 "reason": "$string:reason",
                 "usedScene": {
-                     "abilities": [
+                     "ability": [
                          "FormAbility"
                      ],
                      "when":"inuse"
@@ -58,7 +58,7 @@
                 "name" : "ohos.permission.PERMISSION2",
                 "reason": "$string:reason",
                 "usedScene": {
-                     "abilities": [
+                     "ability": [
                          "FormAbility"
                      ],
                      "when":"always"
@@ -124,21 +124,23 @@
 3. 根据权限校验结果采取对应的措施。
 
 ```js
-  //ability的onWindowStageCreate生命周期
-  onWindowStageCreate() {
-    var context = this.context
+import featureAbility from '@ohos.ability.featureAbility';
+
+onStart() {
+    var context = featureAbility.getContext()
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    context.requestPermissionsFromUser(array).then(function(data) {
-        console.log("data type:" + typeof(data));
-        console.log("data:" + data);
-        console.log("data permissions:" + data.permissions);
-        console.log("data result:" + data.authResults);
-    }, (err) => {
-        console.error('Failed to start ability', err.code);
-    });
+    context.requestPermissionsFromUser(array, 1, (err, data)=>{
+        console.info("====>requestdata====>" + JSON.stringify(data));
+        console.info("====>requesterrcode====>" + JSON.stringify(err.code));
   }
-
+}
 ```
 > **说明：**
 > 动态授权申请接口的使用详见[API参考](../reference/apis/js-apis-ability-context.md)。
+
+## 相关实例
+
+针对访问控制，有以下相关实例可供参考：
+
+- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)

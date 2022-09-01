@@ -1438,4 +1438,4 @@ Defines the **HuksResult** structure.
 | errorCode  | number            | Yes  | Error code.  |
 | outData    | Uint8Array        | No  | Output data.|
 | properties | Array\<HuksParam> | No  | Properties.    |
-| certChains | Array\<string>    | No  | Certificate chain.  |
+| certChains | Array\<string>    | No  | Reserved.  |

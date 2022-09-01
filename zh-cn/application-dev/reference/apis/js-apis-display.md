@@ -152,9 +152,9 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 ```js
 let promise = display.getAllDisplay();
 promise.then((data) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-}).catch((err) => {
     console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
 });
 ```
 

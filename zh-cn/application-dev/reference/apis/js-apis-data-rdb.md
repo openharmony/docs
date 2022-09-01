@@ -166,7 +166,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 
-同步分布式数据库时指定组网内的远程设备。
+同步分布式数据库时连接到组网内指定的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -191,7 +191,7 @@ predicates.inDevices(['12345678abcde'])
 inAllDevices(): RdbPredicates
 
 
-同步分布式数据库时连接到组网内的所有远程设备。
+同步分布式数据库时连接到组网内所有的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -780,14 +780,7 @@ distinct(): RdbPredicates
 **示例：**
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").distinct("NAME")
-let promise = rdbStore.query(predicates, ["NAME"])
-promise.then((resultSet) => {
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
-}).catch((err) => {
-    console.log("query err.")
-})
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
 

@@ -36,9 +36,9 @@ Grid(scroller?: Scroller)
 | rowsTemplate                             | string  | '1fr' | 用于设置当前网格布局行的数量，不设置时默认1行&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 |
 | columnsGap                               | Length  | 0     | 用于设置列与列的间距。                              |
 | rowsGap                                  | Length  | 0     | 用于设置行与行的间距。                              |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | BarState.Off     | 设置滚动条状态。  |
-| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color              | -                        | 设置滚动条的颜色。 |
-| scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | -                        | 设置滚动条的颜色。 |
+| scrollBarWidth | string&nbsp;\|&nbsp;number | -                        | 设置滚动条的宽度。 |
 | cachedCount | number                                   | 1                        | 设置预加载的GridItem的数量。 |
 | editMode <sup>8+</sup>                   | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。 |
 | layoutDirection<sup>8+</sup>             | GridDirection  | GridDirection.Row     | 设置布局的主轴方向。 |

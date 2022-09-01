@@ -19,7 +19,7 @@
 
 ## 接口
 
-TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
+TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
 
 **参数：**
 

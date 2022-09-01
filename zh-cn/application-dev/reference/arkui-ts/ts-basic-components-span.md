@@ -19,13 +19,13 @@
 
 ## 接口
 
-Span(content: ResourceStr)
+Span(content: string | Resource)
 
 **参数:**
 
-| 参数名     | 参数类型   | 必填   | 默认值  | 参数描述  |
-| ------- | ------ | ---- | ---- | ----- |
-| content | [ResourceStr](../../ui/ts-types.md) | 是    | -    | 文本内容。 |
+| 参数名  | 参数类型                                 | 必填 | 默认值 | 参数描述   |
+| ------- | ---------------------------------------- | ---- | ------ | ---------- |
+| content | string\|[Resource](ts-types.md#resource) | 是   | -      | 文本内容。 |
 
 ## 属性
 
@@ -33,8 +33,8 @@ Span(content: ResourceStr)
 
 | 名称         | 参数类型                                     | 默认值                                      | 描述             |
 | ---------- | ---------------------------------------- | ---------------------------------------- | -------------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype枚举说明),<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
-| letterSpacing       | [Length](../../ui/ts-types.md)                 | -                          | 设置文本字符间距。                                 |
+| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype枚举说明),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
+| letterSpacing       | number \| string | -                          | 设置文本字符间距。                                 |
 | textCase   | [TextCase](ts-appendix-enums.md#textcase枚举说明) | Normal                                   | 设置文本大小写。       |
 
 

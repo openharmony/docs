@@ -32,6 +32,12 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 | fromStart | boolean | 否    | true | 设置文本从头开始滚动或反向滚动。      |
 | src       | string  | 是    | -    | 需要滚动的文本。              |
 
+## 属性
+
+| 名称       | 参数类型 | 默认值 | 描述               |
+| ---------- | -------- | ------ | ------------------ |
+| allowScale | boolean  | false  | 是否允许文本缩放。 |
+
 ## 事件
 
 | 名称                                       | 功能描述       |

@@ -15,11 +15,11 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | builder | [CustomDialog](../../ui/ts-component-based-customdialog.md) | 是 | - | 自定义弹窗内容构造器。 |
+  | builder | any | 是 | - | 自定义弹窗内容构造器。 |
   | cancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 点击遮障层退出时的回调。 |
   | autoCancel | boolean | 否 | true | 是否允许点击遮障层退出。 |
   | alignment | DialogAlignment | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
-  | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
+  | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
   | customStyle | boolean | 否 | false | 弹窗容器样式是否自定义。 |
   | gridCount<sup>8+</sup> | number | 否 | - | 弹窗宽度占栅格宽度的个数。 |
   

@@ -1140,8 +1140,8 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
-let bundleName = com.example.myapplication;
-let abilityName = com.example.myapplication.MainAbility;
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
 bundle.getAbilityIcon(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1175,8 +1175,8 @@ SystemCapability.BundleManager.BundleFramework
 **示例：**
 
 ```js
-let bundleName = com.example.myapplication;
-let abilityName = com.example.myapplication.MainAbility;
+let bundleName = "com.example.myapplication";
+let abilityName = "com.example.myapplication.MainAbility";
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));

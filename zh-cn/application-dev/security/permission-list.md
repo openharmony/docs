@@ -1,14 +1,8 @@
-# 权限定义列表
+# 应用权限列表
 
-在符合[应用申请和使用权限的基本原则](accesstoken-overview.md#基本原则)的基础上，可以根据下图判断应用是否可以申请某权限。
+在申请目标权限前，建议开发者先阅读[访问控制开发概述-权限的工作流程](accesstoken-overview.md#权限的工作流程)。对权限的工作流程有基本的了解后，再结合下表判断应用能否申请目标权限，提高开发效率。
 
-![](figures/permission-application-process.png)
-
-1. 应用APL等级与权限等级的匹配关系请参考[访问控制开发概述-权限等级说明](accesstoken-overview.md#权限等级说明)。
-2. 权限的授权方式分为user_grant（用户授权）和system_grant（系统授权），具体请参考[访问控制开发概述-权限类型说明](accesstoken-overview.md#权限类型说明)。
-3. 应用可以通过ACL（访问控制列表）方式申请高级别的权限，具体请参考[访问控制开发概述-访问控制列表说明](accesstoken-overview.md#访问控制列表acl说明)。
-
-以下给出当前系统定义的权限信息列表。权限的使用示例请参考[访问控制开发指导](accesstoken-guidelines.md)。
+权限的使用示例请参考[访问控制开发指导](accesstoken-guidelines.md)。
 
 | 权限名                                                   | 权限级别     | 授权方式     | ACL使能 | 权限说明                                                     |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------------------------ |
@@ -83,7 +77,6 @@
 | ohos.permission.SET_ABILITY_CONTROLLER                   | system_basic | system_grant | TRUE    | 允许设置ability组件启动和停止控制权。                        |
 | ohos.permission.USE_USER_IDM                             | system_basic | system_grant | FALSE   | 允许应用访问系统身份凭据信息。                               |
 | ohos.permission.MANAGE_USER_IDM                          | system_basic | system_grant | FALSE   | 允许应用使用系统身份凭据管理能力进行口令、人脸、指纹等录入、修改、删除等操作。 |
-| ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | TRUE    | 允许应用使用生物特征识别能力进行身份认证。                   |
 | ohos.permission.ACCESS_USER_AUTH_INTERNAL                | system_basic | system_grant | FALSE   | 允许应用使用系统身份认证能力进行用户身份认证或身份识别。     |
 | ohos.permission.ACCESS_PIN_AUTH                          | system_basic | system_grant | FALSE   | 允许应用使用口令输入接口，用于系统应用完成口令输入框绘制场景。 |
 | ohos.permission.GET_RUNNING_INFO                         | system_basic | system_grant | TRUE    | 允许应用获取运行态信息。                                     |

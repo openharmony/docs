@@ -19,22 +19,22 @@
 
 ## 接口
 
-Polygon(value:{options?: {width: Length, height: Length}})
+Polygon(value?:{width?: string&nbsp;|&nbsp;number, height?: string&nbsp;|&nbsp;number})
 
-**options参数说明：**
+**参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述 |
-| ------ | ------ | ---- | ---- | ---- |
-| width  | Length | 是    | -    | 宽度。  |
-| height | Length | 是    | -    | 高度。  |
+| 参数名 | 参数类型                   | 必填 | 默认值 | 参数描述 |
+| ------ | -------------------------- | ---- | ------ | -------- |
+| width  | string&nbsp;\|&nbsp;number | 是   | -      | 宽度。   |
+| height | string&nbsp;\|&nbsp;number | 是   | -      | 高度。   |
 
 ## 属性
 
-| 参数名称   | 参数类型               | 默认值  | 必填   | 参数描述        |
-| ------ | ------------------ | ---- | ---- | ----------- |
-| width  | Length             | 0    | 否    | 多边形所在矩形的宽度。 |
-| height | Length             | 0    | 否    | 多边形所在矩形的高度。 |
-| points | Array&lt;Point&gt; | -    | 是    | 多边形的顶点坐标列表。 |
+| 参数名称 | 参数类型         | 默认值 | 必填 | 参数描述               |
+| -------- | ---------------- | ------ | ---- | ---------------------- |
+| width    | Length           | 0      | 否   | 多边形所在矩形的宽度。 |
+| height   | Length           | 0      | 否   | 多边形所在矩形的高度。 |
+| points   | Array&lt;any&gt; | -      | 是   | 多边形的顶点坐标列表。 |
 
 
 ## 示例

@@ -61,25 +61,25 @@
 
 基于TS扩展的声明式开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Canvas)
+- [`Canvas`：画布组件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Canvas)
 
-- [`Drag`：拖拽事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag)
+- [`Drag`：拖拽事件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Drag)
 
-- [`ArkUIAnimation`：动画（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation)
+- [`ArkUIAnimation`：动画（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/ArkUIAnimation)
 
-- [`Xcomponent`：XComponent（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/XComponent)
+- [`Xcomponent`：XComponent（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/XComponent)
 
-- [`MouseEvent`：鼠标事件（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MouseEvent)
+- [`MouseEvent`：鼠标事件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent)
 
-- [`Gallery`：组件集合（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Gallery)
+- [`Gallery`：组件集合（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery)
 
-- [`BringApp`：拉起系统应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/BringApp)
+- [`BringApp`：拉起系统应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp)
 
-- [`Chat`：聊天示例应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/AppSample/Chat)
+- [`Chat`：聊天示例应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Chat)
 
-- [`Shopping`：购物示例应用（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/AppSample/Shopping)
+- [`Shopping`：购物示例应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Shopping)
 
-- [`Lottie`：Lottie（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Lottie)
+- [`Lottie`：Lottie（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Lottie)
 
 - [极简声明式UI范式（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
 
@@ -91,4 +91,4 @@
 
 - [弹窗（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
 
-- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/CustomComponent)
+- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/CustomComponent)

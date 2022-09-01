@@ -19,13 +19,13 @@
 
 ## 接口
 
-Stack(value:{alignContent?: Alignment})
+Stack(value?: {alignContent?: Alignment})
 
 **参数：**
 
-| 参数名          | 参数类型                                     | 必填   | 默认值    | 参数描述            |
-| ------------ | ---------------------------------------- | ---- | ------ | --------------- |
-| alignContent | [Alignment](ts-appendix-enums.md#alignment枚举说明) | 否    | Center | 设置子组件在容器内的对齐方式。 |
+| 参数名       | 参数类型                                    | 必填 | 默认值 | 参数描述                       |
+| ------------ | ------------------------------------------- | ---- | ------ | ------------------------------ |
+| alignContent | [Alignment](ts-appendix-enums.md#alignment) | 否   | Center | 设置子组件在容器内的对齐方式。 |
 
 ## 示例
 
