@@ -290,8 +290,6 @@ dump(params: Array\<string>): Array\<string>;
   }
   ```
 
-
-
 ## Caller
 
 通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。

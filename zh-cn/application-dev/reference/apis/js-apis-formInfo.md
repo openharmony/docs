@@ -96,7 +96,7 @@ import formInfo from '@ohos.application.formInfo';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | 卡片标识。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。   |
+| IDENTITY_KEY<sup>9+</sup>     | "ohos.extra.param.key.form_identity"    | 卡片标识。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。   |
 | DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | 卡片规格样式。   |
 | NAME_KEY       | "ohos.extra.param.key.form_name"   | 卡片名称。   |
 | MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | 卡片所属模块名称。   |
