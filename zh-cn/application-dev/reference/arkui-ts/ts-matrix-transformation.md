@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```
+```ts
 import matrix4 from '@ohos.matrix4'
 ```
 
@@ -58,9 +58,9 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 
 - 示例
   ```ts
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   // 创建一个四阶矩阵
-  let matrix = Matrix4.init([1.0, 0.0, 0.0, 0.0,
+  let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
                             0.0, 1.0, 0.0, 0.0,
                             0.0, 0.0, 1.0, 0.0,
                             0.0, 0.0, 0.0, 1.0])
@@ -83,12 +83,12 @@ Matrix的初始化函数，可以返回一个单位矩阵对象。
 - 示例
   ```ts
   // matrix1 和 matrix2 效果一致
-  import Matrix4 from '@ohos.matrix4'
-  let matrix = Matrix4.init([1.0, 0.0, 0.0, 0.0,
+  import matrix4 from '@ohos.matrix4'
+  let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
                             0.0, 1.0, 0.0, 0.0,
                             0.0, 0.0, 1.0, 0.0,
                             0.0, 0.0, 0.0, 1.0])
-  let matrix2 = Matrix4.identity()
+  let matrix2 = matrix4.identity()
   ```
 
 
@@ -108,11 +108,11 @@ Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 - 示例
   ```ts
   // xxx.ets
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().translate({x:100})
+    private matrix1 = matrix4.identity().translate({x:100})
     private matrix2 = this.matrix1.copy().scale({x:2})
     build() {
       Column() {
@@ -157,12 +157,12 @@ Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个�
 - 示例
   ```ts
   // xxx.ets
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().translate({x:200}).copy()
-    private matrix2 = Matrix4.identity().scale({x:2}).copy()
+    private matrix1 = matrix4.identity().translate({x:200}).copy()
+    private matrix2 = matrix4.identity().scale({x:2}).copy()
     build() {
       Column() {
        // 先平移x轴100px，再缩放两倍x轴
@@ -193,10 +193,10 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
 
 - 示例
   ```ts
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
-  let matrix1 = Matrix4.identity().scale({x:2})
-  let matrix2 = matrix1.invert()
+  let matrix1 = matrix4.identity().scale({x:2})
+  let matrix2 = matrix1.copy().invert()
   ```
 
 
@@ -224,11 +224,11 @@ Matrix的平移函数，可以为当前矩阵增加x轴/Y轴/Z轴平移效果。
 - 示例
   ```ts
   // xxx.ets
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().translate({x:100, y:200, z:30})
+    private matrix1 = matrix4.identity().translate({x:100, y:200, z:30})
     build() {
       Column() {
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -268,11 +268,11 @@ Matrix的缩放函数，可以为当前矩阵增加x轴/Y轴/Z轴缩放效果。
 - 示例
   ```ts
   // xxx.ets
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
+    private matrix1 = matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
     build() {
       Column() { 
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -313,11 +313,11 @@ Matrix的旋转函数，可以为当前矩阵增加x轴/Y轴/Z轴旋转效果。
 - 示例
   ```ts
   // xxx.ets
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
+    private matrix1 = matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
     build() {
       Column() {
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -353,13 +353,13 @@ Matrix的坐标点转换函数，可以将当前的变换效果作用到一个�
 - 示例
   ```ts
   // xxx.ets
-  import Matrix4 from '@ohos.matrix4'
+  import matrix4 from '@ohos.matrix4'
   import prompt from '@system.prompt'
 
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().transformPoint([100, 10])
+    private matrix1 = matrix4.identity().transformPoint([100, 10])
     build() {
       Column() {
        Button("get Point")
