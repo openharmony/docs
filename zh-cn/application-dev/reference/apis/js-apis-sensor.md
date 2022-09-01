@@ -1893,7 +1893,7 @@ sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
     }
-    console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+    console.info('sensor_getGeomagneticField_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
 	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
@@ -2592,9 +2592,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型   | 可读   | 可写   | 说明                                |
-| ------ | ------ | ---- | ---- | --------------------------------- |
-| status | number | 是    | 是    | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示有，1表示没有。 |
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
 
 
 ## MagneticFieldResponse
