@@ -25,8 +25,8 @@
 - RouteType枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
-  | Pop | 重定向指定页面 |
-  | Push | 跳转到下一页面。 |
+  | Pop | 重定向指定页面。PageA跳转到PageB时，PageA为Exit+Push，PageB为Enter+Push。 |
+  | Push | 跳转到下一页面。PageB返回至PageA时，PageA为Enter+Pop，PageB为Exit+Pop。 |
 
 
 ## 属性
@@ -63,22 +63,19 @@ PageTransitionEnter和PageTransitionExit组件支持的事件：
 
 自定义方式1：配置了当前页面的入场动画为淡入，退场动画为缩小。
 
-```
+```ts
 // index.ets
 @Entry
 @Component
 struct PageTransitionExample1 {
   @State scale1: number = 1
   @State opacity1: number = 1
-  @State active: boolean = false
+  
   build() {
   Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
         Image($r('app.media.bg1')).width("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 // 自定义方式1：完全自定义转场过程的效果
@@ -97,14 +94,14 @@ struct PageTransitionExample1 {
 }
 ```
 
-```
+```ts
 // page1.ets
 @Entry
 @Component
 struct AExample {
   @State scale2: number = 1
   @State opacity2: number = 1
-  @State active: boolean = false
+
   build() {
     Column() {
       Navigator({ target: 'pages/index' ,type: NavigationType.Push}) {
@@ -132,23 +129,19 @@ struct AExample {
 
 自定义方式2：配置了当前页面的入场动画为从左侧滑入，退场为缩小加透明度变化。
 
-```
+```ts
 // index.ets 
 @Entry
 @Component
 struct PageTransitionExample {
   @State scale1: number = 1
   @State opacity1: number = 1
-  @State active: boolean = false
 
   build() {
     Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
         Image($r('app.media.bg1')).width("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 
@@ -163,23 +156,19 @@ struct PageTransitionExample {
 }
 ```
 
-```
+```ts
 // page1.ets
 @Entry
 @Component
 struct PageTransitionExample1 {
   @State scale2: number = 1
   @State opacity2: number = 1
-  @State active: boolean = false
 
   build() {
     Column() {
       Navigator({ target: 'pages/index', type: NavigationType.Push }) {
         Image($r('app.media.bg2')).width  ("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale2 }).opacity(this.opacity2)
   }
 
