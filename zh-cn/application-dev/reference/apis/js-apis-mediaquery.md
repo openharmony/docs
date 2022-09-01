@@ -122,8 +122,6 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 ```ts
 import mediaquery from '@ohos.mediaquery'
 
-let portraitFunc = null
-
 @Entry
 @Component
 struct MediaQueryExample {
@@ -142,7 +140,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait.bind(this) //bind current js instance
+    let portraitFunc = this.onPortrait.bind(this) //bind current js instance
     this.listener.on('change', portraitFunc)
   }
 
