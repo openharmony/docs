@@ -780,14 +780,7 @@ distinct(): RdbPredicates
 **示例：**
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").distinct("NAME")
-let promise = rdbStore.query(predicates, ["NAME"])
-promise.then((resultSet) => {
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
-}).catch((err) => {
-    console.log("query err.")
-})
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
 
