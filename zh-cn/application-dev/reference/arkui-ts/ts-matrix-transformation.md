@@ -192,7 +192,7 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
   import Matrix4 from '@ohos.matrix4'
   // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
   let matrix1 = Matrix4.identity().scale({x:2})
-  let matrix2 = matrix1.invert()
+  let matrix2 = matrix1.copy().invert()
   ```
 
 
