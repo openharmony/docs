@@ -82,11 +82,11 @@ Matrix的初始化函数，可以返回一个单位矩阵对象。
   ```ts
   // matrix1 和 matrix2 效果一致
   import matrix4 from '@ohos.matrix4'
-  let matrix = Matrix4.init([1.0, 0.0, 0.0, 0.0,
+  let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
                             0.0, 1.0, 0.0, 0.0,
                             0.0, 0.0, 1.0, 0.0,
                             0.0, 0.0, 0.0, 1.0])
-  let matrix2 = Matrix4.identity()
+  let matrix2 = matrix4.identity()
   ```
 
 
@@ -191,7 +191,7 @@ Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效�
   ```ts
   import matrix4 from '@ohos.matrix4'
   // matrix1(宽放大2倍) 和 matrix2(宽缩小2倍) 效果相反
-  let matrix1 = Matrix4.identity().scale({x:2})
+  let matrix1 = matrix4.identity().scale({x:2})
   let matrix2 = matrix1.copy().invert()
   ```
 
