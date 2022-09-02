@@ -28,7 +28,7 @@ import pasteboard from '@ohos.pasteboard';
 
 ## pasteboard.createPlainTextData
 
-createPlainTextData(text:string): PasteData
+createPlainTextData(text: string): PasteData
 
 构建一个纯文本剪贴板内容对象。
 
@@ -55,7 +55,7 @@ var pasteData = pasteboard.createPlainTextData("content");
 
 ## pasteboard.createHtmlData<sup>7+</sup>
 
-createHtmlData(htmlText:string): PasteData
+createHtmlData(htmlText: string): PasteData
 
 构建一个HTML剪贴板内容对象。
 
@@ -83,7 +83,7 @@ var pasteData = pasteboard.createHtmlData(html);
 
 ## pasteboard.createWantData<sup>7+</sup>
 
-createWantData(want:Want): PasteData
+createWantData(want: Want): PasteData
 
 构建一个Want剪贴板内容对象。
 
@@ -114,7 +114,7 @@ var pasteData = pasteboard.createWantData(object);
 
 ## pasteboard.createUriData<sup>7+</sup>
 
-createUriData(uri:string): PasteData
+createUriData(uri: string): PasteData
 
 构建一个URI剪贴板内容对象。
 
@@ -179,7 +179,7 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 
 ## pasteboard.createData<sup>9+</sup>
 
-createData(mimeType:string, value: ArrayBuffer): PasteData;
+createData(mimeType: string, value: ArrayBuffer): PasteData;
 
 构建一个自定义类型的剪贴板内容对象，mimeType表明了自定义数据value的数据类型
 
@@ -208,7 +208,7 @@ createData(mimeType:string, value: ArrayBuffer): PasteData;
 
 ## pasteboard.createPlainTextRecord<sup>7+</sup>
 
-createPlainTextRecord(text:string): PasteDataRecord
+createPlainTextRecord(text: string): PasteDataRecord
 
 创建一条纯文本内容条目。
 
@@ -235,7 +235,7 @@ var record = pasteboard.createPlainTextRecord("hello");
 
 ## pasteboard.createHtmlTextRecord<sup>7+</sup>
 
-createHtmlTextRecord(htmlText:string): PasteDataRecord
+createHtmlTextRecord(htmlText: string): PasteDataRecord
 
 创建一条HTML内容的条目。
 
@@ -263,7 +263,7 @@ var record = pasteboard.createHtmlTextRecord(html);
 
 ## pasteboard.createWantRecord<sup>7+</sup>
 
-createWantRecord(want:Want): PasteDataRecord
+createWantRecord(want: Want): PasteDataRecord
 
 创建一条Want内容条目。
 
@@ -294,7 +294,7 @@ var record = pasteboard.createWantRecord(object);
 
 ## pasteboard.createUriRecord<sup>7+</sup>
 
-createUriRecord(uri:string): PasteDataRecord
+createUriRecord(uri: string): PasteDataRecord
 
 创建一条URI内容的条目。
 
@@ -321,7 +321,7 @@ var record = pasteboard.createUriRecord("dataability:///com.example.myapplicatio
 
 ## pasteboard.createPixelMapRecord<sup>9+</sup>
 
-createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
+createPixelMapRecord(pixelMap: image.PixelMap): PasteDataRecord
 
 创建一条PixelMap内容的条目。
 
@@ -359,7 +359,7 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType:string, value: ArrayBuffer):PasteDataRecord;
+createRecord(mimeType: string, value: ArrayBuffer):PasteDataRecord;
 
 构建一条自定义数据内容条目，mimeType表明了自定义数据value的数据类型。
 
@@ -1097,7 +1097,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 
 ### setPasteData
 
-setPasteData(data:PasteData, callback:AsyncCallback&lt;void&gt;): void
+setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 将数据写入系统剪贴板，使用callback异步回调。
 
@@ -1127,7 +1127,7 @@ systemPasteboard.setPasteData(pasteData, (err, data) => {
 
 ### setPasteData
 
-setPasteData(data:PasteData): Promise&lt;void&gt;
+setPasteData(data: PasteData): Promise&lt;void&gt;
 
 将数据写入系统剪贴板，使用Promise异步回调。
 
@@ -1160,7 +1160,7 @@ systemPasteboard.setPasteData(pasteData).then((data) => {
 
 ### getPasteData
 
-getPasteData( callback:AsyncCallback&lt;PasteData&gt;): void
+getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
@@ -1292,7 +1292,7 @@ systemPasteboard.hasPasteData((err, data) => {
 
 ### hasPasteData<sup>7+</sup>
 
-hasPasteData():  Promise&lt;boolean&gt;
+hasPasteData(): Promise&lt;boolean&gt;
 
 判断系统剪贴板中是否有内容，使用Promise异步回调。
 
@@ -1317,7 +1317,7 @@ systemPasteboard.hasPasteData().then((data) => {
 
 ### clear<sup>7+</sup>
 
-clear(callback:  AsyncCallback&lt;void&gt;): void
+clear(callback: AsyncCallback&lt;void&gt;): void
 
 清空系统剪贴板内容，使用callback异步回调。
 
@@ -1344,7 +1344,7 @@ systemPasteboard.clear((err, data) => {
 
 ### clear<sup>7+</sup>
 
-clear():  Promise&lt;void&gt;
+clear(): Promise&lt;void&gt;
 
 清空系统剪贴板内容，使用Promise异步回调。
 
