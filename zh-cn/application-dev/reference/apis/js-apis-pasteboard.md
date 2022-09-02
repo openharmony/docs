@@ -177,6 +177,34 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 })
 ```
 
+## pasteboard.createData<sup>9+</sup>
+
+createData(mimeType:string, value: ArrayBuffer): PasteData;
+
+构建一个自定义类型的剪贴板内容对象，mimeType表明了自定义数据value的数据类型
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | mimeType内容。 |
+| value | ArrayBuffer | 是 | value内容。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) |  剪贴板内容对象。 |
+
+**示例：**
+
+  ```js
+  var dataXml = new ArrayBuffer(256)
+  var pasteData = pasteboard.createData('app/xml', dataXml)
+  ```
+
 
 ## pasteboard.createPlainTextRecord<sup>7+</sup>
 
@@ -329,6 +357,35 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 })
 ```
 
+## pasteboard.createRecord<sup>9+</sup>
+
+createRecord(mimeType:string, value: ArrayBuffer):PasteDataRecord;
+
+创建一条具有mimeType和value内容的条目。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | mimeType内容。 |
+| value | ArrayBuffer | 是 | value内容。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的具有mimeType和value的内容条目。 |
+
+**示例：**
+
+  ```js
+  var dataXml = new ArrayBuffer(256)
+  var pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
+  ```
+
+
 ## pasteboard.getSystemPasteboard
 
 getSystemPasteboard(): SystemPasteboard
@@ -359,6 +416,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 | -----  | ----------------------- |
 | InApp  |InApp表示仅允许同应用内粘贴。  |
 | LocalDevice  |LocalDevice表示仅允许在此设备中粘贴。  |
+| CrossDevice  |CrossDevice表示允许跨设备粘贴在任何应用程序中。  |
 
 
 ## PasteDataProperty<sup>7+</sup>
@@ -374,7 +432,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 | tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”。默认值为true。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CrossDevice。 |
 
 
 ## PasteDataRecord<sup>7+</sup>
@@ -394,6 +452,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 | plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
 | pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
+| data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 记录中的数据数组。 |
 
 
 ### convertToText<sup>7+</sup>
@@ -722,6 +781,32 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
   var record = pasteboard.createPlainTextData("hello").addPixelMapRecord(pixelMap); 
 })
 ```
+
+
+### addRecord<sup>9+</sup>
+
+addRecord(mimeType: string, value: ArrayBuffer): void;
+
+向当前剪贴板内容中添加一条键值对记录条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | 待添加的自定义数据的mimeType类型。 |
+| value | ArrayBuffer | 是 | 待添加的自定义数据内容。 |
+
+**示例：**
+
+  ```js
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
+  var dataXml = new ArrayBuffer(256)
+  pasteData.addRecord('app/xml', dataXml);
+  ```
 
 
 ### addRecord<sup>7+</sup>
