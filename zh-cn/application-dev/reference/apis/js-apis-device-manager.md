@@ -1,3 +1,6 @@
+
+
+
 # 设备管理
 
 本模块提供分布式设备管理能力。
@@ -89,9 +92,9 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 名称      | 默认值  | 说明              |
 | ------- | ---- | --------------- |
-| ONLINE  | 0    | 设备上线。           |
-| READY   | 1    | 设备就绪，设备信息同步已完成。 |
-| OFFLINE | 2    | 设备下线。           |
+| ONLINE  | 0    | 设备物理上线状态。           |
+| READY   | 1    | 设备可用状态，表示设备间信息已在分布式数据中同步完成, 可以运行分布式业务。 |
+| OFFLINE | 2    | 设备物理下线状态。           |
 | CHANGE  | 3    | 设备信息更改。         |
 
 ## SubscribeInfo
