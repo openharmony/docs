@@ -6,7 +6,7 @@ After an application obtains a **Preferences** instance, the data in the instanc
 
 The cached data can also be written to a text file for persistent storage. Since file read and write consume system resources, you are advised to minimize the frequency of reading and writing files.
 
-You do not need to care about the implementation of the database lock mechanism.
+You do not need to care about the implementation of the database locking mechanism.
 
 ## Basic Concepts
 
