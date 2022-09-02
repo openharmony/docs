@@ -49,7 +49,9 @@ RichText\(content:string\)
 
 ## Example
 
-```
+You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RichTextExample {

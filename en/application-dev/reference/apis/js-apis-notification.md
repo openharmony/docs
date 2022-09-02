@@ -556,7 +556,7 @@ Obtains all notification slots. This API uses an asynchronous callback to return
 
 | Name    | Readable| Writable| Type                             | Mandatory| Description                |
 | -------- | ---- | --- | --------------------------------- | ---- | -------------------- |
-| callback | Yes  | No | AsyncCallback\<[NotificationSlot](#notificationslot)\> | Yes  | Callback used to return the result.|
+| callback | Yes  | No | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -3765,7 +3765,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | desc                 | Yes | Yes | string                | No  | Notification slot description.                          |
 | badgeFlag            | Yes | Yes | boolean               | No  | Whether to display the badge.                              |
 | bypassDnd            | Yes | Yes | boolean               | No  | Whether to bypass the DND mode in the system.              |
-| lockscreenVisibility | Yes | Yes | boolean               | No  | Mode for displaying the notification on the lock screen.                |
+| lockscreenVisibility | Yes | Yes | number               | No  | Mode for displaying the notification on the lock screen.                |
 | vibrationEnabled     | Yes | Yes | boolean               | No  | Whether vibration is supported for the notification.                                |
 | sound                | Yes | Yes | string                | No  | Notification alert tone.                                |
 | lightEnabled         | Yes | Yes | boolean               | No  | Whether the indicator blinks for the notification.                                  |
