@@ -676,7 +676,7 @@ Formats a phone number.
 
 ### getLocationName<sup>9+</sup>
 
-static getLocationName(number: string, locale: string): string
+getLocationName(number: string, locale: string): string
 
 Obtains the home location of a phone number.
 
