@@ -145,9 +145,9 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -keyPwd                            # Key password. It is optional.
          ├── -issuer                            # Issuer of the certificate. It is mandatory.
          ├── -issuerKeyAlias                    # Key alias of the issuer. It is mandatory.
-         ├── -issuerKeyPwd                     # Key password of the issuer. It is optional.
-         ├── -subject                          # Certificate subject. It is mandatory.
-         ├── -validity                         # Validity period of the certificate. It is optional. The default value is 1095 days.
+         ├── -issuerKeyPwd                      # Key password of the issuer. It is optional.
+         ├── -subject                           # Certificate subject. It is mandatory.
+         ├── -validity                          # Validity period of the certificate. It is optional. The default value is 1095 days.
          ├── -keyUsage                          # Usages of the key. It is mandatory. The key usages include digitalSignature, nonRepudiation, keyEncipherment,
          ├                                        dataEncipherment, keyAgreement, certificateSignature, crlSignature,
          ├                                        encipherOnly, and decipherOnly. Use a comma (,) to separate multiple values.
@@ -155,15 +155,15 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -extKeyUsage                       # Extended key usages. It is optional. The extended key usages include clientAuthentication, serverAuthentication,
          ├                                        codeSignature, emailProtection, smartCardLogin, timestamp, and ocspSignature.
          ├── -extKeyUsageCritical               # Whether extKeyUsage is a critical option. It is optional. The default value is false.
-         ├── -signAlg                         # Signing algorithm, which can be SHA256withRSA, SHA384withRSA,  SHA256withECDSA, or SHA384withECDSA. It is mandatory.
+         ├── -signAlg                           # Signing algorithm, which can be SHA256withRSA, SHA384withRSA,  SHA256withECDSA, or SHA384withECDSA. It is mandatory.
          ├── -basicConstraints                  # Whether basicConstraints is contained. It is optional. The default value is false.
          ├── -basicConstraintsCritical          # Whether basicConstraints is a critical option. It is optional. The default value is false.
          ├── -basicConstraintsCa                # Whether it is CA. It is optional. The default value is false.
-         ├── -basicConstraintsPathLen          # Path length. It is optional. The default value is 0.
-         ├── -issuerKeystoreFile              # KS file of the issuer, in JKS or P12 format. It is optional.
-         ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
-         ├── -keystoreFile                     # KS file, in JKS or P12 format. It is mandatory.
-         ├── -keystorePwd                     # KS password. It is optional.
+         ├── -basicConstraintsPathLen           # Path length. It is optional. The default value is 0.
+         ├── -issuerKeystoreFile                # KS file of the issuer, in JKS or P12 format. It is optional.
+         ├── -issuerKeystorePwd                 # KS password of the issuer. It is optional. 
+         ├── -keystoreFile                      # KS file, in JKS or P12 format. It is mandatory.
+         ├── -keystorePwd                       # KS password. It is optional.
          ├── -outFile                           # Certificate file to generate. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
@@ -177,7 +177,7 @@ The usage of hapsigner varies depending on whether an application signing certif
          ├── -profileCertFile # Profile signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
          ├── -inFile          # Raw profile template in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
          ├── -signAlg         # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
-         ├── -keystoreFile      # KS file, in JKS or P12 format. It is mandatory if the signing mode is localSign.
+         ├── -keystoreFile    # KS file, in JKS or P12 format. It is mandatory if the signing mode is localSign.
          ├── -keystorePwd     # KS password. It is optional.
          ├── -outFile         # Signed profile to generate, in p7b format. This parameter is mandatory.
      ```
@@ -186,7 +186,7 @@ The usage of hapsigner varies depending on whether an application signing certif
 
      ```
      verify-profile: Verify the profile signature.
-         ├── -inFile       # Signed profile in p7b format. This parameter is mandatory.
+         ├── -inFile        # Signed profile in p7b format. This parameter is mandatory.
          ├── -outFile       # Verification result file (including the verification result and profile content), in json format. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
@@ -196,11 +196,11 @@ The usage of hapsigner varies depending on whether an application signing certif
       sign-app: Sign a HAP.
           ├── -mode          # Signing mode, which can be localSign, remoteSign, or remoteResign. It is mandatory.
           ├── -keyAlias      # Key alias. It is mandatory.
-          ├── -keyPwd         # Key password. It is optional.
+          ├── -keyPwd        # Key password. It is optional.
           ├── -appCertFile   # Application signing certificate (certificate chain, in the end-entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
           ├── -profileFile   # Name of the signed profile in p7b format. This parameter is mandatory.
           ├── -profileSigned # Whether the profile is signed. The value 1 means signed, and value 0 means unsigned. The default value is 1. This parameter is optional.
-          ├── -inForm       # Raw file, in .zip (default) or .bin format. It is optional.
+          ├── -inForm        # Raw file, in .zip (default) or .bin format. It is optional.
           ├── -inFile        # Raw application package, in HAP or .bin format. It is mandatory.
           ├── -signAlg       # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
           ├── -keystoreFile  # KS file, in JKS or P12 format. It is mandatory if the signing mode is localSign.
@@ -276,7 +276,7 @@ The process of signing a HAP is as follows:
    ```
    generate-app-cert: Generate an application signing certificate.
        ├── -keyAlias         # Key alias, which must be the same as that in the previous step.
-       ├── -signAlg         # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
+       ├── -signAlg          # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
        ├── -issuer           #  Issuer of the certificate. Enter the issuer of the intermediate CA certificate. It is mandatory and cannot be changed.
        ├── -issuerKeyAlias   # Key alias of the issuer. Enter the key alias of the intermediate CA certificate. This parameter is mandatory and cannot be changed.
        ├── -subject          # Subject of the certificate. Enter the subject in the same sequence specified in the command. This parameter is mandatory.
@@ -311,7 +311,7 @@ The process of signing a HAP is as follows:
        ├── -profileCertFile  # Profile signing certificate. Use the certificate provided. It is mandatory and cannot be changed.
        ├── -inFile           # Raw profile template in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
        ├── -keystoreFile     # KS file. Use OpenHarmony.p12. It is mandatory and cannot be changed.
-       ├── -outFile        # Signed profile to generate, in p7b format. This parameter is mandatory.
+       ├── -outFile          # Signed profile to generate, in p7b format. This parameter is mandatory.
        ├── -keyPwd           # Key password. The default key password in OpenHarmony.p12 is 123456.
        ├── -keystorePwd      # KS password. The default key password in OpenHarmony.p12 is 123456.
    ```
@@ -406,4 +406,4 @@ The process of signing a HAP is as follows:
 
    - **Solution**
 
-     Use ECC to generate the key pair for the application or profile signing certificate. Use SHA256withECDSA or SHA384withECDSA as the HAP signature algorithm.
+     Use ECC to generate the key pair for the application or profile signing certificate. Use SHA256withECDSA or SHA384withECDSA as the HAP signing algorithm.
