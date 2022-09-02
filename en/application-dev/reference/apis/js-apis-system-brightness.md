@@ -1,7 +1,7 @@
 # Screen Brightness
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The APIs of this module are no longer maintained since API version 7. It is recommended that you use [`@ohos.brightness`](js-apis-brightness.md) instead.
+> **NOTE**
+> - The APIs of this module are no longer maintained since API version 7. You are advised to use [`@ohos.brightness`](js-apis-brightness.md).
 > 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -24,34 +24,35 @@ Obtains the current screen brightness.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete |
+| success | (data: [BrightnessResponse](#brightnessresponse)) => void | No| Called when API call is successful.|
+| fail | (data: string, code: number) => void | No| Called when API call has failed.|
+| complete | () => void | No| Called when API call is complete.|
 
-The following values will be returned when the operation is successful.
+**Return value of success()**
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| value | number | Screen&nbsp;brightness,&nbsp;which&nbsp;ranges&nbsp;from&nbsp;1&nbsp;to&nbsp;255. |
+| value | number | Screen brightness. The value is an integer ranging from **1** to **255**.|
+
 
 **Example**
 
-```js
-export default {    
-  getValue() {        
-    brightness.getValue({            
-      success: function(data){                
-        console.log('success get brightness value:' + data.value);            
-      },            
-      fail: function(data, code) {                
-        console.log('get brightness fail, code: ' + code + ', data: ' + data);            
-      },
-    });    
-  },
-}
-```
+  ```js
+  export default {    
+    getValue() {        
+      brightness.getValue({            
+        success: function(data){                
+          console.log('success get brightness value:' + data.value);            
+        },            
+        fail: function(data, code) {                
+          console.log('get brightness fail, code: ' + code + ', data: ' + data);            
+        },
+      });    
+    },
+  }
+  ```
 
 
 ## brightness.setValue
@@ -64,30 +65,30 @@ Sets the screen brightness.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes | Screen&nbsp;brightness.&nbsp;The&nbsp;value&nbsp;is&nbsp;an&nbsp;integer&nbsp;ranging&nbsp;from&nbsp;1&nbsp;to&nbsp;255.<br/>-&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;less&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;**0**,&nbsp;value&nbsp;**1**&nbsp;will&nbsp;be&nbsp;used.<br/>-&nbsp;If&nbsp;the&nbsp;value&nbsp;is&nbsp;greater&nbsp;than&nbsp;**255**,&nbsp;value&nbsp;**255**&nbsp;will&nbsp;be&nbsp;used.<br/>-&nbsp;If&nbsp;the&nbsp;value&nbsp;contains&nbsp;decimals,&nbsp;the&nbsp;integral&nbsp;part&nbsp;of&nbsp;the&nbsp;value&nbsp;will&nbsp;be&nbsp;used.&nbsp;For&nbsp;example,&nbsp;if&nbsp;value&nbsp;**8.1**&nbsp;is&nbsp;set,&nbsp;value&nbsp;**8**&nbsp;will&nbsp;be&nbsp;used. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| value | number | Yes| Screen brightness. The value is an integer ranging from **1** to **255**.<br>- If the value is less than or equal to **0**, value **1** will be used.<br>- If the value is greater than **255**, value **255** will be used.<br>- If the value contains decimals, the integral part of the value will be used. For example, if value **8.1** is set, value **8** will be used.|
+| success | () => void | No| Called when API call is successful.|
+| fail | (data: string, code: number) => void | No| Called when API call has failed.|
+| complete | () => void | No| Called when API call is complete.|
 
 **Example**
 
-```js
-export default {    
-  setValue() {        
-    brightness.setValue({            
-      value: 100,            
-      success: function(){                
-        console.log('handling set brightness success.');            
-      },            
-      fail: function(data, code){                
-        console.log('handling set brightness value fail, code:' + code + ', data: ' + data);            
-      },        
-    });    
-  },
-}
-```
+  ```js
+  export default {    
+    setValue() {        
+      brightness.setValue({            
+        value: 100,            
+        success: function(){                
+          console.log('handling set brightness success.');            
+        },            
+        fail: function(data, code){                
+          console.log('handling set brightness value fail, code:' + code + ', data: ' + data);            
+        },        
+      });    
+    },
+  }
+  ```
 
 
 ## brightness.getMode
@@ -100,34 +101,34 @@ Obtains the screen brightness adjustment mode.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete |
+| success | (data: [BrightnessModeResponse](#brightnessmoderesponse)) => void | No| Called when API call is successful.|
+| fail | (data: string, code: number) => void | No| Called when API call has failed.|
+| complete | () => void | No| Called when API call is complete.|
 
-The following values will be returned when the operation is successful.
+**Return value of success()**
 
-| Name | Type | Description |
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| mode | number | The&nbsp;value&nbsp;can&nbsp;be&nbsp;**0**&nbsp;or&nbsp;**1**.<br/>-&nbsp;**0**:&nbsp;The&nbsp;screen&nbsp;brightness&nbsp;is&nbsp;manually&nbsp;adjusted.<br/>-&nbsp;**1**:&nbsp;The&nbsp;screen&nbsp;brightness&nbsp;is&nbsp;automatically&nbsp;adjusted. |
+| mode | number | The value can be **0** or **1**.<br>- **0**: manual adjustment<br>- **1**: automatic adjustment|
 
 **Example**
 
-```js
-export default {    
-  getMode() {        
-    brightness.getMode({            
-      success: function(data){                
-        console.log('success get mode:' + data.mode);            
-      },            
-      fail: function(data, code){                
-        console.log('handling get mode fail, code:' + code + ', data: ' + data);            
-      },
-    });    
-  },
-}
-```
+  ```js
+  export default {    
+    getMode() {        
+      brightness.getMode({            
+        success: function(data){                
+          console.log('success get mode:' + data.mode);            
+        },            
+        fail: function(data, code){                
+          console.log('handling get mode fail, code:' + code + ', data: ' + data);            
+        },
+      });    
+    },
+  }
+  ```
 
 
 ## brightness.setMode
@@ -139,31 +140,30 @@ Sets the screen brightness adjustment mode.
 **System capability**: SystemCapability.PowerManager.DisplayPowerManager
 
 **Parameters**
-
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| mode | number | Yes | The&nbsp;value&nbsp;can&nbsp;be&nbsp;**0**&nbsp;or&nbsp;**1**.<br/>-&nbsp;**0**:&nbsp;The&nbsp;screen&nbsp;brightness&nbsp;is&nbsp;manually&nbsp;adjusted.<br/>-&nbsp;**1**:&nbsp;The&nbsp;screen&nbsp;brightness&nbsp;is&nbsp;automatically&nbsp;adjusted. |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| mode | number | Yes| The value can be **0** or **1**.<br>- **0**: manual adjustment<br>- **1**: automatic adjustment|
+| success | () => void | No| Called when API call is successful.|
+| fail | (data: string, code: number) => void | No| Called when API call has failed.|
+| complete | () => void | No| Called when API call is complete.|
 
 **Example**
 
-```js
-export default {    
-  setMode() {        
-    brightness.setMode({            
-      mode: 1,            
-      success: function(){                
-      console.log('handling set mode success.');            
-    },            
-     fail: function(data, code){                
-       console.log('handling set mode fail, code:' + code + ', data: ' + data);            
-     },
-    });    
-  },
-}
-```
+  ```js
+  export default {    
+    setMode() {        
+      brightness.setMode({            
+        mode: 1,            
+        success: function(){                
+        console.log('handling set mode success.');            
+      },            
+       fail: function(data, code){                
+         console.log('handling set mode fail, code:' + code + ', data: ' + data);            
+       },
+      });    
+    },
+  }
+  ```
 
 
 ## brightness.setKeepScreenOn
@@ -175,28 +175,40 @@ Sets whether to always keep the screen on. Call this API in **onShow()**.
 **System capability**: SystemCapability.PowerManager.DisplayPowerManager
 
 **Parameters**
-
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| keepScreenOn | boolean | Yes | Whether&nbsp;to&nbsp;always&nbsp;keep&nbsp;the&nbsp;screen&nbsp;on |
-| success | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;successful. |
-| fail | Function | No | Called&nbsp;when&nbsp;the&nbsp;operation&nbsp;fails. |
-| complete | Function | No | Called&nbsp;when&nbsp;the&nbsp;execution&nbsp;is&nbsp;complete. |
+| keepScreenOn | boolean | Yes| Whether to keep the screen on.|
+| success | () => void | No| Called when API call is successful.|
+| fail | (data: string, code: number) => void | No| Called when API call has failed.|
+| complete | () => void | No| Called when API call is complete.|
 
 **Example**
 
-```js
-export default {    
-  setKeepScreenOn() {        
-    brightness.setKeepScreenOn({            
-      keepScreenOn: true,            
-      success: function () {                
-        console.log('handling set keep screen on success.')            
-      },            
-      fail: function (data, code) {                
-        console.log('handling set keep screen on fail, code:' + code + ', data: ' + data);            
-      },        
-    });    
-  },
-}
-```
+  ```js
+  export default {    
+    setKeepScreenOn() {        
+      brightness.setKeepScreenOn({            
+        keepScreenOn: true,            
+        success: function () {                
+          console.log('handling set keep screen on success.')            
+        },            
+        fail: function (data, code) {                
+          console.log('handling set keep screen on fail, code:' + code + ', data: ' + data);            
+        },        
+      });    
+    },
+  }
+  ```
+## 
+
+## BrightnessResponse
+
+| Name| Type | Description|
+| -------- | -------- | -------- |
+| value | number | Screen brightness. The value is an integer ranging from **1** to **255**.|
+
+## BrightnessModeResponse
+
+| Name| Type | Description|
+| -------- | -------- | -------- |
+| mode | number | The value can be **0** or **1**.<br> - **0**: manual adjustment<br>- **0**: manual adjustment|
