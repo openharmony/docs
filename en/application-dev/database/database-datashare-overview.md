@@ -2,9 +2,9 @@
 
 ## Introduction
 
-The **DataShare** module allows an application to manage its own data and share data with other applications. Currently, data can be shared only between the applications on the same device.
+The **DataShare** module allows an application to manage its own data and share data with other applications. Currently, data can be shared only between applications on the same device.
 
-**DataShare** is used in application scenarios, such as contacts, short message service (SMS), and media gallery. However, not all data, such as accounts and passwords, can be accessed by other applications. Some data, such as SMS messages, can only be queried by other applications. **DataShare** provides a secure data sharing mechanism for applications.
+Data needs to be shared in a wealth of scenarios. For example, contacts, short message service (SMS), and media gallery always needs to be shared. However, certain data, such as accounts and passwords, cannot be shared. Some data, such as SMS messages, can be queried but not modified by other applications. **DataShare** provides a secure data sharing mechanism for applications in a variety of scenarios.
 
 The data provider can directly use the **DataShare** framework to share data with other applications without complex encapsulation. The data consumer only needs to learn and use a set of interfaces because the data access mode does not vary with the data provisioning mode. This greatly reduces the learning time and development difficulty.
 
@@ -45,7 +45,7 @@ Before you get started, familiarize yourself with the following concepts:
 - The **DataShareHelper** module, as the data consumer, provides interfaces for accessing data, including adding, deleting, modifying, and querying data.
 - The data consumer communicates with the data provider using inter-process communication (IPC). The data provider can be implemented through a database or other data storage.
 
-- The **ResultSet** module is implemented through shared memory. Share memory stores the result sets, and interfaces are provided to traverse result sets.
+- The **ResultSet** module is implemented through shared memory. Shared memory stores the result sets, and interfaces are provided to traverse result sets.
 
 ## Constraints
 
