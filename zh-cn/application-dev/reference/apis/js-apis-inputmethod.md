@@ -138,6 +138,27 @@ inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:
     console.error("switchInputMethod promise err: " + err);
 })
 ```
+## inputMethod.getCurrentInputMethod<sup>9+</sup>
+
+getCurrentInputMethod(): InputMethodProperty
+
+获取当前输入法扩展，提供同步接口，返回当前输入法扩展。
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                         | 说明                 |
+| -------------------------------------------- | -------------------- |
+| [InputmethodProperty](#inputmethodproperty8) | 返回当前输入法扩展。 |
+
+**示例：**
+
+
+```js
+var currentIme = inputMethod.getCurrentInputMethod();
+```
+
 ## InputMethodController
 
 下列API示例中都需使用[getInputMethodController](#inputmethodgetinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
@@ -306,6 +327,67 @@ InputMethodController.hideSoftKeyboard().then(async (err) => {
 ## InputMethodSetting<sup>8+</sup>
 
 下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodcontroller)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
+
+### listInputMethod<sup>9+</sup>
+
+listInputMethod(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
+
+获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。使用callback形式返回结果。参数个数为2，否则抛出异常。
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                          |
+| -------- | --------------------------------------------------- | ---- | ----------------------------- |
+| enable   | boolean                                             | 是   | 指定返回已激活/未激活。       |
+| callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 返回已激活/未激活输入法列表。 |
+
+**示例：**
+
+```js
+imeList: Array<inputMethod.InputMethodProperty> = null
+InputMethodSetting.listInputMethod(true, (err,data) => {
+    if (err) {
+        console.error("listInputMethod failed because: " + JSON.stringify(err));
+        return;
+    }
+    console.log("listInputMethod success");
+    this.imeList = data;
+ });
+```
+
+### listInputMethod<sup>9+</sup>
+
+listInputMethod(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
+
+获取已激活/未激活输入法列表。参数enable取true返回已激活输入法列表，取false返回未激活输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                    |
+| ------ | ------- | ---- | ----------------------- |
+| enable | boolean | 是   | 指定返回已激活/未激活。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                          |
+| ------------------------------------------------------------ | ----------------------------- |
+| Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | 返回已激活/未激活输入法列表。 |
+
+**示例：**
+
+```js
+imeList: Array<inputMethod.InputMethodProperty> = null
+InputMethodSetting.listInputMethod(true).then((data) => {
+    console.info("listInputMethod success");
+    this.imeList = data;
+}).catch((err) => {
+    console.error("listInputMethod promise err: " + err);
+})
+```
 
 ### listInputMethod
 
