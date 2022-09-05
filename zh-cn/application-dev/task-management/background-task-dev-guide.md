@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-应用或业务模块处于后台（无可见界面）时，如果有需要继续执行或者后续执行的业务，可基于业务类型，申请短时任务延迟挂起（Suspend）或者长时任务避免进入挂起状态。
+应用或业务模块处于后台（无可见界面）时，如果有需要继续执行或者后续执行的业务，可基于业务类型，申请短时任务延迟挂起（Suspend）或者长时任务避免进入挂起状态。如果应用在挂起时需要单独的某种资源不被代理或者需要更长的延时任务执行时间，可以申请所需的能效资源。
 
 ## 短时任务
 
@@ -477,6 +477,93 @@ export default class BgTaskAbility extends Ability {
         console.info("[Demo] BgTaskAbility onBackground")
     }
 };
+```
+
+## 能效资源申请
+
+### 接口说明
+
+**表1** 能效资源申请主要接口
+
+| 接口名                                      | 描述                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-backgroundTaskManager.md#efficiencyresourcesrequest9)): boolean | 申请能效资源。 |
+| resetAllEfficiencyResources():void | 释放申请的能效资源   |
+
+
+### 开发步骤
+
+
+1. 申请能效资源
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    isApply: true,
+    timeOut: 0,
+    reason: "apply",
+    isPersist: true,
+    isProcess: true,
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+```
+
+2. 释放申请的部分资源
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    isApply: false,
+    timeOut: 0,
+    reason: "reset",
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+```
+
+3. 释放申请的所有资源
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+```
+
+### 开发实例
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+// 申请能效资源
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT |
+        backgroundTaskManager.ResourceType.TIMER,
+    isApply: true,
+    timeOut: 0,
+    reason: "apply",
+    isPersist: true,
+    isProcess: true,
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+
+// 释放部分资源
+request = {
+    resourceTypes: backgroundTaskManager.ResourceType.COMMON_EVENT,
+    isApply: false,
+    timeOut: 0,
+    reason: "reset",
+};
+res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("the result of request is: " + res);
+
+// 释放全部资源
+backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 ```
 
 ## 相关实例

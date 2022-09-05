@@ -8,6 +8,8 @@
 
 应用中存在用户能够直观感受到的且需要一直在后台运行的业务时（如，后台播放音乐），可以使用长时任务机制。
 
+应用如果需要申请特定的能效资源，例如在被冻结期间仍然能够收到系统公共事件，可以使用能效资源申请机制。
+
 >  **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -297,6 +299,57 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
+## backgroundTaskManager.applyEfficiencyResources<sup>+</sup>
+
+applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): boolean
+
+向系统申请能效资源，使用boolean形式返回结果。
+进程和他所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**参数**：
+| 参数名     | 类型      | 必填   | 说明                                       |
+| ------- | ------- | ---- | ---------------------------------------- |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 申请资源的必要信息。包括类型，时间，进程申请或者是应用申请等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
+
+**返回值**
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| boolean | true代表申请成功，false代表申请失败。 |
+
+**示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+let request = {
+    resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    isApply: true,
+    timeOut: 0,
+    reason: "apply",
+    isPersist: true,
+    isProcess: false,
+};
+let res = backgroundTaskManager.applyEfficiencyResources(request);
+console.info("result of applyEfficiencyResources is: " + res)
+```
+
+## backgroundTaskManager.resetAllEfficiencyResources<sup>9+</sup>
+
+resetAllEfficiencyResources(): void
+
+向系统申请释放能效资源, 释放当前应用申请的所有能效资源。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**示例**：
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+
+```
+
 ## DelaySuspendInfo
 
 延迟挂起信息。
@@ -324,3 +377,32 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 | WIFI_INTERACTION        | 7    | WLAN相关<br />此接口为系统接口。 |
 | VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
 | TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）        |
+
+## EfficiencyResourcesRequest<sup>9+</sup>
+
+能效资源申请。
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+| 参数名             | 类型     | 必填   | 说明                                       |
+| --------------- | ------ | ---- | ---------------------------------------- |
+| resourceTypes   | number  | 是    | 申请的资源类型。                               |
+| isApply         | boolean | 是    | 申请资源或者是释放资源。          |
+| timeOut         | number  | 是    | 资源的使用时间，以ms为单位。                |
+| isPersist       | boolean | 否    | 是否永久持有资源，如果是true，那么timeOut就无效。    |
+| isProcess       | boolean | 否    | 应用申请或者是进程申请。          |
+| reason          | string  | 是    | 申请资源的原因。                |
+
+## ResourceType<sup>9+</sup>
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+| 参数名                     | 参数值  | 描述                    |
+| ----------------------- | ---- | --------------------- |
+| CPU                     | 1    | CPU资源，申请后不被冻结             |
+| COMMON_EVENT            | 2    | 公共事件，申请后冻结状态下不被代理掉  |
+| TIMER                   | 4    | 计时器，申请后冻结状态下不被代理掉    |
+| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间      |
+| BLUETOOTH               | 16   | 蓝牙相关，申请后冻结状态下不被代理掉  |
+| GPS                     | 32   | GPS相关，申请后冻结状态下不被代理掉z  |
+| AUDIO                   | 64   | 音频资源，申请后冻结状态下不被代理掉 |
