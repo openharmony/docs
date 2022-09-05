@@ -3423,6 +3423,9 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }    
       }, () => {
         var obj : window.TranslateOptions = {
           x : 100.0,
@@ -3433,10 +3436,9 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
-windowClass.showWithAnimation((err, data) => {
+windowClass.hideWithAnimation((err, data) => {
     if (err.code) {
         console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
         return;
@@ -4002,6 +4004,9 @@ controller.animationForShown = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
         var obj : window.TranslateOptions = {
           x : 100.0,
@@ -4012,7 +4017,6 @@ controller.animationForShown = (context : window.TransitionContext) => {
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```
@@ -4044,6 +4048,9 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
         var obj : window.TranslateOptions = {
           x : 100.0,
@@ -4054,7 +4061,6 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```
