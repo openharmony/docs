@@ -3,37 +3,34 @@
 当手指放在组件上、滑动或从组件上移开时触发。
 
 > **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
 
 
 ## 事件
 
-| 名称                                       | 是否冒泡 | 功能描述                                     |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onTouch(callback:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | 是    | 触摸动作触发该方法调用，event参数见[TouchEvent](#touchevent对象说明)介绍。 |
+| 名称                                                         | 是否冒泡 | 功能描述                                                     |
+| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| onTouch(event:&nbsp;(event?:&nbsp;TouchEvent)&nbsp;=&gt;&nbsp;void) | 是       | 触摸动作触发该方法调用，event参数见[TouchEvent](#touchevent对象说明)介绍。 |
 
 
 ## TouchEvent对象说明
 
-- 属性
-  | 属性名称                | 类型                                       | 描述           |
-  | ------------------- | ---------------------------------------- | ------------ |
-  | type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。     |
-  | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
-  | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
-  | timestamp           | number                                   | 距离开机时间的时间戳，单位为毫秒。      |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。     |
+**属性：**
 
+| 属性名称                | 类型                                       | 描述           |
+| ------------------- | ---------------------------------------- | ------------ |
+| type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。     |
+| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
+| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
+| timestamp           | number                                   | 距离开机时间的时间戳，单位为毫秒。      |
+| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。     |
 
-- 接口
-  | 接口名称                   | 功能描述    |
-  | ---------------------- | ------- |
-  | stopPropagation()：void | 阻塞事件冒泡。 |
+**接口：**
+
+| 接口名称                   | 功能描述    |
+| ---------------------- | ------- |
+| stopPropagation()：void | 阻塞事件冒泡。 |
 
 
 ## TouchObject对象说明
