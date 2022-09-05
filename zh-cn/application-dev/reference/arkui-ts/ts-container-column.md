@@ -1,15 +1,10 @@
 # Column
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 沿垂直方向布局的容器。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,21 +14,22 @@
 
 ## 接口
 
-Column(value?:{space?: Length})
+Column(value?:{space?: string&nbsp;|&nbsp;number })
 
+**参数:**
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | 否 | 0 | 纵向布局元素间距。 |
-
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素间距。 |
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | HorizontalAlign.Center | 设置子组件在水平方向上的对齐格式。 |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | 设置子组件在垂直方向上的对齐格式。 |
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。<br/>默认值：HorizontalAlign.Center |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | 设置子组件在垂直方向上的对齐格式。<br/>默认值：FlexAlign.Start |
 
 
 
