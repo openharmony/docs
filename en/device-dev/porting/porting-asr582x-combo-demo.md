@@ -358,7 +358,7 @@ In addition, you need to add the hardware configuration description file of the 
 
 #### GPIO Adaptation
 
-1. The chip driver adaptation file is stored in the `//drivers/adapter/platform` directory. Add the `gpio_asr.c` and `gpio_asr.h` files to the `gpio` directory, and add the compilation conditions of the new driver file to `BUILD.gn`.
+1. The chip driver adaptation file is stored in the `//drivers/hdf_core/adapter/platform` directory. Add the `gpio_asr.c` file to the `gpio` directory, and add the compilation conditions of the new driver file to `BUILD.gn`.
 
    ```
    if (defined(LOSCFG_SOC_COMPANY_ASRMICRO)) {
