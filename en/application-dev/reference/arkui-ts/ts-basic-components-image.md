@@ -3,6 +3,7 @@
 The **\<Image>** component is used to render and display local and online images.
 
 > **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -36,7 +37,7 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 | Name | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| src  | string\| [PixelMap](../apis/js-apis-image.md#pixelmap7)\| [Resource](../../ui/ts-types.md#resource-type) | Yes   | -    | Image source. Both local and online images are supported.<br>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. \ The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability.|
+| src  | string \| [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [Resource](../../ui/ts-types.md#resource-type) | Yes   | -    | Image source. Both local and online images are supported.<br>When using resources referenced using a relative path, for example, `Image("common/test.jpg")`, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use `$r` to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. \ The value format is `data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, where `[base64 data]` is a Base64 string.<br/>\- The value can also be a path starting with `dataability://`, which is used to access the image path provided by a Data ability.|
 
 ## Attributes
 
@@ -46,10 +47,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | --------------------- | ------------------------------------------------------- | ------------------------ | ------------------------------------------------------------ |
 | alt                   | string \| [Resource](../../ui/ts-types.md#resource-type) | -                        | Placeholder image displayed during loading. Both local and Internet URIs are supported.                |
 | objectFit             | ImageFit                           | ImageFit.Cover           | Image scale type.                                        |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | NoRepeat                 | Whether the image is repeated.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
-| interpolation         | [ImageInterpolation](#imageinterpolation)               | ImageInterpolation.None  | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>**NOTE**<br>> This attribute is not applicable to SVG images.<br>> This attribute is not applicable to **PixelMap** objects. |
-| renderMode            | [ImageRenderMode](#imagerendermode)                     | ImageRenderMode.Original | Rendering mode of the image.<br>**NOTE**<br>This attribute is not applicable to SVG images. |
-| sourceSize            | {<br>width: number,<br>height: number<br>} | -                        | Decoding size of the image. The original image is decoded into an image of the specified size, in px.<br>**NOTE**<br>This attribute is not applicable to **PixelMap** objects. |
+| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | NoRepeat                 | Whether the image is repeated.<br>**NOTE**<br><br>This attribute is not applicable to SVG images.|
+| interpolation         | [ImageInterpolation](#imageinterpolation)               | ImageInterpolation.None  | Interpolation effect of the image. This attribute is intended to alleviate aliasing that occurs when a low-definition image is zoomed in.<br>**NOTE**<br><br>> This attribute is not applicable to SVG images.<br>> This attribute is not applicable to **PixelMap** objects.|
+| renderMode            | [ImageRenderMode](#imagerendermode)                     | ImageRenderMode.Original | Rendering mode of the image.<br>**NOTE**<br><br>This attribute is not applicable to SVG images.|
+| sourceSize            | {<br>width: number,<br>height: number<br>} | -                        | Decoding size of the image. The original image is decoded into an image of the specified size, in px.<br>**NOTE**<br><br>This attribute is not applicable to **PixelMap** objects.|
 | syncLoad<sup>8+</sup> | boolean                                  | false                    | Whether to load images synchronously. By default, images are loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed. |
 
 ### ImageFit
@@ -159,7 +160,7 @@ struct ImageExample1 {
 }
 ```
 
-![zh-cn_image_0000001250492613](figures/zh-cn_image_0000001250492613.gif)
+![en-us_image_0000001211898484](figures/en-us_image_0000001211898484.gif)
 
 ### Setting Attributes
 
@@ -227,7 +228,7 @@ struct ImageExample2 {
 }
 ```
 
-![zh-cn_image_0000001205812616](figures/zh-cn_image_0000001205812616.png)
+![en-us_image_0000001212058474](figures/en-us_image_0000001212058474.png)
 
 ### Invoking Events
 
@@ -291,4 +292,4 @@ struct ImageExample3 {
 }
 ```
 
-![zh-cn_image_0000001205972610](figures/zh-cn_image_0000001205972610.gif)
+![en-us_image_0000001256858397](figures/en-us_image_0000001256858397.gif)
