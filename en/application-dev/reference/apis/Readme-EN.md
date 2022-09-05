@@ -19,6 +19,7 @@
     - [@ohos.application.ServiceExtensionAbility](js-apis-service-extension-ability.md)
     - [@ohos.application.StartOptions](js-apis-application-StartOptions.md)
     - [@ohos.application.StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md)
+    - [@ohos.application.WindowExtensionAbility](js-apis-application-WindowExtensionAbility.md)
     - application/[AbilityContext](js-apis-ability-context.md)
     - application/[ApplicationContext](js-apis-application-applicationContext.md)
     - application/[AbilityStageContext](js-apis-abilitystagecontext.md)
@@ -39,6 +40,7 @@
     - [@ohos.application.Configuration](js-apis-configuration.md)
     - [@ohos.application.ConfigurationConstant](js-apis-configurationconstant.md)
     - [@ohos.application.EnvironmentCallback](js-apis-application-EnvironmentCallback.md)
+    - [@ohos.application.errorManager](js-apis-errorManager.md)
     - [@ohos.application.formBindingData](js-apis-formbindingdata.md)
     - [@ohos.application.formError](js-apis-formerror.md)
     - [@ohos.application.formHost](js-apis-formhost.md)
@@ -70,18 +72,25 @@
 
   - [@ohos.bundle](js-apis-Bundle.md)
   - [@ohos.bundle.defaultAppManager](js-apis-bundle-defaultAppManager.md)
+  - [@ohos.bundle.innerBundleManager)](js-apis-Bundle-InnerBundleManager.md)
   - [@ohos.bundleState](js-apis-deviceUsageStatistics.md)
+  - [@ohos.distributedBundle)](js-apis-Bundle-distributedBundle.md)
   - [@ohos.zlib](js-apis-zlib.md)
   - bundle/[AbilityInfo](js-apis-bundle-AbilityInfo.md)
   - bundle/[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)
   - bundle/[BundleInfo](js-apis-bundle-BundleInfo.md)
+  - bundle/[BundleInstaller](js-apis-bundle-BundleInstaller.md)
   - bundle/[CustomizeData](js-apis-bundle-CustomizeData.md)
+  - bundle/[DispatchInfo](js-apis-dispatchInfo.md)
   - bundle/[ElementName](js-apis-bundle-ElementName.md)
   - bundle/[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)
   - bundle/[HapModuleInfo](js-apis-bundle-HapModuleInfo.md)
+  - bundle/[LauncherAbilityInfo](js-apis-bundle-LauncherAbilityInfo.md)
   - bundle/[Metadata](js-apis-bundle-Metadata.md)
   - bundle/[ModuleInfo](js-apis-bundle-ModuleInfo.md)
-  
+  - bundle/[PermissionDef](js-apis-bundle-PermissionDef.md)
+  - bundle/[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
+  - bundle/[ShortcutInfo](js-apis-bundle-ShortcutInfo.md)
 - UI Page
 
   - [@ohos.animator](js-apis-animator.md)
@@ -92,6 +101,7 @@
   
 - Graphics
 
+  - [@ohos.animation.windowAnimationManager](js-apis-windowAnimationManager.md)
   - [@ohos.display ](js-apis-display.md)
   - [@ohos.effectKit](js-apis-effectKit.md)
   - [@ohos.screen](js-apis-screen.md)
@@ -117,6 +127,7 @@
 - Resource Scheduling
 
   - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
+  - [@ohos.distributedMissionManager](js-apis-distributedMissionManager.md)
   - [@ohos.workScheduler ](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility](js-apis-WorkSchedulerExtensionAbility.md)
   
@@ -183,6 +194,8 @@
   - [@ohos.nfc.cardEmulation](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller](js-apis-nfcController.md)
   - [@ohos.nfc.tag](js-apis-nfcTag.md)
+  - [@ohos.nfc.tag](js-apis-nfctech.md)
+  - [@ohos.nfc.tag](js-apis-tagSession.md)
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
@@ -203,6 +216,7 @@
   - [@ohos.pasteboard](js-apis-pasteboard.md)
   - [@ohos.screenLock](js-apis-screen-lock.md)
   - [@ohos.systemTime](js-apis-system-time.md)
+  - [@ohos.systemTimer](js-apis-system-timer.md)
   - [@ohos.wallpaper](js-apis-wallpaper.md)
   - [Timer](js-apis-timer.md)
   
