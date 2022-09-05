@@ -694,6 +694,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |

@@ -193,7 +193,7 @@ media.off('imageChange', () => {
 })
 ```
 
-### createAsset <sup>8+</sup>
+### createAsset<sup>8+</sup>
 
 createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -1529,7 +1529,7 @@ async function example() {
 
 ### deleteAsset<sup>8+</sup>
 
-deleteAsset(uri: string): Promise<void>;
+deleteAsset(uri: string): Promise\<void>
 
 删除媒体文件资源
 
@@ -1544,6 +1544,11 @@ deleteAsset(uri: string): Promise<void>;
 | 参数名      | 类型                           | 必填   | 说明              |
 | -------- | ---------------------------- | ---- | --------------- |
 | uri | string | 是    | 需要删除的媒体文件资源的uri |
+
+**返回值：**
+| 类型                  | 说明                   |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | Promise回调返回删除的结果。 |
 
 **示例：**
 
@@ -1571,7 +1576,8 @@ async function example() {
 }
 ```
 
-deleteAsset(uri: string, callback: AsyncCallback<void>): void;
+### deleteAsset<sup>8+</sup>
+deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 删除媒体文件资源
 
@@ -1585,7 +1591,8 @@ deleteAsset(uri: string, callback: AsyncCallback<void>): void;
 
 | 参数名      | 类型                           | 必填   | 说明              |
 | -------- | ---------------------------- | ---- | --------------- |
-| uri | string | 是    | 需要删除的媒体文件资源的uri |
+| uri | string | 是    | 需要删除的媒体文件资源的uri。 |
+|callback |AsyncCallback\<void>| 是  |回调函数，用于获取删除的结果。|
 
 **示例：**
 
