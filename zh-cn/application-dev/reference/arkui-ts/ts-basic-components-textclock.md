@@ -28,10 +28,9 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称   | 参数类型 | 默认值   | 描述                                                         |
-| ------ | -------- | -------- | ------------------------------------------------------------ |
-| format | string   | 'hhmmss' | 设置显示时间格式，如“yyyy/mm/dd”、“yyyy-mm-dd”等。<br>支持的时间格式化字符串：<br>- yyyy：年份。<br/>- mm：英文月份简写。<br/>- mmm：英文月份简写。<br/>- mmmm：英文月份全称。<br/>- dd：英文星期简写。<br/>- ddd：英文星期简写。<br/>- dddd：英文星期全称。<br/>- HH：24小时制。<br/>- hh：12小时制。<br/>- MM/mm：分钟。<br/>- SS/ss：秒。 |
-
+| 名称   | 参数类型 | 默认值 | 描述                                                         |
+| ------ | -------- | ------ | ------------------------------------------------------------ |
+| format | string   | 'hms'  | 设置显示时间格式。<br/>日期间隔符固定为"/"，时间间隔符为":"。<br/>如yyyyMMdd，yyyy-MM-dd显示为yyyy/MM/dd，<br/>hhmmss显示为hh:mm:ss。 <br/>时间格式只用写一位即可，如"hhmmss"等同于"hms"。<br/>支持的时间格式化字符串：<br/>- YYYY/yyyy：完整年份。<br/>- YY/yy：年份后两位。<br/>- M：月份(若想使用01月则使用MM)。<br/>- d：日期(若想使用01日则使用dd)。<br/>- D：年中日(一年中的第几天)。<br/>- H：24小时制。<br/>- h：12小时制。<br/>- m：分钟。<br/>- s：秒。<br/>- SSS：毫秒。 |
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
