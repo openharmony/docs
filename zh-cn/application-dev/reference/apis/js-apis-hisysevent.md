@@ -89,7 +89,7 @@ write(info: SysEventInfo): Promise&lt;void&gt;
 
 | 参数名    | 类型                    | 必填 | 说明 |
 | --------- | ----------------------- | ---- | --------------- |
-| eventType | [EventType](#eventtype) | 是   | 应用事件类型。 |
+| info | [SysEventInfo](#syseventinfo) | 是 | 系统事件。 |
 
 **返回值：**
 
