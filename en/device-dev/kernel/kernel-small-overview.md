@@ -96,7 +96,7 @@ Extended components provide optional but important mechanism for extending kerne
 -   Permission management: supports process-based privilege division and control, and file user, group, and other \(UGO\) permission configuration.
 ## Directory Structure<a name="section161941989596"></a>
 
-```
+```tex
 /kernel/liteos_a
 ├── apps                   # User-space init and shell application programs
 ├── arch                   # System architecture, such as ARM
