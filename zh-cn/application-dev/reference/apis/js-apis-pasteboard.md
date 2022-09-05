@@ -181,7 +181,7 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 
 createData(mimeType: string, value: ArrayBuffer): PasteData;
 
-构建一个自定义类型的剪贴板内容对象
+构建一个自定义类型的剪贴板内容对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -361,7 +361,7 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 
 createRecord(mimeType: string, value: ArrayBuffer):PasteDataRecord;
 
-创建一条自定义数据内容条目
+创建一条自定义数据内容条目。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
