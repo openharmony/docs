@@ -2813,6 +2813,7 @@ IP多媒体系统调用模式。
 | DEVICE_SPEAKER       | 1    | 扬声器设备 |
 | DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
 | DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
+| DEVICE_MIC           | 4    | 麦克风设备 |
 
 ## CallRestrictionType<sup>8+</sup>
 
